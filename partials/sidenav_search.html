@@ -1,0 +1,60 @@
+<div class="col-sm-5 col-md-4 col-lg-3 sidenav sidenav-left">
+    <div class="well well-lg text-center">
+        <form name="searchForm" role="form" data-ng-submit="submit(searchText)">
+            <div class="form-group">
+                <label class="control-label">Volltextsuche in {{APIurl}}</label>
+                <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Los!</button>
+                    </span>
+                    <input type="text" class="form-control" placeholder="Suche..." data-ng-model="searchText" required />
+                </div>
+                <p class="help-block">
+                    BETA: Suche momentan noch mit eingeschränkter Funktionalität
+                </p>
+            </div>
+        </form>
+    </div>
+    <div class="well well-lg">
+        <!-- ### WHEN LOADING ### -->
+        <h3 data-ng-show="isFormSubmitted">Load results...</h3>
+
+        <!-- ### WHEN SEARCH RESULTS ARE LOADED ### -->
+        <div data-ng-show="isDataLoaded">
+
+            <!-- ### HEADER ### -->
+            <h4>Suchergebnisse</h4>
+            <p>
+                Insgesamt {{searchData.nhits}} Treffer:
+            </p>
+
+            <!-- ### PAGINATION ### -->
+            <uib-pagination total-items="searchData.nhits" data-ng-model="currentPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></uib-pagination>
+
+            <!-- ### TABLE WITH SEARCH RESULTS ### -->
+            <table class="table table-condensed table-hover table-responsive" data-ng-show="searchData.nhits > 0">
+                <thead>
+                <tr>
+                    <th>
+                        Kategorie
+                    </th>
+                    <th>
+                        Eintrag
+                    </th>
+                </tr>
+                </thead>
+                <tbody>
+                    <tr data-ng-repeat="subject in searchData.subjects track by subject.obj_id" data-ng-click="showObject(subject.obj_id)">
+                        <td>
+                            <img data-ng-src="{{subject.iconsrc}}" alt="iconsrc" > {{subject.iconlabel}}
+                        </td>
+                        <td>
+                            <em>{{subject.valuelabel[0]}}</em>:
+                            <span dir-bind-html-compile="subject.value[0]"></span>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div> <!-- END SEARCHRESULTS -->
+    </div> <!-- END WELL -->
+</div>

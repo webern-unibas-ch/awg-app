@@ -1,0 +1,156 @@
+html, body {
+    font-family: 'Droid Sans', sans-serif;
+    background-color: #FFF;
+    padding: 5px;
+}
+
+/****** PAGE LAYOUT ******/
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+
+/* Set height of the grid so .sidenav can be 100% */
+.row.content {
+    height: 600px
+}
+
+/* Set gray background color and 100% height */
+.sidenav {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+.objbox {
+    border: 1px solid black;
+    position: relative;
+    height: 100%;
+    padding: 10px;
+    margin: 10px;
+}
+
+/* Set grey background color, black text and some padding */
+footer {
+  background-color: #f1f1f1;
+  color: black;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {height:auto;}
+}
+
+#subitem {
+    padding-left: 20px;
+}
+
+
+/****** IMAGES ******/
+#unilogo {
+    width: 118px;
+    height: 37px;
+    cursor: pointer;
+}
+#snf {
+    width: 118px;
+    height: 40px;
+    cursor: pointer;
+    padding-right: 10px;
+}
+#webernlogo {
+    cursor: pointer;
+    font-family: 'Droid Sans', sans-serif;
+    text-align: center;
+}
+#webernlogo span {
+    font-weight: lighter;
+}
+
+.img-thumbnail {
+    height: 100px;
+    width:auto;
+    padding: 0px;
+    margin: 2px 0px;
+}
+
+/* style after click on svg area*/
+#svg a.active rect {
+    fill: OliveDrab;
+}
+
+
+
+/****** CAROUSEL ******/
+#slides_control > div {
+  height: 200px;
+}
+slide img {
+  margin:auto;
+  width: 400px;
+}
+#slides_control {
+  position:absolute;
+  width: 400px;
+  left:50%;
+  top:20px;
+  margin-left:-200px;
+}
+
+
+/****** TABLES & LISTS ******/
+.table thead tr th {
+    border-bottom: 2px solid black;
+}
+.borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
+    border: none;
+}
+.borderless tbody tr:hover, .borderless tbody tr:hover, .borderless thead tr:hover {
+    cursor: pointer;
+    background-color: #e7e7e7;
+}
+td {
+    vertical-align: top;
+}
+
+ul.none {
+    list-style: none;
+}
+
+
+/****** POINTER ******/
+a {
+    cursor: pointer;
+}
+
+
+/****** DIVS ******/
+.para {
+    margin-bottom: 3em;
+}
+
+
+/****** FONTPROPERTIES ******/
+.bold {
+    font-weight: bold;
+}
+span.caps {
+    font-variant: small-caps;
+}
+span.indent {
+    text-indent:25px;
+}
+
+.version {
+    font-weight: bold;
+    font-variant: small-caps;
+    font-style: italic;
+}

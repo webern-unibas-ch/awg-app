@@ -1,0 +1,83 @@
+<!-- ### CONTENT EDITION ### -->
+<div class="col-sm-9 col-md-10 maincontent text-left">
+
+    <!-- ### HEADER ### -->
+    <div>
+        <h2 id="edition"><em>Vier Lieder</em> op. 12, Skizzen</h2>
+        <h3>{{sheet}}</h3>
+    </div>
+
+    <!-- ### EMBEDDED SVG ### -->
+    <div>
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="svg">
+            <image xlink:href="{{sheets[sheet].svg}}" src="{{sheets[sheet].image}}" width="1000" height="508" />
+            <!-- MEASURES -->
+                <!-- MEASURE 10 -->
+            <a href="" ng-click="testIt('yellow')" ng-class="{active: isActive('yellow')}">
+                <rect x="300" y="125" fill="white" opacity="0.1" width="180" height="350" />
+            </a>
+                <!-- MEASURE 11 -->
+            <a href="" ng-click="testIt('pink')" ng-class="{active: isActive('pink')}">
+                <rect x="480" y="125" fill="white" opacity="0.1" width="180" height="350" />
+            </a>
+                <!-- MEASURE 12 -->
+            <a href="" ng-click="testIt('blue')" ng-class="{active: isActive('blue')}">
+                <rect x="660" y="125" fill="white" opacity="0.1" width="180" height="350"/>
+            </a>
+            <!-- SINGLE ITEMS -->
+                <!-- rect SkI/ 3 -->
+            <a href="" ng-click="testIt('Aa:SkI/3')" ng-class="{active: isActive('Aa:SkI/3')}">
+                <rect x="90" y="350" fill="white" opacity="0.1" width="185" height="125" />
+            </a>
+                <!-- T10/S12/o1 -->
+            <a href="" ng-click="testIt('0')" ng-class="{active: isActive('0')}">
+                <rect x="330" y="350" fill="orange" opacity="0.4" width="40" height="70" />
+            </a>
+                <!-- T10/S12/o2 -->
+            <a href="" ng-click="testIt('1')" ng-class="{active: isActive('1')}">
+                <rect x="380" y="350" fill="orange" opacity="0.4" width="40" height="70" />
+            </a>
+                <!-- T11/S14/o(1/4) -->
+            <a href="" ng-click="testIt('2')" ng-class="{active: isActive('2')}">
+                <rect x="480" y="200" fill="orange" opacity="0.4" width="125" height="80" />
+            </a>
+                <!-- T12/S14/oO -->
+            <a href="" ng-click="testIt('3')" ng-class="{active: isActive('3')}">
+                <rect x="660" y="270" fill="orange" opacity="0.4" width="125" height="80" />
+            </a>
+        </svg>
+
+        <div >
+            <table class="table table-condensed" ng-show="showTkA">
+                <thead>
+                    <tr>
+                        <th>Takt</th>
+                        <th>System</th>
+                        <th>Ort</th>
+                        <th>Kommentar</th>
+                    </tr>
+                </thead>
+                <tr>
+                    <td>{{item.measure}}</td>
+                    <td>{{item.system}}</td>
+                    <td dir-bind-html-compile="item.location"></td>
+                    <td dir-bind-html-compile="item.comment"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+
+    <!-- ### CAROUSEL WITH SHEETS ### -->
+    <!-- <div class="para">
+        <div style="max-height: 555px">
+            <uib-carousel interval="slideInterval">
+                <uib-slide ng-repeat="sheet in sheets" active="sheet.active">
+                    <img ng-src="{{sheet.image}}" style="height:450px; margin:auto;">
+                        <div class="carousel-caption">
+                            <h4>{{sheet.alt}}</h4>
+                        </div>
+                </uib-slide>
+            </uib-carousel>
+        </div>
+    </div> -->
+</div>

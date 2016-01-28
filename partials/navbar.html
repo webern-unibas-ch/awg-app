@@ -1,0 +1,85 @@
+<nav class="navbar navbar-default">
+    <div class="container-fluid">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#awgNavbar" ng-click="showMobileNav = !showMobileNav">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="http://www.anton-webern.ch">
+                <span id="webernlogo">
+                    ANTON WEBERN <br>
+                    <span>GESAMTAUSGABE</span>
+                </span>
+            </a>
+        </div>
+        <div class="navbar-collapse collapse" id="awgNavbar" ng-class="{in: showMobileNav}">
+            <ul class="nav navbar-nav">
+                <!-- <li ng-repeat="route in routes" ng-class="{active: activeRoute(route)}">
+                    <a href="#{{route.path}}">{{route.name}}</a>
+                </li> -->
+
+                <li>
+                    <a href="#/">Home</a>
+                </li>
+                <li>
+                    <a href="#/search">Suche</a>
+                </li>
+                <li>
+                    <a href="#/intro">Einleitung</a>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown">
+                        Edierter Notentext
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">
+                            <i>Vier Lieder</i> op. 12 Skizzen
+                        </li>
+                        <li class="divider"></li>
+                        <li><a href="#/edition">Aa:SkI/2</a></li>
+                        <li><a href="#/edition">Aa:SkI/3</a></li>
+                        <li><a href="#/edition">Aa:SkI/4</a></li>
+                        <li><a href="#/edition">Aa:SkI/5</a></li>
+                    </ul>
+                </li>
+                <li class="dropdown">
+                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
+                        Kritischer Bericht
+                        <span class="caret"></span>
+                    </a>
+                    <ul class="dropdown-menu">
+                        <li class="dropdown-header">
+                            <i>Vier Lieder</i> op. 12 Skizzen
+                        </li>
+                        <li class="divider"></li>
+                        <li>
+                            <a href="#/report">I. Quellen</a>
+                        </li>
+                        <li id="subitem">
+                            <a href="#/report#sourceList" target="_self">1. Quellenübersicht</a>
+                        </li>
+                        <li id="subitem">
+                            <a href="#/report#sourceDesc">2. Quellenbeschreibung</a>
+                        </li>
+                        <li id="subitem">
+                            <a href="#/report#sourceEvaluation">3. Quellenbewertung</a>
+                        </li>
+                        <li>
+                            <a href="#/report#TKA">II. Textkritischer Kommentar</a>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right">
+                <li>
+                    <a href="#/contact">
+                        <span class="glyphicon glyphicon-envelope"></span>
+                        Kontakt
+                    </a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
