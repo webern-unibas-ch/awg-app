@@ -6,13 +6,6 @@ app.directive('awgNavbar', function($route){
         restrict: 'E',
         replace: true,
         templateUrl: 'partials/navbar.html',
-        // controller: function ($scope) {
-        //     $scope.activeRoute = $route.current.activeRoute;
-        //     $scope.routes = routeNavigation.routes;
-        //     $scope.activeRoute = routeNavigation.activeRoute;
-        //     console.log($scope.activeRoute);
-        //
-        //}
     };
 });
 
@@ -22,11 +15,7 @@ app.directive('awgEditionSidenav', function(){
     return {
         restrict: 'E',
         replace: true,
-        templateUrl: 'partials/sidenav_edition.html',
-        // controller: function ($scope) {
-        //     // $scope.version_date = "31. März 2015";
-        //     // $scope.editors = "Thomas Ahrend";
-        // }
+        templateUrl: 'partials/sidenav_edition.html',        
     };
 });
 

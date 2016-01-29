@@ -82,28 +82,28 @@ footer {
     margin: 2px 0px;
 }
 
-/* style after click on svg area*/
-#svg a.active rect {
+/****** SVG ******/
+svg {
+    box-shadow: 5px 5px 6px #cccccc;
+    border: 1px solid #eeeeee;
+}
+.svg_item {
+    fill: orange;
+    opacity: 0.2;
+}
+.svg_measure, .svg_linkbox {
+    fill: white;
+    opacity: 0;
+}
+.svg_measure:hover, .svg_linkbox:hover, .svg_item:hover {
     fill: OliveDrab;
+    opacity: 0.2;
+}
+svg a.active rect {
+    fill: OliveDrab;
+    opacity: 0.2;
 }
 
-
-
-/****** CAROUSEL ******/
-#slides_control > div {
-  height: 200px;
-}
-slide img {
-  margin:auto;
-  width: 400px;
-}
-#slides_control {
-  position:absolute;
-  width: 400px;
-  left:50%;
-  top:20px;
-  margin-left:-200px;
-}
 
 
 /****** TABLES & LISTS ******/
@@ -142,15 +142,9 @@ a {
 .bold {
     font-weight: bold;
 }
-span.caps {
+span.caps, .version {
     font-variant: small-caps;
 }
 span.indent {
     text-indent:25px;
-}
-
-.version {
-    font-weight: bold;
-    font-variant: small-caps;
-    font-style: italic;
 }

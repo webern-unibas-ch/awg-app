@@ -2,7 +2,7 @@ angular.module('prototypeApp.controllers', []);
 
 
 /**** CONTROLLER FOR MAIN PAGE ****/
-app.controller('mainCtrl', ['$scope', '$location', function ($scope, $location){
+app.controller('mainCtrl', ['$scope', function ($scope){
     $scope.message = "Home page Ctrl"
     console.log($scope.message);
 
@@ -77,7 +77,7 @@ app.controller('searchCtrl', ['$scope', '$http', 'salsahAPIservice', function ($
 
 
 /**** CONTROLLER FOR INTRO PAGE ****/
-app.controller('introCtrl', ['$scope', '$location', '$anchorScroll', function ($scope, $location, $anchorScroll){
+app.controller('introCtrl', ['$scope', function ($scope){
     $scope.message = "Intro page Ctrl"
     console.log($scope.message);
 
@@ -86,22 +86,11 @@ app.controller('introCtrl', ['$scope', '$location', '$anchorScroll', function ($
         $scope.showModal = !$scope.showModal;
         $scope.modalValue = $scope.modalText[id];
     };
-
-    $scope.linkTo = function(id){
-        // save original hash
-        var old = $location.hash();
-        // set new hash id
-        $location.hash(id);
-        // scroll to id
-        $anchorScroll();
-        //reset original hash
-        $location.hash(old);
-    };
 }]);
 
 
 /**** CONTROLLER FOR EDITION PAGE ****/
-app.controller('editionCtrl', ['$scope', '$http', function ($scope, $http){
+app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams){
     $scope.message = "Edition page Ctrl"
     console.log($scope.message);
 
@@ -112,10 +101,18 @@ app.controller('editionCtrl', ['$scope', '$http', function ($scope, $http){
         $scope.modalValue = $scope.modalText[id];
     };
 
-    // INIT CAROUSEL
-    // $scope.slideInterval = 3000;
+    //INIT SHEETS
+    $scope.sheet2 ="Aa:SkI/2";
+    $scope.sheet3 ="Aa:SkI/3";
+    $scope.sheet4 ="Aa:SkI/4";
+    $scope.sheet5 ="Aa:SkI/5";
+    $scope.sheet = $scope.sheet2;
 
-    $scope.sheet ="Aa:SkI/2";
+    //CHECK FOR ROUTEPARAMS
+    if ($routeParams.id) {
+        $scope.sheet = $routeParams.id;
+    };
+
     $scope.sheets = {
     	"Aa:SkI/2": {
     		"svg": "img/SkI_2_small_opt.svg",
@@ -123,36 +120,68 @@ app.controller('editionCtrl', ['$scope', '$http', function ($scope, $http){
     		"alt": "Aa:SkI/2"
     	},
     	"Aa:SkI/3": {
-    		"image": "img/SkI_3.jpg",
+            "svg": "img/SkI_3_small_opt.svg",
+    		"image": "img/SkI_3_small.jpg",
     		"alt": "Aa:SkI/3"
     	},
     	"Aa:SkI/4": {
+            "svg": "img/SkI_4_small_opt.svg",
     		"image": "img/SkI_4.jpg",
     		"alt": "Aa:SkI/4"
     	},
     	"Aa:SkI/5": {
+            "svg": "img/SkI_5_small_opt.svg",
     		"image": "img/SkI_5.jpg",
     		"alt": "Aa:SkI/5"
     	}
-    }
-
-    //SHOW TkA
-    $scope.showTkA = false;
-
-    $scope.isActive = function(id){
-        return $scope.selected == id;
     };
 
-    $scope.testIt = function(id){
-        console.log("Clicked on: ", id);
-        $scope.selected = id;
-        $scope.showTkA = true;
-        $http.get('data/tka.json').then(function (response){
-            var tmp = response.data;
-            $scope.item = tmp[$scope.sheet][id];
-            console.log($scope.item);
-        });
-    };
+    //DISPLAY TkA
+    $http.get('data/tka.json').then(function (response){
+        var tmp = response.data;
+        $scope.showTkA = false;
+
+        $scope.isActive = function(id){
+            return $scope.selected == id;
+        };
+
+        $scope.getSingleTkA = function(id){
+            //INIT
+            $scope.selected = id;
+            $scope.showTkA = true;
+            $scope.items = [];
+
+            //GET DATA
+            $scope.items.push(tmp[$scope.sheet][id]);
+        }; //END getSingleTkA (func)
+
+        $scope.getMeasureTkA = function(id){
+            //INIT
+            $scope.showTkA = true;
+            $scope.selected = id;
+            $scope.items = [];
+
+            //GET DATA
+            angular.forEach(tmp[$scope.sheet], function(entry){
+                //CLEAN VALUES
+                var tmp_measure = entry.measure.replace("[", "").replace("]", "");
+                //CHECK IF MEASURE MATCHES ID
+                if (tmp_measure == id) {
+                    $scope.items.push(entry);
+                };
+            }); //END forEach
+        }; // END getMeasureTkA (func)
+
+        $scope.selectSVG = function(id){
+            $scope.sheet = id;
+            $scope.showTkA = false;
+            $scope.selected = '';
+        };
+
+        $scope.activeSheet = function(id){
+            return $scope.sheet == id;
+        };
+    }); // END http.then
 
 }]);
 
@@ -178,7 +207,7 @@ app.controller('reportCtrl', ['$scope', '$http', '$location', '$anchorScroll', f
         $anchorScroll();
         //reset original hash
         $location.hash(old);
-    }
+    };
 
     // GET JSON DATA
     $http.get('data/sourcelist.json').then(function (response){

@@ -6,15 +6,13 @@
 
     <title>Prototype Edition</title>
     <meta name="Autor" content="Stefan Münnich">
-    <meta name="description" content="Web-Applikation für die Darstellung der Online-Edition der Anton Webern Gesamtausgabe (Universität Basel)">
+    <meta name="description" content="Web-Applikation für die Online-Edition der Anton Webern Gesamtausgabe (Musikwissenschaftliches Seminar der Universität Basel)">
 
     <!-- CREDITS -->
     <!-- This App uses code snippets inspired by: -->
     <!--
     ROUTING IN SINGLE PAGE APP:
-        Chris Sevilleja (@sevilayha), Tutorial:  "Single Page Apps with AngularJS Routing and Templating", 4. November 2013, <https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating> (accessed 13.1.2015)
-    ROUTING NAVBAR:
-        Tilman Potthof, Artikel: "Generierte Navigation mit AngularJS und Bootstrap", <https://angularjs.de/artikel/navigation-menu-bootstrap> (accessed 13.1.2015)
+        Chris Sevilleja (@sevilayha), Tutorial:  "Single Page Apps with AngularJS Routing and Templating", 4. November 2013, <https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating> (accessed 13.1.2015)    
     ANCHOR HASH LINKING TO USE WITH ROUTING:
         Ben Lesh, 5.2.2013 (<http://plnkr.co/edit/PCO051UJS8EHbdkmFV40?p=preview>, accessed 14.1.2016), edited by vp_arth, 11.6.2015 (<http://plnkr.co/edit/De6bBrkHpojgAbEvHszu?p=info>, accessed 14.1.2016); amendment to Ben Lesh version by slugslog, 10.4.2013, <http://stackoverflow.com/a/15935517> (accessed 14.1.2016)
     MODALS:
@@ -69,18 +67,12 @@
     <div class="container-fluid text-left">
         <div class="row content">
 
-            <!-- LEFT SIDENAV-->
+            <!-- LEFT SIDENAV / DISCLAIMER-->
             <awg-edition-sidenav ng-if="$location.path() !== '/search'"></awg-edition-sidenav>
 
             <!-- CONTENT -->
             <div ng-view></div>
 
-            <!-- RIGHT SIDENAV (DISCLAIMER)-->
-            <!-- <div class="col-sm-2 col-md-2 sidenav sidenav-right">
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-                <p><a href="#">Link</a></p>
-            </div> -->
         </div> <!-- END row.content -->
     </div> <!-- END container-fluid -->
 

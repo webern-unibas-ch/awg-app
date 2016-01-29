@@ -9,7 +9,7 @@ var app = angular.module('prototypeApp', [
 ]);
 
 // routeConfiguration
-app.config(function($routeProvider, $locationProvider){
+app.config(function($routeProvider){
     $routeProvider
 
         //route for the home page
@@ -60,7 +60,7 @@ app.config(function($routeProvider, $locationProvider){
             activeRoute: 'contact'
         })
 
-        //non-defined routes to home page
+        //otherwise route to home page
         .otherwise({
             redirectTo: '/'
         });
@@ -68,17 +68,14 @@ app.config(function($routeProvider, $locationProvider){
 });
 
 app.run(function($rootScope, $location, $route, $anchorScroll, $timeout) {
-    $rootScope.$location = $location;
-    $rootScope.$route = $route;
-    $rootScope.keys = Object.keys;
+    $rootScope.$location = $location;    
 
-    //when route changes & anchorHash is set, set timeout to wait that page has completely loaded/rendered before scrolling to anchorHash
+    //when route changes & anchorHash is set, set timeout so page can completely load/render before scrolling to anchorHash
     $rootScope.$on("$routeChangeSuccess", function (event) {
         if ($location.hash()) {
             $timeout(function(){
                 $anchorScroll();
-            }, 1000);
+            }, 750);
         };
     });
-
 });

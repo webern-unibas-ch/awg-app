@@ -8,7 +8,7 @@
 		"measure": "10",
 		"system": "12",
 		"location": "2. Note",
-		"comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a data-ng-click=\"toggleModal('sheetComingSoon')\"><strong>Aa:SkI/1</strong></a> T. [11], <strong>Aa:SkI/3</strong> und <strong>Aa:SkI/5</strong> sowie in den <a data-ng-click=\"toggleModal('editionComingSoon')\">Reinschrift- bzw. Druckfassungen</a> aus <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>B</strong></a>, <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>C</strong></a>, <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>E</strong></a>, <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>F</strong></a> und <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>G</strong></a>."
+		"comment": "&#9838;e oder &#9837;es (?). (Siehe auch System 13 2/4: e<sup>1</sup>/as<sup>1</sup> oder [&#9837;]es<sup>1</sup>/as<sup>1</sup>?) Vorgeschlagene Entzifferung mit Blick auf eindeutig entzifferbare Akzidenzien an entsprechender Stelle in <a data-ng-click=\"toggleModal('sheetComingSoon')\"><strong>Aa:SkI/1</strong></a> T. [11], <a data-ng-click=\"selectSVG(sheet3)\"><strong>Aa:SkI/3</strong></a> und <a data-ng-click=\"selectSVG(sheet5)\"><strong>Aa:SkI/5</strong></a> sowie in den <a data-ng-click=\"toggleModal('editionComingSoon')\">Reinschrift- bzw. Druckfassungen</a> aus <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>B</strong></a>, <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>C</strong></a>, <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>E</strong></a>, <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>F</strong></a> und <a data-ng-click=\"toggleModal('sourceNotA')\"><strong>G</strong></a>."
 	}, {
 		"measure": "[11]",
 		"system": "14",
@@ -17,7 +17,7 @@
 	}, {
 		"measure": "[12]",
 		"system": "13",
-		"location": "&nbsp;",
+		"location": "",
 		"comment": "radierte, nicht entzifferbare Schicht."
 	}],
 	"Aa:SkI/3": [{
