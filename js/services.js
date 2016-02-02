@@ -1,5 +1,36 @@
 angular.module('prototypeApp.services', []);
 
+
+/*
+
+                    awgService
+                    
+*/
+app.factory('awgService', function($timeout, $location, $anchorScroll){
+
+    //SCROLLS TO AN ID ON THE SAME PAGE (AS WITH ROUTING INNER PAGE HASH ANCHORS DON'T WORK)
+    function scrollTo (id) {
+
+        //TIMEOUT IS NEEDED TO HAVE THE PAGE FULLY LOADED/COMPILED BEFORE SCROLLING
+        return $timeout(function(){
+            // save original hash
+            var old = $location.hash();
+            // set new hash id
+            $location.hash(id);
+            // scroll to id
+            $anchorScroll();
+            //reset original hash
+            $location.hash(old);
+        }, '');
+    };
+
+    return {
+        scrollTo: scrollTo  //RETURNS A FUNCTION
+    };
+
+});
+
+
 /*
 
                     salsahAPIservice

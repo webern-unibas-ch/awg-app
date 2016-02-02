@@ -9,10 +9,10 @@
     <!-- ### HEADER ### -->
     <div class="para">
         <h2 id="edition"><em>Vier Lieder</em> op. 12, Skizzen</h2>
-        <p class="help-block">
+        <p class="text-muted">
             Hinweise: <br>
-            Einen Takt oder eine markierte Stelle anklicken, um die entsprechenden Textkritischen Anmerkungen anzeigen zu lassen. <br>
-            Die grösseren Boxen im Notentext markieren die jeweiligen Anschlüsse der  anderen Skizzen und sind ebenfalls anklickbar.
+            Einen Takt oder eine markierte Stelle anklicken, um die entsprechenden Textkritischen Anmerkungen anzuzeigen. <br>
+            Die grösseren Boxen im Notentext markieren die jeweiligen Anschlüsse der anderen Skizzen und sind ebenfalls verknüpft.
         </p>
     </div>
 
@@ -25,7 +25,29 @@
             <a href="" class="btn btn-default" ng-class="{active: activeSheet(sheet4)}" ng-click="selectSVG(sheet4)">{{sheet4}}</a>
             <a href="" class="btn btn-default" ng-class="{active: activeSheet(sheet5)}" ng-click="selectSVG(sheet5)">{{sheet5}}</a>
         </div>
+    </div>
 
+    <!-- ### TABLE FOR TkA ### -->
+    <div >
+        <table class="table table-condensed" ng-show="showTkA">
+            <thead>
+                <tr>
+                    <th style="width:7%">Takt</th>
+                    <th style="width:10%">System</th>
+                    <th style="width:15%; white-space: nowrap;">Ort im Takt</th>
+                    <th style="width:auto">Kommentar</th>
+                </tr>
+            </thead>
+            <tr ng-repeat="item in items">
+                <td>{{item.measure}}</td>
+                <td>{{item.system}}</td>
+                <td dir-bind-html-compile="item.location"></td>
+                <td dir-bind-html-compile="item.comment"></td>
+            </tr>
+        </table>
+    </div> <!-- END table -->
+
+    <div>
     <!-- ### EMBEDDED SVG: Aa:SkI/2 ### -->
         <div class="svg" ng-show="activeSheet(sheet2)">
             <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/2">
@@ -33,15 +55,15 @@
             <!-- MEASURES -->
                 <!-- MEASURE 10 -->
                 <a href="" ng-click="getMeasureTkA('10')" ng-class="{active: isActive('10')}">
-                    <rect class="svg_measure" x="300" y="125" width="180" height="350" />
+                    <rect class="svg_measure" x="300" y="125" width="180" height="345" />
                 </a>
                 <!-- MEASURE 11 -->
                 <a href="" ng-click="getMeasureTkA('11')" ng-class="{active: isActive('11')}">
-                    <rect class="svg_measure" x="480" y="125" width="180" height="350" />
+                    <rect class="svg_measure" x="480" y="125" width="180" height="345" />
                 </a>
                 <!-- MEASURE 12 -->
                 <a href="" ng-click="getMeasureTkA('12')" ng-class="{active: isActive('12')}">
-                    <rect class="svg_measure" x="660" y="125" width="180" height="350"/>
+                    <rect class="svg_measure" x="660" y="125" width="180" height="345"/>
                 </a>
             <!-- SINGLE ITEMS -->
                 <!-- T10/S12/o1 -->
@@ -63,7 +85,7 @@
             <!-- LINK BOXES -->
                 <!-- rect SkI/ 3 -->
                 <a href="" ng-click="selectSVG(sheet3)">
-                    <rect class="svg_linkbox" x="90" y="348" width="182" height="125" />
+                    <rect class="svg_linkbox" x="90" y="345" width="182" height="125" />
                 </a>
             </svg>
         </div> <!-- ### END SVG Aa:SkI/2 ### -->
@@ -72,38 +94,38 @@
 
     <!-- ### EMBEDDED SVG: Aa:SkI/3 ### -->
         <div class="svg" ng-show="activeSheet(sheet3)">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/3">
-                <image ng-attr-xlink:href="{{sheets[sheet3].svg}}" xlink:href="" ng-src="{{sheets[sheet3].image}}" width="1000" height="508" />
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" id="Aa:SkI/3">
+                <image ng-attr-xlink:href="{{sheets[sheet3].svg}}" xlink:href="" ng-src="{{sheets[sheet3].image}}" width="1000" height="608" />
             <!-- MEASURES -->
                 <!-- MEASURE 10 -->
                 <a href="" ng-click="getMeasureTkA('10')" ng-class="{active: isActive('10')}">
-                    <rect class="svg_measure" x="140" y="92" width="240" height="350" />
+                    <rect class="svg_measure" x="80" y="110" width="282" height="400" />
                 </a>
                 <!-- MEASURE 11 -->
                 <a href="" ng-click="getMeasureTkA('11')" ng-class="{active: isActive('11')}">
-                    <rect class="svg_measure" x="380" y="92" width="225" height="350" />
+                    <rect class="svg_measure" x="362" y="110" width="260" height="400" />
                 </a>
             <!-- SINGLE ITEMS -->
                 <!-- T10/S9/o(2/4) -->
                 <a href="" ng-click="getSingleTkA('0')" ng-class="{active: isActive('0')}">
-                    <rect class="svg_item" x="262" y="350" rx="5" ry="5" width="40" height="70" />
+                    <rect class="svg_item" x="225" y="420" rx="5" ry="5" width="40" height="70" />
                 </a>
                 <!-- T11/S10/o(1.-2.Note) -->
                 <a href="" ng-click="getSingleTkA('1')" ng-class="{active: isActive('1')}">
-                    <rect class="svg_item" x="385" y="280" rx="5" ry="5" width="100" height="70" />
+                    <rect class="svg_item" x="365" y="340" rx="5" ry="5" width="105" height="70" />
                 </a>
                 <!-- T12/S10/o(nach 2/4) -->
                 <a href="" ng-click="getSingleTkA('2')" ng-class="{active: isActive('2')}">
-                    <rect class="svg_item" x="500" y="280" rx="5" ry="5" width="100" height="70" />
+                    <rect class="svg_item" x="510" y="340" rx="5" ry="5" width="100" height="70" />
                 </a>
             <!-- LINK BOXES -->
                 <!-- rect SkI/2 -->
                 <a href="" ng-click="selectSVG(sheet2)">
-                    <rect class="svg_linkbox" x="465" y="92" width="138" height="137" />
+                    <rect class="svg_linkbox" x="458" y="111" width="165" height="162" />
                 </a>
             <!-- rect SkI/5 -->
                 <a href="" ng-click="selectSVG(sheet5)">
-                    <rect class="svg_linkbox" x="600" y="355" width="140" height="135" />
+                    <rect class="svg_linkbox" x="620" y="420" width="165" height="160" />
                 </a>
             </svg>
         </div> <!-- ### END SVG Aa:SkI/3 ### -->
@@ -117,11 +139,11 @@
             <!-- MEASURES -->
                 <!-- MEASURE 10 -->
                 <a href="" ng-click="getMeasureTkA('10')" ng-class="{active: isActive('10')}">
-                    <rect class="svg_measure" x="150" y="115" width="265" height="390" />
+                    <rect class="svg_measure" x="150" y="115" width="268" height="390" />
                 </a>
                 <!-- MEASURE 11 -->
                 <a href="" ng-click="getMeasureTkA('11')" ng-class="{active: isActive('11')}">
-                    <rect class="svg_measure" x="415" y="115" width="160" height="390" />
+                    <rect class="svg_measure" x="418" y="115" width="160" height="390" />
                 </a>
             <!-- SINGLE ITEMS -->
                 <!-- T10/S6/oO -->
@@ -135,7 +157,7 @@
             <!-- LINK BOXES -->
                 <!-- rect SkI/5 -->
                 <a href="" ng-click="selectSVG(sheet5)">
-                    <rect class="svg_linkbox" x="577" y="155" width="220" height="180" />
+                    <rect class="svg_linkbox" x="577" y="152" width="222" height="180" />
                 </a>
             </svg>
         </div> <!-- ### END SVG Aa:SkI/4 ### -->
@@ -144,58 +166,37 @@
 
     <!-- ### EMBEDDED SVG: Aa:SkI/5 ### -->
         <div class="svg" ng-show="activeSheet(sheet5)">
-            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/5">
-                <image ng-attr-xlink:href="{{sheets[sheet5].svg}}" xlink:href="" ng-src="{{sheets[sheet5].image}}" width="1000" height="508" />
+            <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" id="Aa:SkI/5">
+                <image ng-attr-xlink:href="{{sheets[sheet5].svg}}" xlink:href="" ng-src="{{sheets[sheet5].image}}" width="1000" height="608" />
             <!-- MEASURES -->
                 <!-- MEASURE 10 -->
                 <a href="" ng-click="getMeasureTkA('10')" ng-class="{active: isActive('10')}">
-                    <rect class="svg_measure" x="400" y="115" width="230" height="370" />
+                    <rect class="svg_measure" x="390" y="115" width="260" height="390" />
                 </a>
                 <!-- MEASURE 11 -->
                 <a href="" ng-click="getMeasureTkA('11')" ng-class="{active: isActive('11')}">
-                    <rect class="svg_measure" x="630" y="115" width="200" height="370" />
+                    <rect class="svg_measure" x="650" y="115" width="200" height="390" />
                 </a>
             <!-- SINGLE ITEMS -->
                 <!-- T10/S9/o3/8 -->
                 <a href="" ng-click="getSingleTkA('0')" ng-class="{active: isActive('0')}">
-                    <rect class="svg_item" x="520" y="180" rx="5" ry="5" width="40" height="70" />
+                    <rect class="svg_item" x="523" y="195" rx="5" ry="5" width="40" height="85" />
                 </a>
                 <!-- T11/S9/o1/4 -->
                 <a href="" ng-click="getSingleTkA('1')" ng-class="{active: isActive('1')}">
-                    <rect class="svg_item" x="630" y="180" rx="5" ry="5" width="40" height="70" />
+                    <rect class="svg_item" x="650" y="195" rx="5" ry="5" width="40" height="85" />
                 </a>
             <!-- LINK BOXES -->
                 <!-- rect SkI/3 -->
                 <a href="" ng-click="selectSVG(sheet3)">
-                    <rect class="svg_linkbox" x="125" y="125" width="213" height="115" />
+                    <rect class="svg_linkbox" x="72" y="148" width="242" height="125" />
                 </a>
                 <!-- rect SkI/4 -->
                 <a href="" ng-click="selectSVG(sheet4)">
-                    <rect class="svg_linkbox" x="125" y="302" width="215" height="180" />
+                    <rect class="svg_linkbox" x="72" y="345" width="245" height="205" />
                 </a>
             </svg>
         </div> <!-- ### END SVG Aa:SkI/5 ### -->
-
-
-        <!-- ### TABLE FOR TkA ### -->
-        <div >
-            <table class="table table-condensed" ng-show="showTkA">
-                <thead>
-                    <tr>
-                        <th>Takt</th>
-                        <th>System</th>
-                        <th style="white-space: nowrap">Ort im Takt</th>
-                        <th>Kommentar</th>
-                    </tr>
-                </thead>
-                <tr ng-repeat="item in items">
-                    <td>{{item.measure}}</td>
-                    <td>{{item.system}}</td>
-                    <td dir-bind-html-compile="item.location"></td>
-                    <td dir-bind-html-compile="item.comment"></td>
-                </tr>
-            </table>
-        </div> <!-- END table -->
 
     </div> <!-- END body -->
 </div> <!-- END maincontent

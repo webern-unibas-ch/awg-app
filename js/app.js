@@ -4,7 +4,6 @@ var app = angular.module('prototypeApp', [
     'prototypeApp.services',
     'ngRoute',
     'ngSanitize',
-    'ui.bootstrap',
     'angular-bind-html-compile'
 ]);
 
@@ -52,6 +51,14 @@ app.config(function($routeProvider){
             activeRoute: 'report'
         })
 
+        //route for the structure page
+        .when('/structure', {
+            templateUrl: 'partials/structure.html',
+            controller: 'structureCtrl',
+            name: 'Struktur',
+            activeRoute: 'structure'
+        })
+
         //route for the contact page
         .when('/contact', {
             templateUrl: 'partials/contact.html',
@@ -68,7 +75,7 @@ app.config(function($routeProvider){
 });
 
 app.run(function($rootScope, $location, $route, $anchorScroll, $timeout) {
-    $rootScope.$location = $location;    
+    $rootScope.$location = $location;
 
     //when route changes & anchorHash is set, set timeout so page can completely load/render before scrolling to anchorHash
     $rootScope.$on("$routeChangeSuccess", function (event) {

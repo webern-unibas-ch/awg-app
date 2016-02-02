@@ -10,196 +10,32 @@
     <!-- ### HEADER ### -->
     <div class="para">
         <h2 id="report">Kritischer Bericht</h2>
-        <h3>I. Quellen</h3>
     </div>
 
-
-    <!-- ### SOURCE LIST ### -->
-    <div class="panel-group">
-        <div class="panel panel-default" id="sourceList">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-ng-click="toggleA = !toggleA">1. Quellenübersicht</a>
-                </h4>
-            </div>
-            <div class="panel-collapse collapse" ng-class="{in: !toggleA}">
-            <div class="panel-body">
-                <table class="table table-hover borderless">
-                    <tbody>
-                        <tr data-ng-click="linkTo(sourceList.sources[0].linkTo)">
-                            <td class="bold" dir-bind-html-compile="sourceList.sources[0].siglum"></td>
-                            <td><span dir-bind-html-compile="sourceList.sources[0].type"></span> <br/>
-                                <span dir-bind-html-compile="sourceList.sources[0].location"></span>
-                            </td>
-                        </tr>
-                        <tr ng-repeat="source in sourceList.sources" ng-if="source.siglum !=='A'" data-ng-click="toggleModal(source.linkTo)">
-                            <td class="bold" dir-bind-html-compile="source.siglum"></td>
-                            <td><span dir-bind-html-compile="source.type"></span> <br/>
-                                <span dir-bind-html-compile="source.location"></span>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div> <!-- END panel-body -->
-         </div> <!-- END panel collapse -->
-     </div> <!-- END panel sourceList -->
-
-     <!-- ### SOURCE DESCRIPTION ### -->
-    <div class="panel panel-default" id="sourceDesc" >
-        <div class="panel-heading" >
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-ng-click="toggleB = !toggleB">
-                    2. Quellenbeschreibung
-                </a>
-            </h4>
-        </div>
-        <div class="panel-collapse collapse" ng-class="{in: !toggleB}">
-            <div class="panel-body">
-                <div class="para" id="sourceA">
-                    <p class="bold">A</p>
-                    <p>
-                        Basel, Paul Sacher Stiftung, Sammlung Anton Webern.
-                    </p>
-                </div>
-
-                <div class="para">
-                    <p class="bold">Aa</p>
-                    <p>
-                        2 Blätter (Bl. 1–2). Archivalische Paginierung [<i>1</i>] bis [<i>4</i>] unten links (recto) bzw. rechts (verso) mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert.
-                    </p>
-                    <p>
-                        <span class="caps">Beschreibstoff</span>: Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm, Firmenzeichen: <br/>
-                        <img class="img-thumbnail" src="img/firm_no9_lin28.png" alt="firm" /> <br/>
-                        auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br/>
-                        Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).
-                    </p>
-                    <p>
-                        <span class="caps">Schreibstoff</span>: Bleistift.
-                    </p>
-                    <p>
-                        <span class="caps">Inhalt</span>: <br/>
-                        Bl. 1<sup>r</sup> System 2–4/6–9/10–12: Skizze zu Nr. I T. 1–2, [3–6]/[7–12]/[13–17] (<a data-ng-click="toggleModal('sheetComingSoon')"><strong>SkI/1a</strong></a>). <br/>
-                        Bl. 1<sup>v</sup> System 14-12b (auf dem Kopf stehend): Skizze zu Nr. I T. 10, [11-12] (<a href="#/edition?id=Aa:SkI/2"><strong>SkI/2</strong></a>). <br/>
-                        Bl. 1<sup>v</sup> System 12a-9a (auf dem Kopf stehend): Skizze zu Nr. I T. 10-11 (<a href="#/edition?id=Aa:SkI/3"><strong>SkI/3</strong></a>). <br/>
-                        Bl. 1<sup>v</sup> System 9b-6 (auf dem Kopf stehend): Skizze zu Nr. I T. 10-11 (<a href="#/edition?id=Aa:SkI/5"><strong>SkI/5</strong></a>). <br/>
-                        Bl. 1<sup>v</sup> System 7a-4 (auf dem Kopf stehend): Skizze zu Nr. I T. 10-11 (<a href="#/edition?id=Aa:SkI/4"><strong>SkI/4</strong></a>). <br/>
-                        Bl. 2<sup>r</sup> System 6–10/12–15: Skizze zu Nr. I T. [18–22]/[23–24] (<a data-ng-click="toggleModal('sheetComingSoon')"><strong>SkI/1b</strong></a>). <br/>
-                        Bl. 2<sup>v</sup> unbeschriftet.
-                    </p>
-                </div> <!-- END source Aa-->
-            </div> <!-- END panel-body -->
-        </div> <!-- END panel collapse -->
-    </div> <!-- END panel sourceDescription -->
-
-    <!-- ### SOURCE EVALUATION ### -->
-    <div class="panel panel-default" id="sourceEvaluation">
+    <!-- ### CONTENT ### -->
+    <div class="panel panel-default">
         <div class="panel-heading">
-            <h4 class="panel-title">
-                <a data-toggle="collapse" data-ng-click="toggleC = !toggleC">
-                    3. Quellenbewertung
-                </a>
-            </h4>
+            <h3 class="panel-title">
+                I. Quellen
+            </h3>
         </div>
-        <div class="panel-collapse collapse" ng-class="{in: !toggleC}">
-            <div class="panel-body">
-                <div class="para">
-                    <p>
-                        Die Skizzen in <a data-ng-click="linkTo('sourceA')"><strong>A</strong></a> enthalten u. a. datierte Verlaufsskizzen zu allen vier Liedern: <a data-ng-click="toggleModal('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915), <a data-ng-click="toggleModal('sheetComingSoon')"><strong>Ab:SkII/1</strong></a> (10. April 1917), <a data-ng-click="toggleModal('sheetComingSoon')"><strong>Ac:SkIII/1</strong></a> und <a data-ng-click="toggleModal('sheetComingSoon')"><strong>Ac:SkIII/7</strong></a> (31. Januar 1915) sowie <a data-ng-click="toggleModal('sheetComingSoon')"><strong>Ae:SkIV/1</strong></a> (31. März 1917). Eine im Konvolut von <a data-ng-click="toggleModal('sourceA')"><strong>A</strong></a> ebenfalls enthaltene fragmentarische Skizze zu einer Vertonung von <a data-ng-click="toggleModal('M198')">„<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester</a> (<a data-ng-click="toggleModal('sourceNotA')"><strong>Ad</strong></a>) ist (möglicherweise nachträglich) auf „Winter 1913/14“ datiert und weist – abgesehen vom vertonten Text – keine Bezüge zu op. 12 Nr. III auf.
-                    </p>
-                    <p>
-                        Die Verlaufsskizzen aus <a data-ng-click="linkTo('sourceA')"><strong>A</strong></a> bilden die Grundlage für die Reinschrift-Fassungen von
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1)</a> in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>B</strong></a>
-                        sowie von Nr. II–IV in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>C</strong></a>. Die Reinschrift von <a data-ng-click="toggleModal('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>C</strong></a> stellt eine gegenüber
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>B</strong></a> veränderte, in
-                        <a data-ng-click="toggleModal('sourceNotA')">Korrekturen in <strong>B</strong></a> und in <a href="#/edition"><strong>Aa:SkI/2–5</strong></a> vorformulierte Fassung dar. Die Korrekturen von Nr. II–IV in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>C</strong></a> betreffen die Überarbeitung zur (Druck-)Fassung in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>F</strong></a> und
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>G</strong></a>, der Zustand ante correcturam ist jedoch nicht immer eindeutig zu erkennen.
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. IV <em>Gleich und Gleich</em> (Fassung 1)</a> in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>D</strong></a> ist eine autographe Abschrift des Liedes aus
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>C</strong></a> ante correcturam.
-                    </p>
-                    <p>
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“</a> aus
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>C</strong></a> ist post correcturam Stichvorlage für
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>E</strong></a>. Die Korrekturen in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>E<sup>1</sup></strong></a> betreffen die Überarbeitung von
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> zur späteren (Druck-)Fassung in
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>F</strong></a> und
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>G</strong></a>.
-                    </p>
-                    <p>
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>F</strong></a> ist Stichvorlage für
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>G</strong></a>.
-                    </p>
-                    <p>
-                        Hauptquelle für die Werkedition der Druckfassung der <i>Vier Lieder</i> op. 12 ist
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>G</strong></a>.
-                    </p>
-                    <p>
-                        Hauptquelle für die Textedition von
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1)</a> ist
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>B</strong></a>.
-                    </p>
-                    <p>
-                        Hauptquelle für die Textedition von
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> ist
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>E</strong></a>.
-                    </p>
-                    <p>
-                        Hauptquelle für die Textedition von
-                        <a data-ng-click="toggleModal('editionComingSoon')">Nr. IV <em>Gleich und Gleich</em> (Fassung 1)</a> ist
-                        <a data-ng-click="toggleModal('sourceNotA')"><strong>D</strong></a>.
-                    </p>
-                </div>
-            </div> <!-- END panel-body -->
-        </div> <!-- END panel collapse -->
-    </div> <!-- END panel sourceEvaluation -->
+        <div class="panel-body">
+            <div class="panel-group">
 
+                <!-- ### SOURCE LIST ### -->
+                <awg-sourcelist></awg-sourcelist>
+
+                <!-- ### SOURCE DESCRIPTION ### -->
+                <awg-sourcedesc></awg-sourcedesc>
+
+                <!-- ### SOURCE EVALUATION ### -->
+                <awg-sourceeval></awg-sourceeval>
+
+            </div> <!-- END panel group -->
+        </div> <!-- END outer panel body -->
+    </div> <!-- ENDouter panel -->
 
     <!-- ### TKA ### -->
-    <div class="para">
-        <h3 id="TKA">II. Textkritischer Kommentar</h3>
-    </div>
+    <awg-tka></awg-tka>
 
-    <div class="para">
-        <p class="bold">
-            <a>Aa:SkI/1</a>:
-        </p>
-        <p class="small text-muted">
-            [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
-        </p>
-    </div>
-
-    <div class="para">
-        <table class="table table-hover" ng-repeat="(key, val) in tka">
-            <caption class="bold"><a data-ng-href="#/edition?id={{key}}">{{key}}</a>:</caption>
-            <thead>
-                <tr>
-                    <th style="width:10%">Takt</th>
-                    <th style="width:10%">System</th>
-                    <th style="width:23%">Ort im Takt</th>
-                    <th style="width:auto">Kommentar</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="row in val">
-                    <td>
-                        {{row.measure}}
-                    </td>
-                    <td>
-                        {{row.system}}
-                    </td>
-                    <td>
-                        {{row.location}}
-                    </td>
-                    <td dir-bind-html-compile="row.comment"></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
-</div>
+</div> <!-- END main-content  -->

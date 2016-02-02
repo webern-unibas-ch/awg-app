@@ -7,37 +7,36 @@ app.controller('mainCtrl', ['$scope', function ($scope){
     console.log($scope.message);
 
     //META
-    $scope.version_date = "31. März 2015";
+    $scope.version_date = "29. Januar 2016";
     $scope.editors = "Thomas Ahrend";
 
     //INIT MODALTEXT
     $scope.modalText = {
         'sourceNotA': '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',
         'sheetComingSoon': 'Die edierten Notentexte von <strong>Aa:SkI/1</strong>, <strong>Ab:SkII/1</strong>, <strong>Ac:SkIII/1</strong> und <strong>Ac:SkIII/7</strong> sowie <strong>Ae:SkIV/1</strong> erscheinen im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.',
-        'editionComingSoon': '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="none"><li>Werkedition der Druckfassung der <i>Vier Lieder</i> op. 12 <br/> Textedition von Nr. I „<i>Der Tag ist vergangen</i>“ (Fassung 1) <br/> Textedition von Nr. I „<i>Der Tag ist     vergangen</i>“ (Fassung 2) <br/> Textedition von Nr. IV <i>Gleich und Gleich</i> (Fassung 1) </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.        </p>',
+        'editionComingSoon': '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="none"><li>Werkedition der Druckfassung der <i>Vier Lieder</i> op. 12 <br/> Textedition von Nr. I „<i>Der Tag ist vergangen</i>“ (Fassung 1) <br/> Textedition von Nr. I „<i>Der Tag ist vergangen</i>“ (Fassung 2) <br/> Textedition von Nr. IV <i>Gleich und Gleich</i> (Fassung 1) </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',
         'M198': '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>'
     };
 }]);
 
 
 /**** CONTROLLER FOR SEARCH PAGE ****/
-app.controller('searchCtrl', ['$scope', '$http', 'salsahAPIservice', function ($scope, $http, salsahAPIservice){
+app.controller('searchCtrl', ['$scope', 'salsahAPIservice', 'awgService', function ($scope, salsahAPIservice, awgService){
     $scope.message = "Search page Ctrl"
     console.log($scope.message);
 
     //INIT
-    // var backTo_id = null;
-    // $scope.id_old = null;
     $scope.isFormSubmitted = false;     //NO FORM SUBMITTED
     $scope.isDataLoaded = false;        //NO DATA LOADED
     $scope.isObjectSelected = false;    //NO OBJECT SELECTED
     $scope.isObjectLoaded = false;      //NO OBJECT LOADED
     $scope.APIurl = 'http://www.salsah.org';
 
+
     // SUBMIT QUERY (function) USING salsahAPIservice
     $scope.submit = function(query){
         //INIT
-        $scope.isFormSubmitted = true;      // NOW FORM WAS SUBMITTED
+        $scope.isFormSubmitted = true;      //NOW FORM WAS SUBMITTED
         $scope.isDataLoaded = false;        //NO DATA LOADED
         $scope.isObjectSelected = false;    //NO OBJECT SELECTED
         $scope.isObjectLoaded = false;      //NO OBJECT LOADED
@@ -52,24 +51,24 @@ app.controller('searchCtrl', ['$scope', '$http', 'salsahAPIservice', function ($
         }); //END then
     }; //END scope.submit (func)
 
+
     // SHOW OBJECT (function) USING salsahAPIservice
     $scope.showObject = function(cur_id){
         //INIT
-        $scope.isObjectSelected = true; //NOW OBJECT WAS SELECTED
+        $scope.isObjectSelected = true;  //NOW OBJECT WAS SELECTED
 
-        //GET OBJECT (promise) & THEN SEND objData TO SCOPE
+        //SETS CLASS=ACTIVE ON CURRENT ACTIVE OBJECT
+        $scope.activeObject = function(id){
+            return cur_id == id;
+        };
+
+        //GET OBJECT (as promise) & THEN SEND objData TO SCOPE
         salsahAPIservice.getObject($scope.APIurl, cur_id).then(function(data){
             $scope.objData = data;
-            //NOW OBJECT IS LOADED
-            $scope.isObjectLoaded = true;
+            $scope.isObjectLoaded = true;  //NOW OBJECT IS LOADED
 
-            //STORE OLD ID
-            // if ($scope.id_old !== null) {
-            //     $scope.id_old = backTo_id;
-            // } else {
-            //     $scope.id_old = cur_id;
-            // };
-            // backTo_id = cur_id;
+            //SCROLL TO OBJBOX (#cur_id) AFTER LOADING
+            awgService.scrollTo(cur_id);
 
         }); //END then
     }; //END scope.showObject (func)
@@ -81,9 +80,11 @@ app.controller('introCtrl', ['$scope', function ($scope){
     $scope.message = "Intro page Ctrl"
     console.log($scope.message);
 
+    //INIT MODAL
     $scope.showModal = false;
     $scope.toggleModal = function(id){
         $scope.showModal = !$scope.showModal;
+        //GET VALUE FOR MODAL BY ID
         $scope.modalValue = $scope.modalText[id];
     };
 }]);
@@ -98,6 +99,7 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
     $scope.showModal = false;
     $scope.toggleModal = function(id){
         $scope.showModal = !$scope.showModal;
+        //GET VALUE FOR MODAL BY ID
         $scope.modalValue = $scope.modalText[id];
     };
 
@@ -115,36 +117,38 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
 
     $scope.sheets = {
     	"Aa:SkI/2": {
-    		"svg": "img/SkI_2_small_opt.svg",
-    		"image": "img/SkI_2_small.jpg",
+    		"svg": "img/SkI_2n_small_cut_opt.svg",
+    		"image": "img/SkI_2n_small.jpg",
     		"alt": "Aa:SkI/2"
     	},
     	"Aa:SkI/3": {
-            "svg": "img/SkI_3_small_opt.svg",
-    		"image": "img/SkI_3_small.jpg",
+            "svg": "img/SkI_3n_small_cut_opt.svg",
+    		"image": "img/SkI_3n_small.jpg",
     		"alt": "Aa:SkI/3"
     	},
     	"Aa:SkI/4": {
-            "svg": "img/SkI_4_small_opt.svg",
-    		"image": "img/SkI_4.jpg",
+            "svg": "img/SkI_4n_small_cut_opt.svg",
+    		"image": "img/SkI_4n_small.jpg",
     		"alt": "Aa:SkI/4"
     	},
     	"Aa:SkI/5": {
-            "svg": "img/SkI_5_small_opt.svg",
-    		"image": "img/SkI_5.jpg",
+            "svg": "img/SkI_5n_small_cut_opt.svg",
+    		"image": "img/SkI_5n_small.jpg",
     		"alt": "Aa:SkI/5"
     	}
     };
 
-    //DISPLAY TkA
+    //DISPLAY TKA
     $http.get('data/tka.json').then(function (response){
         var tmp = response.data;
         $scope.showTkA = false;
 
+        //MARKS THE ACTIVE AREA
         $scope.isActive = function(id){
             return $scope.selected == id;
         };
 
+        //DISPLAYS SINGLE TKA (func)
         $scope.getSingleTkA = function(id){
             //INIT
             $scope.selected = id;
@@ -155,10 +159,11 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
             $scope.items.push(tmp[$scope.sheet][id]);
         }; //END getSingleTkA (func)
 
+        //DISPLAYS TKA FOR WHOLE MEASURE (func)
         $scope.getMeasureTkA = function(id){
             //INIT
-            $scope.showTkA = true;
             $scope.selected = id;
+            $scope.showTkA = true;
             $scope.items = [];
 
             //GET DATA
@@ -172,12 +177,14 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
             }); //END forEach
         }; // END getMeasureTkA (func)
 
+        //SWITCHES BETWEEN SVG-SHEETS (func)
         $scope.selectSVG = function(id){
             $scope.sheet = id;
             $scope.showTkA = false;
             $scope.selected = '';
         };
 
+        //MARKS THE ACTIVE SVG-SHEET
         $scope.activeSheet = function(id){
             return $scope.sheet == id;
         };
@@ -187,7 +194,7 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
 
 
 /**** CONTROLLER FOR REPORT PAGE ****/
-app.controller('reportCtrl', ['$scope', '$http', '$location', '$anchorScroll', function ($scope, $http, $location, $anchorScroll){
+app.controller('reportCtrl', ['$scope', '$http', 'awgService', function ($scope, $http, awgService){
     $scope.message = "Report page Ctrl"
     console.log($scope.message);
 
@@ -195,33 +202,26 @@ app.controller('reportCtrl', ['$scope', '$http', '$location', '$anchorScroll', f
     $scope.showModal = false;
     $scope.toggleModal = function(id){
         $scope.showModal = !$scope.showModal;
+        //GET VALUE FOR MODAL BY ID
         $scope.modalValue = $scope.modalText[id];
     };
 
-    $scope.linkTo = function(id){
-        // save original hash
-        var old = $location.hash();
-        // set new hash id
-        $location.hash(id);
-        // scroll to id
-        $anchorScroll();
-        //reset original hash
-        $location.hash(old);
+    // SCROLL (function) USING awgService
+    $scope.scrollTo = function(id){
+        awgService.scrollTo(id);
     };
+}]);
 
-    // GET JSON DATA
-    $http.get('data/sourcelist.json').then(function (response){
-        $scope.sourceList = response.data;
-    });
 
-    $http.get('data/tka.json').then(function (response){
-        $scope.tka = response.data;
-    });
+/**** CONTROLLER FOR STRUCTURE PAGE ****/
+app.controller('structureCtrl', ['$scope', function ($scope){
+    $scope.message = "Structure page Ctrl"
+    console.log($scope.message);
 }]);
 
 
 /**** CONTROLLER FOR CONTACT PAGE ****/
 app.controller('contactCtrl', ['$scope', function ($scope){
-    $scope.message = "Contact page Ctrl."
+    $scope.message = "Contact page Ctrl"
     console.log($scope.message);
 }]);

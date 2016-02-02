@@ -96,7 +96,7 @@ svg {
     opacity: 0;
 }
 .svg_measure:hover, .svg_linkbox:hover, .svg_item:hover {
-    fill: OliveDrab;
+    fill: #8bb82d; /* some lighter OliveDrab*/
     opacity: 0.2;
 }
 svg a.active rect {
@@ -113,10 +113,6 @@ svg a.active rect {
 .borderless tbody tr td, .borderless tbody tr th, .borderless thead tr th {
     border: none;
 }
-.borderless tbody tr:hover, .borderless tbody tr:hover, .borderless thead tr:hover {
-    cursor: pointer;
-    background-color: #e7e7e7;
-}
 td {
     vertical-align: top;
 }
@@ -125,9 +121,19 @@ ul.none {
     list-style: none;
 }
 
+#sidenav_results tbody tr {
+    cursor:pointer;
+}
+#sidenav_results tbody tr:hover {
+    background-color: #e7e7e7;
+}
+#sidenav_results tbody tr.active td {
+    background-color: #d7d7d7;
+}
+
 
 /****** POINTER ******/
-a {
+a, .ins {
     cursor: pointer;
 }
 

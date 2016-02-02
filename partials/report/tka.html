@@ -1,0 +1,49 @@
+<div class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title" id="TKA">
+            <a data-ng-click="toggleTKA = !toggleTKA">
+                II. Textkritischer Kommentar
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse" ng-class="{in: !toggleTKA}">
+        <div class="panel-body">
+            <div class="para">
+                <p class="bold">
+                    <a>Aa:SkI/1</a>:
+                </p>
+                <p class="small text-muted">
+                    [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
+                </p>
+            </div>
+
+            <div class="para">
+                <table class="table table-hover" ng-repeat="(key, val) in tka">
+                    <caption class="bold"><a data-ng-href="#/edition?id={{key}}">{{key}}</a>:</caption>
+                    <thead>
+                        <tr>
+                            <th style="width:10%">Takt</th>
+                            <th style="width:10%">System</th>
+                            <th style="width:23%">Ort im Takt</th>
+                            <th style="width:auto">Kommentar</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in val">
+                            <td>
+                                {{row.measure}}
+                            </td>
+                            <td>
+                                {{row.system}}
+                            </td>
+                            <td>
+                                {{row.location}}
+                            </td>
+                            <td dir-bind-html-compile="row.comment"></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div> 

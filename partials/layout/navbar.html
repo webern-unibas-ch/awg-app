@@ -1,7 +1,7 @@
 <nav class="navbar navbar-default">
     <div class="container-fluid">
         <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#awgNavbar" ng-click="showMobileNav = !showMobileNav">
+            <button type="button" class="navbar-toggle"  ng-click="showMobileNav = !showMobileNav">
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
                 <span class="icon-bar"></span>
@@ -12,50 +12,36 @@
                     <span>GESAMTAUSGABE</span>
                 </span>
             </a>
-        </div>
+        </div> <!-- END navbar-header -->
         <div class="navbar-collapse collapse" id="awgNavbar" ng-class="{in: showMobileNav}">
             <ul class="nav navbar-nav">
-                <!-- <li ng-repeat="route in routes" ng-class="{active: activeRoute(route)}">
-                    <a href="#{{route.path}}">{{route.name}}</a>
-                </li> -->
-
                 <li>
                     <a href="#/">Home</a>
                 </li>
-                <li>
-                    <a href="#/intro">Einleitung</a>
-                </li>
                 <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        Edierter Notentext
+                    <a href="" class="dropdown-toggle" data-toggle="dropdown">
+                        Beispieledition
                         <span class="caret"></span>
                     </a>
                     <ul class="dropdown-menu">
-                        <li class="dropdown-header">
-                            <i>Vier Lieder</i> op. 12 Skizzen
+                        <li>
+                            <a href="#/intro">Einleitung</a>
                         </li>
                         <li class="divider"></li>
+                        <li class="dropdown-header">
+                            Edierter Notentext
+                        </li>
                         <li><a href="#/edition?id=Aa:SkI/2">Aa:SkI/2</a></li>
                         <li><a href="#/edition?id=Aa:SkI/3">Aa:SkI/3</a></li>
                         <li><a href="#/edition?id=Aa:SkI/4">Aa:SkI/4</a></li>
                         <li><a href="#/edition?id=Aa:SkI/5">Aa:SkI/5</a></li>
-                    </ul>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown" href="">
-                        Kritischer Bericht
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li class="dropdown-header">
-                            <i>Vier Lieder</i> op. 12 Skizzen
-                        </li>
                         <li class="divider"></li>
-                        <li>
-                            <a href="#/report">I. Quellen</a>
+                        <li class="dropdown-header">
+                            Kritischer Bericht
                         </li>
+                        <li><a href="#/report">I. Quellen</a></li>
                         <li id="subitem">
-                            <a href="#/report#sourceList" target="_self">1. Quellenübersicht</a>
+                            <a href="#/report#sourceList">1. Quellenübersicht</a>
                         </li>
                         <li id="subitem">
                             <a href="#/report#sourceDesc">2. Quellenbeschreibung</a>
@@ -67,8 +53,11 @@
                             <a href="#/report#TKA">II. Textkritischer Kommentar</a>
                         </li>
                     </ul>
+                </li>                
+                <li>
+                    <a href="#/structure">Strukturmodell</a>
                 </li>
-            </ul>
+            </ul> <!-- END class nav navbar-nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
                     <a href="#/search">Datenbank-Suche</a>
@@ -79,7 +68,7 @@
                         Kontakt
                     </a>
                 </li>
-            </ul>
-        </div>
-    </div>
+            </ul> <!-- END class nav navbar-right -->
+        </div> <!-- END collapse -->
+    </div> <!-- END container-fluid -->
 </nav>

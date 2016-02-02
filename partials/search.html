@@ -3,7 +3,7 @@
 
 <!-- <div class="col-sm-12" style="border:1px solid blue">
     <p>
-        [ => TODO: <em>paging, back to previous object, focus on box</em>]
+        [ => TODO: <em>paging, back to previous object</em>]
     </p>
 </div> -->
 
@@ -11,7 +11,7 @@
 <awg-search-sidenav></awg-search-sidenav>
 
 <!-- ### SINGLE OBJECT BOX ### -->
-<div class="col-sm-6 col-md-7 col-lg-8 objbox" data-ng-show="isObjectSelected">
+<div class="col-sm-6 col-md-7 col-lg-8 objbox" data-ng-show="isObjectSelected" id="{{objData.header.obj_id}}">
 
     <!-- ### WHEN LOADING ### -->
     <h3 data-ng-hide="isObjectLoaded">Load object...</h3>
@@ -33,7 +33,7 @@
         <table class="table table-condensed table-hover borderless hidden-xs" style="padding:10px;">
             <tbody>
                 <!-- ### SHOW ONLY NOT EMPTY VALUES ### -->
-                <tr data-ng-if="prop.value[0]" data-ng-repeat="prop in objData.props track by prop.pid">
+                <tr data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
                     <td class="bold">
                         {{prop.label}}
                     </td>
@@ -45,7 +45,7 @@
                         <p>Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}} </p>
                     </td>
                 </tr>
-                <tr ng-if="objData.incoming !== ''" data-ng-repeat="ins in objData.incoming">
+                <tr class="ins" ng-if="objData.incoming !== ''" data-ng-repeat="ins in objData.incoming">
                     <td colspan="3" data-ng-click="showObject(ins.id)">
                         <img data-ng-src="{{ins.icon}}" alt="icon" /> [{{ins.id}}] {{ins.value}}
                     </td>
@@ -55,15 +55,15 @@
 
         <!-- ### STACK TO DEFINITION LIST ON EXTRA SMALL DEVICES ### -->
         <dl class="dl-horizontal dl-hover visible-xs">
-            <dt data-ng-if="prop.value[0]" data-ng-repeat-start="prop in objData.props track by prop.pid">
+            <dt data-ng-repeat-start="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
                 {{prop.label}}
             </dt>
                 <dd data-ng-repeat-end dir-bind-html-compile="prop.value"></dd>
             <dt data-ng-if="objData.incoming !== ''">
                 Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}}
             </dt>
-                <dd data-ng-click="showObject(ins.ext_res_id.id)" data-ng-repeat="ins in objData.incoming">
-                    <img data-ng-src="{{ins.resinfo.restype_iconsrc}}" alt="icon" /> [{{ins.ext_res_id.id}}] {{ins.value}}
+                <dd class="ins" data-ng-repeat="ins in objData.incoming" data-ng-click="showObject(ins.id)">
+                    <img data-ng-src="{{ins.icon}}" alt="icon" /> [{{ins.id}}] {{ins.value}}
                 </dd>
         </dl>
     </div>
