@@ -4,7 +4,7 @@ angular.module('prototypeApp.services', []);
 /*
 
                     awgService
-                    
+
 */
 app.factory('awgService', function($timeout, $location, $anchorScroll){
 
@@ -39,16 +39,36 @@ app.factory('awgService', function($timeout, $location, $anchorScroll){
 app.factory('salsahAPIservice', function($http){
 
     //CONVERTS LINEAR SALSAH STANDOFF (string with textattributes) TO HTML USING PLUGIN "convert_lin2html"
-    function convert (str, attr) {
+    function convert(str, attr){
         var y = JSON.parse(attr);
         var x = str;
         var z = convert_lin2html(y, x);
         return z;
     }; //END convert (func)
 
+    //FINDS INNER SALSAH LINKS IN RICHTEXT AND REPLACES THEM WITH NG-CLICK-DIRECTIVE
+    function replaceSalsahLink(str){
+        var patNum = /\d{4,6}/,    //REGEXP FOR OBJECT ID (4-6 DIGITS
+            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,6})" class="salsah-link">(.*?)<\/a>/i; //REGEXP FOR SALSAH LINKS
+
+        //CHECK ONLY! FOR SALSAH LINKS
+        while (p = patLink.exec(str)) {
+            //i.e.: AS LONG AS patLink IS DETECTED IN htmlstr DO...
+
+            //GET RESOURCE ID
+            var res_id = patNum.exec(p[1])[0];
+
+            //REPLACE HREF ATTRIBUTE WITH NG-CLICK-DIRECTIVE
+            //LINKTEXT IS STORED IN SECOND RegExp-RESULT p[2]
+            str = str.replace(p[0], '<a ng-click="showObject(' + res_id + ')">' + p[2] + '</a>');
+        }; //END while
+
+        return str;
+    }; //END replaceSalsahLink (func)
+
 
     //CALLS AN OBJECT VIA http.get AND PREPARES DATA FOR DISPLAYING IN VIEW
-    function getObject (url, id){
+    function getObject(url, id){
 
         //INIT
         var tmp = {'header': {}, 'props':[], 'incoming':[]};
@@ -89,29 +109,13 @@ app.factory('salsahAPIservice', function($http){
                                     for (var i = 0; i < prop.values.length; i++){
 
                                         //INIT
-                                        var htmlstr = '',
-                                            salsahLink = [],
-
-                                            //REGEXP FOR OBJECT ID (4-6 DIGITS)
-                                            patNum = /\d{4,6}/,
-
-                                            //REGEXP FOR SALSAH LINKS
-                                            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,6})" class="salsah-link">(.*?)<\/a>/i;
+                                        var htmlstr = '';
 
                                         //CONVERT LINEAR SALSAH STANDOFF TO HTML (USING PLUGIN "convert_lin2html")
                                         htmlstr = convert(prop.values[i].utf8str, prop.values[i].textattr);
 
-                                        //CHECK ONLY! FOR SALSAH LINKS
-                                        while (p = patLink.exec(htmlstr)) {
-                                            //i.e.: AS LONG AS patLink IS DETECTED IN htmlstr DO...
-
-                                            //GET RESOURCE ID
-                                            var res_id = patNum.exec(p[1])[0];
-
-                                            //REPLACE HREF ATTRIBUTE WITH NG-CLICK-DIRECTIVE
-                                            //LINKTEXT IS STORED IN SECOND RegExp-RESULT p[2]
-                                            htmlstr = htmlstr.replace(p[0], '<a ng-click="showObject(' + res_id + ')">' + p[2] + '</a>');
-                                        }; //END while
+                                        //REPLACE SALSAH LINKS
+                                        htmlstr = replaceSalsahLink(htmlstr);
 
                                         //CHECK IF <p>-TAGS NOT EXIST (indexOf -1), THEN ADD THEM & CONCAT STRING TO propValue[0]
                                         if (htmlstr.indexOf('<p>') === -1) {
@@ -293,6 +297,9 @@ app.factory('salsahAPIservice', function($http){
                 if (subj.valuetype_id[0] == '14') {
                     var htmlstr = '';
                     htmlstr = convert(subj.value[0].utf8str, subj.value[0].textattr);
+
+                    //REPLACE SALSAH LINKS
+                    htmlstr = replaceSalsahLink(htmlstr);
 
                     //STRIP & REPLACE <p>-TAGS FOR DISPLAYING OBJTITLE
                     htmlstr = htmlstr.replace(/<\/p><p>/g, '<br />');
