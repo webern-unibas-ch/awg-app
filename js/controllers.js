@@ -7,8 +7,8 @@ app.controller('mainCtrl', ['$scope', function ($scope){
     console.log($scope.message);
 
     //META
-    $scope.version_date = "29. Januar 2016";
-    $scope.editors = "Thomas Ahrend";
+    $scope.version_date = '29. Januar 2016';
+    $scope.editors = '<a href="mailto:thomas.ahrend@unibas.ch">Thomas Ahrend</a>';
 
     //INIT MODALTEXT
     $scope.modalText = {

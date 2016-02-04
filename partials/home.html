@@ -1,3 +1,6 @@
+<!-- ### LEFT SIDENAV ### -->
+<awg-sidenav template-url="edition"></awg-sidenav>
+
 <!-- ### CONTENT HOME ### -->
 <div class="col-sm-9 col-md-10 maincontent text-left">
 
@@ -33,7 +36,7 @@
 
     <!-- ### DECLAMATION ### -->
     <div class="declamation">
-        <p>Ediert von {{editors}}</p>
+        <p>Ediert von <span ng-bind-html="editors"></span></p>
         <p>Versionsdatum: <span class="version">{{version_date}}</span></p>
     </div>
 </div>

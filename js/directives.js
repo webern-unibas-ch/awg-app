@@ -14,21 +14,16 @@ angular.module('prototypeApp.directives', []);
         };
     });
 
-    // SIDENAV ON EDITION PAGES
-    app.directive('awgEditionSidenav', function(){
+    // SIDENAV
+    app.directive('awgSidenav', function(){
         return {
             restrict: 'E',
             replace: true,
-            templateUrl: 'partials/layout/sidenav_edition.html',
-        };
-    });
-
-    // SIDENAV ON SEARCH PAGE
-    app.directive('awgSearchSidenav', function(){
-        return {
-            restrict: 'E',
-            replace: true,
-            templateUrl: 'partials/layout/sidenav_search.html',
+            // GET TEMPLATE-URL FROM ATTRS
+            templateUrl: function(elem, attrs){
+                    return 'partials/layout/sidenav_' + attrs.templateUrl + '.html'
+            },
+            //INIT SEARCHTEXT
             controller: function ($scope) {
                  $scope.searchText = "Kantate";
             }
