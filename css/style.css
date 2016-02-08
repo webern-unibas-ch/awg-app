@@ -26,11 +26,12 @@ html, body {
 }
 
 .objbox {
-    border: 1px solid black;
     position: relative;
     height: 100%;
     padding: 10px;
     margin: 10px;
+    border: 1px solid #f1f1f1;
+    box-shadow: 5px 5px 6px #cccccc;
 }
 
 /* Set grey background color, black text and some padding */
