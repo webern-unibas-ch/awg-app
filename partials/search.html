@@ -22,7 +22,7 @@
         <!-- ### HEADER ### -->
         <h3>
             <img data-ng-src="{{objData.header.icon}}" alt="icon" />
-            <span dir-bind-html-compile="objData.header.title"></span>
+            <span dir-bind-html-compile="objData.header.title | highlight:searchText"></span>
             <small>({{objData.header.type}})</small>
         </h3>
         <small>[Last modified: {{objData.header.lastmod}} (UTC)]</small><br />
@@ -38,7 +38,7 @@
                         {{prop.label}}
                     </td>
                     <!-- OUTPUT VALUES -->
-                    <td colspan="2" dir-bind-html-compile="prop.value"></td>
+                    <td colspan="2" dir-bind-html-compile="prop.value | highlight:searchText"></td>
                 </tr>
                 <tr data-ng-if="objData.incoming !== ''">
                     <td colspan="3" class="bold">
@@ -58,7 +58,7 @@
             <dt data-ng-repeat-start="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
                 {{prop.label}}
             </dt>
-                <dd data-ng-repeat-end dir-bind-html-compile="prop.value"></dd>
+                <dd data-ng-repeat-end dir-bind-html-compile="prop.value | highlight:searchText"></dd>
             <dt data-ng-if="objData.incoming !== ''">
                 Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}}
             </dt>

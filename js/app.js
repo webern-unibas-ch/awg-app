@@ -1,6 +1,7 @@
 var app = angular.module('prototypeApp', [
     'prototypeApp.controllers',
     'prototypeApp.directives',
+    'prototypeApp.filters',
     'prototypeApp.services',
     'ngRoute',
     'ngSanitize',

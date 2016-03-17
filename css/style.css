@@ -157,6 +157,9 @@ a, .ins {
 .bold {
     font-weight: bold;
 }
+.highlighted {
+    background: orange;
+}
 span.caps, .version {
     font-variant: small-caps;
 }

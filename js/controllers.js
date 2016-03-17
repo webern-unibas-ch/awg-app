@@ -7,6 +7,7 @@ app.controller('mainCtrl', ['$scope', function ($scope){
     console.log($scope.message);
 
     //META
+    $scope.version = '0.0.3'; //RELEASE 15.3.2016
     $scope.version_date = '29. Januar 2016';
     $scope.editors = '<a href="http://anton-webern.ch/index.php?id=3" target="_blank">Thomas Ahrend</a>';
 
@@ -41,8 +42,10 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIservice', 'awgService', functi
         $scope.isObjectSelected = false;    //NO OBJECT SELECTED
         $scope.isObjectLoaded = false;      //NO OBJECT LOADED
 
-        $scope.maxSize = 4;
-        $scope.currentPage = 1;
+        $scope.searchText = query;
+        // $scope.maxSize = 4; // TODO
+        // $scope.currentPage = 1;
+
         // GET SEARCHRESULTS (promise) & THEN SEND searchData TO SCOPE
         salsahAPIservice.fulltextSearch($scope.APIurl, query).then(function (data) {
             $scope.searchData = data;
