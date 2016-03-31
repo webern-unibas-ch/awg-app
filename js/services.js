@@ -141,11 +141,6 @@ app.factory('salsahAPIservice', function($http){
                                         //ADD <p> & <a> with NG-CLICK-DIRECTIVE
                                         //LINKTEXT IS STORED IN $&
                                         propValue[0] += prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a ng-click="showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
-
-                                        if (prop.value_restype[i] === 'Chronology') {
-                                            // TODO: possibly numeric value should be converted
-                                            //console.log('ChronologieItem found: ' + prop.values[0]);
-                                        } //END if
                                     } //END for
                                 } else {
                                     console.log('= 0:::: ' + propValue[0]);
@@ -159,7 +154,7 @@ app.factory('salsahAPIservice', function($http){
                                 //result is an array (properties: id, label, name) with nodes from 0 to n
                                 break; //END hlist
 
-                            default: // '1'=> TEXT: PROPERTIES COME AS THEY ARE
+                            default: //'1'=> TEXT: PROPERTIES COME AS THEY ARE
                                 if (prop.values[0] !== '') {
                                     for (var i = 0; i < prop.values.length; i++){
                                         propValue[0] += prop.values[i];
@@ -189,13 +184,15 @@ app.factory('salsahAPIservice', function($http){
                             label: prop.label,
                             // VALUE NOT DEFINED
                             value: ''
-                        }); // END PUSH
+                        }); //END PUSH
                     }; //END if else
-                }); // END forEach PROPS
+                }); //END forEach PROPS
 
                 //PREPARE OBJECT META INFOS
-                switch (info.restype_label) {
-                    case 'Person':
+                switch (info.restype_id) {
+
+                    //PERSON
+                    case '45':
                         var lname = props['salsah:lastname'].values[0],
                             fname = props['salsah:firstname'].values[0];
                         tmp['header'] = {
@@ -207,7 +204,8 @@ app.factory('salsahAPIservice', function($http){
                         }
                         break;
 
-                    case 'Supplement':
+                    //KORRESPONDENZ
+                    case '29':
                         tmp['header'] = {
                             'obj_id': id,
                             'icon': info.restype_iconsrc,
@@ -217,7 +215,8 @@ app.factory('salsahAPIservice', function($http){
                         }
                         break;
 
-                    case 'Werk':
+                    //WERK
+                    case '43':
                         tmp['header'] = {
                             'obj_id': id,
                             'icon': info.restype_iconsrc,
@@ -227,7 +226,8 @@ app.factory('salsahAPIservice', function($http){
                         }
                         break;
 
-                    case 'Musikstück (Moldenhauer-Nummer)':
+                    //Musikstück (Moldenhauer-Nummer)
+                    case '36':
                         tmp['header'] = {
                             'obj_id': id,
                             'icon': info.restype_iconsrc,
@@ -237,7 +237,8 @@ app.factory('salsahAPIservice', function($http){
                         }
                         break;
 
-                    case 'Chronology':
+                    //CHRONOLOGIE
+                    case '28':
                         var htmlstr = '';
 
                         // RICHTEXT VALUE HAS ALREADY BEEN CONVERTED IN TMP USING PLUGIN "convert_lin2html"
@@ -257,7 +258,13 @@ app.factory('salsahAPIservice', function($http){
                         break;
 
                     default:
-                    // TODO
+                        tmp['header'] = {
+                            'obj_id': id,
+                            'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
+                            'type': '---',
+                            'title': '---',
+                            'lastmod': '---'
+                        }
                 }; //END switch MTEA-INFOS
             } //END if access === OK
 
