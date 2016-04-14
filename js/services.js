@@ -9,7 +9,7 @@ angular.module('prototypeApp.services', []);
 app.factory('awgService', function($timeout, $location, $anchorScroll){
 
     //SCROLLS TO AN ID ON THE SAME PAGE (AS WITH ROUTING INNER PAGE HASH ANCHORS DON'T WORK)
-    function scrollTo (id) {
+    function scrollTo(id) {
 
         //TIMEOUT IS NEEDED TO HAVE THE PAGE FULLY LOADED/COMPILED BEFORE SCROLLING
         return $timeout(function(){
@@ -27,7 +27,6 @@ app.factory('awgService', function($timeout, $location, $anchorScroll){
     return {
         scrollTo: scrollTo  //RETURNS A FUNCTION
     };
-
 });
 
 
@@ -48,14 +47,14 @@ app.factory('salsahAPIservice', function($http){
 
     //FINDS INNER SALSAH LINKS IN RICHTEXT AND REPLACES THEM WITH NG-CLICK-DIRECTIVE
     function replaceSalsahLink(str){
-        var patNum = /\d{4,6}/,    //REGEXP FOR OBJECT ID (4-6 DIGITS
-            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,6})" class="salsah-link">(.*?)<\/a>/i; //REGEXP FOR SALSAH LINKS
+        var patNum = /\d{4,8}/,    //REGEXP FOR OBJECT ID (4-7 DIGITS)
+            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; //REGEXP FOR SALSAH LINKS
 
         //CHECK ONLY! FOR SALSAH LINKS
         while (p = patLink.exec(str)) {
             //i.e.: AS LONG AS patLink IS DETECTED IN htmlstr DO...
 
-            //GET RESOURCE ID
+            //IDENTIFY RESOURCE ID
             var res_id = patNum.exec(p[1])[0];
 
             //REPLACE HREF ATTRIBUTE WITH NG-CLICK-DIRECTIVE
@@ -77,6 +76,7 @@ app.factory('salsahAPIservice', function($http){
         //GET DATA
         return $http.get(url + '/api/resources/' + id).then(function (response){
             data = response.data;
+            console.log(data);
             if (data.access === 'OK') {
                 props = data.props;
                 info = data.resinfo;
@@ -102,8 +102,55 @@ app.factory('salsahAPIservice', function($http){
 
                         //CHECK FOR GUI-ELEMENTS
                         switch (prop.valuetype_id) {
-                            case '14': // RICHTEXT: SALSAH STANDOFF NEEDS TO BE CONVERTED
 
+                            case '4': // DATE: SALSAH OBJECT NEEDS TO BE CONVERTED (USING PLUGIN "convert_jul2greg.js")
+                                prop.values[0] = convert_date(prop.values[0]);
+                                propValue[0] = prop.values[0];
+                                break; //END date
+
+                            case '6': //RESOURCEPOINTER SEARCHBOX: LINKAGE TO ANOTHER SALSAH OBJECT NEEDS TO BE CONVERTED
+                                if (prop.values.length > 0) {
+                                    for (var i = 0; i < prop.values.length; i++){
+                                        //ADD <p> & <a> with NG-CLICK-DIRECTIVE
+                                        //LINKTEXT IS STORED IN $&
+                                        propValue[0] += prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a ng-click="showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
+                                    } //END for
+                                } else {
+                                    console.log('= 0:::: ' + propValue[0]);
+                                }
+                                break; //END searchbox
+
+                            case '7': //SELECTION PULLDOWN: SELECTION NODES HAVE TO BE READ SEPERATLY
+                                if (prop.values[0] !== '') {
+
+                                    //IDENTIFY ID OF SELECTION-LIST FROM prop.attributes
+                                    //e.g. "selection=66"
+                                    var q = prop.attributes.split("=");
+
+                                    //GET SELECTION-LIST DATA
+                                    $http.get(url + '/api/selections/' + q[1]).then(function (response){
+                                        var selection = response.data.selection;
+
+                                        //LOCALIZE ID IN SELECTION-LIST AND IDENTIFY THE LABEL
+                                        for (var i = 0; i < selection.length; i++) {
+                                            if (selection[i].id == prop.values[0]) propValue[0] = selection[i].label;
+                                        }
+                                        return propValue[0];
+                                    });
+                                } else {
+                                    // EMPTY VALUE
+                                    propValue[0] = '';
+                                };
+                                break; //END selection
+
+                            case '12': //HLIST: HLIST NODES HAVE TO BE READ SEPERATLY
+                                console.log('detected hlist');
+                                //VALUES[0] gives reference id to
+                                // http://test-01.salsah.org/api/hlists/{{:id}}?reqtype=node
+                                //result is an array (properties: id, label, name) with nodes from 0 to n
+                                break; //END hlist
+
+                            case '14': // RICHTEXT: SALSAH STANDOFF NEEDS TO BE CONVERTED
                                 //CHECK FOR MUTLIPLE && NOT EMPTY VALUES
                                 if (prop.values.length > 0 && prop.values[0].utf8str !== '') {
                                     for (var i = 0; i < prop.values.length; i++){
@@ -130,29 +177,6 @@ app.factory('salsahAPIservice', function($http){
                                     propValue[0] = '';
                                 };
                                 break; //END richtext
-
-                            case '4': // DATE: SALSAH OBJECT NEEDS TO BE CONVERTED (USING PLUGIN "convert_jul2greg.js")
-                                propValue[0] = convert_date(prop.values[0]);
-                                break; //END date
-
-                            case '6': //SEARCHBOX: LINKAGE TO ANOTHER SALSAH OBJECT NEEDS TO BE CONVERTED
-                                if (prop.values.length > 0) {
-                                    for (var i = 0; i < prop.values.length; i++){
-                                        //ADD <p> & <a> with NG-CLICK-DIRECTIVE
-                                        //LINKTEXT IS STORED IN $&
-                                        propValue[0] += prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a ng-click="showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
-                                    } //END for
-                                } else {
-                                    console.log('= 0:::: ' + propValue[0]);
-                                }
-                                break; //END searchbox
-
-                            case '12': //HLIST: HLIST NODES HAVE TO BE READ SEPERATLY
-                                console.log('detected hlist');
-                                //VALUES[0] gives reference id to
-                                // http://test-01.salsah.org/api/hlists/{{:id}}?reqtype=node
-                                //result is an array (properties: id, label, name) with nodes from 0 to n
-                                break; //END hlist
 
                             default: //'1'=> TEXT: PROPERTIES COME AS THEY ARE
                                 if (prop.values[0] !== '') {
@@ -210,12 +234,23 @@ app.factory('salsahAPIservice', function($http){
                             'obj_id': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
-                            'title': props['dc:title'].values[0],
+                            'title': props['dc:title'].values[0] + "<br/>" + props['dc:date'].values[0],
                             'lastmod': info.lastmod
                         }
                         break;
 
-                    //WERK
+                    //SUPPLEMENT
+                    case '125':
+                        tmp['header'] = {
+                            'obj_id': id,
+                            'icon': info.restype_iconsrc,
+                            'type': info.restype_label,
+                            'title': props['dc:title'].values[0] + "<br/>" + props['dc:date'].values[0],
+                            'lastmod': info.lastmod
+                        }
+                        break;
+
+                    // WERK
                     case '43':
                         tmp['header'] = {
                             'obj_id': id,
@@ -226,7 +261,7 @@ app.factory('salsahAPIservice', function($http){
                         }
                         break;
 
-                    //Musikstück (Moldenhauer-Nummer)
+                    // MUSIKSTÜCK (Moldenhauer-Nummer)
                     case '36':
                         tmp['header'] = {
                             'obj_id': id,
@@ -237,7 +272,7 @@ app.factory('salsahAPIservice', function($http){
                         }
                         break;
 
-                    //CHRONOLOGIE
+                    // CHRONOLOGIE
                     case '28':
                         var htmlstr = '';
 
@@ -288,7 +323,7 @@ app.factory('salsahAPIservice', function($http){
 
 
     //FULLTEXTSEARCH VIA SALSAH API
-    function fulltextSearch (url, query) {
+    function fulltextSearch(url, query) {
 
         //GET DATA
         return $http.get(url + '/api/search/' + query + '?searchtype=fulltext&filter_by_project=6').then(function (response){
@@ -321,10 +356,9 @@ app.factory('salsahAPIservice', function($http){
         }); // END then
     }; //END fulltextSearch (func)
 
-
     return {
         convert2html: convert,  //RETURNS A STRING
         getObject: getObject,   //RETURNS A PROMISE
-        fulltextSearch: fulltextSearch  //RETURNS A PROMISE
+        fulltextSearch: fulltextSearch,  //RETURNS A PROMISE
     };
 })
