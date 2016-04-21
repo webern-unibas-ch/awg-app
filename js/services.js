@@ -295,10 +295,10 @@ app.factory('salsahAPIservice', function($http){
                     default:
                         tmp['header'] = {
                             'obj_id': id,
-                            'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
-                            'type': '---',
-                            'title': '---',
-                            'lastmod': '---'
+                            'icon': typeof info !== undefined ? info.restype_iconsrc :  'http://www.salsah.org/app/icons/16x16/delete.png',
+                            'type': typeof info !== undefined ? info.restype_label : '---',
+                            'title': typeof info !== undefined ? info.restype_description : '---',
+                            'lastmod': typeof info !== undefined ? info.lastmod : '---'
                         }
                 }; //END switch MTEA-INFOS
             } //END if access === OK
