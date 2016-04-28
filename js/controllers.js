@@ -7,8 +7,9 @@ app.controller('mainCtrl', ['$scope', function ($scope){
     console.log($scope.message);
 
     //META
-    $scope.version = '0.0.5'; //RELEASE 14.4.2016
-    $scope.version_date = '29. Januar 2016';
+    $scope.version = '0.0.6'; //RELEASE 28.4.2016
+    $scope.version_date_rel = '28. April 2016';
+    $scope.version_date_ed = '29. Januar 2016';
     $scope.editors = '<a href="http://anton-webern.ch/index.php?id=3" target="_blank">Thomas Ahrend</a>';
 
     //INIT MODALTEXT
