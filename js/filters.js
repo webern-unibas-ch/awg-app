@@ -9,7 +9,7 @@ app.filter('highlight', function() {
             needle = needle.toString();
 
             //ONLY PROCEED IF HAYSTACK INCLUDES NEEDLE
-            if (haystack.includes(needle)) {
+            if (haystack.toLowerCase().includes(needle.toLowerCase())) {
 
                 //INIT SEARCH- & REPLACE-STRING
                     //GLOBAL SEARCH FOR NEEDLE
