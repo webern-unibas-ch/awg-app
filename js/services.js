@@ -180,8 +180,9 @@ app.factory('salsahAPIservice', function($http){
 
                             default: //'1'=> TEXT: PROPERTIES COME AS THEY ARE
                                 if (prop.values[0] !== '') {
-                                    for (var i = 0; i < prop.values.length; i++){
-                                        propValue[0] += prop.values[i];
+                                    propValue[0] += prop.values[0];
+                                    for (var i = 1; i < prop.values.length; i++){
+                                        propValue[0] += "<br/>" + prop.values[i];
                                     };
                                 } else {
 

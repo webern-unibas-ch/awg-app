@@ -47,8 +47,9 @@
                     </th>
                 </tr>
                 </thead>
-                <tbody>                    
-                    <tr data-ng-repeat="data in searchData.subjects track by data.obj_id" data-ng-click="showObject(data.obj_id)" ng-class="{active: activeObject(data.obj_id)}">
+                <tbody>
+                    <!-- on click on search result call function showObject with data.obj_id -->
+                    <tr data-ng-repeat="data in searchData.subjects | orderBy:['-iconlabel', 'value[0]'] track by data.obj_id" data-ng-click="showObject(data.obj_id)" data-ng-class="{active: activeObject(data.obj_id)}">
                         <td>
                             <img data-ng-src="{{data.iconsrc}}" alt="iconsrc" > {{data.iconlabel}}
                         </td>
