@@ -1,14 +1,19 @@
 angular.module('prototypeApp.controllers', []);
 
 
-/**** CONTROLLER FOR MAIN PAGE ****/
+// ################################
+//
+//  CONTROLLER FOR MAIN PAGE
+//
+// ################################
+
 app.controller('mainCtrl', ['$scope', function ($scope){
     $scope.message = "Home page Ctrl"
     console.log($scope.message);
 
     //META
-    $scope.version = '0.0.6'; //RELEASE 28.4.2016
-    $scope.version_date_rel = '28. April 2016';
+    $scope.version = '0.0.7'; //RELEASE 14.7.2016
+    $scope.version_date_rel = '14. Juli 2016';
     $scope.version_date_ed = '29. Januar 2016';
     $scope.editors = '<a href="http://anton-webern.ch/index.php?id=3" target="_blank">Thomas Ahrend</a>';
 
@@ -22,20 +27,41 @@ app.controller('mainCtrl', ['$scope', function ($scope){
 }]);
 
 
-/**** CONTROLLER FOR SEARCH PAGE ****/
-app.controller('searchCtrl', ['$scope', 'salsahAPIservice', 'awgService', function ($scope, salsahAPIservice, awgService){
+
+
+// ################################
+//
+//  CONTROLLER FOR SEARCH PAGE
+//
+// ################################
+
+app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http', function ($scope, salsahAPIfactory, awgFactory, $http){
     $scope.message = "Search page Ctrl"
     console.log($scope.message);
 
     //INIT
+    $scope.APIurl = 'http://www.salsah.org';
+    $scope.eventData = {};
+    $scope.side = '';                   //SETS ALIGNEMT TO ALTERNATE
+
     $scope.isFormSubmitted = false;     //NO FORM SUBMITTED
     $scope.isDataLoaded = false;        //NO DATA LOADED
     $scope.isObjectSelected = false;    //NO OBJECT SELECTED
     $scope.isObjectLoaded = false;      //NO OBJECT LOADED
-    $scope.APIurl = 'http://www.salsah.org';
+    $scope.isButtonClicked = false;     //NO BUTTON CLICKED
+    $scope.isEventLoaded = false;       //NO EVENT LOADED
 
+    var now = new Date();
+    $scope.date = {
+        day:            now.getDate(),
+        month:          now.getMonth() + 1,
+        // searchStart:    '',
+        // searchEnd:      '',
+        findStart:      '',
+        findEnd:        ''
+    };
 
-    // SUBMIT QUERY (function) USING salsahAPIservice
+    // SUBMIT SEARCHTEXT (function) USING salsahAPIfactory
     $scope.submit = function(query){
         //INIT
         $scope.isFormSubmitted = true;      //NOW FORM WAS SUBMITTED
@@ -44,22 +70,25 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIservice', 'awgService', functi
         $scope.isObjectLoaded = false;      //NO OBJECT LOADED
 
         $scope.searchText = query;
-        // $scope.maxSize = 4; // TODO
+        // $scope.maxSize = 4; // TODO: paging
         // $scope.currentPage = 1;
 
         // GET SEARCHRESULTS (promise) & THEN SEND searchData TO SCOPE
-        salsahAPIservice.fulltextSearch($scope.APIurl, query).then(function (data) {
+        salsahAPIfactory.fulltextSearch($scope.APIurl, query).then(function (data) {
             $scope.searchData = data;
+            console.log(data);
             $scope.isFormSubmitted = false;
             $scope.isDataLoaded = true;
         }); //END then
     }; //END scope.submit (func)
 
 
-    // SHOW OBJECT (function) USING salsahAPIservice
+    // SHOW OBJECT (function) USING salsahAPIfactory
     $scope.showObject = function(cur_id){
         //INIT
-        $scope.isObjectSelected = true;  //NOW OBJECT WAS SELECTED
+        $scope.isObjectSelected = true;     //NOW OBJECT WAS SELECTED
+        $scope.isButtonClicked = false;     //BLEND OUT TIMELINE
+        $scope.isEventLoaded = false;       //BLEND OUT TIMELINE
 
         //SETS CLASS=ACTIVE ON CURRENT ACTIVE OBJECT
         $scope.activeObject = function(id){
@@ -67,19 +96,104 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIservice', 'awgService', functi
         };
 
         //GET OBJECT (as promise) & THEN SEND objData TO SCOPE
-        salsahAPIservice.getObject($scope.APIurl, cur_id).then(function(data){
+        salsahAPIfactory.getObject($scope.APIurl, cur_id).then(function(data){
             $scope.objData = data;
-            $scope.isObjectLoaded = true;  //NOW OBJECT IS LOADED
+            $scope.isObjectLoaded = true;   //NOW OBJECT IS LOADED
 
-            //SCROLL TO OBJBOX (#cur_id) AFTER LOADING
-            awgService.scrollTo(cur_id);
+            awgFactory.scrollTo(cur_id);    //SCROLL TO OBJBOX (#cur_id) AFTER LOADING
 
         }); //END then
     }; //END scope.showObject (func)
+
+
+    // GET TODAY'S EVENTS (function) USING salsahAPIfactory
+    $scope.getTodaysEvents = function(){
+        //INIT
+        $scope.date['searchStart'] = 1883;      //TODO: start (choosen by user // limits for specific objClasses: Werke 1908-1945)
+        $scope.date['searchEnd'] = 1945;        //TODO: end (choosen by user)
+
+        $scope.isButtonClicked = true;      //NOW BUTTON IS CLICKED
+        $scope.isObjectSelected = false;    //BLEND OUT SEARCH OBJECT
+        $scope.isObjectLoaded = false;      //BLEND OUT SEARCH OBJECT
+
+        //ALIGNMENTS FOR TIMELINE BOXES
+        $scope.timeline = {
+            leftAlign: function(){$scope.side = 'left';},
+            rightAlign: function(){$scope.side = 'right';},
+            defaultAlign: function(){$scope.side = '';} // or 'alternate'
+        };
+
+        var objClasses = {
+            //CHRONOLOGIE: restype=28, property_id=46 (date)
+            //PERSON: restype=45, property_id=207 (birthdate), 208 (deathdate)
+            //Korrespondenz: restype=29, property_id=46 (date)
+            //Musikstück: restype=36, property:id=96 (Erstpublikaktion), 97 (Komposition)
+            //Werk: restype=43, property:id=96 (Erstpublikaktion), 97 (Komposition), 226 (weitere Publikation)
+
+            Chronologie: {
+                badgeClass      : 'warning',
+                badgeIconClass  : 'glyphicon-time',
+                restypeID       : '28',
+                propertyID      : ['46']
+            },
+            Korrespondenz: {
+                badgeClass      : 'info',
+                badgeIconClass  : 'glyphicon-envelope',
+                restypeID       : '29',
+                propertyID      : ['46']
+            },
+            Person: {
+                badgeClass      : 'success',
+                badgeIconClass  : 'glyphicon-user',
+                restypeID       : '45',
+                propertyID      : ['207', '208']
+            },
+            Werk: {
+                badgeClass      : 'danger',
+                badgeIconClass  : 'glyphicon-music',
+                restypeID       : '43',
+                propertyID      : ['96', '97', '226']
+            }
+        };
+
+        //CHECK FOR CACHED DATA in $scope.eventData
+        if ($scope.eventData == '' || Object.keys($scope.eventData).length === 0) {
+            //GET EVENTS (as promise) & THEN SEND eventData TO SCOPE
+            salsahAPIfactory.getDailyEvent($scope.APIurl, $scope.date, objClasses)
+                .then(function(response){
+                    var events = response.searchResults;
+                    $scope.eventData['overallQueries'] = response.overallQueries;
+                    $scope.eventData['nhits'] = events.length;
+
+                    $scope.date['findEnd'] = awgFactory.extractYear(events[events.length-1]);
+                    $scope.date['findStart'] = awgFactory.extractYear(events[0]);
+
+                    angular.forEach(events, function(event){
+                        var label = objClasses[event.objLabel];
+                        event['badgeClass'] = label.badgeClass;
+                        event['badgeIconClass'] = label.badgeIconClass;
+                    });
+                    $scope.eventData['events'] = events;
+                    $scope.isButtonClicked = false;
+                    $scope.isEventLoaded = true;        //NOW EVENT IS LOADED
+                }); //END then
+        } else {
+            $scope.isButtonClicked = false;
+            $scope.isEventLoaded = true;        //NOW EVENT IS LOADED (FROM CACHE)
+        };
+    }; //END scope.getTodaysEvents (func)
+
 }]);
 
 
-/**** CONTROLLER FOR INTRO PAGE ****/
+
+
+// ################################
+//
+//  CONTROLLER FOR INTRO PAGE
+//
+// ################################
+
 app.controller('introCtrl', ['$scope', function ($scope){
     $scope.message = "Intro page Ctrl"
     console.log($scope.message);
@@ -94,7 +208,14 @@ app.controller('introCtrl', ['$scope', function ($scope){
 }]);
 
 
-/**** CONTROLLER FOR EDITION PAGE ****/
+
+
+// ################################
+//
+//  CONTROLLER FOR EDITION PAGE
+//
+// ################################
+
 app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($scope, $http, $routeParams){
     $scope.message = "Edition page Ctrl"
     console.log($scope.message);
@@ -197,8 +318,15 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
 }]);
 
 
-/**** CONTROLLER FOR REPORT PAGE ****/
-app.controller('reportCtrl', ['$scope', '$http', 'awgService', function ($scope, $http, awgService){
+
+
+// ################################
+//
+//  CONTROLLER FOR REPORT PAGE
+//
+// ################################
+
+app.controller('reportCtrl', ['$scope', 'awgFactory', function ($scope, awgFactory){
     $scope.message = "Report page Ctrl"
     console.log($scope.message);
 
@@ -210,21 +338,35 @@ app.controller('reportCtrl', ['$scope', '$http', 'awgService', function ($scope,
         $scope.modalValue = $scope.modalText[id];
     };
 
-    // SCROLL (function) USING awgService
+    // SCROLL (function) USING awgFactory
     $scope.scrollTo = function(id){
-        awgService.scrollTo(id);
+        awgFactory.scrollTo(id);
     };
 }]);
 
 
-/**** CONTROLLER FOR STRUCTURE PAGE ****/
+
+
+// ################################
+//
+//  CONTROLLER FOR STRUCTURE PAGE
+//
+// ################################
+
 app.controller('structureCtrl', ['$scope', function ($scope){
     $scope.message = "Structure page Ctrl"
     console.log($scope.message);
 }]);
 
 
-/**** CONTROLLER FOR CONTACT PAGE ****/
+
+
+// ################################
+//
+//  CONTROLLER FOR CONTACT PAGE
+//
+// ################################
+
 app.controller('contactCtrl', ['$scope', function ($scope){
     $scope.message = "Contact page Ctrl"
     console.log($scope.message);

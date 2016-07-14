@@ -1,16 +1,25 @@
-angular.module('prototypeApp.services', []);
+angular.module('prototypeApp.factories', []);
 
 
-/*
 
-                    awgService
 
-*/
-app.factory('awgService', function($timeout, $location, $anchorScroll){
+/*********************************************************************
 
-    //SCROLLS TO AN ID ON THE SAME PAGE (AS WITH ROUTING INNER PAGE HASH ANCHORS DON'T WORK)
+                    awgFactory
+
+**********************************************************************/
+
+app.factory('awgFactory', ['$timeout', '$location', '$anchorScroll', function($timeout, $location, $anchorScroll){
+
+    // ################################
+    //
+    //  SCROLLS TO AN ID ON THE SAME PAGE
+    //  (AS WITH ROUTING INNER PAGE HASH
+    //  ANCHORS DON'T WORK)
+    //
+    // ################################
+
     function scrollTo(id) {
-
         //TIMEOUT IS NEEDED TO HAVE THE PAGE FULLY LOADED/COMPILED BEFORE SCROLLING
         return $timeout(function(){
             // save original hash
@@ -24,28 +33,56 @@ app.factory('awgService', function($timeout, $location, $anchorScroll){
         }, '');
     };
 
-    return {
-        scrollTo: scrollTo  //RETURNS A FUNCTION
+
+    function extractYear(obj){
+        return obj.date.dateString.split(' ')[3];
     };
-});
+
+    // ################################
+    //
+    //     RETURN awgFactories
+    //
+    // ################################
+
+    return {
+        scrollTo:      scrollTo,      //RETURNS A FUNCTION
+        extractYear:   extractYear    //RETURNS A STRING
+    };
+}]);
 
 
-/*
 
-                    salsahAPIservice
 
-*/
-app.factory('salsahAPIservice', function($http){
+/**********************************************************************
 
-    //CONVERTS LINEAR SALSAH STANDOFF (string with textattributes) TO HTML USING PLUGIN "convert_lin2html"
+                    salsahAPIfactory
+
+**********************************************************************/
+
+app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
+
+    // ################################
+    //
+    //  CONVERTS LINEAR SALSAH STANDOFF
+    //  (string with textattributes)
+    //  TO HTML USING PLUGIN "convert_lin2html"
+    //
+    // ################################
+
     function convert(str, attr){
-        var y = JSON.parse(attr);
-        var x = str;
-        var z = convert_lin2html(y, x);
-        return z;
+        return convert_lin2html(JSON.parse(attr), str);
     }; //END convert (func)
 
-    //FINDS INNER SALSAH LINKS IN RICHTEXT AND REPLACES THEM WITH NG-CLICK-DIRECTIVE
+
+
+
+    // ################################
+    //
+    //  FINDS INNER SALSAH LINKS IN RICHTEXT
+    //  AND REPLACES THEM WITH NG-CLICK-DIRECTIVE
+    //
+    // ################################
+
     function replaceSalsahLink(str){
         var patNum = /\d{4,8}/,    //REGEXP FOR OBJECT ID (4-7 DIGITS)
             patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; //REGEXP FOR SALSAH LINKS
@@ -66,7 +103,16 @@ app.factory('salsahAPIservice', function($http){
     }; //END replaceSalsahLink (func)
 
 
-    //CALLS AN OBJECT VIA http.get AND PREPARES DATA FOR DISPLAYING IN VIEW
+
+
+    // ################################
+    //
+    //  CALLS AN OBJECT VIA http.get AND
+    //  PREPARES RESULT OBJECT RETURNED AS
+    //  PROMISE RESPONSE TO CONTROLLER
+    //
+    // ################################
+
     function getObject(url, id){
 
         //INIT
@@ -76,7 +122,6 @@ app.factory('salsahAPIservice', function($http){
         //GET DATA
         return $http.get(url + '/api/resources/' + id).then(function (response){
             data = response.data;
-            console.log(data);
             if (data.access === 'OK') {
                 props = data.props;
                 info = data.resinfo;
@@ -221,7 +266,7 @@ app.factory('salsahAPIservice', function($http){
                         var lname = props['salsah:lastname'].values[0],
                             fname = props['salsah:firstname'].values[0];
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
                             'title': fname + ' ' + lname,
@@ -232,7 +277,7 @@ app.factory('salsahAPIservice', function($http){
                     //KORRESPONDENZ
                     case '29':
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
                             'title': props['dc:title'].values[0] + "<br/>" + props['dc:date'].values[0],
@@ -243,7 +288,7 @@ app.factory('salsahAPIservice', function($http){
                     //SUPPLEMENT
                     case '125':
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
                             'title': props['dc:title'].values[0] + "<br/>" + props['dc:date'].values[0],
@@ -254,7 +299,7 @@ app.factory('salsahAPIservice', function($http){
                     // WERK
                     case '43':
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
                             'title': props['dc:title'].values[0],
@@ -265,7 +310,7 @@ app.factory('salsahAPIservice', function($http){
                     // MUSIKSTÜCK (Moldenhauer-Nummer)
                     case '36':
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
                             'title': '[M ' + props['webern:mnr'].values[0] + '] ' + props['dc:title'].values[0],
@@ -285,7 +330,7 @@ app.factory('salsahAPIservice', function($http){
                         htmlstr = htmlstr.replace(/<p>|<\/p>/g, '');
                         htmlstr = htmlstr.replace(htmlstr, '«$&»');
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': info.restype_iconsrc,
                             'type': info.restype_label,
                             'title': htmlstr,
@@ -295,7 +340,7 @@ app.factory('salsahAPIservice', function($http){
 
                     default:
                         tmp['header'] = {
-                            'obj_id': id,
+                            'objID': id,
                             'icon': typeof info !== undefined ? info.restype_iconsrc :  'http://www.salsah.org/app/icons/16x16/delete.png',
                             'type': typeof info !== undefined ? info.restype_label : '---',
                             'title': typeof info !== undefined ? info.restype_description : '---',
@@ -309,21 +354,26 @@ app.factory('salsahAPIservice', function($http){
                 console.log('No access');
                 tmp['incoming'] = '';
                 tmp['header'] = {
-                    'obj_id': id,
+                    'objID': id,
                     'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
                     'type': 'restricted',
                     'title': 'Kein Zugriff auf dieses Objekt möglich',
                     'lastmod': '---'
                 }
             }
-
             return tmp;
 
         }); // END then
     }; //END getObject (func)
 
 
-    //FULLTEXTSEARCH VIA SALSAH API
+
+    // ################################
+    //
+    //  FULLTEXTSEARCH VIA SALSAH API
+    //
+    // ################################
+
     function fulltextSearch(url, query) {
 
         //GET DATA
@@ -335,6 +385,7 @@ app.factory('salsahAPIservice', function($http){
 
                 //CLEAN VALUE LABELS
                 subj.valuelabel[0] = subj.valuelabel[0].replace(' (Richtext)', '');
+                subj.obj_id = subj.obj_id.replace('_-_local', '');
 
                 //valuetype_id 14 = valuelabel 'Ereignis'
                 if (subj.valuetype_id[0] == '14') {
@@ -353,13 +404,168 @@ app.factory('salsahAPIservice', function($http){
             }); // END forEach
 
             return tmp;
-
         }); // END then
     }; //END fulltextSearch (func)
 
+
+
+
+    // ################################
+    //
+    //  GET DAILY EVENTS VIA SALSAH API
+    //
+    // ################################
+
+            //RETURNS ALL CHRONOLOGY EVENT PROMISES
+            function getAllDailyPromises(url, dateObj, objClasses){
+                //INIT
+                var promises = [],
+                    years = [],
+                    searchYearDiff = dateObj.searchEnd - dateObj.searchStart + 1,
+                    idObj = prepareIdObject(objClasses),
+                    len = idObj.restypeID.length;
+
+                //GET PROMISES
+                for (var i = 0; i < searchYearDiff; i++) {
+                    years[i] = dateObj.searchStart + i;
+                    //call GETDAILYPROMISE for every year between searchStart and searchEnd for every propertyID
+                    for (var j = 0; j < len; j++) {
+                        promises[len*i + j] = getDailyPromise(url, idObj.restypeID[j], idObj.propertyID[j], years[i], dateObj.month, dateObj.day);
+                    };
+                }; //END for
+
+                return $q.all(promises);
+            }; //END getAllDailyPromises (func)
+
+
+            //RETURNS A SINGLE CHRONOLOGY EVENT PROMISE
+            function getDailyPromise(url, restypeID, propertyID, year, month, day){
+                return $http.get(url + '/api/search/?searchtype=extended&filter_by_project=6&filter_by_restype=' + restypeID + '&property_id=' + propertyID + '&compop=EQ&searchval=GREGORIAN%3A' + year + '-' + month + '-' + day);
+            }; //END getDailyPromise (func)
+
+
+            //EXTRACTS RESTYPE- & PROPERTYIDs FROM objClasses OBJECT
+            function prepareIdObject(objClasses){
+                var idObj = {
+                        restypeID: [],
+                        propertyID: [],
+                        pushID: function(a, b){
+                            return a.push(b);
+                        }
+                    },
+                    objKeys = Object.keys(objClasses),
+                    objLength = objKeys.length;
+
+                for (var i = 0; i < objLength; i++) {
+                    idObj.pushID(idObj.restypeID, objClasses[objKeys[i]].restypeID);
+                    idObj.pushID(idObj.propertyID, objClasses[objKeys[i]].propertyID[0]);
+                    if (objClasses[objKeys[i]].propertyID.length > 1) {
+                        for (var j = 1; j < objClasses[objKeys[i]].propertyID.length; j++) {
+                            idObj.pushID(idObj.restypeID, objClasses[objKeys[i]].restypeID);
+                            idObj.pushID(idObj.propertyID, objClasses[objKeys[i]].propertyID[j]);
+                        };
+                    };
+                };
+                return idObj;
+            }; //END prepareIdObject (func)
+
+
+            //PREPARES RESULT OBJECT FROM PROMISE RESPONSE
+            function prepareResultObject(response){
+                //INIT
+                var resultObj = {
+                        overallQueries: response.length,
+                        searchResults: []
+                    },
+                    tmp;
+
+                for (var i = 0; i < response.length; i++) {
+                    //if results are not empty...
+                    if (response[i].data.subjects.toString() !== '') {
+                        // catch results in temporary variable
+                        tmp = response[i].data.subjects;
+                        for (var j = 0; j < tmp.length; j++) {
+                            //... exclude periods, take care only of events from a specific day
+                            if (tmp[j].value[1].dateval1 === tmp[j].value[1].dateval2) {
+                                //... & push result into data array
+                                resultObj['searchResults'].push({
+                                    objID: tmp[j].obj_id.replace('_-_local', ''),
+                                    objLabel: tmp[j].iconlabel,
+                                    objSrc: tmp[j].iconsrc,
+                                    value: {
+                                        label: tmp[j].valuelabel[0].replace(' (Richtext)', ''),
+                                        valueString: convertValueString(tmp[j].value[0])
+                                    },
+                                    date: {
+                                        label: tmp[j].valuelabel[1],
+                                        dateString: convert_date(tmp[j].value[1])
+                                    },
+                                    jdate: tmp[j].value[1]
+                                }); //END push
+                            }; //END inner if
+                        }; //END inner for
+                    }; //END outer if
+                }; //END outer for
+
+                //if there is no data...
+                if (resultObj == '' || resultObj === []) {
+                    //... notification about no results
+                    resultObj['searchResults'].push({
+                        objID: '',
+                        objLabel: '',
+                        objSrc: '',
+                        value: {
+                            label: 'Ereignis',
+                            utf: 'Zum heutigen Datum kein Eintrag nachgewiesen.'
+                        },
+                        date: {
+                            label: '',
+                            dateString: '' //dateObj.y_start + '–' + dateObj.y_end
+                        },
+                        jdate: ''
+                    });
+                } else {
+                    //... sort resultObj ascending by jdate.dateval1
+                    resultObj['searchResults'].sort(function(obj1, obj2){
+                        return obj1.jdate.dateval1 - obj2.jdate.dateval1;
+                    });
+                };
+
+                return resultObj;
+            }; //END prepareResultObject (func)
+
+
+            //RETURNS CONVERTED STANDOFF AS STRING OR ONLY STRING DEPENDING ON TYPEOF VALUE
+            function convertValueString(value){
+                if (typeof value === 'string') {
+                    return value;
+                } else if (typeof value === 'object') {
+                    return convert_lin2html(value.textattr, value.utf8str);
+                };
+            }; //END convertValueString (func)
+
+
+    //MAIN: GET DAILY EVENTS & RETURN DATA TO CONTROLLER
+    function getDailyEvent(url, dateObj, objClasses){
+        return getAllDailyPromises(url, dateObj, objClasses).then(function(response){
+            return prepareResultObject(response);
+        });
+    }; //END getDailyEvent (func)
+
+
+
+
+    // ################################
+    //
+    //     RETURN salsahAPI FACTORIES
+    //
+    // ################################
+
+
     return {
-        convert2html: convert,  //RETURNS A STRING
-        getObject: getObject,   //RETURNS A PROMISE
-        fulltextSearch: fulltextSearch,  //RETURNS A PROMISE
+        convert2html: convert,              //RETURNS A STRING
+        getObject: getObject,               //RETURNS A PROMISE
+        fulltextSearch: fulltextSearch,     //RETURNS A PROMISE
+        getDailyEvent: getDailyEvent        //RETURNS A PROMISE
     };
-})
+}]);

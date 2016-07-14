@@ -16,15 +16,22 @@
                 </p>
             </div>
         </form>
+        <button class="btn btn-default" data-ng-click="getTodaysEvents()">
+            Webern-Chronologie vom {{date.day}}.{{date.month}}.
+        </button>
+        <p class="help-block">
+            Der erstmalige Aufruf kann einige Sekunden Ladezeit beanspruchen.
+        </p>
     </div>
 
-    <!-- ### SEARCh RESULTS ### -->
-    <div class="well well-lg">
+
+    <!-- ### SEARCH RESULTS ### -->
+    <div class="well well-lg" data-ng-if="isFormSubmitted || isDataLoaded">
         <!-- ### WHEN LOADING ### -->
-        <h3 data-ng-show="isFormSubmitted">Load results...</h3>
+        <h3 data-ng-if="isFormSubmitted">Load results...</h3>
 
         <!-- ### WHEN SEARCH RESULTS ARE LOADED ### -->
-        <div data-ng-show="isDataLoaded">
+        <div data-ng-if="isDataLoaded">
 
             <!-- ### HEADER ### -->
             <h4>Suchergebnisse</h4>
@@ -32,7 +39,7 @@
                 Insgesamt {{searchData.nhits}} Treffer:
             </p>
 
-            <!-- ### PAGINATION ### -->
+            <!-- TODO: ### PAGINATION ### -->
             <!-- <uib-pagination total-items="searchData.nhits" data-ng-model="currentPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></uib-pagination> -->
 
             <!-- ### TABLE WITH SEARCH RESULTS ### -->
@@ -48,7 +55,7 @@
                 </tr>
                 </thead>
                 <tbody>
-                    <!-- on click on search result call function showObject with data.obj_id -->
+                    <!-- ### CLICKING ON SEARCH RESULT CALLS FUNCTION showObject WITH data.obj_id -->
                     <tr data-ng-repeat="data in searchData.subjects | orderBy:['-iconlabel', 'value[0]'] track by data.obj_id" data-ng-click="showObject(data.obj_id)" data-ng-class="{active: activeObject(data.obj_id)}">
                         <td>
                             <img data-ng-src="{{data.iconsrc}}" alt="iconsrc" > {{data.iconlabel}}

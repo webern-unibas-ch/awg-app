@@ -2,10 +2,11 @@ var app = angular.module('prototypeApp', [
     'prototypeApp.controllers',
     'prototypeApp.directives',
     'prototypeApp.filters',
-    'prototypeApp.services',
+    'prototypeApp.factories',
     'ngRoute',
     'ngSanitize',
-    'angular-bind-html-compile'
+    'angular-bind-html-compile',
+    'angular-timeline'
 ]);
 
 // routeConfiguration

@@ -7,32 +7,82 @@
     </p>
 </div> -->
 
-<!-- ### INPUT FORM IN SIDENAV ### -->
+<!-- ### SIDENAV TEMPLATE ### -->
 <awg-sidenav template-url="search"></awg-sidenav>
 
+
 <!-- ### SINGLE OBJECT BOX ### -->
-<div class="col-sm-6 col-md-7 col-lg-8 objbox" data-ng-show="isObjectSelected" id="{{objData.header.obj_id}}">
+<div class="col-sm-6 col-md-7 col-lg-8 objbox" data-ng-show="isObjectSelected || isButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
 
     <!-- ### WHEN LOADING ### -->
-    <h3 data-ng-hide="isObjectLoaded">Load object...</h3>
+    <h3 data-ng-if="isObjectSelected && !isObjectLoaded">Load object...</h3>
+    <h3 data-ng-if="isButtonClicked && !isEventLoaded">Load events...</h3>
 
-    <!-- ### WHEN RESULTS LOADED ### -->
-    <div data-ng-show="isObjectLoaded">
+
+<!-- ######### TIMELINE ######### -->
+    <!-- ### WHEN OBJECT IS LOADED ### -->
+    <div data-ng-if="isEventLoaded">
+        <div class="timeline-control-button">
+            <button class="btn btn-default" data-ng-click="timeline.leftAlign()">linksseitig</button>
+            <button class="btn btn-default" data-ng-click="timeline.rightAlign()">rechtsseitig</button>
+            <button class="btn btn-default" data-ng-click="timeline.defaultAlign()">alternierend</button>
+        </div>
+
+        <timeline>
+            <timeline-header>
+                <h3 data-ng-if="date.searchStart && date.searchEnd">
+                    Suchzeitraum: {{date.searchStart}}–{{date.searchEnd}}
+                </h3>
+                <p>
+                    In {{eventData.overallQueries}} Suchanfragen {{eventData.nhits}} Ereignisse zwischen {{date.findStart}} und {{date.findEnd}} gefunden
+                </p>
+            </timeline-header>
+            <timeline-body>
+                <timeline-event ng-repeat="event in eventData.events | orderBy:'-jdate.dateval1'" side="{{side}}">
+                    <timeline-badge class="{{event.badgeClass}}">
+                        <img title="{{event.objLabel}}: {{event.value.label}}" data-ng-src="{{event.objSrc}}" alt="icon" />
+                    </timeline-badge>
+                    <timeline-panel class="{{event.badgeClass}}">
+                        <timeline-panel-heading>
+                            <p ng-if="event.date">
+                                <small class="text-muted"><i class="glyphicon glyphicon-time"></i> <em>{{event.date.label}}</em>: {{event.date.dateString}}</small>
+                            </p>
+                        </timeline-panel-heading>
+                        <timeline-panel-body>
+                            <p data-ng-if="event.value">
+                                [{{event.objID}}] {{event.value.valueString}} <small><a data-ng-click="showObject(event.objID)">[mehr…]</a></small>
+                            </p>
+                        </timeline-panel-body>
+                        <!-- <timeline-panel-footer>
+
+                        </timeline-panel-footer> -->
+                    </timeline-panel>
+                </timeline-event>
+            </timeline-body>
+          </timeline>
+    </div>
+
+
+    <!-- ### WHEN OBJECT IS LOADED ### -->
+    <div data-ng-if="isObjectLoaded">
+
+        <div class="objbox-control-button" data-ng-if="eventData != ''">
+            <button class="btn btn-default" data-ng-click="getTodaysEvents()">Back to Timeline</button>
+        </div>
 
         <!-- ### HEADER ### -->
         <h3>
             <img data-ng-src="{{objData.header.icon}}" alt="icon" /><small> ({{objData.header.type}})</small><br/>
-            <span dir-bind-html-compile="objData.header.title | highlight:searchText"></span>
+            [{{objData.header.objID}}] <span dir-bind-html-compile="objData.header.title | highlight:searchText"></span>
         </h3>
         <small>[Last modified: {{objData.header.lastmod}} (UTC)]</small><br /><br />
-        <!-- <small><a data-ng-click="showObject(id_back)">Zurück zum vorherigen Objekt</a></small> -->
-
+        <!-- <small><a data-ng-click="showObject(id_back)">Zurück zum vorherigen Objekt</a></small> TODO -->
 
         <!-- ### DISPLAY AS TABLE ON SMALL AND LARGER DEVICES ### -->
         <table class="table table-condensed table-hover borderless hidden-xs" style="padding:10px;">
             <tbody>
                 <!-- ### SHOW ONLY NOT EMPTY VALUES ### -->
-                <tr data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
+                <tr id="field" data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
                     <td class="bold">
                         {{prop.label}}
                     </td>
@@ -44,7 +94,7 @@
                         <p>Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}} </p>
                     </td>
                 </tr>
-                <tr class="ins" ng-if="objData.incoming !== ''" data-ng-repeat="ins in objData.incoming">
+                <tr data-ng-if="objData.incoming !== ''" class="ins"  data-ng-repeat="ins in objData.incoming">
                     <td colspan="3" data-ng-click="showObject(ins.id)">
                         <img data-ng-src="{{ins.icon}}" alt="icon" /> [{{ins.id}}] {{ins.value}}
                     </td>
@@ -54,10 +104,12 @@
 
         <!-- ### STACK TO DEFINITION LIST ON EXTRA SMALL DEVICES ### -->
         <dl class="dl-horizontal dl-hover visible-xs">
-            <dt data-ng-repeat-start="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
-                {{prop.label}}
-            </dt>
-                <dd data-ng-repeat-end dir-bind-html-compile="prop.value | highlight:searchText"></dd>
+            <div id="field" data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
+                <dt>
+                    {{prop.label}}
+                </dt>
+                    <dd dir-bind-html-compile="prop.value | highlight:searchText"></dd>
+            </div>
             <dt data-ng-if="objData.incoming !== ''">
                 Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}}
             </dt>

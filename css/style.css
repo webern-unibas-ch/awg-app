@@ -25,6 +25,8 @@ html, body {
   /*height: 600px;*/
 }
 
+
+/****** OBJECT BOX ******/
 .objbox {
     position: relative;
     height: 100%;
@@ -33,6 +35,10 @@ html, body {
     border: 1px solid #f1f1f1;
     box-shadow: 5px 5px 6px #cccccc;
 }
+.objbox-control-button {
+    text-align: right;
+}
+
 
 /* Set grey background color, black text and some padding */
 footer {

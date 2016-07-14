@@ -1,4 +1,4 @@
-(function (angular) {	
+(function (angular) {
 
 /*
        JavaScript functions for the Fourmilab Calendar Converter
@@ -81,10 +81,7 @@
 	           (-Math.floor((year - 1) / 100)) +
 	           Math.floor((year - 1) / 400) +
 	           Math.floor((((367 * month) - 362) / 12) +
-	           ((month <= 2) ? 0 :
-	                               (leap_gregorian(year) ? -1 : -2)
-	           ) +
-	           day);
+	           ((month <= 2) ? 0 : (leap_gregorian(year) ? -1 : -2)) + day);
 	} //END gregorian_to_jd (func)
 
 	//  JD_TO_GREGORIAN  --  Calculate Gregorian calendar date from Julian day

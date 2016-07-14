@@ -22,6 +22,10 @@
         John Walker, JavaScript functions for the Fourmilab Calendar Converter, September, MIM <http://www.fourmilab.ch/documents/calendar/> (accessed 21.1.2016), License: PUBLIC DOMAIN; see also SALSAH-PLUGIN dateobj
     ANGULAR-BIND-HTML-COMPILE (directive):
         Incuna Ltd, Oxford (UK), 2014-2015, <https://github.com/incuna/angular-bind-html-compile> (accessed 22.1.2016)
+    TIMELINE (directive)
+        Robert Pocklington (rpocklin), Melbourne, VIC, AU, 2015–2016,
+        <https://github.com/rpocklin/angular-timeline> (accessed 10.7.2016)
+
 
     SALSAH-PLUGINS:
         http://test-01.salsah.org/app/js_autoload/datehelpers.js
@@ -38,8 +42,8 @@
     <link href="css/style.css" rel="stylesheet">
 
     <!-- LIBRARIES -->
-    <script src="http://code.jquery.com/jquery-1.11.0.min.js"></script>
-    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+    <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
     <script  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
     <script src="https://code.angularjs.org/1.4.8/angular-sanitize.js"></script>
@@ -49,12 +53,16 @@
     <script src="js/controllers.js"></script>
     <script src="js/directives.js"></script>
     <script src="js/filters.js"></script>
-    <script src="js/services.js"></script>
+    <script src="js/factories.js"></script>
 
     <!-- CUSTOM CONVERTING SCRIPTS -->
     <script src="js/plugins/convert_lin2html.js"></script>  <!-- richtext converting -->
     <script src="js/plugins/convert_jul2greg.js"></script> <!-- date converting -->
     <script src="js/plugins/angular-bind-html-compile.js"></script> <!-- ng-bind-html compiling -->
+
+    <!-- TIMELINE (angular-timeline-bootstrap.css excluded) -->
+    <link rel="stylesheet" href="js/plugins/angular-timeline/dist/angular-timeline.css" />
+    <script src="js/plugins/angular-timeline/dist/angular-timeline.js"></script>
 
 </head>
 <body ng-controller="mainCtrl">
