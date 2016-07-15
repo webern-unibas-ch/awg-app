@@ -12,11 +12,11 @@
 
 
 <!-- ### SINGLE OBJECT BOX ### -->
-<div class="col-sm-6 col-md-7 col-lg-8 objbox" data-ng-show="isObjectSelected || isButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
+<div class="col-sm-6 col-md-7 col-lg-8 objbox" data-ng-show="isObjectSelected || isEventButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
 
     <!-- ### WHEN LOADING ### -->
     <h3 data-ng-if="isObjectSelected && !isObjectLoaded">Load object...</h3>
-    <h3 data-ng-if="isButtonClicked && !isEventLoaded">Load events...</h3>
+    <h3 data-ng-if="isEventButtonClicked && !isEventLoaded">Load events...</h3>
 
 
 <!-- ######### TIMELINE ######### -->
@@ -66,8 +66,8 @@
     <!-- ### WHEN OBJECT IS LOADED ### -->
     <div data-ng-if="isObjectLoaded">
 
-        <div class="objbox-control-button" data-ng-if="eventData != ''">
-            <button class="btn btn-default" data-ng-click="getTodaysEvents()">Back to Timeline</button>
+        <div class="objbox-control-button" data-ng-if="isEventCached">
+            <button class="btn btn-default" data-ng-click="getTodaysEvents()">Zurück zur Timeline</button>
         </div>
 
         <!-- ### HEADER ### -->

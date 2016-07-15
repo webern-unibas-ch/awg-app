@@ -48,8 +48,9 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
     $scope.isDataLoaded = false;        //NO DATA LOADED
     $scope.isObjectSelected = false;    //NO OBJECT SELECTED
     $scope.isObjectLoaded = false;      //NO OBJECT LOADED
-    $scope.isButtonClicked = false;     //NO BUTTON CLICKED
+    $scope.isEventButtonClicked = false;     //NO BUTTON CLICKED
     $scope.isEventLoaded = false;       //NO EVENT LOADED
+    $scope.isEventCached = false;       //NO EVENT CACHED
 
     var now = new Date();
     $scope.date = {
@@ -87,7 +88,7 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
     $scope.showObject = function(cur_id){
         //INIT
         $scope.isObjectSelected = true;     //NOW OBJECT WAS SELECTED
-        $scope.isButtonClicked = false;     //BLEND OUT TIMELINE
+        $scope.isEventButtonClicked = false;     //BLEND OUT TIMELINE
         $scope.isEventLoaded = false;       //BLEND OUT TIMELINE
 
         //SETS CLASS=ACTIVE ON CURRENT ACTIVE OBJECT
@@ -112,7 +113,7 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
         $scope.date['searchStart'] = 1883;      //TODO: start (choosen by user // limits for specific objClasses: Werke 1908-1945)
         $scope.date['searchEnd'] = 1945;        //TODO: end (choosen by user)
 
-        $scope.isButtonClicked = true;      //NOW BUTTON IS CLICKED
+        $scope.isEventButtonClicked = true;      //NOW BUTTON IS CLICKED
         $scope.isObjectSelected = false;    //BLEND OUT SEARCH OBJECT
         $scope.isObjectLoaded = false;      //BLEND OUT SEARCH OBJECT
 
@@ -174,11 +175,12 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
                         event['badgeIconClass'] = label.badgeIconClass;
                     });
                     $scope.eventData['events'] = events;
-                    $scope.isButtonClicked = false;
+                    $scope.isEventButtonClicked = false;
                     $scope.isEventLoaded = true;        //NOW EVENT IS LOADED
+                    $scope.isEventCached = true;
                 }); //END then
         } else {
-            $scope.isButtonClicked = false;
+            $scope.isEventButtonClicked = false;
             $scope.isEventLoaded = true;        //NOW EVENT IS LOADED (FROM CACHE)
         };
     }; //END scope.getTodaysEvents (func)
