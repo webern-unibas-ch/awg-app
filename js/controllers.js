@@ -265,7 +265,7 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
     	}
     };
 
-    //DISPLAY TKA
+    //GET TKA
     $http.get('data/tka.json').then(function (response){
         var tmp = response.data;
         $scope.showTkA = false;
@@ -275,34 +275,43 @@ app.controller('editionCtrl', ['$scope', '$http', '$routeParams', function ($sco
             return $scope.selected == id;
         };
 
-        //DISPLAYS SINGLE TKA (func)
-        $scope.getSingleTkA = function(id){
+
+        //GET TKA FOR WHOLE MEASURE/SYSTEM OR SINGLE ITEM (func)
+        $scope.getTkA = function(field, id){
             //INIT
-            $scope.selected = id;
             $scope.showTkA = true;
             $scope.items = [];
+            switch (field) {
+                case 'measure':
+                    $scope.selected = 'm' + id;
+                    $scope.items = getTkaValue(tmp[$scope.sheet]);
+                    break;
+                case 'system':
+                    $scope.selected = 's' + id;
+                    $scope.items = getTkaValue(tmp[$scope.sheet]);
+                    break;
+                case 'single':
+                    $scope.selected = id;
+                    $scope.items.push(tmp[$scope.sheet][id]);
+            };
 
-            //GET DATA
-            $scope.items.push(tmp[$scope.sheet][id]);
-        }; //END getSingleTkA (func)
+            //GET Tka VALUES
+            function getTkaValue(item) {
+                console.log('hurray');
+                var tmpArray = [];
+                angular.forEach(item, function(entry){
+                    //CLEAN VALUES
+                    var tkaValue = entry[field].replace("[", "").replace("]", "");
+                    //CHECK IF VALUE MATCHES ID
+                    if (tkaValue == id) {
+                        tmpArray.push(entry);
+                    };
+                }); //END forEach
+                return tmpArray;
+            } //END getTkaValue (func)
 
-        //DISPLAYS TKA FOR WHOLE MEASURE (func)
-        $scope.getMeasureTkA = function(id){
-            //INIT
-            $scope.selected = id;
-            $scope.showTkA = true;
-            $scope.items = [];
+        }; // END getTkA (func)
 
-            //GET DATA
-            angular.forEach(tmp[$scope.sheet], function(entry){
-                //CLEAN VALUES
-                var tmp_measure = entry.measure.replace("[", "").replace("]", "");
-                //CHECK IF MEASURE MATCHES ID
-                if (tmp_measure == id) {
-                    $scope.items.push(entry);
-                };
-            }); //END forEach
-        }; // END getMeasureTkA (func)
 
         //SWITCHES BETWEEN SVG-SHEETS (func)
         $scope.selectSVG = function(id){

@@ -39,7 +39,6 @@ html, body {
     text-align: right;
 }
 
-
 /* Set grey background color, black text and some padding */
 footer {
   background-color: #f1f1f1;
@@ -98,11 +97,15 @@ svg {
     fill: orange;
     opacity: 0.2;
 }
-.svg_measure, .svg_linkbox {
+/*.svg_system {
+    fill: red;
+    opacity: 0.2;
+}*/
+.svg_measure, .svg_system, .svg_linkbox {
     fill: white;
     opacity: 0;
 }
-.svg_measure:hover, .svg_linkbox:hover, .svg_item:hover {
+.svg_measure:hover, .svg_system:hover, .svg_linkbox:hover, .svg_item:hover {
     fill: #8bb82d; /* some lighter OliveDrab*/
     opacity: 0.2;
 }
