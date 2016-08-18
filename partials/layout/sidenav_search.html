@@ -35,8 +35,11 @@
 
             <!-- ### HEADER ### -->
             <h4>Suchergebnisse</h4>
-            <p>
-                Insgesamt {{searchData.nhits}} Treffer:
+            <p ng-if="searchData.subjects.length === 1">
+                {{searchData.subjects.length}} zugängliches Resultat von {{searchData.nhits}}:
+            </p>
+            <p ng-if="searchData.subjects.length != 1">
+                {{searchData.subjects.length}} zugängliche Resultate von {{searchData.nhits}}:
             </p>
 
             <!-- TODO: ### PAGINATION ### -->
