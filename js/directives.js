@@ -100,30 +100,47 @@ angular.module('prototypeApp.directives', []);
 
 /*
 
+                EDITION (editionCtrl)
+
+*/
+
+    // editionHeading
+    app.directive('editionHeading', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            templateUrl: 'partials/edition/heading.html',
+            controller: function ($scope) {
+                $scope.editionTitle = '<em>Vier Lieder</em> op. 12, Skizzen';
+            }
+        };
+    });
+
+    // editionImageControl
+    app.directive('editionImageControl', function(){
+        return {
+            restrict: 'E',
+            replace: true,
+            transclude: true,
+            templateUrl: 'partials/edition/image-control.html'
+        };
+    });
+
+        
+
+/*
+
                 MODALS
 
 */
     //DIRECTIVE BY alexsuch, SEE CREDITS
     app.directive('awgModal', function () {
         return {
-            template: '<div class="modal fade">' +
-                        '<div class="modal-dialog">' +
-                            '<div class="modal-content">' +
-                                '<div class="modal-header">' +
-                                    '<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>' +
-                                    '<h4 class="modal-title">Hinweis</h4>' +
-                                '</div>' +
-                                '<div class="modal-body" ng-transclude></div>' +
-                                '<div class="modal-footer">' +
-                                    '<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>' +
-                                '</div>' +
-                            '</div>' +
-                        '</div>' +
-                    '</div>',
+            templateUrl: 'partials/layout/modal.html',
             restrict: 'E',
+            replace: true,
             transclude: true,
-            replace:true,
-            scope:true,
+            scope: true,
             link: function postLink(scope, element, attrs) {
                 scope.$watch(attrs.visible, function(value){
                     if(value == true)
