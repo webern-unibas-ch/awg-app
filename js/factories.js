@@ -188,11 +188,11 @@ app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
                                 };
                                 break; //END selection
 
-                            case '12': //HLIST: HLIST NODES HAVE TO BE READ SEPERATLY
+                            case '12': //HLIST: HLIST NODES HAVE TO BE CALLED SEPERATLY
                                 if (prop.values[0] !== '') {
                                     //VALUES[0] gives reference id to
                                     // url + /api/hlists/{{:id}}?reqtype=node
-                                    //result is an array (properties: id, label, name) with nodes from 0 to n
+                                    //result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
                                     //IDENTIFY HLIST ID FROM prop.values
                                     //e.g. ["4128"] or ["4128", "4130"]
@@ -240,6 +240,56 @@ app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
                                     propValue[0] = '';
                                 };
                                 break; //END richtext
+
+                            case '15': //GeoNAMES: GeoName NODES HAVE TO BE CALLED SEPERATLY
+                                if (prop.values[0] !== '') {
+                                    //VALUES[0] gives reference id to
+                                    // url + /api/geonames/{{:id}}?reqtype=node
+                                    //result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+
+                                    //IDENTIFY GEONAMES GUI-ID FROM prop.values
+                                    //e.g. ["4136"] or ["4136", "4132"]
+                                    var geogui_id = prop.values;
+
+                                    for (var i = 0; i < geogui_id.length; i++) {
+                                        //GET GEONAMES GUI DATA
+                                        $http.get(url + '/api/geonames/' + geogui_id[i] + '?reqtype=node').then(function (response){
+
+                                            //GEO-OBJECT
+                                            var geo = {
+                                                    data:           [],
+                                                    label:          '',
+                                                    label_string:   '',
+                                                    label_url:      '',
+                                                    gnid:           ''
+                                            };
+                                            geo.data = response.data.nodelist;
+
+                                            //GET LABELS FROM NODELIST ARRAY
+                                            geo.label_string = geo.data[0].label;
+                                            for (var i = 1; i < geo.data.length; i++) {
+                                                 geo.label_string += ', ' + geo.data[i].label;
+                                                 if (i == geo.data.length-1) {
+                                                     //GET GEONAMESID gnid FROM LAST ARRAY ITEM
+                                                     geo.gnid = geo.data[i].name.replace('gnid:', '');
+                                                     //SHORT LABEL
+                                                     geo.label = geo.data[i].label;
+                                                 }
+                                            };
+
+                                            //INCLUDE geonames ICON & URL TO GNID, EMBEDDED IN <p>-TAGS
+                                            geo.label_url = geo.label.replace(geo.label, '<p>$& <a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.label_string + '" target="_blank"><img src="img/geonames.png" height="25" width="25" alt="' + geo.label + '" /></a></p>')
+
+                                            console.info(geo);                                            
+
+                                            propValue[0] += geo.label_url;
+                                        });
+                                    };
+                                } else {
+                                    // EMPTY VALUE
+                                    propValue[0] = '';
+                                };
+                                break; //END geonames
 
                             default: //'1'=> TEXT: PROPERTIES COME AS THEY ARE
                                 if (prop.values[0] !== '') {
