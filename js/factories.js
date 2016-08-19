@@ -189,10 +189,28 @@ app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
                                 break; //END selection
 
                             case '12': //HLIST: HLIST NODES HAVE TO BE READ SEPERATLY
-                                console.log('detected hlist');
-                                //VALUES[0] gives reference id to
-                                // http://test-01.salsah.org/api/hlists/{{:id}}?reqtype=node
-                                //result is an array (properties: id, label, name) with nodes from 0 to n
+                                if (prop.values[0] !== '') {
+                                    //VALUES[0] gives reference id to
+                                    // url + /api/hlists/{{:id}}?reqtype=node
+                                    //result is an array (properties: id, label, name) with nodes from 0 to n
+
+                                    //IDENTIFY HLIST ID FROM prop.values
+                                    //e.g. ["4128"] or ["4128", "4130"]
+                                    var hlist_id = prop.values;
+
+                                    for (var i = 0; i < hlist_id.length; i++) {
+                                        //GET HLIST DATA
+                                        $http.get(url + '/api/hlists/' + hlist_id[i] + '?reqtype=node').then(function (response){
+                                            var hlist = response.data.nodelist;
+
+                                            //GET LABELS & EMBEDD IN <p>-TAGS
+                                            propValue[0] += hlist[0].label.replace(hlist[0].label, '<p>$&</p>');
+                                        });
+                                    };
+                                } else {
+                                    // EMPTY VALUE
+                                    propValue[0] = '';
+                                };
                                 break; //END hlist
 
                             case '14': // RICHTEXT: SALSAH STANDOFF NEEDS TO BE CONVERTED
