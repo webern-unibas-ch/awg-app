@@ -203,8 +203,20 @@ app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
                                         $http.get(url + '/api/hlists/' + hlist_id[i] + '?reqtype=node').then(function (response){
                                             var hlist = response.data.nodelist;
 
-                                            //GET LABELS & EMBEDD IN <p>-TAGS
-                                            propValue[0] += hlist[0].label.replace(hlist[0].label, '<p>$&</p>');
+                                            //GET LABELS FROM NODELIST ARRAY
+                                            var hlist_string = hlist[0].label;
+                                            for (var j = 1; j < hlist.length; j++) {
+                                                hlist_string += ' > ' + hlist[j].label;
+                                                if (j == hlist.length-1) {
+                                                    //SHORT LABEL
+                                                    hlist_label = hlist[j].label;
+                                                };
+                                            };
+
+                                            // WRAP hlist_string WITH <p>-TAGS
+                                            hlist_string = hlist_string.replace(hlist_string, '<p>$&</p>');
+
+                                            propValue[0] += hlist_string;
                                         });
                                     };
                                 } else {
@@ -267,20 +279,18 @@ app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
 
                                             //GET LABELS FROM NODELIST ARRAY
                                             geo.label_string = geo.data[0].label;
-                                            for (var i = 1; i < geo.data.length; i++) {
-                                                 geo.label_string += ', ' + geo.data[i].label;
-                                                 if (i == geo.data.length-1) {
+                                            for (var j = 1; j < geo.data.length; j++) {
+                                                 geo.label_string += ', ' + geo.data[j].label;
+                                                 if (j == geo.data.length-1) {
                                                      //GET GEONAMESID gnid FROM LAST ARRAY ITEM
-                                                     geo.gnid = geo.data[i].name.replace('gnid:', '');
+                                                     geo.gnid = geo.data[j].name.replace('gnid:', '');
                                                      //SHORT LABEL
-                                                     geo.label = geo.data[i].label;
+                                                     geo.label = geo.data[j].label;
                                                  }
                                             };
 
                                             //INCLUDE geonames ICON & URL TO GNID, EMBEDDED IN <p>-TAGS
                                             geo.label_url = geo.label.replace(geo.label, '<p>$& <a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.label_string + '" target="_blank"><img src="img/geonames.png" height="25" width="25" alt="' + geo.label + '" /></a></p>')
-
-                                            console.info(geo);                                            
 
                                             propValue[0] += geo.label_url;
                                         });
