@@ -76,8 +76,7 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
 
         // GET SEARCHRESULTS (promise) & THEN SEND searchData TO SCOPE
         salsahAPIfactory.fulltextSearch($scope.APIurl, query).then(function (data) {
-            $scope.searchData = data;
-            console.log(data);
+            $scope.searchData = data;            
             $scope.isFormSubmitted = false;
             $scope.isDataLoaded = true;
         }); //END then
