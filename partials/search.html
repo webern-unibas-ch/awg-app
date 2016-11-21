@@ -78,6 +78,21 @@
         <small>[Last modified: {{objData.header.lastmod}} (UTC)]</small><br /><br />
         <!-- <small><a data-ng-click="showObject(id_back)">Zurück zum vorherigen Objekt</a></small> TODO -->
 
+
+        <!-- ### IMAGE OBJETCS ### -->
+        <div align="center" class="objImage" data-ng-if="objData.image.length !== 0">
+            <div class="facs">
+                <a data-ng-href="{{objImage.full}}" target="_blank">
+                    <img data-ng-src="{{objImage.value}}" alt="{{objImage.label}}" />
+                </a>
+            </div>
+            <div class="btn-group btn-group-justified">
+                <a class="btn btn-default" data-ng-repeat="objImage in objData.image" data-ng-click="showImage(objImage)">
+                    {{objImage.label}}
+                </a>
+            </div>
+        </div>
+
         <!-- ### DISPLAY AS TABLE ON SMALL AND LARGER DEVICES ### -->
         <table class="table table-condensed table-hover borderless hidden-xs" style="padding:10px;">
             <tbody>
