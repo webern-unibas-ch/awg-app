@@ -76,7 +76,7 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
 
         // GET SEARCHRESULTS (promise) & THEN SEND searchData TO SCOPE
         salsahAPIfactory.fulltextSearch($scope.APIurl, query).then(function (data) {
-            $scope.searchData = data;            
+            $scope.searchData = data;
             $scope.isFormSubmitted = false;
             $scope.isDataLoaded = true;
         }); //END then
@@ -98,6 +98,13 @@ app.controller('searchCtrl', ['$scope', 'salsahAPIfactory', 'awgFactory', '$http
         //GET OBJECT (as promise) & THEN SEND objData TO SCOPE
         salsahAPIfactory.getObject($scope.APIurl, cur_id).then(function(data){
             $scope.objData = data;
+            //SHOW DEFAULT IMAGE
+            $scope.objImage = $scope.objData.image[0];
+
+            $scope.showImage = function(image){
+                $scope.objImage = image;
+            };
+
             $scope.isObjectLoaded = true;   //NOW OBJECT IS LOADED
 
             awgFactory.scrollTo(cur_id);    //SCROLL TO OBJBOX (#cur_id) AFTER LOADING
