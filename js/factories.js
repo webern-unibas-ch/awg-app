@@ -134,19 +134,21 @@ app.factory('salsahAPIfactory', ['$http', '$q', function($http, $q){
         function checkContext(tmp, url, id, contextdata) {
 
             var tmp = {'header': {}, 'image':[], 'props':[], 'incoming':[]};
-            var img_size;
+            var img_size, preview;
 
             //IMAGE OBJECT (context == 2)
             if (contextdata.context == 2  && contextdata.resclass_name === "image") {
                 if (contextdata.res_id.length === contextdata.firstprop.length) {
                     for (var i = 0; i < contextdata.res_id.length; i++) {
-                        //find proper image solution
-                        img_size = (contextdata.locations[i][3]) ? contextdata.locations[i][3] : contextdata.locations[i][0];
+                        //find proper image solution [3] = reduction 3
+                        img_size = contextdata.locations[i];
+                        preview = (img_size[3]) ? img_size[3] : img_size[0];
                         tmp.image.push({
                             res_id: contextdata.res_id[i],
                             guielement: contextdata.resclass_name,
                             label: contextdata.firstprop[i],
-                            value: img_size.path
+                            value: preview.path,
+                            full: img_size[img_size.length-1].path
                         });
                     }
                 } else {
