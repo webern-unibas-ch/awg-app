@@ -1,0 +1,16 @@
+<div bsModal #awgModal="bs-modal" class="modal fade" tabindex="-1" role="dialog" aria-labelledby="awg-modal" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" aria-label="Close" (click)="hideIt()">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <h4 class="modal-title">Hinweis</h4>
+            </div>
+            <div class="modal-body" [innerHTML]="modalContent"></div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-default" (click)="hideIt()">Schließen</button>
+            </div>
+        </div>
+    </div>
+</div>
