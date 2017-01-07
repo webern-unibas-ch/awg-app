@@ -16,7 +16,7 @@
         <div class="navbar-collapse collapse" id="awgNavbar" [class.in]="showMobileNav">
             <ul class="nav navbar-nav">
                 <li>
-                    <a href="">Home</a>
+                    <a routerLink="/" routerLinkActive="active">Home</a>
                 </li>
                 <li class="dropdown">
                     <a class="dropdown-toggle" data-toggle="dropdown">
@@ -25,45 +25,45 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a href="intro">Einleitung</a>
+                            <a routerLink="/intro" routerLinkActive="active">Einleitung</a>
                         </li>
                         <li class="divider"></li>
                         <li class="dropdown-header">
                             Edierter Notentext
                         </li>
-                        <li><a href="edition?id=Aa:SkI/2">Aa:SkI/2</a></li>
-                        <li><a href="edition?id=Aa:SkI/3">Aa:SkI/3</a></li>
-                        <li><a href="edition?id=Aa:SkI/4">Aa:SkI/4</a></li>
-                        <li><a href="edition?id=Aa:SkI/5">Aa:SkI/5</a></li>
+                        <li><a routerLink="/edition?id=Aa:SkI/2">Aa:SkI/2</a></li>
+                        <li><a routerLink="/edition?id=Aa:SkI/3">Aa:SkI/3</a></li>
+                        <li><a routerLink="/edition?id=Aa:SkI/4">Aa:SkI/4</a></li>
+                        <li><a routerLink="/edition?id=Aa:SkI/5">Aa:SkI/5</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">
                             Kritischer Bericht
                         </li>
-                        <li><a href="report">I. Quellen</a></li>
+                        <li><a routerLink="/report">I. Quellen</a></li>
                         <li class="subitem">
-                            <a href="report#sourceList">1. Quellenübersicht</a>
+                            <a routerLink="/report#sourceList">1. Quellenübersicht</a>
                         </li>
                         <li class="subitem">
-                            <a href="report#sourceDesc">2. Quellenbeschreibung</a>
+                            <a routerLink="/report#sourceDesc">2. Quellenbeschreibung</a>
                         </li>
                         <li class="subitem">
-                            <a href="report#sourceEvaluation">3. Quellenbewertung</a>
+                            <a routerLink="/report#sourceEvaluation">3. Quellenbewertung</a>
                         </li>
                         <li>
-                            <a href="report#TKA">II. Textkritischer Kommentar</a>
+                            <a routerLink="/report#TKA">II. Textkritischer Kommentar</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a href="structure">Strukturmodell</a>
+                    <a routerLink="/structure" routerLinkActive="active">Strukturmodell</a>
                 </li>
             </ul> <!-- END class nav navbar-nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a href="search">Datenbank-Suche</a>
+                    <a routerLink="/search" routerLinkActive="active">Datenbank-Suche</a>
                 </li>
                 <li>
-                    <a href="contact">
+                    <a routerLink="/contact" routerLinkActive="active">
                         <span class="glyphicon glyphicon-envelope"></span>
                         Kontakt
                     </a>

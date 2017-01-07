@@ -1,9 +1,10 @@
 <!-- navbar -->
 <awg-navbar></awg-navbar>
 
-<!-- views -->
+<!-- views with sidenav -->
 <div class="container-fluid text-left">
     <div class="row content">
+        <awg-sidenav [meta]="metaData"></awg-sidenav>
         <router-outlet></router-outlet>
     </div>
 </div>

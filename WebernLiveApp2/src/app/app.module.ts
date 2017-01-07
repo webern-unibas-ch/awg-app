@@ -25,6 +25,8 @@ import { IntroViewComponent } from './components/views/intro-view/intro-view.com
 import { SearchViewComponent } from './components/views/search-view/search-view.component';
 import { StructureViewComponent } from './components/views/structure-view/structure-view.component';
 import { ModalComponent } from './components/framework/modal/modal.component';
+import { SidenavComponent } from './components/framework/sidenav/sidenav.component';
+import { SidenavOutlet } from './components/framework/sidenav-outlet.directive';
 
 const appRoutes: Routes = [
     { path: 'contact', component: ContactViewComponent },
@@ -52,7 +54,9 @@ const appRoutes: Routes = [
         IntroViewComponent,
         SearchViewComponent,
         StructureViewComponent,
-        ModalComponent
+        ModalComponent,
+        SidenavComponent,
+        SidenavOutlet
     ],
     imports: [
         AlertModule.forRoot(),
