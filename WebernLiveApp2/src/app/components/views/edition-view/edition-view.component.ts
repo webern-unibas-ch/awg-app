@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 import { EditionService } from './edition.service';
 
@@ -68,7 +69,9 @@ export class EditionViewComponent implements OnInit {
         }
     ];
 
-    constructor(private _editionService: EditionService) { }
+    constructor(
+        private _router: Router,
+        private _editionService: EditionService) { }
 
     ngOnInit() {
         this._editionService.getTkaData()
@@ -84,5 +87,14 @@ export class EditionViewComponent implements OnInit {
                 }
             );
     }
+
+    onSheetSelect(id: string) {
+        console.log('selected sheet: ', id);
+        this._router.navigate(['/edition', id ]);
+    }
+
+    // TODO: continue with
+    // https://angular.io/docs/ts/latest/guide/router.html
+    // "Navigate to hero detail imperatively"
 
 }

@@ -10,7 +10,7 @@
     <!-- body with embedded svg's -->
     <!-- image control -->
     <!-- TODO: change items to sheets after real service input -->
-    <awg-edition-image-control [sheet]="sheet" [sheets]="items"></awg-edition-image-control>
+    <awg-edition-image-control [sheets]="items" (selectSheetRequest)="onSheetSelect($event)"></awg-edition-image-control>
 
     <!-- table for TkA -->
     <awg-edition-tka-table *ngIf="showTkA" [items]="items"></awg-edition-tka-table>
@@ -18,4 +18,4 @@
     <!-- svg panel -->
     <awg-edition-svg-panel></awg-edition-svg-panel>
 
-</div> <!-- END maincontent -->
+</div>

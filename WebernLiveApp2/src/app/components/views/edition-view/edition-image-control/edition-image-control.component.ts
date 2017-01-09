@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-edition-image-control',
@@ -6,8 +6,11 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['./edition-image-control.component.css']
 })
 export class EditionImageControlComponent implements OnInit {
-    @Input() sheet: string;
+    @Input() current_sheet: string;
     @Input() sheets: string[];
+    @Output() selectSheetRequest: EventEmitter<any> = new EventEmitter();
+
+    // current_sheet: string;
 
     constructor() { }
 
@@ -16,13 +19,14 @@ export class EditionImageControlComponent implements OnInit {
     }
 
     isActiveSheet(id: string) {
+        // TODO: compare id with real input
         console.log('FUNC activeSheet called from ImageControl:');
-        return this.sheet == id;
+        return this.current_sheet == id;
     }
 
-    selectSVG(id) {
-        // TODO: turn into real function
-        console.log('FUNC selectSVG called from ImageControl with id:', id);
+    selectSheet(id) {
+        this.selectSheetRequest.emit(id);
+        this.current_sheet = id;
     }
 
 }
