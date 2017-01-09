@@ -1,0 +1,7 @@
+<div *ngIf="sheets">
+    <div class="btn-group btn-group-justified" style="margin-bottom:1em; box-shadow: 5px 5px 6px #cccccc;">
+        <a (click)="selectSVG(key)" class="btn btn-default" *ngFor="let id of sheets" [class.active]="isActiveSheet(id)">
+            {{ id }}
+        </a>
+    </div>
+</div>

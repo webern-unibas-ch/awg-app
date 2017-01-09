@@ -20,6 +20,10 @@ import { NavbarComponent } from './components/framework/navbar/navbar.component'
 // view components
 import { ContactViewComponent } from './components/views/contact-view/contact-view.component';
 import { EditionViewComponent } from './components/views/edition-view/edition-view.component';
+import { EditionHeadingComponent } from './components/views/edition-view/edition-heading/edition-heading.component';
+import { EditionImageControlComponent } from './components/views/edition-view/edition-image-control/edition-image-control.component';
+import { EditionSvgPanelComponent } from './components/views/edition-view/edition-svg-panel/edition-svg-panel.component';
+import { EditionTkaTableComponent } from './components/views/edition-view/edition-tka-table/edition-tka-table.component';
 import { HomeViewComponent } from './components/views/home-view/home-view.component';
 import { IntroViewComponent } from './components/views/intro-view/intro-view.component';
 import { SearchViewComponent } from './components/views/search-view/search-view.component';
@@ -29,13 +33,17 @@ import { SidenavComponent } from './components/framework/sidenav/sidenav.compone
 import { SidenavOutlet } from './components/framework/sidenav-outlet.directive';
 
 const appRoutes: Routes = [
-    { path: 'contact', component: ContactViewComponent },
-    { path: 'edition', component: EditionViewComponent },
     { path: 'home', component: HomeViewComponent },
     { path: 'intro', component: IntroViewComponent },
-    { path: 'search', component: SearchViewComponent },
+    { path: 'edition', component: EditionViewComponent },
+
+    // TODO
+    { path: 'edition/:id', redirectTo: 'edition' },
+
     { path: 'structure', component: StructureViewComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full'  },
+    { path: 'search', component: SearchViewComponent },
+    { path: 'contact', component: ContactViewComponent },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     /* ,
     { path: '**', component: PageNotFoundComponent }
     */
@@ -50,6 +58,10 @@ const appRoutes: Routes = [
 
         ContactViewComponent,
         EditionViewComponent,
+        EditionHeadingComponent,
+        EditionImageControlComponent,
+        EditionSvgPanelComponent,
+        EditionTkaTableComponent,
         HomeViewComponent,
         IntroViewComponent,
         SearchViewComponent,

@@ -1,3 +1,21 @@
-<p>
-  edition-view works!
-</p>
+<!-- content: edition -->
+<div class="col-sm-9 col-md-10 maincontent text-left">
+
+    <!-- modal -->
+    <awg-modal #modal></awg-modal>
+
+    <!-- heading -->
+    <awg-edition-heading [editionTitle]="editionTitle"></awg-edition-heading>
+
+    <!-- body with embedded svg's -->
+    <!-- image control -->
+    <!-- TODO: change items to sheets after real service input -->
+    <awg-edition-image-control [sheet]="sheet" [sheets]="items"></awg-edition-image-control>
+
+    <!-- table for TkA -->
+    <awg-edition-tka-table *ngIf="showTkA" [items]="items"></awg-edition-tka-table>
+
+    <!-- svg panel -->
+    <awg-edition-svg-panel></awg-edition-svg-panel>
+
+</div> <!-- END maincontent -->
