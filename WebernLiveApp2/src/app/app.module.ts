@@ -2,19 +2,22 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { RouterModule, Routes } from '@angular/router';
 
 //TODO: remove?
 import { AlertModule, ButtonsModule, ModalModule } from 'ng2-bootstrap';
 
 //
-// main app component
+// main app component & routes
 import { AppComponent } from './app.component';
+import { AppRoutingModule } from './app-routing.module';
 
 //
 // framework components
 import { FooterComponent } from './components/framework/footer/footer.component';
+import { ModalComponent } from './components/framework/modal/modal.component';
 import { NavbarComponent } from './components/framework/navbar/navbar.component';
+import { SidenavComponent } from './components/framework/sidenav/sidenav.component';
+import { SidenavOutlet } from './components/framework/sidenav-outlet.directive';
 
 //
 // view components
@@ -26,35 +29,20 @@ import { EditionSvgPanelComponent } from './components/views/edition-view/editio
 import { EditionTkaTableComponent } from './components/views/edition-view/edition-tka-table/edition-tka-table.component';
 import { HomeViewComponent } from './components/views/home-view/home-view.component';
 import { IntroViewComponent } from './components/views/intro-view/intro-view.component';
+import { PageNotFoundViewComponent } from './components/views/page-not-found-view/page-not-found-view.component';
 import { SearchViewComponent } from './components/views/search-view/search-view.component';
 import { StructureViewComponent } from './components/views/structure-view/structure-view.component';
-import { ModalComponent } from './components/framework/modal/modal.component';
-import { SidenavComponent } from './components/framework/sidenav/sidenav.component';
-import { SidenavOutlet } from './components/framework/sidenav-outlet.directive';
 
-const appRoutes: Routes = [
-    { path: 'home', component: HomeViewComponent },
-    { path: 'intro', component: IntroViewComponent },
-    { path: 'edition', component: EditionViewComponent },
-
-    // TODO
-    { path: 'edition/:id', redirectTo: 'edition' },
-
-    { path: 'structure', component: StructureViewComponent },
-    { path: 'search', component: SearchViewComponent },
-    { path: 'contact', component: ContactViewComponent },
-    { path: '', redirectTo: 'home', pathMatch: 'full' },
-    /* ,
-    { path: '**', component: PageNotFoundComponent }
-    */
-];
 
 @NgModule({
     declarations: [
         AppComponent,
 
         FooterComponent,
+        ModalComponent,
         NavbarComponent,
+        SidenavComponent,
+        SidenavOutlet,
 
         ContactViewComponent,
         EditionViewComponent,
@@ -64,11 +52,9 @@ const appRoutes: Routes = [
         EditionTkaTableComponent,
         HomeViewComponent,
         IntroViewComponent,
+        PageNotFoundViewComponent,
         SearchViewComponent,
-        StructureViewComponent,
-        ModalComponent,
-        SidenavComponent,
-        SidenavOutlet
+        StructureViewComponent
     ],
     imports: [
         AlertModule.forRoot(),
@@ -78,7 +64,7 @@ const appRoutes: Routes = [
         BrowserModule,
         FormsModule,
         HttpModule,
-        RouterModule.forRoot(appRoutes)
+        AppRoutingModule
     ],
     providers: [],
     bootstrap: [AppComponent]
