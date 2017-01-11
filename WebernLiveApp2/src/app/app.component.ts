@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { MetaData } from './shared/metadata';
+import { MetaData } from './components/framework/metadata';
 
 @Component({
     selector: 'awg-root',
