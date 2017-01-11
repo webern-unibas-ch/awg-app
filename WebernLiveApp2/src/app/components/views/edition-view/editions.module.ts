@@ -1,31 +1,36 @@
-import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
+import { NgModule, ModuleWithProviders } from '@angular/core';
+import { SharedModule } from '../../../shared/shared.module';
 
-import { EditionsRoutingModule } from './editions-routing.module';
+import { EditionHeadingComponent } from './edition-heading/edition-heading.component';
+import { EditionSheetControlComponent } from './edition-sheet-control/edition-sheet-control.component';
+import { EditionSvgPanelComponent } from './edition-svg-panel/edition-svg-panel.component';
+import { EditionTkaTableComponent } from './edition-tka-table/edition-tka-table.component';
 
 import { EditionService } from './edition.service';
 
-import { EditionViewComponent} from './edition-view.component';
-import { EditionHeadingComponent } from './edition-heading/edition-heading.component';
-import { EditionSvgPanelComponent } from './edition-svg-panel/edition-svg-panel.component';
-import { EditionImageControlComponent } from './edition-image-control/edition-image-control.component';
-import { EditionTkaTableComponent } from './edition-tka-table/edition-tka-table.component';
-
+import { EditionsRoutingModule, routedComponents } from './editions-routing.module';
 
 @NgModule({
     imports: [
-        CommonModule,
+        SharedModule,
         EditionsRoutingModule
     ],
     declarations: [
-        EditionViewComponent,
+        routedComponents,
         EditionHeadingComponent,
-        EditionImageControlComponent,
+        EditionSheetControlComponent,
         EditionSvgPanelComponent,
-        EditionTkaTableComponent,
+        EditionTkaTableComponent
     ],
-    providers: [
-        EditionService
+    exports: [
+        routedComponents
     ]
 })
-export class EditionsModule { }
+export class EditionsModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: EditionsModule,
+            providers: [ EditionService ]
+        }
+    }
+}
