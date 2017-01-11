@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Sheet } from '../sheet';
+import { Sheet } from '../../sheet';
 
 @Component({
     selector: 'awg-edition-sheet-control',

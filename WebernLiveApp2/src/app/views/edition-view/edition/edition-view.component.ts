@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Sheet } from './sheet';
-import { EditionService } from './edition.service';
+import { Sheet } from '../sheet';
+import { EditionService } from '../edition.service';
 
 @Component({
     selector: 'awg-edition-view',

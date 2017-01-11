@@ -1,8 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { EditionViewComponent } from './edition-view.component';
-import { IntroViewComponent } from "../intro-view/intro-view.component";
+import { EditionViewComponent } from './edition/edition-view.component';
+import { IntroViewComponent } from "./intro/intro-view.component";
 
 const editionsRoutes: Routes = [
     { path: 'edition',  component: EditionViewComponent },
