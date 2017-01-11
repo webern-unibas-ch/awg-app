@@ -33,6 +33,7 @@ import { PageNotFoundViewComponent } from './components/views/page-not-found-vie
 import { SearchViewComponent } from './components/views/search-view/search-view.component';
 import { StructureViewComponent } from './components/views/structure-view/structure-view.component';
 
+import { MapToIterablePipe } from './shared/map-to-iterable.pipe';
 
 @NgModule({
     declarations: [
@@ -55,6 +56,8 @@ import { StructureViewComponent } from './components/views/structure-view/struct
         PageNotFoundViewComponent,
         SearchViewComponent,
         StructureViewComponent
+
+        MapToIterablePipe
     ],
     imports: [
         AlertModule.forRoot(),
