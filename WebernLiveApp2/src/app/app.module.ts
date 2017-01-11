@@ -13,15 +13,15 @@ import { CoreModule } from './core/core.module';
 
 //
 // app modules
-import { EditionsModule } from './components/views/edition-view/editions.module';
+import { EditionsModule } from './views/edition-view/editions.module';
 
 //
 // views
-import { ContactViewComponent } from './components/views/contact-view/contact-view.component';
-import { HomeViewComponent } from './components/views/home-view/home-view.component';
-import { PageNotFoundViewComponent } from './components/views/page-not-found-view/page-not-found-view.component';
-import { SearchViewComponent } from './components/views/search-view/search-view.component';
-import { StructureViewComponent } from './components/views/structure-view/structure-view.component';
+import { ContactViewComponent } from './views/contact-view/contact-view.component';
+import { HomeViewComponent } from './views/home-view/home-view.component';
+import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
+import { SearchViewComponent } from './views/search-view/search-view.component';
+import { StructureViewComponent } from './views/structure-view/structure-view.component';
 
 
 @NgModule({

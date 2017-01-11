@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
-import { HomeViewComponent } from './components/views/home-view/home-view.component';
-import { ContactViewComponent } from './components/views/contact-view/contact-view.component';
-import { StructureViewComponent } from './components/views/structure-view/structure-view.component';
-import { SearchViewComponent } from './components/views/search-view/search-view.component';
-import { PageNotFoundViewComponent } from './components/views/page-not-found-view/page-not-found-view.component';
+import { HomeViewComponent } from './views/home-view/home-view.component';
+import { ContactViewComponent } from './views/contact-view/contact-view.component';
+import { StructureViewComponent } from './views/structure-view/structure-view.component';
+import { SearchViewComponent } from './views/search-view/search-view.component';
+import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
 
 
 const appRoutes: Routes = [
