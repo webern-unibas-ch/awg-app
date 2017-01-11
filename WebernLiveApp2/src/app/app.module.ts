@@ -6,15 +6,14 @@ import { HttpModule } from '@angular/http';
 import { AlertModule, ButtonsModule, ModalModule } from 'ng2-bootstrap';
 
 //
-// main app component & routes
+// main app component/module & routes
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
 
 //
 // app modules
 import { EditionsModule } from './components/views/edition-view/editions.module';
-import { FrameworkModule } from './components/framework/framework.module';
-
 
 //
 // views
@@ -32,7 +31,7 @@ import { StructureViewComponent } from './components/views/structure-view/struct
         BrowserModule, HttpModule,
 
         EditionsModule.forRoot(),
-        FrameworkModule,
+        CoreModule,
         AppRoutingModule
     ],
     declarations: [
