@@ -12,11 +12,9 @@ import { PageNotFoundViewComponent } from './components/views/page-not-found-vie
 
 const appRoutes: Routes = [
     { path: 'home', component: HomeViewComponent },
-    { path: 'intro', component: IntroViewComponent },
-    { path: 'edition', component: EditionViewComponent },
-
-    // TODO
-    { path: 'edition/:id', redirectTo: 'edition' },
+    { path: 'editions', component: EditionViewComponent },
+    { path: 'edition/intro', component: IntroViewComponent },
+    { path: 'edition/:id', component: EditionViewComponent },
 
     { path: 'structure', component: StructureViewComponent },
     { path: 'search', component: SearchViewComponent },

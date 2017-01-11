@@ -25,16 +25,16 @@
                     </a>
                     <ul class="dropdown-menu">
                         <li>
-                            <a routerLink="/intro" routerLinkActive="active">Einleitung</a>
+                            <a [routerLink]="['/edition', 'intro']" routerLinkActive="active">Einleitung</a>
                         </li>
                         <li class="divider"></li>
                         <li class="dropdown-header">
                             Edierter Notentext
                         </li>
-                        <li><a routerLink="/edition/Aa:SkI_2">Aa:SkI/2</a></li>
-                        <li><a routerLink="/edition/Aa:SkI_3">Aa:SkI/3</a></li>
-                        <li><a routerLink="/edition/Aa:SkI_4">Aa:SkI/4</a></li>
-                        <li><a routerLink="/edition/Aa:SkI_5">Aa:SkI/5</a></li>
+                        <li><a [routerLink]="['/edition', 'AaSkI/2']" routerLinkActive="active">Aa:SkI/2</a></li>
+                        <li><a [routerLink]="['/edition', 'Aa:SkI/3']" routerLinkActive="active">Aa:SkI/3</a></li>
+                        <li><a [routerLink]="['/edition', 'Aa:SkI/4']" routerLinkActive="active">Aa:SkI/4</a></li>
+                        <li><a [routerLink]="['/edition', 'Aa:SkI/5']" routerLinkActive="active">Aa:SkI/5</a></li>
                         <li class="divider"></li>
                         <li class="dropdown-header">
                             Kritischer Bericht

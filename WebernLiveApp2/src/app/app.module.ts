@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
 
-//TODO: remove?
+//TODO: remove AlertModule?
 import { AlertModule, ButtonsModule, ModalModule } from 'ng2-bootstrap';
 
 //
@@ -24,7 +24,7 @@ import { SidenavOutlet } from './components/framework/sidenav-outlet.directive';
 import { ContactViewComponent } from './components/views/contact-view/contact-view.component';
 import { EditionViewComponent } from './components/views/edition-view/edition-view.component';
 import { EditionHeadingComponent } from './components/views/edition-view/edition-heading/edition-heading.component';
-import { EditionImageControlComponent } from './components/views/edition-view/edition-image-control/edition-image-control.component';
+import { EditionSheetControlComponent } from './components/views/edition-view/edition-sheet-control/edition-sheet-control.component';
 import { EditionSvgPanelComponent } from './components/views/edition-view/edition-svg-panel/edition-svg-panel.component';
 import { EditionTkaTableComponent } from './components/views/edition-view/edition-tka-table/edition-tka-table.component';
 import { HomeViewComponent } from './components/views/home-view/home-view.component';
@@ -48,14 +48,14 @@ import { MapToIterablePipe } from './shared/map-to-iterable.pipe';
         ContactViewComponent,
         EditionViewComponent,
         EditionHeadingComponent,
-        EditionImageControlComponent,
+        EditionSheetControlComponent,
         EditionSvgPanelComponent,
         EditionTkaTableComponent,
         HomeViewComponent,
         IntroViewComponent,
         PageNotFoundViewComponent,
         SearchViewComponent,
-        StructureViewComponent
+        StructureViewComponent,
 
         MapToIterablePipe
     ],

@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EditionImageControlComponent } from './edition-image-control.component';
+import { EditionImageControlComponent } from './edition-sheet-control.component';
 
 describe('EditionImageControlComponent', () => {
   let component: EditionImageControlComponent;

@@ -24,7 +24,7 @@ export class AppComponent implements OnInit {
             }
         };
         // TODO: rm
-        console.info('metaData: ', this.metaData);
+        console.info('APP: metaData: ', this.metaData);
     }
 
 }

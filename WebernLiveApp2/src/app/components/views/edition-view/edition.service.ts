@@ -7,9 +7,9 @@ export class EditionService {
 
     constructor(private _http: Http) { }
 
-    getTkaData(): Observable<string> {
-        let resourceData: string = 'assets/data/tka.json';
-        return this._http.get(resourceData)
+    getJsonData(url: string): Observable<string> {
+        let data: string = 'assets/data' + url;
+        return this._http.get(data)
             .map(this.extractData)
             .catch(this.handleError);
     }
@@ -31,3 +31,5 @@ export class EditionService {
     }
 
 }
+
+

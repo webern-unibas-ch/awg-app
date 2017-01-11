@@ -1,25 +1,29 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 
+import { Sheet } from './sheet';
 import { EditionService } from './edition.service';
 
 @Component({
     selector: 'awg-edition-view',
     templateUrl: './edition-view.component.html',
     styleUrls: ['./edition-view.component.css'],
+    // TODO: remove to EditionModule
     providers: [ EditionService ],
 })
 export class EditionViewComponent implements OnInit {
 
     public editionTitle: string = '<em>Vier Lieder</em> op. 12, Skizzen';
-    public tkaData;
+    public tkaData: string;
+    public sheetsData: string;
+
     private errorMessage: string = undefined;
 
     // init sheets
-    sheet2: string ="Aa:SkI/2";
-    sheet3: string ="Aa:SkI/3";
-    sheet4: string ="Aa:SkI/4";
-    sheet5: string ="Aa:SkI/5";
+    sheet2: string ='Aa:SkI/2';
+    sheet3: string ='Aa:SkI/3';
+    sheet4: string ='Aa:SkI/4';
+    sheet5: string ='Aa:SkI/5';
     sheet: string = this.sheet2;
 
     // TODO
@@ -31,56 +35,28 @@ export class EditionViewComponent implements OnInit {
         this.sheet5
     ]
 
-    // check for routeParams
-    /* TODO
-    if ($routeParams.id) {
-        this.sheet = $routeParams.id;
-    };
-    */
-
-    public sheets: Object[] = [
-        {
-            "Aa:SkI/2": {
-                "svg": "img/SkI_2n_small_cut_opt.svg",
-                "image": "img/SkI_2n_small.jpg",
-                "alt": "Aa:SkI/2"
-            }
-        },
-        {
-            "Aa:SkI/3": {
-                "svg": "img/SkI_3n_small_cut_opt.svg",
-                "image": "img/SkI_3n_small.jpg",
-                "alt": "Aa:SkI/3"
-            }
-        },
-        {
-            "Aa:SkI/4": {
-                "svg": "img/SkI_4n_small_cut_opt.svg",
-                "image": "img/SkI_4n_small.jpg",
-                "alt": "Aa:SkI/4"
-            }
-        },
-        {
-            "Aa:SkI/5": {
-                "svg": "img/SkI_5n_small_cut_opt.svg",
-                "image": "img/SkI_5n_small.jpg",
-                "alt": "Aa:SkI/5"
-            }
-        }
-    ];
-
     constructor(
+        private _route: ActivatedRoute,
         private _router: Router,
-        private _editionService: EditionService) { }
+        private _editionService: EditionService
+    ) { }
 
     ngOnInit() {
-        this._editionService.getTkaData()
-            .subscribe(
-                data => {
-                    this.tkaData = data;
-                    this.showTkA = false;
+        this.getTka();
+        this.getSheets();
+    }
 
-                    console.log('tka: ', this.tkaData);
+    private onSheetSelect(sheet: Sheet) {
+        this._router.navigate(['/edition', sheet.id]);
+    }
+
+    private getTka() {
+        this._editionService.getJsonData('/tka.json')
+            .subscribe(
+                (data) => {
+                    this.tkaData = data;
+                    // console.log('EView: tka: ', this.tkaData);
+                    this.showTkA = false;
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -88,13 +64,16 @@ export class EditionViewComponent implements OnInit {
             );
     }
 
-    onSheetSelect(id: string) {
-        console.log('selected sheet: ', id);
-        this._router.navigate(['/edition', id ]);
+    private getSheets() {
+        this._editionService.getJsonData('/sheets.json')
+            .subscribe(
+                (data) => {
+                    this.sheetsData = data;
+                },
+                error => {
+                    this.errorMessage = <any>error;
+                }
+            );
     }
-
-    // TODO: continue with
-    // https://angular.io/docs/ts/latest/guide/router.html
-    // "Navigate to hero detail imperatively"
 
 }
