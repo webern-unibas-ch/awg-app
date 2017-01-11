@@ -9,14 +9,14 @@ import { ModalDirective } from 'ng2-bootstrap';
 export class ModalComponent {
     @ViewChild('awgModal') public awgModal: ModalDirective;
 
-    modalContent: string;
+    private modalContent: string;
 
-    public showIt(identifier: string): void {
+    public open(identifier: string): void {
         this.modalContent = modalText[identifier];
         this.awgModal.show();
     }
 
-    public hideIt(): void {
+    public close(): void {
         this.awgModal.hide();
     }
 
