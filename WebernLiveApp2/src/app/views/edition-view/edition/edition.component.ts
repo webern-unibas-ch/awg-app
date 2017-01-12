@@ -6,12 +6,11 @@ import { EditionService } from '../edition.service';
 
 @Component({
     selector: 'awg-edition-view',
-    templateUrl: './edition-view.component.html',
-    styleUrls: ['./edition-view.component.css']
+    templateUrl: './edition.component.html',
+    styleUrls: ['./edition.component.css']
 })
-export class EditionViewComponent implements OnInit {
+export class EditionComponent implements OnInit {
 
-    public editionTitle: string = '<em>Vier Lieder</em> op. 12, Skizzen';
     public tkaData: string;
     public sheetsData: string;
 

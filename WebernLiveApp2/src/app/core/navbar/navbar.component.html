@@ -39,31 +39,31 @@
                         <li class="dropdown-header">
                             Kritischer Bericht
                         </li>
-                        <li><a routerLink="/report">I. Quellen</a></li>
+                        <li><a [routerLink]="['/edition', 'report']">I. Quellen</a></li>
                         <li class="subitem">
-                            <a routerLink="/report#sourceList">1. Quellenübersicht</a>
+                            <a [routerLink]="['/edition', 'report#sourceList']">1. Quellenübersicht</a>
                         </li>
                         <li class="subitem">
-                            <a routerLink="/report#sourceDesc">2. Quellenbeschreibung</a>
+                            <a [routerLink]="['/edition', 'report#sourceDesc']">2. Quellenbeschreibung</a>
                         </li>
                         <li class="subitem">
-                            <a routerLink="/report#sourceEvaluation">3. Quellenbewertung</a>
+                            <a [routerLink]="['/edition', 'report#sourceEvaluation']">3. Quellenbewertung</a>
                         </li>
                         <li>
-                            <a routerLink="/report#TKA">II. Textkritischer Kommentar</a>
+                            <a [routerLink]="['/edition', 'report#TKA']">II. Textkritischer Kommentar</a>
                         </li>
                     </ul>
                 </li>
                 <li>
-                    <a routerLink="/structure" routerLinkActive="active">Strukturmodell</a>
+                    <a [routerLink]="['/structure']" routerLinkActive="active">Strukturmodell</a>
                 </li>
             </ul> <!-- END class nav navbar-nav -->
             <ul class="nav navbar-nav navbar-right">
                 <li>
-                    <a routerLink="/search" routerLinkActive="active">Datenbank-Suche</a>
+                    <a [routerLink]="['/search']" routerLinkActive="active">Datenbank-Suche</a>
                 </li>
                 <li>
-                    <a routerLink="/contact" routerLinkActive="active">
+                    <a [routerLink]="['/contact']" routerLinkActive="active">
                         <span class="glyphicon glyphicon-envelope"></span>
                         Kontakt
                     </a>

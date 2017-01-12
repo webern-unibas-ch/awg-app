@@ -39,7 +39,7 @@ export class EditionSheetControlComponent implements OnInit {
 
     private goToOverview() {
         let sheetId: string = this.selectedSheet ? this.selectedSheet.id : null;
-        this._router.navigate(['/edition', 'intro', {id: sheetId}]);
+        this._router.navigate(['../', 'intro', {id: sheetId}], { relativeTo: this._route });
     }
 
 }
