@@ -48,11 +48,11 @@ export class EditionDetailComponent implements OnInit {
     }
 
     private getTka() {
-        this._editionService.getJsonData('/tka.json')
+        this._editionService.getJsonData('/textcritics.json')
             .subscribe(
                 (data) => {
                     this.tkaData = data;
-                    // console.log('EView: tka: ', this.tkaData);
+                    // console.log('EView: textcritics: ', this.tkaData);
                     this.showTkA = false;
                 },
                 error => {

@@ -25,7 +25,7 @@ export class MapToIterablePipe implements PipeTransform {
         if (!map)
             return null;
         let res = Object.keys(map)
-            .map((key) => ({ 'objectKey': key, 'objectValues': map[key] }));
+            .map((key) => ({ 'mappedKey': key, 'mappedValues': map[key] }));
         return res;
     }
 }

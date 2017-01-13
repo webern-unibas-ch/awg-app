@@ -16,7 +16,7 @@ export class EditionSheetControlComponent implements OnInit {
 
     constructor(
         private _route: ActivatedRoute,
-        private _router: Router
+        // private _router: Router
     ) {}
 
     ngOnInit() {

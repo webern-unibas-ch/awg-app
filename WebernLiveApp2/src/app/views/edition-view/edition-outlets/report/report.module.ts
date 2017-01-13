@@ -1,10 +1,10 @@
 import { NgModule } from '@angular/core';
 import { SharedModule}  from '../../../../shared/shared.module';
 
-import { SourceDescriptionComponent } from './source-description/source-description.component';
-import { SourceEvaluationComponent } from './source-evaluation/source-evaluation.component';
-import { SourceListComponent } from './source-list/source-list.component';
-import { TkaComponent } from './tka/tka.component';
+import { SourceDescriptionComponent } from './sources/source-description/source-description.component';
+import { SourceEvaluationComponent } from './sources/source-evaluation/source-evaluation.component';
+import { SourceListComponent } from './sources/source-list/source-list.component';
+import { TextcriticsComponent } from './textcritics/textcritics.component';
 
 import { ReportRoutingModule, routedReportComponents } from './report-routing.module';
 
@@ -18,7 +18,7 @@ import { ReportRoutingModule, routedReportComponents } from './report-routing.mo
         SourceDescriptionComponent,
         SourceEvaluationComponent,
         SourceListComponent,
-        TkaComponent
+        TextcriticsComponent
     ]
 })
 export class ReportModule { }

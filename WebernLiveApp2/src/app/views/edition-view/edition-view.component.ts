@@ -8,6 +8,7 @@ import { Component, OnInit } from '@angular/core';
 export class EditionViewComponent implements OnInit {
 
     public editionTitle: string = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
+    public editionId: string = 'edition';
 
     constructor() { }
 
