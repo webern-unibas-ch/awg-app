@@ -19,7 +19,16 @@ import { ReportRoutingModule, routedReportComponents } from './report-routing.mo
         SourceEvaluationComponent,
         SourceListComponent,
         TkaComponent
-    ],
-    exports: [ routedReportComponents ]
+    ]
 })
 export class ReportModule { }
+
+/**
+ *
+ * NOT USED AT THE MOMENT AS LONG
+ *
+ *         LAZY ROUTING
+ *
+ * IS NOT WORKING WITH ANGULAR-CLI
+ *
+ */

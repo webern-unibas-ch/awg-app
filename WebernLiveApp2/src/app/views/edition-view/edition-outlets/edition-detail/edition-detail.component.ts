@@ -5,11 +5,11 @@ import { Sheet } from '../../sheet';
 import { EditionService } from '../../edition.service';
 
 @Component({
-    selector: 'awg-edition',
-    templateUrl: './edition.component.html',
-    styleUrls: ['./edition.component.css']
+    selector: 'awg-edition-detail',
+    templateUrl: './edition-detail.component.html',
+    styleUrls: ['./edition-detail.component.css']
 })
-export class EditionComponent implements OnInit {
+export class EditionDetailComponent implements OnInit {
 
     public tkaData: string;
     public sheetsData: string;
@@ -24,7 +24,7 @@ export class EditionComponent implements OnInit {
     sheet: string = this.sheet2;
 
     // TODO
-    showTkA: boolean = true;
+    showTkA: boolean = false;
     items: string[] = [
         this.sheet2,
         this.sheet3,

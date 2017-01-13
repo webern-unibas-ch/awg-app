@@ -23,7 +23,6 @@ export class EditionSheetControlComponent implements OnInit {
         this._route.params.forEach((params: Params) => {
             // if there is no id in route params
             // take first entry of sheets object as default
-            console.info(params);
             let sheetId: string = params['id'] ? params['id'] : Object.keys(this.sheets)[0];
             this.selectedSheet = this.sheets[sheetId];
         })
@@ -38,9 +37,13 @@ export class EditionSheetControlComponent implements OnInit {
         this.selectSheetRequest.emit(sheet);
     }
 
-    private goToOverview() {
-        let sheetId: string = this.selectedSheet ? this.selectedSheet.id : null;
-        this._router.navigate(['../../', 'intro', {id: sheetId}], { relativeTo: this._route });
-    }
+    /**
+     * not needed at the moment / store for later use
+
+        private goToOverview() {
+            let sheetId: string = this.selectedSheet ? this.selectedSheet.id : null;
+            this._router.navigate(['edition', 'intro', {id: sheetId}]);
+        }
+    */
 
 }

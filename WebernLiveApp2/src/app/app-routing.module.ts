@@ -6,7 +6,7 @@ import { ContactViewComponent } from './views/contact-view/contact-view.componen
 import { StructureViewComponent } from './views/structure-view/structure-view.component';
 import { SearchViewComponent } from './views/search-view/search-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
-import { SidenavComponent } from './core/sidenav/sidenav.component';
+// import { SidenavComponent } from './core/sidenav/sidenav.component';
 
 
 const appRoutes: Routes = [
@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: 'search', component: SearchViewComponent },
     { path: 'contact', component: ContactViewComponent },
 
-    { path: '', redirectTo: '/home', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundViewComponent }
 ];
 

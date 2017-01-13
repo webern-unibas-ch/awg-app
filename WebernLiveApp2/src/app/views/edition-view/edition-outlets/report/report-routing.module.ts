@@ -4,11 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { ReportComponent } from './report.component';
 
 const reportRoutes: Routes = [
-    { path: '',
-        children: [
-            { path: 'report', component: ReportComponent }
-        ]
-    }
+    { path: '', component: ReportComponent }
 ]
 
 @NgModule({
