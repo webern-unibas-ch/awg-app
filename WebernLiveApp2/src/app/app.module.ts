@@ -31,8 +31,8 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
 
         BrowserModule, HttpModule,
 
-        EditionsModule.forRoot(),
         CoreModule,
+        EditionsModule.forRoot(),
         AppRoutingModule
     ],
     declarations: [

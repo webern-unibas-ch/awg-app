@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { Sheet } from '../sheet';
-import { EditionService } from '../edition.service';
+import { Sheet } from '../../sheet';
+import { EditionService } from '../../edition.service';
 
 @Component({
-    selector: 'awg-edition-view',
+    selector: 'awg-edition',
     templateUrl: './edition.component.html',
     styleUrls: ['./edition.component.css']
 })
@@ -44,7 +44,7 @@ export class EditionComponent implements OnInit {
     }
 
     private onSheetSelect(sheet: Sheet) {
-        this._router.navigate(['/edition', sheet.id]);
+        this._router.navigate(['/edition/detail', sheet.id]);
     }
 
     private getTka() {

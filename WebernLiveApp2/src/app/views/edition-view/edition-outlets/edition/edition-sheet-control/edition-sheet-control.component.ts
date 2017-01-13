@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 
-import { Sheet } from '../../sheet';
+import { Sheet } from '../../../sheet';
 
 @Component({
     selector: 'awg-edition-sheet-control',
@@ -23,6 +23,7 @@ export class EditionSheetControlComponent implements OnInit {
         this._route.params.forEach((params: Params) => {
             // if there is no id in route params
             // take first entry of sheets object as default
+            console.info(params);
             let sheetId: string = params['id'] ? params['id'] : Object.keys(this.sheets)[0];
             this.selectedSheet = this.sheets[sheetId];
         })
@@ -39,7 +40,7 @@ export class EditionSheetControlComponent implements OnInit {
 
     private goToOverview() {
         let sheetId: string = this.selectedSheet ? this.selectedSheet.id : null;
-        this._router.navigate(['../', 'intro', {id: sheetId}], { relativeTo: this._route });
+        this._router.navigate(['../../', 'intro', {id: sheetId}], { relativeTo: this._route });
     }
 
 }
