@@ -16,7 +16,6 @@ export class TextcriticsComponent implements OnInit {
     }
 
     openModal(identifier: string) {
-        console.log('called Modal');
         this.openModalRequest.emit(identifier);
     }
 

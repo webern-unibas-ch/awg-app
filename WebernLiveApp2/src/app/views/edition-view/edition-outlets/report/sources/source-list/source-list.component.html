@@ -11,7 +11,7 @@
                 <!--  at the moment only for the first item ("source.siglum == 'A'") -->
                 <tr *ngFor="let source of sourceList.sources.slice(0,1)">
                     <td class="bold">
-                        <a (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
+                        <a [routerLink]="['./']" fragment={{source.linkTo}} (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
                     </td>
                     <td><span [innerHTML]="source.type"></span> <br/>
                         <span [innerHTML]="source.location"></span>

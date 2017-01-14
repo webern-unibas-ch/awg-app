@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 import { EditionService } from '../../edition.service';
 
 @Component({
@@ -16,12 +17,14 @@ export class ReportComponent implements OnInit {
     private errorMessage: string = undefined;
 
     constructor(
+        private _route: ActivatedRoute,
         private _editionService: EditionService
     ) { }
 
     ngOnInit() {
         this.getComments();
         this.getSourceList();
+        this.scrollTo();
     }
 
     private getComments() {
@@ -46,6 +49,18 @@ export class ReportComponent implements OnInit {
                 },
                 error => {
                     this.errorMessage = <any>error;
+                }
+            );
+    }
+
+    scrollTo(id?: string) {
+        console.log('Report: scrollTo(): ', id);
+        // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
+        this._route.fragment
+            .subscribe(
+                f => {
+                    const element = document.querySelector('#' + f);
+                    if (element) element.scrollIntoView(element);
                 }
             );
     }

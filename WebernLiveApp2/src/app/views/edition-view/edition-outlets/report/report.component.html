@@ -1,17 +1,27 @@
 <!-- content: report -->
-<div class="col-sm-9 col-md-10 maincontent text-left">
+<div>
 
     <!-- modal -->
     <awg-modal #modal></awg-modal>
 
-
     <!-- header -->
-    <awg-heading [title]="reportTitle" [id]="reportId"></awg-heading>
+    <awg-heading
+        [title]="reportTitle"
+        [id]="reportId">
+    </awg-heading>
 
     <!-- sources -->
-    <awg-sources *ngIf="sourceListData" [sourceList]="sourceListData"></awg-sources>
+    <awg-sources
+        *ngIf="sourceListData"
+        [sourceList]="sourceListData"
+        (openModalRequest)="modal.open($event)"
+        (scrollRequest)="scrollTo($event)">
+    </awg-sources>
 
     <!-- textcritics -->
-    <awg-textcritics [comments]="textcriticsData" (openModalRequest)="modal.open($event)"></awg-textcritics>
+    <awg-textcritics
+        [comments]="textcriticsData"
+        (openModalRequest)="modal.open($event)">
+    </awg-textcritics>
 
-</div> <!-- END main-content  -->
+</div>
