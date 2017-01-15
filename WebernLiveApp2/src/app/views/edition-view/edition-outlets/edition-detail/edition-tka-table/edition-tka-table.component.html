@@ -8,13 +8,11 @@
             <th style="width:auto">Kommentar</th>
         </tr>
         </thead>
-        <!-- TODO: uncomment when real service is available
         <tr *ngFor="let item of items">
             <td>{{ item.measure }}</td>
             <td>{{ item.system }}</td>
             <td [innerHTML]="item.location"></td>
-            <td [innerHTML]="item.comment"></td>
+            <td [innerHTML]="item.comment | sanitizeHTML"></td>
         </tr>
-        -->
     </table>
-</div> <!-- END table -->
+</div>

@@ -1,3 +1,58 @@
-<p>
-  edition-svg-panel works!
-</p>
+<div>
+    <!-- embedded svg: Aa:SkI/2
+    ng-show="isSelectedSheet(sheet2)"
+    -->
+    <div class="svg">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/2">
+            <svg:image xlink:href [attr.xlink:href]="sheets[selectedSheet.id].svg" width="1000" height="508" />
+            <!-- systems -->
+            <!-- system 14 -->
+            <a (click)="selectItem('system', '14')" [class.active]="isSelectedItem('s14')">
+                <rect class="svg_system" x="20" y="205" width="950" height="60" />
+            </a>
+            <!-- system 13 -->
+            <a (click)="selectItem('system', '13')" [class.active]="isSelectedItem('s13')">
+                <rect class="svg_system" x="20" y="275" width="950" height="60" />
+            </a>
+            <!-- system 12 -->
+            <a (click)="selectItem('system', '12')" [class.active]="isSelectedItem('s12')">
+                <rect class="svg_system" x="20" y="345" width="950" height="60"/>
+            </a>
+            <!-- measures -->
+            <!-- measure 10 -->
+            <a (click)="selectItem('measure', '10')" [class.active]="isSelectedItem('m10')">
+                <rect class="svg_measure" x="300" y="125" width="180" height="345" />
+            </a>
+            <!-- measure 11 -->
+            <a (click)="selectItem('measure', '11')" [class.active]="isSelectedItem('m11')">
+                <rect class="svg_measure" x="480" y="125" width="180" height="345" />
+            </a>
+            <!-- measure 12 -->
+            <a (click)="selectItem('measure', '12')" [class.active]="isSelectedItem('m12')">
+                <rect class="svg_measure" x="660" y="125" width="180" height="345"/>
+            </a>
+            <!-- single items ->
+               <!-- T10/S12/o1 -->
+            <a (click)="selectItem('single', '0')" [class.active]="isSelectedItem('0')">
+                <rect class="svg_item" x="330" y="350" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- T10/S12/o2 -->
+            <a (click)="selectItem('single', '1')" [class.active]="isSelectedItem('1')">
+                <rect class="svg_item" x="380" y="350" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- T11/S14/o(1/4) -->
+            <a (click)="selectItem('single', '2')" [class.active]="isSelectedItem('2')">
+                <rect class="svg_item" x="480" y="200" rx="5" ry="5" width="125" height="80" />
+            </a>
+            <!-- T12/S13/oO -->
+            <a (click)="selectItem('single', '3')" [class.active]="isSelectedItem('3')">
+                <rect class="svg_item" x="660" y="270" rx="5" ry="5" width="125" height="80" />
+            </a>
+            <!-- link boxes -->
+            <!-- rect SkI/3 -->
+            <a (click)="selectSheet(sheets[sheet3])">
+                <rect class="svg_linkbox" x="90" y="345" width="182" height="125" />
+            </a>
+        </svg>
+    </div> <!-- END svg Aa:SkI/2 -->
+</div>

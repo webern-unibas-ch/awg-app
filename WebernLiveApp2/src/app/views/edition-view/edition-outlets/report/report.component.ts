@@ -22,22 +22,9 @@ export class ReportComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getComments();
         this.getSourceList();
+        this.getComments();
         this.scrollTo();
-    }
-
-    private getComments() {
-        this._editionService.getJsonData('/textcritics.json')
-            .subscribe(
-                (data) => {
-                    this.textcriticsData = data;
-                    console.log('report: textcritics: ', this.textcriticsData);
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
     }
 
     private getSourceList() {
@@ -45,7 +32,6 @@ export class ReportComponent implements OnInit {
             .subscribe(
                 (data) => {
                     this.sourceListData = data;
-                    console.log('report: sourcelist: ', this.sourceListData);
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -53,7 +39,19 @@ export class ReportComponent implements OnInit {
             );
     }
 
-    scrollTo(id?: string) {
+    private getComments() {
+        this._editionService.getJsonData('/textcritics.json')
+            .subscribe(
+                (data) => {
+                    this.textcriticsData = data;
+                },
+                error => {
+                    this.errorMessage = <any>error;
+                }
+            );
+    }
+
+    private scrollTo(id?: string) {
         console.log('Report: scrollTo(): ', id);
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {

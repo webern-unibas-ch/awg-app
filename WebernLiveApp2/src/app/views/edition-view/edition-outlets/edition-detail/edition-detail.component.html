@@ -11,12 +11,27 @@
 
     <!-- body with embedded svg's -->
     <!-- image control -->
-    <awg-edition-sheet-control *ngIf="sheetsData" [sheets]="sheetsData" (selectSheetRequest)="onSheetSelect($event)"></awg-edition-sheet-control>
+    <awg-edition-sheet-control
+        *ngIf="sheetsData && selectedSheet"
+        [sheets]="sheetsData"
+        [selectedSheet]="selectedSheet"
+        (selectSheetRequest)="onSheetSelect($event)">
+    </awg-edition-sheet-control>
 
     <!-- table for TkA -->
-    <awg-edition-tka-table *ngIf="showTkA" [items]="items"></awg-edition-tka-table>
+    <awg-edition-tka-table
+        *ngIf="showTkA && items"
+        [items]="items">
+    </awg-edition-tka-table>
 
     <!-- svg panel -->
-    <awg-edition-svg-panel></awg-edition-svg-panel>
+    <awg-edition-svg-panel
+        *ngIf="sheetsData && selectedSheet"
+        [sheets]="sheetsData"
+        [selectedSheet]="selectedSheet"
+        [selectedItem]="selectedItem"
+        (selectSheetRequest)="onSheetSelect($event)"
+        (selectItemRequest)="onItemSelect($event)">
+    </awg-edition-svg-panel>
 
 </div>
