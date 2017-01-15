@@ -2,6 +2,8 @@ import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 import { HttpModule } from '@angular/http';
 
+//
+// external modules
 //TODO: remove AlertModule?
 import { AlertModule, ButtonsModule, CarouselModule, ModalModule } from 'ng2-bootstrap';
 
@@ -26,10 +28,10 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
 
 @NgModule({
     imports: [
+        BrowserModule, HttpModule,
+
         AlertModule.forRoot(), ButtonsModule.forRoot(),
         CarouselModule.forRoot(), ModalModule.forRoot(),
-
-        BrowserModule, HttpModule,
 
         CoreModule,
         EditionsModule.forRoot(),

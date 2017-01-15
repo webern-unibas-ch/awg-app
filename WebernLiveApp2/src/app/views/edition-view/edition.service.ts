@@ -5,7 +5,9 @@ import { Observable } from 'rxjs';
 @Injectable()
 export class EditionService {
 
-    constructor(private _http: Http) { }
+    constructor(
+        private _http: Http
+    ) { }
 
     getJsonData(url: string): Observable<string> {
         let data: string = 'assets/data' + url;
@@ -20,7 +22,7 @@ export class EditionService {
             return res.json();
         } catch (e) {
             // console.log(e);
-            return Observable.throw('Data error in salsah\'s resources service.');
+            return Observable.throw('Data error in edition service.');
         }
     }
 
@@ -31,5 +33,3 @@ export class EditionService {
     }
 
 }
-
-

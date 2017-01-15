@@ -19,7 +19,7 @@
 
             <div class="para">
                 <table class="table table-hover" *ngFor="let comment of comments | mapToIterable">
-                    <caption class="bold"><a [routerLink]="['/edition/detail', comment.mappedKey]">{{comment.mappedKey}}</a>:</caption>
+                    <caption class="bold"><a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:</caption>
                     <thead>
                     <tr>
                         <th style="width:10%">Takt</th>
@@ -31,15 +31,15 @@
                     <tbody>
                     <tr *ngFor="let line of comment.mappedValues">
                         <td>
-                            {{line.measure}}
+                            {{ line.measure }}
                         </td>
                         <td>
-                            {{line.system}}
+                            {{ line.system }}
                         </td>
                         <td>
-                            {{line.location}}
+                            {{ line.location }}
                         </td>
-                        <td [innerHTML]="line.comment"></td>
+                        <td [innerHtml]="line.comment | sanitizeHTML"></td>
                     </tr>
                     </tbody>
                 </table>
