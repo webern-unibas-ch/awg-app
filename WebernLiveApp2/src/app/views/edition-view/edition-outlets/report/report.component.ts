@@ -52,12 +52,14 @@ export class ReportComponent implements OnInit {
     }
 
     private scrollTo(id?: string) {
-        console.log('Report: scrollTo(): ', id);
+        console.log('Report: scrollTo(id): ', id);
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
             this._route.fragment
                 .subscribe(
                     f => {
+                        if (!f) { return; };
+                        console.log('Report: fragment(): ', f);
                         const element = document.querySelector('#' + f);
                         if (element) element.scrollIntoView(element);
                     }

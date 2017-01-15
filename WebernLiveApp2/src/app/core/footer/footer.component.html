@@ -9,7 +9,7 @@
             <p>Prototyp AWG-Online-Edition (Version {{ version }} &#9671; {{ version_release_date }})</p>
             <p>&copy; {{ year_start }}–{{ year_recent }} Anton Webern Gesamtausgabe</p>
 
-            <p><small><a routerLink="/contact#masthead" id="imp">Impressum</a></small></p>
+            <p><small><a [routerLink]="['/contact']" fragment="masthead" id="imp">Impressum</a></small></p>
         </div>
         <div class="col-sm-2">
             <a href="http://www.snf.ch" target="_blank">
