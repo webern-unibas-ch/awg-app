@@ -14,20 +14,19 @@ export class EditionSvgPanelComponent implements OnInit {
     @Output() selectItemRequest: EventEmitter<any> = new EventEmitter();
 
     // init sheets
-    // TODO: necessary?
+    // TODO: other solution possible?
     sheet2: string ='Aa:SkI/2';
     sheet3: string ='Aa:SkI/3';
     sheet4: string ='Aa:SkI/4';
     sheet5: string ='Aa:SkI/5';
-    sheet: string = this.sheet2;
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    isSelectedSheet(sheet: Sheet) {
-        return sheet.id === this.selectedSheet.id;
+    isSelectedSheet(id: string) {
+        return id === this.selectedSheet.id;
     }
 
     isSelectedItem(id: string) {

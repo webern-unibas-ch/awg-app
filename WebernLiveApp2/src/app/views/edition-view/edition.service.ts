@@ -9,7 +9,7 @@ export class EditionService {
         private _http: Http
     ) { }
 
-    getJsonData(url: string): Observable<string> {
+    getJsonData(url: string): Observable<any> {
         let data: string = 'assets/data' + url;
         return this._http.get(data)
             .map(this.extractData)

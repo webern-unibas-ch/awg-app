@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import { Sheet } from '../../sheet';
+import { Textcritics } from '../../textcritics';
 import { EditionService } from '../../edition.service';
 
 @Component({
@@ -11,22 +12,14 @@ import { EditionService } from '../../edition.service';
 })
 export class EditionDetailComponent implements OnInit {
 
-    public items: Array<string>;
+    public items: Textcritics[];
     public selectedItem: string;
     public selectedSheet: Sheet;
-    public sheetsData: string;
-    public textcriticsData: string;
+    public sheetsData: Sheet[];
+    public textcriticsData: Textcritics[];
 
     private errorMessage: string = undefined;
-    private showTkA: boolean;
-
-    // init sheets
-    sheet2: string ='Aa:SkI/2';
-    sheet3: string ='Aa:SkI/3';
-    sheet4: string ='Aa:SkI/4';
-    sheet5: string ='Aa:SkI/5';
-    sheet: string = this.sheet2;
-
+    private showTkA: boolean = false;
 
     constructor(
         private _route: ActivatedRoute,
@@ -41,7 +34,6 @@ export class EditionDetailComponent implements OnInit {
 
     onItemSelect($event) {
         this.getCommentForItem($event.field, $event.id);
-        this.showTkA = true;
     }
 
     onSheetSelect(sheet: Sheet) {
@@ -54,8 +46,7 @@ export class EditionDetailComponent implements OnInit {
     private getCommentsData() {
         this._editionService.getJsonData('/textcritics.json')
             .subscribe(
-                (data) => {
-                    this.showTkA = false;
+                (data: Textcritics[]) => {
                     this.textcriticsData = data;
                 },
                 error => {
@@ -67,7 +58,7 @@ export class EditionDetailComponent implements OnInit {
     private getSheetsData() {
         this._editionService.getJsonData('/sheets.json')
             .subscribe(
-                (data) => {
+                (data: Sheet[]) => {
                     this.sheetsData = data;
                     this.getRouteParams();
                 },
@@ -86,31 +77,34 @@ export class EditionDetailComponent implements OnInit {
         })
     }
 
-    private getCommentForItem(field, id) {
+    private getCommentForItem(field: string, id: string) {
         this.items = [];
         switch (field) {
             case 'measure':
                 this.selectedItem = 'm' + id;
-                this.items = this.getCommentForItemValue(this.textcriticsData[this.sheet], field, id);
+                this.items = this.getCommentForItemValue(this.textcriticsData[this.selectedSheet.id], field, id);
                 break;
             case 'system':
                 this.selectedItem = 's' + id;
-                this.items = this.getCommentForItemValue(this.textcriticsData[this.sheet], field, id);
+                this.items = this.getCommentForItemValue(this.textcriticsData[this.selectedSheet.id], field, id);
                 break;
             case 'single':
                 this.selectedItem = id;
-                this.items.push(this.textcriticsData[this.sheet][id]);
+
+                this.items.push(this.textcriticsData[this.selectedSheet.id][id]);
+                break;
         }
+        this.showTkA = (this.items !== []);
     }
 
-    private getCommentForItemValue(item, field, id) {
+    private getCommentForItemValue(item: Textcritics[], field: string, id: string) {
         let arr = [];
-        item.forEach((entry) => {
-            // trim values
-            let tkaValue = entry[field].replace("[", "").replace("]", "");
+        item.forEach((comment) => {
+            // trim existing values
+            let tkaValue: string = comment[field] ? comment[field].replace("[", "").replace("]", "") : null;
             // check if value matches id
             if (tkaValue == id) {
-                arr.push(entry);
+                arr.push(comment);
             }
         });
         return arr;
