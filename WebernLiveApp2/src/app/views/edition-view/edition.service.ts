@@ -1,35 +1,50 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import 'rxjs/add/operator/toPromise';
+
+import { Sheet } from './sheet';
+import { Source } from './source';
+import { Textcritics } from './textcritics';
 
 @Injectable()
 export class EditionService {
+
+    BASE: string = 'assets/data/';
 
     constructor(
         private _http: Http
     ) { }
 
-    getJsonData(url: string): Observable<any> {
-        let data: string = 'assets/data' + url;
-        return this._http.get(data)
-            .map(this.extractData)
-            .catch(this.handleError);
+    getCommentsData(): Promise<Textcritics[]> {
+        let file = 'textcritics.json';
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
     }
 
-    private extractData(res: Response) {
-        try {
-            // console.log(res.json());
-            return res.json();
-        } catch (e) {
-            // console.log(e);
-            return Observable.throw('Data error in edition service.');
-        }
+    getSheetsData(): Promise<Sheet[]> {
+        let file = 'sheets.json';
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    getSourceListData(): Promise<Source[]> {
+        let file = 'sourcelist.json';
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+
+    getJsonData(url: string): Promise<Sheet[] | Source[] | Textcritics[]> {
+        return this._http.get(url)
+            .toPromise()
+            .then(response => response.json() as Sheet[] | Source[] | Textcritics[])
+            .catch(this.handleError);
     }
 
     private handleError(error: any) {
         let errMsg = (error.message) ? error.message :
             error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        return Observable.throw(errMsg);
+        return Promise.reject(errMsg);
     }
 
 }

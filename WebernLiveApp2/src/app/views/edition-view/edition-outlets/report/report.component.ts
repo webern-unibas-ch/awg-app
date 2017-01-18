@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+
 import { EditionService } from '../../edition.service';
+import { Source } from '../../source';
+import {Textcritics} from "../../textcritics";
 
 @Component({
     selector: 'awg-report',
@@ -12,8 +15,8 @@ export class ReportComponent implements OnInit {
     public reportTitle: string = 'Kritischer Bericht';
     public reportId: string = 'report';
 
-    public sourceListData: string;
-    public textcriticsData: string;
+    public sourceListData: Source[];
+    public textcriticsData: Textcritics[];
     private errorMessage: string = undefined;
 
     constructor(
@@ -22,16 +25,15 @@ export class ReportComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getSourceList();
-        this.getComments();
+        this.getSourceListData();
+        this.getCommentsData();
         this.scrollTo();
     }
 
-    private getSourceList() {
-        this._editionService.getJsonData('/sourcelist.json')
-            .subscribe(
-                (data) => {
-                    this.sourceListData = data;
+    private getCommentsData() {
+        this._editionService.getCommentsData()
+            .then((data: Textcritics[]) => {
+                    this.textcriticsData = data;
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -39,11 +41,10 @@ export class ReportComponent implements OnInit {
             );
     }
 
-    private getComments() {
-        this._editionService.getJsonData('/textcritics.json')
-            .subscribe(
-                (data) => {
-                    this.textcriticsData = data;
+    private getSourceListData() {
+        this._editionService.getSourceListData()
+            .then((data: Source[]) => {
+                    this.sourceListData = data;
                 },
                 error => {
                     this.errorMessage = <any>error;

@@ -44,9 +44,8 @@ export class EditionDetailComponent implements OnInit {
     }
 
     private getCommentsData() {
-        this._editionService.getJsonData('/textcritics.json')
-            .subscribe(
-                (data: Textcritics[]) => {
+        this._editionService.getCommentsData()
+            .then((data: Textcritics[]) => {
                     this.textcriticsData = data;
                 },
                 error => {
@@ -56,9 +55,8 @@ export class EditionDetailComponent implements OnInit {
     }
 
     private getSheetsData() {
-        this._editionService.getJsonData('/sheets.json')
-            .subscribe(
-                (data: Sheet[]) => {
+        this._editionService.getSheetsData()
+            .then((data: Sheet[]) => {
                     this.sheetsData = data;
                     this.getRouteParams();
                 },
