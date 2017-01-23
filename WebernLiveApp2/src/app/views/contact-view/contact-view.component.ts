@@ -8,6 +8,9 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class ContactViewComponent implements OnInit {
 
+    public contactTitle: string = 'Impressum';
+    public contactId: string = 'masthead';
+
     constructor(
         private _route: ActivatedRoute
     ) { }

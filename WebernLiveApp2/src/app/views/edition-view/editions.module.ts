@@ -3,7 +3,6 @@ import { SharedModule } from '../../shared/shared.module';
 
 //
 // edition-detail
-import { HeadingComponent } from './heading/heading.component';
 import { EditionSheetControlComponent } from './edition-outlets/edition-detail/edition-sheet-control/edition-sheet-control.component';
 import { EditionSvgPanelComponent } from './edition-outlets/edition-detail/edition-svg-panel/edition-svg-panel.component';
 import { EditionTkaTableComponent } from './edition-outlets/edition-detail/edition-tka-table/edition-tka-table.component';
@@ -29,7 +28,6 @@ import { EditionsRoutingModule, routedComponents } from './editions-routing.modu
     ],
     declarations: [
         routedComponents,
-        HeadingComponent,
         EditionSheetControlComponent,
         EditionSvgPanelComponent,
         EditionTkaTableComponent,

@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 // app modules
 import { CoreModule } from './core/core.module';
 import { EditionsModule } from './views/edition-view/editions.module';
+import { SharedModule } from './shared/shared.module';
 
 //
 // views
@@ -35,6 +36,7 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
 
         CoreModule,
         EditionsModule.forRoot(),
+        SharedModule,
         AppRoutingModule
     ],
     declarations: [
