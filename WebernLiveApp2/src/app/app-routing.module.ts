@@ -14,7 +14,7 @@ const appRoutes: Routes = [
     // { path: 'edition', loadChildren: 'app/components/views/edition-view/editions.module#EditionsModule'},
     // { path: 'editionSN', component: SidenavComponent, outlet: 'sidenav' },
     { path: 'structure', component: StructureViewComponent },
-    { path: 'search', component: SearchViewComponent },
+    // { path: 'search', loadChildren: 'app/components/views/search-view/search.module#SearchModule'},
     { path: 'contact', component: ContactViewComponent },
 
     { path: '', redirectTo: 'home', pathMatch: 'full' },

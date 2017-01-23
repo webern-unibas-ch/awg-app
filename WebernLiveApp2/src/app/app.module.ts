@@ -16,6 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 // app modules
 import { CoreModule } from './core/core.module';
 import { EditionsModule } from './views/edition-view/editions.module';
+import { SearchModule } from './views/search-view/search.module';
 import { SharedModule } from './shared/shared.module';
 
 //
@@ -23,7 +24,6 @@ import { SharedModule } from './shared/shared.module';
 import { ContactViewComponent } from './views/contact-view/contact-view.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
-import { SearchViewComponent } from './views/search-view/search-view.component';
 import { StructureViewComponent } from './views/structure-view/structure-view.component';
 
 
@@ -36,6 +36,7 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
 
         CoreModule,
         EditionsModule.forRoot(),
+        SearchModule,
         SharedModule,
         AppRoutingModule
     ],
@@ -45,7 +46,6 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
         ContactViewComponent,
         HomeViewComponent,
         PageNotFoundViewComponent,
-        SearchViewComponent,
         StructureViewComponent,
     ],
     providers: [],
