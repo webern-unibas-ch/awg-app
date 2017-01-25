@@ -1,0 +1,19 @@
+<!-- search panel -->
+
+<!--
+  [ => TODO: <em>paging, back to previous object</em>]
+-->
+
+<div class="text-center">
+    <form name="searchForm" role="form" data-ng-submit="submit(searchval)">
+        <div class="form-group">
+            <label class="control-label"></label>
+            <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" type="submit">Los!</button>
+                    </span>
+                <input type="text" class="form-control" placeholder="Volltextsuche in der Webern-Datenbank ({{APIurl}}) …" [(ngModel)]="searchval" name="searchval" required />
+            </div>
+        </div>
+    </form>
+</div>

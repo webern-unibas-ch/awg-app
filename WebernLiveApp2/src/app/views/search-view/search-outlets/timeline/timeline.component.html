@@ -1,3 +1,10 @@
+<p class="help-block">
+    Datenbank-Suche nach Ereignissen mit heutigem Tagesdatum. Der erstmalige Aufruf kann einige Sekunden Ladezeit beanspruchen.
+</p>
+<button class="btn btn-default" (click)="getTodaysEvents()">
+    Webern-Chronologie vom {{date.day}}.{{date.month}}.
+</button>
+
 <!--
             <div data-ng-if="isEventLoaded">
                 <div class="timeline-control-button">

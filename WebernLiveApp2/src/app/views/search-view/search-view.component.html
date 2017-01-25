@@ -1,104 +1,20 @@
 <!-- content: search -->
+<!-- TODO: rm or change to former styling
 <div class="col-xs-12 maincontent text-left">
+-->
+<div class="col-sm-9 col-md-10 maincontent text-left">
 
-    <!-- <div class="col-sm-12" style="border:1px solid blue">
-        <p>
-            [ => TODO: <em>paging, back to previous object</em>]
-        </p>
-    </div> -->
+    <!-- sidenav
+       <awg-sidenav template-url="search"></awg-sidenav>
+    -->
 
     <!-- heading -->
     <awg-heading [title]="searchTitle" [id]="searchId"></awg-heading>
 
-    <!-- sidenav
-        <awg-sidenav template-url="search"></awg-sidenav>
-    -->
+    <div class="help-block">
+        BETA: Suche momentan noch mit eingeschränkter Funktionalität
+    </div>
 
-    <!-- result box -->
-    <div class="col-sm-6 col-md-7 col-lg-8 objbox" *ngIf="isObjectSelected || isEventButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
+    <router-outlet></router-outlet>
 
-        <!-- when loading -->
-        <h3 data-ng-if="isObjectSelected && !isObjectLoaded">Load object...</h3>
-        <h3 data-ng-if="isEventButtonClicked && !isEventLoaded">Load events...</h3>
-
-
-        <!-- timeline -->
-        <!-- when object is loaded -->
-        <!-- TODO
-            <awg-timeline *ngIf="isEventLoaded"></awg-timeline>
-        -->
-
-
-        <!-- when object is loaded -->
-        <div *ngIf="isObjectLoaded">
-
-            <div class="objbox-control-button" data-ng-if="isEventCached">
-                <button class="btn btn-default" data-ng-click="getTodaysEvents()">Zurück zur Timeline</button>
-            </div>
-
-            <!-- header -->
-            <h3>
-                <img [attr.src]="objData.header.icon" alt="icon" /><small> ({{objData.header.type}})</small><br/>
-                [{{objData.header.objID}}] <span dir-bind-html-compile="objData.header.title | highlight:searchText"></span>
-            </h3>
-            <small>[Last modified: {{objData.header.lastmod}} (UTC)]</small><br /><br />
-            <!-- <small><a data-ng-click="showObject(id_back)">Zurück zum vorherigen Objekt</a></small> TODO -->
-
-
-            <!-- image objects -->
-            <div align="center" class="objImage" data-ng-if="objData.image.length !== 0">
-                <div class="facs">
-                    <a [href]="objImage.full" target="_blank">
-                        <img [src]="objImage.value" alt="{{objImage.label}}" />
-                    </a>
-                </div>
-                <div class="btn-group btn-group-justified">
-                    <a class="btn btn-default" data-ng-repeat="objImage in objData.image" data-ng-click="showImage(objImage)">
-                        {{objImage.label}}
-                    </a>
-                </div>
-            </div>
-
-            <!-- display as table on small and larger devices -->
-            <table class="table table-condensed table-hover borderless hidden-xs" style="padding:10px;">
-                <tbody>
-                <!-- ### SHOW ONLY NOT EMPTY VALUES ### -->
-                <tr id="field" data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
-                    <td class="bold">
-                        {{prop.label}}
-                    </td>
-                    <!-- OUTPUT VALUES -->
-                    <td colspan="2" dir-bind-html-compile="prop.value | highlight:searchText"></td>
-                </tr>
-                <tr data-ng-if="objData.incoming !== ''">
-                    <td colspan="3" class="bold">
-                        <p>Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}} </p>
-                    </td>
-                </tr>
-                <tr data-ng-if="objData.incoming !== ''" class="ins"  data-ng-repeat="ins in objData.incoming">
-                    <td colspan="3" data-ng-click="showObject(ins.id)">
-                        <img [attr.src]="ins.icon" alt="icon" /> [{{ins.id}}] {{ins.value}}
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-
-            <!-- stack to definition list on extra small devices -->
-            <dl class="dl-horizontal dl-hover visible-xs">
-                <div id="field" data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
-                    <dt>
-                        {{prop.label}}
-                    </dt>
-                    <dd dir-bind-html-compile="prop.value | highlight:searchText"></dd>
-                </div>
-                <dt data-ng-if="objData.incoming !== ''">
-                    Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}}
-                </dt>
-                <dd class="ins" data-ng-repeat="ins in objData.incoming" data-ng-click="showObject(ins.id)">
-                    <img [src]="ins.icon" alt="icon" /> [{{ins.id}}] {{ins.value}}
-                </dd>
-            </dl>
-        </div>
-
-    </div> <!-- END result box -->
 </div>
