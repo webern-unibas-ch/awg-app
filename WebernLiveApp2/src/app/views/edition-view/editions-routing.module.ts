@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionViewComponent } from './edition-view.component';
 import { EditionDetailComponent } from './edition-outlets/edition-detail/edition-detail.component';
 import { IntroComponent } from './edition-outlets/intro/intro.component';
-import { OverviewComponent } from './edition-outlets/overview/overview.component';
+import { EditionOverviewComponent } from './edition-outlets/edition-overview/edition-overview.component';
 import { ReportComponent } from './edition-outlets/report/report.component';
 
 const editionsRoutes: Routes = [
     { path: 'edition',  component: EditionViewComponent,
         children: [
-            { path: '', component: OverviewComponent,
+            { path: '', component: EditionOverviewComponent,
                 children: [
                     { path: 'intro', component: IntroComponent },
                     { path: 'report', component: ReportComponent },
@@ -34,6 +34,6 @@ export const routedComponents = [
     EditionViewComponent,
     EditionDetailComponent,
     IntroComponent,
-    OverviewComponent,
+    EditionOverviewComponent,
     ReportComponent
 ];
