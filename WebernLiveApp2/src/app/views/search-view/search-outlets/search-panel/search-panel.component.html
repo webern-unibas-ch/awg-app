@@ -3,16 +3,29 @@
 <!--
   [ => TODO: <em>paging, back to previous object</em>]
 -->
+<h3>Sie suchen nach: {{searchval}}</h3>
 
 <div class="text-center">
-    <form name="searchForm" role="form" data-ng-submit="submit(searchval)">
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchval)">
         <div class="form-group">
             <label class="control-label"></label>
             <div class="input-group">
                     <span class="input-group-btn">
-                        <button class="btn btn-default" type="submit">Los!</button>
+                        <button class="btn btn-default"
+                                type="submit"
+                                [disabled]="!searchForm.form.valid">Los!</button>
                     </span>
-                <input type="text" class="form-control" placeholder="Volltextsuche in der Webern-Datenbank ({{APIurl}}) …" [(ngModel)]="searchval" name="searchval" required />
+                <input type="text"
+                       class="form-control"
+                       id="searchval"
+                       placeholder="Volltextsuche in der Webern-Datenbank ({{APIurl}}) …"
+                       required
+                       [(ngModel)]="searchval" name="searchval"
+                       #searchInput="ngModel" >
+            </div>
+            <div [hidden]="searchInput.valid || searchInput.pristine"
+                 class="alert alert-danger">
+                Suchbegriff benötigt
             </div>
         </div>
     </form>

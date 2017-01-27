@@ -26,6 +26,11 @@ import { HomeViewComponent } from './views/home-view/home-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
 import { StructureViewComponent } from './views/structure-view/structure-view.component';
 
+//
+// services
+import { ApiService } from './api-service/api.service';
+import { SearchService } from './views/search-view/search.service';
+
 
 @NgModule({
     imports: [
@@ -48,7 +53,7 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
         PageNotFoundViewComponent,
         StructureViewComponent,
     ],
-    providers: [],
+    providers: [ ApiService, SearchService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
