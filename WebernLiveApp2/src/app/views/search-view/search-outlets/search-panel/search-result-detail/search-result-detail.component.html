@@ -3,7 +3,7 @@
 </p>
 
 <!-- search result detail box -->
-<div class="col-sm-6 col-md-7 col-lg-8 objbox" *ngIf="isObjectSelected || isEventButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
+<div class="col-sm-6 col-md-7 col-lg-8 objbox" *ngIf="isDetailSelected || isEventButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
 
     <!-- when loading -->
     <h3 data-ng-if="isObjectSelected && !isObjectLoaded">Load object...</h3>

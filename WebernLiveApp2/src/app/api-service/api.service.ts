@@ -20,11 +20,9 @@ export class ApiService {
      */
     httpGet(url: string, options?: RequestOptionsArgs) {
         if (!options) options = {};
-        console.log('APISERVICE: Endpoint: ', AppConfig.API_ENDPOINT + url, options);
         return this._httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {
                 try {
-                    console.log('APISERVICE: response.json: ', response.json());
                     return response.json();
                 } catch (e) {
                     return Observable.throw(this.handleError(response));
@@ -72,7 +70,7 @@ export class ApiService {
             response.status = 0;
             response.statusText = 'Connection to API endpoint failed';
         }
-
+        console.log('APISERVICE#handleError: response: ', response);
         return response;
 
     }
