@@ -4,6 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { SearchViewComponent } from './search-view.component';
 
 import { BibliographyComponent } from './search-outlets/bibliography/bibliography.component';
+import { BibliographyDetailComponent } from './search-outlets/bibliography/bibliography-detail/bibliography-detail.component';
 import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
 import { SearchOverviewComponent } from './search-outlets/search-overview.component';
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
@@ -25,7 +26,11 @@ const searchRoutes: Routes = [
                         ]
                     },
                     { path: 'timeline', component: TimelineComponent },
-                    { path: 'bibliography', component: BibliographyComponent }
+                    { path: 'bibliography', component: BibliographyComponent,
+                        children: [
+                            { path: 'detail/:id', component: BibliographyDetailComponent }
+                        ]
+                    }
                 ]
             }
         ]
@@ -42,6 +47,7 @@ export class SearchRoutingModule { }
 export const routedComponents = [
     SearchViewComponent,
     BibliographyComponent,
+    BibliographyDetailComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
     SearchResultsComponent,

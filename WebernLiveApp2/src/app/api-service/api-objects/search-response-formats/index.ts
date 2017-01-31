@@ -21,5 +21,6 @@
  */
 
 import { SearchResponseJson } from './src/search-response-json';
+import { SubjectItemJson } from './src/subject-item-json';
 
-export { SearchResponseJson }
+export { SearchResponseJson, SubjectItemJson }

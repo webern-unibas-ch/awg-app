@@ -10,7 +10,7 @@ import { Sheet } from '../../../sheet';
 export class EditionSheetControlComponent implements OnInit {
     @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
-    @Output() selectSheetRequest: EventEmitter<any> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<Sheet> = new EventEmitter();
 
     constructor( ) {}
 

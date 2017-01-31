@@ -13,7 +13,7 @@ export class SearchPanelComponent implements OnInit {
 
     // eventData: Object = {};
     private errorMessage: string = undefined;
-    public searchData: SearchResponseJson;
+    public searchData: SearchResponseJson = new SearchResponseJson();
     public searchval: string = 'Kantate';
 
     isFormSubmitted: boolean = false;     // no form submitted

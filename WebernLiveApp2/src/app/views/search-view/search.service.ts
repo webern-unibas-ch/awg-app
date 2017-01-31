@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { ApiService } from '../../api-service/api.service';
 import { SearchResponseJson } from '../../api-service/api-objects';
 
-
 @Injectable()
 export class SearchService extends ApiService {
 

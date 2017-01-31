@@ -1,0 +1,13 @@
+<!-- content: bibliography list -->
+
+<ul class="bibliography">
+    <li *ngFor="let bibItem of bibList"
+        [class.selected]="bibItem === selectedBibItem"
+        (click)="selectItem(bibItem)">
+            <span class="badge">{{ bibItem.obj_id }}</span>
+            <span>{{ bibItem.value[0] }} |</span>
+            <awg-bibliography-detail
+                [bibItem]="bibItem">
+            </awg-bibliography-detail>
+    </li>
+</ul>

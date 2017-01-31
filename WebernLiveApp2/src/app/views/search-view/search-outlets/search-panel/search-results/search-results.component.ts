@@ -16,6 +16,7 @@ export class SearchResultsComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        console.log('length results: ', this.searchData.subjects.length);
         this.resText = (this.searchData.subjects.length === 1) ? 'zugängliches Resultat von' : 'zugängliche Resultate von';
     }
 

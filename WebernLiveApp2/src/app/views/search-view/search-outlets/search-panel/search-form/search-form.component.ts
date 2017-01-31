@@ -9,13 +9,15 @@ export class SearchFormComponent implements OnInit {
     @Input() searchval: string;
     @Output() submitRequest: EventEmitter<any> = new EventEmitter();
 
+    private url: string = 'http://www.salsah.org';
+
     constructor() { }
 
     ngOnInit() {
     }
 
-    private onSubmit(searchval: string) {
-        this.submitRequest.emit(searchval);
+    private onSubmit(val: string) {
+        this.submitRequest.emit(val);
     }
 
 }

@@ -10,7 +10,7 @@ export class EditionSvgPanelComponent implements OnInit {
     @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
     @Input() selectedItem: string;
-    @Output() selectSheetRequest: EventEmitter<any> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<Sheet> = new EventEmitter();
     @Output() selectItemRequest: EventEmitter<any> = new EventEmitter();
 
     // init sheets
