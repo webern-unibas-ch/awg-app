@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import { Observable } from 'rxjs';
 
 import { Sheet } from './sheet';
 import { Source } from './source';
@@ -15,36 +15,113 @@ export class EditionService {
         private _http: Http
     ) { }
 
-    getCommentsData(): Promise<Textcritics[]> {
-        let file = 'textcritics.json';
-        const url = `${this.BASE}/${file}`;
-        return this.getJsonData(url);
+    /*********************************
+     *
+     * get data from JSON files
+     *
+     * returns array of Observables,
+     * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
+     *
+     *********************************/
+    getSheetsAndCommentsData(): Observable<any> {
+        return Observable.forkJoin(
+            this.getSheetsData(),
+            this.getCommentsData()
+        );
     }
 
-    getSheetsData(): Promise<Sheet[]> {
-        let file = 'sheets.json';
-        const url = `${this.BASE}/${file}`;
-        return this.getJsonData(url);
+    getSourceListAndCommentsData(): Observable<any> {
+        return Observable.forkJoin(
+            this.getSourceListData(),
+            this.getCommentsData()
+        );
+    }
+            /*
+             * private functions to prepare http request
+             */
+            private getCommentsData(): Observable<Textcritics[]> {
+                const file = 'textcritics.json';
+                const url = `${this.BASE}/${file}`;
+                return this.getJsonData(url);
+            }
+
+            private getSheetsData(): Observable<Sheet[]> {
+                const file = 'sheets.json';
+                const url = `${this.BASE}/${file}`;
+                return this.getJsonData(url);
+            }
+
+            private getSourceListData(): Observable<Source[]> {
+                const file = 'sourcelist.json';
+                const url = `${this.BASE}/${file}`;
+                return this.getJsonData(url);
+            }
+
+                    /*
+                     * http request
+                     */
+                    private getJsonData(url: string): Observable<Sheet[] | Source[] | Textcritics[]> {
+                        return this._http.get(url)
+                            .map((res: Response) => res.json() as Sheet[] | Source[] | Textcritics[])
+                            .catch(this.handleError);
+                    }
+
+                    /*
+                    * error handling
+                    */
+                    private handleError (error: Response | any) {
+                        let errMsg: string;
+                        if (error instanceof Response) {
+                            const body = error.json() || '';
+                            const err = body.error || JSON.stringify(body);
+                            errMsg = `${error.status} - ${error.statusText || ''} ${err}`;
+                        } else {
+                            errMsg = error.message ? error.message : error.toString();
+                        }
+                        console.error(errMsg);
+                        return Observable.throw(errMsg);
+                    }
+
+
+    /********************************
+     *
+     * get comments for selected item
+     *
+     * returns array with comments<Textcritics[]>
+     *     and selectedItem<string>
+     *
+     ********************************/
+    getCommentsForItem(item: Textcritics[], type: string, typeId: string): [Textcritics[], string] {
+        let comments = [];
+        let selectedItem: string = '';
+        switch (type) {
+            case 'measure':
+                selectedItem = 'm' + typeId;
+                comments = this.getCommentsValues(item, type, typeId);
+                break;
+            case 'system':
+                selectedItem = 's' + typeId;
+                comments = this.getCommentsValues(item, type, typeId);
+                break;
+            case 'single':
+                selectedItem = typeId;
+                comments.push(item[typeId]);
+                break;
+        }
+        return [comments, selectedItem];
     }
 
-    getSourceListData(): Promise<Source[]> {
-        let file = 'sourcelist.json';
-        const url = `${this.BASE}/${file}`;
-        return this.getJsonData(url);
-    }
-
-
-    getJsonData(url: string): Promise<Sheet[] | Source[] | Textcritics[]> {
-        return this._http.get(url)
-            .toPromise()
-            .then(response => response.json() as Sheet[] | Source[] | Textcritics[])
-            .catch(this.handleError);
-    }
-
-    private handleError(error: any) {
-        let errMsg = (error.message) ? error.message :
-            error.status ? `${error.status} - ${error.statusText}` : 'Server error';
-        return Promise.reject(errMsg);
-    }
+            private getCommentsValues(item: Textcritics[], type: string, typeId: string): Textcritics[] {
+                let arr = [];
+                item.forEach((comment) => {
+                    // trim existing values
+                    let tkaValue: string = comment[type] ? comment[type].replace("[", "").replace("]", "") : null;
+                    // check if value matches id
+                    if (tkaValue == typeId) {
+                        arr.push(comment);
+                    }
+                });
+                return arr;
+            }
 
 }

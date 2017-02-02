@@ -28,12 +28,15 @@ export class EditionDetailComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getSheetsData();
-        this.getCommentsData();
+        this.getSheetsAndCommentsData();
     }
 
     onItemSelect($event) {
-        this.getCommentForItem($event.field, $event.id);
+        if (!this.textcriticsData && !this.selectedSheet) return;
+        let res = this._editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
+        this.items = res[0];
+        this.selectedItem = res[1];
+        this.showTkA = (this.items !== []);
     }
 
     onSheetSelect(sheet: Sheet) {
@@ -43,22 +46,12 @@ export class EditionDetailComponent implements OnInit {
         this.showTkA = false;
     }
 
-    private getCommentsData() {
-        this._editionService.getCommentsData()
-            .then((data: Textcritics[]) => {
-                    this.textcriticsData = data;
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
-    }
-
-    private getSheetsData() {
-        this._editionService.getSheetsData()
-            .then((data: Sheet[]) => {
-                    this.sheetsData = data;
-                    this.getRouteParams();
+    getSheetsAndCommentsData() {
+        this._editionService.getSheetsAndCommentsData()
+            .subscribe((data) => {
+                    this.sheetsData = data[0];
+                    if (this.sheetsData) this.getRouteParams();
+                    this.textcriticsData = data[1];
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -74,39 +67,5 @@ export class EditionDetailComponent implements OnInit {
             this.selectedSheet = this.sheetsData[sheetId];
         })
     }
-
-    private getCommentForItem(field: string, id: string) {
-        this.items = [];
-        switch (field) {
-            case 'measure':
-                this.selectedItem = 'm' + id;
-                this.items = this.getCommentForItemValue(this.textcriticsData[this.selectedSheet.id], field, id);
-                break;
-            case 'system':
-                this.selectedItem = 's' + id;
-                this.items = this.getCommentForItemValue(this.textcriticsData[this.selectedSheet.id], field, id);
-                break;
-            case 'single':
-                this.selectedItem = id;
-
-                this.items.push(this.textcriticsData[this.selectedSheet.id][id]);
-                break;
-        }
-        this.showTkA = (this.items !== []);
-    }
-
-    private getCommentForItemValue(item: Textcritics[], field: string, id: string) {
-        let arr = [];
-        item.forEach((comment) => {
-            // trim existing values
-            let tkaValue: string = comment[field] ? comment[field].replace("[", "").replace("]", "") : null;
-            // check if value matches id
-            if (tkaValue == id) {
-                arr.push(comment);
-            }
-        });
-        return arr;
-    }
-
 
 }

@@ -25,26 +25,15 @@ export class ReportComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getSourceListData();
-        this.getCommentsData();
+        this.getSourceListAndCommentsData();
         this.scrollTo();
     }
 
-    private getCommentsData() {
-        this._editionService.getCommentsData()
-            .then((data: Textcritics[]) => {
-                    this.textcriticsData = data;
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
-    }
-
-    private getSourceListData() {
-        this._editionService.getSourceListData()
-            .then((data: Source[]) => {
-                    this.sourceListData = data;
+    private getSourceListAndCommentsData() {
+        this._editionService.getSourceListAndCommentsData()
+            .subscribe((data) => {
+                    this.sourceListData = data[0];
+                    this.textcriticsData = data[1];
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -60,7 +49,7 @@ export class ReportComponent implements OnInit {
                 .subscribe(
                     f => {
                         if (!f) { return; };
-                        console.log('Report: fragment(): ', f);
+                        console.log('Report#fragment(): ', f);
                         const element = document.querySelector('#' + f);
                         if (element) element.scrollIntoView(element);
                     }
