@@ -19,11 +19,12 @@ const searchRoutes: Routes = [
             { path: '', component: SearchOverviewComponent,
                 children: [
                     { path: 'fulltext', component: SearchPanelComponent,
+                        /*
                         children: [
                             { path: 'form', component: SearchFormComponent },
                             { path: 'results', component: SearchResultsComponent },
                             { path: 'result/:id', component: SearchResultDetailComponent }
-                        ]
+                        ]*/
                     },
                     { path: 'timeline', component: TimelineComponent },
                     { path: 'bibliography', component: BibliographyComponent,

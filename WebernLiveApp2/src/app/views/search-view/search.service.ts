@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { ApiService } from '../../api-service/api.service';
@@ -7,8 +8,7 @@ import { SearchResponseJson } from '../../api-service/api-objects';
 @Injectable()
 export class SearchService extends ApiService {
 
-    private searchType: string = 'fulltext';
-    private projectId: number = 6;
+    private projectId: string = '6';
 
     // ################################
     //
@@ -16,8 +16,11 @@ export class SearchService extends ApiService {
     //
     // ################################
     getFulltextSearchData(searchString: string): Observable<SearchResponseJson> {
-        let url: string = '/search/' + searchString + '?searchtype=' + this.searchType + '&filter_by_project=' + +this.projectId;
-        return this.httpGet(url);
+        let queryString: string = '/search/' + searchString;
+        let params = new URLSearchParams();
+            params.set('searchtype', 'fulltext');
+            params.set('filter_by_project', this.projectId);
+        return this.httpGet(queryString, { search: params });
     }
 
     convertSearchResults(results: SearchResponseJson): SearchResponseJson {
@@ -86,8 +89,7 @@ export class SearchService extends ApiService {
         } //END while
 
         return str;
-    }; //END replaceSalsahLink (func)
-
+    }
 
 
 }
