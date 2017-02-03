@@ -15,6 +15,7 @@ export class BibliographyComponent implements OnInit {
     public bibListResponse: SearchResponseJson = new SearchResponseJson();
     public bibList: SubjectItemJson[];
     public bibItems: ResourceFullResponseJson[];
+    private bibIdArray: Array<string> = [];
     private selectedBibItem: SubjectItemJson;
     private isBibListLoaded: boolean = false;
 
@@ -43,22 +44,23 @@ export class BibliographyComponent implements OnInit {
         this._bibliographyService.getBibliographyList()
             .subscribe((bibListResponse: SearchResponseJson) => {
                     this.bibListResponse = bibListResponse;
-                    this.isBibListLoaded = true;
                     console.info('BibComp#bibListResponse', this.bibListResponse);
                     this.bibList = this.bibListResponse.subjects.slice(1,10);
+                    this.isBibListLoaded = true;
                     this.bibList.forEach(item => {
-                        this.getBibItem(item);
+                        this.bibIdArray.push(item.obj_id);
                     });
-                    // console.info('BibComp#bibItems', this.bibItems);
+                    this.getBibItemsDetails(this.bibIdArray);
                 }
             );
     }
 
-    getBibItem(item: SubjectItemJson): void {
-        this._bibliographyService.getBibliographyItem(item.obj_id)
-            .subscribe((bibItem: ResourceFullResponseJson) => {
-                console.info('BibComp#bibItem', bibItem);
-             //   this.bibItems.push(bibItem);
+
+    getBibItemsDetails(idArray: Array<string>): void {
+        this._bibliographyService.getBibliographyItems(idArray)
+            .subscribe((bibItems: ResourceFullResponseJson[]) => {
+                console.info('BibComp#bibItem', bibItems);
+                this.bibItems = bibItems;
             })
     }
 

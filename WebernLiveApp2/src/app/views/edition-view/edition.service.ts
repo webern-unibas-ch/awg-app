@@ -11,9 +11,7 @@ export class EditionService {
 
     BASE: string = 'assets/data/';
 
-    constructor(
-        private _http: Http
-    ) { }
+    constructor(private _http: Http) { }
 
     /*********************************
      *
@@ -111,6 +109,9 @@ export class EditionService {
         return [comments, selectedItem];
     }
 
+            /*
+             * private function to prepare values
+             */
             private getCommentsValues(item: Textcritics[], type: string, typeId: string): Textcritics[] {
                 let arr = [];
                 item.forEach((comment) => {
