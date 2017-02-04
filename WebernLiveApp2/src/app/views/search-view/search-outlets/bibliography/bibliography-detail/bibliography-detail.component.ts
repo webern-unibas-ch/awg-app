@@ -1,5 +1,6 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { SubjectItemJson } from '../../../../../api-service/api-objects';
+import { ResourceFullResponseJson } from '../../../../../api-service/api-objects';
+import { BibliographyService } from '../bibliography.service';
 
 @Component({
     selector: 'awg-bibliography-detail',
@@ -7,12 +8,21 @@ import { SubjectItemJson } from '../../../../../api-service/api-objects';
     styleUrls: ['./bibliography-detail.component.css']
 })
 export class BibliographyDetailComponent implements OnInit {
-    @Input() bibItem: SubjectItemJson;
+    @Input() objId: string;
 
-    constructor() { }
+    bibItemDetail: ResourceFullResponseJson;
+
+    constructor(private _bibliographyService: BibliographyService) { }
 
     ngOnInit() {
+        this.getBibItemDetails(this.objId);
+    }
 
+    getBibItemDetails(id: string): void {
+        this._bibliographyService.getBibliographyItemDetail(id)
+            .subscribe((bibItemDetail: ResourceFullResponseJson) => {
+                this.bibItemDetail = bibItemDetail;
+            })
     }
 
 }

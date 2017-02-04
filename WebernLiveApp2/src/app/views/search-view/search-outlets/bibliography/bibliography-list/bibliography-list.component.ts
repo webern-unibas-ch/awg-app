@@ -1,6 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { SubjectItemJson, ResourceFullResponseJson } from '../../../../../api-service/api-objects';
-import { BibliographyService } from '../bibliography.service';
+import { SubjectItemJson } from '../../../../../api-service/api-objects';
 
 @Component({
     selector: 'awg-bibliography-list',

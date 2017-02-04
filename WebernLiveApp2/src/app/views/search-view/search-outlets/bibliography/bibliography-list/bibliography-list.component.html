@@ -1,5 +1,4 @@
 <!-- content: bibliography list -->
-
 <ul class="bibliography">
     <li *ngFor="let bibItem of bibList; trackBy: bibItem?.obj_id"
         [class.selected]="bibItem === selectedBibItem"
@@ -7,7 +6,7 @@
             <span class="badge">{{ bibItem.obj_id }}</span>
             <span>{{ bibItem.value[0] }} |</span>
             <awg-bibliography-detail
-                [bibItem]="bibItem">
+                [objId]="bibItem.obj_id">
             </awg-bibliography-detail>
     </li>
 </ul>
