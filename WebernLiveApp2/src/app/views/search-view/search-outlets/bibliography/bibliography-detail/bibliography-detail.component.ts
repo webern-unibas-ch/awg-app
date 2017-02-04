@@ -1,5 +1,5 @@
 import { Component, OnInit, Input } from '@angular/core';
-import { ResourceFullResponseJson } from '../../../../../api-service/api-objects';
+import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 import { BibliographyService } from '../bibliography.service';
 
 @Component({

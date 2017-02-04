@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { URLSearchParams } from '@angular/http';
 import { Observable } from 'rxjs';
 
-import { ApiService } from '../../api-service/api.service';
-import { SearchResponseJson } from '../../api-service/api-objects';
+import { ApiService } from '../../core/services/api-service/api.service';
+import { SearchResponseJson } from '../../shared/api-objects';
 
 @Injectable()
 export class SearchService extends ApiService {

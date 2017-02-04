@@ -3,7 +3,7 @@ import { SharedModule } from '../../shared/shared.module';
 
 import { SearchRoutingModule, routedComponents } from './search-routing.module';
 
-import { ApiService } from '../../api-service/api.service';
+import { ApiService } from '../../core/services/api-service/api.service';
 import { SearchService } from './search.service';
 import { BibliographyService } from './search-outlets/bibliography/bibliography.service';
 

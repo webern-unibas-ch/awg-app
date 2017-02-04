@@ -13,7 +13,7 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from "../../basic-message-components";
+import { BasicResponseJson } from '../../basic-message-components';
 import { PagingItemJson } from './paging-item-json';
 import { SubjectItemJson } from './subject-item-json';
 import { ThumbMaxJson } from './thumb-max-json';

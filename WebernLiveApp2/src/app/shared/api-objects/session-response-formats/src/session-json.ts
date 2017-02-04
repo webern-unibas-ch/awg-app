@@ -13,24 +13,34 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from '../../basic-message-components/src/basic-response-json';
-import { ProjectItemJson } from '../../basic-message-components/src/project-item-json';
-
+import { BasicResponseJson } from '../../basic-message-components';
 
 /**
- * Represents a knora project
+ * Represents the knora session
  *
- * HTTP GET to http://host/v1/projects/projectIRI
+ * HTTP GET to http://host/v1/session
  *
  */
 
 @JsonObject
-export class ProjectJson extends BasicResponseJson {
+export class SessionJson extends BasicResponseJson {
+
     /**
-     * List of search project items
-     * @param projects: Array<projectItem>
+     * Message
      */
-    @JsonProperty('project_info', ProjectItemJson)
-    public project_info: ProjectItemJson = undefined;
+    @JsonProperty('message', String)
+    public message: string = undefined;
+
+    /**
+     * Session id
+     */
+    @JsonProperty('sid', String)
+    public sid: string = undefined;
+
 
 }
+
+
+
+
+

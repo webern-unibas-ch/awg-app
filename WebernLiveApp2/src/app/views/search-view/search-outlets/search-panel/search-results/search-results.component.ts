@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { SearchResponseJson } from '../../../../../api-service/api-objects';
+import { SearchResponseJson } from '../../../../../shared/api-objects';
 
 @Component({
     selector: 'awg-search-results',

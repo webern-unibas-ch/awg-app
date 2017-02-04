@@ -3,7 +3,7 @@ import { Injectable } from '@angular/core';
 import { Http, RequestOptionsArgs, Headers, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
-import { AppConfig } from '../app.config';
+import { AppConfig } from '../../../app.config';
 import { ApiServiceError } from './api-service-error';
 import { ApiServiceResult } from './api-service-result';
 

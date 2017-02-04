@@ -13,24 +13,22 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from '../../basic-message-components/src/basic-response-json';
-import { ProjectItemJson } from '../../basic-message-components/src/project-item-json';
-
+import { BasicResponseJson, ProjectItemJson } from '../../basic-message-components';
 
 /**
- * Represents the response to a fulltext or an extended search
+ * Represents a knora project
  *
- * HTTP GET to http://host/v1/projects
+ * HTTP GET to http://host/v1/projects/projectIRI
  *
  */
 
 @JsonObject
-export class ProjectListJson extends BasicResponseJson {
+export class ProjectJson extends BasicResponseJson {
     /**
      * List of search project items
      * @param projects: Array<projectItem>
      */
-    @JsonProperty('projects', [ProjectItemJson])
-    public projects: ProjectItemJson[] = undefined;
+    @JsonProperty('project_info', ProjectItemJson)
+    public project_info: ProjectItemJson = undefined;
 
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { SearchService } from '../../search.service';
-import { SearchResponseJson } from '../../../../api-service/api-objects';
+import { SearchResponseJson } from '../../../../shared/api-objects';
 
 
 @Component({
