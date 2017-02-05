@@ -136,7 +136,7 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for publication place in bilbiography
     private filterBibPubPlace(pubPlace: string | Object) {
-        let pub = (this.entry['Herausgeber']) ? this.entry['Herausgeber'] : null;
+        let pub = (this.entry['Verlag']) ? this.entry['Verlag'] : null;
         if (!pubPlace) {
             // no place but publisher
             if (pub) console.info('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
