@@ -1,19 +1,23 @@
 export class BibEntry {
 
     constructor(
-        public id: string,
-        public shortname: string,
-        public type: string,
-        public author: string,
-        public title_independent: string,
-        public pubdate: number,
-        public title_dependent?: string,
-        public editor?: string,
-        public unpublished?: string,
-        public pubplace?: string,
-        public publisher?: string,
-        public title_series?: string,
-        public pages?: string
+        public Kurztitel: string,
+        public Typ: string,
+        public Author: string,
+        public Titel_selbst: string,
+        public Publikationsdatum: number,
+        public Titel_unselbst?: string,
+        public Herausgeber?: string,
+        public unpubliziert?: string,
+        public Verlagsort?: string,
+        public Verlag?: string,
+        public Seitenangabe?: string,
+        public Reihentitel?: string,
+        public Versionsdatum?: string,
+        public Status?: string,
+        public Quelle?: string,
+        public Standort?: string,
+        public Kommentar?: string
     ) {}
 
 

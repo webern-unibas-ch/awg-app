@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { SearchResponseJson } from '../../../shared/api-objects';
+import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
 
 @Injectable()
 export class ConversionService {
@@ -86,7 +86,6 @@ export class ConversionService {
      *
      *****************************************/
     public convertStandoffToHTML(str: string, attr): string {
-        console.log('ConversionService#convert: called func');
         return str;
         // TODO: implement plugin
         // return convert_lin2html(JSON.parse(attr), str);
@@ -140,32 +139,35 @@ export class ConversionService {
 
 
     // convert object properties for displaying
-    convertObjectProperties(data, selectionObj) {
+    convertObjectProperties(data: ResourceFullResponseJson, selectionObj) {
 
-        let conv_obj = {};
+        let convObj = {};
 
-        data['props'].forEach((prop) => {
+        // add lastmod state
+        convObj['lastmod'] = data['resinfo']['lastmod'];
+
+        Object.keys(data['props']).forEach((key:string) => {
+            let prop = data['props'][key];
             let propValue = [''];
 
             // check if values property is defined
-            if ('values' in prop)
-            {
-
+            if ('values' in prop) {
                 //check for gui-elements
-                switch (prop.valuetype_id)
-                {
+                switch (prop.valuetype_id) {
                     case '4':
                         // DATE: salsah object needs to be converted (using plugin "convert_jul2greg.js")
 
-                        prop.values[0] = this.convertDate(prop.values[0]);
-                        propValue[0] = prop.values[0].replace(' (G)', '');
+                        /*
+                         TODO: implement real plugin
+                         prop.values[0] = this.convertDate(prop.values[0]);
+                         propValue[0] = prop.values[0].replace(' (G)', '');
+                        */
+                        propValue[0] = prop.values[0];
                         break; //END date
 
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
-
-                        if (prop.values[0] !== '')
-                        {
+                        if (prop.values[0] !== '') {
                             // identify id of selection-list from prop.attributes
                             // e.g. "selection=66"
                             let q = prop.attributes.split("=")[1].toString();
@@ -182,7 +184,7 @@ export class ConversionService {
                             } else
                             {
                                 console.log('NOPE:  selection' + q);
-                                //TODO
+                                //TODO#
                                 // loadSelection(q).then(function(response){
                                 //     console.log('got new selection:');
                                 //     console.log(response.data.selection);
@@ -190,11 +192,10 @@ export class ConversionService {
                                 //     console.log(selectionObj);
                                 // })
                             }
-                        } else
-                        {
+                        } else {
                             // empty value
                             propValue[0] = '';
-                        };
+                        }
                         break; //END selection
 
                     case '14':
@@ -235,7 +236,7 @@ export class ConversionService {
                     default: // '1'=> TEXT: properties come as they are
                         if (prop.values[0] !== '')
                         {
-                            for (var i = 0; i < prop.values.length; i++)
+                            for (let i = 0; i < prop.values.length; i++)
                             {
                                 propValue[i] = prop.values[i].trim();
                             }
@@ -244,27 +245,28 @@ export class ConversionService {
                             propValue[0] = '';
                         }
                 } // END switch
-
                 if (propValue.length > 1) {
-                    conv_obj[prop.label] = propValue; // => array
+                    convObj[prop.label] = propValue; // => array
                 } else if (propValue.length === 1) {
-                    conv_obj[prop.label] = propValue[0]; // => string
+                    convObj[prop.label] = propValue[0]; // => string
                 }
-
             } // END if value
 
-            // add lastmod state
-            conv_obj['lastmod'] = data['resinfo']['lastmod'];
-
             // extract publication year from publication date
-            let splitDate;
-            if (splitDate = conv_obj['Publikationsdatum']) {
-                let s = splitDate.split(' ');
-                conv_obj['Jahr'] = s[s.length-1];
-            }
-        }); // END forEach PROPS
+        /*
+        TODO#add:
+             let splitDate;
+             if (splitDate = convObj['Publikationsdatum']) {
+             let s = splitDate.split(' ');
+             convObj['Jahr'] = s[s.length-1];
+             }
+        */
 
-        return conv_obj;
+        }); // END forEach PROPS
+        // TODO#rm
+        // console.log('convObj: ', convObj );
+
+        return convObj;
     } // END convertObjectProperties (func)
 
 

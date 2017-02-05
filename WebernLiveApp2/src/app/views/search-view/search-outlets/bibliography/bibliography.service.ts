@@ -19,12 +19,18 @@ export class BibliographyService extends ApiService {
     getBibliographyList(): Observable<SearchResponseJson> {
         let queryString: string = '/search/';
         let params = new URLSearchParams();
-        params.set('searchtype', 'extended');
-        params.set('filter_by_project', this.projectId);
-        params.set('filter_by_restype', this.resTypeId);
+            params.set('searchtype', 'extended');
+            params.set('filter_by_project', this.projectId);
+            params.set('filter_by_restype', this.resTypeId);
         return this.httpGet(queryString, { search: params });
     }
 
+    getBibliographyItemDetail(obj_id: string): Observable<ResourceFullResponseJson> {
+        let queryString: string = '/resources/' + obj_id;
+        return this.httpGet(queryString);
+    }
+
+/* TODO#rm or use
     getBibliographyItems(idArray: Array<string>): Observable<any> {
         let observableItemsBatch = [];
         idArray.forEach((id: string) => {
@@ -32,11 +38,6 @@ export class BibliographyService extends ApiService {
         });
         return Observable.forkJoin(observableItemsBatch);
     }
-
-
-    getBibliographyItemDetail(obj_id: string): Observable<ResourceFullResponseJson> {
-        let queryString: string = '/resources/' + obj_id;
-        return this.httpGet(queryString);
-    }
+*/
 
 }

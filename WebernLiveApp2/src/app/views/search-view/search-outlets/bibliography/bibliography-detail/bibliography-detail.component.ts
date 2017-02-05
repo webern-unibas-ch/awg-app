@@ -11,8 +11,8 @@ import { ConversionService } from '../../../../../core/services/conversion-servi
 export class BibliographyDetailComponent implements OnInit {
     @Input() objId: string;
 
-    bibItemDetail: ResourceFullResponseJson;
-    convertedDetail: any; // TODO
+    // TODO#change to Type: Bibentry
+    convertedBibItemDetail: any;
 
     constructor(
         private _bibliographyService: BibliographyService,
@@ -26,15 +26,15 @@ export class BibliographyDetailComponent implements OnInit {
     getBibItemDetails(id: string): void {
         this._bibliographyService.getBibliographyItemDetail(id)
             .subscribe((bibItemDetail: ResourceFullResponseJson) => {
-                this.bibItemDetail = bibItemDetail;
-
+                this.convertedBibItemDetail = this.convertBibResponse(bibItemDetail);
+                console.info('BibDetailComp#bibitemDetail: ', this.convertedBibItemDetail);
             })
     }
 
-    convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
-        let selectionObj: Array<string>;
-        // TODO
-        this.convertedDetail = this._conversionService.convertObjectProperties(bibItemDetail, selectionObj);
-    }
+            private convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
+                let selectionObj: Array<string> = [];
+                // TODO selectionObj needed?
+                return this._conversionService.convertObjectProperties(bibItemDetail, selectionObj);
+            }
 
 }

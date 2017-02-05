@@ -19,51 +19,51 @@ export class BibliographyFormatPipe implements PipeTransform {
         Object.keys(bibItem).forEach( key  => {
             let value: string = '';
             switch (key) {
-                case 'shortname':
+            /*
+                case 'Kurztitel':
                     value = this.filterBibTitleShort(bibItem[key]);
                     break;
-                case 'author':
+            */
+                case 'Author':
                     value = this.filterBibAuthor(bibItem[key]);
                     break;
-                case 'title_independent':
+                case 'Titel_selbst':
                     value = this.filterBibTitleIndep(bibItem[key]);
                     break;
-                case 'title_dependent':
+                case 'Titel_unselbst':
                     value = this.filterBibTitleDep(bibItem[key]);
                     break;
-                case 'editor':
+                case 'Herausgeber':
                     value = this.filterBibEditor(bibItem[key]);
                     break;
-                case 'unpublished':
+                case 'unpubliziert':
                     value = this.filterBibUnpublished(bibItem[key]);
                     break;
-                case 'pubplace':
+                case 'Verlagsort':
                     value = this.filterBibPubPlace(bibItem[key]);
                     break;
-                /* done in pubplace
+            /* done in pubplace
                  case 'publisher':
                  value = this.filterBibPublisher(bibItem[key]);
                  break;
-                 */
-                case 'pubdate':
+            */
+                case 'Publikationsdatum':
                     value = this.filterBibPubDate(bibItem[key]);
                     break;
-                case 'title_series':
+                case 'Reihentitel':
                     value = this.filterBibTitleSeries(bibItem[key]);
                     break;
-                case 'pages':
+                case 'Seitenangabe':
                     value = this.filterBibPages(bibItem[key]);
                     break;
-                default:
-                // tmp = value;
             }
             this.formattedOutput += value;
         });
-        console.info('PIPE#formattedOutput: ', this.formattedOutput);
+        // TODO#rm: console.info('PIPE#formattedOutput: ', this.formattedOutput);
         return this.formattedOutput;
     }
 
-    // filter for short titles in bibliography
+    // TODO#rm?: filter for short titles in bibliography
     private filterBibTitleShort(shortTitle: string) {
         let title: string = (!shortTitle) ? '' : shortTitle + ' | ';
         return title;
@@ -94,7 +94,7 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for independent titles in bibliography
     private filterBibTitleIndep(indepTitle: string) {
-        let formattedTitle: string = (!indepTitle) ? '' : ((this.entry.type !== 'Zeitschriftenartikel') ? indepTitle + ', ' : indepTitle);
+        let formattedTitle: string = (!indepTitle) ? '' : ((this.entry['Typ'] !== 'Zeitschriftenartikel') ? indepTitle + ', ' : indepTitle);
         return formattedTitle;
     }
 
@@ -136,10 +136,10 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for publication place in bilbiography
     private filterBibPubPlace(pubPlace: string | Object) {
-        let pub = (this.entry.publisher) ? this.entry.publisher : null;
+        let pub = (this.entry['Herausgeber']) ? this.entry['Herausgeber'] : null;
         if (!pubPlace) {
             // no place but publisher
-            if (pub) console.info('Ort fehlt: "' + pub + '" (' + this.entry.shortname + ')');
+            if (pub) console.info('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
             // no place nor publisher ("zeitschriftenartikel")
             return '';
         }
@@ -178,8 +178,8 @@ export class BibliographyFormatPipe implements PipeTransform {
                 for (let i = 0; i < locl; i++) {
                     out += pubPlace[i] + ', ';
                 }
-                if (!this.entry.unpublished) {
-                    console.info('Verlag fehlt: "' + out + '" (' + this.entry.shortname + ')');
+                if (!this.entry['unpubliziert']) {
+                    console.info('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
                 }
             }
         }
@@ -202,8 +202,8 @@ export class BibliographyFormatPipe implements PipeTransform {
             } else {
                 // place without publisher (e.g. "Hochschulschriften")
                 // case: "Wien, "
-                if (!this.entry.unpublished) {
-                    console.info('Verlag fehlt: "' + out + '" (' + this.entry.shortname + ')');
+                if (!this.entry['unpubliziert']) {
+                    console.info('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
                 }
                 out += pubPlace + ', ';
             }
@@ -218,7 +218,7 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for date in bibliography
     private filterBibPubDate(pubDate: string) {
-        let date = (this.entry.type === 'Zeitschriftenartikel') ? ' (' + pubDate + ')' : ' ' + pubDate;
+        let date = (this.entry['Typ'] === 'Zeitschriftenartikel') ? ' (' + pubDate + ')' : ' ' + pubDate;
         return date;
     }
 
