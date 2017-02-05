@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+import { ConversionService } from '../../../../core/services/conversion-service/conversion.service';
 import { SearchService } from '../../search.service';
 import { SearchResponseJson } from '../../../../shared/api-objects';
 
@@ -24,7 +25,10 @@ export class SearchPanelComponent implements OnInit {
     isEventLoaded = false;       // no event loaded
     isEventCached = false;       //no event cached
 
-    constructor(private _searchService: SearchService) { }
+    constructor(
+        private _searchService: SearchService,
+        private _conversionService: ConversionService
+    ) { }
 
     ngOnInit() {
     }
@@ -43,7 +47,8 @@ export class SearchPanelComponent implements OnInit {
         this._searchService.getFulltextSearchData(this.searchval)
             .subscribe(
                 (data: SearchResponseJson) => {
-                    this.searchData = this._searchService.convertSearchResults(data);
+                    this.searchData = this._conversionService.convertFullTextSearchResults(data);
+                    // TODO: rm
                     console.info('SearchPanel#Data: ', this.searchData);
                     this.isFormSubmitted = false;
                     this.isDataLoaded = true;

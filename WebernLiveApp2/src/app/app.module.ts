@@ -28,7 +28,8 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
 
 //
 // services
-
+import { ApiService } from './core/services/api-service/api.service';
+import { ConversionService } from './core/services/conversion-service/conversion.service';
 
 @NgModule({
     imports: [
@@ -51,7 +52,7 @@ import { StructureViewComponent } from './views/structure-view/structure-view.co
         PageNotFoundViewComponent,
         StructureViewComponent,
     ],
-    providers: [ ],
+    providers: [ ApiService, ConversionService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }
