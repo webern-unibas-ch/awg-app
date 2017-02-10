@@ -25,8 +25,8 @@ export class BibliographyService extends ApiService {
         return this.httpGet(queryString, { search: params });
     }
 
-    getBibliographyItemDetail(obj_id: string): Observable<ResourceFullResponseJson> {
-        let queryString: string = '/resources/' + obj_id;
+    getBibliographyItemDetail(objId: string): Observable<ResourceFullResponseJson> {
+        let queryString: string = '/resources/' + objId;
         return this.httpGet(queryString);
     }
 

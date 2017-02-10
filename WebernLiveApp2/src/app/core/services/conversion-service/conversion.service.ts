@@ -1,10 +1,10 @@
 import { Injectable } from '@angular/core';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
+import { Observable } from 'rxjs';
+import { ApiService } from '../api-service/api.service';
 
 @Injectable()
-export class ConversionService {
-
-    constructor() { }
+export class ConversionService extends ApiService {
 
     convertDate(dateObj) {
         // TODO: implement
@@ -118,28 +118,29 @@ export class ConversionService {
         return str;
     }
 
-    convertResolvedPromises(response, data){
-        // converts the resolved promise
 
-        // init
-        let resolvedBiblObjectPromise = [],
-            // resolving SelectionListPromise
-            resolvedSelectionListPromise = response[0];
 
-        // resolving BiblObjectPromiseArray
-        response[1].forEach((res) => {
-            resolvedBiblObjectPromise.push(res.data);
-        });
 
-        // convert properties of resolved BiblObjectPromise
-        resolvedBiblObjectPromise.forEach((res) => {
-            data.push(this.convertObjectProperties(res, resolvedSelectionListPromise));         // push converted properties object into Array a
-        });
+
+    // TODO: http://stackoverflow.com/questions/34104277/caching-results-with-angular2-http-service/36417240#36417240
+
+    selectionArr = {};
+
+    getSelectionsById(selectionId: string): any {
+        let queryString: string = '/selections/' + selectionId;
+        let sub = this.httpGet(queryString);
+        sub.subscribe(
+            (data: Object) => {
+                this.selectionArr[selectionId] = data['selection'];
+            },
+            err => console.log(err)
+        );
+        console.log('SELECTIONARR: ', this.selectionArr);
     }
 
 
     // convert object properties for displaying
-    convertObjectProperties(data: ResourceFullResponseJson, selectionObj) {
+    convertObjectProperties(data: ResourceFullResponseJson) {
 
         let convObj = {};
 
@@ -161,7 +162,7 @@ export class ConversionService {
                          TODO: implement real plugin
                          prop.values[0] = this.convertDate(prop.values[0]);
                          propValue[0] = prop.values[0].replace(' (G)', '');
-                        */
+                         */
                         propValue[0] = prop.values[0];
                         break; //END date
 
@@ -170,22 +171,24 @@ export class ConversionService {
                         if (prop.values[0] !== '') {
                             // identify id of selection-list from prop.attributes
                             // e.g. "selection=66"
-                            let q = prop.attributes.split("=")[1].toString();
+                            let q: string = prop.attributes.split("=")[1].toString();
 
-                            if (selectionObj[q])
+                            console.info('ConvService#selectionArr: ', this.selectionArr, ' | q: ', q, ' | arr[q]: ', this.selectionArr[q]);
+
+                            if (this.selectionArr[q])
                             {
-                                //console.log('Hurray: selection' + q);
+                                console.log('Hurray: selection' + q);
                                 // localize id in selection-list object and identify the label
-                                for (let i = 0; i < selectionObj[q].length; i++) {
-                                    if (prop.values[0] == selectionObj[q][i].id) {
-                                        propValue[0] = selectionObj[q][i].label;
+                                for (let i = 0; i < this.selectionArr[q].length; i++) {
+                                    if (prop.values[0] == this.selectionArr[q][i].id) {
+                                        propValue[0] = this.selectionArr[q][i].label;
                                     }
                                 }
                             } else
                             {
-                                console.log('NOPE:  selection' + q);
+                                console.log('ConvService#convObjProps: NOPE:  selection' + q);
                                 //TODO#
-                                // loadSelection(q).then(function(response){
+                                this.getSelectionsById(q);
                                 //     console.log('got new selection:');
                                 //     console.log(response.data.selection);
                                 //     selectionObj[q] = response.data.selection;
@@ -253,14 +256,14 @@ export class ConversionService {
             } // END if value
 
             // extract publication year from publication date
-        /*
-        TODO#add:
+            /*
+             TODO#add:
              let splitDate;
              if (splitDate = convObj['Publikationsdatum']) {
              let s = splitDate.split(' ');
              convObj['Jahr'] = s[s.length-1];
              }
-        */
+             */
 
         }); // END forEach PROPS
         // TODO#rm

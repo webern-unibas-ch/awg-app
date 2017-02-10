@@ -18,7 +18,7 @@ export class ApiService {
      * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string, options?: RequestOptionsArgs) {
+    httpGet(url: string, options?: RequestOptionsArgs): Observable<Response> {
         if (!options) options = {};
         return this._httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {

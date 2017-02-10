@@ -32,9 +32,7 @@ export class BibliographyDetailComponent implements OnInit {
     }
 
             private convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
-                let selectionObj: Array<string> = [];
-                // TODO selectionObj needed?
-                return this._conversionService.convertObjectProperties(bibItemDetail, selectionObj);
+                return this._conversionService.convertObjectProperties(bibItemDetail);
             }
 
 }

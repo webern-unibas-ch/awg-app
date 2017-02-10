@@ -4,7 +4,7 @@
         [class.selected]="bibItem === selectedBibItem"
         (click)="selectItem(bibItem)">
             <span class="badge">{{ bibItem.obj_id }}</span>
-            <span>{{ bibItem.value[0] }} |</span>
+            <span class="caps">{{ bibItem.value[0] }} |</span>
             <awg-bibliography-detail
                 [objId]="bibItem.obj_id">
             </awg-bibliography-detail>
