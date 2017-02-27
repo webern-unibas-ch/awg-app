@@ -27,12 +27,11 @@ export class BibliographyDetailComponent implements OnInit {
         this._bibliographyService.getBibliographyItemDetail(id)
             .subscribe((bibItemDetail: ResourceFullResponseJson) => {
                 this.convertedBibItemDetail = this.convertBibResponse(bibItemDetail);
-                console.info('BibDetailComp#bibitemDetail: ', this.convertedBibItemDetail);
             })
     }
 
-            private convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
-                return this._conversionService.convertObjectProperties(bibItemDetail);
-            }
+    private convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
+        return this._conversionService.convertObjectProperties(bibItemDetail);
+    }
 
 }

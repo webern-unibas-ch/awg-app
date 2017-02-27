@@ -11,6 +11,11 @@ export class ApiServiceError {
     /**
      * Status text
      */
-    statusText: string = '';
+    statusText: string = "";
+
+    /**
+     * API request
+     */
+    request: string = "";
 
 }

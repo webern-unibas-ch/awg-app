@@ -18,18 +18,18 @@ export class ApiService {
      * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string, options?: RequestOptionsArgs): Observable<Response> {
+    httpGet(url: string, options?: RequestOptionsArgs) {
         if (!options) options = {};
         return this._httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {
                 try {
                     return response.json();
                 } catch (e) {
-                    return Observable.throw(this.handleError(response));
+                    return Observable.throw(ApiService.handleError(response, url));
                 }
             })
             .catch((error: any) => {
-                return Observable.throw(this.handleError(error));
+                return Observable.throw(ApiService.handleError(error, url));
             });
     }
 
@@ -60,17 +60,25 @@ export class ApiService {
     }
     */
 
-    handleError(error: any): ApiServiceError {
+    static handleError(error: any, url: string): ApiServiceError {
 
         let response = new ApiServiceError();
         if (error instanceof Response) {
+//            console.log(error);
             response.status = error.status;
             response.statusText = error.statusText;
+            if(!response.statusText) response.statusText = "Connection to API endpoint failed";
+            response.request = url;
         } else {
             response.status = 0;
-            response.statusText = 'Connection to API endpoint failed';
+            response.statusText = "Connection to API endpoint failed";
+            response.request = url;
         }
-        console.log('APISERVICE#handleError: response: ', response);
+
+        // response.status === 401 --> Unauthorized; password is wrong
+
+        // response.status === 404 --> Not found; username is wrong
+
         return response;
 
     }

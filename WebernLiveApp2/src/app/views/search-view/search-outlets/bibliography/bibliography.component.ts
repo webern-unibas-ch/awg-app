@@ -30,8 +30,11 @@ export class BibliographyComponent implements OnInit {
         this._bibliographyService.getBibliographyList()
             .subscribe((bibListResponse: SearchResponseJson) => {
                     this.bibListResponse = bibListResponse;
+
+                    // TODO: handle request with more than 1000 entries
+
                     console.info('BibComp#bibListResponse', this.bibListResponse);
-                    this.bibList = this.bibListResponse.subjects.slice(1,10);
+                    this.bibList = this.bibListResponse.subjects.slice(1,20);
                     this.isBibListLoaded = true;
                 }
             );

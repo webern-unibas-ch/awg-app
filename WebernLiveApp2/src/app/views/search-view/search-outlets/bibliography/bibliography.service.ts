@@ -9,7 +9,8 @@ import { ResourceFullResponseJson, SearchResponseJson } from '../../../../shared
 export class BibliographyService extends ApiService {
 
     private projectId: string = '6';
-    private resTypeId: string = '126';    // test-01: 127
+    private resTypeId: string = '126';      // test-01: 127
+    private bibShortTitlePropertyId: string = '614';    // 614 = Bibligoraphie#Kurztitel
 
     // ################################
     //
@@ -20,6 +21,8 @@ export class BibliographyService extends ApiService {
         let queryString: string = '/search/';
         let params = new URLSearchParams();
             params.set('searchtype', 'extended');
+            params.set('property_id', this.bibShortTitlePropertyId);
+            params.set('compop', 'EXISTS');
             params.set('filter_by_project', this.projectId);
             params.set('filter_by_restype', this.resTypeId);
         return this.httpGet(queryString, { search: params });

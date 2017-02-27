@@ -3,12 +3,11 @@ import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/ap
 import { Observable } from 'rxjs';
 import { ApiService } from '../api-service/api.service';
 
+declare var htmlConverter;
+declare var dateConverter;
+
 @Injectable()
 export class ConversionService extends ApiService {
-
-    convertDate(dateObj) {
-        // TODO: implement
-    }
 
     /******************************************
      *
@@ -16,7 +15,7 @@ export class ConversionService extends ApiService {
      *  for displaying
      *
      *****************************************/
-    convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
+    public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
         results['subjects'].forEach(res => {
             // clean value labels
             res.valuelabel[0] = res.valuelabel[0].replace(' (Richtext)', '');
@@ -40,108 +39,13 @@ export class ConversionService extends ApiService {
         return results;
     }
 
-    /******************************************
-     *
-     *  find inner links in online-access-property
-     *  and rebuild the values for displaying
-     *
-     *****************************************/
-    replaceBiblioLink(str: string){
-        let tmpStr,
-            splitStr,
-            nameStr,
-            linkStr,
-            regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
-
-        // check for double spaces
-        str = str.replace('  ', ' ');
-
-        //split "str" behind parentheses
-        splitStr = str.split(') ');
-
-        // get name of link from 1st part of "splitstr
-        nameStr = splitStr[0].replace('(', '');
-
-        // check for link in 2nd part of "splitstr"
-        if (linkStr = regExLink.exec(splitStr[1])) {
-            // ... link with <a> tag
-            tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
-        } else if (nameStr != 'DOI') {
-            //... <a> tag is missing, add it
-            tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
-        } else {
-            // no links, pure string
-            tmpStr = nameStr + ': ' + splitStr[1];
-        }
-
-        return tmpStr;
-    }
-
 
     /******************************************
      *
-     *  convert linear salsah standoff
-     *  (string with textattributes)
-     *  to html using plugin "convert_lin2html"
+     * convert object properties for displaying
      *
      *****************************************/
-    public convertStandoffToHTML(str: string, attr): string {
-        return str;
-        // TODO: implement plugin
-        // return convert_lin2html(JSON.parse(attr), str);
-    }
-
-    /******************************************
-     *
-     * find inner salsah links in richtext
-     * and replace them with click-directive
-     *
-     *****************************************/
-    public replaceSalsahLink(str: string): string {
-        // TODO: add type
-        let patNum = /\d{4,8}/,    // regexp for object id (4-7 DIGITS)
-            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i, // regexp for salsah links
-            p;
-
-        // check only for salsah links
-        while (p = patLink.exec(str)) {
-            // i.e.: as long as patLink is detected in str do...
-
-            // identify resource id
-            let res_id = patNum.exec(p[1])[0];
-
-            // replace href attribute with click-directive
-            // linktext is stored in second regexp-result p[2]
-            str = str.replace(p[0], '<a (click)="showObject(' + res_id + ')">' + p[2] + '</a>');
-        } //END while
-
-        return str;
-    }
-
-
-
-
-
-    // TODO: http://stackoverflow.com/questions/34104277/caching-results-with-angular2-http-service/36417240#36417240
-
-    selectionArr = {};
-
-    getSelectionsById(selectionId: string): any {
-        let queryString: string = '/selections/' + selectionId;
-        let sub = this.httpGet(queryString);
-        sub.subscribe(
-            (data: Object) => {
-                this.selectionArr[selectionId] = data['selection'];
-            },
-            err => console.log(err)
-        );
-        console.log('SELECTIONARR: ', this.selectionArr);
-    }
-
-
-    // convert object properties for displaying
-    convertObjectProperties(data: ResourceFullResponseJson) {
-
+    public convertObjectProperties(data: ResourceFullResponseJson) {
         let convObj = {};
 
         // add lastmod state
@@ -149,21 +53,17 @@ export class ConversionService extends ApiService {
 
         Object.keys(data['props']).forEach((key:string) => {
             let prop = data['props'][key];
-            let propValue = [''];
+            let propValue:[string] = [''];
 
             // check if values property is defined
             if ('values' in prop) {
                 //check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
-                        // DATE: salsah object needs to be converted (using plugin "convert_jul2greg.js")
-
-                        /*
-                         TODO: implement real plugin
-                         prop.values[0] = this.convertDate(prop.values[0]);
-                         propValue[0] = prop.values[0].replace(' (G)', '');
-                         */
-                        propValue[0] = prop.values[0];
+                        // DATE: salsah object needs to be converted (using plugin "dateConverter")
+                        if (prop.values[0] !== '') {
+                            propValue[0] = this.convertDate(prop.values[0]);
+                        }
                         break; //END date
 
                     case '7':
@@ -173,28 +73,19 @@ export class ConversionService extends ApiService {
                             // e.g. "selection=66"
                             let q: string = prop.attributes.split("=")[1].toString();
 
-                            console.info('ConvService#selectionArr: ', this.selectionArr, ' | q: ', q, ' | arr[q]: ', this.selectionArr[q]);
-
-                            if (this.selectionArr[q])
-                            {
-                                console.log('Hurray: selection' + q);
-                                // localize id in selection-list object and identify the label
-                                for (let i = 0; i < this.selectionArr[q].length; i++) {
-                                    if (prop.values[0] == this.selectionArr[q][i].id) {
-                                        propValue[0] = this.selectionArr[q][i].label;
+                            // get selection from salsah api
+                            this.getSelectionsById(q).subscribe(
+                                (data: Object) => {
+                                    let selectionArr = data['selection'];
+                                    // localize id in selection-list object and identify the label
+                                    for (let i = 0; i < selectionArr.length; i++) {
+                                        if (prop.values[0] == selectionArr[i].id) {
+                                            propValue[0] = selectionArr[i].label;
+                                        }
                                     }
-                                }
-                            } else
-                            {
-                                console.log('ConvService#convObjProps: NOPE:  selection' + q);
-                                //TODO#
-                                this.getSelectionsById(q);
-                                //     console.log('got new selection:');
-                                //     console.log(response.data.selection);
-                                //     selectionObj[q] = response.data.selection;
-                                //     console.log(selectionObj);
-                                // })
-                            }
+                                },
+                                err => console.log(err)
+                            );
                         } else {
                             // empty value
                             propValue[0] = '';
@@ -273,5 +164,104 @@ export class ConversionService extends ApiService {
     } // END convertObjectProperties (func)
 
 
+    /******************************************
+     *
+     * convert date objects
+     *
+     *****************************************/
+    private convertDate(dateObj) {
+        let date = dateConverter(dateObj);
+        date = date.replace(' (G)', '');
+        return date;
+    }
+
+
+    /******************************************
+     *
+     *  convert linear salsah standoff
+     *  (string with textattributes)
+     *  to html using plugin "convert_lin2html"
+     *
+     *****************************************/
+    private convertStandoffToHTML(str: string, attr: string): string {
+        return htmlConverter(JSON.parse(attr), str);
+    }
+
+
+    /******************************************
+     *
+     * get selection list object
+     * from salsah api
+     *
+     *****************************************/
+    private getSelectionsById(selectionId: string): any {
+        let queryString: string = '/selections/' + selectionId;
+        return this.httpGet(queryString);
+    }
+
+
+    /******************************************
+     *
+     *  find inner links in online-access-property
+     *  and rebuild the values for displaying
+     *
+     *****************************************/
+    private replaceBiblioLink(str: string){
+        let tmpStr,
+            splitStr,
+            nameStr,
+            linkStr,
+            regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
+
+        // check for double spaces
+        str = str.replace('  ', ' ');
+
+        //split "str" behind parentheses
+        splitStr = str.split(') ');
+
+        // get name of link from 1st part of "splitstr
+        nameStr = splitStr[0].replace('(', '');
+
+        // check for link in 2nd part of "splitstr"
+        if (linkStr = regExLink.exec(splitStr[1])) {
+            // ... link with <a> tag
+            tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
+        } else if (nameStr != 'DOI') {
+            //... <a> tag is missing, add it
+            tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
+        } else {
+            // no links, pure string
+            tmpStr = nameStr + ': ' + splitStr[1];
+        }
+        return tmpStr;
+    }
+
+
+    /******************************************
+     *
+     * find inner salsah links in richtext
+     * and replace them with click-directive
+     *
+     *****************************************/
+    private replaceSalsahLink(str: string): string {
+        // TODO: add type
+        let patNum = /\d{4,8}/,    // regexp for object id (4-7 DIGITS)
+            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i, // regexp for salsah links
+            p;
+
+        // check only for salsah links
+        while (p = patLink.exec(str)) {
+            // i.e.: as long as patLink is detected in str do...
+
+            // identify resource id
+            let res_id = patNum.exec(p[1])[0];
+
+            // replace href attribute with click-directive
+            // linktext is stored in second regexp-result p[2]
+            str = str.replace(p[0], '<a (click)="showObject(' + res_id + ')">' + p[2] + '</a>');
+        } //END while
+
+        return str;
+    }
 
 }

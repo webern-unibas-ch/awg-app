@@ -15,7 +15,7 @@ export class BibliographyListComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
-        console.log('ListComp#bibList' , this.bibList);
+
     }
 
     selectItem(item: SubjectItemJson) {
