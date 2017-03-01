@@ -71,10 +71,10 @@ export class ConversionService extends ApiService {
                         if (prop.values[0] !== '') {
                             // identify id of selection-list from prop.attributes
                             // e.g. "selection=66"
-                            let q: string = prop.attributes.split("=")[1].toString();
+                            let selectionId: string = prop.attributes.split("=")[1].toString();
 
                             // get selection from salsah api
-                            this.getSelectionsById(q).subscribe(
+                            this.getSelectionsById(selectionId).subscribe(
                                 (data: Object) => {
                                     let selectionArr = data['selection'];
                                     // localize id in selection-list object and identify the label
@@ -90,6 +90,7 @@ export class ConversionService extends ApiService {
                             // empty value
                             propValue[0] = '';
                         }
+                        console.log('convService#selectionOuterLoop: ', propValue[0]);
                         break; //END selection
 
                     case '14':

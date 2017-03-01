@@ -1,7 +1,8 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, OnDestroy, Input } from '@angular/core';
 import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 import { BibliographyService } from '../bibliography.service';
 import { ConversionService } from '../../../../../core/services/conversion-service/conversion.service';
+import { Subscription } from 'rxjs';
 
 @Component({
     selector: 'awg-bibliography-detail',
@@ -13,6 +14,7 @@ export class BibliographyDetailComponent implements OnInit {
 
     // TODO#change to Type: Bibentry
     convertedBibItemDetail: any;
+    sub: Subscription;
 
     constructor(
         private _bibliographyService: BibliographyService,
@@ -24,7 +26,7 @@ export class BibliographyDetailComponent implements OnInit {
     }
 
     getBibItemDetails(id: string): void {
-        this._bibliographyService.getBibliographyItemDetail(id)
+        this.sub = this._bibliographyService.getBibliographyItemDetail(id)
             .subscribe((bibItemDetail: ResourceFullResponseJson) => {
                 this.convertedBibItemDetail = this.convertBibResponse(bibItemDetail);
             })
@@ -32,6 +34,10 @@ export class BibliographyDetailComponent implements OnInit {
 
     private convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
         return this._conversionService.convertObjectProperties(bibItemDetail);
+    }
+
+    ngOnDestroy() {
+        this.sub.unsubscribe();
     }
 
 }

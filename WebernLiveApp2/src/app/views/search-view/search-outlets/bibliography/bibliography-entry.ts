@@ -5,7 +5,7 @@ export class BibEntry {
         public Typ: string,
         public Author: string,
         public Titel_selbst: string,
-        public Publikationsdatum: number,
+        public Publikationsdatum: string,
         public Titel_unselbst?: string,
         public Herausgeber?: string,
         public unpubliziert?: string,

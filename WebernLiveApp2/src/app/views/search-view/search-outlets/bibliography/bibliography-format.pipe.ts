@@ -8,69 +8,106 @@ import { BibEntry } from './bibliography-entry';
 export class BibliographyFormatPipe implements PipeTransform {
 
     private entry: BibEntry;
-    public formattedOutput: string = '';
+    private formattedEntry: BibEntry;
+    private formatFieldArr: [string] = [
+        'Author',
+        'Titel_unselbst',
+        'Titel_selbst',
+        'Herausgeber',
+        'unpubliziert',
+        'Verlagsort',
+        'Publikationsdatum',
+        'Reihentitel',
+        'Seitenangabe'
+    ];
 
     transform(bibItem: BibEntry): any {
         if (!bibItem) {
             return null;
         }
         this.entry = bibItem;
+        this.formattedEntry = this.getFormatFields('edit', this.entry);
+        this.getFilteredValues(this.formattedEntry);
 
-        Object.keys(bibItem).forEach( key  => {
-            let value: string = '';
-            switch (key) {
-            /*
-                case 'Kurztitel':
-                    value = this.filterBibTitleShort(bibItem[key]);
-                    break;
-            */
-                case 'Author':
-                    value = this.filterBibAuthor(bibItem[key]);
-                    break;
-                case 'Titel_selbst':
-                    value = this.filterBibTitleIndep(bibItem[key]);
-                    break;
-                case 'Titel_unselbst':
-                    value = this.filterBibTitleDep(bibItem[key]);
-                    break;
-                case 'Herausgeber':
-                    value = this.filterBibEditor(bibItem[key]);
-                    break;
-                case 'unpubliziert':
-                    value = this.filterBibUnpublished(bibItem[key]);
-                    break;
-                case 'Verlagsort':
-                    value = this.filterBibPubPlace(bibItem[key]);
-                    break;
-            /* done in pubplace
-                 case 'publisher':
-                 value = this.filterBibPublisher(bibItem[key]);
-                 break;
-            */
-                case 'Publikationsdatum':
-                    value = this.filterBibPubDate(bibItem[key]);
-                    break;
-                case 'Reihentitel':
-                    value = this.filterBibTitleSeries(bibItem[key]);
-                    break;
-                case 'Seitenangabe':
-                    value = this.filterBibPages(bibItem[key]);
-                    break;
-            }
-            this.formattedOutput += value;
-        });
-        // TODO#rm: console.info('PIPE#formattedOutput: ', this.formattedOutput);
-        return this.formattedOutput;
+        return this.getFormatFields('output', this.formattedEntry);
     }
 
-    // TODO#rm?: filter for short titles in bibliography
+
+    private getFormatFields(opt :string, entry: BibEntry): any {
+        let output: string | Object = {};
+        for (let i = 0; i < this.formatFieldArr.length; i++) {
+            if (entry[this.formatFieldArr[i]]) {
+                if (opt === 'edit') {
+                    output[this.formatFieldArr[i]] = entry[this.formatFieldArr[i]];
+                } else if (opt === 'output') {
+                    output = (i === 0) ? entry[this.formatFieldArr[i]] : (output + entry[this.formatFieldArr[i]]);
+                }
+            }
+        }
+        return output;
+    }
+
+
+    private getFilteredValues(entry: BibEntry) {
+        Object.keys(entry).forEach( key  => {
+            entry[key] = this.getFilteredValueByKey(entry, key);
+        });
+        return entry;
+    }
+
+
+    private getFilteredValueByKey(entry: BibEntry, key: string): string {
+        let value: string = '';
+        switch (key) {
+             case 'Kurztitel':
+                 value = this.filterBibTitleShort(entry[key]);
+                 break;
+            case 'Author':
+                value = this.filterBibAuthor(entry[key]);
+                break;
+            case 'Titel_selbst':
+                value = this.filterBibTitleIndep(entry[key]);
+                break;
+            case 'Titel_unselbst':
+                value = this.filterBibTitleDep(entry[key]);
+                break;
+            case 'Herausgeber':
+                value = this.filterBibEditor(entry[key]);
+                break;
+            case 'unpubliziert':
+                value = this.filterBibUnpublished(entry[key]);
+                break;
+            case 'Verlagsort':
+                value = this.filterBibPubPlace(entry[key]);
+                break;
+            /* done in pubplace
+             case 'publisher':
+             value = this.filterBibPublisher(bibItem[key]);
+             break;
+             */
+            case 'Publikationsdatum':
+                value = this.filterBibPubDate(entry[key]);
+                break;
+            case 'Reihentitel':
+                value = this.filterBibTitleSeries(entry[key]);
+                break;
+            case 'Seitenangabe':
+                value = this.filterBibPages(entry[key]);
+                break;
+            default:
+                value = entry[key];
+        }
+        return value;
+    }
+
+
     private filterBibTitleShort(shortTitle: string) {
         let title: string = (!shortTitle) ? '' : shortTitle + ' | ';
         return title;
     }
 
     // filter for authors in bibliography
-    filterBibAuthor(authors: string | Object) {
+    private filterBibAuthor(authors: string | Object) {
         if (!authors) return '';
 
         let formattedAuthor: string = '';
@@ -126,7 +163,6 @@ export class BibliographyFormatPipe implements PipeTransform {
         formattedEditor += ', '; // ending editor string with ","
         return formattedEditor;
     }
-
 
     // filter for unpublished literature in bibliography
     private filterBibUnpublished(unpub: string) {
@@ -236,7 +272,8 @@ export class BibliographyFormatPipe implements PipeTransform {
         if (typeof pageNum === 'object') {
             let l: number = Object.keys(pageNum).length;
             for (let i = 0; i < l; i++) {
-                pages += ', S. ' + pageNum[i];
+                let prefix: string = (i === 0) ? ', S. ' : ', ';
+                pages += prefix + pageNum[i];
             }
         } else if (typeof pageNum === 'string' && pageNum) {
             pages = ', S. ' + pageNum;
