@@ -90,6 +90,7 @@ export class ConversionService extends ApiService {
                             // empty value
                             propValue[0] = '';
                         }
+                        //TODO: doesn't work yet
                         console.log('convService#selectionOuterLoop: ', propValue[0]);
                         break; //END selection
 

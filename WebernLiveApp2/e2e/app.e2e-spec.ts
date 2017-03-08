@@ -1,10 +1,10 @@
-import { WebernLiveApp2Page } from './app.po';
+import { TestPage } from './app.po';
 
-describe('webern-live-app2 App', function() {
-  let page: WebernLiveApp2Page;
+describe('test App', () => {
+  let page: TestPage;
 
   beforeEach(() => {
-    page = new WebernLiveApp2Page();
+    page = new TestPage();
   });
 
   it('should display message saying app works', () => {

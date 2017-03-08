@@ -1,11 +1,11 @@
 import { browser, element, by } from 'protractor';
 
-export class WebernLiveApp2Page {
+export class TestPage {
   navigateTo() {
     return browser.get('/');
   }
 
   getParagraphText() {
-    return element(by.css('awg-root h1')).getText();
+    return element(by.css('app-root h1')).getText();
   }
 }
