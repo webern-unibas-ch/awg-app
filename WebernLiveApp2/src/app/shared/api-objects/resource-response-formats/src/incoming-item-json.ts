@@ -16,6 +16,30 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI } from '../../basic-message-components';
 import { ResinfoJson } from './resinfo-json';
 
+
+/**
+ * Representation of the referring resource
+ * @param ext_res_id: Object<id: KnoraIRI, pid: KnoraIRI>
+ * @used by IncomingItemJson
+ */
+@JsonObject
+export class ExtResIdJson {
+    /**
+     * The IRI of the referring resource
+     * @param id: KnoraIRI
+     */
+    @JsonProperty('id', String)
+    public id: KnoraIRI = undefined;
+
+    /**
+     * The IRI of the referring property type
+     * @param pid: KnoraIRI
+     */
+    @JsonProperty('pid', String)
+    public pid: KnoraIRI = undefined;
+}
+
+
 /**
  * Represents a resource referring to the requested resource.
  * @used by ResourceFullResponseJson
@@ -43,26 +67,4 @@ export class IncomingItemJson {
      */
     @JsonProperty('value', String)
     public value: string = undefined;
-}
-
-/**
- * Representation of the referring resource
- * @param ext_res_id: Object<id: KnoraIRI, pid: KnoraIRI>
- * @used by IncomingItemJson
- */
-@JsonObject
-class ExtResIdJson {
-    /**
-     * The IRI of the referring resource
-     * @param id: KnoraIRI
-     */
-    @JsonProperty('id', String)
-    public id: KnoraIRI = undefined;
-
-    /**
-     * The IRI of the referring property type
-     * @param pid: KnoraIRI
-     */
-    @JsonProperty('pid', String)
-    public pid: KnoraIRI = undefined;
 }
