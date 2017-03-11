@@ -1,9 +1,9 @@
 export class MetaData {
     page: {
-        year_start: number;
-        year_recent: number;
+        yearStart: number;
+        yearRecent: number;
         version: string;
-        version_release_date: string;
+        versionReleaseDate: string;
     };
     edition: {
         editors: string;

@@ -6,10 +6,19 @@
             </a>
         </div>
         <div class="col-sm-8 text-center">
-            <p>Prototyp AWG-Online-Edition (Version {{ version }} &#9671; {{ version_release_date }})</p>
-            <p>&copy; {{ year_start }}–{{ year_recent }} Anton Webern Gesamtausgabe</p>
-
-            <p><small><a [routerLink]="['/contact']" fragment="masthead" id="imp">Impressum</a></small></p>
+            <p class="versionDesc">
+                Prototyp AWG-Online-Edition (Version <span id="version">{{ meta?.page.version }}</span> &#9671; <span id="versionDate">{{ meta?.page.versionReleaseDate }}</span>)
+            </p>
+            <p class="copyrightDesc">
+                &copy; <span id="copyrightPeriod">{{ meta?.page.yearStart }}–{{ meta?.page.yearRecent }}</span> Anton Webern Gesamtausgabe
+            </p>
+            <p id="contact">
+                <small>
+                    <a [routerLink]="['/contact']" fragment="masthead" id="imp">
+                        Impressum
+                    </a>
+                </small>
+            </p>
         </div>
         <div class="col-sm-2">
             <a href="http://www.snf.ch" target="_blank">
