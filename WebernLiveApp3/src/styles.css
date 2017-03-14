@@ -1,4 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
+
+@import "assets/themes/css/main.css";
+
 html, body {
   font-family: 'Droid Serif', serif;
   font-size: 14px;

@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
 import { MenuModel } from './core/menu.model';
+import { MetaModel } from './core/meta.model';
 import { MenuService } from './core/menu.service';
+import { MetaService } from './core/meta.service';
 
 @Component({
     selector: 'awg-root',
@@ -9,24 +11,34 @@ import { MenuService } from './core/menu.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-
-    selectedMenu: MenuModel;
-    menu: MenuModel[];
+    public metaData: MetaModel;
+    public menu: MenuModel[];
+    public selectedMenu: MenuModel;
 
     constructor(
-        private menuService: MenuService
+        private menuService: MenuService,
+        private metaService: MetaService
     ) { }
 
     ngOnInit() {
-        this.prepareMenu();
+        this.provideMenu();
+        this.provideMetaData();
     }
 
-    prepareMenu(): void {
+    public onMenuSelect(menuItem: MenuModel): void {
+        this.selectedMenu = menuItem;
+    }
+
+    private provideMenu(): void {
         this.menu = this.menuService.getMenu();
         this.selectedMenu = this.menuService.getActiveMenuItem(this.menu);
+        // TODO: rm
+        console.log('APP#selMenu: ', this.selectedMenu);
     }
 
-    onMenuSelect(menuItem: MenuModel): void {
-        this.selectedMenu = menuItem;
+    private provideMetaData(): void {
+        this.metaData = this.metaService.getMetaData();
+        // TODO: rm
+        console.info('APP: metaData: ', this.metaData);
     }
 }

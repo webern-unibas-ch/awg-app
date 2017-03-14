@@ -1,6 +1,6 @@
 {
     "name": "webern-live-app3",
-    "version": "0.0.0",
+    "version": "0.0.1",
     "license": "MIT",
     "scripts": {
         "ng": "ng",
@@ -8,7 +8,11 @@
         "build": "ng build",
         "test": "ng test",
         "lint": "ng lint",
-        "e2e": "ng e2e"
+        "e2e": "ng e2e",
+        "build-css": "./themes/bin/build-css",
+        "watch-css": "./themes/bin/watch-css",
+        "build-css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
+        "watch-css-win": "nodemon -e scss -x \"npm run build-css-win\" "
     },
     "private": true,
     "dependencies": {
@@ -17,6 +21,7 @@
         "@angular/core": "^2.4.0",
         "@angular/forms": "^2.4.0",
         "@angular/http": "^2.4.0",
+        "@angular/material": "^2.0.0-beta.2",
         "@angular/platform-browser": "^2.4.0",
         "@angular/platform-browser-dynamic": "^2.4.0",
         "@angular/router": "^3.4.0",
@@ -35,9 +40,11 @@
         "karma": "~1.4.1",
         "karma-chrome-launcher": "~2.0.0",
         "karma-cli": "~1.0.1",
+        "karma-coverage-istanbul-reporter": "^0.2.0",
         "karma-jasmine": "~1.1.0",
         "karma-jasmine-html-reporter": "^0.2.2",
-        "karma-coverage-istanbul-reporter": "^0.2.0",
+        "node-sass": "^4.5.0",
+        "nodemon": "^1.11.0",
         "protractor": "~5.1.0",
         "ts-node": "~2.0.0",
         "tslint": "~4.4.2",

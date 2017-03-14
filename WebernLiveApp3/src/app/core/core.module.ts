@@ -11,7 +11,9 @@ import { MenuComponent } from './page/menu/menu.component';
 import { SubMenuComponent } from './page/sub-menu/sub-menu.component';
 import { SearchComponent } from './page/search/search.component';
 import { RightTextComponent } from './page/right-text/right-text.component';
+
 import { MenuService } from './menu.service';
+import { MetaService } from './meta.service';
 
 
 @NgModule({
@@ -34,7 +36,7 @@ import { MenuService } from './menu.service';
         MainTextComponent,
         MenuComponent,
         SubMenuComponent ],
-    providers: [ MenuService ]
+    providers: [ MenuService, MetaService ]
 })
 
 export class CoreModule {

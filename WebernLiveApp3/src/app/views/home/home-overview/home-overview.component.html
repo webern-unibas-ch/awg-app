@@ -1,0 +1,35 @@
+<!-- header -->
+<div class="para">
+    <h2>Serie I (Werke mit Opuszahlen)</h2>
+    <h2>Abteilung 5 (Klavierlieder)</h2>
+</div>
+
+<div class="para">
+    <h3><i>Vier Lieder</i> op. 12</h3>
+    <h3>Skizzen</h3>
+    <h4>[Beispieledition ausgewählter Skizzen zu op. 12 Nr. I]</h4>
+</div>
+
+<!-- description -->
+<div class="para warn">
+    <p>Prototyp einer AWG-Online-Edition (Weiterentwicklung einer <a href="http://www.anton-webern.ch/assets/editions/BeispieleditionAWG_3_Skizzen_op12_Online_klein.pdf">prospektiven Simulation [PDF]</a> vom 31. März 2015):</p>
+    <p>
+        Die Bestandteile der AWG-Online-Editionen werden mithilfe der <a href="http://www.salsah.org" target="_blank">virtuellen Forschungsumgebung SALSAH</a> des <a href="http://www.dhlab.unibas.ch/" target="_blank">Digital Humanities Lab</a> der Universität Basel organisiert und aufbereitet. SALSAH ermöglicht es, digitalisierte Quellenbestände und andere digitale ‚Objekte‘ mit Informationen (Annotationen) zu versehen und untereinander zu verknüpfen. Dabei kann auch räumlich voneinander getrennt zeitgleich mit der Datenbank gearbeitet bzw. deren Inhalte erweitert werden.</p>
+    <p>
+        Der Protoyp simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von SALSAH. Die für reale Abfragen im Bereich Online-Edition notwendige <a routerLink="/structure">Datenstruktur</a> wird zur Zeit in der Webern-SALSAH-Datenbank implementiert.
+    </p>
+    <p>
+        Über den Menüpunkt <em>Beispieledition</em> sind die Einleitung, die edierten Notentexte sowie der Kritische Bericht zugänglich.
+    </p>
+    <p>
+        Zusätzlich wird eine einfache Volltextsuche in der Datenbank angeboten, über die die dort hinterlegten Kontextmaterialien (Werklisten [nach Opuszahl bzw. Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden können.
+    </p>
+    <p>
+        Der Prototyp und die Suche werden in ihrer Funktionalität sukzessiv erweitert; so werden verknüpfte Inhalte zukünftig in eigenen, frei anzuordnenden Fenstern erscheinen.</p>
+</div>
+
+<!-- declamation -->
+<div class="declamation">
+    <p>Ediert von <span [innerHtml]="metaData?.edition.editors"></span></p>
+    <p>Versionsdatum: <span class="version">{{ metaData?.edition.lastModified }}</span></p>
+</div>

@@ -5,7 +5,7 @@ import { PageNotFoundComponent } from './views/page-not-found/page-not-found.com
 
 
 const appRoutes: Routes = [
-    { path: '', redirectTo: 'project', pathMatch: 'full' },
+    { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundComponent }
 ];
 

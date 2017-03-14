@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 
 import { MenuModel } from './menu.model';
-import { MENUDATA } from './menu-data';
+import { MENUDATA } from './menu.data';
 
 @Injectable()
 export class MenuService {
@@ -15,7 +15,7 @@ export class MenuService {
 
     public getActiveMenuItem(menu: MenuModel[]) {
         let activeItem: MenuModel;
-        const home: string = '/project';
+        const home: string = '/home';
         let url: string = (this.location.path()) ? this.location.path() : home;
         let splitUrl: string[] = url.split('/');
         let activeRoot: string = '/' + ((splitUrl[0] !== '') ? splitUrl[0] : splitUrl [1]);
