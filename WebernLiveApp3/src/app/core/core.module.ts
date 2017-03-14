@@ -2,6 +2,7 @@ import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { RouterModule } from '@angular/router';
 import { CommonModule } from '@angular/common';
 
+import { CornerRibbonComponent } from './corner-ribbon/corner-ribbon.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { PageComponent } from './page/page.component';
@@ -19,6 +20,7 @@ import { MetaService } from './meta.service';
 @NgModule({
     imports: [ RouterModule, CommonModule ],
     declarations: [
+        CornerRibbonComponent,
         FooterComponent,
         HeaderComponent,
         PageComponent,
@@ -27,8 +29,10 @@ import { MetaService } from './meta.service';
         MenuComponent,
         SubMenuComponent,
         SearchComponent,
-        RightTextComponent ],
+        RightTextComponent
+    ],
     exports: [
+        CornerRibbonComponent,
         FooterComponent,
         HeaderComponent,
         PageComponent,
