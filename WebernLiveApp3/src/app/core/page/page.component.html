@@ -1,0 +1,25 @@
+<div id="page">
+    <div class="content">
+
+        <div class="left">
+            <awg-sub-menu
+                [selectedMenu]="selectedMenu">
+            </awg-sub-menu>
+        </div>
+
+        <div class="center">
+            <awg-menu
+                *ngIf="menu && selectedMenu"
+                [menu]="menu"
+                (selectMenuItemRequest)="onMenuItemSelect($event)">
+            </awg-menu>
+            <awg-main-text></awg-main-text>
+        </div>
+
+        <div class="right">
+            <awg-search></awg-search>
+            <awg-right-text></awg-right-text>
+        </div>
+
+    </div>
+</div>

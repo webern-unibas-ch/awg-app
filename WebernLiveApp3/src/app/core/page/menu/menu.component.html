@@ -1,0 +1,10 @@
+<div id="menu">
+    <div *ngFor="let item of menu; let i = index; let isFirst = first; let isLast = last"
+         [class.first]="isFirst"
+         [class.last]="isLast"
+         [routerLink]="item.linkTo"
+         routerLinkActive="active"
+         (click)="onMenuItemSelect(item)">
+        {{item.label | uppercase }}
+    </div>
+</div>

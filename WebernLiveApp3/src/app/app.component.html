@@ -1,0 +1,10 @@
+<awg-header></awg-header>
+
+<awg-page
+    *ngIf="menu && selectedMenu"
+    [menu]="menu"
+    [selectedMenu]="selectedMenu"
+    (selectMenuItemRequest)="onMenuSelect($event)">
+</awg-page>
+
+<awg-footer></awg-footer>
