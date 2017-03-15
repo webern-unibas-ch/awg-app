@@ -1,3 +1,35 @@
-<p>
-  edition-detail works!
+<!-- maintext: edition -->
+<p class="text-muted">
+    Hinweise: <br>
+    Einen Takt oder eine markierte Stelle anklicken, um die entsprechenden Textkritischen Anmerkungen anzuzeigen. <br>
+    Die grösseren Boxen im Notentext markieren die jeweiligen Anschlüsse der anderen Skizzen und sind ebenfalls verknüpft.
 </p>
+
+<!-- modal -->
+<awg-modal #modal></awg-modal>
+
+<!-- body with embedded svg's -->
+<!-- image control -->
+<awg-edition-sheet-control
+    *ngIf="sheetsData && selectedSheet"
+    [sheets]="sheetsData"
+    [selectedSheet]="selectedSheet"
+    (selectSheetRequest)="onSheetSelect($event)">
+</awg-edition-sheet-control>
+
+<!-- table for TkA -->
+<awg-edition-tka-table
+    *ngIf="showTkA && items"
+    [items]="items">
+</awg-edition-tka-table>
+
+<!-- svg panel -->
+<awg-edition-svg-panel
+    *ngIf="sheetsData && selectedSheet"
+    [sheets]="sheetsData"
+    [selectedSheet]="selectedSheet"
+    [selectedItem]="selectedItem"
+    (selectSheetRequest)="onSheetSelect($event)"
+    (selectItemRequest)="onItemSelect($event)">
+</awg-edition-svg-panel>
+

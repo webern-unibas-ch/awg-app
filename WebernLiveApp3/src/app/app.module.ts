@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { FormsModule } from '@angular/forms';
 import { HttpModule } from '@angular/http';
-import { MaterialModule } from '@angular/material';
 
 import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
@@ -17,12 +15,11 @@ import { SharedModule } from './shared/shared.module';
 @NgModule({
     declarations: [ AppComponent, routedComponents ],
     imports: [
-        BrowserModule, FormsModule, HttpModule,
-        MaterialModule,
+        BrowserModule, HttpModule,
        // ContactModule,
         CoreModule,
         HomeModule,
-        EditionModule,
+        EditionModule.forRoot(),
         SearchModule,
         SharedModule,
         AppRoutingModule    // has to be last routed Module

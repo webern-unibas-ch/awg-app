@@ -32,13 +32,9 @@ export class AppComponent implements OnInit {
     private provideMenu(): void {
         this.menu = this.menuService.getMenu();
         this.selectedMenu = this.menuService.getActiveMenuItem(this.menu);
-        // TODO: rm
-        console.log('APP#selMenu: ', this.selectedMenu);
     }
 
     private provideMetaData(): void {
         this.metaData = this.metaService.getMetaData();
-        // TODO: rm
-        console.info('APP: metaData: ', this.metaData);
     }
 }

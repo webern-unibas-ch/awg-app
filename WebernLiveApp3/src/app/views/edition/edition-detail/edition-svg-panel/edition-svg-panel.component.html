@@ -1,0 +1,161 @@
+<div>
+    <!-- embedded svg: Aa:SkI/2 -->
+    <div class="svg" *ngIf="isSelectedSheet(sheet2)">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/2">
+            <svg:image xlink:href [attr.xlink:href]="selectedSheet.svg" width="1000" height="508" />
+            <!-- systems -->
+            <!-- system 14 -->
+            <a (click)="selectItem('system', '14')" [class.active]="isSelectedItem('s14')">
+                <rect class="svg_system" x="20" y="205" width="950" height="60" />
+            </a>
+            <!-- system 13 -->
+            <a (click)="selectItem('system', '13')" [class.active]="isSelectedItem('s13')">
+                <rect class="svg_system" x="20" y="275" width="950" height="60" />
+            </a>
+            <!-- system 12 -->
+            <a (click)="selectItem('system', '12')" [class.active]="isSelectedItem('s12')">
+                <rect class="svg_system" x="20" y="345" width="950" height="60"/>
+            </a>
+            <!-- measures -->
+            <!-- measure 10 -->
+            <a (click)="selectItem('measure', '10')" [class.active]="isSelectedItem('m10')">
+                <rect class="svg_measure" x="300" y="125" width="180" height="345" />
+            </a>
+            <!-- measure 11 -->
+            <a (click)="selectItem('measure', '11')" [class.active]="isSelectedItem('m11')">
+                <rect class="svg_measure" x="480" y="125" width="180" height="345" />
+            </a>
+            <!-- measure 12 -->
+            <a (click)="selectItem('measure', '12')" [class.active]="isSelectedItem('m12')">
+                <rect class="svg_measure" x="660" y="125" width="180" height="345"/>
+            </a>
+            <!-- single items ->
+               <!-- T10/S12/o1 -->
+            <a (click)="selectItem('single', '0')" [class.active]="isSelectedItem('0')">
+                <rect class="svg_item" x="330" y="350" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- T10/S12/o2 -->
+            <a (click)="selectItem('single', '1')" [class.active]="isSelectedItem('1')">
+                <rect class="svg_item" x="380" y="350" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- T11/S14/o(1/4) -->
+            <a (click)="selectItem('single', '2')" [class.active]="isSelectedItem('2')">
+                <rect class="svg_item" x="480" y="200" rx="5" ry="5" width="125" height="80" />
+            </a>
+            <!-- T12/S13/oO -->
+            <a (click)="selectItem('single', '3')" [class.active]="isSelectedItem('3')">
+                <rect class="svg_item" x="660" y="270" rx="5" ry="5" width="125" height="80" />
+            </a>
+            <!-- link boxes -->
+            <!-- rect SkI/3 -->
+            <a (click)="selectSheet(sheets[sheet3])">
+                <rect class="svg_linkbox" x="90" y="345" width="182" height="125" />
+            </a>
+        </svg>
+    </div> <!-- END svg Aa:SkI/2 -->
+
+
+
+    <!-- embedded svg: Aa:SkI/3 -->
+    <div class="svg" *ngIf="isSelectedSheet(sheet3)">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" id="Aa:SkI/3">
+            <svg:image xlink:href [attr.xlink:href]="selectedSheet.svg" width="1000" height="608" />
+            <!-- measures -->
+            <!-- measure 10 -->
+            <a (click)="selectItem('measure', '10')" [class.active]="isSelectedItem('m10')">
+                <rect class="svg_measure" x="80" y="110" width="282" height="400" />
+            </a>
+            <!-- measure 11 -->
+            <a (click)="selectItem('measure', '11')" [class.active]="isSelectedItem('m11')">
+                <rect class="svg_measure" x="362" y="110" width="260" height="400" />
+            </a>
+            <!-- single items -->
+            <!-- T10/S9/o(2/4) -->
+            <a (click)="selectItem('single', '0')" [class.active]="isSelectedItem('0')">
+                <rect class="svg_item" x="225" y="420" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- T11/S10/o(1.-2.Note) -->
+            <a (click)="selectItem('single', '1')" [class.active]="isSelectedItem('1')">
+                <rect class="svg_item" x="365" y="340" rx="5" ry="5" width="105" height="70" />
+            </a>
+            <!-- T12/S10/o(nach 2/4) -->
+            <a (click)="selectItem('single', '2')" [class.active]="isSelectedItem('2')">
+                <rect class="svg_item" x="510" y="340" rx="5" ry="5" width="100" height="70" />
+            </a>
+            <!-- link boxes -->
+            <!-- rect SkI/2 -->
+            <a (click)="selectSheet(sheets[sheet2])">
+                <rect class="svg_linkbox" x="458" y="111" width="165" height="162" />
+            </a>
+            <!-- rect SkI/5 -->
+            <a (click)="selectSheet(sheets[sheet5])">
+                <rect class="svg_linkbox" x="620" y="420" width="165" height="160" />
+            </a>
+        </svg>
+    </div> <!-- END svg Aa:SkI/3 -->
+
+
+
+    <!-- embedded svg: Aa:SkI/4 -->
+    <div class="svg" *ngIf="isSelectedSheet(sheet4)">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/4" >
+            <svg:image xlink:href [attr.xlink:href]="selectedSheet.svg" width="1000" height="508" />
+            <!-- measures -->
+            <!-- measure 10 -->
+            <a (click)="selectItem('measure', '10')" [class.active]="isSelectedItem('m10')">
+                <rect class="svg_measure" x="150" y="115" width="268" height="390" />
+            </a>
+            <!-- single items -->
+            <!-- T10/S6/oO -->
+            <a (click)="selectItem('single', '0')" [class.active]="isSelectedItem('0')">
+                <rect class="svg_item" x="283" y="270" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- T10/S5/o(3.Note) -->
+            <a (click)="selectItem('single', '1')" [class.active]="isSelectedItem('1')">
+                <rect class="svg_item" x="283" y="350" rx="5" ry="5" width="40" height="70" />
+            </a>
+            <!-- link boxes -->
+            <!-- rect SkI/5 -->
+            <a (click)="selectSheet(sheets[sheet5])">
+                <rect class="svg_linkbox" x="577" y="152" width="222" height="180" />
+            </a>
+        </svg>
+    </div> <!-- END svg Aa:SkI/4 -->
+
+
+
+    <!-- embedded svg: Aa:SkI/5 -->
+    <div class="svg" *ngIf="isSelectedSheet(sheet5)">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" id="Aa:SkI/5">
+            <svg:image xlink:href [attr.xlink:href]="selectedSheet.svg" width="1000" height="608" />
+            <!-- measures -->
+            <!-- measure 10 -->
+            <a (click)="selectItem('measure', '10')" [class.active]="isSelectedItem('m10')">
+                <rect class="svg_measure" x="390" y="115" width="260" height="390" />
+            </a>
+            <!-- measure 11 -->
+            <a (click)="selectItem('measure', '11')" [class.active]="isSelectedItem('m11')">
+                <rect class="svg_measure" x="650" y="115" width="200" height="390" />
+            </a>
+            <!-- single items -->
+            <!-- T10/S9/o3/8 -->
+            <a (click)="selectItem('single', '0')" [class.active]="isSelectedItem('0')">
+                <rect class="svg_item" x="523" y="195" rx="5" ry="5" width="40" height="85" />
+            </a>
+            <!-- T11/S9/o1/4 -->
+            <a (click)="selectItem('single', '1')" [class.active]="isSelectedItem('1')">
+                <rect class="svg_item" x="650" y="195" rx="5" ry="5" width="40" height="85" />
+            </a>
+            <!-- link boxes -->
+            <!-- rect SkI/3 -->
+            <a (click)="selectSheet(sheets[sheet3])">
+                <rect class="svg_linkbox" x="72" y="148" width="242" height="125" />
+            </a>
+            <!-- rect SkI/4 -->
+            <a (click)="selectSheet(sheets[sheet4])">
+                <rect class="svg_linkbox" x="72" y="345" width="245" height="205" />
+            </a>
+        </svg>
+    </div> <!-- END svg Aa:SkI/5 -->
+
+</div> <!-- END body -->

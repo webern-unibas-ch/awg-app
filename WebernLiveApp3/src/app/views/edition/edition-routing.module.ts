@@ -17,13 +17,14 @@ const editionRoutes: Routes = [
                     { path: 'overview', component: EditionOverviewComponent },
                     { path: 'intro', component: EditionIntroComponent },
                     { path: 'detail', component: EditionDetailComponent },
-                    { path: 'detail:id', component: EditionDetailComponent },
+                    { path: 'detail/:id', component: EditionDetailComponent },
                     { path: 'report', component: EditionReportComponent },
                     { path: '', redirectTo: 'overview', pathMatch: 'full'}
                 ]
             }
         ]
-    }
+    },
+    { path: 'editions', redirectTo: 'edition', pathMatch: 'full' }
 ];
 
 @NgModule({
