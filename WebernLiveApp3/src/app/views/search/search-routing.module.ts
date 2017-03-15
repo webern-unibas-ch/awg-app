@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
 import { SearchComponent } from './search.component';
-import { SearchBibliographyComponent } from './search-bibliography/search-bibliography.component';
-import { SearchFulltextComponent } from './search-fulltext/search-fulltext.component';
-import { SearchOverviewComponent } from './search-overview/search-overview.component';
-import { SearchTimelineComponent } from './search-timeline/search-timeline.component';
+import { SearchBibliographyComponent } from './search-bibliography';
+import { SearchFulltextComponent } from './search-fulltext';
+import { SearchOverviewComponent } from './search-overview';
+import { SearchTimelineComponent } from './search-timeline';
 
 
 const searchRoutes: Routes = [
@@ -26,8 +26,8 @@ const searchRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(searchRoutes)],
-    exports: [RouterModule]
+    imports: [ RouterModule.forChild(searchRoutes) ],
+    exports: [ RouterModule ]
 })
 export class SearchRoutingModule { }
 

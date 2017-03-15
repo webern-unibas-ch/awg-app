@@ -1,8 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Sheet } from '../sheet';
-import { Textcritics } from '../textcritics';
+import { Sheet, Textcritics } from '../models';
 import { EditionService } from '../edition.service';
 
 @Component({

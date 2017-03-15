@@ -1,4 +1,4 @@
-export class MetaModel {
+export class Meta {
     page: {
         yearStart: number;
         yearRecent: number;

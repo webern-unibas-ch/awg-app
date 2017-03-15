@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Location } from '@angular/common';
 
-import { MenuModel } from './menu.model';
+import { Menu } from './models';
 import { MENUDATA } from './menu.data';
 
 @Injectable()
@@ -9,12 +9,12 @@ export class MenuService {
 
     constructor(private location: Location) { }
 
-    public getMenu(): MenuModel[] {
+    public getMenu(): Menu[] {
         return MENUDATA;
     }
 
-    public getActiveMenuItem(menu: MenuModel[]) {
-        let activeItem: MenuModel;
+    public getActiveMenuItem(menu: Menu[]) {
+        let activeItem: Menu;
         const home: string = '/home';
         let url: string = (this.location.path()) ? this.location.path() : home;
         let splitUrl: string[] = url.split('/');

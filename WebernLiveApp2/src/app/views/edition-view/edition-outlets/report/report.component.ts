@@ -3,7 +3,7 @@ import { ActivatedRoute } from '@angular/router';
 
 import { EditionService } from '../../edition.service';
 import { Source } from '../../source';
-import {Textcritics} from "../../textcritics";
+import { Textcritics } from '../../textcritics';
 
 @Component({
     selector: 'awg-report',

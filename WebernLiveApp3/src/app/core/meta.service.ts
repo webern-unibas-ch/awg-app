@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { MetaModel } from './meta.model';
+import { Meta } from './models';
 import { METADATA } from './meta.data';
 
 
@@ -9,7 +9,7 @@ export class MetaService {
 
     constructor() { }
 
-    public getMetaData(): MetaModel {
+    public getMetaData(): Meta {
         return METADATA[0];
     }
 

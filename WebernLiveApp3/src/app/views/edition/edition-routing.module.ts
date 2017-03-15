@@ -2,10 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes }  from '@angular/router';
 
 import { EditionComponent } from './edition.component';
-import { EditionDetailComponent } from './edition-detail/edition-detail.component';
-import { EditionIntroComponent } from './edition-intro/edition-intro.component';
-import { EditionOverviewComponent } from './edition-overview/edition-overview.component';
-import { EditionReportComponent } from './edition-report/edition-report.component';
+import { EditionDetailComponent } from './edition-detail';
+import { EditionIntroComponent } from './edition-intro/';
+import { EditionOverviewComponent } from './edition-overview';
+import { EditionReportComponent } from './edition-report';
 
 
 const editionRoutes: Routes = [
@@ -28,8 +28,8 @@ const editionRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [RouterModule.forChild(editionRoutes)],
-    exports: [RouterModule]
+    imports: [ RouterModule.forChild(editionRoutes) ],
+    exports: [ RouterModule ]
 })
 export class EditionRoutingModule { }
 

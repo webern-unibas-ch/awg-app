@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { MetaModel } from '../meta.model';
+import { Meta } from '../models';
 
 @Component({
     selector: 'awg-footer',
@@ -8,7 +8,7 @@ import { MetaModel } from '../meta.model';
     styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-    @Input() meta: MetaModel;
+    @Input() meta: Meta;
 
     constructor() { }
 

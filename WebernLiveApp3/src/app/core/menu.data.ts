@@ -1,6 +1,6 @@
-import { MenuModel } from './menu.model';
+import { Menu } from './models';
 
-export const MENUDATA: MenuModel[] = [
+export const MENUDATA: Menu[] = [
     {
         label: 'Home',
         linkTo: '/home',

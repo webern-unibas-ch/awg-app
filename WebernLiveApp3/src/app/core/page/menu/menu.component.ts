@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { MenuModel } from '../../menu.model';
+import { Menu } from '../../models';
 
 @Component({
     selector: 'awg-menu',
@@ -7,15 +7,15 @@ import { MenuModel } from '../../menu.model';
     styleUrls: ['./menu.component.css']
 })
 export class MenuComponent implements OnInit {
-    @Input('menu') menu: [MenuModel];
-    @Output() selectMenuItemRequest: EventEmitter<MenuModel> = new EventEmitter();
+    @Input('menu') menu: [Menu];
+    @Output() selectMenuItemRequest: EventEmitter<Menu> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    onMenuItemSelect(menuItem: MenuModel) {
+    onMenuItemSelect(menuItem: Menu) {
         this.selectMenuItemRequest.emit(menuItem);
     }
 

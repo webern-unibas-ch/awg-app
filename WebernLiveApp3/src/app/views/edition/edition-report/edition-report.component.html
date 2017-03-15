@@ -1,3 +1,27 @@
 <p>
-  edition-report works!
+    edition-report works!
 </p>
+<!-- maintext: report -->
+
+<!-- modal -->
+<awg-modal #modal></awg-modal>
+
+<!-- header -->
+<awg-heading
+    [title]="reportTitle"
+    [id]="reportId">
+</awg-heading>
+
+<!-- sources -->
+<awg-edition-report-sources
+    *ngIf="sourceListData"
+    [sourceList]="sourceListData"
+    (openModalRequest)="modal.open($event)"
+    (scrollRequest)="scrollTo($event)">
+</awg-edition-report-sources>
+
+<!-- textcritics -->
+<awg-edition-report-textcritics
+    [comments]="textcriticsData"
+    (openModalRequest)="modal.open($event)">
+</awg-edition-report-textcritics>

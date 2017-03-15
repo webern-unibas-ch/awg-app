@@ -1,6 +1,6 @@
-import { MetaModel } from './meta.model';
+import { Meta } from './models';
 
-export const METADATA: MetaModel[] = [
+export const METADATA: Meta[] = [
     {
         page: {
             yearStart: 2015,

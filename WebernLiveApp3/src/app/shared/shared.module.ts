@@ -3,11 +3,11 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
-import { HeadingComponent } from './heading/heading.component';
-import { ModalComponent } from './modal/modal.component';
+import { HeadingComponent } from './heading';
+import { ModalComponent } from './modal';
 
-import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
-import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
+import { MapToIterablePipe } from './map-to-iterable';
+import { SanitizeHTMLPipe } from './sanitize-html';
 
 @NgModule({
     imports: [ CommonModule, FormsModule ],
@@ -16,9 +16,7 @@ import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
         MapToIterablePipe, SanitizeHTMLPipe
     ],
     exports: [
-        CommonModule,
-        FormsModule,
-        MaterialModule,
+        CommonModule, FormsModule, MaterialModule,
         HeadingComponent, ModalComponent,
         MapToIterablePipe, SanitizeHTMLPipe
     ]

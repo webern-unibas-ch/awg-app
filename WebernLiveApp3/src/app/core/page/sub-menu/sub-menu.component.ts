@@ -1,5 +1,5 @@
 import { Component, Input, OnInit} from '@angular/core';
-import { MenuModel } from '../../menu.model';
+import { Menu } from '../../models';
 
 @Component({
     selector: 'awg-sub-menu',
@@ -7,7 +7,7 @@ import { MenuModel } from '../../menu.model';
     styleUrls: ['./sub-menu.component.css']
 })
 export class SubMenuComponent implements OnInit {
-    @Input('selectedMenu') selectedMenu: MenuModel;
+    @Input('selectedMenu') selectedMenu: Menu;
 
     constructor() { }
 

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MetaModel } from '../../../core/meta.model';
+import { Meta } from '../../../core/models';
 import { MetaService } from '../../../core/meta.service';
 
 @Component({
@@ -9,7 +9,7 @@ import { MetaService } from '../../../core/meta.service';
     styleUrls: ['./home-overview.component.css']
 })
 export class HomeOverviewComponent implements OnInit {
-    public metaData: MetaModel;
+    public metaData: Meta;
 
     constructor(private metaService: MetaService) { }
 

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { MenuModel } from './core/menu.model';
-import { MetaModel } from './core/meta.model';
+import { Menu } from './core/models/menu.model';
+import { Meta } from './core/models/meta.model';
 import { MenuService } from './core/menu.service';
 import { MetaService } from './core/meta.service';
 
@@ -11,9 +11,9 @@ import { MetaService } from './core/meta.service';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    public metaData: MetaModel;
-    public menu: MenuModel[];
-    public selectedMenu: MenuModel;
+    public metaData: Meta;
+    public menu: Menu[];
+    public selectedMenu: Menu;
 
     constructor(
         private menuService: MenuService,
@@ -25,7 +25,7 @@ export class AppComponent implements OnInit {
         this.provideMetaData();
     }
 
-    public onMenuSelect(menuItem: MenuModel): void {
+    public onMenuSelect(menuItem: Menu): void {
         this.selectedMenu = menuItem;
     }
 
