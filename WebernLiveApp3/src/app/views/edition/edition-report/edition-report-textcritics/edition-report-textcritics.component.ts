@@ -20,7 +20,6 @@ export class EditionReportTextcriticsComponent implements OnInit {
         this.openDialogRequest.emit(identifier);
     }
 
-    // TODO:
-    // self-sanitize content of comments (loaded from textcritics.json)
+    // TODO: self-sanitize content of comments (loaded from textcritics.json)
 
 }
