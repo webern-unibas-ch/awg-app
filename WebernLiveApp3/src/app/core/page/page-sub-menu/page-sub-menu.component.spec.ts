@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { RightTextComponent } from './right-text.component';
+import { PageSubMenuComponent } from './page-sub-menu.component';
 
-describe('RightTextComponent', () => {
-    let component: RightTextComponent;
-    let fixture: ComponentFixture<RightTextComponent>;
+describe('PageSubMenuComponent', () => {
+    let component: PageSubMenuComponent;
+    let fixture: ComponentFixture<PageSubMenuComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ RightTextComponent ]
+            declarations: [ PageSubMenuComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(RightTextComponent);
+        fixture = TestBed.createComponent(PageSubMenuComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

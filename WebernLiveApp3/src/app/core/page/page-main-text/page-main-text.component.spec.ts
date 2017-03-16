@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SubMenuComponent } from './sub-menu.component';
+import { PageMainTextComponent } from './page-main-text.component';
 
-describe('SubMenuComponent', () => {
-    let component: SubMenuComponent;
-    let fixture: ComponentFixture<SubMenuComponent>;
+describe('PageMainTextComponent', () => {
+    let component: PageMainTextComponent;
+    let fixture: ComponentFixture<PageMainTextComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ SubMenuComponent ]
+            declarations: [ PageMainTextComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SubMenuComponent);
+        fixture = TestBed.createComponent(PageMainTextComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

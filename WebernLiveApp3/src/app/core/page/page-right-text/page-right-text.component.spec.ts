@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { MainTextComponent } from './main-text.component';
+import { PageRightTextComponent } from './page-right-text.component';
 
-describe('MainTextComponent', () => {
-    let component: MainTextComponent;
-    let fixture: ComponentFixture<MainTextComponent>;
+describe('PageRightTextComponent', () => {
+    let component: PageRightTextComponent;
+    let fixture: ComponentFixture<PageRightTextComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ MainTextComponent ]
+            declarations: [ PageRightTextComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(MainTextComponent);
+        fixture = TestBed.createComponent(PageRightTextComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

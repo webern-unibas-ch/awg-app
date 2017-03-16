@@ -1,45 +1,33 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { CommonModule } from '@angular/common';
+import { SharedModule } from '../shared/shared.module';
+
+import { PageModule } from './page/page.module';
 
 import { CornerRibbonComponent } from './corner-ribbon/corner-ribbon.component';
 import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
-import { PageComponent } from './page/page.component';
-
-import { MainTextComponent } from './page/main-text/main-text.component';
-import { MenuComponent } from './page/menu/menu.component';
-import { SubMenuComponent } from './page/sub-menu/sub-menu.component';
-import { SearchComponent } from './page/search/search.component';
-import { RightTextComponent } from './page/right-text/right-text.component';
 
 import { MenuService } from './menu.service';
 import { MetaService } from './meta.service';
 
 
 @NgModule({
-    imports: [ RouterModule, CommonModule ],
+    imports: [
+        RouterModule, SharedModule,
+        PageModule
+    ],
     declarations: [
         CornerRibbonComponent,
         FooterComponent,
-        HeaderComponent,
-        PageComponent,
-
-        MainTextComponent,
-        MenuComponent,
-        SubMenuComponent,
-        SearchComponent,
-        RightTextComponent
+        HeaderComponent
     ],
     exports: [
         CornerRibbonComponent,
         FooterComponent,
         HeaderComponent,
-        PageComponent,
-
-        MainTextComponent,
-        MenuComponent,
-        SubMenuComponent ],
+        PageModule
+    ],
     providers: [ MenuService, MetaService ]
 })
 

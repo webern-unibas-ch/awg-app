@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 
 @Component({
     selector: 'awg-page-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.css']
+    templateUrl: './page-search.component.html',
+    styleUrls: ['./page-search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class PageSearchComponent implements OnInit {
 
     constructor() { }
 
