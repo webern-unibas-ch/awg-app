@@ -1,8 +1,5 @@
 <!-- maintext: report -->
 
-<!-- modal -->
-<awg-modal #modal></awg-modal>
-
 <!-- header -->
 <awg-heading
     [title]="reportTitle"
@@ -13,12 +10,12 @@
 <awg-edition-report-sources
     *ngIf="sourceListData"
     [sourceList]="sourceListData"
-    (openModalRequest)="modal.open($event)"
+    (openDialogRequest)="openEditionDialog($event)"
     (scrollRequest)="scrollTo($event)">
 </awg-edition-report-sources>
 
 <!-- textcritics -->
 <awg-edition-report-textcritics
     [comments]="textcriticsData"
-    (openModalRequest)="modal.open($event)">
+    (openDialogRequest)="openEditionDialog($event)">
 </awg-edition-report-textcritics>

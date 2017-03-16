@@ -1,30 +1,31 @@
-import { Component, ViewChild } from '@angular/core';
-import { MdDialog, MdDialogRef } from '@angular/material';
+import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Rx';
+import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
 
-@Component({
-  selector: 'awg-modal',
-  templateUrl: './modal.component.html',
-  styleUrls: ['./modal.component.css']
-})
-export class ModalComponent {
-    @ViewChild('awgModal') public awgModal: MdDialog;
+import { DialogComponent } from './dialog.component';
 
-    private modalContent: string;
+@Injectable()
+export class DialogService {
 
-    public open(identifier: string): void {
-        //TODO: https://material.angular.io/components/component/dialog
-        this.modalContent = modalText[identifier];
-        let dialogRef = this.awgModal.open(ModalComponent);
+    constructor(
+        private dialog: MdDialog
+    ) { }
+
+    public openEditionDialog(identifier: string): Observable<boolean> {
+        const title: string = 'Hinweis';
+        let content: string = editionDialogContent[identifier];
+        let dialogRef: MdDialogRef<DialogComponent>;
+
+        dialogRef = this.dialog.open(DialogComponent);
+        dialogRef.componentInstance.title = title;
+        dialogRef.componentInstance.content = content;
+
+        return dialogRef.afterClosed();
     }
-
-    /*
-    public close(): void {
-        this.awgModal.hide();
-    }
-*/
 }
 
-const modalText: Object = {
+//TODO: move to seperate class?
+const editionDialogContent: Object = {
     'sourceNotA': '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',
     'sheetComingSoon': 'Die edierten Notentexte von <strong>Aa:SkI/1</strong>, <strong>Ab:SkII/1</strong>, <strong>Ac:SkIII/1</strong> und <strong>Ac:SkIII/7</strong> sowie <strong>Ae:SkIV/1</strong> erscheinen im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.',
     'editionComingSoon': '<p>Die Einleitungen, edierten Notentexte und Kritischen Berichte zu</p><ul class="none"><li>Werkedition der Druckfassung der <i>Vier Lieder</i> op. 12 <br/> Textedition von Nr. I „<i>Der Tag ist vergangen</i>“ (Fassung 1) <br/> Textedition von Nr. I „<i>Der Tag ist vergangen</i>“ (Fassung 2) <br/> Textedition von Nr. IV <i>Gleich und Gleich</i> (Fassung 1) </li></ul><p> erscheinen im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',

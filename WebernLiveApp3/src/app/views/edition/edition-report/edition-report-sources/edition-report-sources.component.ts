@@ -8,18 +8,17 @@ import { Source } from '../../models';
     styleUrls: ['./edition-report-sources.component.css']
 })
 export class EditionReportSourcesComponent implements OnInit {
-
     @Input() sourceList: Source[];
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
-    @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
+    @Output() scrollRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openEditionDialog(identifier: string) {
+        this.openDialogRequest.emit(identifier);
     }
 
     scrollTo(id: string) {

@@ -4,13 +4,13 @@ import { SharedModule } from '../shared/shared.module';
 
 import { PageModule } from './page/page.module';
 
-import { CornerRibbonComponent } from './corner-ribbon/corner-ribbon.component';
-import { FooterComponent } from './footer/footer.component';
-import { HeaderComponent } from './header/header.component';
+import { CornerRibbonComponent } from './corner-ribbon';
+import { FooterComponent } from './footer';
+import { HeaderComponent } from './header';
+import { DialogComponent, DialogService } from './dialog';
 
 import { MenuService } from './menu.service';
 import { MetaService } from './meta.service';
-
 
 @NgModule({
     imports: [
@@ -19,16 +19,21 @@ import { MetaService } from './meta.service';
     ],
     declarations: [
         CornerRibbonComponent,
+        DialogComponent,
         FooterComponent,
         HeaderComponent
     ],
     exports: [
         CornerRibbonComponent,
+        DialogComponent,
         FooterComponent,
         HeaderComponent,
         PageModule
     ],
-    providers: [ MenuService, MetaService ]
+    entryComponents: [
+        DialogComponent
+    ],
+    providers: [ DialogService, MenuService, MetaService ]
 })
 
 export class CoreModule {

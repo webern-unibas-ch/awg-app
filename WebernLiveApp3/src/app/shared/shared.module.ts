@@ -4,7 +4,6 @@ import { FormsModule } from '@angular/forms';
 import { MaterialModule } from '@angular/material';
 
 import { HeadingComponent } from './heading';
-import { ModalComponent } from './modal';
 
 import { MapToIterablePipe } from './map-to-iterable';
 import { SanitizeHTMLPipe } from './sanitize-html';
@@ -12,13 +11,15 @@ import { SanitizeHTMLPipe } from './sanitize-html';
 @NgModule({
     imports: [ CommonModule, FormsModule ],
     declarations: [
-        HeadingComponent, ModalComponent,
-        MapToIterablePipe, SanitizeHTMLPipe
+        HeadingComponent,
+        MapToIterablePipe,
+        SanitizeHTMLPipe
     ],
     exports: [
         CommonModule, FormsModule, MaterialModule,
-        HeadingComponent, ModalComponent,
-        MapToIterablePipe, SanitizeHTMLPipe
+        HeadingComponent,
+        MapToIterablePipe,
+        SanitizeHTMLPipe
     ]
 })
 export class SharedModule { }

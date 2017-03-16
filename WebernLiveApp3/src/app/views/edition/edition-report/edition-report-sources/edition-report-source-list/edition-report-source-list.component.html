@@ -20,7 +20,7 @@
                 <!--  at the moment only if ="source.siglum !== 'A'" -->
                 <tr *ngFor="let source of sourceList.sources.slice(1)">
                     <td class="bold">
-                        <a (click)="openModal(source.linkTo)" [innerHTML]="source.siglum"></a>
+                        <a (click)="openEditionDialog(source.linkTo)" [innerHTML]="source.siglum"></a>
                     </td>
                     <td>
                         <span [innerHTML]="source.type | sanitizeHTML"></span> <br/>

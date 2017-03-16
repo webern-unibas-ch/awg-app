@@ -9,17 +9,18 @@ import { Textcritics } from '../../models';
 })
 export class EditionReportTextcriticsComponent implements OnInit {
     @Input() comments: Textcritics[];
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openDialogRequest: EventEmitter<any> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openEditionDialog(identifier: string) {
+        this.openDialogRequest.emit(identifier);
     }
 
-    // TODO: self-sanitize content of comments (loaded from textcritics.json)
+    // TODO:
+    // self-sanitize content of comments (loaded from textcritics.json)
 
 }

@@ -1,0 +1,6 @@
+<h4 md-dialog-title>{{ title | uppercase }}</h4>
+<div md-dialog-content [innerHtml]="content"></div>
+<div md-dialog-actions align="end">
+    <button type="button" md-button aria-label="Close"
+            (click)="dialogRef.close()">Schließen</button>
+</div>

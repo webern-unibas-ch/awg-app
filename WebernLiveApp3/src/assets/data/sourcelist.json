@@ -27,7 +27,7 @@
         "linkTo": "sourceNotA"
 	}, {
         "siglum": "E<sup>1</sup>",
-		"type": "Handexemplar von <a (click)=\"openModal('sourceNotA')\"><strong>E</strong></a>.",
+		"type": "Handexemplar von <a (click)=\"openEditionDialog('sourceNotA')\"><strong>E</strong></a>.",
 		"location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
         "linkTo": "sourceNotA"
 	}, {
@@ -42,7 +42,7 @@
         "linkTo": "sourceNotA"
 	}, {
         "siglum": "G<sup>1</sup>",
-		"type": "Handexemplar von <a (click)=\"openModal('sourceNotA')\"><strong>G</strong></a>.",
+		"type": "Handexemplar von <a (click)=\"openEditionDialog('sourceNotA')\"><strong>G</strong></a>.",
 		"location": "Washington, DC, Library of Congress, Moldenhauer Archives, Box-Folder: 59/10.",
         "linkTo": "sourceNotA"
 	}]

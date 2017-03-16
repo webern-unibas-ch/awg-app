@@ -6,16 +6,16 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./edition-report-source-evaluation.component.css']
 })
 export class EditionReportSourceEvaluationComponent implements OnInit {
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
-    @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
+    @Output() scrollRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openEditionDialog(identifier: string) {
+        this.openDialogRequest.emit(identifier);
     }
 
     scrollTo(id: string) {

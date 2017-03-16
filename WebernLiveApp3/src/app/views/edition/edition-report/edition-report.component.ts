@@ -10,7 +10,6 @@ import { Source, Textcritics } from '../models';
     styleUrls: ['./edition-report.component.css']
 })
 export class EditionReportComponent implements OnInit {
-
     public reportTitle: string = 'Kritischer Bericht';
     public reportId: string = 'report';
 
@@ -19,8 +18,8 @@ export class EditionReportComponent implements OnInit {
     private errorMessage: string = undefined;
 
     constructor(
-        private _route: ActivatedRoute,
-        private _editionService: EditionService
+        private route: ActivatedRoute,
+        private editionService: EditionService
     ) { }
 
     ngOnInit() {
@@ -28,8 +27,9 @@ export class EditionReportComponent implements OnInit {
         this.scrollTo();
     }
 
-    private getSourceListAndCommentsData() {
-        this._editionService.getSourceListAndCommentsData()
+
+    public getSourceListAndCommentsData() {
+        this.editionService.getSourceListAndCommentsData()
             .subscribe((data) => {
                     this.sourceListData = data[0];
                     this.textcriticsData = data[1];
@@ -40,11 +40,17 @@ export class EditionReportComponent implements OnInit {
             );
     }
 
-    private scrollTo(id?: string) {
+
+    public openEditionDialog(identifier: string) {
+        this.editionService.openEditionDialog(identifier);
+    }
+
+
+    public scrollTo(id?: string) {
         console.log('Report: scrollTo(id): ', id);
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
-            this._route.fragment
+            this.route.fragment
                 .subscribe(
                     f => {
                         if (!f) { return; };

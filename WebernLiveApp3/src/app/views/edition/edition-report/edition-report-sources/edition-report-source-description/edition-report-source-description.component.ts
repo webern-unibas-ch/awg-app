@@ -6,16 +6,15 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./edition-report-source-description.component.css']
 })
 export class EditionReportSourceDescriptionComponent implements OnInit {
-
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openEditionDialog(identifier: string) {
+        this.openDialogRequest.emit(identifier);
     }
 
 }

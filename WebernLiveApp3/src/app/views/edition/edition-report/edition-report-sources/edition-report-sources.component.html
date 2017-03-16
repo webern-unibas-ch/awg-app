@@ -11,18 +11,18 @@
             <awg-edition-report-source-list
                 *ngIf="sourceList"
                 [sourceList]="sourceList"
-                (openModalRequest)="openModal($event)"
+                (openDialogRequest)="openEditionDialog($event)"
                 (scrollRequest)="scrollTo($event)">
             </awg-edition-report-source-list>
 
             <!-- source description -->
             <awg-edition-report-source-description
-                (openModalRequest)="openModal($event)">
+                (openDialogRequest)="openEditionDialog($event)">
             </awg-edition-report-source-description>
 
             <!-- source evaluation -->
             <awg-edition-report-source-evaluation
-                (openModalRequest)="openModal($event)"
+                (openDialogRequest)="openEditionDialog($event)"
                 (scrollRequest)="scrollTo($event)">
             </awg-edition-report-source-evaluation>
 

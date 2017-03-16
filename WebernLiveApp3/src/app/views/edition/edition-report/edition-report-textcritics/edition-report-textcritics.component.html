@@ -10,37 +10,41 @@
         <div class="panel-body">
             <div class="para">
                 <p class="bold">
-                    <a (click)="openModal('sheetComingSoon')">Aa:SkI/1</a>:
+                    <a (click)="openEditionDialog('sheetComingSoon')">Aa:SkI/1</a>:
                 </p>
-                <p class="small text-muted">
-                    [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
+                <p class="text-muted">
+                    <small>
+                        [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
+                    </small>
                 </p>
             </div>
 
             <div class="para">
-                <table class="table table-hover" *ngFor="let comment of comments | mapToIterable">
-                    <caption class="bold"><a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:</caption>
+                <table class="table table-hover para" *ngFor="let comment of comments | mapToIterable">
+                    <caption class="bold" style="text-align: left">
+                        <a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:
+                    </caption>
                     <thead>
-                    <tr>
-                        <th style="width:10%">Takt</th>
-                        <th style="width:10%">System</th>
-                        <th style="width:23%">Ort im Takt</th>
-                        <th style="width:auto">Kommentar</th>
-                    </tr>
+                        <tr>
+                            <th style="width:10%">Takt</th>
+                            <th style="width:10%">System</th>
+                            <th style="width:23%">Ort im Takt</th>
+                            <th style="width:auto">Kommentar</th>
+                        </tr>
                     </thead>
                     <tbody>
-                    <tr *ngFor="let line of comment.mappedValues">
-                        <td>
-                            {{ line.measure }}
-                        </td>
-                        <td>
-                            {{ line.system }}
-                        </td>
-                        <td>
-                            {{ line.location }}
-                        </td>
-                        <td [innerHtml]="line.comment | sanitizeHTML"></td>
-                    </tr>
+                        <tr *ngFor="let line of comment.mappedValues">
+                            <td>
+                                {{ line.measure }}
+                            </td>
+                            <td>
+                                {{ line.system }}
+                            </td>
+                            <td>
+                                {{ line.location }}
+                            </td>
+                            <td [innerHtml]="line.comment | sanitizeHTML"></td>
+                        </tr>
                     </tbody>
                 </table>
             </div>

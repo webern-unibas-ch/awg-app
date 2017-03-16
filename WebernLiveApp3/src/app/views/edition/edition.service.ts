@@ -3,13 +3,30 @@ import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
 import { Sheet, Source, Textcritics } from './models';
+import { DialogService } from '../../core/dialog/dialog.service';
 
 @Injectable()
 export class EditionService {
 
-    BASE: string = 'assets/data/';
+    private BASE: string = 'assets/data/';
 
-    constructor(private _http: Http) { }
+    constructor(
+        private http: Http,
+        private dialogService: DialogService
+    ) { }
+
+
+    /********************************
+     *
+     * open edition dialog
+     *
+     * calls DialogService with identifier
+     *
+     ********************************/
+    public openEditionDialog(identifier: string): void {
+        this.dialogService.openEditionDialog(identifier);
+    }
+
 
     /*********************************
      *
@@ -19,14 +36,14 @@ export class EditionService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    getSheetsAndCommentsData(): Observable<any> {
+    public getSheetsAndCommentsData(): Observable<any> {
         return Observable.forkJoin(
             this.getSheetsData(),
             this.getCommentsData()
         );
     }
 
-    getSourceListAndCommentsData(): Observable<any> {
+    public getSourceListAndCommentsData(): Observable<any> {
         return Observable.forkJoin(
             this.getSourceListData(),
             this.getCommentsData()
@@ -57,7 +74,7 @@ export class EditionService {
                      * http request
                      */
                     private getJsonData(url: string): Observable<Sheet[] | Source[] | Textcritics[]> {
-                        return this._http.get(url)
+                        return this.http.get(url)
                             .map((res: Response) => res.json() as Sheet[] | Source[] | Textcritics[])
                             .catch(this.handleError);
                     }
@@ -87,7 +104,7 @@ export class EditionService {
      *     and selectedItem<string>
      *
      ********************************/
-    getCommentsForItem(item: Textcritics[], type: string, typeId: string): [Textcritics[], string] {
+    public getCommentsForItem(item: Textcritics[], type: string, typeId: string): [Textcritics[], string] {
         let comments = [];
         let selectedItem: string = '';
         switch (type) {
