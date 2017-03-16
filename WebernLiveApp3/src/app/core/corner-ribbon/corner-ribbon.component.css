@@ -1,7 +1,4 @@
-/* CREDITS: https://codepen.io/eode9/pen/twkKm */
-
-/* The ribbons */
-
+/* ribbon */
 .corner-ribbon{
     width: 200px;
     background: #e43;
@@ -16,8 +13,7 @@
     -webkit-transform: rotate(-45deg);
 }
 
-/* Custom styles */
-
+/* custom styles */
 .corner-ribbon.sticky{
     position: fixed;
 }
@@ -26,8 +22,7 @@
     box-shadow: 0 0 3px rgba(0,0,0,.3);
 }
 
-/* Different positions */
-
+/* different positions */
 .corner-ribbon.top-left{
     top: 25px;
     left: -50px;
@@ -60,8 +55,7 @@
     -webkit-transform: rotate(-45deg);
 }
 
-/* Colors */
-
+/* colors */
 .corner-ribbon.white{background: #f0f0f0; color: #555;}
 .corner-ribbon.black{background: #333;}
 .corner-ribbon.grey{background: #999;}
