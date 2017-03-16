@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditionSvgPanelComponent } from './edition-svg-panel.component';
+import { EditionDetailTkaTableComponent } from './edition-detail-tka-table.component';
 
-describe('EditionSvgPanelComponent', () => {
-    let component: EditionSvgPanelComponent;
-    let fixture: ComponentFixture<EditionSvgPanelComponent>;
+describe('EditionDetailTkaTableComponent', () => {
+    let component: EditionDetailTkaTableComponent;
+    let fixture: ComponentFixture<EditionDetailTkaTableComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ EditionSvgPanelComponent ]
+            declarations: [ EditionDetailTkaTableComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgPanelComponent);
+        fixture = TestBed.createComponent(EditionDetailTkaTableComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

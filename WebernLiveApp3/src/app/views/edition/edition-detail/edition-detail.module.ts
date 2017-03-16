@@ -2,9 +2,10 @@ import { NgModule } from '@angular/core';
 import { RouterModule }  from '@angular/router';
 import { SharedModule } from '../../../shared/shared.module';
 
-import { EditionSheetControlComponent } from './edition-sheet-control';
-import { EditionSvgPanelComponent } from './edition-svg-panel';
-import { EditionTkaTableComponent } from './edition-tka-table';
+import { EditionDetailNotificationComponent } from './edition-detail-notification';
+import { EditionDetailSheetControlComponent } from './edition-detail-sheet-control';
+import { EditionDetailSvgPanelComponent } from './edition-detail-svg-panel';
+import { EditionDetailTkaTableComponent } from './edition-detail-tka-table';
 
 @NgModule({
     imports: [
@@ -12,14 +13,16 @@ import { EditionTkaTableComponent } from './edition-tka-table';
         SharedModule
     ],
     declarations: [
-        EditionSheetControlComponent,
-        EditionSvgPanelComponent,
-        EditionTkaTableComponent
+        EditionDetailNotificationComponent,
+        EditionDetailSheetControlComponent,
+        EditionDetailSvgPanelComponent,
+        EditionDetailTkaTableComponent
     ],
     exports: [
-        EditionSheetControlComponent,
-        EditionSvgPanelComponent,
-        EditionTkaTableComponent
+        EditionDetailNotificationComponent,
+        EditionDetailSheetControlComponent,
+        EditionDetailSvgPanelComponent,
+        EditionDetailTkaTableComponent
     ]
 })
 export class EditionDetailModule { }

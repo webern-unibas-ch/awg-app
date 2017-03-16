@@ -3,11 +3,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Sheet } from '../../models';
 
 @Component({
-    selector: 'awg-edition-sheet-control',
-    templateUrl: './edition-sheet-control.component.html',
-    styleUrls: ['./edition-sheet-control.component.css']
+    selector: 'awg-edition-detail-sheet-control',
+    templateUrl: './edition-detail-sheet-control.component.html',
+    styleUrls: ['./edition-detail-sheet-control.component.css']
 })
-export class EditionSheetControlComponent implements OnInit {
+export class EditionDetailSheetControlComponent implements OnInit {
     @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
     @Output() selectSheetRequest: EventEmitter<Sheet> = new EventEmitter();

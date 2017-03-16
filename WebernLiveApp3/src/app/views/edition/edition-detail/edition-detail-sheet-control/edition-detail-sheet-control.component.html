@@ -1,0 +1,8 @@
+<nav md-tab-nav-bar>
+    <a md-tab-link
+        *ngFor="let sheet of sheets | mapToIterable"
+        [active]="isSelectedSheet(sheet.mappedValues)"
+        (click)="selectSheet(sheet.mappedValues)">
+        {{sheet.mappedKey}}
+    </a>
+</nav>

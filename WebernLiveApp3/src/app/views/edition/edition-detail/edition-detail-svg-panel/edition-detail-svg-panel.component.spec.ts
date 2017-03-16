@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditionSheetControlComponent } from './edition-sheet-control.component';
+import { EditionDetailSvgPanelComponent } from './edition-detail-svg-panel.component';
 
-describe('EditionSheetControlComponent', () => {
-    let component: EditionSheetControlComponent;
-    let fixture: ComponentFixture<EditionSheetControlComponent>;
+describe('EditionDetailSvgPanelComponent', () => {
+    let component: EditionDetailSvgPanelComponent;
+    let fixture: ComponentFixture<EditionDetailSvgPanelComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ EditionSheetControlComponent ]
+            declarations: [ EditionDetailSvgPanelComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSheetControlComponent);
+        fixture = TestBed.createComponent(EditionDetailSvgPanelComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

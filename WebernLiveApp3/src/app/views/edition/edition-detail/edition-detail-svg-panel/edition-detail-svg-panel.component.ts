@@ -3,11 +3,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { Sheet } from '../../models';
 
 @Component({
-    selector: 'awg-edition-svg-panel',
-    templateUrl: './edition-svg-panel.component.html',
-    styleUrls: ['./edition-svg-panel.component.css']
+    selector: 'awg-edition-detail-svg-panel',
+    templateUrl: './edition-detail-svg-panel.component.html',
+    styleUrls: ['./edition-detail-svg-panel.component.css']
 })
-export class EditionSvgPanelComponent implements OnInit {
+export class EditionDetailSvgPanelComponent implements OnInit {
     @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
     @Input() selectedItem: string;
