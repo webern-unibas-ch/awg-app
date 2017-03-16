@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
 import { Meta } from './models';
-import { METADATA } from './meta.data';
+import { METADATA } from './data';
 
 
 @Injectable()

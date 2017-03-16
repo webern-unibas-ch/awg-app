@@ -2,9 +2,7 @@ import { Injectable } from '@angular/core';
 import { Http, Response } from '@angular/http';
 import { Observable } from 'rxjs';
 
-import { Sheet } from './data/sheet';
-import { Source } from './data/source';
-import { Textcritics } from './data/textcritics';
+import { Sheet, Source, Textcritics } from './models';
 
 @Injectable()
 export class EditionService {

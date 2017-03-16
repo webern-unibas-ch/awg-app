@@ -1,24 +1,27 @@
 import { Injectable } from '@angular/core';
-import { Location } from '@angular/common';
 
 import { Menu } from './models';
-import { MENUDATA } from './menu.data';
+import { MENUDATA } from './data';
 
 @Injectable()
 export class MenuService {
 
-    constructor(private location: Location) { }
+    constructor() { }
 
     public getMenu(): Menu[] {
         return MENUDATA;
     }
 
-    public getActiveMenuItem(menu: Menu[]) {
+    public getActiveMenuItem(menu: Menu[], path?: string) {
         let activeItem: Menu;
         const home: string = '/home';
-        let url: string = (this.location.path()) ? this.location.path() : home;
-        let splitUrl: string[] = url.split('/');
-        let activeRoot: string = '/' + ((splitUrl[0] !== '') ? splitUrl[0] : splitUrl [1]);
+        const re = /(\/[\w:]+)/;
+        let url: string = (path) ? path : home;
+        // extract single paths via regex and filter empty results
+        let splitUrl: string[] = url.split(re).filter(n => n);
+        // get first path
+        let activeRoot: string = ((splitUrl[0] !== '') ? splitUrl[0] : splitUrl [1]);
+        // find this path in menu to identify the active menuItem
         menu.forEach(menuItem => {
             if (menuItem.linkTo === activeRoot) {
                 activeItem = menuItem;

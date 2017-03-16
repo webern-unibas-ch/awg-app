@@ -3,6 +3,7 @@
 
         <div class="left">
             <awg-sub-menu
+                *ngIf="selectedMenu"
                 [selectedMenu]="selectedMenu">
             </awg-sub-menu>
         </div>
@@ -10,8 +11,7 @@
         <div class="center">
             <awg-menu
                 *ngIf="menu && selectedMenu"
-                [menu]="menu"
-                (selectMenuItemRequest)="onMenuItemSelect($event)">
+                [menu]="menu">
             </awg-menu>
             <awg-main-text></awg-main-text>
         </div>

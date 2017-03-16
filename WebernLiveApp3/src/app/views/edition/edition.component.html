@@ -10,4 +10,11 @@
     <h4>[Beispieledition ausgewählter Skizzen zu op. 12 Nr. I]</h4>
 </div>
 
+
+<!-- declamation -->
+<div class="para declamation">
+    <p>Ediert von <span [innerHtml]="metaData?.edition.editors"></span></p>
+    <p>Versionsdatum: <span class="version">{{ metaData?.edition.lastModified }}</span></p>
+</div>
+
 <router-outlet></router-outlet>

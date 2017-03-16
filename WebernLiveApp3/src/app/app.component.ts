@@ -1,4 +1,6 @@
 import { Component, OnInit } from '@angular/core';
+import { Router, NavigationEnd } from '@angular/router';
+import 'rxjs/add/operator/filter';
 
 import { Menu } from './core/models/menu.model';
 import { Meta } from './core/models/meta.model';
@@ -16,25 +18,33 @@ export class AppComponent implements OnInit {
     public selectedMenu: Menu;
 
     constructor(
+        private metaService: MetaService,
         private menuService: MenuService,
-        private metaService: MetaService
-    ) { }
+        private router: Router
+    ) {
+        router.events
+            .filter(event => event instanceof NavigationEnd)
+            .subscribe((event) => {
+                let path = event['urlAfterRedirects'];
+                this.provideActiveMenu(path);
+            });
+    }
 
     ngOnInit() {
         this.provideMenu();
         this.provideMetaData();
     }
 
-    public onMenuSelect(menuItem: Menu): void {
-        this.selectedMenu = menuItem;
-    }
-
-    private provideMenu(): void {
+   private provideMenu(): void {
         this.menu = this.menuService.getMenu();
-        this.selectedMenu = this.menuService.getActiveMenuItem(this.menu);
+        this.provideActiveMenu();
     }
 
     private provideMetaData(): void {
         this.metaData = this.metaService.getMetaData();
+    }
+
+    private provideActiveMenu(path?: string): void {
+        this.selectedMenu = this.menuService.getActiveMenuItem(this.menu, path);
     }
 }
