@@ -8,10 +8,22 @@ export class MenuService {
 
     constructor() { }
 
+    /********************************
+     *
+     * get MenuData
+     *
+     ********************************/
     public getMenu(): Menu[] {
         return MENUDATA;
     }
 
+    /********************************
+     *
+     * get active item of menu
+     *
+     * @returns activeItem<Menu>
+     *
+     ********************************/
     public getActiveMenuItem(menu: Menu[], path?: string) {
         let activeItem: Menu;
         const home: string = '/home';

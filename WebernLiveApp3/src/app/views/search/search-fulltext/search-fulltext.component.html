@@ -1,3 +1,15 @@
-<p>
-  search-fulltext works!
-</p>
+<!-- maintext: search panel -->
+
+<!--
+  [ => TODO: <em>paging, back to previous object</em>]
+-->
+<awg-search-fulltext-form
+    [(searchValue)]="searchValue"
+    (submitRequest)="onSubmit($event)">
+</awg-search-fulltext-form>
+
+<awg-search-fulltext-results
+    *ngIf="isDataLoaded"
+    [searchData]="searchData">
+</awg-search-fulltext-results>
+

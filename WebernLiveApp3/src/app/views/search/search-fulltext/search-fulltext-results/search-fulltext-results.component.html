@@ -1,0 +1,44 @@
+<p>
+  search-fulltext-results works!
+</p>
+
+<!-- content: search results -->
+<div class="well well-lg">
+
+    <!-- header -->
+    <h4>Suchergebnisse</h4>
+    <p>
+        {{ searchData.subjects.length }} {{ resText }} {{ searchData.nhits }}:
+    </p>
+
+    <!-- TODO: ### PAGINATION ### -->
+    <!-- <uib-pagination total-items="searchData.nhits" data-ng-model="currentPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></uib-pagination> -->
+
+    <!-- table with searchResults -->
+    <table *ngIf="searchData.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
+        <thead>
+        <tr>
+            <th>
+                Kategorie
+            </th>
+            <th>
+                Eintrag
+            </th>
+        </tr>
+        </thead>
+        <tbody>
+        <!-- show searchResultDetail by clicking on single entry -->
+        <tr *ngFor="let data of searchData?.subjects" (click)="showObject(data.obj_id)" [class.active]="activeObject(data.obj_id)">
+            <td>
+                <img [attr.src]=data.iconsrc alt="iconsrc" > {{ data.iconlabel }}
+            </td>
+            <td>
+                <em>{{ data.valuelabel[0] }}</em>:
+                <!-- TODO: bind-html-compile -->
+                <span [innerHtml]="data.value[0]"></span>
+                {{ data.value[0] }}
+            </td>
+        </tr>
+        </tbody>
+    </table>
+</div>

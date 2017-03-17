@@ -20,7 +20,7 @@ export const MENUDATA: Menu[] = [
         ]
     },
     {
-        label: 'Suche',
+        label: 'Datenbank-Abfrage',
         linkTo: '/search',
         subMenu: [
             { label: 'Übersicht', linkTo: 'overview' },

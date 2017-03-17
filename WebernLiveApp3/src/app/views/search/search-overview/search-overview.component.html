@@ -1,3 +1,16 @@
-<p>
-  search-overview works!
-</p>
+<md-card class="search-overview" *ngFor="let card of searchOverviewCards; let i = index">
+
+    <md-card-title align="center">{{ card?.title }}</md-card-title>
+
+    <img md-card-image [src]="card?.image" alt="Card image">
+
+    <md-card-actions align="end">
+        <button md-button
+                [routerLink]="['/search', card?.linkTo]"
+                routerLinkActive="active">
+            <md-icon>{{ card?.icon }}</md-icon> Start
+        </button>
+    </md-card-actions>
+
+</md-card>
+

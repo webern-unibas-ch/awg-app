@@ -9,6 +9,11 @@ export class MetaService {
 
     constructor() { }
 
+    /********************************
+     *
+     * get MetaData
+     *
+     ********************************/
     public getMetaData(): Meta {
         return METADATA[0];
     }
