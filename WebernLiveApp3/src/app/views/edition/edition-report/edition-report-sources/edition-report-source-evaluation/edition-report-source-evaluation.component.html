@@ -1,54 +1,41 @@
-<div class="panel panel-default" id="sourceEvaluation">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" (click)="toggleC = !toggleC">
-                3. Quellenbewertung
-            </a>
-        </h4>
-    </div>
-    <div class="panel-collapse collapse" [class.in]="!toggleC">
-        <div class="panel-body">
-            <div class="para">
-                <p>
-                    Die Skizzen in <a [routerLink]="['./']" fragment="sourceA" (click)="scrollTo('sourceA')"><strong>A</strong></a> enthalten u. a. datierte Verlaufsskizzen zu allen vier Liedern: <a (click)="openEditionDialog('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915), <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ab:SkII/1</strong></a> (10. April 1917), <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ac:SkIII/1</strong></a> und <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ac:SkIII/7</strong></a> (31. Januar 1915) sowie <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ae:SkIV/1</strong></a> (31. März 1917). Eine im Konvolut von <a (click)="scrollTo('sourceA')"><strong>A</strong></a> ebenfalls enthaltene fragmentarische Skizze zu einer Vertonung von <a (click)="openEditionDialog('M198')">„<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester</a> (<a (click)="openEditionDialog('sourceNotA')"><strong>Ad</strong></a>) ist (möglicherweise nachträglich) auf „Winter 1913/14“ datiert und weist – abgesehen vom vertonten Text – keine Bezüge zu op. 12 Nr. III auf.
-                </p>
-                <p>
-                    Die Verlaufsskizzen aus <a [routerLink]="['./']" fragment="sourceA" (click)="scrollTo('sourceA')"><strong>A</strong></a> bilden die Grundlage für die Reinschrift-Fassungen von <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1)</a> in <a (click)="openEditionDialog('sourceNotA')"><strong>B</strong></a>
-                    sowie von Nr. II–IV in <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a>. Die Reinschrift von <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> in <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> stellt eine gegenüber <a (click)="openEditionDialog('sourceNotA')"><strong>B</strong></a> veränderte, in <a (click)="openEditionDialog('sourceNotA')">Korrekturen in <strong>B</strong></a> und in <a [routerLink]="['/edition', 'detail']"><strong>Aa:SkI/2–5</strong></a> vorformulierte Fassung dar. Die Korrekturen von Nr. II–IV in <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> betreffen die Überarbeitung zur (Druck-)Fassung in <a (click)="openEditionDialog('sourceNotA')"><strong>F</strong></a> und <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>, der Zustand ante correcturam ist jedoch nicht immer eindeutig zu erkennen. <a (click)="openEditionDialog('editionComingSoon')">Nr. IV <em>Gleich und Gleich</em> (Fassung 1)</a> in <a (click)="openEditionDialog('sourceNotA')"><strong>D</strong></a> ist eine autographe Abschrift des Liedes aus <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> ante correcturam.
-                </p>
-                <p>
-                    <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“</a> aus
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> ist post correcturam Stichvorlage für
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>E</strong></a>. Die Korrekturen in
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>E<sup>1</sup></strong></a> betreffen die Überarbeitung von
-                    <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> zur späteren (Druck-)Fassung in
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>F</strong></a> und
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>.
-                </p>
-                <p>
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>F</strong></a> ist Stichvorlage für
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>.
-                </p>
-                <p>
-                    Hauptquelle für die Werkedition der Druckfassung der <i>Vier Lieder</i> op. 12 ist
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>.
-                </p>
-                <p>
-                    Hauptquelle für die Textedition von
-                    <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1)</a> ist
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>B</strong></a>.
-                </p>
-                <p>
-                    Hauptquelle für die Textedition von
-                    <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> ist
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>E</strong></a>.
-                </p>
-                <p>
-                    Hauptquelle für die Textedition von
-                    <a (click)="openEditionDialog('editionComingSoon')">Nr. IV <em>Gleich und Gleich</em> (Fassung 1)</a> ist
-                    <a (click)="openEditionDialog('sourceNotA')"><strong>D</strong></a>.
-                </p>
-            </div>
-        </div>
-    </div>
+<div class="para">
+    <p>
+        Die Skizzen in <a [routerLink]="['./']" fragment="sourceA" (click)="scrollTo('sourceA')"><strong>A</strong></a> enthalten u. a. datierte Verlaufsskizzen zu allen vier Liedern: <a (click)="openEditionDialog('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915), <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ab:SkII/1</strong></a> (10. April 1917), <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ac:SkIII/1</strong></a> und <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ac:SkIII/7</strong></a> (31. Januar 1915) sowie <a (click)="openEditionDialog('sheetComingSoon')"><strong>Ae:SkIV/1</strong></a> (31. März 1917). Eine im Konvolut von <a (click)="scrollTo('sourceA')"><strong>A</strong></a> ebenfalls enthaltene fragmentarische Skizze zu einer Vertonung von <a (click)="openEditionDialog('M198')">„<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester</a> (<a (click)="openEditionDialog('sourceNotA')"><strong>Ad</strong></a>) ist (möglicherweise nachträglich) auf „Winter 1913/14“ datiert und weist – abgesehen vom vertonten Text – keine Bezüge zu op. 12 Nr. III auf.
+    </p>
+    <p>
+        Die Verlaufsskizzen aus <a [routerLink]="['./']" fragment="sourceA" (click)="scrollTo('sourceA')"><strong>A</strong></a> bilden die Grundlage für die Reinschrift-Fassungen von <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1)</a> in <a (click)="openEditionDialog('sourceNotA')"><strong>B</strong></a>
+        sowie von Nr. II–IV in <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a>. Die Reinschrift von <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> in <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> stellt eine gegenüber <a (click)="openEditionDialog('sourceNotA')"><strong>B</strong></a> veränderte, in <a (click)="openEditionDialog('sourceNotA')">Korrekturen in <strong>B</strong></a> und in <a [routerLink]="['/edition', 'detail']"><strong>Aa:SkI/2–5</strong></a> vorformulierte Fassung dar. Die Korrekturen von Nr. II–IV in <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> betreffen die Überarbeitung zur (Druck-)Fassung in <a (click)="openEditionDialog('sourceNotA')"><strong>F</strong></a> und <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>, der Zustand ante correcturam ist jedoch nicht immer eindeutig zu erkennen. <a (click)="openEditionDialog('editionComingSoon')">Nr. IV <em>Gleich und Gleich</em> (Fassung 1)</a> in <a (click)="openEditionDialog('sourceNotA')"><strong>D</strong></a> ist eine autographe Abschrift des Liedes aus <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> ante correcturam.
+    </p>
+    <p>
+        <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“</a> aus
+        <a (click)="openEditionDialog('sourceNotA')"><strong>C</strong></a> ist post correcturam Stichvorlage für
+        <a (click)="openEditionDialog('sourceNotA')"><strong>E</strong></a>. Die Korrekturen in
+        <a (click)="openEditionDialog('sourceNotA')"><strong>E<sup>1</sup></strong></a> betreffen die Überarbeitung von
+        <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> zur späteren (Druck-)Fassung in
+        <a (click)="openEditionDialog('sourceNotA')"><strong>F</strong></a> und
+        <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>.
+    </p>
+    <p>
+        <a (click)="openEditionDialog('sourceNotA')"><strong>F</strong></a> ist Stichvorlage für
+        <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>.
+    </p>
+    <p>
+        Hauptquelle für die Werkedition der Druckfassung der <i>Vier Lieder</i> op. 12 ist
+        <a (click)="openEditionDialog('sourceNotA')"><strong>G</strong></a>.
+    </p>
+    <p>
+        Hauptquelle für die Textedition von
+        <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 1)</a> ist
+        <a (click)="openEditionDialog('sourceNotA')"><strong>B</strong></a>.
+    </p>
+    <p>
+        Hauptquelle für die Textedition von
+        <a (click)="openEditionDialog('editionComingSoon')">Nr. I „<em>Der Tag ist vergangen</em>“ (Fassung 2)</a> ist
+        <a (click)="openEditionDialog('sourceNotA')"><strong>E</strong></a>.
+    </p>
+    <p>
+        Hauptquelle für die Textedition von
+        <a (click)="openEditionDialog('editionComingSoon')">Nr. IV <em>Gleich und Gleich</em> (Fassung 1)</a> ist
+        <a (click)="openEditionDialog('sourceNotA')"><strong>D</strong></a>.
+    </p>
 </div>

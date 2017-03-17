@@ -11,6 +11,10 @@ export class EditionReportTextcriticsComponent implements OnInit {
     @Input() comments: Textcritics[];
     @Output() openDialogRequest: EventEmitter<any> = new EventEmitter();
 
+    public groupStatus: any = {
+        isOpen: false
+    };
+
     constructor() { }
 
     ngOnInit() {

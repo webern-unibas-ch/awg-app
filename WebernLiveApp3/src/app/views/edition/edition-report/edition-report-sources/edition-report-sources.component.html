@@ -1,31 +1,33 @@
-<div class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
+<accordion id="sources">
+    <accordion-group #sourcesGroup [isOpen]="groupStatus.isOpen">
+        <div accordion-heading>
             I. Quellen
-        </h3>
-    </div>
-    <div class="panel-body">
-        <div class="panel-group">
-
-            <!-- source list -->
+            <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-up': sourcesGroup?.isOpen, 'glyphicon-chevron-down': !sourcesGroup?.isOpen}"></i>
+        </div>
+        <!-- source list -->
+        <accordion-panel id="sourceList" heading="1. Quellenübersicht">
             <awg-edition-report-source-list
                 *ngIf="sourceList"
                 [sourceList]="sourceList"
                 (openDialogRequest)="openEditionDialog($event)"
                 (scrollRequest)="scrollTo($event)">
             </awg-edition-report-source-list>
+        </accordion-panel>
 
-            <!-- source description -->
+        <!-- source description -->
+        <accordion-panel id="sourceDesc" heading="2. Quellenbeschreibung">
             <awg-edition-report-source-description
                 (openDialogRequest)="openEditionDialog($event)">
             </awg-edition-report-source-description>
+        </accordion-panel>
 
-            <!-- source evaluation -->
+        <!-- source evaluation -->
+        <accordion-panel id="sourceEvaluation" heading="3. Quellenbewertung">
             <awg-edition-report-source-evaluation
                 (openDialogRequest)="openEditionDialog($event)"
                 (scrollRequest)="scrollTo($event)">
             </awg-edition-report-source-evaluation>
+        </accordion-panel>
 
-        </div> <!-- END panel group -->
-    </div> <!-- END outer panel body -->
-</div> <!-- END outer panel -->
+    </accordion-group>
+</accordion>

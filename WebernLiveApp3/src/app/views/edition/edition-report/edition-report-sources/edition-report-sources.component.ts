@@ -12,6 +12,10 @@ export class EditionReportSourcesComponent implements OnInit {
     @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<string> = new EventEmitter();
 
+    public groupStatus: any = {
+        isOpen: true
+    };
+
     constructor() { }
 
     ngOnInit() {

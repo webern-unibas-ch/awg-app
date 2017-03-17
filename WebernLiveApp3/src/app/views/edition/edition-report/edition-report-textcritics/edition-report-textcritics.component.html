@@ -1,54 +1,48 @@
-<div id="tka" class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <a (click)="toggleComments = !toggleComments">
-                II. Textkritischer Kommentar
-            </a>
-        </h3>
-    </div>
-    <div class="panel-collapse collapse" [class.in]="!toggleComments">
-        <div class="panel-body">
-            <div class="para">
-                <p class="bold">
-                    <a (click)="openEditionDialog('sheetComingSoon')">Aa:SkI/1</a>:
-                </p>
-                <p class="text-muted">
-                    <small>
-                        [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
-                    </small>
-                </p>
-            </div>
-
-            <div class="para">
-                <table class="table table-hover para" *ngFor="let comment of comments | mapToIterable">
-                    <caption class="bold" style="text-align: left">
-                        <a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:
-                    </caption>
-                    <thead>
-                        <tr>
-                            <th style="width:10%">Takt</th>
-                            <th style="width:10%">System</th>
-                            <th style="width:23%">Ort im Takt</th>
-                            <th style="width:auto">Kommentar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let line of comment.mappedValues">
-                            <td>
-                                {{ line.measure }}
-                            </td>
-                            <td>
-                                {{ line.system }}
-                            </td>
-                            <td>
-                                {{ line.location }}
-                            </td>
-                            <td [innerHtml]="line.comment | sanitizeHTML"></td>
-                        </tr>
-                    </tbody>
-                </table>
-            </div>
+<accordion id="tka">
+    <accordion-group #commentsGroup [isOpen]="groupStatus.isOpen">
+        <div accordion-heading>
+            II. Textkritischer Kommentar
+            <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-up': commentsGroup?.isOpen, 'glyphicon-chevron-down': !commentsGroup?.isOpen}"></i>
         </div>
-    </div>
-</div>
+        <div class="para">
+            <p class="bold">
+                <a (click)="openEditionDialog('sheetComingSoon')">Aa:SkI/1</a>:
+            </p>
+            <p class="text-muted">
+                <small>
+                    [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
+                </small>
+            </p>
+        </div>
 
+        <div class="para">
+            <table class="table table-hover para" *ngFor="let comment of comments | mapToIterable">
+                <caption class="bold">
+                    <a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:
+                </caption>
+                <thead>
+                <tr>
+                    <th style="width:10%">Takt</th>
+                    <th style="width:10%">System</th>
+                    <th style="width:23%">Ort im Takt</th>
+                    <th style="width:auto">Kommentar</th>
+                </tr>
+                </thead>
+                <tbody>
+                <tr *ngFor="let line of comment.mappedValues">
+                    <td>
+                        {{ line.measure }}
+                    </td>
+                    <td>
+                        {{ line.system }}
+                    </td>
+                    <td>
+                        {{ line.location }}
+                    </td>
+                    <td [innerHtml]="line.comment | sanitizeHTML"></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </accordion-group>
+</accordion>
