@@ -7,6 +7,9 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchComponent implements OnInit {
 
+    public searchTitle: string = 'Datenbank-Abfrage';
+    public searchId: string = 'search';
+
     constructor() { }
 
     ngOnInit() {
