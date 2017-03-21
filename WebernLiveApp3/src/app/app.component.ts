@@ -2,10 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import 'rxjs/add/operator/filter';
 
-import { Menu } from './core/models/menu.model';
-import { Meta } from './core/models/meta.model';
-import { MenuService } from './core/menu.service';
-import { MetaService } from './core/meta.service';
+import { Menu, Meta } from './core/models';
+import { MenuService, MetaService } from './core/services';
 
 @Component({
     selector: 'awg-root',

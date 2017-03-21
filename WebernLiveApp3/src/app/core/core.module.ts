@@ -9,13 +9,13 @@ import { FooterComponent } from './footer';
 import { HeaderComponent } from './header';
 import { DialogComponent, DialogService } from './dialog';
 
-import { MenuService } from './menu.service';
-import { MetaService } from './meta.service';
+import { MenuService, MetaService } from './services';
 
 
 @NgModule({
     imports: [
-        RouterModule, SharedModule,
+        RouterModule,
+        SharedModule,
         PageModule
     ],
     declarations: [
@@ -25,11 +25,11 @@ import { MetaService } from './meta.service';
         HeaderComponent
     ],
     exports: [
+        PageModule,
         CornerRibbonComponent,
         DialogComponent,
         FooterComponent,
-        HeaderComponent,
-        PageModule
+        HeaderComponent
     ],
     entryComponents: [
         DialogComponent
