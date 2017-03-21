@@ -8,22 +8,29 @@ import { Textcritics } from '../../models';
     styleUrls: ['./edition-report-textcritics.component.css']
 })
 export class EditionReportTextcriticsComponent implements OnInit {
-    @Input() comments: Textcritics[];
-    @Output() openDialogRequest: EventEmitter<any> = new EventEmitter();
+    @Input('comments') comments: Textcritics[];
+    @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+
+    ref: EditionReportTextcriticsComponent;
 
     public groupStatus: any = {
         isOpen: false
     };
 
-    constructor() { }
+    constructor() {
+        this.ref = this;
+    }
 
     ngOnInit() {
     }
 
-    openEditionDialog(identifier: string) {
+    public openEditionDialog(identifier: string) {
         this.openDialogRequest.emit(identifier);
     }
 
-    // TODO: self-sanitize content of comments (loaded from textcritics.json)
+    public selectSheet(identifier: string): void {
+        this.selectSheetRequest.emit(identifier);
+    }
 
 }

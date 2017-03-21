@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { EditionService } from '../edition.service';
 import { Source, Textcritics } from '../models';
@@ -18,6 +18,7 @@ export class EditionReportComponent implements OnInit {
     private errorMessage: string = undefined;
 
     constructor(
+        private router: Router,
         private route: ActivatedRoute,
         private editionService: EditionService
     ) { }
@@ -26,7 +27,6 @@ export class EditionReportComponent implements OnInit {
         this.getSourceListAndCommentsData();
         this.scrollTo();
     }
-
 
     public getSourceListAndCommentsData() {
         this.editionService.getSourceListAndCommentsData()
@@ -40,11 +40,13 @@ export class EditionReportComponent implements OnInit {
             );
     }
 
-
-    public openEditionDialog(identifier: string) {
+    public onOpenEditionDialog(identifier: string) {
         this.editionService.openEditionDialog(identifier);
     }
 
+    public onSheetSelect(id: string) {
+        this.router.navigate(['/edition/detail', id]);
+    }
 
     public scrollTo(id?: string) {
         console.log('Report: scrollTo(id): ', id);
@@ -53,7 +55,7 @@ export class EditionReportComponent implements OnInit {
             this.route.fragment
                 .subscribe(
                     f => {
-                        if (!f) { return; };
+                        if (!f) { return; }
                         console.log('Report#fragment(): ', f);
                         const element = document.querySelector('#' + f);
                         if (element) element.scrollIntoView(element);
@@ -61,5 +63,4 @@ export class EditionReportComponent implements OnInit {
                 );
         });
     }
-
 }

@@ -30,7 +30,7 @@ export class EditionDetailComponent implements OnInit {
         this.getSheetsAndCommentsData();
     }
 
-    onItemSelect($event) {
+    public onItemSelect($event) {
         if (!this.textcriticsData && !this.selectedSheet) return;
         let res = this.editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
         this.items = res[0];
@@ -38,14 +38,18 @@ export class EditionDetailComponent implements OnInit {
         this.showTkA = (this.items !== []);
     }
 
-    onSheetSelect(sheet: Sheet) {
-        this.router.navigate(['/edition/detail', sheet.id]);
-        this.selectedSheet = sheet;
+    public onOpenEditionDialog(identifier: string) {
+        this.editionService.openEditionDialog(identifier);
+    }
+
+    public onSheetSelect(id: string) {
+        this.router.navigate(['/edition/detail', id]);
+        this.selectedSheet = this.sheetsData[id];
         this.selectedItem = '';
         this.showTkA = false;
     }
 
-    getSheetsAndCommentsData() {
+    public getSheetsAndCommentsData() {
         this.editionService.getSheetsAndCommentsData()
             .subscribe((data) => {
                     this.sheetsData = data[0];

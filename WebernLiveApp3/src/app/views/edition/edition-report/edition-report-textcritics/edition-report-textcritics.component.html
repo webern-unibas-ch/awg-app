@@ -29,17 +29,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr *ngFor="let line of comment.mappedValues">
-                    <td>
-                        {{ line.measure }}
-                    </td>
-                    <td>
-                        {{ line.system }}
-                    </td>
-                    <td>
-                        {{ line.location }}
-                    </td>
-                    <td [innerHtml]="line.comment | sanitizeHTML"></td>
+                <tr *ngFor="let item of comment.mappedValues">
+                    <td>{{ item.measure }}</td>
+                    <td>{{ item.system }}</td>
+                    <td [innerHTML]="item.location"></td>
+                    <td><span [compile-html]="item.comment" [compile-html-ref]="ref"></span></td>
                 </tr>
                 </tbody>
             </table>

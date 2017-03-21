@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-edition-detail-tka-table',
@@ -7,10 +7,23 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class EditionDetailTkaTableComponent implements OnInit {
     @Input() items: string[];
+    @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+    ref: EditionDetailTkaTableComponent;
+
+    constructor( ) {
+        this.ref = this;
+    }
 
     ngOnInit() {
     }
 
+    public openEditionDialog(identifier: string) {
+        this.openDialogRequest.emit(identifier);
+    }
+
+    public selectSheet(identifier: string): void {
+        this.selectSheetRequest.emit(identifier);
+    }
 }

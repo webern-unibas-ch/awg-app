@@ -11,7 +11,7 @@ export class EditionDetailSvgPanelComponent implements OnInit {
     @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
     @Input() selectedItem: string;
-    @Output() selectSheetRequest: EventEmitter<Sheet> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectItemRequest: EventEmitter<any> = new EventEmitter();
 
     // init sheets
@@ -26,20 +26,20 @@ export class EditionDetailSvgPanelComponent implements OnInit {
     ngOnInit() {
     }
 
-    isSelectedSheet(id: string) {
-        return id === this.selectedSheet.id;
-    }
-
     isSelectedItem(id: string) {
         return id === this.selectedItem;
     };
+
+    isSelectedSheet(id: string) {
+        return id === this.selectedSheet.id;
+    }
 
     selectItem(field: string, id: string) {
         this.selectItemRequest.emit({field, id});
     }
 
-    selectSheet(sheet: Sheet) {
-        this.selectSheetRequest.emit(sheet);
+    selectSheet(id: string) {
+        this.selectSheetRequest.emit(id);
     }
 
 }

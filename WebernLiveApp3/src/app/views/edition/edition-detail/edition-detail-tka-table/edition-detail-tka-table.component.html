@@ -1,4 +1,4 @@
-<div>
+<div class="para">
     <!-- TODO: rm bootstrap classes -->
     <table class="table table-condensed">
         <thead>
@@ -13,7 +13,7 @@
             <td>{{ item.measure }}</td>
             <td>{{ item.system }}</td>
             <td [innerHTML]="item.location"></td>
-            <td [innerHTML]="item.comment | sanitizeHTML"></td>
+            <td><span [compile-html]="item.comment" [compile-html-ref]="ref"></span></td>
         </tr>
     </table>
 </div>

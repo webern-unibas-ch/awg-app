@@ -10,6 +10,7 @@ import { Source } from '../../models';
 export class EditionReportSourcesComponent implements OnInit {
     @Input() sourceList: Source[];
     @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<string> = new EventEmitter();
 
     public groupStatus: any = {
@@ -21,8 +22,12 @@ export class EditionReportSourcesComponent implements OnInit {
     ngOnInit() {
     }
 
-    openEditionDialog(identifier: string) {
+    onOpenEditionDialog(identifier: string) {
         this.openDialogRequest.emit(identifier);
+    }
+
+    onSheetSelect(identifier: string) {
+        this.selectSheetRequest.emit(identifier);
     }
 
     scrollTo(id: string) {

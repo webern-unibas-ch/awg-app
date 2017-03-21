@@ -10,12 +10,13 @@
 <awg-edition-report-sources
     *ngIf="sourceListData"
     [sourceList]="sourceListData"
-    (openDialogRequest)="openEditionDialog($event)"
+    (openDialogRequest)="onOpenEditionDialog($event)"
     (scrollRequest)="scrollTo($event)">
 </awg-edition-report-sources>
 
 <!-- textcritics -->
 <awg-edition-report-textcritics
     [comments]="textcriticsData"
-    (openDialogRequest)="openEditionDialog($event)">
+    (openDialogRequest)="onOpenEditionDialog($event)"
+    (selectSheetRequest)="onSheetSelect($event)">
 </awg-edition-report-textcritics>

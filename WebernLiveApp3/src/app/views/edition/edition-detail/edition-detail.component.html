@@ -14,7 +14,9 @@
 <!-- table for TkA -->
 <awg-edition-detail-tka-table
     *ngIf="showTkA && items"
-    [items]="items">
+    [items]="items"
+    (openDialogRequest)="onOpenEditionDialog($event)"
+    (selectSheetRequest)="onSheetSelect($event)">
 </awg-edition-detail-tka-table>
 
 <!-- svg panel -->
@@ -22,7 +24,7 @@
     *ngIf="sheetsData && selectedSheet"
     [sheets]="sheetsData"
     [selectedSheet]="selectedSheet"
-    [selectedItem]="selectedItem"
     (selectSheetRequest)="onSheetSelect($event)"
+    [selectedItem]="selectedItem"
     (selectItemRequest)="onItemSelect($event)">
 </awg-edition-detail-svg-panel>

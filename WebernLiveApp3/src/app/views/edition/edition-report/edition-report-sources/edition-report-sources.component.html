@@ -9,7 +9,7 @@
             <awg-edition-report-source-list
                 *ngIf="sourceList"
                 [sourceList]="sourceList"
-                (openDialogRequest)="openEditionDialog($event)"
+                (openDialogRequest)="onOpenEditionDialog($event)"
                 (scrollRequest)="scrollTo($event)">
             </awg-edition-report-source-list>
         </accordion-panel>
@@ -17,14 +17,16 @@
         <!-- source description -->
         <accordion-panel id="sourceDesc" heading="2. Quellenbeschreibung">
             <awg-edition-report-source-description
-                (openDialogRequest)="openEditionDialog($event)">
+                (openDialogRequest)="onOpenEditionDialog($event)"
+                (selectSheetRequest)="onSheetSelect($event)">
             </awg-edition-report-source-description>
         </accordion-panel>
 
         <!-- source evaluation -->
         <accordion-panel id="sourceEvaluation" heading="3. Quellenbewertung">
             <awg-edition-report-source-evaluation
-                (openDialogRequest)="openEditionDialog($event)"
+                (openDialogRequest)="onOpenEditionDialog($event)"
+                (selectSheetRequest)="onSheetSelect($event)"
                 (scrollRequest)="scrollTo($event)">
             </awg-edition-report-source-evaluation>
         </accordion-panel>

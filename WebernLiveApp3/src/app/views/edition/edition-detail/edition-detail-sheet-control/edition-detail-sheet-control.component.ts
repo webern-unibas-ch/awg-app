@@ -10,20 +10,19 @@ import { Sheet } from '../../models';
 export class EditionDetailSheetControlComponent implements OnInit {
     @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
-    @Output() selectSheetRequest: EventEmitter<Sheet> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
-
     }
 
-    private isSelectedSheet(sheet: Sheet) {
-        return sheet.id === this.selectedSheet.id;
+    private isSelectedSheet(id: string) {
+        return id === this.selectedSheet.id;
     }
 
-    private selectSheet(sheet: Sheet) {
-        this.selectSheetRequest.emit(sheet);
+    private selectSheet(id: string) {
+        this.selectSheetRequest.emit(id);
     }
 
 }

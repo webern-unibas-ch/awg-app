@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Meta } from '../../core/models';
-import { MetaService } from '../../core/meta.service';
+import { MetaService } from '../../core/services';
 
 @Component({
     selector: 'awg-edition',
@@ -12,7 +12,9 @@ export class EditionComponent implements OnInit {
 
     public metaData: Meta;
 
-    constructor(private metaService: MetaService) { }
+    constructor(
+        private metaService: MetaService
+    ) { }
 
     ngOnInit() {
         this.getMetaData();

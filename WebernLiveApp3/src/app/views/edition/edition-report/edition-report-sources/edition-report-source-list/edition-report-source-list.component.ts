@@ -12,7 +12,11 @@ export class EditionReportSourceListComponent implements OnInit {
     @Output() openDialogRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+    ref: EditionReportSourceListComponent;
+
+    constructor() {
+        this.ref = this;
+    }
 
     ngOnInit() {
     }
