@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EditionService } from '../edition.service';
+import { DataService, EditionService } from '../services';
 import { Source, Textcritics } from '../models';
 
 @Component({
@@ -20,16 +20,17 @@ export class EditionReportComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private dataService: DataService,
         private editionService: EditionService
     ) { }
 
     ngOnInit() {
-        this.getSourceListAndCommentsData();
+        this.getData();
         this.scrollTo();
     }
 
-    public getSourceListAndCommentsData() {
-        this.editionService.getSourceListAndCommentsData()
+    public getData() {
+        this.dataService.getEditionReportData()
             .subscribe((data) => {
                     this.sourceListData = data[0];
                     this.textcriticsData = data[1];

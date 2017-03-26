@@ -24,6 +24,7 @@
                 "../node_modules/bootstrap/dist/css/bootstrap.css"
             ],
             "scripts": [
+                "../node_modules/snapsvg/dist/snap.svg-min.js",
                 "../src/plugins/dateConverter.js",
                 "../src/plugins/htmlConverter.js"
             ],

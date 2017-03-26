@@ -5,7 +5,7 @@ import { EditionRoutingModule, routedEditionComponents } from './edition-routing
 import { EditionDetailModule } from './edition-detail/edition-detail.module';
 import { EditionReportModule } from './edition-report/edition-report.module';
 
-import { EditionService } from './edition.service';
+import { DataService, EditionService } from './services';
 
 
 @NgModule({
@@ -21,7 +21,7 @@ export class EditionModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: EditionModule,
-            providers: [ EditionService ]
+            providers: [ DataService, EditionService ]
         }
     }
 }

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { EditionService } from '../edition.service';
+import { EditionService } from '../services/edition.service';
 
 @Component({
     selector: 'awg-edition-intro',

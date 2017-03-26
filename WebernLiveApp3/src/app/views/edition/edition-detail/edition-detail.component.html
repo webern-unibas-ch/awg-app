@@ -13,18 +13,18 @@
 
 <!-- table for TkA -->
 <awg-edition-detail-tka-table
-    *ngIf="showTkA && items"
-    [items]="items"
+    *ngIf="showTkA && textcritics"
+    [textcritics]="textcritics"
     (openDialogRequest)="onOpenEditionDialog($event)"
     (selectSheetRequest)="onSheetSelect($event)">
 </awg-edition-detail-tka-table>
 
 <!-- svg panel -->
 <awg-edition-detail-svg-panel
-    *ngIf="sheetsData && selectedSheet"
-    [sheets]="sheetsData"
+    *ngIf="selectedSheet"
+    [overlays]="overlays"
     [selectedSheet]="selectedSheet"
     (selectSheetRequest)="onSheetSelect($event)"
-    [selectedItem]="selectedItem"
-    (selectItemRequest)="onItemSelect($event)">
+    [selectedTextcriticId]="selectedTextcriticId"
+    (selectTextcriticRequest)="onTextcriticSelect($event)">
 </awg-edition-detail-svg-panel>

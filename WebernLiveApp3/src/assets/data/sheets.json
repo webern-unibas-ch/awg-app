@@ -1,26 +1,34 @@
 {
     "Aa:SkI/2": {
         "id": "Aa:SkI/2",
-        "svg": "assets/img/SkI_2n_small_cut_opt.svg",
-        "image": "assets/img/SkI_2n_small.jpg",
-        "alt": "Aa:SkI/2"
+        "alt": "Aa:SkI/2",
+        "path": {
+            "svg": "assets/img/SkI_2n_small_cut_opt.svg",
+            "image": "assets/img/SkI_2n_small.jpg"
+        }
     },
     "Aa:SkI/3": {
         "id": "Aa:SkI/3",
-        "svg": "assets/img/SkI_3n_small_cut_opt.svg",
-        "image": "assets/img/SkI_3n_small.jpg",
-        "alt": "Aa:SkI/3"
+        "alt": "Aa:SkI/3",
+        "path": {
+            "svg": "assets/img/SkI_3n_small_cut_opt.svg",
+            "image": "assets/img/SkI_3n_small.jpg"
+        }
     },
     "Aa:SkI/4": {
         "id": "Aa:SkI/4",
-        "svg": "assets/img/SkI_4n_small_cut_opt.svg",
-        "image": "assets/img/SkI_4n_small.jpg",
-        "alt": "Aa:SkI/4"
+        "alt": "Aa:SkI/4",
+        "path": {
+            "svg": "assets/img/SkI_4n_small_cut_opt.svg",
+            "image": "assets/img/SkI_4n_small.jpg"
+        }
     },
     "Aa:SkI/5": {
         "id": "Aa:SkI/5",
-        "svg": "assets/img/SkI_5n_small_cut_opt.svg",
-        "image": "assets/img/SkI_5n_small.jpg",
-        "alt": "Aa:SkI/5"
+        "alt": "Aa:SkI/5",
+        "path": {
+            "svg": "assets/img/SkI_5n_small_cut_opt.svg",
+            "image": "assets/img/SkI_5n_small.jpg"
+        }
     }
 }
