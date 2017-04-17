@@ -10,7 +10,7 @@
  *
  ************************************************/
 
-import { Directive, ElementRef, Input, Injectable, ViewContainerRef, OnInit, OnChanges, SimpleChanges, TemplateRef } from '@angular/core';
+import { Directive, Input, Injectable, ViewContainerRef, OnInit, OnChanges, SimpleChanges } from '@angular/core';
 
 import { CompileHtmlModel } from './compile-html.model';
 import { CompileHtmlService } from './compile-html.service';
@@ -18,16 +18,16 @@ import { CompileHtmlService } from './compile-html.service';
 @Directive({
   selector: '[compile-html]'
 })
+@Injectable()
 export class CompileHtmlDirective implements OnInit, OnChanges {
 
-    @Input('compile-html') html: string;
+    @Input('compile-html') compileHtml: string;
     @Input('compile-html-ref') compileHtmlRef: any;
     @Input('compile-html-imports') compileHtmlImports: any[];
 
     constructor(
         private container: ViewContainerRef,
-        private service: CompileHtmlService,
-        private templateRef: TemplateRef<any>
+        private service: CompileHtmlService
     ) { }
 
     ngOnInit() {
@@ -40,7 +40,7 @@ export class CompileHtmlDirective implements OnInit, OnChanges {
 
     update() {
         let compileModel: CompileHtmlModel = {
-            template: this.html,
+            template: this.compileHtml,
             container: this.container,
             ref: this.compileHtmlRef,
             imports: this.compileHtmlImports
