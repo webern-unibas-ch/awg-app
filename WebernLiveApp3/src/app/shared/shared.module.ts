@@ -9,7 +9,6 @@ import { CompileHtmlModule } from './compile-html';
 
 import { HeadingComponent } from './heading';
 import { MapToIterablePipe } from './map-to-iterable';
-import { SanitizeHTMLPipe } from './sanitize-html';
 
 @NgModule({
     imports: [
@@ -20,8 +19,7 @@ import { SanitizeHTMLPipe } from './sanitize-html';
     ],
     declarations: [
         HeadingComponent,
-        MapToIterablePipe,
-        SanitizeHTMLPipe
+        MapToIterablePipe
     ],
     exports: [
         CommonModule,
@@ -31,8 +29,7 @@ import { SanitizeHTMLPipe } from './sanitize-html';
         AccordionModule,
         CompileHtmlModule,
         HeadingComponent,
-        MapToIterablePipe,
-        SanitizeHTMLPipe
+        MapToIterablePipe
     ]
 })
 export class SharedModule { }
