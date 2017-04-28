@@ -6,7 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./source-description.component.css']
 })
 export class SourceDescriptionComponent implements OnInit {
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }
 

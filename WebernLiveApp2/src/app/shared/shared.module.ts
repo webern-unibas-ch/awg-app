@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { CarouselModule, ModalModule } from 'ng2-bootstrap';
 
+import { CompileHtmlModule } from './compile-html';
+
 import { HeadingComponent } from './heading/heading.component';
 import { ModalComponent } from './modal/modal.component';
 
@@ -10,7 +12,12 @@ import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
 import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
 
 @NgModule({
-    imports: [ CommonModule, FormsModule, ModalModule ],
+    imports: [
+        CommonModule,
+        FormsModule,
+        ModalModule,
+        CompileHtmlModule.forRoot()
+    ],
     declarations: [
         HeadingComponent,
         ModalComponent,
@@ -19,8 +26,11 @@ import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
         SanitizeHTMLPipe
     ],
     exports: [
-        CommonModule, FormsModule,
-        CarouselModule, ModalModule,
+        CommonModule,
+        FormsModule,
+        CarouselModule,
+        ModalModule,
+        CompileHtmlModule,
 
         HeadingComponent,
         ModalComponent,

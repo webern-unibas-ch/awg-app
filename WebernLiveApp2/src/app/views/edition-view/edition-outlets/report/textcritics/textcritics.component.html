@@ -39,7 +39,7 @@
                         <td>
                             {{ line.location }}
                         </td>
-                        <td [innerHtml]="line.comment | sanitizeHTML"></td>
+                        <td [compile-html]="line.comment" [compile-html-ref]="ref"></td>
                     </tr>
                     </tbody>
                 </table>

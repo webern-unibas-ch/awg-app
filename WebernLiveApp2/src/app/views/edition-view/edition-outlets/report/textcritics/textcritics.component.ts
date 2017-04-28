@@ -10,6 +10,8 @@ export class TextcriticsComponent implements OnInit {
     @Input() comments: Textcritics[];
     @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
 
+    ref: TextcriticsComponent;
+
     constructor() { }
 
     ngOnInit() {
@@ -18,7 +20,5 @@ export class TextcriticsComponent implements OnInit {
     openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
     }
-
-    // TODO: self-sanitize content of comments (loaded from textcritics.json)
 
 }

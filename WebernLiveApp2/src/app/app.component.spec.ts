@@ -7,8 +7,10 @@ import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidenavComponent } from './core/sidenav/sidenav.component';
 
-import { RouterLinkStubDirective }   from '../testing';
-import { RouterOutletStubComponent } from '../testing';
+import { RouterLinkStubDirective }   from '../../../testing';
+import { RouterOutletStubComponent } from '../../../testing';
+
+// TODO: add custom testing matchers (also for footer.spec.ts)
 
 describe('AppComponent', () => {
     beforeEach( async(() => {

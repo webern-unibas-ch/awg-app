@@ -6,7 +6,7 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./source-evaluation.component.css']
 })
 export class SourceEvaluationComponent implements OnInit {
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
     constructor() { }

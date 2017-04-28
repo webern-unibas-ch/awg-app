@@ -13,7 +13,7 @@
                     <td class="bold">
                         <a [routerLink]="['./']" fragment={{source.linkTo}} (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
                     </td>
-                    <td><span [innerHTML]="source.type | sanitizeHTML"></span> <br/>
+                    <td><span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
                         <span [innerHTML]="source.location"></span>
                     </td>
                 </tr>
@@ -23,7 +23,7 @@
                         <a (click)="openModal(source.linkTo)" [innerHTML]="source.siglum"></a>
                     </td>
                     <td>
-                        <span [innerHTML]="source.type | sanitizeHTML"></span> <br/>
+                        <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
                         <span [innerHTML]="source.location"></span>
                     </td>
                 </tr>

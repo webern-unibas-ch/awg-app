@@ -8,8 +8,10 @@ import { Source } from '../../../../source';
 })
 export class SourceListComponent implements OnInit {
     @Input() sourceList: Source[];
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
+
+    ref: SourceListComponent;
 
     constructor() { }
 
@@ -17,6 +19,7 @@ export class SourceListComponent implements OnInit {
     }
 
     openModal(identifier: string) {
+        console.log('emit');
         this.openModalRequest.emit(identifier);
     }
 

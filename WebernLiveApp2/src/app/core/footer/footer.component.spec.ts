@@ -7,7 +7,7 @@ import { DebugElement, Component } from '@angular/core';
 import { FooterComponent } from './footer.component';
 import { MetaData } from '../metadata';
 
-import { RouterLinkStubDirective }   from '../../../testing';
+import { RouterLinkStubDirective }   from '../../../../../testing';
 
 /**
  * Testing Variables
