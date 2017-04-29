@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
 @Component({
     selector: 'awg-edition-tka-table',
@@ -6,11 +6,25 @@ import {Component, Input, OnInit} from '@angular/core';
     styleUrls: ['./edition-tka-table.component.css']
 })
 export class EditionTkaTableComponent implements OnInit {
-    @Input() items: string[];
+    @Input() textcritics: string[];
+    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+    ref: EditionTkaTableComponent;
+
+    constructor() {
+        this.ref = this;
+    }
 
     ngOnInit() {
+    }
+
+    public openModal(identifier: string) {
+        this.openModalRequest.emit(identifier);
+    }
+
+    public selectSheet(identifier: string): void {
+        this.selectSheetRequest.emit(identifier);
     }
 
 }

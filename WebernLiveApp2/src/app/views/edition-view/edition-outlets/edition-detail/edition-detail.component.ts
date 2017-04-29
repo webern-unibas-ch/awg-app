@@ -12,10 +12,10 @@ import { EditionService } from '../../edition.service';
 })
 export class EditionDetailComponent implements OnInit {
 
-    public items: Textcritics[];
     public selectedItem: string;
     public selectedSheet: Sheet;
     public sheetsData: Sheet[];
+    public textcritics: Textcritics[];
     public textcriticsData: Textcritics[];
 
     private errorMessage: string = undefined;
@@ -31,17 +31,17 @@ export class EditionDetailComponent implements OnInit {
         this.getSheetsAndCommentsData();
     }
 
-    onItemSelect($event) {
+    public onTextcriticSelect($event) {
         if (!this.textcriticsData && !this.selectedSheet) return;
         let res = this._editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
-        this.items = res[0];
+        this.textcritics = res[0];
         this.selectedItem = res[1];
-        this.showTkA = (this.items !== []);
+        this.showTkA = (this.textcritics !== []);
     }
 
-    onSheetSelect(sheet: Sheet) {
-        this._router.navigate(['/edition/detail', sheet.id]);
-        this.selectedSheet = sheet;
+    public onSheetSelect(id: string) {
+        this._router.navigate(['/edition/detail', id]);
+        this.selectedSheet = this.sheetsData[id];
         this.selectedItem = '';
         this.showTkA = false;
     }

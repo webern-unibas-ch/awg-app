@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { EditionService } from '../../edition.service';
 import { Source } from '../../source';
@@ -12,16 +12,17 @@ import { Textcritics } from '../../textcritics';
 })
 export class ReportComponent implements OnInit {
 
-    public reportTitle: string = 'Kritischer Bericht';
-    public reportId: string = 'report';
+    public reportTitle = 'Kritischer Bericht';
+    public reportId = 'report';
 
     public sourceListData: Source[];
     public textcriticsData: Textcritics[];
     private errorMessage: string = undefined;
 
     constructor(
-        private _route: ActivatedRoute,
-        private _editionService: EditionService
+        private router: Router,
+        private route: ActivatedRoute,
+        private editionService: EditionService
     ) { }
 
     ngOnInit() {
@@ -29,8 +30,12 @@ export class ReportComponent implements OnInit {
         this.scrollTo();
     }
 
+    public onSheetSelect(id: string) {
+        this.router.navigate(['/edition/detail', id]);
+    }
+
     private getSourceListAndCommentsData() {
-        this._editionService.getSourceListAndCommentsData()
+        this.editionService.getSourceListAndCommentsData()
             .subscribe((data) => {
                     this.sourceListData = data[0];
                     this.textcriticsData = data[1];
@@ -45,7 +50,7 @@ export class ReportComponent implements OnInit {
         console.log('Report: scrollTo(id): ', id);
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
-            this._route.fragment
+            this.route.fragment
                 .subscribe(
                     f => {
                         if (!f) { return; };

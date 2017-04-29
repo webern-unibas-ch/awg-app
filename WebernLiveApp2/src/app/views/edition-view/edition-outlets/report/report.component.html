@@ -21,7 +21,8 @@
     <!-- textcritics -->
     <awg-textcritics
         [comments]="textcriticsData"
-        (openModalRequest)="modal.open($event)">
+        (openModalRequest)="modal.open($event)"
+        (selectSheetRequest)="onSheetSelect($event)">
     </awg-textcritics>
 
 </div>

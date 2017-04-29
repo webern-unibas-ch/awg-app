@@ -44,6 +44,6 @@ export class EditionsModule {
         return {
             ngModule: EditionsModule,
             providers: [ EditionService ]
-        }
+        };
     }
 }

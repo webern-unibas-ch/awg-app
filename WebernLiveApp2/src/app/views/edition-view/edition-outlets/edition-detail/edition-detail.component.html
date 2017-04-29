@@ -20,18 +20,19 @@
 
     <!-- table for TkA -->
     <awg-edition-tka-table
-        *ngIf="showTkA && items"
-        [items]="items">
+        *ngIf="showTkA && textcritics"
+        [textcritics]="textcritics"
+        (openModalRequest)="modal.open($event)"
+        (selectSheetRequest)="onSheetSelect($event)">
     </awg-edition-tka-table>
 
     <!-- svg panel -->
     <awg-edition-svg-panel
-        *ngIf="sheetsData && selectedSheet"
-        [sheets]="sheetsData"
+        *ngIf="selectedSheet"
         [selectedSheet]="selectedSheet"
-        [selectedItem]="selectedItem"
+        [selectedTextcriticId]="selectedTextcriticId"
         (selectSheetRequest)="onSheetSelect($event)"
-        (selectItemRequest)="onItemSelect($event)">
+        (selectTextcriticRequest)="onTextcriticSelect($event)">
     </awg-edition-svg-panel>
 
 </div>

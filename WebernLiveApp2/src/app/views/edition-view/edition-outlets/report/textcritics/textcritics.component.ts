@@ -8,17 +8,24 @@ import { Textcritics } from '../../../textcritics';
 })
 export class TextcriticsComponent implements OnInit {
     @Input() comments: Textcritics[];
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
 
-    constructor() { }
+    constructor() {
+        this.ref = this;
+    }
 
     ngOnInit() {
     }
 
-    openModal(identifier: string) {
+    public openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
+    }
+
+    public selectSheet(identifier: string): void {
+        this.selectSheetRequest.emit(identifier);
     }
 
 }

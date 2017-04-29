@@ -13,9 +13,9 @@ const editionsRoutes: Routes = [
             { path: '', component: EditionOverviewComponent,
                 children: [
                     { path: 'intro', component: IntroComponent },
-                    { path: 'report', component: ReportComponent },
                     { path: 'detail', component: EditionDetailComponent },
-                    { path: 'detail/:id', component: EditionDetailComponent }
+                    { path: 'detail/:id', component: EditionDetailComponent },
+                    { path: 'report', component: ReportComponent }
                 ]
             }
         ]

@@ -8,11 +8,11 @@
             <th style="width:auto">Kommentar</th>
         </tr>
         </thead>
-        <tr *ngFor="let item of items">
-            <td>{{ item.measure }}</td>
-            <td>{{ item.system }}</td>
-            <td [innerHTML]="item.location"></td>
-            <td [innerHTML]="item.comment | sanitizeHTML"></td>
+        <tr *ngFor="let textcritic of textcritics">
+            <td>{{ textcritic.measure }}</td>
+            <td>{{ textcritic.system }}</td>
+            <td [innerHTML]="textcritic.location"></td>
+            <td><span [compile-html]="textcritic.comment" [compile-html-ref]="ref"></span></td>
         </tr>
     </table>
 </div>

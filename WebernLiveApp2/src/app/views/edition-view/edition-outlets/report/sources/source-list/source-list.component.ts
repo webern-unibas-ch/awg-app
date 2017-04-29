@@ -13,13 +13,14 @@ export class SourceListComponent implements OnInit {
 
     ref: SourceListComponent;
 
-    constructor() { }
+    constructor() {
+        this.ref = this;
+    }
 
     ngOnInit() {
     }
 
     openModal(identifier: string) {
-        console.log('emit');
         this.openModalRequest.emit(identifier);
     }
 

@@ -7,11 +7,10 @@ import { Sheet } from '../../../sheet';
     styleUrls: ['./edition-svg-panel.component.css']
 })
 export class EditionSvgPanelComponent implements OnInit {
-    @Input() sheets: Sheet[];
     @Input() selectedSheet: Sheet;
-    @Input() selectedItem: string;
-    @Output() selectSheetRequest: EventEmitter<Sheet> = new EventEmitter();
-    @Output() selectItemRequest: EventEmitter<any> = new EventEmitter();
+    @Input() selectedTextcriticId: string;
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectTextcriticRequest: EventEmitter<any> = new EventEmitter();
 
     // init sheets
     // TODO: other solution possible?
@@ -25,20 +24,20 @@ export class EditionSvgPanelComponent implements OnInit {
     ngOnInit() {
     }
 
+    isSelectedTextcritic(id: string) {
+        return id === this.selectedTextcriticId;
+    }
+
     isSelectedSheet(id: string) {
         return id === this.selectedSheet.id;
-    }
-
-    isSelectedItem(id: string) {
-        return id === this.selectedItem;
     };
 
-    selectItem(field: string, id: string) {
-        this.selectItemRequest.emit({field, id});
+    selectTextcritic(field: string, id: string) {
+        this.selectTextcriticRequest.emit({field, id});
     }
 
-    selectSheet(sheet: Sheet) {
-        this.selectSheetRequest.emit(sheet);
+    selectSheet(id: string) {
+        this.selectSheetRequest.emit(id);
     }
 
 }
