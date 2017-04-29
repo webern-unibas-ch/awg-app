@@ -9,7 +9,6 @@ import { HeadingComponent } from './heading/heading.component';
 import { ModalComponent } from './modal/modal.component';
 
 import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
-import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
 
 @NgModule({
     imports: [
@@ -21,9 +20,7 @@ import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
     declarations: [
         HeadingComponent,
         ModalComponent,
-
-        MapToIterablePipe,
-        SanitizeHTMLPipe
+        MapToIterablePipe
     ],
     exports: [
         CommonModule,
@@ -34,9 +31,7 @@ import { SanitizeHTMLPipe } from './sanitize-html/sanitize-html.pipe';
 
         HeadingComponent,
         ModalComponent,
-
-        MapToIterablePipe,
-        SanitizeHTMLPipe
+        MapToIterablePipe
     ]
 })
 export class SharedModule { }
