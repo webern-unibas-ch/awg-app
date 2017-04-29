@@ -13,7 +13,11 @@ export class SearchResultsComponent implements OnInit {
     private curId: string;
     private resText: string;
 
-    constructor() { }
+    ref: SearchResultsComponent;
+
+    constructor() {
+        this.ref = this;
+    }
 
     ngOnInit() {
         console.log('length results: ', this.searchData.subjects.length);
