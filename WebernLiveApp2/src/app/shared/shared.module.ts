@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { CarouselModule, ModalModule } from 'ng2-bootstrap';
+import { CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 import { CompileHtmlModule } from './compile-html';
 

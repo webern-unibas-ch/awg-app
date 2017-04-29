@@ -4,20 +4,19 @@ import { HttpModule } from '@angular/http';
 
 //
 // external modules
-//TODO: remove AlertModule?
-import { AlertModule, ButtonsModule, CarouselModule, ModalModule } from 'ng2-bootstrap';
+import { ButtonsModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 //
-// main app component/module & routes
+// main app modules & routes
 import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
+import { CoreModule } from './core/core.module';
+import { SharedModule } from './shared/shared.module';
 
 //
-// app modules
-import { CoreModule } from './core/core.module';
+// view modules
 import { EditionsModule } from './views/edition-view/editions.module';
 import { SearchModule } from './views/search-view/search.module';
-import { SharedModule } from './shared/shared.module';
 
 //
 // views
@@ -33,10 +32,12 @@ import { ConversionService } from './core/services/conversion-service/conversion
 
 @NgModule({
     imports: [
-        BrowserModule, HttpModule,
+        BrowserModule,
+        HttpModule,
 
-        AlertModule.forRoot(), ButtonsModule.forRoot(),
-        CarouselModule.forRoot(), ModalModule.forRoot(),
+        ButtonsModule.forRoot(),
+        CarouselModule.forRoot(),
+        ModalModule.forRoot(),
 
         CoreModule,
         EditionsModule.forRoot(),

@@ -260,7 +260,7 @@ export class ConversionService extends ApiService {
 
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
-            str = str.replace(p[0], '<a (click)="ref.showObject(' + res_id + ')">' + p[2] + '</a>');
+            str = str.replace(p[0], '<a (click)="ref.showObject(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
         } //END while
 
         return str;
