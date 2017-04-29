@@ -1,16 +1,16 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, inject } from '@angular/core/testing';
-import { BibliographyServiceService } from './bibliography.service';
+import { BibliographyService } from './bibliography.service';
 
-describe('BibliographyServiceService', () => {
+describe('BibliographyService', () => {
   beforeEach(() => {
     TestBed.configureTestingModule({
-      providers: [BibliographyServiceService]
+      providers: [BibliographyService]
     });
   });
 
-  it('should ...', inject([BibliographyServiceService], (service: BibliographyServiceService) => {
+  it('should ...', inject([BibliographyService], (service: BibliographyService) => {
     expect(service).toBeTruthy();
   }));
 });
