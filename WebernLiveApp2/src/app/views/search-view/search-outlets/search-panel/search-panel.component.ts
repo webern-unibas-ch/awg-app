@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { ConversionService } from '../../../../core/services/conversion-service/conversion.service';
+import { ConversionService } from '../../../../core/services';
 import { SearchService } from '../../search.service';
 import { SearchResponseJson } from '../../../../shared/api-objects';
 
@@ -15,19 +15,19 @@ export class SearchPanelComponent implements OnInit {
     // eventData: Object = {};
     private errorMessage: string = undefined;
     public searchData: SearchResponseJson = new SearchResponseJson();
-    public searchval: string = 'Kantate';
+    public searchval = 'Kantate';
 
-    isFormSubmitted: boolean = false;     // no form submitted
-    isDataLoaded: boolean = false;        // no data loaded
-    isDetailSelected: boolean = false;    // no object selected
-    isDetailLoaded: boolean = false;      // no object loaded
+    isFormSubmitted = false;     // no form submitted
+    isDataLoaded = false;        // no data loaded
+    isDetailSelected = false;    // no object selected
+    isDetailLoaded = false;      // no object loaded
     isEventButtonClicked = false;     // no button clicked
     isEventLoaded = false;       // no event loaded
-    isEventCached = false;       //no event cached
+    isEventCached = false;       // no event cached
 
     constructor(
-        private _searchService: SearchService,
-        private _conversionService: ConversionService
+        private searchService: SearchService,
+        private conversionService: ConversionService
     ) { }
 
     ngOnInit() {
@@ -43,11 +43,15 @@ export class SearchPanelComponent implements OnInit {
         this.searchval = query;
         console.log('You are searching for: ', this.searchval);
 
+        this.getFulltextSearchData();
+    }
+
+    public getFulltextSearchData() {
         // get searchresults from service
-        this._searchService.getFulltextSearchData(this.searchval)
+        this.searchService.getFulltextSearchData(this.searchval)
             .subscribe(
                 (data: SearchResponseJson) => {
-                    this.searchData = this._conversionService.convertFullTextSearchResults(data);
+                    this.searchData = this.conversionService.convertFullTextSearchResults(data);
                     // TODO: rm
                     console.info('SearchPanel#Data: ', this.searchData);
                     this.isFormSubmitted = false;

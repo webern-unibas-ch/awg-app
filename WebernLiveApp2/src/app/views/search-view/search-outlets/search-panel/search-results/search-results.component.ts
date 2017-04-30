@@ -1,6 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { SearchResponseJson } from '../../../../../shared/api-objects';
+import { ResourceFullResponseJson, SearchResponseJson } from '../../../../../shared/api-objects';
+import { ConversionService } from '../../../../../core/services';
+import { SearchService } from '../../../search.service';
 
 @Component({
     selector: 'awg-search-results',
@@ -10,12 +12,19 @@ import { SearchResponseJson } from '../../../../../shared/api-objects';
 export class SearchResultsComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
 
-    private curId: string;
-    private resText: string;
+    public curId: string;
+    public errorMessage: string = undefined;
+    public resText: string;
+
+    public activeSearchDetail;
+    public searchDetailData: ResourceFullResponseJson;
 
     ref: SearchResultsComponent;
 
-    constructor() {
+    constructor(
+        private conversionService: ConversionService,
+        private searchService: SearchService
+    ) {
         this.ref = this;
     }
 
@@ -24,13 +33,31 @@ export class SearchResultsComponent implements OnInit {
         this.resText = (this.searchData.subjects.length === 1) ? 'zugängliches Resultat von' : 'zugängliche Resultate von';
     }
 
-    activeObject(id: string){
+    activeDetail(id: string){
         return this.curId === id;
     };
 
-    showObject(id: string){
+    showDetail(id: string){
         this.curId = id;
 
+        this.searchService.getSearchDetailData(this.curId)
+            .subscribe(
+                (data: ResourceFullResponseJson) => {
+                    if (data.access === 'OK') {
+                        this.searchDetailData = data;
+                        this.searchService.prepareAccessObject(id, this.searchDetailData);
+                    }
+                    else {
+                        this.activeSearchDetail = this.searchService.prepareRestrictedObject(id);
+                    }
+                    // this.searchDetailData = this.conversionService.convertObjectProperties(data);
+                    // TODO: rm
+                    console.info('SearchPanel#DetailData: ', this.searchDetailData);
+                },
+                error => {
+                    this.errorMessage = <any>error;
+                }
+            );
         // TODO: remove
         console.info('SearchResults#showObject: called id: ', id);
     }

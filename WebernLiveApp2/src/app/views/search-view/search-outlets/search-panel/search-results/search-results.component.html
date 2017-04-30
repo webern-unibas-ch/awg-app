@@ -24,7 +24,7 @@
             </thead>
             <tbody>
             <!-- show searchResultDetail by clicking on single entry -->
-            <tr *ngFor="let data of searchData?.subjects" (click)="showObject(data.obj_id)" [class.active]="activeObject(data.obj_id)">
+            <tr *ngFor="let data of searchData?.subjects" (click)="showDetail(data.obj_id)" [class.active]="activeDetail(data.obj_id)">
                 <td>
                     <img [attr.src]=data.iconsrc alt="iconsrc" > {{ data.iconlabel }}
                 </td>
