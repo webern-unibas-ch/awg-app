@@ -100,7 +100,7 @@ svg {
     box-shadow: 5px 5px 6px #cccccc;
     border: 1px solid #eeeeee;
 }
-.svg_item {
+.svg-item {
     fill: orange;
     opacity: 0.2;
 }
@@ -108,11 +108,11 @@ svg {
     fill: red;
     opacity: 0.2;
 }*/
-.svg_measure, .svg_system, .svg_linkbox {
+.svg-measure, .svg-system, .svg-linkbox {
     fill: white;
     opacity: 0;
 }
-.svg_measure:hover, .svg_system:hover, .svg_linkbox:hover, .svg_item:hover {
+.svg-measure:hover, .svg-system:hover, .svg-linkbox:hover, .svg-item:hover {
     fill: #8bb82d; /* some lighter OliveDrab*/
     opacity: 0.2;
 }

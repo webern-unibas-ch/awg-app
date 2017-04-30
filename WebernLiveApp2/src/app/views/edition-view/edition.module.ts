@@ -17,14 +17,14 @@ import { TextcriticsComponent } from './edition-outlets/report/textcritics/textc
 
 //
 // edition service & routes
-import { EditionService } from './edition.service';
-import { EditionsRoutingModule, routedComponents } from './editions-routing.module';
+import { DataService, EditionService } from './services';
+import { EditionRoutingModule, routedComponents } from './edition-routing.module';
 
 
 @NgModule({
     imports: [
         SharedModule,
-        EditionsRoutingModule,
+        EditionRoutingModule,
     ],
     declarations: [
         routedComponents,
@@ -39,11 +39,11 @@ import { EditionsRoutingModule, routedComponents } from './editions-routing.modu
         TextcriticsComponent
     ]
 })
-export class EditionsModule {
+export class EditionModule {
     static forRoot(): ModuleWithProviders {
         return {
-            ngModule: EditionsModule,
-            providers: [ EditionService ]
+            ngModule: EditionModule,
+            providers: [ DataService, EditionService ]
         };
     }
 }

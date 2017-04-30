@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Sheet } from '../../../sheet';
+import { Sheet } from '../../../models/sheet.model';
 
 @Component({
     selector: 'awg-edition-sheet-control',

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EditionService } from '../../edition.service';
-import { Source } from '../../source';
-import { Textcritics } from '../../textcritics';
+import { Source, Textcritics } from '../../models';
+import { DataService, EditionService } from '../../services';
 
 @Component({
     selector: 'awg-report',
@@ -11,7 +10,6 @@ import { Textcritics } from '../../textcritics';
     styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-
     public reportTitle = 'Kritischer Bericht';
     public reportId = 'report';
 
@@ -22,20 +20,17 @@ export class ReportComponent implements OnInit {
     constructor(
         private router: Router,
         private route: ActivatedRoute,
+        private dataService: DataService,
         private editionService: EditionService
     ) { }
 
     ngOnInit() {
-        this.getSourceListAndCommentsData();
+        this.getData();
         this.scrollTo();
     }
 
-    public onSheetSelect(id: string) {
-        this.router.navigate(['/edition/detail', id]);
-    }
-
-    private getSourceListAndCommentsData() {
-        this.editionService.getSourceListAndCommentsData()
+    public getData() {
+        this.dataService.getEditionReportData()
             .subscribe((data) => {
                     this.sourceListData = data[0];
                     this.textcriticsData = data[1];
@@ -46,6 +41,10 @@ export class ReportComponent implements OnInit {
             );
     }
 
+    public onSheetSelect(id: string) {
+        this.router.navigate(['/edition/detail', id]);
+    }
+
     private scrollTo(id?: string) {
         console.log('Report: scrollTo(id): ', id);
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
@@ -54,6 +53,7 @@ export class ReportComponent implements OnInit {
                 .subscribe(
                     f => {
                         if (!f) { return; };
+                        // TODO: rm
                         console.log('Report#fragment(): ', f);
                         const element = document.querySelector('#' + f);
                         if (element) element.scrollIntoView(element);

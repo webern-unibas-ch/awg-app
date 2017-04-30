@@ -15,11 +15,11 @@ import { SharedModule } from './shared/shared.module';
 
 //
 // view modules
-import { EditionsModule } from './views/edition-view/editions.module';
+import { EditionModule } from './views/edition-view/edition.module';
 import { SearchModule } from './views/search-view/search.module';
 
 //
-// views
+// view components
 import { ContactViewComponent } from './views/contact-view/contact-view.component';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
@@ -40,7 +40,7 @@ import { ConversionService } from './core/services/conversion-service/conversion
         ModalModule.forRoot(),
 
         CoreModule,
-        EditionsModule.forRoot(),
+        EditionModule.forRoot(),
         SearchModule.forRoot(),
         SharedModule,
         AppRoutingModule

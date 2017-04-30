@@ -20,8 +20,8 @@
 
     <!-- table for TkA -->
     <awg-edition-tka-table
-        *ngIf="showTkA && textcritics"
-        [textcritics]="textcritics"
+        *ngIf="showTkA && selectedTextcritics"
+        [textcritics]="selectedTextcritics"
         (openModalRequest)="modal.open($event)"
         (selectSheetRequest)="onSheetSelect($event)">
     </awg-edition-tka-table>

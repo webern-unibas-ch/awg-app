@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Source } from '../../../../source';
+import { Source } from '../../../../models/source.model';
 
 @Component({
     selector: 'awg-source-list',
