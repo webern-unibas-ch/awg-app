@@ -6,10 +6,13 @@ import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 import { SidenavComponent } from './sidenav/sidenav.component';
 
+import { MetaService } from './services';
+
 @NgModule({
     imports:        [ RouterModule, SharedModule ],
     declarations:   [ FooterComponent, NavbarComponent, SidenavComponent ],
-    exports:        [ FooterComponent, NavbarComponent, SidenavComponent ]
+    exports:        [ FooterComponent, NavbarComponent, SidenavComponent ],
+    providers:      [ MetaService ]
 })
 export class CoreModule {
     constructor (@Optional() @SkipSelf() parentModule: CoreModule) {

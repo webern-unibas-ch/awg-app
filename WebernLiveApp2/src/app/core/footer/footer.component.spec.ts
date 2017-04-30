@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, Component } from '@angular/core';
 
 import { FooterComponent } from './footer.component';
-import { MetaData } from '../metadata';
+import { Meta } from '../models/meta.model';
 
 import { RouterLinkStubDirective }   from '../../../../../testing';
 
@@ -20,7 +20,7 @@ let thFixture: ComponentFixture<TestHostComponent>;
 
 let fixture: ComponentFixture<any>;
 let versionEl, versionDateEl, copyEl: DebugElement;
-let expectedMeta: MetaData;
+let expectedMeta: Meta;
 
 /**
  * Test Host (Parent Component)
@@ -30,7 +30,7 @@ let expectedMeta: MetaData;
     <awg-footer [meta]="metaData"></awg-footer>`
 })
 class TestHostComponent {
-    metaData: MetaData = {
+    metaData: Meta = {
         page: {
             yearStart: 2015,
             yearRecent: 2017,
@@ -106,7 +106,7 @@ function standAloneSetup() {
             // find copyright element
             copyEl = fixture.debugElement.query(By.css('#copyrightPeriod'));
 
-            expectedMeta = new MetaData();
+            expectedMeta = new Meta();
             expectedMeta['page'] = {
                 yearStart: 2015,
                 yearRecent: 2017,

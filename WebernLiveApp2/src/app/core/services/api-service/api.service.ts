@@ -10,7 +10,7 @@ import { ApiServiceResult } from './api-service-result';
 @Injectable()
 export class ApiService {
 
-    constructor(private _httpService: Http) {}
+    constructor(private httpService: Http) {}
 
     /**
      * Performs a HTTP GET request to the Knora API.
@@ -20,7 +20,7 @@ export class ApiService {
      */
     httpGet(url: string, options?: RequestOptionsArgs) {
         if (!options) options = {};
-        return this._httpService.get(AppConfig.API_ENDPOINT + url, options)
+        return this.httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {
                 try {
                     return response.json();
@@ -44,7 +44,7 @@ export class ApiService {
     httpPost(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
         if (!body) body = {};
         if (!options) options = {};
-        return this._httpService.post(AppConfig.API_ENDPOINT + url, body, options).map((response: Response) => {
+        return this.httpService.post(AppConfig.API_ENDPOINT + url, body, options).map((response: Response) => {
                 try {
                     let apiServiceResult: ApiServiceResult = new ApiServiceResult();
                     apiServiceResult.status = response.status;

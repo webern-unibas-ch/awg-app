@@ -1,4 +1,4 @@
-export class MetaData {
+export class Meta {
     page: {
         yearStart: number;
         yearRecent: number;
@@ -8,5 +8,5 @@ export class MetaData {
     edition: {
         editors: string;
         lastModified: string;
-    }
+    };
 }

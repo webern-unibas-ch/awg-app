@@ -1,6 +1,5 @@
 import { Injectable } from '@angular/core';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
-import { Observable } from 'rxjs';
 import { ApiService } from '../api-service/api.service';
 
 declare var htmlConverter;

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { MetaData } from '../metadata';
+import { Meta } from '../models/meta.model';
 
 @Component({
     selector: 'awg-sidenav',
@@ -7,7 +7,7 @@ import { MetaData } from '../metadata';
     styleUrls: ['./sidenav.component.css']
 })
 export class SidenavComponent implements OnInit {
-    @Input() meta: MetaData;
+    @Input() meta: Meta;
     private editors: string;
     private lastModified: string;
 

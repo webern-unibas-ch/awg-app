@@ -30,6 +30,6 @@ export class SearchModule {
         return {
             ngModule: SearchModule,
             providers: [ SearchService, BibliographyService ]
-        }
+        };
     }
 }
