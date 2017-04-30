@@ -1,0 +1,13 @@
+<!-- content: search panel -->
+
+<!--
+  [ => TODO: <em>paging, back to previous object</em>]
+-->
+<awg-search-form
+    [(searchval)]="searchval"
+    (submitRequest)="onSubmit($event)">
+</awg-search-form>
+
+<awg-search-results *ngIf="isDataLoaded"
+    [searchData]="searchData">
+</awg-search-results>

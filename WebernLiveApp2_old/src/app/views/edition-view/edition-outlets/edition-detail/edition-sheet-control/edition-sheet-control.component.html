@@ -1,0 +1,6 @@
+<div *ngIf="sheets" class="btn-group btn-group-justified" style="margin-bottom:1em; box-shadow: 5px 5px 6px #cccccc;">
+    <a class="btn btn-default" *ngFor="let sheet of sheets | mapToIterable" [class.active]="isSelectedSheet(sheet.mappedValues)" (click)="selectSheet(sheet.mappedValues)">
+        {{ sheet.mappedKey }}
+    </a>
+</div>
+
