@@ -8,6 +8,7 @@ import { SearchRoutingModule, routedSearchComponents } from './search-routing.mo
 import { ApiService } from '../../core/services/api-service/api.service';
 import { ConversionService } from '../../core/services/conversion-service/conversion.service';
 import { SearchService } from './search.service';
+
 import { SearchFulltextFormComponent } from './search-fulltext/search-fulltext-form/search-fulltext-form.component';
 import { SearchFulltextResultsComponent } from './search-fulltext/search-fulltext-results/search-fulltext-results.component';
 
@@ -20,6 +21,6 @@ export class SearchModule {
         return {
             ngModule: SearchModule,
             providers: [ ApiService, ConversionService, SearchService ]
-        }
+        };
     }
 }

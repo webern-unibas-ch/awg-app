@@ -1,8 +1,8 @@
 /**
  *
- *              CoreData
+ *              CoreMockData
  *
- * This file exports data that is used
+ * This file mocks data that is used
  * for the core app.
  *
  */
