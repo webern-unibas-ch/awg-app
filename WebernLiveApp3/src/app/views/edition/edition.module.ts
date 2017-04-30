@@ -1,9 +1,9 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 
-import { EditionRoutingModule, routedEditionComponents } from './edition-routing.module';
 import { EditionDetailModule } from './edition-detail/edition-detail.module';
 import { EditionReportModule } from './edition-report/edition-report.module';
+import { EditionRoutingModule, routedEditionComponents } from './edition-routing.module';
 
 import { DataService, EditionService } from './services';
 
