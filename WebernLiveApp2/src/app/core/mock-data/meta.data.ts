@@ -1,4 +1,4 @@
-import { Meta } from '../models';
+import { Meta } from '../core-models';
 
 export const METADATA: Meta[] = [
     {

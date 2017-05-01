@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Meta } from '../../models';
+import { Meta } from '../../core-models';
 import { METADATA } from '../../mock-data';
 
 

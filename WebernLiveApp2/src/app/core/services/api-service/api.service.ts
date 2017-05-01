@@ -22,7 +22,6 @@ export class ApiService {
      */
     httpGet(url: string, options?: RequestOptionsArgs) {
         if (!options) options = {};
-        console.log('URL: ', AppConfig.API_ENDPOINT + url, ' ||  Options: ' , options);
         return this.httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {
                 try {

@@ -5,7 +5,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, Component } from '@angular/core';
 
 import { FooterComponent } from './footer.component';
-import { Meta } from '../models/meta.model';
+import { Meta } from '../core-models/meta.model';
 
 import { RouterLinkStubDirective }   from '../../../../../testing';
 

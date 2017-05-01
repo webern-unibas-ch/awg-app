@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Meta } from '../models/meta.model';
+import { Meta } from '../core-models/meta.model';
 
 @Component({
     selector: 'awg-sidenav',

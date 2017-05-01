@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Meta } from './core/models';
+import { Meta } from './core/core-models';
 import { MetaService } from './core/services';
 
 @Component({
