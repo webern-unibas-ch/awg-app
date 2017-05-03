@@ -1,8 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
-import { ResourceFullResponseJson, SearchResponseJson } from '../../../../../shared/api-objects';
-import { ConversionService } from '../../../../../core/services';
-import { SearchService } from '../../../search.service';
+import { SearchResponseJson } from '../../../../../shared/api-objects';
+
 
 @Component({
     selector: 'awg-search-results',
@@ -13,17 +13,12 @@ export class SearchResultsComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
 
     public curId: string;
-    public errorMessage: string = undefined;
     public resText: string;
-
-    public activeSearchDetail;
-    public searchDetailData: ResourceFullResponseJson;
 
     ref: SearchResultsComponent;
 
     constructor(
-        private conversionService: ConversionService,
-        private searchService: SearchService
+        private router: Router
     ) {
         this.ref = this;
     }
@@ -38,27 +33,7 @@ export class SearchResultsComponent implements OnInit {
 
     showDetail(id: string) {
         this.curId = id;
-        // TODO: rm
-        console.info('SearchResults#showObject: called id: ', id);
-
-        this.searchService.getSearchDetailData(this.curId)
-            .subscribe(
-                (data: ResourceFullResponseJson) => {
-                    if (data.access === 'OK') {
-                        this.searchDetailData = data;
-                        this.conversionService.prepareAccessObject(id, this.searchDetailData);
-                    }
-                    else {
-                        this.activeSearchDetail = this.conversionService.prepareRestrictedObject(id);
-                    }
-                    // this.searchDetailData = this.conversionService.convertObjectProperties(data);
-                    // TODO: rm
-                    console.info('SearchPanel#DetailData: ', this.searchDetailData);
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
+        this.router.navigate(['/search/detail', this.curId]);
     }
 
 }

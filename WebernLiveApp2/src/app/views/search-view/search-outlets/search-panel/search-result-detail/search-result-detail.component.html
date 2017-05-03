@@ -2,6 +2,12 @@
   search-results-detail works!
 </p>
 
+<pre>
+    {{ resourceData | json }}
+</pre>
+
+<button (click)="goBack()">Back</button>
+
 <!-- search result detail box -->
 <div class="col-sm-6 col-md-7 col-lg-8 objbox" *ngIf="isDetailSelected || isEventButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
 

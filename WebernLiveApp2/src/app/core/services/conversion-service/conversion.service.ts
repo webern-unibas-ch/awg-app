@@ -403,26 +403,26 @@ export class ConversionService extends ApiService {
 
     private convertGUISpecificValues(url, prop): [string] {
         let propValue: [string] = [''];
+        prop['toHtml'] = [''];
 
         switch (prop.valuetype_id) {
             // DATE: salsah object needs to be converted (using plugin "dateConverter")
             case '4':
                 if (prop.values[0] !== '') {
-                    prop.values[0] = this.convertDate(prop.values[0]);
-                    // TODO: rm? if generic
-                    propValue[0] = prop.values[0];
+                    prop['toHtml'] = this.convertDate(prop.values[0]);
                 } else {
                     console.log('empty dateValue:::: ', prop);
                 }
                 break; // END date
 
-            // LINKVALUE (ResourcePointer): linkage to another salsah object needs to be converted
+            // LINKVALUE (ResourcePointer): links to another salsah object need to be converted
             case '6':
-                if (prop.values.length > 0) {
-                    for (let i = 0; i < prop.values.length; i++){
+                if (prop.values) {
+                    console.log('id 6: ', prop.values);
+                    for (let i = 0; i < prop.values.length; i++) {
                         // add <p> & <a> with click-directive
                         // linktext is stored in "$&"
-                        propValue[0] += prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a (click)="ref.showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
+                        prop['toHtml'][i] = prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a (click)="ref.showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
                     } // END for
                 } else {
                     console.log('empty linkValue:::: ', prop);
@@ -436,14 +436,14 @@ export class ConversionService extends ApiService {
 
                     //IDENTIFY ID OF SELECTION-LIST FROM prop.attributes
                     //e.g. "selection=66"
-                    var q = prop.attributes.split("=");
+                    let q = prop.attributes.split("=");
 
                     //GET SELECTION-LIST DATA
-                    $http.get(url + '/api/selections/' + q[1]).then(function (response){
-                        var selection = response.data.selection;
+                    this.httpGet(url + '/selections/' + q[1]).then(response => {
+                        let selection = response.data.selection;
 
                         //LOCALIZE ID IN SELECTION-LIST AND IDENTIFY THE LABEL
-                        for (var i = 0; i < selection.length; i++) {
+                        for (let i = 0; i < selection.length; i++) {
                             if (selection[i].id == prop.values[0]) propValue[0] = selection[i].label;
                         }
                         return propValue[0];
@@ -505,7 +505,7 @@ export class ConversionService extends ApiService {
                         htmlstr = this.replaceSalsahLink(htmlstr);
 
                         // check if <p>-tags not exist (indexOf -1), then add them & concat string to propValue[0]
-                        propValue[0] += (htmlstr.indexOf('<p>') === -1) ? htmlstr.replace(htmlstr, '<p>$&</p>') :
+                        prop['toHtml'][i] = (htmlstr.indexOf('<p>') === -1) ? htmlstr.replace(htmlstr, '<p>$&</p>') :
                             htmlstr;
                     }
                 // empty values
@@ -564,11 +564,9 @@ export class ConversionService extends ApiService {
  */
             // '1' => TEXT: properties come as they are
             default:
-                // empty value
-                propValue[0] = '';
                 if (prop.values[0] !== '') {
                     for (let i = 0; i < prop.values.length; i++) {
-                        propValue[i] = prop.values[i];
+                        prop['toHtml'][i] = prop.values[i];
                     }
                 } // END default
         } // END switch

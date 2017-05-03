@@ -29,7 +29,7 @@ export class SearchService extends ApiService {
     **  resource detail search via salsah api
     **
     ****************************************/
-    public getSearchDetailData(id: string): Observable<ResourceFullResponseJson> {
+    public getResourceData(id: string): Observable<ResourceFullResponseJson> {
         let queryString: string = '/resources/' + id + '_-_local';
         /*let params = new URLSearchParams();
         params.set('restype', 'info');
