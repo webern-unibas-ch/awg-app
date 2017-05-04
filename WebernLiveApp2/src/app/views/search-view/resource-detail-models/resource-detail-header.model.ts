@@ -1,4 +1,4 @@
-export class SearchDetailHeaderForDisplay {
+export class ResourceDetailHeader {
     objID: string;
     icon: string;
     type: string;

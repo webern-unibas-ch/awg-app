@@ -1,4 +1,4 @@
-export class SearchDetailPropsForDisplay {
+export class ResourceDetailProps {
     pid: string;
     guielement: string;
     label: string;

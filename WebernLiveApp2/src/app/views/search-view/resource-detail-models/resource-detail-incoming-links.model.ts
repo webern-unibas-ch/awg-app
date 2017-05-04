@@ -1,4 +1,4 @@
-export class SearchDetailIncomingLinksForDisplay {
+export class ResourceDetailIncomingLinks {
     id: string;
     value: string;
     icon: string;
