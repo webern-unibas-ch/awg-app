@@ -67,7 +67,7 @@ export class ConversionService extends ApiService {
                     case '4':
                         // DATE: salsah object needs to be converted (using plugin "dateConverter")
                         if (prop.values[0] !== '') {
-                            propValue[0] = this.convertDate(prop.values[0]);
+                            propValue[0] = this.convertDateValue(prop.values[0]);
                         }
                         break; //END date
 
@@ -170,107 +170,6 @@ export class ConversionService extends ApiService {
     } // END convertObjectProperties (func)
 
 
-    /******************************************
-     *
-     * convert date objects
-     *
-     *****************************************/
-    private convertDate(dateObj) {
-        let date = dateConverter(dateObj);
-        date = date.replace(' (G)', '');
-        return date;
-    }
-
-
-    /******************************************
-     *
-     *  convert linear salsah standoff
-     *  (string with textattributes)
-     *  to html using plugin "convert_lin2html"
-     *
-     *****************************************/
-    private convertStandoffToHTML(str: string, attr: string): string {
-        return htmlConverter(JSON.parse(attr), str);
-    }
-
-
-    /******************************************
-     *
-     * get selection list object
-     * from salsah api
-     *
-     *****************************************/
-    private getSelectionsById(selectionId: string): any {
-        let queryString: string = '/selections/' + selectionId;
-        return this.httpGet(queryString);
-    }
-
-
-    /******************************************
-     *
-     *  find inner links in online-access-property
-     *  and rebuild the values for displaying
-     *
-     *****************************************/
-    private replaceBiblioLink(str: string){
-        let tmpStr,
-            splitStr,
-            nameStr,
-            linkStr,
-            regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
-
-        // check for double spaces
-        str = str.replace('  ', ' ');
-
-        //split "str" behind parentheses
-        splitStr = str.split(') ');
-
-        // get name of link from 1st part of "splitstr
-        nameStr = splitStr[0].replace('(', '');
-
-        // check for link in 2nd part of "splitstr"
-        if (linkStr = regExLink.exec(splitStr[1])) {
-            // ... link with <a> tag
-            tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
-        } else if (nameStr != 'DOI') {
-            //... <a> tag is missing, add it
-            tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
-        } else {
-            // no links, pure string
-            tmpStr = nameStr + ': ' + splitStr[1];
-        }
-        return tmpStr;
-    }
-
-
-    /******************************************
-     *
-     * find inner salsah links in richtext
-     * and replace them with click-directive
-     *
-     *****************************************/
-    private replaceSalsahLink(str: string): string {
-        // TODO: add type
-        let patNum = /\d{4,8}/,    // regexp for object id (4-7 DIGITS)
-            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i, // regexp for salsah links
-            p;
-
-        // check only for salsah links
-        while (p = patLink.exec(str)) {
-            // i.e.: as long as patLink is detected in str do...
-
-            // identify resource id
-            let res_id = patNum.exec(p[1])[0];
-
-            // replace href attribute with click-directive
-            // linktext is stored in second regexp-result p[2]
-            str = str.replace(p[0], '<a (click)="ref.showObject(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
-        } //END while
-
-        return str;
-    }
-
-
     public prepareRestrictedObject(id) {
         console.log('No access to resource: ', id);
         let detail: ResourceDetail = new ResourceDetail();
@@ -294,12 +193,13 @@ export class ConversionService extends ApiService {
 
         // TODO: continue
         detail['header'] = this.prepareSearchDetailHeader(data);
-/*
-        detail['incoming'] = this.prepareSearchDetailIncomingLinks(data);
-        detail['props'] = this.prepareSearchDetailProperties(url, data);
-        console.log('preparedDetail: ', detail);
-        */
+        /*
+         detail['incoming'] = this.prepareSearchDetailIncomingLinks(data);
+         detail['props'] = this.prepareSearchDetailProperties(url, data);
+         console.log('preparedDetail: ', detail);
+         */
     }
+
 
     private prepareSearchDetailHeader(data) {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
@@ -403,10 +303,10 @@ export class ConversionService extends ApiService {
 
             // check if values property is defined
             //if ('values' in prop) {
-                let convertedPropValue: string[] = [];
-                // convertedPropValue = this.convertGUISpecificValues(prop, url);
-                // push convertedPropValue into searchDetailProperties
-                searchDetailProperties['value'] = convertedPropValue;
+            let convertedPropValue: string[] = [];
+            // convertedPropValue = this.convertGUISpecificValues(prop, url);
+            // push convertedPropValue into searchDetailProperties
+            searchDetailProperties['value'] = convertedPropValue;
             //}
         }); // END forEach props
         return searchDetailProperties;
@@ -423,49 +323,67 @@ export class ConversionService extends ApiService {
     };
 
 
+
     private addHtmlValues(prop, url?): [string] {
         prop['toHtml'] = [''];
 
         if (prop.values) {
             switch (prop.valuetype_id) {
-                // DATE: salsah object needs to be converted (using plugin "dateConverter")
-                case '4':
-                        prop['toHtml'] = this.convertDate(prop.values[0]);
+
+                case '4':   // DATE: salsah object needs to be converted (using plugin "dateConverter")
+                    for (let i = 0; i < prop.values.length; i++) {
+                        prop['toHtml'][i] = this.convertDateValue(prop.values[i]);
+                    }
                     break; // END date
 
-                // LINKVALUE (ResourcePointer): links to another salsah object need to be converted
-                case '6':
+
+                case '6':   // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        // add <p> & <a> with click-directive; linktext is stored in "$&"
-                        // TODO: check if <p> tag is necessary here
-                        prop['toHtml'][i] = prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a (click)="ref.showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
+                        prop['toHtml'][i] = this.convertLinkValue(prop, i);
                     }
                     break; // END linkvalue
 
+                case '7': // SELECTION (pulldown): selection nodes have to be read seperately
+                    // identify id of selection-list from prop.attributes
+                    // e.g. "selection=66"
+                    let q = prop.attributes.split("=");
+
+                    // TODO: how to get value out of observable subscription??
+                    // get selection-list data
+                    this.getSelectionsById(q[1]).subscribe(data => {
+                        let selection = data.selection;
+                        console.log('tmpdata: ', data.selection);
+
+                        console.log('LàNGE: ', selection.length);
+
+                        // localize id in selection-list and identify the label
+                        for (let i = 0; i < selection.length; i++) {
+                            if (selection[i].id === prop.values[0]) {
+                                prop['toHtml'] = selection[i].label;
+                            }
+                            console.info(prop['toHtml']);
+                            return prop['toHtml'];
+                        }
+                    });
+
+                        /*.map(response => {
+                        let selection = response.data.selection;
+
+                        // localize id in selection-list and identify the label
+                        for (let i = 0; i < selection.length; i++) {
+                            if (selection[i].id === prop.values[0]) {
+                                tmp = selection[i].label;
+                            }
+                            console.warn('innertmp: ', tmp);
+                            return tmp;
+                        }
+                        console.warn('outertmp: ', tmp);
+                    });
+                    */
+                    break; // END selection
+
                 // TODO: continue for other cases
                 /*
-                 case '7': // SELECTION PULLDOWN: SELECTION NODES HAVE TO BE READ SEPERATLY
-                 if (prop.values[0] !== '') {
-
-                 //IDENTIFY ID OF SELECTION-LIST FROM prop.attributes
-                 //e.g. "selection=66"
-                 let q = prop.attributes.split("=");
-
-                 //GET SELECTION-LIST DATA
-                 this.httpGet(url + '/selections/' + q[1]).then(response => {
-                 let selection = response.data.selection;
-
-                 //LOCALIZE ID IN SELECTION-LIST AND IDENTIFY THE LABEL
-                 for (let i = 0; i < selection.length; i++) {
-                 if (selection[i].id == prop.values[0]) propValue[0] = selection[i].label;
-                 }
-                 return propValue[0];
-                 });
-                 } else {
-                 // EMPTY VALUE
-                 propValue[0] = '';
-                 };
-                 break; // END selection
 
                  case '12': // HLIST: HLIST NODES HAVE TO BE CALLED SEPERATLY
                  if (prop.values[0] !== '') {
@@ -504,24 +422,10 @@ export class ConversionService extends ApiService {
                  };
                  break; // END hlist
                  */
-                // RICHTEXT: salsah standoff needs to be converted
-                case '14':
-                    // check for not empty values
-                    if (prop.values[0].utf8str !== '') {
-                        for (let i = 0; i < prop.values.length; i++) {
-                            // convert linear salsah standoff to html (using plugin "convert_lin2html")
-                            let htmlstr: string = this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
 
-                            // replace salsah links
-                            htmlstr = this.replaceSalsahLink(htmlstr);
-
-                            // TODO: check if <p> tag is necessary here
-                            // check if <p>-tags not exist (indexOf -1), then add them & concat string to prop.toHtml[i]
-                            prop['toHtml'][i] = (htmlstr.indexOf('<p>') === -1) ? htmlstr.replace(htmlstr, '<p>$&</p>') :
-                                htmlstr;
-                        }
-                    } else {
-                        console.log('empty richtextValue:::: ', prop);
+                case '14':  // RICHTEXT: salsah standoff needs to be converted
+                    for (let i = 0; i < prop.values.length; i++) {
+                        prop['toHtml'][i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
                     break; // END richtext
                 /*
@@ -580,9 +484,133 @@ export class ConversionService extends ApiService {
                     }
             } // END switch
         } else {
-            console.warn('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ', prop);
+            console.warn('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
         }
         return prop;
+    }
+
+
+    /******************************************
+     *
+     * convert date values
+     *
+     *****************************************/
+    private convertDateValue(dateObj) {
+        let date = dateConverter(dateObj);
+        date = date.replace(' (G)', '');
+        return date;
+    }
+
+    /******************************************
+     *
+     * convert link values
+     *
+     *****************************************/
+    private convertLinkValue(prop, i: number) {
+        // add <a>-tag with click-directive; linktext is stored in "$&"
+        return prop.value_firstprops[i].replace(prop.value_firstprops[i], '<a (click)="ref.showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/>');
+    }
+
+    /******************************************
+     *
+     * convert richtext values
+     *
+     *****************************************/
+    private convertRichtextValue(str: string, attr: string) {
+        // convert salsah standoff to html (using plugin "convert_lin2html")
+        let htmlstr: string = this.convertStandoffToHTML(str, attr);
+
+        // replace salsah links
+        htmlstr = this.replaceSalsahLink(htmlstr);
+
+        return htmlstr;
+    }
+
+    /******************************************
+     *
+     *  convert linear salsah standoff
+     *  (string with textattributes)
+     *  to html using plugin "convert_lin2html"
+     *
+     *****************************************/
+    private convertStandoffToHTML(str: string, attr: string): string {
+        return htmlConverter(JSON.parse(attr), str);
+    }
+
+
+
+    /******************************************
+     *
+     * get selection list object
+     * from salsah api
+     *
+     *****************************************/
+    private getSelectionsById(selectionId: string): any {
+        let queryString: string = '/selections/' + selectionId;
+        return this.httpGet(queryString);
+    }
+
+
+    /******************************************
+     *
+     *  find inner links in online-access-property
+     *  and rebuild the values for displaying
+     *
+     *****************************************/
+    private replaceBiblioLink(str: string){
+        let tmpStr,
+            splitStr,
+            nameStr,
+            linkStr,
+            regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
+
+        // check for double spaces
+        str = str.replace('  ', ' ');
+
+        //split "str" behind parentheses
+        splitStr = str.split(') ');
+
+        // get name of link from 1st part of "splitstr
+        nameStr = splitStr[0].replace('(', '');
+
+        // check for link in 2nd part of "splitstr"
+        if (linkStr = regExLink.exec(splitStr[1])) {
+            // ... link with <a> tag
+            tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
+        } else if (nameStr != 'DOI') {
+            //... <a> tag is missing, add it
+            tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
+        } else {
+            // no links, pure string
+            tmpStr = nameStr + ': ' + splitStr[1];
+        }
+        return tmpStr;
+    }
+
+    /******************************************
+     *
+     * find inner salsah links in richtext
+     * and replace them with click-directive
+     *
+     *****************************************/
+    private replaceSalsahLink(str: string): string {
+        let patNum = /\d{4,8}/,    // regexp for object id (4-7 DIGITS)
+            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i, // regexp for salsah links
+            p;
+
+        // check only for salsah links
+        while (p = patLink.exec(str)) {
+            // i.e.: as long as patLink is detected in str do...
+
+            // identify resource id
+            let res_id = patNum.exec(p[1])[0];
+
+            // replace href attribute with click-directive
+            // linktext is stored in second regexp-result p[2]
+            str = str.replace(p[0], '<a (click)="ref.showObject(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
+        } //END while
+
+        return str;
     }
 
 }
