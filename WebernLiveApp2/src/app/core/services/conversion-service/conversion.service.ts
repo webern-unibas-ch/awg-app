@@ -4,11 +4,11 @@ import { ApiService } from '../api-service/api.service';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
 
 import {
-    SearchDetail,
-    SearchDetailHeaderForDisplay,
-    SearchDetailIncomingLinksForDisplay,
-    SearchDetailPropsForDisplay
-} from '../../../views/search-view/search-models';
+    ResourceDetail,
+    ResourceDetailHeader,
+    ResourceDetailIncomingLinks,
+    ResourceDetailProps
+} from '../../../views/search-view/resource-detail-models';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -273,7 +273,7 @@ export class ConversionService extends ApiService {
 
     public prepareRestrictedObject(id) {
         console.log('No access to resource: ', id);
-        let detail: SearchDetail = new SearchDetail();
+        let detail: ResourceDetail = new ResourceDetail();
         detail['header'] = {
             'objID': id,
             'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
@@ -284,19 +284,93 @@ export class ConversionService extends ApiService {
     }
 
     public prepareAccessObject(id, data: ResourceFullResponseJson) {
-        let detail: SearchDetail = new SearchDetail();
-        const url = 'www.salsah.org';
-        let props = data.props;
-        let info = data.resinfo;
+        data = this.convertGUISpecificProps(data);
+        console.log('data: ', data);
 
+        let detail: ResourceDetail = new ResourceDetail();
+        let info = data.resinfo;
+        let props = data.props;
+        const url = 'www.salsah.org';
+
+        // TODO: continue
+        detail['header'] = this.prepareSearchDetailHeader(data);
+/*
         detail['incoming'] = this.prepareSearchDetailIncomingLinks(data);
         detail['props'] = this.prepareSearchDetailProperties(url, data);
-        detail['header'] = this.prepareSearchDetailHeader(id, info, props, detail);
         console.log('preparedDetail: ', detail);
+        */
+    }
+
+    private prepareSearchDetailHeader(data) {
+        let header: ResourceDetailHeader = new ResourceDetailHeader();
+        let info = data.resinfo;
+        let id = data.resdata.res_id;
+        let props = data.props;
+
+        if (typeof info !== undefined) {
+            // extract common default metadata for header
+            header['objID'] = id;
+            header['icon'] = info.restype_iconscrs;
+            header['type'] = info.restype_label;
+            header['lastmod'] = info.lastmod;
+
+            // extract restype specific title metadata
+            switch (info.restype_id) {
+                // PERSON
+                case '45':
+                    const lname: string = props['salsah:lastname'].toHtml[0],
+                        fname: string = props['salsah:firstname'].toHtml[0];
+                    header['title'] = fname + ' ' + lname;
+                    break;
+
+                // KORRESPONDENZ (same as SUPPLEMENT)
+                case '29':
+                // SUPPLEMENT
+                case '125':
+                    header['title'] = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
+                    break;
+
+                // WERK
+                case '43':
+                    header['title'] = props['dc:title'].toHtml[0];
+                    break;
+
+                // MUSIKSTÜCK (Moldenhauer-Nummer)
+                case '36':
+                    header['title'] = '[M ' + props['webern:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
+                    break;
+
+                // CHRONOLOGIE
+                case '28':
+                    // richtext value has already been converted in detail using plugin "convert_lin2html"
+                    let htmlstr = props['webern:event_rt'].toHtml[0];
+
+                    // strip & replace <p>-tags for displaying title
+                    htmlstr = htmlstr.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(htmlstr, '«$&»');
+
+                    header['title'] = htmlstr;
+                    break;
+
+                // DEFAULT
+                default:
+                    header['title'] = info.restype_description;
+
+            }
+        } else {
+            // header for undefined object
+            header = {
+                'objID': id,
+                'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
+                'type': '---',
+                'title': '---',
+                'lastmod': '---'
+            };
+        }
+        return header;
     }
 
     private prepareSearchDetailIncomingLinks(data: ResourceFullResponseJson) {
-        let incomingLinks: SearchDetailIncomingLinksForDisplay[] = [];
+        let incomingLinks: ResourceDetailIncomingLinks[] = [];
         data.incoming.forEach(ins => {
             incomingLinks.push({
                 id: ins.ext_res_id.id,
@@ -308,7 +382,7 @@ export class ConversionService extends ApiService {
     }
 
     private prepareSearchDetailProperties(url, data) {
-        let searchDetailProperties: SearchDetailPropsForDisplay[] = [];
+        let searchDetailProperties: ResourceDetailProps[] = [];
 
         // loop through property keys
         Object.keys(data['props']).forEach((key: string) => {
@@ -328,251 +402,186 @@ export class ConversionService extends ApiService {
             });
 
             // check if values property is defined
-            if ('values' in prop) {
+            //if ('values' in prop) {
                 let convertedPropValue: string[] = [];
-                convertedPropValue = this.convertGUISpecificValues(url, prop);
+                // convertedPropValue = this.convertGUISpecificValues(prop, url);
                 // push convertedPropValue into searchDetailProperties
                 searchDetailProperties['value'] = convertedPropValue;
-            }
+            //}
         }); // END forEach props
         return searchDetailProperties;
     };
 
-    private prepareSearchDetailHeader(id, info, props, detail) {
-        let header: SearchDetailHeaderForDisplay = new SearchDetailHeaderForDisplay();
-        if (typeof info !== undefined) {
-            header['objID'] = id;
-            header['icon'] = info.restype_iconscrs;
-            header['type'] = info.restype_label;
-            header['lastmod'] = info.lastmod;
 
-            switch (info.restype_id) {
-                // PERSON
-                case '45':
-                    const lname: string = props['salsah:lastname'].values[0],
-                        fname: string = props['salsah:firstname'].values[0];
-                    header['title'] = fname + ' ' + lname;
-                    break;
+    private convertGUISpecificProps(data) {
+        // loop through all properties and add toHtml values
+        Object.keys(data['props']).forEach((key: string) => {
+            let prop = this.addHtmlValues(data['props'][key]);
+            data['props'][key] = prop;
+        });
+        return data;
+    };
 
-                // KORRESPONDENZ (same as SUPPLEMENT)
-                case '29':
-                // SUPPLEMENT
-                case '125':
-                    header['title'] = props['dc:title'].values[0] + '<br/>' + props['dc:date'].values[0];
-                    break;
 
-                // WERK
-                case '43':
-                    header['title'] = props['dc:title'].values[0];
-                    break;
-
-                // MUSIKSTÜCK (Moldenhauer-Nummer)
-                case '36':
-                    header['title'] = '[M ' + props['webern:mnr'].values[0] + '] ' + props['dc:title'].values[0];
-                    break;
-
-                // CHRONOLOGIE
-                case '28':
-                    let htmlstr: string = '';
-
-                    // richtext value has already been converted in detail using plugin "convert_lin2html"
-                    htmlstr = detail.props[0].value[0];
-
-                    // strip & replace <p>-tags for displaying title
-                    htmlstr = htmlstr.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(htmlstr, '«$&»');
-
-                    header['title'] = htmlstr;
-                    break;
-
-                // DEFAULT
-                default:
-                    header['title'] = info.restype_description;
-
-            }
-        } else {
-            header = {
-                'objID': id,
-                'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
-                'type': '---',
-                'title': '---',
-                'lastmod': '---'
-            };
-        }
-        return header;
-    }
-
-    private convertGUISpecificValues(url, prop): [string] {
-        let propValue: [string] = [''];
+    private addHtmlValues(prop, url?): [string] {
         prop['toHtml'] = [''];
 
-        switch (prop.valuetype_id) {
-            // DATE: salsah object needs to be converted (using plugin "dateConverter")
-            case '4':
-                if (prop.values[0] !== '') {
-                    prop['toHtml'] = this.convertDate(prop.values[0]);
-                } else {
-                    console.log('empty dateValue:::: ', prop);
-                }
-                break; // END date
+        if (prop.values) {
+            switch (prop.valuetype_id) {
+                // DATE: salsah object needs to be converted (using plugin "dateConverter")
+                case '4':
+                        prop['toHtml'] = this.convertDate(prop.values[0]);
+                    break; // END date
 
-            // LINKVALUE (ResourcePointer): links to another salsah object need to be converted
-            case '6':
-                if (prop.values) {
-                    console.log('id 6: ', prop.values);
+                // LINKVALUE (ResourcePointer): links to another salsah object need to be converted
+                case '6':
                     for (let i = 0; i < prop.values.length; i++) {
-                        // add <p> & <a> with click-directive
-                        // linktext is stored in "$&"
+                        // add <p> & <a> with click-directive; linktext is stored in "$&"
+                        // TODO: check if <p> tag is necessary here
                         prop['toHtml'][i] = prop.value_firstprops[i].replace(prop.value_firstprops[i], '<p><a (click)="ref.showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/></p>');
-                    } // END for
-                } else {
-                    console.log('empty linkValue:::: ', prop);
-                }
-                break; // END linkvalue
+                    }
+                    break; // END linkvalue
 
                 // TODO: continue for other cases
-            /*
-            case '7': // SELECTION PULLDOWN: SELECTION NODES HAVE TO BE READ SEPERATLY
-                if (prop.values[0] !== '') {
+                /*
+                 case '7': // SELECTION PULLDOWN: SELECTION NODES HAVE TO BE READ SEPERATLY
+                 if (prop.values[0] !== '') {
 
-                    //IDENTIFY ID OF SELECTION-LIST FROM prop.attributes
-                    //e.g. "selection=66"
-                    let q = prop.attributes.split("=");
+                 //IDENTIFY ID OF SELECTION-LIST FROM prop.attributes
+                 //e.g. "selection=66"
+                 let q = prop.attributes.split("=");
 
-                    //GET SELECTION-LIST DATA
-                    this.httpGet(url + '/selections/' + q[1]).then(response => {
-                        let selection = response.data.selection;
+                 //GET SELECTION-LIST DATA
+                 this.httpGet(url + '/selections/' + q[1]).then(response => {
+                 let selection = response.data.selection;
 
-                        //LOCALIZE ID IN SELECTION-LIST AND IDENTIFY THE LABEL
-                        for (let i = 0; i < selection.length; i++) {
-                            if (selection[i].id == prop.values[0]) propValue[0] = selection[i].label;
+                 //LOCALIZE ID IN SELECTION-LIST AND IDENTIFY THE LABEL
+                 for (let i = 0; i < selection.length; i++) {
+                 if (selection[i].id == prop.values[0]) propValue[0] = selection[i].label;
+                 }
+                 return propValue[0];
+                 });
+                 } else {
+                 // EMPTY VALUE
+                 propValue[0] = '';
+                 };
+                 break; // END selection
+
+                 case '12': // HLIST: HLIST NODES HAVE TO BE CALLED SEPERATLY
+                 if (prop.values[0] !== '') {
+                 //VALUES[0] gives reference id to
+                 // url + /api/hlists/{{:id}}?reqtype=node
+                 //result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+
+                 //IDENTIFY HLIST ID FROM prop.values
+                 //e.g. ["4128"] or ["4128", "4130"]
+                 var hlist_id = prop.values;
+
+                 for (var i = 0; i < hlist_id.length; i++) {
+                 //GET HLIST DATA
+                 $http.get(url + '/api/hlists/' + hlist_id[i] + '?reqtype=node').then(function (response){
+                 var hlist = response.data.nodelist;
+
+                 //GET LABELS FROM NODELIST ARRAY
+                 var hlist_string = hlist[0].label;
+                 for (var j = 1; j < hlist.length; j++) {
+                 hlist_string += ' > ' + hlist[j].label;
+                 if (j == hlist.length-1) {
+                 //SHORT LABEL
+                 hlist_label = hlist[j].label;
+                 };
+                 };
+
+                 // WRAP hlist_string WITH <p>-TAGS
+                 hlist_string = hlist_string.replace(hlist_string, '<p>$&</p>');
+
+                 propValue[0] += hlist_string;
+                 });
+                 };
+                 } else {
+                 // EMPTY VALUE
+                 propValue[0] = '';
+                 };
+                 break; // END hlist
+                 */
+                // RICHTEXT: salsah standoff needs to be converted
+                case '14':
+                    // check for not empty values
+                    if (prop.values[0].utf8str !== '') {
+                        for (let i = 0; i < prop.values.length; i++) {
+                            // convert linear salsah standoff to html (using plugin "convert_lin2html")
+                            let htmlstr: string = this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
+
+                            // replace salsah links
+                            htmlstr = this.replaceSalsahLink(htmlstr);
+
+                            // TODO: check if <p> tag is necessary here
+                            // check if <p>-tags not exist (indexOf -1), then add them & concat string to prop.toHtml[i]
+                            prop['toHtml'][i] = (htmlstr.indexOf('<p>') === -1) ? htmlstr.replace(htmlstr, '<p>$&</p>') :
+                                htmlstr;
                         }
-                        return propValue[0];
-                    });
-                } else {
-                    // EMPTY VALUE
-                    propValue[0] = '';
-                };
-                break; // END selection
-
-            case '12': // HLIST: HLIST NODES HAVE TO BE CALLED SEPERATLY
-                if (prop.values[0] !== '') {
-                    //VALUES[0] gives reference id to
-                    // url + /api/hlists/{{:id}}?reqtype=node
-                    //result is an array nodelist (properties: id, label, name) with nodes from 0 to n
-
-                    //IDENTIFY HLIST ID FROM prop.values
-                    //e.g. ["4128"] or ["4128", "4130"]
-                    var hlist_id = prop.values;
-
-                    for (var i = 0; i < hlist_id.length; i++) {
-                        //GET HLIST DATA
-                        $http.get(url + '/api/hlists/' + hlist_id[i] + '?reqtype=node').then(function (response){
-                            var hlist = response.data.nodelist;
-
-                            //GET LABELS FROM NODELIST ARRAY
-                            var hlist_string = hlist[0].label;
-                            for (var j = 1; j < hlist.length; j++) {
-                                hlist_string += ' > ' + hlist[j].label;
-                                if (j == hlist.length-1) {
-                                    //SHORT LABEL
-                                    hlist_label = hlist[j].label;
-                                };
-                            };
-
-                            // WRAP hlist_string WITH <p>-TAGS
-                            hlist_string = hlist_string.replace(hlist_string, '<p>$&</p>');
-
-                            propValue[0] += hlist_string;
-                        });
-                    };
-                } else {
-                    // EMPTY VALUE
-                    propValue[0] = '';
-                };
-                break; // END hlist
-*/
-            // RICHTEXT: salsah standoff needs to be converted
-            case '14':
-                // check for not empty values
-                if (prop.values.length > 0 && prop.values[0].utf8str !== '') {
-                    for (let i = 0; i < prop.values.length; i++) {
-                        let htmlstr: string = '';
-
-                        // convert linear salsah standoff to html (using plugin "convert_lin2html")
-                        htmlstr = this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
-
-                        // replace salsah links & <p>-tags
-                        htmlstr = this.replaceSalsahLink(htmlstr);
-
-                        // check if <p>-tags not exist (indexOf -1), then add them & concat string to propValue[0]
-                        prop['toHtml'][i] = (htmlstr.indexOf('<p>') === -1) ? htmlstr.replace(htmlstr, '<p>$&</p>') :
-                            htmlstr;
+                    } else {
+                        console.log('empty richtextValue:::: ', prop);
                     }
-                // empty values
-                } else {
-                    propValue[0] = '';
-                }
-                break; // END richtext
-/*
-            case '15': // GeoNAMES: GeoName nodes have to be converted
-                if (prop.values[0] !== '') {
-                    // values[0] gives reference id to
-                    // url + /api/geonames/{{:id}}?reqtype=node
-                    // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+                    break; // END richtext
+                /*
+                 case '15': // GeoNAMES: GeoName nodes have to be converted
+                 if (prop.values[0] !== '') {
+                 // values[0] gives reference id to
+                 // url + /api/geonames/{{:id}}?reqtype=node
+                 // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
-                    // identify geonames gui-id from prop.values
-                    // e.g. ["4136"] or ["4136", "4132"]
-                    let geogui_id = prop.values;
+                 // identify geonames gui-id from prop.values
+                 // e.g. ["4136"] or ["4136", "4132"]
+                 let geogui_id = prop.values;
 
-                    for (let i = 0; i < geogui_id.length; i++) {
-                        // get geonames gui data
-                        $http.get(url + '/api/geonames/' + geogui_id[i] + '?reqtype=node').then(function (response){
+                 for (let i = 0; i < geogui_id.length; i++) {
+                 // get geonames gui data
+                 $http.get(url + '/api/geonames/' + geogui_id[i] + '?reqtype=node').then(function (response){
 
-                            // geo-object
-                            let geo = {
-                                data:           [],
-                                label:          '',
-                                label_string:   '',
-                                label_url:      '',
-                                gnid:           ''
-                            };
-                            geo.data = response.data.nodelist;
+                 // geo-object
+                 let geo = {
+                 data:           [],
+                 label:          '',
+                 label_string:   '',
+                 label_url:      '',
+                 gnid:           ''
+                 };
+                 geo.data = response.data.nodelist;
 
-                            // get labels from nodelist array
-                            geo.label_string = geo.data[0].label;
-                            for (let j = 1; j < geo.data.length; j++) {
-                                geo.label_string += ', ' + geo.data[j].label;
-                                if (j == geo.data.length-1) {
-                                    // get geonames-id gnid from last array item
-                                    geo.gnid = geo.data[j].name.replace('gnid:', '');
-                                    // short label
-                                    geo.label = geo.data[j].label;
-                                }
-                            }
+                 // get labels from nodelist array
+                 geo.label_string = geo.data[0].label;
+                 for (let j = 1; j < geo.data.length; j++) {
+                 geo.label_string += ', ' + geo.data[j].label;
+                 if (j == geo.data.length-1) {
+                 // get geonames-id gnid from last array item
+                 geo.gnid = geo.data[j].name.replace('gnid:', '');
+                 // short label
+                 geo.label = geo.data[j].label;
+                 }
+                 }
 
-                            // include geonames icon & url to gnid, embedded in <p>-tags
-                            geo.label_url = geo.label.replace(geo.label, '<p>$& <a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.label_string + '" target="_blank"><img src="img/geonames.png" height="25" width="25" alt="' + geo.label + '" /></a></p>')
+                 // include geonames icon & url to gnid, embedded in <p>-tags
+                 geo.label_url = geo.label.replace(geo.label, '<p>$& <a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.label_string + '" target="_blank"><img src="img/geonames.png" height="25" width="25" alt="' + geo.label + '" /></a></p>')
 
-                            propValue[0] += geo.label_url;
-                        });
-                    };
-                } else {
-                    // EMPTY VALUE
-                    propValue[0] = '';
-                };
-                break; // END geonames
- */
-            // '1' => TEXT: properties come as they are
-            default:
-                if (prop.values[0] !== '') {
+                 propValue[0] += geo.label_url;
+                 });
+                 };
+                 } else {
+                 // EMPTY VALUE
+                 propValue[0] = '';
+                 };
+                 break; // END geonames
+                 */
+                // '1' => TEXT: properties come as they are
+                default:
                     for (let i = 0; i < prop.values.length; i++) {
                         prop['toHtml'][i] = prop.values[i];
                     }
-                } // END default
-        } // END switch
-
-        console.log('propValue: ', propValue);
-
+            } // END switch
+        } else {
+            console.warn('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ', prop);
+        }
         return prop;
     }
 
