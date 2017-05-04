@@ -9,6 +9,8 @@ import {
     ResourceDetailIncomingLinks,
     ResourceDetailProps
 } from '../../../views/search-view/resource-detail-models';
+import {IncomingItemJson} from "../../../shared/api-objects/resource-response-formats/src/incoming-item-json";
+import {Observable} from "rxjs/Observable";
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -170,8 +172,8 @@ export class ConversionService extends ApiService {
     } // END convertObjectProperties (func)
 
 
-    public prepareRestrictedObject(id) {
-        console.log('No access to resource: ', id);
+    public prepareRestrictedObject(data: ResourceFullResponseJson): ResourceDetail {
+        let id = data.resdata.res_id;
         let detail: ResourceDetail = new ResourceDetail();
         detail['header'] = {
             'objID': id,
@@ -180,28 +182,29 @@ export class ConversionService extends ApiService {
             'title': 'Kein Zugriff auf dieses Objekt möglich',
             'lastmod': '---'
         };
+        console.log('No access to resource: ', id);
+        return detail;
     }
 
-    public prepareAccessObject(id, data: ResourceFullResponseJson) {
+    public prepareAccessObject(data: ResourceFullResponseJson): ResourceDetail {
+        // convert properties
         data = this.convertGUISpecificProps(data);
-        console.log('data: ', data);
 
+        // prepare parts of resourceDetail
         let detail: ResourceDetail = new ResourceDetail();
-        let info = data.resinfo;
-        let props = data.props;
-        const url = 'www.salsah.org';
+        detail = {
+            header: this.prepareResourceDetailHeader(data),
+            image: [''],
+            incoming: this.prepareResourceDetailIncomingLinks(data.incoming),
+            props: this.prepareResourceDetailProperties(data.props)
+        };
+        console.log('preparedDetail: ', detail);
 
-        // TODO: continue
-        detail['header'] = this.prepareSearchDetailHeader(data);
-        /*
-         detail['incoming'] = this.prepareSearchDetailIncomingLinks(data);
-         detail['props'] = this.prepareSearchDetailProperties(url, data);
-         console.log('preparedDetail: ', detail);
-         */
+        return detail;
     }
 
 
-    private prepareSearchDetailHeader(data) {
+    private prepareResourceDetailHeader(data) {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         let info = data.resinfo;
         let id = data.resdata.res_id;
@@ -269,9 +272,9 @@ export class ConversionService extends ApiService {
         return header;
     }
 
-    private prepareSearchDetailIncomingLinks(data: ResourceFullResponseJson) {
+    private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]) {
         let incomingLinks: ResourceDetailIncomingLinks[] = [];
-        data.incoming.forEach(ins => {
+        incoming.forEach(ins => {
             incomingLinks.push({
                 id: ins.ext_res_id.id,
                 value: ins.value,
@@ -281,12 +284,12 @@ export class ConversionService extends ApiService {
         return incomingLinks;
     }
 
-    private prepareSearchDetailProperties(url, data) {
-        let searchDetailProperties: ResourceDetailProps[] = [];
+    private prepareResourceDetailProperties(props) {
+        let detailProperties: ResourceDetailProps[] = [];
 
         // loop through property keys
-        Object.keys(data['props']).forEach((key: string) => {
-            const prop: any = data['props'][key];
+        Object.keys(props).forEach((key: string) => {
+            const prop: any = props[key];
 
             // clean value labels
             if (prop.label) {
@@ -294,22 +297,14 @@ export class ConversionService extends ApiService {
             }
 
             // push default values into searchDetailProperties
-            searchDetailProperties.push({
+            detailProperties.push({
                 pid: prop.pid,
                 guielement: prop.guielement,
                 label: prop.label,
-                value: ['']
+                value: prop.toHtml
             });
-
-            // check if values property is defined
-            //if ('values' in prop) {
-            let convertedPropValue: string[] = [];
-            // convertedPropValue = this.convertGUISpecificValues(prop, url);
-            // push convertedPropValue into searchDetailProperties
-            searchDetailProperties['value'] = convertedPropValue;
-            //}
         }); // END forEach props
-        return searchDetailProperties;
+        return detailProperties;
     };
 
 
@@ -321,8 +316,6 @@ export class ConversionService extends ApiService {
         });
         return data;
     };
-
-
 
     private addHtmlValues(prop, url?): [string] {
         prop['toHtml'] = [''];
@@ -336,7 +329,6 @@ export class ConversionService extends ApiService {
                     }
                     break; // END date
 
-
                 case '6':   // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
                         prop['toHtml'][i] = this.convertLinkValue(prop, i);
@@ -344,84 +336,12 @@ export class ConversionService extends ApiService {
                     break; // END linkvalue
 
                 case '7': // SELECTION (pulldown): selection nodes have to be read seperately
-                    // identify id of selection-list from prop.attributes
-                    // e.g. "selection=66"
-                    let q = prop.attributes.split("=");
-
-                    // TODO: how to get value out of observable subscription??
-                    // get selection-list data
-                    this.getSelectionsById(q[1]).subscribe(data => {
-                        let selection = data.selection;
-                        console.log('tmpdata: ', data.selection);
-
-                        console.log('LàNGE: ', selection.length);
-
-                        // localize id in selection-list and identify the label
-                        for (let i = 0; i < selection.length; i++) {
-                            if (selection[i].id === prop.values[0]) {
-                                prop['toHtml'] = selection[i].label;
-                            }
-                            console.info(prop['toHtml']);
-                            return prop['toHtml'];
-                        }
-                    });
-
-                        /*.map(response => {
-                        let selection = response.data.selection;
-
-                        // localize id in selection-list and identify the label
-                        for (let i = 0; i < selection.length; i++) {
-                            if (selection[i].id === prop.values[0]) {
-                                tmp = selection[i].label;
-                            }
-                            console.warn('innertmp: ', tmp);
-                            return tmp;
-                        }
-                        console.warn('outertmp: ', tmp);
-                    });
-                    */
+                    this.convertSelectionValue(prop);
                     break; // END selection
 
-                // TODO: continue for other cases
-                /*
-
-                 case '12': // HLIST: HLIST NODES HAVE TO BE CALLED SEPERATLY
-                 if (prop.values[0] !== '') {
-                 //VALUES[0] gives reference id to
-                 // url + /api/hlists/{{:id}}?reqtype=node
-                 //result is an array nodelist (properties: id, label, name) with nodes from 0 to n
-
-                 //IDENTIFY HLIST ID FROM prop.values
-                 //e.g. ["4128"] or ["4128", "4130"]
-                 var hlist_id = prop.values;
-
-                 for (var i = 0; i < hlist_id.length; i++) {
-                 //GET HLIST DATA
-                 $http.get(url + '/api/hlists/' + hlist_id[i] + '?reqtype=node').then(function (response){
-                 var hlist = response.data.nodelist;
-
-                 //GET LABELS FROM NODELIST ARRAY
-                 var hlist_string = hlist[0].label;
-                 for (var j = 1; j < hlist.length; j++) {
-                 hlist_string += ' > ' + hlist[j].label;
-                 if (j == hlist.length-1) {
-                 //SHORT LABEL
-                 hlist_label = hlist[j].label;
-                 };
-                 };
-
-                 // WRAP hlist_string WITH <p>-TAGS
-                 hlist_string = hlist_string.replace(hlist_string, '<p>$&</p>');
-
-                 propValue[0] += hlist_string;
-                 });
-                 };
-                 } else {
-                 // EMPTY VALUE
-                 propValue[0] = '';
-                 };
-                 break; // END hlist
-                 */
+                case '12': // HLIST: hlist nodes have to be called seperately
+                        this.convertHlistValue(prop);
+                    break; // END hlist
 
                 case '14':  // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
@@ -484,7 +404,7 @@ export class ConversionService extends ApiService {
                     }
             } // END switch
         } else {
-            console.warn('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
+            // console.log('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
         }
         return prop;
     }
@@ -499,6 +419,35 @@ export class ConversionService extends ApiService {
         let date = dateConverter(dateObj);
         date = date.replace(' (G)', '');
         return date;
+    }
+
+    /******************************************
+     *
+     * convert hlist values
+     *
+     *****************************************/
+    private convertHlistValue(prop) {
+        // identify id of hlist from prop.attributes
+        // e.g. "hlist=17"
+        const hlistId: string = prop.attributes.split('=')[1].toString();
+
+        // get hlist data
+        return this.getHListById(hlistId).subscribe(
+            (hlistData) => {
+                let hlist = hlistData.hlist;
+                console.info('propvalues: ', prop.values.length , ' HLIST: ', hlist.length);
+                // localize id in hlist object and identify the label
+                for (let i = 0; i < prop.values.length; i++) {
+                    for (let j = 0; j < hlist.length; j++) {
+                        if (prop.values[i] === hlist[j]['id']) {
+                            prop['toHtml'][i] = hlist[j].label;
+                        }
+                    }
+                }
+
+            },
+            err => console.log(err)
+        );
     }
 
     /******************************************
@@ -526,6 +475,34 @@ export class ConversionService extends ApiService {
         return htmlstr;
     }
 
+    // TODO: check if it is possible to unify with hlist conversion?
+    /******************************************
+     *
+     * convert selection values
+     *
+     *****************************************/
+    private convertSelectionValue(prop) {
+        // identify id of selection-list from prop.attributes
+        // e.g. "selection=66"
+        const selectionId: string = prop.attributes.split('=')[1].toString();
+
+        // get selection-list data
+        return this.getSelectionsById(selectionId).subscribe(
+            (selectionData) => {
+                let selection = selectionData['selection'];
+                // localize id in selection-list object and identify the label
+                for (let i = 0; i < prop.values.length; i++) {
+                    for (let j = 0; j < selection.length; j++) {
+                        if (prop.values[i] === selection[j].id) {
+                            prop['toHtml'][i] = selection[j].label;
+                        }
+                    }
+                }
+            },
+            err => console.log(err)
+        );
+    }
+
     /******************************************
      *
      *  convert linear salsah standoff
@@ -537,15 +514,22 @@ export class ConversionService extends ApiService {
         return htmlConverter(JSON.parse(attr), str);
     }
 
-
+    /******************************************
+     *
+     * get hlist object from salsah api
+     *
+     *****************************************/
+    private getHListById(hlistId: string): Observable<any> {
+        let queryString: string = '/hlists/' + hlistId;
+        return this.httpGet(queryString);
+    }
 
     /******************************************
      *
-     * get selection list object
-     * from salsah api
+     * get selection list object from salsah api
      *
      *****************************************/
-    private getSelectionsById(selectionId: string): any {
+    private getSelectionsById(selectionId: string): Observable<any> {
         let queryString: string = '/selections/' + selectionId;
         return this.httpGet(queryString);
     }

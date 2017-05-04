@@ -20,8 +20,8 @@ export class ApiService {
      * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string, options?: RequestOptionsArgs) {
-        if (!options) options = {};
+    httpGet(url: string, options?: RequestOptionsArgs): Observable<any> {
+        if (!options) { options = {}; }
         return this.httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {
                 try {

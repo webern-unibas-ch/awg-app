@@ -5,6 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { ConversionService } from '../../../../../core/services';
 import { SearchService } from '../../../search.service';
+import { ResourceDetail } from '../../../resource-detail-models';
 import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 
 @Component({
@@ -15,7 +16,7 @@ import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 export class SearchResultDetailComponent implements OnInit {
 
     public curId: string;
-    public activeSearchDetail;
+    public resourceDetail: ResourceDetail;
     public errorMessage: string = undefined;
     public resourceData: ResourceFullResponseJson;
 
@@ -37,12 +38,10 @@ export class SearchResultDetailComponent implements OnInit {
                 (data: ResourceFullResponseJson) => {
                     if (data.access === 'OK') {
                         this.resourceData = data;
-                        this.curId = data.resdata.res_id;
-                        console.log('id: ', this.curId);
-                        this.conversionService.prepareAccessObject(this.curId, this.resourceData);
+                        this.resourceDetail = this.conversionService.prepareAccessObject(this.resourceData);
                     }
                     else {
-                        this.activeSearchDetail = this.conversionService.prepareRestrictedObject(this.curId);
+                        this.resourceDetail = this.conversionService.prepareRestrictedObject(this.resourceData);
                     }
                     // this.resourceData = this.conversionService.convertObjectProperties(data);
                     // TODO: rm
