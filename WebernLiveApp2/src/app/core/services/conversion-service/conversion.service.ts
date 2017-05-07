@@ -81,7 +81,7 @@ export class ConversionService extends ApiService {
                             let selectionId: string = prop.attributes.split("=")[1].toString();
 
                             // get selection from salsah api
-                            this.getSelectionsById(selectionId).subscribe(
+                            this.getSelectionNodesById(selectionId).subscribe(
                                 (data: Object) => {
                                     let selectionArr = data['selection'];
                                     // localize id in selection-list object and identify the label
@@ -172,21 +172,36 @@ export class ConversionService extends ApiService {
     } // END convertObjectProperties (func)
 
 
-    public prepareRestrictedObject(data: ResourceFullResponseJson): ResourceDetail {
-        let id = data.resdata.res_id;
+    public prepareResourceDetail(data: ResourceFullResponseJson): ResourceDetail {
+        if (data.access === 'OK') {
+            return this.prepareAccessResource(data);
+        } else {
+            return this.prepareRestrictedResource(data);
+        }
+    }
+
+    private prepareRestrictedResource(data: ResourceFullResponseJson): ResourceDetail {
         let detail: ResourceDetail = new ResourceDetail();
-        detail['header'] = {
+        const id = '0000';
+        const header = {
             'objID': id,
             'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
             'type': 'restricted',
             'title': 'Kein Zugriff auf dieses Objekt möglich',
             'lastmod': '---'
         };
-        console.log('No access to resource: ', id);
+        detail = {
+            header: header,
+            image: [''],
+            incoming: [],
+            props: []
+        };
+        console.log('detail: ', detail);
+        console.log('No access granted to resource: ', id);
         return detail;
     }
 
-    public prepareAccessObject(data: ResourceFullResponseJson): ResourceDetail {
+    private prepareAccessResource(data: ResourceFullResponseJson): ResourceDetail {
         // convert properties
         data = this.convertGUISpecificProps(data);
 
@@ -194,26 +209,24 @@ export class ConversionService extends ApiService {
         let detail: ResourceDetail = new ResourceDetail();
         detail = {
             header: this.prepareResourceDetailHeader(data),
-            image: [''],
+            image: this.prepareResourceDetailImage(data),
             incoming: this.prepareResourceDetailIncomingLinks(data.incoming),
             props: this.prepareResourceDetailProperties(data.props)
         };
-        console.log('preparedDetail: ', detail);
-
         return detail;
     }
 
 
     private prepareResourceDetailHeader(data) {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
-        let info = data.resinfo;
-        let id = data.resdata.res_id;
-        let props = data.props;
+        const id = data.resdata.res_id;
+        const info = data.resinfo;
+        const props = data.props;
 
         if (typeof info !== undefined) {
             // extract common default metadata for header
             header['objID'] = id;
-            header['icon'] = info.restype_iconscrs;
+            header['icon'] = info.restype_iconsrc;
             header['type'] = info.restype_label;
             header['lastmod'] = info.lastmod;
 
@@ -272,6 +285,11 @@ export class ConversionService extends ApiService {
         return header;
     }
 
+    private prepareResourceDetailImage(data) {
+        // TODO:
+        return [''];
+    }
+
     private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]) {
         let incomingLinks: ResourceDetailIncomingLinks[] = [];
         incoming.forEach(ins => {
@@ -311,7 +329,7 @@ export class ConversionService extends ApiService {
     private convertGUISpecificProps(data) {
         // loop through all properties and add toHtml values
         Object.keys(data['props']).forEach((key: string) => {
-            let prop = this.addHtmlValues(data['props'][key]);
+            const prop = this.addHtmlValues(data['props'][key]);
             data['props'][key] = prop;
         });
         return data;
@@ -347,56 +365,12 @@ export class ConversionService extends ApiService {
                     for (let i = 0; i < prop.values.length; i++) {
                         prop['toHtml'][i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
-                    break; // END richtext
-                /*
-                 case '15': // GeoNAMES: GeoName nodes have to be converted
-                 if (prop.values[0] !== '') {
-                 // values[0] gives reference id to
-                 // url + /api/geonames/{{:id}}?reqtype=node
-                 // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+                    break; // END richtex
 
-                 // identify geonames gui-id from prop.values
-                 // e.g. ["4136"] or ["4136", "4132"]
-                 let geogui_id = prop.values;
-
-                 for (let i = 0; i < geogui_id.length; i++) {
-                 // get geonames gui data
-                 $http.get(url + '/api/geonames/' + geogui_id[i] + '?reqtype=node').then(function (response){
-
-                 // geo-object
-                 let geo = {
-                 data:           [],
-                 label:          '',
-                 label_string:   '',
-                 label_url:      '',
-                 gnid:           ''
-                 };
-                 geo.data = response.data.nodelist;
-
-                 // get labels from nodelist array
-                 geo.label_string = geo.data[0].label;
-                 for (let j = 1; j < geo.data.length; j++) {
-                 geo.label_string += ', ' + geo.data[j].label;
-                 if (j == geo.data.length-1) {
-                 // get geonames-id gnid from last array item
-                 geo.gnid = geo.data[j].name.replace('gnid:', '');
-                 // short label
-                 geo.label = geo.data[j].label;
-                 }
-                 }
-
-                 // include geonames icon & url to gnid, embedded in <p>-tags
-                 geo.label_url = geo.label.replace(geo.label, '<p>$& <a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.label_string + '" target="_blank"><img src="img/geonames.png" height="25" width="25" alt="' + geo.label + '" /></a></p>')
-
-                 propValue[0] += geo.label_url;
-                 });
-                 };
-                 } else {
-                 // EMPTY VALUE
-                 propValue[0] = '';
-                 };
+                case '15': // GeoNAMES: GeoName nodes have to called seperately
+                        this.convertGeoValue(prop);
                  break; // END geonames
-                 */
+
                 // '1' => TEXT: properties come as they are
                 default:
                     for (let i = 0; i < prop.values.length; i++) {
@@ -423,16 +397,80 @@ export class ConversionService extends ApiService {
 
     /******************************************
      *
+     * convert geoNames values
+     *
+     *****************************************/
+    private convertGeoValue(prop) {
+        // prop.values give reference id to
+        // api + /geonames/{{:id}}?reqtype=node
+        // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+
+        // identify geonames gui-id from prop.values
+        // e.g. ["4136"] or ["4136", "4132"]
+        const geoguiId = prop.values;
+
+        for (let i = 0; i < geoguiId.length; i++) {
+            // get geonames gui data
+            this.getGeonameNodesById(geoguiId[i]).subscribe(
+                (geoData) => {
+
+                    // geo-object
+                    let geo = {
+                        data:           geoData.nodelist,
+                        gnid:           '',
+                        label:          '',
+                        labelString:    '',
+                        latitude:       '',
+                        longitude:      '',
+                        wiki:           ''
+                    };
+
+                    // get labels from nodelist array
+                    geo.labelString = geo.data[0].label;
+                    for (let j = 1; j < geo.data.length; j++) {
+                        geo.labelString += ', ' + geo.data[j].label;
+                        if (j === geo.data.length - 1) {
+                            // get geonames-id gnid from last array item
+                            geo.gnid = geo.data[j].name.replace('gnid:', '');
+                            // short label
+                            geo.label = geo.data[j].label;
+                            // latitude + longitude
+                            geo.latitude = geo.data[j].lat;
+                            geo.longitude = geo.data[j].lng;
+                            // wiki
+                            geo.wiki = geo.data[j].wikipedia;
+                        }
+                    }
+
+                    // include icon & link for geonames
+                    const geoIcon = '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + geo.label + '" />';
+                    const geoLink = '<a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.labelString + '" target="_blank">' + geoIcon + '</a>';
+                    let wikiLink = '';
+                    if (geo.wiki) {
+                        const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + geo.wiki + '" />';
+                        wikiLink = '<a href="http://' + geo.wiki + '" title="' + geo.wiki + '" target="_blank">' + wikiIcon + '</a>';
+                    }
+                    prop['toHtml'][i] = geo.label.replace(geo.label, '$& ' + geoLink + wikiLink);
+                });
+        }
+    }
+
+    /******************************************
+     *
      * convert hlist values
      *
      *****************************************/
     private convertHlistValue(prop) {
+        // prop.values give reference id to
+        // api + /hlists/{{:id}}
+        // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
+
         // identify id of hlist from prop.attributes
         // e.g. "hlist=17"
         const hlistId: string = prop.attributes.split('=')[1].toString();
 
         // get hlist data
-        return this.getHListById(hlistId).subscribe(
+        return this.getHListNodesById(hlistId).subscribe(
             (hlistData) => {
                 let hlist = hlistData.hlist;
                 console.info('propvalues: ', prop.values.length , ' HLIST: ', hlist.length);
@@ -457,7 +495,7 @@ export class ConversionService extends ApiService {
      *****************************************/
     private convertLinkValue(prop, i: number) {
         // add <a>-tag with click-directive; linktext is stored in "$&"
-        return prop.value_firstprops[i].replace(prop.value_firstprops[i], '<a (click)="ref.showObject(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/>');
+        return prop.value_firstprops[i].replace(prop.value_firstprops[i], '<a (click)="ref.showDetail(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/>');
     }
 
     /******************************************
@@ -482,12 +520,16 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private convertSelectionValue(prop) {
+        // prop.values give reference id to
+        // api + /selections/{{:id}}
+        // result is an array selection (properties: id, label, name, order, label_ok) with nodes from 0 to n
+
         // identify id of selection-list from prop.attributes
         // e.g. "selection=66"
         const selectionId: string = prop.attributes.split('=')[1].toString();
 
         // get selection-list data
-        return this.getSelectionsById(selectionId).subscribe(
+        return this.getSelectionNodesById(selectionId).subscribe(
             (selectionData) => {
                 let selection = selectionData['selection'];
                 // localize id in selection-list object and identify the label
@@ -516,21 +558,31 @@ export class ConversionService extends ApiService {
 
     /******************************************
      *
-     * get hlist object from salsah api
+     * get geonames node list from salsah api
      *
      *****************************************/
-    private getHListById(hlistId: string): Observable<any> {
-        let queryString: string = '/hlists/' + hlistId;
+    private getGeonameNodesById(geoguiId: string): Observable<any> {
+        const queryString: string = '/geonames/' + geoguiId + '?reqtype=node';
         return this.httpGet(queryString);
     }
 
     /******************************************
      *
-     * get selection list object from salsah api
+     * get hlist node object from salsah api
      *
      *****************************************/
-    private getSelectionsById(selectionId: string): Observable<any> {
-        let queryString: string = '/selections/' + selectionId;
+    private getHListNodesById(hlistId: string): Observable<any> {
+        const queryString: string = '/hlists/' + hlistId;
+        return this.httpGet(queryString);
+    }
+
+    /******************************************
+     *
+     * get selection node list object from salsah api
+     *
+     *****************************************/
+    private getSelectionNodesById(selectionId: string): Observable<any> {
+        const queryString: string = '/selections/' + selectionId;
         return this.httpGet(queryString);
     }
 
@@ -591,7 +643,7 @@ export class ConversionService extends ApiService {
 
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
-            str = str.replace(p[0], '<a (click)="ref.showObject(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
+            str = str.replace(p[0], '<a (click)="ref.showDetail(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
         } //END while
 
         return str;

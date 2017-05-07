@@ -1,54 +1,31 @@
-<p>
-  search-results-detail works!
-</p>
-
-<pre>
-    {{ resourceData | json }}
-</pre>
 
 <button (click)="goBack()">Back</button>
 
 <!-- search result detail box -->
-<div class="col-sm-6 col-md-7 col-lg-8 objbox" *ngIf="isDetailSelected || isEventButtonClicked || isEventLoaded" id="{{objData.header.objID}}">
+<div class="col-sm-6 col-md-7 col-lg-8 objbox" id="{{ resourceDetail?.header.objID }}">
 
-    <!-- when loading -->
-    <h3 data-ng-if="isObjectSelected && !isObjectLoaded">Load object...</h3>
-    <h3 data-ng-if="isEventButtonClicked && !isEventLoaded">Load events...</h3>
+    <!-- when object is loaded  *ngIf="isObjectLoaded" -->
+    <div >
 
-
-    <!-- timeline -->
-    <!-- when object is loaded -->
-    <!-- TODO
-        <awg-timeline *ngIf="isEventLoaded"></awg-timeline>
-    -->
-
-
-    <!-- when object is loaded -->
-    <div *ngIf="isObjectLoaded">
-
-        <div class="objbox-control-button" data-ng-if="isEventCached">
-            <button class="btn btn-default" data-ng-click="getTodaysEvents()">Zurück zur Timeline</button>
-        </div>
-
-        <!-- header -->
+        <!-- resourceDetail header -->
         <h3>
-            <img [attr.src]="objData.header.icon" alt="icon" /><small> ({{objData.header.type}})</small><br/>
-            [{{objData.header.objID}}] <span dir-bind-html-compile="objData.header.title | highlight:searchText"></span>
+            <img [attr.src]="resourceDetail?.header.icon" alt="icon" /><small> ({{ resourceDetail?.header.type }})</small><br/>
+            [{{ resourceDetail?.header.objID }}] <span [compile-html]="resourceDetail?.header.title" [compile-html-ref]="ref"></span>
         </h3>
-        <small>[Last modified: {{objData.header.lastmod}} (UTC)]</small><br /><br />
-        <!-- <small><a data-ng-click="showObject(id_back)">Zurück zum vorherigen Objekt</a></small> TODO -->
+        <small>[Last modified: {{resourceDetail?.header.lastmod}} (UTC)]</small><br /><br />
+        <!-- TODO: <small><a data-ng-click="showDetail(id_back)">Zurück zum vorherigen Objekt</a></small> TODO -->
 
 
         <!-- image objects -->
-        <div align="center" class="objImage" data-ng-if="objData.image.length !== 0">
+        <div align="center" class="objImage" *ngIf="resourceDetail?.image">
             <div class="facs">
-                <a [href]="objImage.full" target="_blank">
-                    <img [src]="objImage.value" alt="{{objImage.label}}" />
+                <a [href]="resourceDetail?.image.full" target="_blank">
+                    <img [src]="resourceDetail?.image.value" alt="{{ resourceDetail?.image.label }}" />
                 </a>
             </div>
             <div class="btn-group btn-group-justified">
-                <a class="btn btn-default" data-ng-repeat="objImage in objData.image" data-ng-click="showImage(objImage)">
-                    {{objImage.label}}
+                <a class="btn btn-default" *ngFor="let objImage of resourceDetail?.image" (click)="showImage(objImage)">
+                    {{ objImage.label }}
                 </a>
             </div>
         </div>
@@ -56,42 +33,51 @@
         <!-- display as table on small and larger devices -->
         <table class="table table-condensed table-hover borderless hidden-xs" style="padding:10px;">
             <tbody>
-            <!-- ### SHOW ONLY NOT EMPTY VALUES ### -->
-            <tr id="field" data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
+            <!-- ### show only not empty values ### -->
+            <tr id="field" *ngFor="let prop of resourceDetail?.props">
                 <td class="bold">
-                    {{prop.label}}
+                    {{ prop.label }}
                 </td>
                 <!-- OUTPUT VALUES -->
-                <td colspan="2" dir-bind-html-compile="prop.value | highlight:searchText"></td>
+                <td colspan="2"><span [compile-html]="prop.value[0]" [compile-html-ref]="ref"></span></td>
             </tr>
-            <tr data-ng-if="objData.incoming !== ''">
+            <tr *ngIf="resourceDetail?.incoming !== ''">
                 <td colspan="3" class="bold">
-                    <p>Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}} </p>
+                    <p>Objekte, die auf diesen Eintrag verweisen: {{resourceDetail?.incoming.length}} </p>
                 </td>
             </tr>
-            <tr data-ng-if="objData.incoming !== ''" class="ins"  data-ng-repeat="ins in objData.incoming">
-                <td colspan="3" data-ng-click="showObject(ins.id)">
-                    <img [attr.src]="ins.icon" alt="icon" /> [{{ins.id}}] {{ins.value}}
+            <tr class="ins" *ngFor="let ins of resourceDetail?.incoming">
+                <!-- TODO: *ngIf="resourceDetail?.incoming !== ''"  -->
+                <td colspan="3" (click)="showDetail(ins.id)">
+                    <img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
                 </td>
             </tr>
             </tbody>
         </table>
 
         <!-- stack to definition list on extra small devices -->
+        <!-- TOOD: data-ng-if="prop.value[0]" -->
         <dl class="dl-horizontal dl-hover visible-xs">
-            <div id="field" data-ng-repeat="prop in objData.props track by prop.pid" data-ng-if="prop.value[0]">
+            <div id="field" *ngFor="let prop of resourceDetail?.props">
                 <dt>
-                    {{prop.label}}
+                    {{ prop.label }}
                 </dt>
-                <dd dir-bind-html-compile="prop.value | highlight:searchText"></dd>
+                <dd [compile-html]="prop.value[0]" [compile-html-ref]="ref"></dd>
             </div>
-            <dt data-ng-if="objData.incoming !== ''">
-                Objekte, die auf diesen Eintrag verweisen: {{objData.incoming.length}}
+            <dt *ngIf="resourceDetail?.incoming !== ''">
+                Objekte, die auf diesen Eintrag verweisen: {{resourceDetail?.incoming.length}}
             </dt>
-            <dd class="ins" data-ng-repeat="ins in objData.incoming" data-ng-click="showObject(ins.id)">
-                <img [src]="ins.icon" alt="icon" /> [{{ins.id}}] {{ins.value}}
+            <dd class="ins" *ngFor="let ins of resourceDetail?.incoming" (click)="showDetail(ins.id)">
+                <img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
             </dd>
         </dl>
     </div>
-
 </div> <!-- END search result detail box -->
+
+<pre>
+    {{ resourceData | json }}
+</pre>
+
+
+
+

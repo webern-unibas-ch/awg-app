@@ -15,17 +15,21 @@ import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 })
 export class SearchResultDetailComponent implements OnInit {
 
-    public curId: string;
+    public currentId: string;
     public resourceDetail: ResourceDetail;
     public errorMessage: string = undefined;
     public resourceData: ResourceFullResponseJson;
+
+    ref: SearchResultDetailComponent;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private conversionService: ConversionService,
         private searchService: SearchService
-    ) { }
+    ) {
+        this.ref = this;
+    }
 
     ngOnInit() {
         this.getResourceData();
@@ -36,16 +40,13 @@ export class SearchResultDetailComponent implements OnInit {
             .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
             .subscribe(
                 (data: ResourceFullResponseJson) => {
-                    if (data.access === 'OK') {
-                        this.resourceData = data;
-                        this.resourceDetail = this.conversionService.prepareAccessObject(this.resourceData);
-                    }
-                    else {
-                        this.resourceDetail = this.conversionService.prepareRestrictedObject(this.resourceData);
-                    }
-                    // this.resourceData = this.conversionService.convertObjectProperties(data);
+                    // TODO: get route id
+                    // console.log(params['id']);
+                    this.resourceData = data;
+                    this.resourceDetail = this.conversionService.prepareResourceDetail(this.resourceData);
+                    this.currentId = this.resourceDetail.header.objID;
                     // TODO: rm
-                    console.info('SearchPanel#DetailData: ', this.resourceData);
+                    console.info('SearchPanel#Detail: ', this.resourceDetail);
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -53,8 +54,13 @@ export class SearchResultDetailComponent implements OnInit {
             );
     }
 
+    showDetail(id: string) {
+        this.currentId = id;
+        this.router.navigate(['/search/detail', this.currentId]);
+    }
+
     goBack(): void {
-        let resId = this.resourceData ? this.curId : null;
+        const resId = this.resourceData ? this.currentId : null;
         // Pass along the resId if available
         // so that the SearchResultList component can select that Resource.
         this.router.navigate(['/search/fulltext', { id: resId }]);
