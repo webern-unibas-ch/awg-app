@@ -10,6 +10,7 @@ import { SearchOverviewComponent } from './search-outlets/search-overview.compon
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
 import { SearchResultsComponent } from './search-outlets/search-panel/search-results/search-results.component';
 import { SearchResultDetailComponent } from './search-outlets/search-panel/search-result-detail/search-result-detail.component';
+import { SearchResultTabsComponent } from './search-outlets/search-panel/search-result-tabs/search-result-tabs.component';
 import { TimelineComponent } from './search-outlets/timeline/timeline.component';
 
 
@@ -37,7 +38,7 @@ const searchRoutes: Routes = [
             }
         ]
     },
-    { path: 'resource/:id',  component: SearchResultDetailComponent}
+    { path: 'resource/:id',  component: SearchResultTabsComponent}
 ];
 
 @NgModule({
@@ -55,5 +56,6 @@ export const routedComponents = [
     SearchPanelComponent,
     SearchResultsComponent,
     SearchResultDetailComponent,
+    SearchResultTabsComponent,
     TimelineComponent
 ];

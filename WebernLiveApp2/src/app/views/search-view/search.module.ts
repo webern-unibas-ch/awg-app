@@ -7,6 +7,7 @@ import { SearchService } from './search.service';
 import { BibliographyService } from './search-outlets/bibliography/bibliography.service';
 
 import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
+import { SearchResultDetailRawComponent } from './search-outlets/search-panel/search-result-detail-raw/search-result-detail-raw.component';
 
 import { BibliographySearchComponent } from './search-outlets/bibliography/bibliography-search/bibliography-search.component';
 import { BibliographyListComponent } from './search-outlets/bibliography/bibliography-list/bibliography-list.component';
@@ -20,6 +21,7 @@ import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliograp
     declarations: [
         routedComponents,
         SearchFormComponent,
+        SearchResultDetailRawComponent,
         BibliographySearchComponent,
         BibliographyListComponent,
         BibliographyFormatPipe
