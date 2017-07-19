@@ -7,8 +7,9 @@ import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { SidenavComponent } from './core/sidenav/sidenav.component';
 
-import { RouterLinkStubDirective }   from '../../../testing';
-import { RouterOutletStubComponent } from '../../../testing';
+import { MetaService } from './core/services/meta-service/meta.service';
+
+import { RouterLinkStubDirective, RouterOutletStubComponent } from '../myTesting/router-stubs';
 
 // TODO: add custom testing matchers (also for footer.spec.ts)
 
@@ -23,6 +24,7 @@ describe('AppComponent', () => {
                 FooterStubComponent, NavbarStubComponent, SidenavStubComponent
                 */
             ],
+            providers: [MetaService]
         });
         TestBed.compileComponents();
     }));

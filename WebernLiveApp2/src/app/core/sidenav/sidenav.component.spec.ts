@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { SidenavComponent } from './sidenav.component';
+import { RouterLinkStubDirective } from '../../../myTesting/router-stubs';
 
 describe('SidenavComponent', () => {
     let component: SidenavComponent;
@@ -11,7 +12,10 @@ describe('SidenavComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ SidenavComponent ]
+            declarations: [
+                SidenavComponent,
+                RouterLinkStubDirective
+            ]
         })
             .compileComponents();
     }));

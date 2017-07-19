@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EditionImageControlComponent } from './edition-sheet-control.component';
+import { EditionSheetControlComponent } from './edition-sheet-control.component';
 
-describe('EditionImageControlComponent', () => {
-  let component: EditionImageControlComponent;
-  let fixture: ComponentFixture<EditionImageControlComponent>;
+describe('EditionSheetControlComponent', () => {
+  let component: EditionSheetControlComponent;
+  let fixture: ComponentFixture<EditionSheetControlComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditionImageControlComponent ]
+      declarations: [ EditionSheetControlComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditionImageControlComponent);
+    fixture = TestBed.createComponent(EditionSheetControlComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });
