@@ -124,7 +124,7 @@ export class ConversionService extends ApiService {
                                 propValue[i] = htmlstr.trim();
 
                                 // replace bibliography links
-                                if (prop.label == 'Online-Zugang') {
+                                if (prop.label === 'Online-Zugang') {
                                     propValue[i] = this.replaceBiblioLink(propValue[i]);
                                 }
                             }
@@ -132,14 +132,12 @@ export class ConversionService extends ApiService {
                             // empty values
                         } else {
                             propValue[0] = '';
-                        };
+                        }
                         break; // END richtext
 
                     default: // '1'=> TEXT: properties come as they are
-                        if (prop.values[0] !== '')
-                        {
-                            for (let i = 0; i < prop.values.length; i++)
-                            {
+                        if (prop.values[0] !== '') {
+                            for (let i = 0; i < prop.values.length; i++) {
                                 propValue[i] = prop.values[i].trim();
                             }
                         } else {
@@ -495,7 +493,7 @@ export class ConversionService extends ApiService {
      *****************************************/
     private convertLinkValue(prop, i: number) {
         // add <a>-tag with click-directive; linktext is stored in "$&"
-        return prop.value_firstprops[i].replace(prop.value_firstprops[i], '<a (click)="ref.showDetail(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')<a/>');
+        return prop.value_firstprops[i].replace(prop.value_firstprops[i], '<a (click)="ref.showDetail(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')</a>');
     }
 
     /******************************************
@@ -505,12 +503,12 @@ export class ConversionService extends ApiService {
      *****************************************/
     private convertRichtextValue(str: string, attr: string) {
         // convert salsah standoff to html (using plugin "convert_lin2html")
-        let htmlstr: string = this.convertStandoffToHTML(str, attr);
+        let rtValue: string = this.convertStandoffToHTML(str, attr);
 
         // replace salsah links
-        htmlstr = this.replaceSalsahLink(htmlstr);
+        rtValue = this.replaceSalsahLink(rtValue);
 
-        return htmlstr;
+        return rtValue;
     }
 
     // TODO: check if it is possible to unify with hlist conversion?
@@ -594,6 +592,9 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private replaceBiblioLink(str: string){
+
+        if (!str) { return; }
+
         let tmpStr,
             splitStr,
             nameStr,
@@ -630,6 +631,7 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private replaceSalsahLink(str: string): string {
+        if (!str) { return; }
         let patNum = /\d{4,8}/,    // regexp for object id (4-7 DIGITS)
             patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i, // regexp for salsah links
             p;
