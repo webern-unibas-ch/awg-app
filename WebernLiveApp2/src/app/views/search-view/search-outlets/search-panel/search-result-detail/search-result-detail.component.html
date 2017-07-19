@@ -44,7 +44,11 @@
                     {{ prop.label }}
                 </td>
                 <!-- OUTPUT VALUES -->
-                <td colspan="2"><span [compile-html]="prop.value[0]" [compile-html-ref]="ref"></span></td>
+                <td colspan="2">
+                    <p *ngFor="let value of prop.value; let i = index">
+                        <span [compile-html]="prop.value[i]" [compile-html-ref]="ref"></span>
+                    </p>
+                </td>
             </tr>
         </ng-container>
         <tr>
@@ -67,19 +71,21 @@
     </table>
 
     <!-- stack to definition list on extra small devices -->
-    <!-- TOOD: data-ng-if="prop.value[0]" -->
+    <!-- TODO: data-ng-if="prop.value[0]" -->
     <dl class="dl-horizontal dl-hover visible-xs">
         <div id="field" *ngFor="let prop of resourceDetail?.props">
             <dt>
                 {{ prop.label }}
             </dt>
-            <dd [compile-html]="prop.value[0]" [compile-html-ref]="ref"></dd>
+            <dd *ngFor="let value of prop.value; let i = index">
+                <p><span [compile-html]="prop.value[i]" [compile-html-ref]="ref"></span></p>
+            </dd>
         </div>
         <dt *ngIf="resourceDetail?.incoming !== ''">
             Objekte, die auf diesen Eintrag verweisen: {{resourceDetail?.incoming.length}}
         </dt>
         <dd class="ins" *ngFor="let ins of resourceDetail?.incoming" (click)="showDetail(ins.id)">
-            <img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
+            <p><img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}</p>
         </dd>
     </dl>
 </div>
