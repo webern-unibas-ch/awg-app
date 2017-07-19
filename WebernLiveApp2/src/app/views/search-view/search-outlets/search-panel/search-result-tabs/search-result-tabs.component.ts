@@ -16,11 +16,12 @@ import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 export class SearchResultTabsComponent implements OnInit {
 
     public currentId: string;
-    public resourceData: ResourceFullResponseJson;
-    public resourceRawData: ResourceFullResponseJson;
-    public resourceDetail: ResourceDetail;
     public errorMessage: string = undefined;
     public request: string;
+    public resourceData: ResourceFullResponseJson;
+    public resourceDetail: ResourceDetail;
+    public resourceRawConvertedData: ResourceDetail;
+    public resourceRawData: ResourceFullResponseJson;
 
     ref: SearchResultTabsComponent;
 
@@ -49,10 +50,10 @@ export class SearchResultTabsComponent implements OnInit {
                     this.resourceRawData = JSON.parse(JSON.stringify(data));
                     this.resourceData = data;
                     this.resourceDetail = this.conversionService.prepareResourceDetail(this.resourceData);
+                    // snapshot of converted json response
+                    this.resourceRawConvertedData = JSON.parse(JSON.stringify(this.resourceDetail));
                     this.currentId = this.resourceDetail.header.objID;
                     this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
-                    // TODO: rm
-                    console.info('SearchPanel#Detail: ', this.resourceDetail);
                 },
                 error => {
                     this.errorMessage = <any>error;

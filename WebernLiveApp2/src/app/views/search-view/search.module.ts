@@ -8,6 +8,7 @@ import { BibliographyService } from './search-outlets/bibliography/bibliography.
 
 import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
 import { SearchResultDetailRawComponent } from './search-outlets/search-panel/search-result-detail-raw/search-result-detail-raw.component';
+import { SearchResultDetailRawConvertedComponent } from './search-outlets/search-panel/search-result-detail-raw-converted/search-result-detail-raw-converted.component';
 
 import { BibliographySearchComponent } from './search-outlets/bibliography/bibliography-search/bibliography-search.component';
 import { BibliographyListComponent } from './search-outlets/bibliography/bibliography-list/bibliography-list.component';
@@ -22,6 +23,7 @@ import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliograp
         routedComponents,
         SearchFormComponent,
         SearchResultDetailRawComponent,
+        SearchResultDetailRawConvertedComponent,
         BibliographySearchComponent,
         BibliographyListComponent,
         BibliographyFormatPipe
