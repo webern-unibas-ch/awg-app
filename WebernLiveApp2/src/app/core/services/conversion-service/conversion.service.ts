@@ -39,7 +39,7 @@ export class ConversionService extends ApiService {
                 htmlstr = this.replaceSalsahLink(htmlstr);
 
                 // strip & replace <p>-tags for displaying objtitle
-                htmlstr = htmlstr.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(htmlstr, '«$&»');
+                htmlstr = this.replaceParagraphTags(htmlstr);
                 res.value[0] = htmlstr;
             }
         });
@@ -262,7 +262,7 @@ export class ConversionService extends ApiService {
                     let htmlstr = props['webern:event_rt'].toHtml[0];
 
                     // strip & replace <p>-tags for displaying title
-                    htmlstr = htmlstr.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(htmlstr, '«$&»');
+                    htmlstr = this.replaceParagraphTags(htmlstr);
 
                     header['title'] = htmlstr;
                     break;
@@ -644,8 +644,21 @@ export class ConversionService extends ApiService {
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
             str = str.replace(p[0], '<a (click)="ref.showDetail(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
-        } //END while
+        } // END while
 
+        return str;
+    }
+
+    /******************************************
+     *
+     * replace paragraph tags
+     *
+     *****************************************/
+    private replaceParagraphTags(str: string): string {
+        if (!str) { return; }
+        console.log('called replacePTags: ', str);
+        str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(str, '«$&»');
+        console.log('replaced: ', str);
         return str;
     }
 
