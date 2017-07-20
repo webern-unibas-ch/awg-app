@@ -11,8 +11,6 @@ import { MetaService } from './core/services/meta-service/meta.service';
 
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '../myTesting/router-stubs';
 
-// TODO: add custom testing matchers (also for footer.spec.ts)
-
 describe('AppComponent', () => {
     beforeEach( async(() => {
         TestBed.configureTestingModule({
