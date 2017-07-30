@@ -11,8 +11,7 @@ export class SearchResultDetailComponent implements OnInit {
     @Input() resourceDetail: ResourceDetail;
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 
-
-    public currentId: string;
+    public metaBreakLine = 'Versionsdatum';
 
     ref: SearchResultDetailComponent;
 
