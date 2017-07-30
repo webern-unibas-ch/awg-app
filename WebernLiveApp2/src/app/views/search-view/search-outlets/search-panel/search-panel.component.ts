@@ -12,7 +12,6 @@ import { SearchResponseJson } from '../../../../shared/api-objects';
 })
 export class SearchPanelComponent implements OnInit {
 
-    // eventData: Object = {};
     private errorMessage: string = undefined;
     public searchData: SearchResponseJson = new SearchResponseJson();
     public searchval = 'Kantate';

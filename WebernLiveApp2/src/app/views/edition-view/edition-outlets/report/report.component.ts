@@ -53,8 +53,6 @@ export class ReportComponent implements OnInit {
                 .subscribe(
                     f => {
                         if (!f) { return; };
-                        // TODO: rm
-                        console.log('Report#fragment(): ', f);
                         const element = document.querySelector('#' + f);
                         if (element) element.scrollIntoView(element);
                     }
