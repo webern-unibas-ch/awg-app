@@ -16,6 +16,7 @@ import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 export class SearchResultTabsComponent implements OnInit {
 
     public currentId: string;
+    public oldId: string;
     public errorMessage: string = undefined;
     public request: string;
     public resourceData: ResourceFullResponseJson;
@@ -61,15 +62,27 @@ export class SearchResultTabsComponent implements OnInit {
             );
     }
 
-    showDetail(id: string) {
-        this.currentId = id;
-        this.router.navigate(['/search/detail', this.currentId]);
+    showDetail(nextId?: string): void {
+        /*
+         * Navigate to ResultDetail
+         * if nextId is emitted, use nextId for navigation, else navigate to oldId
+         * if oldId not exists (first call), use currentId
+         */
+        const showId = nextId ? nextId : (this.oldId ? this.oldId : this.currentId);
+        // save currentId as oldId (currentId is available from every new subscription in getResourceData() )
+        this.oldId = this.currentId;
+        this.router.navigate(['/search/detail', showId]);
     }
 
     goBack(): void {
+        /*
+         * Navigate back to SearchPanel
+         * TODO: store query in URL to avoid redoing search
+         * pass along the currentId if available
+         * so that the SearchResultList component
+         * can select the corresponding Resource.
+         */
         const resId = this.resourceData ? this.currentId : null;
-        // Pass along the resId if available
-        // so that the SearchResultList component can select that Resource.
         this.router.navigate(['/search/fulltext', { id: resId }]);
     }
 

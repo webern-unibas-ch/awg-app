@@ -1,13 +1,13 @@
-<!-- when object is loaded  *ngIf="isObjectLoaded" -->
-<div >
+<div>
 
     <!-- resourceDetail header -->
     <h3>
-        <img [attr.src]="resourceDetail?.header.icon" alt="icon" /><small> ({{ resourceDetail?.header.type }})</small><br/>
+        <img [attr.src]="resourceDetail?.header.icon" alt="icon" /><small>&nbsp;({{ resourceDetail?.header.type }})</small><br/>
         [{{ resourceDetail?.header.objID }}] <span [compile-html]="resourceDetail?.header.title" [compile-html-ref]="ref"></span>
     </h3>
     <small>[Last modified: {{resourceDetail?.header.lastmod}} (UTC)]</small><br /><br />
-    <!-- TODO: <small><a data-ng-click="showDetail(id_back)">Zurück zum vorherigen Objekt</a></small> TODO -->
+    <button (click)="showDetail()">Zeige vorheriges Objekt</button>
+    <button (click)="goBack()">Zurück zur Suche</button>
 
 
     <!-- image objects -->

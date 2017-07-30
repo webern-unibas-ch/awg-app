@@ -9,6 +9,7 @@ import { ResourceDetail } from '../../../resource-detail-models';
 })
 export class SearchResultDetailComponent implements OnInit {
     @Input() resourceDetail: ResourceDetail;
+    @Output() goBackRequest: EventEmitter<any> = new EventEmitter();
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 
     public metaBreakLine = 'Versionsdatum';
@@ -20,11 +21,13 @@ export class SearchResultDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-
     }
 
-    showDetail(id: string) {
-        this.currentId = id;
+    goBack() {
+        this.goBackRequest.emit();
+    }
+
+    showDetail(id?: string) {
         this.showDetailRequest.emit(id);
     }
 
