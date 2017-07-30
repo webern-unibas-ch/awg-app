@@ -5,17 +5,17 @@ import { SearchResponseJson } from '../../../../../shared/api-objects';
 
 
 @Component({
-    selector: 'awg-search-results',
-    templateUrl: './search-results.component.html',
-    styleUrls: ['./search-results.component.css']
+    selector: 'awg-search-result-list',
+    templateUrl: './search-result-list.component.html',
+    styleUrls: ['./search-result-list.component.css']
 })
-export class SearchResultsComponent implements OnInit {
+export class SearchResultListComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
 
     public curId: string;
     public resText: string;
 
-    ref: SearchResultsComponent;
+    ref: SearchResultListComponent;
 
     constructor(
         private router: Router

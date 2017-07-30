@@ -8,8 +8,8 @@ import { BibliographyDetailComponent } from './search-outlets/bibliography/bibli
 import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
 import { SearchOverviewComponent } from './search-outlets/search-overview.component';
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
-import { SearchResultsComponent } from './search-outlets/search-panel/search-results/search-results.component';
 import { SearchResultDetailComponent } from './search-outlets/search-panel/search-result-detail/search-result-detail.component';
+import { SearchResultListComponent } from './search-outlets/search-panel/search-result-list/search-result-list.component';
 import { SearchResultTabsComponent } from './search-outlets/search-panel/search-result-tabs/search-result-tabs.component';
 import { TimelineComponent } from './search-outlets/timeline/timeline.component';
 
@@ -24,7 +24,7 @@ const searchRoutes: Routes = [
                         /*
                         children: [
                             { path: 'form', component: SearchFormComponent },
-                            { path: 'results', component: SearchResultsComponent },
+                            { path: 'results', component: SearchResultListComponent },
                             { path: 'result/:id', component: SearchResultDetailComponent }
                         ]*/
 
@@ -54,8 +54,8 @@ export const routedComponents = [
     BibliographyDetailComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
-    SearchResultsComponent,
     SearchResultDetailComponent,
+    SearchResultListComponent,
     SearchResultTabsComponent,
     TimelineComponent
 ];

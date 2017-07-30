@@ -8,6 +8,6 @@
     (submitRequest)="onSubmit($event)">
 </awg-search-form>
 
-<awg-search-results *ngIf="isDataLoaded"
+<awg-search-result-list *ngIf="isDataLoaded"
     [searchData]="searchData">
-</awg-search-results>
+</awg-search-result-list>
