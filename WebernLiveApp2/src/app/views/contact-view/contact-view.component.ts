@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 @Component({
     selector: 'awg-contact-view',
@@ -12,17 +12,23 @@ export class ContactViewComponent implements OnInit {
     public contactId = 'masthead';
 
     constructor(
-        private _route: ActivatedRoute
+        private route: ActivatedRoute,
+        private router: Router
     ) { }
 
     ngOnInit() {
+        this.routeToSidenav();
         this.scrollTo();
     }
 
-    private scrollTo(id?: string) {
+    public routeToSidenav(): void {
+        this.router.navigate([{ outlets: { side: 'contactInfo' }}]);
+    }
+
+    public scrollTo(id?: string) {
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
-            this._route.fragment
+            this.route.fragment
                 .subscribe(
                     f => {
                         if (!f) { return; };

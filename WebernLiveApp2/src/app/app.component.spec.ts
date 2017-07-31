@@ -5,7 +5,7 @@ import { TestBed, async } from '@angular/core/testing';
 import { AppComponent } from './app.component';
 import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
-import { SidenavComponent } from './core/sidenav/sidenav.component';
+import { EditionInfoComponent } from './side-info/edition-info/edition-info.component';
 
 import { MetaService } from './core/services/meta-service/meta.service';
 
@@ -16,7 +16,7 @@ describe('AppComponent', () => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                FooterComponent, NavbarComponent, SidenavComponent,
+                FooterComponent, NavbarComponent, EditionInfoComponent,
                 RouterLinkStubDirective, RouterOutletStubComponent
                 /*
                 FooterStubComponent, NavbarStubComponent, SidenavStubComponent

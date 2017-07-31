@@ -21,13 +21,6 @@ const searchRoutes: Routes = [
                 children: [
                     { path: 'fulltext', component: SearchPanelComponent},
                     { path: 'detail/:id', redirectTo: '/resource/:id' }, // absolute redirect (replacement of route) to resource/:id
-                        /*
-                        children: [
-                            { path: 'form', component: SearchFormComponent },
-                            { path: 'results', component: SearchResultListComponent },
-                            { path: 'result/:id', component: SearchResultDetailComponent }
-                        ]*/
-
                     { path: 'timeline', component: TimelineComponent },
                     { path: 'bibliography', component: BibliographyComponent,
                         children: [

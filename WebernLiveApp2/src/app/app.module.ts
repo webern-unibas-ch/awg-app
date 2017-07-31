@@ -40,8 +40,7 @@ import { ConversionService } from './core/services/conversion-service/conversion
     ],
     declarations: [
         AppComponent,
-        routedComponents,
-
+        routedComponents
     ],
     providers: [ ApiService, ConversionService ],
     bootstrap: [ AppComponent ]

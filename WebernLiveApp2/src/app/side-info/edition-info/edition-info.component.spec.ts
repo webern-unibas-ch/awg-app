@@ -3,17 +3,17 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SidenavComponent } from './sidenav.component';
+import { EditionInfoComponent } from './edition-info.component';
 import { RouterLinkStubDirective } from '../../../myTesting/router-stubs';
 
-describe('SidenavComponent', () => {
-    let component: SidenavComponent;
-    let fixture: ComponentFixture<SidenavComponent>;
+describe('EditionInfoComponent', () => {
+    let component: EditionInfoComponent;
+    let fixture: ComponentFixture<EditionInfoComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
-                SidenavComponent,
+                EditionInfoComponent,
                 RouterLinkStubDirective
             ]
         })
@@ -21,7 +21,7 @@ describe('SidenavComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SidenavComponent);
+        fixture = TestBed.createComponent(EditionInfoComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

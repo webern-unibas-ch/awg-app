@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'awg-structure-view',
@@ -7,12 +8,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class StructureViewComponent implements OnInit {
 
-    public structureTitle: string = 'Datenstrukturmodell';
-    public structureId: string = 'structure';
+    public structureTitle = 'Datenstrukturmodell';
+    public structureId = 'structure';
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     ngOnInit() {
+        this.routeToSidenav();
+    }
+
+    public routeToSidenav(): void {
+        this.router.navigate([{ outlets: { side: 'structureInfo' }}]);
     }
 
 }
