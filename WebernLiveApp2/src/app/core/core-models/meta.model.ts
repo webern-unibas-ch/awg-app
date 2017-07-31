@@ -9,4 +9,8 @@ export class Meta {
         editors: string;
         lastModified: string;
     };
+    structure: {
+        author: string;
+        lastModified: string;
+    };
 }

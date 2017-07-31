@@ -12,6 +12,10 @@ export const METADATA: Meta[] = [
         edition: {
             editors: '<a href="http://anton-webern.ch/index.php?id=3" target="_blank">Thomas Ahrend</a>',
             lastModified: '29. Januar 2016'
+        },
+        structure: {
+            author: 'Stefan Münnich',
+            lastModified: '29. Januar 2016'
         }
     }
 ];

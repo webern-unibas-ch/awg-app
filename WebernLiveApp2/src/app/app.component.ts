@@ -8,7 +8,7 @@ import { MetaService } from './core/services';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent implements OnInit {
-    public metaData: Meta;
+    public meta: Meta;
 
     constructor(
         private metaService: MetaService
@@ -19,7 +19,7 @@ export class AppComponent implements OnInit {
     }
 
     public provideMetaData(): void {
-            this.metaData = this.metaService.getMetaData();
+            this.meta = this.metaService.getMetaData();
     }
 
 }

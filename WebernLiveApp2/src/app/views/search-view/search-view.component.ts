@@ -7,8 +7,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SearchViewComponent implements OnInit {
 
-    public searchTitle: string = 'Suche';
-    public searchId: string = 'search';
+    public searchTitle = 'Suche';
+    public searchId = 'search';
 
     constructor() { }
 
