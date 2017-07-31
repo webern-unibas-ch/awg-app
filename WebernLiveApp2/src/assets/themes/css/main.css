@@ -2,6 +2,7 @@ html, body {
     font-family: 'Droid Sans', sans-serif;
     background-color: #FFF;
     padding: 5px;
+    min-width: 320px;
 }
 
 /****** PAGE LAYOUT ******/
@@ -9,6 +10,9 @@ html, body {
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
+}
+.navbar-brand {
+    margin-top: -10px;
 }
 
 /* Set height of the grid so .sidenav can be 100% */
@@ -59,7 +63,9 @@ footer {
         height: auto;
         padding: 15px;
     }
-    .row.content {height:auto;}
+    .row.content {
+        height:auto;
+    }
 }
 
 .subitem {
