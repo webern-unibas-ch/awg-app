@@ -9,7 +9,7 @@ import { ButtonsModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 //
 // main app modules & routes
 import { AppComponent } from './app.component';
-import { AppRoutingModule } from './app-routing.module';
+import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
@@ -17,13 +17,6 @@ import { SharedModule } from './shared/shared.module';
 // view modules
 import { EditionModule } from './views/edition-view/edition.module';
 import { SearchModule } from './views/search-view/search.module';
-
-//
-// view components
-import { ContactViewComponent } from './views/contact-view/contact-view.component';
-import { HomeViewComponent } from './views/home-view/home-view.component';
-import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
-import { StructureViewComponent } from './views/structure-view/structure-view.component';
 
 //
 // services
@@ -47,11 +40,8 @@ import { ConversionService } from './core/services/conversion-service/conversion
     ],
     declarations: [
         AppComponent,
+        routedComponents,
 
-        ContactViewComponent,
-        HomeViewComponent,
-        PageNotFoundViewComponent,
-        StructureViewComponent,
     ],
     providers: [ ApiService, ConversionService ],
     bootstrap: [ AppComponent ]
