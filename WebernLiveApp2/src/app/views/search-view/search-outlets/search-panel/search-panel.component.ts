@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { ConversionService } from '../../../../core/services';
-import { SearchService } from '../../search.service';
+import { SearchService } from '../../services';
 import { SearchResponseJson } from '../../../../shared/api-objects';
 
 

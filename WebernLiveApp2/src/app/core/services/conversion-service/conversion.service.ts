@@ -8,7 +8,7 @@ import {
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
     ResourceDetailProps
-} from '../../../views/search-view/resource-detail-models';
+} from '../../../views/search-view/models';
 import {IncomingItemJson} from "../../../shared/api-objects/resource-response-formats/src/incoming-item-json";
 import {Observable} from "rxjs/Observable";
 

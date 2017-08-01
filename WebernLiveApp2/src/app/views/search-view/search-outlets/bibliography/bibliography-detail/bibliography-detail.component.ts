@@ -1,8 +1,10 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
-import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
-import { BibliographyService } from '../bibliography.service';
-import { ConversionService } from '../../../../../core/services/conversion-service/conversion.service';
 import { Subscription } from 'rxjs';
+
+import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
+
+import { BibliographyService } from '../../../services';
+import { ConversionService } from '../../../../../core/services/conversion-service/conversion.service';
 
 @Component({
     selector: 'awg-bibliography-detail',

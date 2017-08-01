@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import { ResourceDetail } from '../../../resource-detail-models';
+import { ResourceDetail } from '../../../models';
 
 @Component({
     selector: 'awg-search-result-detail',

@@ -1,5 +1,5 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ResourceDetail } from '../../../resource-detail-models/resource-detail.model';
+import { ResourceDetail } from '../../../models';
 
 @Component({
     selector: 'awg-search-result-detail-raw-converted',
