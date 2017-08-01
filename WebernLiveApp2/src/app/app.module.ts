@@ -14,9 +14,10 @@ import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
 
 //
-// view modules
+// feature modules
 import { EditionModule } from './views/edition-view/edition.module';
 import { SearchModule } from './views/search-view/search.module';
+import { SideInfoModule } from './side-info/side-info.module';
 
 //
 // services
@@ -35,6 +36,7 @@ import { ConversionService } from './core/services/conversion-service/conversion
         CoreModule,
         EditionModule.forRoot(),
         SearchModule.forRoot(),
+        SideInfoModule,
         SharedModule,
         AppRoutingModule
     ],

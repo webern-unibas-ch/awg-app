@@ -7,6 +7,7 @@ import { IntroComponent } from './edition-outlets/intro/intro.component';
 import { EditionOverviewComponent } from './edition-outlets/edition-overview/edition-overview.component';
 import { ReportComponent } from './edition-outlets/report/report.component';
 
+
 const editionRoutes: Routes = [
     { path: 'edition',  component: EditionViewComponent,
         children: [
