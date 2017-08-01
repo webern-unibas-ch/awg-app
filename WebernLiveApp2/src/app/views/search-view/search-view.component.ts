@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'awg-search-view',
@@ -10,9 +11,14 @@ export class SearchViewComponent implements OnInit {
     public searchTitle = 'Suche';
     public searchId = 'search';
 
-    constructor() { }
+    constructor(private router: Router) { }
 
     ngOnInit() {
+        this.routeToSidenav();
+    }
+
+    public routeToSidenav(): void {
+        this.router.navigate([{ outlets: { side: 'searchInfo' }}]);
     }
 
 }

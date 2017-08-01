@@ -3,13 +3,15 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { ContactInfoComponent } from './contact-info/contact-info.component';
 import { EditionInfoComponent } from './edition-info/edition-info.component';
+import { SearchInfoComponent } from './search-info/search-info.component';
 import { StructureInfoComponent } from './structure-info/structure-info.component';
 
 
 const sideInfoRoutes: Routes = [
-    { path: 'editionInfo', component: EditionInfoComponent, outlet: 'side' },
-    { path: 'structureInfo', component: StructureInfoComponent, outlet: 'side' },
     { path: 'contactInfo', component: ContactInfoComponent, outlet: 'side' },
+    { path: 'editionInfo', component: EditionInfoComponent, outlet: 'side' },
+    { path: 'searchInfo', component: SearchInfoComponent, outlet: 'side' },
+    { path: 'structureInfo', component: StructureInfoComponent, outlet: 'side' },
 ];
 
 @NgModule({
@@ -21,6 +23,7 @@ export class SideInfoRoutingModule { }
 export const routedComponents = [
     ContactInfoComponent,
     EditionInfoComponent,
+    SearchInfoComponent,
     StructureInfoComponent
 ];
 

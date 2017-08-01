@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '../shared/shared.module';
 
 import { SideInfoRoutingModule, routedComponents } from './side-info-routing.module';
+import { SearchInfoComponent } from './search-info/search-info.component';
 
 @NgModule({
     imports: [
@@ -9,7 +10,8 @@ import { SideInfoRoutingModule, routedComponents } from './side-info-routing.mod
         SideInfoRoutingModule
     ],
     declarations: [
-        routedComponents
+        routedComponents,
+        SearchInfoComponent
     ]
 })
 export class SideInfoModule { }

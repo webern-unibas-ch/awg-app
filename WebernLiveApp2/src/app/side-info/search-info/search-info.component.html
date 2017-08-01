@@ -1,0 +1,15 @@
+<div class="col-sm-3 col-lg-2 sidenav sidenav-left text-center">
+    <div class="well well-lg">
+        <p class="bold">
+            Volltextsuche
+        </p>
+        <p>&#9671;</p>
+        <p *ngIf="query">
+            Suchbegriff: {{ query }}
+        </p>
+        <p>&#9671;</p>
+        <p *ngIf="nhits">
+            Suchergebnisse: {{ nhits }}
+        </p>
+    </div>
+</div>
