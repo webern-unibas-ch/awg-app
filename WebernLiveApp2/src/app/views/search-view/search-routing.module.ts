@@ -1,16 +1,16 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SearchComponent } from './search.component';
 
 import { BibliographyComponent } from './search-outlets/bibliography/bibliography.component';
 import { BibliographyDetailComponent } from './search-outlets/bibliography/bibliography-detail/bibliography-detail.component';
-import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
+
+import { SearchComponent } from './search.component';
 import { SearchOverviewComponent } from './search-outlets/search-overview.component';
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
-import { SearchResultDetailComponent } from './search-outlets/search-panel/search-result-detail/search-result-detail.component';
-import { SearchResultListComponent } from './search-outlets/search-panel/search-result-list/search-result-list.component';
-import { SearchDetailTabsComponent } from './search-outlets/search-detail-tabs/search-detail-tabs.component';
+
+import { ResourceDetailComponent } from './search-outlets/resource-detail/resource-detail.component';
+
 import { TimelineComponent } from './search-outlets/timeline/timeline.component';
 
 
@@ -31,7 +31,7 @@ const searchRoutes: Routes = [
             }
         ]
     },
-    { path: 'resource/:id',  component: SearchDetailTabsComponent}
+    { path: 'resource/:id',  component: ResourceDetailComponent}
 ];
 
 @NgModule({
@@ -42,13 +42,11 @@ const searchRoutes: Routes = [
 export class SearchRoutingModule { }
 
 export const routedComponents = [
-    SearchComponent,
     BibliographyComponent,
     BibliographyDetailComponent,
+    SearchComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
-    SearchResultDetailComponent,
-    SearchResultListComponent,
-    SearchDetailTabsComponent,
+    ResourceDetailComponent,
     TimelineComponent
 ];

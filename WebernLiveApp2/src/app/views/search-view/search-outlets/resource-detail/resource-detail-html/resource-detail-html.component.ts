@@ -3,18 +3,18 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 import { ResourceDetail } from '../../../models';
 
 @Component({
-    selector: 'awg-search-result-detail',
-    templateUrl: './search-result-detail.component.html',
-    styleUrls: ['./search-result-detail.component.css']
+    selector: 'awg-resource-detail-html',
+    templateUrl: './resource-detail-html.component.html',
+    styleUrls: ['./resource-detail-html.component.css']
 })
-export class SearchResultDetailComponent implements OnInit {
-    @Input() resourceDetail: ResourceDetail;
+export class ResourceDetailHtmlComponent implements OnInit {
+    @Input() resourceDetailData: ResourceDetail;
     @Output() goBackRequest: EventEmitter<any> = new EventEmitter();
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 
     public metaBreakLine = 'Versionsdatum';
 
-    ref: SearchResultDetailComponent;
+    ref: ResourceDetailHtmlComponent;
 
     constructor( ) {
         this.ref = this;

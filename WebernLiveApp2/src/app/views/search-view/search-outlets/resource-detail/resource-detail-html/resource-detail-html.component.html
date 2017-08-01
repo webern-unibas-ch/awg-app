@@ -1,24 +1,24 @@
 <div>
 
-    <!-- resourceDetail header -->
+    <!-- resourceDetailData header -->
     <h3>
-        <img [attr.src]="resourceDetail?.header.icon" alt="icon" /><small>&nbsp;({{ resourceDetail?.header.type }})</small><br/>
-        [{{ resourceDetail?.header.objID }}] <span [compile-html]="resourceDetail?.header.title" [compile-html-ref]="ref"></span>
+        <img [attr.src]="resourceDetailData?.header.icon" alt="icon" /><small>&nbsp;({{ resourceDetailData?.header.type }})</small><br/>
+        [{{ resourceDetailData?.header.objID }}] <span [compile-html]="resourceDetailData?.header.title" [compile-html-ref]="ref"></span>
     </h3>
-    <small>[Last modified: {{resourceDetail?.header.lastmod}} (UTC)]</small><br /><br />
+    <small>[Last modified: {{resourceDetailData?.header.lastmod}} (UTC)]</small><br /><br />
     <button (click)="showDetail()">Zeige vorheriges Objekt</button>
     <button (click)="goBack()">Zurück zur Suche</button>
 
 
     <!-- image objects -->
-    <div align="center" class="objImage" *ngIf="resourceDetail?.image[0]">
+    <div align="center" class="objImage" *ngIf="resourceDetailData?.image[0]">
         <div class="facs">
-            <a [href]="resourceDetail?.image.full" target="_blank">
-                <img [src]="resourceDetail?.image.value" alt="{{ resourceDetail?.image.label }}" />
+            <a [href]="resourceDetailData?.image.full" target="_blank">
+                <img [src]="resourceDetailData?.image.value" alt="{{ resourceDetailData?.image.label }}" />
             </a>
         </div>
         <div class="btn-group btn-group-justified">
-            <a class="btn btn-default" *ngFor="let objImage of resourceDetail?.image" (click)="showImage(objImage)">
+            <a class="btn btn-default" *ngFor="let objImage of resourceDetailData?.image" (click)="showImage(objImage)">
                 {{ objImage.label }}
             </a>
         </div>
@@ -33,7 +33,7 @@
             </td>
         </tr>
         <!-- ### show only not empty values ### -->
-        <ng-container *ngFor="let prop of resourceDetail?.props">
+        <ng-container *ngFor="let prop of resourceDetailData?.props">
             <tr *ngIf="prop.label === metaBreakLine">
                 <td colspan="3">
                     <hr>
@@ -56,13 +56,13 @@
                 <hr>
             </td>
         </tr>
-        <ng-container *ngIf="resourceDetail?.incoming !== ''">
+        <ng-container *ngIf="resourceDetailData?.incoming !== ''">
             <tr>
                 <td colspan="3" class="bold">
-                    <p>Objekte, die auf diesen Eintrag verweisen: {{resourceDetail?.incoming.length}} </p>
+                    <p>Objekte, die auf diesen Eintrag verweisen: {{resourceDetailData?.incoming.length}} </p>
                 </td>
             </tr>
-            <tr class="ins" *ngFor="let ins of resourceDetail?.incoming">
+            <tr class="ins" *ngFor="let ins of resourceDetailData?.incoming">
                 <td colspan="3" (click)="showDetail(ins.id)">
                     <img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
                 </td>
@@ -77,7 +77,7 @@
             <hr>
         </dt>
         <!-- ### show only not empty values ### -->
-        <ng-container id="field" *ngFor="let prop of resourceDetail?.props">
+        <ng-container id="field" *ngFor="let prop of resourceDetailData?.props">
             <dt *ngIf="prop.label === metaBreakLine">
                     <hr>
             </dt>
@@ -93,11 +93,11 @@
         <dt>
             <hr>
         </dt>
-        <ng-container *ngIf="resourceDetail?.incoming !== ''">
+        <ng-container *ngIf="resourceDetailData?.incoming !== ''">
             <dt>
-                Objekte, die auf diesen Eintrag verweisen: {{resourceDetail?.incoming.length}}
+                Objekte, die auf diesen Eintrag verweisen: {{resourceDetailData?.incoming.length}}
             </dt>
-            <dd class="ins" *ngFor="let ins of resourceDetail?.incoming" (click)="showDetail(ins.id)">
+            <dd class="ins" *ngFor="let ins of resourceDetailData?.incoming" (click)="showDetail(ins.id)">
                 <p><img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}</p>
             </dd>
         </ng-container>

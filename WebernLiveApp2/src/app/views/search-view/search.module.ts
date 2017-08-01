@@ -6,8 +6,11 @@ import { SearchRoutingModule, routedComponents } from './search-routing.module';
 import { BibliographyService, SearchService } from './services';
 
 import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
-import { SearchResultDetailRawComponent } from './search-outlets/search-panel/search-result-detail-raw/search-result-detail-raw.component';
-import { SearchResultDetailRawConvertedComponent } from './search-outlets/search-panel/search-result-detail-raw-converted/search-result-detail-raw-converted.component';
+import { SearchResultListComponent } from './search-outlets/search-panel/search-result-list/search-result-list.component';
+
+import { ResourceDetailHtmlComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html.component';
+import { ResourceDetailJsonConvertedComponent } from './search-outlets/resource-detail/resource-detail-json-converted/resource-detail-json-converted.component';
+import { ResourceDetailJsonRawComponent } from './search-outlets/resource-detail/resource-detail-json-raw/resource-detail-json-raw.component';
 
 import { BibliographySearchComponent } from './search-outlets/bibliography/bibliography-search/bibliography-search.component';
 import { BibliographyListComponent } from './search-outlets/bibliography/bibliography-list/bibliography-list.component';
@@ -21,8 +24,12 @@ import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliograp
     declarations: [
         routedComponents,
         SearchFormComponent,
-        SearchResultDetailRawComponent,
-        SearchResultDetailRawConvertedComponent,
+        SearchResultListComponent,
+
+        ResourceDetailHtmlComponent,
+        ResourceDetailJsonConvertedComponent,
+        ResourceDetailJsonRawComponent,
+
         BibliographySearchComponent,
         BibliographyListComponent,
         BibliographyFormatPipe

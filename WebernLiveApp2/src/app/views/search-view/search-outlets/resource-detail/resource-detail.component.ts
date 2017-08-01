@@ -9,22 +9,22 @@ import { ResourceDetail } from '../../models';
 import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 
 @Component({
-    selector: 'awg-search-detail-tabs',
-    templateUrl: './search-detail-tabs.component.html',
-    styleUrls: ['./search-detail-tabs.component.css']
+    selector: 'awg-resource-detail',
+    templateUrl: './resource-detail.component.html',
+    styleUrls: ['./resource-detail.component.css']
 })
-export class SearchDetailTabsComponent implements OnInit {
+export class ResourceDetailComponent implements OnInit {
 
     public currentId: string;
     public oldId: string;
     public errorMessage: string = undefined;
     public request: string;
     public resourceData: ResourceFullResponseJson;
-    public resourceDetail: ResourceDetail;
-    public resourceRawConvertedData: ResourceDetail;
-    public resourceRawData: ResourceFullResponseJson;
+    public resourceDetailData: ResourceDetail;
+    public resourceJsonConvertedData: ResourceDetail;
+    public resourceJsonRawData: ResourceFullResponseJson;
 
-    ref: SearchDetailTabsComponent;
+    ref: ResourceDetailComponent;
 
     constructor(
         private route: ActivatedRoute,
@@ -36,10 +36,11 @@ export class SearchDetailTabsComponent implements OnInit {
     }
 
     ngOnInit() {
+        this.routeToSidenav();
         this.getResourceData();
     }
 
-    getResourceData() {
+    public getResourceData() {
         this.route.params
             .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
             .subscribe(
@@ -48,12 +49,13 @@ export class SearchDetailTabsComponent implements OnInit {
                     // console.log(params['id']);
 
                     // snapshot of raw json response
-                    this.resourceRawData = JSON.parse(JSON.stringify(data));
-                    this.resourceData = data;
-                    this.resourceDetail = this.conversionService.prepareResourceDetail(this.resourceData);
+                    this.resourceJsonRawData = JSON.parse(JSON.stringify(data));
+                    // convert JSON response for displaying resource detail
+                    this.resourceDetailData = this.conversionService.prepareResourceDetail(data);
                     // snapshot of converted json response
-                    this.resourceRawConvertedData = JSON.parse(JSON.stringify(this.resourceDetail));
-                    this.currentId = this.resourceDetail.header.objID;
+                    this.resourceJsonConvertedData = JSON.parse(JSON.stringify(this.resourceDetailData));
+
+                    this.currentId = this.resourceDetailData.header.objID;
                     this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
                 },
                 error => {
@@ -62,7 +64,11 @@ export class SearchDetailTabsComponent implements OnInit {
             );
     }
 
-    showDetail(nextId?: string): void {
+    public routeToSidenav(): void {
+        this.router.navigate([{ outlets: { side: 'searchInfo' }}]);
+    }
+
+    public showDetail(nextId?: string): void {
         /*
          * Navigate to ResultDetail
          * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
@@ -74,7 +80,7 @@ export class SearchDetailTabsComponent implements OnInit {
         this.router.navigate(['/search/detail', showId]);
     }
 
-    goBack(): void {
+    public goBack(): void {
         /*
          * Navigate back to SearchPanel
          * TODO: store query in URL to avoid redoing search
@@ -82,7 +88,7 @@ export class SearchDetailTabsComponent implements OnInit {
          * so that the SearchResultList component
          * can select the corresponding Resource.
          */
-        const resId = this.resourceData ? this.currentId : null;
+        const resId = this.resourceDetailData ? this.currentId : null;
         this.router.navigate(['/search/fulltext', { id: resId }]);
     }
 
