@@ -1,7 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { SearchViewComponent } from './search-view.component';
+import { SearchComponent } from './search.component';
 
 import { BibliographyComponent } from './search-outlets/bibliography/bibliography.component';
 import { BibliographyDetailComponent } from './search-outlets/bibliography/bibliography-detail/bibliography-detail.component';
@@ -10,12 +10,12 @@ import { SearchOverviewComponent } from './search-outlets/search-overview.compon
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
 import { SearchResultDetailComponent } from './search-outlets/search-panel/search-result-detail/search-result-detail.component';
 import { SearchResultListComponent } from './search-outlets/search-panel/search-result-list/search-result-list.component';
-import { SearchResultTabsComponent } from './search-outlets/search-panel/search-result-tabs/search-result-tabs.component';
+import { SearchDetailTabsComponent } from './search-outlets/search-detail-tabs/search-detail-tabs.component';
 import { TimelineComponent } from './search-outlets/timeline/timeline.component';
 
 
 const searchRoutes: Routes = [
-    { path: 'search',  component: SearchViewComponent,
+    { path: 'search',  component: SearchComponent,
         children: [
             { path: '', component: SearchOverviewComponent,
                 children: [
@@ -31,7 +31,7 @@ const searchRoutes: Routes = [
             }
         ]
     },
-    { path: 'resource/:id',  component: SearchResultTabsComponent}
+    { path: 'resource/:id',  component: SearchDetailTabsComponent}
 ];
 
 @NgModule({
@@ -42,13 +42,13 @@ const searchRoutes: Routes = [
 export class SearchRoutingModule { }
 
 export const routedComponents = [
-    SearchViewComponent,
+    SearchComponent,
     BibliographyComponent,
     BibliographyDetailComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
     SearchResultDetailComponent,
     SearchResultListComponent,
-    SearchResultTabsComponent,
+    SearchDetailTabsComponent,
     TimelineComponent
 ];

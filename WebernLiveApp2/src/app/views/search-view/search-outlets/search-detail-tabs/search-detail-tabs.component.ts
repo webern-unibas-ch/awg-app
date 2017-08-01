@@ -3,17 +3,17 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
-import { ConversionService } from '../../../../../core/services';
-import { SearchService } from '../../../search.service';
-import { ResourceDetail } from '../../../resource-detail-models';
-import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
+import { ConversionService } from '../../../../core/services';
+import { SearchService } from '../../services/search.service';
+import { ResourceDetail } from '../../models';
+import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 
 @Component({
-    selector: 'awg-search-result-tabs',
-    templateUrl: './search-result-tabs.component.html',
-    styleUrls: ['./search-result-tabs.component.css']
+    selector: 'awg-search-detail-tabs',
+    templateUrl: './search-detail-tabs.component.html',
+    styleUrls: ['./search-detail-tabs.component.css']
 })
-export class SearchResultTabsComponent implements OnInit {
+export class SearchDetailTabsComponent implements OnInit {
 
     public currentId: string;
     public oldId: string;
@@ -24,7 +24,7 @@ export class SearchResultTabsComponent implements OnInit {
     public resourceRawConvertedData: ResourceDetail;
     public resourceRawData: ResourceFullResponseJson;
 
-    ref: SearchResultTabsComponent;
+    ref: SearchDetailTabsComponent;
 
     constructor(
         private route: ActivatedRoute,
@@ -65,7 +65,7 @@ export class SearchResultTabsComponent implements OnInit {
     showDetail(nextId?: string): void {
         /*
          * Navigate to ResultDetail
-         * if nextId is emitted, use nextId for navigation, else navigate to oldId
+         * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
          * if oldId not exists (first call), use currentId
          */
         const showId = nextId ? nextId : (this.oldId ? this.oldId : this.currentId);
