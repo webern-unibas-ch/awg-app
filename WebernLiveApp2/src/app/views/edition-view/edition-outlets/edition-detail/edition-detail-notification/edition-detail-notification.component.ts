@@ -12,4 +12,6 @@ export class EditionDetailNotificationComponent implements OnInit {
   ngOnInit() {
   }
 
+  // TODO: refactor as awg-helpblock
+
 }

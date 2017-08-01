@@ -59,19 +59,19 @@ export class ConversionService extends ApiService {
         convObj['lastmod'] = data['resinfo']['lastmod'];
 
         Object.keys(data['props']).forEach((key:string) => {
-            let prop = data['props'][key];
-            let propValue:[string] = [''];
+            const prop = data['props'][key];
+            let propValue: [string] = [''];
 
             // check if values property is defined
             if ('values' in prop) {
-                //check for gui-elements
+                // check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
                         // DATE: salsah object needs to be converted (using plugin "dateConverter")
                         if (prop.values[0] !== '') {
                             propValue[0] = this.convertDateValue(prop.values[0]);
                         }
-                        break; //END date
+                        break; // END date
 
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
@@ -86,7 +86,7 @@ export class ConversionService extends ApiService {
                                     let selectionArr = data['selection'];
                                     // localize id in selection-list object and identify the label
                                     for (let i = 0; i < selectionArr.length; i++) {
-                                        if (prop.values[0] == selectionArr[i].id) {
+                                        if (prop.values[0] === selectionArr[i].id) {
                                             propValue[0] = selectionArr[i].label;
                                         }
                                     }
@@ -97,8 +97,6 @@ export class ConversionService extends ApiService {
                             // empty value
                             propValue[0] = '';
                         }
-                        //TODO: doesn't work yet
-                        console.log('convService#selectionOuterLoop: ', propValue[0]);
                         break; //END selection
 
                     case '14':
@@ -161,10 +159,7 @@ export class ConversionService extends ApiService {
              convObj['Jahr'] = s[s.length-1];
              }
              */
-
         }); // END forEach PROPS
-        // TODO#rm
-        // console.log('convObj: ', convObj );
 
         return convObj;
     } // END convertObjectProperties (func)
@@ -658,9 +653,7 @@ export class ConversionService extends ApiService {
      *****************************************/
     private replaceParagraphTags(str: string): string {
         if (!str) { return; }
-        console.log('called replacePTags: ', str);
         str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(str, '«$&»');
-        console.log('replaced: ', str);
         return str;
     }
 
