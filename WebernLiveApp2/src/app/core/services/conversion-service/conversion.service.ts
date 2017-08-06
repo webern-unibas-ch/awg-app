@@ -211,6 +211,7 @@ export class ConversionService extends ApiService {
 
 
     private prepareResourceDetailHeader(data) {
+        console.log(data);
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         const id = data.resdata.res_id;
         const info = data.resinfo;
@@ -225,30 +226,6 @@ export class ConversionService extends ApiService {
 
             // extract restype specific title metadata
             switch (info.restype_id) {
-                // PERSON
-                case '45':
-                    const lname: string = props['salsah:lastname'].toHtml[0],
-                        fname: string = props['salsah:firstname'].toHtml[0];
-                    header['title'] = fname + ' ' + lname;
-                    break;
-
-                // KORRESPONDENZ (same as SUPPLEMENT)
-                case '29':
-                // SUPPLEMENT
-                case '125':
-                    header['title'] = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
-                    break;
-
-                // WERK
-                case '43':
-                    header['title'] = props['dc:title'].toHtml[0];
-                    break;
-
-                // MUSIKSTÜCK (Moldenhauer-Nummer)
-                case '36':
-                    header['title'] = '[M ' + props['webern:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
-                    break;
-
                 // CHRONOLOGIE
                 case '28':
                     // richtext value has already been converted in detail using plugin "convert_lin2html"
@@ -258,6 +235,35 @@ export class ConversionService extends ApiService {
                     htmlstr = this.replaceParagraphTags(htmlstr);
 
                     header['title'] = htmlstr;
+                    break;
+
+                // KORRESPONDENZ (same as SUPPLEMENT)
+                case '29':
+                // SUPPLEMENT
+                case '125':
+                    header['title'] = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
+                    break;
+
+                // MUSIKSTÜCK (Moldenhauer-Nummer)
+                case '36':
+                    header['title'] = '[M ' + props['webern:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
+                    break;
+
+                // WERK
+                case '43':
+                    header['title'] = props['dc:title'].toHtml[0];
+                    break;
+
+                // PERSON
+                case '45':
+                    const lname: string = props['salsah:lastname'].toHtml[0],
+                        fname: string = props['salsah:firstname'].toHtml[0];
+                    header['title'] = fname + ' ' + lname;
+                    break;
+
+                // BIBLIOGRAPHIE
+                case '126':
+                    header['title'] = props['webern:bibl_title_short'].toHtml[0];
                     break;
 
                 // DEFAULT
