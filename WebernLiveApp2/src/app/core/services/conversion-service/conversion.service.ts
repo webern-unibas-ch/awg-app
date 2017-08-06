@@ -211,7 +211,6 @@ export class ConversionService extends ApiService {
 
 
     private prepareResourceDetailHeader(data) {
-        console.log(data);
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         const id = data.resdata.res_id;
         const info = data.resinfo;
