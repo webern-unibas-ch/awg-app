@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { SearchService } from '../../views/search-view/services/search.service';
+import { SideInfoService } from '../services/side-info.service';
 
 @Component({
     selector: 'awg-search-info',
@@ -16,9 +16,9 @@ export class SearchInfoComponent implements OnInit, OnDestroy {
     public nhits = '29';
     public query = 'Kantate';
 
-    constructor(private searchService: SearchService) {
+    constructor(private sideInfoService: SideInfoService) {
         // get sideInfoData from service
-        this.subscription = this.searchService.sideInfoData$
+        this.subscription = this.sideInfoService.sideInfoData$
             .subscribe(
                 data => {
                     this.label = data.label;

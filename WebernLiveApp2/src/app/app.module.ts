@@ -37,7 +37,7 @@ import { ConversionService } from './core/services/conversion-service/conversion
         SharedModule,
         EditionModule.forRoot(),
         SearchModule.forRoot(),
-        SideInfoModule,
+        SideInfoModule.forRoot(),
         AppRoutingModule
     ],
     declarations: [

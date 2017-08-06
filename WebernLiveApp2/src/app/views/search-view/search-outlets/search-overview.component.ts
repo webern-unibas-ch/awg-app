@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RouterLinkButton } from '../../../shared/router-link-button-group/router-link-button.model';
 
-import { SearchService } from '../services/search.service';
+import { SideInfoService } from '../../../side-info/services/side-info.service';
 
 @Component({
     selector: 'awg-search-overview',
@@ -29,14 +29,13 @@ export class SearchOverviewComponent implements OnInit {
         }
     ];
 
-    constructor(private searchService: SearchService) { }
+    constructor(private sideInfoService: SideInfoService) { }
 
     ngOnInit() {
     }
 
     onButtonSelect(event: RouterLinkButton) {
-        //  console.log('event: ', event);
-        this.searchService.shareSideInfoData(event);
+        this.sideInfoService.shareSideInfoData(event);
     }
 
 }
