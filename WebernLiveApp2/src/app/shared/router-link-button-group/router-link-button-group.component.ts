@@ -1,4 +1,4 @@
-import {Component, Input, OnInit} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { RouterLinkButton } from './router-link-button.model';
 
@@ -9,10 +9,15 @@ import { RouterLinkButton } from './router-link-button.model';
 })
 export class RouterLinkButtonGroupComponent implements OnInit {
     @Input() buttonArray: RouterLinkButton;
+    @Output() selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
+    }
+
+    onButtonSelect(routerLinkButton: RouterLinkButton): void {
+        this.selectButtonRequest.emit(routerLinkButton);
     }
 
 }
