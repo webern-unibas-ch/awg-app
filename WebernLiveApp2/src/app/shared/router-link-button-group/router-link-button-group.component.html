@@ -1,0 +1,3 @@
+<div class="btn-group btn-group-justified">
+    <a *ngFor="let button of buttonArray" class="btn btn-default" [routerLink]="[button.root, button.link]" routerLinkActive="active">{{ button.label }}</a>
+</div>

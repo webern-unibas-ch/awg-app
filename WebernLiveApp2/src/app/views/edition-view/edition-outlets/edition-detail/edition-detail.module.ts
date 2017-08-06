@@ -1,5 +1,4 @@
 import { NgModule } from '@angular/core';
-import { RouterModule } from '@angular/router';
 import { SharedModule } from '../../../../shared/shared.module';
 
 import { EditionDetailNotificationComponent } from './edition-detail-notification';
@@ -9,7 +8,6 @@ import { EditionTkaTableComponent } from './edition-tka-table';
 
 @NgModule({
     imports: [
-        RouterModule,
         SharedModule
     ],
     declarations: [

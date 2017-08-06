@@ -34,10 +34,10 @@ import { ConversionService } from './core/services/conversion-service/conversion
         ModalModule.forRoot(),
 
         CoreModule,
+        SharedModule,
         EditionModule.forRoot(),
         SearchModule.forRoot(),
         SideInfoModule,
-        SharedModule,
         AppRoutingModule
     ],
     declarations: [

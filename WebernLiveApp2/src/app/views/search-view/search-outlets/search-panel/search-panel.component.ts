@@ -40,7 +40,6 @@ export class SearchPanelComponent implements OnInit {
         this.isDetailLoaded = false;      // no detail loaded
 
         this.searchval = query;
-        console.log('You are searching for: ', this.searchval);
 
         this.getFulltextSearchData();
     }
