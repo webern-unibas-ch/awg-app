@@ -59,9 +59,9 @@
                 </thead>
                 <tbody>
                     <!-- ### CLICKING ON SEARCH RESULT CALLS FUNCTION showObject WITH data.obj_id -->
-                    <tr data-ng-repeat="data in searchData.subjects | orderBy:['-iconlabel', 'value[0]'] track by data.obj_id" data-ng-click="showObject(data.obj_id)" data-ng-class="{active: activeObject(data.obj_id)}">
+                    <tr data-ng-repeat="data in searchData.subjects | orderBy:['-iconlabel', 'value[0]'] track by $index " data-ng-click="showObject(data.obj_id)" data-ng-class="{active: activeObject(data.obj_id)}">
                         <td>
-                            <img data-ng-src="{{data.iconsrc}}" alt="iconsrc" > {{data.iconlabel}}
+                            <img data-ng-src="{{data.iconsrc}}" alt="iconsrc" > {{data.iconlabel}} [{{data.obj_id}}]
                         </td>
                         <td>
                             <em>{{data.valuelabel[0]}}</em>:
