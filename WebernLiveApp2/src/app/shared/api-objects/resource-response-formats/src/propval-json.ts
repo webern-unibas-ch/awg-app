@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, KnoraValue } from '../../basic-message-components';
 
 /**
@@ -69,7 +69,7 @@ export class PropvalJson {
      * @param value: KnoraValue
      * TODO: check if it is possible to use a ValueJson class instead of undefine ??
      */
-    @JsonProperty('value', undefined)
+    @JsonProperty('value', Any)
     public value: KnoraValue = undefined;
 }
 

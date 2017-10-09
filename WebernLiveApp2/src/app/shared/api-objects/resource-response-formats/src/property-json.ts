@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonConvert, JsonObject, JsonProperty} from 'json2typescript';
+import { Any, JsonConvert, JsonObject, JsonProperty} from 'json2typescript';
 import { KnoraIRI, KnoraRights, LocationItemJson } from '../../basic-message-components';
 
 @JsonObject
@@ -156,7 +156,7 @@ export class PropertyJson {
      * @param values: Array<KnoraValues> OPTIONAL
      * TODO
      */
-    @JsonProperty('values', undefined, true)
+    @JsonProperty('values', Any, true)
     public values: any = undefined;
 
     /**
@@ -169,22 +169,25 @@ export class PropertyJson {
 
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
-            return JsonConvert.deserializeArray(this.values, PropertyJsonValue);
-        } catch(e) {
+            let jsonConvert: JsonConvert = new JsonConvert();
+            return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
+        } catch (e) {
             return [];
         }
     }
     public getValuesAsStrings(): string[] {
         try {
-            return JsonConvert.deserializeArray(this.values, String);
-        } catch(e) {
+            let jsonConvert: JsonConvert = new JsonConvert();
+            return jsonConvert.deserializeArray(this.values, String);
+        } catch (e) {
             return [];
         }
     }
     public getValuesAsNumbers(): number[] {
         try {
-            return JsonConvert.deserializeArray(this.values, Number);
-        } catch(e) {
+            let jsonConvert: JsonConvert = new JsonConvert();
+            return jsonConvert.deserializeArray(this.values, Number);
+        } catch (e) {
             return [];
         }
     }
