@@ -27,8 +27,9 @@ export class ApiServiceResult {
      */
     getBody(classObject?: {new(): any}): any {
         if (!classObject) return this.body;
+        let jsonConvert: JsonConvert = new JsonConvert();
         try {
-            return JsonConvert.deserializeObject(this.body, classObject);
+            return jsonConvert.deserializeObject(this.body, classObject);
         } catch(e) {
             console.log(e);
         }

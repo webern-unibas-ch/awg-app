@@ -1,9 +1,10 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
-import { MaterialModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AccordionModule } from 'ng2-bootstrap/accordion';
+
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { AppMaterialModule } from './app-material.module';
 
 import { CompileHtmlModule } from './compile-html';
 
@@ -25,8 +26,8 @@ import { MapToIterablePipe } from './map-to-iterable';
         CommonModule,
         FormsModule,
         BrowserAnimationsModule,
-        MaterialModule,
         AccordionModule,
+        AppMaterialModule,
         CompileHtmlModule,
         HeadingComponent,
         MapToIterablePipe

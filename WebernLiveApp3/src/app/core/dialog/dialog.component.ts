@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { MdDialogRef } from '@angular/material'
+import { MatDialogRef } from '@angular/material'
 
 @Component({
   selector: 'awg-dialog',
@@ -12,7 +12,7 @@ export class DialogComponent {
     public content: string;
 
     constructor(
-        public dialogRef: MdDialogRef<DialogComponent>
+        public dialogRef: MatDialogRef<DialogComponent>
     ) { }
 
 }

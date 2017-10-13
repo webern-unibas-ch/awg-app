@@ -168,22 +168,25 @@ export class PropertyJson {
 
 
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
+        let jsonConvert: JsonConvert = new JsonConvert();
         try {
-            return JsonConvert.deserializeArray(this.values, PropertyJsonValue);
+            return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
         } catch(e) {
             return [];
         }
     }
     public getValuesAsStrings(): string[] {
+        let jsonConvert: JsonConvert = new JsonConvert();
         try {
-            return JsonConvert.deserializeArray(this.values, String);
+            return jsonConvert.deserializeArray(this.values, String);
         } catch(e) {
             return [];
         }
     }
     public getValuesAsNumbers(): number[] {
+        let jsonConvert: JsonConvert = new JsonConvert();
         try {
-            return JsonConvert.deserializeArray(this.values, Number);
+            return jsonConvert.deserializeArray(this.values, Number);
         } catch(e) {
             return [];
         }

@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Rx';
-import { MdDialogRef, MdDialog, MdDialogConfig } from '@angular/material';
+import { MatDialogRef, MatDialog, MatDialogConfig } from '@angular/material';
 
 import { DialogComponent } from './dialog.component';
 
@@ -8,13 +8,13 @@ import { DialogComponent } from './dialog.component';
 export class DialogService {
 
     constructor(
-        private dialog: MdDialog
+        private dialog: MatDialog
     ) { }
 
     public openEditionDialog(identifier: string): Observable<boolean> {
         const title: string = 'Hinweis';
         let content: string = editionDialogContent[identifier];
-        let dialogRef: MdDialogRef<DialogComponent>;
+        let dialogRef: MatDialogRef<DialogComponent>;
 
         dialogRef = this.dialog.open(DialogComponent);
         dialogRef.componentInstance.title = title;

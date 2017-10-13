@@ -21,7 +21,7 @@ import { SharedModule } from './shared/shared.module';
     declarations: [ AppComponent, routedComponents ],
     imports: [
         BrowserModule, HttpModule,
-       // ContactModule,
+        // ContactModule,
         CoreModule,
         SharedModule,
         HomeModule,
