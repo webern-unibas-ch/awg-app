@@ -12,7 +12,6 @@
     </p>
 
     <!-- TODO: ### PAGINATION ### -->
-    <!-- <uib-pagination total-items="searchData.nhits" data-ng-model="currentPage" max-size="5" class="pagination-sm" boundary-link-numbers="true"></uib-pagination> -->
 
     <!-- table with searchResults -->
     <table *ngIf="searchData.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
@@ -41,4 +40,41 @@
         </tr>
         </tbody>
     </table>
+</div>
+
+<div class="example-container mat-elevation-z8">
+    <mat-table #table [dataSource]="dataSource">
+
+        <!-- Category -->
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef> Kategorie </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <img [attr.src]=row.iconsrc alt="iconsrc"> {{ row.iconlabel }}
+            </mat-cell>
+        </ng-container>
+
+        <!-- Entry Column -->
+        <ng-container matColumnDef="entry">
+            <mat-header-cell *matHeaderCellDef> Eintrag </mat-header-cell>
+            <mat-cell *matCellDef="let row">
+                <em>{{ row.valuelabel[0] }}</em>:
+                <!-- TODO: bind-html-compile -->
+                <span [innerHtml]="row.value[0]"></span>
+                {{ row.value[0] }}
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+    </mat-table>
+
+<!--
+    <mat-paginator #paginator
+                   [length]="exampleDatabase.data.length"
+                   [pageIndex]="0"
+                   [pageSize]="25"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+-->
+
 </div>

@@ -1,4 +1,14 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnInit, ViewChild } from '@angular/core';
+
+import { DataSource } from '@angular/cdk/collections';
+import { MatPaginator } from '@angular/material';
+import { BehaviorSubject } from 'rxjs/BehaviorSubject';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/merge';
+import 'rxjs/add/observable/of';
+import 'rxjs/add/operator/map';
+import 'rxjs/add/operator/startWith';
+
 
 import { SearchResponseJson } from '../../../../shared/api-objects';
 
@@ -10,14 +20,22 @@ import { SearchResponseJson } from '../../../../shared/api-objects';
 export class SearchFulltextResultsComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
 
-    private curId: string;
-    private resText: string;
+    displayedColumns = ['category', 'entry'];
+    dataSource: ExampleDataSource;
+
+    curId: string;
+    resText: string;
+
+    // @ViewChild(MatPaginator) paginator: MatPaginator;
 
     constructor() { }
 
     ngOnInit() {
-        console.log('length results: ', this.searchData.subjects.length);
-        this.resText = (this.searchData.subjects.length === 1) ? 'zugängliches Resultat von' : 'zugängliche Resultate von';
+        let subjects = this.searchData.subjects;
+        console.log('length results: ', subjects.length);
+        console.log('results: ', subjects);
+        this.resText = (subjects.length === 1) ? 'zugängliches Resultat von' : 'zugängliche Resultate von';
+        this.dataSource = new ExampleDataSource(subjects);
     }
 
     activeObject(id: string){
@@ -26,9 +44,25 @@ export class SearchFulltextResultsComponent implements OnInit {
 
     showObject(id: string){
         this.curId = id;
-
         // TODO: remove
         console.info('SearchResults#showObject: called id: ', id);
     }
 
 }
+
+export class ExampleDataSource extends DataSource<any> {
+
+    constructor(private subjects: any) {
+        super();
+        console.log('subjectsDataSource: ', subjects);
+    }
+
+    /** Connect function called by the table to retrieve one stream containing the data to render. */
+    connect(): Observable<any[]> {
+        console.log('subjectsObserv: ', this.subjects);
+        return Observable.of(this.subjects);
+    }
+
+    disconnect() {}
+}
+
