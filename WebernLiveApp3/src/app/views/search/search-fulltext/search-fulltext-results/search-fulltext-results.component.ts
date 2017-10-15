@@ -66,6 +66,13 @@ export class SearchFulltextResultsComponent implements OnInit {
 
 }
 
+/**
+ *
+ * Table with sorting, filtering and pagination functionality
+ * Credits: Lakston, July 26, 2017, 13:15; https://stackoverflow.com/a/45328140
+ * Plunkr: https://plnkr.co/edit/EU3BBlViWpPf2NJW4PXx?p=preview
+ *
+ **/
 export class SearchResultDataSource extends DataSource<any> {
 
     // Observable for data
@@ -77,17 +84,27 @@ export class SearchResultDataSource extends DataSource<any> {
     get filter(): string { return this._filterChange.value; }
     set filter(filter: string) { this._filterChange.next(filter); }
 
-    constructor(private _searchResults: SubjectItemJson[], private _paginator: MatPaginator, private _sort: MatSort) {
+    filteredData: SubjectItemJson[] = [];
+    renderedData: SubjectItemJson[] = [];
+
+    constructor(private _searchResults: SubjectItemJson[],
+                private _paginator: MatPaginator,
+                private _sort: MatSort) {
         super();
+        // reset paginator when filter changes
+        // TODO: get correct array length in _paginator.length
+        this._filterChange.subscribe(() => {
+            console.log('lengthData', this.filteredData.length);
+            this._paginator.pageIndex = 0;
+            // this._paginator.length = this.data.length;
+        });
+        this._dataChange.next(this._searchResults);
     }
 
-    /**
-     * Connect function called by the table to retrieve
-     * one stream containing the data to render.
-     **/
+    /* Connect function called by the table to retrieve one stream containing the data to render */
     connect(): Observable<SubjectItemJson[]> {
         // push searchResults into BehaviorSubject
-        this._dataChange.next(this._searchResults);
+        // this._dataChange.next(this._searchResults);
 
         // Array for observed table data changes
         const displayDataChanges = [
@@ -99,34 +116,41 @@ export class SearchResultDataSource extends DataSource<any> {
 
         // Observable with mapped table data
         return Observable.merge(...displayDataChanges).map(() => {
-            return this.getFilteredData();
-            // return this.getPaginatedData();
-            // return this.getSortedData();
+            // filter data
+            this.filteredData = this.getFilteredData(this.data);
+
+            // sort filtered data
+            const sortedData = this.getSortedData(this.filteredData);
+            console.log('sortedData:', sortedData);
+
+            // grab the page's slice of the filtered sorted data
+            this.renderedData = this.getPaginatedData(sortedData);
+            console.log('pageLength:', this._paginator.length);
+            console.log('renderedData:', this.renderedData);
+
+            return this.renderedData;
         });
     }
 
     disconnect() {}
 
-    /** Returns a paginated copy of the database data. */
-    private getPaginatedData(): SubjectItemJson[] {
-        const data = this.data.slice();
-
+    /** Returns a paginated copy of the database data */
+    private getPaginatedData(data: SubjectItemJson[]): SubjectItemJson[] {
         // Grab the page's slice of data
         const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
         return data.splice(startIndex, this._paginator.pageSize);
     }
 
-    /** Returns a filtered copy of the database data. */
-    private getFilteredData(): SubjectItemJson[] {
-        return this.data.slice().filter((result: SubjectItemJson) => {
+    /** Returns a filtered copy of the database data */
+    private getFilteredData(data: SubjectItemJson[]): SubjectItemJson[] {
+        return data.slice().filter((result: SubjectItemJson) => {
             let searchStr = (result.iconlabel + result.valuelabel[0] + result.value[0]).toLowerCase();
             return searchStr.indexOf(this.filter.toLowerCase()) != -1;
         });
     }
 
-    /** Returns a sorted copy of the database data. */
-    private getSortedData(): SubjectItemJson[] {
-        const data = this.data.slice();
+    /** Returns a sorted copy of the database data */
+    private getSortedData(data: SubjectItemJson[]): SubjectItemJson[] {
         if (!this._sort.active || this._sort.direction == '') { return data; }
 
         return data.sort((a, b) => {
