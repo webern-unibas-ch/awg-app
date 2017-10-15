@@ -97,30 +97,35 @@ export class SearchResultDataSource extends DataSource<any> {
             this._sort.sortChange,
         ];
 
-
-
-        // Observable
+        // Observable with mapped table data
         return Observable.merge(...displayDataChanges).map(() => {
-            const data = this.data.slice();
-
-            // Grab the page's slice of data.
-            const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
-            return data.splice(startIndex, this._paginator.pageSize);
+            return this.getFilteredData();
+            // return this.getPaginatedData();
+            // return this.getSortedData();
         });
-        /*
-            return this.data.slice().filter((result: SubjectItemJson) => {
-                let searchStr = (result.iconlabel + result.valuelabel[0] + result.value[0]).toLowerCase();
-                return searchStr.indexOf(this.filter.toLowerCase()) != -1;
-            });
-        });
-
-        */
     }
 
     disconnect() {}
 
+    /** Returns a paginated copy of the database data. */
+    private getPaginatedData(): SubjectItemJson[] {
+        const data = this.data.slice();
+
+        // Grab the page's slice of data
+        const startIndex = this._paginator.pageIndex * this._paginator.pageSize;
+        return data.splice(startIndex, this._paginator.pageSize);
+    }
+
+    /** Returns a filtered copy of the database data. */
+    private getFilteredData(): SubjectItemJson[] {
+        return this.data.slice().filter((result: SubjectItemJson) => {
+            let searchStr = (result.iconlabel + result.valuelabel[0] + result.value[0]).toLowerCase();
+            return searchStr.indexOf(this.filter.toLowerCase()) != -1;
+        });
+    }
+
     /** Returns a sorted copy of the database data. */
-    getSortedData(): SubjectItemJson[] {
+    private getSortedData(): SubjectItemJson[] {
         const data = this.data.slice();
         if (!this._sort.active || this._sort.direction == '') { return data; }
 
