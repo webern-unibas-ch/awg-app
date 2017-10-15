@@ -3,6 +3,49 @@
 </p>
 
 <!-- content: search results -->
+<div class="search-results-container mat-elevation-z8">
+    <!-- filter -->
+    <div class="search-results-filter">
+        <mat-form-field floatPlaceholder="never">
+            <input matInput #filter placeholder="Filter results">
+        </mat-form-field>
+    </div>
+
+    <mat-table #table [dataSource]="searchResultDataSource" matSort>
+        <!-- Category -->
+        <ng-container matColumnDef="category">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Kategorie </mat-header-cell>
+            <mat-cell *matCellDef="let result">
+                <img [attr.src]=result.iconsrc alt="iconsrc"> {{ result.iconlabel }}
+            </mat-cell>
+        </ng-container>
+
+        <!-- Entry Column -->
+        <ng-container matColumnDef="entry">
+            <mat-header-cell *matHeaderCellDef mat-sort-header> Eintrag </mat-header-cell>
+            <mat-cell *matCellDef="let result">
+                <em>{{ result.valuelabel[0] }}</em>:
+                <span [compile-html]="result.value[0]" [compile-html-ref]="ref"></span>
+            </mat-cell>
+        </ng-container>
+
+        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+        <mat-row *matRowDef="let result; columns: displayedColumns;" (click)="showObject(result.obj_id)" [class.active]="activeObject(result.obj_id)"></mat-row>
+    </mat-table>
+
+    <mat-paginator #paginator
+                   [length]="searchResultDataSource.data.length"
+                   [pageIndex]="0"
+                   [pageSize]="25"
+                   [pageSizeOptions]="[5, 10, 25, 100]">
+    </mat-paginator>
+
+</div>
+
+<p class="mat-warn">
+    deprecated!
+</p>
+
 <div class="well well-lg">
 
     <!-- header -->
@@ -33,48 +76,9 @@
             </td>
             <td>
                 <em>{{ data.valuelabel[0] }}</em>:
-                <!-- TODO: bind-html-compile -->
-                <span [innerHtml]="data.value[0]"></span>
-                {{ data.value[0] }}
+                <span [compile-html]="data.value[0]" [compile-html-ref]="ref"></span>
             </td>
         </tr>
         </tbody>
     </table>
-</div>
-
-<div class="example-container mat-elevation-z8">
-    <mat-table #table [dataSource]="dataSource">
-
-        <!-- Category -->
-        <ng-container matColumnDef="category">
-            <mat-header-cell *matHeaderCellDef> Kategorie </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-                <img [attr.src]=row.iconsrc alt="iconsrc"> {{ row.iconlabel }}
-            </mat-cell>
-        </ng-container>
-
-        <!-- Entry Column -->
-        <ng-container matColumnDef="entry">
-            <mat-header-cell *matHeaderCellDef> Eintrag </mat-header-cell>
-            <mat-cell *matCellDef="let row">
-                <em>{{ row.valuelabel[0] }}</em>:
-                <!-- TODO: bind-html-compile -->
-                <span [innerHtml]="row.value[0]"></span>
-                {{ row.value[0] }}
-            </mat-cell>
-        </ng-container>
-
-        <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
-    </mat-table>
-
-<!--
-    <mat-paginator #paginator
-                   [length]="exampleDatabase.data.length"
-                   [pageIndex]="0"
-                   [pageSize]="25"
-                   [pageSizeOptions]="[5, 10, 25, 100]">
-    </mat-paginator>
--->
-
 </div>
