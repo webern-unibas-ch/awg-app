@@ -1,17 +1,37 @@
-<p>
-  search-fulltext-results works!
-</p>
-
 <!-- content: search results -->
 <div class="search-results-container mat-elevation-z8">
     <!-- filter -->
-    <div class="search-results-filter">
+    <div class="search-results-filter" [style.display]="selection.isEmpty() ? '' : 'none'">
         <mat-form-field floatPlaceholder="never">
             <input matInput #filter placeholder="Filter results">
         </mat-form-field>
     </div>
+    <div class="search-results-filter search-results-selection-header"
+         *ngIf="!selection.isEmpty()">
+        {{selection.selected.length}}
+        {{selection.selected.length == 1 ? 'result' : 'results'}}
+        selected
+    </div>
 
     <mat-table #table [dataSource]="searchResultDataSource" matSort>
+
+        <!-- Checkbox Column -->
+        <ng-container matColumnDef="checkBox">
+            <mat-header-cell *matHeaderCellDef>
+                <mat-checkbox (change)="$event ? masterToggle() : null"
+                             [checked]="isAllSelected()"
+                             [indeterminate]="selection.hasValue() && !isAllSelected()">
+                    Select all
+                </mat-checkbox>
+            </mat-header-cell>
+            <mat-cell *matCellDef="let result">
+                <mat-checkbox (click)="$event.stopPropagation()"
+                             (change)="$event ? selection.toggle(result.obj_id) : null"
+                             [checked]="selection.isSelected(result.obj_id)">
+                </mat-checkbox>
+            </mat-cell>
+        </ng-container>
+
         <!-- Category -->
         <ng-container matColumnDef="category">
             <mat-header-cell *matHeaderCellDef mat-sort-header> Kategorie </mat-header-cell>
@@ -30,55 +50,30 @@
         </ng-container>
 
         <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
-        <mat-row *matRowDef="let result; columns: displayedColumns;" (click)="showObject(result.obj_id)" [class.active]="activeObject(result.obj_id)"></mat-row>
+        <mat-row *matRowDef="let result; columns: displayedColumns;"
+                 [class.search-results-selected-row]="selection.isSelected(result.obj_id)"
+                 (click)="showObject(result.obj_id)">
+        </mat-row>
     </mat-table>
 
+    <div class="search-no-results"
+         [style.display]="searchResultDataSource.renderedData.length == 0 ? '' : 'none'">
+        No results found matching filter.
+    </div>
+
     <mat-paginator #paginator
-                   [length]="searchResultDataSource.data.length"
+                   [length]="searchResultDataSource.filteredData.length"
                    [pageIndex]="0"
-                   [pageSize]="25"
-                   [pageSizeOptions]="[5, 10, 25, 100]">
+                   [pageSize]="10"
+                   [pageSizeOptions]="[5, 10, 25, 100]"
+                    (page)="pageEvent = $event">
     </mat-paginator>
 
-</div>
+    <div *ngIf="pageEvent">
+        <h5>Page Change Event Properties</h5>
+        <div>List length: {{pageEvent.length}}</div>
+        <div>Page size: {{pageEvent.pageSize}}</div>
+        <div>Page index: {{pageEvent.pageIndex}}</div>
+    </div>
 
-<p class="mat-warn">
-    deprecated!
-</p>
-
-<div class="well well-lg">
-
-    <!-- header -->
-    <h4>Suchergebnisse</h4>
-    <p>
-        {{ searchData.subjects.length }} {{ resText }} {{ searchData.nhits }}:
-    </p>
-
-    <!-- TODO: ### PAGINATION ### -->
-
-    <!-- table with searchResults -->
-    <table *ngIf="searchData.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
-        <thead>
-        <tr>
-            <th>
-                Kategorie
-            </th>
-            <th>
-                Eintrag
-            </th>
-        </tr>
-        </thead>
-        <tbody>
-        <!-- show searchResultDetail by clicking on single entry -->
-        <tr *ngFor="let data of searchData?.subjects" (click)="showObject(data.obj_id)" [class.active]="activeObject(data.obj_id)">
-            <td>
-                <img [attr.src]=data.iconsrc alt="iconsrc" > {{ data.iconlabel }}
-            </td>
-            <td>
-                <em>{{ data.valuelabel[0] }}</em>:
-                <span [compile-html]="data.value[0]" [compile-html-ref]="ref"></span>
-            </td>
-        </tr>
-        </tbody>
-    </table>
 </div>
