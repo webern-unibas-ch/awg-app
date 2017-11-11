@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { ConversionService } from '../../../../core/services';
 import { SearchService } from '../../services/search.service';
-import { ResourceDetail } from '../../models';
+import { ResourceData } from '../../models';
 import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 
 @Component({
@@ -19,10 +19,7 @@ export class ResourceDetailComponent implements OnInit {
     public oldId: string;
     public errorMessage: string = undefined;
     public request: string;
-    public resourceData: ResourceFullResponseJson;
-    public resourceDetailData: ResourceDetail;
-    public resourceJsonConvertedData: ResourceDetail;
-    public resourceJsonRawData: ResourceFullResponseJson;
+    public resourceData: ResourceData = new ResourceData();
 
     ref: ResourceDetailComponent;
 
@@ -50,11 +47,11 @@ export class ResourceDetailComponent implements OnInit {
             .subscribe(
                 (data: ResourceFullResponseJson) => {
                     // snapshot of raw json response
-                    this.resourceJsonRawData = JSON.parse(JSON.stringify(data));
+                    this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(data));
                     // convert data for displaying resource detail
-                    this.resourceDetailData = this.conversionService.prepareResourceDetail(data, this.currentId);
+                    this.resourceData['html'] = this.conversionService.prepareResourceDetail(data, this.currentId);
                     // snapshot of converted json response
-                    this.resourceJsonConvertedData = JSON.parse(JSON.stringify(this.resourceDetailData));
+                    this.resourceData['jsonConverted'] = JSON.parse(JSON.stringify(this.resourceData['html']));
 
                     this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
                 },
@@ -91,7 +88,7 @@ export class ResourceDetailComponent implements OnInit {
          * so that the SearchResultList component
          * can select the corresponding Resource.
          */
-        const resId = this.resourceDetailData ? +this.currentId : null;
+        const resId = this.resourceData.html ? +this.currentId : null;
         this.router.navigate(['/search/fulltext', { id: resId }]);
     }
 
