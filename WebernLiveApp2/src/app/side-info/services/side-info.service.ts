@@ -5,14 +5,13 @@ import { Subject } from 'rxjs/Subject';
 export class SideInfoService {
 
     private sideInfoData: Subject<any> = new Subject<any>();   // observable string source
+    public sideInfoData$ = this.sideInfoData.asObservable();   // Observable string stream for subscription
 
     /**********************************
      **
      **  share data for sideInfo
      **
      **********************************/
-        // Observable string stream for subscription
-    public sideInfoData$ = this.sideInfoData.asObservable();
 
     // share function for setting next data input
     public shareSideInfoData(data) {

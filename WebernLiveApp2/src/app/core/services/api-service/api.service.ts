@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 
-import { Http, RequestOptionsArgs, Headers, Response } from '@angular/http';
-import { Observable } from 'rxjs';
+import { Headers, Http, RequestOptionsArgs, Response } from '@angular/http';
+import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../../../app.config';
 import { ApiServiceError } from './api-service-error';
@@ -10,9 +10,28 @@ import { ApiServiceResult } from './api-service-result';
 @Injectable()
 export class ApiService {
 
-    constructor(
-        private httpService: Http
-    ) {}
+    static handleError(error: any, url: string): ApiServiceError {
+
+        const response = new ApiServiceError();
+        if (error instanceof Response) {
+//            console.log(error);
+            response.status = error.status;
+            response.statusText = error.statusText;
+            if(!response.statusText) response.statusText = 'Connection to API endpoint failed';
+            response.request = url;
+        } else {
+            response.status = 0;
+            response.statusText = 'Connection to API endpoint failed';
+            response.request = url;
+        }
+
+        // response.status === 401 --> Unauthorized; password is wrong
+        // response.status === 404 --> Not found; username is wrong
+
+        return response;
+    }
+
+    constructor(private httpService: Http) {}
 
     /**
      * Performs a HTTP GET request to the Knora API.
@@ -61,28 +80,5 @@ export class ApiService {
             });
     }
     */
-
-    static handleError(error: any, url: string): ApiServiceError {
-
-        let response = new ApiServiceError();
-        if (error instanceof Response) {
-//            console.log(error);
-            response.status = error.status;
-            response.statusText = error.statusText;
-            if(!response.statusText) response.statusText = "Connection to API endpoint failed";
-            response.request = url;
-        } else {
-            response.status = 0;
-            response.statusText = "Connection to API endpoint failed";
-            response.request = url;
-        }
-
-        // response.status === 401 --> Unauthorized; password is wrong
-
-        // response.status === 404 --> Not found; username is wrong
-
-        return response;
-
-    }
 
 }

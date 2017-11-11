@@ -16,8 +16,8 @@ export class SearchService extends ApiService {
     **
     **********************************/
     public getFulltextSearchData(searchString: string): Observable<SearchResponseJson> {
-        let queryString: string = '/search/' + searchString;
-        let params = new URLSearchParams();
+        const queryString: string = '/search/' + searchString;
+        const params = new URLSearchParams();
             params.set('searchtype', 'fulltext');
             params.set('filter_by_project', this.projectId);
         return this.httpGet(queryString, { search: params });
@@ -29,7 +29,7 @@ export class SearchService extends ApiService {
     **
     ****************************************/
     public getResourceData(id: string): Observable<ResourceFullResponseJson> {
-        let queryString: string = '/resources/' + id + '_-_local';
+        const queryString: string = '/resources/' + id + '_-_local';
         /*let params = new URLSearchParams();
         params.set('restype', 'info');
         params.set('reqtype', 'context');

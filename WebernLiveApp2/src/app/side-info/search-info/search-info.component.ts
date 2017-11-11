@@ -16,7 +16,13 @@ export class SearchInfoComponent implements OnInit, OnDestroy {
     public nhits = '29';
     public query = 'Kantate';
 
-    constructor(private sideInfoService: SideInfoService) {
+    constructor(private sideInfoService: SideInfoService) { }
+
+    ngOnInit() {
+        this.getSideInfoData();
+    }
+
+    getSideInfoData() {
         // get sideInfoData from service
         this.subscription = this.sideInfoService.sideInfoData$
             .subscribe(
@@ -27,9 +33,6 @@ export class SearchInfoComponent implements OnInit, OnDestroy {
                     console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
                 }
             );
-    }
-
-    ngOnInit() {
     }
 
     ngOnDestroy() {
