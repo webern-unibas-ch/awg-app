@@ -165,19 +165,18 @@ export class ConversionService extends ApiService {
     } // END convertObjectProperties (func)
 
 
-    public prepareResourceDetail(data: ResourceFullResponseJson): ResourceDetail {
+    public prepareResourceDetail(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
         if (data.access === 'OK') {
-            return this.prepareAccessResource(data);
+            return this.prepareAccessibleResource(data, currentId);
         } else {
-            return this.prepareRestrictedResource(data);
+            return this.prepareRestrictedResource(data, currentId);
         }
     }
 
-    private prepareRestrictedResource(data: ResourceFullResponseJson): ResourceDetail {
+    private prepareRestrictedResource(data: ResourceFullResponseJson, currentId): ResourceDetail {
         let detail: ResourceDetail = new ResourceDetail();
-        const id = '0000';
         const header = {
-            'objID': id,
+            'objID': currentId,
             'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
             'type': 'restricted',
             'title': 'Kein Zugriff auf dieses Objekt möglich',
@@ -189,19 +188,17 @@ export class ConversionService extends ApiService {
             incoming: [],
             props: []
         };
-        console.log('detail: ', detail);
-        console.log('No access granted to resource: ', id);
         return detail;
     }
 
-    private prepareAccessResource(data: ResourceFullResponseJson): ResourceDetail {
+    private prepareAccessibleResource(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
         // convert properties
         data = this.convertGUISpecificProps(data);
 
         // prepare parts of resourceDetail
         let detail: ResourceDetail = new ResourceDetail();
         detail = {
-            header: this.prepareResourceDetailHeader(data),
+            header: this.prepareResourceDetailHeader(data, currentId),
             image: this.prepareResourceDetailImage(data),
             incoming: this.prepareResourceDetailIncomingLinks(data.incoming),
             props: this.prepareResourceDetailProperties(data.props)
@@ -210,9 +207,10 @@ export class ConversionService extends ApiService {
     }
 
 
-    private prepareResourceDetailHeader(data) {
+    private prepareResourceDetailHeader(data, currentId: string) {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         const id = data.resdata.res_id;
+        if (id != currentId ) { console.error('ERROR: currentId not matching data resource id'); return; }
         const info = data.resinfo;
         const props = data.props;
 
@@ -493,7 +491,10 @@ export class ConversionService extends ApiService {
      *****************************************/
     private convertLinkValue(prop, i: number) {
         // add <a>-tag with click-directive; linktext is stored in "$&"
-        return prop.value_firstprops[i].replace(prop.value_firstprops[i], '<a (click)="ref.showDetail(' + prop.values[i] + ')">$& (' + prop.value_restype[i] + ')</a>');
+        const firstValue = prop.value_firstprops[i];
+        const replaceValue = '<a (click)="ref.showDetail(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
+        const linkValue = firstValue.replace(firstValue, replaceValue);
+        return linkValue;
     }
 
     /******************************************
@@ -632,24 +633,26 @@ export class ConversionService extends ApiService {
      *****************************************/
     private replaceSalsahLink(str: string): string {
         if (!str) { return; }
-        let patNum = /\d{4,8}/,    // regexp for object id (4-7 DIGITS)
-            patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i, // regexp for salsah links
-            p;
+        const patNum = /\d{4,8}/;    // regexp for object id (4-8 DIGITS)
+        const patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
+        let p;
 
         // check only for salsah links
         while (p = patLink.exec(str)) {
             // i.e.: as long as patLink is detected in str do...
 
             // identify resource id
-            let res_id = patNum.exec(p[1])[0];
+            const res_id = patNum.exec(p[1])[0];
 
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
-            str = str.replace(p[0], '<a (click)="ref.showDetail(' + res_id + '); $event.stopPropagation()">' + p[2] + '</a>');
+            const replaceValue = '<a (click)="ref.showDetail(\'' + res_id + '\'); $event.stopPropagation()">' + p[2] + '</a>';
+            str = str.replace(p[0], replaceValue);
         } // END while
 
         return str;
     }
+
 
     /******************************************
      *

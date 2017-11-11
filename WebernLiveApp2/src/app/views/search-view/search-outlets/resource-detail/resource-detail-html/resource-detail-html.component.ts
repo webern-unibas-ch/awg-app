@@ -28,6 +28,7 @@ export class ResourceDetailHtmlComponent implements OnInit {
     }
 
     showDetail(id?: string) {
+        if (id) { id.toString(); }
         this.showDetailRequest.emit(id);
     }
 

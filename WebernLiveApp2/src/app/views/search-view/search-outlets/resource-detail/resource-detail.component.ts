@@ -40,22 +40,22 @@ export class ResourceDetailComponent implements OnInit {
         this.getResourceData();
     }
 
+
     public getResourceData() {
+        // init currentId when initiating the component
+        this.currentId = this.route.snapshot.paramMap.get('id');
+        // fetch data
         this.route.params
             .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
             .subscribe(
                 (data: ResourceFullResponseJson) => {
-                    // TODO: get route id
-                    // console.log(params['id']);
-
                     // snapshot of raw json response
                     this.resourceJsonRawData = JSON.parse(JSON.stringify(data));
-                    // convert JSON response for displaying resource detail
-                    this.resourceDetailData = this.conversionService.prepareResourceDetail(data);
+                    // convert data for displaying resource detail
+                    this.resourceDetailData = this.conversionService.prepareResourceDetail(data, this.currentId);
                     // snapshot of converted json response
                     this.resourceJsonConvertedData = JSON.parse(JSON.stringify(this.resourceDetailData));
 
-                    this.currentId = this.resourceDetailData.header.objID;
                     this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
                 },
                 error => {
@@ -70,14 +70,17 @@ export class ResourceDetailComponent implements OnInit {
 
     public showDetail(nextId?: string): void {
         /*
-         * Navigate to ResultDetail
+         * Navigate to ResultDetail:
          * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
          * if oldId not exists (first call), use currentId
          */
         const showId = nextId ? nextId : (this.oldId ? this.oldId : this.currentId);
-        // save currentId as oldId (currentId is available from every new subscription in getResourceData() )
+        // save currentId as oldId
         this.oldId = this.currentId;
-        this.router.navigate(['/search/detail', showId]);
+        // update currentId
+        this.currentId = showId;
+        // navigate to new detail
+        this.router.navigate(['/search/detail', +showId]);
     }
 
     public goBack(): void {
@@ -88,7 +91,7 @@ export class ResourceDetailComponent implements OnInit {
          * so that the SearchResultList component
          * can select the corresponding Resource.
          */
-        const resId = this.resourceDetailData ? this.currentId : null;
+        const resId = this.resourceDetailData ? +this.currentId : null;
         this.router.navigate(['/search/fulltext', { id: resId }]);
     }
 

@@ -12,7 +12,7 @@ import { SearchResponseJson } from '../../../../../shared/api-objects';
 export class SearchResultListComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
 
-    public curId: string;
+    public currentId: string;
     public resText: string;
 
     ref: SearchResultListComponent;
@@ -28,12 +28,12 @@ export class SearchResultListComponent implements OnInit {
     }
 
     activeDetail(id: string) {
-        return this.curId === id;
+        return this.currentId === id;
     }
 
     showDetail(id: string) {
-        this.curId = id;
-        this.router.navigate(['/search/detail', this.curId]);
+        this.currentId = id;
+        this.router.navigate(['/search/detail', this.currentId]);
     }
 
 }
