@@ -15,17 +15,20 @@ export class SearchOverviewComponent implements OnInit {
         {
             root: '/search',
             link: 'fulltext',
-            label: 'Volltext-Suche'
+            label: 'Volltext-Suche',
+            disabled: false
         },
         {
             root: '/search',
             link: 'timeline',
-            label: 'Timeline'
+            label: 'Timeline',
+            disabled: true
         },
         {
             root: '/search',
             link: 'bibliography',
-            label: 'Bibliographie'
+            label: 'Bibliographie',
+            disabled: true
         }
     ];
 
