@@ -59,14 +59,16 @@
         <ng-container *ngIf="resourceDetailData?.incoming !== ''">
             <tr>
                 <td colspan="3" class="bold">
-                    <p>Objekte, die auf diesen Eintrag verweisen: {{resourceDetailData?.incoming.length}} </p>
+                    <p>Objekte, die auf diesen Eintrag verweisen:</p>
                 </td>
             </tr>
+            <!--
             <tr class="ins" *ngFor="let ins of resourceDetailData?.incoming">
                 <td colspan="3" (click)="showDetail(ins.id)">
-                    <img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
+                    <img [attr.src]="ins.restype.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
                 </td>
             </tr>
+            -->
         </ng-container>
         </tbody>
     </table>
@@ -95,11 +97,17 @@
         </dt>
         <ng-container *ngIf="resourceDetailData?.incoming !== ''">
             <dt>
-                Objekte, die auf diesen Eintrag verweisen: {{resourceDetailData?.incoming.length}}
+                <p>Objekte, die auf diesen Eintrag verweisen:</p>
             </dt>
-            <dd class="ins" *ngFor="let ins of resourceDetailData?.incoming" (click)="showDetail(ins.id)">
-                <p><img [attr.src]="ins.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}</p>
+
+            <dd class="ins" *ngFor="let ins of resourceDetailData?.incoming | mapToIterable">
+                <p>{{ ins.mappedKey }} <span class="incomingNumber">{{ins.mappedValues.length}}</span></p>
             </dd>
+            <!-- TODO: expandable accordion
+            <dd class="ins" *ngFor="let ins of resourceDetailData?.incoming" (click)="showDetail(ins.id)">
+                <p><img [attr.src]="ins.restype.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}</p>
+            </dd>
+            -->
         </ng-container>
     </dl>
 </div>

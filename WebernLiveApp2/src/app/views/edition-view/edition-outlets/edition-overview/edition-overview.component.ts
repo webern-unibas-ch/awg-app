@@ -13,17 +13,20 @@ export class EditionOverviewComponent implements OnInit {
         {
             root: '/edition',
             link: 'intro',
-            label: 'Einleitung'
+            label: 'Einleitung',
+            disabled: false
         },
         {
             root: '/edition',
             link: 'detail',
-            label: 'Edierter Notentext'
+            label: 'Edierter Notentext',
+            disabled: false
         },
         {
             root: '/edition',
             link: 'report',
-            label: 'Kritischer Bericht'
+            label: 'Kritischer Bericht',
+            disabled: false
         }
     ];
 

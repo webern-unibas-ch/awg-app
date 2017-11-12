@@ -11,6 +11,7 @@ import {
 } from '../../../views/search-view/models';
 import {IncomingItemJson} from "../../../shared/api-objects/resource-response-formats/src/incoming-item-json";
 import {Observable} from "rxjs/Observable";
+import {ResourceDetailGroupedIncomingLinks} from '../../../views/search-view/models/resource-detail-grouped-incoming-links';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -91,7 +92,7 @@ export class ConversionService extends ApiService {
                                         }
                                     }
                                 },
-                                err => console.log(err)
+                                err => console.error(err)
                             );
                         } else {
                             // empty value
@@ -184,9 +185,9 @@ export class ConversionService extends ApiService {
         };
         detail = {
             header: header,
-            image: [''],
-            incoming: [],
-            props: []
+            image: null,
+            incoming: null,
+            props: null
         };
         return detail;
     }
@@ -210,7 +211,10 @@ export class ConversionService extends ApiService {
     private prepareResourceDetailHeader(data, currentId: string) {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         const id = data.resdata.res_id;
-        if (id != currentId ) { console.error('ERROR: currentId not matching data resource id'); return; }
+        if (id != currentId ) {
+            console.error(`ERROR: conversionService#prepareResourceDetailHeader => currentId ${currentId} not matching data resource id ${id}`);
+            return;
+        }
         const info = data.resinfo;
         const props = data.props;
 
@@ -286,16 +290,22 @@ export class ConversionService extends ApiService {
         return [''];
     }
 
-    private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]) {
+    private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
+        let groupedIncomingLinks: ResourceDetailGroupedIncomingLinks;
         let incomingLinks: ResourceDetailIncomingLinks[] = [];
         incoming.forEach(ins => {
             incomingLinks.push({
                 id: ins.ext_res_id.id,
                 value: ins.value,
-                icon: ins.resinfo.restype_iconsrc
+                restype: {
+                    id: ins.resinfo.restype_id,
+                    label: ins.resinfo.restype_label,
+                    icon: ins.resinfo.restype_iconsrc
+                }
             });
         });
-        return incomingLinks;
+        groupedIncomingLinks = this.groupByRestype(incomingLinks);
+        return groupedIncomingLinks;
     }
 
     private prepareResourceDetailProperties(props) {
@@ -480,7 +490,7 @@ export class ConversionService extends ApiService {
                 }
 
             },
-            err => console.log(err)
+            err => console.error(err)
         );
     }
 
@@ -540,7 +550,7 @@ export class ConversionService extends ApiService {
                     }
                 }
             },
-            err => console.log(err)
+            err => console.error(err)
         );
     }
 
@@ -605,7 +615,7 @@ export class ConversionService extends ApiService {
         // check for double spaces
         str = str.replace('  ', ' ');
 
-        //split "str" behind parentheses
+        // split "str" behind parentheses
         splitStr = str.split(') ');
 
         // get name of link from 1st part of "splitstr
@@ -616,7 +626,7 @@ export class ConversionService extends ApiService {
             // ... link with <a> tag
             tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
         } else if (nameStr != 'DOI') {
-            //... <a> tag is missing, add it
+            // ... <a> tag is missing, add it
             tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
         } else {
             // no links, pure string
@@ -663,6 +673,26 @@ export class ConversionService extends ApiService {
         if (!str) { return; }
         str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(str, '«$&»');
         return str;
+    }
+
+
+    /******************************************
+     *
+     * group array of incoming links by restype
+     *
+     *****************************************/
+    private groupByRestype(incomingLinks: ResourceDetailIncomingLinks[]): ResourceDetailGroupedIncomingLinks {
+        let groups = {};
+        // iterate over incoming links to group by restype
+        incomingLinks.forEach(link => {
+            const group = link.restype.label;
+            if (group in groups) {
+                groups[group].push(link);   // push link into existing restype group
+            } else {
+                groups[group] = [link];     // create restype group and make link the first entry
+            }
+        });
+        return groups;
     }
 
 }

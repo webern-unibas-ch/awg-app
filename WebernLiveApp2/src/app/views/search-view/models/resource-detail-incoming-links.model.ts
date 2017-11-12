@@ -1,5 +1,9 @@
 export class ResourceDetailIncomingLinks {
     id: string;
     value: string;
-    icon: string;
+    restype: {
+        id: string;
+        label: string;
+        icon: string;
+    };
 }
