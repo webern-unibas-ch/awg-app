@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { FormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { CarouselModule, ModalModule } from 'ngx-bootstrap';
+import { AccordionModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 import { CompileHtmlModule } from './compile-html';
 
@@ -18,6 +18,7 @@ import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
         CommonModule,
         FormsModule,
         RouterModule,
+        AccordionModule,
         ModalModule,
         CompileHtmlModule.forRoot()
     ],
@@ -31,6 +32,7 @@ import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
         CommonModule,
         FormsModule,
         RouterModule,
+        AccordionModule,
         CarouselModule,
         ModalModule,
         CompileHtmlModule,

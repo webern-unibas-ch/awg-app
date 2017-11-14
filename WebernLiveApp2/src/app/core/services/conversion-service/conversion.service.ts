@@ -185,9 +185,9 @@ export class ConversionService extends ApiService {
         };
         detail = {
             header: header,
-            image: null,
-            incoming: null,
-            props: null
+            image: [''],
+            incoming: {},
+            props: []
         };
         return detail;
     }

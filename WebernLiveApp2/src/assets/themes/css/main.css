@@ -153,6 +153,9 @@ ul.none {
 #sidenav_results tbody tr.active td {
     background-color: #d7d7d7;
 }
+span.facetBadge {
+    background-color: #777 !important;
+}
 
 
 /****** LINKS & POINTER ******/

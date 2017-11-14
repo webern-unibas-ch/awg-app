@@ -12,7 +12,7 @@ export class ResourceDetailHtmlComponent implements OnInit {
     @Output() goBackRequest: EventEmitter<any> = new EventEmitter();
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 
-    public metaBreakLine = 'Versionsdatum';
+    public metaBreakLine: string = 'Versionsdatum';
 
     ref: ResourceDetailHtmlComponent;
 
@@ -21,6 +21,17 @@ export class ResourceDetailHtmlComponent implements OnInit {
     }
 
     ngOnInit() {
+        console.log(this.resourceDetailData);
+    }
+
+
+    getFacetContentSize(obj) {
+        // sum up length of all arrays nested in object
+        let size: number = 0;
+        Object.keys(obj).forEach(key => {
+            size += obj[key].length;
+        });
+        return size;
     }
 
     goBack() {

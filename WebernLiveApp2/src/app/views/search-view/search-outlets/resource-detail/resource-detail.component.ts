@@ -7,7 +7,6 @@ import { ConversionService } from '../../../../core/services';
 import { SearchService } from '../../services/search.service';
 import { ResourceData } from '../../models';
 import { ResourceFullResponseJson } from '../../../../shared/api-objects';
-import {ResourceDetailGroupedIncomingLinks} from '../../models/resource-detail-grouped-incoming-links';
 
 @Component({
     selector: 'awg-resource-detail',

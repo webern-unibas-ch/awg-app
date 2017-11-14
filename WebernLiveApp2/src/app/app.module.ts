@@ -4,7 +4,7 @@ import { HttpModule } from '@angular/http';
 
 //
 // external modules
-import { ButtonsModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
+import { AccordionModule, ButtonsModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
 
 //
 // main app modules & routes
@@ -29,6 +29,7 @@ import { ConversionService } from './core/services/conversion-service/conversion
         BrowserModule,
         HttpModule,
 
+        AccordionModule.forRoot(),
         ButtonsModule.forRoot(),
         CarouselModule.forRoot(),
         ModalModule.forRoot(),

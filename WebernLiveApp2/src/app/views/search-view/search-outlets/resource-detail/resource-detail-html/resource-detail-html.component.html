@@ -45,35 +45,11 @@
                 </td>
                 <!-- output values -->
                 <td colspan="2">
-                    <p *ngFor="let value of prop.value; let i = index">
-                        <span [compile-html]="prop.value[i]" [compile-html-ref]="ref"></span>
+                    <p *ngFor="let value of prop.value">
+                        <span [compile-html]="value" [compile-html-ref]="ref"></span>
                     </p>
                 </td>
             </tr>
-        </ng-container>
-        <tr>
-            <td colspan="3">
-                <hr>
-            </td>
-        </tr>
-        <ng-container *ngIf="resourceDetailData?.incoming !== ''">
-            <tr>
-                <td colspan="3" class="bold">
-                    <p>Objekte, die auf diesen Eintrag verweisen:</p>
-                </td>
-            </tr>
-            <tr class="ins" *ngFor="let ins of resourceDetailData?.incoming | mapToIterable">
-                <td colspan="3">
-                    <p>{{ ins.mappedKey }} <span class="incomingNumber">{{ins.mappedValues.length}}</span></p>
-                </td>
-            </tr>
-            <!--
-            <tr class="ins" *ngFor="let ins of resourceDetailData?.incoming">
-                <td colspan="3" (click)="showDetail(ins.id)">
-                    <img [attr.src]="ins.restype.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}
-                </td>
-            </tr>
-            -->
         </ng-container>
         </tbody>
     </table>
@@ -92,27 +68,29 @@
                 <dt>
                     {{ prop.label }}
                 </dt>
-                <dd *ngFor="let value of prop.value; let i = index">
-                    <p><span [compile-html]="prop.value[i]" [compile-html-ref]="ref"></span></p>
+                <dd *ngFor="let value of prop.value">
+                    <p><span [compile-html]="value" [compile-html-ref]="ref"></span></p>
                 </dd>
             </ng-container>
         </ng-container>
         <dt>
             <hr>
         </dt>
-        <ng-container *ngIf="resourceDetailData?.incoming !== ''">
-            <dt>
-                <p>Objekte, die auf diesen Eintrag verweisen:</p>
-            </dt>
-
-            <dd class="ins" *ngFor="let ins of resourceDetailData?.incoming | mapToIterable">
-                <p>{{ ins.mappedKey }} <span class="incomingNumber">{{ins.mappedValues.length}}</span></p>
-            </dd>
-            <!-- TODO: expandable accordion
-            <dd class="ins" *ngFor="let ins of resourceDetailData?.incoming" (click)="showDetail(ins.id)">
-                <p><img [attr.src]="ins.restype.icon" alt="icon" /> [{{ ins.id }}] {{ ins.value }}</p>
-            </dd>
-            -->
-        </ng-container>
     </dl>
+
+    <!-- connected objects -->
+    <ng-container *ngIf="resourceDetailData?.incoming">
+        <h3>Verknüpfte Objekte <small>({{ getFacetContentSize(resourceDetailData?.incoming) }})</small></h3>
+        <accordion [closeOthers]="true">
+            <accordion-group class="ins" *ngFor="let facetGroup of resourceDetailData?.incoming | mapToIterable">
+                <div accordion-heading>
+                    {{ facetGroup?.mappedKey }}
+                    <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
+                </div>
+                <p *ngFor="let facetItem of facetGroup.mappedValues" (click)="showDetail(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
+            </accordion-group>
+        </accordion>
+    </ng-container>
+
+
 </div>
