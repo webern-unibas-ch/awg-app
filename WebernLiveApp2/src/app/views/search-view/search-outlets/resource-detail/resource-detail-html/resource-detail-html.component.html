@@ -62,6 +62,11 @@
                     <p>Objekte, die auf diesen Eintrag verweisen:</p>
                 </td>
             </tr>
+            <tr class="ins" *ngFor="let ins of resourceDetailData?.incoming | mapToIterable">
+                <td colspan="3">
+                    <p>{{ ins.mappedKey }} <span class="incomingNumber">{{ins.mappedValues.length}}</span></p>
+                </td>
+            </tr>
             <!--
             <tr class="ins" *ngFor="let ins of resourceDetailData?.incoming">
                 <td colspan="3" (click)="showDetail(ins.id)">

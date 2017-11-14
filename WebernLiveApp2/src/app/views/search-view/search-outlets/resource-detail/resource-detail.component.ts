@@ -40,22 +40,23 @@ export class ResourceDetailComponent implements OnInit {
 
 
     public getResourceData() {
-        // init currentId when initiating the component
-        this.currentId = this.route.snapshot.paramMap.get('id');
         // fetch data
         this.route.params
             .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
             .subscribe(
                 (data: ResourceFullResponseJson) => {
+                    // snapshot of currentId
+                    this.currentId = this.route.snapshot.paramMap.get('id');
+                    // url for request
+                    this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
+
                     // snapshot of raw json response
                     this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(data));
                     // convert data for displaying resource detail
                     this.resourceData['html'] = this.conversionService.prepareResourceDetail(data, this.currentId);
                     // snapshot of converted json response
                     this.resourceData['jsonConverted'] = JSON.parse(JSON.stringify(this.resourceData['html']));
-
-                    this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
-                },
+                    },
                 error => {
                     this.errorMessage = <any>error;
                 }
