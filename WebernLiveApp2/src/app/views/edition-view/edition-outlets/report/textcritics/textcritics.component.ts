@@ -11,11 +11,7 @@ export class TextcriticsComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    ref: TextcriticsComponent;
-
-    constructor() {
-        this.ref = this;
-    }
+    constructor() { }
 
     ngOnInit() {
     }

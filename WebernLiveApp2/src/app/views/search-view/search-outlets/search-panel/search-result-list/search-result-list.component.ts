@@ -15,13 +15,9 @@ export class SearchResultListComponent implements OnInit {
     public currentId: string;
     public resText: string;
 
-    ref: SearchResultListComponent;
-
     constructor(
         private router: Router
-    ) {
-        this.ref = this;
-    }
+    ) { }
 
     ngOnInit() {
         this.resText = (this.searchData.subjects.length === 1) ? 'zugängliches Resultat von' : 'zugängliche Resultate von';

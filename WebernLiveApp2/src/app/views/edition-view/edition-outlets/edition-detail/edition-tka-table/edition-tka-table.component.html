@@ -12,7 +12,7 @@
             <td>{{ textcritic.measure }}</td>
             <td>{{ textcritic.system }}</td>
             <td [innerHTML]="textcritic.location"></td>
-            <td><span [compile-html]="textcritic.comment" [compile-html-ref]="ref"></span></td>
+            <td><span [compile-html]="textcritic.comment" [compile-html-ref]="this"></span></td>
         </tr>
     </table>
 </div>

@@ -3,7 +3,7 @@
     <!-- resourceDetailData header -->
     <h3>
         <img [attr.src]="resourceDetailData?.header.icon" alt="icon" /><small>&nbsp;({{ resourceDetailData?.header.type }})</small><br/>
-        [{{ resourceDetailData?.header.objID }}] <span [compile-html]="resourceDetailData?.header.title" [compile-html-ref]="ref"></span>
+        [{{ resourceDetailData?.header.objID }}] <span [compile-html]="resourceDetailData?.header.title" [compile-html-ref]="this"></span>
     </h3>
     <small>[Last modified: {{resourceDetailData?.header.lastmod}} (UTC)]</small><br /><br />
     <button (click)="showDetail()">Zeige vorheriges Objekt</button>
@@ -46,7 +46,7 @@
                 <!-- output values -->
                 <td colspan="2">
                     <p *ngFor="let value of prop.value">
-                        <span [compile-html]="value" [compile-html-ref]="ref"></span>
+                        <span [compile-html]="value" [compile-html-ref]="this"></span>
                     </p>
                 </td>
             </tr>
@@ -69,7 +69,7 @@
                     {{ prop.label }}
                 </dt>
                 <dd *ngFor="let value of prop.value">
-                    <p><span [compile-html]="value" [compile-html-ref]="ref"></span></p>
+                    <p><span [compile-html]="value" [compile-html-ref]="this"></span></p>
                 </dd>
             </ng-container>
         </ng-container>

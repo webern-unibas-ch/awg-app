@@ -14,11 +14,7 @@ export class ResourceDetailHtmlComponent implements OnInit {
 
     public metaBreakLine: string = 'Versionsdatum';
 
-    ref: ResourceDetailHtmlComponent;
-
-    constructor( ) {
-        this.ref = this;
-    }
+    constructor( ) { }
 
     ngOnInit() {
         console.log(this.resourceDetailData);

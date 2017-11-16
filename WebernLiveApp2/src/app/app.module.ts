@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpModule } from '@angular/http';
+import { HttpClientModule } from '@angular/common/http';
 
 //
 // external modules
@@ -27,7 +27,7 @@ import { ConversionService } from './core/services/conversion-service/conversion
 @NgModule({
     imports: [
         BrowserModule,
-        HttpModule,
+        HttpClientModule,
 
         AccordionModule.forRoot(),
         ButtonsModule.forRoot(),

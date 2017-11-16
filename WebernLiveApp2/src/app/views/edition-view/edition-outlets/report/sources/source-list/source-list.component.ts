@@ -11,11 +11,7 @@ export class SourceListComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    ref: SourceListComponent;
-
-    constructor() {
-        this.ref = this;
-    }
+    constructor() { }
 
     ngOnInit() {
     }

@@ -4,52 +4,116 @@
  *
  * This code is inspired, adapted or taken from:
  *
- * [**P3X-NG2-COMPILE-HTML**](https://patrikx3.github.com/ng2-compile-html) Build v1.1.132-230 on 3/17/2017, 7:43:58 PM
+ * [**patrikx3-angular-compile**](https://github.com/patrikx3/angular-compile) Build v1.1.113-149 on 02/26/2017, 7:43:58 PM
  * [Corifeus](http://github.com/patrikx3/corifeus) by [Patrik Laszlo](http://patrikx3.tk)
  *
  *
  ************************************************/
 
-import { Component, Compiler, NgModule, Injectable, Injector, ReflectiveInjector } from '@angular/core';
-import { COMPILER_PROVIDERS } from '@angular/compiler';
-
-import { CompileHtmlModel } from './compile-html.model';
-
+/*
+import {
+    Component,
+    NgModule,
+    Injectable,
+    Compiler,
+    ViewContainerRef,
+    ModuleWithProviders,
+    Type,
+    Optional
+} from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { BrowserModule } from '@angular/platform-browser';
+import { cloneDeep } from 'lodash';
+export interface CompileOptions {
+    template: string;
+    container: ViewContainerRef;
+    imports?: Array<Type<any> | ModuleWithProviders | any[]>;
+    context?: any,
+    onCompiled?: Function,
+    onError?: Function;
+    module?: NgModule;
+}
+const cache : any = {};
+export class CompileServiceConfig {
+    module: NgModule
+}
+let SingletonDefaultModule: NgModule;
 @Injectable()
-export class CompileHtmlService  {
-
-
-    private injector: Injector;
-    private compiler: Compiler;
-
-    constructor(injector: Injector) {
-        this.injector = ReflectiveInjector.resolveAndCreate(COMPILER_PROVIDERS, injector);
-        this.compiler = this.injector.get(Compiler);
-    }
-
-    public compile(opts: CompileHtmlModel) {
-
-        try {
-            @Component({
-                template: opts.template || ''
-            })
-            class TemplateComponent {
-                ref = opts.ref;
+export class CompileService  {
+    constructor(
+        private compiler: Compiler,
+        @Optional() config: CompileServiceConfig,
+    ) {
+        if (config !== undefined && config !== null) {
+            if (config.module !== undefined && config.module !== null) {
+                SingletonDefaultModule = config.module;
             }
-            @NgModule({
-                imports: opts.imports,
-                declarations: [TemplateComponent]
-            })
-            class TemplateModule {}
-            const compiled = this.compiler.compileModuleAndAllComponentsSync(TemplateModule);
-            const factory = compiled.componentFactories.find((comp) =>
-                comp.componentType === TemplateComponent
-            );
-            opts.container.clear();
-            opts.container.createComponent(factory);
-
-        } catch (e) {
-            console.error(e);
         }
     }
+    public async compile(opts: CompileOptions) {
+        try {
+            const factory = await this.createFactory(opts);
+            opts.container.clear();
+            const cmp : any = opts.container.createComponent(factory);
+            cmp.instance.context = opts.context;
+        } catch (e) {
+            if (opts.onError) {
+                opts.onError(e)
+            } else {
+                console.error(e);
+            }
+        }
+    }
+    private async createFactory(opts: CompileOptions) {
+        const cacheKey = opts.template;
+        if (Object.keys(cache).indexOf(cacheKey) > -1) {
+            return cache[cacheKey];
+        }
+        cache[cacheKey] = (async() => {
+            try {
+                @Component({
+                    template: opts.template
+                })
+                class TemplateComponent {
+                    context: any
+                }
+                let module : NgModule = {};
+                if (opts.module !== undefined) {
+                    module = cloneDeep(opts.module);
+                } else if (SingletonDefaultModule !== undefined && SingletonDefaultModule !== null) {
+                    module = cloneDeep(SingletonDefaultModule);
+                }
+                module.imports = module.imports || [];
+                module.imports.push( CommonModule );
+                module.imports.push( BrowserModule );
+                if (opts.imports !== undefined) {
+                    module.imports = module.imports.concat(opts.imports)
+                }
+                if (module.declarations === undefined) {
+                    module.declarations = [
+                        TemplateComponent
+                    ];
+                } else {
+                    module.declarations.push(TemplateComponent);
+                }
+                @NgModule(module)
+                class TemplateModule {
+                }
+                const component = await this.compiler.compileModuleAndAllComponentsAsync(TemplateModule);
+                const factory = component.componentFactories.find((comp) =>
+                    comp.componentType === TemplateComponent
+                );
+                cache[cacheKey] = factory;
+                if (opts.onCompiled) {
+                    opts.onCompiled(component);
+                }
+                return factory;
+            } catch (e) {
+                delete cache[cacheKey];
+                throw e;
+            }
+        })();
+        return cache[cacheKey];
+    }
 }
+*/

@@ -20,7 +20,7 @@ import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
         RouterModule,
         AccordionModule,
         ModalModule,
-        CompileHtmlModule.forRoot()
+        CompileHtmlModule
     ],
     declarations: [
         HeadingComponent,

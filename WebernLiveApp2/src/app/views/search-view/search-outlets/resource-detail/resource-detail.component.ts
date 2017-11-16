@@ -21,16 +21,12 @@ export class ResourceDetailComponent implements OnInit {
     public request: string;
     public resourceData: ResourceData = new ResourceData();
 
-    ref: ResourceDetailComponent;
-
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private conversionService: ConversionService,
         private searchService: SearchService
-    ) {
-        this.ref = this;
-    }
+    ) { }
 
     ngOnInit() {
         this.routeToSidenav();

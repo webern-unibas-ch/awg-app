@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { Headers, Http, RequestOptionsArgs, Response } from '@angular/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
+import { RequestOptionsArgs, Response } from '@angular/http';
+
 import { Observable } from 'rxjs/Observable';
 
 import { AppConfig } from '../../../app.config';
 import { ApiServiceError } from './api-service-error';
 import { ApiServiceResult } from './api-service-result';
+import {HttpParamsOptions} from '@angular/common/http/src/params';
 
 @Injectable()
 export class ApiService {
@@ -31,7 +34,7 @@ export class ApiService {
         return response;
     }
 
-    constructor(private httpService: Http) {}
+    constructor(private httpService: HttpClient) {}
 
     /**
      * Performs a HTTP GET request to the Knora API.
@@ -39,7 +42,7 @@ export class ApiService {
      * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string, options?: RequestOptionsArgs): Observable<any> {
+    httpGet(url: string, options?: HttpParamsOptions ): Observable<any> {
         if (!options) { options = {}; }
         return this.httpService.get(AppConfig.API_ENDPOINT + url, options)
             .map((response: Response) => {

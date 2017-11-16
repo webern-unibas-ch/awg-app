@@ -1,6 +1,6 @@
-import { CompileHtmlDirective } from './compile-html.directive';
+import { CompileHtmlAttribute } from './compile-html.attribute';
 
-describe('CompileHtmlDirective', () => {
+describe('CompileHtmlAttribute', () => {
     it('should create an instance', () => {
         const directive = false;
         expect(directive).toBeTruthy();
