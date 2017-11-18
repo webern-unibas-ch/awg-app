@@ -1,17 +1,19 @@
 import { Injectable } from '@angular/core';
+import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from '../api-service/api.service';
-import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
-
+import {
+    IncomingItemJson,
+    ResourceFullResponseJson,
+    SearchResponseJson
+} from '../../../shared/api-objects';
 import {
     ResourceDetail,
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
-    ResourceDetailProps
+    ResourceDetailProps,
+    ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
-import {IncomingItemJson} from "../../../shared/api-objects/resource-response-formats/src/incoming-item-json";
-import {Observable} from "rxjs/Observable";
-import {ResourceDetailGroupedIncomingLinks} from '../../../views/search-view/models/resource-detail-grouped-incoming-links';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -26,6 +28,7 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
+        if (!results['subjects']) { return results; }
         results['subjects'].forEach(res => {
             // clean value labels
             res.valuelabel[0] = res.valuelabel[0].replace(' (Richtext)', '');
@@ -33,7 +36,7 @@ export class ConversionService extends ApiService {
 
             // =>Chronologie: salsah standoff needs to be converted before displaying
             // valuetype_id 14 = valuelabel 'Ereignis'
-            if (res.valuetype_id[0] == '14') {
+            if (res.valuetype_id[0] === '14') {
                 let htmlstr: string = this.convertStandoffToHTML(res.value[0]['utf8str'], res.value[0]['textattr']);
 
                 // replace salsah links
@@ -54,14 +57,14 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     public convertObjectProperties(data: ResourceFullResponseJson) {
-        let convObj = {};
+        const convObj = {};
 
         // add lastmod state
         convObj['lastmod'] = data['resinfo']['lastmod'];
 
-        Object.keys(data['props']).forEach((key:string) => {
+        Object.keys(data['props']).forEach((key: string) => {
             const prop = data['props'][key];
-            let propValue: [string] = [''];
+            const propValue: [string] = [''];
 
             // check if values property is defined
             if ('values' in prop) {
@@ -79,12 +82,12 @@ export class ConversionService extends ApiService {
                         if (prop.values[0] !== '') {
                             // identify id of selection-list from prop.attributes
                             // e.g. "selection=66"
-                            let selectionId: string = prop.attributes.split("=")[1].toString();
+                            const selectionId: string = prop.attributes.split('=')[1].toString();
 
                             // get selection from salsah api
                             this.getSelectionNodesById(selectionId).subscribe(
-                                (data: Object) => {
-                                    let selectionArr = data['selection'];
+                                (nodeData: Object) => {
+                                    const selectionArr = nodeData['selection'];
                                     // localize id in selection-list object and identify the label
                                     for (let i = 0; i < selectionArr.length; i++) {
                                         if (prop.values[0] === selectionArr[i].id) {
@@ -98,7 +101,7 @@ export class ConversionService extends ApiService {
                             // empty value
                             propValue[0] = '';
                         }
-                        break; //END selection
+                        break; // END selection
 
                     case '14':
                         // RICHTEXT: salsah standoff needs to be converted
@@ -112,7 +115,7 @@ export class ConversionService extends ApiService {
                                 // init
                                 let htmlstr = '';
 
-                                // convert linear salsah standoff to html (using plugin "convert_lin2html")
+                                // convert linear salsah standoff to html (using plugin "htmlConverter")
                                 htmlstr = this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
 
                                 // replace salsah links & <p>-tags
@@ -208,17 +211,19 @@ export class ConversionService extends ApiService {
     }
 
 
-    private prepareResourceDetailHeader(data, currentId: string) {
+    private prepareResourceDetailHeader(data: ResourceFullResponseJson, currentId: string) {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         const id = data.resdata.res_id;
-        if (id != currentId ) {
-            console.error(`ERROR: conversionService#prepareResourceDetailHeader => currentId ${currentId} not matching data resource id ${id}`);
+        if (id !== currentId ) {
+            console.error(`ERROR: ` +
+                `conversionService#prepareResourceDetailHeader =>` +
+                ` currentId ${currentId} not matching data resource id ${id}`);
             return;
         }
         const info = data.resinfo;
         const props = data.props;
 
-        if (typeof info !== undefined) {
+        if (typeof info !== 'undefined') {
             // extract common default metadata for header
             header['objID'] = id;
             header['icon'] = info.restype_iconsrc;
@@ -229,7 +234,7 @@ export class ConversionService extends ApiService {
             switch (info.restype_id) {
                 // CHRONOLOGIE
                 case '28':
-                    // richtext value has already been converted in detail using plugin "convert_lin2html"
+                    // richtext value has already been converted in detail using plugin "htmlConverter"
                     let htmlstr = props['webern:event_rt'].toHtml[0];
 
                     // strip & replace <p>-tags for displaying title
@@ -292,7 +297,7 @@ export class ConversionService extends ApiService {
 
     private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
         let groupedIncomingLinks: ResourceDetailGroupedIncomingLinks;
-        let incomingLinks: ResourceDetailIncomingLinks[] = [];
+        const incomingLinks: ResourceDetailIncomingLinks[] = [];
         incoming.forEach(ins => {
             incomingLinks.push({
                 id: ins.ext_res_id.id,
@@ -309,7 +314,7 @@ export class ConversionService extends ApiService {
     }
 
     private prepareResourceDetailProperties(props) {
-        let detailProperties: ResourceDetailProps[] = [];
+        const detailProperties: ResourceDetailProps[] = [];
 
         // loop through property keys
         Object.keys(props).forEach((key: string) => {
@@ -329,7 +334,7 @@ export class ConversionService extends ApiService {
             });
         }); // END forEach props
         return detailProperties;
-    };
+    }
 
 
     private convertGUISpecificProps(data) {
@@ -339,7 +344,7 @@ export class ConversionService extends ApiService {
             data['props'][key] = prop;
         });
         return data;
-    };
+    }
 
     private addHtmlValues(prop, url?): [string] {
         prop['toHtml'] = [''];
@@ -421,7 +426,7 @@ export class ConversionService extends ApiService {
                 (geoData) => {
 
                     // geo-object
-                    let geo = {
+                    const geo = {
                         data:           geoData.nodelist,
                         gnid:           '',
                         label:          '',
@@ -450,7 +455,9 @@ export class ConversionService extends ApiService {
 
                     // include icon & link for geonames
                     const geoIcon = '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + geo.label + '" />';
-                    const geoLink = '<a href="http://www.geonames.org/' + geo.gnid + '" title="' + geo.labelString + '" target="_blank">' + geoIcon + '</a>';
+                    const geoLink = '<a href="http://www.geonames.org/' +
+                                     geo.gnid + '" title="' + geo.labelString +
+                                     '" target="_blank">' + geoIcon + '</a>';
                     let wikiLink = '';
                     if (geo.wiki) {
                         const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + geo.wiki + '" />';
@@ -478,7 +485,7 @@ export class ConversionService extends ApiService {
         // get hlist data
         return this.getHListNodesById(hlistId).subscribe(
             (hlistData) => {
-                let hlist = hlistData.hlist;
+                const hlist = hlistData.hlist;
                 console.info('propvalues: ', prop.values.length , ' HLIST: ', hlist.length);
                 // localize id in hlist object and identify the label
                 for (let i = 0; i < prop.values.length; i++) {
@@ -513,7 +520,7 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private convertRichtextValue(str: string, attr: string) {
-        // convert salsah standoff to html (using plugin "convert_lin2html")
+        // convert salsah standoff to html (using plugin "htmlConverter")
         let rtValue: string = this.convertStandoffToHTML(str, attr);
 
         // replace salsah links
@@ -540,7 +547,7 @@ export class ConversionService extends ApiService {
         // get selection-list data
         return this.getSelectionNodesById(selectionId).subscribe(
             (selectionData) => {
-                let selection = selectionData['selection'];
+                const selection = selectionData['selection'];
                 // localize id in selection-list object and identify the label
                 for (let i = 0; i < prop.values.length; i++) {
                     for (let j = 0; j < selection.length; j++) {
@@ -558,7 +565,7 @@ export class ConversionService extends ApiService {
      *
      *  convert linear salsah standoff
      *  (string with textattributes)
-     *  to html using plugin "convert_lin2html"
+     *  to html using plugin "htmlConverter"
      *
      *****************************************/
     private convertStandoffToHTML(str: string, attr: string): string {
@@ -602,15 +609,15 @@ export class ConversionService extends ApiService {
      *  and rebuild the values for displaying
      *
      *****************************************/
-    private replaceBiblioLink(str: string){
+    private replaceBiblioLink(str: string) {
 
         if (!str) { return; }
 
         let tmpStr,
             splitStr,
             nameStr,
-            linkStr,
-            regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
+            linkStr;
+        const regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
 
         // check for double spaces
         str = str.replace('  ', ' ');
@@ -625,7 +632,7 @@ export class ConversionService extends ApiService {
         if (linkStr = regExLink.exec(splitStr[1])) {
             // ... link with <a> tag
             tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
-        } else if (nameStr != 'DOI') {
+        } else if (nameStr !== 'DOI') {
             // ... <a> tag is missing, add it
             tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
         } else {

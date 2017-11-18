@@ -18,8 +18,8 @@ export class ResourceDetailComponent implements OnInit {
     public currentId: string;
     public oldId: string;
     public errorMessage: string = undefined;
-    public request: string;
     public resourceData: ResourceData = new ResourceData();
+    public resourceUrl: string;
 
     constructor(
         private route: ActivatedRoute,
@@ -39,16 +39,17 @@ export class ResourceDetailComponent implements OnInit {
         this.route.params
             .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
             .subscribe(
-                (data: ResourceFullResponseJson) => {
+                (data) => {
+                    const resourceBody: ResourceFullResponseJson = data['body'];
                     // snapshot of currentId
                     this.currentId = this.route.snapshot.paramMap.get('id');
                     // url for request
-                    this.request = 'http://www.salsah.org/api/resources/' + this.currentId + '_-_local';
+                    this.resourceUrl = data['url'];
 
                     // snapshot of raw json response
-                    this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(data));
+                    this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(resourceBody));
                     // convert data for displaying resource detail
-                    this.resourceData['html'] = this.conversionService.prepareResourceDetail(data, this.currentId);
+                    this.resourceData['html'] = this.conversionService.prepareResourceDetail(resourceBody, this.currentId);
                     // snapshot of converted json response
                     this.resourceData['jsonConverted'] = JSON.parse(JSON.stringify(this.resourceData['html']));
                     },
@@ -85,7 +86,7 @@ export class ResourceDetailComponent implements OnInit {
          * so that the SearchResultList component
          * can select the corresponding Resource.
          */
-        const resId = this.resourceData.html ? +this.currentId : null;
+        const resId = this.resourceData['html'] ? +this.currentId : null;
         this.router.navigate(['/search/fulltext', { id: resId }]);
     }
 

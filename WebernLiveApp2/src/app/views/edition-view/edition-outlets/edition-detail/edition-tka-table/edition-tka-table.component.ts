@@ -10,7 +10,12 @@ export class EditionTkaTableComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+    ref: EditionTkaTableComponent;
+
+    constructor() {
+        this.ref = this;
+    }
+
 
     ngOnInit() {
     }

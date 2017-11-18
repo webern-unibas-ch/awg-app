@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConversionService } from '../../../../core/services';
 import { SearchService } from '../../services';
 import { SearchResponseJson } from '../../../../shared/api-objects';
+import {HttpEvent} from '@angular/common/http';
 
 
 @Component({
@@ -12,9 +13,10 @@ import { SearchResponseJson } from '../../../../shared/api-objects';
 })
 export class SearchPanelComponent implements OnInit {
 
-    private errorMessage: string = undefined;
     public searchData: SearchResponseJson = new SearchResponseJson();
-    public searchval = 'Kantate';
+    public searchval: string = 'Skizzenbuch';
+    public searchUrl: string = '';
+    private errorMessage: string = undefined;
 
     isFormSubmitted = false;     // no form submitted
     isDataLoaded = false;        // no data loaded
@@ -48,10 +50,12 @@ export class SearchPanelComponent implements OnInit {
         // get searchresults from service
         this.searchService.getFulltextSearchData(this.searchval)
             .subscribe(
-                (data: SearchResponseJson) => {
-                    this.searchData = this.conversionService.convertFullTextSearchResults(data);
+                (data) => {
+                    const searchResultsBody: SearchResponseJson = data['body'];
+                    this.searchUrl = data['url'];
+                    this.searchData = this.conversionService.convertFullTextSearchResults(searchResultsBody);
                     // TODO: rm
-                    console.info('SearchPanel#Data: ', this.searchData);
+                    console.info('SearchPanel#searchData: ', this.searchData);
                     this.isFormSubmitted = false;
                     this.isDataLoaded = true;
                 },

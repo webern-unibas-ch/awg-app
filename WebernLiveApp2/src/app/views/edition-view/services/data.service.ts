@@ -1,7 +1,8 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
-import { of }         from 'rxjs/observable/of';
+import { Observable } from 'rxjs/Observable';
+import { of } from 'rxjs/observable/of';
+import 'rxjs/add/observable/forkJoin';
 import { catchError, map, tap } from 'rxjs/operators';
 
 import { Sheet, Source, Textcritics } from '../models';
@@ -61,32 +62,31 @@ export class DataService {
     }
 
     /*
-     * http request
+     * http request to fetch json files
      */
-    private getJsonData(url: string): any {
-        return this.http.get<any>(url)
+    private getJsonData(url: string): Observable<any> {
+        return this.http.get(url)
             .pipe(
-                tap(res => this.log(`fetched jsonData with url=${url}`)),
+                // tap(res => this.log(`fetched jsonData with url=${url}`)),
                 catchError(this.handleError(`getJsonData`, []))
-            )
+            );
     }
 
     /*
      * error handling
      */
-    private handleError<T> (operation = 'operation', result?: T) {
+    private handleError<T>(operation = 'operation', result?: T) {
         return (error: any): Observable<T> => {
 
             // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead
 
             // TODO: better job of transforming error for user consumption
-            console.log(`${operation} failed: ${error.message}`);
+            this.log(`${operation} failed: ${error.message}`);
 
             // Let the app keep running by returning an empty result.
             return of(result as T);
-
-        }
+        };
     }
 
     private log(message: string) {

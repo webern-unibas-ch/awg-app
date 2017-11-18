@@ -11,6 +11,7 @@ import { SearchResponseJson } from '../../../../../shared/api-objects';
 })
 export class SearchResultListComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
+    @Input() searchUrl: string;
 
     public currentId: string;
     public resText: string;
@@ -20,11 +21,22 @@ export class SearchResultListComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.resText = (this.searchData.subjects.length === 1) ? 'zugängliches Resultat von' : 'zugängliche Resultate von';
+        this.prepareResultText();
     }
 
     activeDetail(id: string) {
         return this.currentId === id;
+    }
+
+    prepareResultText() {
+        if (this.searchData['subjects']) {
+            const length = this.searchData.subjects.length;
+            this.resText = length + ` `;
+            this.resText += (length === 1) ? `zugängliches Resultat` : `zugängliche Resultate`;
+            this.resText += ` von ${this.searchData.nhits}:`;
+        } else {
+            this.resText = `Die Abfrage ${this.searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
+        }
     }
 
     showDetail(id: string) {

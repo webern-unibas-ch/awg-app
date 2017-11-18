@@ -1,11 +1,13 @@
 <!-- content: search results -->
 <div class="well well-lg">
 
-        <!-- header -->
-        <h4>Suchergebnisse</h4>
-        <p>
-            {{ searchData.subjects.length }} {{ resText }} {{ searchData.nhits }}:
-        </p>
+    <!-- header -->
+    <h4>Suchergebnisse</h4>
+    <p>
+        {{ resText }}
+    </p>
+
+    <ng-container *ngIf="searchData?.subjects">
 
         <!-- TODO: ### PAGINATION ### -->
 
@@ -34,4 +36,6 @@
             </tr>
             </tbody>
         </table>
+
+    </ng-container>
 </div>

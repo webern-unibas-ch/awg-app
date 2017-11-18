@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
-import { URLSearchParams } from '@angular/http';
-import { Observable } from 'rxjs';
+import { HttpParams } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
 
 import { ApiService } from '../../../core/services/api-service/api.service';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
@@ -18,19 +18,20 @@ export class BibliographyService extends ApiService {
     //
     // ################################
     getBibliographyList(): Observable<SearchResponseJson> {
-        let queryString: string = '/search/';
-        let params = new URLSearchParams();
-            params.set('searchtype', 'extended');
-            params.set('property_id', this.bibShortTitlePropertyId);
-            params.set('compop', 'EXISTS');
-            params.set('filter_by_project', this.projectId);
-            params.set('filter_by_restype', this.resTypeId);
-        return this.httpGet(queryString, { search: params });
+        const queryString: string = '/search/';
+        const queryParams = new HttpParams()
+            .set('searchtype', 'extended')
+            .set('property_id', this.bibShortTitlePropertyId)
+            .set('compop', 'EXISTS')
+            .set('filter_by_project', this.projectId)
+            .set('filter_by_restype', this.resTypeId);
+        return this.httpGet(queryString, queryParams);
     }
 
     getBibliographyItemDetail(objId: string): Observable<ResourceFullResponseJson> {
-        let queryString: string = '/resources/' + objId;
-        return this.httpGet(queryString);
+        const queryString: string = '/resources/' + objId;
+        const queryParams = new HttpParams();
+        return this.httpGet(queryString, queryParams);
     }
 
 /* TODO#rm or use
