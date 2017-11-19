@@ -33,7 +33,7 @@ import { cloneDeep } from 'lodash';
 export class CompileHtmlAttribute implements OnInit, OnChanges{
 
     @Input('compile-html') html: string;
-    @Input('compile-html-ref') context:  any;
+    @Input('compile-html-ref') ref:  any;
     @Input('compile-html-error-handler') errorHandler: (ex: any) => void = console.error;
 
     dynamicComponent: any;
@@ -56,7 +56,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
                 }
         */
         try {
-            this.dynamicComponent = this.createNewComponent(this.html, this.context);
+            this.dynamicComponent = this.createNewComponent(this.html, this.ref);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
 //            cache[cacheKey] = this.dynamicComponent;
         } catch (e) {
@@ -66,7 +66,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
         await this.service.compile({
             template: this.html,
             container: this.container,
-            context: this.context,
+            ref: this.ref,
             imports: this.imports,
             module: this.module
         })
@@ -104,14 +104,14 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
     }
 
 
-    private createNewComponent (html:string, context: any) {
+    private createNewComponent (html:string, ref: any) {
 
         @Component({
             selector: 'dynamic-component',
             template: html
         })
         class DynamicComponent {
-            context: any = context;
+            ref: any = ref;
         }
 
         return DynamicComponent;
