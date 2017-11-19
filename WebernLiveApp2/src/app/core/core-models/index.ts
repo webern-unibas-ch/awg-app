@@ -7,9 +7,13 @@
  *
  */
 
+import { GeoData} from './geo-data.model';
+import { GeoNames } from './geo-names.model';
 import { Meta } from './meta.model';
 
 
 export {
+    GeoData,
+    GeoNames,
     Meta
-}
+};

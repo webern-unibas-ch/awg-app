@@ -14,6 +14,7 @@ import {
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
+import { GeoData } from '../../core-models';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -418,52 +419,53 @@ export class ConversionService extends ApiService {
 
         // identify geonames gui-id from prop.values
         // e.g. ["4136"] or ["4136", "4132"]
-        const geoguiId = prop.values;
+        const geoGuiId = prop.values;
 
-        for (let i = 0; i < geoguiId.length; i++) {
+        for (let i = 0; i < geoGuiId.length; i++) {
             // get geonames gui data
-            this.getGeonameNodesById(geoguiId[i]).subscribe(
-                (geoData) => {
-
-                    // geo-object
-                    const geo = {
-                        data:           geoData.nodelist,
-                        gnid:           '',
-                        label:          '',
-                        labelString:    '',
-                        latitude:       '',
-                        longitude:      '',
-                        wiki:           ''
-                    };
+            this.getGeonameNodesById(geoGuiId[i]).subscribe(
+                geoNamesData => {
+                    // check for existing nodelist in geonames response
+                    // esle return empty prop if necessary
+                    if (!geoNamesData.body.nodelist) {
+                        console.info(`ConversionService#convertGeoValue: got no nodelist from geonames response: ${geoNamesData}`);
+                        return prop['toHtml'][i] = '';
+                    }
+                    // new empty GeoData-Object
+                    const geo: GeoData = new GeoData();
+                    // fill geoData object with nodelist from geoNamesResponse
+                    geo['nodeList'] = geoNamesData.body.nodelist;
 
                     // get labels from nodelist array
-                    geo.labelString = geo.data[0].label;
-                    for (let j = 1; j < geo.data.length; j++) {
-                        geo.labelString += ', ' + geo.data[j].label;
-                        if (j === geo.data.length - 1) {
+                    geo.longLabel = geo.nodeList[0].label;
+                    for (let j = 1; j < geo.nodeList.length; j++) {
+                        const geoItem = geo.nodeList[j];
+                        geo.longLabel += ', ' + geoItem.label;
+                        if (j === geo.nodeList.length - 1) {
                             // get geonames-id gnid from last array item
-                            geo.gnid = geo.data[j].name.replace('gnid:', '');
+                            geo['gnid'] = geoItem.name.replace('gnid:', '');
                             // short label
-                            geo.label = geo.data[j].label;
+                            geo['shortLabel'] = geoItem.label;
                             // latitude + longitude
-                            geo.latitude = geo.data[j].lat;
-                            geo.longitude = geo.data[j].lng;
+                            geo['latitude'] = geoItem.lat;
+                            geo['longitude'] = geoItem.lng;
                             // wiki
-                            geo.wiki = geo.data[j].wikipedia;
+                            geo['wiki'] = geoItem.wikipedia;
                         }
                     }
 
-                    // include icon & link for geonames
-                    const geoIcon = '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + geo.label + '" />';
+                    // prepare icon & link for geonames
+                    const geoIcon = '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + geo.shortLabel + '" />';
                     const geoLink = '<a href="http://www.geonames.org/' +
-                                     geo.gnid + '" title="' + geo.labelString +
+                                     geo.gnid + '" title="' + geo.longLabel +
                                      '" target="_blank">' + geoIcon + '</a>';
                     let wikiLink = '';
                     if (geo.wiki) {
                         const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + geo.wiki + '" />';
                         wikiLink = '<a href="http://' + geo.wiki + '" title="' + geo.wiki + '" target="_blank">' + wikiIcon + '</a>';
                     }
-                    prop['toHtml'][i] = geo.label.replace(geo.label, '$& ' + geoLink + wikiLink);
+                    // construct "toHtml"-value
+                    prop['toHtml'][i] = geo.shortLabel + ' ' + geoLink + wikiLink;
                 });
         }
     }
@@ -577,8 +579,8 @@ export class ConversionService extends ApiService {
      * get geonames node list from salsah api
      *
      *****************************************/
-    private getGeonameNodesById(geoguiId: string): Observable<any> {
-        const queryString: string = '/geonames/' + geoguiId + '?reqtype=node';
+    private getGeonameNodesById(geoGuiId: string): Observable<any> {
+        const queryString: string = '/geonames/' + geoGuiId + '?reqtype=node';
         return this.httpGet(queryString);
     }
 
