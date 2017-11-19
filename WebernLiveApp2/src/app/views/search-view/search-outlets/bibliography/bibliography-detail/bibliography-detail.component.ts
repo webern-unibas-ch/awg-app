@@ -11,16 +11,16 @@ import { ConversionService } from '../../../../../core/services/conversion-servi
     templateUrl: './bibliography-detail.component.html',
     styleUrls: ['./bibliography-detail.component.css']
 })
-export class BibliographyDetailComponent implements OnInit {
+export class BibliographyDetailComponent implements OnInit, OnDestroy {
     @Input() objId: string;
 
-    // TODO#change to Type: Bibentry
+    // TODO#change to Type: BibEntry
     convertedBibItemDetail: any;
     sub: Subscription;
 
     constructor(
-        private _bibliographyService: BibliographyService,
-        private _conversionService: ConversionService
+        private bibliographyService: BibliographyService,
+        private conversionService: ConversionService
     ) { }
 
     ngOnInit() {
@@ -28,14 +28,13 @@ export class BibliographyDetailComponent implements OnInit {
     }
 
     getBibItemDetails(id: string): void {
-        this.sub = this._bibliographyService.getBibliographyItemDetail(id)
-            .subscribe((bibItemDetail: ResourceFullResponseJson) => {
-                this.convertedBibItemDetail = this.convertBibResponse(bibItemDetail);
-            })
-    }
-
-    private convertBibResponse(bibItemDetail: ResourceFullResponseJson) {
-        return this._conversionService.convertObjectProperties(bibItemDetail);
+        this.sub = this.bibliographyService.getBibliographyItemDetail(id)
+            .subscribe(data => {
+                let bibItemDetailBody: ResourceFullResponseJson = new ResourceFullResponseJson();
+                if (data['body']) { bibItemDetailBody = data['body']; }
+                this.convertedBibItemDetail = this.conversionService.convertObjectProperties(bibItemDetailBody);
+                console.log('convertedItem: ', this.convertedBibItemDetail);
+            });
     }
 
     ngOnDestroy() {

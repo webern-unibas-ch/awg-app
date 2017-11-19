@@ -9,11 +9,15 @@
 
 import { GeoData} from './geo-data.model';
 import { GeoNames } from './geo-names.model';
+import { Hlist } from './hlist.model';
 import { Meta } from './meta.model';
+import { Selection } from './selection.model';
 
 
 export {
     GeoData,
     GeoNames,
-    Meta
+    Hlist,
+    Meta,
+    Selection
 };

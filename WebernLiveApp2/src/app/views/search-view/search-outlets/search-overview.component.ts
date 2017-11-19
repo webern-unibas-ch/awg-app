@@ -28,7 +28,7 @@ export class SearchOverviewComponent implements OnInit {
             root: '/search',
             link: 'bibliography',
             label: 'Bibliographie',
-            disabled: true
+            disabled: false
         }
     ];
 

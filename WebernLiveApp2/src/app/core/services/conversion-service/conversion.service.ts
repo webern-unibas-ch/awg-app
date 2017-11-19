@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/of';
 
 import { ApiService } from '../api-service/api.service';
 import {
@@ -14,7 +15,7 @@ import {
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
-import { GeoData } from '../../core-models';
+import { GeoData, Hlist, Selection } from '../../core-models';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -65,7 +66,7 @@ export class ConversionService extends ApiService {
 
         Object.keys(data['props']).forEach((key: string) => {
             const prop = data['props'][key];
-            const propValue: [string] = [''];
+            const propValue: [string] = [''];   // empty text value
 
             // check if values property is defined
             if ('values' in prop) {
@@ -80,27 +81,9 @@ export class ConversionService extends ApiService {
 
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
+                        // TODO
                         if (prop.values[0] !== '') {
-                            // identify id of selection-list from prop.attributes
-                            // e.g. "selection=66"
-                            const selectionId: string = prop.attributes.split('=')[1].toString();
-
-                            // get selection from salsah api
-                            this.getSelectionNodesById(selectionId).subscribe(
-                                (nodeData: Object) => {
-                                    const selectionArr = nodeData['selection'];
-                                    // localize id in selection-list object and identify the label
-                                    for (let i = 0; i < selectionArr.length; i++) {
-                                        if (prop.values[0] === selectionArr[i].id) {
-                                            propValue[0] = selectionArr[i].label;
-                                        }
-                                    }
-                                },
-                                err => console.error(err)
-                            );
-                        } else {
-                            // empty value
-                            propValue[0] = '';
+                            this.convertSelectionValue(prop, propValue[0]);
                         }
                         break; // END selection
 
@@ -131,10 +114,6 @@ export class ConversionService extends ApiService {
                                     propValue[i] = this.replaceBiblioLink(propValue[i]);
                                 }
                             }
-
-                            // empty values
-                        } else {
-                            propValue[0] = '';
                         }
                         break; // END richtext
 
@@ -143,9 +122,6 @@ export class ConversionService extends ApiService {
                             for (let i = 0; i < prop.values.length; i++) {
                                 propValue[i] = prop.values[i].trim();
                             }
-                        } else {
-                            // empty text value
-                            propValue[0] = '';
                         }
                 } // END switch
                 if (propValue.length > 1) {
@@ -366,11 +342,11 @@ export class ConversionService extends ApiService {
                     break; // END linkvalue
 
                 case '7': // SELECTION (pulldown): selection nodes have to be read seperately
-                    this.convertSelectionValue(prop);
+                    this.convertSelectionValue(prop, prop['toHtml']);
                     break; // END selection
 
                 case '12': // HLIST: hlist nodes have to be called seperately
-                        this.convertHlistValue(prop);
+                        this.convertHlistValue(prop, prop['toHtml']);
                     break; // END hlist
 
                 case '14':  // RICHTEXT: salsah standoff needs to be converted
@@ -380,7 +356,7 @@ export class ConversionService extends ApiService {
                     break; // END richtex
 
                 case '15': // GeoNAMES: GeoName nodes have to called seperately
-                        this.convertGeoValue(prop);
+                        this.convertGeoValue(prop, prop['toHtml']);
                  break; // END geonames
 
                 // '1' => TEXT: properties come as they are
@@ -412,14 +388,13 @@ export class ConversionService extends ApiService {
      * convert geoNames values
      *
      *****************************************/
-    private convertGeoValue(prop) {
-        // prop.values give reference id to
-        // api + /geonames/{{:id}}?reqtype=node
+    private convertGeoValue(input, output) {
+        // input.values give reference id to api + "/geonames/{{:id}}?reqtype=node"
         // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
-        // identify geonames gui-id from prop.values
+        // identify geonames gui-id from input.values
         // e.g. ["4136"] or ["4136", "4132"]
-        const geoGuiId = prop.values;
+        const geoGuiId = input.values;
 
         for (let i = 0; i < geoGuiId.length; i++) {
             // get geonames gui data
@@ -429,7 +404,7 @@ export class ConversionService extends ApiService {
                     // esle return empty prop if necessary
                     if (!geoNamesData.body.nodelist) {
                         console.info(`ConversionService#convertGeoValue: got no nodelist from geonames response: ${geoNamesData}`);
-                        return prop['toHtml'][i] = '';
+                        return output[i] = '';
                     }
                     // new empty GeoData-Object
                     const geo: GeoData = new GeoData();
@@ -465,8 +440,9 @@ export class ConversionService extends ApiService {
                         wikiLink = '<a href="http://' + geo.wiki + '" title="' + geo.wiki + '" target="_blank">' + wikiIcon + '</a>';
                     }
                     // construct "toHtml"-value
-                    prop['toHtml'][i] = geo.shortLabel + ' ' + geoLink + wikiLink;
-                });
+                    output[i] = geo.shortLabel + ' ' + geoLink + wikiLink;
+                    return output;
+               });
         }
     }
 
@@ -475,29 +451,34 @@ export class ConversionService extends ApiService {
      * convert hlist values
      *
      *****************************************/
-    private convertHlistValue(prop) {
+    private convertHlistValue(input, output) {
         // prop.values give reference id to
         // api + /hlists/{{:id}}
         // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
 
         // identify id of hlist from prop.attributes
         // e.g. "hlist=17"
-        const hlistId: string = prop.attributes.split('=')[1].toString();
+        const hlistId: string = input.attributes.split('=')[1].toString();
 
         // get hlist data
         return this.getHListNodesById(hlistId).subscribe(
             (hlistData) => {
-                const hlist = hlistData.hlist;
-                console.info('propvalues: ', prop.values.length , ' HLIST: ', hlist.length);
+                // check for existing hlist in response
+                // esle return empty prop if necessary
+                if (!hlistData.body.hlist) {
+                    console.info('ConversionService#convertHListValue: got no hlist from response: ', hlistData);
+                    return output = [''];
+                }
+                const hlist: Hlist[] = hlistData.body.hlist;
                 // localize id in hlist object and identify the label
-                for (let i = 0; i < prop.values.length; i++) {
+                for (let i = 0; i < input.values.length; i++) {
                     for (let j = 0; j < hlist.length; j++) {
-                        if (prop.values[i] === hlist[j]['id']) {
-                            prop['toHtml'][i] = hlist[j].label;
+                        if (input.values[i] === hlist[j]['id']) {
+                            output[i] = hlist[j]['label'];
                         }
                     }
                 }
-
+                return output;
             },
             err => console.error(err)
         );
@@ -537,27 +518,35 @@ export class ConversionService extends ApiService {
      * convert selection values
      *
      *****************************************/
-    private convertSelectionValue(prop) {
-        // prop.values give reference id to
-        // api + /selections/{{:id}}
+    private convertSelectionValue(input, output) {
+        // input.values give reference id to api + "/selections/{{:id}}"
         // result is an array selection (properties: id, label, name, order, label_ok) with nodes from 0 to n
 
-        // identify id of selection-list from prop.attributes
+        // identify id of selection-list from input.attributes
         // e.g. "selection=66"
-        const selectionId: string = prop.attributes.split('=')[1].toString();
+        const selectionId: string = input.attributes.split('=')[1].toString();
 
         // get selection-list data
-        return this.getSelectionNodesById(selectionId).subscribe(
+        return this.getSelectionNodesById(selectionId).map(
             (selectionData) => {
-                const selection = selectionData['selection'];
+                // check for existing selection in response
+                // esle return empty prop if necessary
+                if (!selectionData.body.selection) {
+                    console.info(`ConversionService#convertSelectionValue: got no selection from response: ${selectionData}`);
+                    return output = [''];
+                }
+                const selection: Selection[] = selectionData.body.selection;
                 // localize id in selection-list object and identify the label
-                for (let i = 0; i < prop.values.length; i++) {
+                for (let i = 0; i < input.values.length; i++) {
                     for (let j = 0; j < selection.length; j++) {
-                        if (prop.values[i] === selection[j].id) {
-                            prop['toHtml'][i] = selection[j].label;
+                        if (input.values[i] === selection[j]['id']) {
+                            output[i] = selection[j]['label'];
                         }
                     }
                 }
+                console.info('ConversionService#convertSelectionValue: got output: ', output);
+
+                return output;
             },
             err => console.error(err)
         );
