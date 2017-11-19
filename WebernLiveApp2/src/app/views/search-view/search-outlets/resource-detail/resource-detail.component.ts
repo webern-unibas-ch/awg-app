@@ -20,6 +20,11 @@ export class ResourceDetailComponent implements OnInit {
     public errorMessage: string = undefined;
     public resourceData: ResourceData = new ResourceData();
     public resourceUrl: string;
+    public tabTitle = {
+        html: 'Detail',
+        raw: 'JSON (raw)',
+        converted: 'JSON (converted)'
+    };
 
     constructor(
         private route: ActivatedRoute,
@@ -75,7 +80,7 @@ export class ResourceDetailComponent implements OnInit {
         // update currentId
         this.currentId = showId;
         // navigate to new detail
-        this.router.navigate(['/search/detail', +showId]);
+        this.router.navigate(['/search/detail', +showId, { outlets: { side: 'searchInfo' }}]);
     }
 
     public goBack(): void {
