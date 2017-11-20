@@ -19,7 +19,7 @@ export class ResourceDetailComponent implements OnInit {
     public oldId: string;
     public errorMessage: string = undefined;
     public resourceData: ResourceData = new ResourceData();
-    public resourceUrl: string;
+    public requestUrl: string;
     public tabTitle = {
         html: 'Detail',
         raw: 'JSON (raw)',
@@ -45,11 +45,13 @@ export class ResourceDetailComponent implements OnInit {
             .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
             .subscribe(
                 (data) => {
-                    const resourceBody: ResourceFullResponseJson = data['body'];
                     // snapshot of currentId
                     this.currentId = this.route.snapshot.paramMap.get('id');
+
+                    // get data.body
+                    const resourceBody: ResourceFullResponseJson = data['body'];
                     // url for request
-                    this.resourceUrl = data['url'];
+                    this.requestUrl = data['url'];
 
                     // snapshot of raw json response
                     this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(resourceBody));

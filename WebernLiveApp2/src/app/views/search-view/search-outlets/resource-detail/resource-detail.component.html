@@ -1,5 +1,11 @@
 <!-- resource detail box -->
-<div class="col-sm-6 col-md-7 col-lg-8 objbox" id="{{ resourceData.html?.header.objID }}">
+<div class="col-md-3">
+     ### PH_resource-detail.component ###
+</div>
+
+
+<!-- resource detail box -->
+<div class="col-md-9" *ngIf="resourceData">
 
     <ul class="nav nav-tabs nav-justified">
         <li class="active"><a data-toggle="tab" href="#html">{{ tabTitle.html }}</a></li>
@@ -12,6 +18,7 @@
         <awg-resource-detail-html id="html" class="tab-pane fade in active"
             *ngIf="resourceData.html"
             [resourceDetailData]="resourceData.html"
+            [requestUrl]="requestUrl"
             (goBackRequest)="goBack($event)"
             (showDetailRequest)="showDetail($event)">
         </awg-resource-detail-html>
@@ -19,13 +26,13 @@
         <awg-resource-detail-json-converted id="converted" class="tab-pane fade"
             *ngIf="resourceData.jsonConverted"
             [resourceJsonConvertedData]="resourceData.jsonConverted"
-            [request]="request">
+            [requestUrl]="requestUrl">
         </awg-resource-detail-json-converted>
 
         <awg-resource-detail-json-raw id="raw" class="tab-pane fade"
             *ngIf="resourceData.jsonRaw"
             [resourceJsonRawData]="resourceData.jsonRaw"
-            [request]="request">
+            [requestUrl]="requestUrl">
         </awg-resource-detail-json-raw>
 
     </div>

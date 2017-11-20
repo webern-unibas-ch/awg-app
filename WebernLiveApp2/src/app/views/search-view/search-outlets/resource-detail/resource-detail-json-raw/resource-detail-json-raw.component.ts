@@ -9,7 +9,7 @@ import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
 })
 export class ResourceDetailJsonRawComponent implements OnInit {
     @Input() resourceJsonRawData: ResourceFullResponseJson;
-    @Input() request: string;
+    @Input() requestUrl: string;
 
     constructor() { }
 

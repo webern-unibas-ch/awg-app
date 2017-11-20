@@ -9,6 +9,7 @@ import { ResourceDetail } from '../../../models';
 })
 export class ResourceDetailHtmlComponent implements OnInit {
     @Input() resourceDetailData: ResourceDetail;
+    @Input() requestUrl: string;
     @Output() goBackRequest: EventEmitter<any> = new EventEmitter();
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 

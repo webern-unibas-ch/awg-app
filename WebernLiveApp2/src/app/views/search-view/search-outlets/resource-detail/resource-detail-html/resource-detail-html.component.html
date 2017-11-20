@@ -1,96 +1,118 @@
-<div>
+<!-- resourceDetailData header -->
+<div class="resource-header">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="resource-title">
+                <div class="title">
+                    <span [compile-html]="resourceDetailData?.header.title" [compile-html-ref]="this"></span>
+                </div>
+                <div class="subtitle">
+                    <small>[Last modified: {{resourceDetailData?.header.lastmod}} (UTC)]</small>
+                </div>
+            </h2>
+            <div class="resource-link">
+                <small>
+                    <a target="_self" (click)="showDetail(resourceDetailData?.header.objID)">{{ requestUrl}}</a>
+                </small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-condensed" style="margin-bottom: 0">
+                <thead>
+                <tr>
+                    <td>
+                        <strong>Resource-ID:</strong>
+                    </td>
+                    <td id="resourceDetailData?.header.objID">
+                        {{ resourceDetailData?.header.objID }}
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>Type:</strong>
+                    </td>
+                    <td>
+                        {{ resourceDetailData?.header.type }}&nbsp;<img [attr.src]="resourceDetailData?.header.icon" alt="icon" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Last modified:</strong>
+                    </td>
+                    <td>
+                        {{resourceDetailData?.header.lastmod}} (UTC)
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-    <!-- resourceDetailData header -->
-    <h3>
-        <img [attr.src]="resourceDetailData?.header.icon" alt="icon" /><small>&nbsp;({{ resourceDetailData?.header.type }})</small><br/>
-        [{{ resourceDetailData?.header.objID }}] <span [compile-html]="resourceDetailData?.header.title" [compile-html-ref]="this"></span>
-    </h3>
-    <small>[Last modified: {{resourceDetailData?.header.lastmod}} (UTC)]</small><br /><br />
+    <br /><br />
     <button (click)="showDetail()">Zeige vorheriges Objekt</button>
     <button (click)="goBack()">Zurück zur Suche</button>
 
-
-    <!-- image objects -->
-    <div align="center" class="objImage" *ngIf="resourceDetailData?.image[0]">
-        <div class="facs">
-            <a [href]="resourceDetailData?.image.full" target="_blank">
-                <img [src]="resourceDetailData?.image.value" alt="{{ resourceDetailData?.image.label }}" />
-            </a>
+<!-- resourceDetailData content -->
+<div class="resource-content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="props" *ngIf="resourceDetailData?.props">
+                <ul>
+                    <li style="list-style-type: none">
+                        <strong> ### Descriptive Metadata ### </strong>
+                        <ul *ngFor="let prop of resourceDetailData?.props">
+                            <li id="breakLine" *ngIf="prop.label === metaBreakLine">
+                                <hr>
+                            </li>
+                            <li id="propField" *ngIf="prop.value[0]" style="list-style-type: none">
+                                <!-- value label -->
+                                <strong *ngIf="prop.label">
+                                    {{ prop.label }}
+                                </strong>
+                                <!-- value content -->
+                                <ul *ngFor="let value of prop.value">
+                                    <li *ngIf="value">
+                                        <span [compile-html]="value" [compile-html-ref]="this"></span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
         </div>
-        <div class="btn-group btn-group-justified">
-            <a class="btn btn-default" *ngFor="let objImage of resourceDetailData?.image" (click)="showImage(objImage)">
-                {{ objImage.label }}
-            </a>
+        <div class="col-md-4">
+            <!-- image objects -->
+            <div align="center" class="objImage" *ngIf="resourceDetailData?.image[0]">
+                <div class="facs">
+                    <a [href]="resourceDetailData?.image.full" target="_blank">
+                        <img [src]="resourceDetailData?.image.value" alt="{{ resourceDetailData?.image.label }}" />
+                    </a>
+                </div>
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" *ngFor="let objImage of resourceDetailData?.image" (click)="showImage(objImage)">
+                        {{ objImage.label }}
+                    </a>
+                </div>
+            </div>
+            <!-- connected objects -->
+            <ng-container *ngIf="resourceDetailData?.incoming">
+                <h4>Verknüpfte Objekte <small>({{ getFacetContentSize(resourceDetailData?.incoming) }})</small></h4>
+                <accordion [closeOthers]="true">
+                    <accordion-group class="ins" *ngFor="let facetGroup of resourceDetailData?.incoming | mapToIterable">
+                        <div accordion-heading>
+                            {{ facetGroup?.mappedKey }}
+                            <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
+                        </div>
+                        <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="showDetail(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
+                    </accordion-group>
+                </accordion>
+            </ng-container>
         </div>
     </div>
-
-    <!-- display as table on small and larger devices -->
-    <table class="table table-condensed table-hover borderless hidden-xs" style="padding:10px;">
-        <tbody>
-        <tr>
-            <td colspan="3">
-                <hr>
-            </td>
-        </tr>
-        <!-- ### show only not empty values ### -->
-        <ng-container *ngFor="let prop of resourceDetailData?.props">
-            <tr *ngIf="prop.label === metaBreakLine">
-                <td colspan="3">
-                    <hr>
-                </td>
-            </tr>
-            <tr id="field" *ngIf="prop.value[0]">
-                <td class="bold">
-                    {{ prop.label }}
-                </td>
-                <!-- output values -->
-                <td colspan="2">
-                    <p *ngFor="let value of prop.value">
-                        <span [compile-html]="value" [compile-html-ref]="this"></span>
-                    </p>
-                </td>
-            </tr>
-        </ng-container>
-        </tbody>
-    </table>
-
-    <!-- stack to definition list on extra small devices -->
-    <dl class="dl-horizontal dl-hover visible-xs">
-        <dt>
-            <hr>
-        </dt>
-        <!-- ### show only not empty values ### -->
-        <ng-container id="field" *ngFor="let prop of resourceDetailData?.props">
-            <dt *ngIf="prop.label === metaBreakLine">
-                    <hr>
-            </dt>
-            <ng-container *ngIf="prop.value[0]">
-                <dt>
-                    {{ prop.label }}
-                </dt>
-                <dd *ngFor="let value of prop.value">
-                    <p><span [compile-html]="value" [compile-html-ref]="this"></span></p>
-                </dd>
-            </ng-container>
-        </ng-container>
-        <dt>
-            <hr>
-        </dt>
-    </dl>
-
-    <!-- connected objects -->
-    <ng-container *ngIf="resourceDetailData?.incoming">
-        <h3>Verknüpfte Objekte <small>({{ getFacetContentSize(resourceDetailData?.incoming) }})</small></h3>
-        <accordion [closeOthers]="true">
-            <accordion-group class="ins" *ngFor="let facetGroup of resourceDetailData?.incoming | mapToIterable">
-                <div accordion-heading>
-                    {{ facetGroup?.mappedKey }}
-                    <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
-                </div>
-                <p *ngFor="let facetItem of facetGroup.mappedValues" (click)="showDetail(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
-            </accordion-group>
-        </accordion>
-    </ng-container>
-
-
 </div>
+
+
