@@ -1,4 +1,82 @@
-<div class="col-sm-3 col-lg-2 sidenav sidenav-left text-center">
+<div class="col-md-3 sidenav sidenav-left text-center">
+
+    <strong>## TODO: search-info.component.html ##</strong>
+    <div><!-- <div class="col-md-3" ng-show="entity.entityId"> -->
+        <!-- ngIf: user.groupID >= 600 && entity.categoryKey -->
+        <div class="row">
+            <div class="col-md-12">
+                <!-- ngIf: resultSize -->
+                <div ng-if="resultSize" class="ng-scope">
+                    <!-- ngIf: currentQuery.q || currentQuery.facets.length > 0 -->
+                    <div ng-if="currentQuery.q || currentQuery.facets.length > 0" class="panel panel-default ng-scope">
+                        <div class="panel-heading">
+                            <a ar-scoped-href="search?fl=20&amp;q=%22Kopf%20eines%20Kentauren%20(%3F)%22" class="btn btn-xs pull-right btn-primary ng-binding ng-isolate-scope" href="search?fl=20&amp;q=%22Kopf%20eines%20Kentauren%20(%3F)%22"><span class="glyphicon glyphicon-arrow-left"></span> Zum Suchergebnis</a>
+                            <div>
+                                <strong class="text-muted uppercase small ng-binding">Aktuelle Suche</strong>
+                                <br>
+                                <!-- ngIf: !currentQuery.label -->
+                                <span ng-if="!currentQuery.label" class="ng-binding ng-scope">{{ query }}</span>
+                                <!-- end ngIf: !currentQuery.label --> <!-- ngIf: currentQuery.label -->
+                            </div><!-- ngIf: currentQuery.hasFacets() -->
+                        </div>
+                        <ul class="list-group">
+                            <!-- ngIf: prevEntity -->
+                            <a ng-if="prevEntity" ar-scoped-href="entity/1075518?fl=1000&amp;q=%22Kopf%20eines%20Kentauren%20(%3F)%22&amp;resultIndex=2&amp;bbox=47.30903424774781%2C11.821289062500002%2C47.30903424774781%2C11.821289062500002&amp;ghprec=4" class="list-group-item ng-scope ng-isolate-scope" style="height:75px; overflow:hidden" href="entity/1075518?fl=20&amp;q=%22Kopf%20eines%20Kentauren%20(%3F)%22&amp;resultIndex=2">
+                                <div>
+                                    <strong class="text-muted uppercase small ng-binding">
+                                        <span class="glyphicon glyphicon-chevron-left" style="color:black"></span> &nbsp; Voriges Ergebnis</strong>
+                                </div>
+                                <div ar-entity-title="" entity="prevEntity" class="ng-isolate-scope"><div>
+                                    <div class="single-line">
+                                        <small class="single-line ng-binding" ng-bind-html="entity.title">Kopf eines Kentauren</small>
+                                        <!-- ngIf: entity.title.length==0 -->
+                                    </div>
+                                    <div class="single-line">
+                                        <small class="text-muted ng-binding" ng-bind-html="entity.subtitle">Museo Barracco, Rom</small>
+                                    </div>
+                                </div>
+                                </div>
+                            </a>
+                            <!-- end ngIf: prevEntity -->
+                            <li class="list-group-item" ng-hide="nextEntitySearch.size < 2">
+                                <strong class="text-muted uppercase small ng-binding">Angezeigter Datensatz</strong>
+                                <form ng-submit="goToResultIndex(resultIndexInput)" class="ng-pristine ng-valid">
+                                    <div class="input-group" ng-class="{'has-error':(resultIndexInput < 1 || resultIndexInput > resultSize)}">
+                                        <input ng-model="resultIndexInput" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number">
+                                        <span class="input-group-addon" style="border-top-right-radius: 3px; border-bottom-right-radius:3px; border-left:0;"> <small class="ng-binding">von</small> <strong class="ng-binding">15</strong>
+                                        </span>
+                                        <span ng-hide="resultIndex == resultIndexInput || resultIndexInput < 1 || resultIndexInput > resultSize" class="input-group-btn ng-hide">
+                                            <button class="btn btn-primary btn-sm ng-binding" ng-click="goToResultIndex(resultIndexInput)">Gehe zu</button>
+                                        </span>
+                                    </div>
+                                </form>
+                            </li>
+                            <!-- ngIf: nextEntity -->
+                            <a ng-if="nextEntity" ar-scoped-href="entity/1088940?fl=1000&amp;q=%22Kopf%20eines%20Kentauren%20(%3F)%22&amp;resultIndex=4&amp;bbox=47.30903424774781%2C11.821289062500002%2C47.30903424774781%2C11.821289062500002&amp;ghprec=4" class="list-group-item text-right ng-scope ng-isolate-scope" style="height:75px; overflow:hidden" href="entity/1088940?fl=20&amp;q=%22Kopf%20eines%20Kentauren%20(%3F)%22&amp;resultIndex=4">
+                                <div>
+                                    <strong class="text-muted uppercase small ng-binding">&nbsp; Nächstes Ergebnis <span class="glyphicon glyphicon-chevron-right" style="color:black"></span></strong>
+                                </div>
+                                <div ar-entity-title="" entity="nextEntity" class="ng-isolate-scope">
+                                    <div>
+                                        <div class="single-line">
+                                            <small class="single-line ng-binding" ng-bind-html="entity.title">Kopf eines Kentauren</small>
+                                            <!-- ngIf: entity.title.length==0 -->
+                                        </div>
+                                        <div class="single-line">
+                                            <small class="text-muted ng-binding" ng-bind-html="entity.subtitle">S. Clemente, Rom</small>
+                                        </div>
+                                    </div>
+                                </div>
+                            </a><!-- end ngIf: nextEntity -->
+                        </ul>
+                    </div><!-- end ngIf: currentQuery.q || currentQuery.facets.length > 0 -->
+                </div><!-- end ngIf: resultSize -->
+            </div>
+        </div><!-- ngIf: entity.places -->
+
+        <div ng-if="entity.places" class="ng-scope"></div><!-- end ngIf: entity.places -->
+    </div><!-- ngIf: user.username -->
+
     <div class="well well-lg">
         <p class="bold">
             {{ label }}
