@@ -165,9 +165,11 @@ export class ConversionService extends ApiService {
         };
         detail = {
             header: header,
-            image: [''],
-            incoming: {},
-            props: []
+            content: {
+                props: [],
+                image: [''],
+                incoming: {}
+            }
         };
         return detail;
     }
@@ -180,9 +182,11 @@ export class ConversionService extends ApiService {
         let detail: ResourceDetail = new ResourceDetail();
         detail = {
             header: this.prepareResourceDetailHeader(data, currentId),
-            image: this.prepareResourceDetailImage(data),
-            incoming: this.prepareResourceDetailIncomingLinks(data.incoming),
-            props: this.prepareResourceDetailProperties(data.props)
+            content: {
+                props: this.prepareResourceDetailProperties(data.props),
+                image: this.prepareResourceDetailImage(data),
+                incoming: this.prepareResourceDetailIncomingLinks(data.incoming)
+            }
         };
         return detail;
     }

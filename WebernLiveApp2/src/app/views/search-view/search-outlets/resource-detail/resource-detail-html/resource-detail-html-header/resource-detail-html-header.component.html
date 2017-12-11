@@ -1,0 +1,52 @@
+<!-- resourceDetailData header -->
+<div class="resource-header">
+    <div class="row">
+        <div class="col-md-8">
+            <h2 class="resource-title">
+                <div class="title">
+                    <span [compile-html]="header?.title" [compile-html-ref]="this"></span>
+                </div>
+                <div class="subtitle">
+                    <small>[Last modified: {{header?.lastmod}} (UTC)]</small>
+                </div>
+            </h2>
+            <div class="resource-link">
+                <small>
+                    <a target="_self" (click)="showDetail(header?.objID)">{{ requestUrl }}</a>
+                </small>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <table class="table table-condensed" style="margin-bottom: 0">
+                <thead>
+                <tr>
+                    <td>
+                        <strong>ID:</strong>
+                    </td>
+                    <td id="header?.objID">
+                        {{ header?.objID }}
+                    </td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr>
+                    <td>
+                        <strong>Kategorie:</strong>
+                    </td>
+                    <td>
+                        {{ header?.type }}&nbsp;<img [attr.src]="header?.icon" alt="icon" />
+                    </td>
+                </tr>
+                <tr>
+                    <td>
+                        <strong>Zuletzt bearbeitet:</strong>
+                    </td>
+                    <td>
+                        {{header?.lastmod}} (UTC)
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

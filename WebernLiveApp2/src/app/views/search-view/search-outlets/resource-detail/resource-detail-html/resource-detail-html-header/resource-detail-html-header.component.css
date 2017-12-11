@@ -1,0 +1,18 @@
+.resource-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 22px;
+}
+.resource-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.resource-title .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.resource-title .title:hover {
+    white-space: normal;
+    width: inherit;
+    height: auto;
+}

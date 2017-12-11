@@ -9,6 +9,8 @@ import { SearchFormComponent } from './search-outlets/search-panel/search-form/s
 import { SearchResultListComponent } from './search-outlets/search-panel/search-result-list/search-result-list.component';
 
 import { ResourceDetailHtmlComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html.component';
+import { ResourceDetailHtmlContentComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-content/resource-detail-html-content.component';
+import { ResourceDetailHtmlHeaderComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-header/resource-detail-html-header.component';
 import { ResourceDetailJsonConvertedComponent } from './search-outlets/resource-detail/resource-detail-json-converted/resource-detail-json-converted.component';
 import { ResourceDetailJsonRawComponent } from './search-outlets/resource-detail/resource-detail-json-raw/resource-detail-json-raw.component';
 
@@ -27,6 +29,8 @@ import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliograp
         SearchResultListComponent,
 
         ResourceDetailHtmlComponent,
+        ResourceDetailHtmlContentComponent,
+        ResourceDetailHtmlHeaderComponent,
         ResourceDetailJsonConvertedComponent,
         ResourceDetailJsonRawComponent,
 

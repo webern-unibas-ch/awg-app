@@ -1,0 +1,59 @@
+<!-- resourceDetailData content -->
+<div class="resource-content">
+    <div class="row">
+        <div class="col-md-8">
+            <div class="props" *ngIf="content?.props">
+                <ul>
+                    <li style="list-style-type: none">
+                        <strong> Objektdaten </strong>
+                        <ul *ngFor="let prop of content?.props">
+                            <li id="breakLine" *ngIf="prop.label === metaBreakLine">
+                                <hr>
+                            </li>
+                            <li id="propField" *ngIf="prop.value[0]" style="list-style-type: none">
+                                <!-- value label -->
+                                <strong *ngIf="prop.label">
+                                    {{ prop.label }}
+                                </strong>
+                                <!-- value content -->
+                                <ul *ngFor="let value of prop.value">
+                                    <li *ngIf="value">
+                                        <span [compile-html]="value" [compile-html-ref]="this"></span>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <!-- image objects -->
+            <div align="center" class="objImage" *ngIf="content?.image[0]">
+                <div class="facs">
+                    <a [href]="content?.image.full" target="_blank">
+                        <img [src]="content?.image.value" alt="{{ content?.image.label }}" />
+                    </a>
+                </div>
+                <div class="btn-group btn-group-justified">
+                    <a class="btn btn-default" *ngFor="let objImage of content?.image" (click)="showImage(objImage)">
+                        {{ objImage.label }}
+                    </a>
+                </div>
+            </div>
+            <!-- connected objects -->
+            <ng-container *ngIf="content?.incoming">
+                <h4>Verknüpfte Objekte <small>({{ getFacetContentSize(content?.incoming) }})</small></h4>
+                <accordion [closeOthers]="true">
+                    <accordion-group class="ins" *ngFor="let facetGroup of content?.incoming | mapToIterable">
+                        <div accordion-heading>
+                            {{ facetGroup?.mappedKey }}
+                            <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
+                        </div>
+                        <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="showDetail(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
+                    </accordion-group>
+                </accordion>
+            </ng-container>
+        </div>
+    </div>
+</div>

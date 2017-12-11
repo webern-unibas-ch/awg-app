@@ -1,118 +1,20 @@
 <!-- resourceDetailData header -->
-<div class="resource-header">
-    <div class="row">
-        <div class="col-md-8">
-            <h2 class="resource-title">
-                <div class="title">
-                    <span [compile-html]="resourceDetailData?.header.title" [compile-html-ref]="this"></span>
-                </div>
-                <div class="subtitle">
-                    <small>[Last modified: {{resourceDetailData?.header.lastmod}} (UTC)]</small>
-                </div>
-            </h2>
-            <div class="resource-link">
-                <small>
-                    <a target="_self" (click)="showDetail(resourceDetailData?.header.objID)">{{ requestUrl}}</a>
-                </small>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <table class="table table-condensed" style="margin-bottom: 0">
-                <thead>
-                <tr>
-                    <td>
-                        <strong>ID:</strong>
-                    </td>
-                    <td id="resourceDetailData?.header.objID">
-                        {{ resourceDetailData?.header.objID }}
-                    </td>
-                </tr>
-                </thead>
-                <tbody>
-                <tr>
-                    <td>
-                        <strong>Kategorie:</strong>
-                    </td>
-                    <td>
-                        {{ resourceDetailData?.header.type }}&nbsp;<img [attr.src]="resourceDetailData?.header.icon" alt="icon" />
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <strong>Zuletzt bearbeitet:</strong>
-                    </td>
-                    <td>
-                        {{resourceDetailData?.header.lastmod}} (UTC)
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<awg-resource-detail-html-header
+    [header]="resourceDetailData?.header"
+    [requestUrl]="requestUrl"
+    (showDetailRequest)="showDetail($event)">
+</awg-resource-detail-html-header>
 
     <br /><br />
     <button (click)="showDetail()">Zeige vorheriges Objekt</button>
     <button (click)="goBack()">Zurück zur Suche</button>
 
 <!-- resourceDetailData content -->
-<div class="resource-content">
-    <div class="row">
-        <div class="col-md-8">
-            <div class="props" *ngIf="resourceDetailData?.props">
-                <ul>
-                    <li style="list-style-type: none">
-                        <strong> ### Descriptive Metadata ### </strong>
-                        <ul *ngFor="let prop of resourceDetailData?.props">
-                            <li id="breakLine" *ngIf="prop.label === metaBreakLine">
-                                <hr>
-                            </li>
-                            <li id="propField" *ngIf="prop.value[0]" style="list-style-type: none">
-                                <!-- value label -->
-                                <strong *ngIf="prop.label">
-                                    {{ prop.label }}
-                                </strong>
-                                <!-- value content -->
-                                <ul *ngFor="let value of prop.value">
-                                    <li *ngIf="value">
-                                        <span [compile-html]="value" [compile-html-ref]="this"></span>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
-        </div>
-        <div class="col-md-4">
-            <!-- image objects -->
-            <div align="center" class="objImage" *ngIf="resourceDetailData?.image[0]">
-                <div class="facs">
-                    <a [href]="resourceDetailData?.image.full" target="_blank">
-                        <img [src]="resourceDetailData?.image.value" alt="{{ resourceDetailData?.image.label }}" />
-                    </a>
-                </div>
-                <div class="btn-group btn-group-justified">
-                    <a class="btn btn-default" *ngFor="let objImage of resourceDetailData?.image" (click)="showImage(objImage)">
-                        {{ objImage.label }}
-                    </a>
-                </div>
-            </div>
-            <!-- connected objects -->
-            <ng-container *ngIf="resourceDetailData?.incoming">
-                <h4>Verknüpfte Objekte <small>({{ getFacetContentSize(resourceDetailData?.incoming) }})</small></h4>
-                <accordion [closeOthers]="true">
-                    <accordion-group class="ins" *ngFor="let facetGroup of resourceDetailData?.incoming | mapToIterable">
-                        <div accordion-heading>
-                            {{ facetGroup?.mappedKey }}
-                            <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
-                        </div>
-                        <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="showDetail(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
-                    </accordion-group>
-                </accordion>
-            </ng-container>
-        </div>
-    </div>
-</div>
+<awg-resource-detail-html-content
+    [content]="resourceDetailData?.content"
+    [requestUrl]="requestUrl"
+    (showDetailRequest)="showDetail($event)">
+</awg-resource-detail-html-content>
+
 
 

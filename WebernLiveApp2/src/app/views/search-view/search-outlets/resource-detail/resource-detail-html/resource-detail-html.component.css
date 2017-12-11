@@ -19,28 +19,7 @@
     margin-left: -15px;
 }
 
-
-.resource-header {
-    border-bottom: 1px solid #ddd;
-    padding-bottom: 22px;
-}
-
-.resource-title {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
-.resource-title .title, .single-line {
-    white-space: nowrap;
-}
-.resource-title .title, .single-line {
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-.resource-title .title:hover {
-    width: inherit;
-    height: auto;
-    white-space: normal;
-}
+/* for resource-header see 'resource-detail-html-header.component.css' */
 
 /* props */
 .props {
@@ -72,6 +51,12 @@
     padding: 3px 0;
 }
 
+/* single-line */
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 
 /* links */
 a {
