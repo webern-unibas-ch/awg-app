@@ -8,7 +8,10 @@ import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/ap
 @Injectable()
 export class SearchService extends ApiService {
 
-    private projectId: string = '6';
+    projectId: string = '6';
+    resourceAppendix: string = '_-_local';
+    resourcesRoute: string = '/resources/';
+    searchRoute: string = '/search/';
 
     /**********************************
      **
@@ -16,7 +19,7 @@ export class SearchService extends ApiService {
      **
      **********************************/
     public getFulltextSearchData(searchString: string): Observable<SearchResponseJson> {
-        const queryString: string = '/search/' + searchString;
+        const queryString: string = this.searchRoute + searchString;
         const queryParams = new HttpParams()
             .set('searchtype', 'fulltext')
             .set('filter_by_project', this.projectId);
@@ -28,8 +31,8 @@ export class SearchService extends ApiService {
      **  resource detail search via salsah api
      **
      ****************************************/
-    public getResourceData(id: string): Observable<ResourceFullResponseJson> {
-        const queryString: string = '/resources/' + id + '_-_local';
+    public getResourceData(resourceId: string): Observable<ResourceFullResponseJson> {
+        const queryString: string = this.resourcesRoute + resourceId + this.resourceAppendix;
         const queryParams = new HttpParams();
         /*
             .set('restype', 'info')

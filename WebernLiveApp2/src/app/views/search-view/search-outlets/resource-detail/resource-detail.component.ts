@@ -20,6 +20,7 @@ export class ResourceDetailComponent implements OnInit {
     public errorMessage: string = undefined;
     public resourceData: ResourceData = new ResourceData();
     public requestUrl: string;
+
     public tabTitle = {
         html: 'Detail',
         raw: 'JSON (raw)',
@@ -72,7 +73,7 @@ export class ResourceDetailComponent implements OnInit {
 
     public showDetail(nextId?: string): void {
         /*
-         * Navigate to ResultDetail:
+         * Navigate to ResourceDetail:
          * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
          * if oldId not exists (first call), use currentId
          */
@@ -82,7 +83,7 @@ export class ResourceDetailComponent implements OnInit {
         // update currentId
         this.currentId = showId;
         // navigate to new detail
-        this.router.navigate(['/search/detail', +showId, { outlets: { side: 'searchInfo' }}]);
+        this.router.navigate(['/resource', +showId]);
     }
 
     public goBack(): void {

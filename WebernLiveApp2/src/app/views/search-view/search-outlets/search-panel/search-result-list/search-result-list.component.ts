@@ -41,7 +41,7 @@ export class SearchResultListComponent implements OnInit {
 
     showDetail(id: string) {
         this.currentId = id;
-        this.router.navigate(['/search/detail', this.currentId]);
+        this.router.navigate(['/resource', this.currentId]);
     }
 
 }

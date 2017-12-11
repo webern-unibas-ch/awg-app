@@ -8,9 +8,11 @@ import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/ap
 @Injectable()
 export class BibliographyService extends ApiService {
 
-    private projectId: string = '6';
-    private resTypeId: string = '126';      // test-01: 127
-    private bibShortTitlePropertyId: string = '614';    // 614 = Bibligoraphie#Kurztitel
+    projectId: string = '6';
+    resTypeId: string = '126';      // test-01: 127
+    bibShortTitlePropertyId: string = '614';    // 614 = Bibligoraphie#Kurztitel
+    resourcesRoute: string = '/resources/';
+    searchRoute: string = '/search/';
 
     // ################################
     //
@@ -18,7 +20,7 @@ export class BibliographyService extends ApiService {
     //
     // ################################
     getBibliographyList(): Observable<SearchResponseJson> {
-        const queryString: string = '/search/';
+        const queryString: string = this.searchRoute;
         const queryParams = new HttpParams()
             .set('searchtype', 'extended')
             .set('property_id', this.bibShortTitlePropertyId)
@@ -28,8 +30,8 @@ export class BibliographyService extends ApiService {
         return this.httpGet(queryString, queryParams);
     }
 
-    getBibliographyItemDetail(objId: string): Observable<ResourceFullResponseJson> {
-        const queryString: string = '/resources/' + objId;
+    getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
+        const queryString: string = this.resourcesRoute + resourceId;
         const queryParams = new HttpParams();
         return this.httpGet(queryString, queryParams);
     }
