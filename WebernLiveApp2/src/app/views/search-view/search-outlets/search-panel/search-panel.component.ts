@@ -52,6 +52,18 @@ export class SearchPanelComponent implements OnInit {
             .subscribe(
                 (data) => {
                     const searchResultsBody: SearchResponseJson = data['body'];
+
+
+                    // TODO: rm after test
+                    const test = searchResultsBody['subjects'].reduce((x: SubjectItemJson[], y: any) => {
+                        console.log('x: ', typeof x);
+                        console.log('y: ', y);
+                        console.log(y === x[0]);
+                        if (x.indexOf(y) === -1) { x.push(y); };
+                        return x;
+                        }, []);
+                    console.log('test: ', test);
+
                     this.searchUrl = data['url'];
                     this.searchData = this.conversionService.convertFullTextSearchResults(searchResultsBody);
                     // TODO: rm
