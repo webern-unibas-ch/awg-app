@@ -12,6 +12,7 @@ import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 
 import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
+import { OrderByPipe } from './order-by/order-by.pipe';
 
 @NgModule({
     imports: [
@@ -26,7 +27,8 @@ import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
         HeadingComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,
-        MapToIterablePipe
+        MapToIterablePipe,
+        OrderByPipe
     ],
     exports: [
         CommonModule,
@@ -40,7 +42,8 @@ import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
         HeadingComponent,
         ModalComponent,
         RouterLinkButtonGroupComponent,
-        MapToIterablePipe
+        MapToIterablePipe,
+        OrderByPipe
     ]
 })
 export class SharedModule { }

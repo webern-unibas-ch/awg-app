@@ -25,12 +25,11 @@
             </thead>
             <tbody>
             <!-- show searchResultDetail by clicking on single entry -->
-            <tr *ngFor="let data of searchData?.subjects" (click)="showDetail(data.obj_id)" [class.active]="activeDetail(data.obj_id)">
+            <tr *ngFor="let data of searchData?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="showDetail(data.obj_id)" [class.active]="activeDetail(data.obj_id)">
                 <td>
                     <img [attr.src]=data.iconsrc alt="iconsrc" > {{ data.iconlabel }}
                 </td>
                 <td>
-                    <em>{{ data.valuelabel[0] }}</em>:
                     <span [compile-html]="data.value[0]" [compile-html-ref]="this"></span>
                 </td>
             </tr>
