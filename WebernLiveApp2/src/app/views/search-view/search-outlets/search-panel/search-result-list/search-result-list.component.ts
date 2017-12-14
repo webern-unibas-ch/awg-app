@@ -12,6 +12,7 @@ import { SearchResponseJson } from '../../../../../shared/api-objects';
 export class SearchResultListComponent implements OnInit {
     @Input() searchData: SearchResponseJson;
     @Input() searchUrl: string;
+    @Input() filteredOut: number;
 
     public currentId: string;
     public resText: string;
@@ -33,7 +34,9 @@ export class SearchResultListComponent implements OnInit {
             const length = this.searchData.subjects.length;
             this.resText = length + ` `;
             this.resText += (length === 1) ? `zugängliches Resultat` : `zugängliche Resultate`;
-            this.resText += ` von ${this.searchData.nhits}:`;
+            this.resText += ` von ${this.searchData.nhits}`;
+            if (this.filteredOut > 0) { this.resText += ` (${this.filteredOut} Duplikate entfernt)`};
+            this.resText += `:`;
         } else {
             this.resText = `Die Abfrage ${this.searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
         }

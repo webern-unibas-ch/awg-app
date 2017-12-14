@@ -2,9 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { ConversionService } from '../../../../core/services';
 import { SearchService } from '../../services';
-import { SearchResponseJson } from '../../../../shared/api-objects';
-import {HttpEvent} from '@angular/common/http';
-
+import { SearchResponseJson, SubjectItemJson } from '../../../../shared/api-objects';
 
 @Component({
     selector: 'awg-search-panel',
@@ -13,10 +11,11 @@ import {HttpEvent} from '@angular/common/http';
 })
 export class SearchPanelComponent implements OnInit {
 
-    public searchData: SearchResponseJson = new SearchResponseJson();
-    public searchval: string = 'Skizzenbuch';
-    public searchUrl: string = '';
-    private errorMessage: string = undefined;
+    searchData: SearchResponseJson = new SearchResponseJson();
+    searchval: string = 'Skizzenbuch';
+    searchUrl: string = '';
+    errorMessage: string = undefined;
+    filteredOut: number;
 
     isFormSubmitted = false;     // no form submitted
     isDataLoaded = false;        // no data loaded
@@ -34,7 +33,7 @@ export class SearchPanelComponent implements OnInit {
     ngOnInit() {
     }
 
-    onSubmit(query: string) {
+    public onSubmit(query: string) {
         // init
         this.isFormSubmitted = true;      // now form is submitted
         this.isDataLoaded = false;        // no data loaded
@@ -51,20 +50,13 @@ export class SearchPanelComponent implements OnInit {
         this.searchService.getFulltextSearchData(this.searchval)
             .subscribe(
                 (data) => {
+                    this.searchUrl = data['url'];
                     const searchResultsBody: SearchResponseJson = data['body'];
 
+                    // remove duplicates from response subjects
+                    searchResultsBody['subjects'] = this.distinctArray(searchResultsBody['subjects']);
 
-                    // TODO: rm after test
-                    const test = searchResultsBody['subjects'].reduce((x: SubjectItemJson[], y: any) => {
-                        console.log('x: ', typeof x);
-                        console.log('y: ', y);
-                        console.log(y === x[0]);
-                        if (x.indexOf(y) === -1) { x.push(y); };
-                        return x;
-                        }, []);
-                    console.log('test: ', test);
-
-                    this.searchUrl = data['url'];
+                    // conversion of search results for HTML display
                     this.searchData = this.conversionService.convertFullTextSearchResults(searchResultsBody);
                     // TODO: rm
                     console.info('SearchPanel#searchData: ', this.searchData);
@@ -75,5 +67,18 @@ export class SearchPanelComponent implements OnInit {
                     this.errorMessage = <any>error;
                 }
             );
+    }
+
+    private distinctArray(arrArg) {
+        /*
+        * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
+        *
+        * This function checks for every array position (reduce)
+        * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
+        * and if not pushes y into x that is initalized as empty array []
+        *
+        */
+        this.filteredOut = 0;
+        return arrArg.reduce((x, y) => x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : (this.filteredOut += 1, x), []);
     }
 }
