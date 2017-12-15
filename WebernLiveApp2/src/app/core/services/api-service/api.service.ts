@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
@@ -19,10 +19,19 @@ export class ApiService {
      * @param options
      * @returns {Observable<any>}
      */
-    httpGet(url: string, params?: HttpParams ): Observable<any> {
-        if (!params) { params = new HttpParams(); }
-        const getUrl = AppConfig.API_ENDPOINT + url;
-        return this.http.get(getUrl, { observe: 'response', params: params})
+    httpGet(url: string, httpGetParams?: HttpParams ): Observable<any> {
+        if (!httpGetParams) { httpGetParams = new HttpParams(); }
+        const httpGetHeaders = new HttpHeaders().set('Accept', 'application/json');
+        const httpGetUrl = AppConfig.API_ENDPOINT + url;
+
+        return this.http
+            .get(
+               httpGetUrl,
+               {
+                   observe: 'response',
+                   params: httpGetParams,
+                   headers: httpGetHeaders
+               })
             .pipe(
                 tap(response =>
                     console.info('ApiService#httpGet.response: ', response)

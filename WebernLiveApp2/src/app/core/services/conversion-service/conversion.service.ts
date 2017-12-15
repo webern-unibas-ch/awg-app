@@ -465,7 +465,7 @@ export class ConversionService extends ApiService {
         const hlistId: string = input.attributes.split('=')[1].toString();
 
         // get hlist data
-        return this.getHListNodesById(hlistId).subscribe(
+        this.getHListNodesById(hlistId).subscribe(
             (hlistData) => {
                 // check for existing hlist in response
                 // esle return empty prop if necessary
@@ -482,6 +482,8 @@ export class ConversionService extends ApiService {
                         }
                     }
                 }
+                // TODO: rm
+                console.info('ConversionService#convertHlistValue: got output: ', output);
                 return output;
             },
             err => console.error(err)
@@ -531,7 +533,7 @@ export class ConversionService extends ApiService {
         const selectionId: string = input.attributes.split('=')[1].toString();
 
         // get selection-list data
-        return this.getSelectionNodesById(selectionId).map(
+        this.getSelectionNodesById(selectionId).subscribe(
             (selectionData) => {
                 // check for existing selection in response
                 // esle return empty prop if necessary
@@ -548,6 +550,7 @@ export class ConversionService extends ApiService {
                         }
                     }
                 }
+                // TODO: rm
                 console.info('ConversionService#convertSelectionValue: got output: ', output);
 
                 return output;
