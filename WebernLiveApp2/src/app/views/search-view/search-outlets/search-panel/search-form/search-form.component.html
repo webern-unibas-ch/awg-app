@@ -1,28 +1,29 @@
-
 <div class="text-center">
-    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchval)">
+    <form [formGroup]="searchForm"
+          (ngSubmit)="onSubmit(searchValueControl.value)">
         <div class="form-group">
-            <label class="control-label"></label>
+            <label for="searchInput"></label>
             <div class="input-group">
                     <span class="input-group-btn">
                         <button class="btn btn-default"
                                 type="submit"
-                                [disabled]="!searchForm.form.valid">
+                                [disabled]="searchForm.invalid">
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
                 <input type="text"
-                       class="form-control"
-                       id="searchval"
+                       id="searchInput"
                        placeholder="Volltextsuche in der Webern-Datenbank ({{ url }}) …"
-                       required
-                       [(ngModel)]="searchval" name="searchval"
-                       #searchInput="ngModel" >
+                       [formControl]="searchValueControl"
+                       [(ngModel)]="searchval">
             </div>
-            <div [hidden]="searchInput.valid || searchInput.pristine"
-                 class="alert alert-danger">
-                Suchbegriff benötigt
-            </div>
+            <div *ngIf="!searchValueControl.valid"
+                 class="alert alert-danger">Suchbegriff ist zu kurz</div>
+            <div *ngIf="searchValueControl.hasError('required')"
+                 class="alert alert-danger">Suchbegriff benötigt</div>
+            <div *ngIf="searchForm.invalid"
+                 class="alert alert-danger">Form ist ungültig</div>
         </div>
     </form>
 </div>
+

@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 import { AccordionModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
@@ -18,6 +18,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
     imports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule,
         AccordionModule,
         ModalModule,
@@ -33,6 +34,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
     exports: [
         CommonModule,
         FormsModule,
+        ReactiveFormsModule,
         RouterModule,
         AccordionModule,
         CarouselModule,
