@@ -1,9 +1,15 @@
 import { NgModule, ModuleWithProviders } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SearchRoutingModule, routedComponents } from './search-routing.module';
 
-import { BibliographyService, SearchService } from './services';
+import {
+BibliographyService,
+HttpCacheService,
+SearchService
+} from './services';
+import { CachingInterceptor } from './interceptors';
 
 import { SearchFormComponent } from './search-outlets/search-panel/search-form/search-form.component';
 import { SearchResultListComponent } from './search-outlets/search-panel/search-result-list/search-result-list.component';
@@ -43,7 +49,16 @@ export class SearchModule {
     static forRoot(): ModuleWithProviders {
         return {
             ngModule: SearchModule,
-            providers: [ SearchService, BibliographyService ]
+            providers: [
+                BibliographyService,
+                HttpCacheService,
+                SearchService,
+                {
+                    provide: HTTP_INTERCEPTORS,
+                    useClass: CachingInterceptor,
+                    multi: true
+                }
+            ]
         };
     }
 }
