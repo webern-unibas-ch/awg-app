@@ -567,6 +567,8 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private convertStandoffToHTML(str: string, attr: string): string {
+        if (!str) { return; }
+        if (!attr) { return str; }
         return htmlConverter(JSON.parse(attr), str);
     }
 

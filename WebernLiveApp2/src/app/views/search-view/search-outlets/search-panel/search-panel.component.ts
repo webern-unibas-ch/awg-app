@@ -50,8 +50,9 @@ export class SearchPanelComponent implements OnInit {
         this.searchService.getFulltextSearchData(this.searchval)
             .subscribe(
                 (data) => {
+                    console.info('SearchPanel#data: ', data);
                     this.searchUrl = data['url'];
-                    const searchResultsBody: SearchResponseJson = data['body'];
+                    const searchResultsBody: SearchResponseJson = {...data['body']};
 
                     // remove duplicates from response subjects
                     searchResultsBody['subjects'] = this.distinctArray(searchResultsBody['subjects']);
