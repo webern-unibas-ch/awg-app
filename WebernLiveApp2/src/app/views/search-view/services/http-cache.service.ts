@@ -19,13 +19,17 @@ export class HttpCacheService implements HttpCache {
 
     constructor() { }
 
-    cachedResponses = {};
+    cachedResponses = new Map<string, HttpResponse<any>>();
 
     get(req: HttpRequest<any>): HttpResponse<any>|null {
+
         console.log('HttpCacheService#cachedResponses: ', this.cachedResponses);
         console.log('HttpCacheService#get req: ', req);
+
         const returnValue = this.cachedResponses ? this.cachedResponses[req.urlWithParams] : null;
+
         console.log('HttpCacheService#get returnValue: ', returnValue);
+
         return returnValue;
         /*
         const searchString = HttpCacheService.getSearchString(req);
@@ -40,6 +44,6 @@ export class HttpCacheService implements HttpCache {
     put(req: HttpRequest<any>, resp: HttpResponse<any>): void {
         console.log('HttpCacheService#cachedResponses: ', this.cachedResponses);
         console.log('HttpCacheService#put req, resp: ', req, resp);
-        this.cachedResponses[req.urlWithParams] = resp;
+        this.cachedResponses[req.urlWithParams] = resp.clone();
     }
 }

@@ -38,15 +38,24 @@ export class ConversionService extends ApiService {
 
             // =>Chronologie: salsah standoff needs to be converted before displaying
             // valuetype_id 14 = valuelabel 'Ereignis'
-            if (res.valuetype_id[0] === '14') {
-                let htmlstr: string = this.convertStandoffToHTML(res.value[0]['utf8str'], res.value[0]['textattr']);
+            if (res.valuetype_id[0] === '14' && res.value[0]) {
+                let htmlstr: string = '';
+                const utf8str: string = res.value[0]['utf8str'];
+                const textattr: string = res.value[0]['textattr'];
 
-                // replace salsah links
-                htmlstr = this.replaceSalsahLink(htmlstr);
+                // check if there is standoff, otherwise leave res.value[0] alone
+                // because when retrieved from cache the standoff is already converted
+                if (utf8str && textattr) {
+                    htmlstr = this.convertStandoffToHTML(utf8str, textattr);
 
-                // strip & replace <p>-tags for displaying objtitle
-                htmlstr = this.replaceParagraphTags(htmlstr);
-                res.value[0] = htmlstr;
+                    // replace salsah links
+                    htmlstr = this.replaceSalsahLink(htmlstr);
+
+                    // strip & replace <p>-tags for displaying objt
+                    htmlstr = this.replaceParagraphTags(htmlstr);
+
+                    res.value[0] = htmlstr;
+                }
             }
         });
         return results;

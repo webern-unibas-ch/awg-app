@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import {
+    HttpErrorResponse,
     HttpEvent,
     HttpHandler,
     HttpInterceptor,
@@ -8,6 +9,8 @@ import {
 } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/operator/do';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/observable/throw';
 
 import {HttpCacheService} from '../services';
 
@@ -36,13 +39,12 @@ export class CachingInterceptor implements HttpInterceptor {
 
         const cachedResponse = this.cache.get(req);
         if (cachedResponse) {
-
-            console.log('CachingInterceptor: returning cachedResponse of ... ', req.urlWithParams);
-            console.log('CachingInterceptor: cachedResponse ... ', cachedResponse);
+            console.log('CachingInterceptor: returning cachedResponse of ', req.urlWithParams);
+            console.log('CachingInterceptor ---> cachedResponse: ', cachedResponse);
 
             // A cached response exists. Serve it instead of forwarding
             // the request to the next handler.
-            return Observable.of(cachedResponse);
+            return Observable.of(cachedResponse.clone());
         }
 
         console.log('CachingInterceptor: no cachedResponse ... ');
@@ -52,20 +54,27 @@ export class CachingInterceptor implements HttpInterceptor {
         return next.handle(req)
             .do(event => {
 
-                console.log(`### CachingInterceptor: next handle for ${req.urlWithParams} ###`);
+                console.log(`CachingInterceptor ---> next handle for ${req.urlWithParams}`);
 
                 // Remember, there may be other events besides just the response.
                 if (event instanceof HttpResponse) {
 
                     const elapsed = Date.now() - started;
 
-                    console.log(`Request took ${elapsed} ms.`);
                     // Update the cache.
-                    console.log('CachingInterceptor ---> resp:', event);
                     console.log('CachingInterceptor ---> req:', req);
+                    console.log('CachingInterceptor ---> event:', event);
+                    console.log(`Request took ${elapsed} ms.`);
 
-                    this.cache.put(req, event);
+                    this.cache.put(req, event.clone());
                 }
+            })
+            .catch(response => {
+                if (response instanceof HttpErrorResponse) {
+                    console.log('CachingInterceptor: Processing http error', response);
+                }
+
+                return Observable.throw(response);
             });
     }
 }
