@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest } from '@angular/common/http';
+import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
@@ -36,6 +36,18 @@ export class ApiService {
                 tap(response =>
                     console.info('ApiService#httpGet.response: ', response)
                 ),
+                map((response: HttpResponse<any>) => {
+                    try {
+                        const apiServiceResult: ApiServiceResult = new ApiServiceResult();
+                        apiServiceResult.status = response.status;
+                        apiServiceResult.statusText = response.statusText;
+                        apiServiceResult.body = response.body;
+                        apiServiceResult.url = url;
+                        return apiServiceResult;
+                    } catch (e) {
+                        // return ApiService.handleError(response, url);
+                    }
+                }),
                 catchError(this.handleError('ApiService#httpGet', []))
             );
     }
@@ -71,24 +83,26 @@ export class ApiService {
     static handleError(error: any, url: string): ApiServiceError {
 
         const response = new ApiServiceError();
-        if (error instanceof Response) {
-//            console.log(error);
+        if (error instanceof HttpResponse) {
+            // console.log(error);
             response.status = error.status;
             response.statusText = error.statusText;
-            if(!response.statusText) response.statusText = 'Connection to API endpoint failed';
-            response.request = url;
+            if (!response.statusText) {
+                response.statusText = 'Connection to API endpoint failed';
+            }
+            response.route = url;
         } else {
             response.status = 0;
             response.statusText = 'Connection to API endpoint failed';
-            response.request = url;
+            response.route = url;
         }
 
         // response.status === 401 --> Unauthorized; password is wrong
         // response.status === 404 --> Not found; username is wrong
-
         return response;
+
     }
-    */
+
 
     /**
      * Handle Http operation that failed.
