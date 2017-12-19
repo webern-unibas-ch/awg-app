@@ -31,6 +31,7 @@ export class ConversionService extends ApiService {
      *****************************************/
     public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
         if (!results['subjects']) { return results; }
+        // TODO: refactor with reduce??
         results['subjects'].forEach(res => {
             // clean value labels
             res.valuelabel[0] = res.valuelabel[0].replace(' (Richtext)', '');

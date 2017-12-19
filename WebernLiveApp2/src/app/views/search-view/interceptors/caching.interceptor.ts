@@ -24,37 +24,31 @@ export class CachingInterceptor implements HttpInterceptor {
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-        console.log('CachingInterceptor: intercepted request ... ');
+        // TODO: rm
+        console.log('------------> CachingInterceptor');
+        console.log('CI# RequestUrl: ', req.urlWithParams);
 
         const started = Date.now();
 
-        // Before doing anything, it's important to only cache GET requests.
-        // Skip this interceptor if the request method isn't GET.
         if (req.method !== 'GET') {
             return next.handle(req);
         }
 
-        // First, check the cache to see if this request exists.
-        console.log('CachingInterceptor: looking for cachedResponse ... ');
-
+        // check the cache for existing responses
         const cachedResponse = this.cache.get(req);
         if (cachedResponse) {
-            console.log('CachingInterceptor: returning cachedResponse of ', req.urlWithParams);
-            console.log('CachingInterceptor ---> cachedResponse: ', cachedResponse);
+            // TODO: rm
 
-            // A cached response exists. Serve it instead of forwarding
-            // the request to the next handler.
+            console.log('CI# cachedResponse: ', cachedResponse);
+            console.log('<------------ END CachingInterceptor');
+
+            // serve existing cached response
             return Observable.of(cachedResponse.clone());
         }
 
-        console.log('CachingInterceptor: no cachedResponse ... ');
-
-        // No cached response exists. Go to the network, and cache
-        // the response when it arrives.
+        // cache the new response
         return next.handle(req)
             .do(event => {
-
-                console.log(`CachingInterceptor ---> next handle for ${req.urlWithParams}`);
 
                 // Remember, there may be other events besides just the response.
                 if (event instanceof HttpResponse) {
@@ -62,11 +56,11 @@ export class CachingInterceptor implements HttpInterceptor {
                     const elapsed = Date.now() - started;
 
                     // Update the cache.
-                    console.log('CachingInterceptor ---> req:', req);
-                    console.log('CachingInterceptor ---> event:', event);
+                    console.log('CI# caching new resposnse ---> req, event:', req, event);
                     console.log(`Request took ${elapsed} ms.`);
 
                     this.cache.put(req, event.clone());
+                    console.log('<------------ END CachingInterceptor ');
                 }
             })
             .catch(response => {

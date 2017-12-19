@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import {ActivatedRoute, ParamMap, Router} from '@angular/router';
 
 import { ConversionService } from '../../../../core/services';
 import { SearchService } from '../../services';
@@ -26,31 +27,44 @@ export class SearchPanelComponent implements OnInit {
     isEventCached = false;       // no event cached
 
     constructor(
-        private searchService: SearchService,
-        private conversionService: ConversionService
-    ) { }
+        private route: ActivatedRoute,
+        private router: Router,
+        private conversionService: ConversionService,
+        private searchService: SearchService
+    ) {
+        this.route.params.subscribe(params => {
+            console.log('SearchPanel# params: ', params);
+            if (params['query']) {
+                this.getFulltextSearchData(params['query']);
+            }
+        });
+    }
 
     ngOnInit() {
     }
 
     public onSubmit(query: string) {
-        // init
         this.isFormSubmitted = true;      // now form is submitted
         this.isDataLoaded = false;        // no data loaded
         this.isDetailSelected = false;    // no detail selected
         this.isDetailLoaded = false;      // no detail loaded
 
-        this.searchval = query;
+        console.log('SearchPanel# onSubmit: got query ', query);
+        // this.searchval = query;
 
-        this.getFulltextSearchData();
+        // create random id for now to get router.navigate activated when resubmitting on the same page
+        const randomId = Math.floor(Math.random() * (100 - 1 + 1)) + 1;
+        console.log('id generated: ', randomId);
+
+        this.router.navigate(['search/fulltext', {query: query, id: randomId}]);
     }
 
-    public getFulltextSearchData() {
+    public getFulltextSearchData(query: string) {
         // get searchresults from service
-        this.searchService.getFulltextSearchData(this.searchval)
+        this.searchService.getFulltextSearchData(query)
             .subscribe(
                 (data) => {
-                    console.info('SearchPanel#data: ', data);
+                    // catch response values
                     this.searchUrl = data['url'];
                     const searchResultsBody: SearchResponseJson = {...data['body']};
 

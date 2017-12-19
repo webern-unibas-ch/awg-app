@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
@@ -42,8 +42,8 @@ export class ResourceDetailComponent implements OnInit {
 
     public getResourceData() {
         // fetch data
-        this.route.params
-            .switchMap((params: Params) => this.searchService.getResourceData(params['id']))
+        this.route.paramMap
+            .switchMap((params: ParamMap) => this.searchService.getResourceData(params.get('id')))
             .subscribe(
                 (data) => {
                     // snapshot of currentId
@@ -94,8 +94,7 @@ export class ResourceDetailComponent implements OnInit {
          * so that the SearchResultList component
          * can select the corresponding Resource.
          */
-        const resId = this.resourceData['html'] ? +this.currentId : null;
-        this.router.navigate(['/search/fulltext', { id: resId }]);
+        this.router.navigate(['/search/fulltext', { id: this.currentId }]);
     }
 
 }

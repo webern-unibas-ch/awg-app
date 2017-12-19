@@ -34,7 +34,7 @@ const searchRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [ RouterModule.forChild(searchRoutes) ],
+    imports: [ RouterModule.forChild(searchRoutes)],
     exports: [ RouterModule ]
 
 })
