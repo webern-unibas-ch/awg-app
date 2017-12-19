@@ -2,7 +2,7 @@
     <form [formGroup]="searchForm"
           (ngSubmit)="onSubmit(searchValueControl.value)">
         <div class="form-group">
-            <label for="searchInput"></label>
+            <label class="control-label" for="searchInput"></label>
             <div class="input-group">
                     <span class="input-group-btn">
                         <button class="btn btn-default"
@@ -12,17 +12,18 @@
                         </button>
                     </span>
                 <input type="text"
+                       class="form-control"
                        id="searchInput"
                        placeholder="Volltextsuche in der Webern-Datenbank ({{ url }}) …"
                        [formControl]="searchValueControl"
                        [(ngModel)]="searchval">
             </div>
-            <div *ngIf="!searchValueControl.valid"
-                 class="alert alert-danger">Suchbegriff ist zu kurz</div>
-            <div *ngIf="searchValueControl.hasError('required')"
-                 class="alert alert-danger">Suchbegriff benötigt</div>
-            <div *ngIf="searchForm.invalid"
-                 class="alert alert-danger">Form ist ungültig</div>
+            <div *ngIf="searchValueControl.invalid || searchValueControl.hasError('required')" class="alert alert-danger">
+                Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!
+            </div>
+            <div *ngIf="searchForm.invalid" class="alert alert-danger">
+                Form ist ungültig
+            </div>
         </div>
     </form>
 </div>
