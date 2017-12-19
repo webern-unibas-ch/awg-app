@@ -20,7 +20,7 @@ const appRoutes: Routes = [
 
 @NgModule({
     // TODO: rm route tracing for prodcution
-    imports: [ RouterModule.forRoot(appRoutes, {enableTracing: true}) ],
+    imports: [ RouterModule.forRoot(appRoutes) ], // , {enableTracing: true}
     exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

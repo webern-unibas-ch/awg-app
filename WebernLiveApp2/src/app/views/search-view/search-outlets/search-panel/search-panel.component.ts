@@ -32,16 +32,18 @@ export class SearchPanelComponent implements OnInit {
         private conversionService: ConversionService,
         private searchService: SearchService
     ) {
-        this.route.params.subscribe(params => {
+        this.route.paramMap.subscribe(params => {
             console.log('SearchPanel# params: ', params);
-            if (params['query']) {
-                this.getFulltextSearchData(params['query']);
+            if (params.get('query')) {
+                this.getFulltextSearchData(params.get('query'));
             }
         });
     }
 
+
     ngOnInit() {
     }
+
 
     public onSubmit(query: string) {
         this.isFormSubmitted = true;      // now form is submitted
@@ -59,11 +61,13 @@ export class SearchPanelComponent implements OnInit {
         this.router.navigate(['search/fulltext', {query: query, id: randomId}]);
     }
 
+
     public getFulltextSearchData(query: string) {
         // get searchresults from service
         this.searchService.getFulltextSearchData(query)
             .subscribe(
                 (data) => {
+                    console.info('SearchPanel# data: ', data);
                     // catch response values
                     this.searchUrl = data['url'];
                     const searchResultsBody: SearchResponseJson = {...data['body']};
@@ -74,7 +78,7 @@ export class SearchPanelComponent implements OnInit {
                     // conversion of search results for HTML display
                     this.searchData = this.conversionService.convertFullTextSearchResults(searchResultsBody);
                     // TODO: rm
-                    console.info('SearchPanel#searchData: ', this.searchData);
+                    console.info('SearchPanel# searchData: ', this.searchData);
                     this.isFormSubmitted = false;
                     this.isDataLoaded = true;
                 },
@@ -83,6 +87,7 @@ export class SearchPanelComponent implements OnInit {
                 }
             );
     }
+
 
     private distinctArray(arrArg) {
         /*

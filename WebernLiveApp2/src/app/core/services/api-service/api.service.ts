@@ -23,6 +23,7 @@ export class ApiService {
         if (!httpGetParams) { httpGetParams = new HttpParams(); }
         const httpGetHeaders = new HttpHeaders().set('Accept', 'application/json');
         const httpGetUrl = AppConfig.API_ENDPOINT + url;
+        console.info('ApiService# getUrl: ', httpGetUrl);
 
         return this.http
             .get(
