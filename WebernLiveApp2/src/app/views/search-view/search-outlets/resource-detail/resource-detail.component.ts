@@ -52,7 +52,7 @@ export class ResourceDetailComponent implements OnInit {
                     // get data.body
                     const resourceBody: ResourceFullResponseJson = data['body'];
                     // url for request
-                    this.requestUrl = data['url'];
+                    this.requestUrl = this.searchService.httpGetUrl;
 
                     // snapshot of raw json response
                     this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(resourceBody));
@@ -83,7 +83,7 @@ export class ResourceDetailComponent implements OnInit {
         // update currentId
         this.currentId = showId;
         // navigate to new detail
-        this.router.navigate(['/resource', +showId]);
+        this.router.navigate(['/resource', +this.currentId]);
     }
 
     public goBack(): void {

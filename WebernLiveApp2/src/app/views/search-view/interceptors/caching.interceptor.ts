@@ -12,7 +12,7 @@ import 'rxjs/add/operator/do';
 import 'rxjs/add/operator/catch';
 import 'rxjs/add/observable/throw';
 
-import {HttpCacheService} from '../services';
+import { HttpCacheService } from '../services';
 
 
 @Injectable()

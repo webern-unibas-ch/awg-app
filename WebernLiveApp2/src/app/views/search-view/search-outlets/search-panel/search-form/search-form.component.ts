@@ -32,7 +32,7 @@ export class SearchFormComponent implements OnInit {
         });
        this.searchValueControl = this.searchForm.controls['searchValue'];
 
-        console.log(this.searchValueControl.value);
+        console.log('searchForm# searchValueControl.value: ', this.searchValueControl.value);
 
         /* TODO: rm
         this.searchValueControl.valueChanges

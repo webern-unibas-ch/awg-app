@@ -11,6 +11,8 @@ import { ApiServiceResult } from './api-service-result';
 @Injectable()
 export class ApiService {
 
+    httpGetUrl: string = '';
+
     constructor(private http: HttpClient) {}
 
     /**
@@ -22,21 +24,21 @@ export class ApiService {
     httpGet(url: string, httpGetParams?: HttpParams ): Observable<any> {
         if (!httpGetParams) { httpGetParams = new HttpParams(); }
         const httpGetHeaders = new HttpHeaders().set('Accept', 'application/json');
-        const httpGetUrl = AppConfig.API_ENDPOINT + url;
-        console.info('ApiService# getUrl: ', httpGetUrl);
+        this.httpGetUrl = AppConfig.API_ENDPOINT + url;
 
         return this.http
             .get(
-               httpGetUrl,
+               this.httpGetUrl,
                {
                    observe: 'response',
                    params: httpGetParams,
                    headers: httpGetHeaders
                })
             .pipe(
-                tap(response =>
-                    console.info('ApiService#httpGet.response: ', response)
-                ),
+                tap(response => {
+                        console.info('ApiService# getUrl: ', this.httpGetUrl);
+                        console.info('ApiService#httpGet.response: ', response);
+                }),
                 map((response: HttpResponse<any>) => {
                     try {
                         const apiServiceResult: ApiServiceResult = new ApiServiceResult();
