@@ -35,7 +35,10 @@ export class SearchResultListComponent implements OnInit {
             this.resText = length + ` `;
             this.resText += (length === 1) ? `zugängliches Resultat` : `zugängliche Resultate`;
             this.resText += ` von ${this.searchData.nhits}`;
-            if (this.filteredOut > 0) { this.resText += ` (${this.filteredOut} Duplikate entfernt)`};
+            if (this.filteredOut > 0) {
+                const duplString: string = (this.filteredOut === 1) ? `Duplikat` : `Duplikate`;
+                this.resText += ` (${this.filteredOut} ${duplString} entfernt)`;
+            }
             this.resText += `:`;
         } else {
             this.resText = `Die Abfrage ${this.searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
