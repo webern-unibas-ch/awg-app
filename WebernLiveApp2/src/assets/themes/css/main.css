@@ -1,8 +1,20 @@
+/****** GENERAL SETTINGS ******/
 html, body {
     font-family: 'Droid Sans', sans-serif;
     background-color: #FFF;
     padding: 5px;
     min-width: 320px;
+}
+
+.todo {
+    color: red;
+    font-weight: bold;
+}
+.todo::before {
+    content: "## ";
+}
+.todo::after {
+    content: " ##";
 }
 
 /****** PAGE LAYOUT ******/
