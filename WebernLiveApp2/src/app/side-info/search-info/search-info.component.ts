@@ -1,7 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { SideInfoService } from '../services/side-info.service';
+import { SideInfoService } from '../side-info-services/side-info.service';
+import { SearchInfo } from '../side-info-models';
 
 @Component({
     selector: 'awg-search-info',
@@ -10,13 +11,13 @@ import { SideInfoService } from '../services/side-info.service';
 })
 export class SearchInfoComponent implements OnInit, OnDestroy {
 
-    public subscription: Subscription;
+    sideInfoDataSubscription: Subscription;
 
-    public label: string;
-    public nhits = '29';
-    public query = 'Kantate';
+    searchInfo: SearchInfo = new SearchInfo();
 
-    constructor(private sideInfoService: SideInfoService) { }
+    constructor(
+        private sideInfoService: SideInfoService
+    ) { }
 
     ngOnInit() {
         this.getSideInfoData();
@@ -24,11 +25,13 @@ export class SearchInfoComponent implements OnInit, OnDestroy {
 
     getSideInfoData() {
         // get sideInfoData from service
-        this.subscription = this.sideInfoService.sideInfoData$
+        this.sideInfoDataSubscription = this.sideInfoService.getSideInfoData()
             .subscribe(
-                data => {
-                    this.label = data.label;
-                },
+                (data: SearchInfo) => {
+                    this.searchInfo.title = data.title;
+                    this.searchInfo.nhits = data.nhits;
+                    this.searchInfo.query = data.query;
+                    },
                 error => {
                     console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
                 }
@@ -37,7 +40,7 @@ export class SearchInfoComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
-        this.subscription.unsubscribe();
+        this.sideInfoDataSubscription.unsubscribe();
     }
 
 }

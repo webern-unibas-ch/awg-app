@@ -11,9 +11,11 @@
                             <span class="glyphicon glyphicon-search"></span>
                         </button>
                     </span>
-                <input type="text"
-                       class="form-control"
+                <input title="search"
+                       type="search"
+                       aria-label="Search input"
                        id="searchInput"
+                       class="form-control"
                        placeholder="Volltextsuche in der Webern-Datenbank ({{ url }}) …"
                        [formControl]="searchValueControl"
                        [(ngModel)]="searchval">
@@ -26,5 +28,6 @@
             </div>
         </div>
     </form>
+    <p class="load" *ngIf="loading">Loading...</p>
 </div>
 

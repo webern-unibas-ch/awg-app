@@ -1,5 +1,5 @@
 <!-- content: search results -->
-<div>
+<div *ngIf="searchData">
 
     <!-- header -->
     <h4>Suchergebnisse</h4>
@@ -12,7 +12,7 @@
         <!-- TODO: ### PAGINATION ### -->
 
         <!-- table with searchResults -->
-        <table *ngIf="searchData.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
+        <table *ngIf="searchData?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
             <thead>
             <tr>
                 <th>
@@ -25,12 +25,12 @@
             </thead>
             <tbody>
             <!-- show searchResultDetail by clicking on single entry -->
-            <tr *ngFor="let data of searchData?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="showDetail(data.obj_id)" [class.active]="activeDetail(data.obj_id)">
+            <tr *ngFor="let data of searchData?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="showDetail(data?.obj_id)" [class.active]="activeDetail(data?.obj_id)">
                 <td>
-                    <img [attr.src]=data.iconsrc alt="iconsrc" > {{ data.iconlabel }}
+                    <img [attr.src]=data?.iconsrc alt="iconsrc" > {{ data?.iconlabel }}
                 </td>
                 <td>
-                    <span [compile-html]="data.value[0]" [compile-html-ref]="this"></span>
+                    <span [compile-html]="data?.value[0]" [compile-html-ref]="this"></span>
                 </td>
             </tr>
             </tbody>

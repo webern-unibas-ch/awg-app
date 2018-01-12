@@ -48,11 +48,11 @@ export class ResourceDetailComponent implements OnInit {
                 (data) => {
                     // snapshot of currentId
                     this.currentId = this.route.snapshot.paramMap.get('id');
-
-                    // get data.body
-                    const resourceBody: ResourceFullResponseJson = data['body'];
                     // url for request
                     this.requestUrl = this.searchService.httpGetUrl;
+
+                    // get data.body
+                    const resourceBody: ResourceFullResponseJson = {...data['body']};
 
                     // snapshot of raw json response
                     this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(resourceBody));
@@ -68,7 +68,7 @@ export class ResourceDetailComponent implements OnInit {
     }
 
     public routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'searchInfo' }}]);
+        this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
     }
 
     public showDetail(nextId?: string): void {
@@ -89,7 +89,6 @@ export class ResourceDetailComponent implements OnInit {
     public goBack(): void {
         /*
          * Navigate back to SearchPanel
-         * TODO: store query in URL to avoid redoing search
          * pass along the currentId if available
          * so that the SearchResultList component
          * can select the corresponding Resource.

@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { SearchResponseJson } from '../../../../../shared/api-objects';
@@ -9,7 +9,7 @@ import { SearchResponseJson } from '../../../../../shared/api-objects';
     templateUrl: './search-result-list.component.html',
     styleUrls: ['./search-result-list.component.css']
 })
-export class SearchResultListComponent implements OnInit {
+export class SearchResultListComponent implements OnChanges {
     @Input() searchData: SearchResponseJson;
     @Input() searchUrl: string;
     @Input() filteredOut: number;
@@ -21,12 +21,8 @@ export class SearchResultListComponent implements OnInit {
         private router: Router
     ) { }
 
-    ngOnInit() {
+    ngOnChanges() {
         this.prepareResultText();
-    }
-
-    activeDetail(id: string) {
-        return this.currentId === id;
     }
 
     prepareResultText() {
@@ -43,6 +39,10 @@ export class SearchResultListComponent implements OnInit {
         } else {
             this.resText = `Die Abfrage ${this.searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
         }
+    }
+
+    activeDetail(id: string) {
+        return this.currentId === id;
     }
 
     showDetail(id: string) {

@@ -28,16 +28,17 @@ export class ApiService {
 
         return this.http
             .get(
-               this.httpGetUrl,
-               {
-                   observe: 'response',
-                   params: httpGetParams,
-                   headers: httpGetHeaders
-               })
+                this.httpGetUrl,
+                {
+                    observe: 'response',
+                    params: httpGetParams,
+                    headers: httpGetHeaders
+                })
             .pipe(
                 tap(response => {
-                        console.info('ApiService# getUrl: ', this.httpGetUrl);
-                        console.info('ApiService#httpGet.response: ', response);
+                    // TODO: rm
+                    // console.info('ApiService# getUrl: ', this.httpGetUrl);
+                    // console.info('ApiService#httpGet.response: ', response);
                 }),
                 map((response: HttpResponse<any>) => {
                     try {

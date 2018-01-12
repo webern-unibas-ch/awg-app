@@ -37,7 +37,7 @@ export class EditionDetailComponent implements OnInit {
             .subscribe((data) => {
                     this.sheetsData = data[0];
                     this.textcriticsData = data[1];
-                    if (this.sheetsData) this.getRouteParams();
+                    if (this.sheetsData) { this.getRouteParams(); }
                 },
                 error => {
                     this.errorMessage = <any>error;

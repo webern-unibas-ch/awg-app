@@ -5,7 +5,7 @@
                 [routerLink]="[button.root, button.link]"
                 routerLinkActive="active"
                 [disabled]="button.disabled"
-                (click)="onButtonSelect(button)">
+                (click)="onButtonSelect(button.label)">
         {{ button.label }}
         </button>
     </div>

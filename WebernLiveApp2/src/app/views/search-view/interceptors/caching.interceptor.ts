@@ -25,8 +25,8 @@ export class CachingInterceptor implements HttpInterceptor {
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
         // TODO: rm
-        console.log('------------> CachingInterceptor');
-        console.log('CI# RequestUrl: ', req.urlWithParams);
+        // console.log('------------> CachingInterceptor');
+        // console.log('CI# RequestUrl: ', req.urlWithParams);
 
         const started = Date.now();
 
@@ -38,9 +38,8 @@ export class CachingInterceptor implements HttpInterceptor {
         const cachedResponse = this.cache.get(req);
         if (cachedResponse) {
             // TODO: rm
-
-            console.log('CI# cachedResponse: ', cachedResponse);
-            console.log('<------------ END CachingInterceptor');
+            // console.log('CI# cachedResponse: ', cachedResponse);
+            // console.log('<------------ END CachingInterceptor');
 
             // serve existing cached response
             return Observable.of(cachedResponse.clone());
@@ -55,12 +54,15 @@ export class CachingInterceptor implements HttpInterceptor {
 
                     const elapsed = Date.now() - started;
 
-                    // Update the cache.
-                    console.log('CI# caching new resposnse ---> req, event:', req, event);
-                    console.log(`Request took ${elapsed} ms.`);
+                    // TODO: rm
+                    // console.log('CI# caching new resposnse ---> req, event:', req, event);
+                    // console.log(`Request took ${elapsed} ms.`);
 
+                    // Update the cache.
                     this.cache.put(req, event.clone());
-                    console.log('<------------ END CachingInterceptor ');
+
+                    // TODO: rm
+                    // console.log('<------------ END CachingInterceptor ');
                 }
             })
             .catch(response => {

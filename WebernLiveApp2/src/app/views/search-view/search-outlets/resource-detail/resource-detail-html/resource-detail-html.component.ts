@@ -16,7 +16,6 @@ export class ResourceDetailHtmlComponent implements OnInit {
     constructor( ) { }
 
     ngOnInit() {
-        console.log('ResourceDetailHtml#onInit.resourceDetailData: ', this.resourceDetailData);
     }
 
     goBack() {

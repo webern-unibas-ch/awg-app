@@ -5,9 +5,10 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 import { SearchRoutingModule, routedComponents } from './search-routing.module';
 
 import {
-BibliographyService,
-HttpCacheService,
-SearchService
+    BibliographyService,
+    HttpCacheService,
+    SearchService,
+    SearchResultStreamerService
 } from './services';
 import { CachingInterceptor } from './interceptors';
 
@@ -23,6 +24,7 @@ import { ResourceDetailJsonRawComponent } from './search-outlets/resource-detail
 import { BibliographySearchComponent } from './search-outlets/bibliography/bibliography-search/bibliography-search.component';
 import { BibliographyListComponent } from './search-outlets/bibliography/bibliography-list/bibliography-list.component';
 import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliography-format.pipe';
+
 
 @NgModule({
     imports: [
@@ -53,6 +55,7 @@ export class SearchModule {
                 BibliographyService,
                 HttpCacheService,
                 SearchService,
+                SearchResultStreamerService,
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: CachingInterceptor,

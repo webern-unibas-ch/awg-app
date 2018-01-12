@@ -1,7 +1,7 @@
 import { GeoNames } from './geo-names.model';
 
 export class GeoData {
-    nodeList:           GeoNames[];
+    nodeList:       GeoNames[];
     gnid:           string;
     shortLabel:     string;
     longLabel:      string;

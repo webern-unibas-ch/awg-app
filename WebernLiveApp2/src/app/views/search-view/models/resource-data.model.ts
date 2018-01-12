@@ -1,5 +1,5 @@
 import { ResourceDetail } from './resource-detail.model';
-import { ResourceFullResponseJson } from '../../../shared/api-objects';
+import { ResourceFullResponseJson } from '../../../shared/api-objects/index';
 
 export class ResourceData {
     jsonConverted: ResourceDetail;
