@@ -1,41 +1,58 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SideInfoService } from '../side-info-services/side-info.service';
+import { SearchResultStreamerService } from '../../views/search-view/services';
+import { SearchResponseJson, SubjectItemJson } from '../../shared/api-objects';
+import { SearchResponseWithQuery } from '../../views/search-view/models';
+
 
 @Component({
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
     styleUrls: ['./resource-info.component.css']
 })
-export class ResourceInfoComponent implements OnInit, OnDestroy {
+export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
 
-    sideInfoDataSubscription: Subscription;
+    searchResponseSubscription: Subscription;
 
-    label: string = 'Suchergebnisse';
-    nhits: number;
-    query: string;
+    searchResults: SearchResponseWithQuery;
+    searchResultsSubjects: SubjectItemJson[];
+
+    currentEntity: SubjectItemJson;
+    nextEntity: SubjectItemJson;
+    previousEntity: SubjectItemJson;
 
     constructor(
         private router: Router,
-        private sideInfoService: SideInfoService
+        private streamerService: SearchResultStreamerService
     ) { }
 
     ngOnInit() {
         this.getSideInfoData();
+        // TODO: rm
+        console.log('RESOURCE-INFO: INIT');
     }
 
-    private getSideInfoData() {
+    ngOnChanges() {
+        this.getSideInfoData();
+        // TODO: rm
+        console.log('RESOURCE-INFO: CHANGES');
+    }
 
-        // get sideInfoData from service
-        this.sideInfoDataSubscription = this.sideInfoService.getSideInfoData()
+    getSideInfoData() {
+        // get searchresults from streamer service
+        this.searchResponseSubscription = this.streamerService.getSearchResponse()
             .subscribe(
-                data => {
-                    console.log('RESOURCE-INFO: data: ', data);
-                    this.nhits = data.nhits;
-                    this.query = data.query;
+                (res: SearchResponseWithQuery) => {
+
+                    // TODO: rm
+                    console.log('RESOURCE-INFO: res: ', res);
+                    this.searchResults = res;
+
+                    this.getCurrentEntity();
+
                 },
                 error => {
                     console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
@@ -43,20 +60,57 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             );
     }
 
+    getCurrentEntity(counter?: number) {
 
-    private goBack(): void {
+        // TODO: continue here / refactor
+        this.searchResultsSubjects = this.searchResults.data.subjects;
+
+        let n = 1;
+        if (counter) {
+            n += counter;
+        }
+        this.currentEntity = this.searchResultsSubjects[n];
+        this.previousEntity = this.searchResultsSubjects[n - 1];
+        this.nextEntity = this.searchResultsSubjects[n + 1];
+
         /*
-         * Navigate back to SearchPanel
-         * pass along the currentId if available
-         * so that the SearchResultList component
-         * can select the corresponding Resource.
-         */
-        this.router.navigate(['/search/fulltext']);
+        console.log('ResInfo# prevItem ', this.previousEntity);
+        console.log('ResInfo# currItem ', this.currentEntity);
+        console.log('ResInfo# nextItem ', this.nextEntity);
+        */
+
     }
+
+    showPreviousEntity(id: string) {
+        const n = -1;
+        console.log('ResInfo# clicked showPrevEntity ', id);
+        this.getCurrentEntity(n);
+    }
+
+
+    showNextEntity(id: string) {
+        const n = 1;
+        console.log('ResInfo# clicked showPrevEntity ', id);
+        this.getCurrentEntity(n);
+    }
+
+
+    /*
+     * Navigate back to SearchPanel
+     * pass along the currentId if available
+     * so that the SearchResultList component
+     * can select the corresponding Resource.
+     */
+    goBack(): void {
+        this.router.navigate(['/search/fulltext', {outlets: {side: 'searchInfo'}}]);
+    }
+
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
-        this.sideInfoDataSubscription.unsubscribe();
+        if (this.searchResponseSubscription) {
+            this.searchResponseSubscription.unsubscribe();
+        }
     }
 
 

@@ -12,7 +12,7 @@
         <awg-resource-detail-html id="html" class="tab-pane fade in active"
             *ngIf="resourceData?.html"
             [resourceDetailData]="resourceData?.html"
-            [requestUrl]="requestUrl"
+            [resourceUrl]="resourceUrl"
             (goBackRequest)="goBack($event)"
             (showDetailRequest)="showDetail($event)">
         </awg-resource-detail-html>
@@ -20,13 +20,13 @@
         <awg-resource-detail-json-converted id="converted" class="tab-pane fade"
             *ngIf="resourceData?.jsonConverted"
             [resourceJsonConvertedData]="resourceData?.jsonConverted"
-            [requestUrl]="requestUrl">
+            [resourceUrl]="resourceUrl">
         </awg-resource-detail-json-converted>
 
         <awg-resource-detail-json-raw id="raw" class="tab-pane fade"
             *ngIf="resourceData?.jsonRaw"
             [resourceJsonRawData]="resourceData?.jsonRaw"
-            [requestUrl]="requestUrl">
+            [resourceUrl]="resourceUrl">
         </awg-resource-detail-json-raw>
 
     </div>

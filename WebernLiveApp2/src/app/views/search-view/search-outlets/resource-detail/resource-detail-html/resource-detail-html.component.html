@@ -1,7 +1,7 @@
 <!-- resourceDetailData header -->
 <awg-resource-detail-html-header
     [header]="resourceDetailData?.header"
-    [requestUrl]="requestUrl"
+    [resourceUrl]="resourceUrl"
     (showDetailRequest)="showDetail($event)">
 </awg-resource-detail-html-header>
 
@@ -12,7 +12,7 @@
 <!-- resourceDetailData content -->
 <awg-resource-detail-html-content
     [content]="resourceDetailData?.content"
-    [requestUrl]="requestUrl"
+    [resourceUrl]="resourceUrl"
     (showDetailRequest)="showDetail($event)">
 </awg-resource-detail-html-content>
 

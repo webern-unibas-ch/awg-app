@@ -2,12 +2,13 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
+import 'rxjs/add/operator/do';
 
 import { ConversionService } from '../../../../core/services';
 import { SearchResultStreamerService, SearchService} from '../../services';
 import { SearchResponseJson } from '../../../../shared/api-objects';
 import { SideInfoService } from '../../../../side-info/side-info-services/side-info.service';
-import { SearchInfo } from '../../../../side-info/side-info-models;
+import { SearchInfo } from '../../../../side-info/side-info-models';
 
 @Component({
     selector: 'awg-search-panel',
@@ -16,12 +17,12 @@ import { SearchInfo } from '../../../../side-info/side-info-models;
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
 
-    querySubscription: Subscription;
-    searchResultSubscription: Subscription;
+    searchResponseSubscription: Subscription;
 
     searchData: SearchResponseJson = new SearchResponseJson();
     searchval: string = 'Skizzenbuch';
     searchUrl: string = '';
+    searchResultText: string;
     errorMessage: string = undefined;
     filteredOut: number;
 
@@ -43,28 +44,22 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private streamerService: SearchResultStreamerService
     ) {
         // get query param from route to update searchvalue
-        this.route.paramMap.subscribe(params => {
+        this.route.paramMap.subscribe((params: ParamMap) => {
             if (params.get('query')) {
                 this.searchval = params.get('query');
             }
         });
 
-        // get query from streamerService
-        this.querySubscription = this.streamerService.getQuery()
-            .subscribe(query => {
-                    this.searchval = query;
-                    const url = this.router.createUrlTree(['search/fulltext', {query: this.searchval}]).toString();
-                    this.location.go(url);
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                    console.log('SearchPanel# query subscription error: ', this.errorMessage);
-                });
-
-        // get searchResultData from streamerService
-        this.searchResultSubscription = this.streamerService.getSearchResults()
-            .subscribe(data => {
-                    this.displayFulltextSearchData(data);
+        // get query & searchResultData from streamerService
+        this.searchResponseSubscription = this.streamerService.getSearchResponse()
+            .do( () => {
+                this.isDataLoaded = false;
+            })
+            .subscribe(res => {
+                    this.searchUrl = this.searchService.httpGetUrl;
+                    this.searchval = res.query;
+                    this.displayRouteWithQuery(res.query);
+                    this.displayFulltextSearchData(res.data);
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -74,12 +69,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
 
     ngOnInit() {
-    }
-
-    ngOnDestroy() {
-        // prevent memory leak when component destroyed
-        this.querySubscription.unsubscribe();
-        this.searchResultSubscription.unsubscribe();
     }
 
 
@@ -95,50 +84,39 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
 
+    displayRouteWithQuery(query: string) {
+        const url = this.router.createUrlTree(['search/fulltext', {query: query}]).toString();
+        this.location.go(url);
+    }
+
+
     displayFulltextSearchData(data: SearchResponseJson) {
-        console.info('-----> SearchPanel# displayData <-----');
 
-        this.searchUrl = data['url'];
-        console.info('SearchPanel# searchUrl: ', this.searchUrl);
+        this.searchData = {...data};
 
-        const searchResultsBody: SearchResponseJson = {...data['body']};
+        this.searchResultText = this.conversionService.prepareFullTextSearchResultText(this.searchData, this.filteredOut, this.searchUrl);
 
-        // remove duplicates from response subjects
-        searchResultsBody['subjects'] = this.distinctArray(searchResultsBody['subjects']);
-
-        // conversion of search results for HTML display
-        this.searchData = this.conversionService.convertFullTextSearchResults(searchResultsBody);
-
-        this.shareSideInfoData();
+        this.updateSideInfoData();
 
         // TODO: rm
         console.info('SearchPanel# searchData: ', this.searchData);
+
         this.isFormSubmitted = false;
         this.isDataLoaded = true;
-        console.info('SearchPanel# isDataLoaded: ', this.isDataLoaded);
-    }
-
-    shareSideInfoData() {
-        // share data for sideInfo via service
-        const searchInfoData: SearchInfo = {
-            query: this.searchval,
-            nhits: this.searchData.subjects.length
-        };
-        this.sideInfoService.shareSideInfoData(searchInfoData);
     }
 
 
-    private distinctArray(arr) {
-        /*
-        * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
-        *
-        * This function checks for every array position (reduce)
-        * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
-        * and if not pushes y into x that is initalized as empty array []
-        *
-        */
-        if (!arr) { return; }
-        this.filteredOut = 0;
-        return arr.reduce((x, y) => x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : (this.filteredOut += 1, x), []);
+    updateSideInfoData() {
+        // share data for searchInfo via service
+        const searchInfo: SearchInfo = new SearchInfo(this.searchval, this.searchResultText);
+        this.sideInfoService.updateSearchInfoData(searchInfo);
     }
+
+    ngOnDestroy() {
+        // prevent memory leak when component destroyed
+        if (this.searchResponseSubscription) {
+            this.searchResponseSubscription.unsubscribe();
+        }
+    }
+
 }

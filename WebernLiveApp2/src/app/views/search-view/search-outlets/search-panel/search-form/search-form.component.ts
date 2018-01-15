@@ -1,14 +1,15 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { Observable} from 'rxjs/Observable';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 import 'rxjs/add/operator/switchMap';
 import 'rxjs/add/operator/do';
 
 import { AppConfig } from '../../../../../app.config';
-import { SearchResponseJson } from '../../../../../shared/api-objects';
+import { ConversionService } from '../../../../../core/services';
+import { SearchResponseJson } from '../../../../../shared/api-objects/index';
 import { SearchResultStreamerService, SearchService } from '../../../services';
+import { SearchResponseWithQuery } from '../../../models';
 
 
 @Component({
@@ -21,14 +22,16 @@ export class SearchFormComponent implements OnInit {
     @Output() submitRequest: EventEmitter<any> = new EventEmitter();
 
     url: string = AppConfig.API_ENDPOINT;
-    loading: boolean = false;
+    searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery();
 
     searchForm: FormGroup;
     searchValueControl: AbstractControl;
     errorMessage: string = undefined;
+    loading: boolean = false;
 
     constructor(
         private fb: FormBuilder,
+        private conversionService: ConversionService,
         private searchService: SearchService,
         private streamerService: SearchResultStreamerService
     ) { }
@@ -51,31 +54,36 @@ export class SearchFormComponent implements OnInit {
             .debounceTime(500)
             .distinctUntilChanged()
             .do( () => {
-                console.info('-----> SearchForm# valueChanged <-----');
                 this.loading = true;
             })
             .switchMap(value => {
-                this.streamerService.updateQuery(value);
-                return this.getFulltextSearchData(value);
+                this.searchResponseWithQuery['query'] = value;
+                return this.searchService.getFulltextSearchData(value);
             })
-            .subscribe( data => {
-                    this.streamerService.updateSearchResultStream(data);
+            .subscribe( (data: SearchResponseJson ) => {
+
+                    let searchResultsData = {...data['body']};
+
+                    // conversion of search results for HTML display
+                    searchResultsData = this.conversionService.convertFullTextSearchResults(searchResultsData);
+
+                    this.searchResponseWithQuery['data'] = searchResultsData;
+
+                    // update search data via streamer service
+                    this.streamerService.updateSearchResponseStream(this.searchResponseWithQuery);
+
                     this.loading = false;
-                    console.info('-----> SearchForm# updated StreamerService <-----');
                 },
                 error => {
                     this.errorMessage = <any>error;
                 });
     }
 
-
-    private getFulltextSearchData(value: string): Observable<SearchResponseJson> {
-        return this.searchService.getFulltextSearchData(value);
+    // TODO: refactor
+    onSubmit(query: string) {
+        console.log(' -----> searchform: clicked SUBMIT: ', query);
+        this.submitRequest.emit(query);
     }
 
-    onSubmit(value: string) {
-        console.log(' -----> searchform: clicked SUBMIT: ', value);
-        this.submitRequest.emit(value);
-    }
 
 }

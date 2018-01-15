@@ -11,7 +11,7 @@ import { ResourceDetailContent } from '../../../../models';
 })
 export class ResourceDetailHtmlContentComponent implements OnInit {
     @Input() content: ResourceDetailContent;
-    @Input() requestUrl: string;
+    @Input() resourceUrl: string;
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 
     public metaBreakLine: string = 'Versionsdatum';

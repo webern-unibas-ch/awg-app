@@ -16,6 +16,7 @@ import {
     ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
 import { GeoData, Hlist, Selection } from '../../core-models';
+import {SubjectItemJson} from "../../../shared/api-objects/search-response-formats";
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -59,7 +60,37 @@ export class ConversionService extends ApiService {
                 }
             }
         });
+        // remove duplicates from response
+        results['subjects'] = this.distinctSubjectItemArray(results['subjects']);
         return results;
+    }
+
+
+    /******************************************
+     *
+     *  prepare fulltext search result string
+     *
+     *****************************************/
+    public prepareFullTextSearchResultText(searchData: SearchResponseJson, filteredOut: number, searchUrl: string): string {
+        let resText: string;
+
+        if (searchData['subjects']) {
+            const length = searchData.subjects.length;
+            resText = length + ` `;
+            resText += (length === 1) ? `zugängliches Resultat` : `zugängliche Resultate`;
+            resText += ` von ${searchData.nhits}`;
+
+            if (filteredOut > 0) {
+                const duplString: string = (filteredOut === 1) ? `Duplikat` : `Duplikate`;
+                resText += ` (${filteredOut} ${duplString} entfernt)`;
+            }
+            resText += `:`;
+
+        } else {
+            resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
+        }
+
+        return resText;
     }
 
 
@@ -695,11 +726,31 @@ export class ConversionService extends ApiService {
 
     /******************************************
      *
+     * remove duplicates from array (SubjectItemJson[])
+     *
+     *****************************************/
+    private distinctSubjectItemArray(arr: SubjectItemJson[]) {
+        /*
+        * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
+        *
+        * This function checks for every array position (reduce)
+        * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
+        * and if not pushes y into x that is initalized as empty array []
+        *
+        */
+        if (!arr) { return; }
+        let filteredOut: number = 0;
+        return arr.reduce((x, y) => x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : (filteredOut += 1, x), []);
+    }
+
+
+    /******************************************
+     *
      * group array of incoming links by restype
      *
      *****************************************/
     private groupByRestype(incomingLinks: ResourceDetailIncomingLinks[]): ResourceDetailGroupedIncomingLinks {
-        let groups = {};
+        const groups = {};
         // iterate over incoming links to group by restype
         incomingLinks.forEach(link => {
             const group = link.restype.label;

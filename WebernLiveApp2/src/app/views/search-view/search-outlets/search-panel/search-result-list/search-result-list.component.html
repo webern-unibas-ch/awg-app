@@ -4,7 +4,7 @@
     <!-- header -->
     <h4>Suchergebnisse</h4>
     <p>
-        {{ resText }}
+        {{ searchResultText }}
     </p>
 
     <ng-container *ngIf="searchData?.subjects">
@@ -12,7 +12,7 @@
         <!-- TODO: ### PAGINATION ### -->
 
         <!-- table with searchResults -->
-        <table *ngIf="searchData?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
+        <table *ngIf="+searchData?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
             <thead>
             <tr>
                 <th>

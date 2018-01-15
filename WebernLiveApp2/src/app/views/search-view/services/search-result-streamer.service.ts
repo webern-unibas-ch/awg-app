@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/combineLatest';
 
-import { SearchResponseJson } from '../../../shared/api-objects';
+import { SearchResponseWithQuery } from '../models';
 
 
 @Injectable()
@@ -13,45 +13,40 @@ export class SearchResultStreamerService {
     /*
      * ReplaySubjects that are used to stream the data
      */
-    bufferSize: number = 5;
-    private queryStreamSource = new ReplaySubject<string>(this.bufferSize);
-    private searchResultStreamSource = new ReplaySubject<SearchResponseJson>(this.bufferSize);
+    private bufferSize: number = 1;
 
-    private queryStream$ = this.queryStreamSource.asObservable();
-    private searchResultStream$ = this.searchResultStreamSource.asObservable();
+    private searchResponseStreamSource = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
+    private searchResponseStream$ = this.searchResponseStreamSource.asObservable();
 
 
-    /*
-     * SEARCHRESULTS
-     */
-    public getSearchResults(): Observable<SearchResponseJson> {
-        return this.searchResultStream$;
+    /**********************************
+     **
+     **  request data
+     **
+     **********************************/
+    public getSearchResponse(): Observable<SearchResponseWithQuery> {
+        return this.searchResponseStream$;
     }
 
-    public updateSearchResultStream(results: SearchResponseJson): void {
-        this.searchResultStreamSource.next(results);
+
+    /**********************************
+     **
+     **  request data
+     **
+     **********************************/
+    public updateSearchResponseStream(results: SearchResponseWithQuery): void {
+        this.searchResponseStreamSource.next(results);
         console.info('StreamerService# results: ', results);
     }
 
+
+    /**********************************
+     **
+     **  reset data
+     **
+     **********************************/
     public clearSearchResults(): void {
-        this.searchResultStreamSource.next(undefined);
-    }
-
-
-    /*
-     * QUERY
-     */
-    public getQuery(): Observable<string> {
-        return this.queryStream$;
-    }
-
-    public updateQuery(query) {
-        console.info('StreamerService# query: ', query);
-        this.queryStreamSource.next(query);
-    }
-
-    public clearQuery(): void {
-        this.queryStreamSource.next('');
+        this.searchResponseStreamSource.next(undefined);
     }
 
 

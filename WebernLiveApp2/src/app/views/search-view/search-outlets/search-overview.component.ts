@@ -3,6 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLinkButton } from '../../../shared/router-link-button-group/router-link-button.model';
 
 import { SideInfoService } from '../../../side-info/side-info-services/side-info.service';
+import {Router} from "@angular/router";
 
 @Component({
     selector: 'awg-search-overview',
@@ -11,7 +12,7 @@ import { SideInfoService } from '../../../side-info/side-info-services/side-info
 })
 export class SearchOverviewComponent implements OnInit {
 
-    public buttonArray: RouterLinkButton[] = [
+    buttonArray: RouterLinkButton[] = [
         {
             root: '/search',
             link: 'fulltext',
@@ -37,8 +38,12 @@ export class SearchOverviewComponent implements OnInit {
     ngOnInit() {
     }
 
-    onButtonSelect(event: string) {
-        this.sideInfoService.shareSearchInfoTitle(event);
+    onButtonSelect(title: string) {
+        this.updateSearchInfoTitle(title);
+    }
+
+    private updateSearchInfoTitle(title: string) {
+        this.sideInfoService.updateSearchInfoTitle(title);
     }
 
 }

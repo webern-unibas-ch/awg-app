@@ -16,7 +16,7 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
 
     // TODO#change to Type: BibEntry
     convertedBibItemDetail: any;
-    sub: Subscription;
+    bibItemDetailSubscription: Subscription;
 
     constructor(
         private bibliographyService: BibliographyService,
@@ -28,7 +28,7 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
     }
 
     getBibItemDetails(id: string): void {
-        this.sub = this.bibliographyService.getBibliographyItemDetail(id)
+        this.bibItemDetailSubscription = this.bibliographyService.getBibliographyItemDetail(id)
             .subscribe(data => {
                 let bibItemDetailBody: ResourceFullResponseJson = new ResourceFullResponseJson();
                 if (data['body']) { bibItemDetailBody = data['body']; }
@@ -38,7 +38,9 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
     }
 
     ngOnDestroy() {
-        this.sub.unsubscribe();
+        if (this.bibItemDetailSubscription) {
+            this.bibItemDetailSubscription.unsubscribe();
+        }
     }
 
 }

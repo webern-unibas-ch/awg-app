@@ -10,32 +10,39 @@ export class SideInfoService {
     private sideInfoData: Subject<any> = new Subject<any>();   // observable string source
     private sideInfoData$ = this.sideInfoData.asObservable();   // Observable string stream for subscription
 
-    public searchInfo: SearchInfo;
+    private searchInfoTitle: Subject<any> = new Subject<string>();   // observable string source
+    private searchInfoTitle$ = this.searchInfoTitle.asObservable();   // Observable string stream for subscription
 
     /**********************************
      **
-     **  share data for sideInfo
+     **  get data from sideInfo
      **
      **********************************/
-
     public getSideInfoData(): Observable<any> {
         return this.sideInfoData$;
     }
 
-    // share function for setting next data input
-    public shareSideInfoData(data: any): void {
+    public getSearchInfoTitle(): Observable<string> {
+        return this.searchInfoTitle$;
+    }
+
+
+    /**********************************
+     **
+     **  update sideInfo data
+     **
+     **********************************/
+    public updateSideInfoData(data: any): void {
         this.sideInfoData.next(data);
     }
 
-    // TODO: refactor
-    public shareSearchInfoQuery(query: string) {
-        this.searchInfo.query = query;
-        this.sideInfoData.next(this.searchInfo);
+    public updateSearchInfoData(searchInfo: SearchInfo) {
+        this.sideInfoData.next(searchInfo);
     }
 
-    public shareSearchInfoTitle(title: string) {
-        this.searchInfo.title = title;
-        this.sideInfoData.next(this.searchInfo);
+    public updateSearchInfoTitle(title: string) {
+        console.log('updateSearchInfoTitle: title: ', title);
+        this.searchInfoTitle.next(title);
     }
 
 }

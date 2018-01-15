@@ -11,7 +11,7 @@ import { ResourceDetailHeader } from '../../../../models';
 })
 export class ResourceDetailHtmlHeaderComponent implements OnInit {
     @Input() header: ResourceDetailHeader;
-    @Input() requestUrl: string;
+    @Input() resourceUrl: string;
     @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }

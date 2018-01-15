@@ -14,6 +14,7 @@ import { ResourceDetailHeader } from './resource-detail-header.model';
 import { ResourceDetailIncomingLinks } from './resource-detail-incoming-links.model';
 import { ResourceDetailProps } from './resource-detail-props.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links';
+import { SearchResponseWithQuery } from './search-response-with-query';
 
 export {
     ResourceData,
@@ -22,5 +23,6 @@ export {
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
-    ResourceDetailGroupedIncomingLinks
+    ResourceDetailGroupedIncomingLinks,
+    SearchResponseWithQuery
 };

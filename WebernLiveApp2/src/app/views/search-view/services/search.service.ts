@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { ApiService } from '../../../core/services/api-service/api.service';
+import { ApiService } from '../../../core/services/';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
 
 @Injectable()
@@ -31,7 +31,7 @@ export class SearchService extends ApiService {
      **  resource detail search via salsah api
      **
      ****************************************/
-    public getResourceData(resourceId: string): Observable<ResourceFullResponseJson> {
+    public getResourceDetailData(resourceId: string): Observable<ResourceFullResponseJson> {
         const queryString: string = this.resourcesRoute + resourceId + this.resourceAppendix;
         const queryParams = new HttpParams();
         /*

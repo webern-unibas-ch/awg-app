@@ -1,5 +1,9 @@
 export class SearchInfo {
-    title: string;
     query: string;
-    nhits: number;
+    nhits: string;
+
+    constructor(query: string, nhits: string) {
+        this.query = query;
+        this.nhits = nhits;
+    }
 }
