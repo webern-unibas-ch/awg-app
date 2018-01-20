@@ -4,7 +4,7 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import 'rxjs/add/operator/switchMap';
 
 import { ConversionService } from '../../../../core/services';
-import { SearchService } from '../../services';
+import { SearchResultStreamerService, SearchService } from '../../services';
 import { ResourceData } from '../../models';
 import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 
@@ -32,7 +32,8 @@ export class ResourceDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private conversionService: ConversionService,
-        private searchService: SearchService
+        private searchService: SearchService,
+        private streamerService: SearchResultStreamerService
     ) { }
 
     ngOnInit() {
@@ -41,16 +42,15 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    public getResourceData() {
+    getResourceData() {
         // fetch data
         this.route.paramMap
             .switchMap((params: ParamMap) => this.searchService.getResourceDetailData(params.get('id')))
             .subscribe(
                 (data: ResourceFullResponseJson) => {
-                    // snapshot of currentId
-                    this.currentId = this.route.snapshot.paramMap.get('id');
-                    // url for request
-                    this.resourceUrl = this.searchService.httpGetUrl;
+
+                    // update and store current resource params (url and id)
+                    this.updateResourceParams();
 
                     // snapshot of data.body
                     const resourceBody: ResourceFullResponseJson = {...data['body']};
@@ -65,7 +65,7 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    public displayResourceDetailData(resourceBody: ResourceFullResponseJson) {
+    displayResourceDetailData(resourceBody: ResourceFullResponseJson) {
         // snapshot of raw json response
         this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(resourceBody));
 
@@ -77,8 +77,25 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    public routeToSidenav(): void {
+    routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
+    }
+
+
+    updateResourceParams() {
+        // update current id
+        this.updateCurrentId();
+
+        // update url for resource
+        this.resourceUrl = this.searchService.httpGetUrl;
+    }
+
+    updateCurrentId() {
+        // snapshot of currentId
+        this.currentId = this.route.snapshot.paramMap.get('id');
+
+        // share current id via streamer service
+        this.streamerService.updateCurrentResourceIdStream(this.currentId);
     }
 
 
@@ -87,7 +104,7 @@ export class ResourceDetailComponent implements OnInit {
      * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
      * if oldId not exists (first call), use currentId
      */
-    public showDetail(nextId?: string): void {
+    showDetail(nextId?: string): void {
         const showId = nextId ? nextId : (this.oldId ? this.oldId : this.currentId);
         // save currentId as oldId
         this.oldId = this.currentId;
@@ -104,7 +121,7 @@ export class ResourceDetailComponent implements OnInit {
      * so that the SearchResultList component
      * can select the corresponding Resource.
      */
-    public goBack(): void {
+    goBack(): void {
         this.router.navigate(['/search/fulltext', { id: this.currentId, outlets: {side: 'searchInfo'} }]);
     }
 

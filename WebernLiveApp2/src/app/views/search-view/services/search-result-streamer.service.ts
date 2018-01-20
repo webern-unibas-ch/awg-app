@@ -18,6 +18,9 @@ export class SearchResultStreamerService {
     private searchResponseStreamSource = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
     private searchResponseStream$ = this.searchResponseStreamSource.asObservable();
 
+    private currentResourceIdStreamSource = new ReplaySubject<string>(this.bufferSize);
+    private currentResourceIdStream$ = this.currentResourceIdStreamSource.asObservable();
+
 
     /**********************************
      **
@@ -26,6 +29,10 @@ export class SearchResultStreamerService {
      **********************************/
     public getSearchResponse(): Observable<SearchResponseWithQuery> {
         return this.searchResponseStream$;
+    }
+
+    public getCurrentResourceId(): Observable<string> {
+        return this.currentResourceIdStream$;
     }
 
 
@@ -39,6 +46,10 @@ export class SearchResultStreamerService {
         console.info('StreamerService# results: ', results);
     }
 
+    public updateCurrentResourceIdStream(id: string): void {
+        this.currentResourceIdStreamSource.next(id);
+        console.info('StreamerService# active id: ', id);
+    }
 
     /**********************************
      **

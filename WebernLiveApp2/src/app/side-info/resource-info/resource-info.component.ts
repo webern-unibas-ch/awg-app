@@ -15,11 +15,13 @@ import { SearchResponseWithQuery } from '../../views/search-view/models';
 })
 export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
 
+    currentIdSubscription: Subscription;
     searchResponseSubscription: Subscription;
 
     searchResults: SearchResponseWithQuery;
     searchResultsSubjects: SubjectItemJson[];
 
+    currentId: string;
     currentEntity: SubjectItemJson;
     nextEntity: SubjectItemJson;
     previousEntity: SubjectItemJson;
@@ -31,12 +33,9 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnInit() {
         this.getSideInfoData();
-        // TODO: rm
-        console.log('RESOURCE-INFO: INIT');
     }
 
     ngOnChanges() {
-        this.getSideInfoData();
         // TODO: rm
         console.log('RESOURCE-INFO: CHANGES');
     }
@@ -49,7 +48,7 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
 
                     // TODO: rm
                     console.log('RESOURCE-INFO: res: ', res);
-                    this.searchResults = res;
+                    this.searchResults = {...res};
 
                     this.getCurrentEntity();
 
@@ -58,12 +57,19 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
                     console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
                 }
             );
+
+
     }
+
 
     getCurrentEntity(counter?: number) {
 
+        this.subscribeCurrentId();
+
         // TODO: continue here / refactor
         this.searchResultsSubjects = this.searchResults.data.subjects;
+
+        let c = this.searchResultsSubjects[1];  // this.currentId === obj_id
 
         let n = 1;
         if (counter) {
@@ -80,6 +86,22 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
         */
 
     }
+
+
+    subscribeCurrentId() {
+        this.currentIdSubscription = this.streamerService.getCurrentResourceId()
+            .subscribe(
+                (id: string) => {
+                    // TODO: rm
+                    console.log('RESOURCE-INFO: id: ', id);
+                    this.currentId = id;
+                },
+                error => {
+                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
+                }
+            );
+    }
+
 
     showPreviousEntity(id: string) {
         const n = -1;
@@ -108,6 +130,9 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
+        if (this.currentIdSubscription) {
+            this.currentIdSubscription.unsubscribe();
+        }
         if (this.searchResponseSubscription) {
             this.searchResponseSubscription.unsubscribe();
         }

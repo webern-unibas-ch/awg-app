@@ -84,8 +84,6 @@ export class ConversionService extends ApiService {
                 const duplString: string = (filteredOut === 1) ? `Duplikat` : `Duplikate`;
                 resText += ` (${filteredOut} ${duplString} entfernt)`;
             }
-            resText += `:`;
-
         } else {
             resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
         }
