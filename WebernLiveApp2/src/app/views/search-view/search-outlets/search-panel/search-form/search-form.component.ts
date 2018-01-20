@@ -20,6 +20,7 @@ import { SearchResponseWithQuery } from '../../../models';
 export class SearchFormComponent implements OnInit {
     @Input() searchval: string;
     @Output() submitRequest: EventEmitter<any> = new EventEmitter();
+    @Output() submitLoadStatus: EventEmitter<boolean> = new EventEmitter();
 
     url: string = AppConfig.API_ENDPOINT;
     searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery();
@@ -53,14 +54,14 @@ export class SearchFormComponent implements OnInit {
             .filter(x => x.length >= 3)
             .debounceTime(500)
             .distinctUntilChanged()
-            .do( () => {
-                this.loading = true;
+            .do(() => {
+                this.changeLoadStatus(true);
             })
             .switchMap(value => {
                 this.searchResponseWithQuery['query'] = value;
                 return this.searchService.getFulltextSearchData(value);
             })
-            .subscribe( (data: SearchResponseJson ) => {
+            .subscribe((data: SearchResponseJson) => {
 
                     let searchResultsData = {...data['body']};
 
@@ -72,11 +73,20 @@ export class SearchFormComponent implements OnInit {
                     // update search data via streamer service
                     this.streamerService.updateSearchResponseStream(this.searchResponseWithQuery);
 
-                    this.loading = false;
+                    this.changeLoadStatus(false);
                 },
                 error => {
                     this.errorMessage = <any>error;
                 });
+    }
+
+    changeLoadStatus(status: boolean) {
+        this.loading = status;
+        this.onLoadChange(this.loading);
+    }
+
+    onLoadChange(status: boolean) {
+        this.submitLoadStatus.emit(status);
     }
 
     // TODO: refactor

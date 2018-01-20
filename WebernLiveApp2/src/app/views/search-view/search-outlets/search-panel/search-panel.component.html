@@ -5,10 +5,11 @@
 -->
 <awg-search-form
     [(searchval)]="searchval"
-    (submitRequest)="onSubmit($event)">
+    (submitRequest)="onSubmit($event)"
+    (submitLoadStatus)="onLoadChange($event)">
 </awg-search-form>
 
-<awg-search-result-list *ngIf="isDataLoaded"
+<awg-search-result-list *ngIf="!isLoadingData"
     [searchData]="searchData"
     [searchResultText]="searchResultText">
 </awg-search-result-list>

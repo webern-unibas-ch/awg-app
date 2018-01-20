@@ -26,8 +26,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     errorMessage: string = undefined;
     filteredOut: number;
 
+    isLoadingData = true;   // no data loaded
+
     isFormSubmitted = false;     // no form submitted
-    isDataLoaded = false;        // no data loaded
     isDetailSelected = false;    // no object selected
     isDetailLoaded = false;      // no object loaded
     isEventButtonClicked = false;     // no button clicked
@@ -52,9 +53,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
         // get query & searchResultData from streamerService
         this.searchResponseSubscription = this.streamerService.getSearchResponse()
-            .do( () => {
-                this.isDataLoaded = false;
-            })
             .subscribe(res => {
                     this.searchUrl = this.searchService.httpGetUrl;
                     this.searchval = res.query;
@@ -72,9 +70,14 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
 
+    onLoadChange(status: boolean) {
+        // receives load status from search form component
+        this.isLoadingData = status;
+    }
+
+
     onSubmit(data: string | SearchResponseJson) {
         this.isFormSubmitted = true;      // now form is submitted
-        this.isDataLoaded = false;        // no data loaded
         this.isDetailSelected = false;    // no detail selected
         this.isDetailLoaded = false;      // no detail loaded
 
@@ -91,18 +94,15 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
 
     displayFulltextSearchData(data: SearchResponseJson) {
+       this.searchData = {...data};
 
-        this.searchData = {...data};
-
+        // prepare result text for fulltext search
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(this.searchData, this.filteredOut, this.searchUrl);
 
         this.updateSideInfoData();
 
         // TODO: rm
         console.info('SearchPanel# searchData: ', this.searchData);
-
-        this.isFormSubmitted = false;
-        this.isDataLoaded = true;
     }
 
 
