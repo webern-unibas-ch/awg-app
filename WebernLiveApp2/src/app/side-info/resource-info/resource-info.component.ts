@@ -32,6 +32,7 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
     ) { }
 
     ngOnInit() {
+        this.subscribeCurrentId();
         this.getSideInfoData();
     }
 
@@ -64,12 +65,15 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
 
     getCurrentEntity(counter?: number) {
 
-        this.subscribeCurrentId();
+
 
         // TODO: continue here / refactor
         this.searchResultsSubjects = this.searchResults.data.subjects;
 
-        let c = this.searchResultsSubjects[1];  // this.currentId === obj_id
+        let c = this.searchResultsSubjects.filter(subject => subject.obj_id === this.currentId);
+        console.warn('ResourceInfo# subjects ', this.searchResultsSubjects);
+        console.warn('ResourceInfo# currentId: ', this.currentId);
+        console.warn('ResourceInfo# filtered c: ', c);
 
         let n = 1;
         if (counter) {
