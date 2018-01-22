@@ -20,6 +20,8 @@
 }
 
 /* for resource-header see 'resource-detail-html-header.component.css' */
+/* for resource-info see 'resource-info.component.css' */
+
 
 /* props */
 .props {
@@ -30,10 +32,10 @@
     padding: 3px 0;
 }
 .props ul {
-     padding-left: 0;
-     margin-top: 4px;
-     margin-bottom: 2px;
- }
+    padding-left: 0;
+    margin-top: 4px;
+    margin-bottom: 2px;
+}
 .props li strong {
     margin-top: 8px;
     margin-bottom: -4px;

@@ -27,7 +27,7 @@ export class SearchResultStreamerService {
      **  request data
      **
      **********************************/
-    public getSearchResponse(): Observable<SearchResponseWithQuery> {
+    public getCurrentSearchResults(): Observable<SearchResponseWithQuery> {
         return this.searchResponseStream$;
     }
 

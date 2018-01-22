@@ -35,29 +35,28 @@
                                     <strong class="text-muted uppercase small ng-binding">
                                         <span class="glyphicon glyphicon-chevron-left" style="color:black"></span> &nbsp; Voriges Ergebnis</strong>
                                 </div>
-                                <div ar-entity-title="" entity="prevEntity" class="ng-isolate-scope"><div>
+                                <div>
                                     <div class="single-line">
-                                        <small class="single-line" ng-bind-html="entity.title">{{ previousEntity?.value[0] }}</small>
+                                        <small class="single-line">{{ previousEntity?.value[0] }}</small>
                                         <!-- ngIf: entity.title.length==0 -->
                                     </div>
                                     <div class="single-line">
-                                        <small class="text-muted" ng-bind-html="entity.subtitle">{{ previousEntity?.icontitle }}</small>
+                                        <small class="text-muted">{{ previousEntity?.icontitle }}</small>
                                     </div>
-                                </div>
                                 </div>
                             </a>
                             <!-- end ngIf: prevEntity -->
 
 
                             <li class="list-group-item" ng-hide="nextEntitySearch.size < 2">
-                                <strong class="text-muted uppercase small">Angezeigter Datensatz</strong>
-                                <form ng-submit="goToResultIndex(resultIndexInput)" class="ng-pristine ng-valid">
-                                    <div class="input-group" ng-class="{'has-error':(resultIndexInput < 1 || resultIndexInput > resultSize)}">
-                                        <input ng-model="resultIndexInput" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number">
+                                <strong class="text-muted uppercase small">Angezeigtes Ergebnis</strong>
+                                <form ng-submit="goToEntityIndex(currentEntityIndex)" class="ng-pristine ng-valid">
+                                    <div class="input-group" ng-class="{'has-error':(currentEntityIndex < 1 || currentEntityIndex > resultSize)}">
+                                        <input id="resourceInfoInput" [(ngModel)]="shownIndex" name="index" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number">
                                         <span class="input-group-addon" style="border-top-right-radius: 3px; border-bottom-right-radius:3px; border-left:0;"> <small>von</small> <strong>{{ searchResultsSubjects?.length }}</strong>
                                         </span>
-                                        <span ng-hide="resultIndex == resultIndexInput || resultIndexInput < 1 || resultIndexInput > resultSize" class="input-group-btn ng-hide">
-                                            <button class="btn btn-primary btn-sm" ng-click="goToResultIndex(resultIndexInput)">Gehe zu</button>
+                                        <span ng-hide="resultIndex == currentEntityIndex || currentEntityIndex < 1 || currentEntityIndex > resultSize" class="input-group-btn ng-hide">
+                                            <button class="btn btn-primary btn-sm" ng-click="goToEntityIndex(currentEntityIndex)">Gehe zu</button>
                                         </span>
                                     </div>
                                 </form>
@@ -70,15 +69,13 @@
                                 <div>
                                     <strong class="text-muted uppercase small">&nbsp; Nächstes Ergebnis <span class="glyphicon glyphicon-chevron-right" style="color:black"></span></strong>
                                 </div>
-                                <div ar-entity-title="" entity="nextEntity" class="ng-isolate-scope">
-                                    <div>
-                                        <div class="single-line">
-                                            <small class="single-line" ng-bind-html="entity.title">{{ nextEntity?.value[0]  }}</small>
+                                <div>
+                                    <div class="single-line">
+                                            <small class="single-line">{{ nextEntity?.value[0]  }}</small>
                                             <!-- ngIf: entity.title.length==0 -->
-                                        </div>
-                                        <div class="single-line">
-                                            <small class="text-muted" ng-bind-html="entity.subtitle">{{ nextEntity?.icontitle }}</small>
-                                        </div>
+                                    </div>
+                                    <div class="single-line">
+                                            <small class="text-muted">{{ nextEntity?.icontitle }}</small>
                                     </div>
                                 </div>
                             </a><!-- end ngIf: nextEntity -->

@@ -91,8 +91,12 @@ export class ResourceDetailComponent implements OnInit {
     }
 
     updateCurrentId() {
+        console.warn('resource-detail# id before paramMap: ', this.currentId);
+
         // snapshot of currentId
         this.currentId = this.route.snapshot.paramMap.get('id');
+
+        console.warn('resource-detail# id after paramMap: ', this.currentId);
 
         // share current id via streamer service
         this.streamerService.updateCurrentResourceIdStream(this.currentId);

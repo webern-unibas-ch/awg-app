@@ -1,4 +1,4 @@
-import { Component, OnChanges, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
@@ -13,7 +13,7 @@ import { SearchResponseWithQuery } from '../../views/search-view/models';
     templateUrl: './resource-info.component.html',
     styleUrls: ['./resource-info.component.css']
 })
-export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
+export class ResourceInfoComponent implements OnInit, OnDestroy {
 
     currentIdSubscription: Subscription;
     searchResponseSubscription: Subscription;
@@ -22,6 +22,9 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
     searchResultsSubjects: SubjectItemJson[];
 
     currentId: string;
+    currentEntityIndex: number;
+    shownIndex: number;
+
     currentEntity: SubjectItemJson;
     nextEntity: SubjectItemJson;
     previousEntity: SubjectItemJson;
@@ -32,92 +35,82 @@ export class ResourceInfoComponent implements OnInit, OnChanges, OnDestroy {
     ) { }
 
     ngOnInit() {
-        this.subscribeCurrentId();
-        this.getSideInfoData();
-    }
-
-    ngOnChanges() {
-        // TODO: rm
-        console.log('RESOURCE-INFO: CHANGES');
-    }
-
-    getSideInfoData() {
-        // get searchresults from streamer service
-        this.searchResponseSubscription = this.streamerService.getSearchResponse()
-            .subscribe(
-                (res: SearchResponseWithQuery) => {
-
-                    // TODO: rm
-                    console.log('RESOURCE-INFO: res: ', res);
-                    this.searchResults = {...res};
-
-                    this.getCurrentEntity();
-
-                },
-                error => {
-                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
-                }
-            );
-
-
+        this.getCurrentResourceIdBySubscription();
     }
 
 
-    getCurrentEntity(counter?: number) {
-
-
-
-        // TODO: continue here / refactor
-        this.searchResultsSubjects = this.searchResults.data.subjects;
-
-        let c = this.searchResultsSubjects.filter(subject => subject.obj_id === this.currentId);
-        console.warn('ResourceInfo# subjects ', this.searchResultsSubjects);
-        console.warn('ResourceInfo# currentId: ', this.currentId);
-        console.warn('ResourceInfo# filtered c: ', c);
-
-        let n = 1;
-        if (counter) {
-            n += counter;
-        }
-        this.currentEntity = this.searchResultsSubjects[n];
-        this.previousEntity = this.searchResultsSubjects[n - 1];
-        this.nextEntity = this.searchResultsSubjects[n + 1];
-
-        /*
-        console.log('ResInfo# prevItem ', this.previousEntity);
-        console.log('ResInfo# currItem ', this.currentEntity);
-        console.log('ResInfo# nextItem ', this.nextEntity);
-        */
-
-    }
-
-
-    subscribeCurrentId() {
+    getCurrentResourceIdBySubscription() {
+        // subscribe to streamer service
         this.currentIdSubscription = this.streamerService.getCurrentResourceId()
             .subscribe(
                 (id: string) => {
-                    // TODO: rm
-                    console.log('RESOURCE-INFO: id: ', id);
+                    // update id from streamer service
                     this.currentId = id;
+
+                    this.getCurrentSearchResultsBySubscription();
                 },
                 error => {
                     console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
                 }
             );
+    }
+
+
+    getCurrentSearchResultsBySubscription() {
+        // subscribe to streamer service
+        this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
+            .subscribe(
+                (res: SearchResponseWithQuery) => {
+                    // update search results from streamer service
+                    this.searchResults = {...res};
+                    this.searchResultsSubjects = this.searchResults.data.subjects;
+
+                    this.getCurrentEntityById(this.currentId);
+
+                },
+                error => {
+                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
+                }
+            );
+    }
+
+
+    getCurrentEntityById(id: string) {
+
+        // get index position of currentSubject in searchResults
+        this.currentEntityIndex = this.searchResultsSubjects.findIndex(subject => subject.obj_id === id);
+        this.shownIndex = this.currentEntityIndex + 1;
+
+        console.warn('ResourceInfo# subjects ', this.searchResultsSubjects);
+        console.warn('ResourceInfo# currentId: ', this.currentId, id);
+        console.warn('ResourceInfo# filtered c: ', this.currentEntityIndex);
+
+        if (this.currentEntityIndex === -1) {
+            console.log('OOOOOPS. ID is not in searchResult Array.');
+        }
+
+        this.updateDisplayedEntitiesByIndex(this.currentEntityIndex);
+    }
+
+
+    updateDisplayedEntitiesByIndex(index: number) {
+        this.currentEntity = this.searchResultsSubjects[index];
+        this.previousEntity = this.searchResultsSubjects[index - 1];
+        this.nextEntity = this.searchResultsSubjects[index + 1];
     }
 
 
     showPreviousEntity(id: string) {
         const n = -1;
         console.log('ResInfo# clicked showPrevEntity ', id);
-        this.getCurrentEntity(n);
+        this.getCurrentEntityById(id);
     }
 
 
     showNextEntity(id: string) {
         const n = 1;
-        console.log('ResInfo# clicked showPrevEntity ', id);
-        this.getCurrentEntity(n);
+        console.log('ResInfo# clicked showNextEntity ', id);
+        this.getCurrentEntityById(id);
     }
 
 

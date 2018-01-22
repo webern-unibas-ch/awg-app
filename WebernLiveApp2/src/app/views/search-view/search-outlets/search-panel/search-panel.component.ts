@@ -52,7 +52,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         });
 
         // get query & searchResultData from streamerService
-        this.searchResponseSubscription = this.streamerService.getSearchResponse()
+        this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
             .subscribe(res => {
                     this.searchUrl = this.searchService.httpGetUrl;
                     this.searchval = res.query;
