@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SearchResultStreamerService } from '../../views/search-view/services';
-import { SearchResponseJson, SubjectItemJson } from '../../shared/api-objects';
+import { SubjectItemJson } from '../../shared/api-objects';
 import { SearchResponseWithQuery } from '../../views/search-view/models';
 
 
@@ -22,12 +22,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     searchResultsSubjects: SubjectItemJson[];
 
     currentId: string;
-    currentEntityIndex: number;
+    currentResourceIndex: number;
+    goToIndex: number;
     shownIndex: number;
 
-    currentEntity: SubjectItemJson;
-    nextEntity: SubjectItemJson;
-    previousEntity: SubjectItemJson;
+    currentResource: SubjectItemJson;
+    nextResource: SubjectItemJson;
+    previousResource: SubjectItemJson;
 
     constructor(
         private router: Router,
@@ -39,13 +40,14 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     }
 
 
-    getCurrentResourceIdBySubscription() {
+    getCurrentResourceIdBySubscription(): void {
         // subscribe to streamer service
         this.currentIdSubscription = this.streamerService.getCurrentResourceId()
             .subscribe(
                 (id: string) => {
                     // update id from streamer service
                     this.currentId = id;
+                    console.log('id', id);
 
                     this.getCurrentSearchResultsBySubscription();
                 },
@@ -56,16 +58,17 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     }
 
 
-    getCurrentSearchResultsBySubscription() {
+    getCurrentSearchResultsBySubscription(): void {
         // subscribe to streamer service
         this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
             .subscribe(
                 (res: SearchResponseWithQuery) => {
                     // update search results from streamer service
                     this.searchResults = {...res};
+
                     this.searchResultsSubjects = this.searchResults.data.subjects;
 
-                    this.getCurrentEntityById(this.currentId);
+                    this.findResourceInSearchResultsById(this.currentId);
 
                 },
                 error => {
@@ -75,42 +78,45 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     }
 
 
-    getCurrentEntityById(id: string) {
+    findResourceInSearchResultsById(id: string): void {
 
         // get index position of currentSubject in searchResults
-        this.currentEntityIndex = this.searchResultsSubjects.findIndex(subject => subject.obj_id === id);
-        this.shownIndex = this.currentEntityIndex + 1;
+        this.currentResourceIndex = this.searchResultsSubjects.findIndex(subject => subject.obj_id === id);
+        this.shownIndex = this.currentResourceIndex + 1;
+        this.goToIndex = this.shownIndex;
 
         console.warn('ResourceInfo# subjects ', this.searchResultsSubjects);
         console.warn('ResourceInfo# currentId: ', this.currentId, id);
-        console.warn('ResourceInfo# filtered c: ', this.currentEntityIndex);
+        console.warn('ResourceInfo# filtered c: ', this.currentResourceIndex);
 
-        if (this.currentEntityIndex === -1) {
+        if (this.currentResourceIndex === -1) {
             console.log('OOOOOPS. ID is not in searchResult Array.');
         }
 
-        this.updateDisplayedEntitiesByIndex(this.currentEntityIndex);
+        this.updateSideInfoResourcesByIndex(this.currentResourceIndex);
+
     }
 
 
-    updateDisplayedEntitiesByIndex(index: number) {
-        this.currentEntity = this.searchResultsSubjects[index];
-        this.previousEntity = this.searchResultsSubjects[index - 1];
-        this.nextEntity = this.searchResultsSubjects[index + 1];
+    updateSideInfoResourcesByIndex(index: number): void {
+        console.log('currentResourceINDEX', this.currentResourceIndex);
+        console.log('searchResultsSubjects.length', this.searchResultsSubjects.length);
+
+
+        this.currentResource = this.searchResultsSubjects[index];
+        this.nextResource = this.searchResultsSubjects[index + 1];
+        this.previousResource = this.searchResultsSubjects[index - 1];
     }
 
 
-    showPreviousEntity(id: string) {
-        const n = -1;
-        console.log('ResInfo# clicked showPrevEntity ', id);
-        this.getCurrentEntityById(id);
+    showResource(id: string): void {
+        this.goToEntity(id);
+        this.findResourceInSearchResultsById(id);
     }
 
 
-    showNextEntity(id: string) {
-        const n = 1;
-        console.log('ResInfo# clicked showNextEntity ', id);
-        this.getCurrentEntityById(id);
+    goToEntity(id): void {
+        this.router.navigate(['/resource', id]);
     }
 
 
@@ -120,7 +126,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * so that the SearchResultList component
      * can select the corresponding Resource.
      */
-    goBack(): void {
+    goBackToSearchResults(): void {
         this.router.navigate(['/search/fulltext', {outlets: {side: 'searchInfo'}}]);
     }
 

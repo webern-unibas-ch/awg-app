@@ -1,5 +1,6 @@
 <div class="col-md-3 sidenav sidenav-left text-center">
     <p class="todo">TODO: resource-info.component.html</p>
+    <p class="todo">TODO: handling missing search results</p>
 
     <div *ngIf="searchResults"><!-- <div class="col-md-3" ng-show="entity.entityId"> -->
         <!-- ngIf: user.groupID >= 600 && entity.categoryKey -->
@@ -14,7 +15,7 @@
 
                         <!-- PANEL HEADING -->
                         <div class="panel-heading">
-                            <a class="btn btn-xs pull-right btn-primary" (click)="goBack()"><span class="glyphicon glyphicon-arrow-left"></span> Zum Suchergebnis</a>
+                            <a class="btn btn-xs pull-right btn-primary" (click)="goBackToSearchResults()"><span class="glyphicon glyphicon-arrow-left"></span> Zum Suchergebnis</a>
                             <div>
                                 <strong class="text-muted uppercase small">Aktuelle Suche</strong>
                                 <br>
@@ -30,33 +31,33 @@
 
 
                             <!-- ngIf: prevEntity -->
-                            <a *ngIf="previousEntity" class="list-group-item text-left" style="height:75px; overflow:hidden" (click)="showPreviousEntity(previousEntity?.obj_id)">
+                            <a *ngIf="previousResource" class="list-group-item text-left" style="height:75px; overflow:hidden" (click)="showResource(previousResource?.obj_id)">
                                 <div>
                                     <strong class="text-muted uppercase small ng-binding">
-                                        <span class="glyphicon glyphicon-chevron-left" style="color:black"></span> &nbsp; Voriges Ergebnis</strong>
+                                        <span class="glyphicon glyphicon-chevron-left" style="color:black"></span> &nbsp; Voriges Ergebnis ({{ shownIndex - 1 }})</strong>
                                 </div>
                                 <div>
                                     <div class="single-line">
-                                        <small class="single-line">{{ previousEntity?.value[0] }}</small>
+                                        <small class="single-line">{{ previousResource?.value[0] }}</small>
                                         <!-- ngIf: entity.title.length==0 -->
                                     </div>
                                     <div class="single-line">
-                                        <small class="text-muted">{{ previousEntity?.icontitle }}</small>
+                                        <small class="text-muted">{{ previousResource?.icontitle }}</small>
                                     </div>
                                 </div>
                             </a>
                             <!-- end ngIf: prevEntity -->
 
 
-                            <li class="list-group-item" ng-hide="nextEntitySearch.size < 2">
+                            <li class="list-group-item" ng-hide="nextResourceSearch.size < 2">
                                 <strong class="text-muted uppercase small">Angezeigtes Ergebnis</strong>
-                                <form ng-submit="goToEntityIndex(currentEntityIndex)" class="ng-pristine ng-valid">
-                                    <div class="input-group" ng-class="{'has-error':(currentEntityIndex < 1 || currentEntityIndex > resultSize)}">
-                                        <input id="resourceInfoInput" [(ngModel)]="shownIndex" name="index" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number">
+                                <form ng-submit="goToEntityIndex(currentResourceIndex)" class="ng-pristine ng-valid">
+                                    <div class="input-group" [ngClass]="{'has-error':(shownIndex < 1 || shownIndex > searchResultsSubjects?.length)}">
+                                        <input id="resourceInfoInput" [(ngModel)]="goToIndex" name="index" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number" min="0" [max]="searchResultsSubjects?.length">
                                         <span class="input-group-addon" style="border-top-right-radius: 3px; border-bottom-right-radius:3px; border-left:0;"> <small>von</small> <strong>{{ searchResultsSubjects?.length }}</strong>
                                         </span>
-                                        <span ng-hide="resultIndex == currentEntityIndex || currentEntityIndex < 1 || currentEntityIndex > resultSize" class="input-group-btn ng-hide">
-                                            <button class="btn btn-primary btn-sm" ng-click="goToEntityIndex(currentEntityIndex)">Gehe zu</button>
+                                        <span ng-hide="resultIndex == currentResourceIndex || currentResourceIndex < 1 || currentResourceIndex > resultSize" class="input-group-btn ng-hide">
+                                            <button class="btn btn-primary btn-sm" [disabled]="goToIndex === shownIndex || goToIndex < 1 || goToIndex > searchResultsSubjects?.length" (click)="showResource(currentResourceIndex)">Gehe zu</button>
                                         </span>
                                     </div>
                                 </form>
@@ -64,21 +65,21 @@
 
 
 
-                            <!-- ngIf: nextEntity -->
-                            <a *ngIf="nextEntity" class="list-group-item text-right" style="height:75px; overflow:hidden" (click)="showNextEntity(nextEntity?.obj_id)">
+                            <!-- ngIf: nextResource -->
+                            <a *ngIf="nextResource" class="list-group-item text-right" style="height:75px; overflow:hidden" (click)="showResource(nextResource?.obj_id)">
                                 <div>
-                                    <strong class="text-muted uppercase small">&nbsp; Nächstes Ergebnis <span class="glyphicon glyphicon-chevron-right" style="color:black"></span></strong>
+                                    <strong class="text-muted uppercase small">&nbsp; Nächstes Ergebnis ({{ shownIndex + 1 }}) <span class="glyphicon glyphicon-chevron-right" style="color:black"></span></strong>
                                 </div>
                                 <div>
                                     <div class="single-line">
-                                            <small class="single-line">{{ nextEntity?.value[0]  }}</small>
+                                            <small class="single-line">{{ nextResource?.value[0]  }}</small>
                                             <!-- ngIf: entity.title.length==0 -->
                                     </div>
                                     <div class="single-line">
-                                            <small class="text-muted">{{ nextEntity?.icontitle }}</small>
+                                            <small class="text-muted">{{ nextResource?.icontitle }}</small>
                                     </div>
                                 </div>
-                            </a><!-- end ngIf: nextEntity -->
+                            </a><!-- end ngIf: nextResource -->
 
 
 

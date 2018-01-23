@@ -37,8 +37,8 @@ export class ResourceDetailComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.routeToSidenav();
         this.getResourceData();
+        this.routeToSidenav();
     }
 
 
