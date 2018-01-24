@@ -60,5 +60,9 @@ export class SearchResultStreamerService {
         this.searchResponseStreamSource.next(undefined);
     }
 
+    public clearResourceId(): void {
+        this.currentResourceIdStreamSource.next('');
+    }
+
 
 }
