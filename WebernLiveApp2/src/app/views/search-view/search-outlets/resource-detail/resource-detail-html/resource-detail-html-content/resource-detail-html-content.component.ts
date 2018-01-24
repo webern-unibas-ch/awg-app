@@ -12,7 +12,7 @@ import { ResourceDetailContent } from '../../../../models';
 export class ResourceDetailHtmlContentComponent implements OnInit {
     @Input() content: ResourceDetailContent;
     @Input() resourceUrl: string;
-    @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
+    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
     public metaBreakLine: string = 'Versionsdatum';
 
@@ -30,9 +30,9 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
         return size;
     }
 
-    showDetail(id?: string) {
+    navigateToResource(id?: string) {
         if (id) { id.toString(); }
-        this.showDetailRequest.emit(id);
+        this.resourceRequest.emit(id);
     }
 
 }

@@ -16,11 +16,13 @@ import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 })
 export class ResourceDetailComponent implements OnInit {
 
-    public currentId: string;
-    public oldId: string;
-    public errorMessage: string = undefined;
+
     public resourceData: ResourceData = new ResourceData();
+    public oldId: string;
+    public resourceId: string;
     public resourceUrl: string;
+
+    public errorMessage: string = undefined;
 
     public tabTitle = {
         html: 'Detail',
@@ -38,7 +40,7 @@ export class ResourceDetailComponent implements OnInit {
 
     ngOnInit() {
         this.getResourceData();
-        this.routeToSidenav();
+        this.activateSidenav();
     }
 
 
@@ -56,7 +58,7 @@ export class ResourceDetailComponent implements OnInit {
                     const resourceBody: ResourceFullResponseJson = {...data['body']};
 
                     // display data
-                    this.displayResourceDetailData(resourceBody);
+                    this.displayResourceData(resourceBody);
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -65,68 +67,82 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    displayResourceDetailData(resourceBody: ResourceFullResponseJson) {
-        // snapshot of raw json response
-        this.resourceData['jsonRaw'] = JSON.parse(JSON.stringify(resourceBody));
+    displayResourceData(resourceBody: ResourceFullResponseJson) {
 
-        // convert data for displaying resource detail
-        this.resourceData['html'] = this.conversionService.prepareResourceDetail(resourceBody, this.currentId);
+        this.resourceData = {
+            // snapshot of raw json response
+            jsonRaw: JSON.parse(JSON.stringify(resourceBody)),
 
-        // snapshot of converted json response
-        this.resourceData['jsonConverted'] = JSON.parse(JSON.stringify(this.resourceData['html']));
-    }
+            // convert data for displaying resource detail
+            html: this.conversionService.prepareResourceDetail(resourceBody, this.resourceId),
 
-
-    routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
+            // snapshot of converted json response
+            jsonConverted: JSON.parse(JSON.stringify(this.resourceData['html']))
+        }
     }
 
 
     updateResourceParams() {
         // update current id
-        this.updateCurrentId();
+        this.updateresourceId();
 
         // update url for resource
+        this.updateCurrentUrl();
+    }
+
+
+    updateresourceId() {
+        console.warn('resource-detail# id before paramMap: ', this.resourceId);
+
+        // snapshot of resourceId
+        this.resourceId = this.route.snapshot.paramMap.get('id');
+
+        console.warn('resource-detail# id after paramMap: ', this.resourceId);
+
+        // share current id via streamer service
+        this.streamerService.updateCurrentResourceIdStream(this.resourceId);
+    }
+
+
+    updateCurrentUrl() {
+        // get url from search service
         this.resourceUrl = this.searchService.httpGetUrl;
     }
 
-    updateCurrentId() {
-        console.warn('resource-detail# id before paramMap: ', this.currentId);
 
-        // snapshot of currentId
-        this.currentId = this.route.snapshot.paramMap.get('id');
-
-        console.warn('resource-detail# id after paramMap: ', this.currentId);
-
-        // share current id via streamer service
-        this.streamerService.updateCurrentResourceIdStream(this.currentId);
+    /*
+     * Activate Sidenav: ResourceInfo
+     */
+    activateSidenav(): void {
+        this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
     }
 
 
     /*
      * Navigate to ResourceDetail:
      * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
-     * if oldId not exists (first call), use currentId
+     * if oldId not exists (first call), use resourceId
      */
-    showDetail(nextId?: string): void {
-        const showId = nextId ? nextId : (this.oldId ? this.oldId : this.currentId);
-        // save currentId as oldId
-        this.oldId = this.currentId;
-        // update currentId
-        this.currentId = showId;
-        // navigate to new detail
-        this.router.navigate(['/resource', +this.currentId]);
+    navigateToResource(nextId?: string): void {
+        const showId = nextId ? nextId : (this.oldId ? this.oldId : this.resourceId);
+        // save resourceId as oldId
+        this.oldId = this.resourceId;
+        // update resourceId
+        this.resourceId = showId;
+
+        // navigate to new resource
+        this.router.navigate(['/resource', +this.resourceId]);
     }
 
 
     /*
      * Navigate back to SearchPanel
-     * pass along the currentId if available
+     * pass along the resourceId if available
      * so that the SearchResultList component
      * can select the corresponding Resource.
      */
-    goBack(): void {
-        this.router.navigate(['/search/fulltext', { id: this.currentId, outlets: {side: 'searchInfo'} }]);
+    navigateToSearch(): void {
+        this.router.navigate(['/search/fulltext', { id: this.resourceId, outlets: {side: 'searchInfo'} }]);
     }
 
 }

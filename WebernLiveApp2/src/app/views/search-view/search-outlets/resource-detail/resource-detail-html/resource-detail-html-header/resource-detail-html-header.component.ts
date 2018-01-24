@@ -12,16 +12,16 @@ import { ResourceDetailHeader } from '../../../../models';
 export class ResourceDetailHtmlHeaderComponent implements OnInit {
     @Input() header: ResourceDetailHeader;
     @Input() resourceUrl: string;
-    @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
+    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
     constructor() { }
 
     ngOnInit() {
     }
 
-    showDetail(id?: string) {
+    navigateToResource(id?: string) {
         if (id) { id.toString(); }
-        this.showDetailRequest.emit(id);
+        this.resourceRequest.emit(id);
     }
 
 }

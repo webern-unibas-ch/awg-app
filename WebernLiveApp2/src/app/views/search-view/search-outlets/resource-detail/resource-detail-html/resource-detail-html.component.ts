@@ -10,21 +10,21 @@ import { ResourceDetail } from '../../../models';
 export class ResourceDetailHtmlComponent implements OnInit {
     @Input() resourceDetailData: ResourceDetail;
     @Input() resourceUrl: string;
-    @Output() goBackRequest: EventEmitter<any> = new EventEmitter();
-    @Output() showDetailRequest: EventEmitter<string> = new EventEmitter();
+    @Output() searchRequest: EventEmitter<any> = new EventEmitter();
+    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
     constructor( ) { }
 
     ngOnInit() {
     }
 
-    goBack() {
-        this.goBackRequest.emit();
+    navigateToSearch() {
+        this.searchRequest.emit();
     }
 
-    showDetail(id?: string) {
+    navigateToResource(id?: string) {
         if (id) { id.toString(); }
-        this.showDetailRequest.emit(id);
+        this.resourceRequest.emit(id);
     }
 
 }

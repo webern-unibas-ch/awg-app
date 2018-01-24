@@ -2,18 +2,18 @@
 <awg-resource-detail-html-header
     [header]="resourceDetailData?.header"
     [resourceUrl]="resourceUrl"
-    (showDetailRequest)="showDetail($event)">
+    (resourceRequest)="navigateToResource($event)">
 </awg-resource-detail-html-header>
 
     <br /><br />
-    <button (click)="showDetail()">Zeige vorheriges Objekt</button>
-    <button (click)="goBack()">Zurück zur Suche</button>
+    <button (click)="navigateToSearch()">Zurück zur Suche</button>
+    <p class="todo">TODO (resource-detail-html): move button to correct place and ngIf</p>
 
 <!-- resourceDetailData content -->
 <awg-resource-detail-html-content
     [content]="resourceDetailData?.content"
     [resourceUrl]="resourceUrl"
-    (showDetailRequest)="showDetail($event)">
+    (resourceRequest)="navigateToResource($event)">
 </awg-resource-detail-html-content>
 
 

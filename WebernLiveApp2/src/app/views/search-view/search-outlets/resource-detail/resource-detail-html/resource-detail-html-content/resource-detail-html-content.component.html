@@ -50,7 +50,7 @@
                             {{ facetGroup?.mappedKey }}
                             <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
                         </div>
-                        <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="showDetail(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
+                        <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="navigateToResource(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
                     </accordion-group>
                 </accordion>
             </ng-container>

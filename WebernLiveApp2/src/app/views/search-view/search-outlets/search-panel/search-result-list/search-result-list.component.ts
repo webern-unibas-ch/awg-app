@@ -23,11 +23,11 @@ export class SearchResultListComponent implements OnInit {
 
     }
 
-    activeDetail(id: string) {
+    isActiveResource(id: string) {
         return this.currentId === id;
     }
 
-    showDetail(id: string) {
+    navigateToResource(id: string) {
         this.currentId = id;
         this.router.navigate(['/resource', this.currentId]);
     }

@@ -13,8 +13,8 @@
             *ngIf="resourceData?.html"
             [resourceDetailData]="resourceData?.html"
             [resourceUrl]="resourceUrl"
-            (goBackRequest)="goBack($event)"
-            (showDetailRequest)="showDetail($event)">
+            (searchRequest)="navigateToSearch($event)"
+            (resourceRequest)="navigateToResource($event)">
         </awg-resource-detail-html>
 
         <awg-resource-detail-json-converted id="converted" class="tab-pane fade"
