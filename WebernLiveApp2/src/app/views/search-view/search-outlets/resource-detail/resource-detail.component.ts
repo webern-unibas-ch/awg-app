@@ -17,7 +17,7 @@ import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 export class ResourceDetailComponent implements OnInit {
 
 
-    public resourceData: ResourceData = new ResourceData();
+    public resourceData: ResourceData;
     public oldId: string;
     public resourceId: string;
     public resourceUrl: string;
@@ -69,16 +69,14 @@ export class ResourceDetailComponent implements OnInit {
 
     displayResourceData(resourceBody: ResourceFullResponseJson) {
 
-        this.resourceData = {
-            // snapshot of raw json response
-            jsonRaw: JSON.parse(JSON.stringify(resourceBody)),
+        if (!resourceBody) { return; }
 
-            // convert data for displaying resource detail
-            html: this.conversionService.prepareResourceDetail(resourceBody, this.resourceId),
+        // convert data for displaying resource detail
+        const html = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
 
-            // snapshot of converted json response
-            jsonConverted: JSON.parse(JSON.stringify(this.resourceData['html']))
-        }
+        // load new resource data
+        this.resourceData = new ResourceData(resourceBody, html);
+
     }
 
 
