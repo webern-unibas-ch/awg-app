@@ -4,10 +4,9 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SearchResultStreamerService } from '../../views/search-view/services';
-import { SearchResponseJson, SubjectItemJson } from '../../shared/api-objects';
 import { SearchResponseWithQuery } from '../../views/search-view/models';
-import {CurrentResource, ResourceInfo} from '../side-info-models';
-import {ResourceInfoResource} from '../side-info-models/resource-info-resources.model';
+import { ResourceInfo } from '../side-info-models';
+import { ResourceInfoResource } from '../side-info-models/resource-info-resources.model';
 
 
 @Component({
@@ -82,25 +81,17 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
 
     findResourceInSearchResultsById(id: string): void {
-        // get index position of currentSubject in searchResults
+        // find index position of currentSubject in searchResults.subjects array
         const arrayIndex = this.resourceInfo.searchResults.subjects.findIndex(subject => subject.obj_id === id);
 
-        this.goToIndex = arrayIndex + 1;
-
-        console.warn('ResourceInfo# subjects ', this.resourceInfo.searchResults.subjects);
-        console.warn('ResourceInfo# currentId: ', this.currentId, id);
-        console.warn('ResourceInfo# filtered c: ', arrayIndex);
-
-        if (arrayIndex === -1) {
-            console.log('OOOOOPS. ID is not in searchResult Array.');
-        }
-
-        this.updateSideInfoResourcesByIndex(arrayIndex);
+        // update resource info data
+        this.updateSideInfoResources(arrayIndex);
     }
 
 
-    updateSideInfoResourcesByIndex(index: number): void {
+    updateSideInfoResources(index: number): void {
         // some shortcuts
+        this.goToIndex = index + 1;
         const nextIndex = index + 1;
         const prevIndex = index - 1;
         const subjects = this.resourceInfo.searchResults.subjects;

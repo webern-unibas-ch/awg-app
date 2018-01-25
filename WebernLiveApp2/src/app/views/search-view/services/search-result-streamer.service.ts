@@ -10,9 +10,9 @@ import { SearchResponseWithQuery } from '../models';
 @Injectable()
 export class SearchResultStreamerService {
 
-    /*
+    /**************************************************
      * ReplaySubjects that are used to stream the data
-     */
+     **************************************************/
     private bufferSize: number = 1;
 
     private searchResponseStreamSource = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
@@ -22,11 +22,9 @@ export class SearchResultStreamerService {
     private currentResourceIdStream$ = this.currentResourceIdStreamSource.asObservable();
 
 
-    /**********************************
-     **
-     **  request data
-     **
-     **********************************/
+    /****************
+     *  request data
+     ****************/
     public getCurrentSearchResults(): Observable<SearchResponseWithQuery> {
         return this.searchResponseStream$;
     }
@@ -36,26 +34,20 @@ export class SearchResultStreamerService {
     }
 
 
-    /**********************************
-     **
-     **  request data
-     **
-     **********************************/
+    /***************
+     *  update data
+     ***************/
     public updateSearchResponseStream(results: SearchResponseWithQuery): void {
         this.searchResponseStreamSource.next(results);
-        console.info('StreamerService# results: ', results);
     }
 
     public updateCurrentResourceIdStream(id: string): void {
         this.currentResourceIdStreamSource.next(id);
-        console.info('StreamerService# active id: ', id);
     }
 
-    /**********************************
-     **
-     **  reset data
-     **
-     **********************************/
+    /**************
+     *  reset data
+     **************/
     public clearSearchResults(): void {
         this.searchResponseStreamSource.next(undefined);
     }

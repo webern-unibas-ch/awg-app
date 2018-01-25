@@ -1,31 +1,38 @@
+<!--
+/************************************************
+*
+*               CREDITS
+*
+* This code is inspired, adapted or taken from:
+*
+* ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+* https://arachne.dainst.org/entity/1121229**]
+* 20.11.2017
+*
+*
+*
+************************************************/ -->
 <div class="col-md-3 sidenav sidenav-left text-center">
-    <p class="todo">TODO: resource-info.component.html</p>
-    <p class="todo">TODO: handling missing search results</p>
-
-    <div *ngIf="resourceInfo"><!-- <div class="col-md-3" ng-show="entity.entityId"> -->
-        <!-- ngIf: user.groupID >= 600 && entity.categoryKey -->
+    <div *ngIf="resourceInfo">
         <div class="row">
             <div class="col-md-12">
-                <div *ngIf="resourceInfo?.searchResults?.size">
-                    <!-- ngIf: currentQuery.q || currentQuery.facets.length > 0 -->
-                    <div ng-if="currentQuery.q || currentQuery.facets.length > 0" class="panel panel-default">
+                <div ng-if="currentQuery.q || currentQuery.facets.length > 0" class="panel panel-default">
 
-
-
-                        <!-- PANEL HEADING -->
-                        <div class="panel-heading">
-                            <a class="btn btn-xs pull-right btn-primary" (click)="navigateToSearchResults()"><span class="glyphicon glyphicon-arrow-left"></span> Zum Suchergebnis</a>
-                            <div>
-                                <strong class="text-muted uppercase small">Aktuelle Suche</strong>
-                                <br>
-                                <span>{{ resourceInfo?.searchResults?.query }}</span>
-                            </div>
+                    <!-- PANEL HEADING -->
+                    <div class="panel-heading">
+                        <a class="btn btn-xs btn-primary pull-left" (click)="navigateToSearchResults()"><span class="glyphicon glyphicon-arrow-left"></span> Zur Suche</a>
+                        <div>
+                            <strong class="text-muted uppercase small">Aktueller Suchbegriff</strong>
+                            <br>
+                            <span *ngIf="resourceInfo?.searchResults?.query; else noQuery">{{ resourceInfo?.searchResults?.query }}</span>
+                            <ng-template #noQuery>
+                                <span>---</span>
+                            </ng-template>
                         </div>
+                    </div>
 
-
-
+                    <div *ngIf="resourceInfo?.searchResults?.size">
                         <ul class="list-group">
-
                             <!-- previous resource -->
                             <a *ngIf="resourceInfo?.resources?.previous; let previous" class="list-group-item text-left" style="height:75px; overflow:hidden" (click)="navigateToResource(previous?.id)">
                                 <div>
@@ -49,7 +56,7 @@
                                 <form class="ng-pristine ng-valid">
 
                                     <div class="input-group" [ngClass]="{'has-error':(current?.displayIndex < 1 || current?.displayIndex > resultSize)}">
-                                        <input id="resourceInfoInput" [(ngModel)]="goToIndex" name="index" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number" min="0" [max]="resultSize">
+                                        <input id="resourceInfoInput" [(ngModel)]="goToIndex" name="index" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number" min="1" [max]="resultSize">
                                         <span class="input-group-addon" style="border-top-right-radius: 3px; border-bottom-right-radius:3px; border-left:0;"> <small>von</small> <strong>{{ resultSize }}</strong>
                                         </span>
                                         <span ng-hide="goToIndex === current?.displayIndex || goToIndex < 1 || goToIndex > resultSize" class="input-group-btn ng-hide">
@@ -68,11 +75,11 @@
                                 </div>
                                 <div>
                                     <div class="single-line">
-                                            <small class="single-line">{{ next?.title }}</small>
-                                            <!-- ngIf: entity.title.length==0 -->
+                                        <small class="single-line">{{ next?.title }}</small>
+                                        <!-- ngIf: entity.title.length==0 -->
                                     </div>
                                     <div class="single-line">
-                                            <small class="text-muted">{{ next?.subtitle }}</small>
+                                        <small class="text-muted">{{ next?.subtitle }}</small>
                                     </div>
                                 </div>
                             </a>
@@ -80,10 +87,10 @@
 
 
                         </ul>
-                    </div><!-- end ngIf: currentQuery.q || currentQuery.facets.length > 0 -->
+                    </div><!-- end ngIf: resourceInfo?.searchResults?.size -->
                 </div>
             </div>
-        </div><!-- ngIf: entity.places -->
+        </div><!-- class row -->
 
         <div ng-if="entity.places" class="ng-scope"></div><!-- end ngIf: entity.places -->
     </div><!-- ngIf: user.username -->

@@ -50,7 +50,6 @@ export class ResourceDetailComponent implements OnInit {
             .switchMap((params: ParamMap) => this.searchService.getResourceDetailData(params.get('id')))
             .subscribe(
                 (data: ResourceFullResponseJson) => {
-
                     // update and store current resource params (url and id)
                     this.updateResourceParams();
 
@@ -67,35 +66,18 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    displayResourceData(resourceBody: ResourceFullResponseJson) {
-
-        if (!resourceBody) { return; }
-
-        // convert data for displaying resource detail
-        const html = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
-
-        // load new resource data
-        this.resourceData = new ResourceData(resourceBody, html);
-
-    }
-
-
     updateResourceParams() {
         // update current id
-        this.updateresourceId();
+        this.updateResourceId();
 
         // update url for resource
         this.updateCurrentUrl();
     }
 
 
-    updateresourceId() {
-        console.warn('resource-detail# id before paramMap: ', this.resourceId);
-
+    updateResourceId() {
         // snapshot of resourceId
         this.resourceId = this.route.snapshot.paramMap.get('id');
-
-        console.warn('resource-detail# id after paramMap: ', this.resourceId);
 
         // share current id via streamer service
         this.streamerService.updateCurrentResourceIdStream(this.resourceId);
@@ -108,11 +90,17 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    /*
-     * Activate Sidenav: ResourceInfo
-     */
-    activateSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
+    displayResourceData(resourceBody: ResourceFullResponseJson) {
+        if (!resourceBody) { return; }
+
+        // convert data for displaying resource detail
+        const html = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
+
+        // load new resource data
+        this.resourceData = new ResourceData(resourceBody, html);
+
+        // scroll to Top of Page
+        this.scrollToTop();
     }
 
 
@@ -141,6 +129,21 @@ export class ResourceDetailComponent implements OnInit {
      */
     navigateToSearch(): void {
         this.router.navigate(['/search/fulltext', { id: this.resourceId, outlets: {side: 'searchInfo'} }]);
+    }
+
+
+    /*
+     * Activate Sidenav: ResourceInfo
+     */
+    activateSidenav(): void {
+        this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
+    }
+
+    /*
+     * Scroll to Top of Window
+     */
+    scrollToTop() {
+        window.scrollTo(0,0);
     }
 
 }

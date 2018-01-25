@@ -521,8 +521,6 @@ export class ConversionService extends ApiService {
                         }
                     }
                 }
-                // TODO: rm
-                console.info('ConversionService#convertHlistValue: got output: ', output);
                 return output;
             },
             err => console.error(err)
@@ -537,7 +535,7 @@ export class ConversionService extends ApiService {
     private convertLinkValue(prop, i: number) {
         // add <a>-tag with click-directive; linktext is stored in "$&"
         const firstValue = prop.value_firstprops[i];
-        const replaceValue = '<a (click)="ref.showDetail(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
+        const replaceValue = '<a (click)="ref.navigateToResource(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
         const linkValue = firstValue.replace(firstValue, replaceValue);
         return linkValue;
     }
@@ -589,9 +587,6 @@ export class ConversionService extends ApiService {
                         }
                     }
                 }
-                // TODO: rm
-                console.info('ConversionService#convertSelectionValue: got output: ', output);
-
                 return output;
             },
             err => console.error(err)
@@ -702,7 +697,7 @@ export class ConversionService extends ApiService {
 
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
-            const replaceValue = '<a (click)="ref.showDetail(\'' + res_id + '\'); $event.stopPropagation()">' + p[2] + '</a>';
+            const replaceValue = '<a (click)="ref.navigateToResource(\'' + res_id + '\'); $event.stopPropagation()">' + p[2] + '</a>';
             str = str.replace(p[0], replaceValue);
         } // END while
 
