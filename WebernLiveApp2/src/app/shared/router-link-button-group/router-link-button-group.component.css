@@ -1,0 +1,28 @@
+@media (max-width: 576px) {
+    .btn-group-justified.btn-group-responsive > .btn-group {
+        display: block;
+        width: 100%;
+    }
+
+    /* making the border-radius correct */
+    .btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
+        border-radius: 6px 6px 0 0;
+    }
+    .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {
+        border-radius: 0;
+        margin-left: 1px;
+    }
+    .btn-group > .btn-group:last-child:not(:first-child) > .btn:first-child {
+        border-radius: 0 0 6px 6px;
+        margin-left: 1px;
+    }
+
+    /* fixing margin */
+    /*
+    .btn-group .btn + .btn {
+
+        margin-left: 0;
+    }
+    */
+
+}

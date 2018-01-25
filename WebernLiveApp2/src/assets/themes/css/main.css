@@ -217,5 +217,5 @@ span.indent {
 /****** BUTTON GROUP ******/
 awg-router-link-button-group div.btn-group.btn-group-justified,
 awg-edition-sheet-control div.btn-group.btn-group-justified {
-    margin-bottom:1em; box-shadow: 5px 5px 6px #cccccc;
+    margin-bottom: 1em;
 }
