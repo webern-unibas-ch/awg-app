@@ -13,7 +13,7 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { UserdataJson } from './userdata-json';
+import { UserDataJson } from './userdata-json';
 import { KnoraStatusCode } from './basic-type-aliases';
 
 /**
@@ -33,7 +33,7 @@ export class BasicResponseJson {
      * The current user's data
      * @param userdata: userdata
      */
-    @JsonProperty('userdata', UserdataJson)
-    public userdata: UserdataJson = undefined;
+    @JsonProperty('userdata', UserDataJson)
+    public userdata: UserDataJson = undefined;
 
 }

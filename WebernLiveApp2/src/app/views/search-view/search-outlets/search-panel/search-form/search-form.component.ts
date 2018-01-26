@@ -62,8 +62,8 @@ export class SearchFormComponent implements OnInit {
                 return this.searchService.getFulltextSearchData(value);
             })
             .subscribe((data: SearchResponseJson) => {
-
-                    let searchResultsData = {...data['body']};
+                    // snapshot of data
+                    let searchResultsData = {...data};
 
                     // conversion of search results for HTML display
                     searchResultsData = this.conversionService.convertFullTextSearchResults(searchResultsData);

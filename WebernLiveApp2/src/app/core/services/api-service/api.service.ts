@@ -1,15 +1,35 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 import { catchError, map, tap } from 'rxjs/operators';
 import { of } from 'rxjs/observable/of';
 
-import { AppConfig } from '../../../app.config';
 import { ApiServiceError } from './api-service-error';
 import { ApiServiceResult } from './api-service-result';
+import { ApiRequest } from './api-request.model';
 
 @Injectable()
 export class ApiService {
+
+    static handleError(error: any, url: string): ApiServiceError {
+        const response: ApiServiceError = new ApiServiceError();
+        if (error instanceof Response) {
+            response.status = error.status;
+            response.statusText = error.statusText;
+            if (!response.statusText) {
+                response.statusText = 'Connection to API endpoint failed';
+            }
+            response.route = url;
+        } else {
+            response.status = 0;
+            response.statusText = 'Connection to API endpoint failed';
+            response.route = url;
+        }
+        // response.status === 401 --> Unauthorized
+        // response.status === 404 --> Not found
+        console.log('ApiService: handleError: ', response);
+        return response;
+    }
 
     httpGetUrl: string = '';
 
@@ -18,43 +38,48 @@ export class ApiService {
     /**
      * Performs a HTTP GET request to the Knora API.
      * @param url
-     * @param options
-     * @returns {Observable<any>}
+     * @param httpGetParams
+     * @returns {Observable<ApiServiceResult>}
      */
-    httpGet(url: string, httpGetParams?: HttpParams ): Observable<any> {
+    httpGet(url: string, httpGetParams?: HttpParams ): Observable<ApiServiceResult> {
         if (!httpGetParams) { httpGetParams = new HttpParams(); }
-        const httpGetHeaders = new HttpHeaders().set('Accept', 'application/json');
-        this.httpGetUrl = AppConfig.API_ENDPOINT + url;
+        const apiRequest = new ApiRequest(url, httpGetParams);
+        console.warn('ApiService: ApiRequest: ', apiRequest);
 
         return this.http
             .get(
-                this.httpGetUrl,
+                apiRequest.url,
                 {
                     observe: 'response',
-                    params: httpGetParams,
-                    headers: httpGetHeaders
+                    params: apiRequest.params,
+                    headers: apiRequest.headers
                 })
             .pipe(
-                tap(response => {
-                    // TODO: rm
-                    // console.info('ApiService# getUrl: ', this.httpGetUrl);
-                    // console.info('ApiService#httpGet.response: ', response);
+                tap((response: HttpResponse<ApiServiceResult>) => {
+                    this.httpGetUrl = response.url;
                 }),
-                map((response: HttpResponse<any>) => {
+                map((response: HttpResponse<ApiServiceResult>) => {
                     try {
                         const apiServiceResult: ApiServiceResult = new ApiServiceResult();
                         apiServiceResult.status = response.status;
                         apiServiceResult.statusText = response.statusText;
                         apiServiceResult.body = response.body;
-                        apiServiceResult.url = url;
+                        apiServiceResult.url = response.url;
                         return apiServiceResult;
                     } catch (e) {
-                        // return ApiService.handleError(response, url);
+                        // console.log('ApiService - catch - local e: ', e);
+                        // TODO: use full response.url for errorhandling
+                        return ApiService.handleError(response, url);
                     }
                 }),
-                catchError(this.handleError('ApiService#httpGet', []))
+                // catchError(this.handleError('ApiService#httpGet', []))
+                catchError((error: any) => {
+                    // console.log('ApiService - catchError - global e: ', error);
+                    return Observable.throw(ApiService.handleError(error, url));
+                })
             );
     }
+
 
     /**
      * Performs a HTTP POST request to the Knora API.
@@ -82,55 +107,4 @@ export class ApiService {
             });
     }
     */
-
-    /*
-    static handleError(error: any, url: string): ApiServiceError {
-
-        const response = new ApiServiceError();
-        if (error instanceof HttpResponse) {
-            // console.log(error);
-            response.status = error.status;
-            response.statusText = error.statusText;
-            if (!response.statusText) {
-                response.statusText = 'Connection to API endpoint failed';
-            }
-            response.route = url;
-        } else {
-            response.status = 0;
-            response.statusText = 'Connection to API endpoint failed';
-            response.route = url;
-        }
-
-        // response.status === 401 --> Unauthorized; password is wrong
-        // response.status === 404 --> Not found; username is wrong
-        return response;
-
-    }
-
-
-    /**
-     * Handle Http operation that failed.
-     * Let the app continue.
-     * @param operation - name of the operation that failed
-     * @param result - optional value to return as the observable result
-     */
-    private handleError<T> (operation = 'operation', result?: T) {
-        return (error: any): Observable<T> => {
-
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
-
-            // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.message}`);
-
-            // Let the app keep running by returning an empty result.
-            return of(result as T);
-        };
-    }
-
-    private log(message: string) {
-        console.log(message);
-    }
-
-
 }

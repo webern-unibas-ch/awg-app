@@ -50,7 +50,10 @@ export class ApiServiceResult {
 
         if (!classObject) { return this.body; }
         try {
-            return ApiServiceResult.jsonConvert.deserializeObject(this.body, classObject);
+            // console.warn('ApiServiceResult - try to convert: ', classObject);
+            const conv = ApiServiceResult.jsonConvert.deserializeObject(this.body, classObject);
+            // console.warn('ApiServiceResult - getBody: ', conv);
+            return conv;
         } catch (e) {
             console.log(e);
         }

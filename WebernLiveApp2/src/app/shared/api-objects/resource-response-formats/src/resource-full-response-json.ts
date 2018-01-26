@@ -38,7 +38,7 @@ export class ResourceFullResponseJson extends BasicResponseJson {
      * Resources referring to the requested resource
      * @param incoming: Array<incomingItem>
      */
-    @JsonProperty('incoming', [IncomingItemJson])
+    @JsonProperty('incoming', [IncomingItemJson], true)
     public incoming: IncomingItemJson[] = undefined;
 
     /**
@@ -46,20 +46,20 @@ export class ResourceFullResponseJson extends BasicResponseJson {
      * @param props: object
      * @type [index: string]: property
      */
-    @JsonProperty('props', [PropertyJson])
+    @JsonProperty('props', [PropertyJson], true)
     public props: PropertyJson[] = undefined;
 
     /**
      * Additional information about the requested resource (no parameters)
      * @param resdata: resdata
      */
-    @JsonProperty('resdata', ResdataJson)
+    @JsonProperty('resdata', ResdataJson, true)
     public resdata: ResdataJson = undefined;
 
     /**
      * Description of the resource and its class
      * @param resinfo: resinfo
      */
-    @JsonProperty('resinfo', ResinfoJson)
+    @JsonProperty('resinfo', ResinfoJson, true)
     public resinfo: ResinfoJson = undefined;
 }

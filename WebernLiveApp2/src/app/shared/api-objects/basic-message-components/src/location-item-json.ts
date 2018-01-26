@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
 import { ProtocolOptions } from './basic-type-aliases';
 
 /**
@@ -24,10 +24,10 @@ export class LocationItemJson {
 
     /**
      * Duration of a movie or an audio file
-     * @param duration: number
+     * @param duration: number | string
      */
-    @JsonProperty('duration', Number)
-    public duration: number = undefined;
+    @JsonProperty('duration', Any)
+    public duration: any = undefined;
 
     /**
      * Format of the binary representation
@@ -38,25 +38,25 @@ export class LocationItemJson {
 
     /**
      * Frames per second (movie)
-     * @fps: number
+     * @fps: number | string
      */
-    @JsonProperty('fps', Number)
-    public fps: number = undefined;
+    @JsonProperty('fps', Any)
+    public fps: any = undefined;
 
     /**
      * X dimension of an image representation
-     * @param nx: number
+     * @param nx: number | string
      * TODO: compare thumb_max-json
      */
-    @JsonProperty('nx', Number)
-    public nx: number = undefined;
+    @JsonProperty('nx', Any)
+    public nx: any = undefined;
 
     /**
      * Y dimension of an image representation
-     * @param ny: number
+     * @param ny: number | string
      */
-    @JsonProperty('ny', Number)
-    public ny: number = undefined;
+    @JsonProperty('ny', Any)
+    public ny: any = undefined;
 
     /**
      * Original file name of the binary representation

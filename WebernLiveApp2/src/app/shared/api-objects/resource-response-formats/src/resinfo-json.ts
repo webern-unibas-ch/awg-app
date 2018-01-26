@@ -27,8 +27,16 @@ export class ResinfoJson {
      * The resource's label
      * @param firstproperty: string
      */
-    @JsonProperty('firstproperty', String)
+    @JsonProperty('firstproperty', String, true)
     public firstproperty: string = undefined;
+
+    /**
+     * The resource's handle id
+     * @param handle_id: string
+     */
+    @JsonProperty('handle_id', String, true)
+    public handle_id: string = undefined;
+
 
     /**
      * Date of last modification
@@ -36,6 +44,13 @@ export class ResinfoJson {
      */
     @JsonProperty('lastmod', String)
     public lastmod: string = undefined;
+
+    /**
+     * Date (UTC) of last modification
+     * @param lastmod_utc: string
+     */
+    @JsonProperty('lastmod_utc', String)
+    public lastmod_utc: string = undefined;
 
     /**
      * Digital representations of the resource
@@ -77,7 +92,7 @@ export class ResinfoJson {
      * @param regions: Array<region>
      * TODO: IndexedRegionJson [index:string]: RegionJson
      */
-    @JsonProperty('regions', [RegionJson])
+    @JsonProperty('regions', [RegionJson], true)
     public regions: RegionJson[] = undefined;
 
     /**

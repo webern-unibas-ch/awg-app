@@ -53,14 +53,14 @@ export class PropertyJson {
      * The type of GUI element used to render this property
      * @param guielement: string | null
      */
-    @JsonProperty('guielement', String)
+    @JsonProperty('guielement', String, true)
     public guielement: string = undefined;
 
     /**
      * Order of property type in GUI
      * @param guiorder: number | null
      */
-    @JsonProperty('guiorder', Number)
+    @JsonProperty('guiorder', Number, true)
     public guiorder: number = undefined;
 
     /**
@@ -93,7 +93,7 @@ export class PropertyJson {
      * (null if the property is locations)
      * @param occurence: string | null
      */
-    @JsonProperty('occurrence', String)
+    @JsonProperty('occurrence', String, true)
     public occurrence: string = undefined;
 
     /**
@@ -148,7 +148,7 @@ export class PropertyJson {
      * The given user's permissions on the value objects.
      * @param value_rights: Array<KnoraRights> OPTIONAL
      */
-    @JsonProperty('value_rights', [Number], true)
+    @JsonProperty('value_rights', [Any], true)
     public value_rights: KnoraRights[] = undefined;
 
     /**

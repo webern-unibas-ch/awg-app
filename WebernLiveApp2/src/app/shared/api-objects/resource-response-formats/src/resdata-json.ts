@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, KnoraRights } from '../../basic-message-components';
 
 /**
@@ -57,6 +57,6 @@ export class ResdataJson {
      * The given user's permissions on the resource
      * @param rights: KnoraRights
      */
-    @JsonProperty('rights', Number)
+    @JsonProperty('rights', Any)
     public rights: KnoraRights = undefined;
 }

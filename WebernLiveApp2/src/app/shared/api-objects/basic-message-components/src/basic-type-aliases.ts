@@ -118,7 +118,7 @@ export type KnoraListNodeIRI = KnoraIRI;
  *
  * 8: Change Rights Permission
  */
-export type KnoraRights = integer;
+export type KnoraRights = integer|string;
 
 /**
  * Describes a Knora Value.

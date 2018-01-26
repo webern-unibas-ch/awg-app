@@ -12,7 +12,7 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI, KnoraRights } from '../../basic-message-components';
 
 /**
@@ -54,14 +54,14 @@ export class SubjectItemJson {
      * X dimension of the preview representation
      * @param preview_nx: number
      */
-    @JsonProperty('preview_nx', Number)
+    @JsonProperty('preview_nx', Number, true)
     public preview_nx: number = undefined;
 
     /**
      * Y dimension of the preview representation
      * @param preview_ny: number
      */
-    @JsonProperty('preview_ny', Number)
+    @JsonProperty('preview_ny', Number, true)
     public preview_ny: number = undefined;
 
     /**
@@ -75,15 +75,15 @@ export class SubjectItemJson {
      * The user's permission on the retrieved resource
      * @param rights: KnoraRights
      */
-    @JsonProperty('rights', Number)
+    @JsonProperty('rights', Number, true)
     public rights: KnoraRights = undefined;
 
     /**
      * Values of the retrieved resource
      * @param value: Array<string>
      */
-    @JsonProperty('value', [String])
-    public value: string[] = undefined;
+    @JsonProperty('value', [Any])
+    public value: any[] = undefined;
 
     /**
      * Labels of the retrieved resource's values
