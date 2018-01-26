@@ -213,9 +213,3 @@ span.indent {
 .ng-invalid:not(form) {
     border-left: 5px solid #a94442; /* red */
 }
-
-/****** BUTTON GROUP ******/
-awg-router-link-button-group div.btn-group.btn-group-justified,
-awg-edition-sheet-control div.btn-group.btn-group-justified {
-    margin-bottom: 1em;
-}
