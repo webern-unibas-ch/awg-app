@@ -1,12 +1,12 @@
 <!-- resourceDetailData header -->
-<awg-resource-detail-html-header
+<awg-resource-detail-html-header *ngIf="resourceDetailData?.header"
     [header]="resourceDetailData?.header"
     [resourceUrl]="resourceUrl"
     (resourceRequest)="navigateToResource($event)">
 </awg-resource-detail-html-header>
 
 <!-- resourceDetailData content -->
-<awg-resource-detail-html-content
+<awg-resource-detail-html-content *ngIf="resourceDetailData?.content"
     [content]="resourceDetailData?.content"
     [resourceUrl]="resourceUrl"
     (resourceRequest)="navigateToResource($event)">

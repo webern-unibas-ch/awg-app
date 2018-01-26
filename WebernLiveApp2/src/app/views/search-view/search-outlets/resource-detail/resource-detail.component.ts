@@ -5,7 +5,7 @@ import 'rxjs/add/operator/switchMap';
 
 import { ConversionService } from '../../../../core/services';
 import { SearchResultStreamerService, SearchService } from '../../services';
-import { ResourceData } from '../../models';
+import { ResourceData, ResourceDetail } from '../../models';
 import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 
 
@@ -16,11 +16,10 @@ import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 })
 export class ResourceDetailComponent implements OnInit {
 
-
     public resourceData: ResourceData;
-    public oldId: string;
     public resourceId: string;
     public resourceUrl: string;
+    public oldId: string;
 
     public errorMessage: string = undefined;
 
@@ -53,8 +52,9 @@ export class ResourceDetailComponent implements OnInit {
                     // update and store current resource params (url and id)
                     this.updateResourceParams();
 
-                    // snapshot of data.body
-                    const resourceBody: ResourceFullResponseJson = {...data['body']};
+                    console.log('ResourceDetail# data: ', data);
+                    // snapshot of data
+                    const resourceBody: ResourceFullResponseJson = {...data};
 
                     // display data
                     this.displayResourceData(resourceBody);
@@ -91,10 +91,11 @@ export class ResourceDetailComponent implements OnInit {
 
 
     displayResourceData(resourceBody: ResourceFullResponseJson) {
-        if (!resourceBody) { return; }
+        if (resourceBody == {}) { return; }
 
+        console.warn('ResourceDetail# resbody: ', resourceBody);
         // convert data for displaying resource detail
-        const html = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
+        const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
 
         // load new resource data
         this.resourceData = new ResourceData(resourceBody, html);
@@ -118,17 +119,6 @@ export class ResourceDetailComponent implements OnInit {
 
         // navigate to new resource
         this.router.navigate(['/resource', +this.resourceId]);
-    }
-
-
-    /*
-     * Navigate back to SearchPanel
-     * pass along the resourceId if available
-     * so that the SearchResultList component
-     * can select the corresponding Resource.
-     */
-    navigateToSearch(): void {
-        this.router.navigate(['/search/fulltext', { id: this.resourceId, outlets: {side: 'searchInfo'} }]);
     }
 
 

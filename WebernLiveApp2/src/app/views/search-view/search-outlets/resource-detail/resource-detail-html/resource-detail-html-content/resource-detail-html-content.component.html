@@ -45,8 +45,8 @@
             <!-- image objects -->
             <div align="center" class="objImage" *ngIf="content?.image[0]">
                 <div class="facs">
-                    <a [href]="content?.image.full" target="_blank">
-                        <img [src]="content?.image.value" alt="{{ content?.image.label }}" />
+                    <a [href]="content?.image?.full" target="_blank">
+                        <img [src]="content?.image?.value" alt="{{ content?.image?.label }}" />
                     </a>
                 </div>
                 <div class="btn-group btn-group-justified">
@@ -56,7 +56,7 @@
                 </div>
             </div>
             <!-- connected objects -->
-            <ng-container *ngIf="content?.incoming">
+            <div *ngIf="content?.incoming">
                 <h4>Verknüpfte Objekte <small>({{ getFacetContentSize(content?.incoming) }})</small></h4>
                 <accordion [closeOthers]="true">
                     <accordion-group class="ins" *ngFor="let facetGroup of content?.incoming | mapToIterable">
@@ -67,7 +67,7 @@
                         <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="navigateToResource(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
                     </accordion-group>
                 </accordion>
-            </ng-container>
+            </div>
         </div>
     </div>
 </div>

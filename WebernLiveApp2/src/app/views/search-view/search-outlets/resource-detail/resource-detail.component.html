@@ -1,5 +1,5 @@
 <!-- resource detail box -->
-<div class="col-md-9 resource-detail-tabs" *ngIf="resourceData">
+<div class="col-md-9 resource-detail-tabs" *ngIf="resourceData; else error">
 
     <ul class="nav nav-tabs nav-justified">
         <li class="active"><a data-toggle="tab" href="#html">{{ tabTitle?.html }}</a></li>
@@ -13,7 +13,6 @@
             *ngIf="resourceData?.html"
             [resourceDetailData]="resourceData?.html"
             [resourceUrl]="resourceUrl"
-            (searchRequest)="navigateToSearch($event)"
             (resourceRequest)="navigateToResource($event)">
         </awg-resource-detail-html>
 
@@ -31,3 +30,10 @@
 
     </div>
 </div>
+<ng-template #error>
+    <div class="errorMessage" *ngIf="errorMessage">
+        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText }}".</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+    </div>
+</ng-template>

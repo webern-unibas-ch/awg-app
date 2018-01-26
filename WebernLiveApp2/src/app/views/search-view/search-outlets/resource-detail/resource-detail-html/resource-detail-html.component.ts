@@ -10,16 +10,11 @@ import { ResourceDetail } from '../../../models';
 export class ResourceDetailHtmlComponent implements OnInit {
     @Input() resourceDetailData: ResourceDetail;
     @Input() resourceUrl: string;
-    @Output() searchRequest: EventEmitter<any> = new EventEmitter();
     @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
     constructor( ) { }
 
     ngOnInit() {
-    }
-
-    navigateToSearch() {
-        this.searchRequest.emit();
     }
 
     navigateToResource(id?: string) {

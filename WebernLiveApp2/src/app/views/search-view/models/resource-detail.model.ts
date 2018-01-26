@@ -3,5 +3,5 @@ import { ResourceDetailContent } from './resource-detail-content.model';
 
 export class ResourceDetail {
     header: ResourceDetailHeader;
-    content: ResourceDetailContent;
+    content: ResourceDetailContent | undefined;
 }

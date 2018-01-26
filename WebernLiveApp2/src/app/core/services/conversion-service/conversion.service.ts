@@ -2,11 +2,12 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { ApiService } from '../api-service/api.service';
+import { ApiService } from '../api-service';
 import {
     IncomingItemJson,
     ResourceFullResponseJson,
-    SearchResponseJson
+    SearchResponseJson,
+    SubjectItemJson
 } from '../../../shared/api-objects';
 import {
     ResourceDetail,
@@ -16,7 +17,6 @@ import {
     ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
 import { GeoData, Hlist, Selection } from '../../core-models';
-import {SubjectItemJson} from "../../../shared/api-objects/search-response-formats";
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -195,7 +195,7 @@ export class ConversionService extends ApiService {
 
     private prepareRestrictedResource(data: ResourceFullResponseJson, currentId): ResourceDetail {
         let detail: ResourceDetail = new ResourceDetail();
-        const header = {
+        const header: ResourceDetailHeader = {
             'objID': currentId,
             'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
             'type': 'restricted',
@@ -204,11 +204,7 @@ export class ConversionService extends ApiService {
         };
         detail = {
             header: header,
-            content: {
-                props: [],
-                image: [''],
-                incoming: {}
-            }
+            content: undefined
         };
         return detail;
     }
