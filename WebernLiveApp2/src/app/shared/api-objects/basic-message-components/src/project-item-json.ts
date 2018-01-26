@@ -26,7 +26,7 @@ export class ProjectItemJson {
      * Path to the project's file
      * @param basepath: string | null
      */
-    @JsonProperty('basepath', String)
+    @JsonProperty('basepath', String, true)
     public basepath: string = undefined;
 
     /**
@@ -47,7 +47,7 @@ export class ProjectItemJson {
      * Description of the project
      * @param description: string | null
      */
-    @JsonProperty('description', String)
+    @JsonProperty('description', String, true)
     public description: string = undefined;
 
     /**
@@ -67,14 +67,14 @@ export class ProjectItemJson {
      * Keywords describing the project
      * @param keywords: string | null
      */
-    @JsonProperty('keywords', String)
+    @JsonProperty('keywords', String, true)
     public keywords: string = undefined;
 
     /**
      * The project's logo
      * @param logo: string | null
      */
-    @JsonProperty('logo', String)
+    @JsonProperty('logo', String, true)
     public logo: string = undefined;
 
     /**
@@ -95,7 +95,7 @@ export class ProjectItemJson {
      * obsolete
      * @param rights: KnoraRights | null
      */
-    @JsonProperty('rights', Number)
+    @JsonProperty('rights', Number, true)
     public rights: KnoraRights = undefined;
 
     /**

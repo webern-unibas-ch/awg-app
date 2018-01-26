@@ -13,7 +13,7 @@
  * */
 
 import { Any, JsonObject, JsonProperty } from 'json2typescript';
-import { ProtocolOptions } from './basic-type-aliases';
+import {ProtocolOptions, StringOrNumber} from './basic-type-aliases';
 
 /**
  * Binary representation of a resource (location)
@@ -27,7 +27,7 @@ export class LocationItemJson {
      * @param duration: number | string
      */
     @JsonProperty('duration', Any)
-    public duration: any = undefined;
+    public duration: StringOrNumber = undefined;
 
     /**
      * Format of the binary representation
@@ -41,7 +41,7 @@ export class LocationItemJson {
      * @fps: number | string
      */
     @JsonProperty('fps', Any)
-    public fps: any = undefined;
+    public fps: StringOrNumber = undefined;
 
     /**
      * X dimension of an image representation
@@ -49,14 +49,14 @@ export class LocationItemJson {
      * TODO: compare thumb_max-json
      */
     @JsonProperty('nx', Any)
-    public nx: any = undefined;
+    public nx: StringOrNumber = undefined;
 
     /**
      * Y dimension of an image representation
      * @param ny: number | string
      */
     @JsonProperty('ny', Any)
-    public ny: any = undefined;
+    public ny: StringOrNumber = undefined;
 
     /**
      * Original file name of the binary representation

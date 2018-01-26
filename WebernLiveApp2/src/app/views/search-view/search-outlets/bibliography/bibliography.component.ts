@@ -17,9 +17,9 @@ export class BibliographyComponent implements OnInit {
     private isBibListLoaded: boolean = false;
 
     constructor(
-        private _router: Router,
-        private _route: ActivatedRoute,
-        private _bibliographyService: BibliographyService
+        private router: Router,
+        private route: ActivatedRoute,
+        private bibliographyService: BibliographyService
     ) { }
 
     ngOnInit() {
@@ -27,9 +27,9 @@ export class BibliographyComponent implements OnInit {
     }
 
     getBibList(): void {
-        this._bibliographyService.getBibliographyList()
-            .subscribe(data => {
-                this.bibListResponse = data['body'];
+        this.bibliographyService.getBibliographyList()
+            .subscribe((data: SearchResponseJson) => {
+                this.bibListResponse = {...data};
 
                 // TODO: handle request with more than 1000 entries
                 console.info('BibComp#bibListResponse', this.bibListResponse);
@@ -47,12 +47,12 @@ export class BibliographyComponent implements OnInit {
     /*
         gotoDetail(id: string): void {
             let link = ['/search', 'bibliography/detail', id];
-            this._router.navigate(link);
+            this.router.navigate(link);
         }
     */
     /*
      delete(bibItem: BibEntry): void {
-     this._bibliographyService
+     this.bibliographyService
      .delete(bibItem.id)
      .then(() => {
      this.bibList = this.bibList.filter(b => b !== bibItem);

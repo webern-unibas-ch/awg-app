@@ -30,8 +30,7 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
     getBibItemDetails(id: string): void {
         this.bibItemDetailSubscription = this.bibliographyService.getBibliographyItemDetail(id)
             .subscribe(data => {
-                let bibItemDetailBody: ResourceFullResponseJson = new ResourceFullResponseJson();
-                if (data['body']) { bibItemDetailBody = data['body']; }
+                const bibItemDetailBody: ResourceFullResponseJson = {...data};
                 this.convertedBibItemDetail = this.conversionService.convertObjectProperties(bibItemDetailBody);
                 console.log('convertedItem: ', this.convertedBibItemDetail);
             });

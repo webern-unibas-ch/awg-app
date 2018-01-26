@@ -16,6 +16,13 @@
  * TypeAliases
  */
 
+
+/**
+ * Describes a type that can be either string or number
+ * due to inconsistencies in SalsahV1 responses.
+ */
+export type StringOrNumber = integer|string;
+
 /**
  * Numeric code representing the result (success or failure) of an API operation.
  *

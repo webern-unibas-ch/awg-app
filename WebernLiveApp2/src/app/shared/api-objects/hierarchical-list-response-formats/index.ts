@@ -12,3 +12,9 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
+import { SelectionJson, SelectionItemJson } from './src/selection-json';
+
+export  {
+    SelectionJson,
+    SelectionItemJson
+}

@@ -55,7 +55,7 @@ export * from './basic-message-components';
 
 //
 // hierarchicalListResponseFormats
-// export * from './hierarchical-list-response-formats';
+export * from './hierarchical-list-response-formats';
 //
 
 //

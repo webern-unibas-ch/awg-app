@@ -17,6 +17,8 @@ import {
     ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
 import { GeoData, Hlist, Selection } from '../../core-models';
+import { ApiServiceError, ApiServiceResult } from '../api-service';
+import { SelectionJson, SelectionItemJson } from '../../../shared/api-objects/hierarchical-list-response-formats';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -99,16 +101,16 @@ export class ConversionService extends ApiService {
      *****************************************/
     public convertObjectProperties(data: ResourceFullResponseJson) {
         const convObj = {};
-
+        console.log('convertdata: ', data);
         // add lastmod state
-        convObj['lastmod'] = data['resinfo']['lastmod'];
+        convObj['lastmod'] = data.resinfo.lastmod;
 
-        Object.keys(data['props']).forEach((key: string) => {
-            const prop = data['props'][key];
+        Object.keys(data.props).forEach((key: string) => {
+            const prop = data.props[key];
             const propValue: [string] = [''];   // empty text value
 
             // check if values property is defined
-            if ('values' in prop) {
+            if (prop.hasOwnProperty('values') && prop.values != undefined) {
                 // check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
@@ -121,6 +123,7 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
+                        console.info(`ConversionService# got selection,`, prop);
                         if (prop.values[0] !== '') {
                             this.convertSelectionValue(prop, propValue[0]);
                         }
@@ -306,8 +309,36 @@ export class ConversionService extends ApiService {
         return header;
     }
 
-    private prepareResourceDetailImage(data) {
+    private prepareResourceDetailImage(contextdata) {
         // TODO:
+        let tmp = {'header': {}, 'image':[], 'props':[], 'incoming':[]};
+        let img_size, preview;
+
+        //IMAGE OBJECT (context == 2)
+        if (contextdata.context == 2  && contextdata.resclass_name === "image") {
+            if (contextdata.res_id.length === contextdata.firstprop.length) {
+                for (var i = 0; i < contextdata.res_id.length; i++) {
+                    //find proper image solution [3] = reduction 3
+                    img_size = contextdata.locations[i];
+                    preview = (img_size[3]) ? img_size[3] : img_size[0];
+                    tmp.image.push({
+                        res_id: contextdata.res_id[i],
+                        guielement: contextdata.resclass_name,
+                        label: contextdata.firstprop[i],
+                        value: preview.path,
+                        full: img_size[img_size.length-1].path
+                    });
+                }
+            } else {
+                console.warn('Array length for context objects is not consistent!');
+            };
+            // return getData(url, id, tmp);
+
+            // STANDARD OBJECT (context == 0 || 1)
+        } else if (contextdata.context < 2 ) {
+            // return getData(url, id, tmp);
+        };
+        console.log('oOnversionservice - image contextdata: ', contextdata);
         return [''];
     }
 
@@ -564,17 +595,21 @@ export class ConversionService extends ApiService {
         // identify id of selection-list from input.attributes
         // e.g. "selection=66"
         const selectionId: string = input.attributes.split('=')[1].toString();
+        console.info(`ConversionService# got input: `, input);
+        console.info(`ConversionService# got id: `, selectionId);
 
         // get selection-list data
         this.getSelectionNodesById(selectionId).subscribe(
             (selectionData) => {
+                console.info(`ConversionService# got data: `, selectionData);
                 // check for existing selection in response
                 // esle return empty prop if necessary
-                if (!selectionData.body.selection) {
+                if (!selectionData.selection) {
                     console.info(`ConversionService#convertSelectionValue: got no selection from response: ${selectionData}`);
                     return output = [''];
                 }
-                const selection: Selection[] = selectionData.body.selection;
+                let selection: SelectionItemJson[] = {...selectionData.selection};
+                console.info(`ConversionService# got selection: `, typeof  selection, selection);
                 // localize id in selection-list object and identify the label
                 for (let i = 0; i < input.values.length; i++) {
                     for (let j = 0; j < selection.length; j++) {
@@ -583,6 +618,10 @@ export class ConversionService extends ApiService {
                         }
                     }
                 }
+                // TODO: continue solve with filter
+                // let test = selection.filter(item => item.id === input.values[0]);
+                // selection.reduce((x, y) => x.filter(e => e.id === input.values[0])), []);
+                // console.info(`ConversionService# selection output: `, test);
                 return output;
             },
             err => console.error(err)
@@ -627,9 +666,19 @@ export class ConversionService extends ApiService {
      * get selection node list object from salsah api
      *
      *****************************************/
-    private getSelectionNodesById(selectionId: string): Observable<any> {
+    private getSelectionNodesById(selectionId: string): Observable<SelectionJson> {
         const queryString: string = '/selections/' + selectionId;
-        return this.httpGet(queryString);
+
+        return this.httpGet(queryString).map(
+            (result: ApiServiceResult) => {
+                const selectionResponse: any = result.getBody(SelectionJson);
+                return selectionResponse;
+            },
+            (error: ApiServiceError ) => {
+                const errorMessage = <any>error;
+                console.error('SearchService - getResource - error: ', errorMessage);
+                throw error;
+            })
     }
 
 

@@ -65,6 +65,7 @@ export class ApiService {
                         apiServiceResult.statusText = response.statusText;
                         apiServiceResult.body = response.body;
                         apiServiceResult.url = response.url;
+                        console.log('ApiService - Result: ', apiServiceResult);
                         return apiServiceResult;
                     } catch (e) {
                         // console.log('ApiService - catch - local e: ', e);

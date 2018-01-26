@@ -12,8 +12,8 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from '../../basic-message-components';
+import { Any, JsonObject, JsonProperty } from 'json2typescript';
+import { BasicResponseJson, StringOrNumber } from '../../basic-message-components';
 import { PagingItemJson } from './paging-item-json';
 import { SubjectItemJson } from './subject-item-json';
 import { ThumbMaxJson } from './thumb-max-json';
@@ -33,10 +33,10 @@ export class SearchResponseJson extends BasicResponseJson {
 
     /**
      * Total number of hits
-     * @param nhits: string
+     * @param nhits: string | number
      */
-    @JsonProperty('nhits', String)
-    public nhits: string = undefined;
+    @JsonProperty('nhits', Any)
+    public nhits: StringOrNumber = undefined;
 
     /**
      * Represents Information for paging.
