@@ -107,7 +107,7 @@ export class ConversionService extends ApiService {
 
         Object.keys(data.props).forEach((key: string) => {
             const prop = data.props[key];
-            const propValue: [string] = [''];   // empty text value
+            let propValue: [string] = [''];   // empty text value
 
             // check if values property is defined
             if (prop.hasOwnProperty('values') && prop.values != undefined) {
@@ -123,9 +123,9 @@ export class ConversionService extends ApiService {
                     case '7':
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
-                        console.info(`ConversionService# got selection,`, prop);
-                        if (prop.values[0] !== '') {
-                            this.convertSelectionValue(prop, propValue[0]);
+                        if (prop.values !== []) {
+                            propValue = this.convertSelectionValue(prop.values, prop.attributes);
+                            console.log('propValue: ', propValue);
                         }
                         break; // END selection
 
@@ -412,7 +412,7 @@ export class ConversionService extends ApiService {
                     break; // END linkvalue
 
                 case '7': // SELECTION (pulldown): selection nodes have to be read seperately
-                    this.convertSelectionValue(prop, prop['toHtml']);
+                    prop['toHtml'] = this.convertSelectionValue(prop.values, prop.attributes);
                     break; // END selection
 
                 case '12': // HLIST: hlist nodes have to be called seperately
@@ -588,44 +588,35 @@ export class ConversionService extends ApiService {
      * convert selection values
      *
      *****************************************/
-    private convertSelectionValue(input, output) {
-        // input.values give reference id to api + "/selections/{{:id}}"
-        // result is an array selection (properties: id, label, name, order, label_ok) with nodes from 0 to n
+    private convertSelectionValue(values, attributes) {
+        // values give reference id to api + "/selections/{{:id}}"
+        // result is an array of selection labels
+
+        let output: [string] = [''];
 
         // identify id of selection-list from input.attributes
         // e.g. "selection=66"
-        const selectionId: string = input.attributes.split('=')[1].toString();
-        console.info(`ConversionService# got input: `, input);
-        console.info(`ConversionService# got id: `, selectionId);
+        const selectionId: string = attributes.split('=')[1].toString();
 
         // get selection-list data
         this.getSelectionNodesById(selectionId).subscribe(
-            (selectionData) => {
-                console.info(`ConversionService# got data: `, selectionData);
+            (selectionData: SelectionJson) => {
                 // check for existing selection in response
                 // esle return empty prop if necessary
                 if (!selectionData.selection) {
-                    console.info(`ConversionService#convertSelectionValue: got no selection from response: ${selectionData}`);
-                    return output = [''];
+                    console.info(`ConversionService# convertSelectionValue: got no selection from response: ${selectionData}`);
+                    return output;
                 }
-                let selection: SelectionItemJson[] = {...selectionData.selection};
-                console.info(`ConversionService# got selection: `, typeof  selection, selection);
-                // localize id in selection-list object and identify the label
-                for (let i = 0; i < input.values.length; i++) {
-                    for (let j = 0; j < selection.length; j++) {
-                        if (input.values[i] === selection[j]['id']) {
-                            output[i] = selection[j]['label'];
-                        }
-                    }
-                }
-                // TODO: continue solve with filter
-                // let test = selection.filter(item => item.id === input.values[0]);
-                // selection.reduce((x, y) => x.filter(e => e.id === input.values[0])), []);
-                // console.info(`ConversionService# selection output: `, test);
+                // localize id in selection-list array and identify the label
+                values.forEach((id, index) => {
+                    const filteredSelection: SelectionItemJson[] = selectionData.selection.filter(selectionItem => selectionItem.id === id );
+                    output[index] = filteredSelection[0].label;
+                });
                 return output;
             },
             err => console.error(err)
         );
+        return output;
     }
 
     /******************************************
