@@ -4,9 +4,15 @@ import 'rxjs/add/observable/of';
 
 import { ApiService } from '../api-service';
 import {
+    GeoDataJson,
+    GeoDataItemJson,
+    HlistJson,
+    HlistItemJson,
     IncomingItemJson,
     ResourceFullResponseJson,
     SearchResponseJson,
+    SelectionJson,
+    SelectionItemJson,
     SubjectItemJson
 } from '../../../shared/api-objects';
 import {
@@ -16,9 +22,7 @@ import {
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks
 } from '../../../views/search-view/models';
-import { GeoData, Hlist, Selection } from '../../core-models';
-import { ApiServiceError, ApiServiceResult } from '../api-service';
-import { SelectionJson, SelectionItemJson } from '../../../shared/api-objects/hierarchical-list-response-formats';
+import { GeoNames } from '../../core-models';
 
 declare var htmlConverter;
 declare var dateConverter;
@@ -33,19 +37,20 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
-        if (!results['subjects']) { return results; }
+        if (!results.subjects) { return results; }
+
         // TODO: refactor with reduce??
-        results['subjects'].forEach(res => {
+        results.subjects.forEach(subject => {
             // clean value labels
-            res.valuelabel[0] = res.valuelabel[0].replace(' (Richtext)', '');
-            res.obj_id = res.obj_id.replace('_-_local', '');
+            subject.valuelabel[0] = subject.valuelabel[0].replace(' (Richtext)', '');
+            subject.obj_id = subject.obj_id.replace('_-_local', '');
 
             // =>Chronologie: salsah standoff needs to be converted before displaying
             // valuetype_id 14 = valuelabel 'Ereignis'
-            if (res.valuetype_id[0] === '14' && res.value[0]) {
+            if (subject.valuetype_id[0] === '14' && subject.value[0]) {
                 let htmlstr: string = '';
-                const utf8str: string = res.value[0]['utf8str'];
-                const textattr: string = res.value[0]['textattr'];
+                const utf8str: string = subject.value[0].utf8str;
+                const textattr: string = subject.value[0].textattr;
 
                 // check if there is standoff, otherwise leave res.value[0] alone
                 // because when retrieved from cache the standoff is already converted
@@ -58,12 +63,12 @@ export class ConversionService extends ApiService {
                     // strip & replace <p>-tags for displaying objt
                     htmlstr = this.replaceParagraphTags(htmlstr);
 
-                    res.value[0] = htmlstr;
+                    subject.value[0] = htmlstr;
                 }
             }
         });
         // remove duplicates from response
-        results['subjects'] = this.distinctSubjectItemArray(results['subjects']);
+        results.subjects = this.distinctSubjectItemArray(results.subjects);
         return results;
     }
 
@@ -76,7 +81,7 @@ export class ConversionService extends ApiService {
     public prepareFullTextSearchResultText(searchData: SearchResponseJson, filteredOut: number, searchUrl: string): string {
         let resText: string;
 
-        if (searchData['subjects']) {
+        if (searchData.subjects) {
             const length = searchData.subjects.length;
             resText = length + ` `;
             resText += (length === 1) ? `zugängliches Resultat` : `zugängliche Resultate`;
@@ -107,7 +112,7 @@ export class ConversionService extends ApiService {
 
         Object.keys(data.props).forEach((key: string) => {
             const prop = data.props[key];
-            let propValue: [string] = [''];   // empty text value
+            let propValue: string[] = [''];   // empty text value
 
             // check if values property is defined
             if (prop.hasOwnProperty('values') && prop.values != undefined) {
@@ -192,12 +197,11 @@ export class ConversionService extends ApiService {
         if (data.access === 'OK') {
             return this.prepareAccessibleResource(data, currentId);
         } else {
-            return this.prepareRestrictedResource(data, currentId);
+            return this.prepareRestrictedResource(currentId);
         }
     }
 
-    private prepareRestrictedResource(data: ResourceFullResponseJson, currentId): ResourceDetail {
-        let detail: ResourceDetail = new ResourceDetail();
+    private prepareRestrictedResource(currentId): ResourceDetail {
         const header: ResourceDetailHeader = {
             'objID': currentId,
             'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
@@ -205,7 +209,7 @@ export class ConversionService extends ApiService {
             'title': 'Kein Zugriff auf dieses Objekt möglich',
             'lastmod': '---'
         };
-        detail = {
+        let detail: ResourceDetail = {
             header: header,
             content: undefined
         };
@@ -235,7 +239,7 @@ export class ConversionService extends ApiService {
         const id = data.resdata.res_id;
         if (id !== currentId ) {
             console.error(`ERROR: ` +
-                `conversionService#prepareResourceDetailHeader =>` +
+                `conversionService# prepareResourceDetailHeader =>` +
                 ` currentId ${currentId} not matching data resource id ${id}`);
             return;
         }
@@ -249,7 +253,7 @@ export class ConversionService extends ApiService {
             header['type'] = info.restype_label;
             header['lastmod'] = info.lastmod;
 
-            // extract restype specific title metadata
+            // extract restype specific title for header
             switch (info.restype_id) {
                 // CHRONOLOGIE
                 case '28':
@@ -384,55 +388,55 @@ export class ConversionService extends ApiService {
     }
 
 
-    private convertGUISpecificProps(data) {
+    private convertGUISpecificProps(data: ResourceFullResponseJson) {
         // loop through all properties and add toHtml values
-        Object.keys(data['props']).forEach((key: string) => {
-            const prop = this.addHtmlValues(data['props'][key]);
-            data['props'][key] = prop;
+        Object.keys(data.props).forEach((key: string) => {
+            const prop = this.addHtmlValues(data.props[key]);
+            data.props[key] = prop;
         });
         return data;
     }
 
     private addHtmlValues(prop, url?): [string] {
-        prop['toHtml'] = [''];
+        prop.toHtml = [''];
 
         if (prop.values) {
             switch (prop.valuetype_id) {
 
                 case '4':   // DATE: salsah object needs to be converted (using plugin "dateConverter")
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop['toHtml'][i] = this.convertDateValue(prop.values[i]);
+                        prop.toHtml[i] = this.convertDateValue(prop.values[i]);
                     }
                     break; // END date
 
                 case '6':   // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop['toHtml'][i] = this.convertLinkValue(prop, i);
+                        prop.toHtml[i] = this.convertLinkValue(prop, i);
                     }
                     break; // END linkvalue
 
                 case '7': // SELECTION (pulldown): selection nodes have to be read seperately
-                    prop['toHtml'] = this.convertSelectionValue(prop.values, prop.attributes);
+                    prop.toHtml = this.convertSelectionValue(prop.values, prop.attributes);
                     break; // END selection
 
                 case '12': // HLIST: hlist nodes have to be called seperately
-                        this.convertHlistValue(prop, prop['toHtml']);
+                        prop.toHtml = this.convertHlistValue(prop.values, prop.attributes);
                     break; // END hlist
 
                 case '14':  // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop['toHtml'][i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
+                        prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
-                    break; // END richtex
+                    break; // END richtext
 
                 case '15': // GeoNAMES: GeoName nodes have to called seperately
-                        this.convertGeoValue(prop, prop['toHtml']);
+                        prop.toHtml = this.convertGeoValue(prop.values);
                  break; // END geonames
 
                 // '1' => TEXT: properties come as they are
                 default:
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop['toHtml'][i] = prop.values[i];
+                        prop.toHtml[i] = prop.values[i];
                     }
             } // END switch
         } else {
@@ -458,62 +462,37 @@ export class ConversionService extends ApiService {
      * convert geoNames values
      *
      *****************************************/
-    private convertGeoValue(input, output) {
-        // input.values give reference id to api + "/geonames/{{:id}}?reqtype=node"
+    private convertGeoValue(values): string[] {
+        // values give reference id to api + "/geonames/{{:id}}?reqtype=node"
         // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
-        // identify geonames gui-id from input.values
+        let output: string[] = [''];
+
+        // identify geonames gui-id from values
         // e.g. ["4136"] or ["4136", "4132"]
-        const geoGuiId = input.values;
-
-        for (let i = 0; i < geoGuiId.length; i++) {
-            // get geonames gui data
-            this.getGeonameNodesById(geoGuiId[i]).subscribe(
-                geoNamesData => {
+        values.forEach((valueId, index) => {
+            // get geonames data
+            this.getNodesById(GeoDataJson, valueId).subscribe(
+                (geoNamesData: GeoDataJson) => {
                     // check for existing nodelist in geonames response
-                    // esle return empty prop if necessary
-                    if (!geoNamesData.body.nodelist) {
-                        console.info(`ConversionService#convertGeoValue: got no nodelist from geonames response: ${geoNamesData}`);
-                        return output[i] = '';
+                    // else return empty prop if necessary
+                    if (!geoNamesData.nodelist) {
+                        console.info('ConversionService# convertGeoValue: got no nodelist from geonames response: ', geoNamesData);
+                        return output[index] = '';
                     }
-                    // new empty GeoData-Object
-                    const geo: GeoData = new GeoData();
-                    // fill geoData object with nodelist from geoNamesResponse
-                    geo['nodeList'] = geoNamesData.body.nodelist;
+                    // snapshot of nodelist array
+                    const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
 
-                    // get labels from nodelist array
-                    geo.longLabel = geo.nodeList[0].label;
-                    for (let j = 1; j < geo.nodeList.length; j++) {
-                        const geoItem = geo.nodeList[j];
-                        geo.longLabel += ', ' + geoItem.label;
-                        if (j === geo.nodeList.length - 1) {
-                            // get geonames-id gnid from last array item
-                            geo['gnid'] = geoItem.name.replace('gnid:', '');
-                            // short label
-                            geo['shortLabel'] = geoItem.label;
-                            // latitude + longitude
-                            geo['latitude'] = geoItem.lat;
-                            geo['longitude'] = geoItem.lng;
-                            // wiki
-                            geo['wiki'] = geoItem.wikipedia;
-                        }
-                    }
+                    // build new GeoNames-Object from nodelist array
+                    const geo: GeoNames = new GeoNames(geoDataArray);
 
-                    // prepare icon & link for geonames
-                    const geoIcon = '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + geo.shortLabel + '" />';
-                    const geoLink = '<a href="http://www.geonames.org/' +
-                                     geo.gnid + '" title="' + geo.longLabel +
-                                     '" target="_blank">' + geoIcon + '</a>';
-                    let wikiLink = '';
-                    if (geo.wiki) {
-                        const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + geo.wiki + '" />';
-                        wikiLink = '<a href="http://' + geo.wiki + '" title="' + geo.wiki + '" target="_blank">' + wikiIcon + '</a>';
-                    }
-                    // construct "toHtml"-value
-                    output[i] = geo.shortLabel + ' ' + geoLink + wikiLink;
+                    // construct and return html value
+                    output[index] = geo.html;
                     return output;
-               });
-        }
+                }
+            )
+        });
+        return output;
     }
 
     /******************************************
@@ -521,37 +500,38 @@ export class ConversionService extends ApiService {
      * convert hlist values
      *
      *****************************************/
-    private convertHlistValue(input, output) {
+    private convertHlistValue(values, attributes): string[] {
         // prop.values give reference id to
         // api + /hlists/{{:id}}
         // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
 
+        let output: string[] = [''];
+
         // identify id of hlist from prop.attributes
         // e.g. "hlist=17"
-        const hlistId: string = input.attributes.split('=')[1].toString();
+        const nodeId: string = this.getNodeIdFromAttributes(attributes);
 
         // get hlist data
-        this.getHListNodesById(hlistId).subscribe(
-            (hlistData) => {
+        this.getNodesById(HlistJson, nodeId).subscribe(
+            (hlistData: HlistJson) => {
                 // check for existing hlist in response
                 // esle return empty prop if necessary
-                if (!hlistData.body.hlist) {
-                    console.info('ConversionService#convertHListValue: got no hlist from response: ', hlistData);
-                    return output = [''];
+                if (!hlistData.hlist) {
+                    console.info('ConversionService# convertHListValue: got no hlist from response: ', hlistData);
+                    return output;
                 }
-                const hlist: Hlist[] = hlistData.body.hlist;
-                // localize id in hlist object and identify the label
-                for (let i = 0; i < input.values.length; i++) {
-                    for (let j = 0; j < hlist.length; j++) {
-                        if (input.values[i] === hlist[j]['id']) {
-                            output[i] = hlist[j]['label'];
-                        }
-                    }
-                }
+                // snapshot of hlist array
+                const hlistArray: HlistItemJson[] = [...hlistData.hlist];
+                // localize id in hlist array and identify the label
+                values.forEach((valueId, index) => {
+                    const filteredHlist: HlistItemJson[] = hlistArray.filter(hlistItem => hlistItem.id === valueId);
+                    output[index] = filteredHlist[0].label;
+                });
                 return output;
             },
             err => console.error(err)
         );
+        return output;
     }
 
     /******************************************
@@ -559,7 +539,7 @@ export class ConversionService extends ApiService {
      * convert link values
      *
      *****************************************/
-    private convertLinkValue(prop, i: number) {
+    private convertLinkValue(prop, i: number): string {
         // add <a>-tag with click-directive; linktext is stored in "$&"
         const firstValue = prop.value_firstprops[i];
         const replaceValue = '<a (click)="ref.navigateToResource(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
@@ -572,7 +552,7 @@ export class ConversionService extends ApiService {
      * convert richtext values
      *
      *****************************************/
-    private convertRichtextValue(str: string, attr: string) {
+    private convertRichtextValue(str: string, attr: string): string {
         // convert salsah standoff to html (using plugin "htmlConverter")
         let rtValue: string = this.convertStandoffToHTML(str, attr);
 
@@ -588,28 +568,30 @@ export class ConversionService extends ApiService {
      * convert selection values
      *
      *****************************************/
-    private convertSelectionValue(values, attributes) {
+    private convertSelectionValue(values, attributes): string[] {
         // values give reference id to api + "/selections/{{:id}}"
         // result is an array of selection labels
 
-        let output: [string] = [''];
+        let output: string[] = [''];
 
-        // identify id of selection-list from input.attributes
+        // identify id of selection-list from attributes
         // e.g. "selection=66"
-        const selectionId: string = attributes.split('=')[1].toString();
+        const nodeId: string = this.getNodeIdFromAttributes(attributes);
 
         // get selection-list data
-        this.getSelectionNodesById(selectionId).subscribe(
+        this.getNodesById(SelectionJson, nodeId).subscribe(
             (selectionData: SelectionJson) => {
                 // check for existing selection in response
-                // esle return empty prop if necessary
+                // else return empty prop if necessary
                 if (!selectionData.selection) {
-                    console.info(`ConversionService# convertSelectionValue: got no selection from response: ${selectionData}`);
+                    console.info('ConversionService# convertSelectionValue: got no selection from response: ', selectionData);
                     return output;
                 }
+                // snapshot of selection array
+                const selectionArray: SelectionItemJson[] = [...selectionData.selection];
                 // localize id in selection-list array and identify the label
-                values.forEach((id, index) => {
-                    const filteredSelection: SelectionItemJson[] = selectionData.selection.filter(selectionItem => selectionItem.id === id );
+                values.forEach((valueId, index) => {
+                    const filteredSelection: SelectionItemJson[] = selectionArray.filter(selectionItem => selectionItem.id === valueId );
                     output[index] = filteredSelection[0].label;
                 });
                 return output;
@@ -634,42 +616,35 @@ export class ConversionService extends ApiService {
 
     /******************************************
      *
-     * get geonames node list from salsah api
+     * get node list from salsah api
      *
      *****************************************/
-    private getGeonameNodesById(geoGuiId: string): Observable<any> {
-        const queryString: string = '/geonames/' + geoGuiId + '?reqtype=node';
-        return this.httpGet(queryString);
+    private getNodesById(responseType: any, valueId: string): Observable<any> {
+        let queryString: string;
+        switch (responseType) {
+            case GeoDataJson:
+                queryString = '/geonames/' + valueId + '?reqtype=node';
+                break;
+            case HlistJson:
+                queryString = '/hlists/' + valueId;
+                break;
+            case SelectionJson:
+                queryString = '/selections/' + valueId;
+                break;
+        }
+        return this.getApiResponse(responseType, queryString);
     }
+
 
     /******************************************
      *
-     * get hlist node object from salsah api
+     * get node id from attributes value
      *
      *****************************************/
-    private getHListNodesById(hlistId: string): Observable<any> {
-        const queryString: string = '/hlists/' + hlistId;
-        return this.httpGet(queryString);
-    }
-
-    /******************************************
-     *
-     * get selection node list object from salsah api
-     *
-     *****************************************/
-    private getSelectionNodesById(selectionId: string): Observable<SelectionJson> {
-        const queryString: string = '/selections/' + selectionId;
-
-        return this.httpGet(queryString).map(
-            (result: ApiServiceResult) => {
-                const selectionResponse: any = result.getBody(SelectionJson);
-                return selectionResponse;
-            },
-            (error: ApiServiceError ) => {
-                const errorMessage = <any>error;
-                console.error('SearchService - getResource - error: ', errorMessage);
-                throw error;
-            })
+    private getNodeIdFromAttributes(attributes): string {
+        // identify node id from prop.attributes
+        // e.g. "hlist=17" or "selection=77"
+        return attributes.split('=')[1].toString();
     }
 
 

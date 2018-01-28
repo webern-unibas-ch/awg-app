@@ -69,7 +69,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                         subjects: this.searchResults.data.subjects
                     };
 
-                    //
+                    // find resource with current id in search results
                     this.findResourceInSearchResultsById(this.currentId);
 
                 },
@@ -108,7 +108,6 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             next: next ? new ResourceInfoResource(next, nextIndex) : undefined,
             previous: prev ? new ResourceInfoResource(prev, prevIndex) : undefined
         };
-        console.log('ResourceInfo# updateResources', this.resourceInfo);
     }
 
 

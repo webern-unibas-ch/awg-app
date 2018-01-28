@@ -13,44 +13,32 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson } from '../../basic-message-components';
-import { NodeItemJson } from './node-item-json';
-
 
 /**
- * Represents a selection item
- * @used by SelectionJson
+ * Represents a node item
+ * @used by GeoDataItemJson, HlistItemJson, SelectionItemJson
  */
 @JsonObject
-export class SelectionItemJson extends NodeItemJson {
+export class NodeItemJson {
 
     /**
-     * The label_ok value
-     * @param label_ok: boolean
+     * The selection id
+     * @param id: string
      */
-    @JsonProperty('label_ok', Boolean)
-    public label_ok: boolean = undefined;
+    @JsonProperty('id', String)
+    public id: string = undefined;
 
     /**
-     * The selection order
-     * @param order: string
+     * The selection label
+     * @param label: string
      */
-    @JsonProperty('order', String)
-    public order: string = undefined;
-}
-
-
-/**
- * Represents a selection response
- * @used by ---
- */
-@JsonObject
-export class SelectionJson extends BasicResponseJson {
+    @JsonProperty('label', String)
+    public label: string = undefined;
 
     /**
-     * The selection array
-     * @param selection: SelectionItemJson[]
+     * The selection name
+     * @param name: string
      */
-    @JsonProperty('selection', [SelectionItemJson])
-    public selection: SelectionItemJson[] = undefined;
+    @JsonProperty('name', String)
+    public name: string = undefined;
 }

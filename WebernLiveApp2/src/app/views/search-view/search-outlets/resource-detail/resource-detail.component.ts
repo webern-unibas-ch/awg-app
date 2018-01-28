@@ -52,7 +52,6 @@ export class ResourceDetailComponent implements OnInit {
                     // update and store current resource params (url and id)
                     this.updateResourceParams();
 
-                    console.log('ResourceDetail# data: ', data);
                     // snapshot of data
                     const resourceBody: ResourceFullResponseJson = {...data};
 
@@ -93,7 +92,9 @@ export class ResourceDetailComponent implements OnInit {
     displayResourceData(resourceBody: ResourceFullResponseJson) {
         if (resourceBody == {}) { return; }
 
+        // TODO: rm
         console.warn('ResourceDetail# resbody: ', resourceBody);
+
         // convert data for displaying resource detail
         const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
 

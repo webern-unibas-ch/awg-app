@@ -15,42 +15,49 @@
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { BasicResponseJson } from '../../basic-message-components';
 import { NodeItemJson } from './node-item-json';
+import {SelectionItemJson} from "./selection-json";
 
 
 /**
- * Represents a selection item
- * @used by SelectionJson
+ * Represents a geodata item
+ * @used by GeoDataJson
  */
 @JsonObject
-export class SelectionItemJson extends NodeItemJson {
+export class GeoDataItemJson extends NodeItemJson {
 
     /**
-     * The label_ok value
-     * @param label_ok: boolean
+     * The geodata latitude
+     * @param lat: string
      */
-    @JsonProperty('label_ok', Boolean)
-    public label_ok: boolean = undefined;
+    @JsonProperty('lat', String, true)
+    public lat: string = undefined;
 
     /**
-     * The selection order
-     * @param order: string
+     * The geodata longitude
+     * @param lng: string
      */
-    @JsonProperty('order', String)
-    public order: string = undefined;
+    @JsonProperty('lng', String, true)
+    public lng: string = undefined;
+
+    /**
+     * The geodata wikipedia link
+     * @param wikipedia: string
+     */
+    @JsonProperty('wikipedia', String, true)
+    public wikipedia: string = undefined;
 }
 
-
 /**
- * Represents a selection response
+ * Represents a Geodata response
  * @used by ---
  */
 @JsonObject
-export class SelectionJson extends BasicResponseJson {
+export class GeoDataJson extends BasicResponseJson {
 
     /**
-     * The selection array
-     * @param selection: SelectionItemJson[]
+     * The geodata array
+     * @param nodelist: GeoDataItemJson[]
      */
-    @JsonProperty('selection', [SelectionItemJson])
-    public selection: SelectionItemJson[] = undefined;
+    @JsonProperty('nodelist', [GeoDataItemJson])
+    public nodelist: GeoDataItemJson[] = undefined;
 }

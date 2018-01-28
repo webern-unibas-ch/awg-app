@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import {ApiService, ApiServiceError, ApiServiceResult} from '../../../core/services';
+import { ApiService } from '../../../core/services';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
 
 @Injectable()
@@ -28,43 +28,12 @@ export class BibliographyService extends ApiService {
             .set('filter_by_project', this.projectId)
             .set('filter_by_restype', this.resTypeId);
 
-        return this.httpGet(queryString, queryParams).map(
-            (result: ApiServiceResult) => {
-                const searchResponse: SearchResponseJson = result.getBody(SearchResponseJson);
-                console.log(`BiblioService - getBiblioList - response: `, searchResponse);
-                return searchResponse;
-            },
-            (error: ApiServiceError ) => {
-                const errorMessage = <any>error;
-                console.error('SearchService - getResource - error: ', errorMessage);
-                throw error;
-            })
+        return this.getApiResponse(SearchResponseJson, queryString, queryParams);
     }
 
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
         const queryString: string = this.resourcesRoute + resourceId;
-        const queryParams = new HttpParams();
-        return this.httpGet(queryString, queryParams).map(
-            (result: ApiServiceResult) => {
-                const resource: ResourceFullResponseJson = result.getBody(ResourceFullResponseJson);
-                console.log(`BiblioService - getBiblioItemDetail - resource: `, resource);
-                return resource;
-            },
-            (error: ApiServiceError ) => {
-                const errorMessage = <any>error;
-                console.error('SearchService - getResource - error: ', errorMessage);
-                throw error;
-            })
+
+        return this.getApiResponse(ResourceFullResponseJson, queryString);
     }
-
-    /* TODO#rm or use
-        getBibliographyItems(idArray: Array<string>): Observable<any> {
-            let observableItemsBatch = [];
-            idArray.forEach((id: string) => {
-                observableItemsBatch.push( this.getBibliographyItemDetail(id));
-            });
-            return Observable.forkJoin(observableItemsBatch);
-        }
-    */
-
 }

@@ -11,29 +11,24 @@ import { ApiRequest } from './api-request.model';
 @Injectable()
 export class ApiService {
 
-    static handleError(error: any, url: string): ApiServiceError {
-        const response: ApiServiceError = new ApiServiceError();
-        if (error instanceof Response) {
-            response.status = error.status;
-            response.statusText = error.statusText;
-            if (!response.statusText) {
-                response.statusText = 'Connection to API endpoint failed';
-            }
-            response.route = url;
-        } else {
-            response.status = 0;
-            response.statusText = 'Connection to API endpoint failed';
-            response.route = url;
-        }
-        // response.status === 401 --> Unauthorized
-        // response.status === 404 --> Not found
-        console.log('ApiService: handleError: ', response);
-        return response;
-    }
-
     httpGetUrl: string = '';
 
     constructor(private http: HttpClient) {}
+
+    public getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
+        if (!responseType) { return; }
+        if (!queryParams) { queryParams = new HttpParams(); }
+
+        return this.httpGet(queryString, queryParams).map(
+            (result: ApiServiceResult) => {
+                return result.getBody(responseType);
+            },
+            (error: ApiServiceError ) => {
+                const errorMessage = <any>error;
+                console.error('ApiService - getApiResponse - error: ', errorMessage);
+                throw error;
+            });
+    }
 
     /**
      * Performs a HTTP GET request to the Knora API.
@@ -90,7 +85,7 @@ export class ApiService {
      * @returns {Observable<any>}
      */
     /*
-    httpPost(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
+    private httpPost(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
         if (!body) body = {};
         if (!options) options = {};
         return this.http.post(AppConfig.API_ENDPOINT + url, body, options).map((response: Response) => {
@@ -108,4 +103,24 @@ export class ApiService {
             });
     }
     */
+
+    static handleError(error: any, url: string): ApiServiceError {
+        const response: ApiServiceError = new ApiServiceError();
+        if (error instanceof Response) {
+            response.status = error.status;
+            response.statusText = error.statusText;
+            if (!response.statusText) {
+                response.statusText = 'Connection to API endpoint failed';
+            }
+            response.route = url;
+        } else {
+            response.status = 0;
+            response.statusText = 'Connection to API endpoint failed';
+            response.route = url;
+        }
+        // response.status === 401 --> Unauthorized
+        // response.status === 404 --> Not found
+        console.log('ApiService: handleError: ', response);
+        return response;
+    }
 }

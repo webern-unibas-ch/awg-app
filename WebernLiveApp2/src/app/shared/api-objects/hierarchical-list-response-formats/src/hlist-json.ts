@@ -16,41 +16,33 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { BasicResponseJson } from '../../basic-message-components';
 import { NodeItemJson } from './node-item-json';
 
-
 /**
  * Represents a selection item
  * @used by SelectionJson
  */
 @JsonObject
-export class SelectionItemJson extends NodeItemJson {
+export class HlistItemJson extends NodeItemJson {
 
     /**
-     * The label_ok value
-     * @param label_ok: boolean
+     * The hlist level
+     * @param level: string
      */
-    @JsonProperty('label_ok', Boolean)
-    public label_ok: boolean = undefined;
-
-    /**
-     * The selection order
-     * @param order: string
-     */
-    @JsonProperty('order', String)
-    public order: string = undefined;
+    @JsonProperty('level', String)
+    public level: string = undefined;
 }
 
 
 /**
- * Represents a selection response
+ * Represents a Hlist response
  * @used by ---
  */
 @JsonObject
-export class SelectionJson extends BasicResponseJson {
+export class HlistJson extends BasicResponseJson {
 
     /**
      * The selection array
      * @param selection: SelectionItemJson[]
      */
-    @JsonProperty('selection', [SelectionItemJson])
-    public selection: SelectionItemJson[] = undefined;
+    @JsonProperty('hlist', [HlistItemJson])
+    public hlist: HlistItemJson[] = undefined;
 }
