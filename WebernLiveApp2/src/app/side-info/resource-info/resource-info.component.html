@@ -41,10 +41,14 @@
                                 </div>
                                 <div>
                                     <div class="single-line">
-                                        <small class="single-line">{{ previous?.title }}</small>
+                                        <small class="single-line">
+                                            <span [compile-html]="previous?.title" [compile-html-ref]="this"></span>
+                                        </small>
                                     </div>
                                     <div class="single-line">
-                                        <small class="text-muted">{{ previous?.subtitle }}</small>
+                                        <small class="text-muted">
+                                            <span>{{ previous?.subtitle }}</span>
+                                        </small>
                                     </div>
                                 </div>
                             </a>
@@ -75,11 +79,14 @@
                                 </div>
                                 <div>
                                     <div class="single-line">
-                                        <small class="single-line">{{ next?.title }}</small>
-                                        <!-- ngIf: entity.title.length==0 -->
+                                        <small class="single-line">
+                                            <span [compile-html]="next?.title" [compile-html-ref]="this"></span>
+                                        </small>
                                     </div>
                                     <div class="single-line">
-                                        <small class="text-muted">{{ next?.subtitle }}</small>
+                                        <small class="text-muted">
+                                            <span>{{ next?.subtitle }}</span>
+                                        </small>
                                     </div>
                                 </div>
                             </a>
