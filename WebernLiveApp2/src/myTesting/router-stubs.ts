@@ -1,7 +1,10 @@
+import { Component, Directive, Injectable, Input, NgModule } from '@angular/core';
+import { NavigationExtras } from '@angular/router';
+
+import { AppModule } from '../app/app.module';
+
 export { ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
 
-import { Component, Directive, Injectable, Input } from '@angular/core';
-import { NavigationExtras } from '@angular/router';
 
 // #docregion router-link
 @Directive({
@@ -55,4 +58,19 @@ export class ActivatedRouteStub {
     get snapshot() {
         return { params: this.testParams };
     }
+}
+
+/**
+ * Needed so that `aot` build is working. But it isn't used throughout our tests and/or app.
+ */
+@NgModule({
+    imports: [
+        AppModule
+    ],
+    declarations: [
+        RouterLinkStubDirective,
+        RouterOutletStubComponent
+    ]
+})
+export class FakeRouterModule {
 }
