@@ -39,7 +39,6 @@ export class ApiService {
     httpGet(url: string, httpGetParams?: HttpParams ): Observable<ApiServiceResult> {
         if (!httpGetParams) { httpGetParams = new HttpParams(); }
         const apiRequest = new ApiRequest(url, httpGetParams);
-        console.warn('ApiService: ApiRequest: ', apiRequest);
 
         return this.http
             .get(

@@ -21,6 +21,7 @@
  *
  */
 
+import { ContextJson } from './src/context-json';
 import { IncomingItemJson } from './src/incoming-item-json';
 import { PropertyTypesInResourceClassResponseJson } from './src/property-types-in-resource-class-response-json';
 import { ResourceContextResponseJson } from './src/resource-context-response-json';
@@ -35,6 +36,7 @@ import { VocabularyResponseJson } from './src/vocabulary-response-json';
 
 
 export {
+    ContextJson,
     IncomingItemJson,
     PropertyTypesInResourceClassResponseJson,
     ResourceContextResponseJson,

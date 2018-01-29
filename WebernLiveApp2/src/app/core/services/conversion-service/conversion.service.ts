@@ -4,11 +4,13 @@ import 'rxjs/add/observable/of';
 
 import { ApiService } from '../api-service';
 import {
+    ContextJson,
     GeoDataJson,
     GeoDataItemJson,
     HlistJson,
     HlistItemJson,
     IncomingItemJson,
+    ResourceContextResponseJson,
     ResourceFullResponseJson,
     SearchResponseJson,
     SelectionJson,
@@ -20,7 +22,7 @@ import {
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
-    ResourceDetailGroupedIncomingLinks
+    ResourceDetailGroupedIncomingLinks, ResourceDetailImage
 } from '../../../views/search-view/models';
 import { GeoNames } from '../../core-models';
 
@@ -226,15 +228,16 @@ export class ConversionService extends ApiService {
             header: this.prepareResourceDetailHeader(data, currentId),
             content: {
                 props: this.prepareResourceDetailProperties(data.props),
-                image: this.prepareResourceDetailImage(data),
+                image: this.prepareResourceDetailImage(currentId),
                 incoming: this.prepareResourceDetailIncomingLinks(data.incoming)
             }
         };
+        console.warn('Conversionservice - detail: ', detail);
         return detail;
     }
 
 
-    private prepareResourceDetailHeader(data: ResourceFullResponseJson, currentId: string) {
+    private prepareResourceDetailHeader(data: ResourceFullResponseJson, currentId: string): ResourceDetailHeader {
         let header: ResourceDetailHeader = new ResourceDetailHeader();
         const id = data.resdata.res_id;
         if (id !== currentId ) {
@@ -313,37 +316,51 @@ export class ConversionService extends ApiService {
         return header;
     }
 
-    private prepareResourceDetailImage(contextdata) {
-        // TODO:
-        let tmp = {'header': {}, 'image':[], 'props':[], 'incoming':[]};
-        let img_size, preview;
+    private prepareResourceDetailImage(id: string): ResourceDetailImage[] {
+        // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
+        // result is an array of ResourceDetailImage
+        let output: ResourceDetailImage[];
 
-        //IMAGE OBJECT (context == 2)
-        if (contextdata.context == 2  && contextdata.resclass_name === "image") {
-            if (contextdata.res_id.length === contextdata.firstprop.length) {
-                for (var i = 0; i < contextdata.res_id.length; i++) {
-                    //find proper image solution [3] = reduction 3
-                    img_size = contextdata.locations[i];
-                    preview = (img_size[3]) ? img_size[3] : img_size[0];
-                    tmp.image.push({
-                        res_id: contextdata.res_id[i],
-                        guielement: contextdata.resclass_name,
-                        label: contextdata.firstprop[i],
-                        value: preview.path,
-                        full: img_size[img_size.length-1].path
-                    });
+        // get resource context data
+        this.getAdditionalInfoFromApi(ResourceContextResponseJson, id).subscribe(
+            (contextData: ResourceContextResponseJson) => {
+                console.warn('ConversionService# contextdata: ', contextData);
+                // check for existing resource_context in response
+                // else return undefined output if necessary
+                if (!contextData.resource_context.res_id) {
+                    console.info('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+                    output = undefined;
+                } else {
+                    const context: ContextJson = {...contextData.resource_context};
+                    output = [];
+
+                    // IMAGE OBJECT (context == 2)
+                    if (context.context == 2 && context.resclass_name === "image") {
+                        if (context.res_id.length === context.firstprop.length) {
+                            for (let i = 0; i < context.res_id.length; i++) {
+                                // build new ResourceDetailImage-Object from context and index
+                                const image: ResourceDetailImage = new ResourceDetailImage(context, i);
+                                console.log('ConversionService - image: ', image);
+                                output[i] = image;
+                            }
+                            console.log('ConversionService - inner loop output: ', output);
+                        } else {
+                            console.warn('ConversionService - Array length for context objects is not consistent with firstprops length!', context);
+                            output = undefined;
+                        }
+                        // STANDARD OBJECT (context == 0 || 1)
+                    } else if (context.context < 2) {
+                        console.warn('ConversionService - got no image context', context);
+                        output = undefined;
+                    }
                 }
-            } else {
-                console.warn('Array length for context objects is not consistent!');
-            };
-            // return getData(url, id, tmp);
-
-            // STANDARD OBJECT (context == 0 || 1)
-        } else if (contextdata.context < 2 ) {
-            // return getData(url, id, tmp);
-        };
-        console.log('oOnversionservice - image contextdata: ', contextdata);
-        return [''];
+                console.warn('HOOHAAHIII: ', output);
+                return output;
+            },
+            err => console.error(err)
+        );
+        console.log('Conversionservice - outer output: ', output);
+        return output;
     }
 
     private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
@@ -420,7 +437,7 @@ export class ConversionService extends ApiService {
                     break; // END selection
 
                 case '12': // HLIST: hlist nodes have to be called seperately
-                        prop.toHtml = this.convertHlistValue(prop.values, prop.attributes);
+                    prop.toHtml = this.convertHlistValue(prop.values, prop.attributes);
                     break; // END hlist
 
                 case '14':  // RICHTEXT: salsah standoff needs to be converted
@@ -430,8 +447,8 @@ export class ConversionService extends ApiService {
                     break; // END richtext
 
                 case '15': // GeoNAMES: GeoName nodes have to called seperately
-                        prop.toHtml = this.convertGeoValue(prop.values);
-                 break; // END geonames
+                    prop.toHtml = this.convertGeoValue(prop.values);
+                    break; // END geonames
 
                 // '1' => TEXT: properties come as they are
                 default:
@@ -472,7 +489,7 @@ export class ConversionService extends ApiService {
         // e.g. ["4136"] or ["4136", "4132"]
         values.forEach((valueId, index) => {
             // get geonames data
-            this.getNodesById(GeoDataJson, valueId).subscribe(
+            this.getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe(
                 (geoNamesData: GeoDataJson) => {
                     // check for existing nodelist in geonames response
                     // else return empty prop if necessary
@@ -512,7 +529,7 @@ export class ConversionService extends ApiService {
         const nodeId: string = this.getNodeIdFromAttributes(attributes);
 
         // get hlist data
-        this.getNodesById(HlistJson, nodeId).subscribe(
+        this.getAdditionalInfoFromApi(HlistJson, nodeId).subscribe(
             (hlistData: HlistJson) => {
                 // check for existing hlist in response
                 // esle return empty prop if necessary
@@ -579,7 +596,7 @@ export class ConversionService extends ApiService {
         const nodeId: string = this.getNodeIdFromAttributes(attributes);
 
         // get selection-list data
-        this.getNodesById(SelectionJson, nodeId).subscribe(
+        this.getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe(
             (selectionData: SelectionJson) => {
                 // check for existing selection in response
                 // else return empty prop if necessary
@@ -614,12 +631,13 @@ export class ConversionService extends ApiService {
         return htmlConverter(JSON.parse(attr), str);
     }
 
+
     /******************************************
      *
-     * get node list from salsah api
+     * get additional resource info from salsah api
      *
      *****************************************/
-    private getNodesById(responseType: any, valueId: string): Observable<any> {
+    private getAdditionalInfoFromApi(responseType: any, valueId: string): Observable<any> {
         let queryString: string;
         switch (responseType) {
             case GeoDataJson:
@@ -627,6 +645,9 @@ export class ConversionService extends ApiService {
                 break;
             case HlistJson:
                 queryString = '/hlists/' + valueId;
+                break;
+            case ResourceContextResponseJson:
+                queryString = '/resources/' + valueId + '_-_local?reqtype=context';
                 break;
             case SelectionJson:
                 queryString = '/selections/' + valueId;
