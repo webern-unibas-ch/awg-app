@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { TimelineDate } from '../../models/timeline-date.model';
 
 @Component({
     selector: 'awg-timeline',
@@ -10,12 +11,7 @@ export class TimelineComponent implements OnInit {
     side: string = '';
 
     now: Date = new Date();
-    date: Object = {
-        day: this.now.getDate(),
-        month: this.now.getMonth() + 1,
-        findStart: '',
-        findEnd: ''
-    };
+    date: TimelineDate = new TimelineDate(this.now);
 
     constructor() { }
 
