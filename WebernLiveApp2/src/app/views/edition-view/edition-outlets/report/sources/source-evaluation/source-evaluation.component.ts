@@ -9,6 +9,8 @@ export class SourceEvaluationComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
+    showPanel: boolean;
+
     constructor() { }
 
     ngOnInit() {
@@ -20,6 +22,10 @@ export class SourceEvaluationComponent implements OnInit {
 
     scrollTo(id: string) {
         this.scrollRequest.emit(id);
+    }
+
+    togglePanel(): boolean {
+        return this.showPanel = !this.showPanel;
     }
 
 }

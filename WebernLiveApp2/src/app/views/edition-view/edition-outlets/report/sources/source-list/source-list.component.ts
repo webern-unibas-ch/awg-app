@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Source } from '../../../../models/source.model';
+
+import { SourceList } from '../../../../models';
 
 @Component({
     selector: 'awg-source-list',
@@ -7,10 +8,11 @@ import { Source } from '../../../../models/source.model';
     styleUrls: ['./source-list.component.css']
 })
 export class SourceListComponent implements OnInit {
-    @Input() sourceList: Source[];
+    @Input() sourceList: SourceList;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
+    showPanel: boolean;
     ref: SourceListComponent;
 
     constructor() {
@@ -26,6 +28,10 @@ export class SourceListComponent implements OnInit {
 
     scrollTo(id: string) {
         this.scrollRequest.emit(id);
+    }
+
+    togglePanel(): boolean {
+        return this.showPanel = !this.showPanel;
     }
 
 }

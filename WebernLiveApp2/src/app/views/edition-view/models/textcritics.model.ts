@@ -4,3 +4,7 @@ export class Textcritics {
     location: string;
     comment: string;
 }
+
+export class TextcriticsList {
+    [key: string] : Textcritics[];
+}

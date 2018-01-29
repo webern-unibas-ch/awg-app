@@ -4,3 +4,7 @@ export class Source {
     location: string;
     linkTo: string;
 }
+
+export class SourceList {
+    sources: Source[];
+}

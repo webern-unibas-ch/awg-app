@@ -1,12 +1,12 @@
 <div class="panel panel-default" id="sourceEvaluation">
     <div class="panel-heading">
         <h4 class="panel-title">
-            <a data-toggle="collapse" (click)="toggleC = !toggleC">
+            <a data-toggle="collapse" (click)="togglePanel()">
                 3. Quellenbewertung
             </a>
         </h4>
     </div>
-    <div class="panel-collapse collapse" [class.in]="!toggleC">
+    <div class="panel-collapse collapse" [class.in]="showPanel">
         <div class="panel-body">
             <div class="para">
                 <p>

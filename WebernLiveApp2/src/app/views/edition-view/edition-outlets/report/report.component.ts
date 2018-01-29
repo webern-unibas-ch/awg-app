@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Source, Textcritics } from '../../models';
-import { DataService, EditionService } from '../../services';
+import { SourceList, Textcritics } from '../../models';
+import { DataService } from '../../services';
 
 @Component({
     selector: 'awg-report',
@@ -13,15 +13,14 @@ export class ReportComponent implements OnInit {
     public reportTitle = 'Kritischer Bericht';
     public reportId = 'report';
 
-    public sourceListData: Source[];
+    public sourceListData: SourceList;
     public textcriticsData: Textcritics[];
     private errorMessage: string = undefined;
 
     constructor(
         private router: Router,
         private route: ActivatedRoute,
-        private dataService: DataService,
-        private editionService: EditionService
+        private dataService: DataService
     ) { }
 
     ngOnInit() {

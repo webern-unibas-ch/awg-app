@@ -1,6 +1,6 @@
 <!-- content: bibliography list -->
 <ul class="bibliography">
-    <li *ngFor="let bibItem of bibList; trackBy: bibItem?.obj_id"
+    <li *ngFor="let bibItem of bibList; trackBy: trackByItemId"
         [class.selected]="bibItem === selectedBibItem"
         (click)="selectItem(bibItem)">
             <span class="badge">{{ bibItem.value[0] }}</span>

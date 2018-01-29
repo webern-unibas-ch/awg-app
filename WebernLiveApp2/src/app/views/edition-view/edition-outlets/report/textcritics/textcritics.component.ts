@@ -12,6 +12,7 @@ export class TextcriticsComponent implements OnInit {
     @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
+    showPanel: boolean;
 
     constructor() {
         this.ref = this;
@@ -20,12 +21,15 @@ export class TextcriticsComponent implements OnInit {
     ngOnInit() {
     }
 
-    public openModal(identifier: string) {
+    openModal(identifier: string): void {
         this.openModalRequest.emit(identifier);
     }
 
-    public selectSheet(identifier: string): void {
+    selectSheet(identifier: string): void {
         this.selectSheetRequest.emit(identifier);
     }
 
+    togglePanel(): boolean {
+        return this.showPanel = !this.showPanel;
+    }
 }

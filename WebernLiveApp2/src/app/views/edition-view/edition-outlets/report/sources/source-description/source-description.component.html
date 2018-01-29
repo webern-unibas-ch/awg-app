@@ -1,12 +1,12 @@
 <div class="panel panel-default" id="sourceDesc" >
     <div class="panel-heading" >
         <h4 class="panel-title">
-            <a data-toggle="collapse" (click)="toggleB = !toggleB">
+            <a data-toggle="collapse" (click)="togglePanel()">
                 2. Quellenbeschreibung
             </a>
         </h4>
     </div>
-    <div class="panel-collapse collapse" [class.in]="!toggleB">
+    <div class="panel-collapse collapse" [class.in]="showPanel">
         <div class="panel-body">
             <div class="para" id="sourceA">
                 <p class="bold">A</p>

@@ -8,11 +8,13 @@
  */
 
 import { Sheet } from './sheet.model';
-import { Source } from './source.model';
-import { Textcritics } from './textcritics.model';
+import { Source, SourceList } from './source.model';
+import { Textcritics, TextcriticsList } from './textcritics.model';
 
 export {
     Sheet,
     Source,
-    Textcritics
+    SourceList,
+    Textcritics,
+    TextcriticsList
 }

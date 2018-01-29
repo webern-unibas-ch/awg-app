@@ -1,12 +1,12 @@
 <div id="tka" class="panel panel-default">
     <div class="panel-heading">
         <h3 class="panel-title">
-            <a (click)="toggleComments = !toggleComments">
+            <a (click)="togglePanel()">
                 II. Textkritischer Kommentar
             </a>
         </h3>
     </div>
-    <div class="panel-collapse collapse" [class.in]="!toggleComments">
+    <div class="panel-collapse collapse" [class.in]="!showPanel">
         <div class="panel-body">
             <div class="para">
                 <p class="bold">

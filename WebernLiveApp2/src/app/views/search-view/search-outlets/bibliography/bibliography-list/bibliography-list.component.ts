@@ -23,4 +23,8 @@ export class BibliographyListComponent implements OnInit {
         this.selectItemRequest.emit(item);
     }
 
+    trackByItemId(item): string {
+        return item.obj_id;
+    }
+
 }

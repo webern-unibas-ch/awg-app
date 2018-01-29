@@ -11,15 +11,15 @@ import { DataService, EditionService } from '../../services';
 })
 export class EditionDetailComponent implements OnInit {
 
-    public sheetsData: Sheet[];
-    public textcriticsData: Textcritics[];
+    sheetsData: Sheet[];
+    textcriticsData: Textcritics[];
 
-    public selectedSheet: Sheet;
-    public selectedTextcriticId: string;
-    public selectedTextcritics: Textcritics[];
+    selectedSheet: Sheet;
+    selectedTextcriticId: string;
+    selectedTextcritics: Textcritics[];
 
-    private errorMessage: string = undefined;
-    private showTkA: boolean = false;
+    errorMessage: string = undefined;
+    showTkA: boolean = false;
 
     constructor(
         private route: ActivatedRoute,
@@ -32,7 +32,7 @@ export class EditionDetailComponent implements OnInit {
         this.getData();
     }
 
-    public getData() {
+    getData() {
         this.dataService.getEditionDetailData()
             .subscribe((data) => {
                     this.sheetsData = data[0];
@@ -46,7 +46,7 @@ export class EditionDetailComponent implements OnInit {
     }
 
 
-    private getRouteParams() {
+    private getRouteParams(): void {
         this.route.params.forEach((params: Params) => {
             // if there is no id in route params
             // take first entry of sheets object as default
@@ -55,15 +55,15 @@ export class EditionDetailComponent implements OnInit {
         });
     }
 
-    public onSheetSelect(id: string) {
-        this.router.navigate(['/edition/detail', id]);
+    onSheetSelect(id: string): void {
         this.selectedSheet = this.sheetsData[id];
         this.selectedTextcriticId = '';
         this.showTkA = false;
+        this.router.navigate(['/edition/detail', id]);
     }
 
-    public onTextcriticSelect($event) {
-        if (!this.textcriticsData && !this.selectedSheet) return;
+    onTextcriticSelect($event): void {
+        if (!this.textcriticsData && !this.selectedSheet) { return; }
         let res = this.editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
         this.selectedTextcritics = res[0];
         this.selectedTextcriticId = res[1];

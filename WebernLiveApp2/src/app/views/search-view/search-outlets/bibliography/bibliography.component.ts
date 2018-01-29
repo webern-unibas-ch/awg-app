@@ -11,10 +11,10 @@ import { SearchResponseJson, SubjectItemJson } from '../../../../shared/api-obje
 })
 export class BibliographyComponent implements OnInit {
 
-    public bibListResponse: SearchResponseJson = new SearchResponseJson();
-    public bibList: SubjectItemJson[];
-    private selectedBibItem: SubjectItemJson;
-    private isBibListLoaded: boolean = false;
+    bibListResponse: SearchResponseJson = new SearchResponseJson();
+    bibList: SubjectItemJson[];
+    selectedBibItem: SubjectItemJson;
+    isBibListLoaded: boolean = false;
 
     constructor(
         private router: Router,

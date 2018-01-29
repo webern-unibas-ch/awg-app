@@ -8,6 +8,8 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 export class SourceDescriptionComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
 
+    showPanel: boolean;
+
     constructor() { }
 
     ngOnInit() {
@@ -15,6 +17,10 @@ export class SourceDescriptionComponent implements OnInit {
 
     openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
+    }
+
+    togglePanel(): boolean {
+        return this.showPanel = !this.showPanel;
     }
 
 }
