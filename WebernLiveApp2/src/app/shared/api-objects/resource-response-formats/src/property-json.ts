@@ -13,7 +13,8 @@
  * */
 
 import { Any, JsonConvert, JsonObject, JsonProperty} from 'json2typescript';
-import { KnoraIRI, KnoraRights, LocationItemJson } from '../../basic-message-components';
+import { KnoraIRI, KnoraRights, LocationItemJson, StringOrNumber } from '../../basic-message-components';
+
 
 @JsonObject
 export class PropertyJsonValue {
@@ -39,15 +40,15 @@ export class PropertyJson {
      * HTML attributes for the GUI element used to render this property
      * @param attributes: string | null
      */
-    @JsonProperty('attributes', String)
+    @JsonProperty('attributes', String, true)
     public attributes: string = undefined;
 
     /**
      * Comments on the property's values
-     * @param comments: Array<string | null> OPTIONAL
+     * @param comments: Array<string | number | null> OPTIONAL
      */
-    @JsonProperty('comments', [String], true)
-    public comments: string[] = null;
+    @JsonProperty('comments', [Any], true)
+    public comments: StringOrNumber[] = null;
 
     /**
      * The type of GUI element used to render this property
@@ -67,15 +68,15 @@ export class PropertyJson {
      * Obsolete
      * @param is_annotation: string
      */
-    @JsonProperty('is_annotation', String)
-    public is_annotation: string = undefined;
+    @JsonProperty('is_annotation', Any)
+    public is_annotation: StringOrNumber = undefined;
 
     /**
      * The label of this property type
      * (null if the property is locations)
      * @param label: string | null
      */
-    @JsonProperty('label', String)
+    @JsonProperty('label', String, true)
     public label: string = undefined;
 
     /**
@@ -100,14 +101,14 @@ export class PropertyJson {
      * The IRI of the property type
      * @param pid: KnoraIRI
      */
-    @JsonProperty('pid', String)
+    @JsonProperty('pid', String, true)
     public pid: KnoraIRI = undefined;
 
     /**
      * Obsolete
      * @param regular_property: number
      */
-    @JsonProperty('regular_property', Number)
+    @JsonProperty('regular_property', Number, true)
     public regular_property: number = undefined;
 
     /**

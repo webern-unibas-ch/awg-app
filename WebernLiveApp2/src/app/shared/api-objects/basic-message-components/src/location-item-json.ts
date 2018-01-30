@@ -13,7 +13,7 @@
  * */
 
 import { Any, JsonObject, JsonProperty } from 'json2typescript';
-import {ProtocolOptions, StringOrNumber} from './basic-type-aliases';
+import { ProtocolOptions, StringOrNumber } from './basic-type-aliases';
 
 /**
  * Binary representation of a resource (location)
