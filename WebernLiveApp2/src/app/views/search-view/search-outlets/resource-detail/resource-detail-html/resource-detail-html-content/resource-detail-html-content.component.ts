@@ -19,6 +19,7 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
     constructor() { }
 
     ngOnInit() {
+        console.warn('CONTENT: ', this.content);
     }
 
     getFacetContentSize(obj) {
