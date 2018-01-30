@@ -22,7 +22,7 @@ import {
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
-    ResourceDetailGroupedIncomingLinks, ResourceDetailImage
+    ResourceDetailGroupedIncomingLinks, ResourceDetailImage, ResourceDetailContent
 } from '../../../views/search-view/models';
 import { GeoNames } from '../../core-models';
 
@@ -199,22 +199,14 @@ export class ConversionService extends ApiService {
         if (data.access === 'OK') {
             return this.prepareAccessibleResource(data, currentId);
         } else {
-            return this.prepareRestrictedResource(currentId);
+            return this.prepareRestrictedResource(data, currentId);
         }
     }
 
-    private prepareRestrictedResource(currentId): ResourceDetail {
-        const header: ResourceDetailHeader = {
-            'objID': currentId,
-            'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
-            'type': 'restricted',
-            'title': 'Kein Zugriff auf dieses Objekt möglich',
-            'lastmod': '---'
-        };
-        let detail: ResourceDetail = {
-            header: header,
-            content: undefined
-        };
+    private prepareRestrictedResource(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
+        const header: ResourceDetailHeader = new ResourceDetailHeader(data, currentId);
+        const content = undefined;
+        const detail: ResourceDetail = new ResourceDetail(header, content);
         return detail;
     }
 
@@ -223,103 +215,22 @@ export class ConversionService extends ApiService {
         data = this.convertGUISpecificProps(data);
 
         // prepare parts of resourceDetail
-        let detail: ResourceDetail = new ResourceDetail();
-        detail = {
-            header: this.prepareResourceDetailHeader(data, currentId),
-            content: {
-                props: this.prepareResourceDetailProperties(data.props),
-                image: this.prepareResourceDetailImage(currentId),
-                incoming: this.prepareResourceDetailIncomingLinks(data.incoming)
-            }
+        const header: ResourceDetailHeader = new ResourceDetailHeader(data, currentId);
+        const content: ResourceDetailContent = {
+            props: this.prepareResourceDetailProperties(data.props),
+            image: this.prepareResourceDetailImage(currentId),
+            incoming: this.prepareResourceDetailIncomingLinks(data.incoming)
         };
+        const detail: ResourceDetail = new ResourceDetail(header, content);
         console.warn('Conversionservice - detail: ', detail);
         return detail;
     }
 
 
-    private prepareResourceDetailHeader(data: ResourceFullResponseJson, currentId: string): ResourceDetailHeader {
-        let header: ResourceDetailHeader = new ResourceDetailHeader();
-        const id = data.resdata.res_id;
-        if (id !== currentId ) {
-            console.error(`ERROR: ` +
-                `conversionService# prepareResourceDetailHeader =>` +
-                ` currentId ${currentId} not matching data resource id ${id}`);
-            return;
-        }
-        const info = data.resinfo;
-        const props = data.props;
-
-        if (typeof info !== 'undefined') {
-            // extract common default metadata for header
-            header['objID'] = id;
-            header['icon'] = info.restype_iconsrc;
-            header['type'] = info.restype_label;
-            header['lastmod'] = info.lastmod;
-
-            // extract restype specific title for header
-            switch (info.restype_id) {
-                // CHRONOLOGIE
-                case '28':
-                    // richtext value has already been converted in detail using plugin "htmlConverter"
-                    let htmlstr = props['webern:event_rt'].toHtml[0];
-
-                    // strip & replace <p>-tags for displaying title
-                    htmlstr = this.replaceParagraphTags(htmlstr);
-
-                    header['title'] = htmlstr;
-                    break;
-
-                // KORRESPONDENZ (same as SUPPLEMENT)
-                case '29':
-                // SUPPLEMENT
-                case '125':
-                    header['title'] = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
-                    break;
-
-                // MUSIKSTÜCK (Moldenhauer-Nummer)
-                case '36':
-                    header['title'] = '[M ' + props['webern:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
-                    break;
-
-                // WERK
-                case '43':
-                    header['title'] = props['dc:title'].toHtml[0];
-                    break;
-
-                // PERSON
-                case '45':
-                    const lname: string = props['salsah:lastname'].toHtml[0],
-                        fname: string = props['salsah:firstname'].toHtml[0];
-                    header['title'] = fname + ' ' + lname;
-                    break;
-
-                // BIBLIOGRAPHIE
-                case '126':
-                    header['title'] = props['webern:bibl_title_short'].toHtml[0];
-                    break;
-
-                // DEFAULT
-                default:
-                    header['title'] = info.restype_description;
-
-            }
-        } else {
-            // header for undefined object
-            header = {
-                'objID': id,
-                'icon': 'http://www.salsah.org/app/icons/16x16/delete.png',
-                'type': '---',
-                'title': '---',
-                'lastmod': '---'
-            };
-        }
-        return header;
-    }
-
     private prepareResourceDetailImage(id: string): ResourceDetailImage[] {
         // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
         // result is an array of ResourceDetailImage
-        let output: ResourceDetailImage[];
+        let output: ResourceDetailImage[] = [];
 
         // get resource context data
         this.getAdditionalInfoFromApi(ResourceContextResponseJson, id).subscribe(
@@ -329,10 +240,9 @@ export class ConversionService extends ApiService {
                 // else return undefined output if necessary
                 if (!contextData.resource_context.res_id) {
                     console.info('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
-                    output = undefined;
+                    return;
                 } else {
                     const context: ContextJson = {...contextData.resource_context};
-                    output = [];
 
                     // IMAGE OBJECT (context == 2)
                     if (context.context == 2 && context.resclass_name === "image") {
@@ -346,12 +256,12 @@ export class ConversionService extends ApiService {
                             console.log('ConversionService - inner loop output: ', output);
                         } else {
                             console.warn('ConversionService - Array length for context objects is not consistent with firstprops length!', context);
-                            output = undefined;
+                            return;
                         }
                         // STANDARD OBJECT (context == 0 || 1)
                     } else if (context.context < 2) {
                         console.warn('ConversionService - got no image context', context);
-                        output = undefined;
+                        return;
                     }
                 }
                 console.warn('HOOHAAHIII: ', output);
@@ -359,27 +269,20 @@ export class ConversionService extends ApiService {
             },
             err => console.error(err)
         );
-        console.log('Conversionservice - outer output: ', output);
+        console.log('Conversionservice - image - outer output: ', output);
         return output;
     }
 
-    private prepareResourceDetailIncomingLinks(incoming: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
-        let groupedIncomingLinks: ResourceDetailGroupedIncomingLinks;
+
+    private prepareResourceDetailIncomingLinks(incomingArray: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
         const incomingLinks: ResourceDetailIncomingLinks[] = [];
-        incoming.forEach(ins => {
-            incomingLinks.push({
-                id: ins.ext_res_id.id,
-                value: ins.value,
-                restype: {
-                    id: ins.resinfo.restype_id,
-                    label: ins.resinfo.restype_label,
-                    icon: ins.resinfo.restype_iconsrc
-                }
-            });
+        incomingArray.forEach(incoming => {
+            incomingLinks.push(new ResourceDetailIncomingLinks(incoming));
         });
-        groupedIncomingLinks = this.groupByRestype(incomingLinks);
+        const groupedIncomingLinks: ResourceDetailGroupedIncomingLinks = this.groupByRestype(incomingLinks);
         return groupedIncomingLinks;
     }
+
 
     private prepareResourceDetailProperties(props) {
         const detailProperties: ResourceDetailProps[] = [];

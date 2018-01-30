@@ -4,6 +4,6 @@ import { ResourceDetailProps } from './resource-detail-props.model';
 
 export class ResourceDetailContent {
     props: ResourceDetailProps[];
-    image: ResourceDetailImage[] | undefined;
+    image: ResourceDetailImage[];
     incoming: ResourceDetailGroupedIncomingLinks;
 }
