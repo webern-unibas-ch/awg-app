@@ -55,12 +55,13 @@ html, body {
 .objbox-control-button {
     text-align: right;
 }
-.objImage {
-    margin-bottom:25px;
+.imageObj, .connectedObj {
+    margin-bottom: 25px;
 }
 .facs {
     margin-bottom: 15px;
 }
+
 
 
 /* Set grey background color, black text and some padding */

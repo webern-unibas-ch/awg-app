@@ -22,7 +22,7 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
         console.warn('CONTENT: ', this.content);
     }
 
-    getFacetContentSize(obj) {
+    getFacetContentSize(obj: any): number {
         // sum up length of all arrays nested in object
         let size: number = 0;
         Object.keys(obj).forEach(key => {
@@ -31,9 +31,14 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
         return size;
     }
 
-    navigateToResource(id?: string) {
+    navigateToResource(id?: string): void {
         if (id) { id.toString(); }
         this.resourceRequest.emit(id);
+    }
+
+
+    navigateToSearchResults(): void {
+        console.log('ResourceDetailHtmlContent# got navigation request');
     }
 
 }
