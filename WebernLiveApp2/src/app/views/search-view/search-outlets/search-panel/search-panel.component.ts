@@ -25,17 +25,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     searchval: string = 'Skizze';
     searchUrl: string = '';
     searchResultText: string;
+
     errorMessage: string = undefined;
     filteredOut: number;
+    isLoadingData: boolean;
 
-    isLoadingData: boolean = true;   // no data loaded
-
-    isFormSubmitted = false;     // no form submitted
-    isDetailSelected = false;    // no object selected
-    isDetailLoaded = false;      // no object loaded
-    isEventButtonClicked = false;     // no button clicked
-    isEventLoaded = false;       // no event loaded
-    isEventCached = false;       // no event cached
 
     constructor(
         private route: ActivatedRoute,
@@ -50,6 +44,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.route.paramMap.subscribe((params: ParamMap) => {
 
             if (params.get('query')) {
+                console.warn('SearchPanel# got query from route: ', params.get('id'));
                 // perform search with query param
                 this.doSearch(params.get('query'));
             }
@@ -58,6 +53,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 console.warn('SearchPanel# got id from route: ', params.get('id'));
             }
         });
+
 
         // get query & searchResultData from streamerService
         this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
