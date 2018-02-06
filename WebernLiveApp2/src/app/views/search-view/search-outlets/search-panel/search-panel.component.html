@@ -3,11 +3,15 @@
 <!--
   [ => TODO: paging]
 -->
+
+
 <awg-search-form
     [(searchval)]="searchval"
     (submitRequest)="onSubmit($event)"
     (submitLoadStatus)="onLoadChange($event)">
 </awg-search-form>
+
+<p class="load" *ngIf="isLoadingData">Loading...</p>
 
 <awg-search-result-list *ngIf="!isLoadingData"
     [searchData]="searchData"

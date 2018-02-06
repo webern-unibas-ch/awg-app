@@ -1,6 +1,6 @@
 <div class="text-center">
     <form [formGroup]="searchForm"
-          (ngSubmit)="onSubmit(searchValueControl.value)">
+          (ngSubmit)="onSearch(searchValueControl.value)">
         <div class="form-group">
             <label class="control-label" for="searchInput"></label>
             <div class="input-group">
@@ -28,6 +28,5 @@
             </div>
         </div>
     </form>
-    <p class="load" *ngIf="loading">Loading...</p>
 </div>
 

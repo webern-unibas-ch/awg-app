@@ -130,12 +130,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
     /*
      * Navigate back to SearchPanel
-     * pass along the currentId if available
-     * so that the SearchResultList component
-     * can select the corresponding Resource.
      */
     navigateToSearchResults(): void {
-        this.router.navigate(['/search/fulltext', {outlets: {side: 'searchInfo'}}]);
+        this.router.navigate(['/search/fulltext', {id: this.currentId, query: this.resourceInfo.searchResults.query, outlets: {side: 'searchInfo'}}]);
     }
 
 

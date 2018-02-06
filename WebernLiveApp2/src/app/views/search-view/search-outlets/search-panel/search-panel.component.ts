@@ -6,8 +6,10 @@ import 'rxjs/add/operator/do';
 
 import { ConversionService } from '../../../../core/services';
 import { SearchResultStreamerService, SearchService} from '../../services';
-import { SearchResponseJson } from '../../../../shared/api-objects';
 import { SideInfoService } from '../../../../side-info/side-info-services/side-info.service';
+
+import { SearchResponseJson } from '../../../../shared/api-objects';
+import { SearchResponseWithQuery } from '../../models';
 import { SearchInfo } from '../../../../side-info/side-info-models';
 
 @Component({
@@ -26,7 +28,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     errorMessage: string = undefined;
     filteredOut: number;
 
-    isLoadingData = true;   // no data loaded
+    isLoadingData: boolean = true;   // no data loaded
 
     isFormSubmitted = false;     // no form submitted
     isDetailSelected = false;    // no object selected
@@ -46,18 +48,22 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     ) {
         // get query param from route to update searchvalue
         this.route.paramMap.subscribe((params: ParamMap) => {
+
             if (params.get('query')) {
-                this.searchval = params.get('query');
+                // perform search with query param
+                this.doSearch(params.get('query'));
+            }
+
+            if (params.get('id')) {
+                console.warn('SearchPanel# got id from route: ', params.get('id'));
             }
         });
 
         // get query & searchResultData from streamerService
         this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
-            .subscribe(res => {
-                    this.searchUrl = this.searchService.httpGetUrl;
-                    this.searchval = res.query;
-                    this.displayRouteWithQuery(res.query);
-                    this.displayFulltextSearchData(res.data);
+            .subscribe((response: SearchResponseWithQuery) => {
+                    // display search data
+                    this.displayFulltextSearchData(response);
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -70,47 +76,73 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
 
-    onLoadChange(status: boolean) {
-        // receives load status from search form component
-        this.isLoadingData = status;
-    }
-
-
-    onSubmit(data: string | SearchResponseJson) {
-        this.isFormSubmitted = true;      // now form is submitted
-        this.isDetailSelected = false;    // no detail selected
-        this.isDetailLoaded = false;      // no detail loaded
-
-        console.log('SearchPanel# onSubmit: got data ', data);
-
-        // this.router.navigate(['search/fulltext', {data: data}]);
-    }
-
-
-    displayRouteWithQuery(query: string) {
-        const url = this.router.createUrlTree(['search/fulltext', {query: query}]).toString();
-        this.location.go(url);
-    }
-
-
-    displayFulltextSearchData(data: SearchResponseJson) {
-       this.searchData = {...data};
+    // display the search data
+    displayFulltextSearchData(response: SearchResponseWithQuery) {
+        // snapshot of values
+        this.searchData = {...response.data};
+        this.searchval = response.query;
+        this.searchUrl = this.searchService.httpGetUrl;
 
         // prepare result text for fulltext search
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(this.searchData, this.filteredOut, this.searchUrl);
 
-        this.updateSideInfoData();
+        // update side info
+        this.updateSearchInfoData();
 
         // TODO: rm
         console.info('SearchPanel# searchData: ', this.searchData);
     }
 
 
-    updateSideInfoData() {
-        // share data for searchInfo via service
+    // search via service
+    doSearch(query: string) {
+        this.onLoadChange(true);
+
+        this.searchService.getFulltextSearchData(query)
+            .subscribe((data: SearchResponseJson) => {
+                    // snapshot of data
+                    let searchResultsData: SearchResponseJson = {...data};
+
+                    // conversion of search results for HTML display
+                    searchResultsData = this.conversionService.convertFullTextSearchResults(searchResultsData);
+
+                    // share search data via streamer service
+                    this.updateSearchResponseData(searchResultsData, query);
+
+                    this.onLoadChange(false);
+                },
+                error => {
+                    this.errorMessage = <any>error;
+                });
+
+    }
+
+
+    // change the load status
+    onLoadChange(status: boolean) {
+        this.isLoadingData = status;
+    }
+
+
+    // route to url with query when getting submit request
+    onSubmit(query: string) {
+        this.router.navigate(['search/fulltext', {query: query}]);
+    }
+
+
+    // update data for searchInfo via sideinfo service
+    updateSearchInfoData() {
         const searchInfo: SearchInfo = new SearchInfo(this.searchval, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
+
+
+    // update search data via streamer service
+    updateSearchResponseData(data: SearchResponseJson, query: string) {
+        const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(data, query);
+        this.streamerService.updateSearchResponseStream(searchResponseWithQuery);
+    }
+
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
