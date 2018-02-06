@@ -6,7 +6,7 @@
 * This code is inspired, adapted or taken from:
 *
 * ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
-* https://arachne.dainst.org/entity/1121229**]
+* https://arachne.dainst.org/entity/1121229
 * 20.11.2017
 *
 *
@@ -16,9 +16,9 @@
     <div *ngIf="resourceInfo">
         <div class="row">
             <div class="col-md-12">
-                <div ng-if="currentQuery.q || currentQuery.facets.length > 0" class="panel panel-default">
+                <div class="panel panel-default">
 
-                    <!-- PANEL HEADING -->
+                    <!-- panel heading -->
                     <div class="panel-heading">
                         <a class="btn btn-xs btn-primary pull-left" (click)="navigateToSearchResults()"><span class="glyphicon glyphicon-arrow-left"></span> Zur Suche</a>
                         <div>
@@ -31,6 +31,7 @@
                         </div>
                     </div>
 
+                    <!-- search results -->
                     <div *ngIf="resourceInfo?.searchResults?.size">
                         <ul class="list-group">
                             <!-- previous resource -->
@@ -63,14 +64,12 @@
                                         <input id="resourceInfoInput" [(ngModel)]="goToIndex" name="index" size="4" class="form-control input-sm ng-pristine ng-untouched ng-valid ng-not-empty" type="number" min="1" [max]="resultSize">
                                         <span class="input-group-addon" style="border-top-right-radius: 3px; border-bottom-right-radius:3px; border-left:0;"> <small>von</small> <strong>{{ resultSize }}</strong>
                                         </span>
-                                        <span ng-hide="goToIndex === current?.displayIndex || goToIndex < 1 || goToIndex > resultSize" class="input-group-btn ng-hide">
+                                        <span class="input-group-btn">
                                             <button class="btn btn-primary btn-sm" [disabled]="goToIndex === current?.displayIndex || goToIndex < 1 || goToIndex > resultSize" (click)="findResourceByIndex(goToIndex)">Gehe zu</button>
                                         </span>
                                     </div>
                                 </form>
                             </li>
-
-
 
                             <!-- next resource -->
                             <a *ngIf="resourceInfo?.resources?.next; let next" class="list-group-item text-right" style="height:75px; overflow:hidden" (click)="navigateToResource(next?.id)">
@@ -91,15 +90,10 @@
                                 </div>
                             </a>
 
-
-
                         </ul>
                     </div><!-- end ngIf: resourceInfo?.searchResults?.size -->
                 </div>
             </div>
-        </div><!-- class row -->
-
-        <div ng-if="entity.places" class="ng-scope"></div><!-- end ngIf: entity.places -->
-    </div><!-- ngIf: user.username -->
-
+        </div>
+    </div><!-- end ngIf: resourceInfo -->
 </div>
