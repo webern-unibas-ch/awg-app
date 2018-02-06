@@ -2,7 +2,8 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
-import 'rxjs/add/operator/do';
+
+import { AppConfig } from '../../../../../app.config';
 
 
 @Component({
@@ -17,6 +18,8 @@ export class SearchFormComponent implements OnInit {
 
     searchForm: FormGroup;
     searchValueControl: AbstractControl;
+
+    apiUrl: string = AppConfig.API_ENDPOINT;
 
     constructor(
         private fb: FormBuilder

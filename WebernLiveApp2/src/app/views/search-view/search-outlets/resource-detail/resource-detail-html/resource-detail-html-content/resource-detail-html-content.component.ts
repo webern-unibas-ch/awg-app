@@ -14,7 +14,8 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
     @Input() resourceUrl: string;
     @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    public metaBreakLine: string = 'Versionsdatum';
+    metaBreakLine: string = 'Versionsdatum';
+    currentImageIndex: number = 0;
 
     constructor() { }
 
@@ -31,6 +32,7 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
         return size;
     }
 
+
     navigateToResource(id?: string): void {
         if (id) { id.toString(); }
         this.resourceRequest.emit(id);
@@ -38,7 +40,23 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
 
 
     navigateToSearchResults(): void {
+        // TODO navigation to image or connected objects details
         console.log('ResourceDetailHtmlContent# got navigation request');
+    }
+
+    pageThumbsLeft() {
+        // TODO:   offset
+        console.log('ResourceDetailHtmlContent# got pageThumbsLeft request');
+    }
+
+    pageThumbsRight() {
+        // TODO: offset
+        console.log('ResourceDetailHtmlContent# got pageThumbsRight request');
+    }
+
+    setImage(index: number): void {
+        console.log('ResourceDetailHtmlContent# clicked setImage with image:  ', index);
+        this.currentImageIndex = index;
     }
 
 }
