@@ -1,0 +1,30 @@
+<table class="table table-hover borderless">
+    <tbody>
+    <!--  at the moment only for the first item ("source.siglum == 'A'") -->
+    <tr *ngFor="let source of sourceList.sources.slice(0,1)">
+        <td class="bold">
+            <a [routerLink]="['./']" fragment={{source.linkTo}} (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
+        </td>
+        <td><span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
+            <span [innerHTML]="source.location"></span>
+        </td>
+    </tr>
+    <!--  at the moment only if ="source.siglum !== 'A'" -->
+    <tr *ngFor="let source of sourceList.sources.slice(1)">
+        <td class="bold">
+            <a (click)="openEditionDialog(source.linkTo)" [innerHTML]="source.siglum"></a>
+        </td>
+        <td>
+            <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
+            <span [innerHTML]="source.location"></span>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
+

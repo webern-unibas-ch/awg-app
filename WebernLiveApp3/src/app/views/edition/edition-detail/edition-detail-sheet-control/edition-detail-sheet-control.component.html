@@ -1,0 +1,8 @@
+<nav mat-tab-nav-bar>
+    <a mat-tab-link
+        *ngFor="let sheet of sheets | mapToIterable"
+        active="isSelectedSheet(sheet.mappedKey)"
+        (click)="selectSheet(sheet.mappedKey)">
+        {{sheet.mappedKey}}
+    </a>
+</nav>

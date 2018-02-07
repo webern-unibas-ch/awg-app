@@ -1,0 +1,47 @@
+<!--
+/************************************************
+*
+*               CREDITS
+*
+* This code is inspired, adapted or taken from:
+*
+* ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+* https://arachne.dainst.org/entity/1121229**]
+* 20.11.2017
+*
+*
+*
+************************************************/ -->
+<!-- resourceDetailData content -->
+<div class="resource-content">
+    <div class="row">
+
+        <!-- object properties -->
+        <div class="col-sm-8">
+            <awg-resource-detail-html-content-props *ngIf="content?.props"
+                                                    [props]="content?.props"
+                                                    (resourceRequest)="navigateToResource($event)">
+            </awg-resource-detail-html-content-props>
+        </div>
+
+        <!-- right side nav objects -->
+        <div class="col-sm-4">
+            <div class="sidenav-right">
+
+                <!-- image objects -->
+                <awg-resource-detail-html-content-imageobjects *ngIf="content?.images.length > 0"
+                                                               [images]="content?.images"
+                                                               (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-html-content-imageobjects>
+
+
+                <!-- connected objects -->
+                <awg-resource-detail-html-content-linkedobjects *ngIf="content?.incoming"
+                                                                [incoming]="content?.incoming"
+                                                                (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-html-content-linkedobjects>
+
+            </div>
+        </div>
+    </div>
+</div>

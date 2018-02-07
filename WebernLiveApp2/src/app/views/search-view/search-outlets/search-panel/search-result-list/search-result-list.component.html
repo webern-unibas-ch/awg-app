@@ -1,0 +1,40 @@
+<!-- content: search results -->
+<div *ngIf="searchData">
+
+    <!-- header -->
+    <h4>Suchergebnisse</h4>
+    <p>
+        {{ searchResultText }}
+    </p>
+
+    <ng-container *ngIf="searchData?.subjects">
+
+        <!-- TODO: ### PAGINATION ### -->
+
+        <!-- table with searchResults -->
+        <table *ngIf="+searchData?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
+            <thead>
+            <tr>
+                <th>
+                    Kategorie
+                </th>
+                <th>
+                    Eintrag
+                </th>
+            </tr>
+            </thead>
+            <tbody>
+            <!-- show searchResultDetail by clicking on single entry -->
+            <tr *ngFor="let data of searchData?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="navigateToResource(data?.obj_id)" [class.active]="isActiveResource(data?.obj_id)">
+                <td>
+                    <img [attr.src]=data?.iconsrc alt="iconsrc" > {{ data?.iconlabel }}
+                </td>
+                <td>
+                    <span [compile-html]="data?.value[0]" [compile-html-ref]="this"></span>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+
+    </ng-container>
+</div>

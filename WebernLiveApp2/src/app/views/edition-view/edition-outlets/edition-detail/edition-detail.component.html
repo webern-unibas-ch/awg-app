@@ -1,0 +1,35 @@
+<!-- content: edition -->
+<div>
+    <!-- pre-notification -->
+    <awg-edition-detail-notification></awg-edition-detail-notification>
+
+    <!-- modal -->
+    <awg-modal #modal></awg-modal>
+
+    <!-- body with embedded svg's -->
+    <!-- image control -->
+    <awg-edition-sheet-control
+        *ngIf="sheetsData && selectedSheet"
+        [sheets]="sheetsData"
+        [selectedSheet]="selectedSheet"
+        (selectSheetRequest)="onSheetSelect($event)">
+    </awg-edition-sheet-control>
+
+    <!-- table for TkA -->
+    <awg-edition-tka-table
+        *ngIf="showTkA && selectedTextcritics"
+        [textcritics]="selectedTextcritics"
+        (openModalRequest)="modal.open($event)"
+        (selectSheetRequest)="onSheetSelect($event)">
+    </awg-edition-tka-table>
+
+    <!-- svg panel -->
+    <awg-edition-svg-panel
+        *ngIf="selectedSheet"
+        [selectedSheet]="selectedSheet"
+        [selectedTextcriticId]="selectedTextcriticId"
+        (selectSheetRequest)="onSheetSelect($event)"
+        (selectTextcriticRequest)="onTextcriticSelect($event)">
+    </awg-edition-svg-panel>
+
+</div>

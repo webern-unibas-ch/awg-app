@@ -1,0 +1,19 @@
+<div class="col-md-3 sidenav sidenav-left text-center">
+
+    <p class="todo">TODO: search-info.component.html</p>
+
+
+    <div class="well well-lg">
+        <p class="bold">
+            {{ searchInfoTitle }}
+        </p>
+        <p>&#9671;</p>
+        <p *ngIf="searchInfo.query">
+            <strong>Suchbegriff:</strong> {{ searchInfo?.query }}
+        </p>
+        <p>&#9671;</p>
+        <p *ngIf="searchInfo.nhits">
+            <strong>Suchergebnisse:</strong> {{ searchInfo?.nhits }}
+        </p>
+    </div>
+</div>

@@ -1,0 +1,12 @@
+<!-- content: edition-view -->
+<div class="col-sm-9 col-lg-10 maincontent text-left">
+
+    <!-- heading -->
+    <awg-heading [title]="editionTitle" [id]="editionId"></awg-heading>
+
+    <!-- edition routes
+        TODO: refactor order of templates (edition-overview with/without children?)
+    -->
+    <router-outlet></router-outlet>
+
+</div>

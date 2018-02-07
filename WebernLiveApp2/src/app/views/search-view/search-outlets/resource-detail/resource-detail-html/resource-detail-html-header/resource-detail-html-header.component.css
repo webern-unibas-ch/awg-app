@@ -1,0 +1,36 @@
+/************************************************
+ *
+ *               CREDITS
+ *
+ * This code is inspired, adapted or taken from:
+ *
+ * ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+ * https://arachne.dainst.org/entity/1121229**]
+ * 20.11.2017
+ *
+ *
+ *
+************************************************/
+
+/* resource header */
+.resource-header {
+    border-bottom: 1px solid #ddd;
+    padding-bottom: 22px;
+}
+.resource-title {
+    margin-top: 5px;
+    margin-bottom: 5px;
+}
+.resource-title .title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.resource-title .title:hover {
+    white-space: normal;
+    width: inherit;
+    height: auto;
+}
+.resource-link {
+    margin-top: 30px;
+}

@@ -1,0 +1,11 @@
+<awg-corner-ribbon></awg-corner-ribbon>
+
+<awg-header></awg-header>
+
+<awg-page
+    *ngIf="menu && selectedMenu"
+    [menu]="menu"
+    [selectedMenu]="selectedMenu">
+</awg-page>
+
+<awg-footer [meta]="metaData"></awg-footer>

@@ -1,0 +1,22 @@
+<!-- content: search panel -->
+
+<!--
+  [ => TODO: paging]
+-->
+
+
+<awg-search-form
+    [(searchval)]="searchval"
+    (submitRequest)="onSubmit($event)"
+    (submitLoadStatus)="onLoadChange($event)">
+</awg-search-form>
+
+
+<awg-search-result-list *ngIf="!isLoadingData; else loading"
+                        [searchData]="searchData"
+                        [searchResultText]="searchResultText">
+</awg-search-result-list>
+
+<ng-template #loading>
+    <p class="load">Loading...</p>
+</ng-template>

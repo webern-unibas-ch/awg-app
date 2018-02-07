@@ -1,0 +1,20 @@
+<!-- header -->
+<div class="para">
+    <h2>Serie I (Werke mit Opuszahlen)</h2>
+    <h2>Abteilung 5 (Klavierlieder)</h2>
+</div>
+
+<div class="para">
+    <h3><i>Vier Lieder</i> op. 12</h3>
+    <h3>Skizzen</h3>
+    <h4>[Beispieledition ausgewählter Skizzen zu op. 12 Nr. I]</h4>
+</div>
+
+
+<!-- declamation -->
+<div class="para declamation">
+    <p>Ediert von <span [innerHtml]="metaData?.edition.editors"></span></p>
+    <p>Versionsdatum: <span class="version">{{ metaData?.edition.lastModified }}</span></p>
+</div>
+
+<router-outlet></router-outlet>
