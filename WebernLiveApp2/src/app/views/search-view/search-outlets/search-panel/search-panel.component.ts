@@ -44,7 +44,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.route.paramMap.subscribe((params: ParamMap) => {
 
             if (params.get('query')) {
-                console.warn('SearchPanel# got query from route: ', params.get('id'));
                 // perform search with query param
                 this.doSearch(params.get('query'));
             }
@@ -84,9 +83,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
         // update side info
         this.updateSearchInfoData();
-
-        // TODO: rm
-        console.info('SearchPanel# searchData: ', this.searchData);
     }
 
 

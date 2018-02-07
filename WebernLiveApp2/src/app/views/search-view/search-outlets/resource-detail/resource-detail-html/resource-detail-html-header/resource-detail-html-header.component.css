@@ -31,3 +31,6 @@
     width: inherit;
     height: auto;
 }
+.resource-link {
+    margin-top: 30px;
+}
