@@ -16,32 +16,12 @@
 <div class="resource-content">
     <div class="row">
 
-        <!-- object data -->
+        <!-- object properties -->
         <div class="col-sm-8">
-            <div class="props" *ngIf="content?.props">
-                <ul>
-                    <li style="list-style-type: none">
-                        <strong> Objektdaten </strong>
-                        <ul *ngFor="let prop of content?.props">
-                            <li id="breakLine" *ngIf="prop.label === metaBreakLine">
-                                <hr>
-                            </li>
-                            <li id="propField" *ngIf="prop.value[0]" style="list-style-type: none">
-                                <!-- value label -->
-                                <strong *ngIf="prop.label">
-                                    {{ prop.label }}
-                                </strong>
-                                <!-- value content -->
-                                <ul *ngFor="let value of prop.value">
-                                    <li *ngIf="value">
-                                        <span [compile-html]="value" [compile-html-ref]="this"></span>
-                                    </li>
-                                </ul>
-                            </li>
-                        </ul>
-                    </li>
-                </ul>
-            </div>
+            <awg-resource-detail-html-content-props *ngIf="content?.props"
+                                                    [props]="content?.props"
+                                                    (resourceRequest)="navigateToResource($event)">
+            </awg-resource-detail-html-content-props>
         </div>
 
         <!-- right side nav objects -->
@@ -49,61 +29,17 @@
             <div class="sidenav-right">
 
                 <!-- image objects -->
-                <div class="imageObj" *ngIf="content?.image.length > 0">
-                    <h4>
-                        <a (click)="navigateToSearchResults()">
-                            Abbildungen <small>({{ content?.image.length }})</small>
-                        </a>
-                    </h4>
-                    <!-- image slider -->
-                    <div class="imageSlider">
-                        <!-- preview image -->
-                        <div id="previewbox" class="panel panel-default" *ngIf="currentImageIndex >= 0">
-                            <a  id="previewimg-nav-left" *ngIf="currentImageIndex > 0" (click)="setImage(currentImageIndex - 1)">
-                                <span class="glyphicon glyphicon-circle-arrow-left"></span>
-                            </a>
-                            <a id="previewimg-nav-right" *ngIf="currentImageIndex < content?.image?.length - 1" (click)="setImage(currentImageIndex + 1)">
-                                <span class="glyphicon glyphicon-circle-arrow-right"></span>
-                            </a>
-                            <div id="previewimg-wrapper">
-                                <a id="previewimg" [href]="content?.image[currentImageIndex].fullSize" target="_blank">
-                                    <img [src]="content?.image[currentImageIndex].reductSize" alt="{{ content?.image[0].label }}" id="{{ content.image[currentImageIndex].res_id }}" height="300">
-                                </a>
-                            </div>
-                        </div>
-                        <!-- thumbnails -->
-                        <div *ngIf="content?.image.length > 1" class="thumb-row panel panel-default">
-                            <a ng-click="pageThumbsLeft()" ng-hide="offset <= 0" class="navigate-left"><span class="glyphicon glyphicon-circle-arrow-left"></span></a>
-                            <a ng-click="pageThumbsRight()" class="navigate-right" ng-hide="offset >= max"><span class="glyphicon glyphicon-circle-arrow-right"></span></a>
-                            <div id="thumbbox" style="transform: translateX(0px);">
-                                <!-- ngStyle="{'transform': 'translateX(-'+offset+'px)','-webkit-transform': 'translateX(-'+offset+'px)'}" id="thumbbox" -->
-                                <a class="btn btn-default" *ngFor="let image of content?.image; let i = index" [ngClass]="{ 'active': i === currentImageIndex }" (click)="setImage(i)" >
-                                    <img [src]="image.reductSize" alt="{{ image.label }}" id="{{ image.res_id }}" height="70">
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-                </div><!-- end DIV imageObj -->
+                <awg-resource-detail-html-content-imageobjects *ngIf="content?.images.length > 0"
+                                                               [images]="content?.images"
+                                                               (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-html-content-imageobjects>
 
 
                 <!-- connected objects -->
-                <div class="connectedObj" *ngIf="content?.incoming">
-                    <h4>
-                        <a (click)="navigateToSearchResults()">
-                            Verknüpfte Objekte <small>({{ getFacetContentSize(content?.incoming) }})</small>
-                        </a>
-                    </h4>
-                    <accordion [closeOthers]="true">
-                        <accordion-group class="ins" *ngFor="let facetGroup of content?.incoming | mapToIterable">
-                            <div accordion-heading>
-                                {{ facetGroup?.mappedKey }}
-                                <span class="badge facetBadge float-right pull-right">{{ facetGroup?.mappedValues.length }}</span>
-                            </div>
-                            <p class="single-line" *ngFor="let facetItem of facetGroup.mappedValues" (click)="navigateToResource(facetItem?.id)"><img [attr.src]="facetItem?.restype?.icon" alt="icon" /> [{{ facetItem?.id }}] {{ facetItem?.value }}</p>
-                        </accordion-group>
-                    </accordion>
-                </div><!-- end DIV connectedObj -->
-
+                <awg-resource-detail-html-content-linkedobjects *ngIf="content?.incoming"
+                                                                [incoming]="content?.incoming"
+                                                                (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-html-content-linkedobjects>
 
             </div>
         </div>

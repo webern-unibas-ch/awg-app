@@ -8,7 +8,6 @@
 <!-- resourceDetailData content -->
 <awg-resource-detail-html-content *ngIf="resourceDetailData?.content"
     [content]="resourceDetailData?.content"
-    [resourceUrl]="resourceUrl"
     (resourceRequest)="navigateToResource($event)">
 </awg-resource-detail-html-content>
 

@@ -59,17 +59,13 @@ export class ApiService {
                         apiServiceResult.statusText = response.statusText;
                         apiServiceResult.body = response.body;
                         apiServiceResult.url = response.url;
-                        console.log('ApiService - Result: ', apiServiceResult);
                         return apiServiceResult;
                     } catch (e) {
-                        // console.log('ApiService - catch - local e: ', e);
                         // TODO: use full response.url for errorhandling
                         return ApiService.handleError(response, url);
                     }
                 }),
-                // catchError(this.handleError('ApiService#httpGet', []))
                 catchError((error: any) => {
-                    // console.log('ApiService - catchError - global e: ', error);
                     return Observable.throw(ApiService.handleError(error, url));
                 })
             );

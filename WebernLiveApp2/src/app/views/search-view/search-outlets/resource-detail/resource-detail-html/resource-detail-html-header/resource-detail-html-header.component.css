@@ -1,3 +1,18 @@
+/************************************************
+ *
+ *               CREDITS
+ *
+ * This code is inspired, adapted or taken from:
+ *
+ * ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+ * https://arachne.dainst.org/entity/1121229**]
+ * 20.11.2017
+ *
+ *
+ *
+************************************************/
+
+/* resource header */
 .resource-header {
     border-bottom: 1px solid #ddd;
     padding-bottom: 22px;

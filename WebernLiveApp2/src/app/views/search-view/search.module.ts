@@ -17,6 +17,9 @@ import { SearchResultListComponent } from './search-outlets/search-panel/search-
 
 import { ResourceDetailHtmlComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html.component';
 import { ResourceDetailHtmlContentComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-content/resource-detail-html-content.component';
+import { ResourceDetailHtmlContentImageobjectsComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-content/resource-detail-html-content-imageobjects/resource-detail-html-content-imageobjects.component';
+import { ResourceDetailHtmlContentLinkedobjectsComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-content/resource-detail-html-content-linkedobjects/resource-detail-html-content-linkedobjects.component';
+import { ResourceDetailHtmlContentPropsComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-content/resource-detail-html-content-props/resource-detail-html-content-props.component';
 import { ResourceDetailHtmlHeaderComponent } from './search-outlets/resource-detail/resource-detail-html/resource-detail-html-header/resource-detail-html-header.component';
 import { ResourceDetailJsonConvertedComponent } from './search-outlets/resource-detail/resource-detail-json-converted/resource-detail-json-converted.component';
 import { ResourceDetailJsonRawComponent } from './search-outlets/resource-detail/resource-detail-json-raw/resource-detail-json-raw.component';
@@ -38,6 +41,9 @@ import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliograp
 
         ResourceDetailHtmlComponent,
         ResourceDetailHtmlContentComponent,
+        ResourceDetailHtmlContentImageobjectsComponent,
+        ResourceDetailHtmlContentLinkedobjectsComponent,
+        ResourceDetailHtmlContentPropsComponent,
         ResourceDetailHtmlHeaderComponent,
         ResourceDetailJsonConvertedComponent,
         ResourceDetailJsonRawComponent,

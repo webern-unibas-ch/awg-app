@@ -32,6 +32,24 @@ declare var dateConverter;
 @Injectable()
 export class ConversionService extends ApiService {
 
+
+    /******************************************
+     *
+     * sum up length of all arrays nested in an
+     * ResourceDetailGroupedIncomingLinks object
+     *
+     *****************************************/
+    getNestedArraysLength(obj: ResourceDetailGroupedIncomingLinks): number {
+        let size: number = 0;
+        // iterate over object keys
+        Object.keys(obj).forEach(key => {
+            // sum up length of array nested in object
+            size += obj[key].length;
+        });
+        return size;
+    }
+
+
     /******************************************
      *
      *  convert full text search results
@@ -206,6 +224,7 @@ export class ConversionService extends ApiService {
     private prepareRestrictedResource(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
         const header: ResourceDetailHeader = new ResourceDetailHeader(data, currentId);
         const content = undefined;
+
         const detail: ResourceDetail = new ResourceDetail(header, content);
         return detail;
     }
@@ -218,11 +237,11 @@ export class ConversionService extends ApiService {
         const header: ResourceDetailHeader = new ResourceDetailHeader(data, currentId);
         const content: ResourceDetailContent = {
             props: this.prepareResourceDetailProperties(data.props),
-            image: this.prepareResourceDetailImage(currentId),
+            images: this.prepareResourceDetailImage(currentId),
             incoming: this.prepareResourceDetailIncomingLinks(data.incoming)
         };
+
         const detail: ResourceDetail = new ResourceDetail(header, content);
-        console.warn('Conversionservice - detail: ', detail);
         return detail;
     }
 
@@ -235,11 +254,10 @@ export class ConversionService extends ApiService {
         // get resource context data
         this.getAdditionalInfoFromApi(ResourceContextResponseJson, id).subscribe(
             (contextData: ResourceContextResponseJson) => {
-                console.warn('ConversionService# contextdata: ', contextData);
                 // check for existing resource_context in response
                 // else return undefined output if necessary
                 if (!contextData.resource_context.res_id) {
-                    console.info('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+                    // console.info('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
                     return;
                 } else {
                     const context: ContextJson = {...contextData.resource_context};
@@ -250,26 +268,22 @@ export class ConversionService extends ApiService {
                             for (let i = 0; i < context.res_id.length; i++) {
                                 // build new ResourceDetailImage-Object from context and index
                                 const image: ResourceDetailImage = new ResourceDetailImage(context, i);
-                                console.log('ConversionService - image: ', image);
                                 output[i] = image;
                             }
-                            console.log('ConversionService - inner loop output: ', output);
                         } else {
                             console.warn('ConversionService - Array length for context objects is not consistent with firstprops length!', context);
                             return;
                         }
                         // STANDARD OBJECT (context == 0 || 1)
                     } else if (context.context < 2) {
-                        console.warn('ConversionService - got no image context', context);
+                        console.info('ConversionService - got no image context', context);
                         return;
                     }
                 }
-                console.warn('HOOHAAHIII: ', output);
                 return output;
             },
             err => console.error(err)
         );
-        console.log('Conversionservice - image - outer output: ', output);
         return output;
     }
 

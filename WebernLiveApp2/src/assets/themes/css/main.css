@@ -167,7 +167,7 @@ span.facetBadge {
 
 
 /****** LINKS & POINTER ******/
-a, .ins {
+a, .incomingLinks {
     cursor: pointer;
 }
 
@@ -184,6 +184,11 @@ a, .ins {
 .para {
     margin-bottom: 3em;
 }
+.row {
+    margin-top: 10px;
+    margin-right: -15px;
+    margin-left: -15px;
+}
 
 
 /****** FONTPROPERTIES ******/
@@ -199,6 +204,12 @@ span.caps, .version {
 span.indent {
     text-indent:25px;
 }
+.single-line {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+
 
 /****** FORMS ******/
 .ng-valid[required], .ng-valid.required {

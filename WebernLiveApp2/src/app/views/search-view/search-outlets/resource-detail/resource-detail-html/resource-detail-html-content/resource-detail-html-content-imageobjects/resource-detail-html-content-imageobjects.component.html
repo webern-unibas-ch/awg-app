@@ -1,0 +1,68 @@
+<!--
+/************************************************
+*
+*               CREDITS
+*
+* This code is inspired, adapted or taken from:
+*
+* ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+* https://arachne.dainst.org/entity/1121229**]
+* 20.11.2017
+*
+*
+*
+************************************************/ -->
+<!-- resourceDetailData content: image objects -->
+<div class="imageObj">
+
+    <!-- header -->
+    <h4>
+        <!-- TODO: link to image overview
+            <a (click)="navigateToSearchResults()">
+            -->
+        Abbildungen <small>({{ images?.length }})</small>
+        <!--
+        </a>
+        -->
+    </h4>
+
+    <!-- image slider -->
+    <div class="imageSlider">
+
+        <!-- preview image box -->
+        <div id="previewbox" class="panel panel-default" *ngIf="currentImageIndex >= 0">
+            <!-- control arrows -->
+            <a id="preview-nav-left" *ngIf="currentImageIndex > 0" (click)="setImage(currentImageIndex - 1)">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            </a>
+            <a id="preview-nav-right" *ngIf="currentImageIndex < images?.length - 1" (click)="setImage(currentImageIndex + 1)">
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </a>
+            <!-- preview image -->
+            <div id="preview-img-container">
+                <a id="preview-img" [href]="images[currentImageIndex].fullSize" target="_blank">
+                    <img [src]="images[currentImageIndex].reductSize" alt="{{ images[currentImageIndex].label }}" id="{{ images[currentImageIndex].res_id }}" height="300">
+                </a>
+            </div>
+        </div>
+
+        <!-- thumbnails -->
+        <div id="thumbbox" #thumbBox class="panel panel-default" *ngIf="images.length > 1">
+            <!-- control arrows -->
+            <a class="navigate-left" [hidden]="offset <= 0" (click)="pageThumbsLeft()">
+                <span class="glyphicon glyphicon-circle-arrow-left"></span>
+            </a>
+            <a class="navigate-right" [hidden]="offset >= max" (click)="pageThumbsRight()">
+                <span class="glyphicon glyphicon-circle-arrow-right"></span>
+            </a>
+            <!-- thumb images -->
+            <div id="thumb-img-container" #thumbImageContainer style="transform: translateX(0px);" [ngStyle]="{'transform': 'translateX(-'+offset+'px)','-webkit-transform': 'translateX(-'+offset+'px)'}">
+                <!--  -->
+                <a class="thumb-img" #thumbImages *ngFor="let image of images; let i = index" [ngClass]="{ 'active': i === currentImageIndex }" (click)="setImage(i)" >
+                    <img [src]="image.reductSize" alt="{{ image.label }}" id="{{ image.res_id }}" height="70">
+                </a>
+            </div>
+        </div>
+
+    </div><!-- end DIV imageSlider -->
+</div><!-- end DIV imageObj -->
