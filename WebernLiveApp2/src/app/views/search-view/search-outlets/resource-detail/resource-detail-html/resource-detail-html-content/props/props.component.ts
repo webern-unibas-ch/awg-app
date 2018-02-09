@@ -4,11 +4,8 @@ import { ResourceDetailProps } from '../../../../../models';
 
 @Component({
     selector: 'awg-resource-detail-html-content-props',
-    templateUrl: './resource-detail-html-content-props.component.html',
-    styleUrls: [
-        './resource-detail-html-content-props.component.css',
-        '../../resource-detail-html.component.css'
-    ]
+    templateUrl: './props.component.html',
+    styleUrls: ['./props.component.css']
 })
 export class ResourceDetailHtmlContentPropsComponent implements OnInit {
     @Input() props: ResourceDetailProps[];

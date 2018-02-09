@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResourceDetailHtmlContentLinkedobjectsComponent } from './resource-detail-html-content-linkedobjects.component';
+import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects.component';
 
 describe('ResourceDetailHtmlContentLinkedobjectsComponent', () => {
     let component: ResourceDetailHtmlContentLinkedobjectsComponent;

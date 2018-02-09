@@ -14,8 +14,8 @@ import { ResourceDetailImage } from '../../../../../models';
 
 @Component({
     selector: 'awg-resource-detail-html-content-imageobjects',
-    templateUrl: './resource-detail-html-content-imageobjects.component.html',
-    styleUrls: ['./resource-detail-html-content-imageobjects.component.css']
+    templateUrl: './imageobjects.component.html',
+    styleUrls: ['./imageobjects.component.css']
 })
 export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     @ViewChild('thumbBox') thumbBox: ElementRef;

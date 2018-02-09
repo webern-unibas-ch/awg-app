@@ -5,8 +5,8 @@ import { ResourceDetailGroupedIncomingLinks } from '../../../../../models';
 
 @Component({
     selector: 'awg-resource-detail-html-content-linkedobjects',
-    templateUrl: './resource-detail-html-content-linkedobjects.component.html',
-    styleUrls: ['./resource-detail-html-content-linkedobjects.component.css']
+    templateUrl: './linkedobjects.component.html',
+    styleUrls: ['./linkedobjects.component.css']
 })
 export class ResourceDetailHtmlContentLinkedobjectsComponent implements OnInit {
     @Input() incoming: ResourceDetailGroupedIncomingLinks;

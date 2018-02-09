@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResourceDetailHtmlContentImageobjectsComponent } from './resource-detail-html-content-imageobjects.component';
+import { ResourceDetailHtmlContentImageobjectsComponent } from './imageobjects.component';
 
 describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let component: ResourceDetailHtmlContentImageobjectsComponent;

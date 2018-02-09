@@ -1,6 +1,6 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResourceDetailHtmlContentPropsComponent } from './resource-detail-html-content-props.component';
+import { ResourceDetailHtmlContentPropsComponent } from './props.component';
 
 describe('ResourceDetailHtmlContentPropsComponent', () => {
     let component: ResourceDetailHtmlContentPropsComponent;
