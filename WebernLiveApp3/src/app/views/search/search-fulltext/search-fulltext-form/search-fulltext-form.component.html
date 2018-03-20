@@ -1,0 +1,50 @@
+<p>
+  search-fulltext-form works!
+</p>
+
+<h3>Sie suchen nach: {{ searchValue }}</h3>
+
+<form #searchForm="ngForm"
+      class="search-fulltext-form"
+      (ngSubmit)="onSubmit(searchValue)">
+    <mat-input-container class="full-width">
+        <input matInput
+               type="text"
+               id="searchval"
+               placeholder="Volltextsuche in der Webern-Datenbank ({{ url }}) …"
+               required
+               [(ngModel)]="searchValue" name="searchValue"
+               #searchInput="ngModel" >
+    </mat-input-container>
+    <button matButton
+            type="submit"
+            [disabled]="!searchForm.form.valid">
+        Los!
+    </button>
+</form>
+
+<div class="text-center">
+    <form #searchForm="ngForm" (ngSubmit)="onSubmit(searchValue)">
+        <div class="form-group">
+            <label class="control-label"></label>
+            <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                                type="submit"
+                                [disabled]="!searchForm.form.valid">Los!</button>
+                    </span>
+                <input type="text"
+                       class="form-control"
+                       id="searchval"
+                       placeholder="Volltextsuche in der Webern-Datenbank ({{ url }}) …"
+                       required
+                       [(ngModel)]="searchValue" name="searchValue"
+                       #searchInput="ngModel" >
+            </div>
+            <div [hidden]="searchInput.valid || searchInput.pristine"
+                 class="alert alert-danger">
+                Suchbegriff benötigt
+            </div>
+        </div>
+    </form>
+</div>

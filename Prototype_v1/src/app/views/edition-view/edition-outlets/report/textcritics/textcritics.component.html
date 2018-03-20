@@ -1,0 +1,43 @@
+<div id="tka" class="panel panel-default">
+    <div class="panel-heading">
+        <h3 class="panel-title">
+            <a (click)="togglePanel()">
+                II. Textkritischer Kommentar
+            </a>
+        </h3>
+    </div>
+    <div class="panel-collapse collapse" [class.in]="!showPanel">
+        <div class="panel-body">
+            <div class="para">
+                <p class="bold">
+                    <a (click)="openModal('sheetComingSoon')">Aa:SkI/1</a>:
+                </p>
+                <p class="small text-muted">
+                    [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
+                </p>
+            </div>
+
+            <div class="para">
+                <table class="table table-hover" *ngFor="let comment of comments | mapToIterable">
+                    <caption class="bold"><a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:</caption>
+                    <thead>
+                    <tr>
+                        <th style="width:10%">Takt</th>
+                        <th style="width:10%">System</th>
+                        <th style="width:23%">Ort im Takt</th>
+                        <th style="width:auto">Kommentar</th>
+                    </tr>
+                    </thead>
+                    <tbody>
+                    <tr *ngFor="let item of comment.mappedValues">
+                        <td>{{ item.measure }}</td>
+                        <td>{{ item.system }}</td>
+                        <td [innerHTML]="item.location"></td>
+                        <td><span [compile-html]="item.comment" [compile-html-ref]="ref"></span></td>
+                    </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>

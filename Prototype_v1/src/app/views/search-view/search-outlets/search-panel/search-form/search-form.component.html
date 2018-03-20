@@ -1,0 +1,32 @@
+<div class="text-center">
+    <form [formGroup]="searchForm"
+          (ngSubmit)="onSearch(searchValueControl.value)">
+        <div class="form-group">
+            <label class="control-label" for="searchInput"></label>
+            <div class="input-group">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default"
+                                type="submit"
+                                [disabled]="searchForm.invalid">
+                            <span class="glyphicon glyphicon-search"></span>
+                        </button>
+                    </span>
+                <input title="search"
+                       type="search"
+                       aria-label="Search input"
+                       id="searchInput"
+                       class="form-control"
+                       placeholder="Volltextsuche in der Webern-Datenbank ({{ apiUrl }}) …"
+                       [formControl]="searchValueControl"
+                       [(ngModel)]="searchval">
+            </div>
+            <div *ngIf="searchValueControl.invalid || searchValueControl.hasError('required')" class="alert alert-danger">
+                Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!
+            </div>
+            <div *ngIf="searchForm.invalid" class="alert alert-danger">
+                Form ist ungültig
+            </div>
+        </div>
+    </form>
+</div>
+

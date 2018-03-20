@@ -1,0 +1,258 @@
+{
+    "Aa:SkI/2": [
+        {
+            "id": "s14",
+            "type": "system",
+            "pos": "14",
+            "svg": {
+                "element": "rect",
+                "x": "20",
+                "y": "205",
+                "width": "950",
+                "height": "60",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "s13",
+            "type": "system",
+            "pos": "13",
+            "svg": {
+                "element": "rect",
+                "x": "20",
+                "y": "275",
+                "width": "950",
+                "height": "60",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "s12",
+            "type": "system",
+            "pos": "12",
+            "svg": {
+                "element": "rect",
+                "x": "20",
+                "y": "345",
+                "width": "950",
+                "height": "60",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "m10",
+            "type": "measure",
+            "pos": "10",
+            "svg": {
+                "element": "rect",
+                "x": "300",
+                "y": "125",
+                "width": "180",
+                "height": "345",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "m11",
+            "type": "measure",
+            "pos": "11",
+            "svg": {
+                "element": "rect",
+                "x": "480",
+                "y": "125",
+                "width": "180",
+                "height": "345",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "m12",
+            "type": "measure",
+            "pos": "12",
+            "svg": {
+                "element": "rect",
+                "x": "660",
+                "y": "125",
+                "width": "180",
+                "height": "345",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "lb1",
+            "type": "linkbox",
+            "pos": "Aa:SkI/3",
+            "svg": {
+                "element": "rect",
+                "x": "90",
+                "y": "345",
+                "width": "182",
+                "height": "125",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "i0",
+            "type": "item",
+            "pos": "0",
+            "svg": {
+                "element": "rect",
+                "x": "330",
+                "y": "350",
+                "width": "40",
+                "height": "70",
+                "rx": "5",
+                "ry": "5"
+            }
+        },
+        {
+            "id": "i1",
+            "type": "item",
+            "pos": "1",
+            "svg": {
+                "element": "rect",
+                "x": "380",
+                "y": "350",
+                "width": "40",
+                "height": "70",
+                "rx": "5",
+                "ry": "5"
+            }
+        },
+        {
+            "id": "i2",
+            "type": "item",
+            "pos": "2",
+            "svg": {
+                "element": "rect",
+                "x": "480",
+                "y": "200",
+                "width": "125",
+                "height": "80",
+                "rx": "5",
+                "ry": "5"
+            }
+        },
+        {
+            "id": "i3",
+            "type": "item",
+            "pos": "3",
+            "svg": {
+                "element": "rect",
+                "x": "660",
+                "y": "270",
+                "width": "125",
+                "height": "80",
+                "rx": "5",
+                "ry": "5"
+            }
+        }
+    ],
+    "Aa:SkI/3": [
+        {
+            "id": "m10",
+            "type": "measure",
+            "pos": "10",
+            "svg": {
+                "element": "rect",
+                "x": "80",
+                "y": "110",
+                "width": "282",
+                "height": "400",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "m11",
+            "type": "measure",
+            "pos": "11",
+            "svg": {
+                "element": "rect",
+                "x": "362",
+                "y": "110",
+                "width": "260",
+                "height": "400",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "lb1",
+            "type": "linkbox",
+            "pos": "Aa:SkI/2",
+            "svg": {
+                "element": "rect",
+                "x": "458",
+                "y": "111",
+                "width": "165",
+                "height": "162",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "lb2",
+            "type": "linkbox",
+            "pos": "Aa:SkI/5",
+            "svg": {
+                "element": "rect",
+                "x": "620",
+                "y": "420",
+                "width": "165",
+                "height": "160",
+                "rx": "0",
+                "ry": "0"
+            }
+        },
+        {
+            "id": "i0",
+            "type": "item",
+            "pos": "0",
+            "svg": {
+                "element": "rect",
+                "x": "255",
+                "y": "420",
+                "width": "40",
+                "height": "70",
+                "rx": "5",
+                "ry": "5"
+            }
+        },
+        {
+            "id": "i1",
+            "type": "item",
+            "pos": "1",
+            "svg": {
+                "element": "rect",
+                "x": "365",
+                "y": "340",
+                "width": "105",
+                "height": "70",
+                "rx": "5",
+                "ry": "5"
+            }
+        },
+        {
+            "id": "i2",
+            "type": "item",
+            "pos": "2",
+            "svg": {
+                "element": "rect",
+                "x": "510",
+                "y": "340",
+                "width": "100",
+                "height": "70",
+                "rx": "5",
+                "ry": "5"
+            }
+        }
+    ]
+}

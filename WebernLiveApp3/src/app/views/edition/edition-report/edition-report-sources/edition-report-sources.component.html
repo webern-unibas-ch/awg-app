@@ -1,0 +1,35 @@
+<accordion id="sources">
+    <accordion-group #sourcesGroup [isOpen]="groupStatus.isOpen">
+        <div accordion-heading>
+            I. Quellen
+            <i class="pull-right float-xs-right glyphicon" [ngClass]="{'glyphicon-chevron-up': sourcesGroup?.isOpen, 'glyphicon-chevron-down': !sourcesGroup?.isOpen}"></i>
+        </div>
+        <!-- source list -->
+        <accordion-panel id="sourceList" heading="1. Quellenübersicht">
+            <awg-edition-report-source-list
+                *ngIf="sourceList"
+                [sourceList]="sourceList"
+                (openDialogRequest)="onOpenEditionDialog($event)"
+                (scrollRequest)="scrollTo($event)">
+            </awg-edition-report-source-list>
+        </accordion-panel>
+
+        <!-- source description -->
+        <accordion-panel id="sourceDesc" heading="2. Quellenbeschreibung">
+            <awg-edition-report-source-description
+                (openDialogRequest)="onOpenEditionDialog($event)"
+                (selectSheetRequest)="onSheetSelect($event)">
+            </awg-edition-report-source-description>
+        </accordion-panel>
+
+        <!-- source evaluation -->
+        <accordion-panel id="sourceEvaluation" heading="3. Quellenbewertung">
+            <awg-edition-report-source-evaluation
+                (openDialogRequest)="onOpenEditionDialog($event)"
+                (selectSheetRequest)="onSheetSelect($event)"
+                (scrollRequest)="scrollTo($event)">
+            </awg-edition-report-source-evaluation>
+        </accordion-panel>
+
+    </accordion-group>
+</accordion>

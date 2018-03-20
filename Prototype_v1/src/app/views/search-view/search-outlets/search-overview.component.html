@@ -1,0 +1,7 @@
+<awg-router-link-button-group
+    *ngIf="buttonArray"
+    [buttonArray]="buttonArray"
+    (selectButtonRequest)="onButtonSelect($event)">
+</awg-router-link-button-group>
+
+<router-outlet></router-outlet>

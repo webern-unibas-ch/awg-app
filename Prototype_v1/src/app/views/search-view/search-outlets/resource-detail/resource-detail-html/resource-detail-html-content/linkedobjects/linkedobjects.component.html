@@ -1,0 +1,37 @@
+<!--
+/************************************************
+*
+*               CREDITS
+*
+* This code is inspired, adapted or taken from:
+*
+* ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+* https://arachne.dainst.org/entity/1121229**]
+* 20.11.2017
+*
+*
+*
+************************************************/ -->
+<!-- resourceDetailData content: linked objects -->
+<div class="linkedObj">
+    <h4>
+        <!-- TODO: link to linked objects overview
+        <a (click)="navigateToSearchResults()">
+        -->
+        Verknüpfte Objekte <small>({{ getNestedArraysLength(incoming) }})</small>
+        <!--
+        </a>
+        -->
+    </h4>
+    <accordion [closeOthers]="true">
+        <accordion-group class="incomingLinks" *ngFor="let linkGroup of incoming | mapToIterable">
+            <div accordion-heading>
+                {{ linkGroup?.mappedKey }}
+                <span class="badge facetBadge float-right pull-right">{{ linkGroup?.mappedValues.length }}</span>
+            </div>
+            <p class="single-line" *ngFor="let link of linkGroup.mappedValues" (click)="navigateToResource(link?.id)">
+                <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
+            </p>
+        </accordion-group>
+    </accordion>
+</div><!-- end DIV linkedObj -->

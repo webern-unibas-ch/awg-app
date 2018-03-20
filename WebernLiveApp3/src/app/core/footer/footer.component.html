@@ -1,0 +1,19 @@
+<div id="footer">
+    <div class="content">
+        <div class="left">&nbsp;</div>
+        <div class="center">
+            <p class="versionDesc">
+                Prototyp AWG-Online-Edition (Version <span id="version">{{ meta?.page.version }}</span> &#9671; <span id="versionDate">{{ meta?.page.versionReleaseDate }}</span>)
+            </p>
+            <p class="copyrightDesc">
+                &copy; <span id="copyrightPeriod">{{ meta?.page.yearStart }}–{{ meta?.page.yearRecent }}</span> Anton Webern Gesamtausgabe
+            </p>
+            <p>
+                <span id="masthead" [routerLink]="['/contact']" fragment="masthead">Impressum</span>
+            </p>
+        </div>
+        <div class="right">
+            <img src="assets/img/snf.jpg" alt="snf" />
+        </div>
+    </div>
+</div>

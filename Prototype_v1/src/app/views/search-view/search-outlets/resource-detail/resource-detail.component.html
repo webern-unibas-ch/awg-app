@@ -1,0 +1,39 @@
+<!-- resource detail box -->
+<div class="col-md-9 resource-detail-tabs" *ngIf="resourceData; else error">
+
+    <ul class="nav nav-tabs nav-justified">
+        <li class="active"><a data-toggle="tab" href="#html">{{ tabTitle?.html }}</a></li>
+        <li><a data-toggle="tab" href="#converted">{{ tabTitle?.converted }}</a></li>
+        <li><a data-toggle="tab" href="#raw">{{ tabTitle?.raw }}</a></li>
+    </ul>
+
+    <div class="tab-content">
+
+        <awg-resource-detail-html id="html" class="tab-pane fade in active"
+            *ngIf="resourceData?.html"
+            [resourceDetailData]="resourceData?.html"
+            [resourceUrl]="resourceUrl"
+            (resourceRequest)="navigateToResource($event)">
+        </awg-resource-detail-html>
+
+        <awg-resource-detail-json-converted id="converted" class="tab-pane fade"
+            *ngIf="resourceData?.jsonConverted"
+            [resourceJsonConvertedData]="resourceData?.jsonConverted"
+            [resourceUrl]="resourceUrl">
+        </awg-resource-detail-json-converted>
+
+        <awg-resource-detail-json-raw id="raw" class="tab-pane fade"
+            *ngIf="resourceData?.jsonRaw"
+            [resourceJsonRawData]="resourceData?.jsonRaw"
+            [resourceUrl]="resourceUrl">
+        </awg-resource-detail-json-raw>
+
+    </div>
+</div>
+<ng-template #error>
+    <div class="errorMessage" *ngIf="errorMessage">
+        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText }}".</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+    </div>
+</ng-template>

@@ -1,0 +1,30 @@
+<!-- maintext: edition -->
+
+<!-- pre-notification -->
+<awg-edition-detail-notification></awg-edition-detail-notification>
+
+<!-- sheet control -->
+<awg-edition-detail-sheet-control
+    *ngIf="sheetsData && selectedSheet"
+    [sheets]="sheetsData"
+    [selectedSheet]="selectedSheet"
+    (selectSheetRequest)="onSheetSelect($event)">
+</awg-edition-detail-sheet-control>
+
+<!-- table for TkA -->
+<awg-edition-detail-tka-table
+    *ngIf="showTkA && textcritics"
+    [textcritics]="textcritics"
+    (openDialogRequest)="onOpenEditionDialog($event)"
+    (selectSheetRequest)="onSheetSelect($event)">
+</awg-edition-detail-tka-table>
+
+<!-- svg panel -->
+<awg-edition-detail-svg-panel
+    *ngIf="selectedSheet"
+    [overlays]="overlays"
+    [selectedSheet]="selectedSheet"
+    (selectSheetRequest)="onSheetSelect($event)"
+    [selectedTextcriticId]="selectedTextcriticId"
+    (selectTextcriticRequest)="onTextcriticSelect($event)">
+</awg-edition-detail-svg-panel>

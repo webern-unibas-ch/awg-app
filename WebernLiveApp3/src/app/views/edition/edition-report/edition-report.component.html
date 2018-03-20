@@ -1,0 +1,22 @@
+<!-- maintext: report -->
+
+<!-- header -->
+<awg-heading
+    [title]="reportTitle"
+    [id]="reportId">
+</awg-heading>
+
+<!-- sources -->
+<awg-edition-report-sources
+    *ngIf="sourceListData"
+    [sourceList]="sourceListData"
+    (openDialogRequest)="onOpenEditionDialog($event)"
+    (scrollRequest)="scrollTo($event)">
+</awg-edition-report-sources>
+
+<!-- textcritics -->
+<awg-edition-report-textcritics
+    [comments]="textcriticsData"
+    (openDialogRequest)="onOpenEditionDialog($event)"
+    (selectSheetRequest)="onSheetSelect($event)">
+</awg-edition-report-textcritics>
