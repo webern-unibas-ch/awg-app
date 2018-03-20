@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="de" ng-app="prototypeApp">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>Prototyp AWG Online-Edition</title>
+    <meta name="Autor" content="Stefan Münnich">
+    <meta name="description" content="Prototypische Web-Applikation für die Online-Edition der Anton Webern Gesamtausgabe (Musikwissenschaftliches Seminar der Universität Basel)">
+
+    <!-- CREDITS -->
+    <!-- This App uses code snippets inspired by: -->
+    <!--
+    ROUTING IN SINGLE PAGE APP:
+        Chris Sevilleja (@sevilayha), Tutorial:  "Single Page Apps with AngularJS Routing and Templating", 4. November 2013, <https://scotch.io/tutorials/single-page-apps-with-angularjs-routing-and-templating> (accessed 13.1.2015)
+    ANCHOR HASH LINKING TO USE WITH ROUTING:
+        Ben Lesh, 5.2.2013 (<http://plnkr.co/edit/PCO051UJS8EHbdkmFV40?p=preview>, accessed 14.1.2016), edited by vp_arth, 11.6.2015 (<http://plnkr.co/edit/De6bBrkHpojgAbEvHszu?p=info>, accessed 14.1.2016); amendment to Ben Lesh version by slugslog, 10.4.2013, <http://stackoverflow.com/a/15935517> (accessed 14.1.2016)
+    MODALS:
+        alexsuch, <http://jsfiddle.net/alexsuch/RLQhh/> (accessed 27.1.2016)
+
+    DATE CALCULATION:
+        John Walker, JavaScript functions for the Fourmilab Calendar Converter, September, MIM <http://www.fourmilab.ch/documents/calendar/> (accessed 21.1.2016), License: PUBLIC DOMAIN; see also SALSAH-PLUGIN dateobj
+    ANGULAR-BIND-HTML-COMPILE (directive):
+        Incuna Ltd, Oxford (UK), 2014-2015, <https://github.com/incuna/angular-bind-html-compile> (accessed 22.1.2016)
+    TIMELINE (directive)
+        Robert Pocklington (rpocklin), Melbourne, VIC, AU, 2015–2016,
+        <https://github.com/rpocklin/angular-timeline> (accessed 10.7.2016)
+
+
+    SALSAH-PLUGINS:
+        http://test-01.salsah.org/app/js_autoload/datehelpers.js
+        http://test-01.salsah.org/app/js_autoload/jquery.dateobj.js
+        http://test-01.salsah.org/app/js_autoload/jquery.htmleditor.js
+    -->
+
+    <!-- BASE -->
+    <script>document.write('<base href="' + document.location + '" />');
+    </script>
+
+    <!-- STYLESHEETS  -->
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.5/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="assets/bootstrap/3.3.5/css/bootstrap.min.css">
+    <link href="css/style.css" rel="stylesheet">
+
+    <!-- LIBRARIES -->
+    <!-- <script src="http://code.jquery.com/jquery-1.12.0.min.js"></script>
+    <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script  src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.8/angular.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.4.8/angular-route.min.js"></script>
+    <script src="https://code.angularjs.org/1.4.8/angular-sanitize..min.js"></script> -->
+    <script src="assets/jquery-1.12.0.min.js"></script>
+    <script src="assets/bootstrap/3.3.5/js/bootstrap.min.js"></script>
+    <script src="assets/angularjs/1.4.8/angular.min.js"></script>
+    <script src="assets/angularjs/1.4.8/angular-route.min.js"></script>
+    <script src="assets/angularjs/1.4.8/angular-sanitize.min.js"></script>
+
+    <!-- EMBEDDED AngularJS SCRIPTS -->
+    <script src="js/app.js"></script>
+    <script src="js/controllers.js"></script>
+    <script src="js/directives.js"></script>
+    <script src="js/filters.js"></script>
+    <script src="js/factories.js"></script>
+
+    <!-- CUSTOM CONVERTING SCRIPTS -->
+    <script src="js/plugins/convert_lin2html.js"></script>  <!-- richtext converting -->
+    <script src="js/plugins/convert_jul2greg.js"></script> <!-- date converting -->
+    <script src="js/plugins/angular-bind-html-compile.js"></script> <!-- ng-bind-html compiling -->
+
+    <!-- TIMELINE (angular-timeline-bootstrap.css excluded) -->
+    <link rel="stylesheet" href="js/plugins/angular-timeline/dist/angular-timeline.css" />
+    <script src="js/plugins/angular-timeline/dist/angular-timeline.js"></script>
+
+</head>
+<body ng-controller="mainCtrl">
+
+    <!-- INJECTED NAVBAR -->
+    <awg-navbar></awg-navbar>
+
+    <!-- PAGE CONTENT AND INJECTED VIEWS -->
+    <div class="container-fluid text-left">
+        <div class="row content">
+
+            <!-- CONTENT -->
+            <div ng-view></div>
+
+        </div> <!-- END row.content -->
+    </div> <!-- END container-fluid -->
+
+
+    <!-- INJECTED FOOTER -->
+    <awg-footer></awg-footer>
+
+</body>
+</html>
