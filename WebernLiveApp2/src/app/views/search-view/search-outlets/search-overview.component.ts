@@ -3,7 +3,7 @@ import { Component, OnInit } from '@angular/core';
 import { RouterLinkButton } from '../../../shared/router-link-button-group/router-link-button.model';
 
 import { SideInfoService } from '../../../side-info/side-info-services/side-info.service';
-import {Router} from "@angular/router";
+
 
 @Component({
     selector: 'awg-search-overview',
@@ -29,7 +29,7 @@ export class SearchOverviewComponent implements OnInit {
             root: '/search',
             link: 'bibliography',
             label: 'Bibliographie',
-            disabled: false
+            disabled: true
         }
     ];
 
