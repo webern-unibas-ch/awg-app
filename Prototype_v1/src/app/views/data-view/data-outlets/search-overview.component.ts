@@ -14,19 +14,19 @@ export class SearchOverviewComponent implements OnInit {
 
     buttonArray: RouterLinkButton[] = [
         {
-            root: '/search',
+            root: '/data/search',
             link: 'fulltext',
             label: 'Volltext-Suche',
             disabled: false
         },
         {
-            root: '/search',
+            root: '/data/search',
             link: 'timeline',
             label: 'Timeline',
             disabled: true
         },
         {
-            root: '/search',
+            root: '/data/search',
             link: 'bibliography',
             label: 'Bibliographie',
             disabled: true

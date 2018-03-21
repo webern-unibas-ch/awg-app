@@ -118,7 +118,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     // route to url with query when getting submit request
     onSubmit(query: string) {
-        this.router.navigate(['search/fulltext', {query: query}]);
+        this.router.navigate(['data/search/fulltext', {query: query}]);
     }
 
 

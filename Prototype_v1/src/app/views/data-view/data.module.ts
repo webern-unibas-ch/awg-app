@@ -37,4 +37,4 @@ import { SearchResultListComponent } from './data-outlets/search-panel/search-re
         }
     ]
 })
-export class SearchModule {}
+export class DataModule {}

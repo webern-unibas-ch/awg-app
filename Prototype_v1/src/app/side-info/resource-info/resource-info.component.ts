@@ -133,7 +133,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     navigateToSearchResults(): void {
         // TODO: send current id - not working
-        this.router.navigate(['/search/fulltext', {id: this.currentId, outlets: {side: 'searchInfo'}}]);
+        this.router.navigate(['/data/search/fulltext', {id: this.currentId, outlets: {side: 'searchInfo'}}]);
     }
 
 

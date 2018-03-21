@@ -3,26 +3,26 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SearchViewComponent } from './data.component';
+import { DataViewComponent } from './data.component';
 
-describe('SearchViewComponent', () => {
-  let component: SearchViewComponent;
-  let fixture: ComponentFixture<SearchViewComponent>;
+describe('DataViewComponent', () => {
+    let component: DataViewComponent;
+    let fixture: ComponentFixture<DataViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SearchViewComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ DataViewComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(DataViewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

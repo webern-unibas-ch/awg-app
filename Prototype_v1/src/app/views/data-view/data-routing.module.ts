@@ -1,24 +1,24 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { ResourceDetailComponent } from './search-outlets/resource-detail/resource-detail.component';
-import { SearchOverviewComponent } from './search-outlets/search-overview.component';
-import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
-import { SearchViewComponent } from './data.component';
-import { TimelineComponent } from './search-outlets/timeline/timeline.component';
+import { DataViewComponent } from './data.component';
+import { ResourceDetailComponent } from './data-outlets/resource-detail/resource-detail.component';
+import { SearchOverviewComponent } from './data-outlets/search-overview.component';
+import { SearchPanelComponent } from './data-outlets/search-panel/search-panel.component';
+import { TimelineComponent } from './data-outlets/timeline/timeline.component';
 
 
 const dataRoutes: Routes = [
-    { path: '',  component: SearchViewComponent,
+    { path: '',  component: DataViewComponent,
         children: [
-            { path: '', component: SearchOverviewComponent,
+            { path: 'search', component: SearchOverviewComponent,
                 children: [
-                    { path: '', pathMatch: 'full', redirectTo: 'fulltext'},
                     { path: 'fulltext', component: SearchPanelComponent},
                     { path: 'timeline', component: TimelineComponent },
                     { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
                     // TODO: lazy loaded bibliography path muted for now
-                    // { path: 'bibliography', loadChildren: './search-outlets/bibliography/bibliography.module#BibliographyModule'}
+                    // { path: 'bibliography', loadChildren: './data-outlets/bibliography/bibliography.module#BibliographyModule'}
+                    { path: '', pathMatch: 'full', redirectTo: 'fulltext'},
                 ]
             }
         ]
@@ -34,7 +34,7 @@ const dataRoutes: Routes = [
 export class DataRoutingModule { }
 
 export const routedComponents = [
-    SearchViewComponent,
+    DataViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
     ResourceDetailComponent,

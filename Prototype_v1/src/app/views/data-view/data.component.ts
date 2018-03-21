@@ -2,11 +2,11 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 @Component({
-    selector: 'awg-search',
+    selector: 'awg-data',
     templateUrl: './data.component.html',
     styleUrls: ['./data.component.css']
 })
-export class SearchViewComponent implements OnInit {
+export class DataViewComponent implements OnInit {
 
     public searchTitle = 'Suche';
     public searchId = 'search';
