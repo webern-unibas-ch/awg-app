@@ -3,7 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { SearchViewComponent } from './search.component';
+import { SearchViewComponent } from './data.component';
 
 describe('SearchViewComponent', () => {
   let component: SearchViewComponent;

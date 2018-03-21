@@ -6,7 +6,7 @@ import { ApiService } from '../../../core/services/';
 import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
 
 @Injectable()
-export class SearchService extends ApiService {
+export class DataApiService extends ApiService {
 
     projectId: string = '6';
     resourceAppendix: string = '_-_local';

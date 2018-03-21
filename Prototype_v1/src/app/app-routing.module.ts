@@ -17,7 +17,7 @@ const appRoutes: Routes = [
     { path: 'edition', loadChildren: './views/edition-view/edition.module#EditionModule'},
     { path: 'editions', redirectTo: 'edition', pathMatch: 'full' },
 
-    { path: 'search', loadChildren: './views/search-view/search.module#SearchModule'},
+    { path: 'data', loadChildren: './views/data-view/data.module#DataModule'},
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },

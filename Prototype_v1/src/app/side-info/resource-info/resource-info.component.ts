@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SearchResultStreamerService } from '../../views/search-view/services';
-import { SearchResponseWithQuery } from '../../views/search-view/models';
+import { DataStreamerService } from '../../views/data-view/services';
+import { SearchResponseWithQuery } from '../../views/data-view/models';
 import { ResourceInfo } from '../side-info-models';
 import { ResourceInfoResource } from '../side-info-models/resource-info-resources.model';
 
@@ -28,7 +28,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
     constructor(
         private router: Router,
-        private streamerService: SearchResultStreamerService
+        private streamerService: DataStreamerService
     ) { }
 
     ngOnInit() {

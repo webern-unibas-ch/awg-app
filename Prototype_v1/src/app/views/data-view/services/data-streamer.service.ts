@@ -8,7 +8,7 @@ import { SearchResponseWithQuery } from '../models';
 
 
 @Injectable()
-export class SearchResultStreamerService {
+export class DataStreamerService {
 
     /**************************************************
      * ReplaySubjects that are used to stream the data

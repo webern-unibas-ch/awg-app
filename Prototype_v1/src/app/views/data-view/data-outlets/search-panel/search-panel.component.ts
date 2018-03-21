@@ -5,7 +5,7 @@ import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/do';
 
 import { ConversionService } from '../../../../core/services';
-import { SearchResultStreamerService, SearchService} from '../../services';
+import { DataStreamerService, DataApiService} from '../../services';
 import { SideInfoService } from '../../../../side-info/side-info-services/side-info.service';
 
 import { SearchResponseJson } from '../../../../shared/api-objects';
@@ -36,9 +36,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private router: Router,
         private location: Location,
         private conversionService: ConversionService,
-        private searchService: SearchService,
+        private searchService: DataApiService,
         private sideInfoService: SideInfoService,
-        private streamerService: SearchResultStreamerService
+        private streamerService: DataStreamerService
     ) {
         // get query param from route to update searchvalue
         this.route.paramMap.subscribe((params: ParamMap) => {

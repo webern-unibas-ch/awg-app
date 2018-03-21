@@ -1,16 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { ResourceDetailComponent } from './search-outlets/resource-detail/resource-detail.component';
 import { SearchOverviewComponent } from './search-outlets/search-overview.component';
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
-
-import { ResourceDetailComponent } from './search-outlets/resource-detail/resource-detail.component';
-
-import { SearchViewComponent } from './search.component';
+import { SearchViewComponent } from './data.component';
 import { TimelineComponent } from './search-outlets/timeline/timeline.component';
 
 
-const searchRoutes: Routes = [
+const dataRoutes: Routes = [
     { path: '',  component: SearchViewComponent,
         children: [
             { path: '', component: SearchOverviewComponent,
@@ -18,7 +16,7 @@ const searchRoutes: Routes = [
                     { path: '', pathMatch: 'full', redirectTo: 'fulltext'},
                     { path: 'fulltext', component: SearchPanelComponent},
                     { path: 'timeline', component: TimelineComponent },
-                    { path: 'detail/:id', redirectTo: '/resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
+                    { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
                     // TODO: lazy loaded bibliography path muted for now
                     // { path: 'bibliography', loadChildren: './search-outlets/bibliography/bibliography.module#BibliographyModule'}
                 ]
@@ -29,11 +27,11 @@ const searchRoutes: Routes = [
 ];
 
 @NgModule({
-    imports: [ RouterModule.forChild(searchRoutes)],
+    imports: [ RouterModule.forChild(dataRoutes)],
     exports: [ RouterModule ]
 
 })
-export class SearchRoutingModule { }
+export class DataRoutingModule { }
 
 export const routedComponents = [
     SearchViewComponent,

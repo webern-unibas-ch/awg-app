@@ -23,7 +23,7 @@ import {
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks, ResourceDetailImage, ResourceDetailContent
-} from '../../../views/search-view/models';
+} from '../../../views/data-view/models';
 import { GeoNames } from '../../core-models';
 
 declare var htmlConverter;

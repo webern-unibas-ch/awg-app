@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'awg-search',
-    templateUrl: './search.component.html',
-    styleUrls: ['./search.component.css']
+    templateUrl: './data.component.html',
+    styleUrls: ['./data.component.css']
 })
 export class SearchViewComponent implements OnInit {
 
