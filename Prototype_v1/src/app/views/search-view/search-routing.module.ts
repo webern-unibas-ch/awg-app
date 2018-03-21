@@ -1,18 +1,17 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
-import { SearchComponent } from './search.component';
 import { SearchOverviewComponent } from './search-outlets/search-overview.component';
 import { SearchPanelComponent } from './search-outlets/search-panel/search-panel.component';
 
 import { ResourceDetailComponent } from './search-outlets/resource-detail/resource-detail.component';
 
+import { SearchViewComponent } from './search.component';
 import { TimelineComponent } from './search-outlets/timeline/timeline.component';
 
 
 const searchRoutes: Routes = [
-    { path: '',  component: SearchComponent,
+    { path: '',  component: SearchViewComponent,
         children: [
             { path: '', component: SearchOverviewComponent,
                 children: [
@@ -35,7 +34,7 @@ const searchRoutes: Routes = [
 export class SearchRoutingModule { }
 
 export const routedComponents = [
-    SearchComponent,
+    SearchViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
     ResourceDetailComponent,

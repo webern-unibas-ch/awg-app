@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
     templateUrl: './search.component.html',
     styleUrls: ['./search.component.css']
 })
-export class SearchComponent implements OnInit {
+export class SearchViewComponent implements OnInit {
 
     public searchTitle = 'Suche';
     public searchId = 'search';
