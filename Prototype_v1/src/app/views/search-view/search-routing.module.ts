@@ -14,7 +14,7 @@ import { TimelineComponent } from './search-outlets/timeline/timeline.component'
 
 
 const searchRoutes: Routes = [
-    { path: 'search',  component: SearchComponent,
+    { path: '',  component: SearchComponent,
         children: [
             { path: '', component: SearchOverviewComponent,
                 children: [

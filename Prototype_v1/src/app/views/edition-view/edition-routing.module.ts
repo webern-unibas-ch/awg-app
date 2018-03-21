@@ -9,7 +9,7 @@ import { ReportComponent } from './edition-outlets/report/report.component';
 
 
 const editionRoutes: Routes = [
-    { path: 'edition',  component: EditionViewComponent,
+    { path: '',  component: EditionViewComponent,
         children: [
             { path: '', component: EditionOverviewComponent,
                 children: [
@@ -21,7 +21,6 @@ const editionRoutes: Routes = [
             }
         ]
     },
-    { path: 'editions', redirectTo: 'edition', pathMatch: 'full' }
 ];
 
 @NgModule({

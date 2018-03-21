@@ -1,4 +1,4 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 
 import { EditionDetailModule } from './edition-outlets/edition-detail/edition-detail.module';
@@ -15,13 +15,7 @@ import { DataService, EditionService } from './services';
         ReportModule,
         EditionRoutingModule,
     ],
-    declarations: [ routedComponents ]
+    declarations: [ routedComponents ],
+    providers: [ DataService, EditionService ]
 })
-export class EditionModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: EditionModule,
-            providers: [ DataService, EditionService ]
-        };
-    }
-}
+export class EditionModule {}

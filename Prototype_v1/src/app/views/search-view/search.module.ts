@@ -1,11 +1,12 @@
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { SharedModule } from '../../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SearchRoutingModule, routedComponents } from './search-routing.module';
+import { BibliographyModule } from './search-outlets/bibliography/bibliography.module';
+
 
 import {
-    BibliographyService,
     HttpCacheService,
     SearchService,
     SearchResultStreamerService
@@ -24,14 +25,13 @@ import { ResourceDetailHtmlHeaderComponent } from './search-outlets/resource-det
 import { ResourceDetailJsonConvertedComponent } from './search-outlets/resource-detail/resource-detail-json-converted/resource-detail-json-converted.component';
 import { ResourceDetailJsonRawComponent } from './search-outlets/resource-detail/resource-detail-json-raw/resource-detail-json-raw.component';
 
-import { BibliographySearchComponent } from './search-outlets/bibliography/bibliography-search/bibliography-search.component';
-import { BibliographyListComponent } from './search-outlets/bibliography/bibliography-list/bibliography-list.component';
-import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliography-format.pipe';
+
 
 
 @NgModule({
     imports: [
         SharedModule,
+        BibliographyModule,
         SearchRoutingModule,
     ],
     declarations: [
@@ -46,28 +46,17 @@ import { BibliographyFormatPipe } from './search-outlets/bibliography/bibliograp
         ResourceDetailHtmlContentPropsComponent,
         ResourceDetailHtmlHeaderComponent,
         ResourceDetailJsonConvertedComponent,
-        ResourceDetailJsonRawComponent,
-
-        BibliographySearchComponent,
-        BibliographyListComponent,
-        BibliographyFormatPipe
+        ResourceDetailJsonRawComponent
+    ],
+    providers: [
+        HttpCacheService,
+        SearchService,
+        SearchResultStreamerService,
+        {
+            provide: HTTP_INTERCEPTORS,
+            useClass: CachingInterceptor,
+            multi: true
+        }
     ]
 })
-export class SearchModule {
-    static forRoot(): ModuleWithProviders {
-        return {
-            ngModule: SearchModule,
-            providers: [
-                BibliographyService,
-                HttpCacheService,
-                SearchService,
-                SearchResultStreamerService,
-                {
-                    provide: HTTP_INTERCEPTORS,
-                    useClass: CachingInterceptor,
-                    multi: true
-                }
-            ]
-        };
-    }
-}
+export class SearchModule {}
