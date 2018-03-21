@@ -3,7 +3,6 @@ import { SharedModule } from '../../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { SearchRoutingModule, routedComponents } from './search-routing.module';
-import { BibliographyModule } from './search-outlets/bibliography/bibliography.module';
 
 
 import {
@@ -31,7 +30,6 @@ import { ResourceDetailJsonRawComponent } from './search-outlets/resource-detail
 @NgModule({
     imports: [
         SharedModule,
-        BibliographyModule,
         SearchRoutingModule,
     ],
     declarations: [

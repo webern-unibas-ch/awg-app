@@ -15,10 +15,12 @@ const searchRoutes: Routes = [
         children: [
             { path: '', component: SearchOverviewComponent,
                 children: [
+                    { path: '', pathMatch: 'full', redirectTo: 'fulltext'},
                     { path: 'fulltext', component: SearchPanelComponent},
                     { path: 'timeline', component: TimelineComponent },
                     { path: 'detail/:id', redirectTo: '/resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
-                    { path: 'bibliography', loadChildren: './search-outlets/bibliography/bibliography.module#BibliographyModule'}
+                    // TODO: lazy loaded bibliography path muted for now
+                    // { path: 'bibliography', loadChildren: './search-outlets/bibliography/bibliography.module#BibliographyModule'}
                 ]
             }
         ]
