@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-import { BibliographyComponent } from './search-outlets/bibliography/bibliography.component';
-import { BibliographyDetailComponent } from './search-outlets/bibliography/bibliography-detail/bibliography-detail.component';
 
 import { SearchComponent } from './search.component';
 import { SearchOverviewComponent } from './search-outlets/search-overview.component';
@@ -21,11 +19,7 @@ const searchRoutes: Routes = [
                     { path: 'fulltext', component: SearchPanelComponent},
                     { path: 'timeline', component: TimelineComponent },
                     { path: 'detail/:id', redirectTo: '/resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
-                    { path: 'bibliography', component: BibliographyComponent,
-                        children: [
-                            { path: 'detail/:id', component: BibliographyDetailComponent }
-                        ]
-                    }
+                    { path: 'bibliography', loadChildren: './search-outlets/bibliography/bibliography.module#BibliographyModule'}
                 ]
             }
         ]
@@ -41,8 +35,6 @@ const searchRoutes: Routes = [
 export class SearchRoutingModule { }
 
 export const routedComponents = [
-    BibliographyComponent,
-    BibliographyDetailComponent,
     SearchComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
