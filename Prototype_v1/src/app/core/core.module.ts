@@ -4,13 +4,27 @@ import { SharedModule } from '../shared/shared.module';
 import { FooterComponent } from './footer/footer.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-import { MetaService } from './services';
+//
+// services
+import {
+    ApiService,
+    ConversionService,
+    DataStreamerService,
+    MetaService,
+    SideInfoService
+} from './services';
 
 @NgModule({
     imports:        [ SharedModule ],
     declarations:   [ FooterComponent, NavbarComponent ],
     exports:        [ FooterComponent, NavbarComponent ],
-    providers:      [ MetaService ]
+    providers:      [
+        ApiService,
+        ConversionService,
+        DataStreamerService,
+        MetaService,
+        SideInfoService
+    ]
 })
 export class CoreModule {
     constructor (@Optional() @SkipSelf() parentModule: CoreModule) {
