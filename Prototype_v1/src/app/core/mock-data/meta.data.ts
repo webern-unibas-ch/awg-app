@@ -5,8 +5,8 @@ export const METADATA: Meta[] = [
         page: {
             yearStart: 2015,
             yearRecent: (new Date()).getFullYear(),
-            version: '0.1.0', // RELEASE 20.03.2018
-            versionReleaseDate: '20. März 2018'
+            version: '0.1.1', // RELEASE 23.03.2018
+            versionReleaseDate: '23. März 2018'
         },
         edition: {
             editors: '<a href="http://anton-webern.ch/index.php?id=3" target="_blank">Thomas Ahrend</a>',
