@@ -9,12 +9,10 @@
 
 import { BibliographyService } from './bibliography.service';
 import { HttpCacheService } from './http-cache.service';
-import { SearchService } from './search.service';
-import { SearchResultStreamerService } from './search-result-streamer.service';
+import { DataApiService } from './data-api.service';
 
 export {
     BibliographyService,
     HttpCacheService,
-    SearchService,
-    SearchResultStreamerService
+    DataApiService
 };

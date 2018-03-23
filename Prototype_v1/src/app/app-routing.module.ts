@@ -8,19 +8,25 @@ import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-
 
 
 const appRoutes: Routes = [
+    // eager loaded
     { path: 'home', component: HomeViewComponent },
-    // { path: 'edition', loadChildren: 'app/components/views/edition-view/editions.module#EditionsModule'},
     { path: 'structure', component: StructureViewComponent },
-    // { path: 'search', loadChildren: 'app/components/views/search-view/search.module#SearchModule'},
     { path: 'contact', component: ContactViewComponent },
 
+    // lazy loaded
+    { path: 'edition', loadChildren: './views/edition-view/edition.module#EditionModule'},
+    { path: 'editions', redirectTo: 'edition', pathMatch: 'full' },
+
+    { path: 'data', loadChildren: './views/data-view/data.module#DataModule'},
+
+    // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },
     { path: '**', component: PageNotFoundViewComponent }
 ];
 
 @NgModule({
     // TODO: rm route tracing for prodcution
-    imports: [ RouterModule.forRoot(appRoutes) ], // , {enableTracing: true}
+    imports: [ RouterModule.forRoot(appRoutes)], // , {enableTracing: true}
     exports: [ RouterModule ]
 })
 export class AppRoutingModule { }

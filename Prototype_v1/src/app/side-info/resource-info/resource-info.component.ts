@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { SearchResultStreamerService } from '../../views/search-view/services';
-import { SearchResponseWithQuery } from '../../views/search-view/models';
+import { DataStreamerService } from '../../core/services';
+import { SearchResponseWithQuery } from '../../views/data-view/models';
 import { ResourceInfo } from '../side-info-models';
 import { ResourceInfoResource } from '../side-info-models/resource-info-resources.model';
 
@@ -28,7 +28,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
     constructor(
         private router: Router,
-        private streamerService: SearchResultStreamerService
+        private streamerService: DataStreamerService
     ) { }
 
     ngOnInit() {
@@ -124,7 +124,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * Navigate to resource id
      */
     navigateToResource(id: string): void {
-        this.router.navigate(['/resource', id]);
+        this.router.navigate(['/data/resource', id]);
     }
 
 
@@ -133,7 +133,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     navigateToSearchResults(): void {
         // TODO: send current id - not working
-        this.router.navigate(['/search/fulltext', {id: this.currentId, outlets: {side: 'searchInfo'}}]);
+        this.router.navigate(['/data/search/fulltext', {id: this.currentId, outlets: {side: 'searchInfo'}}]);
     }
 
 

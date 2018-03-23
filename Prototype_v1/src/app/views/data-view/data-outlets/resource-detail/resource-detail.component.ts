@@ -3,8 +3,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import 'rxjs/add/operator/switchMap';
 
-import { ConversionService } from '../../../../core/services';
-import { SearchResultStreamerService, SearchService } from '../../services';
+import { ConversionService, DataStreamerService } from '../../../../core/services';
+import { DataApiService } from '../../services';
 import { ResourceData, ResourceDetail } from '../../models';
 import { ResourceFullResponseJson } from '../../../../shared/api-objects';
 
@@ -33,8 +33,8 @@ export class ResourceDetailComponent implements OnInit {
         private route: ActivatedRoute,
         private router: Router,
         private conversionService: ConversionService,
-        private searchService: SearchService,
-        private streamerService: SearchResultStreamerService
+        private searchService: DataApiService,
+        private streamerService: DataStreamerService
     ) { }
 
     ngOnInit() {
@@ -117,7 +117,7 @@ export class ResourceDetailComponent implements OnInit {
         this.resourceId = showId;
 
         // navigate to new resource
-        this.router.navigate(['/resource', +this.resourceId]);
+        this.router.navigate(['/data/resource', +this.resourceId]);
     }
 
 

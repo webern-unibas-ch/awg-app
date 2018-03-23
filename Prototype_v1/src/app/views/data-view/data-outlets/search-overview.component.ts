@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RouterLinkButton } from '../../../shared/router-link-button-group/router-link-button.model';
 
-import { SideInfoService } from '../../../side-info/side-info-services/side-info.service';
+import { SideInfoService } from '../../../core/services';
 
 
 @Component({
@@ -14,19 +14,19 @@ export class SearchOverviewComponent implements OnInit {
 
     buttonArray: RouterLinkButton[] = [
         {
-            root: '/search',
+            root: '/data/search',
             link: 'fulltext',
             label: 'Volltext-Suche',
             disabled: false
         },
         {
-            root: '/search',
+            root: '/data/search',
             link: 'timeline',
             label: 'Timeline',
             disabled: true
         },
         {
-            root: '/search',
+            root: '/data/search',
             link: 'bibliography',
             label: 'Bibliographie',
             disabled: true

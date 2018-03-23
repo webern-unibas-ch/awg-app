@@ -4,9 +4,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/do';
 
-import { ConversionService } from '../../../../core/services';
-import { SearchResultStreamerService, SearchService} from '../../services';
-import { SideInfoService } from '../../../../side-info/side-info-services/side-info.service';
+import { ConversionService, DataStreamerService, SideInfoService } from '../../../../core/services';
+import { DataApiService} from '../../services';
 
 import { SearchResponseJson } from '../../../../shared/api-objects';
 import { SearchResponseWithQuery } from '../../models';
@@ -36,9 +35,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private router: Router,
         private location: Location,
         private conversionService: ConversionService,
-        private searchService: SearchService,
+        private searchService: DataApiService,
         private sideInfoService: SideInfoService,
-        private streamerService: SearchResultStreamerService
+        private streamerService: DataStreamerService
     ) {
         // get query param from route to update searchvalue
         this.route.paramMap.subscribe((params: ParamMap) => {
@@ -118,7 +117,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     // route to url with query when getting submit request
     onSubmit(query: string) {
-        this.router.navigate(['search/fulltext', {query: query}]);
+        this.router.navigate(['data/search/fulltext', {query: query}]);
     }
 
 
