@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { RouterLinkButton } from '../../../shared/router-link-button-group/router-link-button.model';
 
-import { SideInfoService } from '../../../side-info/side-info-services/side-info.service';
+import { SideInfoService } from '../../../core/services';
 
 
 @Component({

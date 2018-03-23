@@ -4,7 +4,7 @@ import { Observable } from 'rxjs/Observable';
 import { ReplaySubject } from 'rxjs/ReplaySubject';
 import 'rxjs/add/observable/combineLatest';
 
-import { SearchResponseWithQuery } from '../models';
+import { SearchResponseWithQuery } from '../../../views/data-view/models';
 
 
 @Injectable()

@@ -29,7 +29,7 @@ export class SearchResultListComponent implements OnInit {
 
     navigateToResource(id: string) {
         this.currentId = id;
-        this.router.navigate(['/resource', this.currentId]);
+        this.router.navigate(['/data/resource', this.currentId]);
     }
 
 }

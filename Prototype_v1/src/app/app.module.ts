@@ -12,15 +12,8 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { CoreModule } from './core/core.module';
 import { SharedModule } from './shared/shared.module';
-
-//
-// feature modules
 import { SideInfoModule } from './side-info/side-info.module';
 
-//
-// services
-import { ApiService } from './core/services/api-service/api.service';
-import { ConversionService } from './core/services/conversion-service/conversion.service';
 
 @NgModule({
     imports: [
@@ -34,14 +27,13 @@ import { ConversionService } from './core/services/conversion-service/conversion
 
         CoreModule,
         SharedModule,
-        SideInfoModule.forRoot(),
+        SideInfoModule,
         AppRoutingModule
     ],
     declarations: [
         AppComponent,
         routedComponents
     ],
-    providers: [ ApiService, ConversionService ],
     bootstrap: [ AppComponent ]
 })
 export class AppModule { }

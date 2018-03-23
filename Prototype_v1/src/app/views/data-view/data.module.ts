@@ -4,11 +4,11 @@ import { HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { ResourceDetailModule } from './data-outlets/resource-detail/resource-detail.module';
 import { DataRoutingModule, routedComponents } from './data-routing.module';
+// bibliography module is lazy loaded, so not imported here
 
 import {
-    HttpCacheService,
     DataApiService,
-    DataStreamerService
+    HttpCacheService
 } from './services';
 import { CachingInterceptor } from './interceptors';
 
@@ -27,9 +27,8 @@ import { SearchResultListComponent } from './data-outlets/search-panel/search-re
         SearchResultListComponent
     ],
     providers: [
-        HttpCacheService,
         DataApiService,
-        DataStreamerService,
+        HttpCacheService,
         {
             provide: HTTP_INTERCEPTORS,
             useClass: CachingInterceptor,

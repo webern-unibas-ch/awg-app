@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { SideInfoService } from '../side-info-services/side-info.service';
+import { SideInfoService } from '../../core/services';
 import { SearchInfo } from '../side-info-models';
 
 @Component({

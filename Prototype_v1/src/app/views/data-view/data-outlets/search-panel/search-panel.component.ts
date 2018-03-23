@@ -4,9 +4,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/do';
 
-import { ConversionService } from '../../../../core/services';
-import { DataStreamerService, DataApiService} from '../../services';
-import { SideInfoService } from '../../../../side-info/side-info-services/side-info.service';
+import { ConversionService, DataStreamerService, SideInfoService } from '../../../../core/services';
+import { DataApiService} from '../../services';
 
 import { SearchResponseJson } from '../../../../shared/api-objects';
 import { SearchResponseWithQuery } from '../../models';
