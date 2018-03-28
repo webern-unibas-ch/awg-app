@@ -3,14 +3,21 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
-import { AccordionModule, CarouselModule, ModalModule } from 'ngx-bootstrap';
-
+//
+// shared modules
+import { AccordionModule } from 'ngx-bootstrap/accordion';
+import { ButtonsModule } from 'ngx-bootstrap/buttons';
+import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompileHtmlModule } from './compile-html';
 
+//
+// shared components
 import { HeadingComponent } from './heading/heading.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 
+//
+// shared pipes
 import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
 import { OrderByPipe } from './order-by/order-by.pipe';
 
@@ -20,8 +27,9 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        AccordionModule,
-        ModalModule,
+        AccordionModule.forRoot(),
+        ButtonsModule.forRoot(),
+        ModalModule.forRoot(),
         CompileHtmlModule
     ],
     declarations: [
@@ -37,7 +45,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         ReactiveFormsModule,
         RouterModule,
         AccordionModule,
-        CarouselModule,
+        ButtonsModule,
         ModalModule,
         CompileHtmlModule,
 
