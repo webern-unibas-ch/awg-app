@@ -9,7 +9,6 @@ import { ResourceDetail } from '../../../models';
 })
 export class ResourceDetailHtmlComponent implements OnInit {
     @Input() resourceDetailData: ResourceDetail;
-    @Input() resourceUrl: string;
     @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
     constructor( ) { }
