@@ -4,15 +4,18 @@ body, html {
 .app-loading {
     text-align: center;
 }
-.app-loading .twelveTone-spinner {
+.app-loading .twelveTone-preText, .app-loading .twelveTone-spinner {
     height: 140px;
     width: 140px;
     position: absolute;
-    top: -50%;
+    top: 0;         /* -50% */
     bottom: 0;
     left: 0;
     right: 0;
     margin: auto;
+}
+.app-loading .twelveTone-preText {
+    bottom: 15%;
 }
 .twelveTone-spinner .twelveTone-child {
     width: 100%;
