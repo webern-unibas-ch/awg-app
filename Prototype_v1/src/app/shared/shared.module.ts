@@ -9,6 +9,7 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompileHtmlModule } from './compile-html';
+import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //
 // shared components
@@ -30,14 +31,15 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         AccordionModule.forRoot(),
         ButtonsModule.forRoot(),
         ModalModule.forRoot(),
+        Ng4LoadingSpinnerModule.forRoot(),
         CompileHtmlModule
     ],
     declarations: [
         HeadingComponent,
-        ModalComponent,
-        RouterLinkButtonGroupComponent,
         MapToIterablePipe,
-        OrderByPipe
+        ModalComponent,
+        OrderByPipe,
+        RouterLinkButtonGroupComponent
     ],
     exports: [
         CommonModule,
@@ -47,13 +49,14 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         AccordionModule,
         ButtonsModule,
         ModalModule,
+        Ng4LoadingSpinnerModule,
         CompileHtmlModule,
 
         HeadingComponent,
-        ModalComponent,
-        RouterLinkButtonGroupComponent,
         MapToIterablePipe,
-        OrderByPipe
+        ModalComponent,
+        OrderByPipe,
+        RouterLinkButtonGroupComponent
     ]
 })
 export class SharedModule { }

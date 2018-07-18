@@ -4,6 +4,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import 'rxjs/add/operator/do';
 
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
+
 import { ConversionService, DataStreamerService, SideInfoService } from '../../../../core/services';
 import { DataApiService} from '../../services';
 
@@ -37,33 +39,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private conversionService: ConversionService,
         private searchService: DataApiService,
         private sideInfoService: SideInfoService,
-        private streamerService: DataStreamerService
-    ) {
-        // get query param from route to update searchvalue
-        this.route.paramMap.subscribe((params: ParamMap) => {
-
-            if (params.get('query')) {
-                // perform search with query param
-                this.doSearch(params.get('query'));
-            }
-
-            if (params.get('id')) {
-                console.warn('SearchPanel# got id from route: ', params.get('id'));
-            }
-        });
-
-
-        // get query & searchResultData from streamerService
-        this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
-            .subscribe((response: SearchResponseWithQuery) => {
-                    // display search data
-                    this.displayFulltextSearchData(response);
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                    console.log('SearchPanel# searchResultData subscription error: ', this.errorMessage);
-                });
-    }
+        private streamerService: DataStreamerService,
+        private loadingSpinnerService: Ng4LoadingSpinnerService
+    ) {}
 
 
     ngOnInit() {

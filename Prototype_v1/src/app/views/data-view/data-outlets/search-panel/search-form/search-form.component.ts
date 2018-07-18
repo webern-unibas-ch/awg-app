@@ -14,7 +14,6 @@ import { AppConfig } from '../../../../../app.config';
 export class SearchFormComponent implements OnInit {
     @Input() searchval: string;
     @Output() submitRequest: EventEmitter<any> = new EventEmitter();
-    @Output() submitLoadStatus: EventEmitter<boolean> = new EventEmitter();
 
     searchForm: FormGroup;
     searchValueControl: AbstractControl;

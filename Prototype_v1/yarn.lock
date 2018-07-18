@@ -4513,6 +4513,10 @@ netmask@~1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
 
+ng4-loading-spinner@^1.2.3:
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/ng4-loading-spinner/-/ng4-loading-spinner-1.2.3.tgz#cebe62285d37bd3cab01212ae39b9534067ab615"
+
 ngx-bootstrap@^2.0.3:
   version "2.0.3"
   resolved "https://registry.yarnpkg.com/ngx-bootstrap/-/ngx-bootstrap-2.0.3.tgz#b8ca4be305be4e2e99f60d941cc8a3e906f198d7"
