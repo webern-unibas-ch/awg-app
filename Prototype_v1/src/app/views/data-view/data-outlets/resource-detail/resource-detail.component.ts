@@ -21,7 +21,7 @@ export class ResourceDetailComponent implements OnInit {
     public resourceUrl: string;
     public oldId: string;
 
-    public errorMessage: string = undefined;
+    public errorMessage: any = undefined;
 
     public tabTitle = {
         html: 'Detail',

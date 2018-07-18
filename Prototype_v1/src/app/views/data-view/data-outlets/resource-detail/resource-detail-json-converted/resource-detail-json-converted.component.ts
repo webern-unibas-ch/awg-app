@@ -8,7 +8,6 @@ import { ResourceDetail } from '../../../models';
 })
 export class ResourceDetailJsonConvertedComponent implements OnInit {
     @Input() resourceJsonConvertedData: ResourceDetail;
-    @Input() resourceUrl: string;
 
     constructor() { }
 

@@ -1,15 +1,12 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ResourceDetailHeader } from '../../../../models';
+import { ResourceDetailHeader } from '../../../models';
 
 @Component({
-    selector: 'awg-resource-detail-html-header',
-    templateUrl: './resource-detail-html-header.component.html',
-    styleUrls: [
-        './resource-detail-html-header.component.css',
-        '../resource-detail-html.component.css'
-    ]
+    selector: 'awg-resource-detail-header',
+    templateUrl: './resource-detail-header.component.html',
+    styleUrls: ['./resource-detail-header.component.css']
 })
-export class ResourceDetailHtmlHeaderComponent implements OnInit {
+export class ResourceDetailHeaderComponent implements OnInit {
     @Input() header: ResourceDetailHeader;
     @Input() resourceUrl: string;
     @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
