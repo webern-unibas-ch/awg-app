@@ -38,6 +38,7 @@ export class DataStreamerService {
      *  update data
      ***************/
     public updateSearchResponseStream(results: SearchResponseWithQuery): void {
+        console.log('updated search response stream', results);
         this.searchResponseStreamSource.next(results);
     }
 

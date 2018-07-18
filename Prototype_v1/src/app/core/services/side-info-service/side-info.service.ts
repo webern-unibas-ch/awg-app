@@ -37,6 +37,7 @@ export class SideInfoService {
     }
 
     public updateSearchInfoData(searchInfo: SearchInfo) {
+        console.log('SideInfoService changed: ', searchInfo);
         this.sideInfoData.next(searchInfo);
     }
 
