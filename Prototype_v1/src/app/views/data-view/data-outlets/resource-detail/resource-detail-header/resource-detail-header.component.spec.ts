@@ -1,20 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { ResourceDetailHtmlHeaderComponent } from './resource-detail-html-header.component';
+import { ResourceDetailHeaderComponent } from './resource-detail-header.component';
 
 describe('ResourceDetailHtmlHeaderComponent', () => {
-    let component: ResourceDetailHtmlHeaderComponent;
-    let fixture: ComponentFixture<ResourceDetailHtmlHeaderComponent>;
+    let component: ResourceDetailHeaderComponent;
+    let fixture: ComponentFixture<ResourceDetailHeaderComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ResourceDetailHtmlHeaderComponent ]
+            declarations: [ ResourceDetailHeaderComponent ]
         })
             .compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ResourceDetailHtmlHeaderComponent);
+        fixture = TestBed.createComponent(ResourceDetailHeaderComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
