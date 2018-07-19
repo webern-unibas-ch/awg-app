@@ -1,7 +1,8 @@
 <!-- content: search panel -->
 
-<!-- loading spinner -->
+<!-- loading spinner
 <ng4-loading-spinner></ng4-loading-spinner>
+-->
 
 <!--
   [ => TODO: paging]
@@ -13,7 +14,18 @@
 </awg-search-form>
 
 
-<awg-search-result-list *ngIf="searchData"
-                        [searchData]="searchData"
-                        [searchResultText]="searchResultText">
+<awg-search-result-list *ngIf="!isLoadingData; else loading"
+                        [searchUrl]="searchUrl">
 </awg-search-result-list>
+
+<ng-template #loading *ngIf="!errorMessage; else error">
+    Loading …
+</ng-template>
+
+<ng-template #error>
+    <div class="errorMessage" *ngIf="errorMessage">
+        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText }}".</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+    </div>
+</ng-template>

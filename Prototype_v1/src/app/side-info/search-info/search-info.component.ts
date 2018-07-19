@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
 import { SideInfoService } from '../../core/services';
@@ -9,19 +9,20 @@ import { SearchInfo } from '../side-info-models';
     templateUrl: './search-info.component.html',
     styleUrls: ['./search-info.component.css']
 })
-export class SearchInfoComponent implements OnInit, OnDestroy {
+export class SearchInfoComponent implements OnDestroy, AfterViewChecked {
 
     sideInfoDataSubscription: Subscription;
     sideInfoTitleSubscription: Subscription;
 
-    searchInfo: SearchInfo = new SearchInfo('---', '---');
+    searchInfo: SearchInfo;
     searchInfoTitle: string;
 
     constructor(
-        private sideInfoService: SideInfoService
+        private sideInfoService: SideInfoService,
+        private cdRef: ChangeDetectorRef
     ) { }
 
-    ngOnInit() {
+    ngAfterViewChecked() {
         this.getSideInfoTitle();
         this.getSideInfoData();
     }
@@ -39,12 +40,14 @@ export class SearchInfoComponent implements OnInit, OnDestroy {
 
     }
 
+
     getSideInfoData() {
         // get sideInfoData from service
         this.sideInfoDataSubscription = this.sideInfoService.getSideInfoData()
             .subscribe(
                 (searchInfo: SearchInfo) => {
-                    this.searchInfo = searchInfo;
+                    this.searchInfo = new SearchInfo(searchInfo.query, searchInfo.nhits);
+                    this.cdRef.detectChanges();
                 },
                 error => {
                     console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
