@@ -14,13 +14,18 @@
 </awg-search-form>
 
 
-<awg-search-result-list *ngIf="searchValue && !isLoadingData; else loading"
-                        [searchUrl]="searchUrl">
-</awg-search-result-list>
+<ng-container *ngIf="searchValue">
+    <awg-search-result-list *ngIf="!isLoadingData; else loading"
+                            [searchUrl]="searchUrl">
+    </awg-search-result-list>
 
-<ng-template #loading *ngIf="!errorMessage; else error">
-    Loading …
-</ng-template>
+    <ng-template #loading>
+        <ng-container *ngIf="!errorMessage; else error">
+            <div>Loading …</div>
+        </ng-container>
+    </ng-template>
+</ng-container>
+
 
 <ng-template #error>
     <div class="errorMessage" *ngIf="errorMessage">
