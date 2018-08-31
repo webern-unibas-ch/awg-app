@@ -19,6 +19,7 @@
             "testTsconfig": "tsconfig.spec.json",
             "prefix": "awg",
             "styles": [
+                "index.style.css",
                 "../node_modules/bootstrap/dist/css/bootstrap.min.css",
                 "styles.css"
             ],
