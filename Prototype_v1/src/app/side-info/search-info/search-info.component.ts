@@ -9,7 +9,7 @@ import { SearchInfo } from '../side-info-models';
     templateUrl: './search-info.component.html',
     styleUrls: ['./search-info.component.css']
 })
-export class SearchInfoComponent implements OnDestroy, AfterViewChecked {
+export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
 
     sideInfoDataSubscription: Subscription;
     sideInfoTitleSubscription: Subscription;
@@ -47,7 +47,11 @@ export class SearchInfoComponent implements OnDestroy, AfterViewChecked {
             .subscribe(
                 (searchInfo: SearchInfo) => {
                     this.searchInfo = new SearchInfo(searchInfo.query, searchInfo.nhits);
-                    this.cdRef.detectChanges();
+
+                    // detect changes only if component is not in destroy phase, compare: https://stackoverflow.com/a/46605947
+                    if (!this.cdRef['destroyed']) {
+                        this.cdRef.detectChanges();
+                    }
                 },
                 error => {
                     console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
