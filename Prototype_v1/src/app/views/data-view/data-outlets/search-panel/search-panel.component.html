@@ -4,19 +4,30 @@
   [ => TODO: paging]
 -->
 
-
 <awg-search-form
-    [(searchval)]="searchval"
-    (submitRequest)="onSubmit($event)"
-    (submitLoadStatus)="onLoadChange($event)">
+    [(searchValue)]="searchValue"
+    (submitRequest)="onSubmit($event)">
 </awg-search-form>
 
 
-<awg-search-result-list *ngIf="!isLoadingData; else loading"
-                        [searchData]="searchData"
-                        [searchResultText]="searchResultText">
-</awg-search-result-list>
+<ng-container *ngIf="searchValue">
+    <awg-search-result-list *ngIf="!isLoadingData; else loading"
+                            [searchUrl]="searchUrl">
+    </awg-search-result-list>
 
-<ng-template #loading>
-    <p class="load">Loading...</p>
+    <ng-template #loading>
+        <ng-container *ngIf="!errorMessage; else error">
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+        </ng-container>
+    </ng-template>
+</ng-container>
+
+
+<ng-template #error>
+    <div class="errorMessage" *ngIf="errorMessage">
+        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText }}".</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+    </div>
 </ng-template>

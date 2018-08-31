@@ -15,6 +15,7 @@ import { CompileHtmlModule } from './compile-html';
 import { HeadingComponent } from './heading/heading.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
 //
 // shared pipes
@@ -34,10 +35,11 @@ import { OrderByPipe } from './order-by/order-by.pipe';
     ],
     declarations: [
         HeadingComponent,
-        ModalComponent,
-        RouterLinkButtonGroupComponent,
         MapToIterablePipe,
-        OrderByPipe
+        ModalComponent,
+        OrderByPipe,
+        RouterLinkButtonGroupComponent,
+        TwelveToneSpinnerComponent
     ],
     exports: [
         CommonModule,
@@ -50,10 +52,11 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         CompileHtmlModule,
 
         HeadingComponent,
-        ModalComponent,
-        RouterLinkButtonGroupComponent,
         MapToIterablePipe,
-        OrderByPipe
+        ModalComponent,
+        OrderByPipe,
+        RouterLinkButtonGroupComponent,
+        TwelveToneSpinnerComponent
     ]
 })
 export class SharedModule { }

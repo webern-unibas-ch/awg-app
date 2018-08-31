@@ -16,15 +16,12 @@
                        aria-label="Search input"
                        id="searchInput"
                        class="form-control"
-                       placeholder="Volltextsuche in der Webern-Datenbank ({{ apiUrl }}) …"
+                       placeholder="Volltextsuche in der Webern-Datenbank …"
                        [formControl]="searchValueControl"
-                       [(ngModel)]="searchval">
+                       [(ngModel)]="searchValue">
             </div>
             <div *ngIf="searchValueControl.invalid || searchValueControl.hasError('required')" class="alert alert-danger">
                 Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!
-            </div>
-            <div *ngIf="searchForm.invalid" class="alert alert-danger">
-                Form ist ungültig
             </div>
         </div>
     </form>

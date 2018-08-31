@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-
-import 'rxjs/add/operator/switchMap';
+import { map } from 'rxjs/operators';
 
 import { ConversionService, DataStreamerService } from '../../../../core/services';
 import { DataApiService } from '../../services';
@@ -44,24 +43,32 @@ export class ResourceDetailComponent implements OnInit {
 
 
     getResourceData() {
-        // fetch data
-        this.route.paramMap
-            .switchMap((params: ParamMap) => this.searchService.getResourceDetailData(params.get('id')))
-            .subscribe(
-                (data: ResourceFullResponseJson) => {
-                    // update and store current resource params (url and id)
+        // observe route params
+        this.route.paramMap.switchMap((params: ParamMap) => {
+            // store resource id
+            this.resourceId = params.get('id');
+
+            // fetch data
+            return this.searchService.getResourceDetailData(params.get('id')).pipe(
+                map((resourceBody: ResourceFullResponseJson) => {
+                    // update current resource params (url and id) via streamer service
                     this.updateResourceParams();
 
-                    // snapshot of data
-                    const resourceBody: ResourceFullResponseJson = {...data};
+                    // prepare resource detail
+                    return this.prepareResourceDetail(resourceBody);
+                })
+            )
+        }).subscribe(
+                (resourceData: ResourceData) => {
+                    this.resourceData = resourceData;
 
-                    // display data
-                    this.displayResourceData(resourceBody);
+                    // scroll to Top of Page
+                     ResourceDetailComponent.scrollToTop();
                 },
                 error => {
                     this.errorMessage = <any>error;
                 }
-            );
+        );
     }
 
 
@@ -75,9 +82,6 @@ export class ResourceDetailComponent implements OnInit {
 
 
     updateResourceId() {
-        // snapshot of resourceId
-        this.resourceId = this.route.snapshot.paramMap.get('id');
-
         // share current id via streamer service
         this.streamerService.updateCurrentResourceIdStream(this.resourceId);
     }
@@ -89,18 +93,14 @@ export class ResourceDetailComponent implements OnInit {
     }
 
 
-    displayResourceData(resourceBody: ResourceFullResponseJson) {
-        if (resourceBody == {}) { return; }
-
+    prepareResourceDetail(resourceBody: ResourceFullResponseJson): ResourceData {
+        if (resourceBody === {}) { return; }
 
         // convert data for displaying resource detail
         const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
 
-        // load new resource data
-        this.resourceData = new ResourceData(resourceBody, html);
-
-        // scroll to Top of Page
-        this.scrollToTop();
+        // return new resource data
+        return this.resourceData = new ResourceData(resourceBody, html);
     }
 
 
@@ -131,7 +131,7 @@ export class ResourceDetailComponent implements OnInit {
     /*
      * Scroll to Top of Window
      */
-    scrollToTop() {
+    static scrollToTop() {
         window.scrollTo(0,0);
     }
 
