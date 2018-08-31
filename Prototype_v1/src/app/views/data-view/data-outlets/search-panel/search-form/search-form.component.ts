@@ -3,9 +3,6 @@ import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/fo
 import 'rxjs/add/operator/debounceTime';
 import 'rxjs/add/operator/distinctUntilChanged';
 
-import { AppConfig } from '../../../../../app.config';
-
-
 @Component({
     selector: 'awg-search-form',
     templateUrl: './search-form.component.html',
@@ -18,23 +15,24 @@ export class SearchFormComponent implements OnInit {
     searchForm: FormGroup;
     searchValueControl: AbstractControl;
 
-    apiUrl: string = AppConfig.API_ENDPOINT;
-
     constructor(
         private fb: FormBuilder
     ) { }
+
 
     ngOnInit() {
         this.buildForm(this.searchValue);
     }
 
+
     buildForm(searchValue: string) {
         this.searchForm = this.fb.group({
-            'searchValue': [searchValue, Validators.compose([
+            'searchValue': [searchValue || '', Validators.compose([
                 Validators.required,
                 Validators.minLength(3)
             ])]
         });
+
         this.searchValueControl = this.searchForm.controls['searchValue'];
 
         // checks for changing values
@@ -43,7 +41,7 @@ export class SearchFormComponent implements OnInit {
             .debounceTime(500)
             .distinctUntilChanged()
             .subscribe((query: string) => {
-                this.onSearch(query;
+                this.onSearch(query);
             });
     }
 

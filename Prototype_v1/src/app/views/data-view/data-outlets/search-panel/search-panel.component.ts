@@ -23,7 +23,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     searchServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
-    searchValue: string = 'Skizze';
+    searchValue: string = '';
     searchUrl: string = '';
     searchResultText: string;
 

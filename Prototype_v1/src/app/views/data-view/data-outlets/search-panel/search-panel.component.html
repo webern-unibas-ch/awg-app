@@ -14,7 +14,7 @@
 </awg-search-form>
 
 
-<awg-search-result-list *ngIf="!isLoadingData; else loading"
+<awg-search-result-list *ngIf="searchValue && !isLoadingData; else loading"
                         [searchUrl]="searchUrl">
 </awg-search-result-list>
 
