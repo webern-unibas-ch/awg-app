@@ -9,13 +9,13 @@ import { AccordionModule } from 'ngx-bootstrap/accordion';
 import { ButtonsModule } from 'ngx-bootstrap/buttons';
 import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompileHtmlModule } from './compile-html';
-import { Ng4LoadingSpinnerModule } from 'ng4-loading-spinner';
 
 //
 // shared components
 import { HeadingComponent } from './heading/heading.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
 //
 // shared pipes
@@ -31,7 +31,6 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         AccordionModule.forRoot(),
         ButtonsModule.forRoot(),
         ModalModule.forRoot(),
-        Ng4LoadingSpinnerModule.forRoot(),
         CompileHtmlModule
     ],
     declarations: [
@@ -39,7 +38,8 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         MapToIterablePipe,
         ModalComponent,
         OrderByPipe,
-        RouterLinkButtonGroupComponent
+        RouterLinkButtonGroupComponent,
+        TwelveToneSpinnerComponent
     ],
     exports: [
         CommonModule,
@@ -49,14 +49,14 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         AccordionModule,
         ButtonsModule,
         ModalModule,
-        Ng4LoadingSpinnerModule,
         CompileHtmlModule,
 
         HeadingComponent,
         MapToIterablePipe,
         ModalComponent,
         OrderByPipe,
-        RouterLinkButtonGroupComponent
+        RouterLinkButtonGroupComponent,
+        TwelveToneSpinnerComponent
     ]
 })
 export class SharedModule { }

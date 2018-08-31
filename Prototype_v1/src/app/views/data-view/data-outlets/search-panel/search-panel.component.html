@@ -1,9 +1,5 @@
 <!-- content: search panel -->
 
-<!-- loading spinner
-<ng4-loading-spinner></ng4-loading-spinner>
--->
-
 <!--
   [ => TODO: paging]
 -->
@@ -21,7 +17,8 @@
 
     <ng-template #loading>
         <ng-container *ngIf="!errorMessage; else error">
-            <div>Loading …</div>
+            <!-- loading spinner -->
+            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         </ng-container>
     </ng-template>
 </ng-container>

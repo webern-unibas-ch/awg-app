@@ -5,8 +5,6 @@ import { Subscription } from 'rxjs/Subscription';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 
-import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
-
 import { ConversionService, DataStreamerService, SideInfoService } from '../../../../core/services';
 import { DataApiService } from '../../services';
 
@@ -39,7 +37,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private searchService: DataApiService,
         private sideInfoService: SideInfoService,
         private streamerService: DataStreamerService,
-        private loadingSpinnerService: Ng4LoadingSpinnerService
     ) {}
 
 
@@ -55,9 +52,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 if (params.get('query')) {
                     this.searchValue = params.get('query');
                 }
-                // start loading spinner
-                // this.loadingSpinnerService.show();
-                this.changeLoadingStatus(true);
+
+                this.onLoadingStart();
 
                 // fetch search data for searchValue
                 return this.searchService.getFulltextSearchData(this.searchValue).pipe(
@@ -75,10 +71,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     // share search data via streamer service
                     this.updateStreamerService(searchResponse, this.searchValue);
 
-                    // stop loading spinner
-                    // this.loadingSpinnerService.hide();
-                    this.changeLoadingStatus(false);
-
+                    this.onLoadingEnd();
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -89,6 +82,18 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     // change the load status
     changeLoadingStatus(status: boolean) {
         this.isLoadingData = status;
+    }
+
+
+    // start loading activities
+    onLoadingStart(): void {
+        this.changeLoadingStatus(true);
+    }
+
+
+    // end loading activities
+    onLoadingEnd(): void {
+        this.changeLoadingStatus(false);
     }
 
 
