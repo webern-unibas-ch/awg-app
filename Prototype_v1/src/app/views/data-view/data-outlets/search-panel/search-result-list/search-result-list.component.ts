@@ -51,12 +51,11 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 return response.data;
             })
         ).subscribe((searchData: SearchResponseJson) => {
-                console.log('streamerServiceSubscription got data: ', searchData);
                 this.searchData = searchData;
             },
             error => {
                 this.errorMessage = <any>error;
-                console.log('SearchPanel# searchResultData subscription error: ', this.errorMessage);
+                console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
             });
     }
 
@@ -81,7 +80,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     // update data for searchInfo via sideinfo service
     updateSearchInfoService() {
-        console.log('--updateSearchInfoService--');
         const searchInfo: SearchInfo = new SearchInfo(this.searchVal, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }

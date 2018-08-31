@@ -49,7 +49,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
 
     subscribeToSearchService(): Subscription {
-        console.log('SEARCH PANEL ONINIT');
         return this.route.paramMap
             .switchMap((params: ParamMap) => {
                 // get query param from route to update searchValue
@@ -63,7 +62,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 // fetch search data for searchValue
                 return this.searchService.getFulltextSearchData(this.searchValue).pipe(
                     map((searchResponse: SearchResponseJson) => {
-                        console.log('searchServiceSubscription changed: ', searchResponse);
 
                         // update url for search
                         this.updateCurrentUrl();
