@@ -25,9 +25,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     filteredOut: number;
 
     streamerServiceSubscription: Subscription;
-    searchData: SearchResponseJson;
+    searchResponse: SearchResponseJson;
     searchResultText: string;
-    searchVal: string;
+    searchValue: string;
 
     constructor(
         private router: Router,
@@ -44,14 +44,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     subscribeToStreamerService(): Subscription {
         return this.streamerService.getCurrentSearchResults().pipe(
-            map((response: SearchResponseWithQuery) => {
+            map((searchResponseWithQuery: SearchResponseWithQuery) => {
                 // update current search params (url, text, sideinfo) via streamer service
-                this.updateSearchParams(response);
+                this.updateSearchParams(searchResponseWithQuery);
 
-                return response.data;
+                return searchResponseWithQuery.data;
             })
-        ).subscribe((searchData: SearchResponseJson) => {
-                this.searchData = searchData;
+        ).subscribe((searchResponse: SearchResponseJson) => {
+                this.searchResponse = searchResponse;
             },
             error => {
                 this.errorMessage = <any>error;
@@ -72,7 +72,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     // update current search values
     updateCurrentValues(response: SearchResponseWithQuery) {
         // get current search value
-        this.searchVal = response.query;
+        this.searchValue = response.query;
         // prepare result text for fulltext search
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(response.data, this.filteredOut, this.searchUrl);
     }
@@ -80,7 +80,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     // update data for searchInfo via sideinfo service
     updateSearchInfoService() {
-        const searchInfo: SearchInfo = new SearchInfo(this.searchVal, this.searchResultText);
+        const searchInfo: SearchInfo = new SearchInfo(this.searchValue, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
 

@@ -1,18 +1,18 @@
 <!-- content: search results -->
-<div *ngIf="searchData">
+<div *ngIf="searchResponse">
 
     <!-- header -->
-    <h4>Suchergebnisse</h4>
+    <h4>Suchergebnisse {{ searchValue ? 'für "' + searchValue + '"' : '' }}</h4>
     <p>
         {{ searchResultText }}
     </p>
 
-    <ng-container *ngIf="searchData?.subjects">
+    <ng-container *ngIf="searchResponse?.subjects">
 
         <!-- TODO: ### PAGINATION ### -->
 
         <!-- table with searchResults -->
-        <table *ngIf="+searchData?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
+        <table *ngIf="+searchResponse?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
             <thead>
             <tr>
                 <th>
@@ -25,7 +25,7 @@
             </thead>
             <tbody>
             <!-- show searchResultDetail by clicking on single entry -->
-            <tr *ngFor="let subject of searchData?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="navigateToResource(subject?.obj_id)" [class.active]="isActiveResource(subject?.obj_id)">
+            <tr *ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="navigateToResource(subject?.obj_id)" [class.active]="isActiveResource(subject?.obj_id)">
                 <td>
                     <img [attr.src]=subject?.iconsrc alt="iconsrc" > {{ subject?.iconlabel }}
                 </td>
