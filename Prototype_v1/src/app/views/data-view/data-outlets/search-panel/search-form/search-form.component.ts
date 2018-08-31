@@ -12,7 +12,7 @@ import { AppConfig } from '../../../../../app.config';
     styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-    @Input() searchval: string;
+    @Input() searchValue: string;
     @Output() submitRequest: EventEmitter<any> = new EventEmitter();
 
     searchForm: FormGroup;
@@ -25,12 +25,12 @@ export class SearchFormComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.buildForm(this.searchval);
+        this.buildForm(this.searchValue);
     }
 
-    buildForm(searchval: string) {
+    buildForm(searchValue: string) {
         this.searchForm = this.fb.group({
-            'searchValue': [searchval, Validators.compose([
+            'searchValue': [searchValue, Validators.compose([
                 Validators.required,
                 Validators.minLength(3)
             ])]
@@ -42,8 +42,8 @@ export class SearchFormComponent implements OnInit {
             .filter(x => x.length >= 3)
             .debounceTime(500)
             .distinctUntilChanged()
-            .subscribe((value: string) => {
-                this.onSearch(value);
+            .subscribe((query: string) => {
+                this.onSearch(query;
             });
     }
 

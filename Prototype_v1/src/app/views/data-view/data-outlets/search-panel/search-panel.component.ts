@@ -1,18 +1,17 @@
-import {Component, OnDestroy, OnInit} from '@angular/core';
-import {Location} from '@angular/common';
-import {ActivatedRoute, ParamMap, Router} from '@angular/router';
-import {Subscription} from 'rxjs/Subscription';
-import {map} from 'rxjs/operators';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Location } from '@angular/common';
+import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { Subscription } from 'rxjs/Subscription';
+import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 
-import {Ng4LoadingSpinnerService} from 'ng4-loading-spinner';
+import { Ng4LoadingSpinnerService } from 'ng4-loading-spinner';
 
-import {ConversionService, DataStreamerService, SideInfoService} from '../../../../core/services';
-import {DataApiService} from '../../services';
+import { ConversionService, DataStreamerService, SideInfoService } from '../../../../core/services';
+import { DataApiService } from '../../services';
 
-import {SearchResponseJson} from '../../../../shared/api-objects';
-import {SearchResponseWithQuery} from '../../models';
-import {SearchInfo} from '../../../../side-info/side-info-models';
+import { SearchResponseJson } from '../../../../shared/api-objects';
+import { SearchResponseWithQuery } from '../../models';
 
 @Component({
     selector: 'awg-search-panel',
@@ -24,7 +23,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     searchServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
-    searchval: string = 'Skizze';
+    searchValue: string = 'Skizze';
     searchUrl: string = '';
     searchResultText: string;
 
@@ -53,34 +52,34 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         console.log('SEARCH PANEL ONINIT');
         return this.route.paramMap
             .switchMap((params: ParamMap) => {
-                // get query param from route to update searchvalue
+                // get query param from route to update searchValue
                 if (params.get('query')) {
-                    this.searchval = params.get('query');
+                    this.searchValue = params.get('query');
                 }
                 // start loading spinner
                 // this.loadingSpinnerService.show();
-                this.onLoadChange(true);
+                this.changeLoadingStatus(true);
 
-                // fetch search data for searchval
-                return this.searchService.getFulltextSearchData(this.searchval).pipe(
-                    map((searchBody: SearchResponseJson) => {
-                        console.log('searchServiceSubscription changed: ', searchBody);
+                // fetch search data for searchValue
+                return this.searchService.getFulltextSearchData(this.searchValue).pipe(
+                    map((searchResponse: SearchResponseJson) => {
+                        console.log('searchServiceSubscription changed: ', searchResponse);
 
                         // update url for search
                         this.updateCurrentUrl();
 
                         // prepare search results
-                        return this.prepareSearchResults(searchBody);
+                        return this.prepareSearchResults(searchResponse);
                     })
                 );
             })
-            .subscribe((searchData: SearchResponseJson) => {
+            .subscribe((searchResponse: SearchResponseJson) => {
                     // share search data via streamer service
-                    this.updateStreamerService(searchData, this.searchval);
+                    this.updateStreamerService(searchResponse, this.searchValue);
 
                     // stop loading spinner
                     // this.loadingSpinnerService.hide();
-                    this.onLoadChange(false);
+                    this.changeLoadingStatus(false);
 
                 },
                 error => {
@@ -90,7 +89,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
 
     // change the load status
-    onLoadChange(status: boolean) {
+    changeLoadingStatus(status: boolean) {
         this.isLoadingData = status;
     }
 
@@ -101,9 +100,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
 
-    prepareSearchResults(searchBody: SearchResponseJson): SearchResponseJson {
+    prepareSearchResults(searchResponse: SearchResponseJson): SearchResponseJson {
         // conversion of search results for HTML display
-        return this.conversionService.convertFullTextSearchResults(searchBody);
+        return this.conversionService.convertFullTextSearchResults(searchResponse);
     }
 
 
@@ -114,8 +113,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
 
     // update search data via streamer service
-    updateStreamerService(data: SearchResponseJson, query: string) {
-        const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(data, query);
+    updateStreamerService(searchResponse: SearchResponseJson, query: string) {
+        const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(searchResponse, query);
         this.streamerService.updateSearchResponseStream(searchResponseWithQuery);
     }
 

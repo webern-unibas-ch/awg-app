@@ -94,7 +94,7 @@ export class ResourceDetailComponent implements OnInit {
 
 
     prepareResourceDetail(resourceBody: ResourceFullResponseJson): ResourceData {
-        if (resourceBody == {}) { return; }
+        if (resourceBody === {}) { return; }
 
         // convert data for displaying resource detail
         const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
