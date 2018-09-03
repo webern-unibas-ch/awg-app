@@ -18,6 +18,11 @@
         "build-css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
         "watch-css-win": "nodemon -e scss -x \"npm run build-css-win\" "
     },
+    "standard-version": {
+        "skip": {
+            "tag": true
+        }
+    },
     "private": true,
     "dependencies": {
         "@angular/animations": "^5.2.9",
