@@ -17,6 +17,8 @@
 
             <!-- source description -->
             <awg-source-description
+                [showDescriptionPanel]="showDescriptionPanel"
+                (toggleDescriptionPanelRequest)="toggleDescriptionPanel($event)"
                 (openModalRequest)="openModal($event)">
             </awg-source-description>
 
