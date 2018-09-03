@@ -5,6 +5,10 @@
         "name": "Stefan Münnich <stefan.muennich@unibas.ch>"
     },
     "description": "Prototypische Web-Applikation für die Online-Edition der Anton Webern Gesamtausgabe (Musikwissenschaftliches Seminar der Universität Basel)",
+    "repository": {
+        "type": "gitlab",
+        "url": "git@git.iml.unibas.ch:muennich/WebernLiveApp.git"
+    },
     "license": "UNLICENSED",
     "scripts": {
         "ng": "ng",
@@ -16,7 +20,8 @@
         "build-css": "./themes/bin/build-css",
         "watch-css": "./themes/bin/watch-css",
         "build-css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
-        "watch-css-win": "nodemon -e scss -x \"npm run build-css-win\" "
+        "watch-css-win": "nodemon -e scss -x \"npm run build-css-win\" ",
+        "get-next-version": "node ./get-next-version.js"
     },
     "standard-version": {
         "skip": {
@@ -51,6 +56,7 @@
         "@types/jasminewd2": "~2.0.2",
         "@types/node": "~6.0.60",
         "codelyzer": "^4.0.1",
+        "conventional-recommended-bump": "^4.0.1",
         "jasmine-core": "~2.8.0",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~2.0.0",
