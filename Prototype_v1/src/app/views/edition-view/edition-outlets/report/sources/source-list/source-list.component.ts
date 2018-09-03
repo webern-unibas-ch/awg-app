@@ -12,7 +12,7 @@ export class SourceListComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showPanel: boolean;
+    showListPanel: boolean;
     ref: SourceListComponent;
 
     constructor() {
@@ -22,16 +22,19 @@ export class SourceListComponent implements OnInit {
     ngOnInit() {
     }
 
+
     openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
     }
+
 
     scrollTo(id: string) {
         this.scrollRequest.emit(id);
     }
 
+
     togglePanel(): boolean {
-        return this.showPanel = !this.showPanel;
+        return this.showListPanel = !this.showListPanel;
     }
 
 }

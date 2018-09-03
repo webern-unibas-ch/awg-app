@@ -4,26 +4,21 @@
             <a (click)="togglePanel()">1. Quellenübersicht</a>
         </h4>
     </div>
-    <div class="panel-collapse collapse" [class.in]="showPanel">
+    <div class="panel-collapse collapse" [class.in]="showListPanel">
         <div class="panel-body">
             <table class="table table-hover borderless">
                 <tbody>
                 <!--  at the moment only for the first item ("source.siglum == 'A'") -->
-                <tr *ngFor="let source of sourceList.sources.slice(0,1)">
+                <tr *ngFor="let source of sourceList.sources; let sourceIndex = index">
                     <td class="bold">
-                        <a [routerLink]="['./']" fragment={{source.linkTo}} (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
+                        <ng-container *ngIf="sourceIndex === 0; else modalHint">
+                            <a [routerLink]="['./']" fragment={{source.linkTo}} (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
+                        </ng-container>
+                        <ng-template #modalHint>
+                            <a (click)="openModal(source.linkTo)" [innerHTML]="source.siglum"></a>
+                        </ng-template>
                     </td>
                     <td><span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
-                        <span [innerHTML]="source.location"></span>
-                    </td>
-                </tr>
-                <!--  at the moment only if ="source.siglum !== 'A'" -->
-                <tr *ngFor="let source of sourceList.sources.slice(1)">
-                    <td class="bold">
-                        <a (click)="openModal(source.linkTo)" [innerHTML]="source.siglum"></a>
-                    </td>
-                    <td>
-                        <span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
                         <span [innerHTML]="source.location"></span>
                     </td>
                 </tr>

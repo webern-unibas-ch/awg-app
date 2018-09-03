@@ -1,4 +1,4 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-source-description',
@@ -6,9 +6,9 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./source-description.component.css']
 })
 export class SourceDescriptionComponent implements OnInit {
+    @Input() showDescriptionPanel: boolean;
+    @Output() toggleDescriptionPanelRequest: EventEmitter<boolean> = new EventEmitter();
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-
-    showPanel: boolean;
 
     constructor() { }
 
@@ -19,8 +19,8 @@ export class SourceDescriptionComponent implements OnInit {
         this.openModalRequest.emit(identifier);
     }
 
-    togglePanel(): boolean {
-        return this.showPanel = !this.showPanel;
+    togglePanel(): void {
+        this.toggleDescriptionPanelRequest.emit(this.showDescriptionPanel);
     }
 
 }
