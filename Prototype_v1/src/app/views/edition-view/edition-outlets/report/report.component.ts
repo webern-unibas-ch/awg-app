@@ -54,7 +54,7 @@ export class ReportComponent implements OnInit {
             this.route.fragment.subscribe(f => {
                         if (!f) { return; }
                         const element = document.querySelector('#' + f);
-                        if (element) element.scrollIntoView();
+                        if (element) { element.scrollIntoView(); }
                     }
                 );
         });
