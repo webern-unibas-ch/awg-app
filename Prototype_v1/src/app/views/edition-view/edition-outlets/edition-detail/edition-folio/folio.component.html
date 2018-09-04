@@ -1,0 +1,13 @@
+<awg-edition-folio-form
+    [(folioFormatOptions)]="folioFormatOptions"
+    (resetRequest)="onReset($event)"
+    (submitRequest)="onSubmit($event)">
+</awg-edition-folio-form>
+
+
+<!-- embedded svg: Sheet Overview -->
+<awg-edition-grid-svg *ngIf="folioData && folioFormatOptions"
+              [folioData]="folioData"
+              [folioFormatOptions]="folioFormatOptions">
+</awg-edition-grid-svg>
+

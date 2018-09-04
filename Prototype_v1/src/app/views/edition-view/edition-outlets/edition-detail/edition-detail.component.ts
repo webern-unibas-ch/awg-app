@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Sheet, Textcritics } from '@awg-views/edition-view/models';
+import { FolioData, FolioFormatOptions, Sheet, Textcritics } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -18,6 +18,9 @@ export class EditionDetailComponent implements OnInit {
     selectedTextcriticId: string;
     selectedTextcritics: Textcritics[];
 
+    folioData: FolioData[];
+    folioFormatOptions: FolioFormatOptions = new FolioFormatOptions();
+
     errorMessage: string = undefined;
     showTkA: boolean = false;
 
@@ -29,12 +32,15 @@ export class EditionDetailComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getData();
+        this.getEditionData();
+        this.getFolioData();
     }
 
-    getData() {
+
+    // get edition data
+    getEditionData() {
         this.dataService.getEditionDetailData()
-            .subscribe((data) => {
+            .subscribe((data: [Sheet[], Textcritics[]]) => {
                     this.sheetsData = data[0];
                     this.textcriticsData = data[1];
                     if (this.sheetsData) { this.getRouteParams(); }
@@ -43,6 +49,21 @@ export class EditionDetailComponent implements OnInit {
                     this.errorMessage = <any>error;
                 }
             );
+    }
+
+
+    // get folio data
+    getFolioData(): void {
+        this.dataService.getEditionFolioData()
+            .subscribe(
+                (data: FolioData[]) => {
+                    this.folioData = data['content'];
+                    console.log('FolioComponent# folioData: ', this.folioData);
+
+                    // set number of sheets
+                    this.folioFormatOptions.numberOfSheets = this.folioData.length;
+                    console.log('FolioComponent# folioFormatOptions: ', this.folioFormatOptions);
+                });
     }
 
 
@@ -55,12 +76,14 @@ export class EditionDetailComponent implements OnInit {
         });
     }
 
+
     onSheetSelect(id: string): void {
         this.selectedSheet = this.sheetsData[id];
         this.selectedTextcriticId = '';
         this.showTkA = false;
         this.router.navigate(['/edition/detail', id]);
     }
+
 
     onTextcriticSelect($event): void {
         if (!this.textcriticsData && !this.selectedSheet) { return; }

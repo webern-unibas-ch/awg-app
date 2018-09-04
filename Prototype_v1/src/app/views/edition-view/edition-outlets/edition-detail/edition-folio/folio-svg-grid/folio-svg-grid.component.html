@@ -1,0 +1,10 @@
+<!-- embedded svg: Sheet Overview -->
+<div class="container-fluid">
+    <div class="row svgRow">
+        <div class="col-sm-6 col-md-{{ 12 / folioSvgOutputData.length }} svgCol" *ngFor="let svgFolio of folioSvgOutputData">
+
+            <svg id="folio-{{ svgFolio.sheet.folio }}" style="border: 1px solid green;"></svg>
+
+        </div>
+    </div>
+</div>

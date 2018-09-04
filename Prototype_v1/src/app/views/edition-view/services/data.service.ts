@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Sheet, Source, Textcritics } from '@awg-views/edition-view/models';
+import { FolioData, Sheet, Source, Textcritics } from '@awg-views/edition-view/models';
 
 
 @Injectable()
@@ -16,6 +16,7 @@ export class DataService {
     constructor(
         private http: HttpClient
     ) { }
+
 
     /*********************************
      *
@@ -41,14 +42,27 @@ export class DataService {
     }
 
 
+    public getEditionFolioData(): Observable<FolioData[]> {
+        return this.getFolioData();
+    }
+
+
     /*
      * private functions to prepare http request
      */
+    private getFolioData(): Observable<FolioData[]> {
+        const file = 'folio.json';
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+
     private getSheetsData(): Observable<Sheet[]> {
         const file = 'sheets.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
+
 
     private getSourceListData(): Observable<Source[]> {
         const file = 'sourcelist.json';
@@ -56,11 +70,13 @@ export class DataService {
         return this.getJsonData(url);
     }
 
+
     private getTextcriticsData(): Observable<Textcritics[]> {
         const file = 'textcritics.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
+
 
     /*
      * http request to fetch json files
@@ -72,6 +88,7 @@ export class DataService {
                 catchError(this.handleError(`getJsonData`, []))
             );
     }
+
 
     /*
      * error handling
@@ -89,6 +106,7 @@ export class DataService {
             return of(result as T);
         };
     }
+
 
     private log(message: string) {
         console.log(message);

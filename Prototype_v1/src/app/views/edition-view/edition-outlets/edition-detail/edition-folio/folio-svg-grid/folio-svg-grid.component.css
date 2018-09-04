@@ -1,0 +1,14 @@
+/*
+see also https://stackoverflow.com/questions/114543/how-to-horizontally-center-a-div-in-another-div
+ */
+
+.svgRow {
+    margin-top: 2em;
+    border: 1px solid blue;
+    width: inherit;
+    text-align:center;
+}
+
+.svgCol {
+    display: inline-block;
+}

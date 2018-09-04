@@ -7,6 +7,14 @@
     <awg-modal #modal></awg-modal>
 
     <!-- body with embedded svg's -->
+
+    <!-- folio overview -->
+    <awg-edition-folio
+        *ngIf="folioData && folioFormatOptions"
+        [folioData]="folioData"
+        [folioFormatOptions]="folioFormatOptions">
+    </awg-edition-folio>
+
     <!-- image control -->
     <awg-edition-sheet-control
         *ngIf="sheetsData && selectedSheet"
