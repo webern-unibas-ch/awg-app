@@ -25,14 +25,15 @@ export class DataService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    public getEditionDetailData(): Observable<any> {
+    public getEditionDetailData(): Observable<[Sheet[], Textcritics[]]> {
         return Observable.forkJoin(
             this.getSheetsData(),
             this.getTextcriticsData()
         );
     }
 
-    public getEditionReportData(): Observable<any> {
+
+    public getEditionReportData(): Observable<[Source[], Textcritics[]]> {
         return Observable.forkJoin(
             this.getSourceListData(),
             this.getTextcriticsData()

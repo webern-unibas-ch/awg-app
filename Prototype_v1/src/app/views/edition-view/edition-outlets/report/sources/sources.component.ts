@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { SourceList } from '@awg-views/edition-view/models';
+import { Source } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-sources',
@@ -8,7 +8,7 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./sources.component.css']
 })
 export class SourcesComponent implements OnInit {
-    @Input() sourceList: SourceList;
+    @Input() sourceList: Source[];
     @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
