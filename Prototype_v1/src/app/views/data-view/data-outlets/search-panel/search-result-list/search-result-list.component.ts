@@ -4,12 +4,12 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { map } from 'rxjs/operators';
 
-import { SearchInfo } from '../../../../../side-info/side-info-models';
-import { SearchResponseJson } from '../../../../../shared/api-objects';
-import { SearchResponseWithQuery } from '../../../models';
+import { SearchInfo } from '@awg-side-info/side-info-models';
+import { SearchResponseJson } from '@awg-shared/api-objects';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
-import { ConversionService, DataStreamerService, SideInfoService } from '../../../../../core/services';
-import { DataApiService } from '../../../services';
+import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
+import { DataApiService } from '@awg-views/data-view/services';
 
 
 @Component({

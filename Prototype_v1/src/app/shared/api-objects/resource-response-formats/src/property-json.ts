@@ -13,7 +13,7 @@
  * */
 
 import { Any, JsonConvert, JsonObject, JsonProperty} from 'json2typescript';
-import { KnoraIRI, KnoraRights, LocationItemJson, StringOrNumber } from '../../basic-message-components';
+import { KnoraIRI, KnoraRights, LocationItemJson, StringOrNumber } from '@awg-shared/api-objects/basic-message-components';
 
 
 @JsonObject

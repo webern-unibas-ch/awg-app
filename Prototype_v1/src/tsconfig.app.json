@@ -3,6 +3,14 @@
     "compilerOptions": {
         "outDir": "../out-tsc/app",
         "baseUrl": "./",
+        "paths": {
+            "@awg-app/*": ["app/*"],
+            "@awg-core/*": ["app/core/*"],
+            "@awg-shared/*": ["app/shared/*"],
+            "@awg-side-info/*": ["app/side-info/*"],
+            "@awg-views/*": ["app/views/*"],
+            "@myTesting/*": ["myTesting/*"]
+        },
         "module": "es2015",
         "types": []
     },

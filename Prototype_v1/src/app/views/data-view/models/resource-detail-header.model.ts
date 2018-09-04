@@ -1,4 +1,4 @@
-import { ResourceFullResponseJson } from '../../../shared/api-objects';
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 export class ResourceDetailHeader {
     objID: string;

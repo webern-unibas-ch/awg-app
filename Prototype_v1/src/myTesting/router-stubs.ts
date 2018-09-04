@@ -1,9 +1,10 @@
 import { Component, Directive, Injectable, Input, NgModule } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 
-import { AppModule } from '../app/app.module';
+import { AppModule } from '@awg-app/app.module';
 
-export { ActivatedRoute, Router, RouterLink, RouterOutlet} from '@angular/router';
+export { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+
 
 
 // #docregion router-link

@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../../../shared/shared.module';
+import { SharedModule } from '@awg-shared/shared.module';
 
 import { ResourceDetailHeaderComponent } from './resource-detail-header/resource-detail-header.component';
 import { ResourceDetailHtmlComponent } from './resource-detail-html/resource-detail-html.component';

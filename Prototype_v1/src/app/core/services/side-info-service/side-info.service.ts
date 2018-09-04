@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs/Subject';
 import { Observable } from 'rxjs/Observable';
 
-import { SearchInfo } from '../../../side-info/side-info-models/index';
+import { SearchInfo } from '@awg-side-info/side-info-models/index';
 
 @Injectable()
 export class SideInfoService {

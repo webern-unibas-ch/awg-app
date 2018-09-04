@@ -5,9 +5,9 @@ import { By } from '@angular/platform-browser';
 import { DebugElement, Component } from '@angular/core';
 
 import { FooterComponent } from './footer.component';
-import { Meta } from '../core-models/meta.model';
+import { Meta } from '@awg-core/core-models';
 
-import { RouterLinkStubDirective } from '../../../myTesting/router-stubs';
+import { RouterLinkStubDirective } from '@myTesting/router-stubs';
 
 /**
  * Testing Variables
@@ -39,6 +39,10 @@ class TestHostComponent {
         },
         edition: {
             editors: '',
+            lastModified: ''
+        },
+        structure: {
+            author: '',
             lastModified: ''
         }
     };

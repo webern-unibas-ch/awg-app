@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Sheet, Textcritics } from '../../models';
-import { DataService, EditionService } from '../../services';
+import { Sheet, Textcritics } from '@awg-views/edition-view/models';
+import { DataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
     selector: 'awg-edition-detail',

@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Sheet, Source, Textcritics } from '../models';
+import { Sheet, Source, Textcritics } from '@awg-views/edition-view/models';
 
 
 @Injectable()

@@ -1,8 +1,8 @@
 import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
 import { Subscription } from 'rxjs/Subscription';
 
-import { SideInfoService } from '../../core/services';
-import { SearchInfo } from '../side-info-models';
+import { SideInfoService } from '@awg-core/services';
+import { SearchInfo } from '@awg-side-info/side-info-models';
 
 @Component({
     selector: 'awg-search-info',

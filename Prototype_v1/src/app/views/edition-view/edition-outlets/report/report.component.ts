@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SourceList, Textcritics } from '../../models';
-import { DataService } from '../../services';
+import { SourceList, Textcritics } from '@awg-views/edition-view/models';
+import { DataService } from '@awg-views/edition-view/services';
 
 @Component({
     selector: 'awg-report',

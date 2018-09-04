@@ -1,4 +1,4 @@
-import { Meta } from '../core-models';
+import { Meta } from '@awg-core/core-models';
 
 export const METADATA: Meta[] = [
     {

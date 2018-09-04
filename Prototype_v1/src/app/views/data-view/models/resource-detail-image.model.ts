@@ -1,4 +1,4 @@
-import {ContextJson} from "../../../shared/api-objects";
+import {ContextJson} from '@awg-shared/api-objects';
 
 export class ResourceDetailImage {
     fullSize: string;

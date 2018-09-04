@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { Meta } from '../core-models/meta.model';
+
+import { Meta } from '@awg-core/core-models';
 
 @Component({
     selector: 'awg-footer',

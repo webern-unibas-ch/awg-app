@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 
-import { BibliographyService } from '../../services';
-import { SearchResponseJson, SubjectItemJson } from '../../../../shared/api-objects';
+import { BibliographyService } from '@awg-views/data-view/services';
+import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
 
 @Component({
     selector: 'awg-bibliography',

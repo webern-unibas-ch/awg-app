@@ -1,6 +1,6 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 
-import { ResourceDetail } from '../../../models';
+import { ResourceDetail } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-html',

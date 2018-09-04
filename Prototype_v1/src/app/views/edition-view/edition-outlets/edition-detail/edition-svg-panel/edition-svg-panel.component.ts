@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Sheet } from '../../../models/sheet.model';
+
+import { Sheet } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-svg-panel',

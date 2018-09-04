@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { ResourceDetailHeader } from '../../../models';
+
+import { ResourceDetailHeader } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-header',

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { TimelineDate } from '../../models/timeline-date.model';
+
+import { TimelineDate } from '@awg-views/data-view/models/timeline-date.model';
 
 @Component({
     selector: 'awg-timeline',

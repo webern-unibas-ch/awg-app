@@ -13,7 +13,7 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { KnoraIRI, LocationItemJson } from '../../basic-message-components';
+import { KnoraIRI, LocationItemJson } from '@awg-shared/api-objects/basic-message-components';
 import { RegionJson } from './region-json';
 
 /**

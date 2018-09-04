@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
-import { ResourceDetail } from '../../../models';
+
+import { ResourceDetail } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-json-converted',
