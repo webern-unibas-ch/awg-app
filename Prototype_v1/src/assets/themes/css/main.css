@@ -192,6 +192,9 @@ a, .incomingLinks {
 .bold {
     font-weight: bold;
 }
+.italic {
+    font-style: italic;
+}
 .highlighted {
     background: orange;
 }

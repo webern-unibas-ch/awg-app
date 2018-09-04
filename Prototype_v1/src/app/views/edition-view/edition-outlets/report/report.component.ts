@@ -28,6 +28,7 @@ export class ReportComponent implements OnInit {
         this.scrollTo();
     }
 
+
     public getData() {
         this.dataService.getEditionReportData()
             .subscribe((data) => {
@@ -40,9 +41,11 @@ export class ReportComponent implements OnInit {
             );
     }
 
+
     public onSheetSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
+
 
     private scrollTo(id?: string) {
         console.log('Report: scrollTo(id): ', id);
