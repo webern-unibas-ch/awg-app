@@ -13,7 +13,7 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson, ProjectItemJson } from '../../basic-message-components';
+import { BasicResponseJson, ProjectItemJson } from '@awg-shared/api-objects/basic-message-components';
 
 /**
  * Represents the response to a fulltext or an extended search

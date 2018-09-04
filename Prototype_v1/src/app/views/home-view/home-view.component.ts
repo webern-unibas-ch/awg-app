@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Meta } from '../../core/core-models';
-import { MetaService } from '../../core/services';
+import { Meta } from '@awg-core/core-models';
+import { MetaService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-home-view',

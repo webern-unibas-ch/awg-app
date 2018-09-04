@@ -3,10 +3,9 @@ import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs/Subscription';
 
-import { DataStreamerService } from '../../core/services';
-import { SearchResponseWithQuery } from '../../views/data-view/models';
-import { ResourceInfo } from '../side-info-models';
-import { ResourceInfoResource } from '../side-info-models/resource-info-resources.model';
+import { DataStreamerService } from '@awg-core/services';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-models';
 
 
 @Component({

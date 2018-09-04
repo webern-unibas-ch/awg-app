@@ -10,7 +10,7 @@ import {
     ViewChildren
 } from '@angular/core';
 
-import { ResourceDetailImage } from '../../../../../models';
+import { ResourceDetailImage } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-html-content-imageobjects',

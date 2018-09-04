@@ -1,4 +1,4 @@
-import { SearchResponseJson } from '../../../shared/api-objects/index';
+import { SearchResponseJson } from '@awg-shared/api-objects';
 
 export class SearchResponseWithQuery {
     data: SearchResponseJson;

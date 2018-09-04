@@ -1,5 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { Textcritics } from '../../../models/textcritics.model';
+
+import { Textcritics } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-textcritics',

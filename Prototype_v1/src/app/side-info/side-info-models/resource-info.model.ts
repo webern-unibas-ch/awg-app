@@ -1,4 +1,4 @@
-import {CurrentResource, NextResource, PreviousResource, ResourceInfoResource} from './resource-info-resources.model';
+import { CurrentResource, NextResource, PreviousResource, ResourceInfoResource } from './resource-info-resources.model';
 import { ResourceInfoSearchResults } from './resource-info-search-results.model';
 
 export class ResourceInfo {
@@ -7,7 +7,6 @@ export class ResourceInfo {
         current: ResourceInfoResource;
         next: ResourceInfoResource;
         previous: ResourceInfoResource;
-    }
-
+    };
 
 }

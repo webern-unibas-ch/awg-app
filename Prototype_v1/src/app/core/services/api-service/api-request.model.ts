@@ -1,6 +1,6 @@
 import { HttpHeaders, HttpParams } from '@angular/common/http';
 
-import { AppConfig } from '../../../app.config';
+import { AppConfig } from '@awg-app/app.config';
 
 export class ApiRequest {
     headers: HttpHeaders;

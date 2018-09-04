@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
 import { HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { SharedModule } from '@awg-shared/shared.module';
 
 import { ResourceDetailModule } from './data-outlets/resource-detail/resource-detail.module';
 import { DataRoutingModule, routedComponents } from './data-routing.module';

@@ -22,7 +22,7 @@ export function createJitCompiler () {
 */
 
 //import { CompileService, CompileServiceConfig,    } from "./CompileService";
-import { CompileHtmlAttribute } from "./compile-html.attribute";
+import { CompileHtmlAttribute } from './compile-html.attribute';
 
 
 export class CompileServiceConfig {

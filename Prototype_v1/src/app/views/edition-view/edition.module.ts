@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule } from '../../shared/shared.module';
+import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionDetailModule } from './edition-outlets/edition-detail/edition-detail.module';
 import { ReportModule } from './edition-outlets/report/report.module';

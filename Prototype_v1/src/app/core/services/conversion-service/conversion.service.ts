@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs/Observable';
 import 'rxjs/add/observable/of';
 
-import { ApiService } from '../api-service';
+import { ApiService } from '@awg-core/services/api-service';
 import {
     ContextJson,
     GeoDataJson,
@@ -16,15 +16,15 @@ import {
     SelectionJson,
     SelectionItemJson,
     SubjectItemJson
-} from '../../../shared/api-objects';
+} from '@awg-shared/api-objects';
 import {
     ResourceDetail,
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks, ResourceDetailImage, ResourceDetailContent
-} from '../../../views/data-view/models';
-import { GeoNames } from '../../core-models';
+} from '@awg-views/data-view/models';
+import { GeoNames } from '@awg-core/core-models';
 
 declare var htmlConverter;
 declare var dateConverter;

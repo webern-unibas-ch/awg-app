@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Meta } from '../../core/core-models';
-import { MetaService } from '../../core/services';
+import { Meta } from '@awg-core/core-models';
+import { MetaService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-edition-info',

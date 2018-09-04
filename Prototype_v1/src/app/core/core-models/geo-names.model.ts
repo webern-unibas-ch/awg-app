@@ -1,4 +1,4 @@
-import { GeoDataItemJson } from '../../shared/api-objects';
+import { GeoDataItemJson } from '@awg-shared/api-objects';
 
 export class GeoNames {
     gnid:           string;

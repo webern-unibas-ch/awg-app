@@ -5,11 +5,11 @@ import { Subscription } from 'rxjs/Subscription';
 import { map } from 'rxjs/operators';
 import 'rxjs/add/operator/do';
 
-import { ConversionService, DataStreamerService, SideInfoService } from '../../../../core/services';
-import { DataApiService } from '../../services';
+import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
+import { DataApiService } from '@awg-views/data-view/services';
 
-import { SearchResponseJson } from '../../../../shared/api-objects';
-import { SearchResponseWithQuery } from '../../models';
+import { SearchResponseJson } from '@awg-shared/api-objects';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-search-panel',

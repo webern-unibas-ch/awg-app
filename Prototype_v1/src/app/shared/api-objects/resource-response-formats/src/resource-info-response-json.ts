@@ -13,7 +13,7 @@
  * */
 
 import { JsonObject, JsonProperty } from 'json2typescript';
-import { BasicResponseJson, KnoraRights } from '../../basic-message-components';
+import { BasicResponseJson, KnoraRights } from '@awg-shared/api-objects/basic-message-components';
 import { ResinfoJson } from './resinfo-json';
 
 /**

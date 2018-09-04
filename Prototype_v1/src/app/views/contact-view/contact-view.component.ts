@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { MetaService } from '../../core/services/meta-service';
-import { Meta } from '../../core/core-models';
+import { MetaService } from '@awg-core/services';
+import { Meta } from '@awg-core/core-models';
 
 @Component({
     selector: 'awg-contact-view',

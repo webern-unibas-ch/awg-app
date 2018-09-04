@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Textcritics } from '../models/textcritics.model';
+import { Textcritics } from '@awg-views/edition-view/models';
 
 @Injectable()
 export class EditionService {

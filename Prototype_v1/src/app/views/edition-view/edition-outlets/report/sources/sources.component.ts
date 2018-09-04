@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { SourceList } from '../../../models';
+import { SourceList } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-sources',

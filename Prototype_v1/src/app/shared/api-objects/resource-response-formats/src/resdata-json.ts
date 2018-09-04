@@ -13,7 +13,7 @@
  * */
 
 import { Any, JsonObject, JsonProperty } from 'json2typescript';
-import { KnoraIRI, KnoraRights } from '../../basic-message-components';
+import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-components';
 
 /**
  * Represents information about a resource.
