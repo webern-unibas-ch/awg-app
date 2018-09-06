@@ -26,7 +26,4 @@ export class FolioComponent implements OnInit {
         this.folioFormatOptions.initialOffsetY = 35;
     }
 
-    onReset() {
-        this.initSvgInput();
-    }
 }

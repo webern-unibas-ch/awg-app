@@ -2,96 +2,79 @@
 	"content":
 	[{
 		"folio": "1r",
-		"systems": "14",
+		"systems": "16",
+        "format": {
+            "height": "175",
+            "width": "270"
+        },
         "items": [{
 					"sigle": "Aa:SkI/1a",
 					"measure": "1–2, [3–6]",
                     "sectionPartition": 1,
                     "sections": [{
-                        "startSystem": 1,
-                        "endSystem": 3
+                        "startSystem": 2,
+                        "endSystem": 4
                     }]
                 }, {
 					"sigle": "Aa:SkI/1a",
-					"measure": "[3–6]",
+					"measure": "[7–12]",
                     "sectionPartition": 1,
                     "sections": [{
-                        "position": 2,
-                        "startSystem": 4,
-                        "endSystem": 6
+                        "position": 1,
+                        "startSystem": 6,
+                        "endSystem": 9
                     }]
                 }, {
                     "sigle": "Aa:SkI/1a",
-                    "measure": "[7–12]",
-                    "sectionPartition": 2,
-                    "sections": [{
-                        "position": 1,
-                        "startSystem": 7,
-                        "endSystem": 9
-                    }, {
-                        "position": 2,
-                        "startSystem": 7,
-                        "endSystem": 10
-                    }]
-                },{
-					"sigle": "Aa:SkI/1a",
-					"measure": "[13–17]",
-                    "sectionPartition": 2,
+                    "measure": "[13–17]",
+                    "sectionPartition": 1,
                     "sections": [{
                         "position": 1,
                         "startSystem": 10,
                         "endSystem": 14
-                    }, {
-                        "position": 2,
-                        "startSystem": 11,
-                        "endSystem": 13
                     }]
                 }]
 	},
     {
 		"folio": "1v",
-		"systems": "14",
+		"systems": "16",
+        "format": {
+            "height": "175",
+            "width": "270"
+        },
         "items": [{
 					"sigle": "Aa:SkI/4",
-					"measure": "10, [11–12]",
-                    "sectionPartition": 3,
+					"measure": "10–11",
+                    "sectionPartition": 2,
                     "sections": [{
                         "position": 1,
-                        "startSystem": 4,
-                        "endSystem": 5
-                    }, {
-                        "position": 2,
-                        "startSystem": 4,
-                        "endSystem": 7
-                    }, {
-                        "position": 3,
                         "startSystem": 4,
                         "endSystem": 7
                     }]
                 }, {
 					"sigle": "Aa:SkI/5",
 					"measure": "10–11",
-                    "sectionPartition": 3,
+                    "sectionPartition": 2,
                     "sections": [{
-                        "position": 1,
+                        "position": 2,
                         "startSystem": 6,
                         "endSystem": 9
                     }]
                 },{
 					"sigle": "Aa:SkI/3",
 					"measure": "10–11",
-                    "sectionPartition": 3,
+                    "sectionPartition": 2,
                     "sections": [{
-                        "position": 2,
+                        "position": 1,
                         "startSystem": 9,
                         "endSystem": 12
                     }]
                 },{
 					"sigle": "Aa:SkI/2",
-					"measure": "10–11",
-                    "sectionPartition": 3,
+					"measure": "10, [11–12[",
+                    "sectionPartition": 2,
                     "sections": [{
-                        "position": 3,
+                        "position": 2,
                         "startSystem": 12,
                         "endSystem": 14
                     }]
@@ -100,6 +83,10 @@
 	{
 		"folio": "2r",
 		"systems": "16",
+        "format": {
+            "height": "175",
+            "width": "270"
+        },
         "items": [{
 				"sigle": "Aa:SkI/1b",
 				"measure": "[18–22]",
@@ -110,44 +97,21 @@
             }, {
 				"sigle": "Aa:SkI/1b",
 				"measure": "[23–24]",
-                "sectionPartition": 4,
+                "sectionPartition": 1,
                 "sections": [{
                     "position": 1,
-                    "startSystem": 11,
-                    "endSystem": 15
-                }]
-            }, {
-                "sigle": "Aa:SkI/1c",
-                "measure": "[23–24]",
-                "sectionPartition": 4,
-                "sections": [{
-                    "position": 2,
                     "startSystem": 12,
                     "endSystem": 15
-                }]
-            }, {
-                "sigle": "Aa:SkI/1d",
-                "measure": "[23–24]",
-                "sectionPartition": 4,
-                "sections": [{
-                    "position": 3,
-                    "startSystem": 12,
-                    "endSystem": 15
-                }]
-            }, {
-                "sigle": "Aa:SkI/1e",
-                "measure": "[23–24]",
-                "sectionPartition": 4,
-                "sections": [{
-                    "position": 4,
-                    "startSystem": 12,
-                    "endSystem": 16
                 }]
             }]
 	},
     {
 		"folio": "2v",
-		"systems": "12",
+		"systems": "16",
+        "format": {
+            "height": "175",
+            "width": "270"
+        },
         "items": []
 	}]
 }
