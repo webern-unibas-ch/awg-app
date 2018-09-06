@@ -24,19 +24,9 @@ export class FolioComponent implements OnInit {
         this.folioFormatOptions.formatY = 267;
         this.folioFormatOptions.initialOffsetX = 50;
         this.folioFormatOptions.initialOffsetY = 35;
-
-        // this.onSubmit();
     }
 
     onReset() {
         this.initSvgInput();
-        this.onSubmit();
     }
-
-    onSubmit() {
-        console.log('#FOLIO: clicked on submit');
-        // this.getContent();
-    }
-
-
 }

@@ -4,7 +4,6 @@ import { SharedModule} from '@awg-shared/shared.module';
 import { FolioService } from './folio.service';
 
 import { FolioComponent } from './folio.component';
-import { FolioFormComponent } from './folio-form/folio-form.component';
 import { FolioSvgGridComponent } from './folio-svg-grid/folio-svg-grid.component';
 
 
@@ -13,7 +12,6 @@ import { FolioSvgGridComponent } from './folio-svg-grid/folio-svg-grid.component
         SharedModule
     ],
     declarations: [
-        FolioFormComponent,
         FolioComponent,
         FolioSvgGridComponent
     ],
