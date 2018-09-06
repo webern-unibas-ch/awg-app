@@ -1,5 +1,5 @@
 import { FolioSvgPoint } from './folio-svg-point.model';
-import { FolioDataSection } from './folio-data-section.model';
+import { FolioDataSection } from './folio-data.model';
 import { FolioSvgLine } from './folio-svg-line.model';
 
 

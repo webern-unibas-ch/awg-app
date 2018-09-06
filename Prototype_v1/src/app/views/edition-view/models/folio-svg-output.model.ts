@@ -1,6 +1,5 @@
-import { FolioSvgOutputItem } from './folio-svg-output-item.model';
-import { FolioSvgOutputSheet } from './folio-svg-output-sheet.model';
-import { FolioSvgOutputSystems } from './folio-svg-output-systems.model';
+import { FolioSvgPoint } from './folio-svg-point.model';
+import { FolioSvgLine } from './folio-svg-line.model';
 
 export class FolioSvgOutput {
     sheet : FolioSvgOutputSheet;
@@ -12,4 +11,25 @@ export class FolioSvgOutput {
         this.systems = systems;
         this.itemsArray = itemsArray;
     }
+}
+
+
+export class FolioSvgOutputSheet {
+    folio: string;
+    upperLeftCorner: FolioSvgPoint;
+    lowerRightCorner: FolioSvgPoint;
+}
+
+export class FolioSvgOutputSystems {
+    lineLabelArray: FolioSvgPoint[];
+    lineArrays: FolioSvgLine[][];
+}
+
+export class FolioSvgOutputItem {
+    sigle: string;
+    measure: string;
+    upperLeftCorner: FolioSvgPoint;
+    width: number;
+    height: number;
+    lineArray: FolioSvgLine[];
 }
