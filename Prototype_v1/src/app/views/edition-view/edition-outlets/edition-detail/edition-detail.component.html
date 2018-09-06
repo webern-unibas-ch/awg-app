@@ -23,14 +23,6 @@
         (selectSheetRequest)="onSheetSelect($event)">
     </awg-edition-sheet-control>
 
-    <!-- table for TkA -->
-    <awg-edition-tka-table
-        *ngIf="showTkA && selectedTextcritics"
-        [textcritics]="selectedTextcritics"
-        (openModalRequest)="modal.open($event)"
-        (selectSheetRequest)="onSheetSelect($event)">
-    </awg-edition-tka-table>
-
     <!-- svg panel -->
     <awg-edition-svg-panel
         *ngIf="selectedSheet"
@@ -39,5 +31,16 @@
         (selectSheetRequest)="onSheetSelect($event)"
         (selectTextcriticRequest)="onTextcriticSelect($event)">
     </awg-edition-svg-panel>
+
+    <!-- table for TkA -->
+    <ng-container *ngIf="showTkA && selectedTextcritics">
+        <h4>Textkritischer Kommentar:</h4>
+        <awg-edition-tka-table
+            [textcritics]="selectedTextcritics"
+            (openModalRequest)="modal.open($event)"
+            (selectSheetRequest)="onSheetSelect($event)">
+        </awg-edition-tka-table>
+    </ng-container>
+
 
 </div>
