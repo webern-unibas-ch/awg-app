@@ -22,7 +22,9 @@ import {
     ResourceDetailHeader,
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
-    ResourceDetailGroupedIncomingLinks, ResourceDetailImage, ResourceDetailContent
+    ResourceDetailGroupedIncomingLinks,
+    ResourceDetailImage,
+    ResourceDetailContent
 } from '@awg-views/data-view/models';
 import { GeoNames } from '@awg-core/core-models';
 

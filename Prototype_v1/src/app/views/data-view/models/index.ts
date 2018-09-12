@@ -14,8 +14,8 @@ import { ResourceDetailHeader } from './resource-detail-header.model';
 import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailIncomingLinks } from './resource-detail-incoming-links.model';
 import { ResourceDetailProps } from './resource-detail-props.model';
-import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links';
-import { SearchResponseWithQuery } from './search-response-with-query';
+import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
+import { SearchResponseWithQuery } from './search-response-with-query.model';
 
 export {
     ResourceData,
