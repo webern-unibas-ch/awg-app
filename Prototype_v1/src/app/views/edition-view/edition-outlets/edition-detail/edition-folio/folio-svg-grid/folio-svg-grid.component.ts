@@ -3,14 +3,12 @@ import { AfterViewChecked, Component, Input, OnChanges, OnInit, SimpleChanges } 
 import {
     FolioData,
     FolioFormatOptions,
-    FolioSvgLine,
     FolioSvgOutput,
-    FolioSvgOutputItem,
     ViewBox
 } from '@awg-views/edition-view/models';
 import { FolioService } from '../folio.service';
 
-// embed SnapSvg (snapsvg.io)
+// embedded SnapSvg (snapsvg.io)
 declare var Snap: any;
 
 
@@ -19,9 +17,9 @@ declare var Snap: any;
     templateUrl: './folio-svg-grid.component.html',
     styleUrls: ['./folio-svg-grid.component.css']
 })
-export class FolioSvgGridComponent implements AfterViewChecked, OnChanges {
-    @Input() folioFormatOptions: FolioFormatOptions;
+export class FolioSvgGridComponent implements AfterViewChecked, OnInit {
     @Input() folioData: FolioData[];
+    @Input() folioFormatOptions: FolioFormatOptions;
 
     // init
     folioSvgOutputData: FolioSvgOutput[] = [];
@@ -33,10 +31,11 @@ export class FolioSvgGridComponent implements AfterViewChecked, OnChanges {
 
     constructor(private folioService: FolioService) { }
 
-    ngOnChanges(changes: SimpleChanges) {
-        this.prepareViewBoxData();
+
+    ngOnInit() {
         this.prepareFolioSvgOutputData();
     }
+
 
     ngAfterViewChecked() {
         this.renderSnapSvg();
@@ -47,31 +46,22 @@ export class FolioSvgGridComponent implements AfterViewChecked, OnChanges {
      * FolioSvgOutputData
      */
     prepareFolioSvgOutputData(): void {
-        console.info('--- prepareFolioSvgOutputData ---');
         for (let sheetIndex = 0; sheetIndex < this.folioFormatOptions.numberOfSheets; sheetIndex++) {
+
+            // prepare number of systems
             const numberOfSystems = parseInt(this.folioData[sheetIndex].systems, 10);
             if (isNaN(numberOfSystems)) { return; }
 
-            this.folioFormatOptions.formatX = this.folioData[sheetIndex].format.width;
-            this.folioFormatOptions.formatY = this.folioData[sheetIndex].format.height;
+            // prepare folio width & height
+            this.folioFormatOptions.formatX = +this.folioData[sheetIndex].format.width;
+            this.folioFormatOptions.formatY = +this.folioData[sheetIndex].format.height;
 
+            // prepare viewbox settings
             this.vb[sheetIndex] = this.folioService.getViewBoxData(this.folioFormatOptions);
 
+            // prepare output data
             this.folioSvgOutputData[sheetIndex] = this.folioService.getFolioSvgOutputData(this.folioFormatOptions, this.folioData[sheetIndex], numberOfSystems);
         }
-        console.info('#folioSvgOutputData: ', this.folioSvgOutputData);
-        console.log('--- /prepareFolioSvgOutputData ---');
-    }
-
-
-    /**********
-     * viewBox
-     */
-    prepareViewBoxData(): void {
-        console.info('--- prepareViewBoxData ---');
-        // this.vb = this.folioService.getViewBoxData(this.folioFormatOptions);
-        console.log('#viewBox: ', this.vb);
-        console.log('--- /prepareViewBoxData ---');
     }
 
 
@@ -79,60 +69,28 @@ export class FolioSvgGridComponent implements AfterViewChecked, OnChanges {
      * rendering of SVG
      */
     renderSnapSvg() {
-        console.info('--- renderSnapSvg ---');
 
-        /* apply values from folioSvgOutputData to render the svg graphic with snapsvg */
-        this.folioSvgOutputData.forEach((svgFolio: FolioSvgOutput, index: number) => {
+        /* apply values from folioSvgOutputData to render the svg image with snapsvg */
+        this.folioSvgOutputData.forEach((svgFolio: FolioSvgOutput, folioIndex: number) => {
 
             // init canvas and apply viewBox attributes
             const snapId: string = '#folio-' + svgFolio.sheet.folio;
             let snapCanvas: any = Snap(snapId);
-            console.log(snapCanvas);
             if (!snapCanvas) { return; }
 
 
             /**********
              * viewBox
              */
-            snapCanvas.attr({
-                viewBox: this.vb[index].viewBox,
-                width: this.vb[index].viewBoxWidth,
-                height: this.vb[index].viewBoxHeight,
-                version: '1.1',
-                xmlns: 'http://www.w3.org/2000/svg',
-                xlink: 'http://www.w3.org/1999/xlink',
-                preserveAspectRatio: 'xMinYMin meet'
-            });
+            this.folioService.setSvgViewBox(snapCanvas, this.vb[folioIndex]);
 
 
             /**********
-             * sheet
+             * svg content
              */
-            const snapSheetGroup: any = snapCanvas.group();
-            this.folioService.renderSheet(snapCanvas, snapSheetGroup, svgFolio, this.bgColor);
-
-
-            /**********
-             * systems
-             */
-            this.folioService.renderSystems(snapCanvas, snapSheetGroup, svgFolio, this.bgColor);
-
-
-            /**********
-             * items
-             */
-            this.folioService.renderItems(snapCanvas, snapSheetGroup, svgFolio, this.fgColor);
-
+            this.folioService.renderSvg(snapCanvas, svgFolio, this.bgColor, this.fgColor);
         });
-
-        console.info('--- /renderSnapSvg ---');
     }
-
-
-
-
-
-
 
 
 }

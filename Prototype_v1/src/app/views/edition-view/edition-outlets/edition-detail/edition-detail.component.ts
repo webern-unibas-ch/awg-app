@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { FolioData, FolioFormatOptions, Sheet, Textcritics } from '@awg-views/edition-view/models';
+import { FolioData, Sheet, Textcritics } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -19,7 +19,6 @@ export class EditionDetailComponent implements OnInit {
     selectedTextcritics: Textcritics[];
 
     folioData: FolioData[];
-    folioFormatOptions: FolioFormatOptions = new FolioFormatOptions();
 
     errorMessage: string = undefined;
     showTkA: boolean = false;
@@ -58,11 +57,6 @@ export class EditionDetailComponent implements OnInit {
             .subscribe(
                 (data: FolioData[]) => {
                     this.folioData = data['content'];
-                    console.log('FolioComponent# folioData: ', this.folioData);
-
-                    // set number of sheets
-                    this.folioFormatOptions.numberOfSheets = this.folioData.length;
-                    console.log('FolioComponent# folioFormatOptions: ', this.folioFormatOptions);
                 });
     }
 

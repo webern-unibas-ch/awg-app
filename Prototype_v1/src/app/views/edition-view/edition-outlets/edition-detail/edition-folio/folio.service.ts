@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 
 import {
     FolioCalculation,
@@ -7,10 +7,10 @@ import {
     FolioDataSection,
     FolioFormatOptions,
     FolioSvgLine,
+    FolioSvgOutput,
     FolioSvgOutputItem,
     FolioSvgOutputSheet,
     FolioSvgOutputSystems,
-    FolioSvgOutput,
     FolioSvgPoint,
     ViewBox
 } from '@awg-views/edition-view/models';
@@ -36,11 +36,49 @@ export class FolioService {
     private zoomFactor: number;                     // zoom factor
 
 
+    /******************
+     * set viewBox of snapCanvas svg
+     */
+    setSvgViewBox(snapCanvas: any, vb: ViewBox) {
+        snapCanvas.attr({
+            viewBox: vb.viewBox,
+            width: vb.viewBoxWidth,
+            height: vb.viewBoxHeight,
+            version: '1.1',
+            xmlns: 'http://www.w3.org/2000/svg',
+            xlink: 'http://www.w3.org/1999/xlink',
+            preserveAspectRatio: 'xMinYMin meet'
+        });
+    }
+
+
+    /******************
+     * prepare rendering of snapCanvas svg
+     */
+    renderSvg(snapCanvas: any, svgFolio: FolioSvgOutput, bgColor: string, fgColor: string) {
+        /**********
+         * sheet
+         */
+        const snapSheetGroup: any = snapCanvas.group();
+        this.renderSheet(snapCanvas, snapSheetGroup, svgFolio, bgColor);
+
+
+        /**********
+         * systems
+         */
+        this.renderSystems(snapCanvas, snapSheetGroup, svgFolio, bgColor);
+
+
+        /**********
+         * items
+         */
+        this.renderItems(snapCanvas, snapSheetGroup, svgFolio, fgColor);
+    }
 
     /******************
      * prepare rendering of sheet
      */
-    renderSheet(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, bgColor: string): void {
+    private renderSheet(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, bgColor: string): void {
         // init
         const sheetID = svgFolio.sheet.folio;
         const x1 = svgFolio.sheet.upperLeftCorner.x;
@@ -74,7 +112,7 @@ export class FolioService {
     /**********
      * prepare rendering of systems
      */
-    renderSystems(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, bgColor: string): void {
+    private renderSystems(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, bgColor: string): void {
         svgFolio.systems.lineArrays.forEach((lineArray: FolioSvgLine[], systemIndex: number) => {
             // notational system
             const snapSystemLineGroup: any = snapCanvas.group();
@@ -124,7 +162,7 @@ export class FolioService {
     /**********
      * prepare rendering of items
      */
-    renderItems(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, fgColor: string): void {
+    private renderItems(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, fgColor: string): void {
         svgFolio.itemsArray.forEach((item: FolioSvgOutputItem) => {
             if (!item) { return; }
 
@@ -175,9 +213,12 @@ export class FolioService {
             // item link
             // see https://stackoverflow.com/questions/37592540/clickable-link-on-a-svg-circle-text-or-line
             const snapItemLink: any = snapCanvas.el('a');
-            snapItemLink.node.setAttributeNS('http://www.w3.org/1999/xlink', 'href', item.measure);
+
+            // TODO: continue
+            const encodedItemSigle = encodeURI(item.sigle);
+            snapItemLink.node.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'edition/detail;id=' + encodedItemSigle);
             snapItemLink.attr({
-                target: '_blank'
+                // target: '_blank'
             });
             // add shape and label to item link
             snapItemLink.add(snapItemShape);
@@ -203,14 +244,11 @@ export class FolioService {
 
         // set viewBoxWidth from formatX + doubled offset
         const viewBoxWidth = (folioFormatOptions.formatX + 2 * folioFormatOptions.initialOffsetX) * this.zoomFactor;
-
         // set viewBoxHeight for one row
         const viewBoxHeight = (folioFormatOptions.formatY + 2 * folioFormatOptions.initialOffsetY) * this.zoomFactor;
 
-        // set new viewBoxModel
-        const vb: ViewBox = new ViewBox(viewBoxWidth, viewBoxHeight);
-
-        return vb;
+        // return new viewBoxModel
+        return new ViewBox(viewBoxWidth, viewBoxHeight);
     }
 
 
@@ -257,8 +295,6 @@ export class FolioService {
         const sheet = new FolioSvgOutputSheet();
         this.calculation.sheet = new FolioCalculationSheet();
 
-        console.log(this.calculation);
-
         // set calculated values for offsets (= upper left starting point), width & height
         this.calculation.sheet.offset = new FolioSvgPoint(folioFormatOptions.initialOffsetX, folioFormatOptions.initialOffsetY);
         this.calculation.sheet.width = folioFormatOptions.formatX * this.zoomFactor;
@@ -284,8 +320,6 @@ export class FolioService {
 
         // iterate over items
         items.forEach((item: FolioDataItems, itemsIndex: number) => {
-
-            console.warn('NEW ITEM', item);
 
             // init
             let sectionPartition: number = 1;   // default: 1 section

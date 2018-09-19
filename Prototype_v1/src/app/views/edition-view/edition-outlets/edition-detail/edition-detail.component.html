@@ -9,23 +9,19 @@
     <!-- body with embedded svg's -->
 
     <!-- folio overview -->
-    <awg-edition-folio
-        *ngIf="folioData && folioFormatOptions"
-        [folioData]="folioData"
-        [folioFormatOptions]="folioFormatOptions">
+    <awg-edition-folio *ngIf="folioData"
+        [folioData]="folioData">
     </awg-edition-folio>
 
     <!-- image control -->
-    <awg-edition-sheet-control
-        *ngIf="sheetsData && selectedSheet"
+    <awg-edition-sheet-control *ngIf="sheetsData && selectedSheet"
         [sheets]="sheetsData"
         [selectedSheet]="selectedSheet"
         (selectSheetRequest)="onSheetSelect($event)">
     </awg-edition-sheet-control>
 
     <!-- svg panel -->
-    <awg-edition-svg-panel
-        *ngIf="selectedSheet"
+    <awg-edition-svg-panel *ngIf="selectedSheet"
         [selectedSheet]="selectedSheet"
         [selectedTextcriticId]="selectedTextcriticId"
         (selectSheetRequest)="onSheetSelect($event)"

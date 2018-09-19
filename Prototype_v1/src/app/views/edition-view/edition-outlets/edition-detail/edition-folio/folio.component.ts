@@ -10,7 +10,8 @@ import { FolioData, FolioFormatOptions } from '@awg-views/edition-view/models';
 })
 export class FolioComponent implements OnInit {
     @Input() folioData: FolioData[];
-    @Input() folioFormatOptions: FolioFormatOptions;
+
+    folioFormatOptions: FolioFormatOptions = new FolioFormatOptions();
 
     constructor( ) { }
 
@@ -24,6 +25,7 @@ export class FolioComponent implements OnInit {
         this.folioFormatOptions.formatY = 267;
         this.folioFormatOptions.initialOffsetX = 50;
         this.folioFormatOptions.initialOffsetY = 35;
+        this.folioFormatOptions.numberOfSheets = this.folioData.length;
     }
 
 }
