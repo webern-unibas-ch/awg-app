@@ -10,11 +10,11 @@
 import { FolioCalculation } from './folio-calculation.model';
 
 import {
-    FolioData,
-    FolioDataFormat,
-    FolioDataItems,
-    FolioDataSection
-} from './folio-data.model';
+    Folio,
+    FolioFormat,
+    FolioItems,
+    FolioSection
+} from './folio.model';
 
 import { FolioFormatOptions } from './folio-format-options.model';
 import { FolioSvgLine } from './folio-svg-line.model';
@@ -33,12 +33,12 @@ import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
 export {
+    Folio,
     FolioCalculation,
-    FolioData,
-    FolioDataFormat,
-    FolioDataItems,
-    FolioDataSection,
+    FolioFormat,
     FolioFormatOptions,
+    FolioItems,
+    FolioSection,
     FolioSvgLine,
     FolioSvgOutputItem,
     FolioSvgOutputSheet,

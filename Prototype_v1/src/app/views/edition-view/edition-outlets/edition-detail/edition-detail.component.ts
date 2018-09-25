@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { FolioData, Sheet, Textcritics } from '@awg-views/edition-view/models';
+import { Folio, Sheet, Textcritics } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -11,14 +11,13 @@ import { DataService, EditionService } from '@awg-views/edition-view/services';
 })
 export class EditionDetailComponent implements OnInit {
 
+    folioData: Folio[];
     sheetsData: Sheet[];
     textcriticsData: Textcritics[];
 
     selectedSheet: Sheet;
     selectedTextcriticId: string;
     selectedTextcritics: Textcritics[];
-
-    folioData: FolioData[];
 
     errorMessage: string = undefined;
     showTkA: boolean = false;
@@ -55,7 +54,7 @@ export class EditionDetailComponent implements OnInit {
     getFolioData(): void {
         this.dataService.getEditionFolioData()
             .subscribe(
-                (data: FolioData[]) => {
+                (data: Folio[]) => {
                     this.folioData = data['content'];
                 });
     }
@@ -65,7 +64,7 @@ export class EditionDetailComponent implements OnInit {
         this.route.params.forEach((params: Params) => {
             // if there is no id in route params
             // take first entry of sheets object as default
-            let sheetId: string = params['id'] ? params['id'] : Object.keys(this.sheetsData)[0];
+            const sheetId: string = params['id'] ? params['id'] : Object.keys(this.sheetsData)[0];
             this.selectedSheet = this.sheetsData[sheetId];
         });
     }

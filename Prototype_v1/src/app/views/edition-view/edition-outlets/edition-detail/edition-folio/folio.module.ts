@@ -4,7 +4,6 @@ import { SharedModule} from '@awg-shared/shared.module';
 import { FolioService } from './folio.service';
 
 import { FolioComponent } from './folio.component';
-import { FolioSvgGridComponent } from './folio-svg-grid/folio-svg-grid.component';
 
 
 @NgModule({
@@ -12,8 +11,7 @@ import { FolioSvgGridComponent } from './folio-svg-grid/folio-svg-grid.component
         SharedModule
     ],
     declarations: [
-        FolioComponent,
-        FolioSvgGridComponent
+        FolioComponent
     ],
     exports: [ FolioComponent ],
     providers: [ FolioService ],

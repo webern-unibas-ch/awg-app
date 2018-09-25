@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { FolioData, Sheet, Source, Textcritics } from '@awg-views/edition-view/models';
+import { Folio, Sheet, Source, Textcritics } from '@awg-views/edition-view/models';
 
 
 @Injectable()
@@ -42,7 +42,7 @@ export class DataService {
     }
 
 
-    public getEditionFolioData(): Observable<FolioData[]> {
+    public getEditionFolioData(): Observable<Folio[]> {
         return this.getFolioData();
     }
 
@@ -50,7 +50,7 @@ export class DataService {
     /*
      * private functions to prepare http request
      */
-    private getFolioData(): Observable<FolioData[]> {
+    private getFolioData(): Observable<Folio[]> {
         const file = 'folio.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);

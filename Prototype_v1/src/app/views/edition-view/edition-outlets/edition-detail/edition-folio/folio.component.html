@@ -1,6 +1,11 @@
 <!-- embedded svg: Sheet Overview -->
-<awg-edition-grid-svg *ngIf="folioData && folioFormatOptions"
-              [folioData]="folioData"
-              [folioFormatOptions]="folioFormatOptions">
-</awg-edition-grid-svg>
+<div class="container-fluid svgGrid" *ngIf="folioSvgOutput">
+    <div class="row svgRow">
+        <div class="col-sm-6 col-md-{{ 12 / folioSvgOutput.length }} svgCol" *ngFor="let folioSvg of folioSvgOutput">
+
+            <svg id="folio-{{ folioSvg.sheet.folio }}"></svg>
+
+        </div>
+    </div>
+</div>
 

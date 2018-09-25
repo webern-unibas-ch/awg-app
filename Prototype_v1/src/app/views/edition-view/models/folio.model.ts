@@ -1,24 +1,24 @@
-export class FolioData {
+export class Folio {
     folio: string;
     systems: string;
-    format: FolioDataFormat;
-    items: [ FolioDataItems ];
+    format: FolioFormat;
+    items: [ FolioItems ];
 }
 
 
-export class FolioDataFormat {
+export class FolioFormat {
     height: number;
     width: number;
 }
 
-export class FolioDataItems {
+export class FolioItems {
     sigle: string;
     measure: string;
     numberOfSections?: number;
-    sections?: [ FolioDataSection ];
+    sections?: [ FolioSection ];
 }
 
-export class FolioDataSection {
+export class FolioSection {
     startSystem: number;
     endSystem: number;
     position?: number;
