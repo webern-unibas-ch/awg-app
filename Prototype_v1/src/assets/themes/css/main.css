@@ -107,23 +107,19 @@ footer {
 }
 
 /****** SVG ******/
-svg {
+.edition-svg {
     box-shadow: 5px 5px 6px #cccccc;
     border: 1px solid #eeeeee;
 }
-.svg-item {
+.edition-svg-item {
     fill: orange;
     opacity: 0.2;
 }
-/*.svg_system {
-    fill: red;
-    opacity: 0.2;
-}*/
-.svg-measure, .svg-system, .svg-linkbox {
+.edition-svg-measure, .edition-svg-system, .edition-svg-linkbox {
     fill: white;
     opacity: 0;
 }
-.svg-measure:hover, .svg-system:hover, .svg-linkbox:hover, .svg-item:hover {
+.edition-svg-measure:hover, .edition-svg-system:hover, .edition-svg-linkbox:hover, .edition-svg-item:hover {
     fill: #8bb82d; /* some lighter OliveDrab*/
     opacity: 0.2;
 }
