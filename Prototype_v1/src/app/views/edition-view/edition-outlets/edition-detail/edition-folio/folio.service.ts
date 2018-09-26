@@ -14,6 +14,7 @@ import {
 @Injectable()
 export class FolioService {
 
+    private itemsOffsetCorrection: number = 4;      // offsetCorrection to avoid collision between items
 
     /******************
      * get data for dynamic viewBox
@@ -232,7 +233,7 @@ export class FolioService {
     getFolioSvgOutputData(folioFormatOptions: FolioFormatOptions, folioData: Folio): FolioSvgOutput {
 
         // calculate values for svg
-        const calculation = new FolioCalculation(folioFormatOptions, folioData, this.zoomFactor);
+        const calculation = new FolioCalculation(folioFormatOptions, folioData, this.itemsOffsetCorrection);
 
         // get svg output data from calculation
         const folioSvgOutput: FolioSvgOutput = new FolioSvgOutput(calculation);

@@ -66,17 +66,18 @@ export class FolioCalculationSystems {
 
 
 export class FolioCalculation {
+    itemsOffsetCorrection: number;
     numberOfSystems: number;
     zoomFactor: number;
-    itemsOffsetCorrection: number;
     sheet: FolioCalculationSheet;
     systems: FolioCalculationSystems;
     itemsArray: FolioCalculationItem[];
 
-    constructor(options: FolioFormatOptions, folioData: Folio, zoom?: number, itemOffsetCorrection?: number) {
-        this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
-        this.zoomFactor = zoom ? zoom : options.factor;
+    constructor(options: FolioFormatOptions, folioData: Folio, itemOffsetCorrection?: number) {
         this.itemsOffsetCorrection = itemOffsetCorrection ? itemOffsetCorrection : 0;
+        this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
+        this.zoomFactor = options.factor;
+
         this.sheet = this.getSheet(options, folioData.folio);
         this.systems = this.getSystems();
         this.itemsArray = this.getItemsArray(folioData.items);
