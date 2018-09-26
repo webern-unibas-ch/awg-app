@@ -14,23 +14,14 @@ import {
 @Injectable()
 export class FolioService {
 
-    private zoomFactor: number;                     // zoom factor
-
 
     /******************
      * get data for dynamic viewBox
      */
     getViewBoxData(folioFormatOptions: FolioFormatOptions): ViewBox {
 
-        this.zoomFactor = folioFormatOptions.factor;
-
-        // set viewBoxWidth from formatX + doubled offset
-        const viewBoxWidth = (folioFormatOptions.formatX + 2 * folioFormatOptions.initialOffsetX) * this.zoomFactor;
-        // set viewBoxHeight for one row
-        const viewBoxHeight = (folioFormatOptions.formatY + 2 * folioFormatOptions.initialOffsetY) * this.zoomFactor;
-
         // return new viewBoxModel
-        return new ViewBox(viewBoxWidth, viewBoxHeight);
+        return new ViewBox(folioFormatOptions);
     }
 
 

@@ -1,11 +1,16 @@
+import { FolioFormatOptions } from './folio-format-options.model';
+
 export class ViewBox {
-    viewBoxWidth: number;
-    viewBoxHeight: number;
+    viewBoxWidth: string;
+    viewBoxHeight: string;
     viewBox: string;
 
-    constructor(width: number, height: number) {
-        this.viewBoxWidth = width;
-        this.viewBoxHeight = height;
-        this.viewBox = '0 0 ' + this.viewBoxWidth + ' ' + this.viewBoxHeight;
+    constructor(options: FolioFormatOptions) {
+        const width = (options.formatX + 2 * options.initialOffsetX) * options.factor;
+        const height = (options.formatY + 2 * options.initialOffsetY) * options.factor;
+        this.viewBoxWidth = '100%';
+        this.viewBoxHeight = '100%';
+        this.viewBox = '0 0 ' + width + ' ' + height;
     }
+
 }
