@@ -30,33 +30,23 @@ export class EditionDetailComponent implements OnInit {
     ) { }
 
     ngOnInit() {
-        this.getEditionData();
-        this.getFolioData();
+        this.getEditionDetailData();
     }
 
 
     // get edition data
-    getEditionData() {
+    getEditionDetailData() {
         this.dataService.getEditionDetailData()
-            .subscribe((data: [Sheet[], Textcritics[]]) => {
-                    this.sheetsData = data[0];
-                    this.textcriticsData = data[1];
+            .subscribe((data: [Folio[], Sheet[], Textcritics[]]) => {
+                    this.folioData = data[0]['content'];
+                    this.sheetsData = data[1];
+                    this.textcriticsData = data[2];
                     if (this.sheetsData) { this.getRouteParams(); }
                 },
                 error => {
                     this.errorMessage = <any>error;
                 }
             );
-    }
-
-
-    // get folio data
-    getFolioData(): void {
-        this.dataService.getEditionFolioData()
-            .subscribe(
-                (data: Folio[]) => {
-                    this.folioData = data['content'];
-                });
     }
 
 

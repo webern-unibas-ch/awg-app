@@ -26,8 +26,9 @@ export class DataService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    public getEditionDetailData(): Observable<[Sheet[], Textcritics[]]> {
+    public getEditionDetailData(): Observable<[Folio[], Sheet[], Textcritics[]]> {
         return Observable.forkJoin(
+            this.getFolioData(),
             this.getSheetsData(),
             this.getTextcriticsData()
         );
@@ -39,11 +40,6 @@ export class DataService {
             this.getSourceListData(),
             this.getTextcriticsData()
         );
-    }
-
-
-    public getEditionFolioData(): Observable<Folio[]> {
-        return this.getFolioData();
     }
 
 
