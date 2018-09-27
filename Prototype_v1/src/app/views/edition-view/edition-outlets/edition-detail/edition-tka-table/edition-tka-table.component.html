@@ -9,7 +9,7 @@
             </tr>
         </thead>
         <tbody>
-            <tr *ngFor="let textcritic of textcritics">
+            <tr *ngFor="let textcritic of selectedTextcritics">
                 <td>{{ textcritic.measure }}</td>
                 <td>{{ textcritic.system }}</td>
                 <td [innerHTML]="textcritic.location"></td>

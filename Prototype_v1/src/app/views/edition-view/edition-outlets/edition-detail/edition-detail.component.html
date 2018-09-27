@@ -12,47 +12,21 @@
         <awg-edition-convolute *ngIf="folioData && selectedSheet"
                                [folioData]="folioData"
                                [selectedSheet]="selectedSheet"
-                               (openModalRequest)="openModal($event)"
+                               (openModalRequest)="modal.open($event)"
                                (selectSheetRequest)="onSheetSelect($event)">
         </awg-edition-convolute>
 
 
         <!-- accolade view -->
-        <div class="panel panel-default" id="accoladeView">
-            <div class="panel-heading">
-                <h4 class="panel-title">
-                    <a data-toggle="collapse" (click)="togglePanel('accolade')">
-                        Edierter Notentext
-                    </a>
-                </h4>
-            </div>
-            <div class="panel-collapse collapse" [class.in]="!showAccoladePanel">
-                <div class="panel-body">
-                    <awg-edition-sheet-control *ngIf="sheetsData && selectedSheet"
-                        [sheets]="sheetsData"
-                        [selectedSheet]="selectedSheet"
-                        (selectSheetRequest)="onSheetSelect($event)">
-                    </awg-edition-sheet-control>
-
-                    <!-- svg panel -->
-                    <awg-edition-svg-panel *ngIf="selectedSheet"
-                        [selectedSheet]="selectedSheet"
-                        [selectedTextcriticId]="selectedTextcriticId"
-                        (selectSheetRequest)="onSheetSelect($event)"
-                        (selectTextcriticRequest)="onTextcriticSelect($event)">
-                    </awg-edition-svg-panel>
-
-                    <!-- table for TkA -->
-                    <ng-container *ngIf="showTkA && selectedTextcritics">
-                        <h4>Textkritischer Kommentar:</h4>
-                        <awg-edition-tka-table
-                            [textcritics]="selectedTextcritics"
-                            (openModalRequest)="modal.open($event)"
-                            (selectSheetRequest)="onSheetSelect($event)">
-                        </awg-edition-tka-table>
-                    </ng-container>
-                </div>
-            </div>
-        </div>
+        <awg-edition-accolade *ngIf="sheetsData && selectedSheet"
+                              [sheetsData]="sheetsData"
+                              [selectedSheet]="selectedSheet"
+                              [selectedTextcritics]="selectedTextcritics"
+                              [selectedTextcriticId]="selectedTextcriticId"
+                              [showTkA]="showTkA"
+                              (openModalRequest)="modal.open($event)"
+                              (selectSheetRequest)="onSheetSelect($event)"
+                              (selectTextcriticRequest)="onTextcriticSelect($event)">
+        </awg-edition-accolade>
 
 </div>

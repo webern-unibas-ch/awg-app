@@ -6,7 +6,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     styleUrls: ['./edition-tka-table.component.css']
 })
 export class EditionTkaTableComponent implements OnInit {
-    @Input() textcritics: string[];
+    @Input() selectedTextcritics: string[];
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 

@@ -11,7 +11,7 @@ export class EditionSvgPanelComponent implements OnInit {
     @Input() selectedSheet: Sheet;
     @Input() selectedTextcriticId: string;
     @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectTextcriticRequest: EventEmitter<any> = new EventEmitter();
+    @Output() selectTextcriticRequest: EventEmitter<{field: string, id: string}> = new EventEmitter();
 
     // init sheets
     // TODO: other solution possible?

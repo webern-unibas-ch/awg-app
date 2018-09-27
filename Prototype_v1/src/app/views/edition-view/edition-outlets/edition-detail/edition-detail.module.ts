@@ -3,11 +3,12 @@ import { SharedModule } from '@awg-shared/shared.module';
 
 import { FolioModule } from '../edition-folio/folio.module';
 
+import { EditionAccoladeComponent } from './edition-accolade/edition-accolade.component';
+import { EditionConvoluteComponent } from './edition-convolute';
 import { EditionDetailNotificationComponent } from './edition-detail-notification';
 import { EditionSheetControlComponent } from './edition-sheet-control';
 import { EditionSvgPanelComponent } from './edition-svg-panel';
 import { EditionTkaTableComponent } from './edition-tka-table';
-import { EditionConvoluteComponent } from './edition-convolute';
 
 @NgModule({
     imports: [
@@ -15,6 +16,7 @@ import { EditionConvoluteComponent } from './edition-convolute';
         FolioModule
     ],
     declarations: [
+        EditionAccoladeComponent,
         EditionConvoluteComponent,
         EditionDetailNotificationComponent,
         EditionSheetControlComponent,
@@ -22,6 +24,7 @@ import { EditionConvoluteComponent } from './edition-convolute';
         EditionTkaTableComponent
     ],
     exports: [
+        EditionAccoladeComponent,
         EditionConvoluteComponent,
         EditionDetailNotificationComponent,
         EditionSheetControlComponent,

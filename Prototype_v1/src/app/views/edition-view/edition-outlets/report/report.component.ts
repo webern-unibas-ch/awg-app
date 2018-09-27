@@ -29,7 +29,7 @@ export class ReportComponent implements OnInit {
     }
 
 
-    public getData() {
+    getData() {
         this.dataService.getEditionReportData()
             .subscribe((data: [Source[], Textcritics[]]) => {
                     this.sourceListData = data[0];
@@ -42,7 +42,7 @@ export class ReportComponent implements OnInit {
     }
 
 
-    public onSheetSelect(id: string) {
+    onSheetSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
 

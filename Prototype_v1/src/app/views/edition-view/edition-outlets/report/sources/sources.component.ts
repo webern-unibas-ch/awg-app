@@ -19,9 +19,9 @@ export class SourcesComponent implements OnInit {
     ngOnInit() {
     }
 
-    openModal(identifier: string) {
+    openModal(id: string) {
         // emit event to open modal
-        this.openModalRequest.emit(identifier);
+        this.openModalRequest.emit(id);
     }
 
     scrollTo(id: string) {
