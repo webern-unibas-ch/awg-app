@@ -177,7 +177,8 @@ export class FolioService {
 
             const snapItemLabel: any = snapCanvas.text(0, 0, itemLabelArray);
             snapItemLabel.attr({
-                class: 'item-label'
+                class: 'item-label',
+                fontSize: '18px'
             });
             // attributes for tspan elements of itemLabel array
             snapItemLabel.select('tspan:first-of-type').attr({
@@ -208,7 +209,7 @@ export class FolioService {
             });
             snapItemShape.attr({
                 class: 'item-shape',
-                strokeWidth: 1,
+                strokeWidth: 2,
                 fill: 'white'
             });
 

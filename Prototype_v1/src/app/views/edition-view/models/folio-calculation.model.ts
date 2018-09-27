@@ -73,8 +73,8 @@ export class FolioCalculation {
     systems: FolioCalculationSystems;
     itemsArray: FolioCalculationItem[];
 
-    constructor(options: FolioFormatOptions, folioData: Folio, itemOffsetCorrection?: number) {
-        this.itemsOffsetCorrection = itemOffsetCorrection ? itemOffsetCorrection : 0;
+    constructor(options: FolioFormatOptions, folioData: Folio, itemsOffsetCorrection?: number) {
+        this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor = options.factor;
 

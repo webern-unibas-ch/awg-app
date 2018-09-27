@@ -8,6 +8,7 @@
 
     <!-- body with embedded svg's -->
 
+    <h3>Konvolutübersicht</h3>
     <!-- folio overview -->
     <awg-edition-folio *ngIf="folioData && selectedSheet"
         [folioData]="folioData"
@@ -16,6 +17,7 @@
         (selectSheetRequest)="onSheetSelect($event)">
     </awg-edition-folio>
 
+    <h3>Edierter Notentext</h3>
     <!-- image control -->
     <awg-edition-sheet-control *ngIf="sheetsData && selectedSheet"
         [sheets]="sheetsData"
