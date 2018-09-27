@@ -12,7 +12,7 @@ export class SourcesComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showDescriptionPanel: boolean = false;
+    showDescriptionPanel: boolean = true;
 
     constructor() { }
 

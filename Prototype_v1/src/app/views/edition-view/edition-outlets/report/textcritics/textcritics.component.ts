@@ -13,7 +13,7 @@ export class TextcriticsComponent implements OnInit {
     @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
-    showPanel: boolean;
+    showPanel: boolean = true;
 
     constructor() {
         this.ref = this;

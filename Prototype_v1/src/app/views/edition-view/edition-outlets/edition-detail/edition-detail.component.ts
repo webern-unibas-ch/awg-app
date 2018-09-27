@@ -21,6 +21,9 @@ export class EditionDetailComponent implements OnInit {
 
     errorMessage: string = undefined;
     showTkA: boolean = false;
+    showFolioPanel: boolean = false;
+    showAccoladePanel: boolean = false;
+
 
     constructor(
         private route: ActivatedRoute,
@@ -70,10 +73,23 @@ export class EditionDetailComponent implements OnInit {
 
     onTextcriticSelect($event): void {
         if (!this.textcriticsData && !this.selectedSheet) { return; }
-        let res = this.editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
+        const res = this.editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
         this.selectedTextcritics = res[0];
         this.selectedTextcriticId = res[1];
         this.showTkA = (this.selectedTextcritics !== []);
+    }
+
+
+    togglePanel(panel: string): boolean {
+        switch (panel) {
+            case 'folio':
+                this.showFolioPanel = !this.showFolioPanel;
+                break;
+            case 'accolade':
+                this.showAccoladePanel = !this.showAccoladePanel;
+                break;
+            default: return;
+        }
     }
 
 }

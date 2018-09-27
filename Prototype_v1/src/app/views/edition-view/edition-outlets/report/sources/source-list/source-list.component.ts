@@ -12,7 +12,7 @@ export class SourceListComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showListPanel: boolean;
+    showListPanel: boolean = true;
     ref: SourceListComponent;
 
     constructor() {
