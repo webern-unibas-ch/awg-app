@@ -36,7 +36,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     // options
     private _folioFormatOptions: FolioFormatOptions = {
-        factor: 2,
+        factor: 1.5,
         formatX: 175,
         formatY: 270,
         initialOffsetX: 5,

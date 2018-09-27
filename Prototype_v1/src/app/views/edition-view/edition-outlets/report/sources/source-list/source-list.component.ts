@@ -23,8 +23,8 @@ export class SourceListComponent implements OnInit {
     }
 
 
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openModal(id: string) {
+        this.openModalRequest.emit(id);
     }
 
 

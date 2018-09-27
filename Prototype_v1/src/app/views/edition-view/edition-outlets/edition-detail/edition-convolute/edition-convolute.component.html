@@ -1,0 +1,37 @@
+<div class="panel panel-default" id="convoluteView">
+    <div class="panel-heading">
+        <h4 class="panel-title">
+            <a data-toggle="collapse" (click)="togglePanel()">
+                Konvolutübersicht
+            </a>
+        </h4>
+    </div>
+    <div class="panel-collapse collapse" [class.in]="showConvolutePanel">
+        <div class="panel-body">
+            <div class="btn-group">
+                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
+                    A Skizzen (Basel, Paul Sacher Stiftung)
+                    <span class="caret"></span>
+                </a>
+                <ul class="dropdown-menu">
+                    <li><a (click)="openModal('sourceNotA')">B–H (siehe Kritischer Bericht)</a></li>
+                </ul>
+            </div>
+
+            <!-- folio overview -->
+            <awg-edition-folio *ngIf="folioData && selectedSheet"
+                               [folioData]="folioData"
+                               [selectedSheet]="selectedSheet"
+                               (openModalRequest)="openModal($event)"
+                               (selectSheetRequest)="onSheetSelect($event)">
+            </awg-edition-folio>
+
+            <!-- folio legend -->
+            <p>Legende:&nbsp;
+                <span class="edition-convolute-legend olivedrab">aktuell ausgewählt</span>&nbsp;
+                <span class="edition-convolute-legend orange">auswählbar</span>&nbsp;
+                <span class="edition-convolute-legend grey">(momentan noch) nicht auswählbar</span>
+            </p>
+        </div>
+    </div>
+</div>
