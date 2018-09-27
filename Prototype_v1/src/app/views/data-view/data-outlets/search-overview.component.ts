@@ -12,7 +12,7 @@ import { SideInfoService } from '@awg-core/services';
 })
 export class SearchOverviewComponent implements OnInit {
 
-    buttonArray: RouterLinkButton[] = [
+    searchButtonArray: RouterLinkButton[] = [
         {
             root: '/data/search',
             link: 'fulltext',

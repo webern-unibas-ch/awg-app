@@ -9,7 +9,7 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
 })
 export class EditionOverviewComponent implements OnInit {
 
-    public buttonArray: RouterLinkButton[] = [
+    editionButtonArray: RouterLinkButton[] = [
         {
             root: '/edition',
             link: 'intro',

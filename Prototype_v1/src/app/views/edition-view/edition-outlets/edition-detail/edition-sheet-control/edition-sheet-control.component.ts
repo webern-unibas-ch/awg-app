@@ -18,11 +18,11 @@ export class EditionSheetControlComponent implements OnInit {
 
     }
 
-    private isSelectedSheet(sheet: Sheet) {
+    isSelectedSheet(sheet: Sheet) {
         return sheet.id === this.selectedSheet.id;
     }
 
-    private selectSheet(sheet: Sheet) {
+    selectSheet(sheet: Sheet) {
         this.selectSheetRequest.emit(sheet.id);
     }
 
