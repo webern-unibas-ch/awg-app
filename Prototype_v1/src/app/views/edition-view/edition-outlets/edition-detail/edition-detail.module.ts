@@ -1,8 +1,6 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { FolioModule } from './edition-folio/folio.module';
-
 import { EditionDetailNotificationComponent } from './edition-detail-notification';
 import { EditionSheetControlComponent } from './edition-sheet-control';
 import { EditionSvgPanelComponent } from './edition-svg-panel';
@@ -11,7 +9,6 @@ import { EditionTkaTableComponent } from './edition-tka-table';
 @NgModule({
     imports: [
         SharedModule,
-        FolioModule
     ],
     declarations: [
         EditionDetailNotificationComponent,
@@ -23,8 +20,7 @@ import { EditionTkaTableComponent } from './edition-tka-table';
         EditionDetailNotificationComponent,
         EditionSheetControlComponent,
         EditionSvgPanelComponent,
-        EditionTkaTableComponent,
-        FolioModule
+        EditionTkaTableComponent
     ]
 })
 export class EditionDetailModule { }
