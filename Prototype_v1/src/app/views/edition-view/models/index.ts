@@ -10,42 +10,42 @@
 import { FolioCalculation } from './folio-calculation.model';
 
 import {
-    Folio,
-    FolioFormat,
-    FolioItems,
-    FolioSection
-} from './folio.model';
+    ConvoluteFolio,
+    ConvoluteFolioFormat,
+    ConvoluteFolioContent,
+    ConvoluteFolioSection
+} from './convolute-folio.model';
 
 import { FolioFormatOptions } from './folio-format-options.model';
 import { FolioSvgLine } from './folio-svg-line.model';
 import { FolioSvgPoint } from './folio-svg-point.model';
 
 import {
-    FolioSvgOutput,
-    FolioSvgOutputItem,
-    FolioSvgOutputSheet,
-    FolioSvgOutputSystems
+    ConvoluteFolioSvgOutput,
+    ConvoluteFolioSvgContentItem,
+    ConvoluteFolioSvgFolio,
+    ConvoluteFolioSvgSystems
 } from './folio-svg-output.model';
 
-import { Sheet } from './sheet.model';
+import { EditionSvgFile } from './edition-svg-file.model';
 import { Source } from './source.model';
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
 export {
-    Folio,
+    ConvoluteFolio,
+    ConvoluteFolioFormat,
+    ConvoluteFolioContent,
+    ConvoluteFolioSection,
     FolioCalculation,
-    FolioFormat,
     FolioFormatOptions,
-    FolioItems,
-    FolioSection,
     FolioSvgLine,
-    FolioSvgOutputItem,
-    FolioSvgOutputSheet,
-    FolioSvgOutputSystems,
-    FolioSvgOutput,
+    ConvoluteFolioSvgContentItem,
+    ConvoluteFolioSvgFolio,
+    ConvoluteFolioSvgSystems,
+    ConvoluteFolioSvgOutput,
     FolioSvgPoint,
-    Sheet,
+    EditionSvgFile,
     Source,
     Textcritics,
     TextcriticsList,

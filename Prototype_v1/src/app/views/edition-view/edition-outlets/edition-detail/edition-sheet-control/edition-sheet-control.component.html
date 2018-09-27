@@ -1,6 +1,6 @@
-<div *ngIf="sheets" class="btn-group btn-group-justified">
-    <a class="btn btn-default" *ngFor="let sheet of sheets | mapToIterable" [class.active]="isSelectedSheet(sheet.mappedValues)" (click)="selectSheet(sheet.mappedValues)">
-        {{ sheet.mappedKey }}
+<div *ngIf="svgFileData" class="btn-group btn-group-justified">
+    <a class="btn btn-default" *ngFor="let svgFile of svgFileData | mapToIterable" [class.active]="isSelectedSvgFile(svgFile.mappedValues)" (click)="selectSvgFile(svgFile.mappedValues)">
+        {{ svgFile.mappedKey }}
     </a>
 </div>
 

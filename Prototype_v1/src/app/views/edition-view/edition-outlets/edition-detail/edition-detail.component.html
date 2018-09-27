@@ -9,23 +9,23 @@
     <!-- body with embedded svg's -->
 
         <!-- convolute view -->
-        <awg-edition-convolute *ngIf="folioData && selectedSheet"
-                               [folioData]="folioData"
-                               [selectedSheet]="selectedSheet"
+        <awg-edition-convolute *ngIf="convoluteData && selectedSvgFile"
+                               [convoluteData]="convoluteData"
+                               [selectedSvgFile]="selectedSvgFile"
                                (openModalRequest)="modal.open($event)"
-                               (selectSheetRequest)="onSheetSelect($event)">
+                               (selectSvgFileRequest)="onSvgFileSelect($event)">
         </awg-edition-convolute>
 
 
         <!-- accolade view -->
-        <awg-edition-accolade *ngIf="sheetsData && selectedSheet"
-                              [sheetsData]="sheetsData"
-                              [selectedSheet]="selectedSheet"
+        <awg-edition-accolade *ngIf="svgFileData && selectedSvgFile"
+                              [svgFileData]="svgFileData"
+                              [selectedSvgFile]="selectedSvgFile"
                               [selectedTextcritics]="selectedTextcritics"
                               [selectedTextcriticId]="selectedTextcriticId"
                               [showTkA]="showTkA"
                               (openModalRequest)="modal.open($event)"
-                              (selectSheetRequest)="onSheetSelect($event)"
+                              (selectSvgFileRequest)="onSvgFileSelect($event)"
                               (selectTextcriticRequest)="onTextcriticSelect($event)">
         </awg-edition-accolade>
 

@@ -1,10 +1,10 @@
 import { FolioSvgPoint } from './folio-svg-point.model';
 import { FolioSvgLine } from './folio-svg-line.model';
-import { Folio, FolioItems, FolioSection } from './folio.model';
+import { ConvoluteFolio, ConvoluteFolioContent, ConvoluteFolioSection } from './convolute-folio.model';
 import { FolioFormatOptions } from './folio-format-options.model';
 
 
-export class FolioCalculationItemCorner {
+export class FolioCalculationContentItemCorner {
     upperLeft: FolioSvgPoint;
     lowerLeft: FolioSvgPoint;
     upperRight: FolioSvgPoint;
@@ -12,13 +12,13 @@ export class FolioCalculationItemCorner {
 }
 
 
-export class FolioCalculationItemCache {
-    section: FolioSection;
-    corner: FolioCalculationItemCorner;
+export class FolioCalculationContentItemCache {
+    section: ConvoluteFolioSection;
+    corner: FolioCalculationContentItemCorner;
 }
 
 
-export class FolioCalculationItem {
+export class FolioCalculationContentItem {
     offsetCorrection: number;
     widthWithOffset: number;
     width: number;
@@ -31,8 +31,8 @@ export class FolioCalculationItem {
     startY: number;
     endY: number;
     lineArray: FolioSvgLine[];
-    current: FolioCalculationItemCache;
-    previous: FolioCalculationItemCache;
+    current: FolioCalculationContentItemCache;
+    previous: FolioCalculationContentItemCache;
     sigle?: string;
     measure?: string;
 }
@@ -71,25 +71,25 @@ export class FolioCalculation {
     zoomFactor: number;
     sheet: FolioCalculationSheet;
     systems: FolioCalculationSystems;
-    itemsArray: FolioCalculationItem[];
+    itemsArray: FolioCalculationContentItem[];
 
-    constructor(options: FolioFormatOptions, folioData: Folio, itemsOffsetCorrection?: number) {
+    constructor(options: FolioFormatOptions, folioData: ConvoluteFolio, itemsOffsetCorrection?: number) {
         this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor = options.factor;
 
-        this.sheet = this.getSheet(options, folioData.folio);
+        this.sheet = this.getSheet(options, folioData.folioId);
         this.systems = this.getSystems();
-        this.itemsArray = this.getItemsArray(folioData.items);
+        this.itemsArray = this.getContentArray(folioData.content);
     }
 
 
-    getSheet(options: FolioFormatOptions, folioID: string): FolioCalculationSheet {
+    getSheet(options: FolioFormatOptions, folioId: string): FolioCalculationSheet {
         // init
         const calculatedSheet = new FolioCalculationSheet();
 
         // set calculated values for offsets (= upper left starting point), width & height
-        calculatedSheet.folioId = folioID;
+        calculatedSheet.folioId = folioId;
         calculatedSheet.offset = new FolioSvgPoint(options.initialOffsetX, options.initialOffsetY);
         calculatedSheet.width = options.formatX * this.zoomFactor;
         calculatedSheet.height = options.formatY * this.zoomFactor;
@@ -137,80 +137,80 @@ export class FolioCalculation {
     }
 
 
-    getItemsArray(items: FolioItems[]): FolioCalculationItem[] {
+    getContentArray(contents: ConvoluteFolioContent[]): FolioCalculationContentItem[] {
         // init
-        const calculatedItems: FolioCalculationItem[] = [];
+        const calculatedContentItems: FolioCalculationContentItem[] = [];
 
         // iterate over items
-        items.forEach((item: FolioItems, itemIndex: number) => {
+        contents.forEach((content: ConvoluteFolioContent) => {
 
             // init
-            const calculatedItem: FolioCalculationItem = new FolioCalculationItem();
-            calculatedItem.previous = new FolioCalculationItemCache();
-            calculatedItem.current = new FolioCalculationItemCache();
-            calculatedItem.previous.section = new FolioSection();   // reset prevSection
-            calculatedItem.current.section = new FolioSection();     // reset currentSection
+            const calculatedContentItem: FolioCalculationContentItem = new FolioCalculationContentItem();
+            calculatedContentItem.previous = new FolioCalculationContentItemCache();
+            calculatedContentItem.current = new FolioCalculationContentItemCache();
+            calculatedContentItem.previous.section = new ConvoluteFolioSection();   // reset prevSection
+            calculatedContentItem.current.section = new ConvoluteFolioSection();     // reset currentSection
             let sectionPartition: number = 1;   // default: 1 section
 
             // offsetCorrection to avoid collision between items
-            calculatedItem.offsetCorrection = this.itemsOffsetCorrection;
+            calculatedContentItem.offsetCorrection = this.itemsOffsetCorrection;
 
             // check if number of sections exist in data; if yes, apply value
-            if (item['sectionPartition']) {
-                sectionPartition = item['sectionPartition'];
+            if (content['sectionPartition']) {
+                sectionPartition = content['sectionPartition'];
             }
 
             // check if sections exist
-            if (item.sections) {
+            if (content.sections) {
                 // check if sections length is bigger than sectionPartition
-                const sectionsLength = item.sections.length;
+                const sectionsLength = content.sections.length;
                 if (sectionsLength > sectionPartition) {
                     console.error('Sections array is bigger than sectionPartition');
                     return;
                 }
                 // iterate over sections
-                item.sections.forEach((section: FolioSection, sectionIndex: number) => {
+                content.sections.forEach((section: ConvoluteFolioSection, sectionIndex: number) => {
                     // set section cache
-                    this.setItemSectionCache(calculatedItem, section);
+                    this.setContentItemSectionCache(calculatedContentItem, section);
 
                     // calculate main values for item
-                    this.calculateItemMainValues(calculatedItem, section, sectionPartition, item);
+                    this.calculateContentItemMainValues(calculatedContentItem, section, sectionPartition, content);
 
                     // set item corner points
-                    calculatedItem.current.corner = this.setItemCornerPoints(calculatedItem);
+                    calculatedContentItem.current.corner = this.setContentItemCornerPoints(calculatedContentItem);
 
                     // set item lines
-                    calculatedItem.lineArray = this.setItemLineArray(calculatedItem, sectionsLength, sectionIndex, sectionPartition);
+                    calculatedContentItem.lineArray = this.setContentItemLineArray(calculatedContentItem, sectionsLength, sectionIndex, sectionPartition);
 
-                    calculatedItem.sigle = item.sigle;
-                    calculatedItem.measure = item.measure;
+                    calculatedContentItem.sigle = content.sigle;
+                    calculatedContentItem.measure = content.measure;
 
-                    calculatedItems.push(calculatedItem);
+                    calculatedContentItems.push(calculatedContentItem);
                 });
             } else {
-                console.error('No sections array in item', item);
+                console.error('No sections array in content', content);
             }
         });
 
-        return calculatedItems;
+        return calculatedContentItems;
     }
 
 
 
-    private calculateItemMainValues(calculatedItem: FolioCalculationItem, section: FolioSection, sectionPartition: number, item: FolioItems): void {
-        if (!calculatedItem) { return; }
+    private calculateContentItemMainValues(calculatedContentItem: FolioCalculationContentItem, section: ConvoluteFolioSection, sectionPartition: number, item: ConvoluteFolioContent): void {
+        if (!calculatedContentItem) { return; }
 
         // itemsWidth
-        calculatedItem.widthWithOffset = this.round(this.systems.width / sectionPartition, 2);
-        calculatedItem.width = calculatedItem.widthWithOffset - this.itemsOffsetCorrection;   // offsetCorrection to avoid horizontal collision between items
+        calculatedContentItem.widthWithOffset = this.round(this.systems.width / sectionPartition, 2);
+        calculatedContentItem.width = calculatedContentItem.widthWithOffset - this.itemsOffsetCorrection;   // offsetCorrection to avoid horizontal collision between items
 
         // itemsHeight
-        calculatedItem.systemRange = section.endSystem - section.startSystem + 1;
-        calculatedItem.height = this.round(this.systems.upperMargin * calculatedItem.systemRange - this.itemsOffsetCorrection, 2);      // offsetCorrection to avoid vertical collision between items
+        calculatedContentItem.systemRange = section.endSystem - section.startSystem + 1;
+        calculatedContentItem.height = this.round(this.systems.upperMargin * calculatedContentItem.systemRange - this.itemsOffsetCorrection, 2);      // offsetCorrection to avoid vertical collision between items
 
         // find item start indices
-        calculatedItem.startYIndex = section.startSystem - 1;
-        calculatedItem.startXIndex = 0 ;
+        calculatedContentItem.startYIndex = section.startSystem - 1;
+        calculatedContentItem.startXIndex = 0 ;
         // check if position exists ...
         if (section.position) {
             const position: number = section.position;
@@ -221,7 +221,7 @@ export class FolioCalculation {
             } else if (sectionPartition > 1) {
                 // ... or is smaller or equal to number of sections which is bigger 1
                 // than index is position - 1 (positions go from 1, 2, 3 to n)
-                calculatedItem.startXIndex = position - 1;
+                calculatedContentItem.startXIndex = position - 1;
             }
         }
         // for other cases index remains 0 (default)
@@ -229,47 +229,47 @@ export class FolioCalculation {
         // itemsStartX
         // widthWithOffset * startXIndex
         // add half the offsetCorrection to systemStartX to center items
-        calculatedItem.startX = this.getItemStart(calculatedItem.widthWithOffset, calculatedItem.startXIndex, this.systems.startX, this.itemsOffsetCorrection / 2);
-        calculatedItem.endX = this.round(calculatedItem.startX + calculatedItem.width, 2);
+        calculatedContentItem.startX = this.getContentItemStart(calculatedContentItem.widthWithOffset, calculatedContentItem.startXIndex, this.systems.startX, this.itemsOffsetCorrection / 2);
+        calculatedContentItem.endX = this.round(calculatedContentItem.startX + calculatedContentItem.width, 2);
 
         // itemsStartY
         // subtract half the offsetCorrection from systemStartY to center items
-        calculatedItem.startY = this.getItemStart(this.systems.upperMargin, calculatedItem.startYIndex, this.systems.startY,  - this.itemsOffsetCorrection / 2);
-        calculatedItem.endY = this.round(calculatedItem.startY + calculatedItem.height, 2);
+        calculatedContentItem.startY = this.getContentItemStart(this.systems.upperMargin, calculatedContentItem.startYIndex, this.systems.startY,  - this.itemsOffsetCorrection / 2);
+        calculatedContentItem.endY = this.round(calculatedContentItem.startY + calculatedContentItem.height, 2);
     }
 
 
-    private setItemSectionCache(calculatedItem: FolioCalculationItem, section: FolioSection): void {
-        if (!calculatedItem) { return; }
+    private setContentItemSectionCache(calculatedContentItem: FolioCalculationContentItem, section: ConvoluteFolioSection): void {
+        if (!calculatedContentItem) { return; }
 
-        if (calculatedItem.current['section']) {
-            calculatedItem.previous.section = calculatedItem.current.section;
-            calculatedItem.previous.corner = calculatedItem.current.corner;
+        if (calculatedContentItem.current['section']) {
+            calculatedContentItem.previous.section = calculatedContentItem.current.section;
+            calculatedContentItem.previous.corner = calculatedContentItem.current.corner;
         }
-        calculatedItem.current.section = section;
+        calculatedContentItem.current.section = section;
     }
 
 
-    private setItemCornerPoints(calculatedItem: FolioCalculationItem): FolioCalculationItemCorner {
-        if (!calculatedItem) { return; }
+    private setContentItemCornerPoints(calculatedContentItem: FolioCalculationContentItem): FolioCalculationContentItemCorner {
+        if (!calculatedContentItem) { return; }
 
-        const corner: FolioCalculationItemCorner = {
-            upperLeft: new FolioSvgPoint(calculatedItem.startX, calculatedItem.startY),
-            lowerLeft: new FolioSvgPoint(calculatedItem.startX, calculatedItem.endY),
-            upperRight: new FolioSvgPoint(calculatedItem.endX, calculatedItem.startY),
-            lowerRight: new FolioSvgPoint(calculatedItem.endX, calculatedItem.endY)
+        const corner: FolioCalculationContentItemCorner = {
+            upperLeft: new FolioSvgPoint(calculatedContentItem.startX, calculatedContentItem.startY),
+            lowerLeft: new FolioSvgPoint(calculatedContentItem.startX, calculatedContentItem.endY),
+            upperRight: new FolioSvgPoint(calculatedContentItem.endX, calculatedContentItem.startY),
+            lowerRight: new FolioSvgPoint(calculatedContentItem.endX, calculatedContentItem.endY)
         };
         return corner;
     }
 
 
-    private setItemLineArray(calculatedItem: FolioCalculationItem, sectionsLength: number, sectionIndex: number, sectionPartition: number): FolioSvgLine[] {
-        if (!calculatedItem.current.corner) { return; }
+    private setContentItemLineArray(calculatedContentItem: FolioCalculationContentItem, sectionsLength: number, sectionIndex: number, sectionPartition: number): FolioSvgLine[] {
+        if (!calculatedContentItem.current.corner) { return; }
 
         // init
         const lineArray: FolioSvgLine[] = [];
         const lines: string[] = [];
-        const corner = calculatedItem.current.corner;               // shortcut
+        const corner = calculatedContentItem.current.corner;               // shortcut
         const correctionValue = this.itemsOffsetCorrection / 2;     // offset correction value
 
         // decide which lines to add to array depending on sectionsLength and position in sectionIndex
@@ -282,8 +282,8 @@ export class FolioCalculation {
                 // first item part
 
                 // offset correction
-                this.setItemOffsetCorrection(corner.upperRight, correctionValue);
-                this.setItemOffsetCorrection(corner.lowerRight, correctionValue);
+                this.setContentItemOffsetCorrection(corner.upperRight, correctionValue);
+                this.setContentItemOffsetCorrection(corner.lowerRight, correctionValue);
 
                 // add upper & lower horizontal & left vertical line to line array
                 lines.push('uH', 'lH', 'lV');
@@ -291,31 +291,31 @@ export class FolioCalculation {
                 // last item part
 
                 // offset correction
-                this.setItemOffsetCorrection(corner.upperLeft, -correctionValue);
-                this.setItemOffsetCorrection(corner.lowerLeft, -correctionValue);
+                this.setContentItemOffsetCorrection(corner.upperLeft, -correctionValue);
+                this.setContentItemOffsetCorrection(corner.lowerLeft, -correctionValue);
 
                 // add upper & lower horizontal & right vertical line to line array
                 lines.push('uH', 'lH', 'rV');
 
                 // check for connector
                 if (sectionIndex > 0) {
-                    this.checkForConnectorLine(calculatedItem, lineArray);
+                    this.checkForConnectorLine(calculatedContentItem, lineArray);
                 }
             } else if ((sectionIndex > 0) && (sectionIndex < sectionPartition - 1)) {
                 // middle item part
 
                 // offset correction
-                this.setItemOffsetCorrection(corner.upperRight, correctionValue);
-                this.setItemOffsetCorrection(corner.lowerRight, correctionValue);
-                this.setItemOffsetCorrection(corner.upperLeft, -correctionValue);
-                this.setItemOffsetCorrection(corner.lowerLeft, -correctionValue);
+                this.setContentItemOffsetCorrection(corner.upperRight, correctionValue);
+                this.setContentItemOffsetCorrection(corner.lowerRight, correctionValue);
+                this.setContentItemOffsetCorrection(corner.upperLeft, -correctionValue);
+                this.setContentItemOffsetCorrection(corner.lowerLeft, -correctionValue);
 
                 // add upper and lower horizontal line to line array
                 lines.push('uH', 'lH');
 
                 // check for connector
                 if (sectionIndex > 0) {
-                    this.checkForConnectorLine(calculatedItem, lineArray);
+                    this.checkForConnectorLine(calculatedContentItem, lineArray);
 
                 }
             }
@@ -349,10 +349,10 @@ export class FolioCalculation {
     }
 
 
-    private checkForConnectorLine(calculatedItem: FolioCalculationItem, lineArray: FolioSvgLine[]): void {
+    private checkForConnectorLine(calculatedContentItem: FolioCalculationContentItem, lineArray: FolioSvgLine[]): void {
         // init
-        const currentSection: FolioSection = calculatedItem.current.section;
-        const prevSection: FolioSection = calculatedItem.previous.section;
+        const currentSection: ConvoluteFolioSection = calculatedContentItem.current.section;
+        const prevSection: ConvoluteFolioSection = calculatedContentItem.previous.section;
 
         // check if sections exist
         if (!prevSection || (currentSection.startSystem === prevSection.startSystem) && (currentSection.endSystem === prevSection.endSystem) ) { return; }
@@ -360,25 +360,25 @@ export class FolioCalculation {
         // check for different start or end systems
         if (currentSection.startSystem !== prevSection.startSystem) {
             // draw upper connector
-            const connectorLine: FolioSvgLine = new FolioSvgLine(calculatedItem.previous.corner.upperRight, calculatedItem.current.corner.upperLeft);
+            const connectorLine: FolioSvgLine = new FolioSvgLine(calculatedContentItem.previous.corner.upperRight, calculatedContentItem.current.corner.upperLeft);
             lineArray.push(connectorLine);
         }
         if (currentSection.endSystem !== prevSection.endSystem) {
             // draw lower connector
-            const connectorLine: FolioSvgLine = new FolioSvgLine(calculatedItem.previous.corner.lowerRight, calculatedItem.current.corner.lowerLeft);
+            const connectorLine: FolioSvgLine = new FolioSvgLine(calculatedContentItem.previous.corner.lowerRight, calculatedContentItem.current.corner.lowerLeft);
             lineArray.push(connectorLine);
         }
     }
 
 
     // sets the offsetCorrection for an item
-    private setItemOffsetCorrection(cornerPoint: FolioSvgPoint, correctionX: number) {
+    private setContentItemOffsetCorrection(cornerPoint: FolioSvgPoint, correctionX: number) {
         cornerPoint = cornerPoint.add(correctionX, 0);
     }
 
 
     // calculates the start position of an item
-    private getItemStart(offset: number, index: number, systemStart: number, offsetCorrection?: number): number {
+    private getContentItemStart(offset: number, index: number, systemStart: number, offsetCorrection?: number): number {
         // @offset * index (X: start at item 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)
         // @systemStart: add horizontal(X) or vertical (Y) systemsMargins
         // @offsetCorrection: mostly needed to center items
@@ -397,7 +397,7 @@ export class FolioCalculation {
         // iterate over systems and get their start position
         for (let i = 0; i < this.numberOfSystems; i++) {
             // use the same method as for items to populate the systems array
-            const yStartValue = this.getItemStart(offset, i, systemStart, offsetCorrection);
+            const yStartValue = this.getContentItemStart(offset, i, systemStart, offsetCorrection);
             arr[i] = this.getSystemLineArray(yStartValue);
         }
         return arr;

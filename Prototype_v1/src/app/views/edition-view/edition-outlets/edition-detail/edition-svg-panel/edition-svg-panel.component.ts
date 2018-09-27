@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Sheet } from '@awg-views/edition-view/models';
+import { EditionSvgFile } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-svg-panel',
@@ -8,37 +8,41 @@ import { Sheet } from '@awg-views/edition-view/models';
     styleUrls: ['./edition-svg-panel.component.css']
 })
 export class EditionSvgPanelComponent implements OnInit {
-    @Input() selectedSheet: Sheet;
+    @Input() selectedSvgFile: EditionSvgFile;
     @Input() selectedTextcriticId: string;
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectTextcriticRequest: EventEmitter<{field: string, id: string}> = new EventEmitter();
 
     // init sheets
     // TODO: other solution possible?
-    sheet2: string ='Aa:SkI/2';
-    sheet3: string ='Aa:SkI/3';
-    sheet4: string ='Aa:SkI/4';
-    sheet5: string ='Aa:SkI/5';
+    svgFile2: string ='Aa:SkI/2';
+    svgFile3: string ='Aa:SkI/3';
+    svgFile4: string ='Aa:SkI/4';
+    svgFile5: string ='Aa:SkI/5';
 
     constructor() { }
 
     ngOnInit() {
     }
 
+
+    isSelectedSvgFile(id: string) {
+        return id === this.selectedSvgFile.id;
+    };
+
+
     isSelectedTextcritic(id: string) {
         return id === this.selectedTextcriticId;
     }
 
-    isSelectedSheet(id: string) {
-        return id === this.selectedSheet.id;
-    };
+
+    selectSvgFile(id: string) {
+        this.selectSvgFileRequest.emit(id);
+    }
+
 
     selectTextcritic(field: string, id: string) {
         this.selectTextcriticRequest.emit({field, id});
-    }
-
-    selectSheet(id: string) {
-        this.selectSheetRequest.emit(id);
     }
 
 }

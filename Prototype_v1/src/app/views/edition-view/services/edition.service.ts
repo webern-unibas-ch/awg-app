@@ -15,21 +15,21 @@ export class EditionService {
      *     and selectedItem<string>
      *
      ********************************/
-    getCommentsForItem(item: Textcritics[], type: string, typeId: string): [Textcritics[], string] {
-        let comments = [];
+    getTextcritics(textcritics: Textcritics[], type: string, typeId: string): [Textcritics[], string] {
+        let comments: Textcritics[] = [];
         let selectedId: string = '';
         switch (type) {
             case 'measure':
                 selectedId = 'm' + typeId;
-                comments = this.getCommentsValues(item, type, typeId);
+                comments = this.getCommentsValues(textcritics, type, typeId);
                 break;
             case 'system':
                 selectedId = 's' + typeId;
-                comments = this.getCommentsValues(item, type, typeId);
+                comments = this.getCommentsValues(textcritics, type, typeId);
                 break;
             case 'item':
                 selectedId = typeId;
-                comments.push(item[typeId]);
+                comments.push(textcritics[typeId]);
                 break;
         }
         return [comments, selectedId];
@@ -38,17 +38,17 @@ export class EditionService {
             /*
              * private function to prepare values
              */
-            private getCommentsValues(item: Textcritics[], type: string, typeId: string): Textcritics[] {
-                let arr = [];
-                item.forEach((comment) => {
+            private getCommentsValues(textcritics: Textcritics[], type: string, typeId: string): Textcritics[] {
+                const comments: Textcritics[] = [];
+                textcritics.forEach((textcritic) => {
                     // trim existing values
-                    let tkaValue: string = comment[type] ? comment[type].replace("[", "").replace("]", "") : null;
+                    const tkaValue: string = textcritic[type] ? textcritic[type].replace('[', '').replace(']', '') : null;
                     // check if value matches id
                     if (tkaValue === typeId) {
-                        arr.push(comment);
+                        comments.push(textcritic);
                     }
                 });
-                return arr;
+                return comments;
             }
 
 }

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Folio, Sheet } from '@awg-views/edition-view/models';
+import { ConvoluteFolio, EditionSvgFile } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-convolute',
@@ -8,10 +8,10 @@ import { Folio, Sheet } from '@awg-views/edition-view/models';
     styleUrls: ['./edition-convolute.component.css']
 })
 export class EditionConvoluteComponent implements OnInit {
-    @Input() folioData: Folio[];
-    @Input() selectedSheet: Sheet;
+    @Input() convoluteData: ConvoluteFolio[];
+    @Input() selectedSvgFile: EditionSvgFile;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     showConvolutePanel: boolean = true;
 
@@ -28,8 +28,8 @@ export class EditionConvoluteComponent implements OnInit {
 
 
     // request function to emit selected sheet id
-    selectSheet(id: string) {
-        this.selectSheetRequest.emit(id);
+    selectSvgFile(id: string) {
+        this.selectSvgFileRequest.emit(id);
     }
 
 

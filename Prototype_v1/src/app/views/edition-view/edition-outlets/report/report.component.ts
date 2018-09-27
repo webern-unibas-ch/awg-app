@@ -42,7 +42,7 @@ export class ReportComponent implements OnInit {
     }
 
 
-    onSheetSelect(id: string) {
+    onSvgFileSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
 

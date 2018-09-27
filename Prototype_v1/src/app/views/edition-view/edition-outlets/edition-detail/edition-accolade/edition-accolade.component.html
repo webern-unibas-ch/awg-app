@@ -9,17 +9,17 @@
     <div class="panel-collapse collapse" [class.in]="showAccoladePanel">
         <div class="panel-body">
             <!-- accolade control -->
-            <awg-edition-sheet-control *ngIf="sheetsData && selectedSheet"
-                                       [sheets]="sheetsData"
-                                       [selectedSheet]="selectedSheet"
-                                       (selectSheetRequest)="selectSheet($event)">
+            <awg-edition-sheet-control *ngIf="svgFileData && selectedSvgFile"
+                                       [svgFileData]="svgFileData"
+                                       [selectedSvgFile]="selectedSvgFile"
+                                       (selectSvgFileRequest)="selectSvgFile($event)">
             </awg-edition-sheet-control>
 
             <!-- svg panel -->
-            <awg-edition-svg-panel *ngIf="selectedSheet"
-                                   [selectedSheet]="selectedSheet"
+            <awg-edition-svg-panel *ngIf="selectedSvgFile"
+                                   [selectedSvgFile]="selectedSvgFile"
                                    [selectedTextcriticId]="selectedTextcriticId"
-                                   (selectSheetRequest)="selectSheet($event)"
+                                   (selectSvgFileRequest)="selectSvgFile($event)"
                                    (selectTextcriticRequest)="selectTextcritic($event)">
             </awg-edition-svg-panel>
 
@@ -29,7 +29,7 @@
                 <awg-edition-tka-table
                     [selectedTextcritics]="selectedTextcritics"
                     (openModalRequest)="openModal($event)"
-                    (selectSheetRequest)="selectSheet($event)">
+                    (selectSvgFileRequest)="selectSvgFile($event)">
                 </awg-edition-tka-table>
             </ng-container>
         </div>

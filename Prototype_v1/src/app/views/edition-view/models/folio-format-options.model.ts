@@ -4,5 +4,5 @@ export class FolioFormatOptions {
     formatY: number;
     initialOffsetX: number;
     initialOffsetY: number;
-    numberOfSheets: number;
+    numberOfFolios: number;
 }

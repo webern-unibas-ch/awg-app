@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Folio, Sheet, Source, Textcritics } from '@awg-views/edition-view/models';
+import { ConvoluteFolio, EditionSvgFile, Source, Textcritics } from '@awg-views/edition-view/models';
 
 
 @Injectable()
@@ -26,7 +26,7 @@ export class DataService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    public getEditionDetailData(): Observable<[Folio[], Sheet[], Textcritics[]]> {
+    public getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], Textcritics[]]> {
         return Observable.forkJoin(
             this.getFolioData(),
             this.getSheetsData(),
@@ -46,14 +46,14 @@ export class DataService {
     /*
      * private functions to prepare http request
      */
-    private getFolioData(): Observable<Folio[]> {
-        const file = 'folio.json';
+    private getFolioData(): Observable<ConvoluteFolio[]> {
+        const file = 'convolute.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
 
 
-    private getSheetsData(): Observable<Sheet[]> {
+    private getSheetsData(): Observable<EditionSvgFile[]> {
         const file = 'sheets.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);

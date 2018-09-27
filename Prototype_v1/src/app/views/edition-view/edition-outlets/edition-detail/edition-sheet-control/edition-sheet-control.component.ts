@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Sheet } from '@awg-views/edition-view/models';
+import { EditionSvgFile } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-sheet-control',
@@ -8,9 +8,9 @@ import { Sheet } from '@awg-views/edition-view/models';
     styleUrls: ['./edition-sheet-control.component.css']
 })
 export class EditionSheetControlComponent implements OnInit {
-    @Input() sheets: Sheet[];
-    @Input() selectedSheet: Sheet;
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Input() svgFileData: EditionSvgFile[];
+    @Input() selectedSvgFile: EditionSvgFile;
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     constructor( ) {}
 
@@ -18,12 +18,12 @@ export class EditionSheetControlComponent implements OnInit {
 
     }
 
-    isSelectedSheet(sheet: Sheet) {
-        return sheet.id === this.selectedSheet.id;
+    isSelectedSvgFile(svgFile: EditionSvgFile) {
+        return svgFile.id === this.selectedSvgFile.id;
     }
 
-    selectSheet(sheet: Sheet) {
-        this.selectSheetRequest.emit(sheet.id);
+    selectSvgFile(svgFile: EditionSvgFile) {
+        this.selectSvgFileRequest.emit(svgFile.id);
     }
 
 }

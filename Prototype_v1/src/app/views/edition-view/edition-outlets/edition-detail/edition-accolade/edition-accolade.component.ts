@@ -1,5 +1,5 @@
 import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
-import {Folio, Sheet, Textcritics} from "@awg-views/edition-view/models";
+import {ConvoluteFolio, EditionSvgFile, Textcritics} from "@awg-views/edition-view/models";
 
 @Component({
     selector: 'awg-edition-accolade',
@@ -7,13 +7,13 @@ import {Folio, Sheet, Textcritics} from "@awg-views/edition-view/models";
     styleUrls: ['./edition-accolade.component.css']
 })
 export class EditionAccoladeComponent implements OnInit {
-    @Input() sheetsData: Sheet[];
-    @Input() selectedSheet: Sheet;
+    @Input() svgFileData: EditionSvgFile[];
+    @Input() selectedSvgFile: EditionSvgFile;
     @Input() selectedTextcritics: Textcritics[];
     @Input() selectedTextcriticId: string;
     @Input() showTkA: boolean;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectTextcriticRequest: EventEmitter<{field: string, id: string}> = new EventEmitter();
 
     showAccoladePanel: boolean = true;
@@ -29,9 +29,9 @@ export class EditionAccoladeComponent implements OnInit {
     }
 
 
-    // request function to emit selected sheet id
-    selectSheet(id: string) {
-        this.selectSheetRequest.emit(id);
+    // request function to emit selected svg file id
+    selectSvgFile(id: string) {
+        this.selectSvgFileRequest.emit(id);
     }
 
     // request function to emit selected textcritic's field & id

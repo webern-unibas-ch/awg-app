@@ -1,13 +1,13 @@
 {
-	"content":
+	"convolute":
 	[{
-		"folio": "1r",
+		"folioId": "1r",
 		"systems": "16",
         "format": {
             "height": "175",
             "width": "270"
         },
-        "items": [{
+        "content": [{
 					"sigle": "Aa:SkI/1a",
 					"measure": "1–2, [3–6]",
                     "sectionPartition": 1,
@@ -36,13 +36,13 @@
                 }]
 	},
     {
-		"folio": "1v",
+		"folioId": "1v",
 		"systems": "16",
         "format": {
             "height": "175",
             "width": "270"
         },
-        "items": [{
+        "content": [{
 					"sigle": "Aa:SkI/4",
 					"measure": "10–11",
                     "sectionPartition": 2,
@@ -81,13 +81,13 @@
                 }]
 	},
 	{
-		"folio": "2r",
+		"folioId": "2r",
 		"systems": "16",
         "format": {
             "height": "175",
             "width": "270"
         },
-        "items": [{
+        "content": [{
 				"sigle": "Aa:SkI/1b",
 				"measure": "[18–22]",
                 "sections": [{
@@ -106,12 +106,12 @@
             }]
 	},
     {
-		"folio": "2v",
+		"folioId": "2v",
 		"systems": "16",
         "format": {
             "height": "175",
             "width": "270"
         },
-        "items": []
+        "content": []
 	}]
 }

@@ -8,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
 export class EditionTkaTableComponent implements OnInit {
     @Input() selectedTextcritics: string[];
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: EditionTkaTableComponent;
 
@@ -24,8 +24,8 @@ export class EditionTkaTableComponent implements OnInit {
         this.openModalRequest.emit(id);
     }
 
-    selectSheet(id: string): void {
-        this.selectSheetRequest.emit(id);
+    selectSvgFile(id: string): void {
+        this.selectSvgFileRequest.emit(id);
     }
 
 }

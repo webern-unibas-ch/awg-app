@@ -10,7 +10,7 @@ import { Textcritics } from '@awg-views/edition-view/models';
 export class TextcriticsComponent implements OnInit {
     @Input() comments: Textcritics[];
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
     showPanel: boolean = true;
@@ -22,12 +22,12 @@ export class TextcriticsComponent implements OnInit {
     ngOnInit() {
     }
 
-    openModal(identifier: string): void {
-        this.openModalRequest.emit(identifier);
+    openModal(id: string): void {
+        this.openModalRequest.emit(id);
     }
 
-    selectSheet(identifier: string): void {
-        this.selectSheetRequest.emit(identifier);
+    selectSvgFile(id: string): void {
+        this.selectSvgFileRequest.emit(id);
     }
 
     togglePanel(): boolean {

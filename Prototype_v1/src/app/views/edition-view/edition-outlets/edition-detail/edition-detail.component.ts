@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Folio, Sheet, Textcritics } from '@awg-views/edition-view/models';
+import { ConvoluteFolio, EditionSvgFile, Textcritics } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -11,18 +11,17 @@ import { DataService, EditionService } from '@awg-views/edition-view/services';
 })
 export class EditionDetailComponent implements OnInit {
 
-    folioData: Folio[];
-    sheetsData: Sheet[];
-    textcriticsData: Textcritics[];
+    convoluteData: ConvoluteFolio[];
 
-    selectedSheet: Sheet;
-    selectedTextcriticId: string;
+    svgFileData: EditionSvgFile[];
+    selectedSvgFile: EditionSvgFile;
+
+    textcriticsData: Textcritics[];
     selectedTextcritics: Textcritics[];
+    selectedTextcriticId: string;
 
     errorMessage: string = undefined;
     showTkA: boolean = false;
-    showFolioPanel: boolean = false;
-    showAccoladePanel: boolean = false;
 
 
     constructor(
@@ -40,11 +39,11 @@ export class EditionDetailComponent implements OnInit {
     // get edition data
     getEditionDetailData() {
         this.dataService.getEditionDetailData()
-            .subscribe((data: [Folio[], Sheet[], Textcritics[]]) => {
-                    this.folioData = data[0]['content'];
-                    this.sheetsData = data[1];
+            .subscribe((data: [ConvoluteFolio[], EditionSvgFile[], Textcritics[]]) => {
+                    this.convoluteData = data[0]['convolute'];
+                    this.svgFileData = data[1];
                     this.textcriticsData = data[2];
-                    if (this.sheetsData) { this.getRouteParams(); }
+                    if (this.svgFileData) { this.getRouteParams(); }
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -56,15 +55,15 @@ export class EditionDetailComponent implements OnInit {
     private getRouteParams(): void {
         this.route.params.forEach((params: Params) => {
             // if there is no id in route params
-            // take first entry of sheets object as default
-            const sheetId: string = params['id'] ? params['id'] : Object.keys(this.sheetsData)[0];
-            this.selectedSheet = this.sheetsData[sheetId];
+            // take first entry of svg file object as default
+            const fileId: string = params['id'] ? params['id'] : Object.keys(this.svgFileData)[0];
+            this.selectedSvgFile = this.svgFileData[fileId];
         });
     }
 
 
-    onSheetSelect(id: string): void {
-        this.selectedSheet = this.sheetsData[id];
+    onSvgFileSelect(id: string): void {
+        this.selectedSvgFile = this.svgFileData[id];
         this.selectedTextcriticId = '';
         this.showTkA = false;
         this.router.navigate(['/edition/detail', id]);
@@ -72,24 +71,11 @@ export class EditionDetailComponent implements OnInit {
 
 
     onTextcriticSelect($event): void {
-        if (!this.textcriticsData && !this.selectedSheet) { return; }
-        const res = this.editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
+        if (!this.textcriticsData && !this.selectedSvgFile) { return; }
+        const res = this.editionService.getTextcritics(this.textcriticsData[this.selectedSvgFile.id], $event.field, $event.id);
         this.selectedTextcritics = res[0];
         this.selectedTextcriticId = res[1];
         this.showTkA = (this.selectedTextcritics !== []);
-    }
-
-
-    togglePanel(panel: string): boolean {
-        switch (panel) {
-            case 'folio':
-                this.showFolioPanel = !this.showFolioPanel;
-                break;
-            case 'accolade':
-                this.showAccoladePanel = !this.showAccoladePanel;
-                break;
-            default: return;
-        }
     }
 
 }

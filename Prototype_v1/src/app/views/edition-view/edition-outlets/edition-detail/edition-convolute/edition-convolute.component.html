@@ -19,11 +19,11 @@
             </div>
 
             <!-- folio overview -->
-            <awg-edition-folio *ngIf="folioData && selectedSheet"
-                               [folioData]="folioData"
-                               [selectedSheet]="selectedSheet"
+            <awg-edition-folio *ngIf="convoluteData && selectedSvgFile"
+                               [convoluteData]="convoluteData"
+                               [selectedSvgFile]="selectedSvgFile"
                                (openModalRequest)="openModal($event)"
-                               (selectSheetRequest)="selectSheet($event)">
+                               (selectSvgFileRequest)="selectSvgFile($event)">
             </awg-edition-folio>
 
             <!-- folio legend -->
