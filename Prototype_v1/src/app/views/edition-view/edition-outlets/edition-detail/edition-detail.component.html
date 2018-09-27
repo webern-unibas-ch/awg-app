@@ -9,8 +9,11 @@
     <!-- body with embedded svg's -->
 
     <!-- folio overview -->
-    <awg-edition-folio *ngIf="folioData"
-        [folioData]="folioData">
+    <awg-edition-folio *ngIf="folioData && selectedSheet"
+        [folioData]="folioData"
+        [selectedSheet]="selectedSheet"
+        (openModalRequest)="modal.open($event)"
+        (selectSheetRequest)="onSheetSelect($event)">
     </awg-edition-folio>
 
     <!-- image control -->

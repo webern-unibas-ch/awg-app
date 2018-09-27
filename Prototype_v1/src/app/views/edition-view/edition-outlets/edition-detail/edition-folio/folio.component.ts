@@ -1,9 +1,10 @@
-import { AfterViewChecked, Component, Input, OnInit } from '@angular/core';
+import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import {
     Folio,
     FolioFormatOptions,
     FolioSvgOutput,
+    Sheet,
     ViewBox
 } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
@@ -17,29 +18,37 @@ declare var Snap: any;
     templateUrl: './folio.component.html',
     styleUrls: ['./folio.component.css']
 })
-export class FolioComponent implements OnInit, AfterViewChecked {
+export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input() folioData: Folio[];
+    @Input() selectedSheet: Sheet;
+    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    // init
+    // output
     folioSvgOutput: FolioSvgOutput[] = [];
     folio: Folio;
     vb: ViewBox[] = [];
+    canvasArray = [];
 
     // colors
     bgColor: string = '#a3a3a3';
-    fgColor: string = 'red';
+    fgColor: string = 'orange';
 
     // options
     private _folioFormatOptions: FolioFormatOptions = {
         factor: 1,
         formatX: 175,
         formatY: 270,
-        initialOffsetX: 50,
-        initialOffsetY: 35,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
         numberOfSheets: 0
     };
 
-    constructor(private folioService: FolioService) { }
+    ref: FolioComponent;
+
+    constructor(private folioService: FolioService) {
+        this.ref = this;
+    }
 
 
     ngOnInit() {
@@ -47,8 +56,29 @@ export class FolioComponent implements OnInit, AfterViewChecked {
     }
 
 
-    ngAfterViewChecked() {
+    ngAfterViewInit() {
+        // start to render svg only after view, inputs and calculation are available
         this.renderSnapSvg();
+    }
+
+    ngAfterViewChecked() {
+        // apply active classes after view was checked
+        this.applyActiveClass();
+    }
+
+
+    // helper function to toggle active class on selected sheet
+    applyActiveClass() {
+        // iterate over canvas Array
+        if (!this.canvasArray) { return; }
+        this.canvasArray.forEach(canvas => {
+            // find all item groups
+            canvas.selectAll('.item-group').forEach(itemGroup => {
+                // toggle active class if itemId corresponds to selectedSheetId
+                const itemId = itemGroup.node.attributes.itemId.value;
+                itemGroup.toggleClass('active', this.isSelectedSheet(itemId));
+            });
+        });
     }
 
 
@@ -75,6 +105,9 @@ export class FolioComponent implements OnInit, AfterViewChecked {
      */
     renderSnapSvg() {
 
+        // empty canvasArray
+        this.canvasArray = [];
+
         /* apply values from folioSvgOutput to render the svg image with snapsvg */
         this.folioSvgOutput.forEach((svgFolio: FolioSvgOutput, folioIndex: number) => {
 
@@ -93,11 +126,14 @@ export class FolioComponent implements OnInit, AfterViewChecked {
             /**********
              * svg content
              */
-            this.folioService.renderSvg(snapCanvas, svgFolio, this.bgColor, this.fgColor);
+            this.folioService.renderSvg(snapCanvas, svgFolio, this.bgColor, this.fgColor, this.ref);
+
+            this.canvasArray.push(snapCanvas);
         });
     }
 
 
+    // getter function for format options
     get folioFormatOptions() {
         // prepare folio width & height
         this._folioFormatOptions.numberOfSheets = +this.folioData.length;
@@ -106,6 +142,27 @@ export class FolioComponent implements OnInit, AfterViewChecked {
 
         return this._folioFormatOptions;
     }
+
+
+    // helper function to compare id with that of selected sheet
+    isSelectedSheet(id: string) {
+        return id === this.selectedSheet.id;
+    }
+
+    // request function to emit modal id
+    openModal(id: string) {
+        this.openModalRequest.emit(id);
+    }
+
+
+    // request function to emit selected sheet id
+    selectSheet(id: string) {
+        this.selectSheetRequest.emit(id);
+    }
+
+
+
+
 
 }
 

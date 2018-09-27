@@ -10,10 +10,12 @@ import {
     ViewBox
 } from '@awg-views/edition-view/models';
 
+declare var Snap: any;
 
 @Injectable()
 export class FolioService {
 
+    ref: any;
     private itemsOffsetCorrection: number = 4;      // offsetCorrection to avoid collision between items
 
     /******************
@@ -45,7 +47,10 @@ export class FolioService {
     /******************
      * prepare rendering of snapCanvas svg
      */
-    renderSvg(snapCanvas: any, svgFolio: FolioSvgOutput, bgColor: string, fgColor: string) {
+    renderSvg(snapCanvas: any, svgFolio: FolioSvgOutput, bgColor: string, fgColor: string, ref: any) {
+
+        this.ref = ref;
+
         /**********
          * sheet
          */
@@ -62,6 +67,7 @@ export class FolioService {
         /**********
          * items
          */
+
         this.renderItems(snapCanvas, snapSheetGroup, svgFolio, fgColor);
     }
 
@@ -71,7 +77,7 @@ export class FolioService {
      */
     private renderSheet(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, bgColor: string): void {
         // init
-        const sheetID = svgFolio.sheet.folio;
+        const sheetId = svgFolio.sheet.folio;
         const x1 = svgFolio.sheet.upperLeftCorner.x;
         const y1 = svgFolio.sheet.upperLeftCorner.y;
         const x2 = svgFolio.sheet.lowerRightCorner.x;
@@ -79,7 +85,8 @@ export class FolioService {
 
         // sheet id
         snapSheetGroup.attr({
-            id: 'sheet ' + sheetID
+            sheetGroupId: sheetId,
+            class: 'sheet-group'
         });
 
         // sheet rectangle
@@ -91,7 +98,7 @@ export class FolioService {
         });
 
         // sheet label
-        const snapSheetLabel: any = snapCanvas.text(x1, y1 / 2, 'Bl. ' + sheetID);
+        const snapSheetLabel: any = snapCanvas.text(x1, y1 / 2, 'Bl. ' + sheetId);
         snapSheetLabel.attr({
             fill: bgColor
         });
@@ -105,10 +112,12 @@ export class FolioService {
      */
     private renderSystems(snapCanvas: any, snapSheetGroup: any, svgFolio: FolioSvgOutput, bgColor: string): void {
         svgFolio.systems.lineArrays.forEach((lineArray: FolioSvgLine[], systemIndex: number) => {
+
             // notational system
             const snapSystemLineGroup: any = snapCanvas.group();
             snapSystemLineGroup.attr({
-                id: 'system line group ' + (systemIndex + 1)
+                systemLineGroupId: systemIndex + 1,
+                class: 'system-line-group'
             });
 
             // system lines
@@ -121,6 +130,7 @@ export class FolioService {
 
                 const systemLine: any = snapCanvas.line(x1, y1, x2, y2);
                 systemLine.attr({
+                    class: 'system-line',
                     stroke: bgColor,
                     strokeWidth: 0.7
                 });
@@ -135,6 +145,7 @@ export class FolioService {
 
             const snapSystemLabel: any = snapCanvas.text(x, y, systemLabel);
             snapSystemLabel.attr({
+                class: 'system-label',
                 dominantBaseline: 'hanging',
                 fill: bgColor
             });
@@ -142,7 +153,8 @@ export class FolioService {
             // systems group
             const snapSystemsGroup: any = snapCanvas.group(snapSystemLineGroup, snapSystemLabel);
             snapSystemsGroup.attr({
-                id: 'system group ' + (systemIndex + 1)
+                systemsGroupId: systemIndex + 1,
+                class: 'systems-group'
             });
 
             snapSheetGroup.add(snapSystemsGroup);
@@ -161,11 +173,11 @@ export class FolioService {
             // init
             const centeredXPosition = item.upperLeftCorner.x + (item.width / 2);
             const centeredYPosition = item.upperLeftCorner.y + (item.height / 2);
-            const itemLabelArray: string[] = [item.sigle, 'T. ' + item.measure];
+            const itemLabelArray: string[] = [item.sigle, ' T. ' + item.measure];
 
             const snapItemLabel: any = snapCanvas.text(0, 0, itemLabelArray);
             snapItemLabel.attr({
-                fill: fgColor
+                class: 'item-label'
             });
             // attributes for tspan elements of itemLabel array
             snapItemLabel.select('tspan:first-of-type').attr({
@@ -195,35 +207,54 @@ export class FolioService {
                 snapItemShape.add(snapItemLine);
             });
             snapItemShape.attr({
-                id: 'item shape ' + itemLabelArray,
-                stroke: fgColor,
+                class: 'item-shape',
                 strokeWidth: 1,
                 fill: 'white'
             });
 
-            // item link
-            // see https://stackoverflow.com/questions/37592540/clickable-link-on-a-svg-circle-text-or-line
-            const snapItemLink: any = snapCanvas.el('a');
 
-            // TODO: continue
-            const encodedItemSigle = encodeURI(item.sigle);
-            snapItemLink.node.setAttributeNS('http://www.w3.org/1999/xlink', 'href', 'edition/detail;id=' + encodedItemSigle);
+            // item link
+            const snapItemLink: any = snapCanvas.el('a');
             snapItemLink.attr({
-                // target: '_blank'
+                class: 'item-link'
             });
+
             // add shape and label to item link
             snapItemLink.add(snapItemShape);
             snapItemLink.add(snapItemLabel);
 
+
             // item group
             const snapItemGroup: any = snapCanvas.group(snapItemLink);
             snapItemGroup.attr({
-                id: 'item ' + itemLabelArray
+                itemGroupId: itemLabelArray,
+                itemId: item.sigle,
+                class: 'item-group'
             });
+
+            // apply title when hovering item
+            const snapItemGroupTitle: string = Snap.parse('<title>' + itemLabelArray + '</title>');
+            snapItemGroup.append(snapItemGroupTitle);
+
+            // add click event handler
+            // exclude and mute sketch Aa:SkI for now
+            if (item.sigle === 'Aa:SkI/1a' || item.sigle === 'Aa:SkI/1b') {
+                snapItemGroup.click(() => this.ref.openModal('sourceNotA'));
+                snapItemGroup.attr({
+                    stroke: 'grey',
+                    fill: 'grey'
+                });
+            } else {
+                snapItemGroup.click(() => this.ref.selectSheet(item.sigle));
+                snapItemGroup.attr({
+                    stroke: fgColor,
+                    fill: fgColor
+                });
+            }
+
             snapSheetGroup.add(snapItemGroup);
         });
     }
-
 
 
     /******************

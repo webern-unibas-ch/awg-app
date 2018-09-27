@@ -20,12 +20,12 @@ export class EditionTkaTableComponent implements OnInit {
     ngOnInit() {
     }
 
-    public openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openModal(id: string) {
+        this.openModalRequest.emit(id);
     }
 
-    public selectSheet(identifier: string): void {
-        this.selectSheetRequest.emit(identifier);
+    selectSheet(id: string): void {
+        this.selectSheetRequest.emit(id);
     }
 
 }
