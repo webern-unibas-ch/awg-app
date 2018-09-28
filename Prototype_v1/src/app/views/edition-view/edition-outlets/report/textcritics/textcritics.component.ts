@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticsList } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-textcritics',
@@ -8,7 +8,7 @@ import { Textcritics } from '@awg-views/edition-view/models';
     styleUrls: ['./textcritics.component.css']
 })
 export class TextcriticsComponent implements OnInit {
-    @Input() comments: Textcritics[];
+    @Input() textcriticsData: TextcriticsList;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 

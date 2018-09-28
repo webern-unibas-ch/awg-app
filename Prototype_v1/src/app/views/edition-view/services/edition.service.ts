@@ -15,40 +15,28 @@ export class EditionService {
      *     and selectedItem<string>
      *
      ********************************/
-    getTextcritics(textcritics: Textcritics[], type: string, typeId: string): [Textcritics[], string] {
-        let comments: Textcritics[] = [];
-        let selectedId: string = '';
-        switch (type) {
-            case 'measure':
-                selectedId = 'm' + typeId;
-                comments = this.getCommentsValues(textcritics, type, typeId);
-                break;
-            case 'system':
-                selectedId = 's' + typeId;
-                comments = this.getCommentsValues(textcritics, type, typeId);
-                break;
-            case 'item':
-                selectedId = typeId;
-                comments.push(textcritics[typeId]);
-                break;
-        }
-        return [comments, selectedId];
+    getTextcritics(textcritics: Textcritics[], event: {field: string, id: string}): Textcritics[] {
+        return textcritics.filter((textcritic, filterIndex) => {
+            return this.filterTextcritics(textcritic, event, filterIndex);
+        });
     }
 
             /*
-             * private function to prepare values
+             * private function to filter out needed textcritics
              */
-            private getCommentsValues(textcritics: Textcritics[], type: string, typeId: string): Textcritics[] {
-                const comments: Textcritics[] = [];
-                textcritics.forEach((textcritic) => {
-                    // trim existing values
-                    const tkaValue: string = textcritic[type] ? textcritic[type].replace('[', '').replace(']', '') : null;
-                    // check if value matches id
-                    if (tkaValue === typeId) {
-                        comments.push(textcritic);
-                    }
-                });
-                return comments;
+            private filterTextcritics(textcritics, event, filterIndex): boolean {
+                // shortcuts & trimmed values
+                const measure = textcritics.measure.replace('[', '').replace(']', '');
+                const system = textcritics.system.replace('[', '').replace(']', '');
+
+                switch (event.field) {
+                    case 'measure':
+                        return measure === event.id;
+                    case 'system':
+                        return system === event.id;
+                    case 'item':
+                        return filterIndex === +event.id;
+                }
             }
 
 }

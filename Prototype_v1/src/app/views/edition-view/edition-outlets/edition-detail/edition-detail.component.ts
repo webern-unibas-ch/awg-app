@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { ConvoluteFolio, EditionSvgFile, Textcritics } from '@awg-views/edition-view/models';
+import { ConvoluteFolio, EditionSvgFile, Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -16,7 +16,7 @@ export class EditionDetailComponent implements OnInit {
     svgFileData: EditionSvgFile[];
     selectedSvgFile: EditionSvgFile;
 
-    textcriticsData: Textcritics[];
+    textcriticsData: TextcriticsList;
     selectedTextcritics: Textcritics[];
     selectedTextcriticId: string;
 
@@ -39,7 +39,7 @@ export class EditionDetailComponent implements OnInit {
     // get edition data
     getEditionDetailData() {
         this.dataService.getEditionDetailData()
-            .subscribe((data: [ConvoluteFolio[], EditionSvgFile[], Textcritics[]]) => {
+            .subscribe((data: [ConvoluteFolio[], EditionSvgFile[], TextcriticsList]) => {
                     this.convoluteData = data[0]['convolute'];
                     this.svgFileData = data[1];
                     this.textcriticsData = data[2];
@@ -72,9 +72,12 @@ export class EditionDetailComponent implements OnInit {
 
     onTextcriticSelect($event): void {
         if (!this.textcriticsData && !this.selectedSvgFile) { return; }
-        const res = this.editionService.getTextcritics(this.textcriticsData[this.selectedSvgFile.id], $event.field, $event.id);
-        this.selectedTextcritics = res[0];
-        this.selectedTextcriticId = res[1];
+
+        // shortcut
+        const textcritics = this.textcriticsData[this.selectedSvgFile.id];
+
+        this.selectedTextcritics = this.editionService.getTextcritics(textcritics, $event);
+        this.selectedTextcriticId = this.selectedSvgFile.id;
         this.showTkA = (this.selectedTextcritics !== []);
     }
 

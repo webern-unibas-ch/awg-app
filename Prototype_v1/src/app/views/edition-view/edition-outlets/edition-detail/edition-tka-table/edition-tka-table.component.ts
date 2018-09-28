@@ -1,4 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { Textcritics } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-tka-table',
@@ -6,7 +8,7 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     styleUrls: ['./edition-tka-table.component.css']
 })
 export class EditionTkaTableComponent implements OnInit {
-    @Input() selectedTextcritics: string[];
+    @Input() selectedTextcritics: Textcritics[];
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
