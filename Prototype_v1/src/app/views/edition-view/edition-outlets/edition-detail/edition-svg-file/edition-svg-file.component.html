@@ -1,56 +1,64 @@
 <div>
     <!-- embedded svg: Aa:SkI/2 -->
     <div class="svg edition-svg" *ngIf="isSelectedSvgFile(svgFile2)">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/2">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" [id]="selectedSvgFile.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgFile.svg" width="100%" height="100%" />
             <!-- systems -->
+            <svg:g class="edition-svg-systems">
                 <!-- system 14 -->
-                <a (click)="selectTextcritic('system', '14')" [class.active]="isSelectedTextcritic('s14')">
+                <a (click)="selectTextcritic('system', '14')" [class.active]="isSelectedTextcritic('system', '14')">
                     <rect class="edition-svg-system" x="20" y="205" width="950" height="60" />
                 </a>
                 <!-- system 13 -->
-                <a (click)="selectTextcritic('system', '13')" [class.active]="isSelectedTextcritic('s13')">
+                <a (click)="selectTextcritic('system', '13')" [class.active]="isSelectedTextcritic('system', '13')">
                     <rect class="edition-svg-system" x="20" y="275" width="950" height="60" />
                 </a>
                 <!-- system 12 -->
-                <a (click)="selectTextcritic('system', '12')" [class.active]="isSelectedTextcritic('s12')">
+                <a (click)="selectTextcritic('system', '12')" [class.active]="isSelectedTextcritic('system', '12')">
                     <rect class="edition-svg-system" x="20" y="345" width="950" height="60"/>
                 </a>
+            </svg:g>
             <!-- measures -->
+            <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
-                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('m10')">
+                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('measure', '10')">
                     <rect class="edition-svg-measure" x="300" y="125" width="180" height="345" />
                 </a>
                 <!-- measure 11 -->
-                <a (click)="selectTextcritic('measure', '11')" [class.active]="isSelectedTextcritic('m11')">
+                <a (click)="selectTextcritic('measure', '11')" [class.active]="isSelectedTextcritic('measure', '11')">
                     <rect class="edition-svg-measure" x="480" y="125" width="180" height="345" />
                 </a>
                 <!-- measure 12 -->
-                <a (click)="selectTextcritic('measure', '12')" [class.active]="isSelectedTextcritic('m12')">
+                <a (click)="selectTextcritic('measure', '12')" [class.active]="isSelectedTextcritic('measure', '12')">
                     <rect class="edition-svg-measure" x="660" y="125" width="180" height="345"/>
                 </a>
-            <!-- item items ->
+            </svg:g>
+            <!-- items -->
+            <svg:g class="edition-svg-items">
                <!-- T10/S12/o1 -->
-                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('0')">
+                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('item', '0')">
                     <rect class="edition-svg-item" x="330" y="350" rx="5" ry="5" width="40" height="70" />
                 </a>
                 <!-- T10/S12/o2 -->
-                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('1')">
+                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('item', '1')">
                     <rect class="edition-svg-item" x="380" y="350" rx="5" ry="5" width="40" height="70" />
                 </a>
                 <!-- T11/S14/o(1/4) -->
-                <a (click)="selectTextcritic('item', '2')" [class.active]="isSelectedTextcritic('2')">
+                <a (click)="selectTextcritic('item', '2')" [class.active]="isSelectedTextcritic('item', '2')">
                     <rect class="edition-svg-item" x="480" y="200" rx="5" ry="5" width="125" height="80" />
                 </a>
                 <!-- T12/S13/oO -->
-                <a (click)="selectTextcritic('item', '3')" [class.active]="isSelectedTextcritic('3')">
+                <a (click)="selectTextcritic('item', '3')" [class.active]="isSelectedTextcritic('item', '3')">
                     <rect class="edition-svg-item" x="660" y="270" rx="5" ry="5" width="125" height="80" />
                 </a>
+            </svg:g>
             <!-- link boxes -->
+            <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/3 -->
                 <a (click)="selectSvgFile(svgFile3)">
                     <rect class="edition-svg-linkbox" x="90" y="345" width="182" height="125" />
                 </a>
+            </svg:g>
         </svg>
     </div> <!-- END svg Aa:SkI/2 -->
 
@@ -58,31 +66,36 @@
 
     <!-- embedded svg: Aa:SkI/3 -->
     <div class="svg" *ngIf="isSelectedSvgFile(svgFile3)">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" id="Aa:SkI/3">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" [id]="selectedSvgFile.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgFile.svg" width="100%" height="100%" />
             <!-- measures -->
+            <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
-                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('m10')">
+                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('measure', '10')">
                     <rect class="edition-svg-measure" x="80" y="110" width="282" height="400" />
                 </a>
                 <!-- measure 11 -->
-                <a (click)="selectTextcritic('measure', '11')" [class.active]="isSelectedTextcritic('m11')">
+                <a (click)="selectTextcritic('measure', '11')" [class.active]="isSelectedTextcritic('measure', '11')">
                     <rect class="edition-svg-measure" x="362" y="110" width="260" height="400" />
                 </a>
-            <!-- item items -->
+            </svg:g>
+            <!-- items -->
+            <svg:g class="edition-svg-items">
                 <!-- T10/S9/o(2/4) -->
-                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('0')">
+                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('item', '0')">
                     <rect class="edition-svg-item" x="225" y="420" rx="5" ry="5" width="40" height="70" />
                 </a>
                 <!-- T11/S10/o(1.-2.Note) -->
-                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('1')">
+                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('item', '1')">
                     <rect class="edition-svg-item" x="365" y="340" rx="5" ry="5" width="105" height="70" />
                 </a>
                 <!-- T12/S10/o(nach 2/4) -->
-                <a (click)="selectTextcritic('item', '2')" [class.active]="isSelectedTextcritic('2')">
+                <a (click)="selectTextcritic('item', '2')" [class.active]="isSelectedTextcritic('item', '2')">
                     <rect class="edition-svg-item" x="510" y="340" rx="5" ry="5" width="100" height="70" />
                 </a>
+            </svg:g>
             <!-- link boxes -->
+            <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/2 -->
                 <a (click)="selectSvgFile(svgFile2)">
                     <rect class="edition-svg-linkbox" x="458" y="111" width="165" height="162" />
@@ -91,6 +104,7 @@
                 <a (click)="selectSvgFile(svgFile5)">
                     <rect class="edition-svg-linkbox" x="620" y="420" width="165" height="160" />
                 </a>
+            </svg:g>
         </svg>
     </div> <!-- END svg Aa:SkI/3 -->
 
@@ -98,27 +112,33 @@
 
     <!-- embedded svg: Aa:SkI/4 -->
     <div class="svg" *ngIf="isSelectedSvgFile(svgFile4)">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" id="Aa:SkI/4" >
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 508" [id]="selectedSvgFile.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgFile.svg" width="100%" height="100%" />
             <!-- measures -->
+            <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
-                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('m10')">
+                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('measure', '10')">
                     <rect class="edition-svg-measure" x="150" y="115" width="268" height="390" />
                 </a>
-            <!-- item items -->
+            </svg:g>
+            <!-- items -->
+            <svg:g class="edition-svg-items">
                 <!-- T10/S6/oO -->
-                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('0')">
+                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('item', '0')">
                     <rect class="edition-svg-item" x="283" y="270" rx="5" ry="5" width="40" height="70" />
                 </a>
                 <!-- T10/S5/o(3.Note) -->
-                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('1')">
+                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('item', '1')">
                     <rect class="edition-svg-item" x="283" y="350" rx="5" ry="5" width="40" height="70" />
                 </a>
+            </svg:g>
             <!-- link boxes -->
+            <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/5 -->
                 <a (click)="selectSvgFile(svgFile5)">
                     <rect class="edition-svg-linkbox" x="577" y="152" width="222" height="180" />
                 </a>
+            </svg:g>
         </svg>
     </div> <!-- END svg Aa:SkI/4 -->
 
@@ -126,27 +146,32 @@
 
     <!-- embedded svg: Aa:SkI/5 -->
     <div class="svg" *ngIf="isSelectedSvgFile(svgFile5)">
-        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" id="Aa:SkI/5">
+        <svg version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" viewBox="0 0 1000 608" [id]="selectedSvgFile.id">
             <svg:image xlink:href [attr.xlink:href]="selectedSvgFile.svg" width="100%" height="100%" />
             <!-- measures -->
+            <svg:g class="edition-svg-measures">
                 <!-- measure 10 -->
-                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('m10')">
+                <a (click)="selectTextcritic('measure', '10')" [class.active]="isSelectedTextcritic('measure', '10')">
                     <rect class="edition-svg-measure" x="390" y="115" width="260" height="390" />
                 </a>
                 <!-- measure 11 -->
-                <a (click)="selectTextcritic('measure', '11')" [class.active]="isSelectedTextcritic('m11')">
+                <a (click)="selectTextcritic('measure', '11')" [class.active]="isSelectedTextcritic('measure', '11')">
                     <rect class="edition-svg-measure" x="650" y="115" width="200" height="390" />
                 </a>
-            <!-- item items -->
+            </svg:g>
+            <!-- items -->
+            <svg:g class="edition-svg-items">
                 <!-- T10/S9/o3/8 -->
-                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('0')">
+                <a (click)="selectTextcritic('item', '0')" [class.active]="isSelectedTextcritic('item', '0')">
                     <rect class="edition-svg-item" x="523" y="195" rx="5" ry="5" width="40" height="85" />
                 </a>
                 <!-- T11/S9/o1/4 -->
-                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('1')">
+                <a (click)="selectTextcritic('item', '1')" [class.active]="isSelectedTextcritic('item', '1')">
                     <rect class="edition-svg-item" x="650" y="195" rx="5" ry="5" width="40" height="85" />
                 </a>
+            </svg:g>
             <!-- link boxes -->
+            <svg:g class="edition-svg-linkboxes">
                 <!-- rect SkI/3 -->
                 <a (click)="selectSvgFile(svgFile3)">
                     <rect class="edition-svg-linkbox" x="72" y="148" width="242" height="125" />
@@ -155,6 +180,7 @@
                 <a (click)="selectSvgFile(svgFile4)">
                     <rect class="edition-svg-linkbox" x="72" y="345" width="245" height="205" />
                 </a>
+            </svg:g>
         </svg>
     </div> <!-- END svg Aa:SkI/5 -->
 

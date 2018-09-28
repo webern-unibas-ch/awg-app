@@ -28,6 +28,8 @@ import {
 } from './folio-svg-output.model';
 
 import { EditionSvgFile } from './edition-svg-file.model';
+
+import { Overlay } from './overlay';
 import { Source } from './source.model';
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
@@ -37,15 +39,16 @@ export {
     ConvoluteFolioFormat,
     ConvoluteFolioContent,
     ConvoluteFolioSection,
-    FolioCalculation,
-    FolioFormatOptions,
-    FolioSvgLine,
     ConvoluteFolioSvgContentItem,
     ConvoluteFolioSvgFolio,
     ConvoluteFolioSvgSystems,
     ConvoluteFolioSvgOutput,
+    FolioCalculation,
+    FolioFormatOptions,
+    FolioSvgLine,
     FolioSvgPoint,
     EditionSvgFile,
+    Overlay,
     Source,
     Textcritics,
     TextcriticsList,

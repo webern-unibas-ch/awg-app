@@ -3,21 +3,21 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
-import { EditionSvgPanelComponent } from './edition-svg-panel.component';
+import { EditionSvgFileComponent } from './edition-svg-file.component';
 
-describe('EditionSvgPanelComponent', () => {
-  let component: EditionSvgPanelComponent;
-  let fixture: ComponentFixture<EditionSvgPanelComponent>;
+describe('EditionSvgFileComponent', () => {
+  let component: EditionSvgFileComponent;
+  let fixture: ComponentFixture<EditionSvgFileComponent>;
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ EditionSvgPanelComponent ]
+      declarations: [ EditionSvgFileComponent ]
     })
     .compileComponents();
   }));
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(EditionSvgPanelComponent);
+    fixture = TestBed.createComponent(EditionSvgFileComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { SharedModule} from '@awg-shared/shared.module';
 
+import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
+
 import {
     SourcesComponent,
     SourceDescriptionComponent,
@@ -10,7 +12,8 @@ import { TextcriticsComponent } from './textcritics';
 
 @NgModule({
     imports: [
-        SharedModule
+        SharedModule,
+        EditionTkaTableModule
     ],
     declarations: [
         SourcesComponent,

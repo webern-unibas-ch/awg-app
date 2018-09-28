@@ -18,25 +18,14 @@
             </div>
 
             <div class="para" *ngFor="let textcritics of textcriticsData | mapToIterable">
-                <table class="table table-hover table-condensed">
-                    <caption class="bold"><a [routerLink]="['/edition/detail', textcritics.mappedKey]">{{ textcritics.mappedKey }}</a>:</caption>
-                    <thead>
-                        <tr>
-                            <th style="width:7%">Takt</th>
-                            <th style="width:10%">System</th>
-                            <th style="width:15%">Ort im Takt</th>
-                            <th style="width:auto">Kommentar</th>
-                        </tr>
-                    </thead>
-                    <tbody>
-                        <tr *ngFor="let textcritic of textcritics.mappedValues">
-                            <td>{{ textcritic.measure }}</td>
-                            <td>{{ textcritic.system }}</td>
-                            <td [innerHTML]="textcritic.location"></td>
-                            <td><span [compile-html]="textcritic.comment" [compile-html-ref]="ref"></span></td>
-                        </tr>
-                    </tbody>
-                </table>
+
+                <caption class="bold"><a [routerLink]="['/edition/detail', textcritics.mappedKey]">{{ textcritics.mappedKey }}</a>:</caption>
+                <awg-edition-tka-table
+                        [selectedTextcritics]="textcritics.mappedValues"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgFileRequest)="selectSvgFile($event)">
+                </awg-edition-tka-table>
+
             </div>
         </div>
     </div>

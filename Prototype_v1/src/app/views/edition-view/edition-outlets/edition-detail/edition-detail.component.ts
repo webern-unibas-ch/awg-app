@@ -1,8 +1,15 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { ConvoluteFolio, EditionSvgFile, Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
+import {
+    ConvoluteFolio,
+    EditionSvgFile,
+    Overlay,
+    Textcritics,
+    TextcriticsList
+} from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
+
 
 @Component({
     selector: 'awg-edition-detail',
@@ -18,7 +25,7 @@ export class EditionDetailComponent implements OnInit {
 
     textcriticsData: TextcriticsList;
     selectedTextcritics: Textcritics[];
-    selectedTextcriticId: string;
+    selectedOverlay: Overlay;
 
     errorMessage: string = undefined;
     showTkA: boolean = false;
@@ -64,20 +71,22 @@ export class EditionDetailComponent implements OnInit {
 
     onSvgFileSelect(id: string): void {
         this.selectedSvgFile = this.svgFileData[id];
-        this.selectedTextcriticId = '';
         this.showTkA = false;
         this.router.navigate(['/edition/detail', id]);
     }
 
 
-    onTextcriticSelect($event): void {
+    onTextcriticSelect($event: Overlay): void {
         if (!this.textcriticsData && !this.selectedSvgFile) { return; }
 
         // shortcut
         const textcritics = this.textcriticsData[this.selectedSvgFile.id];
 
-        this.selectedTextcritics = this.editionService.getTextcritics(textcritics, $event);
-        this.selectedTextcriticId = this.selectedSvgFile.id;
+
+        this.selectedOverlay = new Overlay($event.type, $event.id);
+        console.warn($event.type, $event.id);
+        console.warn(this.selectedOverlay);
+        this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
         this.showTkA = (this.selectedTextcritics !== []);
     }
 

@@ -3,11 +3,11 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EditionSvgFile } from '@awg-views/edition-view/models';
 
 @Component({
-    selector: 'awg-edition-sheet-control',
-    templateUrl: './edition-sheet-control.component.html',
-    styleUrls: ['./edition-sheet-control.component.css']
+    selector: 'awg-edition-svg-file-nav',
+    templateUrl: './edition-svg-file-nav.component.html',
+    styleUrls: ['./edition-svg-file-nav.component.css']
 })
-export class EditionSheetControlComponent implements OnInit {
+export class EditionSvgFileNavComponent implements OnInit {
     @Input() svgFileData: EditionSvgFile[];
     @Input() selectedSvgFile: EditionSvgFile;
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();

@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { Textcritics } from '../../models/index';
 
 @Component({
     selector: 'awg-edition-tka-table',

@@ -11,31 +11,31 @@ export class EditionService {
      *
      * get comments for selected item
      *
-     * returns array with comments<Textcritics[]>
-     *     and selectedItem<string>
+     * returns array with textcritics<Textcritics[]>
+     *
      *
      ********************************/
-    getTextcritics(textcritics: Textcritics[], event: {field: string, id: string}): Textcritics[] {
+    getTextcritics(textcritics: Textcritics[], overlay: {type: string, id: string}): Textcritics[] {
         return textcritics.filter((textcritic, filterIndex) => {
-            return this.filterTextcritics(textcritic, event, filterIndex);
+            return this.filterTextcritics(textcritic, overlay, filterIndex);
         });
     }
 
             /*
              * private function to filter out needed textcritics
              */
-            private filterTextcritics(textcritics, event, filterIndex): boolean {
+            private filterTextcritics(textcritics, overlay, filterIndex): boolean {
                 // shortcuts & trimmed values
                 const measure = textcritics.measure.replace('[', '').replace(']', '');
                 const system = textcritics.system.replace('[', '').replace(']', '');
 
-                switch (event.field) {
+                switch (overlay.type) {
                     case 'measure':
-                        return measure === event.id;
+                        return measure === overlay.id;
                     case 'system':
-                        return system === event.id;
+                        return system === overlay.id;
                     case 'item':
-                        return filterIndex === +event.id;
+                        return filterIndex === +overlay.id;
                 }
             }
 

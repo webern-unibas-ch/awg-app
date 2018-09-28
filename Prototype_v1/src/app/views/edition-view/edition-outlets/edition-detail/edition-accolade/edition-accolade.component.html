@@ -9,23 +9,25 @@
     <div class="panel-collapse collapse" [class.in]="showAccoladePanel">
         <div class="panel-body">
             <!-- accolade control -->
-            <awg-edition-sheet-control *ngIf="svgFileData && selectedSvgFile"
+            <awg-edition-svg-file-nav *ngIf="svgFileData && selectedSvgFile"
                                        [svgFileData]="svgFileData"
                                        [selectedSvgFile]="selectedSvgFile"
                                        (selectSvgFileRequest)="selectSvgFile($event)">
-            </awg-edition-sheet-control>
+            </awg-edition-svg-file-nav>
 
             <!-- svg panel -->
-            <awg-edition-svg-panel *ngIf="selectedSvgFile"
+            <awg-edition-svg-file *ngIf="selectedSvgFile"
                                    [selectedSvgFile]="selectedSvgFile"
-                                   [selectedTextcriticId]="selectedTextcriticId"
+                                   [selectedOverlay]="selectedOverlay"
                                    (selectSvgFileRequest)="selectSvgFile($event)"
                                    (selectTextcriticRequest)="selectTextcritic($event)">
-            </awg-edition-svg-panel>
+            </awg-edition-svg-file>
 
             <!-- table for TkA -->
+        </div>
+        <div class="panel-footer">
             <ng-container *ngIf="showTkA && selectedTextcritics">
-                <h4>Textkritischer Kommentar:</h4>
+                <h4>Textkritischer Kommentar ({{selectedOverlay.type}} {{selectedOverlay.id}}):</h4>
                 <awg-edition-tka-table
                     [selectedTextcritics]="selectedTextcritics"
                     (openModalRequest)="openModal($event)"

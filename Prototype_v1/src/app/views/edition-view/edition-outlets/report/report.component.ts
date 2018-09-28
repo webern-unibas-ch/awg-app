@@ -52,6 +52,7 @@ export class ReportComponent implements OnInit {
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
             this.route.fragment.subscribe(f => {
+                        console.log('Report: route#fragment: ', f);
                         if (!f) { return; }
                         const element = document.querySelector('#' + f);
                         if (element) { element.scrollIntoView(); }
