@@ -1,4 +1,4 @@
-export class Sheet {
+export class EditionSvgFile {
     id: string;
     svg: string;
     image: string;

@@ -17,26 +17,15 @@
                 </p>
             </div>
 
-            <div class="para">
-                <table class="table table-hover" *ngFor="let comment of comments | mapToIterable">
-                    <caption class="bold"><a [routerLink]="['/edition/detail', comment.mappedKey]">{{ comment.mappedKey }}</a>:</caption>
-                    <thead>
-                    <tr>
-                        <th style="width:10%">Takt</th>
-                        <th style="width:10%">System</th>
-                        <th style="width:23%">Ort im Takt</th>
-                        <th style="width:auto">Kommentar</th>
-                    </tr>
-                    </thead>
-                    <tbody>
-                    <tr *ngFor="let item of comment.mappedValues">
-                        <td>{{ item.measure }}</td>
-                        <td>{{ item.system }}</td>
-                        <td [innerHTML]="item.location"></td>
-                        <td><span [compile-html]="item.comment" [compile-html-ref]="ref"></span></td>
-                    </tr>
-                    </tbody>
-                </table>
+            <div class="para" *ngFor="let textcritics of textcriticsData | mapToIterable">
+
+                <caption class="bold"><a [routerLink]="['/edition/detail', textcritics.mappedKey]">{{ textcritics.mappedKey }}</a>:</caption>
+                <awg-edition-tka-table
+                        [selectedTextcritics]="textcritics.mappedValues"
+                        (openModalRequest)="openModal($event)"
+                        (selectSvgFileRequest)="selectSvgFile($event)">
+                </awg-edition-tka-table>
+
             </div>
         </div>
     </div>

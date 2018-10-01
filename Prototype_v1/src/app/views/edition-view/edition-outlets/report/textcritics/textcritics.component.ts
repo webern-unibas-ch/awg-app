@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticsList } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-textcritics',
@@ -8,12 +8,12 @@ import { Textcritics } from '@awg-views/edition-view/models';
     styleUrls: ['./textcritics.component.css']
 })
 export class TextcriticsComponent implements OnInit {
-    @Input() comments: Textcritics[];
+    @Input() textcriticsData: TextcriticsList;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
-    showPanel: boolean;
+    showPanel: boolean = true;
 
     constructor() {
         this.ref = this;
@@ -22,12 +22,12 @@ export class TextcriticsComponent implements OnInit {
     ngOnInit() {
     }
 
-    openModal(identifier: string): void {
-        this.openModalRequest.emit(identifier);
+    openModal(id: string): void {
+        this.openModalRequest.emit(id);
     }
 
-    selectSheet(identifier: string): void {
-        this.selectSheetRequest.emit(identifier);
+    selectSvgFile(id: string): void {
+        this.selectSvgFileRequest.emit(id);
     }
 
     togglePanel(): boolean {

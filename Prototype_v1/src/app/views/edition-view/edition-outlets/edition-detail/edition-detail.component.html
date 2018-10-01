@@ -7,29 +7,26 @@
     <awg-modal #modal></awg-modal>
 
     <!-- body with embedded svg's -->
-    <!-- image control -->
-    <awg-edition-sheet-control
-        *ngIf="sheetsData && selectedSheet"
-        [sheets]="sheetsData"
-        [selectedSheet]="selectedSheet"
-        (selectSheetRequest)="onSheetSelect($event)">
-    </awg-edition-sheet-control>
 
-    <!-- table for TkA -->
-    <awg-edition-tka-table
-        *ngIf="showTkA && selectedTextcritics"
-        [textcritics]="selectedTextcritics"
-        (openModalRequest)="modal.open($event)"
-        (selectSheetRequest)="onSheetSelect($event)">
-    </awg-edition-tka-table>
+        <!-- convolute view -->
+        <awg-edition-convolute *ngIf="convoluteData && selectedSvgFile"
+                               [convoluteData]="convoluteData"
+                               [selectedSvgFile]="selectedSvgFile"
+                               (openModalRequest)="modal.open($event)"
+                               (selectSvgFileRequest)="onSvgFileSelect($event)">
+        </awg-edition-convolute>
 
-    <!-- svg panel -->
-    <awg-edition-svg-panel
-        *ngIf="selectedSheet"
-        [selectedSheet]="selectedSheet"
-        [selectedTextcriticId]="selectedTextcriticId"
-        (selectSheetRequest)="onSheetSelect($event)"
-        (selectTextcriticRequest)="onTextcriticSelect($event)">
-    </awg-edition-svg-panel>
+
+        <!-- accolade view -->
+        <awg-edition-accolade *ngIf="svgFileData && selectedSvgFile"
+                              [svgFileData]="svgFileData"
+                              [selectedSvgFile]="selectedSvgFile"
+                              [selectedTextcritics]="selectedTextcritics"
+                              [selectedOverlay]="selectedOverlay"
+                              [showTkA]="showTkA"
+                              (openModalRequest)="modal.open($event)"
+                              (selectSvgFileRequest)="onSvgFileSelect($event)"
+                              (selectTextcriticRequest)="onTextcriticSelect($event)">
+        </awg-edition-accolade>
 
 </div>

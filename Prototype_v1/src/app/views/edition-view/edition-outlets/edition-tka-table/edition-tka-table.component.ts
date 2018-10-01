@@ -1,4 +1,6 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+
+import { Textcritics } from '../../models/index';
 
 @Component({
     selector: 'awg-edition-tka-table',
@@ -6,9 +8,9 @@ import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
     styleUrls: ['./edition-tka-table.component.css']
 })
 export class EditionTkaTableComponent implements OnInit {
-    @Input() textcritics: string[];
+    @Input() selectedTextcritics: Textcritics[];
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSheetRequest: EventEmitter<string> = new EventEmitter();
+    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: EditionTkaTableComponent;
 
@@ -20,12 +22,12 @@ export class EditionTkaTableComponent implements OnInit {
     ngOnInit() {
     }
 
-    public openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openModal(id: string) {
+        this.openModalRequest.emit(id);
     }
 
-    public selectSheet(identifier: string): void {
-        this.selectSheetRequest.emit(identifier);
+    selectSvgFile(id: string): void {
+        this.selectSvgFileRequest.emit(id);
     }
 
 }

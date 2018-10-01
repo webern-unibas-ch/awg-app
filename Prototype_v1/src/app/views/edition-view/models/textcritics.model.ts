@@ -6,5 +6,5 @@ export class Textcritics {
 }
 
 export class TextcriticsList {
-    [key: string] : Textcritics[];
+    [key: string]: Textcritics[];
 }
