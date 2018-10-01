@@ -1,14 +1,40 @@
-import { FolioSvgPoint } from './folio-svg-point.model';
-import { FolioSvgLine } from './folio-svg-line.model';
 import { ConvoluteFolio, ConvoluteFolioContent, ConvoluteFolioSection } from './convolute-folio.model';
 import { FolioFormatOptions } from './folio-format-options.model';
 
 
+export class FolioCalculationPoint {
+    x: number;
+    y: number;
+    add: (addX: number, addY: number) => FolioCalculationPoint;
+
+    constructor(x: number, y: number) {
+        this.x = x;
+        this.y = y;
+        this.add = (addX: number, addY: number) => {
+            this.x += addX;
+            this.y += addY;
+            return this;
+        };
+    }
+}
+
+
+export class FolioCalculationLine {
+    startPoint: FolioCalculationPoint;
+    endPoint: FolioCalculationPoint;
+
+    constructor(point1: FolioCalculationPoint, point2: FolioCalculationPoint) {
+        this.startPoint = point1;
+        this.endPoint = point2;
+    }
+}
+
+
 export class FolioCalculationContentItemCorner {
-    upperLeft: FolioSvgPoint;
-    lowerLeft: FolioSvgPoint;
-    upperRight: FolioSvgPoint;
-    lowerRight: FolioSvgPoint;
+    upperLeft: FolioCalculationPoint;
+    lowerLeft: FolioCalculationPoint;
+    upperRight: FolioCalculationPoint;
+    lowerRight: FolioCalculationPoint;
 }
 
 
@@ -30,7 +56,7 @@ export class FolioCalculationContentItem {
     endX: number;
     startY: number;
     endY: number;
-    lineArray: FolioSvgLine[];
+    lineArray: FolioCalculationLine[];
     current: FolioCalculationContentItemCache;
     previous: FolioCalculationContentItemCache;
     sigle?: string;
@@ -39,12 +65,12 @@ export class FolioCalculationContentItem {
 
 
 export class FolioCalculationSheet {
-    offset: FolioSvgPoint;
+    offset: FolioCalculationPoint;
     width: number;
     height: number;
     folioId?: string;
-    upperLeftCorner?: FolioSvgPoint;
-    lowerRightCorner?: FolioSvgPoint;
+    upperLeftCorner?: FolioCalculationPoint;
+    lowerRightCorner?: FolioCalculationPoint;
 }
 
 
@@ -60,8 +86,8 @@ export class FolioCalculationSystems {
     yArray: number[][];
     labelStartX: number;
     labelOffsetCorrection: number;
-    lineLabelArray?: FolioSvgPoint[];
-    lineArrays?: FolioSvgLine[][];
+    lineLabelArray?: FolioCalculationPoint[];
+    lineArrays?: FolioCalculationLine[][];
 }
 
 
@@ -71,7 +97,7 @@ export class FolioCalculation {
     zoomFactor: number;
     sheet: FolioCalculationSheet;
     systems: FolioCalculationSystems;
-    itemsArray: FolioCalculationContentItem[];
+    contentItemsArray: FolioCalculationContentItem[];
 
     constructor(options: FolioFormatOptions, folioData: ConvoluteFolio, itemsOffsetCorrection?: number) {
         this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
@@ -80,7 +106,7 @@ export class FolioCalculation {
 
         this.sheet = this.getSheet(options, folioData.folioId);
         this.systems = this.getSystems();
-        this.itemsArray = this.getContentArray(folioData.content);
+        this.contentItemsArray = this.getContentArray(folioData.content);
     }
 
 
@@ -90,11 +116,11 @@ export class FolioCalculation {
 
         // set calculated values for offsets (= upper left starting point), width & height
         calculatedSheet.folioId = folioId;
-        calculatedSheet.offset = new FolioSvgPoint(options.initialOffsetX, options.initialOffsetY);
+        calculatedSheet.offset = new FolioCalculationPoint(options.initialOffsetX, options.initialOffsetY);
         calculatedSheet.width = options.formatX * this.zoomFactor;
         calculatedSheet.height = options.formatY * this.zoomFactor;
         calculatedSheet.upperLeftCorner = calculatedSheet.offset;
-        calculatedSheet.lowerRightCorner = new FolioSvgPoint(calculatedSheet.width, calculatedSheet.height);
+        calculatedSheet.lowerRightCorner = new FolioCalculationPoint(calculatedSheet.width, calculatedSheet.height);
 
         return calculatedSheet;
     }
@@ -124,14 +150,14 @@ export class FolioCalculation {
         calculatedSystems.yArray = this.getSystemYArray(calculatedSystems.upperMargin, calculatedSystems.startY);
 
         // system lines
-        calculatedSystems.lineArrays = calculatedSystems.yArray.map(lineArray => lineArray.map(line => new FolioSvgLine(new FolioSvgPoint(calculatedSystems.startX, line), new FolioSvgPoint(calculatedSystems.endX, line))));       // line is the y value
+        calculatedSystems.lineArrays = calculatedSystems.yArray.map(lineArray => lineArray.map(line => new FolioCalculationLine(new FolioCalculationPoint(calculatedSystems.startX, line), new FolioCalculationPoint(calculatedSystems.endX, line))));       // line is the y value
 
         // system numbers (labels)
         calculatedSystems.labelStartX = this.round(calculatedSystems.startX - (calculatedSystems.leftMargin * 3 / 4), 2);   // place numbers 3/4 of left margin in front of system
 
         // reduce start values with lineLabelOffsetCorrection to get start positions of numbers
         // lineArray[0] = first line of a system
-        calculatedSystems.lineLabelArray = calculatedSystems.yArray.map(lineArray =>  (new FolioSvgPoint(calculatedSystems.labelStartX, lineArray[0] - calculatedSystems.labelOffsetCorrection)));
+        calculatedSystems.lineLabelArray = calculatedSystems.yArray.map(lineArray =>  (new FolioCalculationPoint(calculatedSystems.labelStartX, lineArray[0] - calculatedSystems.labelOffsetCorrection)));
 
         return calculatedSystems;
     }
@@ -254,20 +280,20 @@ export class FolioCalculation {
         if (!calculatedContentItem) { return; }
 
         const corner: FolioCalculationContentItemCorner = {
-            upperLeft: new FolioSvgPoint(calculatedContentItem.startX, calculatedContentItem.startY),
-            lowerLeft: new FolioSvgPoint(calculatedContentItem.startX, calculatedContentItem.endY),
-            upperRight: new FolioSvgPoint(calculatedContentItem.endX, calculatedContentItem.startY),
-            lowerRight: new FolioSvgPoint(calculatedContentItem.endX, calculatedContentItem.endY)
+            upperLeft: new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.startY),
+            lowerLeft: new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.endY),
+            upperRight: new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.startY),
+            lowerRight: new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.endY)
         };
         return corner;
     }
 
 
-    private setContentItemLineArray(calculatedContentItem: FolioCalculationContentItem, sectionsLength: number, sectionIndex: number, sectionPartition: number): FolioSvgLine[] {
+    private setContentItemLineArray(calculatedContentItem: FolioCalculationContentItem, sectionsLength: number, sectionIndex: number, sectionPartition: number): FolioCalculationLine[] {
         if (!calculatedContentItem.current.corner) { return; }
 
         // init
-        const lineArray: FolioSvgLine[] = [];
+        const lineArray: FolioCalculationLine[] = [];
         const lines: string[] = [];
         const corner = calculatedContentItem.current.corner;               // shortcut
         const correctionValue = this.itemsOffsetCorrection / 2;     // offset correction value
@@ -322,10 +348,10 @@ export class FolioCalculation {
         }
 
         // create lines
-        const upperHorizontalLine = new FolioSvgLine(corner.upperLeft, corner.upperRight);
-        const lowerHorizontalLine = new FolioSvgLine(corner.lowerLeft, corner.lowerRight);
-        const leftVerticalLine = new FolioSvgLine(corner.upperLeft, corner.lowerLeft);
-        const rightVerticalLine = new FolioSvgLine(corner.upperRight, corner.lowerRight);
+        const upperHorizontalLine = new FolioCalculationLine(corner.upperLeft, corner.upperRight);
+        const lowerHorizontalLine = new FolioCalculationLine(corner.lowerLeft, corner.lowerRight);
+        const leftVerticalLine = new FolioCalculationLine(corner.upperLeft, corner.lowerLeft);
+        const rightVerticalLine = new FolioCalculationLine(corner.upperRight, corner.lowerRight);
 
         lines.forEach((line: string) => {
             switch (line)
@@ -349,7 +375,7 @@ export class FolioCalculation {
     }
 
 
-    private checkForConnectorLine(calculatedContentItem: FolioCalculationContentItem, lineArray: FolioSvgLine[]): void {
+    private checkForConnectorLine(calculatedContentItem: FolioCalculationContentItem, lineArray: FolioCalculationLine[]): void {
         // init
         const currentSection: ConvoluteFolioSection = calculatedContentItem.current.section;
         const prevSection: ConvoluteFolioSection = calculatedContentItem.previous.section;
@@ -360,19 +386,19 @@ export class FolioCalculation {
         // check for different start or end systems
         if (currentSection.startSystem !== prevSection.startSystem) {
             // draw upper connector
-            const connectorLine: FolioSvgLine = new FolioSvgLine(calculatedContentItem.previous.corner.upperRight, calculatedContentItem.current.corner.upperLeft);
+            const connectorLine: FolioCalculationLine = new FolioCalculationLine(calculatedContentItem.previous.corner.upperRight, calculatedContentItem.current.corner.upperLeft);
             lineArray.push(connectorLine);
         }
         if (currentSection.endSystem !== prevSection.endSystem) {
             // draw lower connector
-            const connectorLine: FolioSvgLine = new FolioSvgLine(calculatedContentItem.previous.corner.lowerRight, calculatedContentItem.current.corner.lowerLeft);
+            const connectorLine: FolioCalculationLine = new FolioCalculationLine(calculatedContentItem.previous.corner.lowerRight, calculatedContentItem.current.corner.lowerLeft);
             lineArray.push(connectorLine);
         }
     }
 
 
     // sets the offsetCorrection for an item
-    private setContentItemOffsetCorrection(cornerPoint: FolioSvgPoint, correctionX: number) {
+    private setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number) {
         cornerPoint = cornerPoint.add(correctionX, 0);
     }
 

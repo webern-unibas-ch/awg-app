@@ -4,7 +4,7 @@ import {
     ConvoluteFolio,
     FolioCalculation,
     FolioFormatOptions,
-    FolioSvgLine,
+    FolioCalculationLine,
     ConvoluteFolioSvgOutput,
     ConvoluteFolioSvgContentItem,
     ViewBox
@@ -108,7 +108,7 @@ export class FolioService {
      * prepare rendering of systems
      */
     private renderSystems(snapCanvas: any, snapSheetGroup: any, folioSvg: ConvoluteFolioSvgOutput, bgColor: string): void {
-        folioSvg.systems.lineArrays.forEach((lineArray: FolioSvgLine[], systemIndex: number) => {
+        folioSvg.systems.lineArrays.forEach((lineArray: FolioCalculationLine[], systemIndex: number) => {
 
             // notational system
             const snapSystemLineGroup: any = snapCanvas.group();
@@ -194,7 +194,7 @@ export class FolioService {
 
             // item shape
             const snapItemShape = snapCanvas.group();
-            contentItem.lineArray.forEach((line: FolioSvgLine) => {
+            contentItem.lineArray.forEach((line: FolioCalculationLine) => {
                 // init
                 const x1 = line.startPoint.x;
                 const y1 = line.startPoint.y;

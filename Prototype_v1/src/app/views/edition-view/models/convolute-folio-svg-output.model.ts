@@ -1,6 +1,6 @@
-import { FolioSvgPoint } from './folio-svg-point.model';
-import { FolioSvgLine } from './folio-svg-line.model';
 import {
+    FolioCalculationPoint,
+    FolioCalculationLine,
     FolioCalculationContentItem,
     FolioCalculationSheet,
     FolioCalculationSystems,
@@ -10,22 +10,22 @@ import {
 
 export class ConvoluteFolioSvgFolio {
     folioId: string;
-    upperLeftCorner: FolioSvgPoint;
-    lowerRightCorner: FolioSvgPoint;
+    upperLeftCorner: FolioCalculationPoint;
+    lowerRightCorner: FolioCalculationPoint;
 }
 
 export class ConvoluteFolioSvgSystems {
-    lineLabelArray: FolioSvgPoint[];
-    lineArrays: FolioSvgLine[][];
+    lineLabelArray: FolioCalculationPoint[];
+    lineArrays: FolioCalculationLine[][];
 }
 
 export class ConvoluteFolioSvgContentItem {
     sigle: string;
     measure: string;
-    upperLeftCorner: FolioSvgPoint;
+    upperLeftCorner: FolioCalculationPoint;
     width: number;
     height: number;
-    lineArray: FolioSvgLine[];
+    lineArray: FolioCalculationLine[];
 }
 
 
@@ -37,7 +37,7 @@ export class ConvoluteFolioSvgOutput {
     constructor(calculation: FolioCalculation) {
         this.sheet = this.getSheet(calculation.sheet);
         this.systems = this.getSystems(calculation.systems);
-        this.contentItemsArray = this.getContentItemsArray(calculation.itemsArray);
+        this.contentItemsArray = this.getContentItemsArray(calculation.contentItemsArray);
     }
 
 
