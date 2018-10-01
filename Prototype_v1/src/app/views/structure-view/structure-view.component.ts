@@ -17,7 +17,7 @@ export class StructureViewComponent implements OnInit {
         this.routeToSidenav();
     }
 
-    public routeToSidenav(): void {
+    routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'structureInfo' }}]);
     }
 

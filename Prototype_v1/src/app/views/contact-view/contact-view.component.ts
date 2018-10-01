@@ -11,12 +11,12 @@ import { Meta } from '@awg-core/core-models';
 })
 export class ContactViewComponent implements OnInit {
 
-    public contactTitle = 'Impressum';
-    public contactId = 'masthead';
+    contactTitle = 'Impressum';
+    contactId = 'masthead';
 
-    public dateFormat: string = 'd. MMMM yyyy';
-    public meta: Meta;
-    public today: number;
+    dateFormat: string = 'd. MMMM yyyy';
+    meta: Meta;
+    today: number;
 
 
     constructor(
@@ -32,15 +32,15 @@ export class ContactViewComponent implements OnInit {
         this.today = Date.now();
     }
 
-    public provideMetaData(): void {
+    provideMetaData(): void {
         this.meta = this.metaService.getMetaData();
     }
 
-    public routeToSidenav(): void {
+    routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'contactInfo' }}]);
     }
 
-    public scrollTo(id?: string) {
+    scrollTo(id?: string) {
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
             this.route.fragment.subscribe(f => {

@@ -18,7 +18,7 @@ export class AppComponent implements OnInit {
         this.provideMetaData();
     }
 
-    public provideMetaData(): void {
+    provideMetaData(): void {
             this.meta = this.metaService.getMetaData();
     }
 

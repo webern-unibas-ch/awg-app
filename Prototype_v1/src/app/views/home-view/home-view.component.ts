@@ -25,13 +25,13 @@ export class HomeViewComponent implements OnInit {
         this.routeToSidenav();
     }
 
-    public provideMetaData(): void {
+    provideMetaData(): void {
         this.meta = this.metaService.getMetaData();
         this.editors = this.meta.edition.editors;
         this.lastModified = this.meta.edition.lastModified;
     }
 
-    public routeToSidenav(): void {
+    routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'editionInfo' }}]);
     }
 }
