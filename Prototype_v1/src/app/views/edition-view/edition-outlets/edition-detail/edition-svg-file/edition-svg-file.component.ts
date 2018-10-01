@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgFile, Overlay } from '@awg-views/edition-view/models';
+import { EditionSvgFile, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-svg-file',
@@ -9,9 +9,9 @@ import { EditionSvgFile, Overlay } from '@awg-views/edition-view/models';
 })
 export class EditionSvgFileComponent implements OnInit {
     @Input() selectedSvgFile: EditionSvgFile;
-    @Input() selectedOverlay: Overlay;
+    @Input() selectedOverlay: EditionSvgOverlay;
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectTextcriticRequest: EventEmitter<Overlay> = new EventEmitter();
+    @Output() selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
     // init sheets
     // TODO: other solution possible?
@@ -46,7 +46,7 @@ export class EditionSvgFileComponent implements OnInit {
 
     // request function to emit selected textcritic's type & id
     selectTextcritic(type: any, id: string) {
-        const overlay: Overlay = {type, id};
+        const overlay: EditionSvgOverlay = {type, id};
         this.selectTextcriticRequest.emit(overlay);
     }
 

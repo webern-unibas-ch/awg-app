@@ -4,7 +4,7 @@ import { ActivatedRoute, Params, Router } from '@angular/router';
 import {
     ConvoluteFolio,
     EditionSvgFile,
-    Overlay,
+    EditionSvgOverlay,
     Textcritics,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -25,7 +25,7 @@ export class EditionDetailComponent implements OnInit {
 
     textcriticsData: TextcriticsList;
     selectedTextcritics: Textcritics[];
-    selectedOverlay: Overlay;
+    selectedOverlay: EditionSvgOverlay;
 
     errorMessage: string = undefined;
     showTkA: boolean = false;
@@ -76,16 +76,13 @@ export class EditionDetailComponent implements OnInit {
     }
 
 
-    onTextcriticSelect($event: Overlay): void {
+    onTextcriticSelect($event: EditionSvgOverlay): void {
         if (!this.textcriticsData && !this.selectedSvgFile) { return; }
 
         // shortcut
         const textcritics = this.textcriticsData[this.selectedSvgFile.id];
 
-
-        this.selectedOverlay = new Overlay($event.type, $event.id);
-        console.warn($event.type, $event.id);
-        console.warn(this.selectedOverlay);
+        this.selectedOverlay = new EditionSvgOverlay($event.type, $event.id);
         this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
         this.showTkA = (this.selectedTextcritics !== []);
     }

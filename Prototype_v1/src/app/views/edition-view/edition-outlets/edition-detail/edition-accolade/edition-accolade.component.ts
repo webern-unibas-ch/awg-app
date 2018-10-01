@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgFile, Overlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgFile, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+
 
 @Component({
     selector: 'awg-edition-accolade',
@@ -11,11 +12,11 @@ export class EditionAccoladeComponent implements OnInit {
     @Input() svgFileData: EditionSvgFile[];
     @Input() selectedSvgFile: EditionSvgFile;
     @Input() selectedTextcritics: Textcritics[];
-    @Input() selectedOverlay: Overlay;
+    @Input() selectedOverlay: EditionSvgOverlay;
     @Input() showTkA: boolean;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectTextcriticRequest: EventEmitter<Overlay> = new EventEmitter();
+    @Output() selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
     showAccoladePanel: boolean = true;
 
@@ -23,6 +24,7 @@ export class EditionAccoladeComponent implements OnInit {
 
     ngOnInit() {
     }
+
 
     // request function to emit modal id
     openModal(id: string) {
@@ -36,7 +38,7 @@ export class EditionAccoladeComponent implements OnInit {
     }
 
     // request function to emit selected textcritic's type & id
-    selectTextcritic($event: Overlay) {
+    selectTextcritic($event: EditionSvgOverlay) {
         this.selectTextcriticRequest.emit($event);
     }
 
