@@ -82,7 +82,7 @@ export class EditionDetailComponent implements OnInit {
         // shortcut
         const textcritics = this.textcriticsData[this.selectedSvgFile.id];
 
-        this.selectedOverlay = new EditionSvgOverlay($event.type, $event.id);
+        this.selectedOverlay = $event;
         this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
         this.showTkA = (this.selectedTextcritics !== []);
     }
