@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { SourceList } from '../../../../models';
+import { Source } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-source-list',
@@ -8,11 +8,11 @@ import { SourceList } from '../../../../models';
     styleUrls: ['./source-list.component.css']
 })
 export class SourceListComponent implements OnInit {
-    @Input() sourceList: SourceList;
+    @Input() sourceList: Source[];
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showListPanel: boolean;
+    showListPanel: boolean = true;
     ref: SourceListComponent;
 
     constructor() {
@@ -23,8 +23,8 @@ export class SourceListComponent implements OnInit {
     }
 
 
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    openModal(id: string) {
+        this.openModalRequest.emit(id);
     }
 
 

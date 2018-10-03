@@ -5,7 +5,7 @@ import { of } from 'rxjs/observable/of';
 import 'rxjs/add/observable/forkJoin';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { Sheet, Source, Textcritics } from '../models';
+import { ConvoluteFolio, EditionSvgFile, Source, TextcriticsList } from '@awg-views/edition-view/models';
 
 
 @Injectable()
@@ -17,6 +17,7 @@ export class DataService {
         private http: HttpClient
     ) { }
 
+
     /*********************************
      *
      * get data from JSON files
@@ -25,14 +26,16 @@ export class DataService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    public getEditionDetailData(): Observable<any> {
+    public getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]> {
         return Observable.forkJoin(
+            this.getFolioData(),
             this.getSheetsData(),
             this.getTextcriticsData()
         );
     }
 
-    public getEditionReportData(): Observable<any> {
+
+    public getEditionReportData(): Observable<[Source[], TextcriticsList]> {
         return Observable.forkJoin(
             this.getSourceListData(),
             this.getTextcriticsData()
@@ -43,11 +46,19 @@ export class DataService {
     /*
      * private functions to prepare http request
      */
-    private getSheetsData(): Observable<Sheet[]> {
+    private getFolioData(): Observable<ConvoluteFolio[]> {
+        const file = 'convolute.json';
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+
+    private getSheetsData(): Observable<EditionSvgFile[]> {
         const file = 'sheets.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
+
 
     private getSourceListData(): Observable<Source[]> {
         const file = 'sourcelist.json';
@@ -55,11 +66,13 @@ export class DataService {
         return this.getJsonData(url);
     }
 
-    private getTextcriticsData(): Observable<Textcritics[]> {
+
+    private getTextcriticsData(): Observable<TextcriticsList> {
         const file = 'textcritics.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
+
 
     /*
      * http request to fetch json files
@@ -71,6 +84,7 @@ export class DataService {
                 catchError(this.handleError(`getJsonData`, []))
             );
     }
+
 
     /*
      * error handling
@@ -88,6 +102,7 @@ export class DataService {
             return of(result as T);
         };
     }
+
 
     private log(message: string) {
         console.log(message);

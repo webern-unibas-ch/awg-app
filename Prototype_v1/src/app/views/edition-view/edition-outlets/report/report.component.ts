@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { SourceList, Textcritics } from '../../models';
-import { DataService } from '../../services';
+import { Source, TextcriticsList } from '@awg-views/edition-view/models';
+import { DataService } from '@awg-views/edition-view/services';
 
 @Component({
     selector: 'awg-report',
@@ -13,8 +13,8 @@ export class ReportComponent implements OnInit {
     public reportTitle = 'Kritischer Bericht';
     public reportId = 'report';
 
-    public sourceListData: SourceList;
-    public textcriticsData: Textcritics[];
+    public sourceListData: Source[];
+    public textcriticsData: TextcriticsList;
     private errorMessage: string = undefined;
 
     constructor(
@@ -29,9 +29,9 @@ export class ReportComponent implements OnInit {
     }
 
 
-    public getData() {
+    getData() {
         this.dataService.getEditionReportData()
-            .subscribe((data) => {
+            .subscribe((data: [Source[], TextcriticsList]) => {
                     this.sourceListData = data[0];
                     this.textcriticsData = data[1];
                 },
@@ -42,7 +42,7 @@ export class ReportComponent implements OnInit {
     }
 
 
-    public onSheetSelect(id: string) {
+    onSvgFileSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
 
@@ -52,9 +52,10 @@ export class ReportComponent implements OnInit {
         // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
         setTimeout(() => {
             this.route.fragment.subscribe(f => {
+                        console.log('Report: route#fragment: ', f);
                         if (!f) { return; }
                         const element = document.querySelector('#' + f);
-                        if (element) element.scrollIntoView();
+                        if (element) { element.scrollIntoView(); }
                     }
                 );
         });

@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ConversionService } from '../../../../../../../core/services/conversion-service';
-import { ResourceDetailGroupedIncomingLinks } from '../../../../../models';
+import { ConversionService } from '@awg-core/services/conversion-service';
+import { ResourceDetailGroupedIncomingLinks } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-html-content-linkedobjects',

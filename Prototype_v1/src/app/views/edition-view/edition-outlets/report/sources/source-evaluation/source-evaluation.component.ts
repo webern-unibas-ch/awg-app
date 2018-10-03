@@ -9,7 +9,7 @@ export class SourceEvaluationComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showEvaluationPanel: boolean;
+    showEvaluationPanel: boolean = true;
 
     constructor() { }
 

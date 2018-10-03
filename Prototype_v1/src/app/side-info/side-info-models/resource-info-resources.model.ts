@@ -1,4 +1,4 @@
-import { SubjectItemJson } from '../../shared/api-objects';
+import { SubjectItemJson } from '@awg-shared/api-objects';
 
 export class ResourceInfoResource {
     // resource: SubjectItemJson;

@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { RouterLinkButton } from '../../../shared/router-link-button-group/router-link-button.model';
+import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 
-import { SideInfoService } from '../../../core/services';
+import { SideInfoService } from '@awg-core/services';
 
 
 @Component({
@@ -12,7 +12,7 @@ import { SideInfoService } from '../../../core/services';
 })
 export class SearchOverviewComponent implements OnInit {
 
-    buttonArray: RouterLinkButton[] = [
+    searchButtonArray: RouterLinkButton[] = [
         {
             root: '/data/search',
             link: 'fulltext',

@@ -2,10 +2,10 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { map } from 'rxjs/operators';
 
-import { ConversionService, DataStreamerService } from '../../../../core/services';
-import { DataApiService } from '../../services';
-import { ResourceData, ResourceDetail } from '../../models';
-import { ResourceFullResponseJson } from '../../../../shared/api-objects';
+import { ConversionService, DataStreamerService } from '@awg-core/services';
+import { DataApiService } from '@awg-views/data-view/services';
+import { ResourceData, ResourceDetail } from '@awg-views/data-view/models';
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 
 @Component({

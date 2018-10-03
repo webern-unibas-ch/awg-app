@@ -1,4 +1,4 @@
-import { IncomingItemJson } from '../../../shared/api-objects';
+import { IncomingItemJson } from '@awg-shared/api-objects';
 
 export class ResourceDetailIncomingLinks {
     id: string;

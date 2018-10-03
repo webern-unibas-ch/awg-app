@@ -1,8 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, async, inject } from '@angular/core/testing';
 
-import { AppModule } from '../../../app.module';
-import { AppRoutingModule } from '../../../app-routing.module';
+import { AppModule } from '@awg-app/app.module';
+import { AppRoutingModule } from '@awg-app/app-routing.module';
 import { ApiService } from './api.service';
 
 describe('ApiService', () => {

@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
 import { Observable } from 'rxjs/Observable';
 
-import { ApiService } from '../../../core/services';
-import { ResourceFullResponseJson, SearchResponseJson } from '../../../shared/api-objects';
+import { ApiService } from '@awg-core/services';
+import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
 
 @Injectable()
 export class BibliographyService extends ApiService {

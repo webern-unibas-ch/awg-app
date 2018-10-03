@@ -9,7 +9,7 @@ import { EditionInfoComponent } from './side-info/edition-info/edition-info.comp
 
 import { MetaService } from './core/services/meta-service/meta.service';
 
-import { RouterLinkStubDirective, RouterOutletStubComponent } from '../myTesting/router-stubs';
+import { RouterLinkStubDirective, RouterOutletStubComponent } from '@myTesting/router-stubs';
 
 describe('AppComponent', () => {
     beforeEach( async(() => {

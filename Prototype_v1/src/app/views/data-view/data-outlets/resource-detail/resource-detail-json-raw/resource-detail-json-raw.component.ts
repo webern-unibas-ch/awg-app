@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { ResourceFullResponseJson } from '../../../../../shared/api-objects';
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 @Component({
     selector: 'awg-resource-detail-json-raw',

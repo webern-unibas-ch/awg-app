@@ -34,7 +34,7 @@ export class EditionDetailComponent implements OnInit {
         this.getData();
     }
 
-    public getData() {
+    getData() {
         this.dataService.getEditionDetailData()
             .subscribe((data) => {
                     this.overlayData = data[0];
@@ -59,11 +59,13 @@ export class EditionDetailComponent implements OnInit {
         })
     }
 
-    public onOpenEditionDialog(identifier: string) {
+
+    onOpenEditionDialog(identifier: string) {
         this.editionService.openEditionDialog(identifier);
     }
 
-    public onSheetSelect(id: string) {
+
+    onSheetSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
         this.selectedSheet = this.sheetsData[id];
         this.overlays = this.overlayData[id];
@@ -71,7 +73,8 @@ export class EditionDetailComponent implements OnInit {
         this.showTkA = false;
     }
 
-    public onTextcriticSelect($event) {
+
+    onTextcriticSelect($event) {
         if (!this.textcriticsData && !this.selectedSheet) return;
         let res = this.editionService.getCommentsForItem(this.textcriticsData[this.selectedSheet.id], $event.field, $event.id);
         this.textcritics = res[0];
