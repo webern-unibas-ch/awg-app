@@ -32,9 +32,10 @@ export class EditionSvgFileComponent implements OnInit {
     };
 
 
-    isSelectedTextcritic(type: string, id: string) {
+    isSelectedTextcritic(type: any, id: string) {
         // compare stringified objects
-        return JSON.stringify({type, id}) === JSON.stringify(this.selectedOverlay);
+        const overlay = new EditionSvgOverlay(type, id);
+        return JSON.stringify(overlay) === JSON.stringify(this.selectedOverlay);
     }
 
 
@@ -46,7 +47,7 @@ export class EditionSvgFileComponent implements OnInit {
 
     // request function to emit selected textcritic's type & id
     selectTextcritic(type: any, id: string) {
-        const overlay: EditionSvgOverlay = {type, id};
+        const overlay = new EditionSvgOverlay(type, id);
         this.selectTextcriticRequest.emit(overlay);
     }
 
