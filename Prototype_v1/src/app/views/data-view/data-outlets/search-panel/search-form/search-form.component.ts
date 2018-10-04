@@ -1,7 +1,8 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+
+import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
+
 
 @Component({
     selector: 'awg-search-form',
@@ -37,9 +38,11 @@ export class SearchFormComponent implements OnInit {
 
         // checks for changing values
         this.searchValueControl.valueChanges
-            .filter(x => x.length >= 3)
-            .debounceTime(500)
-            .distinctUntilChanged()
+            .pipe(
+                filter(x => x.length >= 3),
+                debounceTime(500),
+                distinctUntilChanged()
+            )
             .subscribe((query: string) => {
                 this.onSearch(query);
             });

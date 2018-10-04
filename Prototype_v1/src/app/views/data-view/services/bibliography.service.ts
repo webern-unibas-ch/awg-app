@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable } from 'rxjs';
 
 import { ApiService } from '@awg-core/services';
 import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';

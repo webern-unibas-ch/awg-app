@@ -7,14 +7,14 @@
  *
  */
 
-import { ApiService, ApiServiceError, ApiServiceResult } from './api-service';
+import { ApiService } from './api-service';
 import { ConversionService } from './conversion-service';
 import { DataStreamerService } from './data-streamer';
 import { MetaService } from './meta-service';
 import { SideInfoService } from './side-info-service';
 
 export {
-    ApiService, ApiServiceError, ApiServiceResult,
+    ApiService,
     ConversionService,
     DataStreamerService,
     MetaService,

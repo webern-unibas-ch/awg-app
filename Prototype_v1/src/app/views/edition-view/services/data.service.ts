@@ -1,11 +1,10 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { of } from 'rxjs/observable/of';
-import 'rxjs/add/observable/forkJoin';
-import { catchError, map, tap } from 'rxjs/operators';
 
-import { ConvoluteFolio, EditionSvgFile, Source, TextcriticsList } from '@awg-views/edition-view/models';
+import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
+import { catchError,  tap } from 'rxjs/operators';
+
+import { ConvoluteFolio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
 
 @Injectable()
@@ -27,7 +26,7 @@ export class DataService {
      *
      *********************************/
     public getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]> {
-        return Observable.forkJoin(
+        return observableForkJoin(
             this.getFolioData(),
             this.getSheetsData(),
             this.getTextcriticsData()
@@ -35,8 +34,8 @@ export class DataService {
     }
 
 
-    public getEditionReportData(): Observable<[Source[], TextcriticsList]> {
-        return Observable.forkJoin(
+    public getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
+        return observableForkJoin(
             this.getSourceListData(),
             this.getTextcriticsData()
         );
@@ -60,7 +59,7 @@ export class DataService {
     }
 
 
-    private getSourceListData(): Observable<Source[]> {
+    private getSourceListData(): Observable<SourceList> {
         const file = 'sourcelist.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
@@ -99,7 +98,7 @@ export class DataService {
             this.log(`${operation} failed: ${error.message}`);
 
             // Let the app keep running by returning an empty result.
-            return of(result as T);
+            return observableOf(result as T);
         };
     }
 

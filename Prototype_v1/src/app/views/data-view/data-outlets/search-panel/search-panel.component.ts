@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { map } from 'rxjs/operators';
-import 'rxjs/add/operator/do';
+
+import { Subscription } from 'rxjs';
+import { switchMap,  map } from 'rxjs/operators';
+
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
@@ -47,26 +48,28 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     subscribeToSearchService(): Subscription {
         return this.route.paramMap
-            .switchMap((params: ParamMap) => {
-                // get query param from route to update searchValue
-                if (params.get('query')) {
-                    this.searchValue = params.get('query');
-                }
+            .pipe(
+                switchMap((params: ParamMap) => {
+                    // get query param from route to update searchValue
+                    if (params.get('query')) {
+                        this.searchValue = params.get('query');
+                    }
 
-                this.onLoadingStart();
+                    this.onLoadingStart();
 
-                // fetch search data for searchValue
-                return this.searchService.getFulltextSearchData(this.searchValue).pipe(
-                    map((searchResponse: SearchResponseJson) => {
+                    // fetch search data for searchValue
+                    return this.searchService.getFulltextSearchData(this.searchValue)
+                        .pipe(
+                            map((searchResponse: SearchResponseJson) => {
 
-                        // update url for search
-                        this.updateCurrentUrl();
+                                // update url for search
+                                this.updateCurrentUrl();
 
-                        // prepare search results
-                        return this.prepareSearchResults(searchResponse);
-                    })
-                );
-            })
+                                // prepare search results
+                                return this.prepareSearchResults(searchResponse);
+                            })
+                        );
+                }))
             .subscribe((searchResponse: SearchResponseJson) => {
                     // share search data via streamer service
                     this.updateStreamerService(searchResponse, this.searchValue);

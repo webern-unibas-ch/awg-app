@@ -3,7 +3,7 @@ import { Meta } from './core/core-models';
 import { MetaService } from './core/services';
 
 @Component({
-    selector: 'awg-root',
+    selector: 'awg-app',
     templateUrl: './app.component.html',
     styleUrls: ['./app.component.css']
 })

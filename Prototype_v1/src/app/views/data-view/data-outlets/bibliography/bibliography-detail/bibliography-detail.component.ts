@@ -1,4 +1,5 @@
 import { Component, OnInit, OnDestroy, Input } from '@angular/core';
+
 import { Subscription } from 'rxjs';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';

@@ -24,17 +24,17 @@ export class ApiServiceResult {
     /**
      * Status number
      */
-    status: number = 0;
+    status = 0;
 
     /**
      * Status text
      */
-    statusText: string = '';
+    statusText = '';
 
     /**
      * API url
      */
-    url: string = '';
+    url = '';
 
     /**
      * Body as JSON
@@ -45,19 +45,12 @@ export class ApiServiceResult {
      * Gets the result body as instance of classObject.
      * @param classObject
      * @returns {any}
+     * @throws
      */
-    getBody(classObject?: { new(): any }): any {
 
-        if (!classObject) { return this.body; }
-        try {
-            // console.warn('ApiServiceResult - try to convert: ', classObject);
-            const conv = ApiServiceResult.jsonConvert.deserializeObject(this.body, classObject);
-            // console.warn('ApiServiceResult - getBody: ', conv);
-            return conv;
-        } catch (e) {
-            console.log(e);
-        }
-        return null;
+    getBody(classObject?: { new(): any }): any {
+        // console.log(this.body);
+        return ApiServiceResult.jsonConvert.deserialize(this.body, classObject);
     }
 
 }

@@ -9,7 +9,7 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     private entry: BibEntry;
     private formattedEntry: BibEntry;
-    private formatFieldArr: [string] = [
+    private formatFieldArr: Array<string> = [
         'Author',
         'Titel_unselbst',
         'Titel_selbst',

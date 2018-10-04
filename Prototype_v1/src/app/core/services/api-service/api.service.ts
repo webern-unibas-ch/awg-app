@@ -1,33 +1,38 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpRequest, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
-import { catchError, map, tap } from 'rxjs/operators';
-import { of } from 'rxjs/observable/of';
+import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
 
-import { ApiServiceError } from './api-service-error';
+import { throwError as observableThrowError, Observable, of } from 'rxjs';
+import { catchError, map, tap } from 'rxjs/operators';
+
 import { ApiServiceResult } from './api-service-result';
+import { ApiServiceError } from './api-service-error';
 import { ApiRequest } from './api-request.model';
 
 @Injectable()
 export class ApiService {
 
     httpGetUrl: string = '';
+    loading = false;
 
     constructor(private http: HttpClient) {}
 
-    public getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
+    getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
         if (!responseType) { return; }
         if (!queryParams) { queryParams = new HttpParams(); }
 
-        return this.httpGet(queryString, queryParams).map(
+        return this.httpGet(queryString, queryParams)
+            .pipe(
+                map(
             (result: ApiServiceResult) => {
-                return result.getBody(responseType);
-            },
+                        return result.getBody(responseType);
+                        },
             (error: ApiServiceError ) => {
-                const errorMessage = <any>error;
-                console.error('ApiService - getApiResponse - error: ', errorMessage);
-                throw error;
-            });
+                        const errorMessage = <any>error;
+                        console.error('ApiService - getApiResponse - error: ', errorMessage);
+                        throw error;
+                        }
+                )
+            );
     }
 
     /**
@@ -36,13 +41,13 @@ export class ApiService {
      * @param httpGetParams
      * @returns {Observable<ApiServiceResult>}
      */
-    httpGet(url: string, httpGetParams?: HttpParams ): Observable<ApiServiceResult> {
+    httpGet(url: string, httpGetParams?: HttpParams ): Observable<ApiServiceResult | ApiServiceError> {
         if (!httpGetParams) { httpGetParams = new HttpParams(); }
         const apiRequest = new ApiRequest(url, httpGetParams);
 
-        return this.http
-            .get(
-                apiRequest.url,
+        this.loading = true;
+
+        return this.http.get<ApiServiceResult | ApiServiceError>(apiRequest.url,
                 {
                     observe: 'response',
                     params: apiRequest.params,
@@ -52,21 +57,20 @@ export class ApiService {
                 tap((response: HttpResponse<ApiServiceResult>) => {
                     this.httpGetUrl = response.url;
                 }),
-                map((response: HttpResponse<ApiServiceResult>) => {
-                    try {
-                        const apiServiceResult: ApiServiceResult = new ApiServiceResult();
-                        apiServiceResult.status = response.status;
-                        apiServiceResult.statusText = response.statusText;
-                        apiServiceResult.body = response.body;
-                        apiServiceResult.url = response.url;
-                        return apiServiceResult;
-                    } catch (e) {
-                        // TODO: use full response.url for errorhandling
-                        return ApiService.handleError(response, url);
-                    }
+                map((response: HttpResponse<any>): ApiServiceResult => {
+                    this.loading = false;
+
+                    const apiServiceResult = new ApiServiceResult();
+                    apiServiceResult.status = response.status;
+                    apiServiceResult.statusText = response.statusText;
+                    apiServiceResult.body = response.body;
+                    apiServiceResult.url = response.url;
+
+                    return apiServiceResult;
                 }),
-                catchError((error: any) => {
-                    return Observable.throw(ApiService.handleError(error, url));
+                catchError((error: HttpErrorResponse): Observable<ApiServiceError> => {
+                    this.loading = false;
+                    return this.handleRequestError(error);
                 })
             );
     }
@@ -99,23 +103,20 @@ export class ApiService {
     }
     */
 
-    static handleError(error: any, url: string): ApiServiceError {
-        const response: ApiServiceError = new ApiServiceError();
-        if (error instanceof Response) {
-            response.status = error.status;
-            response.statusText = error.statusText;
-            if (!response.statusText) {
-                response.statusText = 'Connection to API endpoint failed';
-            }
-            response.route = url;
-        } else {
-            response.status = 0;
-            response.statusText = 'Connection to API endpoint failed';
-            response.route = url;
-        }
-        // response.status === 401 --> Unauthorized
-        // response.status === 404 --> Not found
-        console.log('ApiService: handleError: ', response);
-        return response;
+
+    /**
+     * handle request error in case of server error
+     *
+     * @param {HttpErrorResponse} error
+     * @returns {Observable<ApiServiceError>}
+     */
+    protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
+        // console.error(error);
+        const apiServiceError = new ApiServiceError();
+        apiServiceError.status = error.status;
+        apiServiceError.statusText = error.statusText;
+        apiServiceError.errorInfo = error.message;
+        apiServiceError.url = error.url;
+        return observableThrowError(apiServiceError);
     }
 }

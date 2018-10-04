@@ -31,7 +31,7 @@ import {
 } from './folio-calculation.model';
 import { FolioFormatOptions } from './folio-format-options.model';
 
-import { Source } from './source.model';
+import { Source, SourceList } from './source.model';
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
@@ -50,8 +50,7 @@ export {
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioFormatOptions,
-    Source,
-    Textcritics,
-    TextcriticsList,
+    Source, SourceList,
+    Textcritics, TextcriticsList,
     ViewBox
 };

@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { map } from 'rxjs/operators';
+
+import { switchMap,  map } from 'rxjs/operators';
 
 import { ConversionService, DataStreamerService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
@@ -44,30 +45,34 @@ export class ResourceDetailComponent implements OnInit {
 
     getResourceData() {
         // observe route params
-        this.route.paramMap.switchMap((params: ParamMap) => {
-            // store resource id
-            this.resourceId = params.get('id');
+        this.route.paramMap
+            .pipe(
+                switchMap((params: ParamMap) => {
+                    // store resource id
+                    this.resourceId = params.get('id');
 
-            // fetch data
-            return this.searchService.getResourceDetailData(params.get('id')).pipe(
-                map((resourceBody: ResourceFullResponseJson) => {
-                    // update current resource params (url and id) via streamer service
-                    this.updateResourceParams();
+                    // fetch data
+                    return this.searchService.getResourceDetailData(params.get('id'))
+                        .pipe(
+                            map((resourceBody: ResourceFullResponseJson) => {
+                                // update current resource params (url and id) via streamer service
+                                this.updateResourceParams();
 
-                    // prepare resource detail
-                    return this.prepareResourceDetail(resourceBody);
+                                // prepare resource detail
+                                return this.prepareResourceDetail(resourceBody);
+                            })
+                        );
                 })
-            )
-        }).subscribe(
-                (resourceData: ResourceData) => {
-                    this.resourceData = resourceData;
+            ).subscribe(
+            (resourceData: ResourceData) => {
+                this.resourceData = resourceData;
 
-                    // scroll to Top of Page
-                     ResourceDetailComponent.scrollToTop();
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
+                // scroll to Top of Page
+                ResourceDetailComponent.scrollToTop();
+            },
+            error => {
+                this.errorMessage = <any>error;
+            }
         );
     }
 
@@ -94,7 +99,7 @@ export class ResourceDetailComponent implements OnInit {
 
 
     prepareResourceDetail(resourceBody: ResourceFullResponseJson): ResourceData {
-        if (resourceBody === {}) { return; }
+        if (Object.keys(resourceBody).length === 0 && resourceBody.constructor === Object) { return; }
 
         // convert data for displaying resource detail
         const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
