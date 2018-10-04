@@ -94,6 +94,7 @@ Only patch version bump.
 * **app:** add metadata, remove favicon from `index.html` ([d75c7dc](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d75c7dc)), cf. [0.1.0.1](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0...v0.1.0.1) (2018-03-20)
 * **app:** update `gitignore` file ([ca10942](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ca10942)), cf. [0.1.0.2](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0.1...v0.1.0.2) (2018-03-21)
 * **app:** remove unused timeline plugin ([79bedda](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/79bedda))
+* **search:** rename `search-view` as `data-view` ([446b7fa](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/446b7fa))
 
 
 ### Features
@@ -104,7 +105,7 @@ Only patch version bump.
 
 ### Possible Breaking Changes
 
-* **search:** rename `search-view` as `data-view` ([446b7fa](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/446b7fa))
+* **search:** The former `search-view` is renamed to `data-view`.
 
 Only patch version bump.
 
