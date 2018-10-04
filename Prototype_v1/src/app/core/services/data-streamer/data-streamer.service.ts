@@ -1,8 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Observable } from 'rxjs/Observable';
-import { ReplaySubject } from 'rxjs/ReplaySubject';
-import 'rxjs/add/observable/combineLatest';
+import { Observable, ReplaySubject } from 'rxjs';
 
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
