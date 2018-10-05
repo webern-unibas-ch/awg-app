@@ -2,22 +2,23 @@ import { NgModule, SkipSelf, Optional } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { FooterComponent } from './footer/footer.component';
+import { FooterLogoComponent } from './footer/footer-logo/footer-logo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 //
 // services
 import {
-    ApiService,
-    ConversionService,
-    DataStreamerService,
-    MetaService,
-    SideInfoService
+ApiService,
+ConversionService,
+DataStreamerService,
+MetaService,
+SideInfoService
 } from './services';
 
 @NgModule({
     imports:        [ SharedModule ],
-    declarations:   [ FooterComponent, NavbarComponent ],
-    exports:        [ FooterComponent, NavbarComponent ],
+    declarations:   [ FooterComponent, FooterLogoComponent, NavbarComponent ],
+    exports:        [ FooterComponent, FooterLogoComponent, NavbarComponent ],
     providers:      [
         ApiService,
         ConversionService,
