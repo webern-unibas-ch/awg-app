@@ -24,12 +24,12 @@
         -->
     </h4>
     <accordion [closeOthers]="true">
-        <accordion-group class="incomingLinks" *ngFor="let linkGroup of incoming | mapToIterable">
+        <accordion-group class="incomingLinks" *ngFor="let linkGroup of incoming | keyvalue">
             <div accordion-heading>
-                {{ linkGroup?.mappedKey }}
-                <span class="badge facetBadge float-right pull-right">{{ linkGroup?.mappedValues.length }}</span>
+                {{ linkGroup?.key }}
+                <span class="badge facetBadge float-right pull-right">{{ linkGroup?.value.length }}</span>
             </div>
-            <p class="single-line" *ngFor="let link of linkGroup.mappedValues" (click)="navigateToResource(link?.id)">
+            <p class="single-line" *ngFor="let link of linkGroup.value" (click)="navigateToResource(link?.id)">
                 <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
             </p>
         </accordion-group>
