@@ -8,7 +8,7 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./source-list.component.css']
 })
 export class SourceListComponent implements OnInit {
-    @Input() sourceList: SourceList;
+    @Input() sourceListData: SourceList;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 

@@ -25,19 +25,19 @@ export class DataService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    public getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]> {
+    getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]> {
         return observableForkJoin(
-            this.getFolioData(),
-            this.getSheetsData(),
-            this.getTextcriticsData()
+            this.getConvoluteFolioData(),
+            this.getSvgFileData(),
+            this.getTextcriticsListData()
         );
     }
 
 
-    public getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
+    getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
         return observableForkJoin(
             this.getSourceListData(),
-            this.getTextcriticsData()
+            this.getTextcriticsListData()
         );
     }
 
@@ -45,14 +45,14 @@ export class DataService {
     /*
      * private functions to prepare http request
      */
-    private getFolioData(): Observable<ConvoluteFolio[]> {
+    private getConvoluteFolioData(): Observable<ConvoluteFolio[]> {
         const file = 'convolute.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
 
 
-    private getSheetsData(): Observable<EditionSvgFile[]> {
+    private getSvgFileData(): Observable<EditionSvgFile[]> {
         const file = 'sheets.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
@@ -66,7 +66,7 @@ export class DataService {
     }
 
 
-    private getTextcriticsData(): Observable<TextcriticsList> {
+    private getTextcriticsListData(): Observable<TextcriticsList> {
         const file = 'textcritics.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);

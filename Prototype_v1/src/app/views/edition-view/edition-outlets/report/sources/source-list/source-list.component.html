@@ -9,7 +9,7 @@
             <table class="table table-hover borderless">
                 <tbody>
                 <!--  at the moment only for the first item ("source.siglum == 'A'") -->
-                <tr *ngFor="let source of sourceList.sources; let sourceIndex = index">
+                <tr *ngFor="let source of sourceListData.sources; let sourceIndex = index">
                     <td class="bold">
                         <ng-container *ngIf="sourceIndex === 0; else modalHint">
                             <a [routerLink]="['./']" fragment={{source.linkTo}} (click)="scrollTo(source.linkTo)" [innerHTML]="source.siglum"></a>
