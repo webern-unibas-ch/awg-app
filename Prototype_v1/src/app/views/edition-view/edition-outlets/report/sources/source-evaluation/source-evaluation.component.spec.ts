@@ -6,23 +6,23 @@ import { DebugElement } from '@angular/core';
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
 describe('SourceEvaluationComponent', () => {
-  let component: SourceEvaluationComponent;
-  let fixture: ComponentFixture<SourceEvaluationComponent>;
+    let component: SourceEvaluationComponent;
+    let fixture: ComponentFixture<SourceEvaluationComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SourceEvaluationComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ SourceEvaluationComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SourceEvaluationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SourceEvaluationComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

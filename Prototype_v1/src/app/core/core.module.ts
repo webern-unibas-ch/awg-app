@@ -8,11 +8,11 @@ import { NavbarComponent } from './navbar/navbar.component';
 //
 // services
 import {
-ApiService,
-ConversionService,
-DataStreamerService,
-MetaService,
-SideInfoService
+    ApiService,
+    ConversionService,
+    DataStreamerService,
+    MetaService,
+    SideInfoService
 } from './services';
 
 @NgModule({
