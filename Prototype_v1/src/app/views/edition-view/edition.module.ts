@@ -6,8 +6,6 @@ import { ReportModule } from './edition-outlets/report/report.module';
 
 import { EditionRoutingModule, routedComponents } from './edition-routing.module';
 
-import { DataService, EditionService } from './services';
-
 
 @NgModule({
     imports: [
@@ -16,7 +14,6 @@ import { DataService, EditionService } from './services';
         ReportModule,
         EditionRoutingModule,
     ],
-    declarations: [ routedComponents ],
-    providers: [ DataService, EditionService ]
+    declarations: [ routedComponents ]
 })
 export class EditionModule {}

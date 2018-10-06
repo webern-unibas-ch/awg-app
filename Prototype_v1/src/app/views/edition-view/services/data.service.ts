@@ -7,7 +7,9 @@ import { catchError,  tap } from 'rxjs/operators';
 import { ConvoluteFolio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DataService {
 
     private BASE = 'assets/data';

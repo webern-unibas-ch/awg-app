@@ -5,7 +5,9 @@ import { Observable, ReplaySubject } from 'rxjs';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class DataStreamerService {
 
     /**************************************************

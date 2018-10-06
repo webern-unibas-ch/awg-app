@@ -6,7 +6,10 @@ import { Observable } from 'rxjs';
 import { ApiService } from '@awg-core/services/';
 import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class DataApiService extends ApiService {
 
     projectId: string = '6';

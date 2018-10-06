@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 
 import { ApiService } from '@awg-core/services/api-service';
+import { GeoNames } from '@awg-core/core-models';
 import {
     ContextJson,
     GeoDataJson,
@@ -26,12 +27,14 @@ import {
     ResourceDetailImage,
     ResourceDetailContent
 } from '@awg-views/data-view/models';
-import { GeoNames } from '@awg-core/core-models';
 
 declare var htmlConverter;
 declare var dateConverter;
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class ConversionService extends ApiService {
 
 

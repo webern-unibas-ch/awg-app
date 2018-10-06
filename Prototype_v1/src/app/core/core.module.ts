@@ -5,27 +5,11 @@ import { FooterComponent } from './footer/footer.component';
 import { FooterLogoComponent } from './footer/footer-logo/footer-logo.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
-//
-// services
-import {
-    ApiService,
-    ConversionService,
-    DataStreamerService,
-    MetaService,
-    SideInfoService
-} from './services';
 
 @NgModule({
     imports:        [ SharedModule ],
     declarations:   [ FooterComponent, FooterLogoComponent, NavbarComponent ],
-    exports:        [ FooterComponent, FooterLogoComponent, NavbarComponent ],
-    providers:      [
-        ApiService,
-        ConversionService,
-        DataStreamerService,
-        MetaService,
-        SideInfoService
-    ]
+    exports:        [ FooterComponent, FooterLogoComponent, NavbarComponent ]
 })
 export class CoreModule {
     constructor (@Optional() @SkipSelf() parentModule: CoreModule) {

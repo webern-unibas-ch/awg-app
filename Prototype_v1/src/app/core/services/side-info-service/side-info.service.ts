@@ -4,7 +4,10 @@ import { Subject, Observable } from 'rxjs';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class SideInfoService {
 
     private sideInfoData: Subject<any> = new Subject<any>();   // observable string source

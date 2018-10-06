@@ -8,7 +8,6 @@ import { DataRoutingModule, routedComponents } from './data-routing.module';
 // bibliography module is lazy loaded, so not imported here
 
 import {
-    DataApiService,
     HttpCacheService
 } from './services';
 import { CachingInterceptor } from './interceptors';
@@ -20,7 +19,7 @@ import { SearchResultListComponent } from './data-outlets/search-panel/search-re
     imports: [
         SharedModule,
         ResourceDetailModule,
-        DataRoutingModule,
+        DataRoutingModule
     ],
     declarations: [
         routedComponents,
@@ -28,7 +27,6 @@ import { SearchResultListComponent } from './data-outlets/search-panel/search-re
         SearchResultListComponent
     ],
     providers: [
-        DataApiService,
         HttpCacheService,
         {
             provide: HTTP_INTERCEPTORS,

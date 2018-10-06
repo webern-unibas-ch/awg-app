@@ -12,7 +12,10 @@ import {
 
 declare var Snap: any;
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class FolioService {
 
     ref: any;
