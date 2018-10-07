@@ -14,7 +14,10 @@ abstract class HttpCache {
     abstract put(req: HttpRequest<any>, resp: HttpResponse<any>): void;
 }
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class HttpCacheService implements HttpCache {
 
     constructor() { }

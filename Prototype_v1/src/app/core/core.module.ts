@@ -1,4 +1,5 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
+
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { FooterComponent } from './footer/footer.component';

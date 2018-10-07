@@ -14,10 +14,15 @@ import { ApiRequest } from './api-request.model';
 })
 export class ApiService {
 
+    serviceName = 'ApiService';
+
     httpGetUrl: string = '';
     loading = false;
 
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {
+
+        console.log('called ApiService with httpClient', http);
+    }
 
     getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
         if (!responseType) { return; }
