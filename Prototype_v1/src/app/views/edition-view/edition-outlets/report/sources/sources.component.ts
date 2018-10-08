@@ -10,7 +10,6 @@ import { SourceList } from '@awg-views/edition-view/models';
 export class SourcesComponent implements OnInit {
     @Input() sourceListData: SourceList;
     @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
-    @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
     showDescriptionPanel: boolean = true;
 
@@ -26,9 +25,9 @@ export class SourcesComponent implements OnInit {
 
     scrollTo(id: string) {
         // if description is closed: open it before scrolling
+        // TODO: change calling logic
         if (!this.showDescriptionPanel) { this.toggleDescriptionPanel(this.showDescriptionPanel); }
-        // emit scroll request event
-        this.scrollRequest.emit(id);
+
     }
 
     toggleDescriptionPanel(showPanel: boolean): boolean {

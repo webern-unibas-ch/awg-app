@@ -22,11 +22,6 @@ export class SourceEvaluationComponent implements OnInit {
     }
 
 
-    scrollTo(id: string) {
-        this.scrollRequest.emit(id);
-    }
-
-
     togglePanel(): boolean {
         return this.showEvaluationPanel = !this.showEvaluationPanel;
     }

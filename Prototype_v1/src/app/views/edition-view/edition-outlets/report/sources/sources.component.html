@@ -8,7 +8,6 @@
         <div class="panel-group">
 
             <!-- source list -->
-                (scrollRequest)="scrollTo($event)">
             <awg-source-list *ngIf="sourceListData"
                 [sourceListData]="sourceListData"
                 (openModalRequest)="openModal($event)">
@@ -23,8 +22,7 @@
 
             <!-- source evaluation -->
             <awg-source-evaluation
-                (openModalRequest)="openModal($event)"
-                (scrollRequest)="scrollTo($event)">
+                (openModalRequest)="openModal($event)">
             </awg-source-evaluation>
 
         </div> <!-- END panel group -->

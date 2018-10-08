@@ -13,12 +13,15 @@ export class StructureViewComponent implements OnInit {
 
     constructor(private router: Router) { }
 
+
     ngOnInit() {
         this.routeToSidenav();
     }
 
+
     routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'structureInfo' }}]);
+        // opens the side-info outlet while preserving the router fragment for scrolling
+        this.router.navigate([{ outlets: { side: 'structureInfo' }}], { preserveFragment: true });
     }
 
 }

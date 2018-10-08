@@ -13,12 +13,15 @@ export class EditionViewComponent implements OnInit {
 
     constructor(private router: Router) { }
 
+
     ngOnInit() {
         this.routeToSidenav();
     }
 
-    public routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'editionInfo' }}]);
+
+    routeToSidenav(): void {
+        // opens the side-info outlet while preserving the router fragment for scrolling
+        this.router.navigate([{ outlets: { side: 'editionInfo' }}], { preserveFragment: true });
     }
 
 }
