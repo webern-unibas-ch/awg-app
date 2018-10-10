@@ -13,8 +13,8 @@
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
-        "build": "ng build",
-        "build:prod": "ng build --prod --aot=false --environment=prod",
+        "build": "ng build --stats-json",
+        "build:prod": "ng build --stats-json --prod --aot=false --environment=prod",
         "build:stats": "webpack-bundle-analyzer dist/stats.json",
         "build:sourcemap": "source-map-explorer dist/main.*.bundle.js",
         "test": "ng test",
