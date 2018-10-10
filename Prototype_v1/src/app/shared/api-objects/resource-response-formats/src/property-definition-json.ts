@@ -21,7 +21,6 @@ import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
  */
 @JsonObject
 export class PropertyDefinitionJson {
-
     /**
      * GUI attributes (HTML) of the property type
      * @param attributes: string | null
@@ -86,6 +85,4 @@ export class PropertyDefinitionJson {
      */
     @JsonProperty('vocabulary', String)
     public vocabulary: KnoraIRI = undefined;
-
-
 }

@@ -12,26 +12,27 @@
  *
  ************************************************/
 
-
 import { Pipe, PipeTransform } from '@angular/core';
 
 @Pipe({
     name: 'orderBy'
 })
 export class OrderByPipe implements PipeTransform {
-
     transform(array: Array<any>, args?: any): any {
         return array.sort(function(a, b) {
-            if (!args.property) { return; }
-            if (!args.direction) { args.direction = 1; }
+            if (!args.property) {
+                return;
+            }
+            if (!args.direction) {
+                args.direction = 1;
+            }
             if (a[args.property] < b[args.property]) {
                 return -1 * args.direction;
-            } else if ( a[args.property] > b[args.property]) {
+            } else if (a[args.property] > b[args.property]) {
                 return 1 * args.direction;
             } else {
                 return 0;
             }
         });
     }
-
 }

@@ -12,17 +12,20 @@ import { FolioService } from './folio.service';
 // embedded SnapSvg (snapsvg.io)
 declare var Snap: any;
 
-
 @Component({
     selector: 'awg-edition-folio',
     templateUrl: './folio.component.html',
     styleUrls: ['./folio.component.css']
 })
 export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
-    @Input() convoluteData: ConvoluteFolio[];
-    @Input() selectedSvgFile: EditionSvgFile;
-    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    convoluteData: ConvoluteFolio[];
+    @Input()
+    selectedSvgFile: EditionSvgFile;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     folio: ConvoluteFolio;
 
@@ -51,11 +54,9 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.ref = this;
     }
 
-
     ngOnInit() {
         this.prepareFolioSvgOutput();
     }
-
 
     ngAfterViewInit() {
         // start to render svg only after view, inputs and calculation are available
@@ -67,11 +68,12 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.applyActiveClass();
     }
 
-
     // helper function to toggle active class on selected sheet
     applyActiveClass() {
         // iterate over canvas Array
-        if (!this.canvasArray) { return; }
+        if (!this.canvasArray) {
+            return;
+        }
         this.canvasArray.forEach(canvas => {
             // find all item groups
             canvas.selectAll('.item-group').forEach(itemGroup => {
@@ -82,13 +84,11 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         });
     }
 
-
     /**********
      * FolioSvgOutputData
      */
     prepareFolioSvgOutput(): void {
         for (let folioIndex = 0; folioIndex < this.convoluteData.length; folioIndex++) {
-
             // current folio
             this.folio = this.convoluteData[folioIndex];
 
@@ -96,26 +96,28 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
             this.vbArray[folioIndex] = this.folioService.getViewBoxData(this.folioFormatOptions);
 
             // prepare output data
-            this.folioSvgOutputArray[folioIndex] = this.folioService.getFolioSvgOutputData(this.folioFormatOptions, this.folio);
+            this.folioSvgOutputArray[folioIndex] = this.folioService.getFolioSvgOutputData(
+                this.folioFormatOptions,
+                this.folio
+            );
         }
     }
-
 
     /**********
      * rendering of SVG
      */
     renderSnapSvg() {
-
         // empty canvasArray
         this.canvasArray = [];
 
         /* apply values from folioSvgOutputArray to render the svg image with snapsvg */
         this.folioSvgOutputArray.forEach((folioSvg: ConvoluteFolioSvgOutput, folioIndex: number) => {
-
             // init canvas
             const snapId: string = '#folio-' + folioSvg.sheet.folioId;
             const snapCanvas: any = Snap(snapId);
-            if (!snapCanvas) { return; }
+            if (!snapCanvas) {
+                return;
+            }
 
             /**********
              * viewBox
@@ -128,10 +130,8 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
             this.folioService.renderSvg(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
 
             this.canvasArray.push(snapCanvas);
-
         });
     }
-
 
     // getter function for format options
     get folioFormatOptions() {
@@ -143,7 +143,6 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         return this._folioFormatOptions;
     }
 
-
     // helper function to compare id with that of selected sheet
     isSelectedSvgFile(id: string) {
         return id === this.selectedSvgFile.id;
@@ -154,15 +153,8 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.openModalRequest.emit(id);
     }
 
-
     // request function to emit selected sheet id
     selectSvgFile(id: string) {
         this.selectSvgFileRequest.emit(id);
     }
-
-
-
-
-
 }
-

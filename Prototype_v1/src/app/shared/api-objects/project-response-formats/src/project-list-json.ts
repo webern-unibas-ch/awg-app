@@ -30,5 +30,4 @@ export class ProjectListJson extends BasicResponseJson {
      */
     @JsonProperty('projects', [ProjectItemJson])
     public projects: ProjectItemJson[] = undefined;
-
 }

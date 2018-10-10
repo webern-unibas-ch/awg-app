@@ -16,7 +16,6 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
 import { ResinfoJson } from './resinfo-json';
 
-
 /**
  * Representation of the referring resource
  * @param ext_res_id: Object<id: KnoraIRI, pid: KnoraIRI>
@@ -39,14 +38,12 @@ export class ExtResIdJson {
     public pid: KnoraIRI = undefined;
 }
 
-
 /**
  * Represents a resource referring to the requested resource.
  * @used by ResourceFullResponseJson
  */
 @JsonObject
 export class IncomingItemJson {
-
     /**
      * Representation of the referring resource
      * @param ext_res_id: Object<id: KnoraIRI, pid: KnoraIRI>

@@ -12,12 +12,15 @@ import { MetaService } from './core/services/meta-service/meta.service';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from '@myTesting/router-stubs';
 
 describe('AppComponent', () => {
-    beforeEach( async(() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [
                 AppComponent,
-                FooterComponent, NavbarComponent, EditionInfoComponent,
-                RouterLinkStubDirective, RouterOutletStubComponent
+                FooterComponent,
+                NavbarComponent,
+                EditionInfoComponent,
+                RouterLinkStubDirective,
+                RouterOutletStubComponent
                 /*
                 FooterStubComponent, NavbarStubComponent, SidenavStubComponent
                 */
@@ -32,5 +35,4 @@ describe('AppComponent', () => {
         const app = fixture.debugElement.componentInstance;
         expect(app).toBeTruthy();
     }));
-
 });

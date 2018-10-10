@@ -20,7 +20,6 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  */
 @JsonObject
 export class NodeItemJson {
-
     /**
      * The selection id
      * @param id: string

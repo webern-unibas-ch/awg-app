@@ -22,7 +22,6 @@ import { RegionJson } from './region-json';
  */
 @JsonObject
 export class ResinfoJson {
-
     /**
      * The resource's label
      * @param firstproperty: string
@@ -36,7 +35,6 @@ export class ResinfoJson {
      */
     @JsonProperty('handle_id', String, true)
     public handle_id: string = undefined;
-
 
     /**
      * Date of last modification

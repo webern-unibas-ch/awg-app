@@ -31,15 +31,12 @@ import {
 declare var htmlConverter;
 declare var dateConverter;
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class ConversionService extends ApiService {
-
     // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
     static ngInjectableDef = undefined;
-
 
     /******************************************
      *
@@ -57,7 +54,6 @@ export class ConversionService extends ApiService {
         return size;
     }
 
-
     /******************************************
      *
      *  convert full text search results
@@ -65,7 +61,9 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
-        if (!results.subjects) { return results; }
+        if (!results.subjects) {
+            return results;
+        }
 
         // TODO: refactor with reduce??
         results.subjects.forEach(subject => {
@@ -100,23 +98,26 @@ export class ConversionService extends ApiService {
         return results;
     }
 
-
     /******************************************
      *
      *  prepare fulltext search result string
      *
      *****************************************/
-    public prepareFullTextSearchResultText(searchData: SearchResponseJson, filteredOut: number, searchUrl: string): string {
+    public prepareFullTextSearchResultText(
+        searchData: SearchResponseJson,
+        filteredOut: number,
+        searchUrl: string
+    ): string {
         let resText: string;
 
         if (searchData.subjects) {
             const length = searchData.subjects.length;
             resText = length + ` `;
-            resText += (length === 1) ? `zugängliches Resultat` : `zugängliche Resultate`;
+            resText += length === 1 ? `zugängliches Resultat` : `zugängliche Resultate`;
             resText += ` von ${searchData.nhits}`;
 
             if (filteredOut > 0) {
-                const duplString: string = (filteredOut === 1) ? `Duplikat` : `Duplikate`;
+                const duplString: string = filteredOut === 1 ? `Duplikat` : `Duplikate`;
                 resText += ` (${filteredOut} ${duplString} entfernt)`;
             }
         } else {
@@ -125,7 +126,6 @@ export class ConversionService extends ApiService {
 
         return resText;
     }
-
 
     /******************************************
      *
@@ -140,7 +140,7 @@ export class ConversionService extends ApiService {
 
         Object.keys(data.props).forEach((key: string) => {
             const prop = data.props[key];
-            let propValue = [];   // empty text value array
+            let propValue = []; // empty text value array
 
             // check if values property is defined
             if (prop.hasOwnProperty('values') && prop.values !== undefined) {
@@ -192,7 +192,8 @@ export class ConversionService extends ApiService {
                         }
                         break; // END richtext
 
-                    default: // '1'=> TEXT: properties come as they are
+                    default:
+                        // '1'=> TEXT: properties come as they are
                         if (prop.values[0] !== '') {
                             for (let i = 0; i < prop.values.length; i++) {
                                 propValue[i] = prop.values[i].trim();
@@ -219,7 +220,6 @@ export class ConversionService extends ApiService {
 
         return convObj;
     } // END convertObjectProperties (func)
-
 
     public prepareResourceDetail(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
         if (data.access === 'OK') {
@@ -253,7 +253,6 @@ export class ConversionService extends ApiService {
         return detail;
     }
 
-
     private prepareResourceDetailImage(id: string): ResourceDetailImage[] {
         // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
         // result is an array of ResourceDetailImage
@@ -268,7 +267,7 @@ export class ConversionService extends ApiService {
                     // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
                     return;
                 } else {
-                    const context: ContextJson = {...contextData.resource_context};
+                    const context: ContextJson = { ...contextData.resource_context };
 
                     // IMAGE OBJECT (context == 2)
                     if (context.context === 2 && context.resclass_name === 'image') {
@@ -279,7 +278,10 @@ export class ConversionService extends ApiService {
                                 output[i] = image;
                             }
                         } else {
-                            console.warn('ConversionService - Array length for context objects is not consistent with firstprops length!', context);
+                            console.warn(
+                                'ConversionService - Array length for context objects is not consistent with firstprops length!',
+                                context
+                            );
                             return;
                         }
                         // STANDARD OBJECT (context == 0 || 1)
@@ -295,7 +297,6 @@ export class ConversionService extends ApiService {
         return output;
     }
 
-
     private prepareResourceDetailIncomingLinks(incomingArray: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
         const incomingLinks: ResourceDetailIncomingLinks[] = [];
         incomingArray.forEach(incoming => {
@@ -304,7 +305,6 @@ export class ConversionService extends ApiService {
         const groupedIncomingLinks: ResourceDetailGroupedIncomingLinks = this.groupByRestype(incomingLinks);
         return groupedIncomingLinks;
     }
-
 
     private prepareResourceDetailProperties(props) {
         const detailProperties: ResourceDetailProps[] = [];
@@ -329,7 +329,6 @@ export class ConversionService extends ApiService {
         return detailProperties;
     }
 
-
     private convertGUISpecificProps(data: ResourceFullResponseJson) {
         // loop through all properties and add toHtml values
         Object.keys(data.props).forEach((key: string) => {
@@ -344,14 +343,13 @@ export class ConversionService extends ApiService {
 
         if (prop.values) {
             switch (prop.valuetype_id) {
-
-                case '4':   // DATE: salsah object needs to be converted (using plugin "dateConverter")
+                case '4': // DATE: salsah object needs to be converted (using plugin "dateConverter")
                     for (let i = 0; i < prop.values.length; i++) {
                         prop.toHtml[i] = this.convertDateValue(prop.values[i]);
                     }
                     break; // END date
 
-                case '6':   // LINKVALUE (searchbox): links to another salsah object need to be converted
+                case '6': // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
                         prop.toHtml[i] = this.convertLinkValue(prop, i);
                     }
@@ -365,7 +363,7 @@ export class ConversionService extends ApiService {
                     prop.toHtml = this.convertHlistValue(prop.values, prop.attributes);
                     break; // END hlist
 
-                case '14':  // RICHTEXT: salsah standoff needs to be converted
+                case '14': // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
                         prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
@@ -386,7 +384,6 @@ export class ConversionService extends ApiService {
         }
         return prop;
     }
-
 
     /******************************************
      *
@@ -414,25 +411,26 @@ export class ConversionService extends ApiService {
         // e.g. ["4136"] or ["4136", "4132"]
         values.forEach((valueId, index) => {
             // get geonames data
-            this.getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe(
-                (geoNamesData: GeoDataJson) => {
-                    // check for existing nodelist in geonames response
-                    // else return empty prop if necessary
-                    if (!geoNamesData.nodelist) {
-                        console.log('ConversionService# convertGeoValue: got no nodelist from geonames response: ', geoNamesData);
-                        return output[index] = '';
-                    }
-                    // snapshot of nodelist array
-                    const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
-
-                    // build new GeoNames-Object from nodelist array
-                    const geo: GeoNames = new GeoNames(geoDataArray);
-
-                    // construct and return html value
-                    output[index] = geo.html;
-                    return output;
+            this.getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe((geoNamesData: GeoDataJson) => {
+                // check for existing nodelist in geonames response
+                // else return empty prop if necessary
+                if (!geoNamesData.nodelist) {
+                    console.log(
+                        'ConversionService# convertGeoValue: got no nodelist from geonames response: ',
+                        geoNamesData
+                    );
+                    return (output[index] = '');
                 }
-            );
+                // snapshot of nodelist array
+                const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
+
+                // build new GeoNames-Object from nodelist array
+                const geo: GeoNames = new GeoNames(geoDataArray);
+
+                // construct and return html value
+                output[index] = geo.html;
+                return output;
+            });
         });
         return output;
     }
@@ -484,7 +482,8 @@ export class ConversionService extends ApiService {
     private convertLinkValue(prop, i: number): string {
         // add <a>-tag with click-directive; linktext is stored in "$&"
         const firstValue = prop.value_firstprops[i];
-        const replaceValue = '<a (click)="ref.navigateToResource(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
+        const replaceValue =
+            '<a (click)="ref.navigateToResource(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
         const linkValue = firstValue.replace(firstValue, replaceValue);
         return linkValue;
     }
@@ -526,14 +525,19 @@ export class ConversionService extends ApiService {
                 // check for existing selection in response
                 // else return empty prop if necessary
                 if (!selectionData.selection) {
-                    console.log('ConversionService# convertSelectionValue: got no selection from response: ', selectionData);
+                    console.log(
+                        'ConversionService# convertSelectionValue: got no selection from response: ',
+                        selectionData
+                    );
                     return output;
                 }
                 // snapshot of selection array
                 const selectionArray: SelectionItemJson[] = [...selectionData.selection];
                 // localize id in selection-list array and identify the label
                 values.forEach((valueId, index) => {
-                    const filteredSelection: SelectionItemJson[] = selectionArray.filter(selectionItem => selectionItem.id === valueId );
+                    const filteredSelection: SelectionItemJson[] = selectionArray.filter(
+                        selectionItem => selectionItem.id === valueId
+                    );
                     output[index] = filteredSelection[0].label;
                 });
                 return output;
@@ -551,11 +555,14 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private convertStandoffToHTML(str: string, attr: string): string {
-        if (!str) { return; }
-        if (!attr) { return str; }
+        if (!str) {
+            return;
+        }
+        if (!attr) {
+            return str;
+        }
         return htmlConverter(JSON.parse(attr), str);
     }
-
 
     /******************************************
      *
@@ -581,7 +588,6 @@ export class ConversionService extends ApiService {
         return this.getApiResponse(responseType, queryString);
     }
 
-
     /******************************************
      *
      * get node id from attributes value
@@ -593,7 +599,6 @@ export class ConversionService extends ApiService {
         return attributes.split('=')[1].toString();
     }
 
-
     /******************************************
      *
      *  find inner links in online-access-property
@@ -601,13 +606,11 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private replaceBiblioLink(str: string) {
+        if (!str) {
+            return;
+        }
 
-        if (!str) { return; }
-
-        let tmpStr,
-            splitStr,
-            nameStr,
-            linkStr;
+        let tmpStr, splitStr, nameStr, linkStr;
         const regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
 
         // check for double spaces
@@ -620,7 +623,7 @@ export class ConversionService extends ApiService {
         nameStr = splitStr[0].replace('(', '');
 
         // check for link in 2nd part of "splitstr"
-        if (linkStr = regExLink.exec(splitStr[1])) {
+        if ((linkStr = regExLink.exec(splitStr[1]))) {
             // ... link with <a> tag
             tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
         } else if (nameStr !== 'DOI') {
@@ -640,13 +643,15 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private replaceSalsahLink(str: string): string {
-        if (!str) { return; }
-        const patNum = /\d{4,8}/;    // regexp for object id (4-8 DIGITS)
+        if (!str) {
+            return;
+        }
+        const patNum = /\d{4,8}/; // regexp for object id (4-8 DIGITS)
         const patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
         let p;
 
         // check only for salsah links
-        while (p = patLink.exec(str)) {
+        while ((p = patLink.exec(str))) {
             // i.e.: as long as patLink is detected in str do...
 
             // identify resource id
@@ -654,13 +659,13 @@ export class ConversionService extends ApiService {
 
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
-            const replaceValue = '<a (click)="ref.navigateToResource(\'' + res_id + '\'); $event.stopPropagation()">' + p[2] + '</a>';
+            const replaceValue =
+                '<a (click)="ref.navigateToResource(\'' + res_id + '\'); $event.stopPropagation()">' + p[2] + '</a>';
             str = str.replace(p[0], replaceValue);
         } // END while
 
         return str;
     }
-
 
     /******************************************
      *
@@ -668,11 +673,15 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private replaceParagraphTags(str: string): string {
-        if (!str) { return; }
-        str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(str, '«$&»');
+        if (!str) {
+            return;
+        }
+        str = str
+            .replace(/<\/p><p>/g, '<br />')
+            .replace(/<p>|<\/p>/g, '')
+            .replace(str, '«$&»');
         return str;
     }
-
 
     /******************************************
      *
@@ -688,11 +697,15 @@ export class ConversionService extends ApiService {
         * and if not pushes y into x that is initalized as empty array []
         *
         */
-        if (!arr) { return; }
+        if (!arr) {
+            return;
+        }
         let filteredOut = 0;
-        return arr.reduce((x, y) => x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : (filteredOut += 1, x), []);
+        return arr.reduce(
+            (x, y) => (x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : ((filteredOut += 1), x)),
+            []
+        );
     }
-
 
     /******************************************
      *
@@ -705,12 +718,11 @@ export class ConversionService extends ApiService {
         incomingLinks.forEach(link => {
             const group = link.restype.label;
             if (group in groups) {
-                groups[group].push(link);   // push link into existing restype group
+                groups[group].push(link); // push link into existing restype group
             } else {
-                groups[group] = [link];     // create restype group and make link the first entry
+                groups[group] = [link]; // create restype group and make link the first entry
             }
         });
         return groups;
     }
-
 }

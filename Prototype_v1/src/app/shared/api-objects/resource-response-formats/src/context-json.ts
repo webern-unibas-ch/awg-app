@@ -22,7 +22,6 @@ import { ResinfoJson } from './resinfo-json';
  */
 @JsonObject
 export class ContextJson {
-
     /**
      * The IRI of the resource
      * @param canonical_res_id: KnoraIRI

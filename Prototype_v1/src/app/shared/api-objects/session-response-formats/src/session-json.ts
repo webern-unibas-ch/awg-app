@@ -24,7 +24,6 @@ import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-compone
 
 @JsonObject
 export class SessionJson extends BasicResponseJson {
-
     /**
      * Message
      */
@@ -36,11 +35,4 @@ export class SessionJson extends BasicResponseJson {
      */
     @JsonProperty('sid', String)
     public sid: string = undefined;
-
-
 }
-
-
-
-
-

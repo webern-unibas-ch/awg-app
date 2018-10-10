@@ -22,11 +22,8 @@ export class ResourceInfoResource {
     }
 }
 
-
 export class CurrentResource extends ResourceInfoResource {}
 
 export class NextResource extends ResourceInfoResource {}
 
 export class PreviousResource extends ResourceInfoResource {}
-
-

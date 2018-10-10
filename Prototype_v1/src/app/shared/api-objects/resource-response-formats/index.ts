@@ -34,7 +34,6 @@ import { ResourceTypeResponseJson } from './src/resource-type-response-json';
 import { ResourceTypesInVocabularyResponseJson } from './src/resource-types-in-vocabulary-response-json';
 import { VocabularyResponseJson } from './src/vocabulary-response-json';
 
-
 export {
     ContextJson,
     IncomingItemJson,

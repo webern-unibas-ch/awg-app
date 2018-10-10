@@ -11,9 +11,8 @@ describe('SourcesComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ SourcesComponent ]
-        })
-            .compileComponents();
+            declarations: [SourcesComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

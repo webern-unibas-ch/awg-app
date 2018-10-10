@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { ContactViewComponent } from './contact-view.component';
 
 describe('ContactViewComponent', () => {
-  let component: ContactViewComponent;
-  let fixture: ComponentFixture<ContactViewComponent>;
+    let component: ContactViewComponent;
+    let fixture: ComponentFixture<ContactViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ContactViewComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ContactViewComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ContactViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ContactViewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -8,16 +8,14 @@ import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-ob
 
 @Injectable()
 export class BibliographyService extends ApiService {
-
     // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
     static ngInjectableDef = undefined;
 
     projectId = '6';
-    resTypeId = '126';      // test-01: 127
-    bibShortTitlePropertyId = '614';    // 614 = Bibligoraphie#Kurztitel
+    resTypeId = '126'; // test-01: 127
+    bibShortTitlePropertyId = '614'; // 614 = Bibligoraphie#Kurztitel
     resourcesRoute = '/resources/';
     searchRoute = '/search/';
-
 
     /**********************************
      *
@@ -35,7 +33,6 @@ export class BibliographyService extends ApiService {
 
         return this.getApiResponse(SearchResponseJson, queryString, queryParams);
     }
-
 
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
         const queryString: string = this.resourcesRoute + resourceId;

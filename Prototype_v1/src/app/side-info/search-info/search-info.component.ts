@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy} from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
 
 import { Subscription } from 'rxjs';
 
@@ -11,17 +11,13 @@ import { SideInfoService } from '@awg-core/services';
     styleUrls: ['./search-info.component.css']
 })
 export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
-
     sideInfoDataSubscription: Subscription;
     sideInfoTitleSubscription: Subscription;
 
     searchInfo: SearchInfo;
     searchInfoTitle: string;
 
-    constructor(
-        private sideInfoService: SideInfoService,
-        private cdRef: ChangeDetectorRef
-    ) { }
+    constructor(private sideInfoService: SideInfoService, private cdRef: ChangeDetectorRef) {}
 
     ngAfterViewChecked() {
         this.getSideInfoTitle();
@@ -29,35 +25,31 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
     }
 
     getSideInfoTitle() {
-        this.sideInfoTitleSubscription = this.sideInfoService.getSearchInfoTitle()
-            .subscribe(
-                (title: string) => {
-                    this.searchInfoTitle = title;
-                },
-                error => {
-                    console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
-                }
-            );
-
+        this.sideInfoTitleSubscription = this.sideInfoService.getSearchInfoTitle().subscribe(
+            (title: string) => {
+                this.searchInfoTitle = title;
+            },
+            error => {
+                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
+            }
+        );
     }
-
 
     getSideInfoData() {
         // get sideInfoData from service
-        this.sideInfoDataSubscription = this.sideInfoService.getSideInfoData()
-            .subscribe(
-                (searchInfo: SearchInfo) => {
-                    this.searchInfo = new SearchInfo(searchInfo.query, searchInfo.nhits);
+        this.sideInfoDataSubscription = this.sideInfoService.getSideInfoData().subscribe(
+            (searchInfo: SearchInfo) => {
+                this.searchInfo = new SearchInfo(searchInfo.query, searchInfo.nhits);
 
-                    // detect changes only if component is not in destroy phase, compare: https://stackoverflow.com/a/46605947
-                    if (!this.cdRef['destroyed']) {
-                        this.cdRef.detectChanges();
-                    }
-                },
-                error => {
-                    console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
+                // detect changes only if component is not in destroy phase, compare: https://stackoverflow.com/a/46605947
+                if (!this.cdRef['destroyed']) {
+                    this.cdRef.detectChanges();
                 }
-            );
+            },
+            error => {
+                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
+            }
+        );
     }
 
     ngOnDestroy() {
@@ -69,5 +61,4 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
             this.sideInfoTitleSubscription.unsubscribe();
         }
     }
-
 }

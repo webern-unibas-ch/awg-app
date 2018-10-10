@@ -8,9 +8,8 @@ describe('RouterLinkButtonGroupComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ RouterLinkButtonGroupComponent ]
-        })
-            .compileComponents();
+            declarations: [RouterLinkButtonGroupComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

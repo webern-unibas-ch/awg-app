@@ -13,28 +13,25 @@ import { ConversionService } from '@awg-core/services/conversion-service/convers
     styleUrls: ['./bibliography-detail.component.css']
 })
 export class BibliographyDetailComponent implements OnInit, OnDestroy {
-    @Input() objId: string;
+    @Input()
+    objId: string;
 
     // TODO#change to Type: BibEntry
     convertedBibItemDetail: any;
     bibItemDetailSubscription: Subscription;
 
-    constructor(
-        private bibliographyService: BibliographyService,
-        private conversionService: ConversionService
-    ) { }
+    constructor(private bibliographyService: BibliographyService, private conversionService: ConversionService) {}
 
     ngOnInit() {
         this.getBibItemDetails(this.objId);
     }
 
     getBibItemDetails(id: string): void {
-        this.bibItemDetailSubscription = this.bibliographyService.getBibliographyItemDetail(id)
-            .subscribe(data => {
-                const bibItemDetailBody: ResourceFullResponseJson = {...data};
-                this.convertedBibItemDetail = this.conversionService.convertObjectProperties(bibItemDetailBody);
-                console.log('convertedItem: ', this.convertedBibItemDetail);
-            });
+        this.bibItemDetailSubscription = this.bibliographyService.getBibliographyItemDetail(id).subscribe(data => {
+            const bibItemDetailBody: ResourceFullResponseJson = { ...data };
+            this.convertedBibItemDetail = this.conversionService.convertObjectProperties(bibItemDetailBody);
+            console.log('convertedItem: ', this.convertedBibItemDetail);
+        });
     }
 
     ngOnDestroy() {
@@ -42,5 +39,4 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
             this.bibItemDetailSubscription.unsubscribe();
         }
     }
-
 }

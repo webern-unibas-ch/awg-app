@@ -10,7 +10,4 @@
 import { DataService } from './data.service';
 import { EditionService } from './edition.service';
 
-export {
-    DataService,
-    EditionService
-};
+export { DataService, EditionService };

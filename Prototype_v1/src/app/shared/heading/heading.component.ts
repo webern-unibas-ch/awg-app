@@ -6,12 +6,12 @@ import { Component, Input, OnInit } from '@angular/core';
     styleUrls: ['heading.component.css']
 })
 export class HeadingComponent implements OnInit {
-    @Input() title: string;
-    @Input() id: string;
+    @Input()
+    title: string;
+    @Input()
+    id: string;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 }

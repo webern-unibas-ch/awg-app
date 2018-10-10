@@ -23,7 +23,6 @@ import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-compone
  */
 @JsonObject
 export class ResourceRightsResponseJson extends BasicResponseJson {
-
     /**
      * The current user's permissions on the resource
      * @param rights: number TODO: change to KnoraRights??

@@ -13,10 +13,4 @@ import { DataStreamerService } from './data-streamer';
 import { MetaService } from './meta-service';
 import { SideInfoService } from './side-info-service';
 
-export {
-    ApiService,
-    ConversionService,
-    DataStreamerService,
-    MetaService,
-    SideInfoService
-};
+export { ApiService, ConversionService, DataStreamerService, MetaService, SideInfoService };

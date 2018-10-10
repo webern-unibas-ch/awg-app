@@ -8,8 +8,10 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./source-list.component.css']
 })
 export class SourceListComponent implements OnInit {
-    @Input() sourceListData: SourceList;
-    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    sourceListData: SourceList;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
 
     showListPanel = true;
     ref: SourceListComponent;
@@ -18,17 +20,13 @@ export class SourceListComponent implements OnInit {
         this.ref = this;
     }
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 
     openModal(id: string) {
         this.openModalRequest.emit(id);
     }
 
-
     togglePanel(): boolean {
-        return this.showListPanel = !this.showListPanel;
+        return (this.showListPanel = !this.showListPanel);
     }
-
 }

@@ -11,14 +11,14 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
-
 @Component({
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
     styleUrls: ['./search-result-list.component.css']
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
-    @Input() searchUrl: string;
+    @Input()
+    searchUrl: string;
 
     errorMessage: any = undefined;
     currentId: string;
@@ -34,31 +34,34 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         private conversionService: ConversionService,
         private searchService: DataApiService,
         private sideInfoService: SideInfoService,
-        private streamerService: DataStreamerService,
-    ) { }
+        private streamerService: DataStreamerService
+    ) {}
 
     ngOnInit() {
         this.streamerServiceSubscription = this.subscribeToStreamerService();
     }
 
-
     subscribeToStreamerService(): Subscription {
-        return this.streamerService.getCurrentSearchResults().pipe(
-            map((searchResponseWithQuery: SearchResponseWithQuery) => {
-                // update current search params (url, text, sideinfo) via streamer service
-                this.updateSearchParams(searchResponseWithQuery);
+        return this.streamerService
+            .getCurrentSearchResults()
+            .pipe(
+                map((searchResponseWithQuery: SearchResponseWithQuery) => {
+                    // update current search params (url, text, sideinfo) via streamer service
+                    this.updateSearchParams(searchResponseWithQuery);
 
-                return searchResponseWithQuery.data;
-            })
-        ).subscribe((searchResponse: SearchResponseJson) => {
-                this.searchResponse = searchResponse;
-            },
-            error => {
-                this.errorMessage = <any>error;
-                console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
-            });
+                    return searchResponseWithQuery.data;
+                })
+            )
+            .subscribe(
+                (searchResponse: SearchResponseJson) => {
+                    this.searchResponse = searchResponse;
+                },
+                error => {
+                    this.errorMessage = <any>error;
+                    console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
+                }
+            );
     }
-
 
     updateSearchParams(response: SearchResponseWithQuery): void {
         // update current search values
@@ -68,15 +71,17 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.updateSearchInfoService();
     }
 
-
     // update current search values
     updateCurrentValues(response: SearchResponseWithQuery) {
         // get current search value
         this.searchValue = response.query;
         // prepare result text for fulltext search
-        this.searchResultText = this.conversionService.prepareFullTextSearchResultText(response.data, this.filteredOut, this.searchUrl);
+        this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
+            response.data,
+            this.filteredOut,
+            this.searchUrl
+        );
     }
-
 
     // update data for searchInfo via sideinfo service
     updateSearchInfoService() {
@@ -84,11 +89,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
 
-
     isActiveResource(id: string) {
         return this.currentId === id;
     }
-
 
     navigateToResource(id: string) {
         this.currentId = id;
@@ -101,5 +104,4 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             this.streamerServiceSubscription.unsubscribe();
         }
     }
-
 }

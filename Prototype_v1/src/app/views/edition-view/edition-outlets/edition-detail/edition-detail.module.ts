@@ -11,11 +11,7 @@ import { EditionSvgFileNavComponent } from './edition-svg-file-nav';
 import { EditionSvgFileComponent } from './edition-svg-file';
 
 @NgModule({
-    imports: [
-        SharedModule,
-        FolioModule,
-        EditionTkaTableModule
-    ],
+    imports: [SharedModule, FolioModule, EditionTkaTableModule],
     declarations: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
@@ -29,7 +25,6 @@ import { EditionSvgFileComponent } from './edition-svg-file';
         EditionDetailNotificationComponent,
         EditionSvgFileNavComponent,
         EditionSvgFileComponent
-
     ]
 })
-export class EditionDetailModule { }
+export class EditionDetailModule {}

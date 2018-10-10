@@ -8,9 +8,12 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     styleUrls: ['./textcritics.component.css']
 })
 export class TextcriticsComponent implements OnInit {
-    @Input() textcriticsData: TextcriticsList;
-    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    textcriticsData: TextcriticsList;
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
     showPanel = true;
@@ -19,8 +22,7 @@ export class TextcriticsComponent implements OnInit {
         this.ref = this;
     }
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     openModal(id: string): void {
         this.openModalRequest.emit(id);
@@ -31,6 +33,6 @@ export class TextcriticsComponent implements OnInit {
     }
 
     togglePanel(): boolean {
-        return this.showPanel = !this.showPanel;
+        return (this.showPanel = !this.showPanel);
     }
 }

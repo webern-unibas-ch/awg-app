@@ -19,34 +19,25 @@ export class ReportComponent implements OnInit {
     textcriticsData: TextcriticsList;
     private errorMessage: string = undefined;
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private dataService: DataService
-    ) { }
-
+    constructor(private router: Router, private route: ActivatedRoute, private dataService: DataService) {}
 
     ngOnInit() {
         this.getData();
     }
 
-
     getData() {
-        this.dataService.getEditionReportData()
-            .subscribe((data: [SourceList, TextcriticsList]) => {
-                    this.sourceListData = data[0];
-                    this.textcriticsData = data[1];
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
+        this.dataService.getEditionReportData().subscribe(
+            (data: [SourceList, TextcriticsList]) => {
+                this.sourceListData = data[0];
+                this.textcriticsData = data[1];
+            },
+            error => {
+                this.errorMessage = <any>error;
+            }
+        );
     }
-
 
     onSvgFileSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
-
-
 }

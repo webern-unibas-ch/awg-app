@@ -8,11 +8,10 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
     styleUrls: ['./resource-detail-json-raw.component.css']
 })
 export class ResourceDetailJsonRawComponent implements OnInit {
-    @Input() resourceJsonRawData: ResourceFullResponseJson;
+    @Input()
+    resourceJsonRawData: ResourceFullResponseJson;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 }

@@ -21,7 +21,6 @@ import { KnoraIRI, KnoraRights } from './basic-type-aliases';
  */
 @JsonObject
 export class ProjectItemJson {
-
     /**
      * Path to the project's file
      * @param basepath: string | null

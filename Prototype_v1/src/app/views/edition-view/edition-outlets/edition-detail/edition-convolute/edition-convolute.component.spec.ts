@@ -8,9 +8,8 @@ describe('EditionConvoluteComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ EditionConvoluteComponent ]
-        })
-            .compileComponents();
+            declarations: [EditionConvoluteComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

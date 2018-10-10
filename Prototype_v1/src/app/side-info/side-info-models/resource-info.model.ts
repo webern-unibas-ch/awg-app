@@ -8,5 +8,4 @@ export class ResourceInfo {
         next: ResourceInfoResource;
         previous: ResourceInfoResource;
     };
-
 }

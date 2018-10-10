@@ -5,7 +5,6 @@ export class Source {
     linkTo: string;
 }
 
-
 export class SourceList {
     sources: Source[];
 }

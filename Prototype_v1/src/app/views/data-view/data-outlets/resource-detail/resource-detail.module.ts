@@ -10,11 +10,8 @@ import { ResourceDetailHtmlContentPropsComponent } from './resource-detail-html/
 import { ResourceDetailJsonConvertedComponent } from './resource-detail-json-converted/resource-detail-json-converted.component';
 import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw/resource-detail-json-raw.component';
 
-
 @NgModule({
-    imports: [
-        SharedModule
-    ],
+    imports: [SharedModule],
     declarations: [
         ResourceDetailHeaderComponent,
         ResourceDetailHtmlComponent,
@@ -36,4 +33,4 @@ import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw/resou
         ResourceDetailJsonRawComponent
     ]
 })
-export class ResourceDetailModule { }
+export class ResourceDetailModule {}

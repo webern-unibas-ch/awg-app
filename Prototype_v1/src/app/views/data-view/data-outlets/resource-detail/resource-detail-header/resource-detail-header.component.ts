@@ -8,18 +8,21 @@ import { ResourceDetailHeader } from '@awg-views/data-view/models';
     styleUrls: ['./resource-detail-header.component.css']
 })
 export class ResourceDetailHeaderComponent implements OnInit {
-    @Input() header: ResourceDetailHeader;
-    @Input() resourceUrl: string;
-    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    header: ResourceDetailHeader;
+    @Input()
+    resourceUrl: string;
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     navigateToResource(id?: string) {
-        if (id) { id.toString(); }
+        if (id) {
+            id.toString();
+        }
         this.resourceRequest.emit(id);
     }
-
 }

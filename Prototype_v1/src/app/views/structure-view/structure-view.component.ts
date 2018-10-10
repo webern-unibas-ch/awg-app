@@ -7,21 +7,17 @@ import { Router } from '@angular/router';
     styleUrls: ['./structure-view.component.css']
 })
 export class StructureViewComponent implements OnInit {
-
     public structureTitle = 'Datenstrukturmodell';
     public structureId = 'structure';
 
-    constructor(private router: Router) { }
-
+    constructor(private router: Router) {}
 
     ngOnInit() {
         this.routeToSidenav();
     }
 
-
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'structureInfo' }}], { preserveFragment: true });
+        this.router.navigate([{ outlets: { side: 'structureInfo' } }], { preserveFragment: true });
     }
-
 }

@@ -8,13 +8,8 @@ import { ApiService } from './api.service';
 describe('ApiService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                AppModule,
-                AppRoutingModule
-            ],
-            providers: [
-                ApiService
-            ]
+            imports: [AppModule, AppRoutingModule],
+            providers: [ApiService]
         });
     });
 

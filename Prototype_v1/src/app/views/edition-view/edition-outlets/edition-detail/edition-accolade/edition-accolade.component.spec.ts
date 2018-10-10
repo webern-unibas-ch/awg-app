@@ -8,9 +8,8 @@ describe('EditionAccoladeComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ EditionAccoladeComponent ]
-        })
-            .compileComponents();
+            declarations: [EditionAccoladeComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

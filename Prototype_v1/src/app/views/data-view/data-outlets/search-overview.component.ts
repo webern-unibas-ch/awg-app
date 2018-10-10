@@ -4,14 +4,12 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
 
 import { SideInfoService } from '@awg-core/services';
 
-
 @Component({
     selector: 'awg-search-overview',
     templateUrl: './search-overview.component.html',
     styleUrls: ['./search-overview.component.css']
 })
 export class SearchOverviewComponent implements OnInit {
-
     searchButtonArray: RouterLinkButton[] = [
         {
             root: '/data/search',
@@ -33,10 +31,9 @@ export class SearchOverviewComponent implements OnInit {
         }
     ];
 
-    constructor(private sideInfoService: SideInfoService) { }
+    constructor(private sideInfoService: SideInfoService) {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     onButtonSelect(title: string) {
         this.updateSearchInfoTitle(title);
@@ -45,5 +42,4 @@ export class SearchOverviewComponent implements OnInit {
     private updateSearchInfoTitle(title: string) {
         this.sideInfoService.updateSearchInfoTitle(title);
     }
-
 }

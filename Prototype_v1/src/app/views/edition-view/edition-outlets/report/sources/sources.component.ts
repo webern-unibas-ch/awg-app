@@ -8,15 +8,16 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./sources.component.css']
 })
 export class SourcesComponent implements OnInit {
-    @Input() sourceListData: SourceList;
-    @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Input()
+    sourceListData: SourceList;
+    @Output()
+    openModalRequest: EventEmitter<any> = new EventEmitter();
 
     showDescriptionPanel = true;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     openModal(id: string) {
         // emit event to open modal
@@ -26,18 +27,17 @@ export class SourcesComponent implements OnInit {
     scrollTo(id: string) {
         // if description is closed: open it before scrolling
         // TODO: change calling logic
-        if (!this.showDescriptionPanel) { this.toggleDescriptionPanel(this.showDescriptionPanel); }
-
+        if (!this.showDescriptionPanel) {
+            this.toggleDescriptionPanel(this.showDescriptionPanel);
+        }
     }
 
     toggleDescriptionPanel(showPanel: boolean): boolean {
         // toggle boolean value of showDescriptionPanel after emitting toggle event
-        return this.showDescriptionPanel = this.togglePanel(showPanel);
+        return (this.showDescriptionPanel = this.togglePanel(showPanel));
     }
-
 
     togglePanel(showPanel: boolean): boolean {
-        return showPanel = !showPanel;
+        return (showPanel = !showPanel);
     }
-
 }

@@ -20,7 +20,6 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  */
 @JsonObject
 export class PermissionItemJson {
-
     /**
      * User group that the permission level is granted to
      * @param granted_to: string

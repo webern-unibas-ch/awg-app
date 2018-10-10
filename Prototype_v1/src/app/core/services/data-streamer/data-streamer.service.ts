@@ -4,12 +4,10 @@ import { Observable, ReplaySubject } from 'rxjs';
 
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class DataStreamerService {
-
     /**************************************************
      * ReplaySubjects that are used to stream the data
      **************************************************/
@@ -21,7 +19,6 @@ export class DataStreamerService {
     private currentResourceIdStreamSource = new ReplaySubject<string>(this.bufferSize);
     private currentResourceIdStream$ = this.currentResourceIdStreamSource.asObservable();
 
-
     /****************
      *  request data
      ****************/
@@ -32,7 +29,6 @@ export class DataStreamerService {
     public getCurrentResourceId(): Observable<string> {
         return this.currentResourceIdStream$;
     }
-
 
     /***************
      *  update data
@@ -55,6 +51,4 @@ export class DataStreamerService {
     public clearResourceId(): void {
         this.currentResourceIdStreamSource.next('');
     }
-
-
 }

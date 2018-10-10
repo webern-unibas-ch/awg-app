@@ -16,7 +16,6 @@
  * Error class used as API response in ApiService
  */
 export class ApiServiceError {
-
     /**
      * Status number
      */
@@ -36,5 +35,4 @@ export class ApiServiceError {
      * Additional error info
      */
     errorInfo = '';
-
 }

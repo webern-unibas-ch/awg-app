@@ -22,7 +22,6 @@
  *
  */
 
-
 //
 // addValueFormats
 // export * from './add-value-formats';
@@ -63,12 +62,10 @@ export * from './hierarchical-list-response-formats';
 export * from './resource-response-formats';
 //
 
-
 //
 // searchResponseFormats
 export * from './search-response-formats';
 //
-
 
 //
 // valueResponseFormats
@@ -88,9 +85,3 @@ export * from './project-response-formats';
 // sessionResponseFormats
 export * from './session-response-formats';
 //
-
-
-
-
-
-

@@ -12,9 +12,13 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { Any, JsonConvert, JsonObject, JsonProperty} from 'json2typescript';
-import { KnoraIRI, KnoraRights, LocationItemJson, StringOrNumber } from '@awg-shared/api-objects/basic-message-components';
-
+import { Any, JsonConvert, JsonObject, JsonProperty } from 'json2typescript';
+import {
+    KnoraIRI,
+    KnoraRights,
+    LocationItemJson,
+    StringOrNumber
+} from '@awg-shared/api-objects/basic-message-components';
 
 @JsonObject
 export class PropertyJsonValue {
@@ -28,14 +32,12 @@ export class PropertyJsonValue {
     public resource_reference: string[] = undefined;
 }
 
-
 /**
  * Represents a property (parallel arrays)
  * @used by ResourceFullResponseJson
  */
 @JsonObject
 export class PropertyJson {
-
     /**
      * HTML attributes for the GUI element used to render this property
      * @param attributes: string | null
@@ -167,7 +169,6 @@ export class PropertyJson {
     @JsonProperty('valuetype_id', String)
     public valuetype_id: string = undefined;
 
-
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
             const jsonConvert: JsonConvert = new JsonConvert();
@@ -192,5 +193,4 @@ export class PropertyJson {
             return [];
         }
     }
-
 }

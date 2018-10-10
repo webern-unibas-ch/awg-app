@@ -7,7 +7,6 @@ export class ResourceData {
     html: ResourceDetail;
 
     constructor(body: ResourceFullResponseJson, html: ResourceDetail) {
-
         // snapshot of raw json response
         this.jsonRaw = JSON.parse(JSON.stringify(body));
 

@@ -3,8 +3,7 @@ import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { switchMap,  map } from 'rxjs/operators';
-
+import { switchMap, map } from 'rxjs/operators';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
@@ -18,7 +17,6 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
     styleUrls: ['./search-panel.component.css']
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
-
     dataApiServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
@@ -29,7 +27,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     errorMessage: any;
     isLoadingData = false;
 
-
     constructor(
         private route: ActivatedRoute,
         private router: Router,
@@ -37,14 +34,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private conversionService: ConversionService,
         private dataApiService: DataApiService,
         private sideInfoService: SideInfoService,
-        private streamerService: DataStreamerService,
+        private streamerService: DataStreamerService
     ) {}
-
 
     ngOnInit() {
         this.dataApiServiceSubscription = this.subscribeToDataApiService();
     }
-
 
     subscribeToDataApiService(): Subscription {
         return this.route.paramMap
@@ -58,19 +53,19 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     this.onLoadingStart();
 
                     // fetch search data for searchValue
-                    return this.dataApiService.getFulltextSearchData(this.searchValue)
-                        .pipe(
-                            map((searchResponse: SearchResponseJson) => {
+                    return this.dataApiService.getFulltextSearchData(this.searchValue).pipe(
+                        map((searchResponse: SearchResponseJson) => {
+                            // update url for search
+                            this.updateCurrentUrl();
 
-                                // update url for search
-                                this.updateCurrentUrl();
-
-                                // prepare search results
-                                return this.prepareSearchResults(searchResponse);
-                            })
-                        );
-                }))
-            .subscribe((searchResponse: SearchResponseJson) => {
+                            // prepare search results
+                            return this.prepareSearchResults(searchResponse);
+                        })
+                    );
+                })
+            )
+            .subscribe(
+                (searchResponse: SearchResponseJson) => {
                     // share search data via streamer service
                     this.updateStreamerService(searchResponse, this.searchValue);
 
@@ -78,47 +73,41 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 },
                 error => {
                     this.errorMessage = <any>error;
-                });
+                }
+            );
     }
-
 
     // change the load status
     changeLoadingStatus(status: boolean) {
         this.isLoadingData = status;
     }
 
-
     // start loading activities
     onLoadingStart(): void {
         this.changeLoadingStatus(true);
     }
-
 
     // end loading activities
     onLoadingEnd(): void {
         this.changeLoadingStatus(false);
     }
 
-
     // route to url with query when getting submit request
     onSubmit(query: string) {
         if (query !== this.searchValue) {
-            this.router.navigate(['data/search/fulltext', {query: query}]);
+            this.router.navigate(['data/search/fulltext', { query: query }]);
         }
     }
-
 
     prepareSearchResults(searchResponse: SearchResponseJson): SearchResponseJson {
         // conversion of search results for HTML display
         return this.conversionService.convertFullTextSearchResults(searchResponse);
     }
 
-
     updateCurrentUrl() {
         // get url from search service
         this.searchUrl = this.dataApiService.httpGetUrl;
     }
-
 
     // update search data via streamer service
     updateStreamerService(searchResponse: SearchResponseJson, query: string) {
@@ -126,12 +115,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.streamerService.updateSearchResponseStream(searchResponseWithQuery);
     }
 
-
     ngOnDestroy() {
         // prevent memory leak when component destroyed
         if (this.dataApiServiceSubscription) {
             this.dataApiServiceSubscription.unsubscribe();
         }
     }
-
 }

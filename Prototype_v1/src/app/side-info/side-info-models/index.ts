@@ -12,10 +12,12 @@ import { ResourceInfoResource, CurrentResource, NextResource, PreviousResource }
 import { ResourceInfoSearchResults } from './resource-info-search-results.model';
 import { SearchInfo } from './search-info.model';
 
-
 export {
     ResourceInfo,
-    ResourceInfoResource, CurrentResource, NextResource, PreviousResource,
+    ResourceInfoResource,
+    CurrentResource,
+    NextResource,
+    PreviousResource,
     ResourceInfoSearchResults,
     SearchInfo
 };
