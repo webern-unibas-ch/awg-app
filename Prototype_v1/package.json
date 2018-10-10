@@ -1,6 +1,6 @@
 {
     "name": "webern-live-app2",
-    "version": "0.2.0.1",
+    "version": "0.2.0",
     "author": {
         "name": "Stefan Münnich <stefan.muennich@unibas.ch>"
     },
@@ -10,20 +10,22 @@
         "url": "git@git.iml.unibas.ch:muennich/WebernLiveApp.git"
     },
     "license": "UNLICENSED",
+    "private": true,
     "scripts": {
         "ng": "ng",
         "start": "ng serve",
         "build": "ng build --stats-json",
-        "build:prod": "ng build --stats-json --prod --aot=false --environment=prod",
-        "build:stats": "webpack-bundle-analyzer dist/stats.json",
-        "build:sourcemap": "source-map-explorer dist/main.*.bundle.js",
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
+        "build:prod": "yarn build --prod --aot=false",
+        "build:stats": "webpack-bundle-analyzer dist/stats.json",
+        "build:sourcemap": "source-map-explorer dist/main.*.bundle.js",
         "build:css": "./themes/bin/build-css",
         "watch:css": "./themes/bin/watch-css",
         "build:css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
         "watch:css-win": "nodemon -e scss -x \"npm run build-css-win\" ",
+        "format:fix": "pretty-quick --staged",
         "release": "standard-version"
     },
     "standard-version": {
@@ -31,7 +33,23 @@
             "tag": true
         }
     },
-    "private": true,
+    "husky": {
+        "hooks": {
+            "pre-commit": "run-s format:fix lint",
+            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
+        }
+    },
+    "prettier": {
+        "printWidth": 120,
+        "tabWidth": 4,
+        "useTabs": false,
+        "semi": true,
+        "singleQuote": true,
+        "trailingComma": "none",
+        "bracketSpacing": true,
+        "jsxBracketSameLine": true,
+        "arrowParens": "avoid"
+    },
     "dependencies": {
         "@angular/animations": "^6.1.9",
         "@angular/common": "^6.1.9",
@@ -57,11 +75,14 @@
         "@angular/cli": "^6.2.4",
         "@angular/compiler-cli": "^6.1.9",
         "@angular/language-service": "^6.1.9",
+        "@commitlint/cli": "^7.2.0",
+        "@commitlint/config-angular": "^7.1.2",
         "@types/jasmine": "~2.8.8",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "~8.9.4",
         "codelyzer": "~4.3.0",
         "conventional-recommended-bump": "^4.0.1",
+        "husky": "^1.1.1",
         "jasmine-core": "~2.99.1",
         "jasmine-spec-reporter": "~4.2.1",
         "karma": "~3.0.0",
@@ -71,6 +92,9 @@
         "karma-jasmine-html-reporter": "^0.2.2",
         "node-sass": "^4.7.2",
         "nodemon": "^1.17.2",
+        "npm-run-all": "^4.1.3",
+        "prettier": "^1.14.3",
+        "pretty-quick": "^1.7.0",
         "protractor": "~5.4.0",
         "source-map-explorer": "^1.6.0",
         "standard-version": "^4.4.0",
