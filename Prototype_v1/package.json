@@ -20,11 +20,10 @@
         "test": "ng test",
         "lint": "ng lint",
         "e2e": "ng e2e",
-        "build-css": "./themes/bin/build-css",
-        "watch-css": "./themes/bin/watch-css",
-        "build-css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
-        "watch-css-win": "nodemon -e scss -x \"npm run build-css-win\" ",
-        "get-next-version": "node ./get-next-version.js",
+        "build:css": "./themes/bin/build-css",
+        "watch:css": "./themes/bin/watch-css",
+        "build:css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
+        "watch:css-win": "nodemon -e scss -x \"npm run build-css-win\" ",
         "release": "standard-version"
     },
     "standard-version": {
