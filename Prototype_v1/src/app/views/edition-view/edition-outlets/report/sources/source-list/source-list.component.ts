@@ -8,11 +8,10 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./source-list.component.css']
 })
 export class SourceListComponent implements OnInit {
-    @Input() sourceList: SourceList;
+    @Input() sourceListData: SourceList;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showListPanel: boolean = true;
+    showListPanel = true;
     ref: SourceListComponent;
 
     constructor() {
@@ -25,11 +24,6 @@ export class SourceListComponent implements OnInit {
 
     openModal(id: string) {
         this.openModalRequest.emit(id);
-    }
-
-
-    scrollTo(id: string) {
-        this.scrollRequest.emit(id);
     }
 
 

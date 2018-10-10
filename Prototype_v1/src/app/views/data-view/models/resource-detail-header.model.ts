@@ -100,7 +100,7 @@ export class ResourceDetailHeader {
         }
 
         // additional header for restricted objects
-        if (data.access === 'NO_ACCESS' ){
+        if (data.access === 'NO_ACCESS' ) {
             this.type = 'restricted';
             this.title = 'Kein Zugriff auf dieses Objekt möglich';
         }

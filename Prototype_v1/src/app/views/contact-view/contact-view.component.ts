@@ -14,7 +14,7 @@ export class ContactViewComponent implements OnInit {
     contactTitle = 'Impressum';
     contactId = 'masthead';
 
-    dateFormat: string = 'd. MMMM yyyy';
+    dateFormat = 'd. MMMM yyyy';
     meta: Meta;
     today: number;
 
@@ -25,31 +25,23 @@ export class ContactViewComponent implements OnInit {
         private router: Router
     ) { }
 
+
     ngOnInit() {
         this.provideMetaData();
         this.routeToSidenav();
-        this.scrollTo();
+        // this.scrollTo();
         this.today = Date.now();
     }
+
 
     provideMetaData(): void {
         this.meta = this.metaService.getMetaData();
     }
 
-    routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'contactInfo' }}]);
-    }
 
-    scrollTo(id?: string) {
-        // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
-        setTimeout(() => {
-            this.route.fragment.subscribe(f => {
-                        if (!f) { return; }
-                        const element = document.querySelector('#' + f);
-                        if (element) { element.scrollIntoView(); }
-                    }
-                );
-        });
+    routeToSidenav(): void {
+        // opens the side-info outlet while preserving the router fragment for scrolling
+        this.router.navigate([{ outlets: { side: 'contactInfo' }}], { preserveFragment: true });
     }
 
 }

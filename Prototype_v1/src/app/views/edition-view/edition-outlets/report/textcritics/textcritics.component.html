@@ -17,11 +17,11 @@
                 </p>
             </div>
 
-            <div class="para" *ngFor="let textcritics of textcriticsData | mapToIterable">
+            <div class="para" *ngFor="let textcritics of textcriticsData | keyvalue">
 
-                <caption class="bold"><a [routerLink]="['/edition/detail', textcritics.mappedKey]">{{ textcritics.mappedKey }}</a>:</caption>
+                <caption class="bold"><a [routerLink]="['/edition/detail', textcritics.key]">{{ textcritics.key }}</a>:</caption>
                 <awg-edition-tka-table
-                        [selectedTextcritics]="textcritics.mappedValues"
+                        [selectedTextcritics]="textcritics.value"
                         (openModalRequest)="openModal($event)"
                         (selectSvgFileRequest)="selectSvgFile($event)">
                 </awg-edition-tka-table>

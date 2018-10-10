@@ -54,7 +54,7 @@ export class ProjectItemJson {
      * @param hasSelfJoinEnabled: boolean
      */
     @JsonProperty('hasSelfJoinEnabled', Boolean)
-    public hasSelfJoinEnabled: boolean = false;
+    public hasSelfJoinEnabled = false;
 
     /**
      * The project's IRI

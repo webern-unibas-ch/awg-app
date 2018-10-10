@@ -32,6 +32,7 @@ export class HomeViewComponent implements OnInit {
     }
 
     routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'editionInfo' }}]);
+        // opens the side-info outlet while preserving the router fragment for scrolling
+        this.router.navigate([{ outlets: { side: 'editionInfo' }}], { preserveFragment: true });
     }
 }

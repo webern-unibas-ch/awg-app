@@ -9,7 +9,7 @@ export class SourceEvaluationComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showEvaluationPanel: boolean = true;
+    showEvaluationPanel = true;
 
     constructor() { }
 
@@ -19,11 +19,6 @@ export class SourceEvaluationComponent implements OnInit {
 
     openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
-    }
-
-
-    scrollTo(id: string) {
-        this.scrollRequest.emit(id);
     }
 
 

@@ -2,7 +2,10 @@ import { Injectable } from '@angular/core';
 
 import { Textcritics } from '@awg-views/edition-view/models';
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class EditionService {
 
     constructor( ) { }

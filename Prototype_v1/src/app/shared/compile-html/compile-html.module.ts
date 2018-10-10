@@ -21,12 +21,12 @@ export function createJitCompiler () {
 }
 */
 
-//import { CompileService, CompileServiceConfig,    } from "./CompileService";
+// import { CompileService, CompileServiceConfig,    } from "./CompileService";
 import { CompileHtmlAttribute } from './compile-html.attribute';
 
 
 export class CompileServiceConfig {
-    module: NgModule
+    module: NgModule;
 }
 
 // exports = component
@@ -48,7 +48,7 @@ export class CompileServiceConfig {
     ]
 })
 export class CompileHtmlModule {
-    static forRoot(config: CompileServiceConfig) : ModuleWithProviders {
+    static forRoot(config: CompileServiceConfig): ModuleWithProviders {
         return {
             ngModule: CompileHtmlModule,
             providers: [

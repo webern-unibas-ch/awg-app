@@ -19,7 +19,6 @@ import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-sp
 
 //
 // shared pipes
-import { MapToIterablePipe } from './map-to-iterable/map-to-iterable.pipe';
 import { OrderByPipe } from './order-by/order-by.pipe';
 
 @NgModule({
@@ -35,7 +34,6 @@ import { OrderByPipe } from './order-by/order-by.pipe';
     ],
     declarations: [
         HeadingComponent,
-        MapToIterablePipe,
         ModalComponent,
         OrderByPipe,
         RouterLinkButtonGroupComponent,
@@ -52,7 +50,6 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         CompileHtmlModule,
 
         HeadingComponent,
-        MapToIterablePipe,
         ModalComponent,
         OrderByPipe,
         RouterLinkButtonGroupComponent,

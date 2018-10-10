@@ -1,3 +1,9 @@
+enum EditionSvgOverlayTypes {
+    measure = 'Takt',
+    system = 'System',
+    item = 'Anmerkung',
+}
+
 export class EditionSvgOverlay {
     type: EditionSvgOverlayTypes;
     id: string;
@@ -11,9 +17,4 @@ export class EditionSvgOverlay {
 }
 
 
-enum EditionSvgOverlayTypes {
-    measure = 'Takt',
-    system = 'System',
-    item = 'Anmerkung',
-}
 

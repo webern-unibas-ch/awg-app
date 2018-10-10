@@ -16,14 +16,14 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 })
 export class ResourceDetailComponent implements OnInit {
 
-    public resourceData: ResourceData;
-    public resourceId: string;
-    public resourceUrl: string;
-    public oldId: string;
+    resourceData: ResourceData;
+    resourceId: string;
+    resourceUrl: string;
+    oldId: string;
 
-    public errorMessage: any = undefined;
+    errorMessage: any = undefined;
 
-    public tabTitle = {
+    tabTitle = {
         html: 'Detail',
         raw: 'JSON (raw)',
         converted: 'JSON (converted)'
@@ -36,6 +36,15 @@ export class ResourceDetailComponent implements OnInit {
         private searchService: DataApiService,
         private streamerService: DataStreamerService
     ) { }
+
+
+    /*
+     * Scroll to Top of Window
+     */
+    static scrollToTop() {
+        window.scrollTo(0, 0);
+    }
+
 
     ngOnInit() {
         this.getResourceData();
@@ -131,13 +140,6 @@ export class ResourceDetailComponent implements OnInit {
      */
     activateSidenav(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' }}]);
-    }
-
-    /*
-     * Scroll to Top of Window
-     */
-    static scrollToTop() {
-        window.scrollTo(0,0);
     }
 
 }

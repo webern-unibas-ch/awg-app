@@ -14,7 +14,9 @@ import { catchError, tap } from 'rxjs/operators';
 import { HttpCacheService } from '@awg-views/data-view/services';
 
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class CachingInterceptor implements HttpInterceptor {
 
     constructor(private cache: HttpCacheService) {}

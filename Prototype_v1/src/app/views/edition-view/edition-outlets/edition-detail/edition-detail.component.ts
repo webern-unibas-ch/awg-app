@@ -28,7 +28,7 @@ export class EditionDetailComponent implements OnInit {
     selectedOverlay: EditionSvgOverlay;
 
     errorMessage: string = undefined;
-    showTkA: boolean = false;
+    showTkA = false;
 
 
     constructor(

@@ -48,4 +48,4 @@ export {
     ResourceTypeResponseJson,
     ResourceTypesInVocabularyResponseJson,
     VocabularyResponseJson
-}
+};

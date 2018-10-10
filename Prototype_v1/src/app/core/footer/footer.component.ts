@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
-import { Meta } from '@awg-core/core-models';
+import { Logos, Meta } from '@awg-core/core-models';
+
 
 @Component({
     selector: 'awg-footer',
@@ -11,6 +12,11 @@ export class FooterComponent implements OnInit {
     @Input() meta: Meta;
 
     constructor() { }
+
+    logos: Logos = {
+        unibas: {id: 'unibaslogo', src: 'assets/img/uni.svg', alt: 'Logo Uni Basel', href: 'http://www.unibas.ch'},
+        snf: {id: 'snflogo', src: 'assets/img/snf.jpg', alt: 'Logo SNF', href: 'http://www.snf.ch'}
+    };
 
     ngOnInit() { }
 

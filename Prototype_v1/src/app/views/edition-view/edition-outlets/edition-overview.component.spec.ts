@@ -6,23 +6,23 @@ import { DebugElement } from '@angular/core';
 import { EditionOverviewComponent } from './edition-overview.component';
 
 describe('EditionOverviewComponent', () => {
-  let component: EditionOverviewComponent;
-  let fixture: ComponentFixture<EditionOverviewComponent>;
+    let component: EditionOverviewComponent;
+    let fixture: ComponentFixture<EditionOverviewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EditionOverviewComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ EditionOverviewComponent ]
+        })
+            .compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditionOverviewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(EditionOverviewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

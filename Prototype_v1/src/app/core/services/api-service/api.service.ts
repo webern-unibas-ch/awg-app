@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpErrorResponse, HttpParams, HttpResponse} from '@angular/common/http';
+import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 
 import { throwError as observableThrowError, Observable, of } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
@@ -8,13 +8,21 @@ import { ApiServiceResult } from './api-service-result';
 import { ApiServiceError } from './api-service-error';
 import { ApiRequest } from './api-request.model';
 
-@Injectable()
+
+@Injectable({
+    providedIn: 'root'
+})
 export class ApiService {
 
-    httpGetUrl: string = '';
+    serviceName = 'ApiService';
+
+    httpGetUrl = '';
     loading = false;
 
-    constructor(private http: HttpClient) {}
+    constructor(public http: HttpClient) {
+
+        console.log('called ApiService with httpClient', http);
+    }
 
     getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
         if (!responseType) { return; }

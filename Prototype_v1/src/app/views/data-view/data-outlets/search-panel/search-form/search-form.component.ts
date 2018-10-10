@@ -1,5 +1,5 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
 import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
@@ -11,10 +11,10 @@ import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 })
 export class SearchFormComponent implements OnInit {
     @Input() searchValue: string;
-    @Output() submitRequest: EventEmitter<any> = new EventEmitter();
+    @Output() submitRequest: EventEmitter<string> = new EventEmitter();
 
     searchForm: FormGroup;
-    searchValueControl: AbstractControl;
+    searchValueControl: AbstractControl = new FormControl();
 
     constructor(
         private fb: FormBuilder
@@ -28,13 +28,16 @@ export class SearchFormComponent implements OnInit {
 
     buildForm(searchValue: string) {
         this.searchForm = this.fb.group({
-            'searchValue': [searchValue || '', Validators.compose([
+            'searchValueControl': [ searchValue || '', Validators.compose([
                 Validators.required,
                 Validators.minLength(3)
             ])]
         });
 
-        this.searchValueControl = this.searchForm.controls['searchValue'];
+        console.log('searchform', this.searchForm);
+        // this.searchValueControl.setValue(searchValue);
+
+        console.log('searchValueControl', this.searchValueControl);
 
         // checks for changing values
         this.searchValueControl.valueChanges

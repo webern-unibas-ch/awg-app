@@ -19,15 +19,15 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
 
-    searchServiceSubscription: Subscription;
+    dataApiServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
-    searchValue: string = '';
-    searchUrl: string = '';
+    searchValue = '';
+    searchUrl = '';
     searchResultText: string;
 
     errorMessage: any;
-    isLoadingData: boolean = false;
+    isLoadingData = false;
 
 
     constructor(
@@ -35,18 +35,18 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private router: Router,
         private location: Location,
         private conversionService: ConversionService,
-        private searchService: DataApiService,
+        private dataApiService: DataApiService,
         private sideInfoService: SideInfoService,
         private streamerService: DataStreamerService,
     ) {}
 
 
     ngOnInit() {
-        this.searchServiceSubscription = this.subscribeToSearchService();
+        this.dataApiServiceSubscription = this.subscribeToDataApiService();
     }
 
 
-    subscribeToSearchService(): Subscription {
+    subscribeToDataApiService(): Subscription {
         return this.route.paramMap
             .pipe(
                 switchMap((params: ParamMap) => {
@@ -58,7 +58,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     this.onLoadingStart();
 
                     // fetch search data for searchValue
-                    return this.searchService.getFulltextSearchData(this.searchValue)
+                    return this.dataApiService.getFulltextSearchData(this.searchValue)
                         .pipe(
                             map((searchResponse: SearchResponseJson) => {
 
@@ -116,7 +116,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     updateCurrentUrl() {
         // get url from search service
-        this.searchUrl = this.searchService.httpGetUrl;
+        this.searchUrl = this.dataApiService.httpGetUrl;
     }
 
 
@@ -129,8 +129,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
-        if (this.searchServiceSubscription) {
-            this.searchServiceSubscription.unsubscribe();
+        if (this.dataApiServiceSubscription) {
+            this.dataApiServiceSubscription.unsubscribe();
         }
     }
 

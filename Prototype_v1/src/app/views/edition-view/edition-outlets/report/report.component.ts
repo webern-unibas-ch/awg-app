@@ -10,11 +10,13 @@ import { DataService } from '@awg-views/edition-view/services';
     styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-    public reportTitle = 'Kritischer Bericht';
-    public reportId = 'report';
+    reportTitle = 'Kritischer Bericht';
+    reportId = 'report';
 
-    public sourceListData: SourceList;
-    public textcriticsData: TextcriticsList;
+    scrollPosition: [number, number];
+
+    sourceListData: SourceList;
+    textcriticsData: TextcriticsList;
     private errorMessage: string = undefined;
 
     constructor(
@@ -23,9 +25,9 @@ export class ReportComponent implements OnInit {
         private dataService: DataService
     ) { }
 
+
     ngOnInit() {
         this.getData();
-        this.scrollTo();
     }
 
 
@@ -46,19 +48,5 @@ export class ReportComponent implements OnInit {
         this.router.navigate(['/edition/detail', id]);
     }
 
-
-    private scrollTo(id?: string) {
-        console.log('Report: scrollTo(id): ', id);
-        // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
-        setTimeout(() => {
-            this.route.fragment.subscribe(f => {
-                        console.log('Report: route#fragment: ', f);
-                        if (!f) { return; }
-                        const element = document.querySelector('#' + f);
-                        if (element) { element.scrollIntoView(); }
-                    }
-                );
-        });
-    }
 
 }
