@@ -16,7 +16,7 @@ export class ApiService {
 
     serviceName = 'ApiService';
 
-    httpGetUrl: string = '';
+    httpGetUrl = '';
     loading = false;
 
     constructor(public http: HttpClient) {

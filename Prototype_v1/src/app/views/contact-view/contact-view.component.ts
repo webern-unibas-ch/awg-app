@@ -14,7 +14,7 @@ export class ContactViewComponent implements OnInit {
     contactTitle = 'Impressum';
     contactId = 'masthead';
 
-    dateFormat: string = 'd. MMMM yyyy';
+    dateFormat = 'd. MMMM yyyy';
     meta: Meta;
     today: number;
 

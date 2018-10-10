@@ -15,10 +15,10 @@ export class EditionSvgFileComponent implements OnInit {
 
     // init sheets
     // TODO: other solution possible?
-    svgFile2: string ='Aa:SkI/2';
-    svgFile3: string ='Aa:SkI/3';
-    svgFile4: string ='Aa:SkI/4';
-    svgFile5: string ='Aa:SkI/5';
+    svgFile2 = 'Aa:SkI/2';
+    svgFile3 = 'Aa:SkI/3';
+    svgFile4 = 'Aa:SkI/4';
+    svgFile5 = 'Aa:SkI/5';
 
     constructor() { }
 
@@ -29,7 +29,7 @@ export class EditionSvgFileComponent implements OnInit {
     isSelectedSvgFile(id: string) {
         // compare file ids
         return id === this.selectedSvgFile.id;
-    };
+    }
 
 
     isSelectedTextcritic(type: any, id: string) {

@@ -11,7 +11,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit {
     @Input() props: ResourceDetailProps[];
     @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    metaBreakLine: string = 'Versionsdatum';
+    metaBreakLine = 'Versionsdatum';
 
     constructor() { }
 

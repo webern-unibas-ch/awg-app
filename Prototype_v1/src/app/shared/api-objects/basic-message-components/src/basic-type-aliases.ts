@@ -189,17 +189,17 @@ interface richtext {
     /**
      * Mere string representation
      */
-    utf8str:string;
+    utf8str: string;
 
     /**
      * Markup information in standoff format
      */
-    textattr:textattrStringified;
+    textattr: textattrStringified;
 
     /**
      * References to Knora resources from the text
      */
-    resource_reference:Array<KnoraIRI>
+    resource_reference: Array<KnoraIRI>;
 }
 
 /**
@@ -209,17 +209,17 @@ interface date {
     /**
      * Start date in string format
      */
-    dateval1:string;
+    dateval1: string;
 
     /**
      * End end in string format
      */
-    dateval2:string;
+    dateval2: string;
 
     /**
      * Calendar used
      */
-    calendar:string;
+    calendar: string;
 
 }
 

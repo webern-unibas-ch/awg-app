@@ -13,7 +13,7 @@ export class DataStreamerService {
     /**************************************************
      * ReplaySubjects that are used to stream the data
      **************************************************/
-    private bufferSize: number = 1;
+    private bufferSize = 1;
 
     private searchResponseStreamSource = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
     private searchResponseStream$ = this.searchResponseStreamSource.asObservable();

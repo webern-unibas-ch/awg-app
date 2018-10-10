@@ -32,8 +32,8 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     vbArray: ViewBox[] = [];
 
     // colors
-    bgColor: string = '#a3a3a3';
-    fgColor: string = 'orange';
+    bgColor = '#a3a3a3';
+    fgColor = 'orange';
 
     // options
     private _folioFormatOptions: FolioFormatOptions = {

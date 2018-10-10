@@ -24,9 +24,9 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     @Input() images: ResourceDetailImage[];
     @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    currentImageIndex: number = 0;
-    offset: number = 0;
-    max: number = 50;
+    currentImageIndex = 0;
+    offset = 0;
+    max = 50;
 
     constructor() { }
 

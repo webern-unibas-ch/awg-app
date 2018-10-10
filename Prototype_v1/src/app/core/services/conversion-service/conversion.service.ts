@@ -48,7 +48,7 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     getNestedArraysLength(obj: ResourceDetailGroupedIncomingLinks): number {
-        let size: number = 0;
+        let size = 0;
         // iterate over object keys
         Object.keys(obj).forEach(key => {
             // sum up length of array nested in object
@@ -76,7 +76,7 @@ export class ConversionService extends ApiService {
             // =>Chronologie: salsah standoff needs to be converted before displaying
             // valuetype_id 14 = valuelabel 'Ereignis'
             if (subject.valuetype_id[0] === '14' && subject.value[0]) {
-                let htmlstr: string = '';
+                let htmlstr = '';
                 const utf8str: string = subject.value[0].utf8str;
                 const textattr: string = subject.value[0].textattr;
 
@@ -140,10 +140,10 @@ export class ConversionService extends ApiService {
 
         Object.keys(data.props).forEach((key: string) => {
             const prop = data.props[key];
-            let propValue: string[] = [''];   // empty text value
+            let propValue = [];   // empty text value array
 
             // check if values property is defined
-            if (prop.hasOwnProperty('values') && prop.values != undefined) {
+            if (prop.hasOwnProperty('values') && prop.values !== undefined) {
                 // check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
@@ -257,7 +257,7 @@ export class ConversionService extends ApiService {
     private prepareResourceDetailImage(id: string): ResourceDetailImage[] {
         // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
         // result is an array of ResourceDetailImage
-        let output: ResourceDetailImage[] = [];
+        const output: ResourceDetailImage[] = [];
 
         // get resource context data
         this.getAdditionalInfoFromApi(ResourceContextResponseJson, id).subscribe(
@@ -265,13 +265,13 @@ export class ConversionService extends ApiService {
                 // check for existing resource_context in response
                 // else return undefined output if necessary
                 if (!contextData.resource_context.res_id) {
-                    // console.info('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+                    // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
                     return;
                 } else {
                     const context: ContextJson = {...contextData.resource_context};
 
                     // IMAGE OBJECT (context == 2)
-                    if (context.context == 2 && context.resclass_name === "image") {
+                    if (context.context === 2 && context.resclass_name === 'image') {
                         if (context.res_id.length === context.firstprop.length) {
                             for (let i = 0; i < context.res_id.length; i++) {
                                 // build new ResourceDetailImage-Object from context and index
@@ -284,7 +284,7 @@ export class ConversionService extends ApiService {
                         }
                         // STANDARD OBJECT (context == 0 || 1)
                     } else if (context.context < 2) {
-                        console.info('ConversionService - got no image context', context);
+                        console.log('ConversionService - got no image context', context);
                         return;
                     }
                 }
@@ -340,7 +340,7 @@ export class ConversionService extends ApiService {
     }
 
     private addHtmlValues(prop, url?): [string] {
-        prop.toHtml = [''];
+        prop.toHtml = [];
 
         if (prop.values) {
             switch (prop.valuetype_id) {
@@ -408,7 +408,7 @@ export class ConversionService extends ApiService {
         // values give reference id to api + "/geonames/{{:id}}?reqtype=node"
         // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
-        let output: string[] = [''];
+        const output = [];
 
         // identify geonames gui-id from values
         // e.g. ["4136"] or ["4136", "4132"]
@@ -419,7 +419,7 @@ export class ConversionService extends ApiService {
                     // check for existing nodelist in geonames response
                     // else return empty prop if necessary
                     if (!geoNamesData.nodelist) {
-                        console.info('ConversionService# convertGeoValue: got no nodelist from geonames response: ', geoNamesData);
+                        console.log('ConversionService# convertGeoValue: got no nodelist from geonames response: ', geoNamesData);
                         return output[index] = '';
                     }
                     // snapshot of nodelist array
@@ -432,7 +432,7 @@ export class ConversionService extends ApiService {
                     output[index] = geo.html;
                     return output;
                 }
-            )
+            );
         });
         return output;
     }
@@ -447,7 +447,7 @@ export class ConversionService extends ApiService {
         // api + /hlists/{{:id}}
         // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
 
-        let output: string[] = [''];
+        const output = [];
 
         // identify id of hlist from prop.attributes
         // e.g. "hlist=17"
@@ -459,7 +459,7 @@ export class ConversionService extends ApiService {
                 // check for existing hlist in response
                 // esle return empty prop if necessary
                 if (!hlistData.hlist) {
-                    console.info('ConversionService# convertHListValue: got no hlist from response: ', hlistData);
+                    console.log('ConversionService# convertHListValue: got no hlist from response: ', hlistData);
                     return output;
                 }
                 // snapshot of hlist array
@@ -514,7 +514,7 @@ export class ConversionService extends ApiService {
         // values give reference id to api + "/selections/{{:id}}"
         // result is an array of selection labels
 
-        let output: string[] = [''];
+        const output = [];
 
         // identify id of selection-list from attributes
         // e.g. "selection=66"
@@ -526,7 +526,7 @@ export class ConversionService extends ApiService {
                 // check for existing selection in response
                 // else return empty prop if necessary
                 if (!selectionData.selection) {
-                    console.info('ConversionService# convertSelectionValue: got no selection from response: ', selectionData);
+                    console.log('ConversionService# convertSelectionValue: got no selection from response: ', selectionData);
                     return output;
                 }
                 // snapshot of selection array
@@ -689,7 +689,7 @@ export class ConversionService extends ApiService {
         *
         */
         if (!arr) { return; }
-        let filteredOut: number = 0;
+        let filteredOut = 0;
         return arr.reduce((x, y) => x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : (filteredOut += 1, x), []);
     }
 

@@ -12,4 +12,4 @@ import { METADATA } from './meta.data';
 
 export {
     METADATA
-}
+};

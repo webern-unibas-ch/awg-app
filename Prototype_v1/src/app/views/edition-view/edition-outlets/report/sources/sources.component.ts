@@ -11,7 +11,7 @@ export class SourcesComponent implements OnInit {
     @Input() sourceListData: SourceList;
     @Output() openModalRequest: EventEmitter<any> = new EventEmitter();
 
-    showDescriptionPanel: boolean = true;
+    showDescriptionPanel = true;
 
     constructor() { }
 

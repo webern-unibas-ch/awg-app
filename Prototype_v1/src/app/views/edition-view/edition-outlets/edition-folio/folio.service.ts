@@ -19,7 +19,7 @@ declare var Snap: any;
 export class FolioService {
 
     ref: any;
-    private itemsOffsetCorrection: number = 4;      // offsetCorrection to avoid collision between items
+    private itemsOffsetCorrection = 4;      // offsetCorrection to avoid collision between items
 
     /******************
      * get data for dynamic viewBox

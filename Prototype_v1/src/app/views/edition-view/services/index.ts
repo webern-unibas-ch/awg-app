@@ -13,4 +13,4 @@ import { EditionService } from './edition.service';
 export {
     DataService,
     EditionService
-}
+};

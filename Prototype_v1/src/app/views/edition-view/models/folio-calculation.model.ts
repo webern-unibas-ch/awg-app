@@ -176,7 +176,7 @@ export class FolioCalculation {
             calculatedContentItem.current = new FolioCalculationContentItemCache();
             calculatedContentItem.previous.section = new ConvoluteFolioSection();   // reset prevSection
             calculatedContentItem.current.section = new ConvoluteFolioSection();     // reset currentSection
-            let sectionPartition: number = 1;   // default: 1 section
+            let sectionPartition = 1;   // default: 1 section
 
             // offsetCorrection to avoid collision between items
             calculatedContentItem.offsetCorrection = this.itemsOffsetCorrection;
@@ -354,8 +354,7 @@ export class FolioCalculation {
         const rightVerticalLine = new FolioCalculationLine(corner.upperRight, corner.lowerRight);
 
         lines.forEach((line: string) => {
-            switch (line)
-            {
+            switch (line) {
                 case 'uH':
                     lineArray.push(upperHorizontalLine);
                     break;

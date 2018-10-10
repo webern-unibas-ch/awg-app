@@ -15,10 +15,10 @@ export class DataApiService extends ApiService {
     // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
     static ngInjectableDef = undefined;
 
-    projectId: string = '6';
-    resourceAppendix: string = '_-_local';
-    resourcesRoute: string = '/resources/';
-    searchRoute: string = '/search/';
+    projectId = '6';
+    resourceAppendix = '_-_local';
+    resourcesRoute = '/resources/';
+    searchRoute = '/search/';
 
     constructor(http: HttpClient) {
         super(http);

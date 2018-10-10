@@ -18,7 +18,7 @@ export class EditionAccoladeComponent implements OnInit {
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
-    showAccoladePanel: boolean = true;
+    showAccoladePanel = true;
 
     constructor() { }
 

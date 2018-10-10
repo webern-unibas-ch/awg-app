@@ -11,7 +11,7 @@ export class SourceListComponent implements OnInit {
     @Input() sourceListData: SourceList;
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
 
-    showListPanel: boolean = true;
+    showListPanel = true;
     ref: SourceListComponent;
 
     constructor() {

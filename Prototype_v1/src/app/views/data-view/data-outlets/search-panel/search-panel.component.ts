@@ -22,12 +22,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     dataApiServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
-    searchValue: string = '';
-    searchUrl: string = '';
+    searchValue = '';
+    searchUrl = '';
     searchResultText: string;
 
     errorMessage: any;
-    isLoadingData: boolean = false;
+    isLoadingData = false;
 
 
     constructor(

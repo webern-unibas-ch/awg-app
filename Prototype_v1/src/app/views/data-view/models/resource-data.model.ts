@@ -15,6 +15,6 @@ export class ResourceData {
         this.html = html;
 
         // snapshot of converted json response
-        this.jsonConverted = JSON.parse(JSON.stringify(html))
+        this.jsonConverted = JSON.parse(JSON.stringify(html));
     }
 }

@@ -14,7 +14,7 @@ export class BibliographyComponent implements OnInit {
     bibListResponse: SearchResponseJson = new SearchResponseJson();
     bibList: SubjectItemJson[];
     selectedBibItem: SubjectItemJson;
-    isBibListLoaded: boolean = false;
+    isBibListLoaded = false;
 
     constructor(
         private router: Router,
@@ -32,7 +32,7 @@ export class BibliographyComponent implements OnInit {
                 this.bibListResponse = {...data};
 
                 // TODO: handle request with more than 1000 entries
-                console.info('BibComp#bibListResponse', this.bibListResponse);
+                console.log('BibComp # bibListResponse', this.bibListResponse);
 
                 this.bibList = this.bibListResponse.subjects.slice(1, 20);
                     this.isBibListLoaded = true;

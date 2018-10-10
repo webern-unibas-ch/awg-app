@@ -13,7 +13,7 @@ export class TextcriticsComponent implements OnInit {
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
-    showPanel: boolean = true;
+    showPanel = true;
 
     constructor() {
         this.ref = this;

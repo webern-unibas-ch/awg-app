@@ -13,7 +13,7 @@ export class EditionConvoluteComponent implements OnInit {
     @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
-    showConvolutePanel: boolean = true;
+    showConvolutePanel = true;
 
     constructor() { }
 

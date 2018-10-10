@@ -170,7 +170,7 @@ export class PropertyJson {
 
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
-            let jsonConvert: JsonConvert = new JsonConvert();
+            const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
         } catch (e) {
             return [];
@@ -178,7 +178,7 @@ export class PropertyJson {
     }
     public getValuesAsStrings(): string[] {
         try {
-            let jsonConvert: JsonConvert = new JsonConvert();
+            const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, String);
         } catch (e) {
             return [];
@@ -186,7 +186,7 @@ export class PropertyJson {
     }
     public getValuesAsNumbers(): number[] {
         try {
-            let jsonConvert: JsonConvert = new JsonConvert();
+            const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, Number);
         } catch (e) {
             return [];

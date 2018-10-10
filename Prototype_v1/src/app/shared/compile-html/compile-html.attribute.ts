@@ -14,12 +14,12 @@ import { Component, Input, Injectable, OnInit, OnChanges, SimpleChanges, Type, M
 import { CommonModule } from '@angular/common';
 import { BrowserModule } from '@angular/platform-browser';
 
-//import { CompileService } from './CompileService';
+// import { CompileService } from './CompileService';
 let SingletonDefaultModule: NgModule;
 
 import { cloneDeep } from 'lodash';
 
-//const cache : any = {};
+// const cache : any = {};
 @Component({
     selector: '[compile-html]',
     template: `
@@ -30,7 +30,7 @@ import { cloneDeep } from 'lodash';
     `
 })
 @Injectable()
-export class CompileHtmlAttribute implements OnInit, OnChanges{
+export class CompileHtmlAttribute implements OnInit, OnChanges {
 
     @Input('compile-html') html: string;
     @Input('compile-html-ref') ref:  any;
@@ -74,7 +74,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
     }
 
     private createComponentModule (componentType: any) {
-        let module : NgModule = {};
+        let module: NgModule = {};
 
         if (this.module !== undefined) {
             module = cloneDeep(this.module);
@@ -85,7 +85,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
         module.imports.push( CommonModule );
 //        module.imports.push( BrowserModule );
         if (this.imports !== undefined) {
-            module.imports = module.imports.concat(this.imports)
+            module.imports = module.imports.concat(this.imports);
         }
         if (module.declarations === undefined) {
             module.declarations = [
@@ -104,7 +104,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
     }
 
 
-    private createNewComponent (html:string, ref: any) {
+    private createNewComponent (html: string, ref: any) {
 
         @Component({
             selector: 'dynamic-component',
@@ -122,7 +122,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges{
     }
 
     async ngOnChanges(changes: SimpleChanges) {
-        //fixme only update with the required changes
+        // fixme only update with the required changes
         this.update();
     }
 
