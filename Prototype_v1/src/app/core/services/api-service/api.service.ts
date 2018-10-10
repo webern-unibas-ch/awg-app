@@ -8,39 +8,39 @@ import { ApiServiceResult } from './api-service-result';
 import { ApiServiceError } from './api-service-error';
 import { ApiRequest } from './api-request.model';
 
-
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
-
     serviceName = 'ApiService';
 
     httpGetUrl = '';
     loading = false;
 
     constructor(public http: HttpClient) {
-
         console.log('called ApiService with httpClient', http);
     }
 
     getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
-        if (!responseType) { return; }
-        if (!queryParams) { queryParams = new HttpParams(); }
+        if (!responseType) {
+            return;
+        }
+        if (!queryParams) {
+            queryParams = new HttpParams();
+        }
 
-        return this.httpGet(queryString, queryParams)
-            .pipe(
-                map(
-            (result: ApiServiceResult) => {
-                        return result.getBody(responseType);
-                        },
-            (error: ApiServiceError ) => {
-                        const errorMessage = <any>error;
-                        console.error('ApiService - getApiResponse - error: ', errorMessage);
-                        throw error;
-                        }
-                )
-            );
+        return this.httpGet(queryString, queryParams).pipe(
+            map(
+                (result: ApiServiceResult) => {
+                    return result.getBody(responseType);
+                },
+                (error: ApiServiceError) => {
+                    const errorMessage = <any>error;
+                    console.error('ApiService - getApiResponse - error: ', errorMessage);
+                    throw error;
+                }
+            )
+        );
     }
 
     /**
@@ -49,40 +49,45 @@ export class ApiService {
      * @param httpGetParams
      * @returns {Observable<ApiServiceResult>}
      */
-    httpGet(url: string, httpGetParams?: HttpParams ): Observable<ApiServiceResult | ApiServiceError> {
-        if (!httpGetParams) { httpGetParams = new HttpParams(); }
+    httpGet(url: string, httpGetParams?: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
+        if (!httpGetParams) {
+            httpGetParams = new HttpParams();
+        }
         const apiRequest = new ApiRequest(url, httpGetParams);
 
         this.loading = true;
 
-        return this.http.get<ApiServiceResult | ApiServiceError>(apiRequest.url,
-                {
-                    observe: 'response',
-                    params: apiRequest.params,
-                    headers: apiRequest.headers
-                })
+        return this.http
+            .get<ApiServiceResult | ApiServiceError>(apiRequest.url, {
+                observe: 'response',
+                params: apiRequest.params,
+                headers: apiRequest.headers
+            })
             .pipe(
                 tap((response: HttpResponse<ApiServiceResult>) => {
                     this.httpGetUrl = response.url;
                 }),
-                map((response: HttpResponse<any>): ApiServiceResult => {
-                    this.loading = false;
+                map(
+                    (response: HttpResponse<any>): ApiServiceResult => {
+                        this.loading = false;
 
-                    const apiServiceResult = new ApiServiceResult();
-                    apiServiceResult.status = response.status;
-                    apiServiceResult.statusText = response.statusText;
-                    apiServiceResult.body = response.body;
-                    apiServiceResult.url = response.url;
+                        const apiServiceResult = new ApiServiceResult();
+                        apiServiceResult.status = response.status;
+                        apiServiceResult.statusText = response.statusText;
+                        apiServiceResult.body = response.body;
+                        apiServiceResult.url = response.url;
 
-                    return apiServiceResult;
-                }),
-                catchError((error: HttpErrorResponse): Observable<ApiServiceError> => {
-                    this.loading = false;
-                    return this.handleRequestError(error);
-                })
+                        return apiServiceResult;
+                    }
+                ),
+                catchError(
+                    (error: HttpErrorResponse): Observable<ApiServiceError> => {
+                        this.loading = false;
+                        return this.handleRequestError(error);
+                    }
+                )
             );
     }
-
 
     /**
      * Performs a HTTP POST request to the Knora API.
@@ -110,7 +115,6 @@ export class ApiService {
             });
     }
     */
-
 
     /**
      * handle request error in case of server error

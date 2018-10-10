@@ -10,16 +10,25 @@
  *
  ************************************************/
 
-import { Component, Input, Injectable, OnInit, OnChanges, SimpleChanges, Type, ModuleWithProviders, NgModule, Compiler, NgModuleFactory } from '@angular/core';
+import {
+    Component,
+    Input,
+    Injectable,
+    OnInit,
+    OnChanges,
+    SimpleChanges,
+    Type,
+    ModuleWithProviders,
+    NgModule,
+    Compiler,
+    NgModuleFactory
+} from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
 
-// import { CompileService } from './CompileService';
 let SingletonDefaultModule: NgModule;
 
 import { cloneDeep } from 'lodash';
 
-// const cache : any = {};
 @Component({
     selector: '[compile-html]',
     template: `
@@ -30,21 +39,35 @@ import { cloneDeep } from 'lodash';
     `
 })
 @Injectable()
-export class CompileHtmlAttribute implements OnInit, OnChanges {
-
-    @Input('compile-html') html: string;
-    @Input('compile-html-ref') ref:  any;
-    @Input('compile-html-error-handler') errorHandler: (ex: any) => void = console.error;
+export class CompileHtmlComponent implements OnInit, OnChanges {
+    @Input('compile-html')
+    html: string;
+    @Input('compile-html-ref')
+    ref: any;
+    @Input('compile-html-error-handler')
+    errorHandler: (ex: any) => void = console.error;
+    @Input('compile-html-module')
+    module: NgModule;
+    @Input('compile-html-imports')
+    imports: Array<Type<any> | ModuleWithProviders | any[]>;
 
     dynamicComponent: any;
     dynamicModule: NgModuleFactory<any> | any;
 
-    @Input('compile-html-module') module:  NgModule;
-    @Input('compile-html-imports') imports: Array<Type<any> | ModuleWithProviders | any[]>;
+    constructor(
+        //      private container: ViewContainerRef,
+        //      private service: CompileService
+        private compiler: Compiler
+    ) {}
+
+    // reassign SingletonDefaultModule (justify use of 'let') - unused
+    static reset() {
+        SingletonDefaultModule = {};
+    }
 
     async update() {
         if (this.html === undefined || this.html.trim() === '') {
-//            this.container.clear();
+            //            this.container.clear();
             this.dynamicComponent = undefined;
             this.dynamicModule = undefined;
             return;
@@ -58,7 +81,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges {
         try {
             this.dynamicComponent = this.createNewComponent(this.html, this.ref);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
-//            cache[cacheKey] = this.dynamicComponent;
+            //            cache[cacheKey] = this.dynamicComponent;
         } catch (e) {
             this.errorHandler(e);
         }
@@ -73,7 +96,7 @@ export class CompileHtmlAttribute implements OnInit, OnChanges {
         */
     }
 
-    private createComponentModule (componentType: any) {
+    private createComponentModule(componentType: any) {
         let module: NgModule = {};
 
         if (this.module !== undefined) {
@@ -82,30 +105,23 @@ export class CompileHtmlAttribute implements OnInit, OnChanges {
             module = cloneDeep(SingletonDefaultModule);
         }
         module.imports = module.imports || [];
-        module.imports.push( CommonModule );
-//        module.imports.push( BrowserModule );
+        module.imports.push(CommonModule);
+        //        module.imports.push( BrowserModule );
         if (this.imports !== undefined) {
             module.imports = module.imports.concat(this.imports);
         }
         if (module.declarations === undefined) {
-            module.declarations = [
-                componentType
-            ];
+            module.declarations = [componentType];
         } else {
             module.declarations.push(componentType);
         }
-        module.entryComponents = [
-            componentType
-        ];
+        module.entryComponents = [componentType];
         @NgModule(module)
-        class RuntimeComponentModule {
-        }
+        class RuntimeComponentModule {}
         return RuntimeComponentModule;
     }
 
-
-    private createNewComponent (html: string, ref: any) {
-
+    private createNewComponent(html: string, ref: any) {
         @Component({
             selector: 'dynamic-component',
             template: html
@@ -125,10 +141,4 @@ export class CompileHtmlAttribute implements OnInit, OnChanges {
         // fixme only update with the required changes
         this.update();
     }
-
-    constructor(
-//      private container: ViewContainerRef,
-//      private service: CompileService
-        private compiler: Compiler
-    ) {}
 }

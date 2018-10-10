@@ -12,16 +12,8 @@ import { SearchFormComponent } from './data-outlets/search-panel/search-form/sea
 import { SearchResultListComponent } from './data-outlets/search-panel/search-result-list/search-result-list.component';
 
 @NgModule({
-    imports: [
-        SharedModule,
-        ResourceDetailModule,
-        DataRoutingModule
-    ],
-    declarations: [
-        routedComponents,
-        SearchFormComponent,
-        SearchResultListComponent
-    ],
-    providers: [ httpInterceptorProviders ]
+    imports: [SharedModule, ResourceDetailModule, DataRoutingModule],
+    declarations: [routedComponents, SearchFormComponent, SearchResultListComponent],
+    providers: [httpInterceptorProviders]
 })
 export class DataModule {}
