@@ -7,7 +7,7 @@ see also https://stackoverflow.com/questions/114543/how-to-horizontally-center-a
 .svgRow {
     padding-top: 1em;
     width: inherit;
-    text-align:center;
+    text-align: center;
     box-shadow: 5px 5px 6px #cccccc;
     border: 1px solid #eeeeee;
 }
