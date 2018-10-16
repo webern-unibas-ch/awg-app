@@ -1,13 +1,13 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { HomeViewComponent } from './home-view.component';
 import { MetaService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
@@ -98,13 +98,19 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should tell ROUTER to navigate to editionInfo outlet', () => {
-                const outlet = { outlets: { side: 'editionInfo' } };
-                mockRouter.navigate(outlet);
+                const route = 'editionInfo';
+                const outlet = { outlets: { side: route } };
+                const navigationSpy = mockRouter.navigate as jasmine.Spy;
 
-                fixture.detectChanges();
+                // trigger router navigation
+                mockRouter.navigate([outlet]);
+
+                // args passed to router.navigate() spy
+                const navArgs = navigationSpy.calls.first().args[0];
 
                 // expecting to navigate to editionInfo outlet
-                expect(mockRouter.navigate).toHaveBeenCalledWith(outlet);
+                expect(mockRouter.navigate).toHaveBeenCalledWith(navArgs);
+                expect(navArgs[0].outlets.side).toBe(route, 'should be `editionInfo`');
             });
         });
 
