@@ -7,9 +7,9 @@ import { FooterComponent } from './core/footer/footer.component';
 import { NavbarComponent } from './core/navbar/navbar.component';
 import { EditionInfoComponent } from './side-info/edition-info/edition-info.component';
 
-import { MetaService } from './core/services/meta-service/meta.service';
+import { MetaService } from '@awg-core/services';
 
-import { RouterLinkStubDirective, RouterOutletStubComponent } from '@myTesting/router-stubs';
+import { RouterLinkStubDirective, RouterOutletStubComponent } from 'testing/router-stubs';
 
 describe('AppComponent', () => {
     beforeEach(async(() => {

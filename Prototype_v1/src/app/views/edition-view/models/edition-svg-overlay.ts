@@ -1,4 +1,4 @@
-enum EditionSvgOverlayTypes {
+export enum EditionSvgOverlayTypes {
     measure = 'Takt',
     system = 'System',
     item = 'Anmerkung'

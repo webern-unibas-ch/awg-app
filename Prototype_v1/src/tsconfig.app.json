@@ -9,13 +9,10 @@
             "@awg-shared/*": ["app/shared/*"],
             "@awg-side-info/*": ["app/side-info/*"],
             "@awg-views/*": ["app/views/*"],
-            "@myTesting/*": ["myTesting/*"]
+            "@testing/*": ["testing/*"]
         },
         "module": "es2015",
         "types": []
     },
-    "exclude": [
-        "test.ts",
-        "**/*.spec.ts"
-    ]
+    "exclude": ["test.ts", "**/*.spec.ts"]
 }

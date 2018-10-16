@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { StructureViewComponent } from './structure-view.component';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('StructureViewComponent', () => {
     let component: StructureViewComponent;
@@ -11,7 +13,8 @@ describe('StructureViewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [StructureViewComponent]
+            imports: [RouterTestingModule],
+            declarations: [StructureViewComponent, HeadingComponent]
         }).compileComponents();
     }));
 

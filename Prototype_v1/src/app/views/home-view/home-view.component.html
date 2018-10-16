@@ -34,7 +34,7 @@
 
     <!-- declamation -->
     <div class="declamation">
-        <p>Ediert von <span [innerHtml]="editors"></span></p>
-        <p>Versionsdatum: <span class="version">{{ lastModified }}</span></p>
+        <p>Ediert von <span class="editors" [innerHtml]="metaData?.edition?.editors"></span></p>
+        <p>Versionsdatum: <span class="version">{{ metaData?.edition?.lastModified }}</span></p>
     </div>
 </div>

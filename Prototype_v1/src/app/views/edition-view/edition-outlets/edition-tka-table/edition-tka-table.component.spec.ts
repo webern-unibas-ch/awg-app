@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
+import { SharedModule } from '@awg-shared/shared.module';
 
 describe('EditionTkaTableComponent', () => {
     let component: EditionTkaTableComponent;
@@ -11,6 +12,7 @@ describe('EditionTkaTableComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [SharedModule],
             declarations: [EditionTkaTableComponent]
         }).compileComponents();
     }));

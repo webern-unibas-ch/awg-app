@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { SearchOverviewComponent } from './search-overview.component';
+import { RouterLinkButtonGroupComponent } from '@awg-shared/router-link-button-group/router-link-button-group.component';
+import { RouterTestingModule } from '@angular/router/testing';
 
 describe('SearchOverviewComponent', () => {
     let component: SearchOverviewComponent;
@@ -11,7 +13,8 @@ describe('SearchOverviewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SearchOverviewComponent]
+            imports: [RouterTestingModule],
+            declarations: [SearchOverviewComponent, RouterLinkButtonGroupComponent]
         }).compileComponents();
     }));
 

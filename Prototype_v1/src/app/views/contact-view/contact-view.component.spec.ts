@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { ContactViewComponent } from './contact-view.component';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 describe('ContactViewComponent', () => {
     let component: ContactViewComponent;
@@ -11,7 +11,8 @@ describe('ContactViewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ContactViewComponent]
+            imports: [RouterTestingModule],
+            declarations: [ContactViewComponent, HeadingComponent]
         }).compileComponents();
     }));
 

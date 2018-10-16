@@ -6,12 +6,9 @@ import { BibliographySearchComponent } from './bibliography-search/bibliography-
 import { BibliographyListComponent } from './bibliography-list/bibliography-list.component';
 import { BibliographyFormatPipe } from './bibliography-format.pipe';
 
-import { BibliographyService } from '@awg-views/data-view/services';
-
 @NgModule({
     imports: [SharedModule, BibliographyRoutingModule],
     declarations: [routedComponents, BibliographySearchComponent, BibliographyListComponent, BibliographyFormatPipe],
-    exports: [routedComponents, BibliographySearchComponent, BibliographyListComponent, BibliographyFormatPipe],
-    providers: [BibliographyService]
+    exports: [routedComponents, BibliographySearchComponent, BibliographyListComponent, BibliographyFormatPipe]
 })
 export class BibliographyModule {}

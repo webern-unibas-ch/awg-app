@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResourceDetailHeaderComponent } from './resource-detail-header.component';
+import { SharedModule } from '@awg-shared/shared.module';
 
 describe('ResourceDetailHtmlHeaderComponent', () => {
     let component: ResourceDetailHeaderComponent;
@@ -8,6 +9,7 @@ describe('ResourceDetailHtmlHeaderComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [SharedModule],
             declarations: [ResourceDetailHeaderComponent]
         }).compileComponents();
     }));

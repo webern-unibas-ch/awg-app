@@ -10,9 +10,7 @@ import { MetaService } from '@awg-core/services';
     styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
-    public meta: Meta;
-    public editors: string;
-    public lastModified: string;
+    metaData: Meta;
 
     constructor(private router: Router, private metaService: MetaService) {}
 
@@ -22,9 +20,7 @@ export class HomeViewComponent implements OnInit {
     }
 
     provideMetaData(): void {
-        this.meta = this.metaService.getMetaData();
-        this.editors = this.meta.edition.editors;
-        this.lastModified = this.meta.edition.lastModified;
+        this.metaData = this.metaService.getMetaData();
     }
 
     routeToSidenav(): void {

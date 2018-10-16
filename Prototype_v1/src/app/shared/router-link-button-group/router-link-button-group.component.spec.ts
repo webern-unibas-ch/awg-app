@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { RouterLinkButtonGroupComponent } from './router-link-button-group.component';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 describe('RouterLinkButtonGroupComponent', () => {
     let component: RouterLinkButtonGroupComponent;
@@ -8,7 +9,7 @@ describe('RouterLinkButtonGroupComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [RouterLinkButtonGroupComponent]
+            declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 

@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { EditionOverviewComponent } from './edition-overview.component';
+import { RouterLinkButtonGroupComponent } from '@awg-shared/router-link-button-group/router-link-button-group.component';
 
 describe('EditionOverviewComponent', () => {
     let component: EditionOverviewComponent;
@@ -11,7 +11,8 @@ describe('EditionOverviewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionOverviewComponent]
+            imports: [RouterTestingModule],
+            declarations: [EditionOverviewComponent, RouterLinkButtonGroupComponent]
         }).compileComponents();
     }));
 

@@ -1,9 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
 
 import { DataViewComponent } from './data.component';
+import { HeadingComponent } from '@awg-shared/heading/heading.component';
 
 describe('DataViewComponent', () => {
     let component: DataViewComponent;
@@ -11,7 +11,8 @@ describe('DataViewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [DataViewComponent]
+            imports: [RouterTestingModule],
+            declarations: [DataViewComponent, HeadingComponent]
         }).compileComponents();
     }));
 

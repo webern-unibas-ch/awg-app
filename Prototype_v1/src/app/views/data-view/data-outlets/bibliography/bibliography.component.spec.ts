@@ -4,6 +4,8 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { BibliographyComponent } from './bibliography.component';
+import { BibliographyListComponent } from '@awg-views/data-view/data-outlets/bibliography/bibliography-list/bibliography-list.component';
+import { BibliographySearchComponent } from '@awg-views/data-view/data-outlets/bibliography/bibliography-search/bibliography-search.component';
 
 describe('BibliographyComponent', () => {
     let component: BibliographyComponent;
@@ -11,7 +13,7 @@ describe('BibliographyComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [BibliographyComponent]
+            declarations: [BibliographyComponent, BibliographySearchComponent, BibliographyListComponent]
         }).compileComponents();
     }));
 
