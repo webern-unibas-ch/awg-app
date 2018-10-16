@@ -25,7 +25,15 @@ import { BasicResponseJson } from './src/basic-response-json';
 import { LocationItemJson } from './src/location-item-json';
 import { ProjectItemJson } from './src/project-item-json';
 import { UserDataJson } from './src/userdata-json';
-import { KnoraAccess, KnoraIRI, KnoraListNodeIRI, KnoraRights, KnoraStatusCode, KnoraValue, StringOrNumber } from './src/basic-type-aliases';
+import {
+    KnoraAccess,
+    KnoraIRI,
+    KnoraListNodeIRI,
+    KnoraRights,
+    KnoraStatusCode,
+    KnoraValue,
+    StringOrNumber
+} from './src/basic-type-aliases';
 
 export {
     BasicResponseJson,

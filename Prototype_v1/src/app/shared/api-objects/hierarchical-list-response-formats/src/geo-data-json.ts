@@ -16,14 +16,12 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-components';
 import { NodeItemJson } from './node-item-json';
 
-
 /**
  * Represents a geodata item
  * @used by GeoDataJson
  */
 @JsonObject
 export class GeoDataItemJson extends NodeItemJson {
-
     /**
      * The geodata latitude
      * @param lat: string
@@ -52,7 +50,6 @@ export class GeoDataItemJson extends NodeItemJson {
  */
 @JsonObject
 export class GeoDataJson extends BasicResponseJson {
-
     /**
      * The geodata array
      * @param nodelist: GeoDataItemJson[]

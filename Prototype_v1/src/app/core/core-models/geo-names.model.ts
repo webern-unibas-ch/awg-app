@@ -1,13 +1,13 @@
 import { GeoDataItemJson } from '@awg-shared/api-objects';
 
 export class GeoNames {
-    gnid:           string;
-    shortLabel:     string;
-    longLabel:      string;
-    latitude:       string;
-    longitude:      string;
-    wiki:           string;
-    html:           string;
+    gnid: string;
+    shortLabel: string;
+    longLabel: string;
+    latitude: string;
+    longitude: string;
+    wiki: string;
+    html: string;
 
     constructor(geoDataArray: GeoDataItemJson[]) {
         this.longLabel = geoDataArray[0].label;
@@ -27,14 +27,21 @@ export class GeoNames {
             }
         }
         // prepare icon & link for geonames
-        const geoIcon = '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
-        const geoLink = '<a href="http://www.geonames.org/' +
-            this.gnid + '" title="' + this.longLabel +
-            '" target="_blank">' + geoIcon + '</a>';
+        const geoIcon =
+            '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
+        const geoLink =
+            '<a href="http://www.geonames.org/' +
+            this.gnid +
+            '" title="' +
+            this.longLabel +
+            '" target="_blank">' +
+            geoIcon +
+            '</a>';
         let wikiLink = '';
         if (this.wiki) {
             const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + this.wiki + '" />';
-            wikiLink = '<a href="http://' + this.wiki + '" title="' + this.wiki + '" target="_blank">' + wikiIcon + '</a>';
+            wikiLink =
+                '<a href="http://' + this.wiki + '" title="' + this.wiki + '" target="_blank">' + wikiIcon + '</a>';
         }
         this.html = this.shortLabel + ' ' + geoLink + wikiLink;
     }

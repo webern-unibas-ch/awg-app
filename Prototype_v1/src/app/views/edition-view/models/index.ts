@@ -7,7 +7,6 @@
  *
  */
 
-
 import {
     ConvoluteFolio,
     ConvoluteFolioFormat,
@@ -24,11 +23,7 @@ import {
 import { EditionSvgFile } from './edition-svg-file.model';
 import { EditionSvgOverlay } from './edition-svg-overlay';
 
-import {
-    FolioCalculation,
-    FolioCalculationLine,
-    FolioCalculationPoint
-} from './folio-calculation.model';
+import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
 import { FolioFormatOptions } from './folio-format-options.model';
 
 import { Source, SourceList } from './source.model';
@@ -50,7 +45,9 @@ export {
     FolioCalculationLine,
     FolioCalculationPoint,
     FolioFormatOptions,
-    Source, SourceList,
-    Textcritics, TextcriticsList,
+    Source,
+    SourceList,
+    Textcritics,
+    TextcriticsList,
     ViewBox
 };

@@ -12,10 +12,4 @@ import { SourceDescriptionComponent } from './source-description';
 import { SourceEvaluationComponent } from './source-evaluation';
 import { SourceListComponent } from './source-list';
 
-
-export {
-    SourcesComponent,
-    SourceDescriptionComponent,
-    SourceEvaluationComponent,
-    SourceListComponent
-};
+export { SourcesComponent, SourceDescriptionComponent, SourceEvaluationComponent, SourceListComponent };

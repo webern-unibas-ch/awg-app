@@ -24,7 +24,6 @@ import { ContextJson } from './context-json';
  */
 @JsonObject
 export class ResourceContextResponseJson extends BasicResponseJson {
-
     /**
      * Context of the requested resource
      * @param resource_context: context

@@ -16,12 +16,11 @@
  * TypeAliases
  */
 
-
 /**
  * Describes a type that can be either string or number
  * due to inconsistencies in SalsahV1 responses.
  */
-export type StringOrNumber = integer|string;
+export type StringOrNumber = integer | string;
 
 /**
  * Numeric code representing the result (success or failure) of an API operation.
@@ -125,18 +124,30 @@ export type KnoraListNodeIRI = KnoraIRI;
  *
  * 8: Change Rights Permission
  */
-export type KnoraRights = integer|string;
+export type KnoraRights = integer | string;
 
 /**
  * Describes a Knora Value.
  * Either a simple type or a complex represented by an interface.
  */
-export type KnoraValue = integer|decimal|boolean|richtext|interval|date|color|KnoraIRI|URI|geometry|geoname|KnoraListNodeIRI;
+export type KnoraValue =
+    | integer
+    | decimal
+    | boolean
+    | Richtext
+    | Interval
+    | Date
+    | color
+    | KnoraIRI
+    | URI
+    | geometry
+    | geoname
+    | KnoraListNodeIRI;
 
 /**
-* Represents how a binary representation (location) can be accessed.
-* Either locally stored (file) or referenced from an external location (url)
-*/
+ * Represents how a binary representation (location) can be accessed.
+ * Either locally stored (file) or referenced from an external location (url)
+ */
 export type ProtocolOptions = 'file' | 'url';
 
 /**
@@ -185,7 +196,7 @@ type URI = string;
 /**
  * Represents a rich text value
  */
-interface richtext {
+interface Richtext {
     /**
      * Mere string representation
      */
@@ -205,7 +216,7 @@ interface richtext {
 /**
  * Represents a date value
  */
-interface date {
+interface Date {
     /**
      * Start date in string format
      */
@@ -220,13 +231,12 @@ interface date {
      * Calendar used
      */
     calendar: string;
-
 }
 
 /**
  * Represents an interval value
  */
-interface interval {
+interface Interval {
     /**
      * Begin of the interval in seconds
      */
@@ -236,5 +246,4 @@ interface interval {
      * End ofg the interval in seconds
      */
     timeval2: integer;
-
 }

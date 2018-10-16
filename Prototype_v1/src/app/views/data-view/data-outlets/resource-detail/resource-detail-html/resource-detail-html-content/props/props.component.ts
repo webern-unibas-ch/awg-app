@@ -8,19 +8,21 @@ import { ResourceDetailProps } from '@awg-views/data-view/models';
     styleUrls: ['./props.component.css']
 })
 export class ResourceDetailHtmlContentPropsComponent implements OnInit {
-    @Input() props: ResourceDetailProps[];
-    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    props: ResourceDetailProps[];
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 
     metaBreakLine = 'Versionsdatum';
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     navigateToResource(id?: string): void {
-        if (id) { id.toString(); }
+        if (id) {
+            id.toString();
+        }
         this.resourceRequest.emit(id);
     }
-
 }

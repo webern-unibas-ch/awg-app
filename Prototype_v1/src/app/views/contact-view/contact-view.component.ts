@@ -10,7 +10,6 @@ import { Meta } from '@awg-core/core-models';
     styleUrls: ['./contact-view.component.css']
 })
 export class ContactViewComponent implements OnInit {
-
     contactTitle = 'Impressum';
     contactId = 'masthead';
 
@@ -18,13 +17,7 @@ export class ContactViewComponent implements OnInit {
     meta: Meta;
     today: number;
 
-
-    constructor(
-        private metaService: MetaService,
-        private route: ActivatedRoute,
-        private router: Router
-    ) { }
-
+    constructor(private metaService: MetaService, private route: ActivatedRoute, private router: Router) {}
 
     ngOnInit() {
         this.provideMetaData();
@@ -33,15 +26,12 @@ export class ContactViewComponent implements OnInit {
         this.today = Date.now();
     }
 
-
     provideMetaData(): void {
         this.meta = this.metaService.getMetaData();
     }
 
-
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'contactInfo' }}], { preserveFragment: true });
+        this.router.navigate([{ outlets: { side: 'contactInfo' } }], { preserveFragment: true });
     }
-
 }

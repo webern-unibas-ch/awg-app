@@ -24,7 +24,6 @@ import { ResinfoJson } from './resinfo-json';
  */
 @JsonObject
 export class ResourceInfoResponseJson extends BasicResponseJson {
-
     /**
      * Description of the resource and its class
      * @param resource_info: resinfo

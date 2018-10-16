@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { EditionViewComponent } from './edition.component';
 
 describe('EditionViewComponent', () => {
-  let component: EditionViewComponent;
-  let fixture: ComponentFixture<EditionViewComponent>;
+    let component: EditionViewComponent;
+    let fixture: ComponentFixture<EditionViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EditionViewComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [EditionViewComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditionViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(EditionViewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

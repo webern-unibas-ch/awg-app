@@ -10,21 +10,9 @@ import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
 
-
 @NgModule({
-    imports: [
-        BrowserModule,
-        HttpClientModule,
-
-        CoreModule,
-        SharedModule,
-        SideInfoModule,
-        AppRoutingModule
-    ],
-    declarations: [
-        AppComponent,
-        routedComponents
-    ],
-    bootstrap: [ AppComponent ]
+    imports: [BrowserModule, HttpClientModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
+    declarations: [AppComponent, routedComponents],
+    bootstrap: [AppComponent]
 })
-export class AppModule { }
+export class AppModule {}

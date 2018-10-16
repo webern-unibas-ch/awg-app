@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 
 describe('ResourceDetailHtmlComponent', () => {
-  let component: ResourceDetailHtmlComponent;
-  let fixture: ComponentFixture<ResourceDetailHtmlComponent>;
+    let component: ResourceDetailHtmlComponent;
+    let fixture: ComponentFixture<ResourceDetailHtmlComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ ResourceDetailHtmlComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [ResourceDetailHtmlComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(ResourceDetailHtmlComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(ResourceDetailHtmlComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

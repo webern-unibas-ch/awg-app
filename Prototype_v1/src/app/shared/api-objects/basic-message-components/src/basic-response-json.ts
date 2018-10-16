@@ -21,7 +21,6 @@ import { KnoraStatusCode } from './basic-type-aliases';
  */
 @JsonObject
 export class BasicResponseJson {
-
     /**
      * Knora status code
      * @param status: KnoraStatusCode
@@ -35,5 +34,4 @@ export class BasicResponseJson {
      */
     @JsonProperty('userdata', UserDataJson)
     public userdata: UserDataJson = undefined;
-
 }

@@ -8,9 +8,8 @@ describe('ResourceDetailHtmlHeaderComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ResourceDetailHeaderComponent ]
-        })
-            .compileComponents();
+            declarations: [ResourceDetailHeaderComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

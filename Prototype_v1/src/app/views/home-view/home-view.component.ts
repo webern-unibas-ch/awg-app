@@ -10,15 +10,11 @@ import { MetaService } from '@awg-core/services';
     styleUrls: ['./home-view.component.css']
 })
 export class HomeViewComponent implements OnInit {
-
     public meta: Meta;
     public editors: string;
     public lastModified: string;
 
-    constructor(
-        private router: Router,
-        private metaService: MetaService
-    ) { }
+    constructor(private router: Router, private metaService: MetaService) {}
 
     ngOnInit() {
         this.provideMetaData();
@@ -33,6 +29,6 @@ export class HomeViewComponent implements OnInit {
 
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'editionInfo' }}], { preserveFragment: true });
+        this.router.navigate([{ outlets: { side: 'editionInfo' } }], { preserveFragment: true });
     }
 }

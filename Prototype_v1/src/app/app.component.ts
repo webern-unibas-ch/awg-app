@@ -10,16 +10,13 @@ import { MetaService } from './core/services';
 export class AppComponent implements OnInit {
     public meta: Meta;
 
-    constructor(
-        private metaService: MetaService
-    ) {}
+    constructor(private metaService: MetaService) {}
 
     ngOnInit() {
         this.provideMetaData();
     }
 
     provideMetaData(): void {
-            this.meta = this.metaService.getMetaData();
+        this.meta = this.metaService.getMetaData();
     }
-
 }

@@ -10,14 +10,8 @@ import { ConversionService } from './conversion.service';
 describe('ConversionService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [
-                AppModule,
-                AppRoutingModule
-            ],
-            providers: [
-                ApiService,
-                ConversionService
-            ]
+            imports: [AppModule, AppRoutingModule],
+            providers: [ApiService, ConversionService]
         });
     });
 

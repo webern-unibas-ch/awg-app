@@ -4,7 +4,7 @@ export const METADATA: Meta[] = [
     {
         page: {
             yearStart: 2015,
-            yearRecent: (new Date()).getFullYear(),
+            yearRecent: new Date().getFullYear(),
             version: '0.2.0', // RELEASE 01.10.2018
             versionReleaseDate: '1. Oktober 2018'
         },

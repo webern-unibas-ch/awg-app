@@ -11,9 +11,8 @@ describe('TextcriticsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ TextcriticsComponent ]
-        })
-            .compileComponents();
+            declarations: [TextcriticsComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

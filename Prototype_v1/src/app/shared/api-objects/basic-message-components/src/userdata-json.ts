@@ -20,7 +20,6 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  */
 @JsonObject
 export class UserDataJson {
-
     @JsonProperty('email', String, true)
     public email: string = undefined;
 

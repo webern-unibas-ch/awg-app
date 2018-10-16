@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { StructureViewComponent } from './structure-view.component';
 
 describe('StructureViewComponent', () => {
-  let component: StructureViewComponent;
-  let fixture: ComponentFixture<StructureViewComponent>;
+    let component: StructureViewComponent;
+    let fixture: ComponentFixture<StructureViewComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ StructureViewComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [StructureViewComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(StructureViewComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(StructureViewComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

@@ -6,14 +6,8 @@ import { ReportModule } from './edition-outlets/report/report.module';
 
 import { EditionRoutingModule, routedComponents } from './edition-routing.module';
 
-
 @NgModule({
-    imports: [
-        SharedModule,
-        EditionDetailModule,
-        ReportModule,
-        EditionRoutingModule,
-    ],
-    declarations: [ routedComponents ]
+    imports: [SharedModule, EditionDetailModule, ReportModule, EditionRoutingModule],
+    declarations: [routedComponents]
 })
 export class EditionModule {}

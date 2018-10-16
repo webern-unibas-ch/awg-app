@@ -8,7 +8,6 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
     styleUrls: ['./edition-overview.component.css']
 })
 export class EditionOverviewComponent implements OnInit {
-
     editionButtonArray: RouterLinkButton[] = [
         {
             root: '/edition',
@@ -30,9 +29,7 @@ export class EditionOverviewComponent implements OnInit {
         }
     ];
 
-    constructor( ) { }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 }

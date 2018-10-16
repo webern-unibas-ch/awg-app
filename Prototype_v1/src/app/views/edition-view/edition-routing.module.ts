@@ -7,11 +7,14 @@ import { EditionViewComponent } from './edition.component';
 import { IntroComponent } from './edition-outlets/intro';
 import { ReportComponent } from './edition-outlets/report';
 
-
 const editionRoutes: Routes = [
-    { path: '',  component: EditionViewComponent,
+    {
+        path: '',
+        component: EditionViewComponent,
         children: [
-            { path: '', component: EditionOverviewComponent,
+            {
+                path: '',
+                component: EditionOverviewComponent,
                 children: [
                     { path: 'intro', component: IntroComponent },
                     { path: 'detail', component: EditionDetailComponent },
@@ -20,15 +23,14 @@ const editionRoutes: Routes = [
                 ]
             }
         ]
-    },
+    }
 ];
 
 @NgModule({
-    imports: [ RouterModule.forChild(editionRoutes) ],
-    exports: [ RouterModule ]
-
+    imports: [RouterModule.forChild(editionRoutes)],
+    exports: [RouterModule]
 })
-export class EditionRoutingModule { }
+export class EditionRoutingModule {}
 
 export const routedComponents = [
     EditionViewComponent,

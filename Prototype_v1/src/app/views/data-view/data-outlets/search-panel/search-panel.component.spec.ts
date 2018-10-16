@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { SearchPanelComponent } from './search-panel.component';
 
 describe('SearchPanelComponent', () => {
-  let component: SearchPanelComponent;
-  let fixture: ComponentFixture<SearchPanelComponent>;
+    let component: SearchPanelComponent;
+    let fixture: ComponentFixture<SearchPanelComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SearchPanelComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [SearchPanelComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SearchPanelComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SearchPanelComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

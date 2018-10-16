@@ -8,9 +8,8 @@ describe('ResourceDetailHtmlContentComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ ResourceDetailHtmlContentComponent ]
-        })
-            .compileComponents();
+            declarations: [ResourceDetailHtmlContentComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

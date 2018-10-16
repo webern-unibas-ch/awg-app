@@ -12,12 +12,8 @@ describe('EditionInfoComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                EditionInfoComponent,
-                RouterLinkStubDirective
-            ]
-        })
-            .compileComponents();
+            declarations: [EditionInfoComponent, RouterLinkStubDirective]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

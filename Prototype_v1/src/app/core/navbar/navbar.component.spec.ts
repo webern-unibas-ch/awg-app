@@ -12,12 +12,8 @@ describe('NavbarComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                NavbarComponent,
-                RouterLinkStubDirective
-            ]
-        })
-            .compileComponents();
+            declarations: [NavbarComponent, RouterLinkStubDirective]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

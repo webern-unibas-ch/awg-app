@@ -7,21 +7,17 @@ import { Router } from '@angular/router';
     styleUrls: ['./edition.component.css']
 })
 export class EditionViewComponent implements OnInit {
-
     public editionTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
     public editionId = 'edition';
 
-    constructor(private router: Router) { }
-
+    constructor(private router: Router) {}
 
     ngOnInit() {
         this.routeToSidenav();
     }
 
-
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'editionInfo' }}], { preserveFragment: true });
+        this.router.navigate([{ outlets: { side: 'editionInfo' } }], { preserveFragment: true });
     }
-
 }

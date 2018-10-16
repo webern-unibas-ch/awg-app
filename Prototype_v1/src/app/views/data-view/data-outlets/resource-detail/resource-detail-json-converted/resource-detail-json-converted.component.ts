@@ -8,11 +8,10 @@ import { ResourceDetail } from '@awg-views/data-view/models';
     styleUrls: ['./resource-detail-json-converted.component.css']
 })
 export class ResourceDetailJsonConvertedComponent implements OnInit {
-    @Input() resourceJsonConvertedData: ResourceDetail;
+    @Input()
+    resourceJsonConvertedData: ResourceDetail;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 }

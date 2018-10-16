@@ -30,5 +30,4 @@ export class ProjectJson extends BasicResponseJson {
      */
     @JsonProperty('project_info', ProjectItemJson)
     public project_info: ProjectItemJson = undefined;
-
 }

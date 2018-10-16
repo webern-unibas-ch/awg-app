@@ -8,23 +8,20 @@ import {
     HttpResponse
 } from '@angular/common/http';
 
-import { of as observableOf, Observable, throwError as observableThrowError} from 'rxjs';
+import { of as observableOf, Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
 import { HttpCacheService } from '@awg-views/data-view/services';
-
 
 @Injectable({
     providedIn: 'root'
 })
 export class CachingInterceptor implements HttpInterceptor {
-
     constructor(private cache: HttpCacheService) {}
 
     // private cache = {};
 
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-
         // TODO: rm
         // console.log('------------> CachingInterceptor');
         // console.log('CI# RequestUrl: ', req.urlWithParams);
@@ -47,33 +44,30 @@ export class CachingInterceptor implements HttpInterceptor {
         }
 
         // cache the new response
-        return next.handle(req)
-            .pipe(
-                tap(event => {
+        return next.handle(req).pipe(
+            tap(event => {
+                // Remember, there may be other events besides just the response.
+                if (event instanceof HttpResponse) {
+                    const elapsed = Date.now() - started;
 
-                    // Remember, there may be other events besides just the response.
-                    if (event instanceof HttpResponse) {
+                    // TODO: rm
+                    // console.log('CI# caching new resposnse ---> req, event:', req, event);
+                    // console.log(`Request took ${elapsed} ms.`);
 
-                        const elapsed = Date.now() - started;
+                    // Update the cache.
+                    this.cache.put(req, event.clone());
 
-                        // TODO: rm
-                        // console.log('CI# caching new resposnse ---> req, event:', req, event);
-                        // console.log(`Request took ${elapsed} ms.`);
+                    // TODO: rm
+                    // console.log('<------------ END CachingInterceptor ');
+                }
+            }),
+            catchError(response => {
+                if (response instanceof HttpErrorResponse) {
+                    console.log('CachingInterceptor: Processing http error', response);
+                }
 
-                        // Update the cache.
-                        this.cache.put(req, event.clone());
-
-                        // TODO: rm
-                        // console.log('<------------ END CachingInterceptor ');
-                    }
-                }),
-                catchError(response => {
-                    if (response instanceof HttpErrorResponse) {
-                        console.log('CachingInterceptor: Processing http error', response);
-                    }
-
-                    return observableThrowError(response);
-                })
-            );
+                return observableThrowError(response);
+            })
+        );
     }
 }

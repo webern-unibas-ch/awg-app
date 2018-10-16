@@ -11,9 +11,8 @@ describe('SourceEvaluationComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ SourceEvaluationComponent ]
-        })
-            .compileComponents();
+            declarations: [SourceEvaluationComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

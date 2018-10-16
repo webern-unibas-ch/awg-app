@@ -11,9 +11,8 @@ describe('EditionOverviewComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ EditionOverviewComponent ]
-        })
-            .compileComponents();
+            declarations: [EditionOverviewComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

@@ -21,7 +21,6 @@ import { KnoraIRI, KnoraValue } from '@awg-shared/api-objects/basic-message-comp
  */
 @JsonObject
 export class PropvalJson {
-
     /**
      * Comment on the value
      * @param comment: string | null
@@ -72,4 +71,3 @@ export class PropvalJson {
     @JsonProperty('value', Any)
     public value: KnoraValue = undefined;
 }
-

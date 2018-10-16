@@ -6,7 +6,6 @@ import { BibEntry } from './bibliography-entry';
     name: 'bibFormat'
 })
 export class BibliographyFormatPipe implements PipeTransform {
-
     private entry: BibEntry;
     private formattedEntry: BibEntry;
     private formatFieldArr: Array<string> = [
@@ -32,7 +31,6 @@ export class BibliographyFormatPipe implements PipeTransform {
         return this.getFormatFields('output', this.formattedEntry);
     }
 
-
     private getFormatFields(opt: string, entry: BibEntry): any {
         let output: string | Object = {};
         for (let i = 0; i < this.formatFieldArr.length; i++) {
@@ -40,28 +38,26 @@ export class BibliographyFormatPipe implements PipeTransform {
                 if (opt === 'edit') {
                     output[this.formatFieldArr[i]] = entry[this.formatFieldArr[i]];
                 } else if (opt === 'output') {
-                    output = (i === 0) ? entry[this.formatFieldArr[i]] : (output + entry[this.formatFieldArr[i]]);
+                    output = i === 0 ? entry[this.formatFieldArr[i]] : output + entry[this.formatFieldArr[i]];
                 }
             }
         }
         return output;
     }
 
-
     private getFilteredValues(entry: BibEntry) {
-        Object.keys(entry).forEach( key  => {
+        Object.keys(entry).forEach(key => {
             entry[key] = this.getFilteredValueByKey(entry, key);
         });
         return entry;
     }
 
-
     private getFilteredValueByKey(entry: BibEntry, key: string): string {
         let value = '';
         switch (key) {
-             case 'Kurztitel':
-                 value = this.filterBibTitleShort(entry[key]);
-                 break;
+            case 'Kurztitel':
+                value = this.filterBibTitleShort(entry[key]);
+                break;
             case 'Author':
                 value = this.filterBibAuthor(entry[key]);
                 break;
@@ -100,15 +96,16 @@ export class BibliographyFormatPipe implements PipeTransform {
         return value;
     }
 
-
     private filterBibTitleShort(shortTitle: string) {
-        const title: string = (!shortTitle) ? '' : shortTitle + ' | ';
+        const title: string = !shortTitle ? '' : shortTitle + ' | ';
         return title;
     }
 
     // filter for authors in bibliography
     private filterBibAuthor(authors: string | Object) {
-        if (!authors) { return ''; }
+        if (!authors) {
+            return '';
+        }
 
         let formattedAuthor = '';
         if (typeof authors === 'object') {
@@ -118,7 +115,7 @@ export class BibliographyFormatPipe implements PipeTransform {
             const l: number = Object.keys(authors).length;
             for (let i = 1; i < l; i++) {
                 // last name seperated by "und", others by comma
-                const divider = (i === l - 1) ? ' und ' : ', ';
+                const divider = i === l - 1 ? ' und ' : ', ';
                 formattedAuthor += this.splitName(authors[i], divider);
             }
         } else if (typeof authors === 'string') {
@@ -131,19 +128,25 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for independent titles in bibliography
     private filterBibTitleIndep(indepTitle: string) {
-        const formattedTitle: string = (!indepTitle) ? '' : ((this.entry['Typ'] !== 'Zeitschriftenartikel') ? indepTitle + ', ' : indepTitle);
+        const formattedTitle: string = !indepTitle
+            ? ''
+            : this.entry['Typ'] !== 'Zeitschriftenartikel'
+                ? indepTitle + ', '
+                : indepTitle;
         return formattedTitle;
     }
 
     // filter for dependent titles in bibliography
     private filterBibTitleDep(depTitle: string) {
-        const formattedTitle: string = (!depTitle) ? '' : '„' + depTitle + '“, in: ';
+        const formattedTitle: string = !depTitle ? '' : '„' + depTitle + '“, in: ';
         return formattedTitle;
     }
 
     // filter for editors in bibliography
     private filterBibEditor(editors: string | Object) {
-        if (!editors) { return ''; }
+        if (!editors) {
+            return '';
+        }
 
         let formattedEditor = 'hg. von ';
         if (typeof editors === 'object') {
@@ -153,7 +156,7 @@ export class BibliographyFormatPipe implements PipeTransform {
             const l: number = Object.keys(editors).length;
             for (let i = 1; i < l; i++) {
                 // last name seperated by "und", others by comma
-                const divider = (i === l - 1) ? ' und ' : ', ';
+                const divider = i === l - 1 ? ' und ' : ', ';
                 formattedEditor += this.splitName(editors[i], divider);
             }
         } else if (typeof editors === 'string') {
@@ -166,16 +169,18 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for unpublished literature in bibliography
     private filterBibUnpublished(unpub: string) {
-        const type: string = (!unpub) ? '' : unpub + ' ';
+        const type: string = !unpub ? '' : unpub + ' ';
         return type;
     }
 
     // filter for publication place in bilbiography
     private filterBibPubPlace(pubPlace: string | Object) {
-        const pub = (this.entry['Verlag']) ? this.entry['Verlag'] : null;
+        const pub = this.entry['Verlag'] ? this.entry['Verlag'] : null;
         if (!pubPlace) {
             // no place but publisher
-            if (pub) { console.log('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')'); }
+            if (pub) {
+                console.log('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
+            }
             // no place nor publisher ("zeitschriftenartikel")
             return '';
         }
@@ -252,25 +257,27 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for date in bibliography
     private filterBibPubDate(pubDate: string) {
-        const date = (this.entry['Typ'] === 'Zeitschriftenartikel') ? ' (' + pubDate + ')' : ' ' + pubDate;
+        const date = this.entry['Typ'] === 'Zeitschriftenartikel' ? ' (' + pubDate + ')' : ' ' + pubDate;
         return date;
     }
 
     // filter for series titles in bibliography
     private filterBibTitleSeries(seriesTitle: string) {
-        const title: string = (!seriesTitle) ? '' : ' (' + seriesTitle + ')';
+        const title: string = !seriesTitle ? '' : ' (' + seriesTitle + ')';
         return title;
     }
 
     // filter for pages in bibliography
     private filterBibPages(pageNum: string | Object) {
-        if (!pageNum) { return ''; }
+        if (!pageNum) {
+            return '';
+        }
 
         let pages = '';
         if (typeof pageNum === 'object') {
             const l: number = Object.keys(pageNum).length;
             for (let i = 0; i < l; i++) {
-                const prefix: string = (i === 0) ? ', S. ' : ', ';
+                const prefix: string = i === 0 ? ', S. ' : ', ';
                 pages += prefix + pageNum[i];
             }
         } else if (typeof pageNum === 'string' && pageNum) {
@@ -292,5 +299,4 @@ export class BibliographyFormatPipe implements PipeTransform {
             return pre_delimiter + name;
         }
     }
-
 }

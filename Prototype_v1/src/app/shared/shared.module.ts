@@ -56,4 +56,4 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         TwelveToneSpinnerComponent
     ]
 })
-export class SharedModule { }
+export class SharedModule {}

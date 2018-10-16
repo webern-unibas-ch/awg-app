@@ -48,18 +48,15 @@ class TestHostComponent {
     };
 }
 
-
 /***************************
  *
  * Tests for FooterComponent
  *
  ***************************/
 describe('FooterComponent', () => {
-
     describe('> stand-alone setup', standAloneSetup);
     describe('> with test host (parent) setup', testHostSetup);
 });
-
 
 ///////////////////////////////
 /**
@@ -67,15 +64,12 @@ describe('FooterComponent', () => {
  */
 function standAloneSetup() {
     // Configuration of TestModule
-    beforeEach( async(() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                FooterComponent,
-                RouterLinkStubDirective
-            ]
+            declarations: [FooterComponent, RouterLinkStubDirective]
         })
-        // compile template and css; afterwards no further configuration possible for TestBed instance
-        .compileComponents();
+            // compile template and css; afterwards no further configuration possible for TestBed instance
+            .compileComponents();
     }));
 
     beforeEach(() => {
@@ -100,7 +94,7 @@ function standAloneSetup() {
     });
 
     describe('> AFTER @Iinput binding of meta data', () => {
-         // pretend that the component was wired to something that supplied a metaData
+        // pretend that the component was wired to something that supplied a metaData
         beforeEach(() => {
             fixture = compFixture;
             // find version element
@@ -140,23 +134,18 @@ function standAloneSetup() {
     });
 }
 
-
 ///////////////////////////////
 /**
  * Testing the component with test host (parent component)
  */
 function testHostSetup() {
     // Configuration of TestModule
-    beforeEach( async(() => {
+    beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                FooterComponent,
-                TestHostComponent,
-                RouterLinkStubDirective
-            ]
+            declarations: [FooterComponent, TestHostComponent, RouterLinkStubDirective]
         })
-        // compile template and css; afterwards no further configuration possible for TestBed instance
-        .compileComponents();
+            // compile template and css; afterwards no further configuration possible for TestBed instance
+            .compileComponents();
     }));
 
     beforeEach(() => {
@@ -167,7 +156,6 @@ function testHostSetup() {
     });
 
     describe('> BEFORE @Iinput binding of meta data', () => {
-
         it('> should create the testHost (parent) component', () => {
             expect(testHost).toBeTruthy();
         });

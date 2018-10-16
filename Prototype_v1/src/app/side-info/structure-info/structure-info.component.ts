@@ -9,12 +9,11 @@ import { MetaService } from '@awg-core/services';
     styleUrls: ['./structure-info.component.css']
 })
 export class StructureInfoComponent implements OnInit {
-
     public meta: Meta;
     public author: string;
     public lastModified: string;
 
-    constructor(private metaService: MetaService) { }
+    constructor(private metaService: MetaService) {}
 
     ngOnInit() {
         this.provideMetaData();

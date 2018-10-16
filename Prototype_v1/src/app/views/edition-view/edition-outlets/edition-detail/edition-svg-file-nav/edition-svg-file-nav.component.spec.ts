@@ -6,23 +6,22 @@ import { DebugElement } from '@angular/core';
 import { EditionSvgFileNavComponent } from './edition-svg-file-nav.component';
 
 describe('EditionSvgFileNavComponent', () => {
-  let component: EditionSvgFileNavComponent;
-  let fixture: ComponentFixture<EditionSvgFileNavComponent>;
+    let component: EditionSvgFileNavComponent;
+    let fixture: ComponentFixture<EditionSvgFileNavComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ EditionSvgFileNavComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [EditionSvgFileNavComponent]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(EditionSvgFileNavComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(EditionSvgFileNavComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

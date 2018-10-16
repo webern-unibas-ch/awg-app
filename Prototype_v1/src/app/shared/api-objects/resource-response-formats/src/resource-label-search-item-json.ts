@@ -21,7 +21,6 @@ import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-com
  */
 @JsonObject
 export class ResourceLabelSearchItemJson {
-
     /**
      * The IRI of the retrieved resource
      * @param id: KnoraIRI

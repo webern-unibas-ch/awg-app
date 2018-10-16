@@ -9,6 +9,4 @@
 
 import { TextcriticsComponent } from './textcritics.component';
 
-export {
-    TextcriticsComponent
-};
+export { TextcriticsComponent };
