@@ -12,10 +12,10 @@ import { Meta } from '@awg-core/core-models';
 describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
     let fixture: ComponentFixture<HomeViewComponent>;
+    let debugElement: DebugElement;
     let mockMetaService: Partial<MetaService>;
     let mockRouter;
-    let linkDes;
-    let routerLinks;
+    let linkDes, routerLinks;
     let expectedMetaData: Meta;
 
     beforeEach(async(() => {
@@ -34,6 +34,7 @@ describe('HomeViewComponent (DONE)', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeViewComponent);
         component = fixture.componentInstance;
+        debugElement = fixture.debugElement;
 
         // test data
         expectedMetaData = {
@@ -43,8 +44,10 @@ describe('HomeViewComponent (DONE)', () => {
         };
 
         // spies on component functions
-        spyOn(component, 'provideMetaData');
-        spyOn(component, 'routeToSidenav');
+        // `.and.callThrough` will track the spy down the nested describes, see
+        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        spyOn(component, 'provideMetaData').and.callThrough();
+        spyOn(component, 'routeToSidenav').and.callThrough();
     });
 
     it('should create', () => {
@@ -81,6 +84,33 @@ describe('HomeViewComponent (DONE)', () => {
         it('should not have metadata', () => {
             expect(component.metaData).toBeUndefined('should be undefined');
         });
+
+        describe('VIEW', () => {
+            let el;
+
+            beforeEach(() => {
+                el = debugElement.nativeElement;
+            });
+
+            it('... should have 3 `div.para` & 1 `div.declamation`', () => {
+                const paraEl = el.querySelectorAll('div.para');
+                const declamationEl = el.querySelectorAll('div.declamation');
+
+                expect(paraEl.length).toBe(3, 'should have 3 `div.para`');
+                expect(declamationEl.length).toBe(1, 'should have 1 `div.declamation`');
+            });
+
+            it('... should have no `editors` and `lastmodified` in declamation yet', () => {
+                const editorsDe = debugElement.query(By.css('.editors'));
+                const editorsEl = editorsDe.nativeElement;
+
+                const versionDe = debugElement.query(By.css('.version'));
+                const versionEl = versionDe.nativeElement;
+
+                expect(editorsEl.innerHTML).toBe('', 'should be empty string');
+                expect(versionEl.textContent).toBe('', 'should be empty string');
+            });
+        });
     });
 
     describe('AFTER initial data binding', () => {
@@ -94,23 +124,31 @@ describe('HomeViewComponent (DONE)', () => {
 
         describe('#routeToSideNav', () => {
             it('... should have been called', () => {
+                // router navigation triggerd by onInit
                 expect(component.routeToSidenav).toHaveBeenCalled();
             });
 
-            it('... should tell ROUTER to navigate to editionInfo outlet', () => {
-                const route = 'editionInfo';
-                const outlet = { outlets: { side: route } };
+            it('... should have triggered `router.navigate`', () => {
+                // create spy of mockrouter SpyObj
                 const navigationSpy = mockRouter.navigate as jasmine.Spy;
 
-                // trigger router navigation
-                mockRouter.navigate([outlet]);
+                expect(navigationSpy).toHaveBeenCalled();
+                expect(navigationSpy.calls.any()).toEqual(true, 'has any calls');
+                expect(navigationSpy.calls.count()).toEqual(1, 'has been called only once');
+            });
 
-                // args passed to router.navigate() spy
-                const navArgs = navigationSpy.calls.first().args[0];
+            it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
+                const expectedRoute = 'editionInfo';
 
-                // expecting to navigate to editionInfo outlet
-                expect(mockRouter.navigate).toHaveBeenCalledWith(navArgs);
-                expect(navArgs[0].outlets.side).toBe(route, 'should be `editionInfo`');
+                // create spy of mockrouter SpyObj
+                const navigationSpy = mockRouter.navigate as jasmine.Spy;
+
+                // catch args passed to navigation spy
+                const navArgs = navigationSpy.calls.first().args;
+                const outletRoute = navArgs[0][0].outlets.side;
+
+                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+                expect(outletRoute).toBe(expectedRoute, 'should be `editionInfo`');
             });
         });
 
@@ -125,27 +163,25 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            let homeDe: DebugElement;
-            let homeEl;
+            let el;
 
             beforeEach(() => {
-                homeDe = fixture.debugElement;
-                homeEl = homeDe.nativeElement;
+                el = debugElement.nativeElement;
             });
 
             it('... should have 3 `div.para` & 1 `div.declamation`', () => {
-                const paraEl = homeEl.querySelectorAll('div.para');
-                const declamationEl = homeEl.querySelectorAll('div.declamation');
+                const paraEl = el.querySelectorAll('div.para');
+                const declamationEl = el.querySelectorAll('div.declamation');
 
                 expect(paraEl.length).toBe(3, 'should have 3 `div.para`');
                 expect(declamationEl.length).toBe(1, 'should have 1 `div.declamation`');
             });
 
             it('... should show `editors` and `lastmodified` in declamation', () => {
-                const editorsDe = homeDe.query(By.css('.editors'));
+                const editorsDe = debugElement.query(By.css('.editors'));
                 const editorsEl = editorsDe.nativeElement;
 
-                const versionDe = homeDe.query(By.css('.version'));
+                const versionDe = debugElement.query(By.css('.version'));
                 const versionEl = versionDe.nativeElement;
 
                 expect(editorsEl.innerHTML).toContain(expectedMetaData.edition.editors);

@@ -1,24 +1,27 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { FooterComponent } from './footer.component';
 import { FooterLogoComponent } from './footer-logo/footer-logo.component';
-import { Logos, Meta } from '@awg-core/core-models';
+import { Logo, Logos, Meta } from '@awg-core/core-models';
+
+@Component({ selector: 'awg-footer-logo', template: '' })
+class FooterLogoStubComponent {
+    @Input()
+    logo: Logo;
+}
 
 /**
  * Testing Variables
  */
 let component: FooterComponent;
 let fixture: ComponentFixture<FooterComponent>;
-
+let linkDes, routerLinks;
 let expectedMeta: Meta;
 let expectedLogos: Logos;
-
-let linkDes;
-let routerLinks;
 
 /***************************
  *
@@ -37,7 +40,7 @@ function standAloneSetup() {
     // Configuration of TestModule
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FooterComponent, FooterLogoComponent, RouterLinkStubDirective]
+            declarations: [FooterComponent, FooterLogoStubComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 
@@ -56,9 +59,12 @@ function standAloneSetup() {
             expect(component.meta).toBeUndefined();
         });
 
-        it('should contain footer logo component (real)', () => {
-            const footerLogoEl = fixture.debugElement.query(By.directive(FooterLogoComponent));
-            expect(footerLogoEl).toBeTruthy();
+        describe('VIEW', () => {
+            it('... should contain 2 footer logo components (real)', () => {
+                const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
+                expect(footerLogoDes).toBeTruthy();
+                expect(footerLogoDes.length).toBe(2, 'should have 2 footer logos');
+            });
         });
     });
 
@@ -95,41 +101,41 @@ function standAloneSetup() {
             expect(component.meta).toBeDefined();
         });
 
-        it('should display values', () => {
-            const expectedVersion = expectedMeta.page.version;
-            const expectedVersionDate = expectedMeta.page.versionReleaseDate;
-            const expectedYearStart = expectedMeta.page.yearStart;
-            const expectedYearRecent = expectedMeta.page.yearRecent;
+        describe('VIEW', () => {
+            it('should display values', () => {
+                const expectedVersion = expectedMeta.page.version;
+                const expectedVersionDate = expectedMeta.page.versionReleaseDate;
+                const expectedYearStart = expectedMeta.page.yearStart;
+                const expectedYearRecent = expectedMeta.page.yearRecent;
 
-            // find debug elements
-            const versionDe = fixture.debugElement.query(By.css('#version'));
-            const versionDateDe = fixture.debugElement.query(By.css('#versionDate'));
-            const copyDe = fixture.debugElement.query(By.css('#copyrightPeriod'));
+                // find debug elements
+                const versionDe = fixture.debugElement.query(By.css('#version'));
+                const versionDateDe = fixture.debugElement.query(By.css('#versionDate'));
+                const copyDe = fixture.debugElement.query(By.css('#copyrightPeriod'));
 
-            // find native elements
-            const versionEl = versionDe.nativeElement;
-            const versionDateEl = versionDateDe.nativeElement;
-            const copyEl = copyDe.nativeElement;
+                // find native elements
+                const versionEl = versionDe.nativeElement;
+                const versionDateEl = versionDateDe.nativeElement;
+                const copyEl = copyDe.nativeElement;
 
-            expect(versionEl.textContent).toContain(expectedVersion);
-            expect(versionDateEl.textContent).toContain(expectedVersionDate);
-            expect(copyEl.textContent).toContain(expectedYearStart + '–' + expectedYearRecent);
-        });
-
-        it('should pass down logos to footer logo component', () => {
-            const footerLogoEl = fixture.debugElement.queryAll(By.directive(FooterLogoComponent));
-            const footerLogoCmps = [];
-            footerLogoEl.forEach(el => {
-                footerLogoCmps.push(el.injector.get(FooterLogoComponent) as FooterLogoComponent);
+                expect(versionEl.textContent).toContain(expectedVersion);
+                expect(versionDateEl.textContent).toContain(expectedVersionDate);
+                expect(copyEl.textContent).toContain(expectedYearStart + '–' + expectedYearRecent);
             });
 
-            expect(footerLogoCmps.length).toBe(2, 'should have 2 footer logos');
+            it('should pass down logos to footer logo components', () => {
+                const footerLogoDe = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
+                const footerLogoCmps = [];
+                footerLogoDe.forEach(de => {
+                    footerLogoCmps.push(de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent);
+                });
 
-            expect(footerLogoCmps[0].logo).toBeTruthy();
-            expect(footerLogoCmps[0].logo).toBe(expectedLogos.unibas, 'should have unibas logo');
+                expect(footerLogoCmps[0].logo).toBeTruthy();
+                expect(footerLogoCmps[0].logo).toBe(expectedLogos.unibas, 'should have unibas logo');
 
-            expect(footerLogoCmps[1].logo).toBeTruthy();
-            expect(footerLogoCmps[1].logo).toBe(expectedLogos.snf, 'should have snf logo');
+                expect(footerLogoCmps[1].logo).toBeTruthy();
+                expect(footerLogoCmps[1].logo).toBe(expectedLogos.snf, 'should have snf logo');
+            });
         });
 
         describe('[routerLink]', () => {
@@ -143,7 +149,6 @@ function standAloneSetup() {
 
             it('... can get routerLink from template', () => {
                 expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
-                console.log(routerLinks);
                 expect(routerLinks[0].linkParams[0]).toBe('/contact');
             });
 
