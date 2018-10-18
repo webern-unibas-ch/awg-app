@@ -5,17 +5,17 @@
     <awg-heading [title]="contactTitle" [id]="contactId"></awg-heading>
 
     <!-- description -->
-    <div>
+    <div class="contact-description">
 
         <p>
             <span class="caps">Empfohlene Zitierweisen:</span><br />
             Website:<br />
 
-            Anton Webern Gesamtausgabe. Projekt-Website: <a target="_blank" href="http://www.anton-webern.ch">http://www.anton-webern.ch</a>, abgerufen am {{ today | date:dateFormat }}.<br /><br />
+            Anton Webern Gesamtausgabe. Projekt-Website: <a target="_blank" href="http://www.anton-webern.ch">http://www.anton-webern.ch</a>, abgerufen am <span class="citation-date">{{ today | date:dateFormat }}</span>.<br /><br />
 
 
             Online-Edition:<br />
-            Anton Webern Gesamtausgabe. Online-Edition (Version {{ meta.page.version }} vom {{ meta.page.versionReleaseDate }}): <a target="_blank" href="http://editon.anton-webern.ch">http://editon.anton-webern.ch</a>, abgerufen am {{ today | date:dateFormat }}.<br /><br />
+            Anton Webern Gesamtausgabe. Online-Edition (Version <span class="citation-version">{{ metaData?.page?.version }}</span> vom <span class="citation-version-release">{{ metaData?.page?.versionReleaseDate }}</span>): <a target="_blank" href="http://editon.anton-webern.ch">http://editon.anton-webern.ch</a>, abgerufen am <span class="citation-date">{{ today | date:dateFormat }}</span>.<br /><br />
         </p>
 
 

@@ -12,10 +12,13 @@ import { Meta } from '@awg-core/core-models';
 describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
     let fixture: ComponentFixture<HomeViewComponent>;
-    let debugElement: DebugElement;
+    let compDe: DebugElement;
+    let compEl: any;
+    let linkDes, routerLinks;
+
     let mockMetaService: Partial<MetaService>;
     let mockRouter;
-    let linkDes, routerLinks;
+
     let expectedMetaData: Meta;
 
     beforeEach(async(() => {
@@ -34,9 +37,10 @@ describe('HomeViewComponent (DONE)', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeViewComponent);
         component = fixture.componentInstance;
-        debugElement = fixture.debugElement;
+        compDe = fixture.debugElement;
+        compEl = compDe.nativeElement;
 
-        // test data
+        // test meta data
         expectedMetaData = {
             page: { yearStart: null, yearRecent: null, version: '', versionReleaseDate: '' },
             edition: { editors: 'Test Editor 1', lastModified: '9. Oktober 2018' },
@@ -86,28 +90,28 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            let el;
+            it('... should contain three `div.para` & one `div.declamation` elements', () => {
+                const paraEl = compEl.querySelectorAll('div.para');
+                const declamationEl = compEl.querySelectorAll('div.declamation');
 
-            beforeEach(() => {
-                el = debugElement.nativeElement;
-            });
-
-            it('... should have 3 `div.para` & 1 `div.declamation`', () => {
-                const paraEl = el.querySelectorAll('div.para');
-                const declamationEl = el.querySelectorAll('div.declamation');
-
+                expect(paraEl).toBeDefined();
                 expect(paraEl.length).toBe(3, 'should have 3 `div.para`');
+
+                expect(declamationEl).toBeDefined();
                 expect(declamationEl.length).toBe(1, 'should have 1 `div.declamation`');
             });
 
-            it('... should have no `editors` and `lastmodified` in declamation yet', () => {
-                const editorsDe = debugElement.query(By.css('.editors'));
+            it('... should not render `editors` and `lastmodified` yet', () => {
+                const editorsDe = compDe.query(By.css('.editors'));
                 const editorsEl = editorsDe.nativeElement;
 
-                const versionDe = debugElement.query(By.css('.version'));
+                const versionDe = compDe.query(By.css('.version'));
                 const versionEl = versionDe.nativeElement;
 
+                expect(editorsEl).toBeDefined();
                 expect(editorsEl.innerHTML).toBe('', 'should be empty string');
+
+                expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'should be empty string');
             });
         });
@@ -123,15 +127,19 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('#routeToSideNav', () => {
+            let navigationSpy;
+
+            beforeEach(() => {
+                // create spy of mockrouter SpyObj
+                navigationSpy = mockRouter.navigate as jasmine.Spy;
+            });
+
             it('... should have been called', () => {
                 // router navigation triggerd by onInit
                 expect(component.routeToSidenav).toHaveBeenCalled();
             });
 
             it('... should have triggered `router.navigate`', () => {
-                // create spy of mockrouter SpyObj
-                const navigationSpy = mockRouter.navigate as jasmine.Spy;
-
                 expect(navigationSpy).toHaveBeenCalled();
                 expect(navigationSpy.calls.any()).toEqual(true, 'has any calls');
                 expect(navigationSpy.calls.count()).toEqual(1, 'has been called only once');
@@ -140,15 +148,26 @@ describe('HomeViewComponent (DONE)', () => {
             it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
                 const expectedRoute = 'editionInfo';
 
-                // create spy of mockrouter SpyObj
-                const navigationSpy = mockRouter.navigate as jasmine.Spy;
-
                 // catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
-                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+                expect(navArgs).toBeDefined('should have navArgs');
+                expect(navArgs[0]).toBeDefined('should have navCommand');
+                expect(outletRoute).toBeDefined('should have outletRoute');
                 expect(outletRoute).toBe(expectedRoute, 'should be `editionInfo`');
+                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
+            });
+
+            it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
+                // catch args passed to navigation spy
+                const navArgs = navigationSpy.calls.first().args;
+                const navExtras = navArgs[1];
+
+                expect(navExtras).toBeDefined('should have navExtras');
+                expect(navExtras.preserveFragment).toBeDefined('should have preserveFragment extra');
+                expect(navExtras.preserveFragment).toBe(true, 'should be `preserveFragment:true`');
+                expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
 
@@ -163,28 +182,17 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            let el;
-
-            beforeEach(() => {
-                el = debugElement.nativeElement;
-            });
-
-            it('... should have 3 `div.para` & 1 `div.declamation`', () => {
-                const paraEl = el.querySelectorAll('div.para');
-                const declamationEl = el.querySelectorAll('div.declamation');
-
-                expect(paraEl.length).toBe(3, 'should have 3 `div.para`');
-                expect(declamationEl.length).toBe(1, 'should have 1 `div.declamation`');
-            });
-
-            it('... should show `editors` and `lastmodified` in declamation', () => {
-                const editorsDe = debugElement.query(By.css('.editors'));
+            it('... should render `editors` and `lastmodified` in declamation', () => {
+                const editorsDe = compDe.query(By.css('.editors'));
                 const editorsEl = editorsDe.nativeElement;
 
-                const versionDe = debugElement.query(By.css('.version'));
+                const versionDe = compDe.query(By.css('.version'));
                 const versionEl = versionDe.nativeElement;
 
+                expect(editorsEl).toBeDefined();
                 expect(editorsEl.innerHTML).toContain(expectedMetaData.edition.editors);
+
+                expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toContain(expectedMetaData.edition.lastModified);
             });
         });
@@ -192,7 +200,7 @@ describe('HomeViewComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = compDe.queryAll(By.directive(RouterLinkStubDirective));
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));

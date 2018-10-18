@@ -13,21 +13,20 @@ export class ContactViewComponent implements OnInit {
     contactTitle = 'Impressum';
     contactId = 'masthead';
 
-    dateFormat = 'd. MMMM yyyy';
-    meta: Meta;
+    metaData: Meta;
     today: number;
+    dateFormat = 'd. MMMM yyyy';
 
-    constructor(private metaService: MetaService, private route: ActivatedRoute, private router: Router) {}
+    constructor(private metaService: MetaService, private router: Router) {}
 
     ngOnInit() {
-        this.provideMetaData();
         this.routeToSidenav();
-        // this.scrollTo();
+        this.provideMetaData();
         this.today = Date.now();
     }
 
     provideMetaData(): void {
-        this.meta = this.metaService.getMetaData();
+        this.metaData = this.metaService.getMetaData();
     }
 
     routeToSidenav(): void {

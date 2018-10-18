@@ -15,8 +15,8 @@ export class HomeViewComponent implements OnInit {
     constructor(private router: Router, private metaService: MetaService) {}
 
     ngOnInit() {
-        this.provideMetaData();
         this.routeToSidenav();
+        this.provideMetaData();
     }
 
     provideMetaData(): void {

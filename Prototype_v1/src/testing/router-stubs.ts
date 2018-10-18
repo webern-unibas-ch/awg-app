@@ -4,9 +4,9 @@ import { NavigationExtras } from '@angular/router';
 
 import { AppModule } from '@awg-app/app.module';
 
-export { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
+// export { ActivatedRoute, Router, RouterLink, RouterOutlet } from '@angular/router';
 
-// #docregion router-link
+// #docregion router-link-stub
 @Directive({
     selector: '[routerLink]'
 })
@@ -20,50 +20,55 @@ export class RouterLinkStubDirective {
         this.navigatedTo = this.linkParams;
     }
 }
-// #enddocregion router-link
+// #enddocregion router-link-stub
 
+// #docregion router-outlet-stub
 @Component({
     selector: 'router-outlet',
     template: ''
 })
 export class RouterOutletStubComponent {}
+// #enddocregion router-outlet-stub
 
+// #docregion router-stub
 @Injectable()
 export class RouterStub {
     navigate(commands: any[], extras?: NavigationExtras) {}
 }
+// #enddocregion router-stub
 
-// Only implements params and part of snapshot.params
 // #docregion activated-route-stub
-import { BehaviorSubject } from 'rxjs';
+import { convertToParamMap, ParamMap, Params } from '@angular/router';
+import { ReplaySubject } from 'rxjs';
 
-@Injectable()
+/**
+ * An ActivateRoute test double with a `paramMap` observable.
+ * Use the `setParamMap()` method to add the next `paramMap` value.
+ */
 export class ActivatedRouteStub {
-    // ActivatedRoute.params is Observable
-    private subject = new BehaviorSubject(this.testParams);
-    params = this.subject.asObservable();
+    // Use a ReplaySubject to share previous values with subscribers
+    // and pump new values into the `paramMap` observable
+    private subject = new ReplaySubject<ParamMap>();
 
-    // Test parameters
-    private _testParams: {};
-    get testParams() {
-        return this._testParams;
-    }
-    set testParams(params: {}) {
-        this._testParams = params;
-        this.subject.next(params);
+    constructor(initialParams?: Params) {
+        this.setParamMap(initialParams);
     }
 
-    // ActivatedRoute.snapshot.params
-    get snapshot() {
-        return { params: this.testParams };
+    /** The mock paramMap observable */
+    readonly paramMap = this.subject.asObservable();
+
+    /** Set the paramMap observables's next value */
+    setParamMap(params?: Params) {
+        this.subject.next(convertToParamMap(params));
     }
 }
+// #enddocregion activated-route-stub
 
 /**
  * Needed so that `aot` build is working. But it isn't used throughout our tests and/or app.
  */
 @NgModule({
     imports: [AppModule],
-    declarations: [RouterLinkStubDirective, RouterOutletStubComponent]
+    declarations: [RouterLinkStubDirective, RouterOutletStubComponent, ActivatedRouteStub]
 })
 export class FakeRouterModule {}

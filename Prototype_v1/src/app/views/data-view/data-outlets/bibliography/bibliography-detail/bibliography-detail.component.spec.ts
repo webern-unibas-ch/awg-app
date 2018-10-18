@@ -14,14 +14,16 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 describe('BibliographyDetailComponent', () => {
     let component: BibliographyDetailComponent;
     let fixture: ComponentFixture<BibliographyDetailComponent>;
-    let getBibliographyListSpy: Observable<ResourceFullResponseJson>;
+
     let mockConversionService: Partial<ConversionService>;
+    let getBibliographyListSpy: Observable<ResourceFullResponseJson>;
+
     let expectedObjId: string;
     let expectedBibItemDetailBody: ResourceFullResponseJson;
     let expectedConvertedBibItemDetail: BibEntry;
 
     beforeEach(async(() => {
-        // create a fake bibliography service object with a `getCurrentSearchResults()` spy
+        // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
         const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
         // make the spies return a synchronous Observable with the test data
         expectedBibItemDetailBody = new ResourceFullResponseJson();

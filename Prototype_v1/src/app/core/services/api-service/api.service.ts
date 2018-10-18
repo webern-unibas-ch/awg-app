@@ -18,7 +18,7 @@ export class ApiService {
     loading = false;
 
     constructor(public http: HttpClient) {
-        console.log(`called ${this.serviceName} with httpClient`, http);
+        // console.log(`called ${this.serviceName} with httpClient`, http);
     }
 
     getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {

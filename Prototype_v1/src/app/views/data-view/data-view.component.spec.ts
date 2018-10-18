@@ -3,8 +3,9 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+import { RouterOutletStubComponent } from '@testing/router-stubs';
 
-import { StructureViewComponent } from './structure-view.component';
+import { DataViewComponent } from './data-view.component';
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -15,29 +16,29 @@ class HeadingStubComponent {
     id: string;
 }
 
-describe('StructureViewComponent (DONE)', () => {
-    let component: StructureViewComponent;
-    let fixture: ComponentFixture<StructureViewComponent>;
+describe('DataViewComponent', () => {
+    let component: DataViewComponent;
+    let fixture: ComponentFixture<DataViewComponent>;
     let compDe: DebugElement;
     let compEl: any;
 
     let mockRouter;
 
-    const expectedTitle = 'Datenstrukturmodell';
-    const expectedId = 'structure';
+    const expectedTitle = 'Suche';
+    const expectedId = 'search';
 
     beforeEach(async(() => {
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
-            declarations: [StructureViewComponent, HeadingStubComponent],
+            declarations: [DataViewComponent, HeadingStubComponent, RouterOutletStubComponent],
             providers: [{ provide: Router, useValue: mockRouter }]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(StructureViewComponent);
+        fixture = TestBed.createComponent(DataViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
@@ -54,11 +55,11 @@ describe('StructureViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should have title and id', () => {
-            expect(component.structureTitle).toBeDefined();
-            expect(component.structureTitle).toBe(expectedTitle);
+            expect(component.searchTitle).toBeDefined();
+            expect(component.searchTitle).toBe(expectedTitle);
 
-            expect(component.structureId).toBeDefined();
-            expect(component.structureId).toBe(expectedId);
+            expect(component.searchId).toBeDefined();
+            expect(component.searchId).toBe(expectedId);
         });
 
         describe('#routeToSidenav', () => {
@@ -71,19 +72,22 @@ describe('StructureViewComponent (DONE)', () => {
             it('... should contain one heading component (stubbed)', () => {
                 const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
 
-                expect(headingDes).toBeDefined();
+                expect(headingDes).toBeTruthy();
                 expect(headingDes.length).toBe(1, 'should have only one heading');
             });
 
-            it('... should contain three `p` & one `svg` element', () => {
-                const pEl = compEl.querySelectorAll('p');
-                const svgEl = compEl.querySelectorAll('svg');
+            it('... should contain one help block div', () => {
+                const divEl = compEl.querySelectorAll('div.help-block');
 
-                expect(pEl).toBeDefined();
-                expect(pEl.length).toBe(3, 'should have 3 `p`');
+                expect(divEl).toBeDefined();
+                expect(divEl.length).toBe(1, 'should have one `div.help-block`');
+            });
 
-                expect(svgEl).toBeDefined();
-                expect(svgEl.length).toBe(1, 'should have 1 `svg`');
+            it('... should contain one router outlet (stubbed)', () => {
+                const routletDe = compDe.queryAll(By.directive(RouterOutletStubComponent));
+
+                expect(routletDe).toBeDefined();
+                expect(routletDe.length).toBe(1, 'should have one router outlet');
             });
 
             it('... should not pass down `title` and `id` to heading component', () => {
@@ -121,8 +125,8 @@ describe('StructureViewComponent (DONE)', () => {
                 expect(navigationSpy.calls.count()).toEqual(1, 'has been called only once');
             });
 
-            it('... should tell ROUTER to navigate to `structureInfo` outlet', () => {
-                const expectedRoute = 'structureInfo';
+            it('... should tell ROUTER to navigate to `searchInfo` outlet', () => {
+                const expectedRoute = 'searchInfo';
 
                 // catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
@@ -156,7 +160,7 @@ describe('StructureViewComponent (DONE)', () => {
                 expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);
 
                 expect(headingCmp.id).toBeTruthy();
-                expect(headingCmp.id).toBe(expectedId, `should have title: ${expectedId}`);
+                expect(headingCmp.id).toBe(expectedId, `should have id: ${expectedId}`);
             });
         });
     });

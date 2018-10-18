@@ -33,7 +33,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private location: Location,
         private conversionService: ConversionService,
         private dataApiService: DataApiService,
-        private sideInfoService: SideInfoService,
         private streamerService: DataStreamerService
     ) {}
 

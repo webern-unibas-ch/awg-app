@@ -14,13 +14,13 @@ describe('ConversionService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            imports: [AppModule, AppRoutingModule, RouterTestingModule],
+            imports: [AppModule, RouterTestingModule],
             providers: [ConversionService]
         });
         conversionService = TestBed.get(ConversionService);
     });
 
-    it('should inject', inject([ConversionService], (service: ConversionService) => {
+    it('should be created', inject([ConversionService], (service: ConversionService) => {
         expect(service).toBeTruthy();
     }));
 });
