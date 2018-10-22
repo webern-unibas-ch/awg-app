@@ -41,11 +41,8 @@ describe('HomeViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test meta data
-        expectedMetaData = {
-            page: { yearStart: null, yearRecent: null, version: '', versionReleaseDate: '' },
-            edition: { editors: 'Test Editor 1', lastModified: '9. Oktober 2018' },
-            structure: { author: '', lastModified: '' }
-        };
+        expectedMetaData = new Meta();
+        expectedMetaData.edition = { editors: 'Test Editor 1', lastModified: '9. Oktober 2018' };
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -63,12 +60,10 @@ describe('HomeViewComponent (DONE)', () => {
         expect(mockMetaService === metaService).toBe(false);
 
         // changing the stub service has no effect on the injected service
-        const changedMetaData = {
-            page: { yearStart: null, yearRecent: null, version: '', versionReleaseDate: '' },
-            edition: { editors: 'Test Editor 2', lastModified: '10. Oktober 2018' },
-            structure: { author: '', lastModified: '' }
-        };
+        const changedMetaData = new Meta();
+        changedMetaData.edition = { editors: 'Test Editor 2', lastModified: '10. Oktober 2018' };
         mockMetaService.getMetaData = () => changedMetaData;
+
         expect(metaService.getMetaData()).toBe(expectedMetaData);
     });
 

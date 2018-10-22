@@ -20,7 +20,7 @@ class FooterLogoStubComponent {
 let component: FooterComponent;
 let fixture: ComponentFixture<FooterComponent>;
 let linkDes, routerLinks;
-let expectedMeta: Meta;
+let expectedMetaData: Meta;
 let expectedLogos: Logos;
 
 /***************************
@@ -56,7 +56,7 @@ function standAloneSetup() {
 
     describe('BEFORE initial data binding', () => {
         it('should not have metaData', () => {
-            expect(component.meta).toBeUndefined();
+            expect(component.metaData).toBeUndefined();
         });
 
         describe('VIEW', () => {
@@ -72,8 +72,8 @@ function standAloneSetup() {
         // pretend that the component was wired to something that supplied a metaData
         beforeEach(() => {
             // mock the input values supplied by the parent component
-            expectedMeta = new Meta();
-            expectedMeta['page'] = {
+            expectedMetaData = new Meta();
+            expectedMetaData.page = {
                 yearStart: 2015,
                 yearRecent: 2017,
                 version: '1.0.0',
@@ -90,7 +90,7 @@ function standAloneSetup() {
             };
 
             // simulate the parent setting the input properties
-            component.meta = expectedMeta;
+            component.metaData = expectedMetaData;
             component.logos = expectedLogos;
 
             // trigger initial data binding
@@ -98,15 +98,15 @@ function standAloneSetup() {
         });
 
         it('should have metaData', () => {
-            expect(component.meta).toBeDefined();
+            expect(component.metaData).toBeDefined();
         });
 
         describe('VIEW', () => {
             it('should display values', () => {
-                const expectedVersion = expectedMeta.page.version;
-                const expectedVersionDate = expectedMeta.page.versionReleaseDate;
-                const expectedYearStart = expectedMeta.page.yearStart;
-                const expectedYearRecent = expectedMeta.page.yearRecent;
+                const expectedVersion = expectedMetaData.page.version;
+                const expectedVersionDate = expectedMetaData.page.versionReleaseDate;
+                const expectedYearStart = expectedMetaData.page.yearStart;
+                const expectedYearRecent = expectedMetaData.page.yearRecent;
 
                 // find debug elements
                 const versionDe = fixture.debugElement.query(By.css('#version'));

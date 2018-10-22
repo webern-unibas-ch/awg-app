@@ -54,10 +54,12 @@ describe('ContactViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test meta data
-        expectedMetaData = {
-            page: { yearStart: 2015, yearRecent: 2018, version: '0.2.0', versionReleaseDate: '18. Oktober 2018' },
-            edition: { editors: '', lastModified: '' },
-            structure: { author: '', lastModified: '' }
+        expectedMetaData = new Meta();
+        expectedMetaData.page = {
+            yearStart: 2015,
+            yearRecent: 2018,
+            version: '0.2.0',
+            versionReleaseDate: '18. Oktober 2018'
         };
 
         // spies on component functions
@@ -76,10 +78,12 @@ describe('ContactViewComponent (DONE)', () => {
         expect(mockMetaService === metaService).toBe(false);
 
         // changing the mock service has no effect on the injected service
-        const changedMetaData = {
-            page: { yearStart: 2015, yearRecent: 2018, version: '0.2.1', versionReleaseDate: '20. Oktober 2018' },
-            edition: { editors: '', lastModified: '' },
-            structure: { author: '', lastModified: '' }
+        const changedMetaData = new Meta();
+        changedMetaData.page = {
+            yearStart: 2015,
+            yearRecent: 2018,
+            version: '0.2.1',
+            versionReleaseDate: '20. Oktober 2018'
         };
         mockMetaService.getMetaData = () => changedMetaData;
         expect(metaService.getMetaData()).toBe(expectedMetaData);

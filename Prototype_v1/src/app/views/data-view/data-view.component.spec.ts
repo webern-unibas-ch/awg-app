@@ -16,7 +16,7 @@ class HeadingStubComponent {
     id: string;
 }
 
-describe('DataViewComponent', () => {
+describe('DataViewComponent (DONE)', () => {
     let component: DataViewComponent;
     let fixture: ComponentFixture<DataViewComponent>;
     let compDe: DebugElement;

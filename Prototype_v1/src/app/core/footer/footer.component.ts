@@ -9,7 +9,7 @@ import { Logos, Meta } from '@awg-core/core-models';
 })
 export class FooterComponent implements OnInit {
     @Input()
-    meta: Meta;
+    metaData: Meta;
 
     constructor() {}
 
