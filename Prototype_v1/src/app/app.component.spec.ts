@@ -1,19 +1,13 @@
 /* tslint:disable:no-unused-variable */
 
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
+import { Component, DebugElement, Input } from '@angular/core';
 import { RouterLinkStubDirective, RouterOutletStubComponent } from 'testing/router-stubs';
 
 import { AppComponent } from './app.component';
-import { FooterComponent } from './core/footer/footer.component';
-import { NavbarComponent } from './core/navbar/navbar.component';
-import { EditionInfoComponent } from './side-info/edition-info/edition-info.component';
 
 import { MetaService } from '@awg-core/services';
-
-import { Component, DebugElement, Input } from '@angular/core';
-import { ResourceDetailHeader } from '@awg-views/data-view/models';
 import { Meta } from '@awg-core/core-models';
-import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
 
 // mock components
 @Component({ selector: 'awg-navbar', template: '' })
@@ -44,7 +38,6 @@ describe('AppComponent', () => {
                 AppComponent,
                 FooterStubComponent,
                 NavbarStubComponent,
-                EditionInfoComponent,
                 RouterLinkStubDirective,
                 RouterOutletStubComponent
             ],

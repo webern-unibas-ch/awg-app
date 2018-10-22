@@ -1,17 +1,34 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { SourcesComponent } from './sources.component';
-import { SourceListComponent } from './source-list';
-import { SourceDescriptionComponent } from './source-description';
-import { SourceEvaluationComponent } from './source-evaluation';
-
 import { SourceList } from '@awg-views/edition-view/models';
 
-import { SharedModule } from '@awg-shared/shared.module';
+// mock components
+@Component({ selector: 'awg-source-list', template: '' })
+class SourceListStubComponent {
+    @Input()
+    sourceListData: SourceList;
+
+    // TODO: handle outputs
+}
+
+@Component({ selector: 'awg-source-description', template: '' })
+class SourceDescriptionStubComponent {
+    @Input()
+    showDescriptionPanel: boolean;
+
+    // TODO: handle outputs
+}
+
+@Component({ selector: 'awg-source-evaluation', template: '' })
+class SourceEvaluationStubComponent {
+    // TODO: handle outputs
+}
 
 describe('SourcesComponent', () => {
     let component: SourcesComponent;
@@ -20,12 +37,12 @@ describe('SourcesComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule, RouterTestingModule],
+            imports: [RouterTestingModule],
             declarations: [
                 SourcesComponent,
-                SourceListComponent,
-                SourceDescriptionComponent,
-                SourceEvaluationComponent,
+                SourceListStubComponent,
+                SourceDescriptionStubComponent,
+                SourceEvaluationStubComponent,
                 RouterLinkStubDirective
             ]
         }).compileComponents();
@@ -45,18 +62,18 @@ describe('SourcesComponent', () => {
             expect(component.sourceListData).toBeUndefined('should be undefined');
         });
 
-        it('should not contain source list component', () => {
-            const sourceListEl = fixture.debugElement.query(By.directive(SourceListComponent));
+        it('should not contain source list component (stubbed)', () => {
+            const sourceListEl = fixture.debugElement.query(By.directive(SourceListStubComponent));
             expect(sourceListEl).not.toBeTruthy();
         });
 
-        it('should contain source description component (real)', () => {
-            const sourceDescriptionEl = fixture.debugElement.query(By.directive(SourceDescriptionComponent));
+        it('should contain source description component (stubbed)', () => {
+            const sourceDescriptionEl = fixture.debugElement.query(By.directive(SourceDescriptionStubComponent));
             expect(sourceDescriptionEl).toBeTruthy();
         });
 
-        it('should contain source evaluation component (real)', () => {
-            const sourceEvaluationEl = fixture.debugElement.query(By.directive(SourceEvaluationComponent));
+        it('should contain source evaluation component (stubbed)', () => {
+            const sourceEvaluationEl = fixture.debugElement.query(By.directive(SourceEvaluationStubComponent));
             expect(sourceEvaluationEl).toBeTruthy();
         });
     });
@@ -98,8 +115,8 @@ describe('SourcesComponent', () => {
             expect(component.sourceListData).toBe(expectedSourceListData);
         });
 
-        it('should contain source list component', () => {
-            const sourceListEl = fixture.debugElement.query(By.directive(SourceListComponent));
+        it('should contain source list component (stubbed)', () => {
+            const sourceListEl = fixture.debugElement.query(By.directive(SourceListStubComponent));
             expect(sourceListEl).toBeTruthy();
         });
     });

@@ -1,10 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
-import { SharedModule } from '@awg-shared/shared.module';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 describe('EditionTkaTableComponent', () => {
     let component: EditionTkaTableComponent;
@@ -12,8 +10,7 @@ describe('EditionTkaTableComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule],
-            declarations: [EditionTkaTableComponent]
+            declarations: [EditionTkaTableComponent, CompileHtmlComponent]
         }).compileComponents();
     }));
 

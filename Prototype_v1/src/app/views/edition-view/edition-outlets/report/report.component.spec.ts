@@ -1,32 +1,62 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { Observable, of as observableOf } from 'rxjs';
+import { of as observableOf } from 'rxjs';
 
 import { ReportComponent } from './report.component';
-import { SharedModule } from '@awg-shared/shared.module';
-import { ReportModule } from '@awg-views/edition-view/edition-outlets/report/report.module';
 import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 import { DataService } from '@awg-views/edition-view/services';
+import { ModalModule } from 'ngx-bootstrap';
+import { ModalComponent } from '@awg-shared/modal/modal.component';
+
+// mock components
+@Component({ selector: 'awg-heading', template: '' })
+class HeadingStubComponent {
+    @Input()
+    title: string;
+    @Input()
+    id: string;
+}
+
+@Component({ selector: 'awg-sources', template: '' })
+class SourcesStubComponent {
+    @Input()
+    sourceListData: SourceList;
+
+    // TODO: handle output
+}
+
+@Component({ selector: 'awg-textcritics', template: '' })
+class TextcritisStubComponent {
+    @Input()
+    textcriticsData: TextcriticsList;
+
+    // TODO: handle output
+}
 
 describe('ReportComponent', () => {
     let component: ReportComponent;
     let fixture: ComponentFixture<ReportComponent>;
-    let testData: [SourceList, TextcriticsList];
+
     let getDataSpy;
 
     beforeEach(async(() => {
-        testData = [new SourceList(), new TextcriticsList()]; // TODO: provide real test data
-
         // create a fake DataService object with a `getData()` spy
         const dataService = jasmine.createSpyObj('DataService', ['getEditionReportData']);
         // make the spy return a synchronous Observable with the test data
-        getDataSpy = dataService.getEditionReportData.and.returnValue(observableOf(testData));
+        getDataSpy = dataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
         TestBed.configureTestingModule({
-            imports: [SharedModule, ReportModule, RouterTestingModule],
-            declarations: [ReportComponent],
+            imports: [ModalModule.forRoot(), RouterTestingModule],
+            declarations: [
+                ReportComponent,
+                HeadingStubComponent,
+                SourcesStubComponent,
+                TextcritisStubComponent,
+                ModalComponent
+            ],
             providers: [{ provide: DataService, useValue: dataService }]
         }).compileComponents();
     }));

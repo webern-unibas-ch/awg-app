@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { ResourceDetailHtmlContentPropsComponent } from './props.component';
-import { SharedModule } from '@awg-shared/shared.module';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 describe('ResourceDetailHtmlContentPropsComponent', () => {
     let component: ResourceDetailHtmlContentPropsComponent;
@@ -9,8 +9,7 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule],
-            declarations: [ResourceDetailHtmlContentPropsComponent]
+            declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent]
         }).compileComponents();
     }));
 

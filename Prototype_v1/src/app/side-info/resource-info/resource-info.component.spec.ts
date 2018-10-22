@@ -1,8 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+import { FormsModule } from '@angular/forms';
 
 import { ResourceInfoComponent } from './resource-info.component';
-import { SharedModule } from '@awg-shared/shared.module';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 describe('ResourceInfoComponent', () => {
     let component: ResourceInfoComponent;
@@ -10,8 +11,8 @@ describe('ResourceInfoComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule, RouterTestingModule],
-            declarations: [ResourceInfoComponent]
+            imports: [FormsModule, RouterTestingModule],
+            declarations: [ResourceInfoComponent, CompileHtmlComponent]
         }).compileComponents();
     }));
 

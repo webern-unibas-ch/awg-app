@@ -4,8 +4,9 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { SourceListComponent } from './source-list.component';
-import { SharedModule } from '@awg-shared/shared.module';
 import { SourceList } from '@awg-views/edition-view/models';
+
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 describe('SourceListComponent', () => {
     let component: SourceListComponent;
@@ -14,8 +15,8 @@ describe('SourceListComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule, RouterTestingModule],
-            declarations: [SourceListComponent, RouterLinkStubDirective]
+            imports: [RouterTestingModule],
+            declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 

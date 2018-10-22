@@ -1,10 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
+import { RouterTestingModule } from '@angular/router/testing';
+
 import { Observable, of as observableOf } from 'rxjs';
 
 import { EditionDetailComponent } from './edition-detail.component';
-import { SharedModule } from '@awg-shared/shared.module';
 import {
     ConvoluteFolio,
     EditionSvgFile,
@@ -12,8 +13,10 @@ import {
     Textcritics,
     TextcriticsList
 } from '@awg-views/edition-view/models';
-import { RouterTestingModule } from '@angular/router/testing';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
+
+import { ModalModule } from 'ngx-bootstrap';
+import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 @Component({ selector: 'awg-edition-detail-notification', template: '' })
 class EditionDetailNotificationStubComponent {}
@@ -47,31 +50,33 @@ class EditionAccoladeStubComponent {
 describe('EditionDetailComponent', () => {
     let component: EditionDetailComponent;
     let fixture: ComponentFixture<EditionDetailComponent>;
+
+    let mockEditionService: Partial<EditionService>;
     let getEditionDetailDataSpy: Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]>;
-    let editionServiceStub: Partial<EditionService>;
 
     beforeEach(async(() => {
         // create a fake DataService object with a `getCurrentSearchResults()` spy
-        const dataServiceStub = jasmine.createSpyObj('DataService', ['getEditionDetailData']);
+        const mockDataService = jasmine.createSpyObj('DataService', ['getEditionDetailData']);
         // make the spies return a synchronous Observable with the test data
-        getEditionDetailDataSpy = dataServiceStub.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
+        getEditionDetailDataSpy = mockDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
         const expectedTextcritics = []; // TODO: provide real test data
-        editionServiceStub = {
+        mockEditionService = {
             getTextcritics: (textcritics: Textcritics[], overlay: { type: string; id: string }) => expectedTextcritics
         };
 
         TestBed.configureTestingModule({
-            imports: [SharedModule, RouterTestingModule],
+            imports: [ModalModule.forRoot(), RouterTestingModule],
             declarations: [
                 EditionDetailComponent,
                 EditionDetailNotificationStubComponent,
                 EditionConvoluteStubComponent,
-                EditionAccoladeStubComponent
+                EditionAccoladeStubComponent,
+                ModalComponent
             ],
             providers: [
-                { provide: DataService, useValue: dataServiceStub },
-                { provide: EditionService, useValue: editionServiceStub }
+                { provide: DataService, useValue: mockDataService },
+                { provide: EditionService, useValue: mockEditionService }
             ]
         }).compileComponents();
     }));

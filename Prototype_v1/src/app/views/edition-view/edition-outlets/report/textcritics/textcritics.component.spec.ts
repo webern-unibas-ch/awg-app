@@ -1,10 +1,19 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { Component, Input } from '@angular/core';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { TextcriticsComponent } from './textcritics.component';
-import { EditionTkaTableComponent } from '@awg-views/edition-view/edition-outlets/edition-tka-table/edition-tka-table.component';
-import { SharedModule } from '@awg-shared/shared.module';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
+import { Textcritics } from '@awg-views/edition-view/models';
+
+// mock heading component
+@Component({ selector: 'awg-edition-tka-table', template: '' })
+class EditionTkaTableStubComponent {
+    @Input()
+    selectedTextcritics: Textcritics[];
+
+    // TODO: handle outputs
+}
 
 describe('TextcriticsComponent', () => {
     let component: TextcriticsComponent;
@@ -12,8 +21,7 @@ describe('TextcriticsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [SharedModule],
-            declarations: [TextcriticsComponent, EditionTkaTableComponent, RouterLinkStubDirective]
+            declarations: [TextcriticsComponent, EditionTkaTableStubComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 
