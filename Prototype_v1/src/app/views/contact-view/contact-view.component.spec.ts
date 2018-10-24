@@ -170,9 +170,13 @@ describe('ContactViewComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
+        let expectedToday;
+
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
             component.metaData = mockMetaService.getMetaData();
+
+            expectedToday = Date.now();
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -229,8 +233,14 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
+                expect(component.metaData).toBeDefined();
                 expect(component.metaData).toBe(expectedMetaData);
             });
+        });
+
+        it('should have `today`', () => {
+            expect(component.today).toBeDefined();
+            expect(component.today).toBe(expectedToday, `should be ${expectedToday}`);
         });
 
         describe('VIEW', () => {
@@ -255,7 +265,7 @@ describe('ContactViewComponent (DONE)', () => {
                 const dateDe = compDe.query(By.css('.citation-date'));
                 const dateEl = dateDe.nativeElement;
 
-                const pipedToday = datePipe.transform(Date.now(), expectedDateFormat);
+                const pipedToday = datePipe.transform(expectedToday, expectedDateFormat);
 
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe(

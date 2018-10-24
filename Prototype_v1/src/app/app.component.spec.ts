@@ -42,8 +42,7 @@ describe('AppComponent (DONE)', () => {
                 RouterOutletStubComponent
             ],
             providers: [{ provide: MetaService, useValue: mockMetaService }]
-        });
-        TestBed.compileComponents();
+        }).compileComponents();
     }));
 
     beforeEach(() => {
@@ -140,6 +139,7 @@ describe('AppComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
+                expect(component.metaData).toBeDefined();
                 expect(component.metaData).toBe(expectedMetaData);
             });
         });

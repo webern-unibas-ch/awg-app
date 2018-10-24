@@ -1,43 +1,29 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { Component, DebugElement, Input } from '@angular/core';
+import { By } from '@angular/platform-browser';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { FooterComponent } from './footer.component';
-import { FooterLogoComponent } from './footer-logo/footer-logo.component';
 import { Logo, Logos, Meta } from '@awg-core/core-models';
 
+// mock components
 @Component({ selector: 'awg-footer-logo', template: '' })
 class FooterLogoStubComponent {
     @Input()
     logo: Logo;
 }
 
-/**
- * Testing Variables
- */
-let component: FooterComponent;
-let fixture: ComponentFixture<FooterComponent>;
-let linkDes, routerLinks;
-let expectedMetaData: Meta;
-let expectedLogos: Logos;
+describe('FooterComponent (DONE)', () => {
+    let component: FooterComponent;
+    let fixture: ComponentFixture<FooterComponent>;
+    let compDe: DebugElement;
+    let compEl: any;
+    let linkDes, routerLinks;
 
-/***************************
- *
- * Tests for FooterComponent
- *
- ***************************/
-describe('FooterComponent', () => {
-    describe('> stand-alone setup', standAloneSetup);
-});
+    let expectedMetaData: Meta;
+    let expectedLogos: Logos;
 
-///////////////////////////////
-/**
- * Testing the component for itself (stand-alone)
- */
-function standAloneSetup() {
-    // Configuration of TestModule
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             declarations: [FooterComponent, FooterLogoStubComponent, RouterLinkStubDirective]
@@ -45,9 +31,21 @@ function standAloneSetup() {
     }));
 
     beforeEach(() => {
-        // create Component & return ComponentFixture
         fixture = TestBed.createComponent(FooterComponent);
         component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+        compEl = compDe.nativeElement;
+
+        // test logos
+        expectedLogos = {
+            unibas: {
+                id: 'unibaslogo',
+                src: 'assets/img/uni.svg',
+                alt: 'Logo Uni Basel',
+                href: 'http://www.unibas.ch'
+            },
+            snf: { id: 'snflogo', src: 'assets/img/snf.jpg', alt: 'Logo SNF', href: 'http://www.snf.ch' }
+        };
     });
 
     it('should create', () => {
@@ -56,11 +54,16 @@ function standAloneSetup() {
 
     describe('BEFORE initial data binding', () => {
         it('should not have metaData', () => {
-            expect(component.metaData).toBeUndefined();
+            expect(component.metaData).toBeUndefined('should be undefined');
+        });
+
+        it('should have logos', () => {
+            expect(component.logos).toBeDefined();
+            expect(component.logos).toEqual(expectedLogos);
         });
 
         describe('VIEW', () => {
-            it('... should contain 2 footer logo components (real)', () => {
+            it('... should contain 2 footer logo components (stubbed)', () => {
                 const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
                 expect(footerLogoDes).toBeTruthy();
                 expect(footerLogoDes.length).toBe(2, 'should have 2 footer logos');
@@ -69,7 +72,6 @@ function standAloneSetup() {
     });
 
     describe('AFTER initial data binding', () => {
-        // pretend that the component was wired to something that supplied a metaData
         beforeEach(() => {
             // mock the input values supplied by the parent component
             expectedMetaData = new Meta();
@@ -79,19 +81,9 @@ function standAloneSetup() {
                 version: '1.0.0',
                 versionReleaseDate: '8. November 2016'
             };
-            expectedLogos = {
-                unibas: {
-                    id: 'unibaslogo',
-                    src: 'assets/img/uni.svg',
-                    alt: 'Logo Uni Basel',
-                    href: 'http://www.unibas.ch'
-                },
-                snf: { id: 'snflogo', src: 'assets/img/snf.jpg', alt: 'Logo SNF', href: 'http://www.snf.ch' }
-            };
 
             // simulate the parent setting the input properties
             component.metaData = expectedMetaData;
-            component.logos = expectedLogos;
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -99,10 +91,11 @@ function standAloneSetup() {
 
         it('should have metaData', () => {
             expect(component.metaData).toBeDefined();
+            expect(component.metaData).toBe(expectedMetaData);
         });
 
         describe('VIEW', () => {
-            it('should display values', () => {
+            it('should render values', () => {
                 const expectedVersion = expectedMetaData.page.version;
                 const expectedVersionDate = expectedMetaData.page.versionReleaseDate;
                 const expectedYearStart = expectedMetaData.page.yearStart;
@@ -124,17 +117,17 @@ function standAloneSetup() {
             });
 
             it('should pass down logos to footer logo components', () => {
-                const footerLogoDe = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
+                const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
                 const footerLogoCmps = [];
-                footerLogoDe.forEach(de => {
+                footerLogoDes.forEach(de => {
                     footerLogoCmps.push(de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent);
                 });
 
                 expect(footerLogoCmps[0].logo).toBeTruthy();
-                expect(footerLogoCmps[0].logo).toBe(expectedLogos.unibas, 'should have unibas logo');
+                expect(footerLogoCmps[0].logo).toEqual(expectedLogos.unibas, 'should have unibas logo');
 
                 expect(footerLogoCmps[1].logo).toBeTruthy();
-                expect(footerLogoCmps[1].logo).toBe(expectedLogos.snf, 'should have snf logo');
+                expect(footerLogoCmps[1].logo).toEqual(expectedLogos.snf, 'should have snf logo');
             });
         });
 
@@ -165,4 +158,4 @@ function standAloneSetup() {
             });
         });
     });
-}
+});

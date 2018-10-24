@@ -172,6 +172,7 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
+                expect(component.metaData).toBeDefined();
                 expect(component.metaData).toBe(expectedMetaData);
             });
         });
