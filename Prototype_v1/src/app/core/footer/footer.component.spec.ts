@@ -6,6 +6,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { FooterComponent } from './footer.component';
 import { Logo, Logos, Meta } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
 
 // mock components
 @Component({ selector: 'awg-footer-logo', template: '' })
@@ -21,12 +22,21 @@ describe('FooterComponent (DONE)', () => {
     let compEl: any;
     let linkDes, routerLinks;
 
+    let mockCoreService: Partial<CoreService>;
+
     let expectedMetaData: Meta;
     let expectedLogos: Logos;
 
     beforeEach(async(() => {
+        // stub service for test purposes
+        mockCoreService = {
+            getMetaData: () => expectedMetaData,
+            getLogos: () => expectedLogos
+        };
+
         TestBed.configureTestingModule({
-            declarations: [FooterComponent, FooterLogoStubComponent, RouterLinkStubDirective]
+            declarations: [FooterComponent, FooterLogoStubComponent, RouterLinkStubDirective],
+            providers: [{ provide: CoreService, useValue: mockCoreService }]
         }).compileComponents();
     }));
 
@@ -46,20 +56,55 @@ describe('FooterComponent (DONE)', () => {
             },
             snf: { id: 'snflogo', src: 'assets/img/snf.jpg', alt: 'Logo SNF', href: 'http://www.snf.ch' }
         };
+        // test meta data
+        expectedMetaData = new Meta();
+        expectedMetaData.page = {
+            yearStart: 2015,
+            yearRecent: 2018,
+            version: '0.2.0',
+            versionReleaseDate: '18. Oktober 2018'
+        };
+
+        // spies on component functions
+        // `.and.callThrough` will track the spy down the nested describes, see
+        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        spyOn(component, 'provideMetaData').and.callThrough();
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
     });
 
+    it('stub service and injected coreService should not be the same', () => {
+        const coreService = TestBed.get(CoreService);
+        expect(mockCoreService === coreService).toBe(false);
+
+        // changing the stub service has no effect on the injected service
+        const changedMetaData = new Meta();
+        changedMetaData.page = {
+            yearStart: 2015,
+            yearRecent: 2017,
+            version: '1.0.0',
+            versionReleaseDate: '8. November 2016'
+        };
+        mockCoreService.getMetaData = () => changedMetaData;
+
+        expect(coreService.getMetaData()).toBe(expectedMetaData);
+    });
+
     describe('BEFORE initial data binding', () => {
+        describe('#provideMetaData', () => {
+            it('... should not have been called', () => {
+                expect(component.provideMetaData).not.toHaveBeenCalled();
+            });
+        });
+
         it('should not have metaData', () => {
             expect(component.metaData).toBeUndefined('should be undefined');
         });
 
-        it('should have logos', () => {
-            expect(component.logos).toBeDefined();
-            expect(component.logos).toEqual(expectedLogos);
+        it('should not have logos', () => {
+            expect(component.logos).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -89,9 +134,20 @@ describe('FooterComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('should have metaData', () => {
-            expect(component.metaData).toBeDefined();
-            expect(component.metaData).toBe(expectedMetaData);
+        describe('#provideMetaData', () => {
+            it('... should have been called', () => {
+                expect(component.provideMetaData).toHaveBeenCalled();
+            });
+
+            it('... should return metadata', () => {
+                expect(component.metaData).toBeDefined();
+                expect(component.metaData).toBe(expectedMetaData);
+            });
+
+            it('should return logos', () => {
+                expect(component.logos).toBeDefined();
+                expect(component.logos).toBe(expectedLogos);
+            });
         });
 
         describe('VIEW', () => {
@@ -142,7 +198,7 @@ describe('FooterComponent (DONE)', () => {
 
             it('... can get routerLink from template', () => {
                 expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
-                expect(routerLinks[0].linkParams[0]).toBe('/contact');
+                expect(routerLinks[0].linkParams).toEqual(['/contact']);
             });
 
             it('... can click Contact link in template', () => {
@@ -154,7 +210,7 @@ describe('FooterComponent (DONE)', () => {
                 contactLinkDe.triggerEventHandler('click', null);
                 fixture.detectChanges();
 
-                expect(contactLink.navigatedTo[0]).toBe('/contact');
+                expect(contactLink.navigatedTo).toEqual(['/contact']);
             });
         });
     });

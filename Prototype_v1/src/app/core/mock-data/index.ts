@@ -8,5 +8,6 @@
  */
 
 import { METADATA } from './meta.data';
+import { LOGOSDATA } from './logos.data';
 
-export { METADATA };
+export { METADATA, LOGOSDATA };
