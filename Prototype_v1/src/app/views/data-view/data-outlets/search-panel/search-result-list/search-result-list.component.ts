@@ -9,7 +9,6 @@ import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
-import { DataApiService } from '@awg-views/data-view/services';
 
 @Component({
     selector: 'awg-search-result-list',
@@ -32,7 +31,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     constructor(
         private router: Router,
         private conversionService: ConversionService,
-        private searchService: DataApiService,
         private sideInfoService: SideInfoService,
         private streamerService: DataStreamerService
     ) {}

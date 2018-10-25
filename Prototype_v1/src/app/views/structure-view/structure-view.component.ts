@@ -7,8 +7,8 @@ import { Router } from '@angular/router';
     styleUrls: ['./structure-view.component.css']
 })
 export class StructureViewComponent implements OnInit {
-    public structureTitle = 'Datenstrukturmodell';
-    public structureId = 'structure';
+    structureTitle = 'Datenstrukturmodell';
+    structureId = 'structure';
 
     constructor(private router: Router) {}
 

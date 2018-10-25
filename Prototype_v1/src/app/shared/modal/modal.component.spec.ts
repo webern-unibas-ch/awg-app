@@ -4,6 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { ModalComponent } from './modal.component';
+import { ModalModule } from 'ngx-bootstrap/modal';
 
 describe('ModalComponent', () => {
     let component: ModalComponent;
@@ -11,6 +12,7 @@ describe('ModalComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [ModalModule.forRoot()],
             declarations: [ModalComponent]
         }).compileComponents();
     }));

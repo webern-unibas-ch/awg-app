@@ -3,8 +3,8 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'awg-data',
-    templateUrl: './data.component.html',
-    styleUrls: ['./data.component.css']
+    templateUrl: './data-view.component.html',
+    styleUrls: ['./data-view.component.css']
 })
 export class DataViewComponent implements OnInit {
     public searchTitle = 'Suche';

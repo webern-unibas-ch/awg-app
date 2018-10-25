@@ -13,8 +13,6 @@ export class ReportComponent implements OnInit {
     reportTitle = 'Kritischer Bericht';
     reportId = 'report';
 
-    scrollPosition: [number, number];
-
     sourceListData: SourceList;
     textcriticsData: TextcriticsList;
     private errorMessage: string = undefined;

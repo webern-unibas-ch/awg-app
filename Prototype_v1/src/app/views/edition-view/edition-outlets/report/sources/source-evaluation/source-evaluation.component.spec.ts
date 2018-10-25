@@ -1,7 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
@@ -11,7 +10,7 @@ describe('SourceEvaluationComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SourceEvaluationComponent]
+            declarations: [SourceEvaluationComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 

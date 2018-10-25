@@ -274,7 +274,7 @@ export class ConversionService extends ApiService {
                         if (context.res_id.length === context.firstprop.length) {
                             for (let i = 0; i < context.res_id.length; i++) {
                                 // build new ResourceDetailImage-Object from context and index
-                                const image: ResourceDetailImage = new ResourceDetailImage(context, i);
+                                const image = new ResourceDetailImage(context, i);
                                 output[i] = image;
                             }
                         } else {

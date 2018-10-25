@@ -12,8 +12,7 @@ export class BibliographyListComponent implements OnInit {
     bibList: SubjectItemJson[];
     @Output()
     selectItemRequest: EventEmitter<SubjectItemJson> = new EventEmitter();
-
-    private selectedBibItem: SubjectItemJson = new SubjectItemJson();
+    selectedBibItem: SubjectItemJson = new SubjectItemJson();
 
     constructor() {}
 

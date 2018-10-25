@@ -6,7 +6,9 @@ import { Observable } from 'rxjs';
 import { ApiService } from '@awg-core/services';
 import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class BibliographyService extends ApiService {
     // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
     static ngInjectableDef = undefined;

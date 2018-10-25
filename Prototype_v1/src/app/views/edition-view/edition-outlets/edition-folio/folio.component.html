@@ -1,7 +1,7 @@
 <!-- embedded svg: EditionSvgFile Overview -->
 <div class="container-fluid svgGrid" *ngIf="folioSvgOutputArray">
     <div class="row svgRow">
-        <div class="col-sm-6 col-md-{{ 12 / folioSvgOutputArray.length }} svgCol" *ngFor="let folioSvg of folioSvgOutputArray">
+        <div class="col-sm-6 col-md-{{ 12 / folioSvgOutputArray?.length }} svgCol" *ngFor="let folioSvg of folioSvgOutputArray">
 
             <svg id="folio-{{ folioSvg.sheet.folioId }}"></svg>
 

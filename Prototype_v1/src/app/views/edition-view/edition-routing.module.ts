@@ -1,9 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
+import { EditionViewComponent } from './edition-view.component';
 import { EditionDetailComponent } from './edition-outlets/edition-detail';
 import { EditionOverviewComponent } from './edition-outlets/edition-overview.component';
-import { EditionViewComponent } from './edition.component';
 import { IntroComponent } from './edition-outlets/intro';
 import { ReportComponent } from './edition-outlets/report';
 

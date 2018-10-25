@@ -1,15 +1,15 @@
 import { TestBed, inject } from '@angular/core/testing';
 
-import { MetaService } from './meta.service';
+import { CoreService } from './core.service';
 
-describe('MetaService', () => {
+describe('CoreService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [MetaService]
+            providers: [CoreService]
         });
     });
 
-    it('should ...', inject([MetaService], (service: MetaService) => {
+    it('should inject', inject([CoreService], (service: CoreService) => {
         expect(service).toBeTruthy();
     }));
 });

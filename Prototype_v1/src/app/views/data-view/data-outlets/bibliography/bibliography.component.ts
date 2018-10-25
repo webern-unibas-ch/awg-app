@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 import { BibliographyService } from '@awg-views/data-view/services';
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
@@ -15,11 +14,7 @@ export class BibliographyComponent implements OnInit {
     selectedBibItem: SubjectItemJson;
     isBibListLoaded = false;
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private bibliographyService: BibliographyService
-    ) {}
+    constructor(private bibliographyService: BibliographyService) {}
 
     ngOnInit() {
         this.getBibList();

@@ -46,7 +46,7 @@ export class ContextJson {
      * @param firstprop: Array<string> OPTIONAL
      */
     @JsonProperty('firstprop', [String], true)
-    public firstprop: string = undefined;
+    public firstprop: string[] = undefined;
 
     /**
      * Locations of depending resources
@@ -54,7 +54,7 @@ export class ContextJson {
      * @param locations: Array<Array<locationItem>> OPTIONAL
      */
     @JsonProperty('locations', [[LocationItemJson]], true)
-    public locations: [LocationItemJson[]] = undefined;
+    public locations: Array<Array<LocationItemJson>> = undefined;
 
     /**
      * The IRI of the parent resource

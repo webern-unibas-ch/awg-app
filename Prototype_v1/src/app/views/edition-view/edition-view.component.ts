@@ -3,12 +3,12 @@ import { Router } from '@angular/router';
 
 @Component({
     selector: 'awg-edition-view',
-    templateUrl: './edition.component.html',
-    styleUrls: ['./edition.component.css']
+    templateUrl: './edition-view.component.html',
+    styleUrls: ['./edition-view.component.css']
 })
 export class EditionViewComponent implements OnInit {
-    public editionTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
-    public editionId = 'edition';
+    editionTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
+    editionId = 'edition';
 
     constructor(private router: Router) {}
 
