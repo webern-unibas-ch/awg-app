@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Meta } from '@awg-core/core-models';
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-home-view',
@@ -12,7 +12,7 @@ import { MetaService } from '@awg-core/services';
 export class HomeViewComponent implements OnInit {
     metaData: Meta;
 
-    constructor(private router: Router, private metaService: MetaService) {}
+    constructor(private router: Router, private coreService: CoreService) {}
 
     ngOnInit() {
         this.routeToSidenav();
@@ -20,7 +20,7 @@ export class HomeViewComponent implements OnInit {
     }
 
     provideMetaData(): void {
-        this.metaData = this.metaService.getMetaData();
+        this.metaData = this.coreService.getMetaData();
     }
 
     routeToSidenav(): void {

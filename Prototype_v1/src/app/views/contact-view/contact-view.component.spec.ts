@@ -5,7 +5,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { ContactViewComponent } from './contact-view.component';
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
 import { By } from '@angular/platform-browser';
 
@@ -26,7 +26,7 @@ describe('ContactViewComponent (DONE)', () => {
 
     const datePipe = new DatePipe('en');
 
-    let mockMetaService: Partial<MetaService>;
+    let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
     let expectedMetaData: Meta;
@@ -36,14 +36,14 @@ describe('ContactViewComponent (DONE)', () => {
 
     beforeEach(async(() => {
         // mock service for test purposes
-        mockMetaService = { getMetaData: () => expectedMetaData };
+        mockCoreService = { getMetaData: () => expectedMetaData };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
             declarations: [ContactViewComponent, HeadingStubComponent],
-            providers: [{ provide: MetaService, useValue: mockMetaService }, { provide: Router, useValue: mockRouter }]
+            providers: [{ provide: CoreService, useValue: mockCoreService }, { provide: Router, useValue: mockRouter }]
         }).compileComponents();
     }));
 
@@ -73,9 +73,9 @@ describe('ContactViewComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('stub service and injected metaService should not be the same', () => {
-        const metaService = TestBed.get(MetaService);
-        expect(mockMetaService === metaService).toBe(false);
+    it('stub service and injected coreService should not be the same', () => {
+        const coreService = TestBed.get(CoreService);
+        expect(mockCoreService === coreService).toBe(false);
 
         // changing the mock service has no effect on the injected service
         const changedMetaData = new Meta();
@@ -85,8 +85,8 @@ describe('ContactViewComponent (DONE)', () => {
             version: '0.2.1',
             versionReleaseDate: '20. Oktober 2018'
         };
-        mockMetaService.getMetaData = () => changedMetaData;
-        expect(metaService.getMetaData()).toBe(expectedMetaData);
+        mockCoreService.getMetaData = () => changedMetaData;
+        expect(coreService.getMetaData()).toBe(expectedMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -174,7 +174,7 @@ describe('ContactViewComponent (DONE)', () => {
 
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.metaData = mockMetaService.getMetaData();
+            component.metaData = mockCoreService.getMetaData();
 
             expectedToday = Date.now();
 

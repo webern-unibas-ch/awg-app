@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
 
 @Component({
@@ -17,7 +17,7 @@ export class ContactViewComponent implements OnInit {
     today: number;
     dateFormat = 'd. MMMM yyyy';
 
-    constructor(private metaService: MetaService, private router: Router) {}
+    constructor(private coreService: CoreService, private router: Router) {}
 
     ngOnInit() {
         this.routeToSidenav();
@@ -26,7 +26,7 @@ export class ContactViewComponent implements OnInit {
     }
 
     provideMetaData(): void {
-        this.metaData = this.metaService.getMetaData();
+        this.metaData = this.coreService.getMetaData();
     }
 
     routeToSidenav(): void {

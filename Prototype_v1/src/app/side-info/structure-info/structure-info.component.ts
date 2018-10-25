@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Meta } from '@awg-core/core-models';
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-structure-info',
@@ -9,18 +9,18 @@ import { MetaService } from '@awg-core/services';
     styleUrls: ['./structure-info.component.css']
 })
 export class StructureInfoComponent implements OnInit {
-    public meta: Meta;
-    public author: string;
-    public lastModified: string;
+    meta: Meta;
+    author: string;
+    lastModified: string;
 
-    constructor(private metaService: MetaService) {}
+    constructor(private coreService: CoreService) {}
 
     ngOnInit() {
         this.provideMetaData();
     }
 
-    public provideMetaData(): void {
-        this.meta = this.metaService.getMetaData();
+    provideMetaData(): void {
+        this.meta = this.coreService.getMetaData();
         this.author = this.meta.structure.author;
         this.lastModified = this.meta.structure.lastModified;
     }

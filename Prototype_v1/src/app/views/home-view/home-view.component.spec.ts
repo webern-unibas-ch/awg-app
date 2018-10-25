@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { HomeViewComponent } from './home-view.component';
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
 
 describe('HomeViewComponent (DONE)', () => {
@@ -16,21 +16,21 @@ describe('HomeViewComponent (DONE)', () => {
     let compEl: any;
     let linkDes, routerLinks;
 
-    let mockMetaService: Partial<MetaService>;
+    let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
     let expectedMetaData: Meta;
 
     beforeEach(async(() => {
         // stub service for test purposes
-        mockMetaService = { getMetaData: () => expectedMetaData };
+        mockCoreService = { getMetaData: () => expectedMetaData };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
             declarations: [HomeViewComponent, RouterLinkStubDirective],
-            providers: [{ provide: MetaService, useValue: mockMetaService }, { provide: Router, useValue: mockRouter }]
+            providers: [{ provide: CoreService, useValue: mockCoreService }, { provide: Router, useValue: mockRouter }]
         }).compileComponents();
     }));
 
@@ -55,16 +55,16 @@ describe('HomeViewComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('stub service and injected metaService should not be the same', () => {
-        const metaService = TestBed.get(MetaService);
-        expect(mockMetaService === metaService).toBe(false);
+    it('stub service and injected coreService should not be the same', () => {
+        const coreService = TestBed.get(CoreService);
+        expect(mockCoreService === coreService).toBe(false);
 
         // changing the stub service has no effect on the injected service
         const changedMetaData = new Meta();
         changedMetaData.edition = { editors: 'Test Editor 2', lastModified: '10. Oktober 2018' };
-        mockMetaService.getMetaData = () => changedMetaData;
+        mockCoreService.getMetaData = () => changedMetaData;
 
-        expect(metaService.getMetaData()).toBe(expectedMetaData);
+        expect(coreService.getMetaData()).toBe(expectedMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -115,7 +115,7 @@ describe('HomeViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.metaData = mockMetaService.getMetaData();
+            component.metaData = mockCoreService.getMetaData();
 
             // trigger initial data binding
             fixture.detectChanges();
