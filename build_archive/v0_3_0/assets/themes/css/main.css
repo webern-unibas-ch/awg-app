@@ -1,0 +1,245 @@
+/****** GENERAL SETTINGS ******/
+html,
+body {
+  font-family: "Droid Sans", sans-serif;
+  background-color: #fff;
+  padding: 5px;
+  min-width: 320px;
+}
+
+.todo {
+  color: red;
+  font-weight: bold;
+}
+.todo::before {
+  content: "## ";
+}
+.todo::after {
+  content: " ##";
+}
+
+/****** PAGE LAYOUT ******/
+/* Remove the navbar's default margin-bottom and rounded borders */
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+}
+.navbar-brand {
+  margin-top: -10px;
+}
+
+/* Set height of the grid so .sidenav can be 100% */
+.row.content {
+  /*height: 600px*/
+}
+
+/* Set gray background color and margins */
+.sidenav {
+  margin-top: 10px;
+  margin-bottom: 10px;
+  padding: 10px;
+  background-color: #f1f1f1;
+}
+
+/****** OBJECT BOX ******/
+.objbox {
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid #f1f1f1;
+  box-shadow: 5px 5px 6px #cccccc;
+}
+.objbox-control-button {
+  text-align: right;
+}
+
+/* Set grey background color, black text and some padding */
+footer {
+  background-color: #f1f1f1;
+  color: black;
+  padding: 15px;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .sidenav {
+    height: auto;
+    padding: 15px;
+  }
+  .row.content {
+    height: auto;
+  }
+}
+
+.subitem {
+  padding-left: 20px;
+}
+
+/****** IMAGES ******/
+#unibaslogo {
+  width: 118px;
+  height: 37px;
+  cursor: pointer;
+}
+#snflogo {
+  width: 118px;
+  height: 40px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+#webernlogo {
+  cursor: pointer;
+  font-family: "Droid Sans", sans-serif;
+  text-align: center;
+}
+#webernlogo span {
+  font-weight: lighter;
+}
+
+.img-thumbnail {
+  height: 100px;
+  width: auto;
+  padding: 0px;
+  margin: 2px 0px;
+}
+
+/****** SVG ******/
+.edition-svg {
+  box-shadow: 5px 5px 6px #cccccc;
+  border: 1px solid #eeeeee;
+}
+.edition-svg-item {
+  fill: orange;
+  opacity: 0.2;
+}
+.edition-svg-measure,
+.edition-svg-system,
+.edition-svg-linkbox {
+  fill: white;
+  opacity: 0;
+}
+.edition-svg-measure:hover,
+.edition-svg-system:hover,
+.edition-svg-linkbox:hover,
+.edition-svg-item:hover {
+  fill: #8bb82d; /* some lighter OliveDrab*/
+  opacity: 0.2;
+}
+svg a.active rect {
+  fill: OliveDrab;
+  opacity: 0.2;
+}
+.edition-convolute-legend:before {
+  content: "\e157";
+  font-family: "Glyphicons Halflings";
+}
+.item-group.active,
+.item-group.active > .item-link > .item-shape {
+  stroke: OliveDrab;
+}
+.item-group.active > .item-link > .item-label {
+  fill: OliveDrab;
+}
+
+/****** TABLES & LISTS ******/
+.table thead tr th {
+  border-bottom: 2px solid black;
+}
+.borderless tbody tr td,
+.borderless tbody tr th,
+.borderless thead tr th {
+  border: none;
+}
+td {
+  vertical-align: top;
+}
+
+ul.none {
+  list-style: none;
+}
+
+#sidenav_results tbody tr {
+  cursor: pointer;
+}
+#sidenav_results tbody tr:hover {
+  background-color: #e7e7e7;
+}
+#sidenav_results tbody tr.active td {
+  background-color: #d7d7d7;
+}
+span.facetBadge {
+  background-color: #777 !important;
+}
+
+/****** LINKS & POINTER ******/
+a,
+.incomingLinks {
+  cursor: pointer;
+}
+
+#imp {
+  cursor: pointer;
+  color: black;
+}
+#imp:hover {
+  color: #666;
+}
+
+/****** DIVS ******/
+.para {
+  margin-bottom: 3em;
+}
+.row {
+  margin-top: 10px;
+  margin-right: -15px;
+  margin-left: -15px;
+}
+
+/****** FONTPROPERTIES ******/
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.highlighted {
+  background: orange;
+}
+span.caps,
+.version {
+  font-variant: small-caps;
+}
+span.indent {
+  text-indent: 25px;
+}
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/****** COLOURS ******/
+.olivedrab {
+  color: olivedrab;
+}
+.orange {
+  color: orange;
+}
+.grey {
+  color: grey;
+}
+
+/****** FORMS ******/
+#resourceInfoInput {
+  height: 33px;
+}
+
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid #42a948; /* green */
+}
+
+.ng-invalid:not(form) {
+  border-left: 5px solid #a94442; /* red */
+}
