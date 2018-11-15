@@ -1,18 +1,23 @@
 import { Injectable } from '@angular/core';
 import { HttpParams } from '@angular/common/http';
-import { Observable } from 'rxjs/Observable';
+
+import { Observable } from 'rxjs';
 
 import { ApiService } from '@awg-core/services';
 import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
 
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class BibliographyService extends ApiService {
+    // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
+    static ngInjectableDef = undefined;
 
-    projectId: string = '6';
-    resTypeId: string = '126';      // test-01: 127
-    bibShortTitlePropertyId: string = '614';    // 614 = Bibligoraphie#Kurztitel
-    resourcesRoute: string = '/resources/';
-    searchRoute: string = '/search/';
+    projectId = '6';
+    resTypeId = '126'; // test-01: 127
+    bibShortTitlePropertyId = '614'; // 614 = Bibligoraphie#Kurztitel
+    resourcesRoute = '/resources/';
+    searchRoute = '/search/';
 
     /**********************************
      *

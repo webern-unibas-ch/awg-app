@@ -1,4 +1,4 @@
-import {Component, EventEmitter, Input, OnInit, Output} from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ResourceDetail } from '@awg-views/data-view/models';
 
@@ -8,17 +8,19 @@ import { ResourceDetail } from '@awg-views/data-view/models';
     styleUrls: ['./resource-detail-html.component.css']
 })
 export class ResourceDetailHtmlComponent implements OnInit {
-    @Input() resourceDetailData: ResourceDetail;
-    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    resourceDetailData: ResourceDetail;
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor( ) { }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     navigateToResource(id?: string) {
-        if (id) { id.toString(); }
+        if (id) {
+            id.toString();
+        }
         this.resourceRequest.emit(id);
     }
-
 }

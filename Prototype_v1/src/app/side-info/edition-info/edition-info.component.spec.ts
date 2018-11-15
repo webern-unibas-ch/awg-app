@@ -4,7 +4,7 @@ import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
 
 import { EditionInfoComponent } from './edition-info.component';
-import { RouterLinkStubDirective } from '@myTesting/router-stubs';
+import { RouterLinkStubDirective } from 'testing/router-stubs';
 
 describe('EditionInfoComponent', () => {
     let component: EditionInfoComponent;
@@ -12,12 +12,8 @@ describe('EditionInfoComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                EditionInfoComponent,
-                RouterLinkStubDirective
-            ]
-        })
-            .compileComponents();
+            declarations: [EditionInfoComponent, RouterLinkStubDirective]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

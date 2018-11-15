@@ -8,16 +8,16 @@ import { RouterLinkButton } from './router-link-button.model';
     styleUrls: ['./router-link-button-group.component.css']
 })
 export class RouterLinkButtonGroupComponent implements OnInit {
-    @Input() buttonArray: RouterLinkButton;
-    @Output() selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter();
+    @Input()
+    buttonArray: RouterLinkButton;
+    @Output()
+    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter();
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     onButtonSelect(routerLinkButton: RouterLinkButton): void {
         this.selectButtonRequest.emit(routerLinkButton);
     }
-
 }

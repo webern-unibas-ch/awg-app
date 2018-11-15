@@ -16,5 +16,5 @@ export interface CompileHtmlModel {
     template: string;
     container: ViewContainerRef;
     imports?: any[];
-    ref?: any
+    ref?: any;
 }

@@ -8,16 +8,15 @@ import { SubjectItemJson } from '@awg-shared/api-objects';
     styleUrls: ['./bibliography-list.component.css']
 })
 export class BibliographyListComponent implements OnInit {
-    @Input() bibList: SubjectItemJson[];
-    @Output() selectItemRequest: EventEmitter<SubjectItemJson> = new EventEmitter();
+    @Input()
+    bibList: SubjectItemJson[];
+    @Output()
+    selectItemRequest: EventEmitter<SubjectItemJson> = new EventEmitter();
+    selectedBibItem: SubjectItemJson = new SubjectItemJson();
 
-    private selectedBibItem: SubjectItemJson = new SubjectItemJson();
+    constructor() {}
 
-    constructor() { }
-
-    ngOnInit() {
-
-    }
+    ngOnInit() {}
 
     selectItem(item: SubjectItemJson) {
         this.selectedBibItem = item;
@@ -27,5 +26,4 @@ export class BibliographyListComponent implements OnInit {
     trackByItemId(item): string {
         return item.obj_id;
     }
-
 }

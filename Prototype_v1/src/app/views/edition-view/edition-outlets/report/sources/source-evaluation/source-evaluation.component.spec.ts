@@ -1,28 +1,26 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
-import { DebugElement } from '@angular/core';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { SourceEvaluationComponent } from './source-evaluation.component';
 
 describe('SourceEvaluationComponent', () => {
-  let component: SourceEvaluationComponent;
-  let fixture: ComponentFixture<SourceEvaluationComponent>;
+    let component: SourceEvaluationComponent;
+    let fixture: ComponentFixture<SourceEvaluationComponent>;
 
-  beforeEach(async(() => {
-    TestBed.configureTestingModule({
-      declarations: [ SourceEvaluationComponent ]
-    })
-    .compileComponents();
-  }));
+    beforeEach(async(() => {
+        TestBed.configureTestingModule({
+            declarations: [SourceEvaluationComponent, RouterLinkStubDirective]
+        }).compileComponents();
+    }));
 
-  beforeEach(() => {
-    fixture = TestBed.createComponent(SourceEvaluationComponent);
-    component = fixture.componentInstance;
-    fixture.detectChanges();
-  });
+    beforeEach(() => {
+        fixture = TestBed.createComponent(SourceEvaluationComponent);
+        component = fixture.componentInstance;
+        fixture.detectChanges();
+    });
 
-  it('should create', () => {
-    expect(component).toBeTruthy();
-  });
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
 });

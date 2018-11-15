@@ -20,7 +20,6 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  */
 @JsonObject
 export class PagingItemJson {
-
     /**
      * True if this item represents the current page of search results
      * @param current: Boolean

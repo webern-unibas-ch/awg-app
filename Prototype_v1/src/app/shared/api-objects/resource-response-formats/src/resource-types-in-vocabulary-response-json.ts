@@ -24,7 +24,6 @@ import { ResTypeItemJson } from './res-type-item-json';
  */
 @JsonObject
 export class ResourceTypesInVocabularyResponseJson extends BasicResponseJson {
-
     /**
      * Lists the resource classes that are defined
      * for the given vocabulary.

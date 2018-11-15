@@ -18,27 +18,31 @@ import { ResourceDetailImage } from '@awg-views/data-view/models';
     styleUrls: ['./imageobjects.component.css']
 })
 export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
-    @ViewChild('thumbBox') thumbBox: ElementRef;
-    @ViewChild('thumbImageContainer') thumbContainer: ElementRef;
-    @ViewChildren('thumbImages') thumbImages: QueryList<any>;
-    @Input() images: ResourceDetailImage[];
-    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
+    @ViewChild('thumbBox')
+    thumbBox: ElementRef;
+    @ViewChild('thumbImageContainer')
+    thumbContainer: ElementRef;
+    @ViewChildren('thumbImages')
+    thumbImages: QueryList<any>;
+    @Input()
+    images: ResourceDetailImage[];
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    currentImageIndex: number = 0;
-    offset: number = 0;
-    max: number = 50;
+    currentImageIndex = 0;
+    offset = 0;
+    max = 50;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 
     navigateToResource(id?: string): void {
-        if (id) { id.toString(); }
+        if (id) {
+            id.toString();
+        }
         this.resourceRequest.emit(id);
     }
-
 
     pageThumbsLeft() {
         // calculate offset
@@ -52,7 +56,6 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
         }
     }
 
-
     pageThumbsRight() {
         // calculate offset
         const thumbBoxRect = this.thumbBox.nativeElement.getBoundingClientRect();
@@ -65,7 +68,6 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
             this.offset = this.max;
         }
     }
-
 
     setImage(index: number): void {
         // set image number to index
@@ -83,5 +85,4 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
             this.offset += tmpOffset + imageRect.width - thumbBoxRect.width;
         }
     }
-
 }

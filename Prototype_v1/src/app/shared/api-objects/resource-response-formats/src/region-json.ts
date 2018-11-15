@@ -25,7 +25,6 @@ import { PropJson } from './prop-json';
  */
 @JsonObject
 export class RegionJson {
-
     /**
      * ...
      * @param [index: KnoraIRI]: prop
@@ -39,7 +38,6 @@ export class RegionJson {
      */
     @JsonProperty('http://www.knora.org/ontology/knora-base#hasColor', PropJson)
     public hasColor: PropJson = undefined;
-
 
     /**
      * ...

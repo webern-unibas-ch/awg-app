@@ -4,8 +4,7 @@
         [class.selected]="bibItem === selectedBibItem"
         (click)="selectItem(bibItem)">
             <span class="badge">{{ bibItem.value[0] }}</span>
-            <awg-bibliography-detail
-                *ngIf="bibItem.obj_id === selectedBibItem.obj_id"
+            <awg-bibliography-detail *ngIf="bibItem.obj_id === selectedBibItem.obj_id"
                 [objId]="bibItem.obj_id">
             </awg-bibliography-detail>
     </li>

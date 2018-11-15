@@ -21,7 +21,6 @@ import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-com
  */
 @JsonObject
 export class ResdataJson {
-
     /**
      * Icon of the resource's class
      * @param iconsrc: string

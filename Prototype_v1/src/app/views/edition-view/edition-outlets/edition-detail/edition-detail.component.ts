@@ -10,14 +10,12 @@ import {
 } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
-
 @Component({
     selector: 'awg-edition-detail',
     templateUrl: './edition-detail.component.html',
     styleUrls: ['./edition-detail.component.css']
 })
 export class EditionDetailComponent implements OnInit {
-
     convoluteData: ConvoluteFolio[];
 
     svgFileData: EditionSvgFile[];
@@ -28,36 +26,35 @@ export class EditionDetailComponent implements OnInit {
     selectedOverlay: EditionSvgOverlay;
 
     errorMessage: string = undefined;
-    showTkA: boolean = false;
-
+    showTkA = false;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private dataService: DataService,
         private editionService: EditionService
-    ) { }
+    ) {}
 
     ngOnInit() {
         this.getEditionDetailData();
     }
 
-
     // get edition data
     getEditionDetailData() {
-        this.dataService.getEditionDetailData()
-            .subscribe((data: [ConvoluteFolio[], EditionSvgFile[], TextcriticsList]) => {
-                    this.convoluteData = data[0]['convolute'];
-                    this.svgFileData = data[1];
-                    this.textcriticsData = data[2];
-                    if (this.svgFileData) { this.getRouteParams(); }
-                },
-                error => {
-                    this.errorMessage = <any>error;
+        this.dataService.getEditionDetailData().subscribe(
+            (data: [ConvoluteFolio[], EditionSvgFile[], TextcriticsList]) => {
+                this.convoluteData = data[0]['convolute'];
+                this.svgFileData = data[1];
+                this.textcriticsData = data[2];
+                if (this.svgFileData) {
+                    this.getRouteParams();
                 }
-            );
+            },
+            error => {
+                this.errorMessage = <any>error;
+            }
+        );
     }
-
 
     private getRouteParams(): void {
         this.route.params.forEach((params: Params) => {
@@ -68,23 +65,22 @@ export class EditionDetailComponent implements OnInit {
         });
     }
 
-
     onSvgFileSelect(id: string): void {
         this.selectedSvgFile = this.svgFileData[id];
         this.showTkA = false;
         this.router.navigate(['/edition/detail', id]);
     }
 
-
     onTextcriticSelect($event: EditionSvgOverlay): void {
-        if (!this.textcriticsData && !this.selectedSvgFile) { return; }
+        if (!this.textcriticsData && !this.selectedSvgFile) {
+            return;
+        }
 
         // shortcut
         const textcritics = this.textcriticsData[this.selectedSvgFile.id];
 
         this.selectedOverlay = $event;
         this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
-        this.showTkA = (this.selectedTextcritics !== []);
+        this.showTkA = this.selectedTextcritics !== [];
     }
-
 }

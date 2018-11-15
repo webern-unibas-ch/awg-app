@@ -40,7 +40,7 @@
             </a>
             <!-- preview image -->
             <div id="preview-img-container">
-                <a id="preview-img" [href]="images[currentImageIndex].fullSize" target="_blank">
+                <a id="preview-img" [href]="images[currentImageIndex].fullSize" target="_blank" ref="noopener noreferrer">
                     <img [src]="images[currentImageIndex].reductSize" alt="{{ images[currentImageIndex].label }}" id="{{ images[currentImageIndex].res_id }}" height="300">
                 </a>
             </div>

@@ -1,5 +1,4 @@
 export class BibEntry {
-
     constructor(
         public Kurztitel: string,
         public Typ: string,

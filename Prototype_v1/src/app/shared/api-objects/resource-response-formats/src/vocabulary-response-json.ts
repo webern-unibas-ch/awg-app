@@ -23,7 +23,6 @@ import { VocabularyItemJson } from './vocabulary-item-json';
  */
 @JsonObject
 export class VocabularyResponseJson extends BasicResponseJson {
-
     /**
      * ...
      * @param Array<vocabulary>

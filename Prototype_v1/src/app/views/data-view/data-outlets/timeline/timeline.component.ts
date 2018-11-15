@@ -8,13 +8,12 @@ import { TimelineDate } from '@awg-views/data-view/models/timeline-date.model';
     styleUrls: ['./timeline.component.css']
 })
 export class TimelineComponent implements OnInit {
-
-    side: string = '';
+    side = '';
 
     now: Date = new Date();
     date: TimelineDate = new TimelineDate(this.now);
 
-    constructor() { }
+    constructor() {}
 
     ngOnInit() {
         this.getTodaysEvents();
@@ -23,5 +22,4 @@ export class TimelineComponent implements OnInit {
     getTodaysEvents() {
         console.log('Timeline: called func getTodaysEvents');
     }
-
 }

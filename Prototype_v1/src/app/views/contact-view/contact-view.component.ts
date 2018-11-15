@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
 
 @Component({
@@ -10,46 +10,27 @@ import { Meta } from '@awg-core/core-models';
     styleUrls: ['./contact-view.component.css']
 })
 export class ContactViewComponent implements OnInit {
-
     contactTitle = 'Impressum';
     contactId = 'masthead';
 
-    dateFormat: string = 'd. MMMM yyyy';
-    meta: Meta;
+    metaData: Meta;
     today: number;
+    dateFormat = 'd. MMMM yyyy';
 
-
-    constructor(
-        private metaService: MetaService,
-        private route: ActivatedRoute,
-        private router: Router
-    ) { }
+    constructor(private coreService: CoreService, private router: Router) {}
 
     ngOnInit() {
-        this.provideMetaData();
         this.routeToSidenav();
-        this.scrollTo();
+        this.provideMetaData();
         this.today = Date.now();
     }
 
     provideMetaData(): void {
-        this.meta = this.metaService.getMetaData();
+        this.metaData = this.coreService.getMetaData();
     }
 
     routeToSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'contactInfo' }}]);
+        // opens the side-info outlet while preserving the router fragment for scrolling
+        this.router.navigate([{ outlets: { side: 'contactInfo' } }], { preserveFragment: true });
     }
-
-    scrollTo(id?: string) {
-        // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
-        setTimeout(() => {
-            this.route.fragment.subscribe(f => {
-                        if (!f) { return; }
-                        const element = document.querySelector('#' + f);
-                        if (element) { element.scrollIntoView(); }
-                    }
-                );
-        });
-    }
-
 }

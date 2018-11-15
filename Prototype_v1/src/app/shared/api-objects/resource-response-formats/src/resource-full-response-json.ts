@@ -26,7 +26,6 @@ import { ResinfoJson } from './resinfo-json';
  */
 @JsonObject
 export class ResourceFullResponseJson extends BasicResponseJson {
-
     /**
      * The given user's permissions on the resource (obsolete)
      * @param access: KnoraAccess

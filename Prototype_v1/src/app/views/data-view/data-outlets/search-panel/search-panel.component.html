@@ -27,7 +27,7 @@
 <ng-template #error>
     <div class="errorMessage" *ngIf="errorMessage">
         <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
-        <p>Fehlermeldung: "{{ errorMessage?.statusText }}".</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
         <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
     </div>
 </ng-template>

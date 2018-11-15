@@ -12,5 +12,4 @@ export class ViewBox {
         this.viewBoxHeight = '100%';
         this.viewBox = '0 0 ' + width + ' ' + height;
     }
-
 }

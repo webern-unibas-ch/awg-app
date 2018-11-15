@@ -21,7 +21,6 @@ import { KnoraIRI, KnoraRights } from './basic-type-aliases';
  */
 @JsonObject
 export class ProjectItemJson {
-
     /**
      * Path to the project's file
      * @param basepath: string | null
@@ -54,7 +53,7 @@ export class ProjectItemJson {
      * @param hasSelfJoinEnabled: boolean
      */
     @JsonProperty('hasSelfJoinEnabled', Boolean)
-    public hasSelfJoinEnabled: boolean = false;
+    public hasSelfJoinEnabled = false;
 
     /**
      * The project's IRI

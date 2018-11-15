@@ -1,9 +1,9 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
-import { Subscription } from 'rxjs/Subscription';
-import { map } from 'rxjs/operators';
-import 'rxjs/add/operator/do';
+
+import { Subscription } from 'rxjs';
+import { switchMap, map } from 'rxjs/operators';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
@@ -17,57 +17,54 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
     styleUrls: ['./search-panel.component.css']
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
-
-    searchServiceSubscription: Subscription;
+    dataApiServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
-    searchValue: string = '';
-    searchUrl: string = '';
+    searchValue = '';
+    searchUrl = '';
     searchResultText: string;
 
     errorMessage: any;
-    isLoadingData: boolean = false;
-
+    isLoadingData = false;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
         private location: Location,
         private conversionService: ConversionService,
-        private searchService: DataApiService,
-        private sideInfoService: SideInfoService,
-        private streamerService: DataStreamerService,
+        private dataApiService: DataApiService,
+        private streamerService: DataStreamerService
     ) {}
 
-
     ngOnInit() {
-        this.searchServiceSubscription = this.subscribeToSearchService();
+        this.dataApiServiceSubscription = this.subscribeToDataApiService();
     }
 
-
-    subscribeToSearchService(): Subscription {
+    subscribeToDataApiService(): Subscription {
         return this.route.paramMap
-            .switchMap((params: ParamMap) => {
-                // get query param from route to update searchValue
-                if (params.get('query')) {
-                    this.searchValue = params.get('query');
-                }
+            .pipe(
+                switchMap((params: ParamMap) => {
+                    // get query param from route to update searchValue
+                    if (params.get('query')) {
+                        this.searchValue = params.get('query');
+                    }
 
-                this.onLoadingStart();
+                    this.onLoadingStart();
 
-                // fetch search data for searchValue
-                return this.searchService.getFulltextSearchData(this.searchValue).pipe(
-                    map((searchResponse: SearchResponseJson) => {
+                    // fetch search data for searchValue
+                    return this.dataApiService.getFulltextSearchData(this.searchValue).pipe(
+                        map((searchResponse: SearchResponseJson) => {
+                            // update url for search
+                            this.updateCurrentUrl();
 
-                        // update url for search
-                        this.updateCurrentUrl();
-
-                        // prepare search results
-                        return this.prepareSearchResults(searchResponse);
-                    })
-                );
-            })
-            .subscribe((searchResponse: SearchResponseJson) => {
+                            // prepare search results
+                            return this.prepareSearchResults(searchResponse);
+                        })
+                    );
+                })
+            )
+            .subscribe(
+                (searchResponse: SearchResponseJson) => {
                     // share search data via streamer service
                     this.updateStreamerService(searchResponse, this.searchValue);
 
@@ -75,47 +72,41 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 },
                 error => {
                     this.errorMessage = <any>error;
-                });
+                }
+            );
     }
-
 
     // change the load status
     changeLoadingStatus(status: boolean) {
         this.isLoadingData = status;
     }
 
-
     // start loading activities
     onLoadingStart(): void {
         this.changeLoadingStatus(true);
     }
-
 
     // end loading activities
     onLoadingEnd(): void {
         this.changeLoadingStatus(false);
     }
 
-
     // route to url with query when getting submit request
     onSubmit(query: string) {
         if (query !== this.searchValue) {
-            this.router.navigate(['data/search/fulltext', {query: query}]);
+            this.router.navigate(['data/search/fulltext', { query: query }]);
         }
     }
-
 
     prepareSearchResults(searchResponse: SearchResponseJson): SearchResponseJson {
         // conversion of search results for HTML display
         return this.conversionService.convertFullTextSearchResults(searchResponse);
     }
 
-
     updateCurrentUrl() {
         // get url from search service
-        this.searchUrl = this.searchService.httpGetUrl;
+        this.searchUrl = this.dataApiService.httpGetUrl;
     }
-
 
     // update search data via streamer service
     updateStreamerService(searchResponse: SearchResponseJson, query: string) {
@@ -123,12 +114,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.streamerService.updateSearchResponseStream(searchResponseWithQuery);
     }
 
-
     ngOnDestroy() {
         // prevent memory leak when component destroyed
-        if (this.searchServiceSubscription) {
-            this.searchServiceSubscription.unsubscribe();
+        if (this.dataApiServiceSubscription) {
+            this.dataApiServiceSubscription.unsubscribe();
         }
     }
-
 }

@@ -8,9 +8,8 @@ describe('StructureInfoComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ StructureInfoComponent ]
-        })
-            .compileComponents();
+            declarations: [StructureInfoComponent]
+        }).compileComponents();
     }));
 
     beforeEach(() => {

@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
 
 import { BibliographyService } from '@awg-views/data-view/services';
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
@@ -10,34 +9,27 @@ import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
     styleUrls: ['./bibliography.component.css']
 })
 export class BibliographyComponent implements OnInit {
-
     bibListResponse: SearchResponseJson = new SearchResponseJson();
     bibList: SubjectItemJson[];
     selectedBibItem: SubjectItemJson;
-    isBibListLoaded: boolean = false;
+    isBibListLoaded = false;
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private bibliographyService: BibliographyService
-    ) { }
+    constructor(private bibliographyService: BibliographyService) {}
 
     ngOnInit() {
         this.getBibList();
     }
 
     getBibList(): void {
-        this.bibliographyService.getBibliographyList()
-            .subscribe((data: SearchResponseJson) => {
-                this.bibListResponse = {...data};
+        this.bibliographyService.getBibliographyList().subscribe((data: SearchResponseJson) => {
+            this.bibListResponse = { ...data };
 
-                // TODO: handle request with more than 1000 entries
-                console.info('BibComp#bibListResponse', this.bibListResponse);
+            // TODO: handle request with more than 1000 entries
+            console.log('BibComp # bibListResponse', this.bibListResponse);
 
-                this.bibList = this.bibListResponse.subjects.slice(1, 20);
-                    this.isBibListLoaded = true;
-                }
-            );
+            this.bibList = this.bibListResponse.subjects.slice(1, 20);
+            this.isBibListLoaded = true;
+        });
     }
 
     onItemSelect(item: SubjectItemJson): void {

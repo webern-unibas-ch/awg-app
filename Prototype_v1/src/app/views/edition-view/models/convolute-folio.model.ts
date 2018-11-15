@@ -2,9 +2,8 @@ export class ConvoluteFolio {
     folioId: string;
     systems: string;
     format: ConvoluteFolioFormat;
-    content: [ ConvoluteFolioContent ];
+    content: ConvoluteFolioContent[];
 }
-
 
 export class ConvoluteFolioFormat {
     height: number;
@@ -14,8 +13,8 @@ export class ConvoluteFolioFormat {
 export class ConvoluteFolioContent {
     sigle: string;
     measure: string;
-    numberOfSections?: number;
-    sections?: [ ConvoluteFolioSection ];
+    sectionPartition?: number;
+    sections?: ConvoluteFolioSection[];
 }
 
 export class ConvoluteFolioSection {

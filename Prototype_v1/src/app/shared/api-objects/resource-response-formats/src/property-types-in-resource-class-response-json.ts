@@ -24,7 +24,6 @@ import { PropertyDefinitionJson } from './property-definition-json';
  */
 @JsonObject
 export class PropertyTypesInResourceClassResponseJson extends BasicResponseJson {
-
     /**
      * Lists the property types the indicated resource class
      * or vocabulary may have.

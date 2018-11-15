@@ -5,21 +5,16 @@
     <awg-modal #modal></awg-modal>
 
     <!-- header -->
-    <awg-heading
-        [title]="reportTitle"
-        [id]="reportId">
-    </awg-heading>
+    <awg-heading [title]="reportTitle" [id]="reportId"></awg-heading>
 
     <!-- sources -->
-    <awg-sources
-        *ngIf="sourceListData"
-        [sourceList]="sourceListData"
-        (openModalRequest)="modal.open($event)"
-        (scrollRequest)="scrollTo($event)">
+    <awg-sources *ngIf="sourceListData"
+        [sourceListData]="sourceListData"
+        (openModalRequest)="modal.open($event)">
     </awg-sources>
 
     <!-- textcritics -->
-    <awg-textcritics
+    <awg-textcritics *ngIf="textcriticsData"
         [textcriticsData]="textcriticsData"
         (openModalRequest)="modal.open($event)"
         (selectSvgFileRequest)="onSvgFileSelect($event)">

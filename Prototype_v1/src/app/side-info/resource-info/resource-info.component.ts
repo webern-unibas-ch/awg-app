@@ -1,12 +1,11 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs/Subscription';
+import { Subscription } from 'rxjs';
 
 import { DataStreamerService } from '@awg-core/services';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-models';
-
 
 @Component({
     selector: 'awg-resource-info',
@@ -14,7 +13,6 @@ import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-mod
     styleUrls: ['./resource-info.component.css']
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
-
     currentIdSubscription: Subscription;
     searchResponseSubscription: Subscription;
 
@@ -25,59 +23,50 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     resultSize: number;
     searchResults: SearchResponseWithQuery;
 
-    constructor(
-        private router: Router,
-        private streamerService: DataStreamerService
-    ) { }
+    constructor(private router: Router, private streamerService: DataStreamerService) {}
 
     ngOnInit() {
         this.getCurrentResourceIdFromSubscription();
     }
 
-
     getCurrentResourceIdFromSubscription(): void {
         // subscribe to streamer service
-        this.currentIdSubscription = this.streamerService.getCurrentResourceId()
-            .subscribe(
-                (id: string) => {
-                    // update id from streamer service
-                    this.currentId = id;
+        this.currentIdSubscription = this.streamerService.getCurrentResourceId().subscribe(
+            (id: string) => {
+                // update id from streamer service
+                this.currentId = id;
 
-                    // get search results
-                    this.getCurrentSearchResultsFromSubscription();
-                },
-                error => {
-                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
-                }
-            );
+                // get search results
+                this.getCurrentSearchResultsFromSubscription();
+            },
+            error => {
+                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
+            }
+        );
     }
-
 
     getCurrentSearchResultsFromSubscription(): void {
         // subscribe to streamer service
-        this.searchResponseSubscription = this.streamerService.getCurrentSearchResults()
-            .subscribe(
-                (res: SearchResponseWithQuery) => {
-                    // update search results from streamer service
-                    this.searchResults = {...res};
+        this.searchResponseSubscription = this.streamerService.getCurrentSearchResults().subscribe(
+            (res: SearchResponseWithQuery) => {
+                // update search results from streamer service
+                this.searchResults = { ...res };
 
-                    // load search results into resourceInfo object
-                    this.resourceInfo.searchResults = {
-                        query: this.searchResults.query,
-                        size: this.searchResults.data.subjects.length,
-                        subjects: this.searchResults.data.subjects
-                    };
+                // load search results into resourceInfo object
+                this.resourceInfo.searchResults = {
+                    query: this.searchResults.query,
+                    size: this.searchResults.data.subjects.length,
+                    subjects: this.searchResults.data.subjects
+                };
 
-                    // find resource with current id in search results
-                    this.findResourceInSearchResultsById(this.currentId);
-
-                },
-                error => {
-                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
-                }
-            );
+                // find resource with current id in search results
+                this.findResourceInSearchResultsById(this.currentId);
+            },
+            error => {
+                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
+            }
+        );
     }
-
 
     findResourceInSearchResultsById(id: string): void {
         // find index position of currentSubject in searchResults.subjects array
@@ -86,7 +75,6 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         // update resource info data
         this.updateSideInfoResources(arrayIndex);
     }
-
 
     updateSideInfoResources(index: number): void {
         // some shortcuts
@@ -109,7 +97,6 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         };
     }
 
-
     findResourceByIndex(index: number): void {
         // find resource id of search result at array position index - 1 ()
         const id = this.resourceInfo.searchResults.subjects[index - 1].obj_id;
@@ -118,7 +105,6 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         this.navigateToResource(id);
     }
 
-
     /*
      * Navigate to resource id
      */
@@ -126,15 +112,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         this.router.navigate(['/data/resource', id]);
     }
 
-
     /*
      * Navigate back to SearchPanel
      */
     navigateToSearchResults(): void {
         const query = this.resourceInfo.searchResults ? this.resourceInfo.searchResults.query : '';
-        this.router.navigate(['/data/search/fulltext', {query: query}]);
+        this.router.navigate(['/data/search/fulltext', { query: query }]);
     }
-
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
@@ -145,7 +129,4 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             this.searchResponseSubscription.unsubscribe();
         }
     }
-
-
-
 }

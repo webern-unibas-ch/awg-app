@@ -22,7 +22,6 @@ import { PropvalJson } from './propval-json';
  */
 @JsonObject
 export class PropJson {
-
     /**
      * HTML attributes for the GUI element
      * used to render this property

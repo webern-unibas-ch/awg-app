@@ -6,10 +6,9 @@ import { BibEntry } from './bibliography-entry';
     name: 'bibFormat'
 })
 export class BibliographyFormatPipe implements PipeTransform {
-
     private entry: BibEntry;
     private formattedEntry: BibEntry;
-    private formatFieldArr: [string] = [
+    private formatFieldArr: Array<string> = [
         'Author',
         'Titel_unselbst',
         'Titel_selbst',
@@ -32,36 +31,33 @@ export class BibliographyFormatPipe implements PipeTransform {
         return this.getFormatFields('output', this.formattedEntry);
     }
 
-
-    private getFormatFields(opt :string, entry: BibEntry): any {
+    private getFormatFields(opt: string, entry: BibEntry): any {
         let output: string | Object = {};
         for (let i = 0; i < this.formatFieldArr.length; i++) {
             if (entry[this.formatFieldArr[i]]) {
                 if (opt === 'edit') {
                     output[this.formatFieldArr[i]] = entry[this.formatFieldArr[i]];
                 } else if (opt === 'output') {
-                    output = (i === 0) ? entry[this.formatFieldArr[i]] : (output + entry[this.formatFieldArr[i]]);
+                    output = i === 0 ? entry[this.formatFieldArr[i]] : output + entry[this.formatFieldArr[i]];
                 }
             }
         }
         return output;
     }
 
-
     private getFilteredValues(entry: BibEntry) {
-        Object.keys(entry).forEach( key  => {
+        Object.keys(entry).forEach(key => {
             entry[key] = this.getFilteredValueByKey(entry, key);
         });
         return entry;
     }
 
-
     private getFilteredValueByKey(entry: BibEntry, key: string): string {
-        let value: string = '';
+        let value = '';
         switch (key) {
-             case 'Kurztitel':
-                 value = this.filterBibTitleShort(entry[key]);
-                 break;
+            case 'Kurztitel':
+                value = this.filterBibTitleShort(entry[key]);
+                break;
             case 'Author':
                 value = this.filterBibAuthor(entry[key]);
                 break;
@@ -100,17 +96,18 @@ export class BibliographyFormatPipe implements PipeTransform {
         return value;
     }
 
-
     private filterBibTitleShort(shortTitle: string) {
-        let title: string = (!shortTitle) ? '' : shortTitle + ' | ';
+        const title: string = !shortTitle ? '' : shortTitle + ' | ';
         return title;
     }
 
     // filter for authors in bibliography
     private filterBibAuthor(authors: string | Object) {
-        if (!authors) return '';
+        if (!authors) {
+            return '';
+        }
 
-        let formattedAuthor: string = '';
+        let formattedAuthor = '';
         if (typeof authors === 'object') {
             // get first author name
             formattedAuthor += this.splitName(authors[0], '');
@@ -118,32 +115,38 @@ export class BibliographyFormatPipe implements PipeTransform {
             const l: number = Object.keys(authors).length;
             for (let i = 1; i < l; i++) {
                 // last name seperated by "und", others by comma
-                let divider = (i === l-1) ? ' und ' : ', ';
+                const divider = i === l - 1 ? ' und ' : ', ';
                 formattedAuthor += this.splitName(authors[i], divider);
             }
         } else if (typeof authors === 'string') {
             // get author name
             formattedAuthor += this.splitName(authors, '');
-        };
-        formattedAuthor += ': '; //ending author string with ":"
+        }
+        formattedAuthor += ': '; // ending author string with ":"
         return formattedAuthor;
     }
 
     // filter for independent titles in bibliography
     private filterBibTitleIndep(indepTitle: string) {
-        let formattedTitle: string = (!indepTitle) ? '' : ((this.entry['Typ'] !== 'Zeitschriftenartikel') ? indepTitle + ', ' : indepTitle);
+        const formattedTitle: string = !indepTitle
+            ? ''
+            : this.entry['Typ'] !== 'Zeitschriftenartikel'
+                ? indepTitle + ', '
+                : indepTitle;
         return formattedTitle;
     }
 
     // filter for dependent titles in bibliography
     private filterBibTitleDep(depTitle: string) {
-        let formattedTitle: string = (!depTitle) ? '' : '„' + depTitle + '“, in: ';
+        const formattedTitle: string = !depTitle ? '' : '„' + depTitle + '“, in: ';
         return formattedTitle;
     }
 
     // filter for editors in bibliography
     private filterBibEditor(editors: string | Object) {
-        if (!editors) return '';
+        if (!editors) {
+            return '';
+        }
 
         let formattedEditor = 'hg. von ';
         if (typeof editors === 'object') {
@@ -153,7 +156,7 @@ export class BibliographyFormatPipe implements PipeTransform {
             const l: number = Object.keys(editors).length;
             for (let i = 1; i < l; i++) {
                 // last name seperated by "und", others by comma
-                let divider = (i === l-1) ? ' und ' : ', '
+                const divider = i === l - 1 ? ' und ' : ', ';
                 formattedEditor += this.splitName(editors[i], divider);
             }
         } else if (typeof editors === 'string') {
@@ -166,27 +169,29 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for unpublished literature in bibliography
     private filterBibUnpublished(unpub: string) {
-        let type: string = (!unpub) ? '' : unpub + ' ';
+        const type: string = !unpub ? '' : unpub + ' ';
         return type;
     }
 
     // filter for publication place in bilbiography
     private filterBibPubPlace(pubPlace: string | Object) {
-        let pub = (this.entry['Verlag']) ? this.entry['Verlag'] : null;
+        const pub = this.entry['Verlag'] ? this.entry['Verlag'] : null;
         if (!pubPlace) {
             // no place but publisher
-            if (pub) console.info('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
+            if (pub) {
+                console.log('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
+            }
             // no place nor publisher ("zeitschriftenartikel")
             return '';
         }
 
-        let out: string = '';
+        let out = '';
         // pubPlace == object
         if (typeof pubPlace === 'object') {
-            let locl = Object.keys(pubPlace).length;
+            const locl = Object.keys(pubPlace).length;
             if (pub) {
                 if (typeof pub === 'object') {
-                    let publ = Object.keys(pub).length;
+                    const publ = Object.keys(pub).length;
                     if (publ === locl) {
                         // publisher == object
                         // case: "Kassel: Bärenreiter, und Stuttgart: Metzler,"
@@ -215,18 +220,16 @@ export class BibliographyFormatPipe implements PipeTransform {
                     out += pubPlace[i] + ', ';
                 }
                 if (!this.entry['unpubliziert']) {
-                    console.info('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
+                    console.log('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
                 }
             }
-        }
-        // pubPlace == String
-        else {
+        } else {
             if (pub) {
                 out += pubPlace + ': ';
                 // publisher == object
                 // case: "Wien: Böhlau, Lafite, "
                 if (typeof pub === 'object') {
-                    let publ = Object.keys(pub).length;
+                    const publ = Object.keys(pub).length;
                     for (let i = 0; i < publ; i++) {
                         out += pub[i] + ', ';
                     }
@@ -239,7 +242,7 @@ export class BibliographyFormatPipe implements PipeTransform {
                 // place without publisher (e.g. "Hochschulschriften")
                 // case: "Wien, "
                 if (!this.entry['unpubliziert']) {
-                    console.info('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
+                    console.log('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
                 }
                 out += pubPlace + ', ';
             }
@@ -254,45 +257,46 @@ export class BibliographyFormatPipe implements PipeTransform {
 
     // filter for date in bibliography
     private filterBibPubDate(pubDate: string) {
-        let date = (this.entry['Typ'] === 'Zeitschriftenartikel') ? ' (' + pubDate + ')' : ' ' + pubDate;
+        const date = this.entry['Typ'] === 'Zeitschriftenartikel' ? ' (' + pubDate + ')' : ' ' + pubDate;
         return date;
     }
 
     // filter for series titles in bibliography
     private filterBibTitleSeries(seriesTitle: string) {
-        let title: string = (!seriesTitle) ? '' : ' (' + seriesTitle + ')';
+        const title: string = !seriesTitle ? '' : ' (' + seriesTitle + ')';
         return title;
     }
 
     // filter for pages in bibliography
     private filterBibPages(pageNum: string | Object) {
-        if (!pageNum) return '';
+        if (!pageNum) {
+            return '';
+        }
 
-        let pages: string = '';
+        let pages = '';
         if (typeof pageNum === 'object') {
-            let l: number = Object.keys(pageNum).length;
+            const l: number = Object.keys(pageNum).length;
             for (let i = 0; i < l; i++) {
-                let prefix: string = (i === 0) ? ', S. ' : ', ';
+                const prefix: string = i === 0 ? ', S. ' : ', ';
                 pages += prefix + pageNum[i];
             }
         } else if (typeof pageNum === 'string' && pageNum) {
             pages = ', S. ' + pageNum;
-        };
+        }
         return pages;
     }
 
     // splits array with names and defines the order of items (according to bibliography style)
-    private splitName(name, pre_delimiter){
+    private splitName(name, pre_delimiter) {
         let tmp = [];
         if (name.match(',')) {
             tmp = name.split(', ');
-            //changes positions of first and last name
-            //look here: http://stackoverflow.com/a/5306832
+            // changes positions of first and last name
+            // look here: http://stackoverflow.com/a/5306832
             tmp.splice(1, 0, tmp.splice(0, 1)[0]);
             return pre_delimiter + tmp[0] + ' ' + tmp[1];
         } else {
             return pre_delimiter + name;
         }
     }
-
 }

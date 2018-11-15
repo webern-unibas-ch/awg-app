@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { Meta } from '@awg-core/core-models';
-import { MetaService } from '@awg-core/services';
+import { CoreService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-edition-info',
@@ -9,21 +9,15 @@ import { MetaService } from '@awg-core/services';
     styleUrls: ['./edition-info.component.css']
 })
 export class EditionInfoComponent implements OnInit {
+    metaData: Meta;
 
-    public meta: Meta;
-    public editors: string;
-    public lastModified: string;
-
-    constructor(private metaService: MetaService) { }
+    constructor(private coreService: CoreService) {}
 
     ngOnInit() {
         this.provideMetaData();
     }
 
-    public provideMetaData(): void {
-        this.meta = this.metaService.getMetaData();
-        this.editors = this.meta.edition.editors;
-        this.lastModified = this.meta.edition.lastModified;
+    provideMetaData(): void {
+        this.metaData = this.coreService.getMetaData();
     }
-
 }

@@ -5,21 +5,17 @@ import { BibliographyComponent } from './bibliography.component';
 import { BibliographyDetailComponent } from './bibliography-detail/bibliography-detail.component';
 
 const bibliographyRoutes: Routes = [
-    { path: '', component: BibliographyComponent ,
-        children: [
-            { path: 'detail/:id', component: BibliographyDetailComponent }
-            ]
+    {
+        path: '',
+        component: BibliographyComponent,
+        children: [{ path: 'detail/:id', component: BibliographyDetailComponent }]
     }
 ];
 
 @NgModule({
-    imports: [ RouterModule.forChild(bibliographyRoutes)],
-    exports: [ RouterModule ]
-
+    imports: [RouterModule.forChild(bibliographyRoutes)],
+    exports: [RouterModule]
 })
-export class BibliographyRoutingModule { }
+export class BibliographyRoutingModule {}
 
-export const routedComponents = [
-    BibliographyComponent,
-    BibliographyDetailComponent
-];
+export const routedComponents = [BibliographyComponent, BibliographyDetailComponent];

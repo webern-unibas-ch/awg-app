@@ -6,7 +6,6 @@ import { ContactViewComponent } from './views/contact-view/contact-view.componen
 import { StructureViewComponent } from './views/structure-view/structure-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
 
-
 const appRoutes: Routes = [
     // eager loaded
     { path: 'home', component: HomeViewComponent },
@@ -14,10 +13,10 @@ const appRoutes: Routes = [
     { path: 'contact', component: ContactViewComponent },
 
     // lazy loaded
-    { path: 'edition', loadChildren: './views/edition-view/edition.module#EditionModule'},
+    { path: 'edition', loadChildren: './views/edition-view/edition.module#EditionModule' },
     { path: 'editions', redirectTo: 'edition', pathMatch: 'full' },
 
-    { path: 'data', loadChildren: './views/data-view/data.module#DataModule'},
+    { path: 'data', loadChildren: './views/data-view/data.module#DataModule' },
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -26,14 +25,21 @@ const appRoutes: Routes = [
 
 @NgModule({
     // TODO: rm route tracing for prodcution
-    imports: [ RouterModule.forRoot(appRoutes)], // , {enableTracing: true}
-    exports: [ RouterModule ]
+    imports: [
+        RouterModule.forRoot(appRoutes, {
+            anchorScrolling: 'enabled',
+            scrollPositionRestoration: 'enabled',
+            onSameUrlNavigation: 'reload'
+            // enableTracing: true
+        })
+    ],
+    exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
 
 export const routedComponents = [
     ContactViewComponent,
     HomeViewComponent,
     StructureViewComponent,
-    PageNotFoundViewComponent,
+    PageNotFoundViewComponent
 ];

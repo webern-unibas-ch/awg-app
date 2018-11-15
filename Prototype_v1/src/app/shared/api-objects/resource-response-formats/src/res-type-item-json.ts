@@ -22,7 +22,6 @@ import { PropItemForResTypeJson } from './prop-item-for-res-type-json';
  */
 @JsonObject
 export class ResTypeItemJson {
-
     /**
      * IRI of the resource class
      * @param id: KnoraIRI

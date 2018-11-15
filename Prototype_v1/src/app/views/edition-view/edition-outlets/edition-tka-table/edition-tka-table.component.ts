@@ -8,9 +8,12 @@ import { Textcritics } from '../../models/index';
     styleUrls: ['./edition-tka-table.component.css']
 })
 export class EditionTkaTableComponent implements OnInit {
-    @Input() selectedTextcritics: Textcritics[];
-    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    selectedTextcritics: Textcritics[];
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
     ref: EditionTkaTableComponent;
 
@@ -18,9 +21,7 @@ export class EditionTkaTableComponent implements OnInit {
         this.ref = this;
     }
 
-
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     openModal(id: string) {
         this.openModalRequest.emit(id);
@@ -29,5 +30,4 @@ export class EditionTkaTableComponent implements OnInit {
     selectSvgFile(id: string): void {
         this.selectSvgFileRequest.emit(id);
     }
-
 }

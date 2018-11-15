@@ -16,14 +16,12 @@ import { JsonObject, JsonProperty } from 'json2typescript';
 import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-components';
 import { NodeItemJson } from './node-item-json';
 
-
 /**
  * Represents a selection item
  * @used by SelectionJson
  */
 @JsonObject
 export class SelectionItemJson extends NodeItemJson {
-
     /**
      * The label_ok value
      * @param label_ok: boolean
@@ -39,14 +37,12 @@ export class SelectionItemJson extends NodeItemJson {
     public order: string = undefined;
 }
 
-
 /**
  * Represents a selection response
  * @used by ---
  */
 @JsonObject
 export class SelectionJson extends BasicResponseJson {
-
     /**
      * The selection array
      * @param selection: SelectionItemJson[]

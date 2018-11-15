@@ -21,7 +21,6 @@ import { ProtocolOptions, StringOrNumber } from './basic-type-aliases';
  */
 @JsonObject
 export class LocationItemJson {
-
     /**
      * Duration of a movie or an audio file
      * @param duration: number | string
@@ -80,4 +79,3 @@ export class LocationItemJson {
     @JsonProperty('protocol', String)
     public protocol: ProtocolOptions = undefined;
 }
-

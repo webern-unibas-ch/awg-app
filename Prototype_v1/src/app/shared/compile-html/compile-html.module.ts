@@ -10,50 +10,27 @@
  *
  ************************************************/
 
-import { NgModule, ModuleWithProviders, } from '@angular/core';
-import { Compiler } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { BrowserModule } from '@angular/platform-browser';
-/*
-import {JitCompilerFactory} from '@angular/compiler';
-export function createJitCompiler () {
-    return new JitCompilerFactory([{useDebug: false, useJit: true}]).createCompiler();
-}
-*/
 
-//import { CompileService, CompileServiceConfig,    } from "./CompileService";
-import { CompileHtmlAttribute } from './compile-html.attribute';
-
+import { CompileHtmlComponent } from './compile-html.component';
 
 export class CompileServiceConfig {
-    module: NgModule
+    module: NgModule;
 }
 
 // exports = component
 @NgModule({
-    imports: [
-        CommonModule
-    ],
-    declarations: [
-        CompileHtmlAttribute,
-    ],
-    providers: [
-//        CompileService,
-//        { provide: Compiler, useFactory:  createJitCompiler},
-    ],
-    exports: [
-        CompileHtmlAttribute,
-    ],
-    entryComponents: [
-    ]
+    imports: [CommonModule],
+    declarations: [CompileHtmlComponent],
+    exports: [CompileHtmlComponent],
+    entryComponents: []
 })
 export class CompileHtmlModule {
-    static forRoot(config: CompileServiceConfig) : ModuleWithProviders {
+    static forRoot(config: CompileServiceConfig): ModuleWithProviders {
         return {
             ngModule: CompileHtmlModule,
-            providers: [
-                {provide: CompileServiceConfig, useValue: config }
-            ]
+            providers: [{ provide: CompileServiceConfig, useValue: config }]
         };
     }
 }

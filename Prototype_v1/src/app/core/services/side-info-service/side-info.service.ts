@@ -1,17 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs/Subject';
-import { Observable } from 'rxjs/Observable';
 
-import { SearchInfo } from '@awg-side-info/side-info-models/index';
+import { Subject, Observable } from 'rxjs';
 
-@Injectable()
+import { SearchInfo } from '@awg-side-info/side-info-models';
+
+@Injectable({
+    providedIn: 'root'
+})
 export class SideInfoService {
+    private sideInfoData: Subject<any> = new Subject<any>(); // observable string source
+    private sideInfoData$ = this.sideInfoData.asObservable(); // Observable string stream for subscription
 
-    private sideInfoData: Subject<any> = new Subject<any>();   // observable string source
-    private sideInfoData$ = this.sideInfoData.asObservable();   // Observable string stream for subscription
-
-    private searchInfoTitle: Subject<any> = new Subject<string>();   // observable string source
-    private searchInfoTitle$ = this.searchInfoTitle.asObservable();   // Observable string stream for subscription
+    private searchInfoTitle: Subject<any> = new Subject<string>(); // observable string source
+    private searchInfoTitle$ = this.searchInfoTitle.asObservable(); // Observable string stream for subscription
 
     /**********************************
      **
@@ -25,7 +26,6 @@ export class SideInfoService {
     public getSearchInfoTitle(): Observable<string> {
         return this.searchInfoTitle$;
     }
-
 
     /**********************************
      **
@@ -44,5 +44,4 @@ export class SideInfoService {
         console.log('updateSearchInfoTitle: title: ', title);
         this.searchInfoTitle.next(title);
     }
-
 }

@@ -28,13 +28,10 @@ import { ResourceLabelSearchItemJson } from './resource-label-search-item-json';
  */
 @JsonObject
 export class ResourceLabelSearchResponseJson extends BasicResponseJson {
-
     /**
      * ...
      * @param resources: Array<ResourceLabelSearchItem>
      */
     @JsonProperty('resources', [ResourceLabelSearchItemJson])
     public resources: ResourceLabelSearchItemJson[] = undefined;
-
-
 }

@@ -12,9 +12,13 @@
  * License along with SALSAH.  If not, see <http://www.gnu.org/licenses/>.
  * */
 
-import { Any, JsonConvert, JsonObject, JsonProperty} from 'json2typescript';
-import { KnoraIRI, KnoraRights, LocationItemJson, StringOrNumber } from '@awg-shared/api-objects/basic-message-components';
-
+import { Any, JsonConvert, JsonObject, JsonProperty } from 'json2typescript';
+import {
+    KnoraIRI,
+    KnoraRights,
+    LocationItemJson,
+    StringOrNumber
+} from '@awg-shared/api-objects/basic-message-components';
 
 @JsonObject
 export class PropertyJsonValue {
@@ -28,14 +32,12 @@ export class PropertyJsonValue {
     public resource_reference: string[] = undefined;
 }
 
-
 /**
  * Represents a property (parallel arrays)
  * @used by ResourceFullResponseJson
  */
 @JsonObject
 export class PropertyJson {
-
     /**
      * HTML attributes for the GUI element used to render this property
      * @param attributes: string | null
@@ -167,10 +169,9 @@ export class PropertyJson {
     @JsonProperty('valuetype_id', String)
     public valuetype_id: string = undefined;
 
-
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
-            let jsonConvert: JsonConvert = new JsonConvert();
+            const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
         } catch (e) {
             return [];
@@ -178,7 +179,7 @@ export class PropertyJson {
     }
     public getValuesAsStrings(): string[] {
         try {
-            let jsonConvert: JsonConvert = new JsonConvert();
+            const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, String);
         } catch (e) {
             return [];
@@ -186,11 +187,10 @@ export class PropertyJson {
     }
     public getValuesAsNumbers(): number[] {
         try {
-            let jsonConvert: JsonConvert = new JsonConvert();
+            const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, Number);
         } catch (e) {
             return [];
         }
     }
-
 }

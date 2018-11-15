@@ -16,20 +16,23 @@
  * Error class used as API response in ApiService
  */
 export class ApiServiceError {
-
     /**
      * Status number
      */
-    status: number = 0;
+    status = 0;
 
     /**
      * Status text
      */
-    statusText: string = '';
+    statusText = '';
 
     /**
      * API url
      */
-    route: string = '';
+    url = '';
 
+    /**
+     * Additional error info
+     */
+    errorInfo = '';
 }

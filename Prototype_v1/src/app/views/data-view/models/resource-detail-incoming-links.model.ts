@@ -16,6 +16,6 @@ export class ResourceDetailIncomingLinks {
             id: incoming.resinfo.restype_id,
             label: incoming.resinfo.restype_label,
             icon: incoming.resinfo.restype_iconsrc
-        }
-    };
+        };
+    }
 }

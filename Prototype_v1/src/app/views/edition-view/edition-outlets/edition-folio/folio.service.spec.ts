@@ -1,6 +1,6 @@
-import {TestBed, inject} from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 
-import {FolioService} from './folio.service';
+import { FolioService } from './folio.service';
 
 describe('FolioService', () => {
     beforeEach(() => {

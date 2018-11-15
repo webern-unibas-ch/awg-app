@@ -3,8 +3,7 @@
 
 <p>Lade ... {{ bibList?.length }} von {{ bibListResponse?.nhits }} Einträgen</p>
 
-<awg-bibliography-list
-    *ngIf="isBibListLoaded && bibList"
+<awg-bibliography-list *ngIf="isBibListLoaded && bibList"
     [bibList]="bibList"
     (selectItemRequest)="onItemSelect($event)">
 </awg-bibliography-list>

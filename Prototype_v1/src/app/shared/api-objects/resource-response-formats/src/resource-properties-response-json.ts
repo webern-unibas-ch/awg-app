@@ -24,7 +24,6 @@ import { PropJson } from './prop-json';
  */
 @JsonObject
 export class ResourcePropertiesResponseJson extends BasicResponseJson {
-
     /**
      * A map of property type IRIs to property instances
      * @param properties: object

@@ -23,7 +23,6 @@ import { RestypeJson } from './restype-json';
  */
 @JsonObject
 export class ResourceTypeResponseJson extends BasicResponseJson {
-
     /**
      * Represents information about the requested resource class
      * @param restype_info: restype

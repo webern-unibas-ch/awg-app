@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { Source, TextcriticsList } from '@awg-views/edition-view/models';
+import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 import { DataService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -10,55 +10,32 @@ import { DataService } from '@awg-views/edition-view/services';
     styleUrls: ['./report.component.css']
 })
 export class ReportComponent implements OnInit {
-    public reportTitle = 'Kritischer Bericht';
-    public reportId = 'report';
+    reportTitle = 'Kritischer Bericht';
+    reportId = 'report';
 
-    public sourceListData: Source[];
-    public textcriticsData: TextcriticsList;
+    sourceListData: SourceList;
+    textcriticsData: TextcriticsList;
     private errorMessage: string = undefined;
 
-    constructor(
-        private router: Router,
-        private route: ActivatedRoute,
-        private dataService: DataService
-    ) { }
+    constructor(private router: Router, private route: ActivatedRoute, private dataService: DataService) {}
 
     ngOnInit() {
         this.getData();
-        this.scrollTo();
     }
-
 
     getData() {
-        this.dataService.getEditionReportData()
-            .subscribe((data: [Source[], TextcriticsList]) => {
-                    this.sourceListData = data[0];
-                    this.textcriticsData = data[1];
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
+        this.dataService.getEditionReportData().subscribe(
+            (data: [SourceList, TextcriticsList]) => {
+                this.sourceListData = data[0];
+                this.textcriticsData = data[1];
+            },
+            error => {
+                this.errorMessage = <any>error;
+            }
+        );
     }
-
 
     onSvgFileSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
-
-
-    private scrollTo(id?: string) {
-        console.log('Report: scrollTo(id): ', id);
-        // TODO - HACK: remove click once https://github.com/angular/angular/issues/6595 is fixed
-        setTimeout(() => {
-            this.route.fragment.subscribe(f => {
-                        console.log('Report: route#fragment: ', f);
-                        if (!f) { return; }
-                        const element = document.querySelector('#' + f);
-                        if (element) { element.scrollIntoView(); }
-                    }
-                );
-        });
-    }
-
 }

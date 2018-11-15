@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { SharedModule} from '@awg-shared/shared.module';
+import { SharedModule } from '@awg-shared/shared.module';
 
 import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
 
@@ -7,14 +7,12 @@ import {
     SourcesComponent,
     SourceDescriptionComponent,
     SourceEvaluationComponent,
-    SourceListComponent } from './sources';
+    SourceListComponent
+} from './sources';
 import { TextcriticsComponent } from './textcritics';
 
 @NgModule({
-    imports: [
-        SharedModule,
-        EditionTkaTableModule
-    ],
+    imports: [SharedModule, EditionTkaTableModule],
     declarations: [
         SourcesComponent,
         SourceDescriptionComponent,
@@ -30,4 +28,4 @@ import { TextcriticsComponent } from './textcritics';
         TextcriticsComponent
     ]
 })
-export class ReportModule { }
+export class ReportModule {}

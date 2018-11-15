@@ -1,3 +1,9 @@
+export enum EditionSvgOverlayTypes {
+    measure = 'Takt',
+    system = 'System',
+    item = 'Anmerkung'
+}
+
 export class EditionSvgOverlay {
     type: EditionSvgOverlayTypes;
     id: string;
@@ -6,14 +12,8 @@ export class EditionSvgOverlay {
     constructor(type: EditionSvgOverlayTypes, id: string) {
         this.type = type;
         this.id = id;
-        if (!this.typeLabel) { this.typeLabel = EditionSvgOverlayTypes[type]; }
+        if (!this.typeLabel) {
+            this.typeLabel = EditionSvgOverlayTypes[type];
+        }
     }
 }
-
-
-enum EditionSvgOverlayTypes {
-    measure = 'Takt',
-    system = 'System',
-    item = 'Anmerkung',
-}
-

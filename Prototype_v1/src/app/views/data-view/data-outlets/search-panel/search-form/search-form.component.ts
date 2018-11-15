@@ -1,7 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { AbstractControl, FormBuilder, FormGroup, Validators } from '@angular/forms';
-import 'rxjs/add/operator/debounceTime';
-import 'rxjs/add/operator/distinctUntilChanged';
+import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+
+import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
 @Component({
     selector: 'awg-search-form',
@@ -9,46 +9,44 @@ import 'rxjs/add/operator/distinctUntilChanged';
     styleUrls: ['./search-form.component.css']
 })
 export class SearchFormComponent implements OnInit {
-    @Input() searchValue: string;
-    @Output() submitRequest: EventEmitter<any> = new EventEmitter();
+    @Input()
+    searchValue: string;
+    @Output()
+    submitRequest: EventEmitter<string> = new EventEmitter();
 
     searchForm: FormGroup;
-    searchValueControl: AbstractControl;
+    searchValueControl: AbstractControl = new FormControl();
 
-    constructor(
-        private fb: FormBuilder
-    ) { }
-
+    constructor(private fb: FormBuilder) {}
 
     ngOnInit() {
         this.buildForm(this.searchValue);
     }
 
-
     buildForm(searchValue: string) {
         this.searchForm = this.fb.group({
-            'searchValue': [searchValue || '', Validators.compose([
-                Validators.required,
-                Validators.minLength(3)
-            ])]
+            searchValueControl: [searchValue || '', Validators.compose([Validators.required, Validators.minLength(3)])]
         });
 
-        this.searchValueControl = this.searchForm.controls['searchValue'];
+        console.log('searchform', this.searchForm);
+        // this.searchValueControl.setValue(searchValue);
+
+        console.log('searchValueControl', this.searchValueControl);
 
         // checks for changing values
         this.searchValueControl.valueChanges
-            .filter(x => x.length >= 3)
-            .debounceTime(500)
-            .distinctUntilChanged()
+            .pipe(
+                filter(x => x.length >= 3),
+                debounceTime(500),
+                distinctUntilChanged()
+            )
             .subscribe((query: string) => {
                 this.onSearch(query);
             });
     }
 
-
     // submit query to search panel
     onSearch(query: string) {
         this.submitRequest.emit(query);
     }
-
 }

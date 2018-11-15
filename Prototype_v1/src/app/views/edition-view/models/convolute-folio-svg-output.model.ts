@@ -7,7 +7,6 @@ import {
     FolioCalculation
 } from './folio-calculation.model';
 
-
 export class ConvoluteFolioSvgFolio {
     folioId: string;
     upperLeftCorner: FolioCalculationPoint;
@@ -28,7 +27,6 @@ export class ConvoluteFolioSvgContentItem {
     lineArray: FolioCalculationLine[];
 }
 
-
 export class ConvoluteFolioSvgOutput {
     sheet: ConvoluteFolioSvgFolio;
     systems: ConvoluteFolioSvgSystems;
@@ -40,25 +38,23 @@ export class ConvoluteFolioSvgOutput {
         this.contentItemsArray = this.getContentItemsArray(calculation.contentItemsArray);
     }
 
-
     getSheet(calculatedSheet: FolioCalculationSheet): ConvoluteFolioSvgFolio {
         let outputSheet = new ConvoluteFolioSvgFolio();
 
-        return outputSheet = {
+        return (outputSheet = {
             folioId: calculatedSheet.folioId,
             upperLeftCorner: calculatedSheet.upperLeftCorner,
             lowerRightCorner: calculatedSheet.lowerRightCorner
-        };
+        });
     }
-
 
     getSystems(calculatedSytems: FolioCalculationSystems): ConvoluteFolioSvgSystems {
         let outputSystems = new ConvoluteFolioSvgSystems();
 
-        return outputSystems = {
+        return (outputSystems = {
             lineLabelArray: calculatedSytems.lineLabelArray,
             lineArrays: calculatedSytems.lineArrays
-        };
+        });
     }
 
     getContentItemsArray(calculatedContentItems: FolioCalculationContentItem[]): ConvoluteFolioSvgContentItem[] {
@@ -80,5 +76,4 @@ export class ConvoluteFolioSvgOutput {
         });
         return outputContentItemsArray;
     }
-
 }

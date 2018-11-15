@@ -9,25 +9,24 @@ import { ResourceDetailGroupedIncomingLinks } from '@awg-views/data-view/models'
     styleUrls: ['./linkedobjects.component.css']
 })
 export class ResourceDetailHtmlContentLinkedobjectsComponent implements OnInit {
-    @Input() incoming: ResourceDetailGroupedIncomingLinks;
-    @Output() resourceRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    incoming: ResourceDetailGroupedIncomingLinks;
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor(private conversionService: ConversionService) { }
+    constructor(private conversionService: ConversionService) {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 
     getNestedArraysLength(obj: ResourceDetailGroupedIncomingLinks): number {
         // sum up length of all arrays nested in linked objects object
         return this.conversionService.getNestedArraysLength(obj);
     }
 
-
     navigateToResource(id?: string): void {
-        if (id) { id.toString(); }
+        if (id) {
+            id.toString();
+        }
         this.resourceRequest.emit(id);
     }
-
-
 }

@@ -22,4 +22,4 @@
 
 import { SessionJson } from './src/session-json';
 
-export { SessionJson }
+export { SessionJson };

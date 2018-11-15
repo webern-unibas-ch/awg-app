@@ -1,6 +1,7 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 
-import { Meta } from '@awg-core/core-models';
+import { Logos, Meta } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-footer',
@@ -8,10 +9,17 @@ import { Meta } from '@awg-core/core-models';
     styleUrls: ['./footer.component.css']
 })
 export class FooterComponent implements OnInit {
-    @Input() meta: Meta;
+    metaData: Meta;
+    logos: Logos;
 
-    constructor() { }
+    constructor(private coreService: CoreService) {}
 
-    ngOnInit() { }
+    ngOnInit() {
+        this.provideMetaData();
+    }
 
+    provideMetaData(): void {
+        this.metaData = this.coreService.getMetaData();
+        this.logos = this.coreService.getLogos();
+    }
 }

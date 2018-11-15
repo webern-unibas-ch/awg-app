@@ -30,7 +30,6 @@ import { ThumbMaxJson } from './thumb-max-json';
  */
 @JsonObject
 export class SearchResponseJson extends BasicResponseJson {
-
     /**
      * Total number of hits
      * @param nhits: string | number

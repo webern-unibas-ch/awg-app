@@ -22,7 +22,6 @@ import { PropertyDefinitionJson } from './property-definition-json';
  */
 @JsonObject
 export class RestypeJson {
-
     /**
      * Description of the resource class
      * @param description: string

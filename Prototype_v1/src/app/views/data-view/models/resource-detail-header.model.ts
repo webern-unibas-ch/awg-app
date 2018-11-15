@@ -13,8 +13,13 @@ export class ResourceDetailHeader {
      *
      *****************************************/
     private static replaceParagraphTags(str: string): string {
-        if (!str) { return; }
-        str = str.replace(/<\/p><p>/g, '<br />').replace(/<p>|<\/p>/g, '').replace(str, '«$&»');
+        if (!str) {
+            return;
+        }
+        str = str
+            .replace(/<\/p><p>/g, '<br />')
+            .replace(/<p>|<\/p>/g, '')
+            .replace(str, '«$&»');
         return str;
     }
 
@@ -33,10 +38,12 @@ export class ResourceDetailHeader {
         // header for accessible objects
         if (typeof info !== 'undefined') {
             const id = data.resdata.res_id;
-            if (id !== currentId ) {
-                console.error(`ERROR: ` +
-                    `ResourceDetailHeader => ` +
-                    `currentId ${currentId} not matching data.resdata.res_id ${id}`);
+            if (id !== currentId) {
+                console.error(
+                    `ERROR: ` +
+                        `ResourceDetailHeader => ` +
+                        `currentId ${currentId} not matching data.resdata.res_id ${id}`
+                );
                 return;
             }
 
@@ -91,7 +98,6 @@ export class ResourceDetailHeader {
                 // DEFAULT
                 default:
                     this.title = info.restype_description;
-
             }
         } else {
             // header for undefined & restricted object
@@ -100,10 +106,9 @@ export class ResourceDetailHeader {
         }
 
         // additional header for restricted objects
-        if (data.access === 'NO_ACCESS' ){
+        if (data.access === 'NO_ACCESS') {
             this.type = 'restricted';
             this.title = 'Kein Zugriff auf dieses Objekt möglich';
         }
     }
 }
-

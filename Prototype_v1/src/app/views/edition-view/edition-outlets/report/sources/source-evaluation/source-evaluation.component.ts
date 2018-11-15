@@ -6,29 +6,22 @@ import { Component, EventEmitter, OnInit, Output } from '@angular/core';
     styleUrls: ['./source-evaluation.component.css']
 })
 export class SourceEvaluationComponent implements OnInit {
-    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
-    @Output() scrollRequest: EventEmitter<any> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    scrollRequest: EventEmitter<any> = new EventEmitter();
 
-    showEvaluationPanel: boolean = true;
+    showEvaluationPanel = true;
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
-
+    ngOnInit() {}
 
     openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
     }
 
-
-    scrollTo(id: string) {
-        this.scrollRequest.emit(id);
-    }
-
-
     togglePanel(): boolean {
-        return this.showEvaluationPanel = !this.showEvaluationPanel;
+        return (this.showEvaluationPanel = !this.showEvaluationPanel);
     }
-
 }

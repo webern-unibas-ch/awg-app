@@ -20,7 +20,6 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  */
 @JsonObject
 export class ThumbMaxJson {
-
     /**
      * X dimension of an image representation
      * @param nx: number

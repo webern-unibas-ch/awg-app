@@ -22,7 +22,6 @@ import { NodeItemJson } from './node-item-json';
  */
 @JsonObject
 export class HlistItemJson extends NodeItemJson {
-
     /**
      * The hlist level
      * @param level: string
@@ -31,14 +30,12 @@ export class HlistItemJson extends NodeItemJson {
     public level: string = undefined;
 }
 
-
 /**
  * Represents a Hlist response
  * @used by ---
  */
 @JsonObject
 export class HlistJson extends BasicResponseJson {
-
     /**
      * The selection array
      * @param selection: SelectionItemJson[]

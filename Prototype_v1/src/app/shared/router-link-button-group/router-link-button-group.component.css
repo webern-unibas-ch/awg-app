@@ -10,7 +10,8 @@ div.btn-group.btn-group-justified.btn-group-responsive {
     }
 
     /* making the border-radius correct */
-    .btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child, .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
+    .btn-group > .btn-group:first-child:not(:last-child) > .btn:last-child,
+    .btn-group > .btn-group:first-child:not(:last-child) > .dropdown-toggle {
         border-radius: 6px 6px 0 0;
     }
     .btn-group > .btn-group:not(:first-child):not(:last-child) > .btn {

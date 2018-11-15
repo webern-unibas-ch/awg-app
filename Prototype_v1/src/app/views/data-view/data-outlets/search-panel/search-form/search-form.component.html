@@ -17,8 +17,7 @@
                        id="searchInput"
                        class="form-control"
                        placeholder="Volltextsuche in der Webern-Datenbank …"
-                       [formControl]="searchValueControl"
-                       [(ngModel)]="searchValue">
+                       [formControl]="searchValueControl">
             </div>
             <div *ngIf="searchValueControl.invalid || searchValueControl.hasError('required')" class="alert alert-danger">
                 Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!

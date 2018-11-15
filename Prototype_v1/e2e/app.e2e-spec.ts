@@ -1,10 +1,10 @@
-import { WebernLiveApp2Page } from './app.po';
+import { AwgAppPage } from './app.po';
 
-describe('webern-live-app2 App', () => {
-    let page: WebernLiveApp2Page;
+describe('awg-app App', () => {
+    let page: AwgAppPage;
 
     beforeEach(() => {
-        page = new WebernLiveApp2Page();
+        page = new AwgAppPage();
     });
 
     it('should display message saying app works', () => {

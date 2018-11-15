@@ -6,14 +6,16 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
     styleUrls: ['./source-description.component.css']
 })
 export class SourceDescriptionComponent implements OnInit {
-    @Input() showDescriptionPanel: boolean;
-    @Output() toggleDescriptionPanelRequest: EventEmitter<boolean> = new EventEmitter();
-    @Output() openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Input()
+    showDescriptionPanel: boolean;
+    @Output()
+    toggleDescriptionPanelRequest: EventEmitter<boolean> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() { }
+    constructor() {}
 
-    ngOnInit() {
-    }
+    ngOnInit() {}
 
     openModal(identifier: string) {
         this.openModalRequest.emit(identifier);
@@ -22,5 +24,4 @@ export class SourceDescriptionComponent implements OnInit {
     togglePanel(): void {
         this.toggleDescriptionPanelRequest.emit(this.showDescriptionPanel);
     }
-
 }
