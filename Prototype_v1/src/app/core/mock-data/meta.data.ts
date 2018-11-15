@@ -8,7 +8,8 @@ export const METADATA: Meta = {
         versionReleaseDate: '1. Oktober 2018'
     },
     edition: {
-        editors: '<a href="http://anton-webern.ch/index.php?id=3" target="_blank">Thomas Ahrend</a>',
+        editors:
+            '<a href="http://anton-webern.ch/index.php?id=3" target="_blank" ref="noopener noreferrer">Thomas Ahrend</a>',
         lastModified: '29. Januar 2016'
     },
     structure: {

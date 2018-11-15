@@ -34,14 +34,20 @@ export class GeoNames {
             this.gnid +
             '" title="' +
             this.longLabel +
-            '" target="_blank">' +
+            '" target="_blank" ref="noopener noreferrer">' +
             geoIcon +
             '</a>';
         let wikiLink = '';
         if (this.wiki) {
             const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + this.wiki + '" />';
             wikiLink =
-                '<a href="http://' + this.wiki + '" title="' + this.wiki + '" target="_blank">' + wikiIcon + '</a>';
+                '<a href="http://' +
+                this.wiki +
+                '" title="' +
+                this.wiki +
+                '" target="_blank" ref="noopener noreferrer">' +
+                wikiIcon +
+                '</a>';
         }
         this.html = this.shortLabel + ' ' + geoLink + wikiLink;
     }

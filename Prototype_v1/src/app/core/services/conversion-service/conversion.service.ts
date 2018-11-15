@@ -625,10 +625,10 @@ export class ConversionService extends ApiService {
         // check for link in 2nd part of "splitstr"
         if ((linkStr = regExLink.exec(splitStr[1]))) {
             // ... link with <a> tag
-            tmpStr = '<a target="_blank" ' + linkStr[1] + '>' + nameStr + '</a>';
+            tmpStr = '<a target="_blank" ref="noopener noreferrer" ' + linkStr[1] + '>' + nameStr + '</a>';
         } else if (nameStr !== 'DOI') {
             // ... <a> tag is missing, add it
-            tmpStr = '<a target="_blank" href="' + splitStr[1] + '">' + nameStr + '</a>';
+            tmpStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitStr[1] + '">' + nameStr + '</a>';
         } else {
             // no links, pure string
             tmpStr = nameStr + ': ' + splitStr[1];
