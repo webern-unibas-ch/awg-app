@@ -39,6 +39,8 @@ For more details, see
 -   https://update.angular.io/
 -   https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/v6/migration.md
 
+Only minor version bump.
+
 <a name="0.2.0"></a>
 
 # [0.2.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.3...v0.2.0) (2018-10-01)

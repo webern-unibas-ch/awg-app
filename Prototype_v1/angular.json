@@ -3,7 +3,7 @@
     "version": 1,
     "newProjectRoot": "projects",
     "projects": {
-        "webern-live-app2": {
+        "awg-app": {
             "root": "",
             "sourceRoot": "src",
             "projectType": "application",
@@ -54,18 +54,18 @@
                 "serve": {
                     "builder": "@angular-devkit/build-angular:dev-server",
                     "options": {
-                        "browserTarget": "webern-live-app2:build"
+                        "browserTarget": "awg-app:build"
                     },
                     "configurations": {
                         "production": {
-                            "browserTarget": "webern-live-app2:build:production"
+                            "browserTarget": "awg-app:build:production"
                         }
                     }
                 },
                 "extract-i18n": {
                     "builder": "@angular-devkit/build-angular:extract-i18n",
                     "options": {
-                        "browserTarget": "webern-live-app2:build"
+                        "browserTarget": "awg-app:build"
                     }
                 },
                 "test": {
@@ -100,7 +100,7 @@
                 }
             }
         },
-        "webern-live-app2-e2e": {
+        "awg-app-e2e": {
             "root": "e2e",
             "sourceRoot": "e2e",
             "projectType": "application",
@@ -109,7 +109,7 @@
                     "builder": "@angular-devkit/build-angular:protractor",
                     "options": {
                         "protractorConfig": "./protractor.conf.js",
-                        "devServerTarget": "webern-live-app2:serve"
+                        "devServerTarget": "awg-app:serve"
                     }
                 },
                 "lint": {
@@ -122,7 +122,7 @@
             }
         }
     },
-    "defaultProject": "webern-live-app2",
+    "defaultProject": "awg-app",
     "schematics": {
         "@schematics/angular:component": {
             "prefix": "awg",

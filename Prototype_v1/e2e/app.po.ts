@@ -1,6 +1,6 @@
 import { browser, by, element } from 'protractor';
 
-export class WebernLiveApp2Page {
+export class AwgAppPage {
     navigateTo() {
         return browser.get('/');
     }

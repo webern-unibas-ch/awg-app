@@ -4,8 +4,8 @@ export const METADATA: Meta = {
     page: {
         yearStart: 2015,
         yearRecent: new Date().getFullYear(),
-        version: '0.2.0', // RELEASE 01.10.2018
-        versionReleaseDate: '1. Oktober 2018'
+        version: '0.3.0', // RELEASE 15.11.2018
+        versionReleaseDate: '15. November 2018'
     },
     edition: {
         editors:
