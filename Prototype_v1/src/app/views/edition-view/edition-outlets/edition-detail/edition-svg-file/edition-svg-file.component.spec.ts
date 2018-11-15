@@ -45,8 +45,8 @@ describe('EditionSvgFileComponent', () => {
             // mock the inputs supplied by the parent component
             expectedSvgFile = {
                 id: 'Aa:SkI/2',
-                svg: 'assets/img/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/SkI_2n_small.jpg',
+                svg: 'assets/img/edition/SkI_2n_small_cut_opt.svg',
+                image: 'assets/img/edition/SkI_2_small.jpg',
                 alt: 'Aa:SkI/2'
             };
             const type = EditionSvgOverlayTypes.measure;

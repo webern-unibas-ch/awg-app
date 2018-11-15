@@ -50,11 +50,11 @@ describe('FooterComponent (DONE)', () => {
         expectedLogos = {
             unibas: {
                 id: 'unibaslogo',
-                src: 'assets/img/uni.svg',
+                src: 'assets/img/logos/uni.svg',
                 alt: 'Logo Uni Basel',
                 href: 'http://www.unibas.ch'
             },
-            snf: { id: 'snflogo', src: 'assets/img/snf.jpg', alt: 'Logo SNF', href: 'http://www.snf.ch' }
+            snf: { id: 'snflogo', src: 'assets/img/logos/snf.jpg', alt: 'Logo SNF', href: 'http://www.snf.ch' }
         };
         // test meta data
         expectedMetaData = new Meta();

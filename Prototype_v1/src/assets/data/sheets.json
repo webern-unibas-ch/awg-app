@@ -1,26 +1,26 @@
 {
     "Aa:SkI/2": {
         "id": "Aa:SkI/2",
-        "svg": "assets/img/SkI_2n_small_cut_opt.svg",
-        "image": "assets/img/SkI_2n_small.jpg",
+        "svg": "assets/img/edition/SkI_2n_small_cut_opt.svg",
+        "image": "assets/img/edition/SkI_2_small.jpg",
         "alt": "Aa:SkI/2"
     },
     "Aa:SkI/3": {
         "id": "Aa:SkI/3",
-        "svg": "assets/img/SkI_3n_small_cut_opt.svg",
-        "image": "assets/img/SkI_3n_small.jpg",
+        "svg": "assets/img/edition/SkI_3n_small_cut_opt.svg",
+        "image": "assets/img/edition/SkI_3_small.jpg",
         "alt": "Aa:SkI/3"
     },
     "Aa:SkI/4": {
         "id": "Aa:SkI/4",
-        "svg": "assets/img/SkI_4n_small_cut_opt.svg",
-        "image": "assets/img/SkI_4n_small.jpg",
+        "svg": "assets/img/edition/SkI_4n_small_cut_opt.svg",
+        "image": "assets/img/edition/SkI_4_small.jpg",
         "alt": "Aa:SkI/4"
     },
     "Aa:SkI/5": {
         "id": "Aa:SkI/5",
-        "svg": "assets/img/SkI_5n_small_cut_opt.svg",
-        "image": "assets/img/SkI_5n_small.jpg",
+        "svg": "assets/img/edition/SkI_5n_small_cut_opt.svg",
+        "image": "assets/img/edition/SkI_5_small.jpg",
         "alt": "Aa:SkI/5"
     }
 }

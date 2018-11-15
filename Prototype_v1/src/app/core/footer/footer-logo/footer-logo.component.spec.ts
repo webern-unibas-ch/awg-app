@@ -71,7 +71,7 @@ describe('FooterLogoComponent (DONE)', () => {
             // mock the input values supplied by the parent component
             expectedLogo = {
                 id: 'unibaslogo',
-                src: 'assets/img/uni.svg',
+                src: 'assets/img/logos/uni.svg',
                 alt: 'Logo Uni Basel',
                 href: 'http://www.unibas.ch'
             };

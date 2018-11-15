@@ -28,7 +28,7 @@ export class GeoNames {
         }
         // prepare icon & link for geonames
         const geoIcon =
-            '<img src="assets/img/logo-geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
+            '<img src="assets/img/logos/geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
         const geoLink =
             '<a href="http://www.geonames.org/' +
             this.gnid +
@@ -39,7 +39,7 @@ export class GeoNames {
             '</a>';
         let wikiLink = '';
         if (this.wiki) {
-            const wikiIcon = '<img src="assets/img/logo-wiki.svg" height="25" width="25" alt="' + this.wiki + '" />';
+            const wikiIcon = '<img src="assets/img/logos/wiki.svg" height="25" width="25" alt="' + this.wiki + '" />';
             wikiLink =
                 '<a href="http://' +
                 this.wiki +
