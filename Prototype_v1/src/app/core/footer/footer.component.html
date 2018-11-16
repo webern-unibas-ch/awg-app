@@ -1,7 +1,6 @@
 <footer class="container-fluid text-center">
     <div class="row">
-        <awg-footer-logo [logo]="logos?.unibas"></awg-footer-logo>
-        <div class="col-sm-8 text-center">
+        <div class="col-sm-8 col-sm-push-2 text-center">
             <p class="versionDesc">
                 Prototyp AWG-Online-Edition (Version <span id="version">{{ metaData?.page?.version }}</span> &#9671; <span id="versionDate">{{ metaData?.page?.versionReleaseDate }}</span>)
             </p>
@@ -16,6 +15,9 @@
                 </small>
             </p>
         </div>
-        <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
+        <div class="row">
+            <awg-footer-logo [logo]="logos?.unibas"></awg-footer-logo>
+            <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
+        </div>
     </div>
 </footer>

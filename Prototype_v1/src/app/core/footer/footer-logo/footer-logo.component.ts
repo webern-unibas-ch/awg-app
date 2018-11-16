@@ -11,7 +11,13 @@ export class FooterLogoComponent implements OnInit {
     @Input()
     logo: Logo;
 
+    pullSm8Class = '';
+
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        if (this.logo.id === 'unibaslogo') {
+            this.pullSm8Class = ' col-sm-pull-8';
+        }
+    }
 }

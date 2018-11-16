@@ -4,7 +4,6 @@ body {
     font-family: 'Droid', serif;
     background-color: transparent;
     min-width: 320px;
-    /* font-size: 14px; */
 }
 
 /****** LINKS & POINTER ******/
@@ -50,6 +49,7 @@ a,
 .navbar {
     margin-bottom: 0;
     border-radius: 0;
+    height: 51px;
 }
 .navbar-default {
     background-color: transparent;
@@ -84,6 +84,16 @@ a,
 .awg-content {
     background-color: #f9f9f6;
     background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
+    /* full height without header and footer */
+    /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
+    min-height: calc(100vh - 51px - 132px);
+}
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .awg-content {
+        /* full height without header and footer */
+        min-height: calc(100vh - 51px - 208px);
+    }
 }
 
 /* Set height of the grid so .sidenav can be 100% */
@@ -93,6 +103,7 @@ a,
 
 /* footer */
 footer {
+    height: 132px; /* needed for sticky footer */
     background-color: transparent;
     color: #333;
     padding: 15px;
