@@ -46,12 +46,10 @@ a,
 /****** PAGE LAYOUT ******/
 
 /* navbar (override some default values) */
-.navbar {
+.navbar.navbar-default {
     margin-bottom: 0;
     border-radius: 0;
     height: 51px;
-}
-.navbar-default {
     background-color: transparent;
 }
 .container-fluid > .navbar-header {
@@ -166,8 +164,11 @@ footer {
 }
 #webernlogo {
     cursor: pointer;
-    font-family: 'Droid Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     text-align: center;
+    font-weight: normal;
+    color: black;
+    letter-spacing: normal;
 }
 #webernlogo span {
     font-weight: lighter;
