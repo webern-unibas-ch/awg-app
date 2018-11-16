@@ -67,16 +67,21 @@ a,
 .navbar-nav {
     margin-left: 5px;
 }
+.nav-tabs > li > a {
+    color: #333;
+}
 .navbar-brand:hover,
-.navbar-nav > li > a:hover,
-.navbar-nav > li.dropdown.open > ul.dropdown-menu > li > a:hover {
+.nav > li > a:hover,
+ul.dropdown-menu > li > a:hover,
+a.list-group-item:hover {
     border-bottom: none;
     text-decoration: none;
 }
 .navbar-brand:hover,
-.navbar-nav > li > a:focus,
-.navbar-nav > li > a:active,
-.navbar-nav > li.dropdown.open > ul.dropdown-menu > li > a:hover {
+.nav > li > a:focus,
+.nav > li > a:active,
+ul.dropdown-menu > li > a:hover,
+a.list-group-item:hover {
     color: #149b9e !important;
 }
 
@@ -230,16 +235,16 @@ ul.none {
     list-style: none;
 }
 
-#sidenav_results tbody tr {
+.awg-sidenav-results tbody tr {
     cursor: pointer;
 }
-#sidenav_results tbody tr:hover {
+.awg-sidenav-results tbody tr:hover {
     background-color: #e7e7e7;
 }
-#sidenav_results tbody tr.active td {
+.awg-sidenav-results tbody tr.active td {
     background-color: #d7d7d7;
 }
-span.facetBadge {
+span.facet-badge {
     background-color: #777 !important;
 }
 
@@ -253,11 +258,11 @@ span.facetBadge {
 .highlighted {
     background: orange;
 }
-span.caps,
+.caps,
 .version {
     font-variant: small-caps;
 }
-span.indent {
+.indent {
     text-indent: 25px;
 }
 .single-line {
@@ -278,10 +283,6 @@ span.indent {
 }
 
 /****** FORMS ******/
-#resourceInfoInput {
-    height: 33px;
-}
-
 .ng-valid[required],
 .ng-valid.required {
     border-left: 5px solid #42a948; /* green */

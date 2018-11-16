@@ -51,35 +51,19 @@
 }
 
 /* tabs */
-.resource-detail-tabs {
-    margin-top: 10px;
+.awg-resource-detail-tabs {
+    margin-top: 34px;
 }
 /* adjust tab size on larger screens */
 @media screen and (min-width: 768px) {
     /* set auto width for long tab */
-    .resource-detail-long-tab {
+    .awg-resource-detail-long-tab {
         width: auto !important;
     }
     /* avoid line wrap in link text */
-    .resource-detail-short-tab > a {
+    .awg-resource-detail-short-tab > a {
         white-space: nowrap;
     }
-}
-
-/* single-line */
-.single-line {
-    white-space: nowrap;
-    overflow: hidden;
-    text-overflow: ellipsis;
-}
-
-/* links */
-a {
-    background-color: transparent;
-}
-a {
-    color: #37588e;
-    text-decoration: none;
 }
 
 /* overwrite bootstrap fonts */
