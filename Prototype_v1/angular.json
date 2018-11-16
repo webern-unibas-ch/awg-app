@@ -19,8 +19,9 @@
                         "polyfills": "src/polyfills.ts",
                         "assets": ["src/assets", "src/favicon.ico"],
                         "styles": [
-                            "src/index.style.css",
+                            "node_modules/typeface-montserrat/index.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "src/index.style.css",
                             "src/styles.css"
                         ],
                         "scripts": [
