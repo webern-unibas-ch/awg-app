@@ -68,6 +68,7 @@
         "ngx-bootstrap": "^3.0.1",
         "rxjs": "^6.3.3",
         "snapsvg": "^0.5.1",
+        "typeface-montserrat": "^0.0.54",
         "zone.js": "^0.8.26"
     },
     "devDependencies": {

@@ -27,7 +27,7 @@
         <accordion-group class="incomingLinks" *ngFor="let linkGroup of incoming | keyvalue">
             <div accordion-heading>
                 {{ linkGroup?.key }}
-                <span class="badge facetBadge float-right pull-right">{{ linkGroup?.value.length }}</span>
+                <span class="badge facet-badge float-right pull-right">{{ linkGroup?.value.length }}</span>
             </div>
             <p class="single-line" *ngFor="let link of linkGroup.value" (click)="navigateToResource(link?.id)">
                 <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
