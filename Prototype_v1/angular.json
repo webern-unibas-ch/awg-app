@@ -26,8 +26,6 @@
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
-                            "node_modules/jquery/dist/jquery.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
                         ]
@@ -79,8 +77,6 @@
                         "tsConfig": "src/tsconfig.spec.json",
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
-                            "node_modules/jquery/dist/jquery.js",
-                            "node_modules/bootstrap/dist/js/bootstrap.min.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
                         ],
