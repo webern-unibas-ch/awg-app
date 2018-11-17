@@ -1,16 +1,14 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
+import { FooterModule } from './footer/footer.module';
 
-import { FooterComponent } from './footer/footer.component';
-import { FooterLogoComponent } from './footer/footer-logo/footer-logo.component';
-import { FooterTextComponent } from './footer/footer-text/footer-text.component';
 import { NavbarComponent } from './navbar/navbar.component';
 
 @NgModule({
-    imports: [SharedModule],
-    declarations: [FooterComponent, FooterLogoComponent, FooterTextComponent, NavbarComponent],
-    exports: [FooterComponent, FooterLogoComponent, FooterTextComponent, NavbarComponent]
+    imports: [SharedModule, FooterModule],
+    declarations: [NavbarComponent],
+    exports: [NavbarComponent, FooterModule]
 })
 export class CoreModule {
     constructor(
