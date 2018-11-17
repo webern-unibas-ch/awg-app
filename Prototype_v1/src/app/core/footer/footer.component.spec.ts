@@ -2,13 +2,18 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { FooterComponent } from './footer.component';
 import { Logo, Logos, Meta } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 // mock components
+@Component({ selector: 'awg-footer-text', template: '' })
+class FooterTextStubComponent {
+    @Input()
+    metaData: Meta;
+}
+
 @Component({ selector: 'awg-footer-logo', template: '' })
 class FooterLogoStubComponent {
     @Input()
@@ -20,7 +25,6 @@ describe('FooterComponent (DONE)', () => {
     let fixture: ComponentFixture<FooterComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
 
     let mockCoreService: Partial<CoreService>;
 
@@ -35,7 +39,7 @@ describe('FooterComponent (DONE)', () => {
         };
 
         TestBed.configureTestingModule({
-            declarations: [FooterComponent, FooterLogoStubComponent, RouterLinkStubDirective],
+            declarations: [FooterComponent, FooterLogoStubComponent, FooterTextStubComponent],
             providers: [{ provide: CoreService, useValue: mockCoreService }]
         }).compileComponents();
     }));
@@ -108,6 +112,12 @@ describe('FooterComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should contain 1 footer text component (stubbed)', () => {
+                const footerTextDes = fixture.debugElement.queryAll(By.directive(FooterTextStubComponent));
+                expect(footerTextDes).toBeTruthy();
+                expect(footerTextDes.length).toBe(1, 'should have 1 text component');
+            });
+
             it('... should contain 2 footer logo components (stubbed)', () => {
                 const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
                 expect(footerLogoDes).toBeTruthy();
@@ -151,25 +161,12 @@ describe('FooterComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should render values', () => {
-                const expectedVersion = expectedMetaData.page.version;
-                const expectedVersionDate = expectedMetaData.page.versionReleaseDate;
-                const expectedYearStart = expectedMetaData.page.yearStart;
-                const expectedYearRecent = expectedMetaData.page.yearRecent;
+            it('should pass down metaData to footer text component', () => {
+                const footerTextDe = fixture.debugElement.query(By.directive(FooterTextStubComponent));
+                const footerTextCmp = footerTextDe.injector.get(FooterTextStubComponent) as FooterTextStubComponent;
 
-                // find debug elements
-                const versionDe = fixture.debugElement.query(By.css('#version'));
-                const versionDateDe = fixture.debugElement.query(By.css('#versionDate'));
-                const copyDe = fixture.debugElement.query(By.css('#copyrightPeriod'));
-
-                // find native elements
-                const versionEl = versionDe.nativeElement;
-                const versionDateEl = versionDateDe.nativeElement;
-                const copyEl = copyDe.nativeElement;
-
-                expect(versionEl.textContent).toContain(expectedVersion);
-                expect(versionDateEl.textContent).toContain(expectedVersionDate);
-                expect(copyEl.textContent).toContain(expectedYearStart + '–' + expectedYearRecent);
+                expect(footerTextCmp.metaData.page).toBeTruthy();
+                expect(footerTextCmp.metaData.page).toEqual(expectedMetaData.page, 'should have page metaData');
             });
 
             it('should pass down logos to footer logo components', () => {
@@ -184,33 +181,6 @@ describe('FooterComponent (DONE)', () => {
 
                 expect(footerLogoCmps[1].logo).toBeTruthy();
                 expect(footerLogoCmps[1].logo).toEqual(expectedLogos.snf, 'should have snf logo');
-            });
-        });
-
-        describe('[routerLink]', () => {
-            beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
-
-                // get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
-            });
-
-            it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
-                expect(routerLinks[0].linkParams).toEqual(['/contact']);
-            });
-
-            it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[0]; // contact link DebugElement
-                const contactLink = routerLinks[0]; // contact link directive
-
-                expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
-
-                contactLinkDe.triggerEventHandler('click', null);
-                fixture.detectChanges();
-
-                expect(contactLink.navigatedTo).toEqual(['/contact']);
             });
         });
     });
