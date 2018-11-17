@@ -8,7 +8,7 @@ import { of as observableOf } from 'rxjs';
 import { ReportComponent } from './report.component';
 import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 import { DataService } from '@awg-views/edition-view/services';
-import { ModalModule } from 'ngx-bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 // mock components
@@ -49,7 +49,7 @@ describe('ReportComponent', () => {
         getDataSpy = dataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
         TestBed.configureTestingModule({
-            imports: [ModalModule.forRoot(), RouterTestingModule],
+            imports: [NgbModalModule, RouterTestingModule],
             declarations: [
                 ReportComponent,
                 HeadingStubComponent,

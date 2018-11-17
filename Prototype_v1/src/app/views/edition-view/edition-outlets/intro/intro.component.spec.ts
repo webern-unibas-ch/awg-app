@@ -5,7 +5,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { IntroComponent } from './intro.component';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
-import { ModalModule } from 'ngx-bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('IntroComponent', () => {
     let component: IntroComponent;
@@ -13,7 +13,7 @@ describe('IntroComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [ModalModule.forRoot(), RouterTestingModule],
+            imports: [NgbModalModule, RouterTestingModule],
             declarations: [IntroComponent, ModalComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
