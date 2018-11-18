@@ -1,6 +1,6 @@
-<nav class="navbar navbar-expand-md navbar-light">
+<nav class="navbar navbar-expand-sm navbar-light">
     <!-- Brand -->
-    <a class="navbar-brand my-auto mr-5" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
+    <a class="navbar-brand col-4 col-lg-3 my-auto mr-0" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
                 <span id="webernlogo">
                     ANTON WEBERN <br>
                     <span>GESAMTAUSGABE</span>
@@ -14,14 +14,17 @@
 
     <!-- navigation menu -->
     <div id="collapsibleNavbar" class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
-        <ul class="navbar-nav mr-auto my-2 my-lg-0">
+        <ul class="navbar-nav mx-sm-auto ml-md-0 my-2 my-lg-0">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">Home</a>
+                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">
+                    <fa-icon [icon]="faHome"></fa-icon>
+                    <span class="d-sm-none d-md-inline">Home</span>
+                </a>
             </li>
             <li class="nav-item" ngbDropdown>
                 <a class="nav-link" id="dropdownNavEdition" ngbDropdownToggle>
-                    Beispieledition
-                    <span class="caret"></span>
+                    <fa-icon [icon]="faFileAlt"></fa-icon>
+                    <span class="d-sm-none d-md-inline">Beispieledition<span class="caret"></span></span>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <a class="dropdown-item" [routerLink]="['/edition', 'intro']" routerLinkActive="active">Einleitung</a>
@@ -41,16 +44,23 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/structure']" routerLinkActive="active">Strukturmodell</a>
+                <a class="nav-link" [routerLink]="['/structure']" routerLinkActive="active">
+                    <fa-icon [icon]="faNetworkWired"></fa-icon>
+                    <span class="d-sm-none d-md-inline">Strukturmodell</span>
+                </a>
             </li>
         </ul> <!-- END left navbar -->
-        <ul class="navbar-nav my-2 my-lg-0">
+        <ul class="navbar-nav justify-content-end my-2 my-lg-0">
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/data/search','fulltext']" routerLinkActive="active">Datenbank-Suche</a>
+                <a class="nav-link" [routerLink]="['/data/search','fulltext']" routerLinkActive="active">
+                    <span class="d-sm-none d-lg-inline">Suche</span>
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
-                    <fa-icon [icon]="faEnvelope"></fa-icon>&nbsp;Kontakt
+                    <span class="d-sm-none d-lg-inline">Kontakt</span>
+                    <fa-icon [icon]="faEnvelope"></fa-icon>
                 </a>
             </li>
         </ul> <!-- END right navbar -->
