@@ -58,7 +58,8 @@ a.list-group-item:hover {
 
 /****** PAGE LAYOUT ******/
 
-/* navbar (override some default values) */
+/* navbar */
+/* (override some default values) */
 awg-navbar > .navbar {
     border-bottom: 1px solid #e7e7e7;
 }
@@ -75,6 +76,12 @@ awg-navbar > .navbar {
 .nav-link > fa-icon {
     margin-left: 5px;
     margin-right: 5px;
+}
+/* helper class to set order to minus 1 */
+@media screen and (min-width: 768px) {
+    .order-md-minus-1 {
+        order: -1;
+    }
 }
 
 /* view container */

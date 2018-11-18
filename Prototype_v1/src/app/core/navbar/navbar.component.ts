@@ -1,6 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faFileAlt, faEnvelope, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+import {
+    faCaretDown,
+    faFileAlt,
+    faEnvelope,
+    faHome,
+    faNetworkWired,
+    faSearch
+} from '@fortawesome/free-solid-svg-icons';
 
 @Component({
     selector: 'awg-navbar',
@@ -9,6 +16,9 @@ import { faFileAlt, faEnvelope, faHome, faNetworkWired, faSearch } from '@fortaw
 })
 export class NavbarComponent implements OnInit {
     isCollapsed = true;
+
+    // fontawesome icons
+    faCaretDown = faCaretDown;
     faEnvelope = faEnvelope;
     faFileAlt = faFileAlt;
     faHome = faHome;

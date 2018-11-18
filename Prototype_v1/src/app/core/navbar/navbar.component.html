@@ -1,30 +1,36 @@
 <nav class="navbar navbar-expand-sm navbar-light">
     <!-- Brand -->
-    <a class="navbar-brand col-4 col-lg-3 my-auto mr-0" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
+    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->
+    <a class="navbar-brand col-3 col-md-4 col-lg-3 d-sm-none d-md-inline mr-0 my-auto" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
                 <span id="webernlogo">
                     ANTON WEBERN <br>
                     <span>GESAMTAUSGABE</span>
                 </span>
     </a>
 
-    <!-- Toggler/collapsible Button -->
+    <!-- Toggler button -->
     <button type="button" class="navbar-toggler" (click)="toggleNav()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- navigation menu -->
-    <div id="collapsibleNavbar" class="collapse navbar-collapse" [ngbCollapse]="isCollapsed">
-        <ul class="navbar-nav mx-sm-auto ml-md-0 my-2 my-lg-0">
-            <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/home']" routerLinkActive="active">
+    <!-- collapsible navigation menu -->
+    <!-- justify content between (left, center, right) from sm devices up -->
+    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">
+        <!-- left nav links, no left margin from sm devices up, auto vertical align -->
+        <ul class="navbar-nav ml-sm-0 my-auto">
+            <li class="nav-item active">
+                <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
+                    <!-- do not show text on sm devices, change order from md devices up -->
+                    <span class="d-sm-none d-md-inline order-md-2">Home</span>
                     <fa-icon [icon]="faHome"></fa-icon>
-                    <span class="d-sm-none d-md-inline">Home</span>
+                    <span class="sr-only">(current)</span>
                 </a>
             </li>
             <li class="nav-item" ngbDropdown>
-                <a class="nav-link" id="dropdownNavEdition" ngbDropdownToggle>
-                    <fa-icon [icon]="faFileAlt"></fa-icon>
-                    <span class="d-sm-none d-md-inline">Beispieledition<span class="caret"></span></span>
+                <a class="nav-link d-flex" id="dropdownNavEdition" ngbDropdownToggle>
+                    <!-- do not show text on sm devices, change order from md devices up -->
+                    <span class="d-sm-none d-md-inline">Beispieledition</span>
+                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <a class="dropdown-item" [routerLink]="['/edition', 'intro']" routerLinkActive="active">Einleitung</a>
@@ -44,21 +50,32 @@
                 </div>
             </li>
             <li class="nav-item">
-                <a class="nav-link" [routerLink]="['/structure']" routerLinkActive="active">
+                <a class="nav-link d-flex" [routerLink]="['/structure']" routerLinkActive="active">
+                    <!-- do not show text on sm devices, change order from md devices up -->
+                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>
                     <fa-icon [icon]="faNetworkWired"></fa-icon>
-                    <span class="d-sm-none d-md-inline">Strukturmodell</span>
                 </a>
             </li>
         </ul> <!-- END left navbar -->
-        <ul class="navbar-nav justify-content-end my-2 my-lg-0">
+        <!-- brand to display on center on sm devices, auto vertical align -->
+        <a class="navbar-brand d-none d-sm-inline d-md-none mr-sm-5 my-auto" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
+                <span id="webernlogo">
+                    ANTON WEBERN <br>
+                    <span>GESAMTAUSGABE</span>
+                </span>
+        </a>
+        <!-- rigth nav links, auto vertical align -->
+        <ul class="navbar-nav my-auto">
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/data/search','fulltext']" routerLinkActive="active">
+                    <!-- do not show text on sm devices -->
                     <span class="d-sm-none d-lg-inline">Suche</span>
                     <fa-icon [icon]="faSearch"></fa-icon>
                 </a>
             </li>
             <li class="nav-item">
                 <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
+                    <!-- do not show text on sm devices-->
                     <span class="d-sm-none d-lg-inline">Kontakt</span>
                     <fa-icon [icon]="faEnvelope"></fa-icon>
                 </a>
