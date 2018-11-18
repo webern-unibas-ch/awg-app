@@ -133,6 +133,12 @@ footer {
     border-top: 1px solid #e7e7e7;
 }
 
+/****** MODAL ******/
+.awg-modal-button:hover,
+.awg-modal-button:active {
+    background-color: #149b9e;
+}
+
 /****** OBJECT BOX ******/
 .objbox {
     position: relative;
