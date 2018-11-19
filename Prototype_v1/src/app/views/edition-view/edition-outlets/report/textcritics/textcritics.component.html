@@ -1,13 +1,6 @@
-<div id="tka" class="panel panel-default">
-    <div class="panel-heading">
-        <h3 class="panel-title">
-            <a (click)="togglePanel()">
-                II. Textkritischer Kommentar
-            </a>
-        </h3>
-    </div>
-    <div class="panel-collapse collapse" [class.in]="showPanel">
-        <div class="panel-body">
+<ngb-accordion id="tkaAcc" activeIds="tkaPanel">
+    <ngb-panel id="tkaPanel" title="II. Textkritischer Kommentar">
+        <ng-template ngbPanelContent>
             <div class="para">
                 <p class="bold">
                     <a (click)="openModal('sheetComingSoon')">Aa:SkI/1</a>:
@@ -18,15 +11,14 @@
             </div>
 
             <div class="para" *ngFor="let textcritics of textcriticsData | keyvalue">
-
                 <caption class="bold"><a [routerLink]="['/edition/detail', textcritics.key]">{{ textcritics.key }}</a>:</caption>
                 <awg-edition-tka-table
-                        [selectedTextcritics]="textcritics.value"
-                        (openModalRequest)="openModal($event)"
-                        (selectSvgFileRequest)="selectSvgFile($event)">
+                    [selectedTextcritics]="textcritics.value"
+                    (openModalRequest)="openModal($event)"
+                    (selectSvgFileRequest)="selectSvgFile($event)">
                 </awg-edition-tka-table>
 
             </div>
-        </div>
-    </div>
-</div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
