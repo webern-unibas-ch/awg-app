@@ -134,6 +134,17 @@ footer {
 }
 
 /****** MODAL ******/
+.modal-header {
+    background-color: #149b9e;
+    color: #ffffff;
+}
+.modal-header > .close {
+    color: #ffffff;
+}
+.modal-body,
+.modal-footer {
+    background-color: #f9f9f6;
+}
 .awg-modal-button:hover,
 .awg-modal-button:active {
     background-color: #149b9e;

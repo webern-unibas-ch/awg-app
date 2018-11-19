@@ -1,9 +1,12 @@
 <ng-template #modalTemplate let-modal>
     <div class="modal-header">
         <h4 class="modal-title" id="modal-basic-title">Hinweis</h4>
+        <button type="button" class="close" aria-label="Close" (click)="modal.dismiss()">
+            <span aria-hidden="true">&times;</span>
+        </button>
     </div>
     <div class="modal-body" [compile-html]="modalContent" [compile-html-ref]="this"></div>
     <div class="modal-footer">
-        <button type="button" class="btn btn-outline-dark awg-modal-button" (click)="modal.close()">Schließen</button>
+        <button type="button" class="btn btn-outline-dark awg-modal-button" ngbAutofocus (click)="modal.close()">Schließen</button>
     </div>
 </ng-template>
