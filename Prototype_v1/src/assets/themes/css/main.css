@@ -32,6 +32,7 @@ a.list-group-item:hover {
     border-bottom: none;
     text-decoration: none;
 }
+.navbar-light .navbar-nav .nav-link.active,
 .navbar-brand:hover,
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:active,
