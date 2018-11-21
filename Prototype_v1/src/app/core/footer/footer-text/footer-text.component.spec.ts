@@ -55,23 +55,18 @@ describe('FooterTextComponent', () => {
 
             it('... should not render metaData yet', () => {
                 // find debug elements
-                const versionDe = fixture.debugElement.query(By.css('#version'));
-                const versionDateDe = fixture.debugElement.query(By.css('#versionDate'));
-                const copyDe = fixture.debugElement.query(By.css('#copyrightPeriod'));
+                const versionDe = fixture.debugElement.query(By.css('#awg-version'));
+                const versionDateDe = fixture.debugElement.query(By.css('#awg-version-date'));
 
                 // find native elements
                 const versionEl = versionDe.nativeElement;
                 const versionDateEl = versionDateDe.nativeElement;
-                const copyEl = copyDe.nativeElement;
 
                 expect(versionEl.textContent).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'should be empty string');
 
                 expect(versionDateEl.textContent).toBeDefined();
                 expect(versionDateEl.textContent).toBe('', 'should be empty string');
-
-                expect(copyEl.textContent).toBeDefined();
-                expect(copyEl.textContent).toBe('', 'should be empty string');
             });
         });
     });
@@ -98,22 +93,17 @@ describe('FooterTextComponent', () => {
             it('should render values', () => {
                 const expectedVersion = expectedMetaData.page.version;
                 const expectedVersionDate = expectedMetaData.page.versionReleaseDate;
-                const expectedYearStart = expectedMetaData.page.yearStart;
-                const expectedYearRecent = expectedMetaData.page.yearRecent;
 
                 // find debug elements
-                const versionDe = fixture.debugElement.query(By.css('#version'));
-                const versionDateDe = fixture.debugElement.query(By.css('#versionDate'));
-                const copyDe = fixture.debugElement.query(By.css('#copyrightPeriod'));
+                const versionDe = fixture.debugElement.query(By.css('#awg-version'));
+                const versionDateDe = fixture.debugElement.query(By.css('#awg-version-date'));
 
                 // find native elements
                 const versionEl = versionDe.nativeElement;
                 const versionDateEl = versionDateDe.nativeElement;
-                const copyEl = copyDe.nativeElement;
 
                 expect(versionEl.textContent).toContain(expectedVersion);
                 expect(versionDateEl.textContent).toContain(expectedVersionDate);
-                expect(copyEl.textContent).toContain(expectedYearStart + '–' + expectedYearRecent);
             });
         });
 
