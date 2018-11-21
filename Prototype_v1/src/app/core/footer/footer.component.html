@@ -1,4 +1,5 @@
 <footer class="container-fluid text-center">
+    <!-- main top footer -->
     <div class="row awg-footer-top">
         <div class="col-md-8">
             <awg-footer-text [metaData]="metaData"></awg-footer-text>
@@ -11,6 +12,8 @@
             <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
         </div>
     </div>
+
+    <!-- secondary bootom footer -->
     <div class="row awg-footer-bottom text-muted">
         <div class="col-6 text-left">
             <div class="awg-copyright-desc">
@@ -18,8 +21,8 @@
             </div>
         </div>
         <div class="col-6 text-right my-auto">
-            <div class="awg-powerdy-by text-lowercase">
-                Built with <awg-footer-logo [logo]="logos?.angular" class="icon"></awg-footer-logo> and <awg-footer-logo [logo]="logos?.bootstrap" class="icon"></awg-footer-logo>
+            <div class="awg-powered-by text-lowercase">
+                Built with <br class="d-sm-none" /> <awg-footer-logo [logo]="logos?.angular" class="icon"></awg-footer-logo> and <awg-footer-logo [logo]="logos?.bootstrap" class="icon"></awg-footer-logo>
             </div>
         </div>
     </div>
