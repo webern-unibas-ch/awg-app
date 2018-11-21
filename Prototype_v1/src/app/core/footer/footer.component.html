@@ -1,6 +1,6 @@
 <footer class="container-fluid text-center">
-    <div class="row">
-        <div class="col-md-8 text-center">
+    <div class="row awg-footer-top">
+        <div class="col-md-8">
             <awg-footer-text [metaData]="metaData"></awg-footer-text>
         </div>
 
@@ -9,6 +9,18 @@
         </div>
         <div class="col-6 col-md-2 mb-4 mt-md-4">
             <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
+        </div>
+    </div>
+    <div class="row awg-footer-bottom text-muted">
+        <div class="col-6 text-left">
+            <div class="awg-copyright-desc">
+                &copy; <span id="awg-copyright-period">{{ metaData?.page?.yearStart }}–{{ metaData?.page?.yearRecent }}</span> Anton Webern Gesamtausgabe
+            </div>
+        </div>
+        <div class="col-6 text-right my-auto">
+            <div class="awg-powerdy-by text-lowercase">
+                Built with <awg-footer-logo [logo]="logos?.angular" class="icon"></awg-footer-logo> and <awg-footer-logo [logo]="logos?.bootstrap" class="icon"></awg-footer-logo>
+            </div>
         </div>
     </div>
 </footer>

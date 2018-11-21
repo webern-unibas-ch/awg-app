@@ -1,12 +1,12 @@
-<p class="versionDesc">
-    Prototyp AWG-Online-Edition (Version <span id="version">{{ metaData?.page?.version }}</span> &#9671; <span id="versionDate">{{ metaData?.page?.versionReleaseDate }}</span>)
+<p class="awg-version-title">
+    Prototyp AWG-Online-Edition
 </p>
-<p class="copyrightDesc">
-    &copy; <span id="copyrightPeriod">{{ metaData?.page?.yearStart }}–{{ metaData?.page?.yearRecent }}</span> Anton Webern Gesamtausgabe
+<p class="awg-version-desc">
+    Version <span id="awg-version">{{ metaData?.page?.version }}</span> &#9671; <span id="awg-version-date">{{ metaData?.page?.versionReleaseDate }}</span>
 </p>
-<p id="contact">
+<p id="awg-contact-link">
     <small>
-        <a id="imp" [routerLink]="['/contact']" fragment="masthead">
+        <a id="awg-imp" [routerLink]="['/contact']" fragment="awg-masthead">
             Impressum
         </a>
     </small>

@@ -91,13 +91,13 @@ awg-navbar > .navbar {
     background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
-    min-height: calc(100vh - 51px - 132px);
+    min-height: calc(100vh - 121px - 135px);
 }
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
     .awg-view-container {
         /* full height without header and footer */
-        min-height: calc(100vh - 51px - 208px);
+        min-height: calc(100vh - 121px - 200px);
     }
 }
 
@@ -127,11 +127,24 @@ awg-navbar > .navbar {
 
 /* footer */
 footer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
     height: 132px; /* needed for sticky footer */
     background-color: transparent;
     color: #333;
     padding: 15px;
     border-top: 1px solid #e7e7e7;
+}
+
+.awg-footer-bottom {
+    border-top: 1px solid #e7e7e7;
+}
+.awg-footer-bottom .icon img {
+    position: relative;
+    display: inline;
+    height: 24px;
+    width: 24px;
+    margin: 0;
 }
 
 /****** MODAL ******/
