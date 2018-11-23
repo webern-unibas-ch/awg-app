@@ -6,7 +6,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { FooterTextComponent } from './footer-text.component';
 import { Meta } from '@awg-core/core-models';
 
-describe('FooterTextComponent', () => {
+describe('FooterDeclarationComponent', () => {
     let component: FooterTextComponent;
     let fixture: ComponentFixture<FooterTextComponent>;
     let compDe: DebugElement;

@@ -2,7 +2,7 @@
     <!-- main top footer -->
     <div class="row awg-footer-top">
         <div class="col-md-8">
-            <awg-footer-text [metaData]="metaData"></awg-footer-text>
+            <awg-footer-declaration [metaData]="metaData"></awg-footer-declaration>
         </div>
 
         <div class="col-6 col-md-2 order-md-first mb-4 mt-md-4">
@@ -15,15 +15,11 @@
 
     <!-- secondary bootom footer -->
     <div class="row awg-footer-bottom text-muted">
-        <div class="col-6 text-left">
-            <div class="awg-copyright-desc">
-                &copy; <span id="awg-copyright-period">{{ metaData?.page?.yearStart }}–{{ metaData?.page?.yearRecent }}</span> Anton Webern Gesamtausgabe
-            </div>
+        <div class="col-6 col-sm-8 text-left">
+            <awg-footer-copyright [metaData]="metaData"></awg-footer-copyright>
         </div>
-        <div class="col-6 text-right my-auto">
-            <div class="awg-powered-by text-lowercase">
-                Built with <br class="d-sm-none" /> <awg-footer-logo [logo]="logos?.angular" class="icon"></awg-footer-logo> and <awg-footer-logo [logo]="logos?.bootstrap" class="icon"></awg-footer-logo>
-            </div>
+        <div class="col-6 col-sm-4 text-right my-auto">
+            <awg-footer-poweredby [logos]="logos"></awg-footer-poweredby>
         </div>
     </div>
 </footer>
