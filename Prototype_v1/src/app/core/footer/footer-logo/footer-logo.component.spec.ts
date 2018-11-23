@@ -24,6 +24,13 @@ describe('FooterLogoComponent (DONE)', () => {
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
+
+        expectedLogo = {
+            id: 'unibaslogo',
+            src: 'assets/img/logos/uni.svg',
+            alt: 'Logo Uni Basel',
+            href: 'http://www.unibas.ch'
+        };
     });
 
     it('should create', () => {
@@ -68,14 +75,6 @@ describe('FooterLogoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
-            expectedLogo = {
-                id: 'unibaslogo',
-                src: 'assets/img/logos/uni.svg',
-                alt: 'Logo Uni Basel',
-                href: 'http://www.unibas.ch'
-            };
-
             // simulate the parent setting the input properties
             component.logo = expectedLogo;
 
@@ -89,7 +88,7 @@ describe('FooterLogoComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should render logo', () => {
+            it('... should render logo', () => {
                 // find debug elements
                 const anchorDe = fixture.debugElement.query(By.css('a'));
                 const imageDe = fixture.debugElement.query(By.css('img'));

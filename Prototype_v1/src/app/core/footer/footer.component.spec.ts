@@ -8,8 +8,14 @@ import { Logo, Logos, Meta } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 // mock components
-@Component({ selector: 'awg-footer-text', template: '' })
-class FooterTextStubComponent {
+@Component({ selector: 'awg-footer-copyright', template: '' })
+class FooterCopyrightStubComponent {
+    @Input()
+    metaData: Meta;
+}
+
+@Component({ selector: 'awg-footer-declaration', template: '' })
+class FooterDeclarationStubComponent {
     @Input()
     metaData: Meta;
 }
@@ -18,6 +24,12 @@ class FooterTextStubComponent {
 class FooterLogoStubComponent {
     @Input()
     logo: Logo;
+}
+
+@Component({ selector: 'awg-footer-poweredby', template: '' })
+class FooterPoweredbyStubComponent {
+    @Input()
+    logos: Logos;
 }
 
 describe('FooterComponent (DONE)', () => {
@@ -39,7 +51,13 @@ describe('FooterComponent (DONE)', () => {
         };
 
         TestBed.configureTestingModule({
-            declarations: [FooterComponent, FooterLogoStubComponent, FooterTextStubComponent],
+            declarations: [
+                FooterComponent,
+                FooterCopyrightStubComponent,
+                FooterDeclarationStubComponent,
+                FooterLogoStubComponent,
+                FooterPoweredbyStubComponent
+            ],
             providers: [{ provide: CoreService, useValue: mockCoreService }]
         }).compileComponents();
     }));
@@ -119,11 +137,11 @@ describe('FooterComponent (DONE)', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
 
-            it('should not have metaData', () => {
+            it('... should not have metaData', () => {
                 expect(component.metaData).toBeUndefined('should be undefined');
             });
 
-            it('should not have logos', () => {
+            it('... should not have logos', () => {
                 expect(component.logos).toBeUndefined('should be undefined');
             });
         });
@@ -143,7 +161,7 @@ describe('FooterComponent (DONE)', () => {
             describe('main top footer', () => {
                 it('... should contain 1 footer text component (stubbed)', () => {
                     const footerTopDe = fixture.debugElement.query(By.css('.awg-footer-top'));
-                    const footerTextDes = footerTopDe.queryAll(By.directive(FooterTextStubComponent));
+                    const footerTextDes = footerTopDe.queryAll(By.directive(FooterDeclarationStubComponent));
 
                     expect(footerTextDes).toBeTruthy();
                     expect(footerTextDes.length).toBe(1, 'should have 1 text component');
@@ -159,28 +177,20 @@ describe('FooterComponent (DONE)', () => {
             });
 
             describe('secondary bottom footer', () => {
-                it('... should contain 1 awg-copyright-desc', () => {
+                it('... should contain 1 footer copyright component (stubbed)', () => {
                     const footerBottomDe = fixture.debugElement.query(By.css('.awg-footer-bottom'));
-                    const footerCopyrightDes = footerBottomDe.queryAll(By.css('.awg-copyright-desc'));
+                    const footerCopyrightDes = footerBottomDe.queryAll(By.directive(FooterCopyrightStubComponent));
 
                     expect(footerCopyrightDes).toBeTruthy();
-                    expect(footerCopyrightDes.length).toBe(1, 'should have 1 awg-copyright-desc');
+                    expect(footerCopyrightDes.length).toBe(1, 'should have 1 copyright component');
                 });
 
-                it('... should contain 2 footer logo components (stubbed)', () => {
+                it('... should contain 1 footer poweredby component (stubbed)', () => {
                     const footerBottomDe = fixture.debugElement.query(By.css('.awg-footer-bottom'));
-                    const footerLogoDes = footerBottomDe.queryAll(By.directive(FooterLogoStubComponent));
+                    const footerPoweredbyDes = footerBottomDe.queryAll(By.directive(FooterPoweredbyStubComponent));
 
-                    expect(footerLogoDes).toBeTruthy();
-                    expect(footerLogoDes.length).toBe(2, 'should have 2 footer logos');
-                });
-
-                it('... should not render metaData yet', () => {
-                    const copyDe = fixture.debugElement.query(By.css('#awg-copyright-period'));
-                    const copyEl = copyDe.nativeElement;
-
-                    expect(copyEl.textContent).toBeDefined();
-                    expect(copyEl.textContent).toBe('', 'should be empty string');
+                    expect(footerPoweredbyDes).toBeTruthy();
+                    expect(footerPoweredbyDes.length).toBe(1, 'should have 1 poweredby component');
                 });
             });
         });
@@ -188,15 +198,6 @@ describe('FooterComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
-            expectedMetaData = new Meta();
-            expectedMetaData.page = {
-                yearStart: 2015,
-                yearRecent: 2017,
-                version: '1.0.0',
-                versionReleaseDate: '8. November 2016'
-            };
-
             // simulate the parent setting the input properties
             component.metaData = expectedMetaData;
 
@@ -214,51 +215,70 @@ describe('FooterComponent (DONE)', () => {
                 expect(component.metaData).toBe(expectedMetaData);
             });
 
-            it('should return logos', () => {
+            it('... should return logos', () => {
                 expect(component.logos).toBeDefined();
                 expect(component.logos).toBe(expectedLogos);
             });
         });
 
         describe('VIEW', () => {
-            it('should render values', () => {
-                const expectedYearStart = expectedMetaData.page.yearStart;
-                const expectedYearRecent = expectedMetaData.page.yearRecent;
+            describe('main top footer', () => {
+                it('... should pass down metaData to footer declaration component', () => {
+                    const footerDeclarationDe = fixture.debugElement.query(
+                        By.directive(FooterDeclarationStubComponent)
+                    );
+                    const footerDeclarationCmp = footerDeclarationDe.injector.get(
+                        FooterDeclarationStubComponent
+                    ) as FooterDeclarationStubComponent;
 
-                const copyDe = fixture.debugElement.query(By.css('#awg-copyright-period'));
-                const copyEl = copyDe.nativeElement;
-
-                expect(copyEl.textContent).toContain(expectedYearStart + '–' + expectedYearRecent);
-            });
-
-            it('should pass down metaData to footer text component', () => {
-                const footerTextDe = fixture.debugElement.query(By.directive(FooterTextStubComponent));
-                const footerTextCmp = footerTextDe.injector.get(FooterTextStubComponent) as FooterTextStubComponent;
-
-                expect(footerTextCmp.metaData.page).toBeTruthy();
-                expect(footerTextCmp.metaData.page).toEqual(expectedMetaData.page, 'should have page metaData');
-            });
-
-            it('should pass down logos to footer logo components', () => {
-                const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
-                const footerLogoCmps = [];
-                footerLogoDes.forEach(de => {
-                    footerLogoCmps.push(de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent);
+                    expect(footerDeclarationCmp.metaData).toBeTruthy();
+                    expect(footerDeclarationCmp.metaData).toEqual(expectedMetaData, 'should have metaData');
                 });
 
-                expect(footerLogoCmps.length).toBe(4, 'should have 4 logo components');
+                it('... should pass down logos to footer logo components', () => {
+                    const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
+                    const footerLogoCmps = [];
+                    footerLogoDes.forEach(de => {
+                        footerLogoCmps.push(de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent);
+                    });
 
-                expect(footerLogoCmps[0].logo).toBeTruthy();
-                expect(footerLogoCmps[0].logo).toEqual(expectedLogos.unibas, 'should have unibas logo');
+                    expect(footerLogoCmps.length).toBe(2, 'should have 2 logo components');
 
-                expect(footerLogoCmps[1].logo).toBeTruthy();
-                expect(footerLogoCmps[1].logo).toEqual(expectedLogos.snf, 'should have snf logo');
+                    expect(footerLogoCmps[0].logo).toBeTruthy();
+                    expect(footerLogoCmps[0].logo).toEqual(expectedLogos.unibas, 'should have unibas logo');
 
-                expect(footerLogoCmps[2].logo).toBeTruthy();
-                expect(footerLogoCmps[2].logo).toEqual(expectedLogos.angular, 'should have angular logo');
+                    expect(footerLogoCmps[1].logo).toBeTruthy();
+                    expect(footerLogoCmps[1].logo).toEqual(expectedLogos.snf, 'should have snf logo');
+                });
+            });
 
-                expect(footerLogoCmps[3].logo).toBeTruthy();
-                expect(footerLogoCmps[3].logo).toEqual(expectedLogos.bootstrap, 'should have bootstrap logo');
+            describe('secondary bottom footer', () => {
+                it('... should pass down metaData to footer copyright component', () => {
+                    const footerCopyrightDe = fixture.debugElement.query(By.directive(FooterCopyrightStubComponent));
+                    const footerCopyrightCmp = footerCopyrightDe.injector.get(
+                        FooterCopyrightStubComponent
+                    ) as FooterCopyrightStubComponent;
+
+                    expect(footerCopyrightCmp.metaData).toBeTruthy();
+                    expect(footerCopyrightCmp.metaData).toEqual(expectedMetaData, 'should have metaData');
+                });
+
+                it('... should pass down logos to footer poweredby component', () => {
+                    const footerPoweredbyDes = fixture.debugElement.queryAll(
+                        By.directive(FooterPoweredbyStubComponent)
+                    );
+                    const footerPoweredbyCmps = [];
+                    footerPoweredbyDes.forEach(de => {
+                        footerPoweredbyCmps.push(de.injector.get(
+                            FooterPoweredbyStubComponent
+                        ) as FooterPoweredbyStubComponent);
+                    });
+
+                    expect(footerPoweredbyCmps.length).toBe(1, 'should have 1 poweredby component');
+
+                    expect(footerPoweredbyCmps[0].logos).toBeTruthy();
+                    expect(footerPoweredbyCmps[0].logos).toEqual(expectedLogos, 'should have logos');
+                });
             });
         });
     });

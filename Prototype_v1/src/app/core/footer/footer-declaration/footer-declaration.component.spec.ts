@@ -3,12 +3,12 @@ import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { FooterTextComponent } from './footer-text.component';
+import { FooterDeclarationComponent } from './footer-declaration.component';
 import { Meta } from '@awg-core/core-models';
 
-describe('FooterDeclarationComponent', () => {
-    let component: FooterTextComponent;
-    let fixture: ComponentFixture<FooterTextComponent>;
+describe('FooterDeclarationComponent (DONE)', () => {
+    let component: FooterDeclarationComponent;
+    let fixture: ComponentFixture<FooterDeclarationComponent>;
     let compDe: DebugElement;
     let compEl: any;
     let linkDes, routerLinks;
@@ -17,12 +17,12 @@ describe('FooterDeclarationComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FooterTextComponent, RouterLinkStubDirective]
+            declarations: [FooterDeclarationComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FooterTextComponent);
+        fixture = TestBed.createComponent(FooterDeclarationComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
@@ -73,15 +73,6 @@ describe('FooterDeclarationComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
-            expectedMetaData = new Meta();
-            expectedMetaData.page = {
-                yearStart: 2015,
-                yearRecent: 2017,
-                version: '1.0.0',
-                versionReleaseDate: '8. November 2016'
-            };
-
             // simulate the parent setting the input properties
             component.metaData = expectedMetaData;
 
