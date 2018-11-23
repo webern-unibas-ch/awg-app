@@ -86,7 +86,7 @@ awg-navbar > .navbar {
 }
 
 /* view container */
-.awg-view-container {
+awg-view-container > div {
     background-color: #f9f9f6;
     background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
     /* full height without header and footer */
@@ -95,7 +95,7 @@ awg-navbar > .navbar {
 }
 /* On small screens, set height to 'auto' for sidenav and grid */
 @media screen and (max-width: 767px) {
-    .awg-view-container {
+    awg-view-container > div {
         /* full height without header and footer */
         min-height: calc(100vh - 121px - 200px);
     }
