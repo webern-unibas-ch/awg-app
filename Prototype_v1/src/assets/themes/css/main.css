@@ -91,13 +91,12 @@ awg-view-container > div {
     background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
-    min-height: calc(100vh - 121px - 135px);
+    min-height: calc(100vh - 121px - 200px);
 }
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
+@media screen and (min-width: 768px) {
     awg-view-container > div {
-        /* full height without header and footer */
-        min-height: calc(100vh - 121px - 200px);
+        /* full height without header and footer from sm devices up */
+        min-height: calc(100vh - 121px - 135px);
     }
 }
 
@@ -147,13 +146,28 @@ footer {
     margin: 0;
 }
 
+/****** BUTTON GROUP ******/
+/* TODO: Switch button group direction with scss
+.awg-btn-group {
+    @media (max-width: 760px) {.btn-group-vertical}
+    @media (min-width: 761px) {.btn-group}
+}
+ */
+.awg-btn-group {
+    margin-bottom: 2rem;
+}
+.awg-btn-group > button.btn {
+    background-color: #f9f9f6;
+    border: 1px solid #e7e7e7;
+}
+
 /****** MODAL ******/
 .modal-header {
     background-color: #149b9e;
-    color: #ffffff;
+    color: #f9f9f6;
 }
 .modal-header > .close {
-    color: #ffffff;
+    color: #f9f9f6;
 }
 .modal-body,
 .modal-footer {
