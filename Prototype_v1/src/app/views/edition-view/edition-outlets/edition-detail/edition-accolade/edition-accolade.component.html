@@ -15,6 +15,9 @@
                                        (selectSvgFileRequest)="selectSvgFile($event)">
             </awg-edition-svg-file-nav>
 
+            <!-- pre-notification -->
+            <awg-edition-detail-notification></awg-edition-detail-notification>
+
             <!-- svg panel -->
             <awg-edition-svg-file *ngIf="selectedSvgFile"
                                    [selectedSvgFile]="selectedSvgFile"
