@@ -10,7 +10,8 @@ import {
     NgbButtonsModule,
     NgbCollapseModule,
     NgbDropdownModule,
-    NgbModalModule
+    NgbModalModule,
+    NgbTabsetModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CompileHtmlModule } from './compile-html';
@@ -38,6 +39,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbTabsetModule,
         CompileHtmlModule
     ],
     declarations: [
@@ -58,6 +60,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbTabsetModule,
         CompileHtmlModule,
 
         HeadingComponent,
