@@ -1,21 +1,16 @@
-<div class="panel panel-default" id="convoluteView">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" (click)="togglePanel()">
-                Konvolutübersicht
-            </a>
-        </h4>
-    </div>
-    <div class="panel-collapse collapse" [class.in]="showConvolutePanel">
-        <div class="panel-body">
-            <div class="btn-group">
-                <a class="btn dropdown-toggle" data-toggle="dropdown" href="#">
-                    A Skizzen (Basel, Paul Sacher Stiftung)
-                    <span class="caret"></span>
+<ngb-accordion activeIds="awg-convolute-view">
+    <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">
+        <ng-template ngbPanelContent>
+
+            <!-- convolute dropDown -->
+            <div class="d-inline-block" ngbDropdown>
+                <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
+                    <span>{{ selectedConvoluteLabel }}</span>
                 </a>
-                <ul class="dropdown-menu">
-                    <li><a (click)="openModal('sourceNotA')">B–H (siehe Kritischer Bericht)</a></li>
-                </ul>
+                <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
+                    <a class="dropdown-item" (click)="selectConvolute(convoluteLabel.A)">{{ convoluteLabel.A }}</a>
+                    <a class="dropdown-item" (click)="openModal('sourceNotA')">{{ convoluteLabel.B_H }}</a>
+                </div>
             </div>
 
             <!-- folio overview -->
@@ -27,11 +22,14 @@
             </awg-edition-folio>
 
             <!-- folio legend -->
-            <p>Legende:&nbsp;
-                <span class="edition-convolute-legend olivedrab">aktuell ausgewählt</span>&nbsp;
-                <span class="edition-convolute-legend orange">auswählbar</span>&nbsp;
-                <span class="edition-convolute-legend grey">(momentan noch) nicht auswählbar</span>
-            </p>
-        </div>
-    </div>
-</div>
+            <div class="col-12">Legende:&nbsp;
+                <ng-container *ngFor="let legend of folioLegend">
+                    <span class="{{ legend.color }}">
+                        <fa-icon [icon]="faSquare"></fa-icon>
+                        {{ legend.label }}
+                    </span>
+                </ng-container>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

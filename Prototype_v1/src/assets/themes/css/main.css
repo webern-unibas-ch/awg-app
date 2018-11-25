@@ -238,10 +238,6 @@ svg a.active rect {
     fill: OliveDrab;
     opacity: 0.2;
 }
-.edition-convolute-legend:before {
-    content: '\e157';
-    font-family: 'Glyphicons Halflings';
-}
 .item-group.active,
 .item-group.active > .item-link > .item-shape {
     stroke: OliveDrab;
