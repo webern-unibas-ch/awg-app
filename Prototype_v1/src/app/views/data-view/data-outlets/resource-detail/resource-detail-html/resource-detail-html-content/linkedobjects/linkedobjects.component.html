@@ -23,15 +23,19 @@
         </a>
         -->
     </h4>
-    <accordion [closeOthers]="true">
-        <accordion-group class="incomingLinks" *ngFor="let linkGroup of incoming | keyvalue">
-            <div accordion-heading>
+
+    <ngb-accordion [closeOthers]="true">
+        <ngb-panel class="incomingLinks" *ngFor="let linkGroup of incoming | keyvalue">
+            <ng-template ngbPanelTitle>
                 {{ linkGroup?.key }}
                 <span class="badge facet-badge float-right pull-right">{{ linkGroup?.value.length }}</span>
-            </div>
-            <p class="single-line" *ngFor="let link of linkGroup.value" (click)="navigateToResource(link?.id)">
-                <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
-            </p>
-        </accordion-group>
-    </accordion>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <p class="single-line" *ngFor="let link of linkGroup.value" (click)="navigateToResource(link?.id)">
+                    <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
+                </p>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+
 </div><!-- end DIV linkedObj -->
