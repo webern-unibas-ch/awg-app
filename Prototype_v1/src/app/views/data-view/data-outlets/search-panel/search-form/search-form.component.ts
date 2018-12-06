@@ -3,6 +3,8 @@ import { AbstractControl, FormBuilder, FormControl, FormGroup, Validators } from
 
 import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
 
+import { faSearch } from '@fortawesome/free-solid-svg-icons';
+
 @Component({
     selector: 'awg-search-form',
     templateUrl: './search-form.component.html',
@@ -16,6 +18,14 @@ export class SearchFormComponent implements OnInit {
 
     searchForm: FormGroup;
     searchValueControl: AbstractControl = new FormControl();
+
+    faSearch = faSearch;
+
+    searchFormStrings = {
+        label: 'Search Input',
+        placeholder: 'Volltextsuche in der Webern-Datenbank …',
+        errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!'
+    };
 
     constructor(private fb: FormBuilder) {}
 
