@@ -13,7 +13,7 @@
 *
 ************************************************/ -->
 <!-- resourceDetailData content: linked objects -->
-<div class="linkedObj">
+<div class="awg-linked-obj">
     <h4>
         <!-- TODO: link to linked objects overview
         <a (click)="navigateToSearchResults()">
@@ -25,7 +25,7 @@
     </h4>
 
     <ngb-accordion [closeOthers]="true">
-        <ngb-panel class="incomingLinks" *ngFor="let linkGroup of incoming | keyvalue">
+        <ngb-panel id="incoming-links-{{i}}" class="awg-incoming-links" *ngFor="let linkGroup of incoming | keyvalue; let i = index">
             <ng-template ngbPanelTitle>
                 {{ linkGroup?.key }}
                 <span class="badge facet-badge float-right pull-right">{{ linkGroup?.value.length }}</span>

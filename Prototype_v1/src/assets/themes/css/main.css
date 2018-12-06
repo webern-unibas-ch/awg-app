@@ -18,7 +18,7 @@ a:hover {
     border-bottom: 1px solid #149b9e;
 }
 a,
-.incomingLinks {
+.awg-incoming-links {
     cursor: pointer;
 }
 a.dropdown-item,
