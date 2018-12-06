@@ -100,13 +100,6 @@ awg-view-container > div {
     }
 }
 
-/* main content */
-.awg-maincontent,
-.awg-sidenav {
-    margin-top: 10px;
-    padding-top: 10px;
-}
-
 /* sidenav */
 .awg-sidenav > .card {
     padding: inherit;
@@ -116,8 +109,6 @@ awg-view-container > div {
 @media screen and (max-width: 767px) {
     .awg-sidenav {
         height: auto;
-        padding: 15px;
-        margin-bottom: 10px;
     }
     .row {
         height: auto;
