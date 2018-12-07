@@ -1,25 +1,21 @@
 <!-- resourceDetailData content: props -->
-<div class="props">
-    <ul>
-        <li>
-            <strong> Objektdaten </strong>
-            <ul *ngFor="let prop of props">
-                <li id="breakLine" *ngIf="prop?.label === metaBreakLine">
-                    <hr>
-                </li>
-                <li *ngIf="prop?.value[0]">
-                    <!-- value label -->
-                    <strong *ngIf="prop?.label">
-                        {{ prop?.label }}
-                    </strong>
-                    <!-- value content -->
-                    <ul *ngFor="let value of prop?.value">
-                        <li *ngIf="value">
-                            <span [compile-html]="value" [compile-html-ref]="this"></span>
-                        </li>
-                    </ul>
+<section class="props">
+    <h4 class="props-title ml-0">Objektdaten</h4>
+    <ul *ngFor="let prop of props">
+        <li id="breakLine" *ngIf="prop?.label === metaBreakLine">
+            <hr>
+        </li>
+        <li class="prop" *ngIf="prop?.value[0]">
+            <!-- value label -->
+            <strong class="prop-label" *ngIf="prop?.label">
+                {{ prop?.label }}
+            </strong>
+            <!-- value content -->
+            <ul *ngFor="let value of prop?.value">
+                <li class="prop-value" *ngIf="value">
+                    <span [compile-html]="value" [compile-html-ref]="this"></span>
                 </li>
             </ul>
         </li>
     </ul>
-</div>
+</section>
