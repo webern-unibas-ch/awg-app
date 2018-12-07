@@ -14,13 +14,11 @@
 
 /* resource header */
 .resource-header {
+    margin: 1rem 0;
     border-bottom: 1px solid #ddd;
-    padding-bottom: 22px;
 }
-.resource-title {
-    margin-top: 5px;
-    margin-bottom: 5px;
-}
+
+/* resource header title */
 .resource-title .title {
     white-space: nowrap;
     overflow: hidden;
@@ -31,6 +29,15 @@
     width: inherit;
     height: auto;
 }
+
+/* resource header link */
 .resource-link {
-    margin-top: 30px;
+    margin: 2rem 0;
+}
+
+/* resource header table */
+/* remove top border from table */
+.resource-header table.resource-header-table tr:first-of-type th,
+.resource-header table.resource-header-table tr:first-of-type td {
+    border-top: none;
 }
