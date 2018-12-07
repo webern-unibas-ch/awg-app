@@ -12,48 +12,10 @@
 *
 ************************************************/
 
-.row {
-    margin-top: 10px;
-    margin-right: -15px;
-    margin-left: -15px;
-}
-
 /* for resource-header see 'resource-detail-html-header.component.css' */
-
-/* props */
-.props {
-    padding-left: 20px;
-}
-.props li {
-    list-style: none;
-    padding: 3px 0;
-}
-.props ul {
-    padding-left: 0;
-    margin-top: 4px;
-    margin-bottom: 2px;
-}
-.props li strong {
-    margin-top: 8px;
-    margin-bottom: -4px;
-    margin-left: -20px;
-    display: block;
-}
-.props li > strong {
-    font-size: 19px;
-    font-weight: 400;
-    color: #333;
-}
-.props li li > strong {
-    font-weight: 400;
-    font-size: 17px;
-    padding: 3px 0;
-}
+/* for resource-html props see 'props.component.css' */
 
 /* tabs */
-.awg-resource-detail-tabs {
-    margin-top: 34px;
-}
 /* adjust tab size on larger screens */
 @media screen and (min-width: 768px) {
     /* set auto width for long tab */
@@ -64,18 +26,4 @@
     .awg-resource-detail-short-tab > a {
         white-space: nowrap;
     }
-}
-
-/* overwrite bootstrap fonts */
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-    line-height: 1.3;
-    font-weight: 400;
-}
-h2 {
-    font-size: 23px;
 }
