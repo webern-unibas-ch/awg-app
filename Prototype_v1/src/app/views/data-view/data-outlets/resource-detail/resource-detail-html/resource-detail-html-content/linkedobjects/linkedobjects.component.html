@@ -14,26 +14,35 @@
 ************************************************/ -->
 <!-- resourceDetailData content: linked objects -->
 <div class="awg-linked-obj">
-    <h4>
+    <h5>
         <!-- TODO: link to linked objects overview
         <a (click)="navigateToSearchResults()">
         -->
-        Verknüpfte Objekte <small>({{ getNestedArraysLength(incoming) }})</small>
+        Verknüpfte Objekte <span>({{ getNestedArraysLength(incoming) }})</span>
         <!--
         </a>
         -->
-    </h4>
+    </h5>
 
     <ngb-accordion [closeOthers]="true">
-        <ngb-panel id="incoming-links-{{i}}" class="awg-incoming-links" *ngFor="let linkGroup of incoming | keyvalue; let i = index">
+        <ngb-panel id="incoming-linkgroup-{{i}}" class="awg-linked-obj-incoming-linkgroup" *ngFor="let linkGroup of incoming | keyvalue; let i = index">
             <ng-template ngbPanelTitle>
-                {{ linkGroup?.key }}
-                <span class="badge facet-badge float-right pull-right">{{ linkGroup?.value.length }}</span>
+                <span class="awg-linked-obj-title mr-1">{{ linkGroup?.key }}</span>
+                <span class="badge badge-info">{{ linkGroup?.value.length }}</span>
             </ng-template>
             <ng-template ngbPanelContent>
-                <p class="single-line" *ngFor="let link of linkGroup.value" (click)="navigateToResource(link?.id)">
-                    <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
-                </p>
+                <table class="table table-sm table-hover borderless awg-linked-obj-table mb-0">
+                    <tbody>
+                    <tr *ngFor="let link of linkGroup.value">
+                        <td>
+                            <a class="awg-linked-obj-link" (click)="navigateToResource(link?.obj_id)">
+                                <img [src]="link?.restype.icon" alt="icon">
+                                <span>&nbsp;[{{ link?.id }}] {{ link?.value }}</span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
             </ng-template>
         </ngb-panel>
     </ngb-accordion>

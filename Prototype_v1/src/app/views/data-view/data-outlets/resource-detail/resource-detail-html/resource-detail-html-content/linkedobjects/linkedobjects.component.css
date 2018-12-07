@@ -16,3 +16,26 @@
 .awg-linked-obj {
     margin-bottom: 1rem;
 }
+
+.awg-linked-obj-incoming-linkgroup,
+.awg-linked-obj-link {
+    cursor: pointer;
+}
+.awg-linked-obj-table td {
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.awg-linked-obj-link {
+    color: #333 !important;
+}
+.awg-linked-obj-link:hover {
+    border-bottom: none !important;
+}
+
+/* resource header title */
+.resource-title .title {
+}
+.resource-title .title:hover {
+}

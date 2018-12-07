@@ -7,37 +7,39 @@ body {
 }
 
 /****** LINKS & POINTER ******/
+a {
+    cursor: pointer;
+}
 a,
 a:link,
 a:visited,
-a:hover {
+a:hover,
+a:not([href]):not([tabindex]),
+a:not([href]):not([tabindex]):hover {
     color: #149b9e;
     text-decoration: none;
 }
 a:hover {
     border-bottom: 1px solid #149b9e;
 }
-a,
-.awg-incoming-links {
-    cursor: pointer;
-}
 a.dropdown-item,
 .nav-tabs > li > a {
     color: #333;
 }
-.navbar-brand:hover,
-.navbar-nav > li > a:hover,
 a.dropdown-item:hover,
-a.list-group-item:hover {
+a.list-group-item:hover,
+.navbar-brand:hover,
+.navbar-nav > li > a:hover {
     border-bottom: none;
     text-decoration: none;
 }
+
+a.dropdown-item:hover,
+a.list-group-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-brand:hover,
 .navbar-nav > li > a:focus,
-.navbar-nav > li > a:active,
-a.dropdown-item:hover,
-a.list-group-item:hover {
+.navbar-nav > li > a:active {
     color: #149b9e !important;
 }
 
@@ -137,6 +139,23 @@ footer {
     margin: 0;
 }
 
+/****** CARDS ******/
+.card-header {
+    padding: 0.25rem 0.25rem; /* default: .75rem 1.25 rem */
+}
+.card-header .btn-link {
+    color: #149b9e !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-bottom: none;
+}
+.card-header .btn-link:hover {
+    text-decoration: underline;
+}
+.card-header .btn-link:focus {
+    text-decoration: none;
+}
+
 /****** BUTTON GROUP ******/
 /* TODO: Switch button group direction with scss
 .awg-btn-group {
@@ -175,7 +194,7 @@ footer {
     height: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #e7e7e7;
     box-shadow: 5px 5px 6px #cccccc;
 }
 .objbox-control-button {
@@ -220,7 +239,7 @@ footer {
 /****** SVG ******/
 .edition-svg {
     box-shadow: 5px 5px 6px #cccccc;
-    border: 1px solid #eeeeee;
+    border: 1px solid #e7e7e7;
 }
 .edition-svg-item {
     fill: orange;
@@ -268,15 +287,6 @@ ul.none {
     list-style: none;
 }
 
-.awg-sidenav-results tbody tr {
-    cursor: pointer;
-}
-.awg-sidenav-results tbody tr:hover {
-    background-color: #e7e7e7;
-}
-.awg-sidenav-results tbody tr.active td {
-    background-color: #d7d7d7;
-}
 span.facet-badge {
     background-color: #777 !important;
 }
