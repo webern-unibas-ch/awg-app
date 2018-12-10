@@ -5,7 +5,7 @@
             <label class="sr-only" for="awg-search-input">{{ searchFormStrings.label }}</label>
             <div class="input-group">
                 <div class="input-group-prepend">
-                    <div class="input-group-text">
+                    <div class="input-group-text" id="search-icon">
                         <fa-icon [icon]="faSearch"></fa-icon>
                     </div>
                 </div>
@@ -13,7 +13,7 @@
                        type="search"
                        class="form-control"
                        id="awg-search-input"
-                       aria-label="Search input"
+                       aria-label="Search input" aria-describedby="search-icon"
                        placeholder="{{ searchFormStrings.placeholder }}"
                        [formControl]="searchValueControl">
             </div>

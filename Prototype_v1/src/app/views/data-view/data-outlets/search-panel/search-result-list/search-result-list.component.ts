@@ -4,6 +4,8 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
+import { faTable, faGripVertical } from '@fortawesome/free-solid-svg-icons';
+
 import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
@@ -21,12 +23,15 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     errorMessage: any = undefined;
     currentId: string;
-    filteredOut: number;
 
     streamerServiceSubscription: Subscription;
     searchResponse: SearchResponseJson;
     searchResultText: string;
+    searchResultView: 'grid' | 'table' = 'table';
     searchValue: string;
+
+    faGripVertical = faGripVertical;
+    faTable = faTable;
 
     constructor(
         private router: Router,
@@ -53,6 +58,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
                     this.searchResponse = searchResponse;
+                    console.log(this.searchResponse);
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -76,7 +82,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // prepare result text for fulltext search
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
             response.data,
-            this.filteredOut,
+            this.searchValue,
             this.searchUrl
         );
     }
@@ -89,6 +95,10 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     isActiveResource(id: string) {
         return this.currentId === id;
+    }
+
+    changeResultView(viewType) {
+        this.searchResultView = viewType;
     }
 
     navigateToResource(id: string) {
