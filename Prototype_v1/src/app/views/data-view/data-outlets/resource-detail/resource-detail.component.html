@@ -2,9 +2,11 @@
 <div class="awg-resource-detail-tabs" *ngIf="resourceData; else error">
 
     <ngb-tabset>
-
         <!-- html -->
-        <ngb-tab id="html" title="{{ tabTitle?.html }}" class="awg-resource-detail-long-tab">
+        <ngb-tab id="html" class="awg-resource-detail-long-tab">
+            <ng-template ngbTabTitle>
+                {{ tabTitle?.html }}
+            </ng-template>
             <ng-template ngbTabContent>
                 <!-- resourceDetailData header -->
                 <awg-resource-detail-header *ngIf="resourceData?.html?.header"
