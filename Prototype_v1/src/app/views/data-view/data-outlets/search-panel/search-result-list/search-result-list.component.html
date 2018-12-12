@@ -2,13 +2,23 @@
 <div class="awg-search-results" *ngIf="searchResponse">
 
     <!-- header -->
-    <p>{{ searchResultText }}</p>
-    <p class="ml-auto">
-        <fa-icon [icon]="faTable" (click)="changeResultView('table')"></fa-icon>
-        <fa-icon [icon]="faGripVertical" (click)="changeResultView('grid')"></fa-icon>
-    </p>
-
-
+    <div class="row awg-search-results-header mb-4">
+        <div class="col-4 col-md-3 col-lg-2 awg-search-results-header-icons mr-auto">
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" [(ngModel)]="searchResultView">
+                <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
+                    <input ngbButton type="radio" value="table">
+                    <fa-icon [icon]="faTable"></fa-icon>
+                </label>
+                <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
+                    <input ngbButton type="radio" value="grid">
+                    <fa-icon [icon]="faGripHorizontal"></fa-icon>
+                </label>
+            </div>
+        </div>
+        <div class="col-8 col-md-9 col-lg-10 awg-search-results-header-text my-auto">
+            {{ searchResultText }}
+        </div>
+    </div>
 
 
     <ng-container *ngIf="searchResponse?.subjects && +searchResponse?.nhits > 0">

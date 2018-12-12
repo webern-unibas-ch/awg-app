@@ -4,7 +4,7 @@ import { Router } from '@angular/router';
 import { Subscription } from 'rxjs';
 import { map } from 'rxjs/operators';
 
-import { faTable, faGripVertical } from '@fortawesome/free-solid-svg-icons';
+import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
@@ -30,7 +30,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     searchResultView: 'grid' | 'table' = 'table';
     searchValue: string;
 
-    faGripVertical = faGripVertical;
+    faGripHorizontal = faGripHorizontal;
     faTable = faTable;
 
     constructor(
@@ -95,10 +95,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     isActiveResource(id: string) {
         return this.currentId === id;
-    }
-
-    changeResultView(viewType) {
-        this.searchResultView = viewType;
     }
 
     navigateToResource(id: string) {
