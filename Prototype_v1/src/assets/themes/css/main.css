@@ -32,11 +32,6 @@ a.dropdown-item:hover,
     border-bottom: none;
     text-decoration: none;
 }
-/*
-a.list-group-item:hover {
-    border: 1px solid rgba(0,0,0,.125)
-}
-*/
 a.dropdown-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-brand:hover,

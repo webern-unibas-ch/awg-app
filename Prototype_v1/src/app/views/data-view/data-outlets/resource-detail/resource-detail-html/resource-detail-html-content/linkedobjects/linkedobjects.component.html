@@ -27,8 +27,10 @@
     <ngb-accordion [closeOthers]="true">
         <ngb-panel id="incoming-linkgroup-{{i}}" class="awg-linked-obj-incoming-linkgroup" *ngFor="let linkGroup of incoming | keyvalue; let i = index">
             <ng-template ngbPanelTitle>
-                <span class="awg-linked-obj-title mr-1">{{ linkGroup?.key }}</span>
-                <span class="badge badge-info">{{ linkGroup?.value.length }}</span>
+                <span class="awg-linked-obj-title-group">
+                    <span class="badge badge-info mr-2">{{ linkGroup?.value.length }}</span>
+                    <span class="awg-linked-obj-title single-line">{{ linkGroup?.key }}</span>
+                </span>
             </ng-template>
             <ng-template ngbPanelContent>
                 <table class="table table-sm table-hover borderless awg-linked-obj-table mb-0">
