@@ -1,7 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
+
+import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
 import { DataStreamerService } from '@awg-core/services';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
@@ -17,16 +20,38 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     searchResponseSubscription: Subscription;
 
     resourceInfo: ResourceInfo = new ResourceInfo();
+    resourceInfoForm: FormGroup;
+
+    faArrowLeft = faArrowLeft;
+    faChevronLeft = faChevronLeft;
+    faChevronRight = faChevronRight;
+    faTimesCircle = faTimesCircle;
 
     currentId: string;
     goToIndex: number;
     resultSize: number;
     searchResults: SearchResponseWithQuery;
 
-    constructor(private router: Router, private streamerService: DataStreamerService) {}
+    constructor(private router: Router, private streamerService: DataStreamerService, private fb: FormBuilder) {}
 
     ngOnInit() {
         this.getCurrentResourceIdFromSubscription();
+    }
+
+    buildForm(index: number, resultSize: number): void {
+        this.resourceInfoForm = this.fb.group({
+            resourceInfoIndex: [
+                index || '',
+                Validators.compose([Validators.required, Validators.min(1), Validators.max(resultSize)])
+            ]
+        });
+    }
+
+    /*
+     * Getter function for resource info index
+     */
+    get resourceInfoIndex() {
+        return this.resourceInfoForm.get('resourceInfoIndex');
     }
 
     getCurrentResourceIdFromSubscription(): void {
@@ -95,11 +120,16 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             next: next ? new ResourceInfoResource(next, nextIndex) : undefined,
             previous: prev ? new ResourceInfoResource(prev, prevIndex) : undefined
         };
+
+        this.buildForm(this.goToIndex, this.resultSize);
     }
 
-    findResourceByIndex(index: number): void {
-        // find resource id of search result at array position index - 1 ()
-        const id = this.resourceInfo.searchResults.subjects[index - 1].obj_id;
+    findResourceByIndex(): void {
+        // get current form index
+        const formIndex = this.resourceInfoIndex.value;
+
+        // find resource id of search result at array position formIndex - 1 ()
+        const id = this.resourceInfo.searchResults.subjects[formIndex - 1].obj_id;
 
         // navigate to resource with resource id
         this.navigateToResource(id);
@@ -120,6 +150,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         this.router.navigate(['/data/search/fulltext', { query: query }]);
     }
 
+    /*
+     * Destroy subscriptions
+     */
     ngOnDestroy() {
         // prevent memory leak when component destroyed
         if (this.currentIdSubscription) {

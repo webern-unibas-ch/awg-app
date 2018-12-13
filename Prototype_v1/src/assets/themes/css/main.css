@@ -7,7 +7,7 @@ body {
 }
 
 /****** LINKS & POINTER ******/
-a {
+a:not(.list-group-item-danger) {
     cursor: pointer;
 }
 a,
@@ -19,7 +19,7 @@ a:not([href]):not([tabindex]):hover {
     color: #149b9e;
     text-decoration: none;
 }
-a:hover {
+a:not(.list-group-item):hover {
     border-bottom: 1px solid #149b9e;
 }
 a.dropdown-item,
@@ -27,15 +27,17 @@ a.dropdown-item,
     color: #333;
 }
 a.dropdown-item:hover,
-a.list-group-item:hover,
 .navbar-brand:hover,
 .navbar-nav > li > a:hover {
     border-bottom: none;
     text-decoration: none;
 }
-
+/*
+a.list-group-item:hover {
+    border: 1px solid rgba(0,0,0,.125)
+}
+*/
 a.dropdown-item:hover,
-a.list-group-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-brand:hover,
 .navbar-nav > li > a:focus,
@@ -330,7 +332,7 @@ span.facet-badge {
 .ng-valid.required {
     border-left: 5px solid #42a948; /* green */
 }
-
-.ng-invalid:not(form) {
+.ng-invalid:not(form),
+.ng-invalid:not(form):focus {
     border-left: 5px solid #a94442; /* red */
 }
