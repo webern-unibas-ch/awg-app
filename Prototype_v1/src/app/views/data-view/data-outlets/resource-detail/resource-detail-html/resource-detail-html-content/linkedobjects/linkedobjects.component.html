@@ -37,7 +37,7 @@
                     <tbody>
                     <tr *ngFor="let link of linkGroup.value">
                         <td>
-                            <a class="awg-linked-obj-link" (click)="navigateToResource(link?.obj_id)">
+                            <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
                                 <img [src]="link?.restype.icon" alt="icon">
                                 <span>&nbsp;[{{ link?.id }}] {{ link?.value }}</span>
                             </a>

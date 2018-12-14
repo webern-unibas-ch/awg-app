@@ -13,19 +13,14 @@
  ************************************************/
 
 /* image objects */
-.awg-linked-obj {
-    margin-bottom: 1rem;
-}
-@media screen and (max-width: 767px) {
-    .awg-linked-obj {
-        /* set top margin on small devices */
-        margin-top: 1rem;
-    }
-}
-
-.awg-linked-obj-incoming-linkgroup,
 .awg-linked-obj-link {
     cursor: pointer;
+}
+.awg-linked-obj-link {
+    color: #333 !important;
+}
+.awg-linked-obj-link:hover {
+    border-bottom: none !important;
 }
 
 .awg-linked-obj-table td {
@@ -33,11 +28,4 @@
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;
-}
-
-.awg-linked-obj-link {
-    color: #333 !important;
-}
-.awg-linked-obj-link:hover {
-    border-bottom: none !important;
 }
