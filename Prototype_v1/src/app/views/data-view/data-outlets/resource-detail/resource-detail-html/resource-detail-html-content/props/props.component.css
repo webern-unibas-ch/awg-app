@@ -13,31 +13,23 @@
 ************************************************/
 
 /* props */
-.props {
-    padding-left: 20px;
+.props ul {
+    padding-left: 0;
+    margin-top: 0.5rem;
+    margin-bottom: 0.25rem;
 }
 .props li {
     list-style: none;
-    padding: 3px 0;
+    padding: 0.25rem 0;
 }
-.props ul {
-    padding-left: 0;
-    margin-top: 4px;
-    margin-bottom: 2px;
-}
-.props li strong {
+.props .prop .prop-label {
     margin-top: 8px;
     margin-bottom: -4px;
-    margin-left: -20px;
     display: block;
-}
-.props li > strong {
-    font-size: 19px;
+    font-size: 21px;
     font-weight: 400;
-    color: #333;
 }
-.props li li > strong {
-    font-weight: 400;
-    font-size: 17px;
+.props .prop .prop-value {
     padding: 3px 0;
+    margin-left: 1rem;
 }

@@ -8,6 +8,7 @@ import { ContactViewComponent } from './contact-view.component';
 import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
 import { By } from '@angular/platform-browser';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -30,8 +31,11 @@ describe('ContactViewComponent (DONE)', () => {
     let mockRouter;
 
     let expectedMetaData: Meta;
-    const expectedTitle = 'Impressum';
-    const expectedId = 'masthead';
+    const expectedMastHeadTitle = 'Impressum';
+    const expectedMastHeadId = 'awg-masthead';
+    const expectedCitationTitle = 'Zitation';
+    const expectedCitationId = 'awg-citation';
+
     const expectedDateFormat = 'd. MMMM yyyy';
 
     beforeEach(async(() => {
@@ -90,12 +94,20 @@ describe('ContactViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have title and id', () => {
-            expect(component.contactTitle).toBeDefined();
-            expect(component.contactTitle).toBe(expectedTitle);
+        it('should have masthead title and id', () => {
+            expect(component.mastHeadTitle).toBeDefined();
+            expect(component.mastHeadTitle).toBe(expectedMastHeadTitle);
 
-            expect(component.contactId).toBeDefined();
-            expect(component.contactId).toBe(expectedId);
+            expect(component.mastHeadId).toBeDefined();
+            expect(component.mastHeadId).toBe(expectedMastHeadId);
+        });
+
+        it('should have citation title and id', () => {
+            expect(component.citationTitle).toBeDefined();
+            expect(component.citationTitle).toBe(expectedCitationTitle);
+
+            expect(component.citationId).toBeDefined();
+            expect(component.citationId).toBe(expectedCitationId);
         });
 
         it('should have dateFormat', () => {
@@ -121,40 +133,54 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one heading component (stubbed)', () => {
+            it('... should contain two heading component (stubbed)', () => {
                 const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
 
                 expect(headingDes).toBeTruthy();
-                expect(headingDes.length).toBe(1, 'should have only one heading');
+                expect(headingDes.length).toBe(2, 'should have two headings');
             });
 
-            it('... should contain 1 `div.contact-description` with 22 `p` elements', () => {
-                const divEl = compEl.querySelectorAll('div.contact-description');
-                const pEl = compEl.querySelectorAll('div.contact-description > p');
+            it('... should contain 1 `div.awg-citation-description` with 5 `p` elements', () => {
+                const divEl = compEl.querySelectorAll('div.awg-citation-description');
+                const pEl = compEl.querySelectorAll('div.awg-citation-description > p');
 
                 expect(divEl).toBeDefined();
-                expect(divEl.length).toBe(1, 'should have one `div.contact-description`');
+                expect(divEl.length).toBe(1, 'should have one `div.awg-citation-description`');
 
                 expect(pEl).toBeDefined();
-                expect(pEl.length).toBe(22, 'should have 22 `p`');
+                expect(pEl.length).toBe(5, 'should have 5 `p`');
             });
 
-            it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDe = compDe.query(By.directive(HeadingStubComponent));
-                const headingCmp = headingDe.injector.get(HeadingStubComponent) as HeadingStubComponent;
+            it('... should contain 1 `div.awg-masthead-description` with 21 `p` elements', () => {
+                const divEl = compEl.querySelectorAll('div.awg-masthead-description');
+                const pEl = compEl.querySelectorAll('div.awg-masthead-description > p');
 
-                expect(headingCmp.title).toBeUndefined();
-                expect(headingCmp.id).toBeUndefined();
+                expect(divEl).toBeDefined();
+                expect(divEl.length).toBe(1, 'should have one `div.awg-masthead-description`');
+
+                expect(pEl).toBeDefined();
+                expect(pEl.length).toBe(21, 'should have 21 `p`');
+            });
+
+            it('... should not pass down `title` and `id` to heading components', () => {
+                const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
+                const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
+
+                expect(headingCmps[0].title).toBeUndefined();
+                expect(headingCmps[0].id).toBeUndefined();
+
+                expect(headingCmps[1].title).toBeUndefined();
+                expect(headingCmps[1].id).toBeUndefined();
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
-                const versionDe = compDe.query(By.css('.citation-version'));
+                const versionDe = compDe.query(By.css('.awg-citation-version'));
                 const versionEl = versionDe.nativeElement;
 
-                const releaseDe = compDe.query(By.css('.citation-version-release'));
+                const releaseDe = compDe.query(By.css('.awg-citation-version-release'));
                 const releaseEl = releaseDe.nativeElement;
 
-                const dateDe = compDe.query(By.css('.citation-date'));
+                const dateDe = compDe.query(By.css('.awg-citation-date'));
                 const dateEl = dateDe.nativeElement;
 
                 expect(versionEl).toBeDefined();
@@ -244,25 +270,31 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should pass down `title` and `id` to heading component', () => {
-                const headingDe = compDe.query(By.directive(HeadingStubComponent));
-                const headingCmp = headingDe.injector.get(HeadingStubComponent) as HeadingStubComponent;
+            it('... should pass down `title` and `id` to heading components', () => {
+                const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
+                const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
-                expect(headingCmp.title).toBeTruthy();
-                expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);
+                expect(headingCmps[0].title).toBeTruthy();
+                expect(headingCmps[0].title).toBe(expectedCitationTitle, `should have title: ${expectedCitationTitle}`);
 
-                expect(headingCmp.id).toBeTruthy();
-                expect(headingCmp.id).toBe(expectedId, `should have id: ${expectedId}`);
+                expect(headingCmps[0].id).toBeTruthy();
+                expect(headingCmps[0].id).toBe(expectedCitationId, `should have id: ${expectedCitationId}`);
+
+                expect(headingCmps[1].title).toBeTruthy();
+                expect(headingCmps[1].title).toBe(expectedMastHeadTitle, `should have title: ${expectedMastHeadTitle}`);
+
+                expect(headingCmps[1].id).toBeTruthy();
+                expect(headingCmps[1].id).toBe(expectedMastHeadId, `should have id: ${expectedMastHeadId}`);
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
-                const versionDe = compDe.query(By.css('.citation-version'));
+                const versionDe = compDe.query(By.css('.awg-citation-version'));
                 const versionEl = versionDe.nativeElement;
 
-                const releaseDe = compDe.query(By.css('.citation-version-release'));
+                const releaseDe = compDe.query(By.css('.awg-citation-version-release'));
                 const releaseEl = releaseDe.nativeElement;
 
-                const dateDe = compDe.query(By.css('.citation-date'));
+                const dateDe = compDe.query(By.css('.awg-citation-date'));
                 const dateEl = dateDe.nativeElement;
 
                 const pipedToday = datePipe.transform(expectedToday, expectedDateFormat);

@@ -13,6 +13,19 @@
  ************************************************/
 
 /* image objects */
-.linkedObj {
-    margin-bottom: 25px;
+.awg-linked-obj-link {
+    cursor: pointer;
+}
+.awg-linked-obj-link {
+    color: #333 !important;
+}
+.awg-linked-obj-link:hover {
+    border-bottom: none !important;
+}
+
+.awg-linked-obj-table td {
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
 }

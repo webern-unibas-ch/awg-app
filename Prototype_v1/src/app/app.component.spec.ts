@@ -2,13 +2,15 @@
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
-import { RouterLinkStubDirective, RouterOutletStubComponent } from 'testing/router-stubs';
 
 import { AppComponent } from './app.component';
 
 // mock components
 @Component({ selector: 'awg-navbar', template: '' })
 class NavbarStubComponent {}
+
+@Component({ selector: 'awg-view-container', template: '' })
+class ViewContainerStubComponent {}
 
 @Component({ selector: 'awg-footer', template: '' })
 class FooterStubComponent {}
@@ -21,13 +23,7 @@ describe('AppComponent (DONE)', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [
-                AppComponent,
-                FooterStubComponent,
-                NavbarStubComponent,
-                RouterLinkStubDirective,
-                RouterOutletStubComponent
-            ]
+            declarations: [AppComponent, FooterStubComponent, NavbarStubComponent, ViewContainerStubComponent]
         }).compileComponents();
     }));
 
@@ -51,16 +47,11 @@ describe('AppComponent (DONE)', () => {
                 expect(navbarDes.length).toBe(1, 'should have only one navbar');
             });
 
-            it('... should contain two router outlets (stubbed), one ot those named', () => {
-                const routletDe = compDe.queryAll(By.directive(RouterOutletStubComponent));
+            it('... should contain one view container component (stubbed)', () => {
+                const viewContainerDes = compDe.queryAll(By.directive(ViewContainerStubComponent));
 
-                expect(routletDe).toBeDefined();
-                expect(routletDe.length).toBe(2, 'should have 2 router outlets');
-
-                // first outlet shoud be named 'side'
-                expect(routletDe[0].attributes).toBeDefined();
-                expect(routletDe[0].attributes.name).toBeDefined();
-                expect(routletDe[0].attributes.name).toBe('side');
+                expect(viewContainerDes).toBeDefined();
+                expect(viewContainerDes.length).toBe(1, 'should have only one view container');
             });
 
             it('... should contain one footer component (stubbed)', () => {

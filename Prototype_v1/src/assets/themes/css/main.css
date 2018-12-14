@@ -7,27 +7,40 @@ body {
 }
 
 /****** LINKS & POINTER ******/
+a:not(.list-group-item-danger) {
+    cursor: pointer;
+}
 a,
 a:link,
 a:visited,
-a:hover {
+a:hover,
+a:not([href]):not([tabindex]),
+a:not([href]):not([tabindex]):hover {
     color: #149b9e;
     text-decoration: none;
 }
-a:hover {
+a:not(.list-group-item):hover {
     border-bottom: 1px solid #149b9e;
 }
-a,
-.incomingLinks {
-    cursor: pointer;
+a.dropdown-item,
+.nav-tabs > li > a {
+    color: #333;
+}
+a.dropdown-item:hover,
+.navbar-brand:hover,
+.navbar-nav > li > a:hover {
+    border-bottom: none;
+    text-decoration: none;
+}
+a.dropdown-item:hover,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-brand:hover,
+.navbar-nav > li > a:focus,
+.navbar-nav > li > a:active {
+    color: #149b9e !important;
 }
 
 /****** DIVS ******/
-.row {
-    margin-top: 10px;
-    margin-right: -15px;
-    margin-left: -15px;
-}
 .para {
     margin-bottom: 3em;
 }
@@ -45,67 +58,66 @@ a,
 
 /****** PAGE LAYOUT ******/
 
-/* navbar (override some default values) */
-.navbar.navbar-default {
+/* navbar */
+/* (override some default values) */
+awg-navbar > .navbar {
+    border-bottom: 1px solid #e7e7e7;
+}
+.navbar {
     margin-bottom: 0;
     border-radius: 0;
-    height: 51px;
     background-color: transparent;
 }
-.container-fluid > .navbar-header {
-    margin-left: -15px;
-    margin-right: 0px;
+@media screen and (max-width: 767px) {
+    .navbar > .container-fluid > .row {
+        flex-wrap: nowrap;
+    }
 }
-.container-fluid > .navbar-collapse {
-    margin-left: -15px;
-}
-.navbar-brand {
-    margin-top: -10px;
-}
-.navbar-nav {
+.nav-link > fa-icon {
     margin-left: 5px;
+    margin-right: 5px;
 }
-.nav-tabs > li > a {
-    color: #333;
-}
-.navbar-brand:hover,
-.nav > li > a:hover,
-ul.dropdown-menu > li > a:hover,
-a.list-group-item:hover {
-    border-bottom: none;
-    text-decoration: none;
-}
-.navbar-brand:hover,
-.nav > li > a:focus,
-.nav > li > a:active,
-ul.dropdown-menu > li > a:hover,
-a.list-group-item:hover {
-    color: #149b9e !important;
+/* helper class to set order to minus 1 */
+@media screen and (min-width: 768px) {
+    .order-md-minus-1 {
+        order: -1;
+    }
 }
 
-/* main view */
-.awg-content {
+/* view container */
+awg-view-container > div {
     background-color: #f9f9f6;
     background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
-    min-height: calc(100vh - 51px - 132px);
+    min-height: calc(100vh - 121px - 200px);
 }
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-    .awg-content {
-        /* full height without header and footer */
-        min-height: calc(100vh - 51px - 208px);
+@media screen and (min-width: 768px) {
+    awg-view-container > div {
+        /* full height without header and footer from sm devices up */
+        min-height: calc(100vh - 121px - 135px);
     }
 }
 
-/* Set height of the grid so .sidenav can be 100% */
-.row.content {
-    /*height: 600px*/
+/* sidenav */
+.awg-sidenav > .card {
+    padding: inherit;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+    .awg-sidenav {
+        height: auto;
+    }
+    .row {
+        height: auto;
+    }
 }
 
 /* footer */
 footer {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 14px;
     height: 132px; /* needed for sticky footer */
     background-color: transparent;
     color: #333;
@@ -113,24 +125,64 @@ footer {
     border-top: 1px solid #e7e7e7;
 }
 
-/* sidenav */
-.sidenav {
-    margin-top: 14px;
-    margin-bottom: 10px;
-    padding: 10px;
+.awg-footer-bottom {
+    border-top: 1px solid #e7e7e7;
 }
-.sidenav > .well-lg {
-    padding: inherit;
+.awg-footer-bottom .icon img {
+    position: relative;
+    display: inline;
+    height: 24px;
+    width: 24px;
+    margin: 0;
 }
-/* On small screens, set height to 'auto' for sidenav and grid */
-@media screen and (max-width: 767px) {
-    .sidenav {
-        height: auto;
-        padding: 15px;
-    }
-    .row.content {
-        height: auto;
-    }
+
+/****** CARDS ******/
+.card-header {
+    padding: 0.25rem 0.25rem; /* default: .75rem 1.25 rem */
+}
+.card-header .btn-link {
+    color: #149b9e !important;
+    box-shadow: none;
+    -webkit-box-shadow: none;
+    border-bottom: none;
+}
+.card-header .btn-link:hover {
+    text-decoration: underline;
+}
+.card-header .btn-link:focus {
+    text-decoration: none;
+}
+
+/****** BUTTON GROUP ******/
+/* TODO: Switch button group direction with scss
+.awg-btn-group {
+    @media (max-width: 760px) {.btn-group-vertical}
+    @media (min-width: 761px) {.btn-group}
+}
+ */
+.awg-btn-group {
+    margin-bottom: 2rem;
+}
+.awg-btn-group > button.btn {
+    background-color: #f9f9f6;
+    border: 1px solid #e7e7e7;
+}
+
+/****** MODAL ******/
+.modal-header {
+    background-color: #149b9e;
+    color: #f9f9f6;
+}
+.modal-header > .close {
+    color: #f9f9f6;
+}
+.modal-body,
+.modal-footer {
+    background-color: #f9f9f6;
+}
+.awg-modal-button:hover,
+.awg-modal-button:active {
+    background-color: #149b9e;
 }
 
 /****** OBJECT BOX ******/
@@ -139,15 +191,15 @@ footer {
     height: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid #f1f1f1;
+    border: 1px solid #e7e7e7;
     box-shadow: 5px 5px 6px #cccccc;
 }
 .objbox-control-button {
     text-align: right;
 }
 
-.subitem {
-    padding-left: 20px;
+.awg-subitem {
+    padding-left: 50px;
 }
 
 /****** IMAGES ******/
@@ -184,7 +236,7 @@ footer {
 /****** SVG ******/
 .edition-svg {
     box-shadow: 5px 5px 6px #cccccc;
-    border: 1px solid #eeeeee;
+    border: 1px solid #e7e7e7;
 }
 .edition-svg-item {
     fill: orange;
@@ -206,10 +258,6 @@ footer {
 svg a.active rect {
     fill: OliveDrab;
     opacity: 0.2;
-}
-.edition-convolute-legend:before {
-    content: '\e157';
-    font-family: 'Glyphicons Halflings';
 }
 .item-group.active,
 .item-group.active > .item-link > .item-shape {
@@ -236,15 +284,6 @@ ul.none {
     list-style: none;
 }
 
-.awg-sidenav-results tbody tr {
-    cursor: pointer;
-}
-.awg-sidenav-results tbody tr:hover {
-    background-color: #e7e7e7;
-}
-.awg-sidenav-results tbody tr.active td {
-    background-color: #d7d7d7;
-}
 span.facet-badge {
     background-color: #777 !important;
 }
@@ -288,7 +327,7 @@ span.facet-badge {
 .ng-valid.required {
     border-left: 5px solid #42a948; /* green */
 }
-
-.ng-invalid:not(form) {
+.ng-invalid:not(form),
+.ng-invalid:not(form):focus {
     border-left: 5px solid #a94442; /* red */
 }

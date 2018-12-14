@@ -10,8 +10,11 @@ import { Meta } from '@awg-core/core-models';
     styleUrls: ['./contact-view.component.css']
 })
 export class ContactViewComponent implements OnInit {
-    contactTitle = 'Impressum';
-    contactId = 'masthead';
+    mastHeadTitle = 'Impressum';
+    mastHeadId = 'awg-masthead';
+
+    citationTitle = 'Zitation';
+    citationId = 'awg-citation';
 
     metaData: Meta;
     today: number;

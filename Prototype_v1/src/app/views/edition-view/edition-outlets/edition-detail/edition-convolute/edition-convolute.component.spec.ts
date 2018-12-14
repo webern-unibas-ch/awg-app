@@ -1,6 +1,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { EditionConvoluteComponent } from './edition-convolute.component';
 import { ConvoluteFolio, EditionSvgFile } from '@awg-views/edition-view/models';
 
@@ -20,6 +23,7 @@ describe('EditionConvoluteComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [FontAwesomeModule, NgbAccordionModule],
             declarations: [EditionConvoluteComponent, FolioStubComponent]
         }).compileComponents();
     }));

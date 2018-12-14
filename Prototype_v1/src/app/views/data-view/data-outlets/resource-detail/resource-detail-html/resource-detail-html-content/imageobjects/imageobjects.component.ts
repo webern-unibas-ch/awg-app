@@ -10,6 +10,8 @@ import {
     ViewChildren
 } from '@angular/core';
 
+import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+
 import { ResourceDetailImage } from '@awg-views/data-view/models';
 
 @Component({
@@ -33,6 +35,9 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     offset = 0;
     max = 50;
 
+    faChevronCircleLeft = faChevronCircleLeft;
+    faChevronCircleRight = faChevronCircleRight;
+
     constructor() {}
 
     ngOnInit() {}
@@ -48,6 +53,7 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
         // calculate offset
         const thumbBoxRect = this.thumbBox.nativeElement.getBoundingClientRect();
         const tmpOffset = this.offset - thumbBoxRect.width;
+        console.log('tmpOffSet', tmpOffset);
 
         if (tmpOffset > 0) {
             this.offset = tmpOffset;
@@ -59,8 +65,15 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     pageThumbsRight() {
         // calculate offset
         const thumbBoxRect = this.thumbBox.nativeElement.getBoundingClientRect();
+        const thumbContainerRect = this.thumbContainer.nativeElement.getBoundingClientRect();
         const tmpOffset = this.offset + thumbBoxRect.width;
-        this.max = this.thumbContainer.nativeElement.getBoundingClientRect().width - thumbBoxRect.width;
+
+        this.max = thumbContainerRect.width - thumbBoxRect.width;
+
+        console.log('thumbBox', thumbBoxRect.width);
+        console.log('container', thumbContainerRect.width);
+        console.log('max', this.max);
+        console.log('tmpOffSet', tmpOffset);
 
         if (tmpOffset < this.max) {
             this.offset = tmpOffset;

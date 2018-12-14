@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ConvoluteFolio, EditionSvgFile } from '@awg-views/edition-view/models';
+import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 
 @Component({
     selector: 'awg-edition-convolute',
@@ -17,11 +18,38 @@ export class EditionConvoluteComponent implements OnInit {
     @Output()
     selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
-    showConvolutePanel = true;
+    faSquare = faSquare;
+
+    selectedConvoluteLabel: string;
+    convoluteLabel = {
+        A: 'A Skizzen (Basel, Paul Sacher Stiftung)',
+        B_H: 'B–H (siehe Kritischer Bericht)'
+    };
+
+    folioLegend = [
+        {
+            color: 'olivedrab',
+            label: 'aktuell ausgewählt'
+        },
+        {
+            color: 'orange',
+            label: 'auswählbar'
+        },
+        {
+            color: 'grey',
+            label: '(momentan noch) nicht auswählbar'
+        }
+    ];
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.selectedConvoluteLabel = this.convoluteLabel.A;
+    }
+
+    selectConvolute(convoluteLabel: string) {
+        this.selectedConvoluteLabel = convoluteLabel;
+    }
 
     // request function to emit modal id
     openModal(id: string) {
@@ -31,10 +59,5 @@ export class EditionConvoluteComponent implements OnInit {
     // request function to emit selected sheet id
     selectSvgFile(id: string) {
         this.selectSvgFileRequest.emit(id);
-    }
-
-    // helper function to toggle panel
-    togglePanel(): boolean {
-        return (this.showConvolutePanel = !this.showConvolutePanel);
     }
 }

@@ -12,5 +12,17 @@ export const LOGOSDATA: Logos = {
         src: 'assets/img/logos/snf.jpg',
         alt: 'Logo SNF',
         href: 'http://www.snf.ch'
+    },
+    angular: {
+        id: 'angularlogo',
+        src: 'assets/img/logos/angular.svg',
+        alt: 'Logo Angular',
+        href: 'https://angular.io'
+    },
+    bootstrap: {
+        id: 'bootstraplogo',
+        src: 'assets/img/logos/ng-bootstrap.svg',
+        alt: 'Logo ng-Bootstrap',
+        href: 'https://ng-bootstrap.github.io/'
     }
 };

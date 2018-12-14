@@ -38,6 +38,8 @@ export class ConversionService extends ApiService {
     // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
     static ngInjectableDef = undefined;
 
+    filteredOut: number;
+
     /******************************************
      *
      * sum up length of all arrays nested in an
@@ -101,24 +103,24 @@ export class ConversionService extends ApiService {
     /******************************************
      *
      *  prepare fulltext search result string
-     *
+     * v
      *****************************************/
     public prepareFullTextSearchResultText(
         searchData: SearchResponseJson,
-        filteredOut: number,
+        searchValue: string,
         searchUrl: string
     ): string {
         let resText: string;
 
         if (searchData.subjects) {
             const length = searchData.subjects.length;
-            resText = length + ` `;
-            resText += length === 1 ? `zugängliches Resultat` : `zugängliche Resultate`;
-            resText += ` von ${searchData.nhits}`;
+            const resString: string = length === 1 ? `zugängliches Resultat` : `zugängliche Resultate`;
+            resText = `${length}/${searchData.nhits} `;
+            resText += `${resString} für "${searchValue}"`;
 
-            if (filteredOut > 0) {
-                const duplString: string = filteredOut === 1 ? `Duplikat` : `Duplikate`;
-                resText += ` (${filteredOut} ${duplString} entfernt)`;
+            if (this.filteredOut > 0) {
+                const duplString: string = this.filteredOut === 1 ? `Duplikat` : `Duplikate`;
+                resText += ` (${this.filteredOut} ${duplString} entfernt)`;
             }
         } else {
             resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;
@@ -700,9 +702,9 @@ export class ConversionService extends ApiService {
         if (!arr) {
             return;
         }
-        let filteredOut = 0;
+        this.filteredOut = 0;
         return arr.reduce(
-            (x, y) => (x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : ((filteredOut += 1), x)),
+            (x, y) => (x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : ((this.filteredOut += 1), x)),
             []
         );
     }

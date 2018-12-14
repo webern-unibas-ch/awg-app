@@ -5,9 +5,16 @@ import { RouterModule } from '@angular/router';
 
 //
 // shared modules
-import { AccordionModule } from 'ngx-bootstrap/accordion';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { ModalModule } from 'ngx-bootstrap/modal';
+import {
+    NgbAccordionModule,
+    NgbButtonsModule,
+    NgbCollapseModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbTabsetModule,
+    NgbTooltipModule
+} from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { CompileHtmlModule } from './compile-html';
 
 //
@@ -27,9 +34,14 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        AccordionModule.forRoot(),
-        ButtonsModule.forRoot(),
-        ModalModule.forRoot(),
+        FontAwesomeModule,
+        NgbAccordionModule,
+        NgbButtonsModule,
+        NgbCollapseModule,
+        NgbDropdownModule,
+        NgbModalModule,
+        NgbTabsetModule,
+        NgbTooltipModule,
         CompileHtmlModule
     ],
     declarations: [
@@ -44,9 +56,14 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        AccordionModule,
-        ButtonsModule,
-        ModalModule,
+        FontAwesomeModule,
+        NgbAccordionModule,
+        NgbButtonsModule,
+        NgbCollapseModule,
+        NgbDropdownModule,
+        NgbModalModule,
+        NgbTabsetModule,
+        NgbTooltipModule,
         CompileHtmlModule,
 
         HeadingComponent,

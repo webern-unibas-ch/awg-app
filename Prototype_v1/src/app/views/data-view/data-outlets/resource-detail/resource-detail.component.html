@@ -1,6 +1,66 @@
 <!-- resource detail box -->
-<div class="col-md-9 awg-resource-detail-tabs" *ngIf="resourceData; else error">
+<div class="awg-resource-detail-tabs" *ngIf="resourceData; else error">
 
+    <ngb-tabset>
+        <!-- html -->
+        <ngb-tab id="html" class="awg-resource-detail-long-tab">
+            <ng-template ngbTabTitle>
+                {{ tabTitle?.html }}
+            </ng-template>
+            <ng-template ngbTabContent>
+                <!-- resourceDetailData header -->
+                <awg-resource-detail-header *ngIf="resourceData?.html?.header"
+                                            [header]="resourceData?.html?.header"
+                                            [resourceUrl]="resourceUrl"
+                                            (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-header>
+
+                <!-- html visualisation -->
+                <awg-resource-detail-html *ngIf="resourceData?.html"
+                                          [resourceDetailData]="resourceData?.html"
+                                          (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-html>
+            </ng-template>
+        </ngb-tab>
+
+        <!-- JSON converted -->
+        <ngb-tab id="converted" title="{{ tabTitle?.converted }}" class="awg-resource-detail-short-tab">
+            <ng-template ngbTabContent>
+                <!-- resourceDetailData header -->
+                <awg-resource-detail-header *ngIf="resourceData?.html?.header"
+                                            [header]="resourceData?.html?.header"
+                                            [resourceUrl]="resourceUrl"
+                                            (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-header>
+
+                <!-- converted json visualisation -->
+                <awg-resource-detail-json-converted *ngIf="resourceData?.jsonConverted"
+                                                    [resourceJsonConvertedData]="resourceData?.jsonConverted">
+                </awg-resource-detail-json-converted>
+            </ng-template>
+        </ngb-tab>
+
+        <!-- JSON raw -->
+        <ngb-tab id="raw" title="{{ tabTitle?.raw }}" class="awg-resource-detail-short-tab">
+            <ng-template ngbTabContent>
+                <!-- resourceDetailData header -->
+                <awg-resource-detail-header *ngIf="resourceData?.html?.header"
+                                            [header]="resourceData?.html?.header"
+                                            [resourceUrl]="resourceUrl"
+                                            (resourceRequest)="navigateToResource($event)">
+                </awg-resource-detail-header>
+
+                <!-- raw json visualisation -->
+                <awg-resource-detail-json-raw *ngIf="resourceData?.jsonRaw"
+                                              [resourceJsonRawData]="resourceData?.jsonRaw">
+                </awg-resource-detail-json-raw>
+            </ng-template>
+        </ngb-tab>
+
+    </ngb-tabset>
+
+    <!--
+    TODO: remove
     <ul class="nav nav-tabs nav-justified" role="tablist">
         <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitle?.html }}</a></li>
         <li class="dropdown awg-resource-detail-short-tab">
@@ -14,35 +74,10 @@
         </li>
     </ul>
 
-    <div class="tab-content">
-        <!-- resourceDetailData header -->
-        <awg-resource-detail-header *ngIf="resourceData?.html?.header"
-                                         [header]="resourceData?.html?.header"
-                                         [resourceUrl]="resourceUrl"
-                                         (resourceRequest)="navigateToResource($event)">
-        </awg-resource-detail-header>
+    -->
 
-        <!-- html visualisation -->
-        <awg-resource-detail-html id="html" class="tab-pane fade in active"
-            *ngIf="resourceData?.html"
-            [resourceDetailData]="resourceData?.html"
-            (resourceRequest)="navigateToResource($event)">
-        </awg-resource-detail-html>
-
-        <!-- converted json visualisation -->
-        <awg-resource-detail-json-converted id="converted" class="tab-pane fade"
-            *ngIf="resourceData?.jsonConverted"
-            [resourceJsonConvertedData]="resourceData?.jsonConverted">
-        </awg-resource-detail-json-converted>
-
-        <!-- raw json visualisation -->
-        <awg-resource-detail-json-raw id="raw" class="tab-pane fade"
-            *ngIf="resourceData?.jsonRaw"
-            [resourceJsonRawData]="resourceData?.jsonRaw">
-        </awg-resource-detail-json-raw>
-
-    </div>
 </div>
+
 <ng-template #error>
     <div class="errorMessage" *ngIf="errorMessage">
         <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>

@@ -1,30 +1,21 @@
-<div class="panel panel-default" id="sourceList">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a (click)="togglePanel()">1. Quellenübersicht</a>
-        </h4>
-    </div>
-    <div class="panel-collapse collapse" [class.in]="showListPanel">
-        <div class="panel-body">
-            <table class="table table-hover borderless">
-                <tbody>
-                <!--  at the moment only for the first item ("source.siglum == 'A'") -->
-                <tr *ngFor="let source of sourceListData.sources; let sourceIndex = index">
-                    <td class="bold">
-                        <ng-container *ngIf="sourceIndex === 0; else modalHint">
-                            <a [routerLink]="['./']" fragment="{{source.linkTo}}" [innerHTML]="source.siglum"></a>
-                        </ng-container>
-                        <ng-template #modalHint>
-                            <a (click)="openModal(source.linkTo)" [innerHTML]="source.siglum"></a>
-                        </ng-template>
-                    </td>
-                    <td><span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
-                        <span [innerHTML]="source.location"></span>
-                    </td>
-                </tr>
-                </tbody>
-            </table>
-        </div>
-    </div>
-</div>
+<table class="table table-hover borderless">
+    <tbody>
+
+    <!--  at the moment only for the first item ("source.siglum == 'A'") -->
+    <tr *ngFor="let source of sourceListData.sources; let sourceIndex = index">
+        <td class="bold">
+            <ng-container *ngIf="sourceIndex === 0; else modalHint">
+                <a [routerLink]="['./']" fragment="{{source.linkTo}}" [innerHTML]="source.siglum"></a>
+            </ng-container>
+            <ng-template #modalHint>
+                <a (click)="openModal(source.linkTo)" [innerHTML]="source.siglum"></a>
+            </ng-template>
+        </td>
+        <td><span [compile-html]="source.type" [compile-html-ref]="ref"></span> <br/>
+            <span [innerHTML]="source.location"></span>
+        </td>
+    </tr>
+
+    </tbody>
+</table>
 

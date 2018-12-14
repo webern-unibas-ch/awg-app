@@ -3,6 +3,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { switchMap, map } from 'rxjs/operators';
 
+import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
+
 import { ConversionService, DataStreamerService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 import { ResourceData, ResourceDetail } from '@awg-views/data-view/models';
@@ -11,7 +13,8 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 @Component({
     selector: 'awg-resource-detail',
     templateUrl: './resource-detail.component.html',
-    styleUrls: ['./resource-detail.component.css']
+    styleUrls: ['./resource-detail.component.css'],
+    providers: [NgbTabsetConfig]
 })
 export class ResourceDetailComponent implements OnInit {
     resourceData: ResourceData;
@@ -32,8 +35,11 @@ export class ResourceDetailComponent implements OnInit {
         private router: Router,
         private conversionService: ConversionService,
         private searchService: DataApiService,
-        private streamerService: DataStreamerService
-    ) {}
+        private streamerService: DataStreamerService,
+        config: NgbTabsetConfig
+    ) {
+        config.justify = 'justified';
+    }
 
     /*
      * Scroll to Top of Window

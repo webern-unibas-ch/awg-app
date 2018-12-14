@@ -15,7 +15,7 @@ import {
 } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
 
-import { ModalModule } from 'ngx-bootstrap';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 @Component({ selector: 'awg-edition-detail-notification', template: '' })
@@ -66,7 +66,7 @@ describe('EditionDetailComponent', () => {
         };
 
         TestBed.configureTestingModule({
-            imports: [ModalModule.forRoot(), RouterTestingModule],
+            imports: [NgbModalModule, RouterTestingModule],
             declarations: [
                 EditionDetailComponent,
                 EditionDetailNotificationStubComponent,
