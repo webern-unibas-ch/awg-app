@@ -19,25 +19,29 @@ a:not([href]):not([tabindex]):hover {
     color: #149b9e;
     text-decoration: none;
 }
-a:not(.list-group-item):hover {
-    border-bottom: 1px solid #149b9e;
-}
 a.dropdown-item,
 .nav-tabs > li > a {
     color: #333;
 }
 a.dropdown-item:hover,
+a.list-group-item:hover,
 .navbar-brand:hover,
 .navbar-nav > li > a:hover {
-    border-bottom: none;
+    border-bottom: none !important;
     text-decoration: none;
 }
+
 a.dropdown-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
-.navbar-brand:hover,
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:active {
-    color: #149b9e !important;
+    color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
+}
+a.navbar-brand span#webernlogo {
+    color: rgba(0, 0, 0, 0.6); /* rgba converted HEX #000000 */
+}
+a.navbar-brand:hover span#webernlogo {
+    color: rgba(0, 0, 0, 1); /* rgba converted HEX #000000 */
 }
 
 /****** DIVS ******/
