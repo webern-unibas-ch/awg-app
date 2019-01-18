@@ -16,28 +16,36 @@ a:visited,
 a:hover,
 a:not([href]):not([tabindex]),
 a:not([href]):not([tabindex]):hover {
-    color: #149b9e;
+    color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
     text-decoration: none;
-}
-a:not(.list-group-item):hover {
-    border-bottom: 1px solid #149b9e;
 }
 a.dropdown-item,
 .nav-tabs > li > a {
-    color: #333;
+    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
+}
+
+a:hover {
+    border-bottom: 1px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
 }
 a.dropdown-item:hover,
+a.list-group-item:hover,
 .navbar-brand:hover,
 .navbar-nav > li > a:hover {
-    border-bottom: none;
+    border-bottom: none !important;
     text-decoration: none;
 }
+
 a.dropdown-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
-.navbar-brand:hover,
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:active {
-    color: #149b9e !important;
+    color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
+}
+a.navbar-brand span#webernlogo {
+    color: rgba(0, 0, 0, 0.6); /* rgba converted HEX #000000 */
+}
+a.navbar-brand:hover span#webernlogo {
+    color: rgba(0, 0, 0, 1); /* rgba converted HEX #000000 */
 }
 
 /****** DIVS ******/
@@ -61,7 +69,7 @@ a.dropdown-item:hover,
 /* navbar */
 /* (override some default values) */
 awg-navbar > .navbar {
-    border-bottom: 1px solid #e7e7e7;
+    border-bottom: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
 }
 .navbar {
     margin-bottom: 0;
@@ -86,7 +94,7 @@ awg-navbar > .navbar {
 
 /* view container */
 awg-view-container > div {
-    background-color: #f9f9f6;
+    background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
     background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
@@ -120,13 +128,13 @@ footer {
     font-size: 14px;
     height: 132px; /* needed for sticky footer */
     background-color: transparent;
-    color: #333;
+    color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
     padding: 15px;
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
 }
 
 .awg-footer-bottom {
-    border-top: 1px solid #e7e7e7;
+    border-top: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
 }
 .awg-footer-bottom .icon img {
     position: relative;
@@ -141,7 +149,7 @@ footer {
     padding: 0.25rem 0.25rem; /* default: .75rem 1.25 rem */
 }
 .card-header .btn-link {
-    color: #149b9e !important;
+    color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
     box-shadow: none;
     -webkit-box-shadow: none;
     border-bottom: none;
@@ -164,25 +172,25 @@ footer {
     margin-bottom: 2rem;
 }
 .awg-btn-group > button.btn {
-    background-color: #f9f9f6;
-    border: 1px solid #e7e7e7;
+    background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
+    border: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
 }
 
 /****** MODAL ******/
 .modal-header {
-    background-color: #149b9e;
-    color: #f9f9f6;
+    background-color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+    color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
 }
 .modal-header > .close {
-    color: #f9f9f6;
+    color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
 }
 .modal-body,
 .modal-footer {
-    background-color: #f9f9f6;
+    background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
 }
 .awg-modal-button:hover,
 .awg-modal-button:active {
-    background-color: #149b9e;
+    background-color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
 }
 
 /****** OBJECT BOX ******/
@@ -191,8 +199,8 @@ footer {
     height: 100%;
     padding: 10px;
     margin: 10px;
-    border: 1px solid #e7e7e7;
-    box-shadow: 5px 5px 6px #cccccc;
+    border: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
 }
 .objbox-control-button {
     text-align: right;
@@ -235,8 +243,8 @@ footer {
 
 /****** SVG ******/
 .edition-svg {
-    box-shadow: 5px 5px 6px #cccccc;
-    border: 1px solid #e7e7e7;
+    box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+    border: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
 }
 .edition-svg-item {
     fill: orange;
@@ -252,7 +260,7 @@ footer {
 .edition-svg-system:hover,
 .edition-svg-linkbox:hover,
 .edition-svg-item:hover {
-    fill: #8bb82d; /* some lighter OliveDrab*/
+    fill: rgba(139, 184, 45, 1); /* some lighter OliveDrab; rgba converted HEX #8bb82d */
     opacity: 0.2;
 }
 svg a.active rect {
@@ -285,7 +293,7 @@ ul.none {
 }
 
 span.facet-badge {
-    background-color: #777 !important;
+    background-color: rgba(119, 119, 119, 1) !important; /* rgba converted HEX #777 */
 }
 
 /****** FONTPROPERTIES ******/
@@ -325,9 +333,9 @@ span.facet-badge {
 /****** FORMS ******/
 .ng-valid[required],
 .ng-valid.required {
-    border-left: 5px solid #42a948; /* green */
+    border-left: 5px solid rgba(66, 169, 72, 1); /* rgba converted HEX #42a948; green */
 }
 .ng-invalid:not(form),
 .ng-invalid:not(form):focus {
-    border-left: 5px solid #a94442; /* red */
+    border-left: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
 }
