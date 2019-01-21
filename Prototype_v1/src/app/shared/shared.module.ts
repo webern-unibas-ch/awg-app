@@ -5,6 +5,8 @@ import { RouterModule } from '@angular/router';
 
 //
 // shared modules
+import { CompileHtmlModule } from './compile-html';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
     NgbAccordionModule,
     NgbButtonsModule,
@@ -14,12 +16,12 @@ import {
     NgbTabsetModule,
     NgbTooltipModule
 } from '@ng-bootstrap/ng-bootstrap';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import { CompileHtmlModule } from './compile-html';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 //
 // shared components
 import { HeadingComponent } from './heading/heading.component';
+import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
@@ -34,6 +36,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        CompileHtmlModule,
         FontAwesomeModule,
         NgbAccordionModule,
         NgbButtonsModule,
@@ -42,20 +45,22 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbModalModule,
         NgbTabsetModule,
         NgbTooltipModule,
-        CompileHtmlModule
+        NgxJsonViewerModule
     ],
     declarations: [
         HeadingComponent,
+        JsonViewerComponent,
         ModalComponent,
-        OrderByPipe,
         RouterLinkButtonGroupComponent,
-        TwelveToneSpinnerComponent
+        TwelveToneSpinnerComponent,
+        OrderByPipe
     ],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
+        CompileHtmlModule,
         FontAwesomeModule,
         NgbAccordionModule,
         NgbButtonsModule,
@@ -64,9 +69,10 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbModalModule,
         NgbTabsetModule,
         NgbTooltipModule,
-        CompileHtmlModule,
+        NgxJsonViewerModule,
 
         HeadingComponent,
+        JsonViewerComponent,
         ModalComponent,
         OrderByPipe,
         RouterLinkButtonGroupComponent,
