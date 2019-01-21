@@ -14,5 +14,6 @@
         "module": "es2015",
         "types": []
     },
+    "include": ["**/*.ts"],
     "exclude": ["test.ts", "**/*.spec.ts"]
 }
