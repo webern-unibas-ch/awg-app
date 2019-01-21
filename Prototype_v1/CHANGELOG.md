@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 <a name="0.4.0"></a>
 
-# [0.4.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0) (2019-01-21)
+# [0.4.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0) (2019-01-22)
 
 ### Bug Fixes
 
@@ -44,9 +44,23 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### Features
 
--   **app:** add and configure GoogleAnalytics pageview events ([dc7d213](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc7d213)), closes [/stackoverflow.com/questions/1251922/is-there-a-way-to-stop-google-analytics-counting-development-work-as-hits#8178283](https://git.iml.unibas.ch/muennich/WebernLiveApp/issues/8178283)
+-   **app:** add and configure GoogleAnalytics pageview events ([dc7d213](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc7d213))
+-   **app:** refactor the whole app with bootstrap 4 ([891ef5a](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/891ef5a))
 -   **build:** update `angular-cli`(^7.2.2) and `angular` (^7.2.1) ([9baf470](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9baf470))
 -   **shared:** add json viewer component ([92f3f3e](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/92f3f3e))
+
+### BREAKING CHANGES
+
+-   **app:** Bootstrap 4 is a major rewrite of the entire Bootstrap project, so the upgrade to Bootstrap 4 involves some refactoring of essential parts of the application structure, including
+    -   navbar, tabsets, dropdowns, list-items, panels (cards)
+    -   a lot of style classes (mt, pb)
+    -   the use of `ngx-bootstrap` instead of `jQuery`
+
+For more details, see
+
+-   https://getbootstrap.com/docs/4.1/migration/
+
+Only minor version bump.
 
 <a name="0.3.0"></a>
 
