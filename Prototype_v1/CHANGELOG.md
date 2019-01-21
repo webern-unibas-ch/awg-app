@@ -2,6 +2,52 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+<a name="0.4.0"></a>
+
+# [0.4.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0) (2019-01-21)
+
+### Bug Fixes
+
+-   **app:** add include files to tsconfig app ([fa3a662](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/fa3a662))
+-   **app:** change LOCALE_ID to "de-DE" globally ([c5d3b70](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/c5d3b70))
+-   **contact:** add separate section for citations ([324d553](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/324d553))
+-   **core:** add fixed bottom footer ([66b2c5a](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/66b2c5a))
+-   **core:** add footer module ([253e6c7](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/253e6c7))
+-   **core:** add separate component for view container ([5a3fe0c](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/5a3fe0c))
+-   **core:** highlight active nav-link on page load ([41c7f81](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/41c7f81))
+-   **core:** make bottom footer logos wrap at breakpoint ([184fbb4](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/184fbb4))
+-   **core:** make header fully responsive with bootstrap 4 ([963f228](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/963f228))
+-   **core:** move footer declaration & attribution to own component ([0bf9dc8](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0bf9dc8))
+-   **core:** move footer text into own component ([8207e82](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8207e82))
+-   **core:** use fa-icons for navbar ([fd1d77f](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/fd1d77f))
+-   **edition:** fix margin of textcritics panel footer ([d8a2cdb](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d8a2cdb))
+-   **edition:** fix wrong folio format for folio 1r-v ([adce66c](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/adce66c))
+-   **edition:** move pre-notification into accolade component ([7b12d60](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/7b12d60))
+-   **edition:** refactor button group with bootstrap 4 ([a0b609d](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a0b609d))
+-   **edition:** refactor edition accolade with bootstrap 4 ([208a870](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/208a870))
+-   **edition:** refactor edition convolute with bootstrap 4 ([dc9d959](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc9d959))
+-   **edition:** refactor report panels with bootstrap 4 ([7e68088](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/7e68088))
+-   **edition:** use json viewer to display API json response ([6082869](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/6082869))
+-   **search:** add grid and table view buttons to searchResultsHeader ([de6fc1f](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/de6fc1f))
+-   **search:** fix wrong id for linked obj links ([51629ee](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/51629ee))
+-   **search:** refactor image objects with bootstrap 4 ([1c93f82](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/1c93f82))
+-   **search:** refactor linked objects accordion with bootstrap 4 ([cbc8d67](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/cbc8d67))
+-   **search:** refactor linked objects with bootstrap 4 ([d2b1195](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d2b1195))
+-   **search:** refactor props with bootstrap 4 ([67a2131](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/67a2131))
+-   **search:** refactor resource header with bootstrap 4 ([64c8ccb](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/64c8ccb))
+-   **search:** refactor search form with Angular 6 ([8cf98e6](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8cf98e6))
+-   **search:** refactor search form with bootstrap 4 ([27d7c37](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/27d7c37))
+-   **search:** refactor search results with bootstrap 4 ([4a6416e](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4a6416e))
+-   **shared:** refactor button group with bootstrap 4 ([dfd8720](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dfd8720))
+-   **shared:** refactor modal with bootstrap 4 ([28715a1](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/28715a1))
+-   **side-info:** refactor resource-info with bootstrap 4 ([66990a4](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/66990a4))
+
+### Features
+
+-   **app:** add and configure GoogleAnalytics pageview events ([dc7d213](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc7d213)), closes [/stackoverflow.com/questions/1251922/is-there-a-way-to-stop-google-analytics-counting-development-work-as-hits#8178283](https://git.iml.unibas.ch/muennich/WebernLiveApp/issues/8178283)
+-   **build:** update `angular-cli`(^7.2.2) and `angular` (^7.2.1) ([9baf470](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9baf470))
+-   **shared:** add json viewer component ([92f3f3e](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/92f3f3e))
+
 <a name="0.3.0"></a>
 
 # [0.3.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.2.0...v0.3.0) (2018-11-15)
