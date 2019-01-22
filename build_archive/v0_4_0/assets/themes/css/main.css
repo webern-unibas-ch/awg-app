@@ -1,0 +1,351 @@
+/****** GENERAL SETTINGS ******/
+html,
+body {
+  font-family: "Droid", serif;
+  background-color: transparent;
+  min-width: 320px;
+}
+
+/****** LINKS & POINTER ******/
+a:not(.list-group-item-danger) {
+  cursor: pointer;
+}
+a,
+a:link,
+a:visited,
+a:hover,
+a:not([href]):not([tabindex]),
+a:not([href]):not([tabindex]):hover {
+  color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+  text-decoration: none;
+}
+a.dropdown-item,
+.nav-tabs > li > a {
+  color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
+}
+
+a:hover {
+  border-bottom: 1px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+}
+a.dropdown-item:hover,
+a.list-group-item:hover,
+.navbar-brand:hover,
+.navbar-nav > li > a:hover {
+  border-bottom: none !important;
+  text-decoration: none;
+}
+
+a.dropdown-item:hover,
+.navbar-light .navbar-nav .nav-link.active,
+.navbar-nav > li > a:focus,
+.navbar-nav > li > a:active {
+  color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
+}
+a.navbar-brand span#webernlogo {
+  color: rgba(0, 0, 0, 0.6); /* rgba converted HEX #000000 */
+}
+a.navbar-brand:hover span#webernlogo {
+  color: rgba(0, 0, 0, 1); /* rgba converted HEX #000000 */
+}
+
+/****** DIVS ******/
+.para {
+  margin-bottom: 3em;
+}
+
+.todo {
+  color: red;
+  font-weight: bold;
+}
+.todo::before {
+  content: "## ";
+}
+.todo::after {
+  content: " ##";
+}
+
+/****** PAGE LAYOUT ******/
+
+/* navbar */
+/* (override some default values) */
+awg-navbar > .navbar {
+  border-bottom: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+}
+.navbar {
+  margin-bottom: 0;
+  border-radius: 0;
+  background-color: transparent;
+}
+@media screen and (max-width: 767px) {
+  .navbar > .container-fluid > .row {
+    flex-wrap: nowrap;
+  }
+}
+.nav-link > fa-icon {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+/* helper class to set order to minus 1 */
+@media screen and (min-width: 768px) {
+  .order-md-minus-1 {
+    order: -1;
+  }
+}
+
+/* view container */
+awg-view-container > div {
+  background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
+  background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
+  /* full height without header and footer */
+  /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
+  min-height: calc(100vh - 121px - 200px);
+}
+@media screen and (min-width: 768px) {
+  awg-view-container > div {
+    /* full height without header and footer from sm devices up */
+    min-height: calc(100vh - 121px - 135px);
+  }
+}
+
+/* sidenav */
+.awg-sidenav > .card {
+  padding: inherit;
+}
+
+/* On small screens, set height to 'auto' for sidenav and grid */
+@media screen and (max-width: 767px) {
+  .awg-sidenav {
+    height: auto;
+  }
+  .row {
+    height: auto;
+  }
+}
+
+/* footer */
+footer {
+  font-family: "Montserrat", sans-serif;
+  font-size: 14px;
+  height: 132px; /* needed for sticky footer */
+  background-color: transparent;
+  color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
+  padding: 15px;
+  border-top: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+}
+
+.awg-footer-bottom {
+  border-top: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+}
+.awg-footer-bottom .icon img {
+  position: relative;
+  display: inline;
+  height: 24px;
+  width: 24px;
+  margin: 0;
+}
+
+/****** CARDS ******/
+.card-header {
+  padding: 0.25rem 0.25rem; /* default: .75rem 1.25 rem */
+}
+.card-header .btn-link {
+  color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
+  box-shadow: none;
+  -webkit-box-shadow: none;
+  border-bottom: none;
+}
+.card-header .btn-link:hover {
+  text-decoration: underline;
+}
+.card-header .btn-link:focus {
+  text-decoration: none;
+}
+
+/****** BUTTON GROUP ******/
+/* TODO: Switch button group direction with scss
+.awg-btn-group {
+    @media (max-width: 760px) {.btn-group-vertical}
+    @media (min-width: 761px) {.btn-group}
+}
+ */
+.awg-btn-group {
+  margin-bottom: 2rem;
+}
+.awg-btn-group > button.btn {
+  background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
+  border: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+}
+
+/****** MODAL ******/
+.modal-header {
+  background-color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+  color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
+}
+.modal-header > .close {
+  color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
+}
+.modal-body,
+.modal-footer {
+  background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
+}
+.awg-modal-button:hover,
+.awg-modal-button:active {
+  background-color: rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
+}
+
+/****** OBJECT BOX ******/
+.objbox {
+  position: relative;
+  height: 100%;
+  padding: 10px;
+  margin: 10px;
+  border: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+  box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+}
+.objbox-control-button {
+  text-align: right;
+}
+
+.awg-subitem {
+  padding-left: 50px;
+}
+
+/****** IMAGES ******/
+#unibaslogo {
+  width: 118px;
+  height: 37px;
+  cursor: pointer;
+}
+#snflogo {
+  width: 118px;
+  height: 40px;
+  cursor: pointer;
+  padding-right: 10px;
+}
+#webernlogo {
+  cursor: pointer;
+  font-family: "Montserrat", sans-serif;
+  text-align: center;
+  font-weight: normal;
+  color: black;
+  letter-spacing: normal;
+}
+#webernlogo span {
+  font-weight: lighter;
+}
+
+.img-thumbnail {
+  height: 100px;
+  width: auto;
+  padding: 0px;
+  margin: 2px 0px;
+}
+
+/****** SVG ******/
+.edition-svg {
+  box-shadow: 5px 5px 6px rgba(204, 204, 204, 1); /* rgba converted HEX #cccccc */
+  border: 1px solid rgba(231, 231, 231, 1); /* rgba converted HEX #e7e7e7 */
+}
+.edition-svg-item {
+  fill: orange;
+  opacity: 0.2;
+}
+.edition-svg-measure,
+.edition-svg-system,
+.edition-svg-linkbox {
+  fill: white;
+  opacity: 0;
+}
+.edition-svg-measure:hover,
+.edition-svg-system:hover,
+.edition-svg-linkbox:hover,
+.edition-svg-item:hover {
+  fill: rgba(
+    139,
+    184,
+    45,
+    1
+  ); /* some lighter OliveDrab; rgba converted HEX #8bb82d */
+  opacity: 0.2;
+}
+svg a.active rect {
+  fill: OliveDrab;
+  opacity: 0.2;
+}
+.item-group.active,
+.item-group.active > .item-link > .item-shape {
+  stroke: OliveDrab;
+}
+.item-group.active > .item-link > .item-label {
+  fill: OliveDrab;
+}
+
+/****** TABLES & LISTS ******/
+.table thead tr th {
+  border-bottom: 2px solid black;
+}
+.borderless tbody tr td,
+.borderless tbody tr th,
+.borderless thead tr th {
+  border: none;
+}
+td {
+  vertical-align: top;
+}
+
+ul.none {
+  list-style: none;
+}
+
+span.facet-badge {
+  background-color: rgba(
+    119,
+    119,
+    119,
+    1
+  ) !important; /* rgba converted HEX #777 */
+}
+
+/****** FONTPROPERTIES ******/
+.bold {
+  font-weight: bold;
+}
+.italic {
+  font-style: italic;
+}
+.highlighted {
+  background: orange;
+}
+.caps,
+.version {
+  font-variant: small-caps;
+}
+.indent {
+  text-indent: 25px;
+}
+.single-line {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/****** COLOURS ******/
+.olivedrab {
+  color: olivedrab;
+}
+.orange {
+  color: orange;
+}
+.grey {
+  color: grey;
+}
+
+/****** FORMS ******/
+.ng-valid[required],
+.ng-valid.required {
+  border-left: 5px solid rgba(66, 169, 72, 1); /* rgba converted HEX #42a948; green */
+}
+.ng-invalid:not(form),
+.ng-invalid:not(form):focus {
+  border-left: 5px solid rgba(169, 68, 66, 1); /* rgba converted HEX #a94442; red */
+}

@@ -2,10 +2,10 @@
   "convolute": [
     {
       "folioId": "1r",
-      "systems": "16",
+      "systems": "14",
       "format": {
-        "height": 175,
-        "width": 270
+        "height": 180,
+        "width": 267
       },
       "content": [
         {
@@ -47,10 +47,10 @@
     },
     {
       "folioId": "1v",
-      "systems": "16",
+      "systems": "14",
       "format": {
-        "height": "175",
-        "width": "270"
+        "height": 180,
+        "width": 267
       },
       "content": [
         {
