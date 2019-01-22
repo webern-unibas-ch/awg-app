@@ -1,21 +1,25 @@
 <footer class="container-fluid text-center">
-    <div class="row">
-        <awg-footer-logo [logo]="logos?.unibas"></awg-footer-logo>
-        <div class="col-sm-8 text-center">
-            <p class="versionDesc">
-                Prototyp AWG-Online-Edition (Version <span id="version">{{ metaData?.page?.version }}</span> &#9671; <span id="versionDate">{{ metaData?.page?.versionReleaseDate }}</span>)
-            </p>
-            <p class="copyrightDesc">
-                &copy; <span id="copyrightPeriod">{{ metaData?.page?.yearStart }}–{{ metaData?.page?.yearRecent }}</span> Anton Webern Gesamtausgabe
-            </p>
-            <p id="contact">
-                <small>
-                    <a id="imp" [routerLink]="['/contact']" fragment="masthead">
-                        Impressum
-                    </a>
-                </small>
-            </p>
+    <!-- main top footer -->
+    <div class="row awg-footer-top">
+        <div class="col-md-8">
+            <awg-footer-declaration [metaData]="metaData"></awg-footer-declaration>
         </div>
-        <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
+
+        <div class="col-6 col-md-2 order-md-first mb-4 mt-md-4">
+            <awg-footer-logo [logo]="logos?.unibas"></awg-footer-logo>
+        </div>
+        <div class="col-6 col-md-2 mb-4 mt-md-4">
+            <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
+        </div>
+    </div>
+
+    <!-- secondary bootom footer -->
+    <div class="row awg-footer-bottom text-muted">
+        <div class="col-6 col-sm-8 text-left">
+            <awg-footer-copyright [metaData]="metaData"></awg-footer-copyright>
+        </div>
+        <div class="col-6 col-sm-4 text-right my-auto">
+            <awg-footer-poweredby [logos]="logos"></awg-footer-poweredby>
+        </div>
     </div>
 </footer>

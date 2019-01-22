@@ -5,6 +5,9 @@ import { By } from '@angular/platform-browser';
 import { click } from '@testing/click-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
+import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import { NavbarComponent } from './navbar.component';
 
 describe('NavbarComponent', () => {
@@ -14,10 +17,11 @@ describe('NavbarComponent', () => {
     let compEl: any;
     let linkDes, routerLinks;
 
-    let expectedShowMobileNav: boolean;
+    let expectedIsCollapsed: boolean;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [FontAwesomeModule, NgbCollapseModule, NgbDropdownModule],
             declarations: [NavbarComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
@@ -28,7 +32,7 @@ describe('NavbarComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        expectedShowMobileNav = false;
+        expectedIsCollapsed = true;
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -41,8 +45,8 @@ describe('NavbarComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have `showMobileNav = false`', () => {
-            expect(component.showMobileNav).toBe(false, 'should be false');
+        it('should have `isCollapsed = true`', () => {
+            expect(component.isCollapsed).toBe(true, 'should be true');
         });
 
         describe('#toggleNav', () => {
@@ -52,7 +56,7 @@ describe('NavbarComponent', () => {
 
             it('... should be called when button clicked (click helper)', () => {
                 // find button elements
-                const buttonDe = fixture.debugElement.query(By.css('.navbar-header > button.navbar-toggle'));
+                const buttonDe = fixture.debugElement.query(By.css('button.navbar-toggler'));
                 const buttonEl = buttonDe.nativeElement;
 
                 // should have not been called yet
@@ -65,31 +69,32 @@ describe('NavbarComponent', () => {
                 expect(component.toggleNav).toHaveBeenCalled();
             });
 
-            it('... should toggle `showMobileNav`', () => {
+            it('... should toggle `isCollapsed`', () => {
                 component.toggleNav();
 
-                expect(component.showMobileNav).toBe(true);
+                expect(component.isCollapsed).toBe(false);
 
                 component.toggleNav();
 
-                expect(component.showMobileNav).toBe(false);
+                expect(component.isCollapsed).toBe(true);
             });
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 navbar header with 1 toggle button', () => {
-                const headerDes = fixture.debugElement.queryAll(By.css('.navbar-header'));
-                const buttonDes = fixture.debugElement.queryAll(By.css('.navbar-header > button.navbar-toggle'));
+            it('... should contain 1 navbar with 1 toggle button', () => {
+                const navDes = fixture.debugElement.queryAll(By.css('nav.navbar'));
+                const buttonDes = fixture.debugElement.queryAll(By.css('nav.navbar > button.navbar-toggler'));
 
-                expect(headerDes).toBeTruthy();
-                expect(headerDes.length).toBe(1, 'should have 1 header');
+                expect(navDes).toBeTruthy();
+                expect(navDes.length).toBe(1, 'should have 1 navbar');
 
                 expect(buttonDes).toBeTruthy();
                 expect(buttonDes.length).toBe(1, 'should have 1 button');
             });
 
             it('... should contain 1 navbar collapse', () => {
-                const collapseDes = fixture.debugElement.queryAll(By.css('.navbar-collapse'));
+                const collapseDes = fixture.debugElement.queryAll(By.css('nav.navbar > .navbar-collapse'));
+
                 expect(collapseDes).toBeTruthy();
                 expect(collapseDes.length).toBe(1, 'should have 1 collapse');
             });

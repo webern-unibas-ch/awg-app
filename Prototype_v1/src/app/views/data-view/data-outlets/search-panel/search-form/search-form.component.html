@@ -1,28 +1,26 @@
-<div class="text-center">
-    <form [formGroup]="searchForm"
-          (ngSubmit)="onSearch(searchValueControl.value)">
-        <div class="form-group">
-            <label class="control-label" for="searchInput"></label>
+<form [formGroup]="searchForm">
+    <div class="form-row mb-4">
+        <div class="col-12">
+            <label class="sr-only" for="awg-search-input">{{ searchFormStrings.label }}</label>
             <div class="input-group">
-                    <span class="input-group-btn">
-                        <button class="btn btn-default"
-                                type="submit"
-                                [disabled]="searchForm.invalid">
-                            <span class="glyphicon glyphicon-search"></span>
-                        </button>
-                    </span>
+                <div class="input-group-prepend">
+                    <div class="input-group-text" id="search-icon">
+                        <fa-icon [icon]="faSearch"></fa-icon>
+                    </div>
+                </div>
                 <input title="search"
                        type="search"
-                       aria-label="Search input"
-                       id="searchInput"
                        class="form-control"
-                       placeholder="Volltextsuche in der Webern-Datenbank …"
-                       [formControl]="searchValueControl">
+                       id="awg-search-input"
+                       aria-label="Search input" aria-describedby="search-icon"
+                       placeholder="{{ searchFormStrings.placeholder }}"
+                       formControlName="searchValueControl"
+                       required>
             </div>
-            <div *ngIf="searchValueControl.invalid || searchValueControl.hasError('required')" class="alert alert-danger">
-                Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!
+            <div *ngIf="searchForm.invalid || searchForm.hasError('required')" class="alert alert-danger">
+                {{ searchFormStrings.errorMessage }}
             </div>
         </div>
-    </form>
-</div>
+    </div>
+</form>
 

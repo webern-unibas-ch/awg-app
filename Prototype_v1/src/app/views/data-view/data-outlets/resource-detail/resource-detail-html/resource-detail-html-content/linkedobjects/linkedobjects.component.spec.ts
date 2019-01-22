@@ -1,7 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
-import { AccordionModule } from 'ngx-bootstrap';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects.component';
 import { ConversionService } from '@awg-core/services';
@@ -17,7 +17,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [AccordionModule.forRoot()],
+            imports: [NgbAccordionModule],
             declarations: [ResourceDetailHtmlContentLinkedobjectsComponent],
             providers: [{ provide: ConversionService, useValue: mockConversionService }]
         }).compileComponents();

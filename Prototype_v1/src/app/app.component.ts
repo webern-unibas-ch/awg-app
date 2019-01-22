@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { NavigationEnd, Router } from '@angular/router';
 
 @Component({
     selector: 'awg-app',
@@ -6,5 +7,14 @@ import { Component } from '@angular/core';
     styleUrls: ['./app.component.css']
 })
 export class AppComponent {
-    constructor() {}
+    constructor(private router: Router) {
+        // configuration for GoogleAnalytics pageview events
+        // cf. https://codeburst.io/using-google-analytics-with-angular-25c93bffaa18
+        this.router.events.subscribe(event => {
+            if (event instanceof NavigationEnd) {
+                (<any>window).ga('set', 'page', event.urlAfterRedirects);
+                (<any>window).ga('send', 'pageview');
+            }
+        });
+    }
 }

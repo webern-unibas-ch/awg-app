@@ -1,5 +1,5 @@
 import { Component, ViewChild } from '@angular/core';
-import { ModalDirective } from 'ngx-bootstrap';
+import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
 const modalText: Object = {
     sourceNotA:
@@ -18,17 +18,36 @@ const modalText: Object = {
     styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-    @ViewChild('awgModal')
-    public awgModal: ModalDirective;
+    @ViewChild('modalTemplate')
+    modalTemplate;
 
     modalContent: string;
+    closeResult: string;
+
+    constructor(private modalService: NgbModal) {}
 
     open(identifier: string): void {
+        // get modal text
         this.modalContent = modalText[identifier];
-        this.awgModal.show();
+
+        // open modalTemplate via modalService
+        this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(
+            result => {
+                this.closeResult = `Closed with: ${result}`;
+            },
+            reason => {
+                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
+            }
+        );
     }
 
-    close(): void {
-        this.awgModal.hide();
+    private getDismissReason(reason: any): string {
+        if (reason === ModalDismissReasons.ESC) {
+            return 'by pressing ESC';
+        } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
+            return 'by clicking on a backdrop';
+        } else {
+            return `with: ${reason}`;
+        }
     }
 }

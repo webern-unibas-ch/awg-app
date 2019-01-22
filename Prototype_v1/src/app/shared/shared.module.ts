@@ -5,14 +5,23 @@ import { RouterModule } from '@angular/router';
 
 //
 // shared modules
-import { AccordionModule } from 'ngx-bootstrap/accordion';
-import { ButtonsModule } from 'ngx-bootstrap/buttons';
-import { ModalModule } from 'ngx-bootstrap/modal';
 import { CompileHtmlModule } from './compile-html';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import {
+    NgbAccordionModule,
+    NgbButtonsModule,
+    NgbCollapseModule,
+    NgbDropdownModule,
+    NgbModalModule,
+    NgbTabsetModule,
+    NgbTooltipModule
+} from '@ng-bootstrap/ng-bootstrap';
+import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 //
 // shared components
 import { HeadingComponent } from './heading/heading.component';
+import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { ModalComponent } from './modal/modal.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
@@ -27,29 +36,43 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        AccordionModule.forRoot(),
-        ButtonsModule.forRoot(),
-        ModalModule.forRoot(),
-        CompileHtmlModule
+        CompileHtmlModule,
+        FontAwesomeModule,
+        NgbAccordionModule,
+        NgbButtonsModule,
+        NgbCollapseModule,
+        NgbDropdownModule,
+        NgbModalModule,
+        NgbTabsetModule,
+        NgbTooltipModule,
+        NgxJsonViewerModule
     ],
     declarations: [
         HeadingComponent,
+        JsonViewerComponent,
         ModalComponent,
-        OrderByPipe,
         RouterLinkButtonGroupComponent,
-        TwelveToneSpinnerComponent
+        TwelveToneSpinnerComponent,
+        OrderByPipe
     ],
     exports: [
         CommonModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,
-        AccordionModule,
-        ButtonsModule,
-        ModalModule,
         CompileHtmlModule,
+        FontAwesomeModule,
+        NgbAccordionModule,
+        NgbButtonsModule,
+        NgbCollapseModule,
+        NgbDropdownModule,
+        NgbModalModule,
+        NgbTabsetModule,
+        NgbTooltipModule,
+        NgxJsonViewerModule,
 
         HeadingComponent,
+        JsonViewerComponent,
         ModalComponent,
         OrderByPipe,
         RouterLinkButtonGroupComponent,

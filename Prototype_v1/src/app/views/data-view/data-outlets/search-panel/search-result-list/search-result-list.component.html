@@ -1,33 +1,46 @@
 <!-- content: search results -->
-<div *ngIf="searchResponse">
+<div class="awg-search-results" *ngIf="searchResponse">
 
     <!-- header -->
-    <h4>Suchergebnisse {{ searchValue ? 'für "' + searchValue + '"' : '' }}</h4>
-    <p>
-        {{ searchResultText }}
-    </p>
+    <div class="row awg-search-results-header mb-4">
+        <div class="col-4 col-md-3 col-lg-2 awg-search-results-header-icons mr-auto">
+            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" [(ngModel)]="searchResultView">
+                <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
+                    <input ngbButton type="radio" value="table">
+                    <fa-icon [icon]="faTable"></fa-icon>
+                </label>
+                <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
+                    <input ngbButton type="radio" value="grid">
+                    <fa-icon [icon]="faGripHorizontal"></fa-icon>
+                </label>
+            </div>
+        </div>
+        <div class="col-8 col-md-9 col-lg-10 awg-search-results-header-text my-auto">
+            {{ searchResultText }}
+        </div>
+    </div>
 
-    <ng-container *ngIf="searchResponse?.subjects">
+
+    <ng-container *ngIf="searchResponse?.subjects && +searchResponse?.nhits > 0">
 
         <!-- TODO: ### PAGINATION ### -->
 
         <!-- table with searchResults -->
-        <table *ngIf="+searchResponse?.nhits > 0" id="sidenav_results" class="table table-condensed table-responsive">
+        <table *ngIf="searchResultView === 'table'" class="table table-sm table-responsive awg-search-result-table">
             <thead>
             <tr>
-                <th>
-                    Kategorie
-                </th>
-                <th>
-                    Eintrag
-                </th>
+                <th>Typ</th>
+                <th>Ressource</th>
             </tr>
             </thead>
             <tbody>
             <!-- show searchResultDetail by clicking on single entry -->
             <tr *ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="navigateToResource(subject?.obj_id)" [class.active]="isActiveResource(subject?.obj_id)">
                 <td>
-                    <img [attr.src]=subject?.iconsrc alt="iconsrc" > {{ subject?.iconlabel }}
+                        <span class="badge">
+                            <img [attr.src]=subject?.iconsrc alt="iconsrc">
+                            <small>&nbsp;{{ subject?.iconlabel }}</small>
+                        </span>
                 </td>
                 <td>
                     <span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
@@ -35,6 +48,24 @@
             </tr>
             </tbody>
         </table>
+
+        <!-- grid with searchResults -->
+        <div class="card-columns" *ngIf="searchResultView === 'grid'">
+            <div class="card" *ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}">
+                <div class="card-header">
+                    <img [attr.src]=subject?.iconsrc alt="iconsrc">
+                    &nbsp;{{ subject?.iconlabel }}
+                </div>
+                <div class="card-body">
+                    <h5 class="card-title">
+                        <span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
+                    </h5>
+                    <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
+                        Mehr ...
+                    </button>
+                </div>
+            </div>
+        </div>
 
     </ng-container>
 </div>

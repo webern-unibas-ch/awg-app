@@ -1,39 +1,33 @@
-<div class="panel panel-default" id="accoladeView">
-    <div class="panel-heading">
-        <h4 class="panel-title">
-            <a data-toggle="collapse" (click)="togglePanel()">
-                Edierter Notentext
-            </a>
-        </h4>
-    </div>
-    <div class="panel-collapse collapse" [class.in]="showAccoladePanel">
-        <div class="panel-body">
+<ngb-accordion activeIds="awg-accolade-view">
+    <ngb-panel id="awg-accolade-view" title="Edierter Notentext">
+        <ng-template ngbPanelContent>
             <!-- accolade control -->
             <awg-edition-svg-file-nav *ngIf="svgFileData && selectedSvgFile"
-                                       [svgFileData]="svgFileData"
-                                       [selectedSvgFile]="selectedSvgFile"
-                                       (selectSvgFileRequest)="selectSvgFile($event)">
+                                      [svgFileData]="svgFileData"
+                                      [selectedSvgFile]="selectedSvgFile"
+                                      (selectSvgFileRequest)="selectSvgFile($event)">
             </awg-edition-svg-file-nav>
+
+            <!-- pre-notification -->
+            <awg-edition-detail-notification></awg-edition-detail-notification>
 
             <!-- svg panel -->
             <awg-edition-svg-file *ngIf="selectedSvgFile"
-                                   [selectedSvgFile]="selectedSvgFile"
-                                   [selectedOverlay]="selectedOverlay"
-                                   (selectSvgFileRequest)="selectSvgFile($event)"
-                                   (selectTextcriticRequest)="selectTextcritic($event)">
+                                  [selectedSvgFile]="selectedSvgFile"
+                                  [selectedOverlay]="selectedOverlay"
+                                  (selectSvgFileRequest)="selectSvgFile($event)"
+                                  (selectTextcriticRequest)="selectTextcritic($event)">
             </awg-edition-svg-file>
 
             <!-- table for TkA -->
-        </div>
-        <div class="panel-footer">
-            <ng-container *ngIf="showTkA && selectedTextcritics">
-                <h4>Textkritischer Kommentar ({{selectedOverlay.typeLabel}} {{selectedOverlay.id}}):</h4>
+            <div class="panel-footer" *ngIf="showTkA && selectedTextcritics">
+                <h4 class="mt-4">Textkritischer Kommentar ({{selectedOverlay.typeLabel}} {{selectedOverlay.id}}):</h4>
                 <awg-edition-tka-table
                     [selectedTextcritics]="selectedTextcritics"
                     (openModalRequest)="openModal($event)"
                     (selectSvgFileRequest)="selectSvgFile($event)">
                 </awg-edition-tka-table>
-            </ng-container>
-        </div>
-    </div>
-</div>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

@@ -1,74 +1,85 @@
-<nav class="navbar navbar-default">
-    <div class="container-fluid">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" (click)="toggleNav()">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            <a class="navbar-brand" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
+<nav class="navbar navbar-expand-sm navbar-light">
+    <!-- Brand -->
+    <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->
+    <a class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline mr-0 my-auto" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
                 <span id="webernlogo">
                     ANTON WEBERN <br>
                     <span>GESAMTAUSGABE</span>
                 </span>
-            </a>
-        </div> <!-- END navbar-header -->
-        <div class="navbar-collapse collapse" id="awgNavbar" [class.in]="showMobileNav">
-            <ul class="nav navbar-nav">
-                <li>
-                    <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
-                </li>
-                <li class="dropdown">
-                    <a class="dropdown-toggle" data-toggle="dropdown">
-                        Beispieledition
-                        <span class="caret"></span>
-                    </a>
-                    <ul class="dropdown-menu">
-                        <li>
-                            <a [routerLink]="['/edition', 'intro']" routerLinkActive="active">Einleitung</a>
-                        </li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">
-                            Edierter Notentext
-                        </li>
-                        <li><a [routerLink]="['/edition/detail', 'Aa:SkI/2']" routerLinkActive="active">Aa:SkI/2</a></li>
-                        <li><a [routerLink]="['/edition/detail', 'Aa:SkI/3']" routerLinkActive="active">Aa:SkI/3</a></li>
-                        <li><a [routerLink]="['/edition/detail', 'Aa:SkI/4']" routerLinkActive="active">Aa:SkI/4</a></li>
-                        <li><a [routerLink]="['/edition/detail', 'Aa:SkI/5']" routerLinkActive="active">Aa:SkI/5</a></li>
-                        <li class="divider"></li>
-                        <li class="dropdown-header">
-                            Kritischer Bericht
-                        </li>
-                        <li><a [routerLink]="['/edition', 'report']">I. Quellen</a></li>
-                        <li class="subitem">
-                            <a [routerLink]="['/edition', 'report']" fragment="sourceList">1. Quellenübersicht</a>
-                        </li>
-                        <li class="subitem">
-                            <a [routerLink]="['/edition', 'report']" fragment="sourceDesc">2. Quellenbeschreibung</a>
-                        </li>
-                        <li class="subitem">
-                            <a [routerLink]="['/edition', 'report']" fragment="sourceEvaluation">3. Quellenbewertung</a>
-                        </li>
-                        <li>
-                            <a [routerLink]="['/edition', 'report']" fragment="tka">II. Textkritischer Kommentar</a>
-                        </li>
-                    </ul>
-                </li>
-                <li>
-                    <a [routerLink]="['/structure']" routerLinkActive="active">Strukturmodell</a>
-                </li>
-            </ul> <!-- END class nav navbar-nav -->
-            <ul class="nav navbar-nav navbar-right">
-                <li>
-                    <a [routerLink]="['/data/search','fulltext']" routerLinkActive="active">Datenbank-Suche</a>
-                </li>
-                <li>
-                    <a [routerLink]="['/contact']" routerLinkActive="active">
-                        <span class="glyphicon glyphicon-envelope"></span>
-                        Kontakt
-                    </a>
-                </li>
-            </ul> <!-- END class nav navbar-right -->
-        </div> <!-- END collapse -->
-    </div> <!-- END container-fluid -->
+    </a>
+
+    <!-- Toggler button -->
+    <button type="button" class="navbar-toggler" (click)="toggleNav()" [attr.aria-expanded]="!isCollapsed" aria-controls="collapsibleNavbar">
+        <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!-- collapsible navigation menu -->
+    <!-- justify content between (left, center, right) from sm devices up -->
+    <div id="collapsibleNavbar" class="collapse navbar-collapse justify-content-sm-between" [ngbCollapse]="isCollapsed">
+        <!-- left nav links, no left margin from sm devices up, auto vertical align -->
+        <ul class="navbar-nav ml-sm-0 my-auto">
+            <li class="nav-item">
+                <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
+                    <!-- do not show text on sm devices, change order from md devices up -->
+                    <span class="d-sm-none d-md-inline order-md-2">Home</span>
+                    <fa-icon [icon]="faHome"></fa-icon>
+                    <span class="sr-only">(current)</span>
+                </a>
+            </li>
+            <li class="nav-item" ngbDropdown>
+                <a class="nav-link d-flex" id="dropdownNavEdition" ngbDropdownToggle>
+                    <!-- do not show text on sm devices, change order from md devices up -->
+                    <span class="d-sm-none d-md-inline">Beispieledition</span>
+                    <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>
+                </a>
+                <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
+                    <a class="dropdown-item" [routerLink]="['/edition', 'intro']" routerLinkActive="active">Einleitung</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Edierter Notentext</h6>
+                    <a class="dropdown-item" [routerLink]="['/edition/detail', 'Aa:SkI/2']" routerLinkActive="active">Aa:SkI/2</a>
+                    <a class="dropdown-item" [routerLink]="['/edition/detail', 'Aa:SkI/3']" routerLinkActive="active">Aa:SkI/3</a>
+                    <a class="dropdown-item" [routerLink]="['/edition/detail', 'Aa:SkI/4']" routerLinkActive="active">Aa:SkI/4</a>
+                    <a class="dropdown-item" [routerLink]="['/edition/detail', 'Aa:SkI/5']" routerLinkActive="active">Aa:SkI/5</a>
+                    <div class="dropdown-divider"></div>
+                    <h6 class="dropdown-header">Kritischer Bericht</h6>
+                    <a class="dropdown-item" [routerLink]="['/edition', 'report']">I. Quellen</a>
+                    <a class="dropdown-item awg-subitem" [routerLink]="['/edition', 'report']" fragment="sourceList">1. Quellenübersicht</a>
+                    <a class="dropdown-item awg-subitem" [routerLink]="['/edition', 'report']" fragment="sourceDesc">2. Quellenbeschreibung</a>
+                    <a class="dropdown-item awg-subitem" [routerLink]="['/edition', 'report']" fragment="sourceEvaluation">3. Quellenbewertung</a>
+                    <a class="dropdown-item" [routerLink]="['/edition', 'report']" fragment="tka">II. Textkritischer Kommentar</a>
+                </div>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link d-flex" [routerLink]="['/structure']" routerLinkActive="active">
+                    <!-- do not show text on sm devices, change order from md devices up -->
+                    <span class="d-sm-none d-md-inline order-md-2">Strukturmodell</span>
+                    <fa-icon [icon]="faNetworkWired"></fa-icon>
+                </a>
+            </li>
+        </ul> <!-- END left navbar -->
+        <!-- brand to display on center on sm devices, auto vertical align -->
+        <a class="navbar-brand d-none d-sm-inline d-md-none mr-sm-5 my-auto" href="http://www.anton-webern.ch" target="_blank" ref="noopener noreferrer">
+                <span id="webernlogo">
+                    ANTON WEBERN <br>
+                    <span>GESAMTAUSGABE</span>
+                </span>
+        </a>
+        <!-- rigth nav links, auto vertical align -->
+        <ul class="navbar-nav my-auto">
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/data/search','fulltext']" routerLinkActive="active">
+                    <!-- do not show text on sm devices -->
+                    <span class="d-sm-none d-lg-inline">Suche</span>
+                    <fa-icon [icon]="faSearch"></fa-icon>
+                </a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" [routerLink]="['/contact']" routerLinkActive="active">
+                    <!-- do not show text on sm devices-->
+                    <span class="d-sm-none d-lg-inline">Kontakt</span>
+                    <fa-icon [icon]="faEnvelope"></fa-icon>
+                </a>
+            </li>
+        </ul> <!-- END right navbar -->
+    </div> <!-- END collapse -->
 </nav>

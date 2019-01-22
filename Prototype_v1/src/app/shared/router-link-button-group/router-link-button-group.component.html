@@ -1,12 +1,9 @@
-<div class="btn-group btn-group-justified btn-group-responsive" role="group" aria-label="Search button group">
-    <div class="btn-group" role="group"
-         *ngFor="let button of buttonArray">
-        <button type="button" class="btn btn-default"
-                [routerLink]="[button.root, button.link]"
-                routerLinkActive="active"
-                [disabled]="button.disabled"
-                (click)="onButtonSelect(button.label)">
+<div class="btn-group awg-btn-group d-flex" role="group" aria-label="Router link button group">
+    <button type="button" class="btn btn-default w-100" *ngFor="let button of buttonArray"
+            [routerLink]="[button.root, button.link]"
+            routerLinkActive="active"
+            [disabled]="button.disabled"
+            (click)="onButtonSelect(button.label)">
         {{ button.label }}
-        </button>
-    </div>
+    </button>
 </div>

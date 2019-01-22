@@ -13,25 +13,40 @@
 *
 ************************************************/ -->
 <!-- resourceDetailData content: linked objects -->
-<div class="linkedObj">
-    <h4>
+<div class="awg-linked-obj">
+    <h5>
         <!-- TODO: link to linked objects overview
         <a (click)="navigateToSearchResults()">
         -->
-        Verknüpfte Objekte <small>({{ getNestedArraysLength(incoming) }})</small>
+        Verknüpfte Objekte <span>({{ getNestedArraysLength(incoming) }})</span>
         <!--
         </a>
         -->
-    </h4>
-    <accordion [closeOthers]="true">
-        <accordion-group class="incomingLinks" *ngFor="let linkGroup of incoming | keyvalue">
-            <div accordion-heading>
-                {{ linkGroup?.key }}
-                <span class="badge facetBadge float-right pull-right">{{ linkGroup?.value.length }}</span>
-            </div>
-            <p class="single-line" *ngFor="let link of linkGroup.value" (click)="navigateToResource(link?.id)">
-                <img [src]="link?.restype?.icon" alt="icon" /> [{{ link?.id }}] {{ link?.value }}
-            </p>
-        </accordion-group>
-    </accordion>
+    </h5>
+
+    <ngb-accordion [closeOthers]="true">
+        <ngb-panel id="incoming-linkgroup-{{i}}" class="awg-linked-obj-incoming-linkgroup" *ngFor="let linkGroup of incoming | keyvalue; let i = index">
+            <ng-template ngbPanelTitle>
+                <span class="awg-linked-obj-title-group">
+                    <span class="badge badge-info mr-2">{{ linkGroup?.value.length }}</span>
+                    <span class="awg-linked-obj-title single-line">{{ linkGroup?.key }}</span>
+                </span>
+            </ng-template>
+            <ng-template ngbPanelContent>
+                <table class="table table-sm table-hover borderless awg-linked-obj-table mb-0">
+                    <tbody>
+                    <tr *ngFor="let link of linkGroup.value">
+                        <td>
+                            <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
+                                <img [src]="link?.restype.icon" alt="icon">
+                                <span>&nbsp;[{{ link?.id }}] {{ link?.value }}</span>
+                            </a>
+                        </td>
+                    </tr>
+                    </tbody>
+                </table>
+            </ng-template>
+        </ngb-panel>
+    </ngb-accordion>
+
 </div><!-- end DIV linkedObj -->

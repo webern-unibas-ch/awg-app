@@ -1,7 +1,7 @@
 <!-- resourceDetailData header -->
 <div class="resource-header">
     <div class="row">
-        <div class="col-sm-8">
+        <div class="col-lg-8">
             <h2 class="resource-title">
                 <div class="title">
                     <span [compile-html]="header?.title" [compile-html-ref]="this"></span>
@@ -17,34 +17,20 @@
                 </small>
             </div>
         </div>
-        <div class="col-sm-4">
-            <table class="table table-condensed" style="margin-bottom: 0">
-                <thead>
-                <tr>
-                    <td>
-                        <strong>ID:</strong>
-                    </td>
-                    <td id="header?.objID">
-                        {{ header?.objID }}
-                    </td>
-                </tr>
-                </thead>
+        <div class="col-lg-4">
+            <table class="table table-sm resource-header-table">
                 <tbody>
                 <tr>
-                    <td>
-                        <strong>Kategorie:</strong>
-                    </td>
-                    <td>
-                        {{ header?.type }}&nbsp;<img [src]="header?.icon" alt="icon" />
-                    </td>
+                    <th>ID:</th>
+                    <td id="header?.objID">{{ header?.objID }}</td>
                 </tr>
                 <tr>
-                    <td>
-                        <strong>Zuletzt bearbeitet:</strong>
-                    </td>
-                    <td>
-                        {{header?.lastmod}} (UTC)
-                    </td>
+                    <th>Kategorie</th>
+                    <td>{{ header?.type }}&nbsp;<img [src]="header?.icon" alt="icon" /></td>
+                </tr>
+                <tr>
+                    <th>Zuletzt bearbeitet:</th>
+                    <td>{{ header?.lastmod }} (UTC)</td>
                 </tr>
                 </tbody>
             </table>
