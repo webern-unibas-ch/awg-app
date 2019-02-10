@@ -114,8 +114,9 @@ export class ConversionService extends ApiService {
 
         if (searchData.subjects) {
             const length = searchData.subjects.length;
-            const resString: string = length === 1 ? `zugängliches Resultat` : `zugängliche Resultate`;
-            resText = `${length}/${searchData.nhits} `;
+            const resString: string = length === 1 ? `Resultat` : `Resultate`;
+            // resText = `${length}/${searchData.nhits} `;
+            resText = `${searchData.nhits} `;
             resText += `${resString} für "${searchValue}"`;
 
             if (this.filteredOut > 0) {

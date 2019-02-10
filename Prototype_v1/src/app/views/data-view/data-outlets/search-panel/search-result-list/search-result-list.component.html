@@ -2,20 +2,31 @@
 <div class="awg-search-results" *ngIf="searchResponse">
 
     <!-- header -->
-    <div class="row awg-search-results-header mb-4">
-        <div class="col-4 col-md-3 col-lg-2 awg-search-results-header-icons mr-auto">
-            <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" [(ngModel)]="searchResultView">
-                <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
-                    <input ngbButton type="radio" value="table">
-                    <fa-icon [icon]="faTable"></fa-icon>
-                </label>
-                <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
-                    <input ngbButton type="radio" value="grid">
-                    <fa-icon [icon]="faGripHorizontal"></fa-icon>
-                </label>
+    <div class="row d-flex justify-content-between mb-4 awg-search-results-header">
+        <div class="col-6 mr-auto awg-search-results-header-icons">
+            <div class="btn-group">
+                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" [(ngModel)]="searchResultView">
+                    <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
+                        <input ngbButton type="radio" value="table">
+                        <fa-icon [icon]="faTable"></fa-icon>
+                    </label>
+                    <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
+                        <input ngbButton type="radio" value="grid">
+                        <fa-icon [icon]="faGripHorizontal"></fa-icon>
+                    </label>
+                </div>
+                <div class="btn-group">
+                    <button type="button" class="btn btn-outline-info" disabled aria-disabled="true"><span class="d-none d-lg-inline">Hits per page: </span>{{ nRows }}</button>
+                    <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown for row number">
+                        <button class="btn btn-info dropdown-toggle-split" ngbDropdownToggle></button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <button class="dropdown-item" *ngFor="let rowNumber of rowNumberArray" (click)="onRowChange(rowNumber)">{{ rowNumber }}</button>
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
-        <div class="col-8 col-md-9 col-lg-10 awg-search-results-header-text my-auto">
+        <div class="col-6 my-auto text-center awg-search-results-header-text ">
             {{ searchResultText }}
         </div>
     </div>
@@ -23,31 +34,40 @@
 
     <ng-container *ngIf="searchResponse?.subjects && +searchResponse?.nhits > 0">
 
-        <!-- TODO: ### PAGINATION ### -->
+        <ngb-pagination class="d-flex justify-content-center"
+                        [(page)]="page"
+                        [pageSize]="pageSize"
+                        [collectionSize]="searchResponse?.nhits"
+                        [maxSize]="4"
+                        [boundaryLinks]="true"
+                        (pageChange)="onPageChange($event)">
+        </ngb-pagination>
 
         <!-- table with searchResults -->
-        <table *ngIf="searchResultView === 'table'" class="table table-sm table-responsive awg-search-result-table">
-            <thead>
-            <tr>
-                <th>Typ</th>
-                <th>Ressource</th>
-            </tr>
-            </thead>
-            <tbody>
-            <!-- show searchResultDetail by clicking on single entry -->
-            <tr *ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="navigateToResource(subject?.obj_id)" [class.active]="isActiveResource(subject?.obj_id)">
-                <td>
-                        <span class="badge">
-                            <img [attr.src]=subject?.iconsrc alt="iconsrc">
-                            <small>&nbsp;{{ subject?.iconlabel }}</small>
-                        </span>
-                </td>
-                <td>
-                    <span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
-                </td>
-            </tr>
-            </tbody>
-        </table>
+        <div *ngIf="searchResultView === 'table'" class="table-responsive">
+            <table class="table table-sm awg-search-result-table">
+                <thead>
+                <tr class="d-flex">
+                    <th class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>
+                    <th class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>
+                </tr>
+                </thead>
+                <tbody>
+                <!-- show searchResultDetail by clicking on single entry -->
+                <tr class="d-flex" *ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}" (click)="navigateToResource(subject?.obj_id)" [class.active]="isActiveResource(subject?.obj_id)">
+                    <td class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">
+                            <span class="badge">
+                                <img [attr.src]=subject?.iconsrc alt="iconsrc">
+                                <small>&nbsp;{{ subject?.iconlabel }}</small>
+                            </span>
+                    </td>
+                    <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">
+                        <span [compile-html]="subject?.value[0]" [compile-html-ref]="this"></span>
+                    </td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
 
         <!-- grid with searchResults -->
         <div class="card-columns" *ngIf="searchResultView === 'grid'">

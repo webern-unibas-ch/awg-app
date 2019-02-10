@@ -28,11 +28,25 @@ export class DataApiService extends ApiService {
      **  fulltextSearch via salsah api
      **
      **********************************/
-    getFulltextSearchData(searchString: string): Observable<SearchResponseJson> {
-        console.log('service # getFulltextSearchData for: ', searchString);
+    getFulltextSearchData(searchString: string, nRows?: string, startAt?: string): Observable<SearchResponseJson> {
+        if (!searchString) {
+            return;
+        }
+        if (!nRows) {
+            nRows = '-1';
+        }
+        if (!startAt) {
+            startAt = '0';
+        }
 
         const queryString: string = this.searchRoute + searchString;
-        const queryParams = new HttpParams().set('searchtype', 'fulltext').set('filter_by_project', this.projectId);
+        const queryParams = new HttpParams()
+            .set('searchtype', 'fulltext')
+            .set('filter_by_project', this.projectId)
+            .set('show_nrows', nRows)
+            .set('start_at', startAt);
+
+        console.log('service # getFulltextSearchData for: ', queryString + queryParams);
 
         return this.getApiResponse(SearchResponseJson, queryString, queryParams);
     }

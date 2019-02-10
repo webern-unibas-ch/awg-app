@@ -14,7 +14,7 @@ export class SearchFormComponent implements OnInit {
     @Input()
     searchValue: string;
     @Output()
-    submitRequest: EventEmitter<string> = new EventEmitter();
+    searchRequest: EventEmitter<string> = new EventEmitter();
 
     faSearch = faSearch;
 
@@ -54,8 +54,8 @@ export class SearchFormComponent implements OnInit {
             });
     }
 
-    // submit query to search panel
+    // emit query to search panel
     onSearch(query: string) {
-        this.submitRequest.emit(query);
+        this.searchRequest.emit(query);
     }
 }

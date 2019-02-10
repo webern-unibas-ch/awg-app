@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, Input, OnDestroy, OnInit } from '@angular/core';
 import { Location } from '@angular/common';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
@@ -20,9 +20,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     dataApiServiceSubscription: Subscription;
 
     searchData: SearchResponseJson;
-    searchValue = '';
-    searchUrl = '';
     searchResultText: string;
+    searchUrl = '';
+    searchValue = '';
+
+    nRows = '10';
+    startAt = '0';
 
     errorMessage: any;
     isLoadingData = false;
@@ -44,15 +47,14 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         return this.route.paramMap
             .pipe(
                 switchMap((params: ParamMap) => {
-                    // get query param from route to update searchValue
-                    if (params.get('query')) {
-                        this.searchValue = params.get('query');
-                    }
-
+                    // start loading
                     this.onLoadingStart();
 
+                    // get params from route if available
+                    this.checkForRouteParams(params);
+
                     // fetch search data for searchValue
-                    return this.dataApiService.getFulltextSearchData(this.searchValue).pipe(
+                    return this.dataApiService.getFulltextSearchData(this.searchValue, this.nRows, this.startAt).pipe(
                         map((searchResponse: SearchResponseJson) => {
                             // update url for search
                             this.updateCurrentUrl();
@@ -68,6 +70,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     // share search data via streamer service
                     this.updateStreamerService(searchResponse, this.searchValue);
 
+                    // end loading
                     this.onLoadingEnd();
                 },
                 error => {
@@ -76,7 +79,24 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             );
     }
 
-    // change the load status
+    // check for route params
+    checkForRouteParams(params: ParamMap) {
+        if (!params) {
+            return;
+        }
+
+        if (params.get('query')) {
+            this.searchValue = params.get('query');
+        }
+        if (params.get('nRows')) {
+            this.nRows = params.get('nRows');
+        }
+        if (params.get('startAt')) {
+            this.startAt = params.get('startAt');
+        }
+    }
+
+    // switch the load status
     changeLoadingStatus(status: boolean) {
         this.isLoadingData = status;
     }
@@ -91,16 +111,39 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.changeLoadingStatus(false);
     }
 
-    // route to url with query when getting submit request
-    onSubmit(query: string) {
-        if (query !== this.searchValue) {
-            this.router.navigate(['data/search/fulltext', { query: query }]);
+    // new startPosition after page change request
+    onPageChange(startPosition: string): void {
+        console.log('new startPosition: ', startPosition);
+        if (startPosition !== this.startAt) {
+            this.routeToSelf(this.searchValue, this.nRows, startPosition);
         }
     }
 
+    // new row number after row change request
+    onRowChange(rows: string): void {
+        console.log('new nrows: ', rows);
+        this.startAt = '0';
+        if (rows !== this.nRows) {
+            this.routeToSelf(this.searchValue, rows, this.startAt);
+        }
+    }
+
+    // new query after search request
+    onSearch(query: string): void {
+        if (query !== this.searchValue) {
+            this.routeToSelf(query, this.nRows, this.startAt);
+        }
+    }
+
+    // prepare search result text
     prepareSearchResults(searchResponse: SearchResponseJson): SearchResponseJson {
         // conversion of search results for HTML display
         return this.conversionService.convertFullTextSearchResults(searchResponse);
+    }
+
+    // route to self to set new params
+    routeToSelf(query: string, nRows: string, startAt: string) {
+        this.router.navigate(['data/search/fulltext', { query: query, nRows: nRows, startAt: startAt }]);
     }
 
     updateCurrentUrl() {

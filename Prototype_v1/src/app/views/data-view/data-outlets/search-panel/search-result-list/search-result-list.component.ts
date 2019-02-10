@@ -1,4 +1,4 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -20,9 +20,21 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
 export class SearchResultListComponent implements OnInit, OnDestroy {
     @Input()
     searchUrl: string;
+    @Input()
+    nRows: string;
+    @Input()
+    startAt: string;
+    @Output()
+    pageChangeRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    rowChangeRequest: EventEmitter<string> = new EventEmitter();
 
     errorMessage: any = undefined;
     currentId: string;
+
+    page: number;
+    pageSize: number;
+    rowNumberArray = [5, 10, 25, 50, 100, 200];
 
     streamerServiceSubscription: Subscription;
     searchResponse: SearchResponseJson;
@@ -58,7 +70,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
                     this.searchResponse = searchResponse;
-                    console.log(this.searchResponse);
+                    console.log('Resultlist 73 #', this.searchResponse);
+
+                    this.setPagination();
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -67,6 +81,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             );
     }
 
+    // update search params
     updateSearchParams(response: SearchResponseWithQuery): void {
         // update current search values
         this.updateCurrentValues(response);
@@ -76,7 +91,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     // update current search values
-    updateCurrentValues(response: SearchResponseWithQuery) {
+    updateCurrentValues(response: SearchResponseWithQuery): void {
         // get current search value
         this.searchValue = response.query;
         // prepare result text for fulltext search
@@ -88,18 +103,40 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     // update data for searchInfo via sideinfo service
-    updateSearchInfoService() {
+    updateSearchInfoService(): void {
         const searchInfo: SearchInfo = new SearchInfo(this.searchValue, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
 
-    isActiveResource(id: string) {
+    isActiveResource(id: string): boolean {
         return this.currentId === id;
     }
 
-    navigateToResource(id: string) {
+    navigateToResource(id: string): void {
         this.currentId = id;
         this.router.navigate(['/data/resource', this.currentId]);
+    }
+
+    // emit page change to search panel
+    onPageChange(pageNumber: number): void {
+        const nRowsNumber = +this.nRows;
+        const newStartPosition = pageNumber * nRowsNumber - nRowsNumber;
+
+        this.pageChangeRequest.emit(String(newStartPosition));
+    }
+
+    // emit row change to search panel
+    onRowChange(rowNumber: number): void {
+        this.rowChangeRequest.emit(String(rowNumber));
+    }
+
+    // set values for pagination
+    setPagination(): void {
+        const nRowsNumber = +this.nRows;
+        const startAtNumber = +this.startAt;
+
+        this.pageSize = nRowsNumber;
+        this.page = Math.floor(startAtNumber / nRowsNumber) + 1;
     }
 
     ngOnDestroy() {
