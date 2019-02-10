@@ -13,6 +13,7 @@ import {
     NgbCollapseModule,
     NgbDropdownModule,
     NgbModalModule,
+    NgbPaginationModule,
     NgbTabsetModule,
     NgbTooltipModule
 } from '@ng-bootstrap/ng-bootstrap';
@@ -43,6 +44,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbPaginationModule,
         NgbTabsetModule,
         NgbTooltipModule,
         NgxJsonViewerModule
@@ -67,6 +69,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbPaginationModule,
         NgbTabsetModule,
         NgbTooltipModule,
         NgxJsonViewerModule,
