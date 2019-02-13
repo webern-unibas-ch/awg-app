@@ -136,6 +136,9 @@ export class ResourceDetailComponent implements OnInit {
      * Activate Sidenav: ResourceInfo
      */
     activateSidenav(): void {
-        this.router.navigate([{ outlets: { side: 'resourceInfo' } }]);
+        this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
+            preserveFragment: true,
+            queryParamsHandling: 'preserve'
+        });
     }
 }
