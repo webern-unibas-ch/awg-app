@@ -12,6 +12,7 @@
                             [searchUrl]="searchUrl"
                             (pageChangeRequest)="onPageChange($event)"
                             (rowChangeRequest)="onRowChange($event)"
+                            (viewChangeRequest)="onViewChange($event)">
     </awg-search-result-list>
 
     <ng-template #loading>

@@ -1,4 +1,5 @@
 import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -26,10 +27,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     pageChangeRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     rowChangeRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
     errorMessage: any = undefined;
     currentId: string;
 
+    radioViewForm: FormGroup;
     page: number;
     pageSize: number;
     rowNumberArray = [5, 10, 25, 50, 100, 200];
@@ -43,6 +47,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     faTable = faTable;
 
     constructor(
+        private fb: FormBuilder,
         private router: Router,
         private conversionService: ConversionService,
         private sideInfoService: SideInfoService,
@@ -51,6 +56,59 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.streamerServiceSubscription = this.subscribeToStreamerService();
+        this.buildForm(this.searchParams.view);
+    }
+
+    // build radio view form
+    buildForm(view: string) {
+        this.radioViewForm = this.fb.group({
+            radioViewControl: view
+        });
+
+        this.checkForUserInputChanges();
+    }
+
+    // check for changing view values
+    checkForUserInputChanges(): void {
+        this.radioViewForm.get('radioViewControl').valueChanges.subscribe((view: string) => {
+            this.onViewChange(view);
+        });
+    }
+
+    isActiveResource(id: string): boolean {
+        return this.currentId === id;
+    }
+
+    navigateToResource(id: string): void {
+        this.currentId = id;
+        this.router.navigate(['/data/resource', this.currentId]);
+    }
+
+    // emit page change to search panel
+    onPageChange(pageNumber: number): void {
+        const nRowsNumber = +this.searchParams.nRows;
+        const newStartPosition = pageNumber * nRowsNumber - nRowsNumber;
+
+        this.pageChangeRequest.emit(String(newStartPosition));
+    }
+
+    // emit row change to search panel
+    onRowChange(rowNumber: number): void {
+        this.rowChangeRequest.emit(String(rowNumber));
+    }
+
+    // emit view change to search panel
+    onViewChange(view: string): void {
+        this.viewChangeRequest.emit(view);
+    }
+
+    // set values for pagination
+    setPagination(): void {
+        const nRowsNumber = +this.searchParams.nRows;
+        const startAtNumber = +this.searchParams.startAt;
+
+        this.pageSize = nRowsNumber;
+        this.page = Math.floor(startAtNumber / nRowsNumber) + 1;
     }
 
     subscribeToStreamerService(): Subscription {
@@ -67,7 +125,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
                     this.searchResponse = searchResponse;
-                    console.log('Resultlist 73 #', this.searchResponse);
 
                     this.setPagination();
                 },
@@ -103,37 +160,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     updateSearchInfoService(): void {
         const searchInfo: SearchInfo = new SearchInfo(this.searchValue, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
-    }
-
-    isActiveResource(id: string): boolean {
-        return this.currentId === id;
-    }
-
-    navigateToResource(id: string): void {
-        this.currentId = id;
-        this.router.navigate(['/data/resource', this.currentId]);
-    }
-
-    // emit page change to search panel
-    onPageChange(pageNumber: number): void {
-        const nRowsNumber = +this.nRows;
-        const newStartPosition = pageNumber * nRowsNumber - nRowsNumber;
-
-        this.pageChangeRequest.emit(String(newStartPosition));
-    }
-
-    // emit row change to search panel
-    onRowChange(rowNumber: number): void {
-        this.rowChangeRequest.emit(String(rowNumber));
-    }
-
-    // set values for pagination
-    setPagination(): void {
-        const nRowsNumber = +this.nRows;
-        const startAtNumber = +this.startAt;
-
-        this.pageSize = nRowsNumber;
-        this.page = Math.floor(startAtNumber / nRowsNumber) + 1;
     }
 
     ngOnDestroy() {

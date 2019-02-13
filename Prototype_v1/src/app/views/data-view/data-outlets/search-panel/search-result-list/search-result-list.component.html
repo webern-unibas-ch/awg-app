@@ -5,16 +5,18 @@
     <div class="row d-flex justify-content-between mb-4 awg-search-results-header">
         <div class="col-6 mr-auto awg-search-results-header-icons">
             <div class="btn-group">
-                <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" [(ngModel)]="searchResultView">
-                    <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
-                        <input ngbButton type="radio" value="table">
-                        <fa-icon [icon]="faTable"></fa-icon>
-                    </label>
-                    <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
-                        <input ngbButton type="radio" value="grid">
-                        <fa-icon [icon]="faGripHorizontal"></fa-icon>
-                    </label>
-                </div>
+                <form [formGroup]="radioViewForm">
+                    <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" formControlName="radioViewControl">
+                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
+                            <input ngbButton type="radio" value="table">
+                            <fa-icon [icon]="faTable"></fa-icon>
+                        </label>
+                        <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
+                            <input ngbButton type="radio" value="grid">
+                            <fa-icon [icon]="faGripHorizontal"></fa-icon>
+                        </label>
+                    </div>
+                </form>
                 <div class="btn-group">
                     <button type="button" class="btn btn-outline-info" disabled aria-disabled="true"><span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}</button>
                     <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown for row number">
