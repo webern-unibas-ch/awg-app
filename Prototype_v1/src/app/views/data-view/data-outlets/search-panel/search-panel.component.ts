@@ -9,7 +9,7 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-search-panel',
@@ -19,13 +19,14 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 export class SearchPanelComponent implements OnInit, OnDestroy {
     dataApiServiceSubscription: Subscription;
 
-    searchData: SearchResponseJson;
-    searchResultText: string;
     searchUrl = '';
-    searchValue = '';
 
-    nRows = '10';
-    startAt = '0';
+    searchParams: SearchParams = {
+        query: '',
+        nRows: '10',
+        startAt: '0',
+        view: 'table'
+    };
 
     errorMessage: any;
     isLoadingData = false;

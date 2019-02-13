@@ -1,18 +1,17 @@
 <!-- content: search panel -->
 
 <awg-search-form
-    [(searchValue)]="searchValue"
+    [searchValue]="searchParams.query"
     (searchRequest)="onSearch($event)">
 </awg-search-form>
 
 
-<ng-container *ngIf="searchValue">
+<ng-container *ngIf="searchParams?.query">
     <awg-search-result-list *ngIf="!isLoadingData; else loading"
+                            [searchParams]="searchParams"
                             [searchUrl]="searchUrl"
-                            [(nRows)]="nRows"
-                            [(startAt)]="startAt"
                             (pageChangeRequest)="onPageChange($event)"
-                            (rowChangeRequest)="onRowChange($event)">
+                            (rowChangeRequest)="onRowChange($event)"
     </awg-search-result-list>
 
     <ng-template #loading>

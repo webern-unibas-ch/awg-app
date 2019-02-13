@@ -16,7 +16,7 @@
                     </label>
                 </div>
                 <div class="btn-group">
-                    <button type="button" class="btn btn-outline-info" disabled aria-disabled="true"><span class="d-none d-lg-inline">Hits per page: </span>{{ nRows }}</button>
+                    <button type="button" class="btn btn-outline-info" disabled aria-disabled="true"><span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}</button>
                     <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown for row number">
                         <button class="btn btn-info dropdown-toggle-split" ngbDropdownToggle></button>
                         <div class="dropdown-menu" ngbDropdownMenu>
@@ -44,7 +44,7 @@
         </ngb-pagination>
 
         <!-- table with searchResults -->
-        <div *ngIf="searchResultView === 'table'" class="table-responsive">
+        <div *ngIf="searchParams?.view === 'table'" class="table-responsive">
             <table class="table table-sm awg-search-result-table">
                 <thead>
                 <tr class="d-flex">
@@ -70,7 +70,7 @@
         </div>
 
         <!-- grid with searchResults -->
-        <div class="card-columns" *ngIf="searchResultView === 'grid'">
+        <div class="card-columns" *ngIf="searchParams?.view === 'grid'">
             <div class="card" *ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}">
                 <div class="card-header">
                     <img [attr.src]=subject?.iconsrc alt="iconsrc">

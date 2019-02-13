@@ -8,7 +8,7 @@ import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
@@ -21,9 +21,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     @Input()
     searchUrl: string;
     @Input()
-    nRows: string;
-    @Input()
-    startAt: string;
+    searchParams: SearchParams;
     @Output()
     pageChangeRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -39,7 +37,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     streamerServiceSubscription: Subscription;
     searchResponse: SearchResponseJson;
     searchResultText: string;
-    searchResultView: 'grid' | 'table' = 'table';
     searchValue: string;
 
     faGripHorizontal = faGripHorizontal;
