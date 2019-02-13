@@ -3,8 +3,9 @@ import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
-import { ApiService } from '@awg-core/services/';
+import { ApiService, ConversionService } from '@awg-core/services/';
 import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
+import { map } from 'rxjs/operators';
 
 @Injectable({
     providedIn: 'root'
@@ -18,7 +19,7 @@ export class DataApiService extends ApiService {
     resourcesRoute = '/resources/';
     searchRoute = '/search/';
 
-    constructor(http: HttpClient) {
+    constructor(http: HttpClient, private conversionService: ConversionService) {
         super(http);
         this.serviceName = 'DataApiService';
     }
@@ -46,9 +47,12 @@ export class DataApiService extends ApiService {
             .set('show_nrows', nRows)
             .set('start_at', startAt);
 
-        console.log('service # getFulltextSearchData for: ', queryString + queryParams);
-
-        return this.getApiResponse(SearchResponseJson, queryString, queryParams);
+        return this.getApiResponse(SearchResponseJson, queryString, queryParams).pipe(
+            map((searchResponse: SearchResponseJson) => {
+                // conversion of search results for HTML display
+                return this.conversionService.convertFullTextSearchResults(searchResponse);
+            })
+        );
     }
 
     /***************************************
