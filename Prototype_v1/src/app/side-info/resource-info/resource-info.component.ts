@@ -147,7 +147,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     navigateToSearchResults(): void {
         const query = this.resourceInfo.searchResults ? this.resourceInfo.searchResults.query : '';
-        this.router.navigate(['/data/search/fulltext', { query: query }]);
+        this.router.navigate(['/data/search/fulltext'], {
+            queryParams: { query: query }
+        });
     }
 
     /*
