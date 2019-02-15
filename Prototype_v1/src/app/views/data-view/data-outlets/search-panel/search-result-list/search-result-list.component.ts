@@ -56,7 +56,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.streamerServiceSubscription = this.subscribeToStreamerService();
-        this.buildForm(this.searchParams.view);
+        if (this.searchParams.view && (this.searchParams.view === 'table' || this.searchParams.view === 'grid')) {
+            this.buildForm(this.searchParams.view);
+        }
     }
 
     // build radio view form

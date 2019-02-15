@@ -64,13 +64,14 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // view has not changed
             this.viewChanged = false;
 
+            const sp: SearchParams = {
+                query: this.searchParams.query,
+                nRows: this.searchParams.nRows,
+                startAt: requestedStartAt,
+                view: this.searchParams.view
+            };
             // route to new params
-            this.routeToSelf(
-                this.searchParams.query,
-                this.searchParams.nRows,
-                requestedStartAt,
-                this.searchParams.view
-            );
+            this.routeToSelf(sp);
         }
     }
 
@@ -83,23 +84,33 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // reset start position
             this.searchParams.startAt = '0';
 
+            const sp: SearchParams = {
+                query: this.searchParams.query,
+                nRows: requestedRows,
+                startAt: this.searchParams.startAt,
+                view: this.searchParams.view
+            };
+
             // route to new params
-            this.routeToSelf(this.searchParams.query, requestedRows, this.searchParams.startAt, this.searchParams.view);
+            this.routeToSelf(sp);
         }
     }
 
     // new row number after row change request
     onViewChange(requestedView: string): void {
         if (requestedView !== this.searchParams.view) {
+            // view has changed
             this.viewChanged = true;
-            // this.searchParams.view = requestedView;
+
+            const sp: SearchParams = {
+                query: this.searchParams.query,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: requestedView
+            };
+
             // route to new params
-            this.routeToSelf(
-                this.searchParams.query,
-                this.searchParams.nRows,
-                this.searchParams.startAt,
-                requestedView
-            );
+            this.routeToSelf(sp);
         }
     }
 
@@ -109,21 +120,23 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // view has not changed
             this.viewChanged = false;
 
-            // route to new params
-            this.routeToSelf(
-                requestedQuery,
-                this.searchParams.nRows,
-                this.searchParams.startAt,
-                this.searchParams.view
-            );
+            const sp: SearchParams = {
+                query: requestedQuery,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: this.searchParams.view
+            };
+
+            // route to new search params
+            this.routeToSelf(sp);
         }
     }
 
     // route to self to set new params
-    routeToSelf(query: string, nRows: string, startAt: string, view: string) {
+    routeToSelf(sp: SearchParams) {
         this.router.navigate([], {
             relativeTo: this.route,
-            queryParams: { query: query, nrows: nRows, startAt: startAt, view: view },
+            queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
             queryParamsHandling: 'merge'
         });
     }
@@ -138,37 +151,48 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 if (qp !== this.currentQueryParams) {
                     this.currentQueryParams = qp;
 
-                    // update search params from route if available
-                    this.updateSearchParamsFromRoute(qp);
+                    if (qp.keys.length < 4) {
 
-                    if (this.searchParams.query && !this.viewChanged) {
-                        // start loading
-                        this.onLoadingStart();
-
-                        // fetch search data
-                        return this.dataApiService
-                            .getFulltextSearchData(
-                                this.searchParams.query,
-                                this.searchParams.nRows,
-                                this.searchParams.startAt
-                            )
-                            .subscribe(
-                                (searchResponse: SearchResponseJson) => {
-                                    // update url for search
-                                    this.updateCurrentUrl();
-
-                                    // share search data via streamer service
-                                    this.updateStreamerService(searchResponse, this.searchParams.query);
-
-                                    // end loading
-                                    this.onLoadingEnd();
-                                },
-                                error => {
-                                    this.errorMessage = <any>error;
-                                }
-                            );
+                        const sp: SearchParams = {
+                            query: qp.get('query') || this.searchParams.query,
+                            nRows: qp.get('nrows') || this.searchParams.nRows,
+                            startAt: qp.get('startAt') || this.searchParams.startAt,
+                            view: qp.get('view') || this.searchParams.view
+                        };
+                        this.routeToSelf(sp);
                     } else {
-                        // console.log('No search query!');
+                        // update search params from route if available
+                        this.updateSearchParamsFromRoute(qp);
+
+                        if (this.searchParams.query && !this.viewChanged) {
+                            // start loading
+                            this.onLoadingStart();
+
+                            // fetch search data
+                            return this.dataApiService
+                                .getFulltextSearchData(
+                                    this.searchParams.query,
+                                    this.searchParams.nRows,
+                                    this.searchParams.startAt
+                                )
+                                .subscribe(
+                                    (searchResponse: SearchResponseJson) => {
+                                        // update url for search
+                                        this.updateCurrentUrl();
+
+                                        // share search data via streamer service
+                                        this.updateStreamerService(searchResponse, this.searchParams.query);
+
+                                        // end loading
+                                        this.onLoadingEnd();
+                                    },
+                                    error => {
+                                        this.errorMessage = <any>error;
+                                    }
+                                );
+                        } else {
+                            // console.log('No search query!');
+                        }
                     }
                 } else {
                     // console.log('Routed on same page with same query params');
