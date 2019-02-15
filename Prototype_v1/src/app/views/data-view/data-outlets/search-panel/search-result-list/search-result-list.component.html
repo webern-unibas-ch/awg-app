@@ -8,11 +8,11 @@
                 <form [formGroup]="radioViewForm">
                     <div class="btn-group btn-group-toggle" ngbRadioGroup name="radioSearchResultView" formControlName="radioViewControl">
                         <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
-                            <input ngbButton type="radio" value="table">
+                            <input ngbButton type="radio" value="table" [disabled]="+searchResponse?.nhits === 0">
                             <fa-icon [icon]="faTable"></fa-icon>
                         </label>
                         <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
-                            <input ngbButton type="radio" value="grid">
+                            <input ngbButton type="radio" value="grid" [disabled]="+searchResponse?.nhits === 0">
                             <fa-icon [icon]="faGripHorizontal"></fa-icon>
                         </label>
                     </div>
@@ -20,7 +20,7 @@
                 <div class="btn-group">
                     <button type="button" class="btn btn-outline-info" disabled aria-disabled="true"><span class="d-none d-lg-inline">Hits per page: </span>{{ searchParams?.nRows }}</button>
                     <div class="btn-group" ngbDropdown role="group" aria-label="Button group with nested dropdown for row number">
-                        <button class="btn btn-info dropdown-toggle-split" ngbDropdownToggle></button>
+                        <button class="btn btn-info dropdown-toggle-split" ngbDropdownToggle [disabled]="+searchResponse?.nhits === 0"></button>
                         <div class="dropdown-menu" ngbDropdownMenu>
                             <button class="dropdown-item" *ngFor="let rowNumber of rowNumberArray" (click)="onRowChange(rowNumber)">{{ rowNumber }}</button>
                         </div>
