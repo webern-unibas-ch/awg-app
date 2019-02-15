@@ -2,15 +2,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
+import { ReactiveFormsModule } from '@angular/forms';
 
-import { SearchResultListComponent } from './search-result-list.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { OrderByPipe } from '@awg-shared/order-by/order-by.pipe';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
+
+import { SearchResultListComponent } from './search-result-list.component';
 
 describe('SearchResultListComponent', () => {
     let component: SearchResultListComponent;
@@ -22,6 +27,8 @@ describe('SearchResultListComponent', () => {
 
     let expectedSearchResponseWithQuery: SearchResponseWithQuery;
     let expectedSearchResultText: string;
+
+    let expectedSearchParams: SearchParams;
 
     beforeEach(async(() => {
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), ''); // TODO: provide real test data
@@ -39,7 +46,7 @@ describe('SearchResultListComponent', () => {
         mockSideInfoService = { updateSearchInfoData: () => {} }; // TODO: provide real test data
 
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
+            imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
             declarations: [SearchResultListComponent, CompileHtmlComponent, OrderByPipe],
             providers: [
                 { provide: DataStreamerService, useValue: mockStreamerService },
@@ -52,6 +59,11 @@ describe('SearchResultListComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchResultListComponent);
         component = fixture.componentInstance;
+
+        expectedSearchParams = new SearchParams();
+        expectedSearchParams.view = 'table';
+
+        component.searchParams = expectedSearchParams;
         fixture.detectChanges();
     });
 

@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 import { ResourceInfoComponent } from './resource-info.component';
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 describe('ResourceInfoComponent', () => {
     let component: ResourceInfoComponent;
@@ -11,7 +13,7 @@ describe('ResourceInfoComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, RouterTestingModule],
+            imports: [FontAwesomeModule, ReactiveFormsModule, RouterTestingModule],
             declarations: [ResourceInfoComponent, CompileHtmlComponent]
         }).compileComponents();
     }));

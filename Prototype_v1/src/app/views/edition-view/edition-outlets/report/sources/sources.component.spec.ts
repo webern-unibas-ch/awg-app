@@ -5,8 +5,11 @@ import { By } from '@angular/platform-browser';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { SourcesComponent } from './sources.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SourceList } from '@awg-views/edition-view/models';
+
+import { SourcesComponent } from './sources.component';
 
 // mock components
 @Component({ selector: 'awg-source-list', template: '' })
@@ -37,7 +40,7 @@ describe('SourcesComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
+            imports: [NgbAccordionModule, RouterTestingModule],
             declarations: [
                 SourcesComponent,
                 SourceListStubComponent,
@@ -67,14 +70,14 @@ describe('SourcesComponent', () => {
             expect(sourceListEl).not.toBeTruthy();
         });
 
-        it('should contain source description component (stubbed)', () => {
+        it('should not contain source description component (stubbed)', () => {
             const sourceDescriptionEl = fixture.debugElement.query(By.directive(SourceDescriptionStubComponent));
-            expect(sourceDescriptionEl).toBeTruthy();
+            expect(sourceDescriptionEl).not.toBeTruthy();
         });
 
-        it('should contain source evaluation component (stubbed)', () => {
+        it('should not contain source evaluation component (stubbed)', () => {
             const sourceEvaluationEl = fixture.debugElement.query(By.directive(SourceEvaluationStubComponent));
-            expect(sourceEvaluationEl).toBeTruthy();
+            expect(sourceEvaluationEl).not.toBeTruthy();
         });
     });
 
@@ -118,6 +121,16 @@ describe('SourcesComponent', () => {
         it('should contain source list component (stubbed)', () => {
             const sourceListEl = fixture.debugElement.query(By.directive(SourceListStubComponent));
             expect(sourceListEl).toBeTruthy();
+        });
+
+        it('should contain source description component (stubbed)', () => {
+            const sourceDescriptionEl = fixture.debugElement.query(By.directive(SourceDescriptionStubComponent));
+            expect(sourceDescriptionEl).toBeTruthy();
+        });
+
+        it('should contain source evaluation component (stubbed)', () => {
+            const sourceEvaluationEl = fixture.debugElement.query(By.directive(SourceEvaluationStubComponent));
+            expect(sourceEvaluationEl).toBeTruthy();
         });
     });
 });

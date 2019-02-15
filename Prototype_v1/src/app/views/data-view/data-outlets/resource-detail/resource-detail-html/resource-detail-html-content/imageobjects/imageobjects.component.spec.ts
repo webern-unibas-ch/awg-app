@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement } from '@angular/core';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { ResourceDetailHtmlContentImageobjectsComponent } from './imageobjects.component';
 import { ResourceDetailImage } from '@awg-views/data-view/models';
 import { ContextJson } from '@awg-shared/api-objects';
-import { DebugElement } from '@angular/core';
+
+import { ResourceDetailHtmlContentImageobjectsComponent } from './imageobjects.component';
 
 describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let component: ResourceDetailHtmlContentImageobjectsComponent;
@@ -15,6 +17,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [FontAwesomeModule],
             declarations: [ResourceDetailHtmlContentImageobjectsComponent]
         }).compileComponents();
     }));

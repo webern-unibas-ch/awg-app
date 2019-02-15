@@ -6,6 +6,7 @@ import { RouterTestingModule } from '@angular/router/testing';
 import { SearchPanelComponent } from './search-panel.component';
 import { DataApiService } from '@awg-views/data-view/services';
 import { ConversionService, DataStreamerService } from '@awg-core/services';
+import { SearchParams } from '@awg-views/data-view/models';
 
 @Component({ selector: 'awg-search-form', template: '' })
 class SearchFormStubComponent {
@@ -17,6 +18,8 @@ class SearchFormStubComponent {
 
 @Component({ selector: 'awg-search-result-list', template: '' })
 class SearchResultListStubComponent {
+    @Input()
+    searchParams: SearchParams;
     @Input()
     searchUrl: string;
 }

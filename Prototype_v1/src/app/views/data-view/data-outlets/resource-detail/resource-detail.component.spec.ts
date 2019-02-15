@@ -2,13 +2,15 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { ActivatedRouteStub } from '@testing/router-stubs';
+import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { ResourceDetailComponent } from './resource-detail.component';
 import { ResourceDetail, ResourceDetailHeader } from '@awg-views/data-view/models';
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 import { DataApiService } from '@awg-views/data-view/services';
 import { ConversionService, DataStreamerService } from '@awg-core/services';
+
+import { ResourceDetailComponent } from './resource-detail.component';
 
 // mock components
 @Component({ selector: 'awg-resource-detail-header', template: '' })
@@ -63,7 +65,7 @@ describe('ResourceDetailComponent', () => {
         mockActivatedRoute = new ActivatedRouteStub();
 
         TestBed.configureTestingModule({
-            // imports: [RouterTestingModule],
+            imports: [NgbTabsetModule],
             declarations: [
                 ResourceDetailComponent,
                 ResourceDetailHeaderStubComponent,

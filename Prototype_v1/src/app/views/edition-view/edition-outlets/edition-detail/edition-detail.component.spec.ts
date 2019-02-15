@@ -5,7 +5,8 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { Observable, of as observableOf } from 'rxjs';
 
-import { EditionDetailComponent } from './edition-detail.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 import {
     ConvoluteFolio,
     EditionSvgFile,
@@ -14,9 +15,10 @@ import {
     TextcriticsList
 } from '@awg-views/edition-view/models';
 import { DataService, EditionService } from '@awg-views/edition-view/services';
-
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+
+import { EditionDetailComponent } from './edition-detail.component';
 
 @Component({ selector: 'awg-edition-detail-notification', template: '' })
 class EditionDetailNotificationStubComponent {}
@@ -68,6 +70,7 @@ describe('EditionDetailComponent', () => {
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
             declarations: [
+                CompileHtmlComponent,
                 EditionDetailComponent,
                 EditionDetailNotificationStubComponent,
                 EditionConvoluteStubComponent,

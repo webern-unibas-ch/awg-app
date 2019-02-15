@@ -5,11 +5,14 @@ import { RouterTestingModule } from '@angular/router/testing';
 
 import { of as observableOf } from 'rxjs';
 
-import { ReportComponent } from './report.component';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 import { DataService } from '@awg-views/edition-view/services';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+
+import { ReportComponent } from './report.component';
 
 // mock components
 @Component({ selector: 'awg-heading', template: '' })
@@ -51,6 +54,7 @@ describe('ReportComponent', () => {
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
             declarations: [
+                CompileHtmlComponent,
                 ReportComponent,
                 HeadingStubComponent,
                 SourcesStubComponent,
