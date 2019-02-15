@@ -1,5 +1,8 @@
 import { Component, Input, OnInit } from '@angular/core';
 
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { ResourceDetail } from '@awg-views/data-view/models';
+
 @Component({
     selector: 'awg-json-viewer',
     templateUrl: './json-viewer.component.html',
@@ -7,7 +10,7 @@ import { Component, Input, OnInit } from '@angular/core';
 })
 export class JsonViewerComponent implements OnInit {
     @Input()
-    jsonViewerData: any;
+    jsonViewerData: ResourceDetail | ResourceFullResponseJson;
     @Input()
     jsonViewerHeader: string;
 
