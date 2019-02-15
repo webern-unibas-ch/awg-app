@@ -16,7 +16,7 @@ class JsonViewerStubComponent {
     jsonViewerData: ResourceDetail | ResourceFullResponseJson;
 }
 
-describe('ResourceDetailJsonConvertedComponent', () => {
+describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     let component: ResourceDetailJsonConvertedComponent;
     let fixture: ComponentFixture<ResourceDetailJsonConvertedComponent>;
     let compDe: DebugElement;
@@ -50,16 +50,16 @@ describe('ResourceDetailJsonConvertedComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should not have `resourceJsonConvertedData`', () => {
+            expect(component.resourceJsonConvertedData).toBeUndefined();
+        });
+
         describe('VIEW', () => {
             it('... should contain one json viewer component (stubbed)', () => {
                 const viewerDes = compDe.queryAll(By.directive(JsonViewerStubComponent));
 
                 expect(viewerDes).toBeTruthy();
                 expect(viewerDes.length).toBe(1, 'should have only one json viewer');
-            });
-
-            it('should NOT have resourceJsonConvertedData', () => {
-                expect(component.resourceJsonConvertedData).toBeUndefined();
             });
 
             it('... should not pass down `resourceJsonConvertedData` to json viewer component', () => {
@@ -86,11 +86,11 @@ describe('ResourceDetailJsonConvertedComponent', () => {
                 const viewerDe = compDe.query(By.directive(JsonViewerStubComponent));
                 const viewerCmp = viewerDe.injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
-                expect(viewerCmp.jsonViewerHeader).toBeTruthy();
-                expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have title: ${expectedHeader}`);
+                expect(viewerCmp.jsonViewerHeader).toBeDefined();
+                expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have header: ${expectedHeader}`);
 
                 expect(viewerCmp.jsonViewerData).toBeDefined();
-                expect(viewerCmp.jsonViewerData).toBe(expectedData, `should have id: ${expectedData}`);
+                expect(viewerCmp.jsonViewerData).toBe(expectedData, `should have data: ${expectedData}`);
             });
         });
     });
