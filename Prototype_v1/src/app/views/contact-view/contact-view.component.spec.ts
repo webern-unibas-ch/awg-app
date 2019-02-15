@@ -1,14 +1,14 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DatePipe } from '@angular/common';
+import { By } from '@angular/platform-browser';
 import { Component, DebugElement, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { ContactViewComponent } from './contact-view.component';
-import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
-import { By } from '@angular/platform-browser';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
+import { CoreService } from '@awg-core/services';
+
+import { ContactViewComponent } from './contact-view.component';
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -19,7 +19,7 @@ class HeadingStubComponent {
     id: string;
 }
 
-describe('ContactViewComponent (DONE)', () => {
+describe('ContactViewComponent', () => {
     let component: ContactViewComponent;
     let fixture: ComponentFixture<ContactViewComponent>;
     let compDe: DebugElement;
