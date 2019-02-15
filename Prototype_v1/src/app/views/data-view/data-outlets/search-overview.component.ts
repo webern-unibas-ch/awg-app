@@ -35,8 +35,8 @@ export class SearchOverviewComponent implements OnInit {
 
     ngOnInit() {}
 
-    onButtonSelect(title: string) {
-        this.updateSearchInfoTitle(title);
+    onButtonSelect(routerLinkButton: RouterLinkButton) {
+        this.updateSearchInfoTitle(routerLinkButton.label);
     }
 
     private updateSearchInfoTitle(title: string) {

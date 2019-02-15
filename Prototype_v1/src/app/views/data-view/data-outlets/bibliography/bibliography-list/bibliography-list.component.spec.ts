@@ -38,6 +38,7 @@ describe('BibliographyListComponent', () => {
         describe('VIEW', () => {
             it('... should not contain bibliography detail component (stubbed)', () => {
                 const bibliographyDetailEl = fixture.debugElement.query(By.directive(BibliographyDetailStubComponent));
+
                 expect(bibliographyDetailEl).not.toBeTruthy();
             });
         });
