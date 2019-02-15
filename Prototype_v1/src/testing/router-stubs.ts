@@ -44,6 +44,7 @@ import { BehaviorSubject, ReplaySubject } from 'rxjs';
  * An ActivateRoute test double with a `paramMap` observable.
  * Use the `setParamMap()` method to add the next `paramMap` value.
  */
+@Injectable()
 export class ActivatedRouteStub {
     // Use a ReplaySubject to share previous values with subscribers
     // and pump new values into the `paramMap` observable
@@ -91,6 +92,6 @@ export class ActivatedRouteStub {
  */
 @NgModule({
     imports: [AppModule],
-    declarations: [RouterLinkStubDirective, RouterOutletStubComponent, ActivatedRouteStub]
+    declarations: [RouterLinkStubDirective, RouterOutletStubComponent]
 })
 export class FakeRouterModule {}
