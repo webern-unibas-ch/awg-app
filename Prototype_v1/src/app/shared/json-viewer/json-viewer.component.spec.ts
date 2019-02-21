@@ -1,14 +1,16 @@
+///<reference path="../../../testing/custom-matchers.d.ts"/>
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { JsonPipe } from '@angular/common';
-import { CustomJasmineMatchers } from '@testing/custom-matchers';
+import { By } from '@angular/platform-browser';
+import { customJasmineMatchers } from '@testing/custom-matchers';
 
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
-
 import { NgxJsonViewerComponent } from 'ngx-json-viewer';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+
 import { JsonViewerComponent } from './json-viewer.component';
 
 // helper functions for tabs
@@ -71,6 +73,9 @@ describe('JsonViewerComponent (DONE)', () => {
     }));
 
     beforeEach(() => {
+        // add custom jasmine matchers (ToHaveCssClass)
+        jasmine.addMatchers(customJasmineMatchers);
+
         fixture = TestBed.createComponent(JsonViewerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
@@ -80,9 +85,6 @@ describe('JsonViewerComponent (DONE)', () => {
         expectedHeader = 'Converted JSON response from Salsah-API';
         expectedData = new ResourceFullResponseJson();
         expectedData.status = 1;
-
-        // add custom jasmine matchers (ToHaveCssClass)
-        jasmine.addMatchers(CustomJasmineMatchers);
     });
 
     it('should create', () => {

@@ -4,7 +4,7 @@ import CustomEqualityTester = jasmine.CustomEqualityTester;
 import CustomMatcher = jasmine.CustomMatcher;
 import CustomMatcherResult = jasmine.CustomMatcherResult;
 
-export const CustomJasmineMatchers: CustomMatcherFactories = {
+export const customJasmineMatchers: CustomMatcherFactories = {
     toHaveCssClass: function(util: MatchersUtil, customEqualityTester: CustomEqualityTester[]): CustomMatcher {
         return { compare: buildError(false), negativeCompare: buildError(true) };
 
@@ -21,4 +21,4 @@ export const CustomJasmineMatchers: CustomMatcherFactories = {
     }
 };
 
-// custom matcher, see https://stackoverflow.com/a/49405171
+// custom matchers, see https://stackoverflow.com/a/44996479
