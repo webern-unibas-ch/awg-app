@@ -16,8 +16,8 @@ export class DataApiService extends ApiService {
 
     projectId = '6';
     resourceAppendix = '_-_local';
-    resourcesRoute = '/resources/';
-    searchRoute = '/search/';
+    resourcesRoute = 'resources/';
+    searchRoute = 'search/';
 
     constructor(http: HttpClient, private conversionService: ConversionService) {
         super(http);
@@ -40,14 +40,14 @@ export class DataApiService extends ApiService {
             startAt = '0';
         }
 
-        const queryString: string = this.searchRoute + searchString;
-        const queryParams = new HttpParams()
+        const queryPath: string = this.searchRoute + searchString;
+        const queryHttpParams = new HttpParams()
             .set('searchtype', 'fulltext')
             .set('filter_by_project', this.projectId)
             .set('show_nrows', nRows)
             .set('start_at', startAt);
 
-        return this.getApiResponse(SearchResponseJson, queryString, queryParams).pipe(
+        return this.getApiResponse(SearchResponseJson, queryPath, queryHttpParams).pipe(
             map((searchResponse: SearchResponseJson) => {
                 // conversion of search results for HTML display
                 return this.conversionService.convertFullTextSearchResults(searchResponse);
@@ -61,10 +61,10 @@ export class DataApiService extends ApiService {
      **
      ****************************************/
     getResourceDetailData(resourceId: string): Observable<ResourceFullResponseJson> {
-        const queryString: string = this.resourcesRoute + resourceId + this.resourceAppendix;
-        const queryParams = new HttpParams();
+        const queryPath: string = this.resourcesRoute + resourceId + this.resourceAppendix;
+        const queryHttpParams = new HttpParams();
         // .set('reqtype', 'info');
         //  .set('reqtype', 'context');
-        return this.getApiResponse(ResourceFullResponseJson, queryString, queryParams);
+        return this.getApiResponse(ResourceFullResponseJson, queryPath, queryHttpParams);
     }
 }

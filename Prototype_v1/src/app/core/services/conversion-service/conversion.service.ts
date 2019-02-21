@@ -573,22 +573,22 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private getAdditionalInfoFromApi(responseType: any, valueId: string): Observable<any> {
-        let queryString: string;
+        let queryPath: string;
         switch (responseType) {
             case GeoDataJson:
-                queryString = '/geonames/' + valueId + '?reqtype=node';
+                queryPath = 'geonames/' + valueId + '?reqtype=node';
                 break;
             case HlistJson:
-                queryString = '/hlists/' + valueId;
+                queryPath = 'hlists/' + valueId;
                 break;
             case ResourceContextResponseJson:
-                queryString = '/resources/' + valueId + '_-_local?reqtype=context';
+                queryPath = 'resources/' + valueId + '_-_local?reqtype=context';
                 break;
             case SelectionJson:
-                queryString = '/selections/' + valueId;
+                queryPath = 'selections/' + valueId;
                 break;
         }
-        return this.getApiResponse(responseType, queryString);
+        return this.getApiResponse(responseType, queryPath);
     }
 
     /******************************************

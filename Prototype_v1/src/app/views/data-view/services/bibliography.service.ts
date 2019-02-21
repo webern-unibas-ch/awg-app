@@ -16,8 +16,8 @@ export class BibliographyService extends ApiService {
     projectId = '6';
     resTypeId = '126'; // test-01: 127
     bibShortTitlePropertyId = '614'; // 614 = Bibligoraphie#Kurztitel
-    resourcesRoute = '/resources/';
-    searchRoute = '/search/';
+    resourcesRoute = 'resources/';
+    searchRoute = 'search/';
 
     /**********************************
      *
@@ -25,20 +25,20 @@ export class BibliographyService extends ApiService {
      *
      **********************************/
     getBibliographyList(): Observable<SearchResponseJson> {
-        const queryString: string = this.searchRoute;
-        const queryParams = new HttpParams()
+        const queryPath: string = this.searchRoute;
+        const queryHttpParams = new HttpParams()
             .set('searchtype', 'extended')
             .set('property_id', this.bibShortTitlePropertyId)
             .set('compop', 'EXISTS')
             .set('filter_by_project', this.projectId)
             .set('filter_by_restype', this.resTypeId);
 
-        return this.getApiResponse(SearchResponseJson, queryString, queryParams);
+        return this.getApiResponse(SearchResponseJson, queryPath, queryHttpParams);
     }
 
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
-        const queryString: string = this.resourcesRoute + resourceId;
+        const queryPath: string = this.resourcesRoute + resourceId;
 
-        return this.getApiResponse(ResourceFullResponseJson, queryString);
+        return this.getApiResponse(ResourceFullResponseJson, queryPath);
     }
 }
