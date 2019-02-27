@@ -39,9 +39,8 @@ export class ApiService {
                     return result.getBody(responseType);
                 },
                 (error: ApiServiceError): Observable<ApiServiceError> => {
-                    const errorMessage = <any>error;
-                    console.error('ApiService - getApiResponse - error: ', errorMessage);
-                    throw error;
+                    console.error('ApiService - getApiResponse - error: ', error);
+                    return observableThrowError(error);
                 }
             )
         );

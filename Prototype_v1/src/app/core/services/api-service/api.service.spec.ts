@@ -37,7 +37,7 @@ function createApiServiceError(status: number, statusText: string, noErrorInfo?:
     return apiServiceError;
 }
 
-fdescribe('ApiService', () => {
+describe('ApiService', () => {
     let apiService: ApiService;
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
@@ -239,12 +239,13 @@ fdescribe('ApiService', () => {
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error', true);
 
                     // spy on mocked http get call & throw an error
-                    spyOn(httpClient, 'get').and.returnValue(observableThrowError(expectedApiServiceError));
+                    spyOn(apiService, 'getApiResponse').and.returnValue(observableThrowError(expectedApiServiceError));
 
                     // call service function (fail)
                     apiService.getApiResponse(UserDataJson, queryPath).subscribe(
                         res => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
+                            expect(apiService.getApiResponse).toHaveBeenCalled();
                             expectedErrorResponse(error, expectedApiServiceError);
                             done();
                         }

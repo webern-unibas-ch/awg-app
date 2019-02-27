@@ -99,9 +99,9 @@ describe('JsonViewerComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one card with header and body', () => {
-                const cardDes = fixture.debugElement.queryAll(By.css('div.card'));
-                const headerDes = fixture.debugElement.queryAll(By.css('div.card > div.card-header'));
-                const bodyDes = fixture.debugElement.queryAll(By.css('div.card > div.card-body'));
+                const cardDes = compDe.queryAll(By.css('div.card'));
+                const headerDes = compDe.queryAll(By.css('div.card > div.card-header'));
+                const bodyDes = compDe.queryAll(By.css('div.card > div.card-body'));
 
                 expect(cardDes).toBeTruthy();
                 expect(cardDes.length).toBe(1, 'should have 1 div.card');
@@ -114,7 +114,7 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should contain one tabset inside card-body', () => {
-                const tabSetDes = fixture.debugElement.queryAll(By.css('ngb-tabset'));
+                const tabSetDes = compDe.queryAll(By.css('ngb-tabset'));
 
                 expect(tabSetDes).toBeTruthy();
                 expect(tabSetDes.length).toBe(1, 'should have 1 ngb-tabset');
@@ -140,8 +140,8 @@ describe('JsonViewerComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one tabset with two tabs inside card-body', () => {
-                const tabSetDes = fixture.debugElement.queryAll(By.css('ngb-tabset'));
-                const tabDes = getTabTitles(fixture.nativeElement);
+                const tabSetDes = compDe.queryAll(By.css('ngb-tabset'));
+                const tabDes = getTabTitles(compEl);
 
                 expect(tabSetDes).toBeTruthy();
                 expect(tabSetDes.length).toBe(1, 'should have 1 ngb-tabset');
@@ -151,34 +151,34 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should have one Formatted and one Plain tab and disply titles', () => {
-                const tabTitles = getTabTitles(fixture.nativeElement);
+                const tabTitles = getTabTitles(compEl);
 
                 expect(tabTitles[0].textContent).toMatch(/Formatted/);
                 expect(tabTitles[1].textContent).toMatch(/Plain/);
             });
 
             it('... should render tabs and select first tab (Formatted) by default', () => {
-                const tabContent = getTabContent(fixture.nativeElement);
+                const tabContent = getTabContent(compEl);
 
                 expect(tabContent.length).toBe(1);
                 expectTabs(fixture.nativeElement, [true, false]);
             });
 
             it('... should change active tab on tab title click', () => {
-                const tabTitles = getTabTitles(fixture.nativeElement);
+                const tabTitles = getTabTitles(compEl);
 
                 (<HTMLElement>tabTitles[1]).click();
                 fixture.detectChanges();
-                expectTabs(fixture.nativeElement, [false, true]);
+                expectTabs(compEl, [false, true]);
 
                 (<HTMLElement>tabTitles[0]).click();
                 fixture.detectChanges();
-                expectTabs(fixture.nativeElement, [true, false]);
+                expectTabs(compEl, [true, false]);
             });
 
             it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', () => {
                 let viewerDes = compDe.queryAll(By.directive(NgxJsonViewerComponent));
-                const tabTitles = getTabTitles(fixture.nativeElement);
+                const tabTitles = getTabTitles(compEl);
 
                 expect(viewerDes).toBeTruthy();
                 expect(viewerDes.length).toBe(1, 'should have only one ngx-json viewer');
@@ -201,13 +201,13 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should render `jsonViewerData` in Plain view', () => {
-                const tabTitles = getTabTitles(fixture.nativeElement);
+                const tabTitles = getTabTitles(compEl);
 
                 // change tab to plain view
                 (<HTMLElement>tabTitles[1]).click();
                 fixture.detectChanges();
 
-                const tabContent = getTabContent(fixture.nativeElement);
+                const tabContent = getTabContent(compEl);
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
