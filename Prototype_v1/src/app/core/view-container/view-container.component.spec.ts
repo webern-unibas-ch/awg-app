@@ -66,4 +66,39 @@ describe('ViewContainerComponent (DONE)', () => {
             });
         });
     });
+
+    describe('AFTER initial data binding', () => {
+        beforeEach(() => {
+            // trigger initial data binding
+            fixture.detectChanges();
+        });
+
+        it('... should still have all elements', () => {
+            const divDe = compDe.queryAll(By.css('div.container-fluid > div.row > div'));
+            const routletDe = compDe.queryAll(By.directive(RouterOutletStubComponent));
+
+            expect(divDe).toBeDefined();
+            expect(divDe.length).toBe(2, 'should have 2 child divs of `div.row`');
+
+            expect(divDe[0].attributes).toBeDefined();
+            expect(divDe[0].attributes.class).toBeDefined();
+            expect(divDe[0].attributes.class).toContain('awg-sidenav', 'should have awg-sidenav class');
+
+            expect(divDe[1].attributes).toBeDefined();
+            expect(divDe[1].attributes.class).toBeDefined();
+            expect(divDe[1].attributes.class).toContain('awg-maincontent', 'should have awg-maincontent class');
+
+            expect(routletDe).toBeDefined();
+            expect(routletDe.length).toBe(2, 'should have 2 router outlets');
+
+            // first outlet should be named 'side'
+            expect(routletDe[0].attributes).toBeDefined();
+            expect(routletDe[0].attributes.name).toBeDefined();
+            expect(routletDe[0].attributes.name).toBe('side', 'should have name `side`');
+
+            // second outlet should not be named
+            expect(routletDe[1].attributes).toBeDefined();
+            expect(routletDe[1].attributes.name).not.toBeDefined();
+        });
+    });
 });
