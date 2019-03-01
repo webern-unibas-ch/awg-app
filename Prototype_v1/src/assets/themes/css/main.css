@@ -125,6 +125,7 @@ awg-view-container > div {
 /* footer */
 footer {
     font-family: 'Montserrat', sans-serif;
+    font-weight: 400;
     font-size: 14px;
     height: 132px; /* needed for sticky footer */
     background-color: transparent;
@@ -225,13 +226,13 @@ footer {
 #webernlogo {
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
-    text-align: center;
-    font-weight: normal;
+    font-weight: 400;
     color: black;
     letter-spacing: normal;
+    text-align: center;
 }
 #webernlogo span {
-    font-weight: lighter;
+    font-weight: 100;
 }
 
 .img-thumbnail {
