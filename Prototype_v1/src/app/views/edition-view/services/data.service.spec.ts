@@ -20,7 +20,7 @@ describe('DataService', () => {
         dataService = TestBed.get(DataService);
     });
 
-    it('should be created', inject([DataService], (service: DataService) => {
-        expect(service).toBeTruthy();
-    }));
+    it('should be created', () => {
+        expect(dataService).toBeTruthy();
+    });
 });

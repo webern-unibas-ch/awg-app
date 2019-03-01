@@ -19,7 +19,7 @@ class HeadingStubComponent {
     id: string;
 }
 
-describe('ContactViewComponent', () => {
+describe('ContactViewComponent (DONE)', () => {
     let component: ContactViewComponent;
     let fixture: ComponentFixture<ContactViewComponent>;
     let compDe: DebugElement;

@@ -68,7 +68,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have buttonArray', () => {
+        it('should not have `buttonArray` input', () => {
             expect(component.buttonArray).toBeUndefined('should be undefined');
         });
 
@@ -134,7 +134,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = compDe.queryAll(By.directive(RouterLinkStubDirective));
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
