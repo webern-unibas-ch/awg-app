@@ -41,7 +41,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             },
             snf: {
                 id: 'snflogo',
-                src: 'assets/img/logos/snf.jpg',
+                src: 'assets/img/logos/snf.png',
                 alt: 'Logo SNF',
                 href: 'http://www.snf.ch'
             },
