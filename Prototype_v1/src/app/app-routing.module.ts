@@ -1,22 +1,19 @@
 import { NgModule } from '@angular/core';
-import { RouterModule, Routes } from '@angular/router';
+import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
 import { HomeViewComponent } from './views/home-view/home-view.component';
-import { ContactViewComponent } from './views/contact-view/contact-view.component';
-import { StructureViewComponent } from './views/structure-view/structure-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
 
 const appRoutes: Routes = [
     // eager loaded
     { path: 'home', component: HomeViewComponent },
-    { path: 'structure', component: StructureViewComponent },
-    { path: 'contact', component: ContactViewComponent },
 
     // lazy loaded
+    { path: 'contact', loadChildren: './views/contact-view/contact.module#ContactModule' },
+    { path: 'data', loadChildren: './views/data-view/data.module#DataModule' },
     { path: 'edition', loadChildren: './views/edition-view/edition.module#EditionModule' },
     { path: 'editions', redirectTo: 'edition', pathMatch: 'full' },
-
-    { path: 'data', loadChildren: './views/data-view/data.module#DataModule' },
+    { path: 'structure', loadChildren: './views/structure-view/structure.module#StructureModule' },
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },
@@ -24,22 +21,17 @@ const appRoutes: Routes = [
 ];
 
 @NgModule({
-    // TODO: rm route tracing for prodcution
     imports: [
         RouterModule.forRoot(appRoutes, {
-            anchorScrolling: 'enabled',
-            scrollPositionRestoration: 'enabled',
-            onSameUrlNavigation: 'reload'
-            // enableTracing: true
+            anchorScrolling: 'enabled', // use anchor scrolling
+            scrollPositionRestoration: 'enabled', // restore scroll position
+            onSameUrlNavigation: 'reload', // reload when navigating to same url
+            preloadingStrategy: PreloadAllModules // preload all lazy modules
+            // enableTracing: true          // TODO: do not enable tracing for prodcution
         })
     ],
     exports: [RouterModule]
 })
 export class AppRoutingModule {}
 
-export const routedComponents = [
-    ContactViewComponent,
-    HomeViewComponent,
-    StructureViewComponent,
-    PageNotFoundViewComponent
-];
+export const routedComponents = [HomeViewComponent, PageNotFoundViewComponent];
