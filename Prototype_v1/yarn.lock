@@ -4050,6 +4050,11 @@ gzip-size@^5.0.0:
     duplexer "^0.1.1"
     pify "^3.0.0"
 
+gzipper@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-1.4.2.tgz#91b8d17ef04d14056827faeb0fe0c3ea164704f7"
+  integrity sha512-HEz5IqjtD2cIaJQ+biObUZK+4s+5bEMNO2Olf4Gxac1RrOpSmbB/lEi+9GlL7RX/vLVGfXX8Nhy2pxT9OiGh2g==
+
 handle-thing@^2.0.0:
   version "2.0.0"
   resolved "https://registry.yarnpkg.com/handle-thing/-/handle-thing-2.0.0.tgz#0e039695ff50c93fc288557d696f3c1dc6776754"
