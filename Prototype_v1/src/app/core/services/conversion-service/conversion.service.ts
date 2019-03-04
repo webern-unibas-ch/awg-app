@@ -46,7 +46,7 @@ export class ConversionService extends ApiService {
      * ResourceDetailGroupedIncomingLinks object
      *
      *****************************************/
-    getNestedArraysLength(obj: ResourceDetailGroupedIncomingLinks): number {
+    getNestedArraysTotalItems(obj: ResourceDetailGroupedIncomingLinks): number {
         let size = 0;
         // iterate over object keys
         Object.keys(obj).forEach(key => {

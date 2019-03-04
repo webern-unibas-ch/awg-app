@@ -4,7 +4,12 @@ import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 
 import { RouterLinkStubDirective } from '@testing/router-stubs';
-import { click } from '@testing/click-helper';
+import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 
@@ -80,17 +85,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one button group', () => {
-                const btnGroupEl = compEl.querySelectorAll('div.btn-group');
-
-                expect(btnGroupEl).toBeDefined();
-                expect(btnGroupEl.length).toBe(1, 'should have one `div.btn-group`');
+                getAndExpectDebugElementByCss(compDe, 'div.btn-group', 1, 1);
             });
 
             it('... should contain no buttons yet', () => {
-                const btnEl = compEl.querySelectorAll('button.btn');
-
-                expect(btnEl).toBeDefined();
-                expect(btnEl.length).toBe(0, 'should have no button');
+                getAndExpectDebugElementByCss(compDe, 'button.btn', 0, 0);
             });
         });
     });
@@ -106,35 +105,42 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain buttons', () => {
-                const btnEl = compEl.querySelectorAll('button.btn');
-
-                expect(btnEl).toBeDefined();
-                expect(btnEl.length).toBe(3, 'should have three buttons');
+                getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
             });
 
             it('... should disable buttons if necessary', () => {
-                const btnEl = compEl.querySelectorAll('button.btn');
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
-                expect(btnEl).toBeDefined();
-                expect(btnEl[0].disabled).toBe(expectedButtonArray[0].disabled, 'should not be disabled');
-                expect(btnEl[1].disabled).toBe(expectedButtonArray[1].disabled, 'should be disabled');
-                expect(btnEl[2].disabled).toBe(expectedButtonArray[2].disabled, 'should be disabled');
+                expect(btnDes[0].nativeElement.disabled).toBe(
+                    expectedButtonArray[0].disabled,
+                    'should not be disabled'
+                );
+                expect(btnDes[1].nativeElement.disabled).toBe(expectedButtonArray[1].disabled, 'should be disabled');
+                expect(btnDes[2].nativeElement.disabled).toBe(expectedButtonArray[2].disabled, 'should be disabled');
             });
 
             it('... should render button labels', () => {
-                const btnEl = compEl.querySelectorAll('button.btn');
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
-                expect(btnEl).toBeDefined();
-                expect(btnEl[0].textContent).toMatch(expectedButtonArray[0].label, 'should be `Volltext-Suche`');
-                expect(btnEl[1].textContent).toMatch(expectedButtonArray[1].label, 'should be `Timeline`');
-                expect(btnEl[2].textContent).toMatch(expectedButtonArray[2].label, 'should be `Bibliographie`');
+                expect(btnDes[0].nativeElement.textContent).toMatch(
+                    expectedButtonArray[0].label,
+                    'should be `Volltext-Suche`'
+                );
+                expect(btnDes[1].nativeElement.textContent).toMatch(
+                    expectedButtonArray[1].label,
+                    'should be `Timeline`'
+                );
+                expect(btnDes[2].nativeElement.textContent).toMatch(
+                    expectedButtonArray[2].label,
+                    'should be `Bibliographie`'
+                );
             });
         });
 
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = compDe.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 3, 3);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
@@ -161,56 +167,40 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         });
 
         describe('#onButtonSelect', () => {
-            // helper functions
-            function clickAndDetectChanges(clickDe: DebugElement) {
-                // trigger click with click helper
-                click(clickDe);
-
-                // wait for changes
-                flush();
-                fixture.detectChanges();
-            }
-
-            function expectSpyCall(spy: Spy, nTimes: number, expectedValue: any) {
-                expect(spy).toHaveBeenCalled();
-                expect(spy).toHaveBeenCalledTimes(nTimes);
-                expect(spy.calls.mostRecent().args[0]).toBe(expectedValue);
-            }
-
             it('... should trigger on click', fakeAsync(() => {
-                const btnDes = compDe.queryAll(By.css('button.btn'));
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(btnDes[0]);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(selectButtonSpy, 1, expectedButtonArray[0]);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(btnDes[1]);
+                clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectSpyCall(selectButtonSpy, 2, expectedButtonArray[1]);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(btnDes[2]);
+                clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectSpyCall(selectButtonSpy, 3, expectedButtonArray[2]);
             }));
 
             it('... should emit selected button on click', fakeAsync(() => {
-                const btnDes = compDe.queryAll(By.css('button.btn'));
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(btnDes[0]);
+                clickAndAwaitChanges(btnDes[0], fixture);
 
                 expectSpyCall(emitSpy, 1, expectedButtonArray[0]);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(btnDes[1]);
+                clickAndAwaitChanges(btnDes[1], fixture);
 
                 expectSpyCall(emitSpy, 2, expectedButtonArray[1]);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(btnDes[2]);
+                clickAndAwaitChanges(btnDes[2], fixture);
 
                 expectSpyCall(emitSpy, 3, expectedButtonArray[2]);
             }));

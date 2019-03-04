@@ -150,7 +150,7 @@ describe('JsonViewerComponent (DONE)', () => {
                 expect(tabDes.length).toBe(2, 'should have 2 tabs');
             });
 
-            it('... should have one Formatted and one Plain tab and disply titles', () => {
+            it('... should have one Formatted and one Plain tab and display titles', () => {
                 const tabTitles = getTabTitles(compEl);
 
                 expect(tabTitles[0].textContent).toMatch(/Formatted/);
@@ -177,8 +177,8 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', () => {
-                let viewerDes = compDe.queryAll(By.directive(NgxJsonViewerComponent));
                 const tabTitles = getTabTitles(compEl);
+                let viewerDes = compDe.queryAll(By.directive(NgxJsonViewerComponent));
 
                 expect(viewerDes).toBeTruthy();
                 expect(viewerDes.length).toBe(1, 'should have only one ngx-json viewer');
