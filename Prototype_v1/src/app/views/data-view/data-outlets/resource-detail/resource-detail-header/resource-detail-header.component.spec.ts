@@ -1,15 +1,21 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
-import { click } from '@testing/click-helper';
+
+import { clickAndAwaitChanges } from '@testing/click-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
 import Spy = jasmine.Spy;
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ResourceDetailHeader } from '@awg-views/data-view/models';
+
 import { ResourceDetailHeaderComponent } from './resource-detail-header.component';
 
-fdescribe('ResourceDetailHtmlHeaderComponent', () => {
+describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
     let component: ResourceDetailHeaderComponent;
     let fixture: ComponentFixture<ResourceDetailHeaderComponent>;
     let compDe: DebugElement;
@@ -35,7 +41,7 @@ fdescribe('ResourceDetailHtmlHeaderComponent', () => {
 
         // test data
         const objId = '1234';
-        const icon = 'test-icon';
+        const icon = '/assets/img/logos/angular.png';
         const type = 'test-type';
         const title = `<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource('28')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])`;
         const lastmod = 'today';
@@ -62,78 +68,52 @@ fdescribe('ResourceDetailHtmlHeaderComponent', () => {
 
         describe('#navigateToResource', () => {
             it('... should not have been called', () => {
-                expect(component.navigateToResource).not.toHaveBeenCalled();
+                expect(navigateToResourceSpy).not.toHaveBeenCalled();
+                expect(emitSpy).not.toHaveBeenCalled();
             });
         });
 
         describe('VIEW', () => {
             it('... should contain one div.resource-header', () => {
-                const rHeaderEl = compEl.querySelectorAll('div.resource-header');
-
-                expect(rHeaderEl).toBeDefined();
-                expect(rHeaderEl.length).toBe(1, 'should have one `div.resource-header`');
+                getAndExpectDebugElementByCss(compDe, 'div.resource-header', 1, 1);
             });
 
             it('... should contain one div.row with two div.cols', () => {
-                const rowEl = compEl.querySelectorAll('div.resource-header > div.row');
-                const col8El = compEl.querySelectorAll('div.row > div.col-lg-8');
-                const col4El = compEl.querySelectorAll('div.row > div.col-lg-4');
-
-                expect(rowEl).toBeDefined();
-                expect(rowEl.length).toBe(1, 'should have one div.row');
-
-                expect(col8El).toBeDefined();
-                expect(col8El.length).toBe(1, 'should have one div.col-lg-8');
-
-                expect(col4El).toBeDefined();
-                expect(col4El.length).toBe(1, 'should have one div.col-lg-4');
+                getAndExpectDebugElementByCss(compDe, 'div.resource-header > div.row', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.row > div.col-lg-8', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.row > div.col-lg-4', 1, 1);
             });
 
             it('... should contain one h2.resource-title with div.title and div.subtitle', () => {
-                const rtEl = compEl.querySelectorAll('div.col-lg-8 > h2.resource-title');
-                const titleEl = compEl.querySelectorAll('h2.resource-title > div.title');
-                const subTitleEl = compEl.querySelectorAll('h2.resource-title > div.subtitle');
-
-                expect(rtEl).toBeDefined();
-                expect(rtEl.length).toBe(1, 'should have one h2.resource-title');
-
-                expect(titleEl).toBeDefined();
-                expect(titleEl.length).toBe(1, 'should have one div.title');
-
-                expect(subTitleEl).toBeDefined();
-                expect(subTitleEl.length).toBe(1, 'should have one div.subtitle');
+                getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > h2.resource-title', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.title', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.subtitle', 1, 1);
             });
 
             it('... should contain span in div.title with compile html component', () => {
-                const titleDe = compDe.queryAll(By.css('h2.resource-title > div.title'));
-                // find DebugElements with an attached CompileHtmlComponent
-                const htmlDes = titleDe[0].queryAll(By.directive(CompileHtmlComponent));
-                // find anchor links of CompileHtmlComponent
-                const anchorDes = htmlDes[0].queryAll(By.css('a'));
+                const titleDe = getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.title', 1, 1);
 
-                expect(htmlDes).toBeDefined();
-                expect(htmlDes.length).toBe(1, 'should have one compile html component');
+                // find DebugElements with an attached CompileHtmlComponent
+                const htmlDes = getAndExpectDebugElementByDirective(titleDe[0], CompileHtmlComponent, 1, 1);
                 expect(htmlDes[0].name).toBe('span');
+
+                // find anchor links of CompileHtmlComponent
+                const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 0, 0);
 
                 expect(anchorDes).toEqual([], 'should be empty (no inner html yet)');
             });
 
             it('... should contain one div.resource-link (empty yet)', () => {
-                const rLinkEl = compEl.querySelectorAll('div.col-lg-8 > div.resource-link');
+                const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > div.resource-link', 1, 1);
 
-                expect(rLinkEl).toBeDefined();
-                expect(rLinkEl.length).toBe(1, 'should have one div.resource-link');
-                expect(rLinkEl[0].textContent).toBe(
+                expect(rLinkDe[0].nativeElement.textContent).toBe(
                     ' API-Request: ',
                     `should be ' API-Request: ${expectedResourceUrl}'`
                 );
             });
 
             it('... should contain one table.resource-header-table', () => {
-                const rhTableEl = compEl.querySelectorAll('table.resource-header-table');
-
-                expect(rhTableEl).toBeDefined();
-                expect(rhTableEl.length).toBe(1, 'should have one `table.resource-header-table`');
+                getAndExpectDebugElementByCss(compDe, 'table.resource-header-table', 1, 1);
             });
         });
     });
@@ -159,11 +139,8 @@ fdescribe('ResourceDetailHtmlHeaderComponent', () => {
         describe('VIEW', () => {
             it('... should render header title in compile html component span', () => {
                 // find DebugElements with an attached CompileHtmlComponent
-                const htmlDes = compDe.queryAll(By.directive(CompileHtmlComponent));
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const expectedTitle = 'Op. 28: Skizzen zu einem "1. Satz" (später 2. Satz [M 330])';
-
-                expect(htmlDes).toBeDefined();
-                expect(htmlDes.length).toBe(1, 'should have one compile html component');
 
                 expect(htmlDes[0].name).toBe('span');
                 expect(htmlDes[0].nativeElement.textContent).toBe(expectedTitle, `should be ${expectedTitle}`);
@@ -171,45 +148,39 @@ fdescribe('ResourceDetailHtmlHeaderComponent', () => {
 
             it('... should have 3 anchor links in compile html component span', () => {
                 // find DebugElements with an attached CompileHtmlComponent
-                const htmlDes = compDe.queryAll(By.directive(CompileHtmlComponent));
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 // find anchor links of CompileHtmlComponent
-                const anchorDes = htmlDes[0].queryAll(By.css('a'));
-
-                expect(anchorDes.length).toBe(3, 'should have 3 anchor links');
+                getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
             });
 
             it('... should render other header values in table', () => {
                 // find debug elements
-                const rhTableDes = compDe.queryAll(By.css('table.resource-header-table'));
-                const tdDes = rhTableDes[0].queryAll(By.css('td'));
-                const imgDes = tdDes[1].queryAll(By.css('img'));
+                const rhTableDes = getAndExpectDebugElementByCss(compDe, 'table.resource-header-table', 1, 1);
+                const tdDes = getAndExpectDebugElementByCss(rhTableDes[0], 'td', 3, 3);
+                const typeDes = getAndExpectDebugElementByCss(tdDes[1], 'span.resource-type', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(tdDes[1], 'span.resource-icon > img', 1, 1);
+                const lastModDes = getAndExpectDebugElementByCss(tdDes[2], 'span.resource-lastmod', 1, 1);
 
-                expect(tdDes.length).toBe(3, 'should have 3 td elements');
-                expect(imgDes.length).toBe(1, 'should have one img');
-
-                // TODO: weiter
-                const img = imgDes[0].nativeElement.textContent;
-
-                console.log(imgDes[0]);
-
+                // check output
                 expect(tdDes[0].nativeElement.textContent).toBe(
                     expectedHeader.objID,
                     `should be ${expectedHeader.objID}`
                 );
-                expect(tdDes[1].nativeElement.textContent).toBe(
-                    expectedHeader.type + ' ' + img,
+                expect(typeDes[0].nativeElement.textContent).toBe(
+                    expectedHeader.type,
                     `should be ${expectedHeader.type}`
                 );
-                expect(tdDes[2].nativeElement.textContent).toBe(
-                    expectedHeader.lastmod + ' (UTC)',
-                    `should be '${expectedHeader.lastmod} (UTC)'`
+                expect(imgDes[0].properties.src).toBe(expectedHeader.icon, `should be ${expectedHeader.icon}`);
+                expect(lastModDes[0].nativeElement.textContent).toBe(
+                    expectedHeader.lastmod,
+                    `should be '${expectedHeader.lastmod}'`
                 );
             });
 
             it('... should render resourceUrl in div.resource-link', () => {
-                const rLinkEl = compEl.querySelectorAll('div.resource-link');
+                const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.resource-link', 1, 1);
 
-                expect(rLinkEl[0].textContent).toEqual(
+                expect(rLinkDe[0].nativeElement.textContent).toEqual(
                     ' API-Request: ' + expectedResourceUrl,
                     `should be ' API-Request: ${expectedResourceUrl}'`
                 );
@@ -217,78 +188,55 @@ fdescribe('ResourceDetailHtmlHeaderComponent', () => {
         });
 
         describe('#navigateToResource', () => {
-            // helper functions
-            function clickAndDetectChanges(clickDe: DebugElement) {
-                // trigger click with click helper
-                click(clickDe);
-
-                // wait for changes
-                flush();
-                fixture.detectChanges();
-            }
-
-            function expectSpyCall(spy: Spy, nTimes: number, expectedValue: any) {
-                expect(spy).toHaveBeenCalled();
-                expect(spy).toHaveBeenCalledTimes(nTimes);
-                expect(spy.calls.mostRecent().args[0]).toBe(expectedValue);
-            }
-
             it('... should trigger on click', fakeAsync(() => {
-                const htmlDes = compDe.queryAll(By.directive(CompileHtmlComponent));
-                const anchorDes = htmlDes[0].queryAll(By.css('a'));
-
-                expect(anchorDes.length).toBe(3, 'should have 3 anchor links');
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(anchorDes[0]);
+                clickAndAwaitChanges(anchorDes[0], fixture);
 
                 // no id
                 expectSpyCall(navigateToResourceSpy, 1, undefined);
-                // trigger click with click helper & wait for changes
-                clickAndDetectChanges(anchorDes[1]);
 
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[1], fixture);
                 // number
                 expectSpyCall(navigateToResourceSpy, 2, '28');
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(anchorDes[2]);
-
+                clickAndAwaitChanges(anchorDes[2], fixture);
                 // string
                 expectSpyCall(navigateToResourceSpy, 3, 330);
             }));
 
             it('... should not emit anything if no id is provided', fakeAsync(() => {
-                const htmlDes = compDe.queryAll(By.directive(CompileHtmlComponent));
-                const anchorDes = htmlDes[0].queryAll(By.css('a'));
-
-                expect(anchorDes.length).toBe(3, 'should have 3 anchor links');
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
 
                 // first anchor has no id
 
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(anchorDes[0]);
+                clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expect(emitSpy).not.toHaveBeenCalled();
                 expect(emitSpy).toHaveBeenCalledTimes(0);
             }));
 
             it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                const htmlDes = compDe.queryAll(By.directive(CompileHtmlComponent));
-                const anchorDes = htmlDes[0].queryAll(By.css('a'));
-
-                expect(anchorDes.length).toBe(3, 'should have 3 anchor links');
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
 
                 // first anchor has no id, see above
 
                 // second anchor has @id: number
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(anchorDes[1]);
+                clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(emitSpy, 1, '28');
 
                 // third anchor has @id: string
                 // trigger click with click helper & wait for changes
-                clickAndDetectChanges(anchorDes[2]);
+                clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(emitSpy, 2, '330');
             }));
