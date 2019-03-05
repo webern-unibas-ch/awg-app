@@ -3,11 +3,14 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { HomeViewComponent } from './home-view.component';
-import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
+
+import { HomeViewComponent } from './home-view.component';
 
 describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
@@ -196,7 +199,7 @@ describe('HomeViewComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = compDe.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));

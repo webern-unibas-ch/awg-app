@@ -1,10 +1,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
+import { click } from '@testing/click-helper';
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { FooterDeclarationComponent } from './footer-declaration.component';
 import { Meta } from '@awg-core/core-models';
+
+import { FooterDeclarationComponent } from './footer-declaration.component';
 
 describe('FooterDeclarationComponent (DONE)', () => {
     let component: FooterDeclarationComponent;
@@ -101,7 +105,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
@@ -118,7 +122,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
                 expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                contactLinkDe.triggerEventHandler('click', null);
+                click(contactLinkDe);
                 fixture.detectChanges();
 
                 expect(contactLink.navigatedTo).toEqual(['/contact']);

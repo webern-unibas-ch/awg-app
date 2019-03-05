@@ -2,7 +2,9 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
+
 import { click } from '@testing/click-helper';
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -110,14 +112,14 @@ describe('NavbarComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 14, 14);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
             it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(14, 'should have 14 routerLink');
+                expect(routerLinks.length).toBe(14, 'should have 14 routerLinks');
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual(['/edition', 'intro']);
                 expect(routerLinks[2].linkParams).toEqual(['/edition/detail', 'Aa:SkI/2']);
@@ -140,7 +142,7 @@ describe('NavbarComponent (DONE)', () => {
 
                 expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                contactLinkDe.triggerEventHandler('click', null);
+                click(contactLinkDe);
                 fixture.detectChanges();
 
                 expect(contactLink.navigatedTo).toEqual(['/contact']);

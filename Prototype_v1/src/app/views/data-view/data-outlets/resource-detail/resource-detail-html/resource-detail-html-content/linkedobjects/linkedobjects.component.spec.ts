@@ -73,6 +73,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
+        // test data
         incomingLink1 = {
             id: '',
             value: 'testvalue1',
@@ -165,7 +166,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
         it('should have `incoming` inputs', () => {
             expect(component.incoming).toBeDefined('should be defined');
-            expect(component.incoming).toBe(expectedIncoming);
+            expect(component.incoming).toBe(expectedIncoming, `should be expectedIncoming: ${expectedIncoming}`);
         });
 
         describe('#updateTotalNumber', () => {
