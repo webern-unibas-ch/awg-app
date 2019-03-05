@@ -2,6 +2,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { click } from '@testing/click-helper';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
+
 import { PageNotFoundViewComponent } from './page-not-found-view.component';
 
 describe('PageNotFoundViewComponent (DONE)', () => {
@@ -9,12 +13,16 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     let fixture: ComponentFixture<PageNotFoundViewComponent>;
     let compDe: DebugElement;
     let compEl: any;
+    let linkDes, routerLinks;
 
-    const title = 'Page not found';
+    const expectedTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
+    const expectedSubtitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
+    const expectedImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
+    const expectedAwgUrl = 'http://www.anton-webern.ch/index.php?id=41';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [PageNotFoundViewComponent]
+            declarations: [PageNotFoundViewComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 
@@ -30,19 +38,43 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it(`should have title`, () => {
-            expect(component.title).toBe(title);
+        it(`should have title and subtitle`, () => {
+            expect(component.title).toBe(expectedTitle);
+            expect(component.subtitle).toBe(expectedSubtitle);
+        });
+
+        it('should have correct values from getters', () => {
+            expect(component.imgPath).toBe(expectedImgPath);
+            expect(component.awgUrl).toBe(expectedAwgUrl);
         });
 
         describe('VIEW', () => {
-            it('... should contain one `h2` element', () => {
-                const h2El = compEl.querySelectorAll('h2');
-
-                expect(h2El.length).toBe(1, 'should have 1 `h2`');
+            it('... should contain one `div.awg-page-not-found`', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found', 1, 1);
             });
 
-            it('... should not render title yet', () => {
-                expect(compEl.querySelector('h2').textContent).not.toContain(title);
+            it('... should contain one `h2` element', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h2', 1, 1);
+            });
+
+            it('... should contain three `h5` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h5', 3, 3);
+            });
+
+            it('... should contain one div with img (empty yet)', () => {
+                const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > div > img', 1, 1);
+
+                expect(imgDes[0].properties.src).toBeUndefined();
+            });
+
+            it('... should not render title or subtitle yet', () => {
+                expect(compEl.querySelector('h2').textContent).not.toContain(expectedSubtitle);
+            });
+
+            it('... should not render contact url yet', () => {
+                // second h5 should have an anchor link
+                const contactDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-contact > a', 1, 1);
+                expect(contactDes[0].properties.href).toBeUndefined();
             });
         });
     });
@@ -55,7 +87,48 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render title in the `h2`-element', () => {
-                expect(compEl.querySelector('h2').textContent).toContain(title);
+                expect(compEl.querySelector('h2').textContent).toContain(expectedTitle);
+            });
+
+            it('... should render image', () => {
+                const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > div > img', 1, 1);
+
+                expect(imgDes[0].properties.src).toBe(expectedImgPath);
+            });
+
+            it('... should render contact linkt', () => {
+                const h5Des = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h5', 3, 3);
+
+                // second h5 should have an anchor link with href
+                const contactDes = getAndExpectDebugElementByCss(h5Des[1], 'a[href]', 1, 1);
+                expect(contactDes[0].properties.href).toBe(expectedAwgUrl);
+            });
+        });
+
+        describe('[routerLink]', () => {
+            beforeEach(() => {
+                // find DebugElements with an attached RouterLinkStubDirective
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+
+                // get attached link directive instances using each DebugElement's injector
+                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+            });
+
+            it('... can get routerLink from template', () => {
+                expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
+                expect(routerLinks[0].linkParams).toEqual(['/home']);
+            });
+
+            it('... can click home link in template', () => {
+                const homeLinkDe = linkDes[0]; // home link DebugElement
+                const homeLink = routerLinks[0]; // home link directive
+
+                expect(homeLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                click(homeLinkDe);
+                fixture.detectChanges();
+
+                expect(homeLink.navigatedTo).toEqual(['/home']);
             });
         });
     });

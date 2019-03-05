@@ -1,2 +1,14 @@
-<h2>{{ title }}</h2>
-<!-- TODO: Webernesque style -->
+<div class="col-12 col-xl-9 awg-page-not-found">
+    <h2 id="awg-page-not-found-title">{{ title }}</h2>
+
+    <h5 id="awg-page-not-found-subtitle">{{ subtitle }}</h5>
+
+    <div class="my-4">
+        <img [src]="imgPath" width="100%"/>
+    </div>
+
+    <h5 id="awg-page-not-found-contact">Kontaktieren sie uns gerne unter: <a [href]="awgUrl" target="_blank" rel="noopener noreferrer">anton-webern.ch</a></h5>
+
+    <h5 id="awg-page-not-found-back" class="mt-4">Zurück zur Startseite: <a [routerLink]="['/home']" routerLinkActive="active">Home</a></h5>
+
+</div>
