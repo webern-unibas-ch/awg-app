@@ -1,10 +1,11 @@
 ///<reference path="../../../testing/custom-matchers.d.ts"/>
-
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { JsonPipe } from '@angular/common';
-import { By } from '@angular/platform-browser';
+
+import { click } from '@testing/click-helper';
 import { customJasmineMatchers } from '@testing/custom-matchers';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxJsonViewerComponent } from 'ngx-json-viewer';
@@ -99,31 +100,17 @@ describe('JsonViewerComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one card with header and body', () => {
-                const cardDes = compDe.queryAll(By.css('div.card'));
-                const headerDes = compDe.queryAll(By.css('div.card > div.card-header'));
-                const bodyDes = compDe.queryAll(By.css('div.card > div.card-body'));
-
-                expect(cardDes).toBeTruthy();
-                expect(cardDes.length).toBe(1, 'should have 1 div.card');
-
-                expect(headerDes).toBeTruthy();
-                expect(headerDes.length).toBe(1, 'should have 1 div.card-header');
-
-                expect(bodyDes).toBeTruthy();
-                expect(bodyDes.length).toBe(1, 'should have 1 div.card-body');
+                getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
             });
 
             it('... should contain one tabset inside card-body', () => {
-                const tabSetDes = compDe.queryAll(By.css('ngb-tabset'));
-
-                expect(tabSetDes).toBeTruthy();
-                expect(tabSetDes.length).toBe(1, 'should have 1 ngb-tabset');
+                getAndExpectDebugElementByCss(compDe, 'ngb-tabset', 1, 1);
             });
 
             it('... should not contain ngx-json-viewer component (stubbed)', () => {
-                const viewerDes = compDe.query(By.directive(NgxJsonViewerComponent));
-
-                expect(viewerDes).not.toBeTruthy();
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
             });
         });
     });
@@ -140,11 +127,8 @@ describe('JsonViewerComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one tabset with two tabs inside card-body', () => {
-                const tabSetDes = compDe.queryAll(By.css('ngb-tabset'));
+                getAndExpectDebugElementByCss(compDe, 'ngb-tabset', 1, 1);
                 const tabDes = getTabTitles(compEl);
-
-                expect(tabSetDes).toBeTruthy();
-                expect(tabSetDes.length).toBe(1, 'should have 1 ngb-tabset');
 
                 expect(tabDes).toBeTruthy();
                 expect(tabDes.length).toBe(2, 'should have 2 tabs');
@@ -153,7 +137,10 @@ describe('JsonViewerComponent (DONE)', () => {
             it('... should have one Formatted and one Plain tab and display titles', () => {
                 const tabTitles = getTabTitles(compEl);
 
+                expect(tabTitles[0].textContent).toBeDefined();
                 expect(tabTitles[0].textContent).toMatch(/Formatted/);
+
+                expect(tabTitles[1].textContent).toBeDefined();
                 expect(tabTitles[1].textContent).toMatch(/Plain/);
             });
 
@@ -161,40 +148,34 @@ describe('JsonViewerComponent (DONE)', () => {
                 const tabContent = getTabContent(compEl);
 
                 expect(tabContent.length).toBe(1);
-                expectTabs(fixture.nativeElement, [true, false]);
+                expectTabs(compEl, [true, false]);
             });
 
             it('... should change active tab on tab title click', () => {
                 const tabTitles = getTabTitles(compEl);
 
-                (<HTMLElement>tabTitles[1]).click();
+                click(<HTMLElement>tabTitles[1]);
                 fixture.detectChanges();
                 expectTabs(compEl, [false, true]);
 
-                (<HTMLElement>tabTitles[0]).click();
+                click(<HTMLElement>tabTitles[0]);
                 fixture.detectChanges();
                 expectTabs(compEl, [true, false]);
             });
 
             it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', () => {
                 const tabTitles = getTabTitles(compEl);
-                let viewerDes = compDe.queryAll(By.directive(NgxJsonViewerComponent));
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
 
-                expect(viewerDes).toBeTruthy();
-                expect(viewerDes.length).toBe(1, 'should have only one ngx-json viewer');
-
-                (<HTMLElement>tabTitles[1]).click();
+                click(<HTMLElement>tabTitles[1]);
                 fixture.detectChanges();
 
-                viewerDes = compDe.queryAll(By.directive(NgxJsonViewerComponent));
-
-                expect(viewerDes).toBeTruthy();
-                expect(viewerDes.length).toBe(0, 'should have no ngx-json viewer');
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
             });
 
             it('... should pass down `jsonViewerData` to ngx-json-viewer component in Formatted view', () => {
-                const viewerDe = compDe.query(By.directive(NgxJsonViewerComponent));
-                const viewerCmp = viewerDe.injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 0);
+                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
 
                 expect(viewerCmp.json).toBeDefined();
                 expect(viewerCmp.json).toBe(expectedData, `should have data: ${expectedData}`);
@@ -204,15 +185,15 @@ describe('JsonViewerComponent (DONE)', () => {
                 const tabTitles = getTabTitles(compEl);
 
                 // change tab to plain view
-                (<HTMLElement>tabTitles[1]).click();
+                click(<HTMLElement>tabTitles[1]);
                 fixture.detectChanges();
 
                 const tabContent = getTabContent(compEl);
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
-                expect(tabContent).toBeDefined();
-                expect(tabContent[0].textContent).toBe(pipedData, `should be ${pipedData}`);
+                expect(tabContent[0].textContent).toBeDefined();
+                expect(tabContent[0].textContent).toContain(pipedData, `should contain ${pipedData}`);
             });
         });
     });

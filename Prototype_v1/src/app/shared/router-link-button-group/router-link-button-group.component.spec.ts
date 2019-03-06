@@ -1,15 +1,14 @@
 import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 
-import { RouterLinkStubDirective } from '@testing/router-stubs';
-import { clickAndAwaitChanges } from '@testing/click-helper';
+import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
+import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 
@@ -39,7 +38,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test meta data
+        // test data
         expectedButtonArray = [
             {
                 root: '/data/search',
@@ -122,14 +121,17 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             it('... should render button labels', () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
+                expect(btnDes[0].nativeElement.textContent).toBeDefined();
                 expect(btnDes[0].nativeElement.textContent).toMatch(
                     expectedButtonArray[0].label,
                     'should be `Volltext-Suche`'
                 );
+                expect(btnDes[1].nativeElement.textContent).toBeDefined();
                 expect(btnDes[1].nativeElement.textContent).toMatch(
                     expectedButtonArray[1].label,
                     'should be `Timeline`'
                 );
+                expect(btnDes[2].nativeElement.textContent).toBeDefined();
                 expect(btnDes[2].nativeElement.textContent).toMatch(
                     expectedButtonArray[2].label,
                     'should be `Bibliographie`'
@@ -159,7 +161,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
                 expect(fulltextLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                fulltextLinkDe.triggerEventHandler('click', null);
+                click(fulltextLinkDe);
                 fixture.detectChanges();
 
                 expect(fulltextLink.navigatedTo).toEqual(['/data/search', 'fulltext']);

@@ -1,10 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
 import { click } from '@testing/click-helper';
-import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -34,6 +33,7 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
+        // test data
         expectedIsCollapsed = true;
 
         // spies on component functions
@@ -58,17 +58,18 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... should be called when button clicked (click helper)', () => {
                 // find button elements
-                const buttonDe = fixture.debugElement.query(By.css('button.navbar-toggler'));
-                const buttonEl = buttonDe.nativeElement;
+                const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
+                const buttonEl = buttonDes[0].nativeElement;
 
                 // should have not been called yet
                 expect(component.toggleNav).not.toHaveBeenCalled();
 
                 // click button
-                click(buttonDe);
+                click(buttonDes[0]);
                 click(buttonEl);
 
                 expect(component.toggleNav).toHaveBeenCalled();
+                expect(component.toggleNav).toHaveBeenCalledTimes(2);
             });
 
             it('... should toggle `isCollapsed`', () => {
@@ -84,21 +85,12 @@ describe('NavbarComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain 1 navbar with 1 toggle button', () => {
-                const navDes = fixture.debugElement.queryAll(By.css('nav.navbar'));
-                const buttonDes = fixture.debugElement.queryAll(By.css('nav.navbar > button.navbar-toggler'));
-
-                expect(navDes).toBeTruthy();
-                expect(navDes.length).toBe(1, 'should have 1 navbar');
-
-                expect(buttonDes).toBeTruthy();
-                expect(buttonDes.length).toBe(1, 'should have 1 button');
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar > button.navbar-toggler', 1, 1);
             });
 
             it('... should contain 1 navbar collapse', () => {
-                const collapseDes = fixture.debugElement.queryAll(By.css('nav.navbar > .navbar-collapse'));
-
-                expect(collapseDes).toBeTruthy();
-                expect(collapseDes.length).toBe(1, 'should have 1 collapse');
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar > .navbar-collapse', 1, 1);
             });
         });
     });

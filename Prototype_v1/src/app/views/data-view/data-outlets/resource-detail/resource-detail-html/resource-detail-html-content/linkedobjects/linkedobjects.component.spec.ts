@@ -1,7 +1,6 @@
 import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
 import { DebugElement, SimpleChange, ɵdefaultKeyValueDiffers as defaultKeyValueDiffers } from '@angular/core';
 import { KeyValuePipe } from '@angular/common';
-import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -16,17 +15,11 @@ import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects
 // helper functions
 function expectClosedPanelBody(de: DebugElement, id: number, msg: string) {
     // body debug elements
-    const bodyDes = de.queryAll(By.css(`div.card > div#incoming-linkgroup-${id} > div.card-body`));
-
-    expect(bodyDes).toBeDefined();
-    expect(bodyDes.length).toBe(0, msg);
+    getAndExpectDebugElementByCss(de, `div.card > div#incoming-linkgroup-${id} > div.card-body`, 0, 0, msg);
 }
 function expectOpenPanelBody(de: DebugElement, id: number, msg: string) {
     // body debug elements
-    const bodyDes = de.queryAll(By.css(`div.card > div#incoming-linkgroup-${id} > div.card-body`));
-
-    expect(bodyDes).toBeDefined();
-    expect(bodyDes.length).toBe(1, msg);
+    getAndExpectDebugElementByCss(de, `div.card > div#incoming-linkgroup-${id} > div.card-body`, 1, 1, msg);
 }
 
 describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
@@ -314,11 +307,13 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     1,
                     1
                 );
+                const sizeEl = sizeDes[0].nativeElement;
 
                 // check size output
-                expect(sizeDes[0].nativeElement.textContent).toBe(
+                expect(sizeEl.textContent).toBeDefined();
+                expect(sizeEl.textContent).toContain(
                     expectedTotalItems.toString(),
-                    `should be expectedTotalItems: ${expectedTotalItems}`
+                    `should contain expectedTotalItems: ${expectedTotalItems}`
                 );
             });
 
@@ -396,23 +391,27 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const pipedExpectedIncoming = keyValuePipe.transform(expectedIncoming);
 
                 // check badge output
-                expect(badge0El.textContent).toBe(
+                expect(badge0El.textContent).toBeDefined();
+                expect(badge0El.textContent).toContain(
                     pipedExpectedIncoming[0].value.length.toString(),
-                    `should be ${pipedExpectedIncoming[0].value.length}`
+                    `should contain ${pipedExpectedIncoming[0].value.length}`
                 );
-                expect(badge1El.textContent).toBe(
+                expect(badge1El.textContent).toBeDefined();
+                expect(badge1El.textContent).toContain(
                     pipedExpectedIncoming[1].value.length.toString(),
-                    `should be ${pipedExpectedIncoming[1].value.length}`
+                    `should contain ${pipedExpectedIncoming[1].value.length}`
                 );
 
                 // check key output
-                expect(key0El.textContent).toBe(
+                expect(key0El.textContent).toBeDefined();
+                expect(key0El.textContent).toContain(
                     pipedExpectedIncoming[0].key,
-                    `should be ${pipedExpectedIncoming[0].key}`
+                    `should contain ${pipedExpectedIncoming[0].key}`
                 );
-                expect(key1El.textContent).toBe(
+                expect(key1El.textContent).toBeDefined();
+                expect(key1El.textContent).toContain(
                     pipedExpectedIncoming[1].key,
-                    `should be ${pipedExpectedIncoming[1].key}`
+                    `should contain ${pipedExpectedIncoming[1].key}`
                 );
             });
 
@@ -441,53 +440,58 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const button1El = button1Des[0].nativeElement;
 
                 // both panels closed first by default
-                expectClosedPanelBody(compDe, 0, 'should have not opened first panel');
-                expectClosedPanelBody(compDe, 1, 'should have not opened second panel');
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel
                 (<HTMLElement>button0El).click();
                 fixture.detectChanges();
 
-                expectOpenPanelBody(compDe, 0, 'should have first panel opened');
-                expectClosedPanelBody(compDe, 1, 'should have second panel closed');
+                expectOpenPanelBody(compDe, 0, 'opened (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel again
                 (<HTMLElement>button0El).click();
                 fixture.detectChanges();
 
-                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
-                expectClosedPanelBody(compDe, 1, 'should have second panel closed');
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click second panel
                 (<HTMLElement>button1El).click();
                 fixture.detectChanges();
 
-                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
-                expectOpenPanelBody(compDe, 1, 'should have second panel opened');
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectOpenPanelBody(compDe, 1, 'opened (second panel)');
 
                 // click second panel again
                 (<HTMLElement>button1El).click();
                 fixture.detectChanges();
 
-                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
-                expectClosedPanelBody(compDe, 1, 'should have second panel closed');
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel
                 (<HTMLElement>button0El).click();
                 fixture.detectChanges();
 
-                expectOpenPanelBody(compDe, 0, 'should have first panel opened');
-                expectClosedPanelBody(compDe, 1, 'should have second panel closed');
+                expectOpenPanelBody(compDe, 0, 'opened (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click second panel
                 (<HTMLElement>button1El).click();
                 fixture.detectChanges();
 
-                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
-                expectOpenPanelBody(compDe, 1, 'should have second panel opened');
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectOpenPanelBody(compDe, 1, 'opened (second panel)');
             });
 
             it('... should render incomingLinks in table of panel content (div.card-body)', () => {
+                const id0 = expectedIncoming['testkey1'][0].id;
+                const id1 = expectedIncoming['testkey1'][1].id;
+                const value0 = expectedIncoming['testkey1'][0].value;
+                const value1 = expectedIncoming['testkey1'][1].value;
+
                 // button debug elements
                 const buttonDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -520,8 +524,6 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     2,
                     2
                 );
-                const id0 = expectedIncoming['testkey1'][0].id;
-                const id1 = expectedIncoming['testkey1'][1].id;
 
                 // spanValue
                 const spanValueDes = getAndExpectDebugElementByCss(
@@ -530,20 +532,37 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     2,
                     2
                 );
-                const value0 = expectedIncoming['testkey1'][0].value;
-                const value1 = expectedIncoming['testkey1'][1].value;
+
+                // native elements
+                const imgEl0 = imgDes[0].nativeElement;
+                const imgEl1 = imgDes[1].nativeElement;
+
+                const spanIdEl0 = spanIdDes[0].nativeElement;
+                const spanIdEl1 = spanIdDes[1].nativeElement;
+
+                const spanValueEl0 = spanValueDes[0].nativeElement;
+                const spanValueEl1 = spanValueDes[1].nativeElement;
 
                 // check img output
-                expect(imgDes[0].properties.src).toBe(icon0, `should be icon0: ${icon0}`);
-                expect(imgDes[1].properties.src).toBe(icon1, `should be icon1: ${icon1}`);
+                expect(imgEl0.src).toBeDefined();
+                expect(imgEl0.src).toContain(icon0, `should contain icon0: ${icon0}`);
+
+                expect(imgEl1.src).toBeDefined();
+                expect(imgEl1.src).toContain(icon1, `should contain icon1: ${icon1}`);
 
                 // check id output
-                expect(spanIdDes[0].nativeElement.textContent).toBe(`${id0}`, `should be id0: ${id0}`);
-                expect(spanIdDes[1].nativeElement.textContent).toBe(`${id1}`, `should be id1: ${id1}`);
+                expect(spanIdEl0.textContent).toBeDefined();
+                expect(spanIdEl0.textContent).toBe(id0, `should be id0: ${id0}`);
+
+                expect(spanIdEl1.textContent).toBeDefined();
+                expect(spanIdEl1.textContent).toContain(id1, `should contain id1: ${id1}`);
 
                 // check value output
-                expect(spanValueDes[0].nativeElement.textContent).toBe(`${value0}`, `should be value0: ${value0}`);
-                expect(spanValueDes[1].nativeElement.textContent).toBe(`${value1}`, `should be value1: ${value1}`);
+                expect(spanValueEl0.textContent).toBeDefined();
+                expect(spanValueEl0.textContent).toContain(value0, `should contain value0: ${value0}`);
+
+                expect(spanValueEl1.textContent).toBeDefined();
+                expect(spanValueEl1.textContent).toContain(value1, `should contain value1: ${value1}`);
             });
         });
     });

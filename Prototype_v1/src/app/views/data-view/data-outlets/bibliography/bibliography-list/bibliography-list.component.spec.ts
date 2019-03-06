@@ -1,7 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { Component, DebugElement, Input } from '@angular/core';
+
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { BibliographyListComponent } from './bibliography-list.component';
 
@@ -14,6 +15,8 @@ class BibliographyDetailStubComponent {
 describe('BibliographyListComponent', () => {
     let component: BibliographyListComponent;
     let fixture: ComponentFixture<BibliographyListComponent>;
+    let compDe: DebugElement;
+    let compEl: any;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -24,6 +27,8 @@ describe('BibliographyListComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyListComponent);
         component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+        compEl = compDe.nativeElement;
     });
 
     it('should create', () => {
@@ -37,9 +42,7 @@ describe('BibliographyListComponent', () => {
 
         describe('VIEW', () => {
             it('... should not contain bibliography detail component (stubbed)', () => {
-                const bibliographyDetailEl = fixture.debugElement.query(By.directive(BibliographyDetailStubComponent));
-
-                expect(bibliographyDetailEl).not.toBeTruthy();
+                getAndExpectDebugElementByDirective(compDe, BibliographyDetailStubComponent, 0, 0);
             });
         });
     });

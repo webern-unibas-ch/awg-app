@@ -1,10 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { NavigationEnd, Router } from '@angular/router';
 
 import { of as observableOf } from 'rxjs';
+
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { AppComponent } from './app.component';
 
@@ -23,7 +24,7 @@ class FooterStubComponent {}
 
 class MockServices {
     // Router
-    events = observableOf(new NavigationEnd(0, 'dummyUrl', 'dummyUrl'), [0, 0], 'dummyString');
+    events = observableOf(new NavigationEnd(0, 'testUrl', 'testUrl'), [0, 0], 'testString');
 }
 
 describe('AppComponent (DONE)', () => {
@@ -42,7 +43,7 @@ describe('AppComponent (DONE)', () => {
     }));
 
     beforeEach(() => {
-        // window spy object
+        // window spy object (GoogleAnalytics)
         (<any>window).ga = jasmine.createSpy('ga');
 
         fixture = TestBed.createComponent(AppComponent);
@@ -50,7 +51,7 @@ describe('AppComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        router = fixture.debugElement.injector.get(Router);
+        router = compDe.injector.get(Router);
     });
 
     afterEach(() => {
@@ -64,24 +65,15 @@ describe('AppComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         describe('VIEW', () => {
             it('... should contain one header component (stubbed)', () => {
-                const navbarDes = compDe.queryAll(By.directive(NavbarStubComponent));
-
-                expect(navbarDes).toBeDefined();
-                expect(navbarDes.length).toBe(1, 'should have only one navbar');
+                getAndExpectDebugElementByDirective(compDe, NavbarStubComponent, 1, 1);
             });
 
             it('... should contain one view container component (stubbed)', () => {
-                const viewContainerDes = compDe.queryAll(By.directive(ViewContainerStubComponent));
-
-                expect(viewContainerDes).toBeDefined();
-                expect(viewContainerDes.length).toBe(1, 'should have only one view container');
+                getAndExpectDebugElementByDirective(compDe, ViewContainerStubComponent, 1, 1);
             });
 
             it('... should contain one footer component (stubbed)', () => {
-                const footerDes = compDe.queryAll(By.directive(FooterStubComponent));
-
-                expect(footerDes).toBeDefined();
-                expect(footerDes.length).toBe(1, 'should have only one footer');
+                getAndExpectDebugElementByDirective(compDe, FooterStubComponent, 1, 1);
             });
         });
     });

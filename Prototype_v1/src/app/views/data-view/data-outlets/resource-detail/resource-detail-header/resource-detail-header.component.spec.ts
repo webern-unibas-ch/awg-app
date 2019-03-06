@@ -105,10 +105,12 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
 
             it('... should contain one div.resource-link (empty yet)', () => {
                 const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.col-lg-8 > div.resource-link', 1, 1);
+                const rLinkEl = rLinkDe[0].nativeElement;
 
-                expect(rLinkDe[0].nativeElement.textContent).toBe(
+                expect(rLinkEl.textContent).toBeDefined();
+                expect(rLinkEl.textContent).toContain(
                     ' API-Request: ',
-                    `should be ' API-Request: ${expectedResourceUrl}'`
+                    `should contain ' API-Request: ${expectedResourceUrl}'`
                 );
             });
 
@@ -138,12 +140,17 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render header title in compile html component span', () => {
-                // find DebugElements with an attached CompileHtmlComponent
-                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const expectedTitle = 'Op. 28: Skizzen zu einem "1. Satz" (später 2. Satz [M 330])';
 
+                // find DebugElements with an attached CompileHtmlComponent
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
+                const htmlEl = htmlDes[0].nativeElement;
+
+                expect(htmlDes[0].name).toBeDefined();
                 expect(htmlDes[0].name).toBe('span');
-                expect(htmlDes[0].nativeElement.textContent).toBe(expectedTitle, `should be ${expectedTitle}`);
+
+                expect(htmlEl.textContent).toBeDefined();
+                expect(htmlEl.textContent).toContain(expectedTitle, `should contain ${expectedTitle}`);
             });
 
             it('... should have 3 anchor links in compile html component span', () => {
@@ -161,28 +168,37 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const imgDes = getAndExpectDebugElementByCss(tdDes[1], 'span.resource-icon > img', 1, 1);
                 const lastModDes = getAndExpectDebugElementByCss(tdDes[2], 'span.resource-lastmod', 1, 1);
 
+                // find native elements
+                const tdEl = tdDes[0].nativeElement;
+                const typeEl = typeDes[0].nativeElement;
+                const imgEl = imgDes[0].nativeElement;
+                const lastModEl = lastModDes[0].nativeElement;
+
                 // check output
-                expect(tdDes[0].nativeElement.textContent).toBe(
-                    expectedHeader.objID,
-                    `should be ${expectedHeader.objID}`
-                );
-                expect(typeDes[0].nativeElement.textContent).toBe(
-                    expectedHeader.type,
-                    `should be ${expectedHeader.type}`
-                );
-                expect(imgDes[0].properties.src).toBe(expectedHeader.icon, `should be ${expectedHeader.icon}`);
-                expect(lastModDes[0].nativeElement.textContent).toBe(
+                expect(tdEl.textContent).toBeDefined();
+                expect(tdEl.textContent).toContain(expectedHeader.objID, `should contain ${expectedHeader.objID}`);
+
+                expect(typeEl.textContent).toBeDefined();
+                expect(typeEl.textContent).toContain(expectedHeader.type, `should contain ${expectedHeader.type}`);
+
+                expect(imgEl.src).toBeDefined();
+                expect(imgEl.src).toContain(expectedHeader.icon, `should be ${expectedHeader.icon}`);
+
+                expect(lastModEl.textContent).toBeDefined();
+                expect(lastModEl.textContent).toContain(
                     expectedHeader.lastmod,
-                    `should be '${expectedHeader.lastmod}'`
+                    `should contain '${expectedHeader.lastmod}'`
                 );
             });
 
             it('... should render resourceUrl in div.resource-link', () => {
                 const rLinkDe = getAndExpectDebugElementByCss(compDe, 'div.resource-link', 1, 1);
+                const rLinkEl = rLinkDe[0].nativeElement;
 
-                expect(rLinkDe[0].nativeElement.textContent).toEqual(
+                expect(rLinkEl.textContent).toBeDefined();
+                expect(rLinkEl.textContent).toContain(
                     ' API-Request: ' + expectedResourceUrl,
-                    `should be ' API-Request: ${expectedResourceUrl}'`
+                    `should contain ' API-Request: ${expectedResourceUrl}'`
                 );
             });
         });

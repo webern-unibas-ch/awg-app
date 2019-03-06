@@ -63,18 +63,27 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
             it('... should contain one div with img (empty yet)', () => {
                 const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > div > img', 1, 1);
+                const imgEl = imgDes[0].nativeElement;
 
-                expect(imgDes[0].properties.src).toBeUndefined();
+                expect(imgEl.src).toBeDefined();
+                expect(imgEl.src).toBe('', 'should be empty string');
             });
 
             it('... should not render title or subtitle yet', () => {
-                expect(compEl.querySelector('h2').textContent).not.toContain(expectedSubtitle);
+                const h2Des = getAndExpectDebugElementByCss(compDe, 'h2', 1, 1);
+                const h2El = h2Des[0].nativeElement;
+
+                expect(h2El.textContent).toBeDefined();
+                expect(h2El.textContent).not.toContain(expectedSubtitle);
             });
 
             it('... should not render contact url yet', () => {
                 // second h5 should have an anchor link
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-contact > a', 1, 1);
-                expect(contactDes[0].properties.href).toBeUndefined();
+                const contactEl = contactDes[0].nativeElement;
+
+                expect(contactEl.href).toBeDefined();
+                expect(contactEl.href).toBe('', 'should be empty string');
             });
         });
     });
@@ -87,13 +96,19 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render title in the `h2`-element', () => {
-                expect(compEl.querySelector('h2').textContent).toContain(expectedTitle);
+                const h2Des = getAndExpectDebugElementByCss(compDe, 'h2', 1, 1);
+                const h2El = h2Des[0].nativeElement;
+
+                expect(h2El.textContent).toBeDefined();
+                expect(h2El.textContent).toContain(expectedTitle, `should contain ${expectedTitle}`);
             });
 
             it('... should render image', () => {
                 const imgDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > div > img', 1, 1);
+                const imgEl = imgDes[0].nativeElement;
 
-                expect(imgDes[0].properties.src).toBe(expectedImgPath);
+                expect(imgEl.src).toBeDefined();
+                expect(imgEl.src).toContain(expectedImgPath);
             });
 
             it('... should render contact linkt', () => {
@@ -101,7 +116,10 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
                 // second h5 should have an anchor link with href
                 const contactDes = getAndExpectDebugElementByCss(h5Des[1], 'a[href]', 1, 1);
-                expect(contactDes[0].properties.href).toBe(expectedAwgUrl);
+                const contactEl = contactDes[0].nativeElement;
+
+                expect(contactEl.href).toBeDefined();
+                expect(contactEl.href).toBe(expectedAwgUrl);
             });
         });
 

@@ -1,8 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
 import { StructureViewComponent } from './structure-view.component';
 
@@ -69,26 +74,17 @@ describe('StructureViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one heading component (stubbed)', () => {
-                const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
-
-                expect(headingDes).toBeDefined();
-                expect(headingDes.length).toBe(1, 'should have only one heading');
+                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
             });
 
             it('... should contain three `p` & one `svg` element', () => {
-                const pEl = compEl.querySelectorAll('p');
-                const svgEl = compEl.querySelectorAll('svg');
-
-                expect(pEl).toBeDefined();
-                expect(pEl.length).toBe(3, 'should have 3 `p`');
-
-                expect(svgEl).toBeDefined();
-                expect(svgEl.length).toBe(1, 'should have 1 `svg`');
+                getAndExpectDebugElementByCss(compDe, 'p', 3, 3);
+                getAndExpectDebugElementByCss(compDe, 'svg', 1, 1);
             });
 
             it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDe = compDe.query(By.directive(HeadingStubComponent));
-                const headingCmp = headingDe.injector.get(HeadingStubComponent) as HeadingStubComponent;
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(headingCmp.title).toBeUndefined();
                 expect(headingCmp.id).toBeUndefined();
@@ -116,9 +112,7 @@ describe('StructureViewComponent (DONE)', () => {
             });
 
             it('... should have triggered `router.navigate`', () => {
-                expect(navigationSpy).toHaveBeenCalled();
-                expect(navigationSpy.calls.any()).toEqual(true, 'has any calls');
-                expect(navigationSpy.calls.count()).toEqual(1, 'has been called only once');
+                expectSpyCall(navigationSpy, 1);
             });
 
             it('... should tell ROUTER to navigate to `structureInfo` outlet', () => {
@@ -132,6 +126,7 @@ describe('StructureViewComponent (DONE)', () => {
                 expect(navArgs[0]).toBeDefined('should have navCommand');
                 expect(outletRoute).toBeDefined('should have outletRoute');
                 expect(outletRoute).toBe(expectedRoute, `should be: ${expectedRoute}`);
+
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
 
@@ -143,14 +138,15 @@ describe('StructureViewComponent (DONE)', () => {
                 expect(navExtras).toBeDefined('should have navExtras');
                 expect(navExtras.preserveFragment).toBeDefined('should have preserveFragment extra');
                 expect(navExtras.preserveFragment).toBe(true, 'should be `preserveFragment:true`');
+
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading component', () => {
-                const headingDe = compDe.query(By.directive(HeadingStubComponent));
-                const headingCmp = headingDe.injector.get(HeadingStubComponent) as HeadingStubComponent;
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
 
                 expect(headingCmp.title).toBeTruthy();
                 expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);

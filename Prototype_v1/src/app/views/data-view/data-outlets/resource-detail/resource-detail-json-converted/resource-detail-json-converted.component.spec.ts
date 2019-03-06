@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
+
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 import { ResourceDetail, ResourceDetailContent } from '@awg-views/data-view/models';
@@ -56,15 +57,12 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one json viewer component (stubbed)', () => {
-                const viewerDes = compDe.queryAll(By.directive(JsonViewerStubComponent));
-
-                expect(viewerDes).toBeTruthy();
-                expect(viewerDes.length).toBe(1, 'should have only one json viewer');
+                getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
             });
 
             it('... should not pass down `resourceJsonConvertedData` to json viewer component', () => {
-                const viewerDe = compDe.query(By.directive(JsonViewerStubComponent));
-                const viewerCmp = viewerDe.injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
+                const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
                 expect(viewerCmp.jsonViewerHeader).toBeUndefined();
                 expect(viewerCmp.jsonViewerData).toBeUndefined();
@@ -83,8 +81,8 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `resourceJsonConvertedData` to json viewer component', () => {
-                const viewerDe = compDe.query(By.directive(JsonViewerStubComponent));
-                const viewerCmp = viewerDe.injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
+                const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
                 expect(viewerCmp.jsonViewerHeader).toBeDefined();
                 expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have header: ${expectedHeader}`);

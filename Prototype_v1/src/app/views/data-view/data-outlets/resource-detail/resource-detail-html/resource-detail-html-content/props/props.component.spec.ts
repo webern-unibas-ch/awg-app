@@ -73,9 +73,10 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
             it('... should contain one header', () => {
                 // header debug element
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'section.awg-props > h4.awg-props-title', 1, 1);
+                const headerEl = headerDes[0].nativeElement;
 
                 // check output
-                expect(headerDes[0].nativeElement.textContent).toBe('Objektdaten');
+                expect(headerEl.textContent).toContain('Objektdaten');
             });
 
             it('... should contain no ul with props yet', () => {
@@ -169,7 +170,7 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
 
                 // check size output
 
-                expect(sizeDes[0].nativeElement.textContent).toBe(
+                expect(sizeDes[0].nativeElement.textContent).toContain(
                     expectedTotalItems.toString(),
                     `should be expectedTotalItems: ${expectedTotalItems}`
                 );
@@ -250,21 +251,21 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
                 const pipedExpectedIncoming = keyValuePipe.transform(expectedIncoming);
 
                 // check badge output
-                expect(badge0El.textContent).toBe(
+                expect(badge0El.textContent).toContain(
                     pipedExpectedIncoming[0].value.length.toString(),
                     `should be ${pipedExpectedIncoming[0].value.length}`
                 );
-                expect(badge1El.textContent).toBe(
+                expect(badge1El.textContent).toContain(
                     pipedExpectedIncoming[1].value.length.toString(),
                     `should be ${pipedExpectedIncoming[1].value.length}`
                 );
 
                 // check key output
-                expect(key0El.textContent).toBe(
+                expect(key0El.textContent).toContain(
                     pipedExpectedIncoming[0].key,
                     `should be ${pipedExpectedIncoming[0].key}`
                 );
-                expect(key1El.textContent).toBe(
+                expect(key1El.textContent).toContain(
                     pipedExpectedIncoming[1].key,
                     `should be ${pipedExpectedIncoming[1].key}`
                 );
@@ -321,12 +322,12 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
                 expect(imgDes[1].properties.src).toBe(icon1, `should be icon1: ${icon1}`);
 
                 // check id output
-                expect(spanIdDes[0].nativeElement.textContent).toBe(`${id0}`, `should be id0: ${id0}`);
-                expect(spanIdDes[1].nativeElement.textContent).toBe(`${id1}`, `should be id1: ${id1}`);
+                expect(spanIdDes[0].nativeElement.textContent).toContain(`${id0}`, `should be id0: ${id0}`);
+                expect(spanIdDes[1].nativeElement.textContent).toContain(`${id1}`, `should be id1: ${id1}`);
 
                 // check value output
-                expect(spanValueDes[0].nativeElement.textContent).toBe(`${value0}`, `should be value0: ${value0}`);
-                expect(spanValueDes[1].nativeElement.textContent).toBe(`${value1}`, `should be value1: ${value1}`);
+                expect(spanValueDes[0].nativeElement.textContent).toContain(`${value0}`, `should be value0: ${value0}`);
+                expect(spanValueDes[1].nativeElement.textContent).toContain(`${value1}`, `should be value1: ${value1}`);
             });
         });
         */

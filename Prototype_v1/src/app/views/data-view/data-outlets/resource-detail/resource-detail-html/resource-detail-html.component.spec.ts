@@ -1,10 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import Spy = jasmine.Spy;
 
-import { expectSpyCall } from '@testing/expect-helper';
+import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import {
     ResourceDetail,
@@ -49,6 +48,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
+        // test data
         const header: ResourceDetailHeader = { objID: '1234', icon: '', type: '', title: 'Test', lastmod: '' };
         const images: ResourceDetailImage[] = [];
         const incoming = new ResourceDetailGroupedIncomingLinks();
@@ -84,19 +84,27 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('should not contain resource detail html content component (stubbed)', () => {
-                const htmlContentEl = fixture.debugElement.query(By.directive(ResourceDetailHtmlComponent));
-                expect(htmlContentEl).not.toBeTruthy();
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 0, 0);
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
+        let htmlContentDes: DebugElement[];
+        let htmlContentCmp: any;
+
         beforeEach(() => {
             // simulate the parent setting the input properties
             component.resourceDetailData = expectedResourceDetailData;
 
             // trigger initial data binding
             fixture.detectChanges();
+
+            // get debug and native element of stubbed child
+            htmlContentDes = getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 1, 1);
+            htmlContentCmp = htmlContentDes[0].injector.get(
+                ResourceDetailHtmlContentStubComponent
+            ) as ResourceDetailHtmlContentStubComponent;
         });
 
         it('should have `resourceDetailData` inputs', () => {
@@ -106,24 +114,15 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('should only contain resource detail html content component (stubbed) if content provided', () => {
-                let htmlContentDe = compDe.query(By.directive(ResourceDetailHtmlContentStubComponent));
-                expect(htmlContentDe).toBeTruthy();
-
                 // provide data without content property
                 expectedResourceDetailData.content = null;
                 component.resourceDetailData = expectedResourceDetailData;
                 fixture.detectChanges();
 
-                htmlContentDe = fixture.debugElement.query(By.directive(ResourceDetailHtmlContentStubComponent));
-                expect(htmlContentDe).not.toBeTruthy();
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 0, 0);
             });
 
             it('... should pass down `resourceDetailData` to resource detail html content component', () => {
-                const htmlContentDe = compDe.query(By.directive(ResourceDetailHtmlContentStubComponent));
-                const htmlContentCmp = htmlContentDe.injector.get(
-                    ResourceDetailHtmlContentStubComponent
-                ) as ResourceDetailHtmlContentStubComponent;
-
                 expect(htmlContentCmp.content).toBeDefined();
                 expect(htmlContentCmp.content).toBe(expectedResourceDetailData.content);
             });
@@ -131,11 +130,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
         describe('#navigateToResource', () => {
             it('... should trigger on event from child component', fakeAsync(() => {
-                const htmlContentDe = compDe.query(By.directive(ResourceDetailHtmlContentStubComponent));
-                const htmlContentCmp = htmlContentDe.injector.get(
-                    ResourceDetailHtmlContentStubComponent
-                ) as ResourceDetailHtmlContentStubComponent;
-
                 let id;
 
                 // undefined
@@ -158,11 +152,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
             }));
 
             it('... should not emit anything if no id is provided', fakeAsync(() => {
-                const htmlContentDe = compDe.query(By.directive(ResourceDetailHtmlContentStubComponent));
-                const htmlContentCmp = htmlContentDe.injector.get(
-                    ResourceDetailHtmlContentStubComponent
-                ) as ResourceDetailHtmlContentStubComponent;
-
                 htmlContentCmp.resourceRequest.emit(undefined);
 
                 // id is undefined
@@ -171,11 +160,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
             }));
 
             it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                const htmlContentDe = compDe.query(By.directive(ResourceDetailHtmlContentStubComponent));
-                const htmlContentCmp = htmlContentDe.injector.get(
-                    ResourceDetailHtmlContentStubComponent
-                ) as ResourceDetailHtmlContentStubComponent;
-
                 let id;
 
                 // number

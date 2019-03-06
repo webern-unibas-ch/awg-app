@@ -28,8 +28,8 @@ export function getAndExpectDebugElementByCss(
 export function getAndExpectDebugElementByDirective(
     inDe: DebugElement,
     selectorType: Type<any>,
-    length: number,
-    expLength: number,
+    length: number | undefined,
+    expLength: number | undefined,
     suffixMsg?: string
 ): DebugElement[] {
     const outDe = inDe.queryAll(By.directive(selectorType));
@@ -46,19 +46,27 @@ export function getAndExpectDebugElementByDirective(
 export function expectDebugElement(
     de: DebugElement[],
     selector: string | Type<any>,
-    length: number,
-    expLength: number,
+    length: number | undefined,
+    expLength: number | undefined,
     suffixMsg: string
 ): void {
+    let failMsg: string;
+
     if (selector instanceof Type) {
         selector = selector.name;
     }
-    const failMsg = suffixMsg
-        ? `should have ${expLength} ${selector} ${suffixMsg}`
-        : `should have ${expLength} ${selector}`;
+    if (length === undefined) {
+        failMsg = suffixMsg ? `should be ${expLength} ${suffixMsg}` : `should be ${expLength}`;
 
-    expect(de).toBeDefined();
-    expect(de.length).toBe(length, failMsg);
+        expect(de).toBeUndefined(failMsg);
+    } else {
+        failMsg = suffixMsg
+            ? `should have ${expLength} ${selector} ${suffixMsg}`
+            : `should have ${expLength} ${selector}`;
+
+        expect(de).toBeDefined();
+        expect(de.length).toBe(length, failMsg);
+    }
 }
 
 /* check if, how often and with which arguments a spy has been called */

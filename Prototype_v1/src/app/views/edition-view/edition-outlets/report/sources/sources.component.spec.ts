@@ -1,8 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
+import { Component, DebugElement, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+
+import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -36,6 +37,9 @@ class SourceEvaluationStubComponent {
 describe('SourcesComponent', () => {
     let component: SourcesComponent;
     let fixture: ComponentFixture<SourcesComponent>;
+    let compDe: DebugElement;
+    let compEl: any;
+
     let expectedSourceListData: SourceList;
 
     beforeEach(async(() => {
@@ -54,6 +58,8 @@ describe('SourcesComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SourcesComponent);
         component = fixture.componentInstance;
+        compDe = fixture.debugElement;
+        compEl = compDe.nativeElement;
     });
 
     it('should create', () => {
@@ -66,18 +72,15 @@ describe('SourcesComponent', () => {
         });
 
         it('should not contain source list component (stubbed)', () => {
-            const sourceListEl = fixture.debugElement.query(By.directive(SourceListStubComponent));
-            expect(sourceListEl).not.toBeTruthy();
+            getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 0, 0);
         });
 
         it('should not contain source description component (stubbed)', () => {
-            const sourceDescriptionEl = fixture.debugElement.query(By.directive(SourceDescriptionStubComponent));
-            expect(sourceDescriptionEl).not.toBeTruthy();
+            getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 0, 0);
         });
 
         it('should not contain source evaluation component (stubbed)', () => {
-            const sourceEvaluationEl = fixture.debugElement.query(By.directive(SourceEvaluationStubComponent));
-            expect(sourceEvaluationEl).not.toBeTruthy();
+            getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 0, 0);
         });
     });
 
@@ -119,18 +122,15 @@ describe('SourcesComponent', () => {
         });
 
         it('should contain source list component (stubbed)', () => {
-            const sourceListEl = fixture.debugElement.query(By.directive(SourceListStubComponent));
-            expect(sourceListEl).toBeTruthy();
+            getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 1, 1);
         });
 
         it('should contain source description component (stubbed)', () => {
-            const sourceDescriptionEl = fixture.debugElement.query(By.directive(SourceDescriptionStubComponent));
-            expect(sourceDescriptionEl).toBeTruthy();
+            getAndExpectDebugElementByDirective(compDe, SourceDescriptionStubComponent, 1, 1);
         });
 
         it('should contain source evaluation component (stubbed)', () => {
-            const sourceEvaluationEl = fixture.debugElement.query(By.directive(SourceEvaluationStubComponent));
-            expect(sourceEvaluationEl).toBeTruthy();
+            getAndExpectDebugElementByDirective(compDe, SourceEvaluationStubComponent, 1, 1);
         });
     });
 });
