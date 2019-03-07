@@ -3,14 +3,18 @@ import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ResourceDetailProps } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentPropsComponent } from './props.component';
 
-xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
+describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentPropsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentPropsComponent>;
     let compDe: DebugElement;
@@ -19,7 +23,7 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
 
-    const expectedProps: ResourceDetailProps[] = [];
+    let expectedProps: ResourceDetailProps[];
     let expectedMetaBreakLine: string;
 
     beforeEach(async(() => {
@@ -36,6 +40,33 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
 
         // test data
         expectedMetaBreakLine = 'Versionsdatum';
+
+        const prop1Value1 = `<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])`;
+        const props1: ResourceDetailProps = {
+            pid: '0',
+            guielement: 'text',
+            label: 'prop1',
+            value: [prop1Value1, 'prop1-value2']
+        };
+        const props2: ResourceDetailProps = {
+            pid: '1',
+            guielement: 'date',
+            label: 'Versionsdatum',
+            value: ['2019']
+        };
+        const props3: ResourceDetailProps = {
+            pid: '2',
+            guielement: 'richtext',
+            label: 'prop2',
+            value: ['prop2-value1', 'prop2-value2', 'prop2-value3']
+        };
+        const props4: ResourceDetailProps = {
+            pid: '3',
+            guielement: 'text',
+            label: 'prop1',
+            value: []
+        };
+        expectedProps = [props1, props2, props3, props4];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -54,7 +85,7 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
             expect(component.metaBreakLine).toBe(expectedMetaBreakLine, `should be ${expectedMetaBreakLine}`);
         });
 
-        it('should not have `incoming` inputs', () => {
+        it('should not have `props` input', () => {
             expect(component.props).toBeUndefined('should be undefined');
         });
 
@@ -66,7 +97,7 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one section.awg-linked-obj', () => {
+            it('... should contain one section.awg-props', () => {
                 getAndExpectDebugElementByCss(compDe, 'section.awg-props', 1, 1);
             });
 
@@ -80,8 +111,7 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
             });
 
             it('... should contain no ul with props yet', () => {
-                // ul debug element
-                const ulDes = getAndExpectDebugElementByCss(compDe, 'section.awg-props > ul', 0, 0);
+                getAndExpectDebugElementByCss(compDe, 'section.awg-props > ul', 0, 0);
             });
         });
     });
@@ -95,15 +125,67 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have `props` inputs', () => {
+        it('should have `props` input', () => {
             expect(component.props).toBeDefined('should be defined');
             expect(component.props).toBe(expectedProps, `should be expectedProps: ${expectedProps}`);
         });
 
-        xdescribe('#navigateToResource', () => {
+        describe('VIEW', () => {
+            it('... should contain 4 ul with props', () => {
+                getAndExpectDebugElementByCss(compDe, 'section.awg-props > ul', 4, 4);
+            });
+
+            it('... should have one breakline (from props 2)', () => {
+                const breakDes = getAndExpectDebugElementByCss(compDe, 'ul > li#breakLine', 1, 1);
+
+                getAndExpectDebugElementByCss(breakDes[0], 'hr', 1, 1);
+            });
+
+            it('... should contain only 3 props (li.awg-prop), last props.value is empty', () => {
+                getAndExpectDebugElementByCss(compDe, 'ul > li.awg-prop', 3, 3);
+            });
+
+            it('... should contain inner ul elements according to each props.value.length', () => {
+                const outerLiDes = getAndExpectDebugElementByCss(compDe, 'ul > li.awg-prop', 3, 3);
+
+                const expectedLength0 = expectedProps[0].value.length;
+                const expectedLength1 = expectedProps[1].value.length;
+                const expectedLength2 = expectedProps[2].value.length;
+
+                getAndExpectDebugElementByCss(outerLiDes[0], 'ul', expectedLength0, expectedLength0);
+                getAndExpectDebugElementByCss(outerLiDes[1], 'ul', expectedLength1, expectedLength1);
+                getAndExpectDebugElementByCss(outerLiDes[2], 'ul', expectedLength2, expectedLength2);
+            });
+
+            it('... should contain 6 li.awg-prop-value', () => {
+                getAndExpectDebugElementByCss(compDe, 'ul > li.awg-prop > ul > li.awg-prop-value', 6, 6);
+            });
+
+            it('... should contain 6 CompileHtmlComponents in li.awg-prop-value', () => {
+                const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 6, 6);
+
+                htmlDes.forEach(html => {
+                    console.log(html);
+                    expect(html.name).toBeDefined();
+                    expect(html.name).toBe('span');
+
+                    // check parent
+                    expect(html.parent.name).toBe('li');
+                    expect(html.parent.attributes.class).toBeDefined();
+                    expect(html.parent.attributes.class).toBe('awg-prop-value');
+                });
+            });
+        });
+
+        describe('#navigateToResource', () => {
             it('... should trigger on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+                const innerLiDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'ul > li.awg-prop > ul > li.awg-prop-value',
+                    6,
+                    6
+                );
+                const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
@@ -114,19 +196,24 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                // string
+                // string as input
                 expectSpyCall(navigateToResourceSpy, 2, '28');
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                // string
-                expectSpyCall(navigateToResourceSpy, 3, '330');
+                // number as input
+                expectSpyCall(navigateToResourceSpy, 3, 330);
             }));
 
             it('... should not emit anything if no id is provided', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+                const innerLiDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'ul > li.awg-prop > ul > li.awg-prop-value',
+                    6,
+                    6
+                );
+                const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
                 // first anchor has no id
 
@@ -138,8 +225,13 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
             }));
 
             it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+                const innerLiDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'ul > li.awg-prop > ul > li.awg-prop-value',
+                    6,
+                    6
+                );
+                const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
                 // first anchor has no id, see above
 
@@ -149,187 +241,12 @@ xdescribe('ResourceDetailHtmlContentPropsComponent', () => {
 
                 expectSpyCall(emitSpy, 1, '28');
 
-                // third anchor has @id: string
+                // third anchor has @id: number
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(emitSpy, 2, '330');
             }));
         });
-
-        /*
-        xdescribe('VIEW', () => {
-            it('... should contain one header showing number of items', () => {
-                // size debug elements
-                const sizeDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-linked-obj > h5 > span#awg-incoming-size',
-                    1,
-                    1
-                );
-
-                // check size output
-
-                expect(sizeDes[0].nativeElement.textContent).toContain(
-                    expectedTotalItems.toString(),
-                    `should be expectedTotalItems: ${expectedTotalItems}`
-                );
-
-            });
-
-            it('... should contain 2 ngb-panel elements (div.card) with header but no body (closed)', () => {
-                // panel debug elements
-                const panelDes = getAndExpectDebugElementByCss(compDe, 'div.card', 2, 2);
-
-                // header debug elements
-                getAndExpectDebugElementByCss(panelDes[0], 'div.card-header', 1, 1, 'in first panel');
-                getAndExpectDebugElementByCss(panelDes[1], 'div.card-header', 1, 1, 'in second panel');
-
-                // body debug elements
-                getAndExpectDebugElementByCss(
-                    panelDes[0],
-                    'div.card-header > div > div.card-body',
-                    0,
-                    0,
-                    'in first panel'
-                );
-                getAndExpectDebugElementByCss(
-                    panelDes[1],
-                    'div.card-header > div > div.card-body',
-                    0,
-                    0,
-                    'in second panel'
-                );
-            });
-
-            it('... should render incoming group length and key in panel header (div.card-header)', () => {
-                // header debug element
-                const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
-
-                // badge debug elements
-                const badgeDes0 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[0],
-                    'span.badge',
-                    1,
-                    1,
-                    'in first panel'
-                );
-                const badgeDes1 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[1],
-                    'span.badge',
-                    1,
-                    1,
-                    'in second panel'
-                );
-
-                // badge native elements
-                const badge0El = badgeDes0[0].nativeElement;
-                const badge1El = badgeDes1[0].nativeElement;
-
-                // key debug elements
-                const keyDes0 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[0],
-                    'span.awg-linked-obj-title',
-                    1,
-                    1,
-                    'in first panel'
-                );
-                const keyDes1 = getAndExpectDebugElementByCss(
-                    panelHeaderDes[1],
-                    'span.awg-linked-obj-title',
-                    1,
-                    1,
-                    'in second panel'
-                );
-
-                // key native elements
-                const key0El = keyDes0[0].nativeElement;
-                const key1El = keyDes1[0].nativeElement;
-
-                // create pipe
-                keyValuePipe = new KeyValuePipe(defaultKeyValueDiffers);
-                const pipedExpectedIncoming = keyValuePipe.transform(expectedIncoming);
-
-                // check badge output
-                expect(badge0El.textContent).toContain(
-                    pipedExpectedIncoming[0].value.length.toString(),
-                    `should be ${pipedExpectedIncoming[0].value.length}`
-                );
-                expect(badge1El.textContent).toContain(
-                    pipedExpectedIncoming[1].value.length.toString(),
-                    `should be ${pipedExpectedIncoming[1].value.length}`
-                );
-
-                // check key output
-                expect(key0El.textContent).toContain(
-                    pipedExpectedIncoming[0].key,
-                    `should be ${pipedExpectedIncoming[0].key}`
-                );
-                expect(key1El.textContent).toContain(
-                    pipedExpectedIncoming[1].key,
-                    `should be ${pipedExpectedIncoming[1].key}`
-                );
-            });
-
-            it('... should render incomingLinks in table of panel content (div.card-body)', () => {
-                // button debug elements
-                const buttonDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.card > div.card-header button.btn-link',
-                    2,
-                    2
-                );
-
-                // first button's native element to click on
-                const button0El = buttonDes[0].nativeElement;
-
-                // open first panel
-                (<HTMLElement>button0El).click();
-                fixture.detectChanges();
-
-                expectOpenPanelBody(compDe, 0, 'should have first panel opened');
-
-                // table debug elements
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-
-                // img
-                const imgDes = getAndExpectDebugElementByCss(tableDes[0], 'a.awg-linked-obj-link > img', 2, 2);
-                const icon0 = expectedIncoming['testkey1'][0].restype.icon;
-                const icon1 = expectedIncoming['testkey1'][1].restype.icon;
-
-                // spanId
-                const spanIdDes = getAndExpectDebugElementByCss(
-                    tableDes[0],
-                    'a.awg-linked-obj-link > span.awg-linked-obj-link-id',
-                    2,
-                    2
-                );
-                const id0 = expectedIncoming['testkey1'][0].id;
-                const id1 = expectedIncoming['testkey1'][1].id;
-
-                // spanValue
-                const spanValueDes = getAndExpectDebugElementByCss(
-                    tableDes[0],
-                    'a.awg-linked-obj-link > span.awg-linked-obj-link-value',
-                    2,
-                    2
-                );
-                const value0 = expectedIncoming['testkey1'][0].value;
-                const value1 = expectedIncoming['testkey1'][1].value;
-
-                // check img output
-                expect(imgDes[0].properties.src).toBe(icon0, `should be icon0: ${icon0}`);
-                expect(imgDes[1].properties.src).toBe(icon1, `should be icon1: ${icon1}`);
-
-                // check id output
-                expect(spanIdDes[0].nativeElement.textContent).toContain(`${id0}`, `should be id0: ${id0}`);
-                expect(spanIdDes[1].nativeElement.textContent).toContain(`${id1}`, `should be id1: ${id1}`);
-
-                // check value output
-                expect(spanValueDes[0].nativeElement.textContent).toContain(`${value0}`, `should be value0: ${value0}`);
-                expect(spanValueDes[1].nativeElement.textContent).toContain(`${value1}`, `should be value1: ${value1}`);
-            });
-        });
-        */
     });
 });

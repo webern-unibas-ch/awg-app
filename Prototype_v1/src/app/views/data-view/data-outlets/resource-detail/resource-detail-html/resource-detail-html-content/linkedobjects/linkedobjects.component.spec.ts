@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { DebugElement, SimpleChange, ɵdefaultKeyValueDiffers as defaultKeyValueDiffers } from '@angular/core';
 import { KeyValuePipe } from '@angular/common';
 import Spy = jasmine.Spy;
@@ -231,7 +231,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     2
                 );
 
-                // first button's native element to click on
+                // second button's native element to click on
                 const buttonEl = buttonDes[1].nativeElement;
 
                 // open first panel

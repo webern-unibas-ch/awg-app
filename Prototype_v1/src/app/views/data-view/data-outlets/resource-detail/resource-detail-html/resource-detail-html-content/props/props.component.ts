@@ -20,9 +20,10 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit {
     ngOnInit() {}
 
     navigateToResource(id?: string): void {
-        if (id) {
-            id.toString();
+        if (!id) {
+            return;
         }
+        id = id.toString();
         this.resourceRequest.emit(id);
     }
 }
