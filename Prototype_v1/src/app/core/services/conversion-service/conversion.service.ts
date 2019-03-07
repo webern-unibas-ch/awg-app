@@ -693,13 +693,13 @@ export class ConversionService extends ApiService {
      *****************************************/
     private distinctSubjectItemArray(arr: SubjectItemJson[]) {
         /*
-        * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
-        *
-        * This function checks for every array position (reduce)
-        * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
-        * and if not pushes y into x that is initalized as empty array []
-        *
-        */
+         * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
+         *
+         * This function checks for every array position (reduce)
+         * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
+         * and if not pushes y into x that is initalized as empty array []
+         *
+         */
         if (!arr) {
             return;
         }
