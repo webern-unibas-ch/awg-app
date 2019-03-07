@@ -113,7 +113,23 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('should only contain resource detail html content component (stubbed) if content provided', () => {
+            it('should contain resource detail html content component (stubbed)', () => {
+                htmlContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    ResourceDetailHtmlContentStubComponent,
+                    1,
+                    1
+                );
+            });
+
+            it('should contain resource detail html content component (stubbed) only if content provided', () => {
+                htmlContentDes = getAndExpectDebugElementByDirective(
+                    compDe,
+                    ResourceDetailHtmlContentStubComponent,
+                    1,
+                    1
+                );
+
                 // provide data without content property
                 expectedResourceDetailData.content = null;
                 component.resourceDetailData = expectedResourceDetailData;
