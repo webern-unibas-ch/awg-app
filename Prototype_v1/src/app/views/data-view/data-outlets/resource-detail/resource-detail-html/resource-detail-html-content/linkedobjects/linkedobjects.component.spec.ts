@@ -113,25 +113,12 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             expect(component.incoming).toBeUndefined('should be undefined');
         });
 
-        describe('#updateTotalNumber', () => {
-            it('... should not have been called', () => {
-                expect(updateTotalNumberSpy).not.toHaveBeenCalled();
-            });
-        });
-
-        describe('#navigateToResource', () => {
-            it('... should not have been called', () => {
-                expect(navigateToResourceSpy).not.toHaveBeenCalled();
-                expect(emitSpy).not.toHaveBeenCalled();
-            });
-        });
-
         describe('VIEW', () => {
             it('... should contain one div.awg-linked-obj', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj', 1, 1);
             });
 
-            it('... should contain no header showing number of items yet', () => {
+            it('... should contain one header showing no number of items yet', () => {
                 // header debug element
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > h5', 1, 1);
                 // size debug element
@@ -144,6 +131,19 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
                 // panel
                 getAndExpectDebugElementByCss(accordionDes[0], 'ngb-panel', 0, 0, 'yet');
+            });
+        });
+
+        describe('#updateTotalNumber', () => {
+            it('... should not have been called', () => {
+                expect(updateTotalNumberSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('#navigateToResource', () => {
+            it('... should not have been called', () => {
+                expect(navigateToResourceSpy).not.toHaveBeenCalled();
+                expect(emitSpy).not.toHaveBeenCalled();
             });
         });
     });
@@ -160,142 +160,6 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         it('should have `incoming` inputs', () => {
             expect(component.incoming).toBeDefined('should be defined');
             expect(component.incoming).toBe(expectedIncoming, `should be expectedIncoming: ${expectedIncoming}`);
-        });
-
-        describe('#updateTotalNumber', () => {
-            it('... should have been called', fakeAsync(() => {
-                expectSpyCall(updateTotalNumberSpy, 1);
-            }));
-
-            it('... should have updated totalNumber with number of nested array items', fakeAsync(() => {
-                expectSpyCall(updateTotalNumberSpy, 1);
-
-                expect(component.totalNumber).toBe(
-                    expectedTotalItems,
-                    `should be expectedTotalItems: ${expectedTotalItems}`
-                );
-            }));
-
-            it('... should do nothing on first onChanges', fakeAsync(() => {
-                const newExpectedIncoming: ResourceDetailGroupedIncomingLinks = {
-                    testkey1: [incomingLink1, incomingLink2]
-                };
-
-                // simulate the parent changing the input properties for the first time
-                component.incoming = newExpectedIncoming;
-
-                // trigger ngOnChanges
-                component.ngOnChanges({ incoming: new SimpleChange(null, component.incoming, true) });
-                fixture.detectChanges();
-
-                // spy has been called only once with ngOnInit
-                expectSpyCall(updateTotalNumberSpy, 1);
-
-                // output has not changed
-                expect(component.totalNumber).toBe(
-                    expectedTotalItems,
-                    `should be still expectedTotalItems: ${expectedTotalItems}`
-                );
-            }));
-
-            it('... should recalculate total number on input changes (second & more)', fakeAsync(() => {
-                const newExpectedIncoming: ResourceDetailGroupedIncomingLinks = {
-                    testkey1: [incomingLink1, incomingLink2, incomingLink3]
-                };
-                const newTotalItems = newExpectedIncoming['testkey1'].length;
-
-                // simulate the parent changing the input properties for the first time
-                component.incoming = newExpectedIncoming;
-
-                // trigger ngOnChanges
-                component.ngOnChanges({ incoming: new SimpleChange(null, component.incoming, false) });
-                fixture.detectChanges();
-
-                // spy has been called twice now
-                expectSpyCall(updateTotalNumberSpy, 2);
-
-                // output has changed
-                expect(component.totalNumber).toBe(newTotalItems, `should be newTotalItems: ${newTotalItems}`);
-            }));
-        });
-
-        describe('#navigateToResource', () => {
-            beforeEach(() => {
-                // open second panel
-
-                // button debug elements
-                const buttonDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.card > div.card-header button.btn-link',
-                    2,
-                    2
-                );
-
-                // second button's native element to click on
-                const buttonEl = buttonDes[1].nativeElement;
-
-                // open first panel
-                (<HTMLElement>buttonEl).click();
-                fixture.detectChanges();
-
-                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
-                expectOpenPanelBody(compDe, 1, 'should have second panel opened');
-            });
-
-            it('... should trigger on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
-
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[0], fixture);
-
-                // no id
-                expectSpyCall(navigateToResourceSpy, 1, '');
-
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[1], fixture);
-
-                // string
-                expectSpyCall(navigateToResourceSpy, 2, '28');
-
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[2], fixture);
-
-                // string
-                expectSpyCall(navigateToResourceSpy, 3, '330');
-            }));
-
-            it('... should not emit anything if no id is provided', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
-
-                // first anchor has no id
-
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[0], fixture);
-
-                expect(emitSpy).not.toHaveBeenCalled();
-                expect(emitSpy).toHaveBeenCalledTimes(0);
-            }));
-
-            it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
-
-                // first anchor has no id, see above
-
-                // second anchor has @id: string
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[1], fixture);
-
-                expectSpyCall(emitSpy, 1, '28');
-
-                // third anchor has @id: string
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[2], fixture);
-
-                expectSpyCall(emitSpy, 2, '330');
-            }));
         });
 
         describe('VIEW', () => {
@@ -564,6 +428,138 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 expect(spanValueEl1.textContent).toBeDefined();
                 expect(spanValueEl1.textContent).toContain(value1, `should contain value1: ${value1}`);
             });
+        });
+
+        describe('#updateTotalNumber', () => {
+            it('... should have been called', fakeAsync(() => {
+                expectSpyCall(updateTotalNumberSpy, 1);
+            }));
+
+            it('... should have updated totalNumber with number of nested array items', fakeAsync(() => {
+                expectSpyCall(updateTotalNumberSpy, 1);
+
+                expect(component.totalNumber).toBe(
+                    expectedTotalItems,
+                    `should be expectedTotalItems: ${expectedTotalItems}`
+                );
+            }));
+
+            it('... should do nothing on first onChanges', fakeAsync(() => {
+                const newExpectedIncoming: ResourceDetailGroupedIncomingLinks = {
+                    testkey1: [incomingLink1, incomingLink2]
+                };
+
+                // simulate the parent changing the input properties for the first time
+                component.incoming = newExpectedIncoming;
+
+                // trigger ngOnChanges
+                component.ngOnChanges({ incoming: new SimpleChange(null, component.incoming, true) });
+                fixture.detectChanges();
+
+                // spy has been called only once with ngOnInit
+                expectSpyCall(updateTotalNumberSpy, 1);
+
+                // output has not changed
+                expect(component.totalNumber).toBe(
+                    expectedTotalItems,
+                    `should be still expectedTotalItems: ${expectedTotalItems}`
+                );
+            }));
+
+            it('... should recalculate total number on input changes (second & more)', fakeAsync(() => {
+                const newExpectedIncoming: ResourceDetailGroupedIncomingLinks = {
+                    testkey1: [incomingLink1, incomingLink2, incomingLink3]
+                };
+                const newTotalItems = newExpectedIncoming['testkey1'].length;
+
+                // simulate the parent changing the input properties for the first time
+                component.incoming = newExpectedIncoming;
+
+                // trigger ngOnChanges
+                component.ngOnChanges({ incoming: new SimpleChange(null, component.incoming, false) });
+                fixture.detectChanges();
+
+                // spy has been called twice now
+                expectSpyCall(updateTotalNumberSpy, 2);
+
+                // output has changed
+                expect(component.totalNumber).toBe(newTotalItems, `should be newTotalItems: ${newTotalItems}`);
+            }));
+        });
+
+        describe('#navigateToResource', () => {
+            beforeEach(() => {
+                // open second panel
+
+                // button debug elements
+                const buttonDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div.card > div.card-header button.btn-link',
+                    2,
+                    2
+                );
+
+                // open first panel
+                clickAndAwaitChanges(buttonDes[1], fixture);
+
+                expectClosedPanelBody(compDe, 0, 'should have first panel closed');
+                expectOpenPanelBody(compDe, 1, 'should have second panel opened');
+            });
+
+            it('... should trigger on click', fakeAsync(() => {
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[0], fixture);
+
+                // no id
+                expectSpyCall(navigateToResourceSpy, 1, '');
+
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[1], fixture);
+
+                // string
+                expectSpyCall(navigateToResourceSpy, 2, '28');
+
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[2], fixture);
+
+                // string
+                expectSpyCall(navigateToResourceSpy, 3, '330');
+            }));
+
+            it('... should not emit anything if no id is provided', fakeAsync(() => {
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+
+                // first anchor has no id
+
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[0], fixture);
+
+                expect(emitSpy).not.toHaveBeenCalled();
+                expect(emitSpy).toHaveBeenCalledTimes(0);
+            }));
+
+            it('... should emit provided resource id (as string) on click', fakeAsync(() => {
+                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+
+                // first anchor has no id, see above
+
+                // second anchor has @id: string
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[1], fixture);
+
+                expectSpyCall(emitSpy, 1, '28');
+
+                // third anchor has @id: string
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(anchorDes[2], fixture);
+
+                expectSpyCall(emitSpy, 2, '330');
+            }));
         });
     });
 });

@@ -34,8 +34,6 @@ class ResourceDetailHtmlContentPropsStubComponent {
 class ResourceDetailHtmlContentImageobjectsStubComponent {
     @Input()
     images: ResourceDetailImage[];
-    @Output()
-    resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-resource-detail-html-content-linkedobjects', template: '' })
@@ -283,38 +281,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 // string
                 id = '330';
                 propsCmp.resourceRequest.emit(id);
-
-                expectSpyCall(navigateToResourceSpy, 3, id);
-            }));
-
-            it('... should trigger on event from ResourceDetailHtmlContentImageobjectsComponent component', fakeAsync(() => {
-                const imagesDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentImageobjectsStubComponent,
-                    1,
-                    1
-                );
-                const imagesCmp = imagesDes[0].injector.get(
-                    ResourceDetailHtmlContentImageobjectsStubComponent
-                ) as ResourceDetailHtmlContentImageobjectsStubComponent;
-
-                let id;
-
-                // undefined
-                id = undefined;
-                imagesCmp.resourceRequest.emit(id);
-
-                expectSpyCall(navigateToResourceSpy, 1, id);
-
-                // number
-                id = 28;
-                imagesCmp.resourceRequest.emit(id);
-
-                expectSpyCall(navigateToResourceSpy, 2, id);
-
-                // string
-                id = '330';
-                imagesCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 3, id);
             }));
