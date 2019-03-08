@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
 import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 
@@ -9,7 +9,7 @@ import { ResourceDetailImage } from '@awg-views/data-view/models';
     templateUrl: './imageobjects.component.html',
     styleUrls: ['./imageobjects.component.css']
 })
-export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
+export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit, OnChanges {
     @Input()
     images: ResourceDetailImage[];
 
@@ -19,6 +19,18 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     constructor() {}
 
     ngOnInit() {
+        this.setOptions();
+
+        this.setImages();
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        if (!changes['images'].isFirstChange()) {
+            this.setImages();
+        }
+    }
+
+    setOptions() {
         this.galleryOptions = [
             new NgxGalleryOptions({
                 width: '100%',
@@ -35,7 +47,9 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
                 previewRotate: true
             })
         ];
+    }
 
+    setImages() {
         this.galleryImages = [];
         this.images.forEach(image => {
             const gImage = {
