@@ -1,11 +1,10 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { DebugElement, SimpleChange } from '@angular/core';
 import Spy = jasmine.Spy;
 
 import { JsonConvert } from 'json2typescript';
 import { NgxGalleryImage, NgxGalleryComponent, NgxGalleryOptions, NgxGalleryModule } from 'ngx-gallery';
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -18,11 +17,14 @@ import { ContextJson } from '@awg-shared/api-objects';
 
 import { ResourceDetailHtmlContentImageobjectsComponent } from './imageobjects.component';
 
-fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
+describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let component: ResourceDetailHtmlContentImageobjectsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentImageobjectsComponent>;
     let compDe: DebugElement;
     let compEl: any;
+
+    let setImagesSpy: Spy;
+    let setOptionsSpy: Spy;
 
     // json object
     let jsonConvert: JsonConvert;
@@ -82,6 +84,12 @@ fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             };
             expectedGalleryImages.push(gImage);
         });
+
+        // spies on component functions
+        // `.and.callThrough` will track the spy down the nested describes, see
+        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        setImagesSpy = spyOn(component, 'setImages').and.callThrough();
+        setOptionsSpy = spyOn(component, 'setOptions').and.callThrough();
     });
 
     it('should create', () => {
@@ -91,6 +99,23 @@ fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     describe('BEFORE initial data binding', () => {
         it('should not have `images` inputs', () => {
             expect(component.images).toBeUndefined('should be undefined');
+        });
+
+        describe('#setOptions', () => {
+            it('... should not have been called', () => {
+                expect(setOptionsSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        describe('#setImages', () => {
+            it('... should not have been called', () => {
+                expect(setImagesSpy).not.toHaveBeenCalled();
+            });
+        });
+
+        it('should not have `galleryOptions` or `galleryImages`', () => {
+            expect(component.galleryOptions).toBeUndefined('should be undefined');
+            expect(component.galleryImages).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -124,14 +149,6 @@ fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        // helper function
-        function expectImage(cmp: any, image: ResourceDetailImage, size: number) {
-            expect(cmp.id).toBe(image.res_id, `should be ${image.res_id}`);
-            expect(cmp.alt).toBe(image.label, `should be ${image.label}`);
-            expect(cmp.src).toBe(image.reductSize, `should be ${image.reductSize}`);
-            expect(cmp.height).toBe(size, `should be 300`);
-        }
-
         beforeEach(() => {
             // simulate the parent setting the input properties
             component.images = expectedImages;
@@ -161,6 +178,89 @@ fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             );
         });
 
+        describe('#setOptions', () => {
+            it('... should have been called', () => {
+                expectSpyCall(setOptionsSpy, 1);
+            });
+        });
+
+        describe('#setImages', () => {
+            it('... should have been called', () => {
+                expectSpyCall(setImagesSpy, 1);
+            });
+
+            it('... should do nothing on first onChanges', () => {
+                const newExpectedImages: ResourceDetailImage[] = [
+                    new ResourceDetailImage(context, 1),
+                    new ResourceDetailImage(context, 0),
+                    new ResourceDetailImage(context, 1)
+                ];
+
+                // simulate the parent changing the input properties for the first time
+                component.images = newExpectedImages;
+
+                // trigger ngOnChanges
+                component.ngOnChanges({ images: new SimpleChange(null, component.images, true) });
+                fixture.detectChanges();
+
+                // spy has been called only once with ngOnInit
+                expectSpyCall(setImagesSpy, 1);
+
+                // output has not changed
+                expect(component.galleryImages).toEqual(
+                    expectedGalleryImages,
+                    `should be still expectedGalleryImages: ${expectedGalleryImages}`
+                );
+            });
+
+            it('... should change galleryImages on input change', () => {
+                const newExpectedImages: ResourceDetailImage[] = [
+                    new ResourceDetailImage(context, 1),
+                    new ResourceDetailImage(context, 0),
+                    new ResourceDetailImage(context, 1)
+                ];
+
+                // simulate the parent changing the input properties for the first time
+                component.images = newExpectedImages;
+
+                const newExpectedGalleryImages: NgxGalleryImage[] = [];
+                newExpectedImages.forEach(image => {
+                    const gImage = {
+                        small: image.reductSize,
+                        medium: image.reductSize,
+                        big: image.fullSize,
+                        description: image.origname,
+                        label: image.label,
+                        url: image.fullSize
+                    };
+                    newExpectedGalleryImages.push(gImage);
+                });
+
+                // trigger ngOnChanges
+                component.ngOnChanges({ images: new SimpleChange(null, component.images, false) });
+                fixture.detectChanges();
+
+                // spy has been called twice now
+                expectSpyCall(setImagesSpy, 2);
+
+                // output has not changed
+                expect(component.galleryImages).toEqual(
+                    newExpectedGalleryImages,
+                    `should be newExpectedGalleryImages: ${newExpectedGalleryImages}`
+                );
+
+                // get debug and native element of NgxGalleryComponent
+                const galleryDes = getAndExpectDebugElementByDirective(compDe, NgxGalleryComponent, 1, 1);
+                const galleryCmp = galleryDes[0].injector.get(NgxGalleryComponent) as NgxGalleryComponent;
+
+                expect(galleryCmp.images).toBeDefined();
+                expect(galleryCmp.images).toEqual(
+                    newExpectedGalleryImages,
+                    `should equal expectedGalleryImages: ${expectedGalleryImages}`
+                );
+            });
+        });
+
         describe('VIEW', () => {
             it('... should contain one header showing number of images', () => {
                 // header debug element
@@ -177,7 +277,7 @@ fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 );
             });
 
-            it('... should contain one div.awg-image-slider with one ngx-gallery', () => {
+            it('... should contain one div.awg-image-slider with one NgxGalleryComponent', () => {
                 const sliderDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-image-obj > div.awg-image-slider',
@@ -205,48 +305,6 @@ fdescribe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                     `should equal expectedGalleryImages: ${expectedGalleryImages}`
                 );
             });
-        });
-
-        xit('should change galleryImages on input change', () => {
-            expectedImages = [];
-            expectedImages = [
-                new ResourceDetailImage(context, 1),
-                new ResourceDetailImage(context, 0),
-                new ResourceDetailImage(context, 1)
-            ];
-            component.images = expectedImages;
-
-            expectedGalleryImages = [];
-            expectedImages.forEach(image => {
-                const gImage = {
-                    small: image.reductSize,
-                    medium: image.reductSize,
-                    big: image.fullSize,
-                    description: image.origname,
-                    label: image.label,
-                    url: image.fullSize
-                };
-                expectedGalleryImages.push(gImage);
-            });
-            fixture.detectChanges();
-
-            console.log(component.galleryImages);
-
-            expect(component.galleryImages).toBeDefined('should be defined');
-            expect(component.galleryImages).toEqual(
-                expectedGalleryImages,
-                `should equal expectedGalleryImages: ${expectedGalleryImages}`
-            );
-
-            // get debug and native element of NgxGalleryComponent
-            const galleryDes = getAndExpectDebugElementByDirective(compDe, NgxGalleryComponent, 1, 1);
-            const galleryCmp = galleryDes[0].injector.get(NgxGalleryComponent) as NgxGalleryComponent;
-
-            expect(galleryCmp.images).toBeDefined();
-            expect(galleryCmp.images).toEqual(
-                expectedGalleryImages,
-                `should equal expectedGalleryImages: ${expectedGalleryImages}`
-            );
         });
     });
 });

@@ -165,7 +165,6 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 6, 6);
 
                 htmlDes.forEach(html => {
-                    console.log(html);
                     expect(html.name).toBeDefined();
                     expect(html.name).toBe('span');
 

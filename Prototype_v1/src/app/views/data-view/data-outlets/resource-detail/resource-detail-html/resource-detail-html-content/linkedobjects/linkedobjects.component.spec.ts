@@ -3,7 +3,7 @@ import { DebugElement, SimpleChange, ɵdefaultKeyValueDiffers as defaultKeyValue
 import { KeyValuePipe } from '@angular/common';
 import Spy = jasmine.Spy;
 
-import { clickAndAwaitChanges } from '@testing/click-helper';
+import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -308,42 +308,42 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel
-                (<HTMLElement>button0El).click();
+                click(<HTMLElement>button0El);
                 fixture.detectChanges();
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel again
-                (<HTMLElement>button0El).click();
+                click(<HTMLElement>button0El);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click second panel
-                (<HTMLElement>button1El).click();
+                click(<HTMLElement>button1El);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectOpenPanelBody(compDe, 1, 'opened (second panel)');
 
                 // click second panel again
-                (<HTMLElement>button1El).click();
+                click(<HTMLElement>button1El);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel
-                (<HTMLElement>button0El).click();
+                click(<HTMLElement>button0El);
                 fixture.detectChanges();
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click second panel
-                (<HTMLElement>button1El).click();
+                click(<HTMLElement>button1El);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
@@ -368,7 +368,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const button0El = buttonDes[0].nativeElement;
 
                 // open first panel
-                (<HTMLElement>button0El).click();
+                click(<HTMLElement>button0El);
                 fixture.detectChanges();
 
                 expectOpenPanelBody(compDe, 0, 'should have first panel opened');
@@ -488,7 +488,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         });
 
         describe('#navigateToResource', () => {
-            beforeEach(() => {
+            beforeEach(fakeAsync(() => {
                 // open second panel
 
                 // button debug elements
@@ -504,7 +504,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
                 expectClosedPanelBody(compDe, 0, 'should have first panel closed');
                 expectOpenPanelBody(compDe, 1, 'should have second panel opened');
-            });
+            }));
 
             it('... should trigger on click', fakeAsync(() => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
