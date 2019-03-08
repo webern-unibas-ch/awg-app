@@ -3623,6 +3623,11 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "=3.1.0"
 
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
+  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -6066,6 +6071,11 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
   integrity sha512-vdqTKI9GBIYcAEbFAcpKPErKINfPF5zIuz3/niBfq8WUZjpT2tytLlFVrBgWdOtqI4uaA/Rb6No0hux39XXDuw==
+
+ngx-gallery@^5.9.1:
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/ngx-gallery/-/ngx-gallery-5.9.1.tgz#c56cd21346298931c71273356ebc6e1e5466c223"
+  integrity sha512-T9nPI+8TwQ5huQvPnptp0FwXJrLcAIjmtenOHZulFMkKfai3LBt3zhWRazoL706ywhs+JKIvOY+4lzpBOQ0n3g==
 
 ngx-json-viewer@^2.4.0:
   version "2.4.0"
