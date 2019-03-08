@@ -16,53 +16,12 @@
 <div class="awg-image-obj mb-3">
 
     <!-- header -->
-    <h5>
-        <!-- TODO: link to image overview
-            <a (click)="navigateToSearchResults()">
-            -->
-        Abbildungen <span>({{ images?.length }})</span>
-        <!--
-        </a>
-        -->
-    </h5>
+    <h5>Abbildungen (<span id="awg-image-number">{{ galleryImages?.length }}</span>)</h5>
 
     <!-- image slider -->
-    <div class="awg-image-slider">
+    <div class="card awg-image-slider">
 
-        <!-- preview image box -->
-        <div id="awg-previewbox" class="card" *ngIf="currentImageIndex >= 0">
-            <!-- control arrows -->
-            <a class="awg-image-slider-nav-left" *ngIf="currentImageIndex > 0" (click)="setImage(currentImageIndex - 1)">
-                <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
-            </a>
-            <a class="awg-image-slider-nav-right" *ngIf="currentImageIndex < images?.length - 1" (click)="setImage(currentImageIndex + 1)">
-                <fa-icon [icon]="faChevronCircleRight"></fa-icon>
-            </a>
-            <!-- preview image -->
-            <div id="awg-preview-img-container">
-                <a id="awg-preview-img" [href]="images[currentImageIndex].fullSize" target="_blank" ref="noopener noreferrer">
-                    <img [src]="images[currentImageIndex].reductSize" alt="{{ images[currentImageIndex].label }}" id="{{ images[currentImageIndex].res_id }}" height="300">
-                </a>
-            </div>
-        </div>
-
-        <!-- thumbnails -->
-        <div id="awg-thumbbox" #thumbBox *ngIf="images.length > 1">
-            <!-- control arrows -->
-            <a class="awg-image-slider-nav-left" [hidden]="offset <= 0" (click)="pageThumbsLeft()">
-                <fa-icon [icon]="faChevronCircleLeft"></fa-icon>
-            </a>
-            <a class="awg-image-slider-nav-right" [hidden]="offset >= max" (click)="pageThumbsRight()">
-                <fa-icon [icon]="faChevronCircleRight"></fa-icon>
-            </a>
-            <!-- thumb images -->
-            <div id="awg-thumb-img-container" #thumbImageContainer style="transform: translateX(0px);" [ngStyle]="{'transform': 'translateX(-'+offset+'px)','-webkit-transform': 'translateX(-'+offset+'px)'}">
-                <!--  -->
-                <a class="awg-thumb-img" #thumbImages *ngFor="let image of images; let i = index" [ngClass]="{ 'active': i === currentImageIndex }" (click)="setImage(i)" >
-                    <img [src]="image.reductSize" alt="{{ image.label }}" id="{{ image.res_id }}" height="70">
-                </a>
-            </div>
-        </div>
+            <ngx-gallery *ngIf="galleryImages.length > 0" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
 
     </div><!-- end DIV image-slider -->
 </div><!-- end DIV image-obj -->
