@@ -124,17 +124,17 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 expect(btnDes[0].nativeElement.textContent).toBeDefined();
                 expect(btnDes[0].nativeElement.textContent).toMatch(
                     expectedButtonArray[0].label,
-                    'should be `Volltext-Suche`'
+                    `should be ${expectedButtonArray[0].label}`
                 );
                 expect(btnDes[1].nativeElement.textContent).toBeDefined();
                 expect(btnDes[1].nativeElement.textContent).toMatch(
                     expectedButtonArray[1].label,
-                    'should be `Timeline`'
+                    `should be ${expectedButtonArray[1].label}`
                 );
                 expect(btnDes[2].nativeElement.textContent).toBeDefined();
                 expect(btnDes[2].nativeElement.textContent).toMatch(
                     expectedButtonArray[2].label,
-                    'should be `Bibliographie`'
+                    `should be ${expectedButtonArray[2].label}`
                 );
             });
         });

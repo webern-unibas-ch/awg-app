@@ -73,7 +73,10 @@ export function expectDebugElement(
 export function expectSpyCall(spy: Spy, nTimes: number, expectedValue?: any) {
     expect(spy).toHaveBeenCalled();
     expect(spy).toHaveBeenCalledTimes(nTimes);
-    if (expectedValue) {
+
+    if (expectedValue && (Array.isArray(expectedValue) || expectedValue instanceof Object)) {
+        expect(spy.calls.mostRecent().args[0]).toEqual(expectedValue);
+    } else if (expectedValue) {
         expect(spy.calls.mostRecent().args[0]).toBe(expectedValue);
     }
 }

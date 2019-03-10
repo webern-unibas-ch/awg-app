@@ -253,7 +253,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         });
 
         describe('#navigateToResource', () => {
-            it('... should trigger on event from ResourceDetailHtmlContentPropsComponent component', fakeAsync(() => {
+            it('... should trigger on event from ResourceDetailHtmlContentPropsComponent', fakeAsync(() => {
                 const propsDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentPropsStubComponent,
@@ -285,7 +285,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 expectSpyCall(navigateToResourceSpy, 3, id);
             }));
 
-            it('... should trigger on event from ResourceDetailHtmlContentLinkedobjectsComponent component', fakeAsync(() => {
+            it('... should trigger on event from ResourceDetailHtmlContentLinkedobjectsComponent', fakeAsync(() => {
                 const propsDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentLinkedobjectsStubComponent,

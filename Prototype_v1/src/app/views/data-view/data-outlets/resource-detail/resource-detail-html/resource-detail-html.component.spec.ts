@@ -145,7 +145,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         });
 
         describe('#navigateToResource', () => {
-            it('... should trigger on event from child component', fakeAsync(() => {
+            it('... should trigger on event from ResourceDetailHtmlContentComponent', fakeAsync(() => {
                 let id;
 
                 // undefined

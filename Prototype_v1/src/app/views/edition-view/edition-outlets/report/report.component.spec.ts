@@ -2,15 +2,15 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
-
 import { of as observableOf } from 'rxjs';
+import Spy = jasmine.Spy;
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
-import { DataService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
+import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { DataService } from '@awg-views/edition-view/services';
 
 import { ReportComponent } from './report.component';
 
@@ -43,7 +43,7 @@ describe('ReportComponent', () => {
     let component: ReportComponent;
     let fixture: ComponentFixture<ReportComponent>;
 
-    let getDataSpy;
+    let getDataSpy: Spy;
 
     beforeEach(async(() => {
         // create a fake DataService object with a `getData()` spy
