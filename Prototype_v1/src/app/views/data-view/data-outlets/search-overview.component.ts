@@ -16,29 +16,18 @@ export class SearchOverviewComponent implements OnInit {
 
     ngOnInit() {
         this.searchButtonArray = [
-            {
-                root: '/data/search',
-                link: 'fulltext',
-                label: 'Volltext-Suche',
-                disabled: false
-            },
-            {
-                root: '/data/search',
-                link: 'timeline',
-                label: 'Timeline',
-                disabled: true
-            },
-            {
-                root: '/data/search',
-                link: 'bibliography',
-                label: 'Bibliographie',
-                disabled: true
-            }
+            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
+            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
         ];
     }
 
     onButtonSelect(routerLinkButton: RouterLinkButton) {
-        this.updateSearchInfoTitle(routerLinkButton.label);
+        if (routerLinkButton && routerLinkButton instanceof RouterLinkButton) {
+            this.updateSearchInfoTitle(routerLinkButton.label);
+        } else {
+            return;
+        }
     }
 
     private updateSearchInfoTitle(title: string) {

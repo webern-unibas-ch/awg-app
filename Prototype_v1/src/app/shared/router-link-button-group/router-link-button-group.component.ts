@@ -11,7 +11,7 @@ export class RouterLinkButtonGroupComponent implements OnInit {
     @Input()
     buttonArray: RouterLinkButton[];
     @Output()
-    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter();
+    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 
     constructor() {}
 
