@@ -97,10 +97,6 @@ describe('SearchOverviewComponent (DONE)', () => {
             it('... should contain no RouterLinkButtonGroupComponent yet', () => {
                 getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 0, 0);
             });
-
-            it('... should contain no buttons yet', () => {
-                getAndExpectDebugElementByCss(compDe, 'button.btn', 0, 0);
-            });
         });
     });
 
@@ -122,6 +118,16 @@ describe('SearchOverviewComponent (DONE)', () => {
 
             it('... should contain one RouterLinkButtonGroupComponent', () => {
                 getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+            });
+
+            it('... should pass down buttonArray to RouterLinkButtonGroupComponent', () => {
+                const buttonDes = getAndExpectDebugElementByDirective(compDe, RouterLinkButtonGroupStubComponent, 1, 1);
+                const buttonCmp = buttonDes[0].injector.get(
+                    RouterLinkButtonGroupStubComponent
+                ) as RouterLinkButtonGroupStubComponent;
+
+                expect(buttonCmp.buttonArray).toBeTruthy();
+                expect(buttonCmp.buttonArray).toEqual(expectedButtonArray, `should equal ${expectedButtonArray}`);
             });
         });
 
