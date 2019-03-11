@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, flush, TestBed } from '@angular/core/testing';
+import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -40,24 +40,9 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         // test data
         expectedButtonArray = [
-            {
-                root: '/data/search',
-                link: 'fulltext',
-                label: 'Volltext-Suche',
-                disabled: false
-            },
-            {
-                root: '/data/search',
-                link: 'timeline',
-                label: 'Timeline',
-                disabled: true
-            },
-            {
-                root: '/data/search',
-                link: 'bibliography',
-                label: 'Bibliographie',
-                disabled: true
-            }
+            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
+            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
         ];
 
         // spies on component functions
@@ -103,7 +88,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain buttons', () => {
+            it('... should contain 3 buttons', () => {
                 getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
             });
 
