@@ -13,11 +13,12 @@ import { ApiServiceResult } from '@awg-core/services/api-service/api-service-res
 import { UserDataJson } from '@awg-shared/api-objects';
 
 import { ApiService } from './api.service';
+import { expectSpyCall } from '@testing/expect-helper';
 
 // for http service testing see https://medium.com/spektrakel-blog/angular-testing-snippets-httpclient-d1dc2f035eb8
 
 // helper function
-function expectedErrorResponse(error, expectedError) {
+function expectErrorResponse(error, expectedError) {
     expect(error.status).toEqual(expectedError.status, 'status');
     expect(error.statusText).toEqual(expectedError.statusText, 'statusText');
     expect(error.url).toEqual(expectedError.url, 'url');
@@ -223,13 +224,13 @@ describe('ApiService', () => {
                     apiService.getApiResponse(UserDataJson, queryPath).subscribe(
                         res => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
-                            expectedErrorResponse(error, expectedApiServiceError);
+                            expectErrorResponse(error, expectedApiServiceError);
                             done();
                         }
                     );
 
                     // expect no request to url with given settings
-                    const r = httpTestingController.expectNone(
+                    httpTestingController.expectNone(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
                 });
@@ -246,7 +247,7 @@ describe('ApiService', () => {
                         res => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
                             expect(apiService.getApiResponse).toHaveBeenCalled();
-                            expectedErrorResponse(error, expectedApiServiceError);
+                            expectErrorResponse(error, expectedApiServiceError);
                             done();
                         }
                     );
@@ -257,19 +258,19 @@ describe('ApiService', () => {
                     );
                 });
 
+                /* test muted as long as console.error is commented out */
                 xit(`... should log an error to the console on error`, async(() => {
                     const expectedErrorMsg = 'failed HTTP response with 500 error';
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error');
 
-                    spyOn(console, 'error');
+                    const errorSpy = spyOn(console, 'error').and.callThrough();
 
                     // call service function (fail)
                     apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
                         res => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
-                            expectedErrorResponse(error, expectedApiServiceError);
-                            expect(console.error).toHaveBeenCalled();
-                            expect(console.error).toHaveBeenCalledWith(`ApiService - getApiResponse - error: ${error}`);
+                            expectErrorResponse(error, expectedApiServiceError);
+                            expectSpyCall(errorSpy, 1, ['ApiService - getApiResponse - error: ', error]);
                         }
                     );
 
@@ -290,7 +291,7 @@ describe('ApiService', () => {
                     apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
                         res => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
-                            expectedErrorResponse(error, expectedApiServiceError);
+                            expectErrorResponse(error, expectedApiServiceError);
                         }
                     );
 
@@ -311,7 +312,7 @@ describe('ApiService', () => {
                     apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
                         res => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
-                            expectedErrorResponse(error, expectedApiServiceError);
+                            expectErrorResponse(error, expectedApiServiceError);
                         }
                     );
 
