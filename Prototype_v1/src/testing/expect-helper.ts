@@ -71,12 +71,27 @@ export function expectDebugElement(
 
 /* check if, how often and with which arguments a spy has been called */
 export function expectSpyCall(spy: Spy, nTimes: number, expectedValue?: any) {
-    expect(spy).toHaveBeenCalled();
+    // spy has been called or not
+    nTimes > 0 ? expect(spy).toHaveBeenCalled() : expect(spy).not.toHaveBeenCalled();
+
+    // spy has been called n times
     expect(spy).toHaveBeenCalledTimes(nTimes);
 
-    if (expectedValue && (Array.isArray(expectedValue) || expectedValue instanceof Object)) {
-        expect(spy.calls.mostRecent().args[0]).toEqual(expectedValue);
+    // spy has been called with value x
+    if (expectedValue && Array.isArray(expectedValue)) {
+        expectedValue.forEach((value, index) => {
+            expectRecentSpyCall(spy, value, index);
+        });
     } else if (expectedValue) {
-        expect(spy.calls.mostRecent().args[0]).toBe(expectedValue);
+        expectRecentSpyCall(spy, expectedValue, 0);
+    }
+}
+
+/* check the most recent call of a spy */
+function expectRecentSpyCall(spy: Spy, expectedValue: any, index: number) {
+    if (expectedValue && expectedValue instanceof Object) {
+        expect(spy.calls.mostRecent().args[index]).toEqual(expectedValue);
+    } else if (expectedValue) {
+        expect(spy.calls.mostRecent().args[index]).toBe(expectedValue);
     }
 }
