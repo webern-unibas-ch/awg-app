@@ -36,7 +36,7 @@ describe('SearchOverviewComponent (DONE)', () => {
     let updateSearchInfoTitleSpy: Spy;
 
     beforeEach(async(() => {
-        // create a fake DataService object with a `updateSearchInfoTitle()` spy
+        // create a fake service object with a `updateSearchInfoTitle()` spy
         const sideInfoService = jasmine.createSpyObj('SideInfoService', ['updateSearchInfoTitle']);
 
         // spies on service

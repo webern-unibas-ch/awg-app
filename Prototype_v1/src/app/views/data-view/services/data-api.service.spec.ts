@@ -3,9 +3,10 @@ import { TestBed, async } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { Data } from '@angular/router';
-import Spy = jasmine.Spy;
 
+import Spy = jasmine.Spy;
 import { of as observableOf, throwError as observableThrowError } from 'rxjs';
+
 import { JsonConvert } from 'json2typescript';
 
 import { expectSpyCall } from '@testing/expect-helper';
