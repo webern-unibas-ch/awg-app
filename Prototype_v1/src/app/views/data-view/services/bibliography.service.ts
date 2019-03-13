@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -18,6 +18,11 @@ export class BibliographyService extends ApiService {
     bibShortTitlePropertyId = '614'; // 614 = Bibligoraphie#Kurztitel
     resourcesRoute = 'resources/';
     searchRoute = 'search/';
+
+    constructor(http: HttpClient) {
+        super(http);
+        this.serviceName = 'BibliographyService';
+    }
 
     /**********************************
      *
@@ -38,7 +43,8 @@ export class BibliographyService extends ApiService {
 
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
         const queryPath: string = this.resourcesRoute + resourceId;
+        const queryHttpParams = new HttpParams();
 
-        return this.getApiResponse(ResourceFullResponseJson, queryPath);
+        return this.getApiResponse(ResourceFullResponseJson, queryPath, queryHttpParams);
     }
 }
