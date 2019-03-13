@@ -10,7 +10,7 @@ import {
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
-import { mockContextJson } from '@testing/mock-data/mockContextJson';
+import { mockContextJson } from '@testing/mock-data';
 
 import { ResourceDetailImage } from '@awg-views/data-view/models';
 import { ContextJson } from '@awg-shared/api-objects';
