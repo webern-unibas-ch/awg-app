@@ -37,9 +37,11 @@ export class ApiService {
             map(
                 (result: ApiServiceResult): Observable<any> => {
                     return result.getBody(responseType);
-                },
+                }
+            ),
+            catchError(
                 (error: ApiServiceError): Observable<ApiServiceError> => {
-                    console.error('ApiService - getApiResponse - error: ', error);
+                    // console.error('ApiService - getApiResponse - error: ', error);
                     return observableThrowError(error);
                 }
             )

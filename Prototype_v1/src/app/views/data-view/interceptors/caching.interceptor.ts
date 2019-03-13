@@ -51,7 +51,7 @@ export class CachingInterceptor implements HttpInterceptor {
                     const elapsed = Date.now() - started;
 
                     // TODO: rm
-                    // console.log('CI# caching new resposnse ---> req, event:', req, event);
+                    // console.log('CI# caching new response ---> req, event:', req, event);
                     // console.log(`Request took ${elapsed} ms.`);
 
                     // Update the cache.
