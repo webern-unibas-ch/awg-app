@@ -14,7 +14,7 @@ import {
     Textcritics,
     TextcriticsList
 } from '@awg-views/edition-view/models';
-import { DataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
@@ -57,10 +57,10 @@ describe('EditionDetailComponent', () => {
     let getEditionDetailDataSpy: Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]>;
 
     beforeEach(async(() => {
-        // create a fake DataService object with a `getCurrentSearchResults()` spy
-        const mockDataService = jasmine.createSpyObj('DataService', ['getEditionDetailData']);
+        // create a fake service object with a `getCurrentSearchResults()` spy
+        const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
         // make the spies return a synchronous Observable with the test data
-        getEditionDetailDataSpy = mockDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
+        getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
         const expectedTextcritics = []; // TODO: provide real test data
         mockEditionService = {
@@ -78,7 +78,7 @@ describe('EditionDetailComponent', () => {
                 ModalComponent
             ],
             providers: [
-                { provide: DataService, useValue: mockDataService },
+                { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionService, useValue: mockEditionService }
             ]
         }).compileComponents();

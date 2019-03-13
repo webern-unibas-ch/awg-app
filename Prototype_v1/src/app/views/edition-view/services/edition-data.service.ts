@@ -9,7 +9,7 @@ import { ConvoluteFolio, EditionSvgFile, SourceList, TextcriticsList } from '@aw
 @Injectable({
     providedIn: 'root'
 })
-export class DataService {
+export class EditionDataService {
     private BASE = 'assets/data';
 
     constructor(private http: HttpClient) {}

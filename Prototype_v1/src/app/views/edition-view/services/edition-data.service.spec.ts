@@ -2,22 +2,22 @@ import { TestBed, inject } from '@angular/core/testing';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { HttpClient } from '@angular/common/http';
 
-import { DataService } from './data.service';
+import { EditionDataService } from './edition-data.service';
 
-describe('DataService', () => {
+describe('EditionDataService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
-    let dataService: DataService;
+    let dataService: EditionDataService;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [DataService]
+            providers: [EditionDataService]
         });
 
         httpClient = TestBed.get(HttpClient);
         httpTestingController = TestBed.get(HttpTestingController);
-        dataService = TestBed.get(DataService);
+        dataService = TestBed.get(EditionDataService);
     });
 
     it('should be created', () => {

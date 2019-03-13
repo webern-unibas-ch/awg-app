@@ -10,7 +10,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
-import { DataService } from '@awg-views/edition-view/services';
+import { EditionDataService } from '@awg-views/edition-view/services';
 
 import { ReportComponent } from './report.component';
 
@@ -46,10 +46,10 @@ describe('ReportComponent', () => {
     let getDataSpy: Spy;
 
     beforeEach(async(() => {
-        // create a fake DataService object with a `getData()` spy
-        const dataService = jasmine.createSpyObj('DataService', ['getEditionReportData']);
+        // create a fake service object with a `getData()` spy
+        const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
         // make the spy return a synchronous Observable with the test data
-        getDataSpy = dataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
+        getDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
@@ -61,7 +61,7 @@ describe('ReportComponent', () => {
                 TextcritisStubComponent,
                 ModalComponent
             ],
-            providers: [{ provide: DataService, useValue: dataService }]
+            providers: [{ provide: EditionDataService, useValue: mockEditionDataService }]
         }).compileComponents();
     }));
 

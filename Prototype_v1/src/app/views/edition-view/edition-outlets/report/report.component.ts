@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
 import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
-import { DataService } from '@awg-views/edition-view/services';
+import { EditionDataService } from '@awg-views/edition-view/services';
 
 @Component({
     selector: 'awg-report',
@@ -17,14 +17,18 @@ export class ReportComponent implements OnInit {
     textcriticsData: TextcriticsList;
     private errorMessage: string = undefined;
 
-    constructor(private router: Router, private route: ActivatedRoute, private dataService: DataService) {}
+    constructor(
+        private router: Router,
+        private route: ActivatedRoute,
+        private editionDataService: EditionDataService
+    ) {}
 
     ngOnInit() {
         this.getData();
     }
 
     getData() {
-        this.dataService.getEditionReportData().subscribe(
+        this.editionDataService.getEditionReportData().subscribe(
             (data: [SourceList, TextcriticsList]) => {
                 this.sourceListData = data[0];
                 this.textcriticsData = data[1];
