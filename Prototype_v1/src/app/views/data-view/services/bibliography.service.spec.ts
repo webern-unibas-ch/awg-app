@@ -195,46 +195,50 @@ describe('BibliographyService (DONE)', () => {
                     ]);
                 });
             }));
-
-            it(`... should return an Observable<SearchResponseJson>`, async(() => {
-                getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
-
-                bibliographyService.getBibliographyList().subscribe((response: SearchResponseJson) => {
-                    expect(response).toEqual(expectedSearchResponseJson);
-                });
-            }));
         });
 
-        describe('fail', () => {
-            it(`... should return an Observable<ApiServiceError>`, async(() => {
-                const expectedQueryPath = expectedSearchRoute;
-                const expectedQueryHttpParams = new HttpParams()
-                    .set('searchtype', 'extended')
-                    .set('property_id', expectedBibShortTitlePropertyId)
-                    .set('compop', 'EXISTS')
-                    .set('filter_by_project', expectedProjectId)
-                    .set('filter_by_restype', expectedResTypeId);
+        describe('response', () => {
+            describe('success', () => {
+                it(`... should return an Observable<SearchResponseJson>`, async(() => {
+                    getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    bibliographyService.getBibliographyList().subscribe((response: SearchResponseJson) => {
+                        expect(response).toEqual(expectedSearchResponseJson);
+                    });
+                }));
+            });
 
-                const expectedApiServiceError = new ApiServiceError();
-                expectedApiServiceError.status = 401;
-                expectedApiServiceError.url = expectedQueryPath;
+            describe('fail', () => {
+                it(`... should return an Observable<ApiServiceError>`, async(() => {
+                    const expectedQueryPath = expectedSearchRoute;
+                    const expectedQueryHttpParams = new HttpParams()
+                        .set('searchtype', 'extended')
+                        .set('property_id', expectedBibShortTitlePropertyId)
+                        .set('compop', 'EXISTS')
+                        .set('filter_by_project', expectedProjectId)
+                        .set('filter_by_restype', expectedResTypeId);
 
-                getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+                    const expectedErrorMsg = 'failed HTTP response with 401 error';
 
-                bibliographyService.getBibliographyList().subscribe(
-                    result => fail(expectedErrorMsg),
-                    (error: ApiServiceError) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            SearchResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams
-                        ]);
-                        expect(error).toEqual(expectedApiServiceError);
-                    }
-                );
-            }));
+                    const expectedApiServiceError = new ApiServiceError();
+                    expectedApiServiceError.status = 401;
+                    expectedApiServiceError.url = expectedQueryPath;
+
+                    getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+
+                    bibliographyService.getBibliographyList().subscribe(
+                        result => fail(expectedErrorMsg),
+                        (error: ApiServiceError) => {
+                            expectSpyCall(getApiResponseSpy, 1, [
+                                SearchResponseJson,
+                                expectedQueryPath,
+                                expectedQueryHttpParams
+                            ]);
+                            expect(error).toEqual(expectedApiServiceError);
+                        }
+                    );
+                }));
+            });
         });
     });
 
@@ -273,46 +277,50 @@ describe('BibliographyService (DONE)', () => {
                         ]);
                     });
             }));
-
-            it(`... should return an Observable<ResourceFullResponseJson>`, async(() => {
-                const expectedResourceId = '11398';
-
-                getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
-
-                bibliographyService
-                    .getBibliographyItemDetail(expectedResourceId)
-                    .subscribe((response: ResourceFullResponseJson) => {
-                        expect(response).toEqual(expectedResourceFullResponseJson);
-                    });
-            }));
         });
 
-        describe('fail', () => {
-            it(`... should return an Observable<ApiServiceError>`, async(() => {
-                const expectedResourceId = undefined;
-                const expectedQueryPath = expectedResourcesRoute + expectedResourceId;
-                const expectedQueryHttpParams = new HttpParams();
+        describe('response', () => {
+            describe('success', () => {
+                it(`... should return an Observable<ResourceFullResponseJson>`, async(() => {
+                    const expectedResourceId = '11398';
 
-                const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
 
-                const expectedApiServiceError = new ApiServiceError();
-                expectedApiServiceError.status = 401;
-                expectedApiServiceError.url = expectedResourcesRoute + expectedResourceId;
+                    bibliographyService
+                        .getBibliographyItemDetail(expectedResourceId)
+                        .subscribe((response: ResourceFullResponseJson) => {
+                            expect(response).toEqual(expectedResourceFullResponseJson);
+                        });
+                }));
+            });
 
-                getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+            describe('fail', () => {
+                it(`... should return an Observable<ApiServiceError>`, async(() => {
+                    const expectedResourceId = undefined;
+                    const expectedQueryPath = expectedResourcesRoute + expectedResourceId;
+                    const expectedQueryHttpParams = new HttpParams();
 
-                bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe(
-                    result => fail(expectedErrorMsg),
-                    (error: ApiServiceError) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            ResourceFullResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams
-                        ]);
-                        expect(error).toEqual(expectedApiServiceError);
-                    }
-                );
-            }));
+                    const expectedErrorMsg = 'failed HTTP response with 401 error';
+
+                    const expectedApiServiceError = new ApiServiceError();
+                    expectedApiServiceError.status = 401;
+                    expectedApiServiceError.url = expectedResourcesRoute + expectedResourceId;
+
+                    getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+
+                    bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe(
+                        result => fail(expectedErrorMsg),
+                        (error: ApiServiceError) => {
+                            expectSpyCall(getApiResponseSpy, 1, [
+                                ResourceFullResponseJson,
+                                expectedQueryPath,
+                                expectedQueryHttpParams
+                            ]);
+                            expect(error).toEqual(expectedApiServiceError);
+                        }
+                    );
+                }));
+            });
         });
     });
 });

@@ -40,6 +40,7 @@ function createApiServiceError(status: number, statusText: string, noErrorInfo?:
 
 describe('ApiService', () => {
     let apiService: ApiService;
+
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
@@ -62,7 +63,7 @@ describe('ApiService', () => {
         httpClient = TestBed.get(HttpClient);
         httpTestingController = TestBed.get(HttpTestingController);
 
-        // Test data
+        // test data
         queryHttpParams = new HttpParams().set('searchtype', expectedSearchType).set('show_nrows', expectedNRows);
         apiRequest = new ApiRequest(queryPath, queryHttpParams);
     });

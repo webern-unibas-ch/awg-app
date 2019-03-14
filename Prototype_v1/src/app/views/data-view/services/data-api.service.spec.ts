@@ -15,15 +15,17 @@ import { mockResourceFullResponseJson, mockSearchResponseConverted, mockSearchRe
 import { AppConfig } from '@awg-app/app.config';
 import { ConversionService } from '@awg-core/services';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
-import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
+import { ResourceFullResponseJson, SearchResponseJson, UserDataJson } from '@awg-shared/api-objects';
 
 import { DataApiService } from './data-api.service';
+import { ApiServiceResult } from '@awg-core/services/api-service/api-service-result.model';
 
 describe('DataApiService (DONE)', () => {
+    let dataApiService: DataApiService;
+
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    let dataApiService: DataApiService;
     let mockConversionService: Partial<ConversionService>;
 
     let getApiResponseSpy: Spy;
@@ -284,48 +286,54 @@ describe('DataApiService (DONE)', () => {
                     ]);
                 });
             }));
-
-            it(`... should return an Observable<SearchResponseJson> (converted)`, async(() => {
-                const expectedSearchString = 'Test';
-
-                getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
-
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe((response: SearchResponseJson) => {
-                    expect(response).toEqual(expectedSearchResponseConverted);
-                });
-            }));
         });
 
-        describe('fail', () => {
-            it(`... should return an Observable<ApiServiceError>`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedQueryPath = expectedSearchRoute + expectedSearchString;
-                const expectedQueryHttpParams = new HttpParams()
-                    .set('searchtype', 'fulltext')
-                    .set('filter_by_project', '6')
-                    .set('show_nrows', '-1')
-                    .set('start_at', '0');
+        describe('response', () => {
+            describe('success', () => {
+                it(`... should return an Observable<SearchResponseJson> (converted)`, async(() => {
+                    const expectedSearchString = 'Test';
 
-                const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
 
-                const expectedApiServiceError = new ApiServiceError();
-                expectedApiServiceError.status = 401;
-                expectedApiServiceError.url = expectedQueryPath;
+                    dataApiService
+                        .getFulltextSearchData(expectedSearchString)
+                        .subscribe((response: SearchResponseJson) => {
+                            expect(response).toEqual(expectedSearchResponseConverted);
+                        });
+                }));
+            });
 
-                getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+            describe('fail', () => {
+                it(`... should return an Observable<ApiServiceError>`, async(() => {
+                    const expectedSearchString = 'Test';
+                    const expectedQueryPath = expectedSearchRoute + expectedSearchString;
+                    const expectedQueryHttpParams = new HttpParams()
+                        .set('searchtype', 'fulltext')
+                        .set('filter_by_project', '6')
+                        .set('show_nrows', '-1')
+                        .set('start_at', '0');
 
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe(
-                    result => fail(expectedErrorMsg),
-                    (error: ApiServiceError) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            SearchResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams
-                        ]);
-                        expect(error).toEqual(expectedApiServiceError);
-                    }
-                );
-            }));
+                    const expectedErrorMsg = 'failed HTTP response with 401 error';
+
+                    const expectedApiServiceError = new ApiServiceError();
+                    expectedApiServiceError.status = 401;
+                    expectedApiServiceError.url = expectedQueryPath;
+
+                    getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+
+                    dataApiService.getFulltextSearchData(expectedSearchString).subscribe(
+                        result => fail(expectedErrorMsg),
+                        (error: ApiServiceError) => {
+                            expectSpyCall(getApiResponseSpy, 1, [
+                                SearchResponseJson,
+                                expectedQueryPath,
+                                expectedQueryHttpParams
+                            ]);
+                            expect(error).toEqual(expectedApiServiceError);
+                        }
+                    );
+                }));
+            });
         });
     });
 
@@ -364,46 +372,51 @@ describe('DataApiService (DONE)', () => {
                         ]);
                     });
             }));
-
-            it(`... should return an Observable<ResourceFullResponseJson>`, async(() => {
-                const expectedResourceId = '11398';
-
-                getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
-
-                dataApiService
-                    .getResourceDetailData(expectedResourceId)
-                    .subscribe((response: ResourceFullResponseJson) => {
-                        expect(response).toEqual(expectedResourceFullResponseJson);
-                    });
-            }));
         });
 
-        describe('fail', () => {
-            it(`... should return an Observable<ApiServiceError>`, async(() => {
-                const expectedResourceId = undefined;
-                const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
-                const expectedQueryHttpParams = new HttpParams();
+        describe('response', () => {
+            describe('success', () => {
+                it(`... should return an Observable<ResourceFullResponseJson>`, async(() => {
+                    const expectedResourceId = '11398';
 
-                const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
 
-                const expectedApiServiceError = new ApiServiceError();
-                expectedApiServiceError.status = 401;
-                expectedApiServiceError.url = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                    dataApiService
+                        .getResourceDetailData(expectedResourceId)
+                        .subscribe((response: ResourceFullResponseJson) => {
+                            expect(response).toEqual(expectedResourceFullResponseJson);
+                        });
+                }));
+            });
 
-                getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+            describe('fail', () => {
+                it(`... should return an Observable<ApiServiceError>`, async(() => {
+                    const expectedResourceId = undefined;
+                    const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                    const expectedQueryHttpParams = new HttpParams();
 
-                dataApiService.getResourceDetailData(expectedResourceId).subscribe(
-                    result => fail(expectedErrorMsg),
-                    (error: ApiServiceError) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            ResourceFullResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams
-                        ]);
-                        expect(error).toEqual(expectedApiServiceError);
-                    }
-                );
-            }));
+                    const expectedErrorMsg = 'failed HTTP response with 401 error';
+
+                    const expectedApiServiceError = new ApiServiceError();
+                    expectedApiServiceError.status = 401;
+                    expectedApiServiceError.url =
+                        expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+
+                    getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+
+                    dataApiService.getResourceDetailData(expectedResourceId).subscribe(
+                        result => fail(expectedErrorMsg),
+                        (error: ApiServiceError) => {
+                            expectSpyCall(getApiResponseSpy, 1, [
+                                ResourceFullResponseJson,
+                                expectedQueryPath,
+                                expectedQueryHttpParams
+                            ]);
+                            expect(error).toEqual(expectedApiServiceError);
+                        }
+                    );
+                }));
+            });
         });
     });
 });
