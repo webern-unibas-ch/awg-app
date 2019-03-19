@@ -20,18 +20,26 @@
         "lint": "ng lint awg-app",
         "e2e": "ng e2e",
         "build:prod": "yarn build --prod --aot=false",
-        "build:gzip": "yarn build:prod && gzipper ./dist",
-        "build:stats": "yarn build:prod --stats-json && gzipper ./dist && webpack-bundle-analyzer dist/stats.json",
-        "build:sourcemap": "source-map-explorer dist/main.*.bundle.js",
+        "build:gh": "yarn build --prod --aot=false --base-href \"https://webern-unibas-ch.github.io/test2/\"",
+        "build:gzip": "run-s build:prod gzipper",
+        "build:stats": "run-s build:prod \"--stats-json\" gzipper wpanalyzer",
+        "gzipper": "gzipper ./dist",
+        "sourcemap": "source-map-explorer dist/main.*.bundle.js",
+        "wpanalyzer": "webpack-bundle-analyzer dist/stats.json",
         "build:css": "./themes/bin/build-css",
         "watch:css": "./themes/bin/watch-css",
         "build:css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
         "watch:css-win": "nodemon -e scss -x \"npm run build-css-win\" ",
         "format:fix": "pretty-quick --staged",
-        "gzipper": "gzipper",
-        "release": "standard-version"
+        "update-appversion": "cross-var ./version.sh $npm_package_version",
+        "pre-release": "standard-version -a",
+        "release:gh": "cross-var ngh --dry-run --message \"Release $npm_package_name $npm_package_version\" ",
+        "deploy": "run-s build:prod release:gh"
     },
     "standard-version": {
+        "scripts": {
+            "postbump": "yarn update-appversion"
+        },
         "skip": {
             "tag": true
         }
@@ -91,6 +99,7 @@
         "@types/node": "~8.9.4",
         "codelyzer": "~4.5.0",
         "conventional-recommended-bump": "^4.0.1",
+        "cross-var": "^1.1.0",
         "gzipper": "^1.4.2",
         "husky": "^1.1.1",
         "jasmine-core": "~2.99.1",
