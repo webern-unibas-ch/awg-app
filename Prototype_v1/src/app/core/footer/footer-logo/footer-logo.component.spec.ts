@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+
+import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
+import { Logo } from '@awg-core/core-models';
 
 import { FooterLogoComponent } from './footer-logo.component';
-import { Logo } from '@awg-core/core-models';
 
 describe('FooterLogoComponent (DONE)', () => {
     let component: FooterLogoComponent;
@@ -25,6 +27,7 @@ describe('FooterLogoComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
+        // test data
         expectedLogo = {
             id: 'unibaslogo',
             src: 'assets/img/logos/uni.svg',
@@ -44,19 +47,17 @@ describe('FooterLogoComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one image inside an anchor', () => {
-                const imageDes = fixture.debugElement.queryAll(By.css('a > img'));
-                expect(imageDes).toBeTruthy();
-                expect(imageDes.length).toBe(1, 'should have 1 image');
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
             });
 
             it('... should not render logo yet', () => {
                 // find debug elements
-                const anchorDe = fixture.debugElement.query(By.css('a'));
-                const imageDe = fixture.debugElement.query(By.css('img'));
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
 
                 // find native elements
-                const anchorEl = anchorDe.nativeElement;
-                const imageEl = imageDe.nativeElement;
+                const anchorEl = anchorDes[0].nativeElement;
+                const imageEl = imageDes[0].nativeElement;
 
                 expect(anchorEl.href).toBeDefined();
                 expect(anchorEl.href).toBe('', 'should be empty string');
@@ -90,12 +91,12 @@ describe('FooterLogoComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should render logo', () => {
                 // find debug elements
-                const anchorDe = fixture.debugElement.query(By.css('a'));
-                const imageDe = fixture.debugElement.query(By.css('img'));
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
 
                 // find native elements
-                const anchorEl = anchorDe.nativeElement;
-                const imageEl = imageDe.nativeElement;
+                const anchorEl = anchorDes[0].nativeElement;
+                const imageEl = imageDes[0].nativeElement;
 
                 expect(anchorEl.href).toContain(expectedLogo.href);
                 expect(imageEl.id).toContain(expectedLogo.id);

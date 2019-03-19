@@ -3,8 +3,11 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { TextcriticsComponent } from './textcritics.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { Textcritics } from '@awg-views/edition-view/models';
+
+import { TextcriticsComponent } from './textcritics.component';
 
 // mock heading component
 @Component({ selector: 'awg-edition-tka-table', template: '' })
@@ -21,6 +24,7 @@ describe('TextcriticsComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [NgbAccordionModule],
             declarations: [TextcriticsComponent, EditionTkaTableStubComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));

@@ -33,9 +33,16 @@ import { cloneDeep } from 'lodash';
 @Component({
     selector: '[compile-html]',
     template: `
-        <span *ngIf="html !== undefined && html !== null && html.trim() !== '' && dynamicComponent !== undefined && dynamicModule !== undefined">
-        <ng-container *ngComponentOutlet="dynamicComponent;
-                            ngModuleFactory: dynamicModule;"></ng-container>
+        <span
+            *ngIf="
+                html !== undefined &&
+                html !== null &&
+                html.trim() !== '' &&
+                dynamicComponent !== undefined &&
+                dynamicModule !== undefined
+            "
+        >
+            <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
         </span>
     `
 })

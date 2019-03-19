@@ -18,14 +18,10 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
     ngOnInit() {}
 
     navigateToResource(id?: string): void {
-        if (id) {
-            id.toString();
+        if (!id) {
+            return;
         }
+        id = id.toString();
         this.resourceRequest.emit(id);
-    }
-
-    navigateToSearchResults(): void {
-        // TODO navigation to image or connected objects details
-        console.log('ResourceDetailHtmlContent# got navigation request');
     }
 }

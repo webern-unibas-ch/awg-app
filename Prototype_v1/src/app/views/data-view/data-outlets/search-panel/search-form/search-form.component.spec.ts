@@ -1,10 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
-
-// ReactiveFormsModule
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { SearchFormComponent } from './search-form.component';
 
@@ -16,7 +14,7 @@ describe('SearchFormComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [FormsModule, ReactiveFormsModule],
+            imports: [FontAwesomeModule, ReactiveFormsModule],
             declarations: [SearchFormComponent]
         }).compileComponents();
     }));

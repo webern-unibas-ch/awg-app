@@ -8,28 +8,15 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
     styleUrls: ['./edition-overview.component.css']
 })
 export class EditionOverviewComponent implements OnInit {
-    editionButtonArray: RouterLinkButton[] = [
-        {
-            root: '/edition',
-            link: 'intro',
-            label: 'Einleitung',
-            disabled: false
-        },
-        {
-            root: '/edition',
-            link: 'detail',
-            label: 'Edierter Notentext',
-            disabled: false
-        },
-        {
-            root: '/edition',
-            link: 'report',
-            label: 'Kritischer Bericht',
-            disabled: false
-        }
-    ];
+    editionButtonArray: RouterLinkButton[];
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.editionButtonArray = [
+            new RouterLinkButton('/edition', 'intro', 'Einleitung', false),
+            new RouterLinkButton('/edition', 'detail', 'Edierter Notentext', false),
+            new RouterLinkButton('/edition', 'report', 'Kritischer Bericht', false)
+        ];
+    }
 }

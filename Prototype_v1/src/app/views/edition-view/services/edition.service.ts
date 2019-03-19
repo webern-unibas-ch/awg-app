@@ -23,8 +23,8 @@ export class EditionService {
     }
 
     /*
-             * private function to filter out needed textcritics
-             */
+     * private function to filter out needed textcritics
+     */
     private filterTextcritics(textcritics, overlay, filterIndex): boolean {
         // shortcuts & trimmed values
         const measure = textcritics.measure.replace('[', '').replace(']', '');

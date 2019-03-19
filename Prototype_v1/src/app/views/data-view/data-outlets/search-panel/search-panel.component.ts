@@ -1,15 +1,13 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Location } from '@angular/common';
-import { ActivatedRoute, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { switchMap, map } from 'rxjs/operators';
 
-import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
+import { ConversionService, DataStreamerService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-search-panel',
@@ -17,66 +15,35 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
     styleUrls: ['./search-panel.component.css']
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
-    dataApiServiceSubscription: Subscription;
+    navigationSubscription: Subscription;
 
-    searchData: SearchResponseJson;
-    searchValue = '';
     searchUrl = '';
-    searchResultText: string;
+    currentQueryParams: ParamMap;
+
+    searchParams: SearchParams = {
+        query: '',
+        nRows: '10',
+        startAt: '0',
+        view: 'table'
+    };
 
     errorMessage: any;
     isLoadingData = false;
+    viewChanged = false;
 
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private location: Location,
         private conversionService: ConversionService,
         private dataApiService: DataApiService,
         private streamerService: DataStreamerService
     ) {}
 
     ngOnInit() {
-        this.dataApiServiceSubscription = this.subscribeToDataApiService();
+        this.navigationSubscription = this.subscribeToDataApiService();
     }
 
-    subscribeToDataApiService(): Subscription {
-        return this.route.paramMap
-            .pipe(
-                switchMap((params: ParamMap) => {
-                    // get query param from route to update searchValue
-                    if (params.get('query')) {
-                        this.searchValue = params.get('query');
-                    }
-
-                    this.onLoadingStart();
-
-                    // fetch search data for searchValue
-                    return this.dataApiService.getFulltextSearchData(this.searchValue).pipe(
-                        map((searchResponse: SearchResponseJson) => {
-                            // update url for search
-                            this.updateCurrentUrl();
-
-                            // prepare search results
-                            return this.prepareSearchResults(searchResponse);
-                        })
-                    );
-                })
-            )
-            .subscribe(
-                (searchResponse: SearchResponseJson) => {
-                    // share search data via streamer service
-                    this.updateStreamerService(searchResponse, this.searchValue);
-
-                    this.onLoadingEnd();
-                },
-                error => {
-                    this.errorMessage = <any>error;
-                }
-            );
-    }
-
-    // change the load status
+    // switch the load status
     changeLoadingStatus(status: boolean) {
         this.isLoadingData = status;
     }
@@ -91,21 +58,176 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.changeLoadingStatus(false);
     }
 
-    // route to url with query when getting submit request
-    onSubmit(query: string) {
-        if (query !== this.searchValue) {
-            this.router.navigate(['data/search/fulltext', { query: query }]);
+    // new startPosition after page change request
+    onPageChange(requestedStartAt: string): void {
+        if (requestedStartAt !== this.searchParams.startAt) {
+            // view has not changed
+            this.viewChanged = false;
+
+            const sp: SearchParams = {
+                query: this.searchParams.query,
+                nRows: this.searchParams.nRows,
+                startAt: requestedStartAt,
+                view: this.searchParams.view
+            };
+            // route to new params
+            this.routeToSelf(sp);
         }
     }
 
-    prepareSearchResults(searchResponse: SearchResponseJson): SearchResponseJson {
-        // conversion of search results for HTML display
-        return this.conversionService.convertFullTextSearchResults(searchResponse);
+    // new row number after row change request
+    onRowChange(requestedRows: string): void {
+        if (requestedRows !== this.searchParams.nRows) {
+            // view has not changed
+            this.viewChanged = false;
+
+            // reset start position
+            this.searchParams.startAt = '0';
+
+            const sp: SearchParams = {
+                query: this.searchParams.query,
+                nRows: requestedRows,
+                startAt: this.searchParams.startAt,
+                view: this.searchParams.view
+            };
+
+            // route to new params
+            this.routeToSelf(sp);
+        }
+    }
+
+    // new row number after row change request
+    onViewChange(requestedView: string): void {
+        if (requestedView !== this.searchParams.view) {
+            // view has changed
+            this.viewChanged = true;
+
+            const sp: SearchParams = {
+                query: this.searchParams.query,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: requestedView
+            };
+
+            // route to new params
+            this.routeToSelf(sp);
+        }
+    }
+
+    // new query after search request
+    onSearch(requestedQuery: string): void {
+        if (requestedQuery !== this.searchParams.query) {
+            // view has not changed
+            this.viewChanged = false;
+
+            const sp: SearchParams = {
+                query: requestedQuery,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: this.searchParams.view
+            };
+
+            // route to new search params
+            this.routeToSelf(sp);
+        }
+    }
+
+    // route to self to set new params
+    routeToSelf(sp: SearchParams) {
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
+            queryParamsHandling: 'merge'
+        });
+    }
+
+    subscribeToDataApiService(): Subscription {
+        return this.router.events.subscribe((e: any) => {
+            // check for end of navigation
+            if (e instanceof NavigationEnd) {
+                // snapshot of current route query params
+                const qp = this.route.snapshot.queryParamMap;
+
+                if (qp !== this.currentQueryParams) {
+                    this.currentQueryParams = qp;
+
+                    if (qp.keys.length < 4) {
+
+                        const sp: SearchParams = {
+                            query: qp.get('query') || this.searchParams.query,
+                            nRows: qp.get('nrows') || this.searchParams.nRows,
+                            startAt: qp.get('startAt') || this.searchParams.startAt,
+                            view: qp.get('view') || this.searchParams.view
+                        };
+                        this.routeToSelf(sp);
+                    } else {
+                        // update search params from route if available
+                        this.updateSearchParamsFromRoute(qp);
+
+                        if (this.searchParams.query && !this.viewChanged) {
+                            // start loading
+                            this.onLoadingStart();
+
+                            // fetch search data
+                            return this.dataApiService
+                                .getFulltextSearchData(
+                                    this.searchParams.query,
+                                    this.searchParams.nRows,
+                                    this.searchParams.startAt
+                                )
+                                .subscribe(
+                                    (searchResponse: SearchResponseJson) => {
+                                        // update url for search
+                                        this.updateCurrentUrl();
+
+                                        // share search data via streamer service
+                                        this.updateStreamerService(searchResponse, this.searchParams.query);
+
+                                        // end loading
+                                        this.onLoadingEnd();
+                                    },
+                                    error => {
+                                        this.errorMessage = <any>error;
+                                    }
+                                );
+                        } else {
+                            // console.log('No search query!');
+                        }
+                    }
+                } else {
+                    // console.log('Routed on same page with same query params');
+                }
+            }
+        });
     }
 
     updateCurrentUrl() {
         // get url from search service
         this.searchUrl = this.dataApiService.httpGetUrl;
+    }
+
+    // update search params from route
+    updateSearchParamsFromRoute(params: ParamMap) {
+        if (!params) {
+            return;
+        }
+
+        if (params.get('query') && params.get('query') !== this.searchParams.query) {
+            this.searchParams.query = params.get('query');
+        }
+        if (params.get('nrows') && params.get('nrows') !== this.searchParams.nRows) {
+            this.searchParams.nRows = params.get('nrows');
+        }
+        if (params.get('startAt') && params.get('startAt') !== this.searchParams.startAt) {
+            this.searchParams.startAt = params.get('startAt');
+        }
+        if (
+            params.get('view') &&
+            (params.get('view') === 'table' || params.get('view') === 'grid') &&
+            params.get('view') !== this.searchParams.view
+        ) {
+            this.searchParams.view = params.get('view');
+        }
     }
 
     // update search data via streamer service
@@ -116,8 +238,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     ngOnDestroy() {
         // prevent memory leak when component destroyed
-        if (this.dataApiServiceSubscription) {
-            this.dataApiServiceSubscription.unsubscribe();
+        if (this.navigationSubscription) {
+            this.navigationSubscription.unsubscribe();
         }
     }
 }

@@ -13,7 +13,7 @@
 *
 ************************************************/ -->
 <!-- resourceDetailData content -->
-<div class="resource-content">
+<div class="awg-resource-content">
     <div class="row">
 
         <!-- object properties -->
@@ -30,8 +30,7 @@
 
                 <!-- image objects -->
                 <awg-resource-detail-html-content-imageobjects *ngIf="content?.images.length > 0"
-                                                               [images]="content?.images"
-                                                               (resourceRequest)="navigateToResource($event)">
+                                                               [images]="content?.images">
                 </awg-resource-detail-html-content-imageobjects>
 
 

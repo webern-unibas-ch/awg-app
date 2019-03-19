@@ -39,23 +39,46 @@ export class RouterStub {
 
 // #docregion activated-route-stub
 import { convertToParamMap, ParamMap, Params } from '@angular/router';
-import { ReplaySubject } from 'rxjs';
-
+import { BehaviorSubject, ReplaySubject } from 'rxjs';
 /**
  * An ActivateRoute test double with a `paramMap` observable.
  * Use the `setParamMap()` method to add the next `paramMap` value.
  */
+@Injectable()
 export class ActivatedRouteStub {
     // Use a ReplaySubject to share previous values with subscribers
     // and pump new values into the `paramMap` observable
-    private subject = new ReplaySubject<ParamMap>();
+
+    // ActivatedRoute.params
+    private subject = new BehaviorSubject(this.testParams);
+    params = this.subject.asObservable();
+
+    // Test parameters
+    private _testParams: {};
+
+    get testParams() {
+        return this._testParams;
+    }
+
+    set testParams(params: {}) {
+        this._testParams = params;
+        this.subject.next(params);
+    }
+
+    // ActivatedRoute.snapshot.params
+    get snapshot() {
+        return { params: this.testParams };
+    }
+
+    // ActivatedRoute.paramMap
+    private paramMapSubject = new ReplaySubject<ParamMap>();
 
     constructor(initialParams?: Params) {
         this.setParamMap(initialParams);
     }
 
     /** The mock paramMap observable */
-    readonly paramMap = this.subject.asObservable();
+    readonly paramMap = this.paramMapSubject.asObservable();
 
     /** Set the paramMap observables's next value */
     setParamMap(params?: Params) {
@@ -69,6 +92,6 @@ export class ActivatedRouteStub {
  */
 @NgModule({
     imports: [AppModule],
-    declarations: [RouterLinkStubDirective, RouterOutletStubComponent, ActivatedRouteStub]
+    declarations: [RouterLinkStubDirective, RouterOutletStubComponent]
 })
 export class FakeRouterModule {}

@@ -20,9 +20,10 @@ export class ResourceDetailHeaderComponent implements OnInit {
     ngOnInit() {}
 
     navigateToResource(id?: string) {
-        if (id) {
-            id.toString();
+        if (!id) {
+            return;
         }
+        id = id.toString();
         this.resourceRequest.emit(id);
     }
 }

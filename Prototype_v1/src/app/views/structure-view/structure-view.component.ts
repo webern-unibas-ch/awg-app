@@ -18,6 +18,9 @@ export class StructureViewComponent implements OnInit {
 
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'structureInfo' } }], { preserveFragment: true });
+        this.router.navigate([{ outlets: { side: 'structureInfo' } }], {
+            preserveFragment: true,
+            queryParamsHandling: 'preserve'
+        });
     }
 }

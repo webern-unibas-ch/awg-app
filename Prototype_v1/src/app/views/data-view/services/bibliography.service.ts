@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
@@ -16,8 +16,13 @@ export class BibliographyService extends ApiService {
     projectId = '6';
     resTypeId = '126'; // test-01: 127
     bibShortTitlePropertyId = '614'; // 614 = Bibligoraphie#Kurztitel
-    resourcesRoute = '/resources/';
-    searchRoute = '/search/';
+    resourcesRoute = 'resources/';
+    searchRoute = 'search/';
+
+    constructor(http: HttpClient) {
+        super(http);
+        this.serviceName = 'BibliographyService';
+    }
 
     /**********************************
      *
@@ -25,20 +30,21 @@ export class BibliographyService extends ApiService {
      *
      **********************************/
     getBibliographyList(): Observable<SearchResponseJson> {
-        const queryString: string = this.searchRoute;
-        const queryParams = new HttpParams()
+        const queryPath: string = this.searchRoute;
+        const queryHttpParams = new HttpParams()
             .set('searchtype', 'extended')
             .set('property_id', this.bibShortTitlePropertyId)
             .set('compop', 'EXISTS')
             .set('filter_by_project', this.projectId)
             .set('filter_by_restype', this.resTypeId);
 
-        return this.getApiResponse(SearchResponseJson, queryString, queryParams);
+        return this.getApiResponse(SearchResponseJson, queryPath, queryHttpParams);
     }
 
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
-        const queryString: string = this.resourcesRoute + resourceId;
+        const queryPath: string = this.resourcesRoute + resourceId;
+        const queryHttpParams = new HttpParams();
 
-        return this.getApiResponse(ResourceFullResponseJson, queryString);
+        return this.getApiResponse(ResourceFullResponseJson, queryPath, queryHttpParams);
     }
 }

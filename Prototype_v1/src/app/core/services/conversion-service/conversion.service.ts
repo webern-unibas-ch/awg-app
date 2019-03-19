@@ -46,7 +46,7 @@ export class ConversionService extends ApiService {
      * ResourceDetailGroupedIncomingLinks object
      *
      *****************************************/
-    getNestedArraysLength(obj: ResourceDetailGroupedIncomingLinks): number {
+    getNestedArraysTotalItems(obj: ResourceDetailGroupedIncomingLinks): number {
         let size = 0;
         // iterate over object keys
         Object.keys(obj).forEach(key => {
@@ -114,8 +114,9 @@ export class ConversionService extends ApiService {
 
         if (searchData.subjects) {
             const length = searchData.subjects.length;
-            const resString: string = length === 1 ? `zugängliches Resultat` : `zugängliche Resultate`;
-            resText = `${length}/${searchData.nhits} `;
+            const resString: string = length === 1 ? `Resultat` : `Resultate`;
+            // resText = `${length}/${searchData.nhits} `;
+            resText = `${searchData.nhits} `;
             resText += `${resString} für "${searchValue}"`;
 
             if (this.filteredOut > 0) {
@@ -572,22 +573,22 @@ export class ConversionService extends ApiService {
      *
      *****************************************/
     private getAdditionalInfoFromApi(responseType: any, valueId: string): Observable<any> {
-        let queryString: string;
+        let queryPath: string;
         switch (responseType) {
             case GeoDataJson:
-                queryString = '/geonames/' + valueId + '?reqtype=node';
+                queryPath = 'geonames/' + valueId + '?reqtype=node';
                 break;
             case HlistJson:
-                queryString = '/hlists/' + valueId;
+                queryPath = 'hlists/' + valueId;
                 break;
             case ResourceContextResponseJson:
-                queryString = '/resources/' + valueId + '_-_local?reqtype=context';
+                queryPath = 'resources/' + valueId + '_-_local?reqtype=context';
                 break;
             case SelectionJson:
-                queryString = '/selections/' + valueId;
+                queryPath = 'selections/' + valueId;
                 break;
         }
-        return this.getApiResponse(responseType, queryString);
+        return this.getApiResponse(responseType, queryPath);
     }
 
     /******************************************
@@ -692,13 +693,13 @@ export class ConversionService extends ApiService {
      *****************************************/
     private distinctSubjectItemArray(arr: SubjectItemJson[]) {
         /*
-        * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
-        *
-        * This function checks for every array position (reduce)
-        * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
-        * and if not pushes y into x that is initalized as empty array []
-        *
-        */
+         * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
+         *
+         * This function checks for every array position (reduce)
+         * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
+         * and if not pushes y into x that is initalized as empty array []
+         *
+         */
         if (!arr) {
             return;
         }

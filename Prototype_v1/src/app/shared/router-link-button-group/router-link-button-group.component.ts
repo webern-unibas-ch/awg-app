@@ -9,9 +9,9 @@ import { RouterLinkButton } from './router-link-button.model';
 })
 export class RouterLinkButtonGroupComponent implements OnInit {
     @Input()
-    buttonArray: RouterLinkButton;
+    buttonArray: RouterLinkButton[];
     @Output()
-    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter();
+    selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 
     constructor() {}
 

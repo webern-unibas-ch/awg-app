@@ -1,4 +1,5 @@
-import { Component, Input, OnDestroy, OnInit } from '@angular/core';
+import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
@@ -8,7 +9,7 @@ import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
@@ -20,20 +21,33 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
 export class SearchResultListComponent implements OnInit, OnDestroy {
     @Input()
     searchUrl: string;
+    @Input()
+    searchParams: SearchParams;
+    @Output()
+    pageChangeRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    rowChangeRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
     errorMessage: any = undefined;
     currentId: string;
 
+    radioViewForm: FormGroup;
+    page: number;
+    pageSize: number;
+    rowNumberArray = [5, 10, 25, 50, 100, 200];
+
     streamerServiceSubscription: Subscription;
     searchResponse: SearchResponseJson;
     searchResultText: string;
-    searchResultView: 'grid' | 'table' = 'table';
     searchValue: string;
 
     faGripHorizontal = faGripHorizontal;
     faTable = faTable;
 
     constructor(
+        private fb: FormBuilder,
         private router: Router,
         private conversionService: ConversionService,
         private sideInfoService: SideInfoService,
@@ -42,6 +56,61 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.streamerServiceSubscription = this.subscribeToStreamerService();
+        if (this.searchParams.view && (this.searchParams.view === 'table' || this.searchParams.view === 'grid')) {
+            this.buildForm(this.searchParams.view);
+        }
+    }
+
+    // build radio view form
+    buildForm(view: string) {
+        this.radioViewForm = this.fb.group({
+            radioViewControl: view
+        });
+
+        this.checkForUserInputChanges();
+    }
+
+    // check for changing view values
+    checkForUserInputChanges(): void {
+        this.radioViewForm.get('radioViewControl').valueChanges.subscribe((view: string) => {
+            this.onViewChange(view);
+        });
+    }
+
+    isActiveResource(id: string): boolean {
+        return this.currentId === id;
+    }
+
+    navigateToResource(id: string): void {
+        this.currentId = id;
+        this.router.navigate(['/data/resource', this.currentId]);
+    }
+
+    // emit page change to search panel
+    onPageChange(pageNumber: number): void {
+        const nRowsNumber = +this.searchParams.nRows;
+        const newStartPosition = pageNumber * nRowsNumber - nRowsNumber;
+
+        this.pageChangeRequest.emit(String(newStartPosition));
+    }
+
+    // emit row change to search panel
+    onRowChange(rowNumber: number): void {
+        this.rowChangeRequest.emit(String(rowNumber));
+    }
+
+    // emit view change to search panel
+    onViewChange(view: string): void {
+        this.viewChangeRequest.emit(view);
+    }
+
+    // set values for pagination
+    setPagination(): void {
+        const nRowsNumber = +this.searchParams.nRows;
+        const startAtNumber = +this.searchParams.startAt;
+
+        this.pageSize = nRowsNumber;
+        this.page = Math.floor(startAtNumber / nRowsNumber) + 1;
     }
 
     subscribeToStreamerService(): Subscription {
@@ -58,7 +127,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
                     this.searchResponse = searchResponse;
-                    console.log(this.searchResponse);
+
+                    this.setPagination();
                 },
                 error => {
                     this.errorMessage = <any>error;
@@ -67,6 +137,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             );
     }
 
+    // update search params
     updateSearchParams(response: SearchResponseWithQuery): void {
         // update current search values
         this.updateCurrentValues(response);
@@ -76,7 +147,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     // update current search values
-    updateCurrentValues(response: SearchResponseWithQuery) {
+    updateCurrentValues(response: SearchResponseWithQuery): void {
         // get current search value
         this.searchValue = response.query;
         // prepare result text for fulltext search
@@ -88,18 +159,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     // update data for searchInfo via sideinfo service
-    updateSearchInfoService() {
+    updateSearchInfoService(): void {
         const searchInfo: SearchInfo = new SearchInfo(this.searchValue, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
-    }
-
-    isActiveResource(id: string) {
-        return this.currentId === id;
-    }
-
-    navigateToResource(id: string) {
-        this.currentId = id;
-        this.router.navigate(['/data/resource', this.currentId]);
     }
 
     ngOnDestroy() {

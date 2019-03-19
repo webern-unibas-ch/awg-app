@@ -1,9 +1,11 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
-import { FooterPoweredbyComponent } from './footer-poweredby.component';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+
 import { Logo, Logos } from '@awg-core/core-models';
-import { By } from '@angular/platform-browser';
+
+import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
 @Component({ selector: 'awg-footer-logo', template: '' })
 class FooterLogoStubComponent {
@@ -31,7 +33,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test logos
+        // test data
         expectedLogos = {
             unibas: {
                 id: 'unibaslogo',
@@ -41,7 +43,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
             },
             snf: {
                 id: 'snflogo',
-                src: 'assets/img/logos/snf.jpg',
+                src: 'assets/img/logos/snf.png',
                 alt: 'Logo SNF',
                 href: 'http://www.snf.ch'
             },
@@ -71,17 +73,11 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain 1 div.awg-powered-by', () => {
-                const footerPoweredbyDes = fixture.debugElement.queryAll(By.css('div.awg-powered-by'));
-
-                expect(footerPoweredbyDes).toBeTruthy();
-                expect(footerPoweredbyDes.length).toBe(1, 'should have 1 div.awg-powered-by');
+                getAndExpectDebugElementByCss(compDe, 'div.awg-powered-by', 1, 1);
             });
 
             it('... should contain 2 footer logo components (stubbed)', () => {
-                const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
-
-                expect(footerLogoDes).toBeTruthy();
-                expect(footerLogoDes.length).toBe(2, 'should have 2 footer logos');
+                getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 2, 2);
             });
         });
     });
@@ -102,11 +98,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down logos to footer logo components', () => {
-                const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
-                const footerLogoCmps = [];
-                footerLogoDes.forEach(de => {
-                    footerLogoCmps.push(de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent);
-                });
+                const footerLogoDes = getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 2, 2);
+                const footerLogoCmps = footerLogoDes.map(
+                    de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
+                );
 
                 expect(footerLogoCmps.length).toBe(2, 'should have 2 logo components');
 

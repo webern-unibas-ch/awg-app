@@ -13,9 +13,11 @@ import {
     NgbCollapseModule,
     NgbDropdownModule,
     NgbModalModule,
+    NgbPaginationModule,
     NgbTabsetModule,
     NgbTooltipModule
 } from '@ng-bootstrap/ng-bootstrap';
+import { NgxGalleryModule } from 'ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 //
@@ -43,8 +45,10 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbPaginationModule,
         NgbTabsetModule,
         NgbTooltipModule,
+        NgxGalleryModule,
         NgxJsonViewerModule
     ],
     declarations: [
@@ -67,8 +71,10 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbPaginationModule,
         NgbTabsetModule,
         NgbTooltipModule,
+        NgxGalleryModule,
         NgxJsonViewerModule,
 
         HeadingComponent,

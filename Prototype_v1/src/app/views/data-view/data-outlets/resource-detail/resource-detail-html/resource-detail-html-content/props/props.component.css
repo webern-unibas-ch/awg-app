@@ -13,23 +13,23 @@
 ************************************************/
 
 /* props */
-.props ul {
+.awg-props ul {
     padding-left: 0;
     margin-top: 0.5rem;
     margin-bottom: 0.25rem;
 }
-.props li {
+.awg-props li {
     list-style: none;
     padding: 0.25rem 0;
 }
-.props .prop .prop-label {
+.awg-props .awg-prop .awg-prop-label {
     margin-top: 8px;
     margin-bottom: -4px;
     display: block;
     font-size: 21px;
     font-weight: 400;
 }
-.props .prop .prop-value {
+.awg-props .awg-prop .awg-prop-value {
     padding: 3px 0;
     margin-left: 1rem;
 }

@@ -18,7 +18,7 @@
         <!-- TODO: link to linked objects overview
         <a (click)="navigateToSearchResults()">
         -->
-        Verknüpfte Objekte <span>({{ getNestedArraysLength(incoming) }})</span>
+        Verknüpfte Objekte (<span id ="awg-incoming-size" *ngIf="incoming">{{ totalNumber }}</span>)
         <!--
         </a>
         -->
@@ -39,7 +39,8 @@
                         <td>
                             <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
                                 <img [src]="link?.restype.icon" alt="icon">
-                                <span>&nbsp;[{{ link?.id }}] {{ link?.value }}</span>
+                                &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span>]&nbsp;
+                                <span class="awg-linked-obj-link-value">{{ link?.value }}</span>
                             </a>
                         </td>
                     </tr>

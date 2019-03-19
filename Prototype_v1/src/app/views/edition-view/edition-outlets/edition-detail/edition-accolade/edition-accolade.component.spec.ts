@@ -1,10 +1,16 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
-import { EditionAccoladeComponent } from './edition-accolade.component';
+import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { EditionSvgFile, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
+import { EditionAccoladeComponent } from './edition-accolade.component';
+
 // mock components
+@Component({ selector: 'awg-edition-detail-notification', template: '' })
+class EditionDetailNotificationStubComponent {}
+
 @Component({ selector: 'awg-edition-svg-file-nav', template: '' })
 class EditionSvgFileNavStubComponent {
     @Input()
@@ -41,8 +47,10 @@ describe('EditionAccoladeComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [NgbAccordionModule],
             declarations: [
                 EditionAccoladeComponent,
+                EditionDetailNotificationStubComponent,
                 EditionSvgFileStubComponent,
                 EditionSvgFileNavStubComponent,
                 EditionTkaTableStubComponent

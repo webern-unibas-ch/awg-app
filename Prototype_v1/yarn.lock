@@ -3623,6 +3623,11 @@ follow-redirects@^1.0.0:
   dependencies:
     debug "=3.1.0"
 
+font-awesome@^4.7.0:
+  version "4.7.0"
+  resolved "https://registry.yarnpkg.com/font-awesome/-/font-awesome-4.7.0.tgz#8fa8cf0411a1a31afd07b06d2902bb9fc815a133"
+  integrity sha1-j6jPBBGhoxr9B7BtKQK7n8gVoTM=
+
 for-in@^0.1.3:
   version "0.1.8"
   resolved "https://registry.yarnpkg.com/for-in/-/for-in-0.1.8.tgz#d8773908e31256109952b1fdb9b3fa867d2775e1"
@@ -4049,6 +4054,11 @@ gzip-size@^5.0.0:
   dependencies:
     duplexer "^0.1.1"
     pify "^3.0.0"
+
+gzipper@^1.4.2:
+  version "1.4.2"
+  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-1.4.2.tgz#91b8d17ef04d14056827faeb0fe0c3ea164704f7"
+  integrity sha512-HEz5IqjtD2cIaJQ+biObUZK+4s+5bEMNO2Olf4Gxac1RrOpSmbB/lEi+9GlL7RX/vLVGfXX8Nhy2pxT9OiGh2g==
 
 handle-thing@^2.0.0:
   version "2.0.0"
@@ -5159,10 +5169,10 @@ json-stringify-safe@^5.0.1, json-stringify-safe@~5.0.1:
   resolved "https://registry.yarnpkg.com/json-stringify-safe/-/json-stringify-safe-5.0.1.tgz#1296a2d58fd45f19a0f6ce01d65701e2c735b6eb"
   integrity sha1-Epai1Y/UXxmg9s4B1lcB4sc1tus=
 
-json2typescript@^1.0.5:
-  version "1.0.6"
-  resolved "https://registry.yarnpkg.com/json2typescript/-/json2typescript-1.0.6.tgz#ed449b808fc8f9fd29550bd79523208fe4463e0a"
-  integrity sha512-9xRrXy3B783kZc2czj+OuZTfOfVluMMkLkOHBSfxZ5XQudp6fviov5KLfX4madfrrlTaqLvjNTXkNkskIXU8Uw==
+json2typescript@^1.2.0:
+  version "1.2.0"
+  resolved "https://registry.yarnpkg.com/json2typescript/-/json2typescript-1.2.0.tgz#8c5c7de3a2343f02418369295ab4d08c84752c73"
+  integrity sha512-IHiaZVJ3z7HS/Cv/iy3TezlH7b2iFITheSRQRFqeqRoDiXxcrFLsiSiF5q09JqKPv0Txnca8B33eTmhv+O2ezA==
 
 json3@^3.3.2:
   version "3.3.2"
@@ -6061,6 +6071,11 @@ neo-async@^2.5.0:
   version "2.5.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.5.2.tgz#489105ce7bc54e709d736b195f82135048c50fcc"
   integrity sha512-vdqTKI9GBIYcAEbFAcpKPErKINfPF5zIuz3/niBfq8WUZjpT2tytLlFVrBgWdOtqI4uaA/Rb6No0hux39XXDuw==
+
+ngx-gallery@^5.9.1:
+  version "5.9.1"
+  resolved "https://registry.yarnpkg.com/ngx-gallery/-/ngx-gallery-5.9.1.tgz#c56cd21346298931c71273356ebc6e1e5466c223"
+  integrity sha512-T9nPI+8TwQ5huQvPnptp0FwXJrLcAIjmtenOHZulFMkKfai3LBt3zhWRazoL706ywhs+JKIvOY+4lzpBOQ0n3g==
 
 ngx-json-viewer@^2.4.0:
   version "2.4.0"
@@ -8961,11 +8976,6 @@ typedarray@^0.0.6:
   version "0.0.6"
   resolved "https://registry.yarnpkg.com/typedarray/-/typedarray-0.0.6.tgz#867ac74e3864187b1d3d47d996a78ec5c8830777"
   integrity sha1-hnrHTjhkGHsdPUfZlqeOxciDB3c=
-
-typeface-montserrat@^0.0.54:
-  version "0.0.54"
-  resolved "https://registry.yarnpkg.com/typeface-montserrat/-/typeface-montserrat-0.0.54.tgz#3fc338db6428d73485b75aa7bd2af8c9a55b9ab3"
-  integrity sha512-Typhap0PWT299+Va0G/8ZtycHMXrH4gBWKfiW977KEBx5rXUUCa70gvqLx1fdA0WAo6bhSAQmo8uc+QFAmjPww==
 
 typescript@3.2.2:
   version "3.2.2"

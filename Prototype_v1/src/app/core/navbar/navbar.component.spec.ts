@@ -1,8 +1,9 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+
 import { click } from '@testing/click-helper';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
@@ -10,7 +11,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 import { NavbarComponent } from './navbar.component';
 
-describe('NavbarComponent', () => {
+describe('NavbarComponent (DONE)', () => {
     let component: NavbarComponent;
     let fixture: ComponentFixture<NavbarComponent>;
     let compDe: DebugElement;
@@ -32,6 +33,7 @@ describe('NavbarComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
+        // test data
         expectedIsCollapsed = true;
 
         // spies on component functions
@@ -56,17 +58,18 @@ describe('NavbarComponent', () => {
 
             it('... should be called when button clicked (click helper)', () => {
                 // find button elements
-                const buttonDe = fixture.debugElement.query(By.css('button.navbar-toggler'));
-                const buttonEl = buttonDe.nativeElement;
+                const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
+                const buttonEl = buttonDes[0].nativeElement;
 
                 // should have not been called yet
                 expect(component.toggleNav).not.toHaveBeenCalled();
 
                 // click button
-                click(buttonDe);
+                click(buttonDes[0]);
                 click(buttonEl);
 
                 expect(component.toggleNav).toHaveBeenCalled();
+                expect(component.toggleNav).toHaveBeenCalledTimes(2);
             });
 
             it('... should toggle `isCollapsed`', () => {
@@ -82,21 +85,12 @@ describe('NavbarComponent', () => {
 
         describe('VIEW', () => {
             it('... should contain 1 navbar with 1 toggle button', () => {
-                const navDes = fixture.debugElement.queryAll(By.css('nav.navbar'));
-                const buttonDes = fixture.debugElement.queryAll(By.css('nav.navbar > button.navbar-toggler'));
-
-                expect(navDes).toBeTruthy();
-                expect(navDes.length).toBe(1, 'should have 1 navbar');
-
-                expect(buttonDes).toBeTruthy();
-                expect(buttonDes.length).toBe(1, 'should have 1 button');
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar > button.navbar-toggler', 1, 1);
             });
 
             it('... should contain 1 navbar collapse', () => {
-                const collapseDes = fixture.debugElement.queryAll(By.css('nav.navbar > .navbar-collapse'));
-
-                expect(collapseDes).toBeTruthy();
-                expect(collapseDes.length).toBe(1, 'should have 1 collapse');
+                getAndExpectDebugElementByCss(compDe, 'nav.navbar > .navbar-collapse', 1, 1);
             });
         });
     });
@@ -110,14 +104,14 @@ describe('NavbarComponent', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = fixture.debugElement.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 14, 14);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
             it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(14, 'should have 14 routerLink');
+                expect(routerLinks.length).toBe(14, 'should have 14 routerLinks');
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual(['/edition', 'intro']);
                 expect(routerLinks[2].linkParams).toEqual(['/edition/detail', 'Aa:SkI/2']);
@@ -140,7 +134,7 @@ describe('NavbarComponent', () => {
 
                 expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                contactLinkDe.triggerEventHandler('click', null);
+                click(contactLinkDe);
                 fixture.detectChanges();
 
                 expect(contactLink.navigatedTo).toEqual(['/contact']);

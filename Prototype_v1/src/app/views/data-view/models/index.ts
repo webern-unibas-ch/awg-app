@@ -15,6 +15,7 @@ import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailIncomingLinks } from './resource-detail-incoming-links.model';
 import { ResourceDetailProps } from './resource-detail-props.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
+import { SearchParams } from './search-params.model';
 import { SearchResponseWithQuery } from './search-response-with-query.model';
 
 export {
@@ -26,5 +27,6 @@ export {
     ResourceDetailIncomingLinks,
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks,
+    SearchParams,
     SearchResponseWithQuery
 };

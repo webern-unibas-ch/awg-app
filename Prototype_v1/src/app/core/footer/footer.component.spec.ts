@@ -1,11 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
 
-import { FooterComponent } from './footer.component';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+
 import { Logo, Logos, Meta } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
+
+import { FooterComponent } from './footer.component';
 
 // mock components
 @Component({ selector: 'awg-footer-copyright', template: '' })
@@ -68,7 +70,7 @@ describe('FooterComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test logos
+        // test data
         expectedLogos = {
             unibas: {
                 id: 'unibaslogo',
@@ -78,7 +80,7 @@ describe('FooterComponent (DONE)', () => {
             },
             snf: {
                 id: 'snflogo',
-                src: 'assets/img/logos/snf.jpg',
+                src: 'assets/img/logos/snf.png',
                 alt: 'Logo SNF',
                 href: 'http://www.snf.ch'
             },
@@ -147,50 +149,36 @@ describe('FooterComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain 1 main top footer and 1 secondary bootom footer', () => {
-                const footerTopDe = fixture.debugElement.queryAll(By.css('.awg-footer-top'));
-                const footerBottomDe = fixture.debugElement.queryAll(By.css('.awg-footer-bottom'));
-
-                expect(footerTopDe).toBeTruthy();
-                expect(footerTopDe.length).toBe(1, 'should have 1 top footer');
-
-                expect(footerBottomDe).toBeTruthy();
-                expect(footerBottomDe.length).toBe(1, 'should have 1 bottom footer');
+            it('... should contain 1 main top footer and 1 secondary bottom footer', () => {
+                getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
+                getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom', 1, 1);
             });
 
             describe('main top footer', () => {
                 it('... should contain 1 footer text component (stubbed)', () => {
-                    const footerTopDe = fixture.debugElement.query(By.css('.awg-footer-top'));
-                    const footerTextDes = footerTopDe.queryAll(By.directive(FooterDeclarationStubComponent));
+                    const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
 
-                    expect(footerTextDes).toBeTruthy();
-                    expect(footerTextDes.length).toBe(1, 'should have 1 text component');
+                    getAndExpectDebugElementByDirective(footerTopDes[0], FooterDeclarationStubComponent, 1, 1);
                 });
 
                 it('... should contain 2 footer logo components (stubbed)', () => {
-                    const footerTopDe = fixture.debugElement.query(By.css('.awg-footer-top'));
-                    const footerLogoDes = footerTopDe.queryAll(By.directive(FooterLogoStubComponent));
+                    const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
 
-                    expect(footerLogoDes).toBeTruthy();
-                    expect(footerLogoDes.length).toBe(2, 'should have 2 footer logos');
+                    getAndExpectDebugElementByDirective(footerTopDes[0], FooterLogoStubComponent, 2, 2);
                 });
             });
 
             describe('secondary bottom footer', () => {
                 it('... should contain 1 footer copyright component (stubbed)', () => {
-                    const footerBottomDe = fixture.debugElement.query(By.css('.awg-footer-bottom'));
-                    const footerCopyrightDes = footerBottomDe.queryAll(By.directive(FooterCopyrightStubComponent));
+                    const footerBottomDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom', 1, 1);
 
-                    expect(footerCopyrightDes).toBeTruthy();
-                    expect(footerCopyrightDes.length).toBe(1, 'should have 1 copyright component');
+                    getAndExpectDebugElementByDirective(footerBottomDes[0], FooterCopyrightStubComponent, 1, 1);
                 });
 
                 it('... should contain 1 footer poweredby component (stubbed)', () => {
-                    const footerBottomDe = fixture.debugElement.query(By.css('.awg-footer-bottom'));
-                    const footerPoweredbyDes = footerBottomDe.queryAll(By.directive(FooterPoweredbyStubComponent));
+                    const footerBottomDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom', 1, 1);
 
-                    expect(footerPoweredbyDes).toBeTruthy();
-                    expect(footerPoweredbyDes.length).toBe(1, 'should have 1 poweredby component');
+                    getAndExpectDebugElementByDirective(footerBottomDes[0], FooterPoweredbyStubComponent, 1, 1);
                 });
             });
         });
@@ -224,10 +212,13 @@ describe('FooterComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('main top footer', () => {
                 it('... should pass down metaData to footer declaration component', () => {
-                    const footerDeclarationDe = fixture.debugElement.query(
-                        By.directive(FooterDeclarationStubComponent)
+                    const footerDeclarationDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        FooterDeclarationStubComponent,
+                        1,
+                        1
                     );
-                    const footerDeclarationCmp = footerDeclarationDe.injector.get(
+                    const footerDeclarationCmp = footerDeclarationDes[0].injector.get(
                         FooterDeclarationStubComponent
                     ) as FooterDeclarationStubComponent;
 
@@ -236,11 +227,10 @@ describe('FooterComponent (DONE)', () => {
                 });
 
                 it('... should pass down logos to footer logo components', () => {
-                    const footerLogoDes = fixture.debugElement.queryAll(By.directive(FooterLogoStubComponent));
-                    const footerLogoCmps = [];
-                    footerLogoDes.forEach(de => {
-                        footerLogoCmps.push(de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent);
-                    });
+                    const footerLogoDes = getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 2, 2);
+                    const footerLogoCmps = footerLogoDes.map(
+                        de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
+                    );
 
                     expect(footerLogoCmps.length).toBe(2, 'should have 2 logo components');
 
@@ -254,8 +244,13 @@ describe('FooterComponent (DONE)', () => {
 
             describe('secondary bottom footer', () => {
                 it('... should pass down metaData to footer copyright component', () => {
-                    const footerCopyrightDe = fixture.debugElement.query(By.directive(FooterCopyrightStubComponent));
-                    const footerCopyrightCmp = footerCopyrightDe.injector.get(
+                    const footerCopyrightDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        FooterCopyrightStubComponent,
+                        1,
+                        1
+                    );
+                    const footerCopyrightCmp = footerCopyrightDes[0].injector.get(
                         FooterCopyrightStubComponent
                     ) as FooterCopyrightStubComponent;
 
@@ -264,20 +259,18 @@ describe('FooterComponent (DONE)', () => {
                 });
 
                 it('... should pass down logos to footer poweredby component', () => {
-                    const footerPoweredbyDes = fixture.debugElement.queryAll(
-                        By.directive(FooterPoweredbyStubComponent)
+                    const footerPoweredbyDes = getAndExpectDebugElementByDirective(
+                        compDe,
+                        FooterPoweredbyStubComponent,
+                        1,
+                        1
                     );
-                    const footerPoweredbyCmps = [];
-                    footerPoweredbyDes.forEach(de => {
-                        footerPoweredbyCmps.push(de.injector.get(
-                            FooterPoweredbyStubComponent
-                        ) as FooterPoweredbyStubComponent);
-                    });
+                    const footerPoweredbyCmp = footerPoweredbyDes[0].injector.get(
+                        FooterPoweredbyStubComponent
+                    ) as FooterPoweredbyStubComponent;
 
-                    expect(footerPoweredbyCmps.length).toBe(1, 'should have 1 poweredby component');
-
-                    expect(footerPoweredbyCmps[0].logos).toBeTruthy();
-                    expect(footerPoweredbyCmps[0].logos).toEqual(expectedLogos, 'should have logos');
+                    expect(footerPoweredbyCmp.logos).toBeTruthy();
+                    expect(footerPoweredbyCmp.logos).toEqual(expectedLogos, 'should have logos');
                 });
             });
         });

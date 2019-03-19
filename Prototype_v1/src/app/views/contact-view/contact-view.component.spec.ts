@@ -1,14 +1,15 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DatePipe } from '@angular/common';
 import { Component, DebugElement, Input } from '@angular/core';
+import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
-import { ContactViewComponent } from './contact-view.component';
-import { CoreService } from '@awg-core/services';
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+
 import { Meta } from '@awg-core/core-models';
-import { By } from '@angular/platform-browser';
-import { RouterLinkStubDirective } from '@testing/router-stubs';
+import { CoreService } from '@awg-core/services';
+
+import { ContactViewComponent } from './contact-view.component';
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -57,7 +58,7 @@ describe('ContactViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test meta data
+        // test data
         expectedMetaData = new Meta();
         expectedMetaData.page = {
             yearStart: 2015,
@@ -134,36 +135,21 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain two heading component (stubbed)', () => {
-                const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
-
-                expect(headingDes).toBeTruthy();
-                expect(headingDes.length).toBe(2, 'should have two headings');
+                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
             });
 
             it('... should contain 1 `div.awg-citation-description` with 5 `p` elements', () => {
-                const divEl = compEl.querySelectorAll('div.awg-citation-description');
-                const pEl = compEl.querySelectorAll('div.awg-citation-description > p');
-
-                expect(divEl).toBeDefined();
-                expect(divEl.length).toBe(1, 'should have one `div.awg-citation-description`');
-
-                expect(pEl).toBeDefined();
-                expect(pEl.length).toBe(5, 'should have 5 `p`');
+                getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
             });
 
             it('... should contain 1 `div.awg-masthead-description` with 21 `p` elements', () => {
-                const divEl = compEl.querySelectorAll('div.awg-masthead-description');
-                const pEl = compEl.querySelectorAll('div.awg-masthead-description > p');
-
-                expect(divEl).toBeDefined();
-                expect(divEl.length).toBe(1, 'should have one `div.awg-masthead-description`');
-
-                expect(pEl).toBeDefined();
-                expect(pEl.length).toBe(21, 'should have 21 `p`');
+                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 21, 21);
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {
-                const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeUndefined();
@@ -174,23 +160,28 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
-                const versionDe = compDe.query(By.css('.awg-citation-version'));
-                const versionEl = versionDe.nativeElement;
+                // debug elements
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version', 1, 1);
+                const releaseDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version-release', 1, 1);
+                const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
-                const releaseDe = compDe.query(By.css('.awg-citation-version-release'));
-                const releaseEl = releaseDe.nativeElement;
+                // native elements
+                const versionEl = versionDes[0].nativeElement;
+                const releaseEl = releaseDes[0].nativeElement;
+                const dateEl0 = dateDes[0].nativeElement;
+                const dateEl1 = dateDes[1].nativeElement;
 
-                const dateDe = compDe.query(By.css('.awg-citation-date'));
-                const dateEl = dateDe.nativeElement;
-
+                // check output
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'should be empty string');
 
                 expect(releaseEl).toBeDefined();
                 expect(releaseEl.textContent).toBe('', 'should be empty string');
 
-                expect(dateEl).toBeDefined();
-                expect(dateEl.textContent).toBe('', 'should be empty string');
+                expect(dateEl0).toBeDefined();
+                expect(dateEl0.textContent).toBe('', 'should be empty string');
+                expect(dateEl1).toBeDefined();
+                expect(dateEl1.textContent).toBe('', 'should be empty string');
             });
         });
     });
@@ -271,7 +262,7 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading components', () => {
-                const headingDes = compDe.queryAll(By.directive(HeadingStubComponent));
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeTruthy();
@@ -288,31 +279,37 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
-                const versionDe = compDe.query(By.css('.awg-citation-version'));
-                const versionEl = versionDe.nativeElement;
+                // debug elements
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version', 1, 1);
+                const releaseDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version-release', 1, 1);
+                const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
-                const releaseDe = compDe.query(By.css('.awg-citation-version-release'));
-                const releaseEl = releaseDe.nativeElement;
+                // native elements
+                const versionEl = versionDes[0].nativeElement;
+                const releaseEl = releaseDes[0].nativeElement;
+                const dateEl0 = dateDes[0].nativeElement;
+                const dateEl1 = dateDes[1].nativeElement;
 
-                const dateDe = compDe.query(By.css('.awg-citation-date'));
-                const dateEl = dateDe.nativeElement;
-
+                // pipe
                 const pipedToday = datePipe.transform(expectedToday, expectedDateFormat);
 
+                // check output
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toBe(
+                expect(versionEl.textContent).toContain(
                     expectedMetaData.page.version,
-                    `should be ${expectedMetaData.page.version}`
+                    `should contain ${expectedMetaData.page.version}`
                 );
 
                 expect(releaseEl).toBeDefined();
-                expect(releaseEl.textContent).toBe(
+                expect(releaseEl.textContent).toContain(
                     expectedMetaData.page.versionReleaseDate,
-                    `should be ${expectedMetaData.page.versionReleaseDate}`
+                    `should contain ${expectedMetaData.page.versionReleaseDate}`
                 );
 
-                expect(dateEl).toBeDefined();
-                expect(dateEl.textContent).toBe(pipedToday, `should be ${pipedToday}`);
+                expect(dateEl0).toBeDefined();
+                expect(dateEl0.textContent).toContain(pipedToday, `should contain ${pipedToday}`);
+                expect(dateEl1).toBeDefined();
+                expect(dateEl1.textContent).toContain(pipedToday, `should contain ${pipedToday}`);
             });
         });
     });

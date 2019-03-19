@@ -1,105 +1,26 @@
-/************************************************
- *
- *               CREDITS
- *
- * This code is inspired, adapted or taken from:
- *
- * ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
- * https://arachne.dainst.org/entity/1121229**]
- * 20.11.2017
- *
- *
- *
- ************************************************/
+/* slider container */
+.awg-image-slider {
+    height: 300px;
+}
 
 /* image preview */
-.awg-image-slider #awg-previewbox {
-    position: relative;
-    height: 300px;
+ngx-gallery /deep/ .ngx-gallery-image-wrapper {
     background-color: #e7e7e7;
 }
 
-.awg-image-slider .awg-image-slider-nav-left {
-    left: 5px;
+/* arrows */
+ngx-gallery /deep/ .ngx-gallery-arrow {
+    color: black;
 }
-.awg-image-slider .awg-image-slider-nav-right {
-    right: 5px;
-}
-.awg-image-slider #awg-thumbbox .awg-image-slider-nav-left,
-.awg-image-slider #awg-thumbbox .awg-image-slider-nav-right {
-    top: 23px;
-}
-.awg-image-slider #awg-previewbox .awg-image-slider-nav-left,
-.awg-image-slider #awg-previewbox .awg-image-slider-nav-right {
-    opacity: 0;
-    top: 49%;
-    transform: translateY(-50%);
-    transition: 0.5s ease-in-out;
-}
-.awg-image-slider #awg-previewbox:hover .awg-image-slider-nav-left,
-.awg-image-slider #awg-previewbox:hover .awg-image-slider-nav-right {
-    opacity: 1;
-}
-.awg-image-slider .awg-image-slider-nav-left,
-.awg-image-slider .awg-image-slider-nav-right {
-    position: absolute;
-    font-size: 1.5em;
-    height: 1.5em;
-    width: 1.5em;
-    z-index: 1503;
-    cursor: pointer;
-    color: #37588e;
-    background-color: #ededed;
-    padding: 3px;
-    border-radius: 1.5em;
-    text-align: center;
-}
-.awg-image-slider #awg-preview-img-container {
-    width: 100%;
-    height: 300px;
-    white-space: nowrap;
-    text-align: center;
-    font: 0/0 a;
-}
-.awg-image-slider #awg-preview-img::before {
-    content: ' ';
-    display: inline-block;
-    vertical-align: middle;
-    height: 100%;
-}
-.awg-image-slider #awg-preview-img img {
-    vertical-align: middle;
-    cursor: zoom-in;
-    /* height: auto; */
-    max-width: 100%;
+ngx-gallery /deep/ .ngx-gallery-arrow.ngx-gallery-disabled {
+    display: none;
 }
 
-/* image thumbnails */
-.awg-image-slider #awg-thumbbox {
-    overflow: hidden;
-    padding: 4px;
-    position: relative;
-
-    /* card-like style */
-    background-color: #fff;
-    background-clip: border-box;
-    border: 1px solid rgba(0, 0, 0, 0.125);
-    border-radius: 0.25rem;
-}
-.awg-image-slider #awg-thumb-img-container {
-    height: 70px;
-    width: auto;
-    white-space: nowrap;
-    /* transform: translateX(0px);*/
-    transition: 0.5s ease-in-out;
-    display: inline-block;
-}
-.awg-image-slider #awg-thumb-img-container a {
+/* thumbnails */
+ngx-gallery /deep/ .ngx-gallery-thumbnail {
     opacity: 0.3;
-    cursor: pointer;
 }
-.awg-image-slider #awg-thumb-img-container a.active,
-.awg-image-slider #awg-thumb-img-container a:hover {
+ngx-gallery /deep/ .ngx-gallery-thumbnail.ngx-gallery-active,
+ngx-gallery /deep/ .ngx-gallery-thumbnail:hover {
     opacity: 1;
-    text-decoration: none;
 }

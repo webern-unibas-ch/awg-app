@@ -1,10 +1,11 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { By } from '@angular/platform-browser';
 import { DebugElement } from '@angular/core';
+import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 import { ModalComponent } from './modal.component';
-import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 describe('ModalComponent', () => {
     let component: ModalComponent;
@@ -13,7 +14,7 @@ describe('ModalComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [NgbModalModule],
-            declarations: [ModalComponent]
+            declarations: [ModalComponent, CompileHtmlComponent]
         }).compileComponents();
     }));
 

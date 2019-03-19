@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse, HttpParams, HttpResponse } from '@angular/common/http';
 
-import { throwError as observableThrowError, Observable, of } from 'rxjs';
+import { throwError as observableThrowError, Observable } from 'rxjs';
 import { catchError, map, tap } from 'rxjs/operators';
 
-import { ApiServiceResult } from './api-service-result';
-import { ApiServiceError } from './api-service-error';
+import { ApiServiceResult } from './api-service-result.model';
+import { ApiServiceError } from './api-service-error.model';
 import { ApiRequest } from './api-request.model';
 
 @Injectable({
@@ -21,23 +21,28 @@ export class ApiService {
         // console.log(`called ${this.serviceName} with httpClient`, http);
     }
 
-    getApiResponse(responseType: any, queryString, queryParams?: HttpParams): Observable<any> {
-        if (!responseType) {
-            return;
-        }
-        if (!queryParams) {
-            queryParams = new HttpParams();
+    /**
+     * Returns an HTTP GET request response from the Knora API.
+     * @param {any} responseType
+     * @param {string} queryPath
+     * @param {HttpParams} queryHttpParams?
+     * @returns {Observable<any>}
+     */
+    getApiResponse(responseType: any, queryPath: string, queryHttpParams?: HttpParams): Observable<any> {
+        if (!queryHttpParams) {
+            queryHttpParams = new HttpParams();
         }
 
-        return this.httpGet(queryString, queryParams).pipe(
+        return this.httpGet(queryPath, queryHttpParams).pipe(
             map(
-                (result: ApiServiceResult) => {
+                (result: ApiServiceResult): Observable<any> => {
                     return result.getBody(responseType);
-                },
-                (error: ApiServiceError) => {
-                    const errorMessage = <any>error;
-                    console.error('ApiService - getApiResponse - error: ', errorMessage);
-                    throw error;
+                }
+            ),
+            catchError(
+                (error: ApiServiceError): Observable<ApiServiceError> => {
+                    // console.error('ApiService - getApiResponse - error: ', error);
+                    return observableThrowError(error);
                 }
             )
         );
@@ -45,15 +50,12 @@ export class ApiService {
 
     /**
      * Performs a HTTP GET request to the Knora API.
-     * @param url
-     * @param httpGetParams
-     * @returns {Observable<ApiServiceResult>}
+     * @param {string} queryPath
+     * @param {HttpParams} httpGetParams
+     * @returns {Observable<ApiServiceResult | ApiServiceError>}
      */
-    httpGet(url: string, httpGetParams?: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
-        if (!httpGetParams) {
-            httpGetParams = new HttpParams();
-        }
-        const apiRequest = new ApiRequest(url, httpGetParams);
+    private httpGet(queryPath: string, httpGetParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
+        const apiRequest = new ApiRequest(queryPath, httpGetParams);
 
         this.loading = true;
 
@@ -122,13 +124,13 @@ export class ApiService {
      * @param {HttpErrorResponse} error
      * @returns {Observable<ApiServiceError>}
      */
-    protected handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
+    private handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
         // console.error(error);
         const apiServiceError = new ApiServiceError();
-        apiServiceError.status = error.status;
-        apiServiceError.statusText = error.statusText;
-        apiServiceError.errorInfo = error.message;
-        apiServiceError.url = error.url;
+        apiServiceError.status = error.status ? error.status : apiServiceError.status;
+        apiServiceError.statusText = error.statusText ? error.statusText : apiServiceError.statusText;
+        apiServiceError.errorInfo = error.message ? error.message : apiServiceError.errorInfo;
+        apiServiceError.url = error.url ? error.url : apiServiceError.url;
         return observableThrowError(apiServiceError);
     }
 }

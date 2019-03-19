@@ -177,20 +177,4 @@ export class PropertyJson {
             return [];
         }
     }
-    public getValuesAsStrings(): string[] {
-        try {
-            const jsonConvert: JsonConvert = new JsonConvert();
-            return jsonConvert.deserializeArray(this.values, String);
-        } catch (e) {
-            return [];
-        }
-    }
-    public getValuesAsNumbers(): number[] {
-        try {
-            const jsonConvert: JsonConvert = new JsonConvert();
-            return jsonConvert.deserializeArray(this.values, Number);
-        } catch (e) {
-            return [];
-        }
-    }
 }
