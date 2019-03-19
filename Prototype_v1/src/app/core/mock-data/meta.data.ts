@@ -1,11 +1,12 @@
+import { AppConfig } from '@awg-app/app.config';
 import { Meta } from '@awg-core/core-models';
 
 export const METADATA: Meta = {
     page: {
         yearStart: 2015,
         yearRecent: new Date().getFullYear(),
-        version: '0.4.0', // RELEASE 22.1.2019
-        versionReleaseDate: '22. Januar 2019'
+        version: AppConfig.VERSION,
+        versionReleaseDate: AppConfig.VERSION_RELEASE_DATE
     },
     edition: {
         editors:
