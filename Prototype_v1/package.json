@@ -18,6 +18,7 @@
         "test": "ng test",
         "test:cov": "ng test awg-app --code-coverage",
         "lint": "ng lint awg-app",
+        "tslint-check": "tslint-config-prettier-check ./tslint.json",
         "e2e": "ng e2e",
         "build:prod": "yarn build --prod --aot=false",
         "build:gh": "yarn build:prod --base-href \"https://webern-unibas-ch.github.io/test2/\"",
@@ -120,6 +121,7 @@
         "standard-version": "^5.0.2",
         "ts-node": "~7.0.0",
         "tslint": "~5.11.0",
+        "tslint-config-prettier": "^1.18.0",
         "typescript": "~3.2.4",
         "webpack-bundle-analyzer": "^3.1.0"
     }
