@@ -20,7 +20,8 @@ describe('HomeViewComponent (DONE)', () => {
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let mockCoreService: Partial<CoreService>;
     let mockRouter;

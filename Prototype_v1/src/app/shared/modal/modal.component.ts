@@ -1,7 +1,7 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
-const modalText: Object = {
+const MODAL_TEXT = {
     sourceNotA:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',
     sheetComingSoon:
@@ -28,7 +28,7 @@ export class ModalComponent {
 
     open(identifier: string): void {
         // get modal text
-        this.modalContent = modalText[identifier];
+        this.modalContent = MODAL_TEXT[identifier];
 
         // open modalTemplate via modalService
         this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(

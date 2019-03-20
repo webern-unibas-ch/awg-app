@@ -1,4 +1,6 @@
+/* tslint:disable-next-line no-reference */
 ///<reference path="../../../testing/custom-matchers.d.ts"/>
+
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { JsonPipe } from '@angular/common';
@@ -74,7 +76,7 @@ describe('JsonViewerComponent (DONE)', () => {
     }));
 
     beforeEach(() => {
-        // add custom jasmine matchers (ToHaveCssClass)
+        // add custom jasmine matchers (toHaveCssClass)
         jasmine.addMatchers(customJasmineMatchers);
 
         fixture = TestBed.createComponent(JsonViewerComponent);
@@ -154,11 +156,11 @@ describe('JsonViewerComponent (DONE)', () => {
             it('... should change active tab on tab title click', () => {
                 const tabTitles = getTabTitles(compEl);
 
-                click(<HTMLElement>tabTitles[1]);
+                click(tabTitles[1] as HTMLElement);
                 fixture.detectChanges();
                 expectTabs(compEl, [false, true]);
 
-                click(<HTMLElement>tabTitles[0]);
+                click(tabTitles[0] as HTMLElement);
                 fixture.detectChanges();
                 expectTabs(compEl, [true, false]);
             });
@@ -167,7 +169,7 @@ describe('JsonViewerComponent (DONE)', () => {
                 const tabTitles = getTabTitles(compEl);
                 getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
 
-                click(<HTMLElement>tabTitles[1]);
+                click(tabTitles[1] as HTMLElement);
                 fixture.detectChanges();
 
                 getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
@@ -185,7 +187,7 @@ describe('JsonViewerComponent (DONE)', () => {
                 const tabTitles = getTabTitles(compEl);
 
                 // change tab to plain view
-                click(<HTMLElement>tabTitles[1]);
+                click(tabTitles[1] as HTMLElement);
                 fixture.detectChanges();
 
                 const tabContent = getTabContent(compEl);

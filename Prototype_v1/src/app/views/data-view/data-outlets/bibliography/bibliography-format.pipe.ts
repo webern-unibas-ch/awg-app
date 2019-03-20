@@ -32,7 +32,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     private getFormatFields(opt: string, entry: BibEntry): any {
-        let output: string | Object = {};
+        let output: string | object = {};
         for (let i = 0; i < this.formatFieldArr.length; i++) {
             if (entry[this.formatFieldArr[i]]) {
                 if (opt === 'edit') {
@@ -102,7 +102,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     // filter for authors in bibliography
-    private filterBibAuthor(authors: string | Object) {
+    private filterBibAuthor(authors: string | object) {
         if (!authors) {
             return '';
         }
@@ -131,8 +131,8 @@ export class BibliographyFormatPipe implements PipeTransform {
         const formattedTitle: string = !indepTitle
             ? ''
             : this.entry['Typ'] !== 'Zeitschriftenartikel'
-                ? indepTitle + ', '
-                : indepTitle;
+            ? indepTitle + ', '
+            : indepTitle;
         return formattedTitle;
     }
 
@@ -143,7 +143,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     // filter for editors in bibliography
-    private filterBibEditor(editors: string | Object) {
+    private filterBibEditor(editors: string | object) {
         if (!editors) {
             return '';
         }
@@ -174,7 +174,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     // filter for publication place in bilbiography
-    private filterBibPubPlace(pubPlace: string | Object) {
+    private filterBibPubPlace(pubPlace: string | object) {
         const pub = this.entry['Verlag'] ? this.entry['Verlag'] : null;
         if (!pubPlace) {
             // no place but publisher
@@ -268,7 +268,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     // filter for pages in bibliography
-    private filterBibPages(pageNum: string | Object) {
+    private filterBibPages(pageNum: string | object) {
         if (!pageNum) {
             return '';
         }

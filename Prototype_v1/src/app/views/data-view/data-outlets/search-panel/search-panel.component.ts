@@ -186,7 +186,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                                         this.onLoadingEnd();
                                     },
                                     error => {
-                                        this.errorMessage = <any>error;
+                                        this.errorMessage = error as any;
                                     }
                                 );
                         } else {

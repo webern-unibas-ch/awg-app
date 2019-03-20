@@ -13,7 +13,8 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     let fixture: ComponentFixture<PageNotFoundViewComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     const expectedTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
     const expectedSubtitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';

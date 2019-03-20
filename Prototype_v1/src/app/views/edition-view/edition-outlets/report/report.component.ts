@@ -34,7 +34,7 @@ export class ReportComponent implements OnInit {
                 this.textcriticsData = data[1];
             },
             error => {
-                this.errorMessage = <any>error;
+                this.errorMessage = error as any;
             }
         );
     }

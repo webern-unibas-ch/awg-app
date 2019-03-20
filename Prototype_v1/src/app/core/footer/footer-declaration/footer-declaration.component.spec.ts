@@ -14,7 +14,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
     let fixture: ComponentFixture<FooterDeclarationComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let expectedMetaData: Meta;
 

@@ -308,42 +308,42 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel
-                click(<HTMLElement>button0El);
+                click(button0El as HTMLElement);
                 fixture.detectChanges();
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel again
-                click(<HTMLElement>button0El);
+                click(button0El as HTMLElement);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click second panel
-                click(<HTMLElement>button1El);
+                click(button1El as HTMLElement);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectOpenPanelBody(compDe, 1, 'opened (second panel)');
 
                 // click second panel again
-                click(<HTMLElement>button1El);
+                click(button1El as HTMLElement);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click first panel
-                click(<HTMLElement>button0El);
+                click(button0El as HTMLElement);
                 fixture.detectChanges();
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // click second panel
-                click(<HTMLElement>button1El);
+                click(button1El as HTMLElement);
                 fixture.detectChanges();
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
@@ -368,7 +368,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const button0El = buttonDes[0].nativeElement;
 
                 // open first panel
-                click(<HTMLElement>button0El);
+                click(button0El as HTMLElement);
                 fixture.detectChanges();
 
                 expectOpenPanelBody(compDe, 0, 'should have first panel opened');

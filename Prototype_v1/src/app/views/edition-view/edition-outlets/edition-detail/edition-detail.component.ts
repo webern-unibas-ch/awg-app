@@ -51,7 +51,7 @@ export class EditionDetailComponent implements OnInit {
                 }
             },
             error => {
-                this.errorMessage = <any>error;
+                this.errorMessage = error as any;
             }
         );
     }

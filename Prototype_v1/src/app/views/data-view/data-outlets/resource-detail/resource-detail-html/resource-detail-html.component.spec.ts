@@ -55,7 +55,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         const props: ResourceDetailProps[] = [
             { pid: '1', guielement: 'text', label: 'Test-Label', value: ['Test1', 'Test2'] }
         ];
-        const content: ResourceDetailContent = { props: props, images: images, incoming: incoming };
+        const content: ResourceDetailContent = { props, images, incoming };
 
         expectedResourceDetailData = new ResourceDetail(header, content);
 

@@ -89,7 +89,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         const props: ResourceDetailProps[] = [
             { pid: '1', guielement: 'text', label: 'Test-Label', value: ['Test1', 'Test2'] }
         ];
-        expectedContent = { props: props, images: images, incoming: incoming };
+        expectedContent = { props, images, incoming };
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

@@ -19,7 +19,8 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let fixture: ComponentFixture<RouterLinkButtonGroupComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let expectedButtonArray: RouterLinkButton[];
 
