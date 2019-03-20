@@ -20,21 +20,22 @@
         "lint": "ng lint awg-app",
         "e2e": "ng e2e",
         "build:prod": "yarn build --prod --aot=false",
-        "build:gh": "yarn build --prod --aot=false --base-href \"https://webern-unibas-ch.github.io/test2/\"",
+        "build:gh": "yarn build:prod --base-href \"https://webern-unibas-ch.github.io/test2/\"",
         "build:gzip": "run-s build:prod gzipper",
-        "build:stats": "run-s build:prod \"--stats-json\" gzipper wpanalyzer",
+        "build:stats": "yarn build:prod --stats-json",
+        "build:analyzer": "run-s build:stats gzipper wpanalyzer",
         "gzipper": "gzipper ./dist",
-        "sourcemap": "source-map-explorer dist/main.*.bundle.js",
         "wpanalyzer": "webpack-bundle-analyzer dist/stats.json",
+        "sourcemap": "source-map-explorer dist/main.*.bundle.js",
         "build:css": "./themes/bin/build-css",
         "watch:css": "./themes/bin/watch-css",
         "build:css-win": "node-sass --include-path src/assets/themes/scss src/assets/themes/scss/main.scss src/assets/themes/css/main.css",
         "watch:css-win": "nodemon -e scss -x \"npm run build-css-win\" ",
         "format:fix": "pretty-quick --staged",
-        "update-appversion": "cross-var ./version.sh $npm_package_version",
         "pre-release": "standard-version -a",
+        "update-appversion": "cross-var ./version.sh $npm_package_version",
         "release:gh": "cross-var ngh --dry-run --message \"Release $npm_package_name $npm_package_version\" ",
-        "deploy": "run-s build:prod release:gh"
+        "deploy": "run-s build:gzip release:gh"
     },
     "standard-version": {
         "scripts": {

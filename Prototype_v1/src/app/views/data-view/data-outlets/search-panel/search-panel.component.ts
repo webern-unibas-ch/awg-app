@@ -152,7 +152,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     this.currentQueryParams = qp;
 
                     if (qp.keys.length < 4) {
-
                         const sp: SearchParams = {
                             query: qp.get('query') || this.searchParams.query,
                             nRows: qp.get('nrows') || this.searchParams.nRows,

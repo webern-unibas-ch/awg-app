@@ -2,6 +2,7 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/app",
+        "types": [],
         "baseUrl": "./",
         "paths": {
             "@awg-app/*": ["app/*"],
@@ -9,10 +10,8 @@
             "@awg-shared/*": ["app/shared/*"],
             "@awg-side-info/*": ["app/side-info/*"],
             "@awg-views/*": ["app/views/*"]
-        },
-        "module": "es2015",
-        "types": []
+        }
     },
     "include": ["**/*.ts"],
-    "exclude": ["test.ts", "**/*.spec.ts", "testing"]
+    "exclude": ["test.ts", "**/*.spec.ts", "testing/"]
 }
