@@ -29,8 +29,7 @@
                             "node_modules/snapsvg/dist/snap.svg-min.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
-                        ],
-                        "es5BrowserSupport": true
+                        ]
                     },
                     "configurations": {
                         "production": {

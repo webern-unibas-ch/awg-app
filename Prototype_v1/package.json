@@ -1,15 +1,25 @@
 {
     "name": "awg-app",
     "version": "0.4.0",
+    "license": "MIT",
     "author": {
-        "name": "Stefan Münnich <stefan.muennich@unibas.ch>"
+        "name": "Stefan Münnich",
+        "email": "<stefan.muennich@unibas.ch>"
     },
-    "description": "Prototypische Web-Applikation für die Online-Edition der Anton Webern Gesamtausgabe (Musikwissenschaftliches Seminar der Universität Basel)",
+    "description": "Prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
+    "keywords": [
+        "edition",
+        "Anton Webern",
+        "musicology",
+        "digital-humanities",
+        "angular"
+    ],
     "repository": {
-        "type": "gitlab",
+        "type": "git",
         "url": "git@git.iml.unibas.ch:muennich/WebernLiveApp.git"
     },
-    "license": "UNLICENSED",
+    "homepage": "https://edition.anton-webern.ch",
+    "bugs": "",
     "private": true,
     "scripts": {
         "ng": "ng",
@@ -21,11 +31,10 @@
         "tslint-check": "tslint-config-prettier-check ./tslint.json",
         "e2e": "ng e2e",
         "build:prod": "yarn build --prod --aot=false",
+        "postbuild:prod": "gzipper ./dist",
         "build:gh": "yarn build:prod --base-href \"https://webern-unibas-ch.github.io/test2/\"",
-        "build:gzip": "run-s build:prod gzipper",
         "build:stats": "yarn build:prod --stats-json",
-        "build:analyzer": "run-s build:stats gzipper wpanalyzer",
-        "gzipper": "gzipper ./dist",
+        "build:analyzer": "run-s build:stats wpanalyzer",
         "wpanalyzer": "webpack-bundle-analyzer dist/stats.json",
         "sourcemap": "source-map-explorer dist/main.*.bundle.js",
         "build:css": "./themes/bin/build-css",
@@ -35,8 +44,8 @@
         "format:fix": "pretty-quick --staged",
         "pre-release": "standard-version -a",
         "update-appversion": "cross-var ./version.sh $npm_package_version",
-        "release:gh": "cross-var ngh --dry-run --message \"Release $npm_package_name $npm_package_version\" ",
-        "deploy": "run-s build:gzip release:gh"
+        "release:gh": "cross-var ngh --dry-run --cname=edtion.anton-webern.ch --message \"Release $npm_package_name (v$npm_package_version) on gh-pages\" ",
+        "deploy": "run-s build:prod release:gh"
     },
     "standard-version": {
         "scripts": {
@@ -124,5 +133,17 @@
         "tslint-config-prettier": "^1.18.0",
         "typescript": "~3.2.4",
         "webpack-bundle-analyzer": "^3.1.0"
-    }
+    },
+    "engines": {
+        "node": ">= 8.9.0",
+        "npm": ">= 5.5.1",
+        "yarn": "^1.10.0"
+    },
+    "browserslist": [
+        "> 0.5%",
+        "last 2 versions",
+        "Firefox ESR",
+        "not dead",
+        "IE 9-11"
+    ]
 }
