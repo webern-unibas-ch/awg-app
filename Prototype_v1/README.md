@@ -1,6 +1,6 @@
 # AWG App
 
-A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular]() and runs on [edition.anton-webern.ch](edition.anton-webern.ch).
+A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
 
 ## Table of Contents
 
@@ -20,40 +20,40 @@ A prototype web application for the online edition of the [Anton Webern Gesamtau
 
 ## Contributing
 
-###Quick start guide
+## Quick start guide
 
-#### Prerequisites
+### Prerequisites
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.3.6 (for installation instructions see the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/packages/angular/cli/README.md)).
 
 Both the Angular CLI and generated project have dependencies that require Node 8.9 or higher, together
 with NPM 5.5.1 or higher.
 
-#### Development server
+### Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 
-#### Code scaffolding
+### Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-#### Build
+### Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-#### Running unit tests
+### Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-#### Running end-to-end tests
+### Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-#### Further help
+### Further help
 
 To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
 
-### Branching / Git flow
+## Branching / Git flow
 
 This project uses the [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) which defines a strict branching model designed around the project release. Therefore the following branch structure is used
 
@@ -65,7 +65,7 @@ This project uses the [Gitflow Workflow](https://www.atlassian.com/git/tutorials
 
 To initialize the GitFlow workflow execute `git flow init` inside your local copy of the repository.
 
-### Commit Message Schema
+## Commit Message Schema
 
 This project follows the [Conventional Commits Specification](https://conventionalcommits.org) using [commitlint](https://conventional-changelog.github.io/commitlint/#/) based on the [Angular configuration](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular) (further explanation can be found in the [Angular commit-message-guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines)).
 
@@ -85,25 +85,25 @@ The **header** is mandatory, and **type** and **scope** of the header must be on
 
 Types:
 
--   build (changes that affect the build system or external dependencies; no production code changes),
--   ci (changes to Continuous Integration, no production code changes)
--   docs (changes to the documentation, no production code changes),
--   feat (new feature for the user),
--   fix (bug fix for the user),
--   perf (code change that improves performance),
--   refactor (refactoring production code, eg. renaming a variable),
--   revert (reverting a former commit),
--   style (formatting, etc; no production code changes),
--   test (adding missing tests, refactoring tests; no production code changes)
+-   `build` (changes that affect the build system or external dependencies; no production code changes),
+-   `ci` (changes to Continuous Integration, no production code changes)
+-   `docs` (changes to the documentation, no production code changes),
+-   `feat` (new feature for the user),
+-   `fix` (bug fix for the user),
+-   `perf` (code change that improves performance),
+-   `refactor` (refactoring production code, eg. renaming a variable),
+-   `revert` (reverting a former commit),
+-   `style` (formatting, etc; no production code changes),
+-   `test` (adding missing tests, refactoring tests; no production code changes)
 
 Scopes (specific to this project, not part of the Angular convention):
 
--   app
--   home
--   edition
--   search
--   structure
--   contact
+-   `app`
+-   `home`
+-   `edition`
+-   `search`
+-   `structure`
+-   `contact`
 
 Example:
 
@@ -114,12 +114,12 @@ feat(edition): add route for resource creation
 - adapt handling of resources responder
 ```
 
-### Release Versioning Convention
+## Release Versioning Convention
 
-We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/master/LICENSE.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version).
+We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/master/CHANGELOG.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version).
 
 ## License
 
 The software code of this project is released under [MIT](https://opensource.org/licenses/MIT) license, see [LICENSE.md](https://github.com/webern-unibas-ch/awg-app/blob/master/LICENSE.md).
 
-The contents of the webpage are released under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/), see [Disclaimer](http://localhost:4200/contact#awg-disclaimer).
+The contents of the webpage are released under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/), see [Disclaimer](http://edition.anton-webern.ch/contact#awg-disclaimer).
