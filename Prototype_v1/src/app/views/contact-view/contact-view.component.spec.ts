@@ -3,8 +3,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import Spy = jasmine.Spy;
 
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
 import { Meta } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -26,17 +31,18 @@ describe('ContactViewComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl;
 
+    let dateSpy: Spy;
     const datePipe = new DatePipe('en');
 
     let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
+    let expectedToday;
     let expectedMetaData: Meta;
     const expectedMastHeadTitle = 'Impressum';
     const expectedMastHeadId = 'awg-masthead';
     const expectedCitationTitle = 'Zitation';
     const expectedCitationId = 'awg-citation';
-
     const expectedDateFormat = 'd. MMMM yyyy';
 
     beforeEach(async(() => {
@@ -192,13 +198,13 @@ describe('ContactViewComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        let expectedToday;
-
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
             component.metaData = mockCoreService.getMetaData();
 
+            // spy on Date.now() returning a mocked (fixed) date
             expectedToday = Date.now();
+            dateSpy = spyOn(Date, 'now').and.callFake(() => expectedToday);
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -261,6 +267,7 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         it('should have `today`', () => {
+            expectSpyCall(dateSpy, 1);
             expect(component.today).toBeDefined();
             expect(component.today).toBe(expectedToday, `should be ${expectedToday}`);
         });
