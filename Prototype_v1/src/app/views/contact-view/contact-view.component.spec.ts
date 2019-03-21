@@ -143,9 +143,14 @@ describe('ContactViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div.awg-masthead-description` with 21 `p` elements', () => {
+            it('... should contain 1 `div.awg-masthead-description` with 5 `p` elements', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 21, 21);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer > p', 17, 17);
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {

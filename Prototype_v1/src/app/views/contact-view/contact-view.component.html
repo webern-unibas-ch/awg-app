@@ -10,12 +10,22 @@
 
     <p class="italic">Website:</p>
     <p class="awg-citation-text">
-        Anton Webern Gesamtausgabe. Projekt-Website: <a target="_blank" ref="noopener noreferrer" href="http://www.anton-webern.ch">http://www.anton-webern.ch</a>, abgerufen am <span class="awg-citation-date">{{ today | date:dateFormat }}</span>.
+        Anton Webern Gesamtausgabe. Projekt-Website:
+        <a target="_blank" ref="noopener noreferrer" href="http://www.anton-webern.ch">http://www.anton-webern.ch</a>,
+        abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        >.
     </p>
 
     <p class="italic">Online-Edition:</p>
     <p class="awg-citation-text">
-        Anton Webern Gesamtausgabe. Online-Edition (Version <span class="awg-citation-version">{{ metaData?.page?.version }}</span> vom <span class="awg-citation-version-release">{{ metaData?.page?.versionReleaseDate }}</span>): <a target="_blank" ref="noopener noreferrer" href="http://editon.anton-webern.ch">http://editon.anton-webern.ch</a>, abgerufen am <span class="awg-citation-date">{{ today | date:dateFormat }}</span>.
+        Anton Webern Gesamtausgabe. Online-Edition (Version
+        <span class="awg-citation-version">{{ metaData?.page?.version }}</span> vom
+        <span class="awg-citation-version-release">{{ metaData?.page?.versionReleaseDate }}</span
+        >):
+        <a target="_blank" ref="noopener noreferrer" href="http://editon.anton-webern.ch"
+            >http://editon.anton-webern.ch</a
+        >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        >.
     </p>
 </div>
 
@@ -40,7 +50,8 @@
     </p>
     <p>
         <span class="caps">Texte/Inhalte:</span><br />
-        Die Verantwortung für die Inhalte der Website liegt bei der Anton Webern Gesamtausgabe. Bei inhaltlichen Fragen wenden Sie sich bitte an die unter Kontakt angegebene Adresse.<br /><br />
+        Die Verantwortung für die Inhalte der Website liegt bei der Anton Webern Gesamtausgabe. Bei inhaltlichen Fragen
+        wenden Sie sich bitte an die unter Kontakt angegebene Adresse.<br /><br />
     </p>
     <p>
         <span class="caps">Materialien, Notentexte und Bilder (vgl. Lizenzierung):</span><br />
@@ -50,36 +61,131 @@
     <p>
         <span class="caps">Programmierung &amp; Webdesign:</span><br />
         Stefan Münnich<br />
-        Wissenschaftlicher Mitarbeiter der Anton Webern Gesamtausgabe, Basel<br /><a href="mailto:stefan.muennich@unibas.ch">stefan.muennich [at] unibas [dot] ch</a><br /><br />
+        Wissenschaftlicher Mitarbeiter der Anton Webern Gesamtausgabe, Basel<br /><a
+            href="mailto:stefan.muennich@unibas.ch"
+            >stefan.muennich [at] unibas [dot] ch</a
+        ><br /><br />
     </p>
-    <p>
-        <span class="caps">Disclaimer/Haftungserklärung:</span><br />
+</div>
 
+<!-- disclaimer description -->
+<div id="awg-disclaimer">
+    <p><span class="caps">Disclaimer/Haftungserklärung:</span><br /></p>
     <p class="italic">Urheberrecht und Lizenzierung:</p>
-    <p>Sämtliche im Rahmen der Anton Webern Gesamtausgabe erarbeiteten und auf ihrer Website oder ihrer Online-Edition veröffentlichten Inhalte sowie auch alle Inhalte, die von der Website oder der Online-Edition der Anton Webern Gesamtausgabe aus auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton Webern Gesamtausgabe) für den Nutzer zugänglich sind, sind urheberrechtlich geschützt und werden – sofern nicht anders deklariert – zu den Bedingungen der Creative Commons-Lizenz „Namensnennung – Nicht kommerziell – Keine Bearbeitungen 4.0 International" (<a target="_blank" ref="noopener noreferrer" href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de">CC-BY-NC-ND-4.0</a>) zur Verfügung gestellt. Jede davon abweichende Verwertung bedarf der vorherigen schriftlichen Zustimmung durch den jeweiligen Rechteinhaber. Allfällige Bewilligungsgesuche sind an die Anton Webern Gesamtausgabe zu richten (Kontakt). Alle Rechte an zugänglich gemachten externen Bildinhalten verbleiben bei den Privateigentümern bzw. den archivierenden Institutionen, bei denen die Rechte für eine allfällige Weiterverwendung einzuholen sind.</p>
+    <p>
+        Sämtliche im Rahmen der Anton Webern Gesamtausgabe erarbeiteten und auf ihrer Website oder ihrer Online-Edition
+        veröffentlichten Inhalte sowie auch alle Inhalte, die von der Website oder der Online-Edition der Anton Webern
+        Gesamtausgabe aus auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton Webern
+        Gesamtausgabe) für den Nutzer zugänglich sind, sind urheberrechtlich geschützt und werden – sofern nicht anders
+        deklariert – zu den Bedingungen der Creative Commons-Lizenz „Namensnennung – Nicht kommerziell – Keine
+        Bearbeitungen 4.0 International" (<a
+            target="_blank"
+            ref="noopener noreferrer"
+            href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de"
+            >CC-BY-NC-ND-4.0</a
+        >) zur Verfügung gestellt. Jede davon abweichende Verwertung bedarf der vorherigen schriftlichen Zustimmung
+        durch den jeweiligen Rechteinhaber. Allfällige Bewilligungsgesuche sind an die Anton Webern Gesamtausgabe zu
+        richten (Kontakt). Alle Rechte an zugänglich gemachten externen Bildinhalten verbleiben bei den
+        Privateigentümern bzw. den archivierenden Institutionen, bei denen die Rechte für eine allfällige
+        Weiterverwendung einzuholen sind.
+    </p>
+
+    <p>
+        Der Software-Code dieses Prototyps wird auf
+        <a target="_blank" ref="noopener norefferer" href="https://github.com/webern-unibas-ch/awg-app">GitHub</a> unter
+        einer <a target="_blank" ref="noopener norefferer" href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur
+        Verfügung gestellt.
+    </p>
 
     <p class="italic">Externe Links:</p>
-    <p>Die Anton Webern Gesamtausgabe hat keinen Einfluss auf und übernimmt keine Verantwortung für die Inhalte der von ihrer Website, von ihrer Online-Edition oder von der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton Webern Gesamtausgabe) aus verlinkten externen Internetseiten. Eine Prüfung bei der Verlinkung ergab keine strafbaren Inhalte auf diesen Seiten. Alle Linkangaben sind ohne Gewähr. Seitenaufrufe externer Seiten über diese Links erfolgen auf eigene Gefahr. Dies gilt für alle Links auf der Website und der Online-Edition der Anton Webern Gesamtausgabe sowie auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton Webern Gesamtausgabe).</p>
+    <p>
+        Die Anton Webern Gesamtausgabe hat keinen Einfluss auf und übernimmt keine Verantwortung für die Inhalte der von
+        ihrer Website, von ihrer Online-Edition oder von der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich
+        der Anton Webern Gesamtausgabe) aus verlinkten externen Internetseiten. Eine Prüfung bei der Verlinkung ergab
+        keine strafbaren Inhalte auf diesen Seiten. Alle Linkangaben sind ohne Gewähr. Seitenaufrufe externer Seiten
+        über diese Links erfolgen auf eigene Gefahr. Dies gilt für alle Links auf der Website und der Online-Edition der
+        Anton Webern Gesamtausgabe sowie auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton
+        Webern Gesamtausgabe).
+    </p>
 
     <p class="italic">Haftungserklärung:</p>
-    <p>Die Anton Webern Gesamtausgabe bemüht sich um richtige und aktualisierte Informationen auf ihrer Website und ihrer Online-Edition, übernimmt jedoch keinerlei Garantien oder Zusicherungen betreffend der Vollständigkeit der auf dieser enthaltenen bzw. referenzierten Informationen. Prinzipiell erfolgen Zugang, Benutzung und Inanspruchnahme der Dienstleistungen der Website der Anton Webern Gesamtausgabe ausschließlich auf eigenes Risiko des Nutzers. Weder die Gesamtausgabe noch eine von ihr beigezogene, in Herstellung, Informationseingabe und Informationsvermittlung der Website involvierte Hilfsperson sind in irgendeiner Form haftbar für etwaige Schäden, die im Zusammenhang mit Zugang, Benutzung oder möglichen Störungen beim Gebrauch der Website auftreten könnten.</p>
+    <p>
+        Die Anton Webern Gesamtausgabe bemüht sich um richtige und aktualisierte Informationen auf ihrer Website und
+        ihrer Online-Edition, übernimmt jedoch keinerlei Garantien oder Zusicherungen betreffend der Vollständigkeit der
+        auf dieser enthaltenen bzw. referenzierten Informationen. Prinzipiell erfolgen Zugang, Benutzung und
+        Inanspruchnahme der Dienstleistungen der Website der Anton Webern Gesamtausgabe ausschließlich auf eigenes
+        Risiko des Nutzers. Weder die Gesamtausgabe noch eine von ihr beigezogene, in Herstellung, Informationseingabe
+        und Informationsvermittlung der Website involvierte Hilfsperson sind in irgendeiner Form haftbar für etwaige
+        Schäden, die im Zusammenhang mit Zugang, Benutzung oder möglichen Störungen beim Gebrauch der Website auftreten
+        könnten.
+    </p>
 
     <p class="italic">Google Analytics:</p>
-    <p>Die Anton Webern Gesamtausgabe setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an der Analyse und Optimierung unseres Onlineangebotes im Sinne des Art. <a target="_blank" ref="noopener noreferrer" href="https://dejure.org/gesetze/DSGVO/6.html">6</a> Abs. 1 lit. f. DSGVO) Google Analytics, einen Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die durch das Cookie erzeugten Informationen über Benutzung des Onlineangebotes durch die Nutzer werden in der Regel an einen Server von Google in den USA übertragen und dort gespeichert.</p>
+    <p>
+        Die Anton Webern Gesamtausgabe setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an der Analyse
+        und Optimierung unseres Onlineangebotes im Sinne des Art.
+        <a target="_blank" ref="noopener noreferrer" href="https://dejure.org/gesetze/DSGVO/6.html">6</a> Abs. 1 lit. f.
+        DSGVO) Google Analytics, einen Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die
+        durch das Cookie erzeugten Informationen über Benutzung des Onlineangebotes durch die Nutzer werden in der Regel
+        an einen Server von Google in den USA übertragen und dort gespeichert.
+    </p>
 
-    <p>Google ist unter dem Privacy-Shield-Abkommen zertifiziert und bietet hierdurch eine Garantie, das europäische Datenschutzrecht einzuhalten (<a target="_blank" ref="noopener noreferrer" href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active">https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a>).</p>
+    <p>
+        Google ist unter dem Privacy-Shield-Abkommen zertifiziert und bietet hierdurch eine Garantie, das europäische
+        Datenschutzrecht einzuhalten (<a
+            target="_blank"
+            ref="noopener noreferrer"
+            href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active"
+            >https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a
+        >).
+    </p>
 
-    <p>Google wird diese Informationen in unserem Auftrag benutzen, um die Nutzung unseres Onlineangebotes durch die Nutzer auszuwerten, um Reports über die Aktivitäten innerhalb dieses Onlineangebotes zusammenzustellen und um weitere, mit der Nutzung dieses Onlineangebotes und der Internetnutzung verbundene Dienstleistungen, uns gegenüber zu erbringen. Dabei können aus den verarbeiteten Daten pseudonyme Nutzungsprofile der Nutzer erstellt werden.</p>
+    <p>
+        Google wird diese Informationen in unserem Auftrag benutzen, um die Nutzung unseres Onlineangebotes durch die
+        Nutzer auszuwerten, um Reports über die Aktivitäten innerhalb dieses Onlineangebotes zusammenzustellen und um
+        weitere, mit der Nutzung dieses Onlineangebotes und der Internetnutzung verbundene Dienstleistungen, uns
+        gegenüber zu erbringen. Dabei können aus den verarbeiteten Daten pseudonyme Nutzungsprofile der Nutzer erstellt
+        werden.
+    </p>
 
-    <p>Die Anton Webern Gesamtausgabe setzt Google Analytics nur mit aktivierter IP-Anonymisierung ein. Das bedeutet, die IP-Adresse der Nutzer wird von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum gekürzt. Nur in Ausnahmefällen wird die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt.</p>
+    <p>
+        Die Anton Webern Gesamtausgabe setzt Google Analytics nur mit aktivierter IP-Anonymisierung ein. Das bedeutet,
+        die IP-Adresse der Nutzer wird von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in anderen
+        Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum gekürzt. Nur in Ausnahmefällen wird die
+        volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt.
+    </p>
 
-    <p>Die von dem Browser des Nutzers übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt. Die Nutzer können die Speicherung der Cookies durch eine entsprechende Einstellung ihrer Browser-Software verhindern; die Nutzer können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf ihre Nutzung des Onlineangebotes bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem sie das unter folgendem Link verfügbare Browser-Plugin herunterladen und installieren: <a target="_blank" ref="noopener noreferrer" href="http://tools.google.com/dlpage/gaoptout?hl=de">http://tools.google.com/dlpage/gaoptout?hl=de</a>.</p>
+    <p>
+        Die von dem Browser des Nutzers übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.
+        Die Nutzer können die Speicherung der Cookies durch eine entsprechende Einstellung ihrer Browser-Software
+        verhindern; die Nutzer können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf ihre Nutzung
+        des Onlineangebotes bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem
+        sie das unter folgendem Link verfügbare Browser-Plugin herunterladen und installieren:
+        <a target="_blank" ref="noopener noreferrer" href="http://tools.google.com/dlpage/gaoptout?hl=de"
+            >http://tools.google.com/dlpage/gaoptout?hl=de</a
+        >.
+    </p>
 
-
-    <p>Weitere Informationen zur Datennutzung durch Google, Einstellungs- und Widerspruchsmöglichkeiten, erfahren Sie in der Datenschutzerklärung von Google (<a target="_blank" ref="noopener noreferrer" href="https://policies.google.com/technologies/ads">https://policies.google.com/technologies/ads</a>) sowie in den Einstellungen für die Darstellung von Werbeeinblendungen durch Google (<a target="_blank" ref="noopener noreferrer" href="https://adssettings.google.com/authenticated">https://adssettings.google.com/authenticated</a>).</p>
-
+    <p>
+        Weitere Informationen zur Datennutzung durch Google, Einstellungs- und Widerspruchsmöglichkeiten, erfahren Sie
+        in der Datenschutzerklärung von Google (<a
+            target="_blank"
+            ref="noopener noreferrer"
+            href="https://policies.google.com/technologies/ads"
+            >https://policies.google.com/technologies/ads</a
+        >) sowie in den Einstellungen für die Darstellung von Werbeeinblendungen durch Google (<a
+            target="_blank"
+            ref="noopener noreferrer"
+            href="https://adssettings.google.com/authenticated"
+            >https://adssettings.google.com/authenticated</a
+        >).
+    </p>
 
     <p>Die personenbezogenen Daten der Nutzer werden nach 14 Monaten gelöscht.</p>
 
-    <p>[<a target="_blank" ref="noopener noreferrer" href="https://datenschutz-generator.de/">Erstellt mit Datenschutz-Generator.de von RA Dr. Thomas Schwenke</a>; vom Websiteinhaber angepasst]</p>
+    <p>
+        [<a target="_blank" ref="noopener noreferrer" href="https://datenschutz-generator.de/"
+            >Erstellt mit Datenschutz-Generator.de von RA Dr. Thomas Schwenke</a
+        >; vom Websiteinhaber angepasst]
+    </p>
 </div>
