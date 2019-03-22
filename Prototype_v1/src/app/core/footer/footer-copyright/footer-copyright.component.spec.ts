@@ -4,6 +4,7 @@ import { DebugElement } from '@angular/core';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { Meta } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 
 import { FooterCopyrightComponent } from './footer-copyright.component';
 
@@ -28,13 +29,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = new Meta();
-        expectedMetaData.page = {
-            yearStart: 2015,
-            yearRecent: 2018,
-            version: '0.2.0',
-            versionReleaseDate: '18. Oktober 2018'
-        };
+        expectedMetaData = METADATA;
     });
 
     it('should create', () => {

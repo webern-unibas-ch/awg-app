@@ -5,6 +5,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { Logo, Logos, Meta } from '@awg-core/core-models';
+import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { FooterComponent } from './footer.component';
@@ -71,40 +72,8 @@ describe('FooterComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedLogos = {
-            unibas: {
-                id: 'unibaslogo',
-                src: 'assets/img/logos/uni.svg',
-                alt: 'Logo Uni Basel',
-                href: 'http://www.unibas.ch'
-            },
-            snf: {
-                id: 'snflogo',
-                src: 'assets/img/logos/snf.png',
-                alt: 'Logo SNF',
-                href: 'http://www.snf.ch'
-            },
-            angular: {
-                id: 'angularlogo',
-                src: 'assets/img/logos/angular.svg',
-                alt: 'Logo Angular',
-                href: 'https://angular.io'
-            },
-            bootstrap: {
-                id: 'bootstraplogo',
-                src: 'assets/img/logos/ng-bootstrap.svg',
-                alt: 'Logo ng-Bootstrap',
-                href: 'https://ng-bootstrap.github.io/'
-            }
-        };
-        // test meta data
-        expectedMetaData = new Meta();
-        expectedMetaData.page = {
-            yearStart: 2015,
-            yearRecent: 2018,
-            version: '0.2.0',
-            versionReleaseDate: '18. Oktober 2018'
-        };
+        expectedLogos = LOGOSDATA;
+        expectedMetaData = METADATA;
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -125,6 +94,8 @@ describe('FooterComponent (DONE)', () => {
         changedMetaData.page = {
             yearStart: 2015,
             yearRecent: 2017,
+            editionUrl: '',
+            webernUrl: '',
             version: '1.0.0',
             versionReleaseDate: '8. November 2016'
         };

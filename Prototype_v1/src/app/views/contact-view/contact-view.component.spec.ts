@@ -12,6 +12,7 @@ import {
 } from '@testing/expect-helper';
 
 import { Meta } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
@@ -65,13 +66,7 @@ describe('ContactViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = new Meta();
-        expectedMetaData.page = {
-            yearStart: 2015,
-            yearRecent: 2018,
-            version: '0.2.0',
-            versionReleaseDate: '18. Oktober 2018'
-        };
+        expectedMetaData = METADATA;
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -93,6 +88,8 @@ describe('ContactViewComponent (DONE)', () => {
         changedMetaData.page = {
             yearStart: 2015,
             yearRecent: 2018,
+            editionUrl: '',
+            webernUrl: '',
             version: '0.2.1',
             versionReleaseDate: '20. Oktober 2018'
         };
