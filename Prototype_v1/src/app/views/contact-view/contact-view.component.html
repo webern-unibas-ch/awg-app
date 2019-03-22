@@ -11,8 +11,9 @@
     <p class="italic">Website:</p>
     <p class="awg-citation-text">
         Anton Webern Gesamtausgabe. Projekt-Website:
-        <a target="_blank" ref="noopener noreferrer" href="http://www.anton-webern.ch">http://www.anton-webern.ch</a>,
-        abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        <a target="_blank" ref="noopener noreferrer" href="{{ metaData?.page?.webernUrl }}">
+            {{ metaData?.page?.webernUrl }} </a
+        >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
         >.
     </p>
 
@@ -22,8 +23,8 @@
         <span class="awg-citation-version">{{ metaData?.page?.version }}</span> vom
         <span class="awg-citation-version-release">{{ metaData?.page?.versionReleaseDate }}</span
         >):
-        <a target="_blank" ref="noopener noreferrer" href="http://editon.anton-webern.ch"
-            >http://editon.anton-webern.ch</a
+        <a target="_blank" ref="noopener noreferrer" href="{{ metaData?.page?.editionUrl }}">
+            {{ metaData?.page?.editionUrl }} </a
         >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
         >.
     </p>

@@ -1,11 +1,12 @@
 <!-- sideinfo: contact -->
 <div class="card">
     <div class="card-body bg-light">
-        <h2>Kontakt</h2><br />
+        <h2>Kontakt</h2>
+        <br />
         <address>
             <span class="caps">
                 <strong>
-                    <a href="http://www.anton-webern.ch" target="_blank" rel="noopener noreferrer">
+                    <a href="{{ metaData?.page?.webernUrl }}" target="_blank" rel="noopener noreferrer">
                         Anton Webern Gesamtausgabe
                     </a>
                 </strong>
@@ -20,9 +21,18 @@
             Telefon: +41 (0)61 267 28 08<br />
             E-Mail: <a href="mailto:info-awg@unibas.ch">info-awg [at] unibas [dot] ch</a><br />
         </address>
-        <iframe width="100%" height="auto" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" [src]="osmUrl" style="border: 1px solid black">
+        <iframe
+            width="100%"
+            height="auto"
+            frameborder="0"
+            scrolling="no"
+            marginheight="0"
+            marginwidth="0"
+            [src]="osmUrl"
+            style="border: 1px solid black"
+        >
         </iframe>
-        <br/>
+        <br />
         <small><a [href]="osmLinkUrl" target="_blank" rel="noopener noreferrer">Größere Karte anzeigen</a></small>
     </div>
 </div>
