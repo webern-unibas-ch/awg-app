@@ -19,9 +19,23 @@ cache:
 install:
     - npm install
 
-script:
-    - yarn run test:ci
+stages:
+    - test
+    - name: deploy # generally, only deploy if we are on 'master'
+      if: branch = master
 
-after_success:
-    - bash <(curl -s https://codecov.io/bash)
-    - yarn run deploy:ci
+jobs:
+    include:
+        - stage: test
+          name: 'Unit Tests'
+          script:
+              # run test script
+              - yarn run test:ci
+          after_success:
+              # report code coverage
+              - bash <(curl -s https://codecov.io/bash)
+        - stage: deploy
+          name: 'Deploy to gh-pages'
+          script:
+              # run deploy script (only on master, see stages)
+              - yarn run deploy:ci
