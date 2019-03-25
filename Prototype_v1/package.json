@@ -18,7 +18,7 @@
         "type": "git",
         "url": "git@git.iml.unibas.ch:muennich/WebernLiveApp.git"
     },
-    "homepage": "https://edition.anton-webern.ch/app/",
+    "homepage": "https://edition.anton-webern.ch",
     "bugs": "",
     "private": true,
     "scripts": {
@@ -45,8 +45,10 @@
         "format:fix": "pretty-quick --staged",
         "pre-release": "standard-version -a",
         "update-appversion": "cross-var ./version.sh $npm_package_version $npm_package_homepage",
-        "release:gh": "cross-var ngh --dry-run --cname=edtion.anton-webern.ch --message \"Release $npm_package_name (v$npm_package_version) on gh-pages\" ",
-        "deploy": "run-s build:prod release:gh"
+        "release:gh": "cross-var ngh --cname=edition.anton-webern.ch --message \"Release $npm_package_name (v$npm_package_version) on gh-pages\" ",
+        "deploy": "run-s build:gh release:gh",
+        "predeploy:ci": "yarn build:gh",
+        "deploy:ci": "yarn release:gh --repo=https://${GITHUB_TOKEN}@github.com/webern-unibas-ch/awg-app.git"
     },
     "standard-version": {
         "scripts": {

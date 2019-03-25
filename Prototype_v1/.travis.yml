@@ -21,7 +21,7 @@ install:
 
 script:
     - yarn run test:ci
-    - yarn run build:prod
 
 after_success:
     - bash <(curl -s https://codecov.io/bash)
+    - yarn run deploy:ci
