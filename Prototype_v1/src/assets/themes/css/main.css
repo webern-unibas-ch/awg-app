@@ -95,7 +95,7 @@ awg-navbar > .navbar {
 /* view container */
 awg-view-container > div {
     background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
-    background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
+    background-image: url(assets/img/whitenoise.png);
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
     min-height: calc(100vh - 121px - 200px);
