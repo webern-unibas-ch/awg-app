@@ -1,5 +1,10 @@
 # AWG App
 
+![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
+[![Build Status](https://travis-ci.org/webern-unibas-ch/awg-app.svg?branch=master)](https://travis-ci.org/webern-unibas-ch/awg-app)
+[![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/branch/master/graph/badge.svg)](https://codecov.io/gh/webern-unibas-ch/awg-app)
+[![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
+
 A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).
 
 ## Table of Contents
