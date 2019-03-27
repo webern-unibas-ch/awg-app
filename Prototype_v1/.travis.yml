@@ -20,7 +20,8 @@ install:
     - npm install
 
 stages:
-    - test
+    - name: test
+      if: tag IS blank # exclude tags from being tested
     - name: deploy # generally, only deploy if we are on 'master'
       if: branch = master
 
@@ -32,7 +33,7 @@ jobs:
               # run test script
               - yarn run test:ci
           after_success:
-              # report code coverage
+              # run code coverage
               - bash <(curl -s https://codecov.io/bash)
         - stage: deploy
           name: 'Deploy to gh-pages'
