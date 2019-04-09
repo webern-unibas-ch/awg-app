@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.3...v0.5.4) (2019-04-09)
+
+### Bug Fixes
+
+-   **app:** add angular-cli-ghpages to devDependencies ([878852a](https://github.com/webern-unibas-ch/awg-app/commit/878852a))
+
 ## [0.5.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.2...v0.5.3) (2019-04-09)
 
 ### Bug Fixes
