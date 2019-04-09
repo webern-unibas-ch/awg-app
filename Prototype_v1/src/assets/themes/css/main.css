@@ -41,10 +41,10 @@ a.dropdown-item:hover,
 .navbar-nav > li > a:active {
     color: rgba(20, 155, 158, 1) !important; /* rgba converted HEX #149b9e */
 }
-a.navbar-brand span#webernlogo {
+a.navbar-brand span.webernlogo {
     color: rgba(0, 0, 0, 0.6); /* rgba converted HEX #000000 */
 }
-a.navbar-brand:hover span#webernlogo {
+a.navbar-brand:hover span.webernlogo {
     color: rgba(0, 0, 0, 1); /* rgba converted HEX #000000 */
 }
 
@@ -95,7 +95,7 @@ awg-navbar > .navbar {
 /* view container */
 awg-view-container > div {
     background-color: rgba(249, 249, 249, 1); /* rgba converted HEX #f9f9f6 */
-    background-image: url(http://api.thumbr.it/whitenoise-600x200.png?background=f9f9f6&noise=6c702d&density=17&opacity=15);
+    background-image: url(assets/img/whitenoise.png);
     /* full height without header and footer */
     /* needed for sticky footer, see https://css-tricks.com/couple-takes-sticky-footer */
     min-height: calc(100vh - 121px - 200px);
@@ -223,7 +223,7 @@ footer {
     cursor: pointer;
     padding-right: 10px;
 }
-#webernlogo {
+.webernlogo {
     cursor: pointer;
     font-family: 'Montserrat', sans-serif;
     font-weight: 400;
@@ -231,7 +231,7 @@ footer {
     letter-spacing: normal;
     text-align: center;
 }
-#webernlogo span {
+.webernlogo span {
     font-weight: 100;
 }
 

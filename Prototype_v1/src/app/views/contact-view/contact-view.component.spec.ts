@@ -3,10 +3,16 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+import Spy = jasmine.Spy;
 
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
 import { Meta } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
@@ -26,17 +32,18 @@ describe('ContactViewComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl;
 
+    let dateSpy: Spy;
     const datePipe = new DatePipe('en');
 
     let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
+    let expectedToday;
     let expectedMetaData: Meta;
     const expectedMastHeadTitle = 'Impressum';
     const expectedMastHeadId = 'awg-masthead';
     const expectedCitationTitle = 'Zitation';
     const expectedCitationId = 'awg-citation';
-
     const expectedDateFormat = 'd. MMMM yyyy';
 
     beforeEach(async(() => {
@@ -59,13 +66,7 @@ describe('ContactViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = new Meta();
-        expectedMetaData.page = {
-            yearStart: 2015,
-            yearRecent: 2018,
-            version: '0.2.0',
-            versionReleaseDate: '18. Oktober 2018'
-        };
+        expectedMetaData = METADATA;
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -87,6 +88,8 @@ describe('ContactViewComponent (DONE)', () => {
         changedMetaData.page = {
             yearStart: 2015,
             yearRecent: 2018,
+            editionUrl: '',
+            webernUrl: '',
             version: '0.2.1',
             versionReleaseDate: '20. Oktober 2018'
         };
@@ -143,9 +146,14 @@ describe('ContactViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div.awg-masthead-description` with 21 `p` elements', () => {
+            it('... should contain 1 `div.awg-masthead-description` with 5 `p` elements', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 21, 21);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div#awg-disclaimer > p', 17, 17);
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {
@@ -187,13 +195,13 @@ describe('ContactViewComponent (DONE)', () => {
     });
 
     describe('AFTER initial data binding', () => {
-        let expectedToday;
-
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
             component.metaData = mockCoreService.getMetaData();
 
+            // spy on Date.now() returning a mocked (fixed) date
             expectedToday = Date.now();
+            dateSpy = spyOn(Date, 'now').and.callFake(() => expectedToday);
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -256,6 +264,7 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         it('should have `today`', () => {
+            expectSpyCall(dateSpy, 1);
             expect(component.today).toBeDefined();
             expect(component.today).toBe(expectedToday, `should be ${expectedToday}`);
         });

@@ -10,7 +10,7 @@ import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { AppComponent } from './app.component';
 
 // analytics global
-(<any>window).ga = function() {};
+(window as any).ga = () => {};
 
 // mock components
 @Component({ selector: 'awg-navbar', template: '' })
@@ -44,7 +44,7 @@ describe('AppComponent (DONE)', () => {
 
     beforeEach(() => {
         // window spy object (GoogleAnalytics)
-        (<any>window).ga = jasmine.createSpy('ga');
+        (window as any).ga = jasmine.createSpy('ga');
 
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
@@ -55,7 +55,7 @@ describe('AppComponent (DONE)', () => {
     });
 
     afterEach(() => {
-        (<any>window).ga = undefined;
+        (window as any).ga = undefined;
     });
 
     it('should create the app', async(() => {

@@ -1,13 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 
-import {
-    faCaretDown,
-    faFileAlt,
-    faEnvelope,
-    faHome,
-    faNetworkWired,
-    faSearch
-} from '@fortawesome/free-solid-svg-icons';
+import { faFileAlt, faEnvelope, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { Meta } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
 
 @Component({
     selector: 'awg-navbar',
@@ -17,17 +13,24 @@ import {
 export class NavbarComponent implements OnInit {
     isCollapsed = true;
 
+    metaData: Meta;
+
     // fontawesome icons
-    faCaretDown = faCaretDown;
     faEnvelope = faEnvelope;
     faFileAlt = faFileAlt;
     faHome = faHome;
     faNetworkWired = faNetworkWired;
     faSearch = faSearch;
 
-    constructor() {}
+    constructor(private coreService: CoreService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.provideMetaData();
+    }
+
+    provideMetaData(): void {
+        this.metaData = this.coreService.getMetaData();
+    }
 
     toggleNav(): boolean {
         return (this.isCollapsed = !this.isCollapsed);

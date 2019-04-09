@@ -81,7 +81,7 @@ export class ResourceDetailComponent implements OnInit {
                     ResourceDetailComponent.scrollToTop();
                 },
                 error => {
-                    this.errorMessage = <any>error;
+                    this.errorMessage = error as any;
                 }
             );
     }

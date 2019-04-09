@@ -1,3 +1,5 @@
+/* tslint:disable variable-name */
+
 export class BibEntry {
     constructor(
         public Kurztitel: string,

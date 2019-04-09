@@ -85,8 +85,8 @@ export class ResourceDetailHeader {
 
                 // PERSON
                 case '45':
-                    const lname: string = props['salsah:lastname'].toHtml[0],
-                        fname: string = props['salsah:firstname'].toHtml[0];
+                    const lname: string = props['salsah:lastname'].toHtml[0];
+                    const fname: string = props['salsah:firstname'].toHtml[0];
                     this.title = fname + ' ' + lname;
                     break;
 

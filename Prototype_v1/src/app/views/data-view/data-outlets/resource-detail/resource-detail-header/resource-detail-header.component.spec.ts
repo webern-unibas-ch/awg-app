@@ -40,13 +40,13 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        const objId = '1234';
+        const objID = '1234';
         const icon = '/assets/img/logos/angular.png';
         const type = 'test-type';
         const title = `<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource('28')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])`;
         const lastmod = 'today';
 
-        expectedHeader = { objID: objId, icon: icon, type: type, title: title, lastmod: lastmod };
+        expectedHeader = { objID, icon, type, title, lastmod };
         expectedResourceUrl = 'http://example.com/123';
 
         // spies on component functions

@@ -608,33 +608,37 @@ export class ConversionService extends ApiService {
      *  and rebuild the values for displaying
      *
      *****************************************/
-    private replaceBiblioLink(str: string) {
+    private replaceBiblioLink(str: string): string {
         if (!str) {
             return;
         }
 
-        let tmpStr, splitStr, nameStr, linkStr;
+        let tmpStr: string;
+        let nameStr: string;
+        let splitArr: string[];
+        let linkRegArr: RegExpExecArray;
         const regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
 
         // check for double spaces
         str = str.replace('  ', ' ');
 
         // split "str" behind parentheses
-        splitStr = str.split(') ');
+        splitArr = str.split(') ');
 
         // get name of link from 1st part of "splitstr
-        nameStr = splitStr[0].replace('(', '');
+        nameStr = splitArr[0].replace('(', '');
 
-        // check for link in 2nd part of "splitstr"
-        if ((linkStr = regExLink.exec(splitStr[1]))) {
+        // check for link in 2nd part of "splitArr"
+        if (regExLink.exec(splitArr[1])) {
             // ... link with <a> tag
-            tmpStr = '<a target="_blank" ref="noopener noreferrer" ' + linkStr[1] + '>' + nameStr + '</a>';
+            linkRegArr = regExLink.exec(splitArr[1]);
+            tmpStr = '<a target="_blank" ref="noopener noreferrer" ' + linkRegArr[1] + '>' + nameStr + '</a>';
         } else if (nameStr !== 'DOI') {
             // ... <a> tag is missing, add it
-            tmpStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitStr[1] + '">' + nameStr + '</a>';
+            tmpStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitArr[1] + '">' + nameStr + '</a>';
         } else {
             // no links, pure string
-            tmpStr = nameStr + ': ' + splitStr[1];
+            tmpStr = nameStr + ': ' + splitArr[1];
         }
         return tmpStr;
     }
@@ -649,22 +653,28 @@ export class ConversionService extends ApiService {
         if (!str) {
             return;
         }
-        const patNum = /\d{4,8}/; // regexp for object id (4-8 DIGITS)
-        const patLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
-        let p;
+        const regNum = /\d{4,8}/; // regexp for object id (4-8 DIGITS)
+        const regLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
+        let regArr: RegExpExecArray;
 
         // check only for salsah links
-        while ((p = patLink.exec(str))) {
+        while (regLink.exec(str)) {
             // i.e.: as long as patLink is detected in str do...
 
+            regArr = regLink.exec(str);
+
             // identify resource id
-            const res_id = patNum.exec(p[1])[0];
+            const res_id = regNum.exec(regArr[1])[0];
 
             // replace href attribute with click-directive
             // linktext is stored in second regexp-result p[2]
             const replaceValue =
-                '<a (click)="ref.navigateToResource(\'' + res_id + '\'); $event.stopPropagation()">' + p[2] + '</a>';
-            str = str.replace(p[0], replaceValue);
+                '<a (click)="ref.navigateToResource(\'' +
+                res_id +
+                '\'); $event.stopPropagation()">' +
+                regArr[2] +
+                '</a>';
+            str = str.replace(regArr[0], replaceValue);
         } // END while
 
         return str;

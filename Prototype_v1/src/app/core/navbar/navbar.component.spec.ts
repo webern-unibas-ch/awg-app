@@ -16,7 +16,8 @@ describe('NavbarComponent (DONE)', () => {
     let fixture: ComponentFixture<NavbarComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let expectedIsCollapsed: boolean;
 

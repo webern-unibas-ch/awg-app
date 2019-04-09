@@ -6,6 +6,7 @@ import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } fr
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { Meta } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
 
@@ -14,7 +15,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
     let fixture: ComponentFixture<FooterDeclarationComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let expectedMetaData: Meta;
 
@@ -31,13 +33,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = new Meta();
-        expectedMetaData.page = {
-            yearStart: 2015,
-            yearRecent: 2018,
-            version: '0.2.0',
-            versionReleaseDate: '18. Oktober 2018'
-        };
+        expectedMetaData = METADATA;
     });
 
     it('should create', () => {

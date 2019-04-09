@@ -30,7 +30,7 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
                 this.searchInfoTitle = title;
             },
             error => {
-                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
+                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', error as any);
             }
         );
     }
@@ -47,7 +47,7 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
                 }
             },
             error => {
-                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', <any>error);
+                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', error as any);
             }
         );
     }

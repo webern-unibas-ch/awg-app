@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { Meta } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
+
 @Component({
     selector: 'awg-contact-info',
     templateUrl: './contact-info.component.html',
@@ -18,12 +21,20 @@ export class ContactInfoComponent implements OnInit {
     osmUrl: SafeResourceUrl;
     osmLinkUrl: SafeResourceUrl;
 
-    constructor(private sanitizer: DomSanitizer) {}
+    metaData: Meta;
+
+    constructor(private coreService: CoreService, private sanitizer: DomSanitizer) {}
 
     ngOnInit() {
         this.unsafeOsmUrl = this.osmRoot + this.osmId;
         this.unsafeOsmLinkUrl = this.osmLinkRoot + this.osmLinkId;
         this.osmUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeOsmUrl);
         this.osmLinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeOsmLinkUrl);
+
+        this.provideMetaData();
+    }
+
+    provideMetaData(): void {
+        this.metaData = this.coreService.getMetaData();
     }
 }
