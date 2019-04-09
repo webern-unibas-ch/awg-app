@@ -47,7 +47,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
         const lastmod = 'today';
 
         expectedHeader = { objID, icon, type, title, lastmod };
-        expectedResourceUrl = 'http://example.com/123';
+        expectedResourceUrl = 'https://example.com/123';
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

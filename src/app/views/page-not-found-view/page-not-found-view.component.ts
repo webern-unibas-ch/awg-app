@@ -10,7 +10,7 @@ export class PageNotFoundViewComponent implements OnInit {
     subtitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
 
     private _imgPath = 'assets/img/page-not-found/Webern_Books.jpg';
-    private _awgUrl = 'http://www.anton-webern.ch/index.php?id=41';
+    private _awgUrl = 'https://www.anton-webern.ch/index.php?id=41';
 
     get imgPath(): string {
         return this._imgPath;
