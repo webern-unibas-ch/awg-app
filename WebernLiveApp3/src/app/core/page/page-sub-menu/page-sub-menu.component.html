@@ -1,9 +1,0 @@
-<div id="submenu">
-    <div *ngFor="let subItem of selectedMenu.subMenu; let i = index; let isFirst = first; let isLast = last"
-         [class.first]="isFirst"
-         [class.last]="isLast"
-         [routerLink]="[selectedMenu.linkTo, subItem.linkTo]"
-         routerLinkActive="active">
-        <span>{{subItem.label | uppercase }}</span>
-    </div>
-</div>
