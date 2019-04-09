@@ -30,7 +30,7 @@ export class GeoNames {
         const geoIcon =
             '<img src="assets/img/logos/geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
         const geoLink =
-            '<a href="http://www.geonames.org/' +
+            '<a href="https://www.geonames.org/' +
             this.gnid +
             '" title="' +
             this.longLabel +
@@ -41,7 +41,7 @@ export class GeoNames {
         if (this.wiki) {
             const wikiIcon = '<img src="assets/img/logos/wiki.svg" height="25" width="25" alt="' + this.wiki + '" />';
             wikiLink =
-                '<a href="http://' +
+                '<a href="https://' +
                 this.wiki +
                 '" title="' +
                 this.wiki +

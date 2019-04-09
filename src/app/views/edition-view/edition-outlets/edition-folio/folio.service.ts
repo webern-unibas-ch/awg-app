@@ -36,8 +36,8 @@ export class FolioService {
             width: vb.viewBoxWidth,
             height: vb.viewBoxHeight,
             version: '1.1',
-            xmlns: 'http://www.w3.org/2000/svg',
-            xlink: 'http://www.w3.org/1999/xlink',
+            xmlns: 'https://www.w3.org/2000/svg',
+            xlink: 'https://www.w3.org/1999/xlink',
             preserveAspectRatio: 'xMinYMin meet'
         });
     }

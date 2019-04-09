@@ -102,7 +102,7 @@ export class ResourceDetailHeader {
         } else {
             // header for undefined & restricted object
             this.objID = currentId;
-            this.icon = 'http://www.salsah.org/app/icons/16x16/delete.png';
+            this.icon = 'https://www.salsah.org/app/icons/16x16/delete.png';
         }
 
         // additional header for restricted objects

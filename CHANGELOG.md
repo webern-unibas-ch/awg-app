@@ -2,7 +2,16 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.5.2](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.5.1...v0.5.2) (2019-04-09)
+## [0.5.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.2...v0.5.3) (2019-04-09)
+
+### Bug Fixes
+
+-   **app:** use HTTPS over HTTP whenever possible ([5c573ad](https://github.com/webern-unibas-ch/awg-app/commit/5c573ad))
+-   **core:** add link to CHANGELOG from footer declaration ([6f2004f](https://github.com/webern-unibas-ch/awg-app/commit/6f2004f))
+
+## [0.5.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.1...v0.5.2) (2019-04-09)
+
+Empty patch version bump to trigger build via Travis CI after moving the repository to GitHub.
 
 ## [0.5.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.0...v0.5.1) (2019-04-09)
 
@@ -10,7 +19,9 @@ All notable changes to this project will be documented in this file. See [standa
 
 Repository moved from Gitlab to public GitHub repository. All commit and version links prior to this version are not publicly available.
 
-# [0.5.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.4.0...v0.5.0) (2019-04-09)
+Only patch version bump.
+
+## [0.5.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.4.0...v0.5.0) (2019-04-09)
 
 ### Bug Fixes
 
@@ -49,7 +60,7 @@ Repository moved from Gitlab to public GitHub repository. All commit and version
 
 <a name="0.4.0"></a>
 
-# [0.4.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0) (2019-01-22)
+## [0.4.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0) (2019-01-22)
 
 ### Bug Fixes
 
@@ -109,7 +120,7 @@ Only minor version bump.
 
 <a name="0.3.0"></a>
 
-# [0.3.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.2.0...v0.3.0) (2018-11-15)
+## [0.3.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.2.0...v0.3.0) (2018-11-15)
 
 ### Bug Fixes
 
@@ -148,7 +159,7 @@ Only minor version bump.
 
 <a name="0.2.0"></a>
 
-# [0.2.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.3...v0.2.0) (2018-10-01)
+## [0.2.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.3...v0.2.0) (2018-10-01)
 
 ### Bug Fixes
 
@@ -179,7 +190,7 @@ Only minor version bump.
 
 <a name="0.1.3"></a>
 
-# [0.1.3](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.2...v0.1.3) (2018-09-03)
+## [0.1.3](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.2...v0.1.3) (2018-09-03)
 
 ### Bug Fixes
 
@@ -196,7 +207,7 @@ Only patch version bump.
 
 <a name="0.1.2"></a>
 
-# [0.1.2](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.1...v0.1.2) (2018-08-31)
+## [0.1.2](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.1...v0.1.2) (2018-08-31)
 
 ### Bug Fixes
 
@@ -222,7 +233,7 @@ Only patch version bump.
 
 <a name="0.1.1"></a>
 
-# [0.1.1](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0.2...v0.1.1) (2018-03-23)
+## [0.1.1](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0.2...v0.1.1) (2018-03-23)
 
 ### Bug Fixes
 
@@ -244,7 +255,7 @@ Only patch version bump.
 
 <a name="0.1.0"></a>
 
-# [0.1.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.4...v0.1.0) (2018-03-20)
+## [0.1.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.4...v0.1.0) (2018-03-20)
 
 ### Bug Fixes
 
@@ -286,7 +297,7 @@ Only minor version bump.
 
 <a name="0.0.9"></a>
 
-# [0.0.9](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.8.2...v0.0.9) (2016-11-21)
+## [0.0.9](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.8.2...v0.0.9) (2016-11-21)
 
 ### Bug Fixes
 
@@ -301,7 +312,7 @@ Only patch version bump.
 
 <a name="0.0.8"></a>
 
-# [0.0.8](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.7...v0.0.8) (2016-08-19)
+## [0.0.8](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.7...v0.0.8) (2016-08-19)
 
 ### Bug Fixes
 
@@ -322,7 +333,7 @@ Only patch version bump.
 
 <a name="0.0.7"></a>
 
-# [0.0.7](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.6...v0.0.7) (2016-07-14)
+## [0.0.7](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.6...v0.0.7) (2016-07-14)
 
 ### Bug Fixes
 
@@ -339,7 +350,7 @@ Only patch version bump.
 
 <a name="0.0.6"></a>
 
-# [0.0.6](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.5...v0.0.6) (2016-04-28)
+## [0.0.6](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.5...v0.0.6) (2016-04-28)
 
 ### Bug Fixes
 
@@ -348,7 +359,7 @@ Only patch version bump.
 
 <a name="0.0.5"></a>
 
-# [0.0.5](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.4...v0.0.5) (2016-04-14)
+## [0.0.5](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.4...v0.0.5) (2016-04-14)
 
 ### Bug Fixes
 
@@ -362,7 +373,7 @@ Only patch version bump.
 
 <a name="0.0.4"></a>
 
-# [0.0.4](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.3...v0.0.4) (2016-03-31)
+## [0.0.4](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.3...v0.0.4) (2016-03-31)
 
 ### Bug Fixes
 
@@ -370,7 +381,7 @@ Only patch version bump.
 
 <a name="0.0.3"></a>
 
-# [0.0.3](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.2...v0.0.3) (2016-03-17)
+## [0.0.3](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.2...v0.0.3) (2016-03-17)
 
 ### Features
 
@@ -380,7 +391,7 @@ Only patch version bump.
 
 <a name="0.0.2"></a>
 
-# [0.0.2](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.1...v0.0.2) (2016-03-03)
+## [0.0.2](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.1...v0.0.2) (2016-03-03)
 
 ### Bug Fixes
 
@@ -394,4 +405,4 @@ Only patch version bump.
 
 <a name="0.0.1"></a>
 
-# [0.0.1](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/68eac337) (2016-02-02)
+## [0.0.1](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/68eac337) (2016-02-02)
