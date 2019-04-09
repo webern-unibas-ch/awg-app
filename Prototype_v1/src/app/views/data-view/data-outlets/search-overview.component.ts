@@ -10,33 +10,24 @@ import { SideInfoService } from '@awg-core/services';
     styleUrls: ['./search-overview.component.css']
 })
 export class SearchOverviewComponent implements OnInit {
-    searchButtonArray: RouterLinkButton[] = [
-        {
-            root: '/data/search',
-            link: 'fulltext',
-            label: 'Volltext-Suche',
-            disabled: false
-        },
-        {
-            root: '/data/search',
-            link: 'timeline',
-            label: 'Timeline',
-            disabled: true
-        },
-        {
-            root: '/data/search',
-            link: 'bibliography',
-            label: 'Bibliographie',
-            disabled: true
-        }
-    ];
+    searchButtonArray: RouterLinkButton[];
 
     constructor(private sideInfoService: SideInfoService) {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.searchButtonArray = [
+            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
+            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+        ];
+    }
 
-    onButtonSelect(title: string) {
-        this.updateSearchInfoTitle(title);
+    onButtonSelect(routerLinkButton: RouterLinkButton) {
+        if (routerLinkButton && routerLinkButton instanceof RouterLinkButton) {
+            this.updateSearchInfoTitle(routerLinkButton.label);
+        } else {
+            return;
+        }
     }
 
     private updateSearchInfoTitle(title: string) {

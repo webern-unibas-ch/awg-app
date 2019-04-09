@@ -1,12 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
-import { By } from '@angular/platform-browser';
+
 import { Observable, of as observableOf } from 'rxjs';
 
-import { BibliographyComponent } from './bibliography.component';
-import { BibliographyService } from '@awg-views/data-view/services';
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
+import { BibliographyService } from '@awg-views/data-view/services';
+
+import { BibliographyComponent } from './bibliography.component';
 
 // mock components
 @Component({ selector: 'awg-bibliography-search', template: '' })

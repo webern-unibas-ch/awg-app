@@ -2,6 +2,8 @@ export class Meta {
     page: {
         yearStart: number;
         yearRecent: number;
+        editionUrl: string;
+        webernUrl: string;
         version: string;
         versionReleaseDate: string;
     };

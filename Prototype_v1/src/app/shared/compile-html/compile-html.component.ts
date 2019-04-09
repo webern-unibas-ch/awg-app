@@ -1,4 +1,5 @@
 /* tslint:disable:no-input-rename */
+
 /************************************************
  *
  *               CREDITS
@@ -26,16 +27,23 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-let SingletonDefaultModule: NgModule;
+let singletonDefaultModule: NgModule;
 
 import { cloneDeep } from 'lodash';
 
 @Component({
     selector: '[compile-html]',
     template: `
-        <span *ngIf="html !== undefined && html !== null && html.trim() !== '' && dynamicComponent !== undefined && dynamicModule !== undefined">
-        <ng-container *ngComponentOutlet="dynamicComponent;
-                            ngModuleFactory: dynamicModule;"></ng-container>
+        <span
+            *ngIf="
+                html !== undefined &&
+                html !== null &&
+                html.trim() !== '' &&
+                dynamicComponent !== undefined &&
+                dynamicModule !== undefined
+            "
+        >
+            <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
         </span>
     `
 })
@@ -61,9 +69,9 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
         private compiler: Compiler
     ) {}
 
-    // reassign SingletonDefaultModule (justify use of 'let') - unused
+    // reassign singletonDefaultModule (justify use of 'let') - unused
     static reset() {
-        SingletonDefaultModule = {};
+        singletonDefaultModule = {};
     }
 
     async update() {
@@ -102,8 +110,8 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
 
         if (this.module !== undefined) {
             module = cloneDeep(this.module);
-        } else if (SingletonDefaultModule !== undefined && SingletonDefaultModule !== null) {
-            module = cloneDeep(SingletonDefaultModule);
+        } else if (singletonDefaultModule !== undefined && singletonDefaultModule !== null) {
+            module = cloneDeep(singletonDefaultModule);
         }
         module.imports = module.imports || [];
         module.imports.push(CommonModule);

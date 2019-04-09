@@ -65,7 +65,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 this.getCurrentSearchResultsFromSubscription();
             },
             error => {
-                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
+                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
             }
         );
     }
@@ -88,7 +88,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 this.findResourceInSearchResultsById(this.currentId);
             },
             error => {
-                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', <any>error);
+                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
             }
         );
     }
@@ -146,8 +146,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * Navigate back to SearchPanel
      */
     navigateToSearchResults(): void {
-        const query = this.resourceInfo.searchResults ? this.resourceInfo.searchResults.query : '';
-        this.router.navigate(['/data/search/fulltext', { query: query }]);
+        const queryStr = this.resourceInfo.searchResults ? this.resourceInfo.searchResults.query : '';
+        this.router.navigate(['/data/search/fulltext'], {
+            queryParams: { query: queryStr }
+        });
     }
 
     /*

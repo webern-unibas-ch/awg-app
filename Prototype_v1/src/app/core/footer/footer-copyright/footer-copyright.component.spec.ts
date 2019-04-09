@@ -1,9 +1,12 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
+
+import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
+import { Meta } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 
 import { FooterCopyrightComponent } from './footer-copyright.component';
-import { Meta } from '@awg-core/core-models';
 
 describe('FooterCopyrightComponent (DONE)', () => {
     let component: FooterCopyrightComponent;
@@ -25,14 +28,8 @@ describe('FooterCopyrightComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test meta data
-        expectedMetaData = new Meta();
-        expectedMetaData.page = {
-            yearStart: 2015,
-            yearRecent: 2018,
-            version: '0.2.0',
-            versionReleaseDate: '18. Oktober 2018'
-        };
+        // test data
+        expectedMetaData = METADATA;
     });
 
     it('should create', () => {
@@ -46,18 +43,14 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain 1 div.awg-copyright-desc', () => {
-                const footerCopyrightDes = fixture.debugElement.queryAll(By.css('div.awg-copyright-desc'));
-
-                expect(footerCopyrightDes).toBeTruthy();
-                expect(footerCopyrightDes.length).toBe(1, 'should have 1 div.awg-copyright-desc');
+                getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 1, 1);
             });
 
             it('... should not render metaData yet', () => {
-                const copyDe = fixture.debugElement.query(By.css('#awg-copyright-period'));
-                const copyEl = copyDe.nativeElement;
+                const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
 
-                expect(copyEl.textContent).toBeDefined();
-                expect(copyEl.textContent).toBe('', 'should be empty string');
+                expect(copyDes[0].nativeElement.textContent).toBeDefined();
+                expect(copyDes[0].nativeElement.textContent).toBe('', 'should be empty string');
             });
         });
     });
@@ -76,10 +69,14 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 const expectedYearStart = expectedMetaData.page.yearStart;
                 const expectedYearRecent = expectedMetaData.page.yearRecent;
 
-                const copyDe = fixture.debugElement.query(By.css('#awg-copyright-period'));
-                const copyEl = copyDe.nativeElement;
+                const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
+                const copyEl = copyDes[0].nativeElement;
 
-                expect(copyEl.textContent).toContain(expectedYearStart + '–' + expectedYearRecent);
+                expect(copyEl.textContent).toBeDefined();
+                expect(copyEl.textContent).toContain(
+                    expectedYearStart + '–' + expectedYearRecent,
+                    `should contain ${expectedYearStart}-${expectedYearRecent}`
+                );
             });
         });
     });

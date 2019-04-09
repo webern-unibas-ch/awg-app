@@ -8,7 +8,7 @@ import {
     Textcritics,
     TextcriticsList
 } from '@awg-views/edition-view/models';
-import { DataService, EditionService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
     selector: 'awg-edition-detail',
@@ -31,7 +31,7 @@ export class EditionDetailComponent implements OnInit {
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private dataService: DataService,
+        private editionDataService: EditionDataService,
         private editionService: EditionService
     ) {}
 
@@ -41,7 +41,7 @@ export class EditionDetailComponent implements OnInit {
 
     // get edition data
     getEditionDetailData() {
-        this.dataService.getEditionDetailData().subscribe(
+        this.editionDataService.getEditionDetailData().subscribe(
             (data: [ConvoluteFolio[], EditionSvgFile[], TextcriticsList]) => {
                 this.convoluteData = data[0]['convolute'];
                 this.svgFileData = data[1];
@@ -51,7 +51,7 @@ export class EditionDetailComponent implements OnInit {
                 }
             },
             error => {
-                this.errorMessage = <any>error;
+                this.errorMessage = error as any;
             }
         );
     }

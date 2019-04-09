@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 
 import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
@@ -34,6 +34,9 @@ export class ContactViewComponent implements OnInit {
 
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
-        this.router.navigate([{ outlets: { side: 'contactInfo' } }], { preserveFragment: true });
+        this.router.navigate([{ outlets: { side: 'contactInfo' } }], {
+            preserveFragment: true,
+            queryParamsHandling: 'preserve'
+        });
     }
 }

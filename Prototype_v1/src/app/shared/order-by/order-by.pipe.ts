@@ -19,7 +19,7 @@ import { Pipe, PipeTransform } from '@angular/core';
 })
 export class OrderByPipe implements PipeTransform {
     transform(array: Array<any>, args?: any): any {
-        return array.sort(function(a, b) {
+        return array.sort((a, b) => {
             if (!args.property) {
                 return;
             }

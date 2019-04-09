@@ -1,3 +1,5 @@
+/* tslint:enable variable-name:["allow-snake-case"] */
+
 /* Copyright © 2016 Lukas Rosenthaler, André Kilchenmann, Andreas Aeschlimann,
  * Sofia Georgakopoulou, Ivan Subotic, Benjamin Geer, Tobias Schweizer.
  * This file is part of SALSAH.
@@ -173,22 +175,6 @@ export class PropertyJson {
         try {
             const jsonConvert: JsonConvert = new JsonConvert();
             return jsonConvert.deserializeArray(this.values, PropertyJsonValue);
-        } catch (e) {
-            return [];
-        }
-    }
-    public getValuesAsStrings(): string[] {
-        try {
-            const jsonConvert: JsonConvert = new JsonConvert();
-            return jsonConvert.deserializeArray(this.values, String);
-        } catch (e) {
-            return [];
-        }
-    }
-    public getValuesAsNumbers(): number[] {
-        try {
-            const jsonConvert: JsonConvert = new JsonConvert();
-            return jsonConvert.deserializeArray(this.values, Number);
         } catch (e) {
             return [];
         }

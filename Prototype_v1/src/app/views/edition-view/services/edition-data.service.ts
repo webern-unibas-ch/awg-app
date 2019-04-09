@@ -2,14 +2,14 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
-import { catchError, tap } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 import { ConvoluteFolio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
 @Injectable({
     providedIn: 'root'
 })
-export class DataService {
+export class EditionDataService {
     private BASE = 'assets/data';
 
     constructor(private http: HttpClient) {}
@@ -70,7 +70,7 @@ export class DataService {
     /*
      * error handling
      */
-    private handleError<T>(operation = 'operation', result?: T) {
+    private handleError<T>(operation: string, result?: T) {
         return (error: any): Observable<T> => {
             // TODO: send the error to remote logging infrastructure
             console.error(error); // log to console instead

@@ -1,16 +1,6 @@
-import {
-    Component,
-    ElementRef,
-    EventEmitter,
-    Input,
-    OnInit,
-    Output,
-    QueryList,
-    ViewChild,
-    ViewChildren
-} from '@angular/core';
+import { Component, Input, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 
-import { faChevronCircleLeft, faChevronCircleRight } from '@fortawesome/free-solid-svg-icons';
+import { NgxGalleryOptions, NgxGalleryImage } from 'ngx-gallery';
 
 import { ResourceDetailImage } from '@awg-views/data-view/models';
 
@@ -19,83 +9,59 @@ import { ResourceDetailImage } from '@awg-views/data-view/models';
     templateUrl: './imageobjects.component.html',
     styleUrls: ['./imageobjects.component.css']
 })
-export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
-    @ViewChild('thumbBox')
-    thumbBox: ElementRef;
-    @ViewChild('thumbImageContainer')
-    thumbContainer: ElementRef;
-    @ViewChildren('thumbImages')
-    thumbImages: QueryList<any>;
+export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit, OnChanges {
     @Input()
     images: ResourceDetailImage[];
-    @Output()
-    resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    currentImageIndex = 0;
-    offset = 0;
-    max = 50;
-
-    faChevronCircleLeft = faChevronCircleLeft;
-    faChevronCircleRight = faChevronCircleRight;
+    galleryOptions: NgxGalleryOptions[];
+    galleryImages: NgxGalleryImage[];
 
     constructor() {}
 
-    ngOnInit() {}
+    ngOnInit() {
+        this.setOptions();
 
-    navigateToResource(id?: string): void {
-        if (id) {
-            id.toString();
-        }
-        this.resourceRequest.emit(id);
+        this.setImages();
     }
 
-    pageThumbsLeft() {
-        // calculate offset
-        const thumbBoxRect = this.thumbBox.nativeElement.getBoundingClientRect();
-        const tmpOffset = this.offset - thumbBoxRect.width;
-        console.log('tmpOffSet', tmpOffset);
-
-        if (tmpOffset > 0) {
-            this.offset = tmpOffset;
-        } else {
-            this.offset = 0;
+    ngOnChanges(changes: SimpleChanges) {
+        if (!changes['images'].isFirstChange()) {
+            this.setImages();
         }
     }
 
-    pageThumbsRight() {
-        // calculate offset
-        const thumbBoxRect = this.thumbBox.nativeElement.getBoundingClientRect();
-        const thumbContainerRect = this.thumbContainer.nativeElement.getBoundingClientRect();
-        const tmpOffset = this.offset + thumbBoxRect.width;
-
-        this.max = thumbContainerRect.width - thumbBoxRect.width;
-
-        console.log('thumbBox', thumbBoxRect.width);
-        console.log('container', thumbContainerRect.width);
-        console.log('max', this.max);
-        console.log('tmpOffSet', tmpOffset);
-
-        if (tmpOffset < this.max) {
-            this.offset = tmpOffset;
-        } else {
-            this.offset = this.max;
-        }
+    setOptions() {
+        this.galleryOptions = [
+            new NgxGalleryOptions({
+                width: '100%',
+                height: '100%',
+                imageBullets: true,
+                imageSize: 'contain',
+                thumbnailSize: 'contain',
+                thumbnailsColumns: 4,
+                thumbnailMargin: 5,
+                thumbnailsMargin: 0,
+                previewCloseOnClick: true,
+                previewCloseOnEsc: true,
+                previewZoom: true,
+                previewRotate: true
+            })
+        ];
     }
 
-    setImage(index: number): void {
-        // set image number to index
-        this.currentImageIndex = index;
+    setImages() {
+        this.galleryImages = [];
+        this.images.forEach(image => {
+            const gImage = {
+                small: image.reductSize,
+                medium: image.reductSize,
+                big: image.fullSize,
+                description: image.origname,
+                label: image.label,
+                url: image.fullSize
+            };
 
-        // calculate offset
-        const thumbBoxRect = this.thumbBox.nativeElement.getBoundingClientRect();
-        const thumbImage = this.thumbImages.toArray()[index].nativeElement;
-        const imageRect = thumbImage.getBoundingClientRect();
-        const tmpOffset = imageRect.left - thumbBoxRect.left;
-
-        if (tmpOffset < 0) {
-            this.offset += tmpOffset;
-        } else if (tmpOffset + imageRect.width > thumbBoxRect.width) {
-            this.offset += tmpOffset + imageRect.width - thumbBoxRect.width;
-        }
+            this.galleryImages.push(gImage);
+        });
     }
 }

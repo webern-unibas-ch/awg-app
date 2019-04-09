@@ -10,11 +10,11 @@
                 </div>
                 <input title="search"
                        type="search"
-                       class="form-control"
                        id="awg-search-input"
+                       class="form-control"
+                       formControlName="searchValueControl"
                        aria-label="Search input" aria-describedby="search-icon"
                        placeholder="{{ searchFormStrings.placeholder }}"
-                       formControlName="searchValueControl"
                        required>
             </div>
             <div *ngIf="searchForm.invalid || searchForm.hasError('required')" class="alert alert-danger">

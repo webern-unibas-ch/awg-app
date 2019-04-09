@@ -3,9 +3,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { IntroComponent } from './intro.component';
-import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
+
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { ModalComponent } from '@awg-shared/modal/modal.component';
+
+import { IntroComponent } from './intro.component';
 
 describe('IntroComponent', () => {
     let component: IntroComponent;
@@ -14,7 +17,7 @@ describe('IntroComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
-            declarations: [IntroComponent, ModalComponent, RouterLinkStubDirective]
+            declarations: [CompileHtmlComponent, IntroComponent, ModalComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 

@@ -1,6 +1,3 @@
 export class RouterLinkButton {
-    root: string;
-    link: string;
-    label: string;
-    disabled: boolean;
+    constructor(public root: string, public link: string, public label: string, public disabled: boolean) {}
 }

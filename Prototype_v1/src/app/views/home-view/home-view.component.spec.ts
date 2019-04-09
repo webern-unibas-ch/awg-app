@@ -1,20 +1,27 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
-import { By } from '@angular/platform-browser';
 import { Router } from '@angular/router';
+
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { HomeViewComponent } from './home-view.component';
-import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
+import { CoreService } from '@awg-core/services';
+
+import { HomeViewComponent } from './home-view.component';
 
 describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
     let compEl: any;
-    let linkDes, routerLinks;
+    let linkDes: DebugElement[];
+    let routerLinks;
 
     let mockCoreService: Partial<CoreService>;
     let mockRouter;
@@ -40,7 +47,7 @@ describe('HomeViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test meta data
+        // test data
         expectedMetaData = new Meta();
         expectedMetaData.edition = { editors: 'Test Editor 1', lastModified: '9. Oktober 2018' };
 
@@ -86,28 +93,22 @@ describe('HomeViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain three `div.para` & one `div.declamation` elements', () => {
-                const paraEl = compEl.querySelectorAll('div.para');
-                const declamationEl = compEl.querySelectorAll('div.declamation');
-
-                expect(paraEl).toBeDefined();
-                expect(paraEl.length).toBe(3, 'should have 3 `div.para`');
-
-                expect(declamationEl).toBeDefined();
-                expect(declamationEl.length).toBe(1, 'should have 1 `div.declamation`');
+                getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+                getAndExpectDebugElementByCss(compDe, 'div.declamation', 1, 1);
             });
 
             it('... should not render `editors` and `lastmodified` yet', () => {
-                const editorsDe = compDe.query(By.css('.editors'));
-                const editorsEl = editorsDe.nativeElement;
+                const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors', 1, 1);
+                const editorsEl = editorsDes[0].nativeElement;
 
-                const versionDe = compDe.query(By.css('.version'));
-                const versionEl = versionDe.nativeElement;
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
+                const versionEl = versionDes[0].nativeElement;
 
                 expect(editorsEl).toBeDefined();
                 expect(editorsEl.innerHTML).toBe('', 'should be empty string');
 
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toBe('', 'should be empty string');
+                expect(versionEl.textContent).toBe('', 'be contain empty string');
             });
         });
     });
@@ -135,9 +136,7 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should have triggered `router.navigate`', () => {
-                expect(navigationSpy).toHaveBeenCalled();
-                expect(navigationSpy.calls.any()).toEqual(true, 'has any calls');
-                expect(navigationSpy.calls.count()).toEqual(1, 'has been called only once');
+                expectSpyCall(navigationSpy, 1);
             });
 
             it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
@@ -151,6 +150,7 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(navArgs[0]).toBeDefined('should have navCommand');
                 expect(outletRoute).toBeDefined('should have outletRoute');
                 expect(outletRoute).toBe(expectedRoute, 'should be `editionInfo`');
+
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
 
@@ -162,6 +162,7 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(navExtras).toBeDefined('should have navExtras');
                 expect(navExtras.preserveFragment).toBeDefined('should have preserveFragment extra');
                 expect(navExtras.preserveFragment).toBe(true, 'should be `preserveFragment:true`');
+
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
         });
@@ -179,24 +180,30 @@ describe('HomeViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should render `editors` and `lastmodified` in declamation', () => {
-                const editorsDe = compDe.query(By.css('.editors'));
-                const editorsEl = editorsDe.nativeElement;
+                const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors', 1, 1);
+                const editorsEl = editorsDes[0].nativeElement;
 
-                const versionDe = compDe.query(By.css('.version'));
-                const versionEl = versionDe.nativeElement;
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
+                const versionEl = versionDes[0].nativeElement;
 
                 expect(editorsEl).toBeDefined();
-                expect(editorsEl.innerHTML).toContain(expectedMetaData.edition.editors);
+                expect(editorsEl.innerHTML).toContain(
+                    expectedMetaData.edition.editors,
+                    `should contain ${expectedMetaData.edition.editors}`
+                );
 
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toContain(expectedMetaData.edition.lastModified);
+                expect(versionEl.textContent).toContain(
+                    expectedMetaData.edition.lastModified,
+                    `should contain ${expectedMetaData.edition.lastModified}`
+                );
             });
         });
 
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = compDe.queryAll(By.directive(RouterLinkStubDirective));
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));

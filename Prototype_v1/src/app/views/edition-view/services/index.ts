@@ -7,7 +7,7 @@
  *
  */
 
-import { DataService } from './data.service';
+import { EditionDataService } from './edition-data.service';
 import { EditionService } from './edition.service';
 
-export { DataService, EditionService };
+export { EditionDataService, EditionService };

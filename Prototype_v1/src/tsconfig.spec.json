@@ -2,20 +2,17 @@
     "extends": "../tsconfig.json",
     "compilerOptions": {
         "outDir": "../out-tsc/spec",
+        "types": ["jasmine", "node"],
         "baseUrl": "./",
-        "module": "commonjs",
-        "target": "es5",
-        "types": [
-            "jasmine",
-            "node"
-        ]
+        "paths": {
+            "@awg-app/*": ["app/*"],
+            "@awg-core/*": ["app/core/*"],
+            "@awg-shared/*": ["app/shared/*"],
+            "@awg-side-info/*": ["app/side-info/*"],
+            "@awg-views/*": ["app/views/*"],
+            "@testing/*": ["testing/*"]
+        }
     },
-    "files": [
-        "test.ts",
-        "polyfills.ts"
-    ],
-    "include": [
-        "**/*.spec.ts",
-        "**/*.d.ts"
-    ]
+    "files": ["test.ts", "polyfills.ts"],
+    "include": ["**/*.spec.ts", "**/*.d.ts", "testing/"]
 }

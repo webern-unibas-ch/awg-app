@@ -2,6 +2,43 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+# [0.5.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.4.0...v0.5.0) (2019-04-09)
+
+### Bug Fixes
+
+-   **app:** add project specific favicon ([4d430f8](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4d430f8))
+-   **app:** fix hostname for GoogleAnalytics ([a92f44e](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a92f44e))
+-   **app:** get app version from package.json ([6ab1a77](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/6ab1a77))
+-   **app:** get global constants from package.json ([903f276](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/903f276))
+-   **app:** improve page not found view ([bf134b4](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/bf134b4))
+-   **app:** make Contact & Structure view lazy loading ([879f5be](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/879f5be))
+-   **app:** preserve query params & fragments on routing ([408d1ea](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/408d1ea))
+-   **app:** use HTTPS for salsah API ([63eb4a7](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/63eb4a7))
+-   **app:** use urls from AppConfig for main homepages ([a6b6c7f](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a6b6c7f))
+-   **contact:** add license statement to disclaimer ([8134d97](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8134d97))
+-   **core:** small changes & renaming to api service routes & inputs ([53e403f](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/53e403f))
+-   **core:** use smaller version of snf logo ([d1209a4](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d1209a4))
+-   **edition:** rename DataService -> EditionDataService ([dc99cc3](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc99cc3))
+-   **search:** add constructor to BibliographyService ([e9c91d9](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e9c91d9))
+-   **search:** check for changes in ImageObjectComponent ([a2bdce9](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a2bdce9))
+-   **search:** create search button array on init ([a2d6440](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a2d6440))
+-   **search:** disable view buttons when there is no searchresult ([723498a](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/723498a))
+-   **search:** do not call data API on view change ([0871432](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0871432))
+-   **search:** improve handling of search params ([779b179](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/779b179))
+-   **search:** move result conversion to data api service ([225ee3c](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/225ee3c))
+-   **search:** use ngOnChanges to detect input changes ([d7ce548](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d7ce548))
+-   **search:** use NgxGallery in ImageObjectsComponent ([ced6906](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ced6906))
+-   **search:** use search params model ([383454b](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/383454b))
+-   **shared:** create RouterLinkButton with constructor ([1b093d2](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/1b093d2))
+-   **shared:** remove custom get functions from property-json ([61fa115](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/61fa115))
+-   **shared:** use typed jsonViewerData input ([c0f0d34](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/c0f0d34))
+-   **side-info:** use query params when navigating back to search ([30a7c0f](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/30a7c0f))
+
+### Features
+
+-   **search:** add pagination for search results ([3e8ec1c](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3e8ec1c))
+-   **shared:** add NgxGallery module ([b929629](https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b929629))
+
 <a name="0.4.0"></a>
 
 # [0.4.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0) (2019-01-22)
