@@ -2,13 +2,24 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.5.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.2...v0.5.3) (2019-04-09)
+
+### Bug Fixes
+
+-   **app:** use HTTPS over HTTP whenever possible ([5c573ad](https://github.com/webern-unibas-ch/awg-app/commit/5c573ad))
+-   **core:** add link to CHANGELOG from footer declaration ([6f2004f](https://github.com/webern-unibas-ch/awg-app/commit/6f2004f))
+
 ## [0.5.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.1...v0.5.2) (2019-04-09)
+
+Empty patch version bump to trigger build via Travis CI after moving the repository to GitHub.
 
 ## [0.5.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.0...v0.5.1) (2019-04-09)
 
 ### BREAKING CHANGES
 
 Repository moved from Gitlab to public GitHub repository. All commit and version links prior to this version are not publicly available.
+
+Only patch version bump.
 
 ## [0.5.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.4.0...v0.5.0) (2019-04-09)
 
