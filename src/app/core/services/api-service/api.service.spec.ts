@@ -26,7 +26,7 @@ function expectErrorResponse(error, expectedError) {
 }
 
 function createApiServiceError(status: number, statusText: string, noErrorInfo?: boolean): ApiServiceError {
-    const apiUrl = 'http://www.salsah.org/api/search/Test?searchtype=fulltext&show_nrows=10';
+    const apiUrl = 'https://www.salsah.org/api/search/Test?searchtype=fulltext&show_nrows=10';
     const errorInfoMessage = `Http failure response for ${apiUrl}: ${status} ${statusText}`;
 
     const apiServiceError = new ApiServiceError();
