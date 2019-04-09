@@ -2,7 +2,11 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
-## [0.5.1](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.5.0...v0.5.1) (2019-04-09)
+## [0.5.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.0...v0.5.1) (2019-04-09)
+
+### BREAKING CHANGES
+
+Repository moved from Gitlab to public GitHub repository. All commit and version links prior to this version are not publicly available.
 
 # [0.5.0](https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.4.0...v0.5.0) (2019-04-09)
 
