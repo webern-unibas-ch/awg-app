@@ -5,7 +5,7 @@ export const LOGOSDATA: Logos = {
         id: 'unibaslogo',
         src: 'assets/img/logos/uni.svg',
         alt: 'Logo Uni Basel',
-        href: 'http://www.unibas.ch'
+        href: 'https://www.unibas.ch'
     },
     snf: {
         id: 'snflogo',

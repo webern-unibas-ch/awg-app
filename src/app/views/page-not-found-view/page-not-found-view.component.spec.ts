@@ -19,7 +19,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     const expectedTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
     const expectedSubtitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
     const expectedImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
-    const expectedAwgUrl = 'http://www.anton-webern.ch/index.php?id=41';
+    const expectedAwgUrl = 'https://www.anton-webern.ch/index.php?id=41';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
