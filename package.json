@@ -8,15 +8,16 @@
     },
     "description": "Prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
     "keywords": [
-        "edition",
-        "Anton Webern",
-        "musicology",
+        "angular",
+        "anton-webern",
+        "digital-musicology",
+        "digital-music-edition",
         "digital-humanities",
-        "angular"
+        "edition"
     ],
     "repository": {
         "type": "git",
-        "url": "git@git.iml.unibas.ch:muennich/WebernLiveApp.git"
+        "url": "git@github.com:webern-unibas-ch/awg-app.git"
     },
     "homepage": "https://edition.anton-webern.ch",
     "bugs": "",
