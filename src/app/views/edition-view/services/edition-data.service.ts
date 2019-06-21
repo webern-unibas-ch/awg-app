@@ -23,11 +23,11 @@ export class EditionDataService {
      *
      *********************************/
     getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]> {
-        return observableForkJoin(this.getConvoluteFolioData(), this.getSvgFileData(), this.getTextcriticsListData());
+        return observableForkJoin([this.getConvoluteFolioData(), this.getSvgFileData(), this.getTextcriticsListData()]);
     }
 
     getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
-        return observableForkJoin(this.getSourceListData(), this.getTextcriticsListData());
+        return observableForkJoin([this.getSourceListData(), this.getTextcriticsListData()]);
     }
 
     /*
