@@ -22,14 +22,14 @@ module.exports = function(config) {
             terminal: true
         },
         coverageIstanbulReporter: {
-            dir: require('path').join(__dirname, '../coverage/'),
+            dir: require('path').join(__dirname, './coverage/'),
             reports: ['html', 'lcovonly', 'text-summary'],
             fixWebpackSourcePaths: true
         },
-        logLevel: config.LOG_LOG,
         reporters: ['progress', 'kjhtml'],
         port: 9876,
         colors: true,
+        logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['Chrome'],
         singleRun: false,

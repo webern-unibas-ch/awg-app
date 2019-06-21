@@ -1,9 +1,9 @@
 {
-    "extends": "../tsconfig.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
-        "outDir": "../out-tsc/spec",
+        "outDir": "./out-tsc/spec",
         "types": ["jasmine", "node"],
-        "baseUrl": "./",
+        "baseUrl": "./src/",
         "paths": {
             "@awg-app/*": ["app/*"],
             "@awg-core/*": ["app/core/*"],
@@ -13,6 +13,6 @@
             "@testing/*": ["testing/*"]
         }
     },
-    "files": ["test.ts", "polyfills.ts"],
-    "include": ["**/*.spec.ts", "**/*.d.ts", "testing/"]
+    "files": ["src/test.ts", "src/polyfills.ts"],
+    "include": ["src/**/*.spec.ts", "src/**/*.d.ts", "src/testing/"]
 }

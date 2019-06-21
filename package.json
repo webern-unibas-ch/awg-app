@@ -94,7 +94,7 @@
         "core-js": "^2.5.4",
         "font-awesome": "^4.7.0",
         "json2typescript": "^1.2.0",
-        "ngx-gallery": "^5.9.1",
+        "ngx-gallery": "^5.10.0",
         "ngx-json-viewer": "^2.4.0",
         "rxjs": "~6.5.2",
         "snapsvg": "^0.5.1",
@@ -142,12 +142,5 @@
         "node": ">= 8.9.0",
         "npm": ">= 5.5.1",
         "yarn": "^1.10.0"
-    },
-    "browserslist": [
-        "> 0.5%",
-        "last 2 versions",
-        "Firefox ESR",
-        "not dead",
-        "IE 9-11"
-    ]
+    }
 }
