@@ -9,11 +9,14 @@ const appRoutes: Routes = [
     { path: 'home', component: HomeViewComponent },
 
     // lazy loaded
-    { path: 'contact', loadChildren: './views/contact-view/contact.module#ContactModule' },
-    { path: 'data', loadChildren: './views/data-view/data.module#DataModule' },
-    { path: 'edition', loadChildren: './views/edition-view/edition.module#EditionModule' },
+    { path: 'contact', loadChildren: () => import('./views/contact-view/contact.module').then(m => m.ContactModule) },
+    { path: 'data', loadChildren: () => import('./views/data-view/data.module').then(m => m.DataModule) },
+    { path: 'edition', loadChildren: () => import('./views/edition-view/edition.module').then(m => m.EditionModule) },
     { path: 'editions', redirectTo: 'edition', pathMatch: 'full' },
-    { path: 'structure', loadChildren: './views/structure-view/structure.module#StructureModule' },
+    {
+        path: 'structure',
+        loadChildren: () => import('./views/structure-view/structure.module').then(m => m.StructureModule)
+    },
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },

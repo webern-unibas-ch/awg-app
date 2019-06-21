@@ -4,23 +4,23 @@
 }
 
 /* image preview */
-ngx-gallery /deep/ .ngx-gallery-image-wrapper {
+ngx-gallery ::ng-deep .ngx-gallery-image-wrapper {
     background-color: #e7e7e7;
 }
 
 /* arrows */
-ngx-gallery /deep/ .ngx-gallery-arrow {
+ngx-gallery ::ng-deep .ngx-gallery-arrow {
     color: black;
 }
-ngx-gallery /deep/ .ngx-gallery-arrow.ngx-gallery-disabled {
+ngx-gallery ::ng-deep .ngx-gallery-arrow.ngx-gallery-disabled {
     display: none;
 }
 
 /* thumbnails */
-ngx-gallery /deep/ .ngx-gallery-thumbnail {
+ngx-gallery ::ng-deep .ngx-gallery-thumbnail {
     opacity: 0.3;
 }
-ngx-gallery /deep/ .ngx-gallery-thumbnail.ngx-gallery-active,
-ngx-gallery /deep/ .ngx-gallery-thumbnail:hover {
+ngx-gallery ::ng-deep .ngx-gallery-thumbnail.ngx-gallery-active,
+ngx-gallery ::ng-deep .ngx-gallery-thumbnail:hover {
     opacity: 1;
 }
