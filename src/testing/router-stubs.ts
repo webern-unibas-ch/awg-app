@@ -1,4 +1,5 @@
 /* tslint:disable:no-input-rename */
+/* tslint:disable:directive-selector component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
 import { NavigationExtras } from '@angular/router';
 

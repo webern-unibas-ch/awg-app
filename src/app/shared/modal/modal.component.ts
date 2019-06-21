@@ -18,7 +18,7 @@ const MODAL_TEXT = {
     styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
-    @ViewChild('modalTemplate')
+    @ViewChild('modalTemplate', { static: false })
     modalTemplate;
 
     modalContent: string;

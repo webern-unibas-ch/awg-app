@@ -1,4 +1,5 @@
 /* tslint:disable:no-input-rename */
+/* tslint:disable:component-selector */
 
 /************************************************
  *

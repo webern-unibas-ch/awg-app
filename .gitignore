@@ -23,7 +23,6 @@ speed-measure-plugin.json
 *.launch
 .settings/
 *.sublime-workspace
-.history/*
 
 # IDE - VSCode
 .vscode/*
@@ -31,6 +30,7 @@ speed-measure-plugin.json
 !.vscode/tasks.json
 !.vscode/launch.json
 !.vscode/extensions.json
+.history/*
 
 # misc
 /.sass-cache
@@ -39,13 +39,13 @@ speed-measure-plugin.json
 /typings
 
 # logs
-logs
 *.log
+logs
 npm-debug.log*
+testem.log
 yarn-debug.log*
 yarn-error.log*
 /libpeerconnection.log
-testem.log
 
 # e2e
 /e2e/*.js
