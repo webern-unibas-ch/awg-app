@@ -2,7 +2,7 @@ import { DebugElement } from '@angular/core';
 import { ComponentFixture, flush } from '@angular/core/testing';
 
 /**
- * Test helper class: BUTTON_CLICK_EVENTS.
+ * Test helper object constant: BUTTON_CLICK_EVENTS.
  *
  * It provides button click events to be passed to
  * `DebugElement.triggerEventHandler` for RouterLink event handler.

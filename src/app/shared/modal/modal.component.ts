@@ -1,6 +1,13 @@
 import { Component, ViewChild } from '@angular/core';
 import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 
+/**
+ * Object constant with a set of modal texts.
+ *
+ * It provides the text snippets to be used in modal.
+ *
+ * Available snippets: `sourceNotA`, `sheetComingSoon`, `editionComingSoon`, `M198`.
+ */
 const MODAL_TEXT = {
     sourceNotA:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',

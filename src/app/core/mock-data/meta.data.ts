@@ -1,6 +1,13 @@
 import { AppConfig } from '@awg-app/app.config';
 import { Meta } from '@awg-core/core-models';
 
+/**
+ * Object constant for metadata.
+ *
+ * It provides metadata used throughout different parts of the app.
+ *
+ * Available main sections: `page`, `edition`, `structure`.
+ */
 export const METADATA: Meta = {
     page: {
         yearStart: 2015,

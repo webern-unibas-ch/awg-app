@@ -1,5 +1,12 @@
 import { Logos } from '@awg-core/core-models';
 
+/**
+ * Object constant with a set of logos.
+ *
+ * It provides metadata for the logos used in the app.
+ *
+ * Available logos: `unibas`, `snf`, `angular`, `bootstrap`.
+ */
 export const LOGOSDATA: Logos = {
     unibas: {
         id: 'unibaslogo',

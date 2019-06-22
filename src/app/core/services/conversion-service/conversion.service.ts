@@ -28,8 +28,19 @@ import {
     ResourceDetailContent
 } from '@awg-views/data-view/models';
 
-declare var htmlConverter;
-declare var dateConverter;
+/**
+ * Declared variable: htmlConverter.
+ *
+ * It provides access to the embedded htmlConverter plugin (see `/src/plugins/htmlConverter`).
+ */
+declare var htmlConverter: any;
+
+/**
+ * Declared variable: dateConverter.
+ *
+ * It provides access to the embedded dateConverter plugin (see `/src/plugins/dateConverter`).
+ */
+declare var dateConverter: any;
 
 @Injectable({
     providedIn: 'root'

@@ -10,6 +10,11 @@ import {
     ViewBox
 } from '@awg-views/edition-view/models';
 
+/**
+ * Declared variable: Snap.
+ *
+ * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
+ */
 declare var Snap: any;
 
 @Injectable({

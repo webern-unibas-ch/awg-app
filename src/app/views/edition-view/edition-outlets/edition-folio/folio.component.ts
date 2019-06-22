@@ -9,7 +9,11 @@ import {
 } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
-// embedded SnapSvg (snapsvg.io)
+/**
+ * Declared variable: Snap.
+ *
+ * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
+ */
 declare var Snap: any;
 
 @Component({
