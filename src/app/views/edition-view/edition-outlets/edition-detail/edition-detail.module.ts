@@ -10,6 +10,14 @@ import { EditionDetailNotificationComponent } from './edition-detail-notificatio
 import { EditionSvgFileNavComponent } from './edition-svg-file-nav';
 import { EditionSvgFileComponent } from './edition-svg-file';
 
+/**
+ * The edition detail module.
+ *
+ * It embeds the {@link EditionAccoladeComponent}, {@link EditionConvoluteComponent},
+ * {@link EditionDetailNotificationComponent}, {@link EditionSvgFileNavComponent},
+ * {@link EditionSvgFileComponent} as well as the {@link EditionTkaTableModule},
+ * {@link FolioModule} and {@link SharedModule}.
+ */
 @NgModule({
     imports: [SharedModule, FolioModule, EditionTkaTableModule],
     declarations: [

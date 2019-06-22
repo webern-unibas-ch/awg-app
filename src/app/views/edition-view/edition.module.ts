@@ -4,10 +4,19 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { EditionDetailModule } from './edition-outlets/edition-detail/edition-detail.module';
 import { ReportModule } from './edition-outlets/report/report.module';
 
-import { EditionRoutingModule, routedComponents } from './edition-routing.module';
+/* Routing Module */
+import { EditionRoutingModule, routedEditionComponents } from './edition-routing.module';
 
+/**
+ * The edition module.
+ *
+ * It embeds the edition components and their
+ * [routing definition]{@link EditionRoutingModule}
+ * as well as the {@link EditionDetailModule},
+ * {@link ReportModule} and {@link SharedModule}.
+ */
 @NgModule({
     imports: [SharedModule, EditionDetailModule, ReportModule, EditionRoutingModule],
-    declarations: [routedComponents]
+    declarations: [routedEditionComponents]
 })
 export class EditionModule {}

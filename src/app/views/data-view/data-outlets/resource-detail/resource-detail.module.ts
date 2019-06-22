@@ -10,6 +10,12 @@ import { ResourceDetailHtmlContentPropsComponent } from './resource-detail-html/
 import { ResourceDetailJsonConvertedComponent } from './resource-detail-json-converted/resource-detail-json-converted.component';
 import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw/resource-detail-json-raw.component';
 
+/**
+ * The resource detail module.
+ *
+ * It embeds the resource detail components
+ * as well as the {@link SharedModule}.
+ */
 @NgModule({
     imports: [SharedModule],
     declarations: [

@@ -32,6 +32,11 @@ import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-sp
 // shared pipes
 import { OrderByPipe } from './order-by/order-by.pipe';
 
+/**
+ * The shared module.
+ *
+ * It embeds all the components used by different modules.
+ */
 @NgModule({
     imports: [
         CommonModule,

@@ -7,6 +7,7 @@ import { SearchOverviewComponent } from './data-outlets/search-overview.componen
 import { SearchPanelComponent } from './data-outlets/search-panel/search-panel.component';
 import { TimelineComponent } from './data-outlets/timeline/timeline.component';
 
+/* routes of the DataModule */
 const dataRoutes: Routes = [
     {
         path: '',
@@ -29,16 +30,27 @@ const dataRoutes: Routes = [
     { path: 'resource/:id', component: ResourceDetailComponent }
 ];
 
-@NgModule({
-    imports: [RouterModule.forChild(dataRoutes)],
-    exports: [RouterModule]
-})
-export class DataRoutingModule {}
-
-export const routedComponents = [
+/**
+ * Routed components of the {@link DataModule}:
+ * {@link DataViewComponent}, {@link SearchOverviewComponent},
+ * {@link SearchPanelComponent}, {@link ResourceDetailComponent}
+ * and {@link TimelineComponent}.
+ */
+export const routedDataComponents = [
     DataViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
     ResourceDetailComponent,
     TimelineComponent
 ];
+
+/**
+ * Data module routing.
+ *
+ * It activates the dataRoutes, also the lazy-loaded bibliography module.
+ */
+@NgModule({
+    imports: [RouterModule.forChild(dataRoutes)],
+    exports: [RouterModule]
+})
+export class DataRoutingModule {}

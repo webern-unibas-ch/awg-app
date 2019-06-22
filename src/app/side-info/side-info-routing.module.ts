@@ -7,6 +7,7 @@ import { ResourceInfoComponent } from './resource-info/resource-info.component';
 import { SearchInfoComponent } from './search-info/search-info.component';
 import { StructureInfoComponent } from './structure-info/structure-info.component';
 
+/* routes of the SideInfoModule */
 const sideInfoRoutes: Routes = [
     { path: 'contactInfo', component: ContactInfoComponent, outlet: 'side' },
     { path: 'editionInfo', component: EditionInfoComponent, outlet: 'side' },
@@ -15,16 +16,27 @@ const sideInfoRoutes: Routes = [
     { path: 'structureInfo', component: StructureInfoComponent, outlet: 'side' }
 ];
 
-@NgModule({
-    imports: [RouterModule.forChild(sideInfoRoutes)],
-    exports: [RouterModule]
-})
-export class SideInfoRoutingModule {}
-
-export const routedComponents = [
+/**
+ * Routed components of the {@link SideInfoModule}:
+ * {@link ContactInfoComponent}, {@link EditionInfoComponent},
+ * {@link ResourceInfoComponent}, {@link SearchInfoComponent},
+ * {@link StructureInfoComponent}.
+ */
+export const routedSideinfoComponents = [
     ContactInfoComponent,
     EditionInfoComponent,
     ResourceInfoComponent,
     SearchInfoComponent,
     StructureInfoComponent
 ];
+
+/**
+ * Side info module routing.
+ *
+ * It activates the sideInfoRoutes.
+ */
+@NgModule({
+    imports: [RouterModule.forChild(sideInfoRoutes)],
+    exports: [RouterModule]
+})
+export class SideInfoRoutingModule {}
