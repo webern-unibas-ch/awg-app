@@ -6,7 +6,23 @@ import CustomEqualityTester = jasmine.CustomEqualityTester;
 import CustomMatcher = jasmine.CustomMatcher;
 import CustomMatcherResult = jasmine.CustomMatcherResult;
 
+/**
+ * Test helper custom matcher factory: customJasmineMatchers.
+ *
+ * It exposes custom jasmine matchers to be used in unit tests.
+ *
+ * For more details on custom matchers see {@link https://stackoverflow.com/a/44996479}.
+ */
 export const customJasmineMatchers: CustomMatcherFactories = {
+    /**
+     * Test helper custom matcher: toHaveCssClass.
+     *
+     * It checks if a given element has an expected CSS class.
+     *
+     * @param {MatchersUtil} util
+     * @param {CustomEqualityTester[]} customEqualityTester
+     * @returns {CustomMatcher} The custom matcher instance.
+     */
     toHaveCssClass(util: MatchersUtil, customEqualityTester: CustomEqualityTester[]): CustomMatcher {
         return { compare: buildError(false), negativeCompare: buildError(true) };
 
@@ -22,5 +38,3 @@ export const customJasmineMatchers: CustomMatcherFactories = {
         }
     }
 };
-
-// custom matchers, see https://stackoverflow.com/a/44996479

@@ -1,3 +1,11 @@
+/**
+ * Test helper data file: mockSearchResponseJson.
+ *
+ * It provides a mocked SearchResponseJson response
+ * from the Salsah API.
+ *
+ * Exposed to be called from tests.
+ */
 export const mockSearchResponseJson = {
     status: 0,
     userdata: {

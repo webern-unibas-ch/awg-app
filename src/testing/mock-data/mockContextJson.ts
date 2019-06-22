@@ -1,3 +1,11 @@
+/**
+ * Test helper data file: mockContextJson.
+ *
+ * It provides a mocked ContextJson response
+ * from the Salsah API.
+ *
+ * Exposed to be called from tests.
+ */
 export const mockContextJson = {
     res_id: ['2173574', '2173577'],
     resclass_name: 'image',

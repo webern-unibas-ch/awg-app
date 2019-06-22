@@ -16,6 +16,7 @@ module.exports = {
                 'search',
                 'structure',
                 'contact',
+                'testing',
                 'README',
                 'CHANGELOG',
                 'LICENSE',
