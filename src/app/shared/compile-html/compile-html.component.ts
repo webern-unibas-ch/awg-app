@@ -17,7 +17,6 @@ import {
     Component,
     Input,
     Injectable,
-    OnInit,
     OnChanges,
     SimpleChanges,
     Type,
@@ -28,28 +27,69 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-let singletonDefaultModule: NgModule;
-
 import { cloneDeep } from 'lodash';
+
+/**
+ * compileHtml.reverse(str)
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+const reverse = (str: string): string =>
+    str
+        .split('')
+        .reverse()
+        .join('');
+
+/**
+ * compileHtml.random()
+ *
+ * @returns {string}
+ */
+const random = (): string => {
+    return (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
+};
+
+/**
+ * compileHtml.currentIdTime
+ */
+let currentIdTime: number;
+
+/**
+ * compileHtml.currentId
+ */
+let currentId = 0;
+
+/**
+ * compileHtml.nextId()
+ *
+ * @returns {string} A randomly generated id for the dynamic component's selector.
+ */
+
+const nextId = (): string => {
+    const now = Date.now();
+    if (currentIdTime !== now) {
+        currentId = 0;
+        currentIdTime = now;
+    }
+    const comingId = ++currentId;
+    const randomHex = reverse(random()).padStart(15, '0');
+    const timeHex = reverse(currentIdTime.toString(16).padStart(12, '0'));
+    const comingIdHex = reverse(comingId.toString(16).padStart(3, '0'));
+    const newId = `compile-html-${timeHex}${comingIdHex}${randomHex}`;
+    return newId;
+};
 
 @Component({
     selector: '[compile-html]',
     template: `
-        <span
-            *ngIf="
-                html !== undefined &&
-                html !== null &&
-                html.trim() !== '' &&
-                dynamicComponent !== undefined &&
-                dynamicModule !== undefined
-            "
-        >
+        <ng-container *ngIf="html !== undefined && html !== null && html.trim() !== ''">
             <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
-        </span>
+        </ng-container>
     `
 })
 @Injectable()
-export class CompileHtmlComponent implements OnInit, OnChanges {
+export class CompileHtmlComponent implements OnChanges {
     @Input('compile-html')
     html: string;
     @Input('compile-html-ref')
@@ -64,46 +104,30 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
     dynamicComponent: any;
     dynamicModule: NgModuleFactory<any> | any;
 
-    constructor(
-        //      private container: ViewContainerRef,
-        //      private service: CompileService
-        private compiler: Compiler
-    ) {}
+    constructor(private compiler: Compiler) {}
 
-    // reassign singletonDefaultModule (justify use of 'let') - unused
-    static reset() {
-        singletonDefaultModule = {};
+    ngOnChanges(changes: SimpleChanges) {
+        this.update();
     }
 
-    async update() {
-        if (this.html === undefined || this.html.trim() === '') {
-            //            this.container.clear();
-            this.dynamicComponent = undefined;
-            this.dynamicModule = undefined;
-            return;
-        }
-        /*
-                const cacheKey = this.html;
-                if (Object.keys(cache).indexOf(cacheKey) > -1) {
-                    return cache[cacheKey];
-                }
-        */
+    update() {
         try {
+            if (this.html === undefined || this.html === null || this.html.trim() === '') {
+                //            this.container.clear();
+                this.dynamicComponent = undefined;
+                this.dynamicModule = undefined;
+                return;
+            }
+
             this.dynamicComponent = this.createNewComponent(this.html, this.ref);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
-            //            cache[cacheKey] = this.dynamicComponent;
         } catch (e) {
-            this.errorHandler(e);
+            if (this.errorHandler === undefined) {
+                throw e;
+            } else {
+                this.errorHandler(e);
+            }
         }
-        /*
-        await this.service.compile({
-            template: this.html,
-            container: this.container,
-            ref: this.ref,
-            imports: this.imports,
-            module: this.module
-        })
-        */
     }
 
     private createComponentModule(componentType: any) {
@@ -111,12 +135,9 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
 
         if (this.module !== undefined) {
             module = cloneDeep(this.module);
-        } else if (singletonDefaultModule !== undefined && singletonDefaultModule !== null) {
-            module = cloneDeep(singletonDefaultModule);
         }
         module.imports = module.imports || [];
         module.imports.push(CommonModule);
-        //        module.imports.push( BrowserModule );
         if (this.imports !== undefined) {
             module.imports = module.imports.concat(this.imports);
         }
@@ -133,7 +154,7 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
 
     private createNewComponent(html: string, ref: any) {
         @Component({
-            selector: 'dynamic-component',
+            selector: nextId(),
             template: html
         })
         class DynamicComponent {
@@ -141,14 +162,5 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
         }
 
         return DynamicComponent;
-    }
-
-    async ngOnInit() {
-        this.update();
-    }
-
-    async ngOnChanges(changes: SimpleChanges) {
-        // fixme only update with the required changes
-        this.update();
     }
 }
