@@ -11,8 +11,20 @@ echo "Updating app globals...
 > $version_file
 echo "// THIS IS AN AUTO-GENERATED FILE. DO NOT CHANGE IT MANUALLY!
 // Generated last time on $(date)
+
+/**
+ * The latest version of the AWG App
+ */
 export const appVersion = '$1';
+
+/**
+ * The release date of the latest version of the AWG App
+ */
 export const appVersionReleaseDate = '$curday $curmonth $curyear';
+
+/**
+ * The URL of the AWG App
+ */
 export const appHomepage = '$2';" >> $version_file
 
 
