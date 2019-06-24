@@ -22,14 +22,30 @@ import {
     StringOrNumber
 } from '@awg-shared/api-objects/basic-message-components';
 
+/**
+ * Represents a property value
+ * @used by PropertyJson
+ */
 @JsonObject
 export class PropertyJsonValue {
+    /**
+     * UTF-8 string of the property value
+     * @param utf8str: string | null
+     */
     @JsonProperty('utf8str', String)
     public utf8str: string = undefined;
 
+    /**
+     * Text attribute of the property value
+     * @param textattr: string | null
+     */
     @JsonProperty('textattr', String)
     public textattr: string = undefined;
 
+    /**
+     * Resource reference of the property value
+     * @param resource_reference: string[] | null
+     */
     @JsonProperty('resource_reference', [String])
     public resource_reference: string[] = undefined;
 }
@@ -171,6 +187,13 @@ export class PropertyJson {
     @JsonProperty('valuetype_id', String)
     public valuetype_id: string = undefined;
 
+    /**
+     * Public method: getValuesAsPropertyJsonValues
+     *
+     * Converts the property's values to a PropertyJsonValue array.
+     *
+     * @returns {PropertyJsonValue[]} The property json value array.
+     */
     public getValuesAsPropertyJsonValues(): PropertyJsonValue[] {
         try {
             const jsonConvert: JsonConvert = new JsonConvert();
