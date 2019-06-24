@@ -23,7 +23,7 @@ describe('SearchResultListComponent', () => {
 
     let mockConversionService: Partial<ConversionService>;
     let mockSideInfoService: Partial<SideInfoService>;
-    let getCurrentSearchResultsSpy: Observable<SearchResponseWithQuery>;
+    let getSearchResponseWithQuerySpy: Observable<SearchResponseWithQuery>;
 
     let expectedSearchResponseWithQuery: SearchResponseWithQuery;
     let expectedSearchResultText: string;
@@ -34,10 +34,10 @@ describe('SearchResultListComponent', () => {
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), ''); // TODO: provide real test data
         expectedSearchResultText = ''; // TODO: provide real test data
 
-        // create a fake StreamerService object with a `getCurrentSearchResults()` spy
-        const mockStreamerService = jasmine.createSpyObj('StreamerService', ['getCurrentSearchResults']);
+        // create a fake StreamerService object with a `getSearchResponseWithQuery()` spy
+        const mockStreamerService = jasmine.createSpyObj('StreamerService', ['getSearchResponseWithQuery']);
         // make the spies return a synchronous Observable with the test data
-        getCurrentSearchResultsSpy = mockStreamerService.getCurrentSearchResults.and.returnValue(observableOf()); // TODO: provide real test data
+        getSearchResponseWithQuerySpy = mockStreamerService.getSearchResponseWithQuery.and.returnValue(observableOf()); // TODO: provide real test data
 
         // mock services
         mockConversionService = {

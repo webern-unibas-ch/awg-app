@@ -232,7 +232,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     // update search data via streamer service
     updateStreamerService(searchResponse: SearchResponseJson, query: string) {
         const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(searchResponse, query);
-        this.streamerService.updateSearchResponseStream(searchResponseWithQuery);
+        this.streamerService.updateSearchResponseWithQuery(searchResponseWithQuery);
     }
 
     ngOnDestroy() {

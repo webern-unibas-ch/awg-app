@@ -115,7 +115,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     subscribeToStreamerService(): Subscription {
         return this.streamerService
-            .getCurrentSearchResults()
+            .getSearchResponseWithQuery()
             .pipe(
                 map((searchResponseWithQuery: SearchResponseWithQuery) => {
                     // update current search params (url, text, sideinfo) via streamer service

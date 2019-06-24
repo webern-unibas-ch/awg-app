@@ -57,7 +57,7 @@ describe('EditionDetailComponent', () => {
     let getEditionDetailDataSpy: Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]>;
 
     beforeEach(async(() => {
-        // create a fake service object with a `getCurrentSearchResults()` spy
+        // create a fake service object with a `getEditionDetailData()` spy
         const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
         // make the spies return a synchronous Observable with the test data
         getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data

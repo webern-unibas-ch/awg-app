@@ -86,7 +86,7 @@ export class ActivatedRouteStub {
     private paramSubject = new BehaviorSubject(this.testParams);
 
     /**
-     * An ActivatedRoute.params test double (stub)
+     * Readonly ActivatedRoute.params test double (stub)
      * as observable (`BehaviorSubject`).
      */
     readonly params = this.paramSubject.asObservable();

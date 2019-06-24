@@ -96,7 +96,7 @@ export class ResourceDetailComponent implements OnInit {
 
     updateResourceId() {
         // share current id via streamer service
-        this.streamerService.updateCurrentResourceIdStream(this.resourceId);
+        this.streamerService.updateResourceId(this.resourceId);
     }
 
     updateCurrentUrl() {

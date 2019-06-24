@@ -35,7 +35,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     constructor(private router: Router, private streamerService: DataStreamerService, private fb: FormBuilder) {}
 
     ngOnInit() {
-        this.getCurrentResourceIdFromSubscription();
+        this.getResourceIdFromSubscription();
     }
 
     buildForm(index: number, resultSize: number): void {
@@ -54,15 +54,15 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         return this.resourceInfoForm.get('resourceInfoIndex');
     }
 
-    getCurrentResourceIdFromSubscription(): void {
+    getResourceIdFromSubscription(): void {
         // subscribe to streamer service
-        this.currentIdSubscription = this.streamerService.getCurrentResourceId().subscribe(
+        this.currentIdSubscription = this.streamerService.getResourceId().subscribe(
             (id: string) => {
                 // update id from streamer service
                 this.currentId = id;
 
                 // get search results
-                this.getCurrentSearchResultsFromSubscription();
+                this.getSearchResultsFromSubscription();
             },
             error => {
                 console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
@@ -70,9 +70,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         );
     }
 
-    getCurrentSearchResultsFromSubscription(): void {
+    getSearchResultsFromSubscription(): void {
         // subscribe to streamer service
-        this.searchResponseSubscription = this.streamerService.getCurrentSearchResults().subscribe(
+        this.searchResponseSubscription = this.streamerService.getSearchResponseWithQuery().subscribe(
             (res: SearchResponseWithQuery) => {
                 // update search results from streamer service
                 this.searchResults = { ...res };
