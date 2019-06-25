@@ -1,11 +1,43 @@
 import { Folio, FolioContent, FolioSection } from './folio.model';
 import { FolioSettings } from './folio-settings.model';
 
+/**
+ * The FolioCalculationPoint class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a point on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionDetailModule}.
+ */
 export class FolioCalculationPoint {
+    /**
+     * The x value (in px) of a point.
+     */
     x: number;
+
+    /**
+     * The y value (in px) of a point.
+     */
     y: number;
+
+    /**
+     * Method: add.
+     *
+     * It adds x and y values (in px) to an existing point.
+     *
+     * @param {number} addX Add to x value.
+     * @param {number} addY Add to y value.
+     */
     add: (addX: number, addY: number) => FolioCalculationPoint;
 
+    /**
+     * Constructor of the FolioCalculationPoint class.
+     *
+     * It initializes the class with values for x and y (in px).
+     *
+     * @param {number} x The x value input (in px).
+     * @param {number} y The y value input (in px).
+     */
     constructor(x: number, y: number) {
         this.x = x;
         this.y = y;
@@ -17,106 +49,420 @@ export class FolioCalculationPoint {
     }
 }
 
+/**
+ * The FolioCalculationLine class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a line on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionDetailModule}.
+ */
 export class FolioCalculationLine {
+    /**
+     * The starting point of a line (FolioCalculationPoint).
+     */
     startPoint: FolioCalculationPoint;
+
+    /**
+     * The ending point of a line (FolioCalculationPoint).
+     */
     endPoint: FolioCalculationPoint;
 
-    constructor(point1: FolioCalculationPoint, point2: FolioCalculationPoint) {
-        this.startPoint = point1;
-        this.endPoint = point2;
+    /**
+     * Constructor of the FolioCalculationLine class.
+     *
+     * It initializes the class with two points for start and end.
+     *
+     * @param {FolioCalculationPoint} startPoint The starting point input.
+     * @param {FolioCalculationPoint} endPoint The ending point input.
+     */
+    constructor(startPoint: FolioCalculationPoint, endPoint: FolioCalculationPoint) {
+        this.startPoint = startPoint;
+        this.endPoint = endPoint;
     }
 }
 
-export class FolioCalculationContentItemCorner {
-    upperLeft: FolioCalculationPoint;
-    lowerLeft: FolioCalculationPoint;
-    upperRight: FolioCalculationPoint;
-    lowerRight: FolioCalculationPoint;
+/**
+ * The FolioCalculationContentItemCornerPoints class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a content item's corners on the folio canvas.
+ *
+ * Not exposed, only called internally from {@link FolioCalculation}.
+ */
+class FolioCalculationContentItemCornerPoints {
+    /**
+     * The upper left corner point of a content item (FolioCalculationPoint).
+     */
+    upperLeftCorner: FolioCalculationPoint;
+
+    /**
+     * The lower left corner point of a content item (FolioCalculationPoint).
+     */
+    lowerLeftCorner: FolioCalculationPoint;
+
+    /**
+     * The upper right corner point of a content item (FolioCalculationPoint).
+     */
+    upperRightCorner: FolioCalculationPoint;
+
+    /**
+     * The lower right corner point of a content item (FolioCalculationPoint).
+     */
+    lowerRightCorner: FolioCalculationPoint;
+
+    /**
+     * Constructor of the FolioCalculationContentItemCornerPoints class.
+     *
+     * It initializes the class with four points
+     * for upper and lower left and upper and lower right corners.
+     *
+     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
+     */
+    constructor(calculatedContentItem: FolioCalculationContentItem) {
+        this.upperLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.startY);
+        this.lowerLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.endY);
+        this.upperRightCorner = new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.startY);
+        this.lowerRightCorner = new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.endY);
+    }
 }
 
-export class FolioCalculationContentItemCache {
+/**
+ * The FolioCalculationContentItemCache class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a content item cache on the folio canvas.
+ *
+ * Not exposed, only called internally from {@link FolioCalculation}.
+ */
+class FolioCalculationContentItemCache {
+    /**
+     * The section of a content item (FolioSection).
+     */
     section: FolioSection;
-    corner: FolioCalculationContentItemCorner;
+
+    /**
+     * The corner points of a content item (FolioCalculationContentItemCornerPoints).
+     */
+    cornerPoints: FolioCalculationContentItemCornerPoints;
 }
 
+/**
+ * The FolioCalculationContentItem class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a content item on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionDetailModule}.
+ */
 export class FolioCalculationContentItem {
+    /**
+     * The correction value for the offset of the content item (number).
+     */
     offsetCorrection: number;
+
+    /**
+     * The width including offset of the content item (number).
+     */
     widthWithOffset: number;
+
+    /**
+     * The width of the content item (number).
+     */
     width: number;
+
+    /**
+     * The height of the content item (number).
+     */
     height: number;
+
+    /**
+     * The system range of the content item (number).
+     */
     systemRange: number;
+
+    /**
+     * The start position (x-value) of the index of the content item (number).
+     */
     startXIndex: number;
+
+    /**
+     * The start position (y-value) of the index of the content item (number).
+     */
     startYIndex: number;
+
+    /**
+     * The start position (x-value) of the content item (number).
+     */
     startX: number;
+
+    /**
+     * The end position (x-value) of the content item (number).
+     */
     endX: number;
+
+    /**
+     * The start position (y-value) of the content item (number).
+     */
     startY: number;
+
+    /**
+     * The end position (y-value) of the content item (number).
+     */
     endY: number;
+
+    /**
+     * The line array of the content item (FolioCalculationLine[]).
+     */
     lineArray: FolioCalculationLine[];
+
+    /**
+     * The current content item (FolioCalculationContentItemCache).
+     */
     current: FolioCalculationContentItemCache;
+
+    /**
+     * The previous content item (FolioCalculationContentItemCache).
+     */
     previous: FolioCalculationContentItemCache;
+
+    /**
+     * The optional label for the sigle of the content item (string).
+     */
     sigle?: string;
+
+    /**
+     * The optional label for the measure of the content item (string).
+     */
     measure?: string;
 }
 
+/**
+ * The FolioCalculationSheet class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of a sheet on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionDetailModule}.
+ */
 export class FolioCalculationSheet {
+    /**
+     * The offset of the sheet (FolioCalculationPoint).
+     */
     offset: FolioCalculationPoint;
+
+    /**
+     * The width of the sheet (number).
+     */
     width: number;
+
+    /**
+     * The height of the sheet (number).
+     */
     height: number;
+
+    /**
+     * The optional folio id of the sheet (string).
+     */
     folioId?: string;
+
+    /**
+     * The optional upper left corner point of the sheet (FolioCalculationPoint).
+     */
     upperLeftCorner?: FolioCalculationPoint;
+
+    /**
+     * The optional lower right corner point of the sheet (FolioCalculationPoint).
+     */
     lowerRightCorner?: FolioCalculationPoint;
+
+    /**
+     * Constructor of the FolioCalculationSheet class.
+     *
+     * It initializes the class with values from folio settings, the folio id and zoom factor.
+     *
+     * @param {FolioSettings} folioSettings The folio settings input.
+     * @param {string} folioId The folio id input.
+     */
+    constructor(folioSettings: FolioSettings, folioId: string) {
+        this.folioId = folioId;
+        this.offset = new FolioCalculationPoint(folioSettings.initialOffsetX, folioSettings.initialOffsetY);
+        this.width = folioSettings.formatX * folioSettings.factor;
+        this.height = folioSettings.formatY * folioSettings.factor;
+        this.upperLeftCorner = this.offset;
+        this.lowerRightCorner = new FolioCalculationPoint(this.width, this.height);
+    }
 }
 
+/**
+ * The FolioCalculationSystems class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate the values of the systems on the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionDetailModule}.
+ */
 export class FolioCalculationSystems {
+    /**
+     * The width of the systems (number).
+     */
     width: number;
+
+    /**
+     * The left margin of the systems (number).
+     */
     leftMargin: number;
+
+    /**
+     * The right margin of the systems (number).
+     */
     rightMargin: number;
+
+    /**
+     * The upper margin of the systems (number).
+     */
     upperMargin: number;
+
+    /**
+     * The margins of the systems (number).
+     */
     margins: number;
+
+    /**
+     * The start position (x-value) of the systems (number).
+     */
     startX: number;
+
+    /**
+     * The end position (x-value) of the systems (number).
+     */
     endX: number;
+
+    /**
+     * The start position (y-value) of the systems (number).
+     */
     startY: number;
+
+    /**
+     * The array of y-value arrays for the systems (number).
+     */
     yArray: number[][];
+
+    /**
+     * The start position (x-value) of the labels of the systems (number).
+     */
     labelStartX: number;
+
+    /**
+     * The correction value for the offset of the labels of the systems (number).
+     */
     labelOffsetCorrection: number;
+
+    /**
+     * The optional line label array of the systems (FolioCalculationPoint[]).
+     */
     lineLabelArray?: FolioCalculationPoint[];
+
+    /**
+     * The optional array of line arrays of the systems (FolioCalculationLine[][]).
+     */
     lineArrays?: FolioCalculationLine[][];
 }
 
+/**
+ * The FolioCalculation class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to calculate all the values needed for the folio canvas.
+ *
+ * Exposed to be used throughout {@link EditionDetailModule}.
+ */
 export class FolioCalculation {
+    /**
+     * The correction value for the offset of the folio items (number).
+     */
     itemsOffsetCorrection: number;
+
+    /**
+     * The number of systems (number).
+     */
     numberOfSystems: number;
+
+    /**
+     * The zoom factor (number).
+     */
     zoomFactor: number;
+
+    /**
+     * The calculated values for the sheet
+     * of a folio (FolioCalculationSheet).
+     */
     sheet: FolioCalculationSheet;
+
+    /**
+     * The calculated values for the systems
+     * of a folio (FolioCalculationSystems).
+     */
     systems: FolioCalculationSystems;
+
+    /**
+     * The calculated values for the array of content items
+     * of a folio (FolioCalculationContentItem[]).
+     */
     contentItemsArray: FolioCalculationContentItem[];
 
+    /**
+     * Constructor of the FolioCalculation class.
+     *
+     * It initializes the class with values from folio settings, folio data and itemsOffset correction.
+     *
+     * @param {FolioSettings} folioSettings The folio settings input.
+     * @param {Folio} folioData The folio data input.
+     * @param {number} [itemsOffsetCorrection] The optional itemsOffset correction input.
+     */
     constructor(folioSettings: FolioSettings, folioData: Folio, itemsOffsetCorrection?: number) {
         this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor = folioSettings.factor;
 
-        this.sheet = this.getSheet(folioSettings, folioData.folioId);
-        this.systems = this.getSystems();
-        this.contentItemsArray = this.getContentArray(folioData.content);
+        this.calculateFolio(folioSettings, folioData);
     }
 
-    getSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
-        // init
-        const calculatedSheet = new FolioCalculationSheet();
-
-        // set calculated values for offsets (= upper left starting point), width & height
-        calculatedSheet.folioId = folioId;
-        calculatedSheet.offset = new FolioCalculationPoint(folioSettings.initialOffsetX, folioSettings.initialOffsetY);
-        calculatedSheet.width = folioSettings.formatX * this.zoomFactor;
-        calculatedSheet.height = folioSettings.formatY * this.zoomFactor;
-        calculatedSheet.upperLeftCorner = calculatedSheet.offset;
-        calculatedSheet.lowerRightCorner = new FolioCalculationPoint(calculatedSheet.width, calculatedSheet.height);
-
-        return calculatedSheet;
+    /**
+     * Private method: calculateFolio.
+     *
+     * It calls the calculation methods for the sheet,
+     * systems and contentItemsArray of a folio.
+     *
+     * @param {FolioSettings} folioSettings The folio settings input.
+     * @param {Folio} folioData The folio data input.
+     */
+    private calculateFolio(folioSettings: FolioSettings, folioData: Folio) {
+        this.sheet = this.calculateSheet(folioSettings, folioData.folioId);
+        this.systems = this.calculateSystems();
+        this.contentItemsArray = this.calculateContentArray(folioData.content);
     }
 
-    getSystems(): FolioCalculationSystems {
+    /**
+     * Private method: calculateSheet.
+     *
+     * It returns a FolioCalculationSheet class that provides
+     * all the calculated values for the sheet of a folio.
+     *
+     * @param {FolioSettings} folioSettings The folio settings input.
+     * @param {string} folioId The folio id input.
+     */
+    private calculateSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
+        return new FolioCalculationSheet(folioSettings, folioId);
+    }
+
+    /**
+     * Private method: calculateSystems.
+     *
+     * It returns a FolioCalculationSystems class that provides
+     * all the calculated values for the systems of a folio.
+     */
+    private calculateSystems(): FolioCalculationSystems {
         // init
         const calculatedSystems = new FolioCalculationSystems();
 
@@ -169,7 +515,15 @@ export class FolioCalculation {
         return calculatedSystems;
     }
 
-    getContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
+    /**
+     * Private method: calculateContentArray.
+     *
+     * It provides all the calculated values for the content items of a folio.
+     *
+     * @param {FolioContent[]} contents The folio contents input.
+     * @returns {FolioCalculationContentItem[]} The array of the calculated content items.
+     */
+    private calculateContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
         // init
         const calculatedContentItems: FolioCalculationContentItem[] = [];
 
@@ -204,11 +558,13 @@ export class FolioCalculation {
                     // set section cache
                     this.setContentItemSectionCache(calculatedContentItem, section);
 
-                    // calculate main values for item
-                    this.calculateContentItemMainValues(calculatedContentItem, section, sectionPartition, content);
+                    // set main values for item
+                    this.setContentItemMainValues(calculatedContentItem, section, sectionPartition, content);
 
                     // set item corner points
-                    calculatedContentItem.current.corner = this.setContentItemCornerPoints(calculatedContentItem);
+                    calculatedContentItem.current.cornerPoints = new FolioCalculationContentItemCornerPoints(
+                        calculatedContentItem
+                    );
 
                     // set item lines
                     calculatedContentItem.lineArray = this.setContentItemLineArray(
@@ -231,7 +587,18 @@ export class FolioCalculation {
         return calculatedContentItems;
     }
 
-    private calculateContentItemMainValues(
+    /**
+     * Private helper method for calculateContentArray: setContentItemMainValues.
+     *
+     * It calculates the main values for the content items of a folio.
+     *
+     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
+     * @param {FolioSection} section The section input.
+     * @param {number} sectionPartition The section partition input.
+     * @param {FolioContent} item The folio content input.
+     * @returns {void} Calculates and sets the main values of the calculatedContentItem.
+     */
+    private setContentItemMainValues(
         calculatedContentItem: FolioCalculationContentItem,
         section: FolioSection,
         sectionPartition: number,
@@ -295,6 +662,15 @@ export class FolioCalculation {
         calculatedContentItem.endY = this.round(calculatedContentItem.startY + calculatedContentItem.height, 2);
     }
 
+    /**
+     * Private helper method for calculateContentArray: setContentItemSectionCache.
+     *
+     * It caches the current and previous section of a calculated content item.
+     *
+     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
+     * @param {FolioSection} section The section input.
+     * @returns {void} Caches the current and previous section of the calculatedContentItem.
+     */
     private setContentItemSectionCache(
         calculatedContentItem: FolioCalculationContentItem,
         section: FolioSection
@@ -305,25 +681,9 @@ export class FolioCalculation {
 
         if (calculatedContentItem.current['section']) {
             calculatedContentItem.previous.section = calculatedContentItem.current.section;
-            calculatedContentItem.previous.corner = calculatedContentItem.current.corner;
+            calculatedContentItem.previous.cornerPoints = calculatedContentItem.current.cornerPoints;
         }
         calculatedContentItem.current.section = section;
-    }
-
-    private setContentItemCornerPoints(
-        calculatedContentItem: FolioCalculationContentItem
-    ): FolioCalculationContentItemCorner {
-        if (!calculatedContentItem) {
-            return;
-        }
-
-        const corner: FolioCalculationContentItemCorner = {
-            upperLeft: new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.startY),
-            lowerLeft: new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.endY),
-            upperRight: new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.startY),
-            lowerRight: new FolioCalculationPoint(calculatedContentItem.endX, calculatedContentItem.endY)
-        };
-        return corner;
     }
 
     private setContentItemLineArray(
@@ -332,14 +692,14 @@ export class FolioCalculation {
         sectionIndex: number,
         sectionPartition: number
     ): FolioCalculationLine[] {
-        if (!calculatedContentItem.current.corner) {
+        if (!calculatedContentItem.current.cornerPoints) {
             return;
         }
 
         // init
         const lineArray: FolioCalculationLine[] = [];
         const lines: string[] = [];
-        const corner = calculatedContentItem.current.corner; // shortcut
+        const cornerPoints = calculatedContentItem.current.cornerPoints; // shortcut
         const correctionValue = this.itemsOffsetCorrection / 2; // offset correction value
 
         // decide which lines to add to array depending on sectionsLength and position in sectionIndex
@@ -352,8 +712,8 @@ export class FolioCalculation {
                 // first item part
 
                 // offset correction
-                this.setContentItemOffsetCorrection(corner.upperRight, correctionValue);
-                this.setContentItemOffsetCorrection(corner.lowerRight, correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
 
                 // add upper & lower horizontal & left vertical line to line array
                 lines.push('uH', 'lH', 'lV');
@@ -361,8 +721,8 @@ export class FolioCalculation {
                 // last item part
 
                 // offset correction
-                this.setContentItemOffsetCorrection(corner.upperLeft, -correctionValue);
-                this.setContentItemOffsetCorrection(corner.lowerLeft, -correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
 
                 // add upper & lower horizontal & right vertical line to line array
                 lines.push('uH', 'lH', 'rV');
@@ -375,10 +735,10 @@ export class FolioCalculation {
                 // middle item part
 
                 // offset correction
-                this.setContentItemOffsetCorrection(corner.upperRight, correctionValue);
-                this.setContentItemOffsetCorrection(corner.lowerRight, correctionValue);
-                this.setContentItemOffsetCorrection(corner.upperLeft, -correctionValue);
-                this.setContentItemOffsetCorrection(corner.lowerLeft, -correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
+                this.setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
 
                 // add upper and lower horizontal line to line array
                 lines.push('uH', 'lH');
@@ -391,10 +751,19 @@ export class FolioCalculation {
         }
 
         // create lines
-        const upperHorizontalLine = new FolioCalculationLine(corner.upperLeft, corner.upperRight);
-        const lowerHorizontalLine = new FolioCalculationLine(corner.lowerLeft, corner.lowerRight);
-        const leftVerticalLine = new FolioCalculationLine(corner.upperLeft, corner.lowerLeft);
-        const rightVerticalLine = new FolioCalculationLine(corner.upperRight, corner.lowerRight);
+        const upperHorizontalLine = new FolioCalculationLine(
+            cornerPoints.upperLeftCorner,
+            cornerPoints.upperRightCorner
+        );
+        const lowerHorizontalLine = new FolioCalculationLine(
+            cornerPoints.lowerLeftCorner,
+            cornerPoints.lowerRightCorner
+        );
+        const leftVerticalLine = new FolioCalculationLine(cornerPoints.upperLeftCorner, cornerPoints.lowerLeftCorner);
+        const rightVerticalLine = new FolioCalculationLine(
+            cornerPoints.upperRightCorner,
+            cornerPoints.lowerRightCorner
+        );
 
         lines.forEach((line: string) => {
             switch (line) {
@@ -437,16 +806,16 @@ export class FolioCalculation {
         if (currentSection.startSystem !== prevSection.startSystem) {
             // draw upper connector
             const connectorLine: FolioCalculationLine = new FolioCalculationLine(
-                calculatedContentItem.previous.corner.upperRight,
-                calculatedContentItem.current.corner.upperLeft
+                calculatedContentItem.previous.cornerPoints.upperRightCorner,
+                calculatedContentItem.current.cornerPoints.upperLeftCorner
             );
             lineArray.push(connectorLine);
         }
         if (currentSection.endSystem !== prevSection.endSystem) {
             // draw lower connector
             const connectorLine: FolioCalculationLine = new FolioCalculationLine(
-                calculatedContentItem.previous.corner.lowerRight,
-                calculatedContentItem.current.corner.lowerLeft
+                calculatedContentItem.previous.cornerPoints.lowerRightCorner,
+                calculatedContentItem.current.cornerPoints.lowerLeftCorner
             );
             lineArray.push(connectorLine);
         }

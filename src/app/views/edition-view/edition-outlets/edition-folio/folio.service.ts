@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 
 import {
     Folio,
-    FolioSvgContentItem,
     FolioSvgData,
     FolioCalculation,
     FolioCalculationLine,
@@ -259,7 +258,7 @@ export class FolioService {
         folioSvg: FolioSvgData,
         fgColor: string
     ): void {
-        folioSvg.contentItemsArray.contentItems.forEach((contentItem: FolioSvgContentItem) => {
+        folioSvg.contentItemsArray.forEach(contentItem => {
             if (!contentItem) {
                 return;
             }
