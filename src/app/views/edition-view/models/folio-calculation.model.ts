@@ -1,5 +1,5 @@
-import { ConvoluteFolio, ConvoluteFolioContent, ConvoluteFolioSection } from './convolute-folio.model';
-import { FolioFormatOptions } from './folio-format-options.model';
+import { Folio, FolioContent, FolioSection } from './folio.model';
+import { FolioSettings } from './folio-settings.model';
 
 export class FolioCalculationPoint {
     x: number;
@@ -35,7 +35,7 @@ export class FolioCalculationContentItemCorner {
 }
 
 export class FolioCalculationContentItemCache {
-    section: ConvoluteFolioSection;
+    section: FolioSection;
     corner: FolioCalculationContentItemCorner;
 }
 
@@ -91,25 +91,25 @@ export class FolioCalculation {
     systems: FolioCalculationSystems;
     contentItemsArray: FolioCalculationContentItem[];
 
-    constructor(options: FolioFormatOptions, folioData: ConvoluteFolio, itemsOffsetCorrection?: number) {
+    constructor(folioSettings: FolioSettings, folioData: Folio, itemsOffsetCorrection?: number) {
         this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
-        this.zoomFactor = options.factor;
+        this.zoomFactor = folioSettings.factor;
 
-        this.sheet = this.getSheet(options, folioData.folioId);
+        this.sheet = this.getSheet(folioSettings, folioData.folioId);
         this.systems = this.getSystems();
         this.contentItemsArray = this.getContentArray(folioData.content);
     }
 
-    getSheet(options: FolioFormatOptions, folioId: string): FolioCalculationSheet {
+    getSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
         // init
         const calculatedSheet = new FolioCalculationSheet();
 
         // set calculated values for offsets (= upper left starting point), width & height
         calculatedSheet.folioId = folioId;
-        calculatedSheet.offset = new FolioCalculationPoint(options.initialOffsetX, options.initialOffsetY);
-        calculatedSheet.width = options.formatX * this.zoomFactor;
-        calculatedSheet.height = options.formatY * this.zoomFactor;
+        calculatedSheet.offset = new FolioCalculationPoint(folioSettings.initialOffsetX, folioSettings.initialOffsetY);
+        calculatedSheet.width = folioSettings.formatX * this.zoomFactor;
+        calculatedSheet.height = folioSettings.formatY * this.zoomFactor;
         calculatedSheet.upperLeftCorner = calculatedSheet.offset;
         calculatedSheet.lowerRightCorner = new FolioCalculationPoint(calculatedSheet.width, calculatedSheet.height);
 
@@ -169,18 +169,18 @@ export class FolioCalculation {
         return calculatedSystems;
     }
 
-    getContentArray(contents: ConvoluteFolioContent[]): FolioCalculationContentItem[] {
+    getContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
         // init
         const calculatedContentItems: FolioCalculationContentItem[] = [];
 
         // iterate over items
-        contents.forEach((content: ConvoluteFolioContent) => {
+        contents.forEach((content: FolioContent) => {
             // init
             const calculatedContentItem: FolioCalculationContentItem = new FolioCalculationContentItem();
             calculatedContentItem.previous = new FolioCalculationContentItemCache();
             calculatedContentItem.current = new FolioCalculationContentItemCache();
-            calculatedContentItem.previous.section = new ConvoluteFolioSection(); // reset prevSection
-            calculatedContentItem.current.section = new ConvoluteFolioSection(); // reset currentSection
+            calculatedContentItem.previous.section = new FolioSection(); // reset prevSection
+            calculatedContentItem.current.section = new FolioSection(); // reset currentSection
             let sectionPartition = 1; // default: 1 section
 
             // offsetCorrection to avoid collision between items
@@ -200,7 +200,7 @@ export class FolioCalculation {
                     return;
                 }
                 // iterate over sections
-                content.sections.forEach((section: ConvoluteFolioSection, sectionIndex: number) => {
+                content.sections.forEach((section: FolioSection, sectionIndex: number) => {
                     // set section cache
                     this.setContentItemSectionCache(calculatedContentItem, section);
 
@@ -233,9 +233,9 @@ export class FolioCalculation {
 
     private calculateContentItemMainValues(
         calculatedContentItem: FolioCalculationContentItem,
-        section: ConvoluteFolioSection,
+        section: FolioSection,
         sectionPartition: number,
-        item: ConvoluteFolioContent
+        item: FolioContent
     ): void {
         if (!calculatedContentItem) {
             return;
@@ -297,7 +297,7 @@ export class FolioCalculation {
 
     private setContentItemSectionCache(
         calculatedContentItem: FolioCalculationContentItem,
-        section: ConvoluteFolioSection
+        section: FolioSection
     ): void {
         if (!calculatedContentItem) {
             return;
@@ -421,8 +421,8 @@ export class FolioCalculation {
         lineArray: FolioCalculationLine[]
     ): void {
         // init
-        const currentSection: ConvoluteFolioSection = calculatedContentItem.current.section;
-        const prevSection: ConvoluteFolioSection = calculatedContentItem.previous.section;
+        const currentSection: FolioSection = calculatedContentItem.current.section;
+        const prevSection: FolioSection = calculatedContentItem.previous.section;
 
         // check if sections exist
         if (

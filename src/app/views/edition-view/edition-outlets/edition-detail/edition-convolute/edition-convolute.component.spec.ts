@@ -5,12 +5,12 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { EditionConvoluteComponent } from './edition-convolute.component';
-import { ConvoluteFolio, EditionSvgFile } from '@awg-views/edition-view/models';
+import { Folio, EditionSvgFile } from '@awg-views/edition-view/models';
 
 @Component({ selector: 'awg-edition-folio', template: '' })
 class FolioStubComponent {
     @Input()
-    convoluteData: ConvoluteFolio[];
+    convoluteData: Folio[];
     @Input()
     selectedSvgFile: EditionSvgFile;
 

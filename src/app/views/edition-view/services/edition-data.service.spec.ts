@@ -5,7 +5,7 @@ import { Data } from '@angular/router';
 
 import { forkJoin, Observable, of } from 'rxjs';
 
-import { ConvoluteFolio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { Folio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';

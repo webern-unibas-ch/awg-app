@@ -7,44 +7,33 @@
  *
  */
 
-import {
-    ConvoluteFolio,
-    ConvoluteFolioFormat,
-    ConvoluteFolioContent,
-    ConvoluteFolioSection
-} from './convolute-folio.model';
-import {
-    ConvoluteFolioSvgOutput,
-    ConvoluteFolioSvgContentItem,
-    ConvoluteFolioSvgFolio,
-    ConvoluteFolioSvgSystems
-} from './convolute-folio-svg-output.model';
+import { Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
+import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
+import { FolioSettings } from './folio-settings.model';
+import { FolioSvgData, FolioSvgContentItem, FolioSvgSheet, FolioSvgSystems } from './folio-svg-data.model';
 
 import { EditionSvgFile } from './edition-svg-file.model';
 import { EditionSvgOverlay } from './edition-svg-overlay';
-
-import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
-import { FolioFormatOptions } from './folio-format-options.model';
 
 import { Source, SourceList } from './source.model';
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
 export {
-    ConvoluteFolio,
-    ConvoluteFolioFormat,
-    ConvoluteFolioContent,
-    ConvoluteFolioSection,
-    ConvoluteFolioSvgContentItem,
-    ConvoluteFolioSvgFolio,
-    ConvoluteFolioSvgSystems,
-    ConvoluteFolioSvgOutput,
+    Folio,
+    FolioFormat,
+    FolioContent,
+    FolioSection,
+    FolioSvgContentItem,
+    FolioSvgSheet,
+    FolioSvgSystems,
+    FolioSvgData,
     EditionSvgFile,
     EditionSvgOverlay,
     FolioCalculation,
     FolioCalculationLine,
     FolioCalculationPoint,
-    FolioFormatOptions,
+    FolioSettings,
     Source,
     SourceList,
     Textcritics,

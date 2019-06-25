@@ -2,18 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FolioComponent } from './folio.component';
 import { FolioService } from './folio.service';
-import {
-    ConvoluteFolio,
-    ConvoluteFolioSvgOutput,
-    EditionSvgFile,
-    FolioCalculation,
-    FolioFormatOptions
-} from '@awg-views/edition-view/models';
+import { Folio, FolioSvgData, EditionSvgFile, FolioCalculation, FolioSettings } from '@awg-views/edition-view/models';
 
 describe('FolioComponent', () => {
     let component: FolioComponent;
     let fixture: ComponentFixture<FolioComponent>;
-    let expectedConvoluteData: ConvoluteFolio[];
+    let expectedConvoluteData: Folio[];
     let expectedSvgFile: EditionSvgFile;
 
     beforeEach(async(() => {
@@ -51,7 +45,7 @@ describe('FolioComponent', () => {
                 image: 'assets/img/edition/SkI_2_small.jpg',
                 alt: 'Aa:SkI/2'
             };
-            const folioFormatOptions: FolioFormatOptions = {
+            const folioFormatSettings: FolioSettings = {
                 factor: 1.5,
                 formatX: 175,
                 formatY: 270,

@@ -4,7 +4,7 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
-import { ConvoluteFolio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { Folio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
 @Injectable({
     providedIn: 'root'
@@ -22,7 +22,7 @@ export class EditionDataService {
      * e.g. [Observable<Sheets[]>, Observable<Textcritics[]>]
      *
      *********************************/
-    getEditionDetailData(): Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]> {
+    getEditionDetailData(): Observable<[Folio[], EditionSvgFile[], TextcriticsList]> {
         return observableForkJoin([this.getConvoluteFolioData(), this.getSvgFileData(), this.getTextcriticsListData()]);
     }
 
@@ -33,7 +33,7 @@ export class EditionDataService {
     /*
      * private functions to prepare http request
      */
-    private getConvoluteFolioData(): Observable<ConvoluteFolio[]> {
+    private getConvoluteFolioData(): Observable<Folio[]> {
         const file = 'convolute.json';
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);

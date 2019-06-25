@@ -7,13 +7,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import {
-    ConvoluteFolio,
-    EditionSvgFile,
-    EditionSvgOverlay,
-    Textcritics,
-    TextcriticsList
-} from '@awg-views/edition-view/models';
+import { Folio, EditionSvgFile, EditionSvgOverlay, Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -26,7 +20,7 @@ class EditionDetailNotificationStubComponent {}
 @Component({ selector: 'awg-edition-convolute', template: '' })
 class EditionConvoluteStubComponent {
     @Input()
-    convoluteData: ConvoluteFolio[];
+    convoluteData: Folio[];
     @Input()
     selectedSvgFile: EditionSvgFile;
 
@@ -54,7 +48,7 @@ describe('EditionDetailComponent', () => {
     let fixture: ComponentFixture<EditionDetailComponent>;
 
     let mockEditionService: Partial<EditionService>;
-    let getEditionDetailDataSpy: Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]>;
+    let getEditionDetailDataSpy: Observable<[Folio[], EditionSvgFile[], TextcriticsList]>;
 
     beforeEach(async(() => {
         // create a fake service object with a `getEditionDetailData()` spy

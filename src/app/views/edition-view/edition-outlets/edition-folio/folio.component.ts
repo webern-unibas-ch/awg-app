@@ -1,12 +1,6 @@
 import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import {
-    ConvoluteFolio,
-    FolioFormatOptions,
-    ConvoluteFolioSvgOutput,
-    EditionSvgFile,
-    ViewBox
-} from '@awg-views/edition-view/models';
+import { Folio, FolioSettings, FolioSvgData, EditionSvgFile, ViewBox } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
 /**
@@ -23,7 +17,7 @@ declare var Snap: any;
 })
 export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input()
-    convoluteData: ConvoluteFolio[];
+    convoluteData: Folio[];
     @Input()
     selectedSvgFile: EditionSvgFile;
     @Output()
@@ -31,11 +25,11 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Output()
     selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
-    folio: ConvoluteFolio;
+    folio: Folio;
 
     // output
     canvasArray = [];
-    folioSvgOutputArray: ConvoluteFolioSvgOutput[] = [];
+    folioSvgDataArray: FolioSvgData[] = [];
     vbArray: ViewBox[] = [];
 
     // colors
@@ -43,7 +37,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     fgColor = 'orange';
 
     // options
-    private _folioFormatOptions: FolioFormatOptions = {
+    private _folioSettings: FolioSettings = {
         factor: 1.5,
         formatX: 175,
         formatY: 270,
@@ -52,6 +46,9 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         numberOfFolios: 0
     };
 
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     */
     ref: FolioComponent;
 
     constructor(private folioService: FolioService) {
@@ -88,8 +85,8 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         });
     }
 
-    /**********
-     * FolioSvgOutputData
+    /**
+     * FolioSvgOutput
      */
     prepareFolioSvgOutput(): void {
         for (let folioIndex = 0; folioIndex < this.convoluteData.length; folioIndex++) {
@@ -97,25 +94,22 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
             this.folio = this.convoluteData[folioIndex];
 
             // prepare viewbox settings
-            this.vbArray[folioIndex] = this.folioService.getViewBoxData(this.folioFormatOptions);
+            this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
 
-            // prepare output data
-            this.folioSvgOutputArray[folioIndex] = this.folioService.getFolioSvgOutputData(
-                this.folioFormatOptions,
-                this.folio
-            );
+            // calculate svg data
+            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, this.folio);
         }
     }
 
-    /**********
+    /**
      * rendering of SVG
      */
     renderSnapSvg() {
         // empty canvasArray
         this.canvasArray = [];
 
-        /* apply values from folioSvgOutputArray to render the svg image with snapsvg */
-        this.folioSvgOutputArray.forEach((folioSvg: ConvoluteFolioSvgOutput, folioIndex: number) => {
+        /* apply data from folioSvgDataArray to render the svg image with snapsvg */
+        this.folioSvgDataArray.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
             // init canvas
             const snapId: string = '#folio-' + folioSvg.sheet.folioId;
             const snapCanvas: any = Snap(snapId);
@@ -123,28 +117,28 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 return;
             }
 
-            /**********
-             * viewBox
+            /**
+             * svg viewBox
              */
-            this.folioService.setSvgViewBox(snapCanvas, this.vbArray[folioIndex]);
+            this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
 
-            /**********
+            /**
              * svg content
              */
-            this.folioService.renderSvg(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
+            this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
 
             this.canvasArray.push(snapCanvas);
         });
     }
 
     // getter function for format options
-    get folioFormatOptions() {
+    get folioSettings() {
         // prepare folio width & height
-        this._folioFormatOptions.numberOfFolios = +this.convoluteData.length;
-        this._folioFormatOptions.formatX = +this.folio.format.width;
-        this._folioFormatOptions.formatY = +this.folio.format.height;
+        this._folioSettings.numberOfFolios = +this.convoluteData.length;
+        this._folioSettings.formatX = +this.folio.format.width;
+        this._folioSettings.formatY = +this.folio.format.height;
 
-        return this._folioFormatOptions;
+        return this._folioSettings;
     }
 
     // helper function to compare id with that of selected sheet

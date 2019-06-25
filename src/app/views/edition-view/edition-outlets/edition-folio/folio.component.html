@@ -1,11 +1,11 @@
 <!-- embedded svg: EditionSvgFile Overview -->
-<div class="container-fluid svgGrid" *ngIf="folioSvgOutputArray">
+<div class="container-fluid svgGrid" *ngIf="folioSvgDataArray">
     <div class="row svgRow">
-        <div class="col-sm-6 col-lg-{{ 12 / folioSvgOutputArray?.length }} svgCol" *ngFor="let folioSvg of folioSvgOutputArray">
-
+        <div
+            class="col-sm-6 col-lg-{{ 12 / folioSvgDataArray?.length }} svgCol"
+            *ngFor="let folioSvg of folioSvgDataArray"
+        >
             <svg id="folio-{{ folioSvg.sheet.folioId }}"></svg>
-
         </div>
     </div>
 </div>
-

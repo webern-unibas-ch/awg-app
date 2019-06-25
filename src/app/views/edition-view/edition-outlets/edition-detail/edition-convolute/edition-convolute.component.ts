@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ConvoluteFolio, EditionSvgFile } from '@awg-views/edition-view/models';
+import { Folio, EditionSvgFile } from '@awg-views/edition-view/models';
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 
 @Component({
@@ -10,7 +10,7 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 })
 export class EditionConvoluteComponent implements OnInit {
     @Input()
-    convoluteData: ConvoluteFolio[];
+    convoluteData: Folio[];
     @Input()
     selectedSvgFile: EditionSvgFile;
     @Output()

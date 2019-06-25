@@ -1,12 +1,12 @@
 import { Injectable } from '@angular/core';
 
 import {
-    ConvoluteFolio,
+    Folio,
+    FolioSvgContentItem,
+    FolioSvgData,
     FolioCalculation,
-    FolioFormatOptions,
     FolioCalculationLine,
-    ConvoluteFolioSvgOutput,
-    ConvoluteFolioSvgContentItem,
+    FolioSettings,
     ViewBox
 } from '@awg-views/edition-view/models';
 
@@ -17,29 +17,65 @@ import {
  */
 declare var Snap: any;
 
+/**
+ * The Folio service.
+ *
+ * It handles the calculations needed for edition folio svg's
+ * and prepares the Snap svg canvas object.
+ *
+ * Provided in: `root`.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class FolioService {
-    ref: any;
-    private itemsOffsetCorrection = 4; // offsetCorrection to avoid collision between items
-
-    /******************
-     * get data for dynamic viewBox
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     *
+     * It refers to the Component from which it is called.
      */
-    getViewBoxData(folioFormatOptions: FolioFormatOptions): ViewBox {
-        // return new viewBoxModel
-        return new ViewBox(folioFormatOptions);
+    ref: any;
+
+    /**
+     * Private variable: itemsOffsetCorrection.
+     *
+     * It corrects the offset (in px) to avoid
+     * border collision between rendered svg items.
+     */
+    private itemsOffsetCorrection = 4;
+
+    /**
+     * Public method: getFolioSvgData.
+     *
+     * It calculates and provides the folio svg data
+     * to render the folio svg object (SnapCanvas).
+     *
+     * @param {FolioSettings} folioSettings The folio format options input.
+     * @param {Folio} folio The folio input.
+     * @returns {FolioSvgData} The calculated folio data.
+     */
+    getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
+        // calculate values for svg
+        const calculation = new FolioCalculation(folioSettings, folio, this.itemsOffsetCorrection);
+
+        // get svg data from calculation
+        return new FolioSvgData(calculation);
     }
 
-    /******************
-     * set viewBox of snapCanvas svg
+    /**
+     * Public method: addViewBoxToSnapSvgCanvas.
+     *
+     * It adds the svg viewbox attributes to a Snap canvas svg object.
+     *
+     * @param {*} snapCanvas The Snap canvas svg object.
+     * @param {ViewBox} vb The ViewBox object.
+     * @returns {void} Adds the svg viewbox attributes to the Snap canvas svg object.
      */
-    setSvgViewBox(snapCanvas: any, vb: ViewBox) {
+    addViewBoxToSnapSvgCanvas(snapCanvas: any, vb: ViewBox): void {
         snapCanvas.attr({
             viewBox: vb.viewBox,
-            width: vb.viewBoxWidth,
-            height: vb.viewBoxHeight,
+            width: vb.svgWidth,
+            height: vb.svgHeight,
             version: '1.1',
             xmlns: 'https://www.w3.org/2000/svg',
             xlink: 'https://www.w3.org/1999/xlink',
@@ -47,36 +83,63 @@ export class FolioService {
         });
     }
 
-    /******************
-     * prepare rendering of snapCanvas svg
+    /**
+     * Public method: addFolioToSnapSvgCanvas.
+     *
+     * It coordinates the drawing of the calculated folio svg data
+     * for a folio's sheet, systems and items to the folio svg object
+     * (SnapCanvas).
+     *
+     * @param {*} snapCanvas The Snap canvas svg object.
+     * @param {FolioSvgData} folioSvg The calculated folio data.
+     * @param {string} bgColor The background color.
+     * @param {string} fgColor The foreground color.
+     * @param {*} ref The reference to the calling component.
+     * @returns {void} Adds the folio to the Snap canvas svg object.
      */
-    renderSvg(snapCanvas: any, folioSvg: ConvoluteFolioSvgOutput, bgColor: string, fgColor: string, ref: any) {
+    addFolioToSnapSvgCanvas(snapCanvas: any, folioSvg: FolioSvgData, bgColor: string, fgColor: string, ref: any): void {
+        /**
+         * Self-referring variable needed for CompileHtml library.
+         */
         this.ref = ref;
 
-        /**********
-         * sheet
+        /**
+         * The Snap canvas sheet group object.
          */
         const snapSheetGroup: any = snapCanvas.group();
-        this.renderSheet(snapCanvas, snapSheetGroup, folioSvg, bgColor);
 
-        /**********
-         * systems
+        /**
+         * Draw sheet.
          */
-        this.renderSystems(snapCanvas, snapSheetGroup, folioSvg, bgColor);
+        this.addFolioSheetToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
 
-        /**********
-         * items
+        /**
+         * Draw systems.
          */
-        this.renderItems(snapCanvas, snapSheetGroup, folioSvg, fgColor);
+        this.addFolioSystemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
+
+        /**
+         * Draw items.
+         */
+        this.addFolioItemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, fgColor);
     }
 
-    /******************
-     * prepare rendering of folio
+    /**
+     * Private method: addFolioSheetToSnapSvgCanvas.
+     *
+     * It adds the folio's sheet from the calculated
+     * folio svg data to the folio svg object (SnapCanvas).
+     *
+     * @param {*} snapCanvas The Snap canvas svg object.
+     * @param {*} snapSheetGroup The Snap canvas sheet group object.
+     * @param {FolioSvgData} folioSvg The calculated folio data.
+     * @param {string} bgColor The background color.
+     * @returns {void} Adds the sheet to the Snap canvas svg object.
      */
-    private renderSheet(
+    private addFolioSheetToSnapSvgCanvas(
         snapCanvas: any,
         snapSheetGroup: any,
-        folioSvg: ConvoluteFolioSvgOutput,
+        folioSvg: FolioSvgData,
         bgColor: string
     ): void {
         // init
@@ -102,18 +165,30 @@ export class FolioService {
 
         // sheet title
         const snapSheetGroupTitle: string = Snap.parse('<title>Bl. ' + folioId + '</title>');
+
+        // add the sheet group title to the sheet group
         snapSheetGroup.append(snapSheetGroupTitle);
 
+        // add the sheet rectangle to the sheet group
         snapSheetGroup.add(snapSheetRect);
     }
 
-    /**********
-     * prepare rendering of systems
+    /**
+     * Private method: addFolioSystemsToSnapSvgCanvas.
+     *
+     * It adds the folio's systems from the calculated
+     * folio svg data to the folio svg object (SnapCanvas).
+     *
+     * @param {*} snapCanvas The Snap canvas svg object.
+     * @param {*} snapSheetGroup The Snap canvas sheet group object.
+     * @param {FolioSvgData} folioSvg The calculated folio data.
+     * @param {string} bgColor The background color.
+     * @returns {void} Adds the systems to the Snap canvas svg object.
      */
-    private renderSystems(
+    private addFolioSystemsToSnapSvgCanvas(
         snapCanvas: any,
         snapSheetGroup: any,
-        folioSvg: ConvoluteFolioSvgOutput,
+        folioSvg: FolioSvgData,
         bgColor: string
     ): void {
         folioSvg.systems.lineArrays.forEach((lineArray: FolioCalculationLine[], systemIndex: number) => {
@@ -161,20 +236,30 @@ export class FolioService {
                 class: 'systems-group'
             });
 
+            // add the systems group to the sheet group
             snapSheetGroup.add(snapSystemsGroup);
         });
     }
 
-    /**********
-     * prepare rendering of content items
+    /**
+     * Private method: addFolioItemsToSnapSvgCanvas.
+     *
+     * It adds the folio's items from the calculated
+     * folio svg data to the folio svg object (SnapCanvas).
+     *
+     * @param {*} snapCanvas The Snap canvas svg object.
+     * @param {*} snapSheetGroup The Snap canvas sheet group object.
+     * @param {FolioSvgData} folioSvg The calculated folio data.
+     * @param {string} fgColor The foreground color.
+     * @returns {void} Adds the items to the Snap canvas svg object.
      */
-    private renderItems(
+    private addFolioItemsToSnapSvgCanvas(
         snapCanvas: any,
         snapSheetGroup: any,
-        folioSvg: ConvoluteFolioSvgOutput,
+        folioSvg: FolioSvgData,
         fgColor: string
     ): void {
-        folioSvg.contentItemsArray.forEach((contentItem: ConvoluteFolioSvgContentItem) => {
+        folioSvg.contentItemsArray.contentItems.forEach((contentItem: FolioSvgContentItem) => {
             if (!contentItem) {
                 return;
             }
@@ -261,21 +346,8 @@ export class FolioService {
                 });
             }
 
+            // add the item group to the sheet group
             snapSheetGroup.add(snapItemGroup);
         });
-    }
-
-    /******************
-     * svgOutputData
-     */
-    // compute all values to render the svg
-    getFolioSvgOutputData(folioFormatOptions: FolioFormatOptions, folioData: ConvoluteFolio): ConvoluteFolioSvgOutput {
-        // calculate values for svg
-        const calculation = new FolioCalculation(folioFormatOptions, folioData, this.itemsOffsetCorrection);
-
-        // get svg output data from calculation
-        const folioSvgOutput: ConvoluteFolioSvgOutput = new ConvoluteFolioSvgOutput(calculation);
-
-        return folioSvgOutput;
     }
 }
