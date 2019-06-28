@@ -686,6 +686,17 @@ export class FolioCalculation {
         calculatedContentItem.current.section = section;
     }
 
+    /**
+     * Private helper method for calculateContentArray: setContentItemLineArray.
+     *
+     * It calculates the line array for the content items of a folio.
+     *
+     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
+     * @param {number} sectionsLength The section's length input.
+     * @param {number} sectionIndex The section index input.
+     * @param {number} sectionPartition The section partition input.
+     * @returns {FolioCalculationLine[]} The calculated line array.
+     */
     private setContentItemLineArray(
         calculatedContentItem: FolioCalculationContentItem,
         sectionsLength: number,
@@ -785,6 +796,15 @@ export class FolioCalculation {
         return lineArray;
     }
 
+    /**
+     * Private helper method for calculateContentArray: checkForConnectorLine.
+     *
+     * It calculates the connector lines for the content items of a folio.
+     *
+     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
+     * @param {number} lineArray The calculated line array input.
+     * @returns {void} Sets the connector lines of the calculatedContentItem..
+     */
     private checkForConnectorLine(
         calculatedContentItem: FolioCalculationContentItem,
         lineArray: FolioCalculationLine[]
@@ -821,8 +841,16 @@ export class FolioCalculation {
         }
     }
 
-    // sets the offsetCorrection for an item
-    private setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number) {
+    /**
+     * Private helper method for calculateContentArray: checkForConnectorLine.
+     *
+     * It sets the offsetCorrection for a calculated point of a content item of a folio.
+     *
+     * @param {FolioCalculationPoint} cornerPoint The calculated point input.
+     * @param {number} correctionX The correction value for x (in px).
+     * @returns {void} Sets the offsetCorrection for a calculatedContentItem.
+     */
+    private setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
         cornerPoint = cornerPoint.add(correctionX, 0);
     }
 
