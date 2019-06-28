@@ -3,11 +3,7 @@ import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testi
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import Spy = jasmine.Spy;
 
-import {
-    expectSpyCall,
-    getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
-} from '@testing/expect-helper';
+import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { SideInfoService } from '@awg-core/services';
