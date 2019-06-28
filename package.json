@@ -94,7 +94,6 @@
         "@fortawesome/free-solid-svg-icons": "^5.9.0",
         "@ng-bootstrap/ng-bootstrap": "^4.2.1",
         "bootstrap": "^4.3.1",
-        "core-js": "^2.5.4",
         "json2typescript": "^1.2.3",
         "ngx-gallery": "^5.10.0",
         "ngx-json-viewer": "^2.4.0",
