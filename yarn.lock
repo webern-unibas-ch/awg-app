@@ -7004,10 +7004,9 @@ neo-async@^2.5.0, neo-async@^2.6.0:
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.1.tgz#ac27ada66167fa8849a6addd837f6b189ad2081c"
   integrity sha512-iyam8fBuCUpWeKPGpaNMetEocMt364qkCsfL9JuhjXX6dRnguRVOfk2GZaDpPjcOKiiXCPINZC1GczQ7iTq3Zw==
 
-ngx-gallery@^5.10.0:
+"ngx-gallery@git://github.com/musicEnfanthen/ngx-gallery-dist-patch":
   version "5.10.0"
-  resolved "https://registry.yarnpkg.com/ngx-gallery/-/ngx-gallery-5.10.0.tgz#21f623cb788578dbb5a3625c869712de2b95258c"
-  integrity sha512-+2DnsBfkIzNQoReOHf6+OMf06+qyQQMyVVN4iQAtL0+KykjVqDZiBwLQtmwajDWMGph6O1HNKLrqTcmgqw+d2A==
+  resolved "git://github.com/musicEnfanthen/ngx-gallery-dist-patch#9ee16e59d050c072f76bfc65a313c81eb7e03cf3"
 
 ngx-json-viewer@^2.4.0:
   version "2.4.0"

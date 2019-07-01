@@ -95,7 +95,7 @@
         "@ng-bootstrap/ng-bootstrap": "^4.2.1",
         "bootstrap": "^4.3.1",
         "json2typescript": "^1.2.3",
-        "ngx-gallery": "^5.10.0",
+        "ngx-gallery": "git://github.com/musicEnfanthen/ngx-gallery-dist-patch",
         "ngx-json-viewer": "^2.4.0",
         "rxjs": "~6.5.2",
         "snapsvg": "^0.5.1",
