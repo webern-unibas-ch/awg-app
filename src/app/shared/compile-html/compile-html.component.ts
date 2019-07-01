@@ -104,14 +104,43 @@ const nextId = (): string => {
 })
 @Injectable()
 export class CompileHtmlComponent implements OnChanges {
+    /**
+     * Input variable: compile-html.
+     *
+     * It keeps the html template for the dynamic component.
+     */
     @Input('compile-html')
     html: string;
+
+    /**
+     * Input variable: compile-html-ref.
+     *
+     * It keeps the reference to the dynamic component.
+     */
     @Input('compile-html-ref')
     ref: any;
+
+    /**
+     * Input variable: compile-html-error-handler.
+     *
+     * It keeps the custom error handler for the dynamic component.
+     */
     @Input('compile-html-error-handler')
     errorHandler: (ex: any) => void = console.error;
+
+    /**
+     * Input variable: compile-html-module.
+     *
+     * It keeps the custom module for the dynamic component.
+     */
     @Input('compile-html-module')
     module: NgModule;
+
+    /**
+     * Input variable: compile-html-imports.
+     *
+     * It keeps the custom imports for the dynamic component.
+     */
     @Input('compile-html-imports')
     imports: Array<Type<any> | ModuleWithProviders | any[]>;
 
@@ -142,7 +171,7 @@ export class CompileHtmlComponent implements OnChanges {
     /**
      * Angular life cycle hook: ngOnChanges.
      *
-     * It checks for changes in the given input.
+     * It checks for changes of the given input.
      *
      * @param {SimpleChanges} changes The changes of the input.
      */
@@ -153,8 +182,9 @@ export class CompileHtmlComponent implements OnChanges {
     /**
      * Public method: update.
      *
-     * It updates the {@link dynamicComponent} and {@link dynamicModule}
-     * and triggers the private creation methods.
+     * It updates the [dynamicComponent]{@link CompileHtmlComponent#dynamicComponent}
+     * and [dynamicModule]{@link CompileHtmlComponent#dynamicModule}
+     * and triggers their creation methods.
      *
      * @returns {void} The new dynamic component and its module.
      */

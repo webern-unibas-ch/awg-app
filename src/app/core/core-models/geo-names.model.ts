@@ -1,14 +1,57 @@
 import { GeoDataItemJson } from '@awg-shared/api-objects';
 
+/**
+ * The GeoNames class.
+ *
+ * It is used in the context of the data view
+ * to store the data for a geonames reference
+ * and to provide the html to display a
+ * geonames location.
+ */
 export class GeoNames {
+    /**
+     * The geonames id.
+     */
     gnid: string;
+
+    /**
+     * The short label of a geonames location.
+     */
     shortLabel: string;
+
+    /**
+     * The long label of a geonames location.
+     */
     longLabel: string;
+
+    /**
+     * The latitude of a geonames location.
+     */
     latitude: string;
+
+    /**
+     * The longitude of a geonames location.
+     */
     longitude: string;
+
+    /**
+     * The wikipedia link of a geonames location.
+     */
     wiki: string;
+
+    /**
+     * The generated html to display a geonames location in the app.
+     */
     html: string;
 
+    /**
+     * Constructor of the GeoNames class.
+     *
+     * It initializes the class with values from
+     * the given (SALSAH) API´s GeoDataItemJson response.
+     *
+     * @param {GeoDataItemJson[]} geoDataArray The geo data input array.
+     */
     constructor(geoDataArray: GeoDataItemJson[]) {
         this.longLabel = geoDataArray[0].label;
         for (let j = 1; j < geoDataArray.length; j++) {
