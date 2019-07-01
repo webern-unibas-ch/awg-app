@@ -93,7 +93,7 @@ describe('FooterComponent (DONE)', () => {
         const changedMetaData = new Meta();
         changedMetaData.page = {
             yearStart: 2015,
-            yearRecent: 2017,
+            yearCurrent: 2017,
             editionUrl: '',
             webernUrl: '',
             version: '1.0.0',

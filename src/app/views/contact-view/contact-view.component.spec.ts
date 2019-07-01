@@ -87,7 +87,7 @@ describe('ContactViewComponent (DONE)', () => {
         const changedMetaData = new Meta();
         changedMetaData.page = {
             yearStart: 2015,
-            yearRecent: 2018,
+            yearCurrent: 2018,
             editionUrl: '',
             webernUrl: '',
             version: '0.2.1',

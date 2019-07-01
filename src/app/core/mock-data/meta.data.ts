@@ -11,7 +11,7 @@ import { Meta } from '@awg-core/core-models';
 export const METADATA: Meta = {
     page: {
         yearStart: 2015,
-        yearRecent: new Date().getFullYear(),
+        yearCurrent: new Date().getFullYear(),
         editionUrl: AppConfig.EDITION_HOME,
         webernUrl: AppConfig.WEBERN_HOME,
         version: AppConfig.VERSION,

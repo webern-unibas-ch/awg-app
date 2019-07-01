@@ -67,15 +67,15 @@ describe('FooterCopyrightComponent (DONE)', () => {
         describe('VIEW', () => {
             it('should render values', () => {
                 const expectedYearStart = expectedMetaData.page.yearStart;
-                const expectedYearRecent = expectedMetaData.page.yearRecent;
+                const expectedYearCurrent = expectedMetaData.page.yearCurrent;
 
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
                 const copyEl = copyDes[0].nativeElement;
 
                 expect(copyEl.textContent).toBeDefined();
                 expect(copyEl.textContent).toContain(
-                    expectedYearStart + '–' + expectedYearRecent,
-                    `should contain ${expectedYearStart}-${expectedYearRecent}`
+                    expectedYearStart + '–' + expectedYearCurrent,
+                    `should contain ${expectedYearStart}-${expectedYearCurrent}`
                 );
             });
         });
