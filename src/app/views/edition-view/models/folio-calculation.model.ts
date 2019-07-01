@@ -842,7 +842,7 @@ export class FolioCalculation {
     }
 
     /**
-     * Private helper method for calculateContentArray: checkForConnectorLine.
+     * Private helper method for calculateContentArray: setContentItemOffsetCorrection.
      *
      * It sets the offsetCorrection for a calculated point of a content item of a folio.
      *
@@ -854,32 +854,55 @@ export class FolioCalculation {
         cornerPoint = cornerPoint.add(correctionX, 0);
     }
 
-    // calculates the start position of an item
+    /**
+     * Private helper method for calculateContentArray: getContentItemStart.
+     *
+     * It calculates the start position of a content item of a folio.
+     *
+     * @param {number} offset The offset input.
+     * @param {number} index The index position input (offset * index -->
+     * (X: start at item 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)).
+     * @param {number} systemStart The horizontal(X) or vertical (Y) systemsMargins input.
+     * @param {number} [offsetCorrection] The optional offset correction value input (mostly needed to center items).
+     * @returns {number} The start position for a calculatedContentItem.
+     */
     private getContentItemStart(offset: number, index: number, systemStart: number, offsetCorrection?: number): number {
-        // @offset * index (X: start at item 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)
-        // @systemStart: add horizontal(X) or vertical (Y) systemsMargins
-        // @offsetCorrection: mostly needed to center items
         let itemValue = systemStart + offset * index;
         if (offsetCorrection) {
             itemValue += offsetCorrection;
         }
-        const itemStart = this.round(parseFloat(itemValue.toString()), 2);
-        return itemStart;
+        return this.round(parseFloat(itemValue.toString()), 2);
     }
 
-    // calculates the start position of the systems
-    private getSystemYArray(offset: number, systemStart: number, offsetCorrection?: number): number[][] {
+    /**
+     * Private helper method for calculateSystems: getSystemYArray.
+     *
+     * It calculates the array of start positions of the systems of a folio.
+     *
+     * @param {number} offset The offset input.
+     * @param {number} systemStartY The (Y) systemsMargins input (begin of sheet plus upper margin).
+     * @param {number} [offsetCorrection] The optional offset correction value input (mostly needed to center items).
+     * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
+     */
+    private getSystemYArray(offset: number, systemStartY: number, offsetCorrection?: number): number[][] {
         const arr = [];
         // iterate over systems and get their start position
         for (let i = 0; i < this.numberOfSystems; i++) {
             // use the same method as for items to populate the systems array
-            const yStartValue = this.getContentItemStart(offset, i, systemStart, offsetCorrection);
+            const yStartValue = this.getContentItemStart(offset, i, systemStartY, offsetCorrection);
             arr[i] = this.getSystemLineArray(yStartValue);
         }
         return arr;
     }
 
-    // calculates the start position of the lines per system
+    /**
+     * Private helper method for calculateSystems: getSystemLineArray.
+     *
+     * It calculates the start position of the lines per system of a folio.
+     *
+     * @param {number} y The Y start value of the first line of a system.
+     * @returns {number[]} The start position array (Y values) of a system.
+     */
     private getSystemLineArray(y: number): number[] {
         if (!y) {
             return;
@@ -895,11 +918,17 @@ export class FolioCalculation {
         return lineArray;
     }
 
-    /******************
-     * round a number with a given number of decimals
+    /**
+     * Private helper method for folio calculation model: round.
+     *
+     * It rounds a number to a set number of decimal places.
+     * JS in-built round-method is sometimes not correct,
+     * see: {@link http://www.jacklmoore.com/notes/rounding-in-javascript/}.
+     *
+     * @param {number} value The input value to be rounded.
+     * @param {number} decimals The number of decimal places to round to.
+     * @returns {number} The rounded number.
      */
-    // in-built round-method is sometimes not correct
-    // see: http://www.jacklmoore.com/notes/rounding-in-javascript/
     private round(value: number, decimals: number): number {
         if (Number.isNaN(value)) {
             return;

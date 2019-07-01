@@ -7,9 +7,9 @@ export class ApiRequest {
     params: HttpParams;
     url: string;
 
-    constructor(queryPath: string, params: HttpParams) {
+    constructor(queryPath: string, queryHttpParams: HttpParams) {
         this.headers = new HttpHeaders().set('Accept', 'application/json');
-        this.params = params;
+        this.params = queryHttpParams;
         this.url = AppConfig.API_ENDPOINT + queryPath;
     }
 }

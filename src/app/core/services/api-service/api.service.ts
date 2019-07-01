@@ -8,27 +8,62 @@ import { ApiServiceResult } from './api-service-result.model';
 import { ApiServiceError } from './api-service-error.model';
 import { ApiRequest } from './api-request.model';
 
+/**
+ * The Api service.
+ *
+ * It handles the calls to the given (Salsah) API viA HTTP
+ * and provides the data responses for the data view.
+ *
+ * Provided in: `root`.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ApiService {
+    /**
+     * Public variable: serviceName.
+     *
+     * It keeps the name of the service.
+     */
     serviceName = 'ApiService';
 
+    /**
+     * Public variable: httpGetUrl.
+     *
+     * It keeps the url of the HTTP GET request.
+     */
     httpGetUrl = '';
+
+    /**
+     * Public variable: loading.
+     *
+     * It keeps the value of the load status.
+     */
     loading = false;
 
+    /**
+     * Constructor of the ApiService.
+     *
+     * It declares a private {@link HttpClient} instance
+     * to handle http requests.
+     *
+     * @param {HttpClient} http Instance of the HttpClient.
+     */
     constructor(public http: HttpClient) {
         // console.log(`called ${this.serviceName} with httpClient`, http);
     }
 
     /**
-     * Returns an HTTP GET request response from the Knora API.
-     * @param {any} responseType
-     * @param {string} queryPath
-     * @param {HttpParams} queryHttpParams?
-     * @returns {Observable<any>}
+     * Public method: getApiResponse.
+     *
+     * It returns an HTTP GET request response from the given (Salsah) API.
+     *
+     * @param {any} responseJsonType The expected response JSON type of the query.
+     * @param {string} queryPath The path of the query.
+     * @param {HttpParams} [queryHttpParams] The optional HTTP params for the query.
+     * @returns {Observable<any>} The observable of the API request.
      */
-    getApiResponse(responseType: any, queryPath: string, queryHttpParams?: HttpParams): Observable<any> {
+    getApiResponse(responseJsonType: any, queryPath: string, queryHttpParams?: HttpParams): Observable<any> {
         if (!queryHttpParams) {
             queryHttpParams = new HttpParams();
         }
@@ -36,7 +71,7 @@ export class ApiService {
         return this.httpGet(queryPath, queryHttpParams).pipe(
             map(
                 (result: ApiServiceResult): Observable<any> => {
-                    return result.getBody(responseType);
+                    return result.getBody(responseJsonType);
                 }
             ),
             catchError(
@@ -49,13 +84,16 @@ export class ApiService {
     }
 
     /**
-     * Performs a HTTP GET request to the Knora API.
-     * @param {string} queryPath
-     * @param {HttpParams} httpGetParams
-     * @returns {Observable<ApiServiceResult | ApiServiceError>}
+     * Private method: httpGet.
+     *
+     * Performs an HTTP GET request to the given (Salsah) API.
+     *
+     * @param {string} queryPath The path of the query.
+     * @param {HttpParams} queryHttpParams The HTTP params for the query.
+     * @returns {Observable<ApiServiceResult | ApiServiceError>} The observable of the api service result or error.
      */
-    private httpGet(queryPath: string, httpGetParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
-        const apiRequest = new ApiRequest(queryPath, httpGetParams);
+    private httpGet(queryPath: string, queryHttpParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
+        const apiRequest = new ApiRequest(queryPath, queryHttpParams);
 
         this.loading = true;
 
@@ -92,37 +130,12 @@ export class ApiService {
     }
 
     /**
-     * Performs a HTTP POST request to the Knora API.
-     * @param url
-     * @param body
-     * @param options
-     * @returns {Observable<any>}
-     */
-    /*
-    private httpPost(url: string, body?: any, options?: RequestOptionsArgs): Observable<any> {
-        if (!body) body = {};
-        if (!options) options = {};
-        return this.http.post(AppConfig.API_ENDPOINT + url, body, options).map((response: Response) => {
-                try {
-                    let apiServiceResult: ApiServiceResult = new ApiServiceResult();
-                    apiServiceResult.status = response.status;
-                    apiServiceResult.statusText = response.statusText;
-                    apiServiceResult.body = response.json();
-                    return apiServiceResult;
-                } catch (e) {
-                    return this.handleError(response);
-                }
-            }).catch((error: any) => {
-                return Observable.throw(this.handleError(error));
-            });
-    }
-    */
-
-    /**
-     * handle request error in case of server error
+     * Private method: handleRequestError.
+     *
+     * It handles request errors in case of server error.
      *
      * @param {HttpErrorResponse} error
-     * @returns {Observable<ApiServiceError>}
+     * @returns {Observable<ApiServiceError>} The observable of the api service error.
      */
     private handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
         // console.error(error);

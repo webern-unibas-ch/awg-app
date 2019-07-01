@@ -15,10 +15,9 @@ import { mockResourceFullResponseJson, mockSearchResponseConverted, mockSearchRe
 import { AppConfig } from '@awg-app/app.config';
 import { ConversionService } from '@awg-core/services';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
-import { ResourceFullResponseJson, SearchResponseJson, UserDataJson } from '@awg-shared/api-objects';
+import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
 
 import { DataApiService } from './data-api.service';
-import { ApiServiceResult } from '@awg-core/services/api-service/api-service-result.model';
 
 describe('DataApiService (DONE)', () => {
     let dataApiService: DataApiService;
@@ -37,7 +36,7 @@ describe('DataApiService (DONE)', () => {
     let expectedSearchResponseConverted: any;
 
     const expectedProjectId = '6';
-    const expectedResourceAppendix = '_-_local';
+    const expectedResourceSuffix = '_-_local';
     const expectedResourcesRoute = 'resources/';
     const expectedSearchRoute = 'search/';
     const apiUrl = AppConfig.API_ENDPOINT;
@@ -106,9 +105,9 @@ describe('DataApiService (DONE)', () => {
             expect(dataApiService.projectId).toBe(expectedProjectId);
         });
 
-        it('... should have resourceAppendix', () => {
-            expect(dataApiService.resourceAppendix).toBeDefined();
-            expect(dataApiService.resourceAppendix).toBe(expectedResourceAppendix);
+        it('... should have resourceSuffix', () => {
+            expect(dataApiService.resourceSuffix).toBeDefined();
+            expect(dataApiService.resourceSuffix).toBe(expectedResourceSuffix);
         });
 
         it('... should have routes', () => {
@@ -341,7 +340,7 @@ describe('DataApiService (DONE)', () => {
         describe('request', () => {
             it(`... should perform an HTTP GET request to the Knora API (via ApiService)`, async(() => {
                 const expectedResourceId = '11398';
-                const expectedUrl = apiUrl + expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                const expectedUrl = apiUrl + expectedResourcesRoute + expectedResourceId + expectedResourceSuffix;
 
                 // call service function
                 dataApiService.getResourceDetailData(expectedResourceId).subscribe();
@@ -357,7 +356,7 @@ describe('DataApiService (DONE)', () => {
 
             it(`... should call getApiResponse (via ApiService) with resource id`, async(() => {
                 const expectedResourceId = '11398';
-                const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceSuffix;
                 const expectedQueryHttpParams = new HttpParams();
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
@@ -392,15 +391,14 @@ describe('DataApiService (DONE)', () => {
             describe('fail', () => {
                 it(`... should return an Observable<ApiServiceError>`, async(() => {
                     const expectedResourceId = undefined;
-                    const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                    const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceSuffix;
                     const expectedQueryHttpParams = new HttpParams();
 
                     const expectedErrorMsg = 'failed HTTP response with 401 error';
 
                     const expectedApiServiceError = new ApiServiceError();
                     expectedApiServiceError.status = 401;
-                    expectedApiServiceError.url =
-                        expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                    expectedApiServiceError.url = expectedResourcesRoute + expectedResourceId + expectedResourceSuffix;
 
                     getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
 

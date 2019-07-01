@@ -583,9 +583,9 @@ export class ConversionService extends ApiService {
      * get additional resource info from salsah api
      *
      *****************************************/
-    private getAdditionalInfoFromApi(responseType: any, valueId: string): Observable<any> {
+    private getAdditionalInfoFromApi(responseJsonType: any, valueId: string): Observable<any> {
         let queryPath: string;
-        switch (responseType) {
+        switch (responseJsonType) {
             case GeoDataJson:
                 queryPath = 'geonames/' + valueId + '?reqtype=node';
                 break;
@@ -599,7 +599,7 @@ export class ConversionService extends ApiService {
                 queryPath = 'selections/' + valueId;
                 break;
         }
-        return this.getApiResponse(responseType, queryPath);
+        return this.getApiResponse(responseJsonType, queryPath);
     }
 
     /******************************************
