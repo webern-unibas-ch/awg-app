@@ -21,14 +21,6 @@ import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-ob
 })
 export class DataApiService extends ApiService {
     /**
-     * static variable: ngInjectableDef.
-     *
-     * It is needed for @injectables due to an issue with ServiceInheritance,
-     * cf. {@link https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance.}
-     */
-    static ngInjectableDef = undefined;
-
-    /**
      * Private variable: projectId.
      *
      * It keeps the SALSAH specific id of the webern project ('6').

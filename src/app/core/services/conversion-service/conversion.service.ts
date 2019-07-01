@@ -46,9 +46,6 @@ declare var dateConverter: any;
     providedIn: 'root'
 })
 export class ConversionService extends ApiService {
-    // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
-    static ngInjectableDef = undefined;
-
     filteredOut: number;
 
     /******************************************
