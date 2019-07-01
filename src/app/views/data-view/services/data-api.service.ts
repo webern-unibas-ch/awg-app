@@ -10,7 +10,7 @@ import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-ob
 /**
  * The DataApi service.
  *
- * It handles the search responses to the given (SALSAH) API
+ * It handles the search requests to the given (SALSAH) API
  * for the data view and provides the fulltext search data
  * and the resource detail data.
  *
@@ -21,28 +21,28 @@ import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-ob
 })
 export class DataApiService extends ApiService {
     /**
-     * Private variable: projectId.
+     * Public variable: projectId.
      *
      * It keeps the SALSAH specific id of the webern project ('6').
      */
     projectId = '6';
 
     /**
-     * Private variable: resourceSuffix.
+     * Public variable: resourceSuffix.
      *
      * It keeps the SALSAH specific suffix for a resource ('_-_local').
      */
     resourceSuffix = '_-_local';
 
     /**
-     * Private variable: resourceSuffix.
+     * Public variable: resourcesRoute.
      *
      * It keeps the SALSAH specific route for a resource ('resources/').
      */
     resourcesRoute = 'resources/';
 
     /**
-     * Private variable: resourceSuffix.
+     * Public variable: searchRoute.
      *
      * It keeps the SALSAH specific route for the search ('search/').
      */
@@ -67,7 +67,8 @@ export class DataApiService extends ApiService {
      * Public method: getFulltextSearchData.
      *
      * It sets the path and params for a fulltext search query
-     * to the given (SALSAH) API.
+     * to retrieve all results for the searchstring
+     * from the given (SALSAH) API.
      *
      * @params {string} searchString The search string of the query.
      * @params {string} [nRows] The optional number of rows to return with the query.

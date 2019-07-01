@@ -65,7 +65,6 @@ let currentId = 0;
  *
  * @returns {string} A randomly generated id for the dynamic component's selector.
  */
-
 const nextId = (): string => {
     const now = Date.now();
     if (currentIdTime !== now) {
@@ -80,6 +79,21 @@ const nextId = (): string => {
     return newId;
 };
 
+/**
+ * The CompileHtml component.
+ *
+ * It is declared as a Component, but used like a directive.
+ * It allows the dynamic creation of a component and is needed
+ * for the secondary compilation of HTML code.
+ *
+ * It does not allow for AOT compilation so far.
+ *
+ * Idea, code and usage is inspired, adapted or taken from:
+ * * [**patrikx3-angular-compile**](https://github.com/patrikx3/angular-compile) Build v1.1.113-149 on 02/26/2017, 7:43:58 PM
+ * [Corifeus](http://github.com/patrikx3/corifeus) by [Patrik Laszlo](http://patrikx3.tk)
+ *
+ * Provided in: `root`.
+ */
 @Component({
     selector: '[compile-html]',
     template: `
@@ -101,16 +115,50 @@ export class CompileHtmlComponent implements OnChanges {
     @Input('compile-html-imports')
     imports: Array<Type<any> | ModuleWithProviders | any[]>;
 
+    /**
+     * Public variable: dynamicComponent.
+     *
+     * It keeps the component that is to be created dynamically.
+     */
     dynamicComponent: any;
+
+    /**
+     * Public variable: dynamicModule.
+     *
+     * It keeps the module declarations for the component that is to be created dynamically.
+     */
     dynamicModule: NgModuleFactory<any> | any;
 
+    /**
+     * Constructor of the CompileHtmlComponent.
+     *
+     * It declares a private {@link Compiler}
+     * instance for the dynamic compilation of a given component.
+     *
+     * @param {Compiler} compiler Instance of the Compiler.
+     */
     constructor(private compiler: Compiler) {}
 
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes in the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
+     */
     ngOnChanges(changes: SimpleChanges) {
         this.update();
     }
 
-    update() {
+    /**
+     * Public method: update.
+     *
+     * It updates the {@link dynamicComponent} and {@link dynamicModule}
+     * and triggers the private creation methods.
+     *
+     * @returns {void} The new dynamic component and its module.
+     */
+    update(): void {
         try {
             if (this.html === undefined || this.html === null || this.html.trim() === '') {
                 //            this.container.clear();
@@ -130,6 +178,14 @@ export class CompileHtmlComponent implements OnChanges {
         }
     }
 
+    /**
+     * Private method: createComponentModule.
+     *
+     * It creates the module for the dynamic component.
+     *
+     * @params {any} componentType The component type to be created.
+     * @returns The RuntimeComponentModule.
+     */
     private createComponentModule(componentType: any) {
         let module: NgModule = {};
 
@@ -152,6 +208,15 @@ export class CompileHtmlComponent implements OnChanges {
         return RuntimeComponentModule;
     }
 
+    /**
+     * Private method: createNewComponent.
+     *
+     * It creates the the dynamic component.
+     *
+     * @params {string} html The html input to be used as template for the component.
+     * @params {any} ref The reference to the component type to be created.
+     * @returns The DynamicComponent.
+     */
     private createNewComponent(html: string, ref: any) {
         @Component({
             selector: nextId(),

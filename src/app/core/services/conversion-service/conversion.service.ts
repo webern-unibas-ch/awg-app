@@ -42,14 +42,27 @@ declare var htmlConverter: any;
  */
 declare var dateConverter: any;
 
+/**
+ * The Conversion service.
+ *
+ * It handles the conversion of the HTTP response data (JSON)
+ * from the given (SALSAH) API into a form displayable via HTML.
+ *
+ * Provided in: `root`.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ConversionService extends ApiService {
+    /**
+     * Public variable: filteredOut.
+     *
+     * It keeps the number of filtered duplicates of a search response list.
+     */
     filteredOut: number;
 
     /******************************************
-     *
+     * @todo continue
      * sum up length of all arrays nested in an
      * ResourceDetailGroupedIncomingLinks object
      *
@@ -70,7 +83,7 @@ export class ConversionService extends ApiService {
      *  for displaying
      *
      *****************************************/
-    public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
+    convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
         if (!results.subjects) {
             return results;
         }
@@ -111,13 +124,9 @@ export class ConversionService extends ApiService {
     /******************************************
      *
      *  prepare fulltext search result string
-     * v
+     *
      *****************************************/
-    public prepareFullTextSearchResultText(
-        searchData: SearchResponseJson,
-        searchValue: string,
-        searchUrl: string
-    ): string {
+    prepareFullTextSearchResultText(searchData: SearchResponseJson, searchValue: string, searchUrl: string): string {
         let resText: string;
 
         if (searchData.subjects) {
@@ -143,7 +152,7 @@ export class ConversionService extends ApiService {
      * convert object properties for displaying
      *
      *****************************************/
-    public convertObjectProperties(data: ResourceFullResponseJson) {
+    convertObjectProperties(data: ResourceFullResponseJson) {
         const convObj = {};
         console.log('convertdata: ', data);
         // add lastmod state
@@ -232,7 +241,7 @@ export class ConversionService extends ApiService {
         return convObj;
     } // END convertObjectProperties (func)
 
-    public prepareResourceDetail(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
+    prepareResourceDetail(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
         if (data.access === 'OK') {
             return this.prepareAccessibleResource(data, currentId);
         } else {
