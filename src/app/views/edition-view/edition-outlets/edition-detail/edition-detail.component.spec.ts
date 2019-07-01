@@ -28,7 +28,7 @@ class EditionConvoluteStubComponent {
     @Input()
     convoluteData: Folio[];
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
 
     // TODO: add outputs
 }
@@ -36,9 +36,9 @@ class EditionConvoluteStubComponent {
 @Component({ selector: 'awg-edition-accolade', template: '' })
 class EditionAccoladeStubComponent {
     @Input()
-    svgFileData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
     @Input()
     selectedTextcritics: Textcritics[];
     @Input()

@@ -7,15 +7,15 @@ import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.mo
 import { EditionAccoladeComponent } from './edition-accolade/edition-accolade.component';
 import { EditionConvoluteComponent } from './edition-convolute';
 import { EditionDetailNotificationComponent } from './edition-detail-notification';
-import { EditionSvgFileNavComponent } from './edition-svg-file-nav';
-import { EditionSvgFileComponent } from './edition-svg-file';
+import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
+import { EditionSvgSheetComponent } from './edition-svg-sheet';
 
 /**
  * The edition detail module.
  *
  * It embeds the {@link EditionAccoladeComponent}, {@link EditionConvoluteComponent},
- * {@link EditionDetailNotificationComponent}, {@link EditionSvgFileNavComponent},
- * {@link EditionSvgFileComponent} as well as the {@link EditionTkaTableModule},
+ * {@link EditionDetailNotificationComponent}, {@link EditionSvgSheetNavComponent},
+ * {@link EditionSvgSheetComponent} as well as the {@link EditionTkaTableModule},
  * {@link FolioModule} and {@link SharedModule}.
  */
 @NgModule({
@@ -24,15 +24,15 @@ import { EditionSvgFileComponent } from './edition-svg-file';
         EditionAccoladeComponent,
         EditionConvoluteComponent,
         EditionDetailNotificationComponent,
-        EditionSvgFileNavComponent,
-        EditionSvgFileComponent
+        EditionSvgSheetNavComponent,
+        EditionSvgSheetComponent
     ],
     exports: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
         EditionDetailNotificationComponent,
-        EditionSvgFileNavComponent,
-        EditionSvgFileComponent
+        EditionSvgSheetNavComponent,
+        EditionSvgSheetComponent
     ]
 })
 export class EditionDetailModule {}

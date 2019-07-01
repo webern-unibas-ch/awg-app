@@ -3,17 +3,17 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 @Component({
-    selector: 'awg-edition-svg-file',
-    templateUrl: './edition-svg-file.component.html',
-    styleUrls: ['./edition-svg-file.component.css']
+    selector: 'awg-edition-svg-sheet',
+    templateUrl: './edition-svg-sheet.component.html',
+    styleUrls: ['./edition-svg-sheet.component.css']
 })
-export class EditionSvgFileComponent implements OnInit {
+export class EditionSvgSheetComponent implements OnInit {
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
     @Input()
     selectedOverlay: EditionSvgOverlay;
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
@@ -28,9 +28,9 @@ export class EditionSvgFileComponent implements OnInit {
 
     ngOnInit() {}
 
-    isSelectedSvgFile(id: string) {
-        // compare file ids
-        return id === this.selectedSvgFile.id;
+    isSelectedSvgSheet(id: string) {
+        // compare sheet id's
+        return id === this.selectedSvgSheet.id;
     }
 
     isSelectedTextcritic(type: any, id: string) {
@@ -39,9 +39,9 @@ export class EditionSvgFileComponent implements OnInit {
         return JSON.stringify(overlay) === JSON.stringify(this.selectedOverlay);
     }
 
-    // request function to emit svg file id
-    selectSvgFile(id: string) {
-        this.selectSvgFileRequest.emit(id);
+    // request function to emit svg sheet id
+    selectSvgSheet(id: string) {
+        this.selectSvgSheetRequest.emit(id);
     }
 
     // request function to emit selected textcritic's type & id

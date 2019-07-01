@@ -9,9 +9,9 @@ import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edit
 })
 export class EditionAccoladeComponent implements OnInit {
     @Input()
-    svgFileData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
     @Input()
     selectedTextcritics: Textcritics[];
     @Input()
@@ -21,7 +21,7 @@ export class EditionAccoladeComponent implements OnInit {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
@@ -36,9 +36,9 @@ export class EditionAccoladeComponent implements OnInit {
         this.openModalRequest.emit(id);
     }
 
-    // request function to emit selected svg file id
-    selectSvgFile(id: string) {
-        this.selectSvgFileRequest.emit(id);
+    // request function to emit selected svg sheet id
+    selectSvgSheet(id: string) {
+        this.selectSvgSheetRequest.emit(id);
     }
 
     // request function to emit selected textcritic's type & id

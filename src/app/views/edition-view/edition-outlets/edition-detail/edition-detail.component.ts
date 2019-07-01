@@ -18,8 +18,8 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 export class EditionDetailComponent implements OnInit {
     convoluteData: Folio[];
 
-    svgFileData: EditionSvgSheet[];
-    selectedSvgFile: EditionSvgSheet;
+    svgSheetsData: EditionSvgSheet[];
+    selectedSvgSheet: EditionSvgSheet;
 
     textcriticsData: TextcriticsList;
     selectedTextcritics: Textcritics[];
@@ -44,9 +44,9 @@ export class EditionDetailComponent implements OnInit {
         this.editionDataService.getEditionDetailData().subscribe(
             (data: [Folio[], EditionSvgSheet[], TextcriticsList]) => {
                 this.convoluteData = data[0]['convolute'];
-                this.svgFileData = data[1];
+                this.svgSheetsData = data[1];
                 this.textcriticsData = data[2];
-                if (this.svgFileData) {
+                if (this.svgSheetsData) {
                     this.getRouteParams();
                 }
             },
@@ -59,25 +59,25 @@ export class EditionDetailComponent implements OnInit {
     private getRouteParams(): void {
         this.route.params.forEach((params: Params) => {
             // if there is no id in route params
-            // take first entry of svg file object as default
-            const fileId: string = params['id'] ? params['id'] : Object.keys(this.svgFileData)[0];
-            this.selectedSvgFile = this.svgFileData[fileId];
+            // take first entry of svg sheets data as default
+            const fileId: string = params['id'] ? params['id'] : Object.keys(this.svgSheetsData)[0];
+            this.selectedSvgSheet = this.svgSheetsData[fileId];
         });
     }
 
-    onSvgFileSelect(id: string): void {
-        this.selectedSvgFile = this.svgFileData[id];
+    onSvgSheetSelect(id: string): void {
+        this.selectedSvgSheet = this.svgSheetsData[id];
         this.showTkA = false;
         this.router.navigate(['/edition/detail', id]);
     }
 
     onTextcriticSelect($event: EditionSvgOverlay): void {
-        if (!this.textcriticsData && !this.selectedSvgFile) {
+        if (!this.textcriticsData && !this.selectedSvgSheet) {
             return;
         }
 
         // shortcut
-        const textcritics = this.textcriticsData[this.selectedSvgFile.id];
+        const textcritics = this.textcriticsData[this.selectedSvgSheet.id];
 
         this.selectedOverlay = $event;
         this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);

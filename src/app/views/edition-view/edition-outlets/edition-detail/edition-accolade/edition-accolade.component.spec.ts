@@ -11,20 +11,20 @@ import { EditionAccoladeComponent } from './edition-accolade.component';
 @Component({ selector: 'awg-edition-detail-notification', template: '' })
 class EditionDetailNotificationStubComponent {}
 
-@Component({ selector: 'awg-edition-svg-file-nav', template: '' })
-class EditionSvgFileNavStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
+class EditionSvgSheetNavStubComponent {
     @Input()
-    svgFileData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
 
     // TODO: handle outputs
 }
 
-@Component({ selector: 'awg-edition-svg-file', template: '' })
-class EditionSvgFileStubComponent {
+@Component({ selector: 'awg-edition-svg-sheet', template: '' })
+class EditionSvgSheetStubComponent {
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
     @Input()
     selectedOverlay: EditionSvgOverlay;
 
@@ -51,8 +51,8 @@ describe('EditionAccoladeComponent', () => {
             declarations: [
                 EditionAccoladeComponent,
                 EditionDetailNotificationStubComponent,
-                EditionSvgFileStubComponent,
-                EditionSvgFileNavStubComponent,
+                EditionSvgSheetStubComponent,
+                EditionSvgSheetNavStubComponent,
                 EditionTkaTableStubComponent
             ]
         }).compileComponents();

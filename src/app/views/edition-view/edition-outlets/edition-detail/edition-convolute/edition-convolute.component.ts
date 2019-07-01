@@ -12,11 +12,11 @@ export class EditionConvoluteComponent implements OnInit {
     @Input()
     convoluteData: Folio[];
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     faSquare = faSquare;
 
@@ -57,7 +57,7 @@ export class EditionConvoluteComponent implements OnInit {
     }
 
     // request function to emit selected sheet id
-    selectSvgFile(id: string) {
-        this.selectSvgFileRequest.emit(id);
+    selectSvgSheet(id: string) {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

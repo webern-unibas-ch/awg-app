@@ -338,7 +338,7 @@ export class FolioService {
                     fill: 'grey'
                 });
             } else {
-                snapItemGroup.click(() => this.ref.selectSvgFile(contentItem.sigle));
+                snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.sigle));
                 snapItemGroup.attr({
                     stroke: fgColor,
                     fill: fgColor

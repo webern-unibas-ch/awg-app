@@ -2,20 +2,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
-import { EditionSvgFileNavComponent } from './edition-svg-file-nav.component';
+import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
 
-describe('EditionSvgFileNavComponent', () => {
-    let component: EditionSvgFileNavComponent;
-    let fixture: ComponentFixture<EditionSvgFileNavComponent>;
+describe('EditionSvgSheetNavComponent', () => {
+    let component: EditionSvgSheetNavComponent;
+    let fixture: ComponentFixture<EditionSvgSheetNavComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionSvgFileNavComponent]
+            declarations: [EditionSvgSheetNavComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgFileNavComponent);
+        fixture = TestBed.createComponent(EditionSvgSheetNavComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

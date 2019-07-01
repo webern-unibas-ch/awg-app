@@ -1,7 +1,6 @@
 <ngb-accordion activeIds="awg-convolute-view">
     <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">
         <ng-template ngbPanelContent>
-
             <!-- convolute dropDown -->
             <div class="d-inline-block" ngbDropdown>
                 <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
@@ -14,15 +13,18 @@
             </div>
 
             <!-- folio overview -->
-            <awg-edition-folio *ngIf="convoluteData && selectedSvgFile"
-                               [convoluteData]="convoluteData"
-                               [selectedSvgFile]="selectedSvgFile"
-                               (openModalRequest)="openModal($event)"
-                               (selectSvgFileRequest)="selectSvgFile($event)">
+            <awg-edition-folio
+                *ngIf="convoluteData && selectedSvgSheet"
+                [convoluteData]="convoluteData"
+                [selectedSvgSheet]="selectedSvgSheet"
+                (openModalRequest)="openModal($event)"
+                (selectSvgSheetRequest)="selectSvgSheet($event)"
+            >
             </awg-edition-folio>
 
             <!-- folio legend -->
-            <div class="col-12">Legende:&nbsp;
+            <div class="col-12">
+                Legende:&nbsp;
                 <ng-container *ngFor="let legend of folioLegend">
                     <span class="{{ legend.color }}">
                         <fa-icon [icon]="faSquare"></fa-icon>

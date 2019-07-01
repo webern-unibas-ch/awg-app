@@ -1,24 +1,24 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { EditionSvgFileComponent } from './edition-svg-file.component';
+import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
 import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay';
 
-describe('EditionSvgFileComponent', () => {
-    let component: EditionSvgFileComponent;
-    let fixture: ComponentFixture<EditionSvgFileComponent>;
-    let expectedSvgFile: EditionSvgSheet;
+describe('EditionSvgSheetComponent', () => {
+    let component: EditionSvgSheetComponent;
+    let fixture: ComponentFixture<EditionSvgSheetComponent>;
+    let expectedSvgSheet: EditionSvgSheet;
     let expectedOverlay: EditionSvgOverlay;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [EditionSvgFileComponent]
+            declarations: [EditionSvgSheetComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(EditionSvgFileComponent);
+        fixture = TestBed.createComponent(EditionSvgSheetComponent);
         component = fixture.componentInstance;
     });
 
@@ -28,7 +28,7 @@ describe('EditionSvgFileComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not get svg file input', () => {
-            expect(component.selectedSvgFile).toBeUndefined('should be undefined');
+            expect(component.selectedSvgSheet).toBeUndefined('should be undefined');
         });
 
         it('should not get overlay input', () => {
@@ -43,7 +43,7 @@ describe('EditionSvgFileComponent', () => {
             // svgFileEl = svgFIleDe.nativeElement;
 
             // mock the inputs supplied by the parent component
-            expectedSvgFile = {
+            expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/SkI_2n_small_cut_opt.svg',
                 image: 'assets/img/edition/SkI_2_small.jpg',
@@ -54,7 +54,7 @@ describe('EditionSvgFileComponent', () => {
             expectedOverlay = new EditionSvgOverlay(type, id);
 
             // simulate the parent setting the input properties
-            component.selectedSvgFile = expectedSvgFile;
+            component.selectedSvgSheet = expectedSvgSheet;
             component.selectedOverlay = expectedOverlay;
 
             // trigger initial data binding
@@ -62,7 +62,7 @@ describe('EditionSvgFileComponent', () => {
         });
 
         it('should get svg file input', () => {
-            expect(component.selectedSvgFile).toBe(expectedSvgFile);
+            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
         });
 
         it('should get overlay input', () => {

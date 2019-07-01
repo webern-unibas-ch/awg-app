@@ -23,7 +23,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     folio: Folio;
 
@@ -78,9 +78,9 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.canvasArray.forEach(canvas => {
             // find all item groups
             canvas.selectAll('.item-group').forEach(itemGroup => {
-                // toggle active class if itemId corresponds to selectedSvgFileId
+                // toggle active class if itemId corresponds to selectedSvgSheetId
                 const itemId = itemGroup.node.attributes.itemId.value;
-                itemGroup.toggleClass('active', this.isSelectedSvgFile(itemId));
+                itemGroup.toggleClass('active', this.isSelectedSvgSheet(itemId));
             });
         });
     }
@@ -142,7 +142,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     // helper function to compare id with that of selected sheet
-    isSelectedSvgFile(id: string) {
+    isSelectedSvgSheet(id: string) {
         return id === this.selectedSvgSheet.id;
     }
 
@@ -152,7 +152,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     // request function to emit selected sheet id
-    selectSvgFile(id: string) {
-        this.selectSvgFileRequest.emit(id);
+    selectSvgSheet(id: string) {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

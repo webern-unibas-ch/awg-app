@@ -12,7 +12,7 @@ class FolioStubComponent {
     @Input()
     convoluteData: Folio[];
     @Input()
-    selectedSvgFile: EditionSvgSheet;
+    selectedSvgSheet: EditionSvgSheet;
 
     // TODO: handle outputs
 }
