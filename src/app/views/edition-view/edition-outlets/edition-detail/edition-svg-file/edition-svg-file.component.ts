@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgFile, EditionSvgOverlay } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-svg-file',
@@ -9,7 +9,7 @@ import { EditionSvgFile, EditionSvgOverlay } from '@awg-views/edition-view/model
 })
 export class EditionSvgFileComponent implements OnInit {
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
     @Input()
     selectedOverlay: EditionSvgOverlay;
     @Output()

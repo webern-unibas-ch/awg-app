@@ -5,7 +5,7 @@ import { Data } from '@angular/router';
 
 import { forkJoin, Observable, of } from 'rxjs';
 
-import { Folio, EditionSvgFile, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { Folio, EditionSvgSheet, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
@@ -18,8 +18,8 @@ describe('EditionDataService', () => {
 
     const BASE = 'assets/data';
     const regexBase = new RegExp(BASE);
-    const convoluteFilePath = `${BASE}/convolute.json`;
-    const sheetsFilePath = `${BASE}/sheets.json`;
+    const folioFilePath = `${BASE}/folio.json`;
+    const sheetsFilePath = `${BASE}/svg-sheets.json`;
     const sourcelistFilePath = `${BASE}/sourcelist.json`;
     const textcriticsFilePath = `${BASE}/textcritics.json`;
 
@@ -76,7 +76,7 @@ describe('EditionDataService', () => {
                 });
 
                 expect(r.length).toEqual(3);
-                expect(r[0].request.url).toEqual(convoluteFilePath, `should be ${convoluteFilePath}`);
+                expect(r[0].request.url).toEqual(folioFilePath, `should be ${folioFilePath}`);
                 expect(r[1].request.url).toEqual(sheetsFilePath, `should be ${sheetsFilePath}`);
                 expect(r[2].request.url).toEqual(textcriticsFilePath, `should be ${textcriticsFilePath}`);
             }));

@@ -12,7 +12,7 @@ import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from '.
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 
-import { EditionSvgFile } from './edition-svg-file.model';
+import { EditionSvgSheet } from './edition-svg-sheet.model';
 import { EditionSvgOverlay } from './edition-svg-overlay';
 
 import { Source, SourceList } from './source.model';
@@ -25,7 +25,7 @@ export {
     FolioContent,
     FolioSection,
     FolioSvgData,
-    EditionSvgFile,
+    EditionSvgSheet,
     EditionSvgOverlay,
     FolioCalculation,
     FolioCalculationLine,

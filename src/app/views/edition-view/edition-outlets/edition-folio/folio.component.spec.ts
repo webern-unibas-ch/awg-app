@@ -2,13 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FolioComponent } from './folio.component';
 import { FolioService } from './folio.service';
-import { Folio, FolioSvgData, EditionSvgFile, FolioCalculation, FolioSettings } from '@awg-views/edition-view/models';
+import { Folio, FolioSvgData, EditionSvgSheet, FolioCalculation, FolioSettings } from '@awg-views/edition-view/models';
 
 describe('FolioComponent', () => {
     let component: FolioComponent;
     let fixture: ComponentFixture<FolioComponent>;
     let expectedConvoluteData: Folio[];
-    let expectedSvgFile: EditionSvgFile;
+    let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -32,14 +32,14 @@ describe('FolioComponent', () => {
         });
 
         it('should not get svg file input', () => {
-            expect(component.selectedSvgFile).toBeUndefined('should be undefined');
+            expect(component.selectedSvgSheet).toBeUndefined('should be undefined');
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the inputs supplied by the parent component
-            expectedSvgFile = {
+            expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/SkI_2n_small_cut_opt.svg',
                 image: 'assets/img/edition/SkI_2_small.jpg',
@@ -79,14 +79,14 @@ describe('FolioComponent', () => {
 
             // simulate the parent setting the input properties
             component.convoluteData = expectedConvoluteData;
-            component.selectedSvgFile = expectedSvgFile;
+            component.selectedSvgSheet = expectedSvgSheet;
 
             // trigger initial data binding
             fixture.detectChanges();
         });
 
         it('should get svg file input', () => {
-            expect(component.selectedSvgFile).toBe(expectedSvgFile);
+            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
         });
 
         it('should get convoluteData input', () => {

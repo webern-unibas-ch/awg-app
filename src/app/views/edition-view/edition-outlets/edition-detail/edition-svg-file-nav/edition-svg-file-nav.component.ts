@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgFile } from '@awg-views/edition-view/models';
+import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-svg-file-nav',
@@ -9,9 +9,9 @@ import { EditionSvgFile } from '@awg-views/edition-view/models';
 })
 export class EditionSvgFileNavComponent implements OnInit {
     @Input()
-    svgFileData: EditionSvgFile[];
+    svgFileData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
     @Output()
     selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
 
@@ -19,11 +19,11 @@ export class EditionSvgFileNavComponent implements OnInit {
 
     ngOnInit() {}
 
-    isSelectedSvgFile(svgFile: EditionSvgFile) {
+    isSelectedSvgFile(svgFile: EditionSvgSheet) {
         return svgFile.id === this.selectedSvgFile.id;
     }
 
-    selectSvgFile(svgFile: EditionSvgFile) {
+    selectSvgFile(svgFile: EditionSvgSheet) {
         this.selectSvgFileRequest.emit(svgFile.id);
     }
 }

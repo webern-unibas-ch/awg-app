@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgFile, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-accolade',
@@ -9,9 +9,9 @@ import { EditionSvgFile, EditionSvgOverlay, Textcritics } from '@awg-views/editi
 })
 export class EditionAccoladeComponent implements OnInit {
     @Input()
-    svgFileData: EditionSvgFile[];
+    svgFileData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
     @Input()
     selectedTextcritics: Textcritics[];
     @Input()

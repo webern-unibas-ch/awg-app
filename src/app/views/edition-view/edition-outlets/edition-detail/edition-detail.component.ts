@@ -1,7 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Params, Router } from '@angular/router';
 
-import { Folio, EditionSvgFile, EditionSvgOverlay, Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
+import {
+    Folio,
+    EditionSvgSheet,
+    EditionSvgOverlay,
+    Textcritics,
+    TextcriticsList
+} from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 @Component({
@@ -12,8 +18,8 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 export class EditionDetailComponent implements OnInit {
     convoluteData: Folio[];
 
-    svgFileData: EditionSvgFile[];
-    selectedSvgFile: EditionSvgFile;
+    svgFileData: EditionSvgSheet[];
+    selectedSvgFile: EditionSvgSheet;
 
     textcriticsData: TextcriticsList;
     selectedTextcritics: Textcritics[];
@@ -36,7 +42,7 @@ export class EditionDetailComponent implements OnInit {
     // get edition data
     getEditionDetailData() {
         this.editionDataService.getEditionDetailData().subscribe(
-            (data: [Folio[], EditionSvgFile[], TextcriticsList]) => {
+            (data: [Folio[], EditionSvgSheet[], TextcriticsList]) => {
                 this.convoluteData = data[0]['convolute'];
                 this.svgFileData = data[1];
                 this.textcriticsData = data[2];

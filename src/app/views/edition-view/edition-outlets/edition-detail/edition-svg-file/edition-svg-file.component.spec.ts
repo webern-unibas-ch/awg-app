@@ -2,13 +2,13 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditionSvgFileComponent } from './edition-svg-file.component';
-import { EditionSvgFile, EditionSvgOverlay } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay';
 
 describe('EditionSvgFileComponent', () => {
     let component: EditionSvgFileComponent;
     let fixture: ComponentFixture<EditionSvgFileComponent>;
-    let expectedSvgFile: EditionSvgFile;
+    let expectedSvgFile: EditionSvgSheet;
     let expectedOverlay: EditionSvgOverlay;
 
     beforeEach(async(() => {

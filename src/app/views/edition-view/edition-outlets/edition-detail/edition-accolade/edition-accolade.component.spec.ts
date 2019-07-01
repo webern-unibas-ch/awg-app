@@ -3,7 +3,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgFile, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
@@ -14,9 +14,9 @@ class EditionDetailNotificationStubComponent {}
 @Component({ selector: 'awg-edition-svg-file-nav', template: '' })
 class EditionSvgFileNavStubComponent {
     @Input()
-    svgFileData: EditionSvgFile[];
+    svgFileData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
 
     // TODO: handle outputs
 }
@@ -24,7 +24,7 @@ class EditionSvgFileNavStubComponent {
 @Component({ selector: 'awg-edition-svg-file', template: '' })
 class EditionSvgFileStubComponent {
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
     @Input()
     selectedOverlay: EditionSvgOverlay;
 

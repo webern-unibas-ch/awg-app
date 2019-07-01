@@ -7,7 +7,13 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { Folio, EditionSvgFile, EditionSvgOverlay, Textcritics, TextcriticsList } from '@awg-views/edition-view/models';
+import {
+    Folio,
+    EditionSvgSheet,
+    EditionSvgOverlay,
+    Textcritics,
+    TextcriticsList
+} from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
@@ -22,7 +28,7 @@ class EditionConvoluteStubComponent {
     @Input()
     convoluteData: Folio[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
 
     // TODO: add outputs
 }
@@ -30,9 +36,9 @@ class EditionConvoluteStubComponent {
 @Component({ selector: 'awg-edition-accolade', template: '' })
 class EditionAccoladeStubComponent {
     @Input()
-    svgFileData: EditionSvgFile[];
+    svgFileData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgFile: EditionSvgSheet;
     @Input()
     selectedTextcritics: Textcritics[];
     @Input()
@@ -48,7 +54,7 @@ describe('EditionDetailComponent', () => {
     let fixture: ComponentFixture<EditionDetailComponent>;
 
     let mockEditionService: Partial<EditionService>;
-    let getEditionDetailDataSpy: Observable<[Folio[], EditionSvgFile[], TextcriticsList]>;
+    let getEditionDetailDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
 
     beforeEach(async(() => {
         // create a fake service object with a `getEditionDetailData()` spy

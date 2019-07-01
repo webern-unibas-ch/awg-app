@@ -1,6 +1,6 @@
 import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Folio, FolioSettings, FolioSvgData, EditionSvgFile, ViewBox } from '@awg-views/edition-view/models';
+import { Folio, FolioSettings, FolioSvgData, EditionSvgSheet, ViewBox } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
 /**
@@ -19,7 +19,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input()
     convoluteData: Folio[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgSheet: EditionSvgSheet;
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
@@ -143,7 +143,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     // helper function to compare id with that of selected sheet
     isSelectedSvgFile(id: string) {
-        return id === this.selectedSvgFile.id;
+        return id === this.selectedSvgSheet.id;
     }
 
     // request function to emit modal id
