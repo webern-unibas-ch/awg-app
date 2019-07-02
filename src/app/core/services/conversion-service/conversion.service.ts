@@ -21,7 +21,7 @@ import {
 import {
     ResourceDetail,
     ResourceDetailHeader,
-    ResourceDetailIncomingLinks,
+    ResourceDetailIncomingLink,
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailImage,
@@ -318,9 +318,9 @@ export class ConversionService extends ApiService {
     }
 
     private prepareResourceDetailIncomingLinks(incomingArray: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
-        const incomingLinks: ResourceDetailIncomingLinks[] = [];
+        const incomingLinks: ResourceDetailIncomingLink[] = [];
         incomingArray.forEach(incoming => {
-            incomingLinks.push(new ResourceDetailIncomingLinks(incoming));
+            incomingLinks.push(new ResourceDetailIncomingLink(incoming));
         });
         const groupedIncomingLinks: ResourceDetailGroupedIncomingLinks = this.groupByRestype(incomingLinks);
         return groupedIncomingLinks;
@@ -742,7 +742,7 @@ export class ConversionService extends ApiService {
      * group array of incoming links by restype
      *
      *****************************************/
-    private groupByRestype(incomingLinks: ResourceDetailIncomingLinks[]): ResourceDetailGroupedIncomingLinks {
+    private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks {
         const groups = {};
         // iterate over incoming links to group by restype
         incomingLinks.forEach(link => {

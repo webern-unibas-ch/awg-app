@@ -12,7 +12,7 @@ import { ResourceDetail } from './resource-detail.model';
 import { ResourceDetailContent } from './resource-detail-content.model';
 import { ResourceDetailHeader } from './resource-detail-header.model';
 import { ResourceDetailImage } from './resource-detail-image.model';
-import { ResourceDetailIncomingLinks } from './resource-detail-incoming-links.model';
+import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.model';
 import { ResourceDetailProps } from './resource-detail-props.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
 import { SearchParams } from './search-params.model';
@@ -24,7 +24,7 @@ export {
     ResourceDetailContent,
     ResourceDetailHeader,
     ResourceDetailImage,
-    ResourceDetailIncomingLinks,
+    ResourceDetailIncomingLink,
     ResourceDetailProps,
     ResourceDetailGroupedIncomingLinks,
     SearchParams,

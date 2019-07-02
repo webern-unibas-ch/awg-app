@@ -8,7 +8,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { ConversionService } from '@awg-core/services';
-import { ResourceDetailGroupedIncomingLinks, ResourceDetailIncomingLinks } from '@awg-views/data-view/models';
+import { ResourceDetailGroupedIncomingLinks, ResourceDetailIncomingLink } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects.component';
 
@@ -35,9 +35,9 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let emitSpy: Spy;
 
     let expectedIncoming: ResourceDetailGroupedIncomingLinks;
-    let incomingLink1: ResourceDetailIncomingLinks;
-    let incomingLink2: ResourceDetailIncomingLinks;
-    let incomingLink3: ResourceDetailIncomingLinks;
+    let incomingLink1: ResourceDetailIncomingLink;
+    let incomingLink2: ResourceDetailIncomingLink;
+    let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
 
     const mockConversionService = {

@@ -1,6 +1,6 @@
 import { IncomingItemJson } from '@awg-shared/api-objects';
 
-export class ResourceDetailIncomingLinks {
+export class ResourceDetailIncomingLink {
     id: string;
     value: string;
     restype: {
