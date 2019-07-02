@@ -1,6 +1,6 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { ResourceDetailProps } from '@awg-views/data-view/models';
+import { ResourceDetailProperty } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-html-content-props',
@@ -9,7 +9,7 @@ import { ResourceDetailProps } from '@awg-views/data-view/models';
 })
 export class ResourceDetailHtmlContentPropsComponent implements OnInit {
     @Input()
-    props: ResourceDetailProps[];
+    props: ResourceDetailProperty[];
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 

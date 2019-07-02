@@ -16,7 +16,7 @@ import {
     ResourceDetailContent,
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailImage,
-    ResourceDetailProps
+    ResourceDetailProperty
 } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentComponent } from './resource-detail-html-content.component';
@@ -25,7 +25,7 @@ import { ResourceDetailHtmlContentComponent } from './resource-detail-html-conte
 @Component({ selector: 'awg-resource-detail-html-content-props', template: '' })
 class ResourceDetailHtmlContentPropsStubComponent {
     @Input()
-    props: ResourceDetailProps[];
+    props: ResourceDetailProperty[];
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -86,8 +86,8 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             new ResourceDetailImage(context, 1)
         ];
         const incoming = new ResourceDetailGroupedIncomingLinks();
-        const props: ResourceDetailProps[] = [
-            { pid: '1', guielement: 'text', label: 'Test-Label', value: ['Test1', 'Test2'] }
+        const props: ResourceDetailProperty[] = [
+            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
         ];
         expectedContent = { props, images, incoming };
 

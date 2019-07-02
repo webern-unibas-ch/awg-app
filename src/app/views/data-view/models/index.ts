@@ -13,7 +13,7 @@ import { ResourceDetailContent } from './resource-detail-content.model';
 import { ResourceDetailHeader } from './resource-detail-header.model';
 import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.model';
-import { ResourceDetailProps } from './resource-detail-props.model';
+import { ResourceDetailProperty } from './resource-detail-property.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
 import { SearchParams } from './search-params.model';
 import { SearchResponseWithQuery } from './search-response-with-query.model';
@@ -25,7 +25,7 @@ export {
     ResourceDetailHeader,
     ResourceDetailImage,
     ResourceDetailIncomingLink,
-    ResourceDetailProps,
+    ResourceDetailProperty,
     ResourceDetailGroupedIncomingLinks,
     SearchParams,
     SearchResponseWithQuery
