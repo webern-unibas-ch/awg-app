@@ -5,7 +5,7 @@ import { Data } from '@angular/router';
 
 import { forkJoin, Observable, of } from 'rxjs';
 
-import { Folio, EditionSvgSheet, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { Folio, EditionSvgSheet, SourceList, TextcriticsList, Source } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
@@ -52,15 +52,15 @@ describe('EditionDataService', () => {
             });
 
             // match the request url
-            const r = httpTestingController.expectOne({
+            const call = httpTestingController.expectOne({
                 url: '/foo/bar'
             });
 
             // check for GET request
-            expect(r.request.method).toEqual('GET');
+            expect(call.request.method).toBe('GET');
 
             // respond with mocked data
-            r.flush(testData);
+            call.flush(testData);
         }));
     });
 
@@ -71,14 +71,20 @@ describe('EditionDataService', () => {
                 editionDataService.getEditionDetailData().subscribe();
 
                 // expect one request to to every file with given settings
-                const r = httpTestingController.match((req: HttpRequest<any>) => {
+                const call = httpTestingController.match((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
                 });
 
-                expect(r.length).toEqual(3);
-                expect(r[0].request.url).toEqual(folioFilePath, `should be ${folioFilePath}`);
-                expect(r[1].request.url).toEqual(sheetsFilePath, `should be ${sheetsFilePath}`);
-                expect(r[2].request.url).toEqual(textcriticsFilePath, `should be ${textcriticsFilePath}`);
+                expect(call.length).toBe(3);
+                expect(call[0].request.method).toBe('GET', 'should be GET');
+                expect(call[1].request.method).toBe('GET', 'should be GET');
+                expect(call[2].request.method).toBe('GET', 'should be GET');
+                expect(call[0].request.responseType).toBe('json', 'should be json');
+                expect(call[1].request.responseType).toBe('json', 'should be json');
+                expect(call[2].request.responseType).toBe('json', 'should be json');
+                expect(call[0].request.url).toBe(folioFilePath, `should be ${folioFilePath}`);
+                expect(call[1].request.url).toBe(sheetsFilePath, `should be ${sheetsFilePath}`);
+                expect(call[2].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
             }));
         });
     });
@@ -90,42 +96,62 @@ describe('EditionDataService', () => {
                 editionDataService.getEditionReportData().subscribe();
 
                 // expect one request to to every file with given settings
-                const r = httpTestingController.match((req: HttpRequest<any>) => {
+                const call = httpTestingController.match((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
                 });
 
-                expect(r.length).toEqual(2);
-                expect(r[0].request.url).toEqual(sourcelistFilePath, `should be ${sourcelistFilePath}`);
-                expect(r[1].request.url).toEqual(textcriticsFilePath, `should be ${textcriticsFilePath}`);
+                expect(call.length).toBe(2);
+                expect(call[0].request.method).toBe('GET', 'should be GET');
+                expect(call[1].request.method).toBe('GET', 'should be GET');
+                expect(call[0].request.responseType).toBe('json', 'should be json');
+                expect(call[1].request.responseType).toBe('json', 'should be json');
+                expect(call[0].request.url).toBe(sourcelistFilePath, `should be ${sourcelistFilePath}`);
+                expect(call[1].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
             }));
         });
 
         describe('response', () => {
             describe('success', () => {
-                xit(`... should return a forkJoined Observable<SourceList, TextcriticsList>`, async(() => {
+                it(`... should return a forkJoined Observable<SourceList, TextcriticsList>`, async(() => {
                     const expectedResult = [new SourceList(), new TextcriticsList()];
-
-                    console.log('expectedResult', expectedResult);
+                    expectedResult[0].sources = [];
+                    expectedResult[0].sources[0] = {
+                        siglum: 'A',
+                        type: 'Autograph',
+                        location: 'CH-Bps',
+                        linkTo: 'Textlink'
+                    };
+                    expectedResult[1]['test'] = [];
+                    expectedResult[1]['test'][0] = {
+                        measure: '1',
+                        system: '1',
+                        position: '1. Note',
+                        comment: 'Fehler'
+                    };
 
                     // call service function (success)
                     editionDataService.getEditionReportData().subscribe(res => {
                         expect(res).toBeTruthy();
-
-                        console.log('res', res, res[0], res[1]);
+                        expect(res.length).toBe(2);
                         expect(res).toEqual(expectedResult);
-
-                        // expect(res[0]).toEqual(expectedResult[0]);
-                        // expect(res[1]).toEqual(expectedResult[1]);
                     });
 
                     // expect one request to to every file with given settings
-                    const r = httpTestingController.match((req: HttpRequest<any>) => {
+                    const call = httpTestingController.match((req: HttpRequest<any>) => {
                         return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
                     });
 
+                    expect(call.length).toBe(2);
+                    expect(call[0].request.method).toBe('GET', 'should be GET');
+                    expect(call[1].request.method).toBe('GET', 'should be GET');
+                    expect(call[0].request.responseType).toBe('json', 'should be json');
+                    expect(call[1].request.responseType).toBe('json', 'should be json');
+                    expect(call[0].request.url).toBe(sourcelistFilePath, `should be ${sourcelistFilePath}`);
+                    expect(call[1].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
+
                     // mock input from HTTP request
-                    r[0].flush(of(expectedResult[0]));
-                    r[1].flush(of(expectedResult[1]));
+                    call[0].flush(expectedResult[0]);
+                    call[1].flush(expectedResult[1]);
                 }));
             });
 
@@ -141,12 +167,12 @@ describe('EditionDataService', () => {
                     });
 
                     // expect one request to to every file with given settings
-                    const r = httpTestingController.match((req: HttpRequest<any>) => {
+                    const call = httpTestingController.match((req: HttpRequest<any>) => {
                         return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
                     });
 
-                    r[0].error(null, new HttpErrorResponse({ error: 'ERROR_LOADING_SOURCELIST' }));
-                    r[1].error(new ErrorEvent('ERROR_LOADING_TEXTCRITICS'));
+                    call[0].error(null, new HttpErrorResponse({ error: 'ERROR_LOADING_SOURCELIST' }));
+                    call[1].error(new ErrorEvent('ERROR_LOADING_TEXTCRITICS'));
                 }));
 
                 it(`... should return [sourcelist, []] if textcritics request failed`, async(() => {
@@ -160,12 +186,12 @@ describe('EditionDataService', () => {
                     });
 
                     // expect one request to to every file with given settings
-                    const r = httpTestingController.match((req: HttpRequest<any>) => {
+                    const call = httpTestingController.match((req: HttpRequest<any>) => {
                         return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
                     });
 
-                    r[0].flush(expectedResult[0]);
-                    r[1].error(null, new HttpErrorResponse({ error: 'ERROR_LOADING_TEXTCRITICS' }));
+                    call[0].flush(expectedResult[0]);
+                    call[1].error(null, new HttpErrorResponse({ error: 'ERROR_LOADING_TEXTCRITICS' }));
                 }));
 
                 it(`... should return [[], textcritics] if sourcelist request failed`, async(() => {
@@ -179,12 +205,12 @@ describe('EditionDataService', () => {
                     });
 
                     // expect one request to to every file with given settings
-                    const r = httpTestingController.match((req: HttpRequest<any>) => {
+                    const call = httpTestingController.match((req: HttpRequest<any>) => {
                         return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
                     });
 
-                    r[1].flush(expectedResult[1]);
-                    r[0].error(null, new HttpErrorResponse({ error: 'ERROR_LOADING_SOURCELIST' }));
+                    call[1].flush(expectedResult[1]);
+                    call[0].error(null, new HttpErrorResponse({ error: 'ERROR_LOADING_SOURCELIST' }));
                 }));
             });
         });

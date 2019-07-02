@@ -138,15 +138,15 @@ describe('DataApiService (DONE)', () => {
             });
 
             // match the request url
-            const r = httpTestingController.expectOne({
+            const call = httpTestingController.expectOne({
                 url: '/foo/bar'
             });
 
             // check for GET request
-            expect(r.request.method).toEqual('GET');
+            expect(call.request.method).toEqual('GET');
 
             // respond with mocked data
-            r.flush(testData);
+            call.flush(testData);
         }));
     });
 
@@ -211,9 +211,13 @@ describe('DataApiService (DONE)', () => {
                 dataApiService.getFulltextSearchData(expectedSearchString).subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
             }));
 
             it(`... should set default params for GET request if none is provided`, async(() => {
@@ -226,19 +230,22 @@ describe('DataApiService (DONE)', () => {
                 dataApiService.getFulltextSearchData(expectedSearchString).subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(4, 'should be 4');
-                    expect(req.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
-                    expect(req.params.get('filter_by_project')).toBe(
-                        expectedProjectId,
-                        `should be ${expectedProjectId}`
-                    );
-                    expect(req.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
-                    expect(req.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(4, 'should be 4');
+                expect(call.request.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
+                expect(call.request.params.get('filter_by_project')).toBe(
+                    expectedProjectId,
+                    `should be ${expectedProjectId}`
+                );
+                expect(call.request.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
+                expect(call.request.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
             }));
 
             it(`... should apply provided params for GET request`, async(() => {
@@ -251,19 +258,22 @@ describe('DataApiService (DONE)', () => {
                 dataApiService.getFulltextSearchData(expectedSearchString, expectedRows, expectedStartAt).subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(4, 'should be 4');
-                    expect(req.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
-                    expect(req.params.get('filter_by_project')).toBe(
-                        expectedProjectId,
-                        `should be ${expectedProjectId}`
-                    );
-                    expect(req.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
-                    expect(req.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(4, 'should be 4');
+                expect(call.request.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
+                expect(call.request.params.get('filter_by_project')).toBe(
+                    expectedProjectId,
+                    `should be ${expectedProjectId}`
+                );
+                expect(call.request.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
+                expect(call.request.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
             }));
 
             it(`... should call getApiResponse (via ApiService) with search string`, async(() => {
@@ -346,12 +356,15 @@ describe('DataApiService (DONE)', () => {
                 dataApiService.getResourceDetailData(expectedResourceId).subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(0, 'should be 0');
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(0, 'should be 0');
             }));
 
             it(`... should call getApiResponse (via ApiService) with resource id`, async(() => {
