@@ -4,7 +4,7 @@ import { Observable, of as observableOf } from 'rxjs';
 
 import { BibliographyDetailComponent } from './bibliography-detail.component';
 import { BibliographyFormatPipe } from '../bibliography-format.pipe';
-import { BibEntry } from '../bibliography-entry';
+import { BibEntry } from '../bibliography-entry.model';
 
 import { BibliographyService } from '@awg-views/data-view/services';
 import { ConversionService } from '@awg-core/services';
@@ -34,7 +34,7 @@ describe('BibliographyDetailComponent', () => {
         // stub conversionService to return convertedBibItemDetail
         expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
         mockConversionService = {
-            convertObjectProperties: (data: ResourceFullResponseJson) => expectedConvertedBibItemDetail
+            convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail
         };
 
         TestBed.configureTestingModule({
@@ -68,7 +68,7 @@ describe('BibliographyDetailComponent', () => {
 
             // simulate the parent setting the input properties
             component.objId = expectedObjId;
-            component.bibItemDetail.converted = expectedConvertedBibItemDetail;
+            component.bibItemDetail.convertedData = expectedConvertedBibItemDetail;
 
             // trigger initial data binding
             fixture.detectChanges();

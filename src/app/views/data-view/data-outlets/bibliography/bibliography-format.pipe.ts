@@ -1,11 +1,11 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-import { BibEntry } from './bibliography-entry';
+import { BibEntry } from './bibliography-entry.model';
 
 /**
  * The bibliography format pipe.
  *
- * It converts an {@link BibEntry} input into a formatted `BibEntry`.
+ * It converts a {@link BibEntry} input into a formatted `BibEntry`.
  *
  * __Usage :__
  *   `{{ bibEntry | bibFormat }}`

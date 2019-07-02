@@ -7,10 +7,24 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 import { BibliographyService } from '@awg-views/data-view/services';
 import { ConversionService } from '@awg-core/services/conversion-service/conversion.service';
 
+/**
+ * The BibItemDetail class.
+ *
+ * It is used in the context of the bibliography
+ * to store the data of the details of a single
+ * bibliographic item.
+ */
 class BibItemDetail {
-    subscription: Subscription;
-    body: ResourceFullResponseJson;
-    converted: any; // TODO#change to Type: BibEntry
+    /**
+     * The raw data response for a bib item detail.
+     */
+    rawData: ResourceFullResponseJson;
+
+    /**
+     * The converted data for a bib item detail.
+     * @todo Change to Type: BibEntry.
+     */
+    convertedData: any;
 }
 
 @Component({
@@ -23,6 +37,7 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
     objId: string;
 
     bibItemDetail: BibItemDetail = new BibItemDetail();
+    subscription: Subscription;
 
     constructor(private bibliographyService: BibliographyService, private conversionService: ConversionService) {}
 
@@ -31,15 +46,17 @@ export class BibliographyDetailComponent implements OnInit, OnDestroy {
     }
 
     getBibItemDetails(id: string): void {
-        this.bibItemDetail.subscription = this.bibliographyService.getBibliographyItemDetail(id).subscribe(data => {
-            this.bibItemDetail.body = { ...data };
-            this.bibItemDetail.converted = this.conversionService.convertObjectProperties(this.bibItemDetail.body);
+        this.subscription = this.bibliographyService.getBibliographyItemDetail(id).subscribe(data => {
+            this.bibItemDetail.rawData = { ...data };
+            this.bibItemDetail.convertedData = this.conversionService.convertObjectProperties(
+                this.bibItemDetail.rawData
+            );
         });
     }
 
     ngOnDestroy() {
-        if (this.bibItemDetail.subscription) {
-            this.bibItemDetail.subscription.unsubscribe();
+        if (this.subscription) {
+            this.subscription.unsubscribe();
         }
     }
 }
