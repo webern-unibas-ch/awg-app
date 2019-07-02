@@ -24,7 +24,7 @@ export class ViewBox {
     /**
      * The svg viewBox attribute (string).
      *
-     * Calculated in constructor from the folio format options input.
+     * Calculated in the constructor from the folio settings.
      *
      * @example
      * viewBox: `0 0 540 270`;
@@ -36,7 +36,7 @@ export class ViewBox {
      *
      * It calculates the view box string from the folio settings.
      *
-     * @param {FolioSettings} folioSettings The folio settings input.
+     * @param {FolioSettings} folioSettings The given folio settings.
      */
     constructor(folioSettings: FolioSettings) {
         // calculate the width for the viewBox string

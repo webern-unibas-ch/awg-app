@@ -49,8 +49,8 @@ export class FolioService {
      * It calculates and provides the folio svg data
      * to render the folio svg object (SnapCanvas).
      *
-     * @param {FolioSettings} folioSettings The folio format options input.
-     * @param {Folio} folio The folio input.
+     * @param {FolioSettings} folioSettings The given folio format settings.
+     * @param {Folio} folio The given folio.
      * @returns {FolioSvgData} The calculated folio data.
      */
     getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
@@ -66,8 +66,8 @@ export class FolioService {
      *
      * It adds the svg viewbox attributes to a Snap canvas svg object.
      *
-     * @param {*} snapCanvas The Snap canvas svg object.
-     * @param {ViewBox} vb The ViewBox object.
+     * @param {*} snapCanvas The given Snap canvas svg object.
+     * @param {ViewBox} vb The given ViewBox object.
      * @returns {void} Adds the svg viewbox attributes to the Snap canvas svg object.
      */
     addViewBoxToSnapSvgCanvas(snapCanvas: any, vb: ViewBox): void {
@@ -89,11 +89,11 @@ export class FolioService {
      * for a folio's sheet, systems and items to the folio svg object
      * (SnapCanvas).
      *
-     * @param {*} snapCanvas The Snap canvas svg object.
-     * @param {FolioSvgData} folioSvg The calculated folio data.
-     * @param {string} bgColor The background color.
-     * @param {string} fgColor The foreground color.
-     * @param {*} ref The reference to the calling component.
+     * @param {*} snapCanvas The given Snap canvas svg object.
+     * @param {FolioSvgData} folioSvg The given calculated folio data.
+     * @param {string} bgColor The given background color.
+     * @param {string} fgColor The given foreground color.
+     * @param {*} ref The given reference to the calling component.
      * @returns {void} Adds the folio to the Snap canvas svg object.
      */
     addFolioToSnapSvgCanvas(snapCanvas: any, folioSvg: FolioSvgData, bgColor: string, fgColor: string, ref: any): void {
@@ -129,10 +129,10 @@ export class FolioService {
      * It adds the folio's sheet from the calculated
      * folio svg data to the folio svg object (SnapCanvas).
      *
-     * @param {*} snapCanvas The Snap canvas svg object.
-     * @param {*} snapSheetGroup The Snap canvas sheet group object.
-     * @param {FolioSvgData} folioSvg The calculated folio data.
-     * @param {string} bgColor The background color.
+     * @param {*} snapCanvas The given Snap canvas svg object.
+     * @param {*} snapSheetGroup The given Snap canvas sheet group object.
+     * @param {FolioSvgData} folioSvg The given calculated folio data.
+     * @param {string} bgColor The given background color.
      * @returns {void} Adds the sheet to the Snap canvas svg object.
      */
     private addFolioSheetToSnapSvgCanvas(
@@ -178,10 +178,10 @@ export class FolioService {
      * It adds the folio's systems from the calculated
      * folio svg data to the folio svg object (SnapCanvas).
      *
-     * @param {*} snapCanvas The Snap canvas svg object.
-     * @param {*} snapSheetGroup The Snap canvas sheet group object.
-     * @param {FolioSvgData} folioSvg The calculated folio data.
-     * @param {string} bgColor The background color.
+     * @param {*} snapCanvas The given Snap canvas svg object.
+     * @param {*} snapSheetGroup The given Snap canvas sheet group object.
+     * @param {FolioSvgData} folioSvg The given calculated folio data.
+     * @param {string} bgColor The given background color.
      * @returns {void} Adds the systems to the Snap canvas svg object.
      */
     private addFolioSystemsToSnapSvgCanvas(
@@ -246,10 +246,10 @@ export class FolioService {
      * It adds the folio's items from the calculated
      * folio svg data to the folio svg object (SnapCanvas).
      *
-     * @param {*} snapCanvas The Snap canvas svg object.
-     * @param {*} snapSheetGroup The Snap canvas sheet group object.
-     * @param {FolioSvgData} folioSvg The calculated folio data.
-     * @param {string} fgColor The foreground color.
+     * @param {*} snapCanvas The given Snap canvas svg object.
+     * @param {*} snapSheetGroup The given Snap canvas sheet group object.
+     * @param {FolioSvgData} folioSvg The given calculated folio data.
+     * @param {string} fgColor The given foreground color.
      * @returns {void} Adds the items to the Snap canvas svg object.
      */
     private addFolioItemsToSnapSvgCanvas(

@@ -196,8 +196,8 @@ export class EditionDataService {
      *
      * It logs a message to the console.
      *
-     * @param {string} message The message input to be logged.
-     * @returns {void} Logs message to the console.
+     * @param {string} message The given message to be logged.
+     * @returns {void} Logs the message to the console.
      */
     private log(message: string): void {
         console.log(message);

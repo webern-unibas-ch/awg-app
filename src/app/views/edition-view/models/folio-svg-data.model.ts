@@ -42,7 +42,7 @@ class FolioSvgSheet {
      *
      * It initializes the class with values from the folio sheet calculation.
      *
-     * @param {FolioCalculationSheet} calculatedSheet The calculated folio sheet input.
+     * @param {FolioCalculationSheet} calculatedSheet The given calculated folio sheet.
      */
     constructor(calculatedSheet: FolioCalculationSheet) {
         this.folioId = calculatedSheet.folioId;
@@ -81,7 +81,7 @@ class FolioSvgSystems {
      *
      * It initializes the class with values from the folio system calculation.
      *
-     * @param {FolioCalculationSystems} calculatedSystems The calculated folio systems input.
+     * @param {FolioCalculationSystems} calculatedSystems The given calculated folio systems.
      */
     constructor(calculatedSystems: FolioCalculationSystems) {
         this.lineLabelArray = calculatedSystems.lineLabelArray;
@@ -139,7 +139,7 @@ class FolioSvgContentItem {
      *
      * It initializes the class with values from the folio content item calculation.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The calculated folio content item input.
+     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated folio content item.
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
         this.sigle = calculatedContentItem.sigle;
@@ -189,7 +189,7 @@ export class FolioSvgData {
      *
      * It initializes the class with values from the folio calculation.
      *
-     * @param {FolioCalculation[]} calculation The folio calculation input.
+     * @param {FolioCalculation[]} calculation The given folio calculation.
      */
     constructor(calculation: FolioCalculation) {
         this.sheet = new FolioSvgSheet(calculation.sheet);

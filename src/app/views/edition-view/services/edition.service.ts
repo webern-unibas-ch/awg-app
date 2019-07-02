@@ -20,9 +20,9 @@ export class EditionService {
      *
      * It filters a textcritics object in regard of a selected overlay item.
      *
-     * @param {Textcritics[]} textcritics The textcritical comments input to be filtered.
-     * @param {{ type: string; id: string }} overlay The selected overlay item defined by `type` and `ìd`.
-     * @param {number} filterIndex Index position of the filter.
+     * @param {Textcritics[]} textcritics The given textcritical comments to be filtered.
+     * @param {{ type: string; id: string }} overlay The given selected overlay item defined by `type` and `ìd`.
+     * @param {number} filterIndex The given index position of the filter.
      * @returns {boolean} A boolean value if the input contains the overlay type and id
      */
     private static filterTextcritics(

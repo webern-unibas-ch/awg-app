@@ -50,7 +50,7 @@ export class GeoNames {
      * It initializes the class with values from
      * the given (SALSAH) API´s GeoDataItemJson response.
      *
-     * @param {GeoDataItemJson[]} geoDataArray The geo data input array.
+     * @param {GeoDataItemJson[]} geoDataArray The given geo data array.
      */
     constructor(geoDataArray: GeoDataItemJson[]) {
         this.longLabel = geoDataArray[0].label;

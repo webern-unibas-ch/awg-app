@@ -36,8 +36,8 @@ export class EditionSvgOverlay {
      *
      * It initializes the class with values from the EditionSvgOverlayTypes and an id.
      *
-     * @param {EditionSvgOverlayTypes} type The overlay type input.
-     * @param {string} id The id input.
+     * @param {EditionSvgOverlayTypes} type The given overlay type.
+     * @param {string} id The given id of the overlay.
      */
     constructor(type: EditionSvgOverlayTypes, id: string) {
         this.type = type;

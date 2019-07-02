@@ -35,8 +35,8 @@ export class FolioCalculationPoint {
      *
      * It initializes the class with values for x and y (in px).
      *
-     * @param {number} x The x value input (in px).
-     * @param {number} y The y value input (in px).
+     * @param {number} x The given x value (in px).
+     * @param {number} y The given y value (in px).
      */
     constructor(x: number, y: number) {
         this.x = x;
@@ -73,8 +73,8 @@ export class FolioCalculationLine {
      *
      * It initializes the class with two points for start and end.
      *
-     * @param {FolioCalculationPoint} startPoint The starting point input.
-     * @param {FolioCalculationPoint} endPoint The ending point input.
+     * @param {FolioCalculationPoint} startPoint The given starting point.
+     * @param {FolioCalculationPoint} endPoint The given ending point.
      */
     constructor(startPoint: FolioCalculationPoint, endPoint: FolioCalculationPoint) {
         this.startPoint = startPoint;
@@ -117,7 +117,7 @@ class FolioCalculationContentItemCornerPoints {
      * It initializes the class with four points
      * for upper and lower left and upper and lower right corners.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
+     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
      */
     constructor(calculatedContentItem: FolioCalculationContentItem) {
         this.upperLeftCorner = new FolioCalculationPoint(calculatedContentItem.startX, calculatedContentItem.startY);
@@ -281,8 +281,8 @@ export class FolioCalculationSheet {
      *
      * It initializes the class with values from folio settings, the folio id and zoom factor.
      *
-     * @param {FolioSettings} folioSettings The folio settings input.
-     * @param {string} folioId The folio id input.
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {string} folioId The given folio id.
      */
     constructor(folioSettings: FolioSettings, folioId: string) {
         this.folioId = folioId;
@@ -416,9 +416,9 @@ export class FolioCalculation {
      *
      * It initializes the class with values from folio settings, folio data and itemsOffset correction.
      *
-     * @param {FolioSettings} folioSettings The folio settings input.
-     * @param {Folio} folioData The folio data input.
-     * @param {number} [itemsOffsetCorrection] The optional itemsOffset correction input.
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {Folio} folioData The given folio data.
+     * @param {number} [itemsOffsetCorrection] The optional given itemsOffset correction.
      */
     constructor(folioSettings: FolioSettings, folioData: Folio, itemsOffsetCorrection?: number) {
         this.itemsOffsetCorrection = itemsOffsetCorrection ? itemsOffsetCorrection : 0;
@@ -434,8 +434,8 @@ export class FolioCalculation {
      * It calls the calculation methods for the sheet,
      * systems and contentItemsArray of a folio.
      *
-     * @param {FolioSettings} folioSettings The folio settings input.
-     * @param {Folio} folioData The folio data input.
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {Folio} folioData The given folio data.
      */
     private calculateFolio(folioSettings: FolioSettings, folioData: Folio) {
         this.sheet = this.calculateSheet(folioSettings, folioData.folioId);
@@ -449,8 +449,8 @@ export class FolioCalculation {
      * It returns a FolioCalculationSheet class that provides
      * all the calculated values for the sheet of a folio.
      *
-     * @param {FolioSettings} folioSettings The folio settings input.
-     * @param {string} folioId The folio id input.
+     * @param {FolioSettings} folioSettings The given folio settings.
+     * @param {string} folioId The given folio id.
      */
     private calculateSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
         return new FolioCalculationSheet(folioSettings, folioId);
@@ -520,7 +520,7 @@ export class FolioCalculation {
      *
      * It provides all the calculated values for the content items of a folio.
      *
-     * @param {FolioContent[]} contents The folio contents input.
+     * @param {FolioContent[]} contents The given folio contents.
      * @returns {FolioCalculationContentItem[]} The array of the calculated content items.
      */
     private calculateContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
@@ -592,10 +592,10 @@ export class FolioCalculation {
      *
      * It calculates the main values for the content items of a folio.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
-     * @param {FolioSection} section The section input.
-     * @param {number} sectionPartition The section partition input.
-     * @param {FolioContent} item The folio content input.
+     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
+     * @param {FolioSection} section The given section.
+     * @param {number} sectionPartition The given section partition.
+     * @param {FolioContent} item The given folio content.
      * @returns {void} Calculates and sets the main values of the calculatedContentItem.
      */
     private setContentItemMainValues(
@@ -667,8 +667,8 @@ export class FolioCalculation {
      *
      * It caches the current and previous section of a calculated content item.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
-     * @param {FolioSection} section The section input.
+     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
+     * @param {FolioSection} section The given section.
      * @returns {void} Caches the current and previous section of the calculatedContentItem.
      */
     private setContentItemSectionCache(
@@ -691,10 +691,10 @@ export class FolioCalculation {
      *
      * It calculates the line array for the content items of a folio.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
-     * @param {number} sectionsLength The section's length input.
-     * @param {number} sectionIndex The section index input.
-     * @param {number} sectionPartition The section partition input.
+     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
+     * @param {number} sectionsLength The given section's length.
+     * @param {number} sectionIndex The given section index.
+     * @param {number} sectionPartition The given section partition.
      * @returns {FolioCalculationLine[]} The calculated line array.
      */
     private setContentItemLineArray(
@@ -801,8 +801,8 @@ export class FolioCalculation {
      *
      * It calculates the connector lines for the content items of a folio.
      *
-     * @param {FolioCalculationContentItem} calculatedContentItem The calculated content item input.
-     * @param {number} lineArray The calculated line array input.
+     * @param {FolioCalculationContentItem} calculatedContentItem The given calculated content item.
+     * @param {number} lineArray The given calculated line array.
      * @returns {void} Sets the connector lines of the calculatedContentItem..
      */
     private checkForConnectorLine(
@@ -846,8 +846,8 @@ export class FolioCalculation {
      *
      * It sets the offsetCorrection for a calculated point of a content item of a folio.
      *
-     * @param {FolioCalculationPoint} cornerPoint The calculated point input.
-     * @param {number} correctionX The correction value for x (in px).
+     * @param {FolioCalculationPoint} cornerPoint The given calculated point.
+     * @param {number} correctionX The given correction value for x (in px).
      * @returns {void} Sets the offsetCorrection for a calculatedContentItem.
      */
     private setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
@@ -859,11 +859,11 @@ export class FolioCalculation {
      *
      * It calculates the start position of a content item of a folio.
      *
-     * @param {number} offset The offset input.
-     * @param {number} index The index position input (offset * index -->
+     * @param {number} offset The given offset.
+     * @param {number} index The given index position (offset * index -->
      * (X: start at item 1, 2, 3 etc; Y: start at system line 1, 2, 3 etc.)).
-     * @param {number} systemStart The horizontal(X) or vertical (Y) systemsMargins input.
-     * @param {number} [offsetCorrection] The optional offset correction value input (mostly needed to center items).
+     * @param {number} systemStart The given horizontal(X) or vertical (Y) systemsMargins.
+     * @param {number} [offsetCorrection] The optional given offset correction value (mostly needed to center items).
      * @returns {number} The start position for a calculatedContentItem.
      */
     private getContentItemStart(offset: number, index: number, systemStart: number, offsetCorrection?: number): number {
@@ -879,9 +879,9 @@ export class FolioCalculation {
      *
      * It calculates the array of start positions of the systems of a folio.
      *
-     * @param {number} offset The offset input.
-     * @param {number} systemStartY The (Y) systemsMargins input (begin of sheet plus upper margin).
-     * @param {number} [offsetCorrection] The optional offset correction value input (mostly needed to center items).
+     * @param {number} offset The given offset.
+     * @param {number} systemStartY The given (Y) systemsMargins (begin of sheet plus upper margin).
+     * @param {number} [offsetCorrection] The optional given offset correction value (mostly needed to center items).
      * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
      */
     private getSystemYArray(offset: number, systemStartY: number, offsetCorrection?: number): number[][] {

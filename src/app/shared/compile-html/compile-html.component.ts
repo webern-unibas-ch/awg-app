@@ -243,7 +243,7 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * It creates the the dynamic component.
      *
-     * @params {string} html The html input to be used as template for the component.
+     * @params {string} html The given html template for the component.
      * @params {any} ref The reference to the component type to be created.
      * @returns The DynamicComponent.
      */

@@ -4,8 +4,11 @@ import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.mode
  * The ResourceDetailGroupedIncomingLinks class.
  *
  * It is used in the context of the resource detail view
- * to store the data for incoming links.
+ * to store and group arrays of resource detail incoming links.
  */
 export class ResourceDetailGroupedIncomingLinks {
+    /**
+     * The array of incoming links.
+     */
     [key: string]: ResourceDetailIncomingLink[];
 }
