@@ -5,8 +5,8 @@ import { AppConfig } from '@awg-app/app.config';
 /**
  * The PageNotFoundView component.
  *
- * It contains the page not found view
- * section of the app.
+ * It contains the page not found view section of the app
+ * with redirects to awg contact pages.
  */
 @Component({
     selector: 'awg-page-not-found-view',

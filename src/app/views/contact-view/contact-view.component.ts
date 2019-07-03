@@ -4,6 +4,13 @@ import { Router } from '@angular/router';
 import { CoreService } from '@awg-core/services';
 import { Meta } from '@awg-core/core-models';
 
+/**
+ * The ContactView component.
+ *
+ * It contains the contact view section of the app
+ * with multiple  {@link HeadingComponent}s and
+ * sections for citation, documentation and masthead.
+ */
 @Component({
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
@@ -51,22 +58,69 @@ export class ContactViewComponent implements OnInit {
      */
     documentationId = 'awg-documentation';
 
+    /**
+     * Public variable: metaData.
+     *
+     * It keeps the meta data for the contact view.
+     */
     metaData: Meta;
+
+    /**
+     * Public variable: today.
+     *
+     * It keeps the current date for the contact view.
+     */
     today: number;
+
+    /**
+     * Public variable: dateFormat.
+     *
+     * It keeps the date format for the contact view.
+     */
     dateFormat = 'd. MMMM yyyy';
 
+    /**
+     * Constructor of the ContactViewComponent.
+     *
+     * It declares a private CoreService instance
+     * to get the meta data and a private Router instance.
+     *
+     * @param {CoreService} coreService Instance of the CoreService.
+     * @param {Router} router Instance of the Angular router.
+     */
     constructor(private coreService: CoreService, private router: Router) {}
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
         this.routeToSidenav();
         this.provideMetaData();
         this.today = Date.now();
     }
 
+    /**
+     * Public method: provideMetaData.
+     *
+     * It calls the CoreService to provide
+     * the meta data for the contact view.
+     *
+     * @returns {void} Sets the metaData variable.
+     */
     provideMetaData(): void {
         this.metaData = this.coreService.getMetaData();
     }
 
+    /**
+     * Public method: routeToSidenav.
+     *
+     * It activates the secondary outlet with the contact-info.
+     *
+     * @returns {void} Activates the contact-info side outlet.
+     */
     routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'contactInfo' } }], {

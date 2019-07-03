@@ -7,8 +7,10 @@ import { CoreService } from '@awg-core/services';
  * The Footer component.
  *
  * It contains the footer section of the app
- * with the {@link FooterDeclarationComponent}, {@link FooterCopyrightComponent},
- * {@link FooterPoweredbyComponent} and {@link FooterLogoComponent}.
+ * with the {@link FooterDeclarationComponent},
+ * {@link FooterCopyrightComponent},
+ * {@link FooterPoweredbyComponent}
+ * and {@link FooterLogoComponent}.
  */
 @Component({
     selector: 'awg-footer',
