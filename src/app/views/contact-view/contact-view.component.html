@@ -1,6 +1,6 @@
 <!-- content: contact -->
 
-<!-- heading -->
+<!-- citation -->
 <!-- citation heading -->
 <awg-heading [title]="citationTitle" [id]="citationId"></awg-heading>
 
@@ -27,6 +27,29 @@
             {{ metaData?.page?.editionUrl }} </a
         >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
         >.
+    </p>
+</div>
+
+<!-- documentation -->
+<!-- documentation heading -->
+<awg-heading [title]="documentationTitle" [id]="documentationId"></awg-heading>
+
+<!-- documentation description -->
+<div class="awg-documentation-description mb-5">
+    <p class="awg-documentation-text">
+        <span class="caps">GitHub:</span><br />
+        Repository unter:
+        <a target="_blank" ref="noopener noreferrer" href="{{ metaData?.page?.githubUrl }}">
+            {{ metaData?.page?.githubUrl }}
+        </a>
+    </p>
+
+    <p class="awg-documentation-text">
+        <span class="caps">Compodoc:</span><br />
+        Dokumentation von Struktur und Funktionalitäten der Angular App:
+        <a id="awg-compodoc" href="{{ metaData?.page?.compodocUrl }} " target="_blank" rel="noopener noreferrer">
+            awg-app documentation
+        </a>
     </p>
 </div>
 

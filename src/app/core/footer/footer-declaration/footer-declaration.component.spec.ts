@@ -102,27 +102,40 @@ describe('FooterDeclarationComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 2, 2);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
+            it('... can get routerLinks from template', () => {
+                expect(routerLinks.length).toBe(2, 'should have 2 routerLinks');
                 expect(routerLinks[0].linkParams).toEqual(['/contact']);
+                expect(routerLinks[1].linkParams).toEqual(['/contact']);
             });
 
-            it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[0]; // contact link DebugElement
-                const contactLink = routerLinks[0]; // contact link directive
+            it('... can click masthead link in template', () => {
+                const mastheadLinkDe = linkDes[0]; // contact link DebugElement
+                const mastheadLink = routerLinks[0]; // contact link directive
 
-                expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
+                expect(mastheadLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                click(contactLinkDe);
+                click(mastheadLinkDe);
                 fixture.detectChanges();
 
-                expect(contactLink.navigatedTo).toEqual(['/contact']);
+                expect(mastheadLink.navigatedTo).toEqual(['/contact']);
+            });
+
+            it('... can click documentation link in template', () => {
+                const documentationLinkDe = linkDes[1]; // contact link DebugElement
+                const documentationLink = routerLinks[1]; // contact link directive
+
+                expect(documentationLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                click(documentationLinkDe);
+                fixture.detectChanges();
+
+                expect(documentationLink.navigatedTo).toEqual(['/contact']);
             });
         });
     });

@@ -13,6 +13,8 @@ export const METADATA: Meta = {
         yearStart: 2015,
         yearCurrent: new Date().getFullYear(),
         editionUrl: AppConfig.EDITION_HOME,
+        githubUrl: AppConfig.GITHUB_HOME,
+        compodocUrl: AppConfig.COMPODOC_HOME,
         webernUrl: AppConfig.WEBERN_HOME,
         version: AppConfig.VERSION,
         versionReleaseDate: AppConfig.VERSION_RELEASE_DATE

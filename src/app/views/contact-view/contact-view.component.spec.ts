@@ -44,6 +44,8 @@ describe('ContactViewComponent (DONE)', () => {
     const expectedMastHeadId = 'awg-masthead';
     const expectedCitationTitle = 'Zitation';
     const expectedCitationId = 'awg-citation';
+    const expectedDocumentationTitle = 'Dokumentation';
+    const expectedDocumentationId = 'awg-documentation';
     const expectedDateFormat = 'd. MMMM yyyy';
 
     beforeEach(async(() => {
@@ -89,6 +91,8 @@ describe('ContactViewComponent (DONE)', () => {
             yearStart: 2015,
             yearCurrent: 2018,
             editionUrl: '',
+            compodocUrl: '',
+            githubUrl: '',
             webernUrl: '',
             version: '0.2.1',
             versionReleaseDate: '20. Oktober 2018'
@@ -114,6 +118,14 @@ describe('ContactViewComponent (DONE)', () => {
             expect(component.citationId).toBe(expectedCitationId);
         });
 
+        it('should have documentation title and id', () => {
+            expect(component.documentationTitle).toBeDefined();
+            expect(component.documentationTitle).toBe(expectedDocumentationTitle);
+
+            expect(component.documentationId).toBeDefined();
+            expect(component.documentationId).toBe(expectedDocumentationId);
+        });
+
         it('should have dateFormat', () => {
             expect(component.dateFormat).toBeDefined();
             expect(component.dateFormat).toBe(expectedDateFormat);
@@ -137,13 +149,18 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain two heading component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
+            it('... should contain 3 heading components (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
             });
 
             it('... should contain 1 `div.awg-citation-description` with 5 `p` elements', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
+            });
+
+            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description > p', 2, 2);
             });
 
             it('... should contain 1 `div.awg-masthead-description` with 5 `p` elements', () => {
@@ -157,7 +174,7 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeUndefined();
@@ -165,6 +182,9 @@ describe('ContactViewComponent (DONE)', () => {
 
                 expect(headingCmps[1].title).toBeUndefined();
                 expect(headingCmps[1].id).toBeUndefined();
+
+                expect(headingCmps[2].title).toBeUndefined();
+                expect(headingCmps[2].id).toBeUndefined();
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
@@ -271,7 +291,7 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeTruthy();
@@ -281,10 +301,19 @@ describe('ContactViewComponent (DONE)', () => {
                 expect(headingCmps[0].id).toBe(expectedCitationId, `should have id: ${expectedCitationId}`);
 
                 expect(headingCmps[1].title).toBeTruthy();
-                expect(headingCmps[1].title).toBe(expectedMastHeadTitle, `should have title: ${expectedMastHeadTitle}`);
+                expect(headingCmps[1].title).toBe(
+                    expectedDocumentationTitle,
+                    `should have title: ${expectedDocumentationTitle}`
+                );
 
                 expect(headingCmps[1].id).toBeTruthy();
-                expect(headingCmps[1].id).toBe(expectedMastHeadId, `should have id: ${expectedMastHeadId}`);
+                expect(headingCmps[1].id).toBe(expectedDocumentationId, `should have id: ${expectedDocumentationId}`);
+
+                expect(headingCmps[2].title).toBeTruthy();
+                expect(headingCmps[2].title).toBe(expectedMastHeadTitle, `should have title: ${expectedMastHeadTitle}`);
+
+                expect(headingCmps[2].id).toBeTruthy();
+                expect(headingCmps[2].id).toBe(expectedMastHeadId, `should have id: ${expectedMastHeadId}`);
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {

@@ -1,4 +1,4 @@
-import { appVersion, appVersionReleaseDate, appHomepage } from './app.globals';
+import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 
 /**
  * App config with accessors to app-wide constants.
@@ -23,12 +23,33 @@ export class AppConfig {
      * @returns {string}
      */
     public static get WEBERN_HOME(): string {
-        const url = 'https://www.anton-webern.ch/';
-        return url;
+        return 'https://www.anton-webern.ch/';
     }
 
     /**
-     * Getter for the url of the AWG edition website (AWG App).
+     * Getter for the URL of the GitHub repository
+     * of the AWG edition website (awg-app).
+     * ({@link https://github.com/webern-unibas-ch/awg-app}).
+     *
+     * @returns {string}
+     */
+    public static get GITHUB_HOME(): string {
+        return 'https://github.com/webern-unibas-ch/awg-app';
+    }
+
+    /**
+     * Getter for the URL of the compodoc documentation
+     * of the AWG edition website (awg-app).
+     * ({@link compodoc/index.html}).
+     *
+     * @returns {string}
+     */
+    public static get COMPODOC_HOME(): string {
+        return 'compodoc/index.html';
+    }
+
+    /**
+     * Getter for the url of the AWG edition website (awg-app).
      *
      * @returns {string}
      */
@@ -37,7 +58,7 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the latest version of the AWG edition website (AWG App).
+     * Getter for the latest version of the AWG edition website (awg-app).
      *
      * @returns {string}
      */
@@ -46,7 +67,7 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the release date of the latest version of the AWG edition website (AWG App).
+     * Getter for the release date of the latest version of the AWG edition website (awg-app).
      *
      * @returns {string}
      */

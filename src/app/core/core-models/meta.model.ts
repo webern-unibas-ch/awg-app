@@ -16,9 +16,19 @@ class MetaPage {
     yearCurrent: number;
 
     /**
-     * The url to the Webern edition app.
+     * The url to the awg-app.
      */
     editionUrl: string;
+
+    /**
+     * The url to the GitHub repository of the AWG edition website (awg-app).
+     */
+    githubUrl: string;
+
+    /**
+     * The url to the compodoc documentation of the AWG edition website (awg-app).
+     */
+    compodocUrl: string;
 
     /**
      * The url to the Webern project homepage.
@@ -26,12 +36,12 @@ class MetaPage {
     webernUrl: string;
 
     /**
-     * The latest version of the Webern edition app.
+     * The latest version of the AWG edition website (awg-app).
      */
     version: string;
 
     /**
-     * The release date of the latest version of the Webern edition app.
+     * The release date of the latest version of the AWG edition website (awg-app).
      */
     versionReleaseDate: string;
 }

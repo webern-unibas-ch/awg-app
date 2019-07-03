@@ -95,6 +95,8 @@ describe('FooterComponent (DONE)', () => {
             yearStart: 2015,
             yearCurrent: 2017,
             editionUrl: '',
+            compodocUrl: '',
+            githubUrl: '',
             webernUrl: '',
             version: '1.0.0',
             versionReleaseDate: '8. November 2016'

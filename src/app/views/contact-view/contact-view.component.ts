@@ -10,11 +10,46 @@ import { Meta } from '@awg-core/core-models';
     styleUrls: ['./contact-view.component.css']
 })
 export class ContactViewComponent implements OnInit {
+    /**
+     * Public variable: mastHeadTitle.
+     *
+     * It keeps the title of the masthead section.
+     */
     mastHeadTitle = 'Impressum';
+
+    /**
+     * Public variable: mastHeadId.
+     *
+     * It keeps the id of the masthead section.
+     */
     mastHeadId = 'awg-masthead';
 
+    /**
+     * Public variable: citationTitle.
+     *
+     * It keeps the title of the citation section.
+     */
     citationTitle = 'Zitation';
+    /**
+     * Public variable: citationId.
+     *
+     * It keeps the id of the citation section.
+     */
     citationId = 'awg-citation';
+
+    /**
+     * Public variable: documentationTitle.
+     *
+     * It keeps the title of the documentation section.
+     */
+    documentationTitle = 'Dokumentation';
+
+    /**
+     * Public variable: documentationId.
+     *
+     * It keeps the id of the documentation section.
+     */
+    documentationId = 'awg-documentation';
 
     metaData: Meta;
     today: number;

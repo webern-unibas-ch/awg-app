@@ -6,7 +6,7 @@
         "name": "Stefan Münnich",
         "email": "<stefan.muennich@unibas.ch>"
     },
-    "description": "Prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
+    "description": "Prototype Web Application for the Online Edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
     "keywords": [
         "angular",
         "anton-webern",
