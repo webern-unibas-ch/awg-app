@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import Spy = jasmine.Spy;
 
 import {
     expectSpyCall,
@@ -11,11 +10,12 @@ import {
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
+import Spy = jasmine.Spy;
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -39,7 +39,9 @@ describe('ContactViewComponent (DONE)', () => {
     let mockRouter;
 
     let expectedToday;
-    let expectedMetaData: Meta;
+    let expectedPageMetaData: MetaPage;
+    let expectedContactMetaData: MetaContact;
+
     const expectedImprintTitle = 'Impressum';
     const expectedImprintId = 'awg-imprint';
     const expectedCitationTitle = 'Zitation';
@@ -50,7 +52,7 @@ describe('ContactViewComponent (DONE)', () => {
 
     beforeEach(async(() => {
         // mock service for test purposes
-        mockCoreService = { getMetaData: () => expectedMetaData };
+        mockCoreService = { getMetaDataSection: key => METADATA[key] };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -68,7 +70,8 @@ describe('ContactViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = METADATA;
+        expectedPageMetaData = METADATA[MetaSectionKey.page];
+        expectedContactMetaData = METADATA[MetaSectionKey.contact];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -86,19 +89,20 @@ describe('ContactViewComponent (DONE)', () => {
         expect(mockCoreService === coreService).toBe(false);
 
         // changing the mock service has no effect on the injected service
-        const changedMetaData = new Meta();
-        changedMetaData.page = {
+        let changedPageMetaData = new MetaPage();
+        changedPageMetaData = {
             yearStart: 2015,
             yearCurrent: 2018,
-            editionUrl: '',
+            awgAppUrl: '',
             compodocUrl: '',
             githubUrl: '',
-            webernUrl: '',
+            awgProjectUrl: '',
+            awgProjectName: '',
             version: '0.2.1',
             versionReleaseDate: '20. Oktober 2018'
         };
-        mockCoreService.getMetaData = () => changedMetaData;
-        expect(coreService.getMetaData()).toBe(expectedMetaData);
+        mockCoreService.getMetaDataSection = () => changedPageMetaData;
+        expect(coreService.getMetaDataSection(MetaSectionKey.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -144,7 +148,8 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         it('should not have metadata nor `today`', () => {
-            expect(component.metaData).toBeUndefined('should be undefined');
+            expect(component.pageMetaData).toBeUndefined('should be undefined');
+            expect(component.contactMetaData).toBeUndefined('should be undefined');
             expect(component.today).toBeUndefined('should be undefined');
         });
 
@@ -217,7 +222,8 @@ describe('ContactViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.metaData = mockCoreService.getMetaData();
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
+            component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.contact);
 
             // spy on Date.now() returning a mocked (fixed) date
             expectedToday = Date.now();
@@ -278,8 +284,11 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
-                expect(component.metaData).toBeDefined();
-                expect(component.metaData).toBe(expectedMetaData);
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData).toBe(expectedPageMetaData);
+
+                expect(component.contactMetaData).toBeDefined();
+                expect(component.contactMetaData).toBe(expectedContactMetaData);
             });
         });
 
@@ -334,14 +343,14 @@ describe('ContactViewComponent (DONE)', () => {
                 // check output
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toContain(
-                    expectedMetaData.page.version,
-                    `should contain ${expectedMetaData.page.version}`
+                    expectedPageMetaData.version,
+                    `should contain ${expectedPageMetaData.version}`
                 );
 
                 expect(releaseEl).toBeDefined();
                 expect(releaseEl.textContent).toContain(
-                    expectedMetaData.page.versionReleaseDate,
-                    `should contain ${expectedMetaData.page.versionReleaseDate}`
+                    expectedPageMetaData.versionReleaseDate,
+                    `should contain ${expectedPageMetaData.versionReleaseDate}`
                 );
 
                 expect(dateEl0).toBeDefined();

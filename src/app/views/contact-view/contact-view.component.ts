@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CoreService } from '@awg-core/services';
-import { Meta } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
 
 /**
  * The ContactView component.
@@ -59,11 +59,18 @@ export class ContactViewComponent implements OnInit {
     documentationId = 'awg-documentation';
 
     /**
-     * Public variable: metaData.
+     * Public variable: contactMetaData.
      *
-     * It keeps the meta data for the contact view.
+     * It keeps the contact meta data for the contact view.
      */
-    metaData: Meta;
+    contactMetaData: MetaContact;
+
+    /**
+     * Public variable: pageMetaData.
+     *
+     * It keeps the page meta data for the contact view.
+     */
+    pageMetaData: MetaPage;
 
     /**
      * Public variable: today.
@@ -108,10 +115,11 @@ export class ContactViewComponent implements OnInit {
      * It calls the CoreService to provide
      * the meta data for the contact view.
      *
-     * @returns {void} Sets the metaData variable.
+     * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.metaData = this.coreService.getMetaData();
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
+        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionKey.contact);
     }
 
     /**

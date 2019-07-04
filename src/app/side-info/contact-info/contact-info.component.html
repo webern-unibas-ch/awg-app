@@ -1,25 +1,28 @@
 <!-- sideinfo: contact -->
 <div class="card">
     <div class="card-body bg-light">
-        <h2>Kontakt</h2>
+        <h2>{{ contactInfoHeader }}</h2>
         <br />
         <address>
             <span class="caps">
                 <strong>
-                    <a href="{{ metaData?.page?.webernUrl }}" target="_blank" rel="noopener noreferrer">
-                        Anton Webern Gesamtausgabe
+                    <a href="{{ pageMetaData?.awgProjectUrl }}" target="_blank" rel="noopener noreferrer">
+                        {{ pageMetaData?.awgProjectName }}
                     </a>
                 </strong>
             </span>
             <br />
             <br />
-            Musikwissenschaftliches Seminar der Universität Basel<br />
-            Petersgraben 27/29<br />
-            CH-4051 Basel<br />
-            Schweiz<br />
+            {{ contactMetaData?.address?.institution }}<br />
+            {{ contactMetaData?.address?.street }}<br />
+            {{ contactMetaData?.address?.postalCode }} {{ contactMetaData?.address?.city }}<br />
+            {{ contactMetaData?.address?.country }}<br />
             <br />
-            Telefon: +41 (0)61 267 28 08<br />
-            E-Mail: <a href="mailto:info-awg@unibas.ch">info-awg [at] unibas [dot] ch</a><br />
+            {{ contactMetaData?.phone?.label }}&nbsp;{{ contactMetaData?.phone?.number }}<br />
+            {{ contactMetaData?.email?.label }}&nbsp;<a href="{{ contactMetaData?.email?.mailto }}">{{
+                contactMetaData?.email?.safeString
+            }}</a
+            ><br />
         </address>
         <iframe
             width="100%"
@@ -28,7 +31,7 @@
             scrolling="no"
             marginheight="0"
             marginwidth="0"
-            [src]="osmUrl"
+            [src]="osmEmbedUrl"
             style="border: 1px solid black"
         >
         </iframe>
