@@ -23,6 +23,13 @@ export class StructureInfoComponent implements OnInit {
     structureMetaData: MetaStructure;
 
     /**
+     * Public variable: structureInfoHeader.
+     *
+     * It keeps the header for the structure-info.
+     */
+    structureInfoHeader = 'Strukturmodell';
+
+    /**
      * Constructor of the StructureInfoComponent.
      *
      * It declares a private CoreService instance
