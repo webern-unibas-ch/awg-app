@@ -22,6 +22,20 @@ export class EditionInfoComponent implements OnInit {
     editionMetaData: MetaEdition;
 
     /**
+     * Public variable: editionInfoHeader.
+     *
+     * It keeps the header information for the edition-info.
+     */
+    editionInfoHeader = {
+        section: 'AWG I/5',
+        title: 'Vier Lieder',
+        catalogueType: 'op.',
+        catalogueNumber: '12',
+        part: 'Skizzen',
+        description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
+    };
+
+    /**
      * Constructor of the EditionInfoComponent.
      *
      * It declares a private CoreService instance
