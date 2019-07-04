@@ -118,7 +118,7 @@ export class ConversionService extends ApiService {
                     // replace salsah links
                     htmlstr = this.replaceSalsahLink(htmlstr);
 
-                    // strip & replace <p>-tags for displaying objt
+                    // strip & replace <p>-tags for displaying
                     htmlstr = this.replaceParagraphTags(htmlstr);
 
                     subject.value[0] = htmlstr;
@@ -225,7 +225,7 @@ export class ConversionService extends ApiService {
 
                                 // replace bibliography links
                                 if (prop.label === 'Online-Zugang') {
-                                    propValue[i] = this.replaceBiblioLink(propValue[i]);
+                                    propValue[i] = this.adjustBiblioLink(propValue[i]);
                                 }
                             }
                         }
@@ -717,13 +717,17 @@ export class ConversionService extends ApiService {
         return htmlConverter(JSON.parse(attr), str);
     }
 
-    /******************************************
+    /**
+     * Private method: getAdditionalInfoFromApi.
      *
-     * get additional resource info from salsah api
+     * It makes additional calls to the given (SALSAH) API
+     * to get additional resource infos in case of geoames,
+     * hlists, selections or image values.
      *
-     * @todo continue
-     *
-     *****************************************/
+     * @param {*} responseJsonType The given json type of the API response.
+     * @param {string} id The given id of a resource.
+     * @returns {Observable<any>} The observable of the HTTP response.
+     */
     private getAdditionalInfoFromApi(responseJsonType: any, id: string): Observable<any> {
         let queryPath: string;
         switch (responseJsonType) {
@@ -743,30 +747,40 @@ export class ConversionService extends ApiService {
         return this.getApiResponse(responseJsonType, queryPath);
     }
 
-    /******************************************
+    /**
+     * Private method: getNodeIdFromAttributes.
      *
-     * get node id from attributes value
+     * It gets a node id from the prop.attributes
+     * of a selections or hlists value.
      *
-     *****************************************/
-    private getNodeIdFromAttributes(attributes): string {
+     * @param {string} attributes The given prop.attributes.
+     * @returns {string} id The node id.
+     */
+    private getNodeIdFromAttributes(attributes: string): string {
         // identify node id from prop.attributes
         // e.g. "hlist=17" or "selection=77"
         return attributes.split('=')[1].toString();
     }
 
-    /******************************************
+    /**
+     * Private method: adjustBiblioLink.
      *
-     *  find inner links in online-access-property
-     *  and rebuild the values for displaying
+     * It finds internal links in the online-access property
+     * of a bibliography link and adjusts the values
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private replaceBiblioLink(str: string): string {
+     * @param {string} str The given link string.
+     * @example
+     * str = '(PDF) http://www.example.com/myPdf.pdf'
+     * @returns {string} The adjusted biblio link.
+     */
+    private adjustBiblioLink(str: string): string {
         if (!str) {
             return;
         }
 
-        let tmpStr: string;
-        let nameStr: string;
+        let outStr: string;
+        let labelStr: string;
         let splitArr: string[];
         let linkRegArr: RegExpExecArray;
         const regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
@@ -774,33 +788,36 @@ export class ConversionService extends ApiService {
         // check for double spaces
         str = str.replace('  ', ' ');
 
-        // split "str" behind parentheses
+        // split "str" behind closing parentheses
         splitArr = str.split(') ');
 
-        // get name of link from 1st part of "splitstr
-        nameStr = splitArr[0].replace('(', '');
+        // get label of link from 1st part of splitArr (without opening parentheses)
+        labelStr = splitArr[0].replace('(', '');
 
-        // check for link in 2nd part of "splitArr"
+        // check for link in 2nd part of splitArr
         if (regExLink.exec(splitArr[1])) {
             // ... link with <a> tag
             linkRegArr = regExLink.exec(splitArr[1]);
-            tmpStr = '<a target="_blank" ref="noopener noreferrer" ' + linkRegArr[1] + '>' + nameStr + '</a>';
-        } else if (nameStr !== 'DOI') {
+            outStr = '<a target="_blank" ref="noopener noreferrer" ' + linkRegArr[1] + '>' + labelStr + '</a>';
+        } else if (labelStr !== 'DOI') {
             // ... <a> tag is missing, add it
-            tmpStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitArr[1] + '">' + nameStr + '</a>';
+            outStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitArr[1] + '">' + labelStr + '</a>';
         } else {
             // no links, pure string
-            tmpStr = nameStr + ': ' + splitArr[1];
+            outStr = labelStr + ': ' + splitArr[1];
         }
-        return tmpStr;
+        return outStr;
     }
 
-    /******************************************
+    /**
+     * Private method: replaceSalsahLink.
      *
-     * find inner salsah links in richtext
-     * and replace them with click-directive
+     * It finds internal salsah links in richtext values
+     * and replaces them with Angular click-directives.
      *
-     *****************************************/
+     * @param {string} str The given richtext value.
+     * @returns {string} The adjusted richtext value.
+     */
     private replaceSalsahLink(str: string): string {
         if (!str) {
             return;
@@ -809,17 +826,16 @@ export class ConversionService extends ApiService {
         const regLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
         let regArr: RegExpExecArray;
 
-        // check only for salsah links
+        // check for salsah links in str
         while (regLink.exec(str)) {
             // i.e.: as long as patLink is detected in str do...
-
             regArr = regLink.exec(str);
 
             // identify resource id
             const resId = regNum.exec(regArr[1])[0];
 
             // replace href attribute with click-directive
-            // linktext is stored in second regexp-result p[2]
+            // linktext is stored in second regexp-result regArr[2]
             const replaceValue =
                 '<a (click)="ref.navigateToResource(\'' +
                 resId +
@@ -832,11 +848,15 @@ export class ConversionService extends ApiService {
         return str;
     }
 
-    /******************************************
+    /**
+     * Private method: replaceParagraphTags.
      *
-     * replace paragraph tags
+     * It removes paragraph tags in richtext values
+     * and replaces line breaks instead for multiple lines.
      *
-     *****************************************/
+     * @param {string} str The given richtext value.
+     * @returns {string} The adjusted richtext value.
+     */
     private replaceParagraphTags(str: string): string {
         if (!str) {
             return;
@@ -848,20 +868,21 @@ export class ConversionService extends ApiService {
         return str;
     }
 
-    /******************************************
+    /**
+     * Private method: distinctSubjects.
      *
-     * remove duplicates from array (SubjectItemJson[])
+     * It removes duplicates from an array (SubjectItemJson[]).
+     * It checks for every array position (reduce) if the obj_id
+     * of the entry at the current position (y) is already
+     * in the array (findIndex). If that is not the case it
+     * pushes y into x which is initialized as empty array [].
      *
-     *****************************************/
+     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
     private distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
-        /*
-         * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
-         *
-         * This function checks for every array position (reduce)
-         * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
-         * and if not pushes y into x that is initalized as empty array []
-         *
-         */
         if (!subjects) {
             return;
         }
@@ -872,13 +893,17 @@ export class ConversionService extends ApiService {
         );
     }
 
-    /******************************************
+    /**
+     * Private method: groupByRestype.
      *
-     * group array of incoming links by restype
+     * It groups an array of incoming links
+     * by their resource type.
      *
-     *****************************************/
+     * @param {ResourceDetailIncomingLink[]} incomingLinks The given incoming links.
+     * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links.
+     */
     private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks {
-        const groups = {};
+        const groups: ResourceDetailGroupedIncomingLinks = {};
         // iterate over incoming links to group by restype
         incomingLinks.forEach(link => {
             const group = link.restype.label;
