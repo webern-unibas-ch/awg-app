@@ -11,6 +11,23 @@ export enum MetaSectionKey {
 }
 
 /**
+ * The MetaPerson class.
+ *
+ * It is used to store the meta data about a Person.
+ */
+export class MetaPerson {
+    /**
+     * The name of the person.
+     */
+    name: string;
+
+    /**
+     * The contact (webadress) of a person.
+     */
+    contactUrl: string;
+}
+
+/**
  * The MetaPage class.
  *
  * It is used in the context of the app framework
@@ -64,24 +81,6 @@ export class MetaPage {
 }
 
 /**
- * The MetaEditionEditor class.
- *
- * It is used in the context of the edition view
- * to store the meta data about the editors.
- */
-export class MetaEditionEditor {
-    /**
-     * The name of the editor
-     */
-    name: string;
-
-    /**
-     * The contact of an editor
-     */
-    contact: string;
-}
-
-/**
  * The MetaEdition class.
  *
  * It is used in the context of the edition view
@@ -91,7 +90,7 @@ export class MetaEdition {
     /**
      * The editors of an edition.
      */
-    editors: MetaEditionEditor[];
+    editors: MetaPerson[];
 
     /**
      * The last modification date of an edition.
@@ -107,9 +106,9 @@ export class MetaEdition {
  */
 export class MetaStructure {
     /**
-     * The author of the structure overview.
+     * The authors of the structure overview.
      */
-    author: string;
+    authors: MetaPerson[];
 
     /**
      * The last modification date of the structure overview.

@@ -27,7 +27,7 @@ const METAEDITION: MetaEdition = {
     editors: [
         {
             name: 'Thomas Ahrend',
-            contact: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
         }
     ],
     lastModified: '29. Januar 2016'
@@ -39,7 +39,12 @@ const METAEDITION: MetaEdition = {
  * It provides metadata used for the structure view.
  */
 const METASTRUCTURE: MetaStructure = {
-    author: 'Stefan Münnich',
+    authors: [
+        {
+            name: 'Stefan Münnich',
+            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+        }
+    ],
     lastModified: '29. Januar 2016'
 };
 
