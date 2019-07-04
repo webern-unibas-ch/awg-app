@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaPage } from '@awg-core/core-models';
 
 /**
  * The FooterCopyright component.
@@ -14,10 +14,10 @@ import { Meta } from '@awg-core/core-models';
 })
 export class FooterCopyrightComponent {
     /**
-     * Input variable: metaData.
+     * Input variable: pageMetaData.
      *
-     * It keeps the meta data for the component.
+     * It keeps the page meta data for the component.
      */
     @Input()
-    metaData: Meta;
+    pageMetaData: MetaPage;
 }

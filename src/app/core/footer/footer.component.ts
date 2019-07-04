@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Logos, Meta } from '@awg-core/core-models';
+import { Logos, MetaSectionKey, MetaPage } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -19,11 +19,11 @@ import { CoreService } from '@awg-core/services';
 })
 export class FooterComponent implements OnInit {
     /**
-     * Public variable: metaData.
+     * Public variable: pageMetaData.
      *
-     * It keeps the meta data for the footer.
+     * It keeps the page meta data for the footer.
      */
-    metaData: Meta;
+    pageMetaData: MetaPage;
 
     /**
      * Public variable: logos.
@@ -58,10 +58,10 @@ export class FooterComponent implements OnInit {
      * It calls the CoreService to provide
      * the meta data and logos for the footer.
      *
-     * @returns {void} Sets the metaData and logos variables.
+     * @returns {void} Sets the pageMetaData and logos variables.
      */
     provideMetaData(): void {
-        this.metaData = this.coreService.getMetaData();
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
         this.logos = this.coreService.getLogos();
     }
 }

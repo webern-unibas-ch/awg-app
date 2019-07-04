@@ -5,7 +5,7 @@ import { click } from '@testing/click-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaPage, MetaSectionKey } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 
 import { FooterDeclarationComponent } from './footer-declaration.component';
@@ -18,7 +18,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedMetaData: Meta;
+    let expectedPageMetaData: MetaPage;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -33,7 +33,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = METADATA;
+        expectedPageMetaData = METADATA[MetaSectionKey.page];
     });
 
     it('should create', () => {
@@ -41,8 +41,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have metaData', () => {
-            expect(component.metaData).toBeUndefined('should be undefined');
+        it('should not have pageMetaData', () => {
+            expect(component.pageMetaData).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -50,7 +50,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'p', 3, 3);
             });
 
-            it('... should not render metaData yet', () => {
+            it('... should not render pageMetaData yet', () => {
                 // find debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
@@ -72,7 +72,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // simulate the parent setting the input properties
-            component.metaData = expectedMetaData;
+            component.pageMetaData = expectedPageMetaData;
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -80,8 +80,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('should render values', () => {
-                const expectedVersion = expectedMetaData.page.version;
-                const expectedVersionDate = expectedMetaData.page.versionReleaseDate;
+                const expectedVersion = expectedPageMetaData.version;
+                const expectedVersionDate = expectedPageMetaData.versionReleaseDate;
 
                 // find debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);

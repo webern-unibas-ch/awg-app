@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaPage } from '@awg-core/core-models';
 
 /**
  * The FooterDeclaration component.
@@ -15,10 +15,10 @@ import { Meta } from '@awg-core/core-models';
 })
 export class FooterDeclarationComponent {
     /**
-     * Input variable: metaData.
+     * Input variable: pageMetaData.
      *
-     * It keeps the meta data for the component.
+     * It keeps the page meta data for the component.
      */
     @Input()
-    metaData: Meta;
+    pageMetaData: MetaPage;
 }

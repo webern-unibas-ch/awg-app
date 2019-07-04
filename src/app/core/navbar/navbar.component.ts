@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 
-import { faFileAlt, faEnvelope, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaPage, MetaSectionKey } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -17,20 +17,6 @@ import { CoreService } from '@awg-core/services';
     styleUrls: ['./navbar.component.css']
 })
 export class NavbarComponent implements OnInit {
-    /**
-     * Public variable: isCollapsed.
-     *
-     * If the header menu is collapsed or not.
-     */
-    isCollapsed = true;
-
-    /**
-     * Public variable: metaData.
-     *
-     * It keeps the meta data for the header.
-     */
-    metaData: Meta;
-
     /**
      * Public variable: faEnvelope.
      *
@@ -67,6 +53,20 @@ export class NavbarComponent implements OnInit {
     faSearch = faSearch;
 
     /**
+     * Public variable: isCollapsed.
+     *
+     * If the header menu is collapsed or not.
+     */
+    isCollapsed = true;
+
+    /**
+     * Public variable: pageMetaData.
+     *
+     * It keeps the page meta data for the header.
+     */
+    pageMetaData: MetaPage;
+
+    /**
      * Constructor of the HeaderComponent.
      *
      * It declares a private CoreService instance
@@ -92,10 +92,10 @@ export class NavbarComponent implements OnInit {
      * It calls the CoreService to provide
      * the meta data for the header.
      *
-     * @returns {void} Sets the metaData variable.
+     * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.metaData = this.coreService.getMetaData();
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
     }
 
     /**

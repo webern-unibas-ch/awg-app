@@ -8,6 +8,11 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+
+import { MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
+import { CoreService } from '@awg-core/services';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -19,12 +24,21 @@ describe('NavbarComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
+    let mockCoreService: Partial<CoreService>;
+
+    let expectedPageMetaData: MetaPage;
     let expectedIsCollapsed: boolean;
 
     beforeEach(async(() => {
+        // stub service for test purposes
+        mockCoreService = {
+            getMetaDataSection: () => expectedPageMetaData
+        };
+
         TestBed.configureTestingModule({
             imports: [FontAwesomeModule, NgbCollapseModule, NgbDropdownModule],
-            declarations: [NavbarComponent, RouterLinkStubDirective]
+            declarations: [NavbarComponent, RouterLinkStubDirective],
+            providers: [{ provide: CoreService, useValue: mockCoreService }]
         }).compileComponents();
     }));
 
@@ -36,11 +50,35 @@ describe('NavbarComponent (DONE)', () => {
 
         // test data
         expectedIsCollapsed = true;
+        expectedPageMetaData = METADATA[MetaSectionKey.page];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'toggleNav').and.callThrough();
+    });
+
+    it('stub service and injected coreService should not be the same', () => {
+        const coreService = TestBed.get(CoreService);
+        expect(mockCoreService === coreService).toBe(false);
+
+        // changing the stub service has no effect on the injected service
+        let changedPageMetaData = new MetaPage();
+        changedPageMetaData = {
+            yearStart: 2015,
+            yearCurrent: 2017,
+            awgAppUrl: '',
+            compodocUrl: '',
+            githubUrl: '',
+            awgProjectName: '',
+            awgProjectUrl: '',
+            version: '1.0.0',
+            versionReleaseDate: '8. November 2016'
+        };
+        mockCoreService.getMetaDataSection = () => changedPageMetaData;
+
+        expect(coreService.getMetaDataSection()).toBe(expectedPageMetaData);
     });
 
     it('should create', () => {
@@ -48,8 +86,26 @@ describe('NavbarComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('should have fontawesome icons', () => {
+            expect(component.faEnvelope).toBe(faEnvelope, 'should be faEnvelope');
+            expect(component.faFileAlt).toBe(faFileAlt, 'should be faFileAlt');
+            expect(component.faHome).toBe(faHome, 'should be faHome');
+            expect(component.faNetworkWired).toBe(faNetworkWired, 'should be faNetworkWired');
+            expect(component.faSearch).toBe(faSearch, 'should be faSearch');
+        });
+
         it('should have `isCollapsed = true`', () => {
             expect(component.isCollapsed).toBe(true, 'should be true');
+        });
+
+        describe('#provideMetaData', () => {
+            it('... should not have been called', () => {
+                expect(component.provideMetaData).not.toHaveBeenCalled();
+            });
+
+            it('... should not have pageMetaData', () => {
+                expect(component.pageMetaData).toBeUndefined('should be undefined');
+            });
         });
 
         describe('#toggleNav', () => {
@@ -93,6 +149,18 @@ describe('NavbarComponent (DONE)', () => {
             it('... should contain 1 navbar collapse', () => {
                 getAndExpectDebugElementByCss(compDe, 'nav.navbar > .navbar-collapse', 1, 1);
             });
+
+            it('... should not render awg project url yet', () => {
+                const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
+                const urlEl1 = urlDes[0].nativeElement;
+                const urlEl2 = urlDes[1].nativeElement;
+
+                expect(urlEl1.href).toBeDefined();
+                expect(urlEl1.href).toBe('', 'should be empty string');
+
+                expect(urlEl2.href).toBeDefined();
+                expect(urlEl2.href).toBe('', 'should be empty string');
+            });
         });
     });
 
@@ -100,6 +168,37 @@ describe('NavbarComponent (DONE)', () => {
         beforeEach(() => {
             // trigger initial data binding
             fixture.detectChanges();
+        });
+
+        describe('VIEW', () => {
+            it('... should render contact url', () => {
+                const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
+                const urlEl1 = urlDes[0].nativeElement;
+                const urlEl2 = urlDes[1].nativeElement;
+
+                expect(urlEl1.href).toBeDefined();
+                expect(urlEl1.href).toBe(
+                    expectedPageMetaData.awgProjectUrl,
+                    `should be ${expectedPageMetaData.awgProjectUrl}`
+                );
+
+                expect(urlEl2.href).toBeDefined();
+                expect(urlEl2.href).toBe(
+                    expectedPageMetaData.awgProjectUrl,
+                    `should be ${expectedPageMetaData.awgProjectUrl}`
+                );
+            });
+        });
+
+        describe('#provideMetaData', () => {
+            it('... should have been called', () => {
+                expect(component.provideMetaData).toHaveBeenCalled();
+            });
+
+            it('... should return metadata', () => {
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData).toBe(expectedPageMetaData);
+            });
         });
 
         describe('[routerLink]', () => {
