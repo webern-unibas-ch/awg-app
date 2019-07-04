@@ -4,11 +4,11 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
 /**
  * Object constant with a set of modal texts.
  *
- * It provides the text snippets to be used in modal.
+ * It provides the text snippets to be used in a modal.
  *
- * Available snippets: `sourceNotA`, `sheetComingSoon`, `editionComingSoon`, `M198`.
+ * Available snippet keys: `sourceNotA`, `sheetComingSoon`, `editionComingSoon`, `M198`.
  */
-const MODAL_TEXT = {
+const MODALCONTENTSNIPPETS = {
     sourceNotA:
         '<p>Die Beschreibung der weiteren Quellenbestandteile von <strong>A</strong> sowie der Quellen <strong>B</strong> bis <strong>G1</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.</p>',
     sheetComingSoon:
@@ -82,33 +82,16 @@ export class ModalComponent {
      */
     constructor(private modalService: NgbModal) {}
 
-    open(identifier: string): void {
     /**
-     * Public method: open.
+     * Private static method: getDismissReason.
      *
-     * It opens the modal with the text snippet
-     * represented by the given snippet key.
+     * It gets the dismiss reason message
+     * of the closing event of the modal.
      *
-     * Snippet key must be an existing key of MODALSNIPPETS.
-     *
-     * @param {string} modalSnippetKey The given snippet key.
-     * @returns {void} Opens the modal.
+     * @param {*} reason The given reason.
+     * @returns {string} The dismiss reason message.
      */
-        // get modal text
-        this.modalContent = MODAL_TEXT[identifier];
-
-        // open modalTemplate via modalService
-        this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(
-            result => {
-                this.closeResult = `Closed with: ${result}`;
-            },
-            reason => {
-                this.closeResult = `Dismissed ${this.getDismissReason(reason)}`;
-            }
-        );
-    }
-
-    private getDismissReason(reason: any): string {
+    private static getDismissReason(reason: any): string {
         if (reason === ModalDismissReasons.ESC) {
             return 'by pressing ESC';
         } else if (reason === ModalDismissReasons.BACKDROP_CLICK) {
@@ -116,5 +99,33 @@ export class ModalComponent {
         } else {
             return `with: ${reason}`;
         }
+    }
+
+    /**
+     * Public method: open.
+     *
+     * It opens the modal with the text snippet
+     * represented by the given snippet key.
+     *
+     * Snippet key must be an existing key of MODALCONTENTSNIPPETS.
+     *
+     * @param {string} modalContentSnippetKey The given snippet key.
+     * @returns {void} Opens the modal.
+     */
+    open(modalContentSnippetKey: string): void {
+        // get modal text
+        this.modalContent = MODALCONTENTSNIPPETS[modalContentSnippetKey]
+            ? MODALCONTENTSNIPPETS[modalContentSnippetKey]
+            : '';
+
+        // open modalTemplate via modalService
+        this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(
+            result => {
+                this.closeResult = `Closed with: ${result}`;
+            },
+            reason => {
+                this.closeResult = `Dismissed ${ModalComponent.getDismissReason(reason)}`;
+            }
+        );
     }
 }
