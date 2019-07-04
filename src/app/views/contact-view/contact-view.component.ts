@@ -9,7 +9,7 @@ import { Meta } from '@awg-core/core-models';
  *
  * It contains the contact view section of the app
  * with multiple  {@link HeadingComponent}s and
- * sections for citation, documentation and masthead.
+ * sections for citation, documentation and imprint.
  */
 @Component({
     selector: 'awg-contact-view',
@@ -18,18 +18,18 @@ import { Meta } from '@awg-core/core-models';
 })
 export class ContactViewComponent implements OnInit {
     /**
-     * Public variable: mastHeadTitle.
+     * Public variable: imprintTitle.
      *
-     * It keeps the title of the masthead section.
+     * It keeps the title of the imprint section.
      */
-    mastHeadTitle = 'Impressum';
+    imprintTitle = 'Impressum';
 
     /**
-     * Public variable: mastHeadId.
+     * Public variable: imprintId.
      *
-     * It keeps the id of the masthead section.
+     * It keeps the id of the imprint section.
      */
-    mastHeadId = 'awg-masthead';
+    imprintId = 'awg-imprint';
 
     /**
      * Public variable: citationTitle.

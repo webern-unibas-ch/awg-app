@@ -40,8 +40,8 @@ describe('ContactViewComponent (DONE)', () => {
 
     let expectedToday;
     let expectedMetaData: Meta;
-    const expectedMastHeadTitle = 'Impressum';
-    const expectedMastHeadId = 'awg-masthead';
+    const expectedImprintTitle = 'Impressum';
+    const expectedImprintId = 'awg-imprint';
     const expectedCitationTitle = 'Zitation';
     const expectedCitationId = 'awg-citation';
     const expectedDocumentationTitle = 'Dokumentation';
@@ -102,12 +102,12 @@ describe('ContactViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have masthead title and id', () => {
-            expect(component.mastHeadTitle).toBeDefined();
-            expect(component.mastHeadTitle).toBe(expectedMastHeadTitle);
+        it('should have imprint title and id', () => {
+            expect(component.imprintTitle).toBeDefined();
+            expect(component.imprintTitle).toBe(expectedImprintTitle);
 
-            expect(component.mastHeadId).toBeDefined();
-            expect(component.mastHeadId).toBe(expectedMastHeadId);
+            expect(component.imprintId).toBeDefined();
+            expect(component.imprintId).toBe(expectedImprintId);
         });
 
         it('should have citation title and id', () => {
@@ -163,9 +163,9 @@ describe('ContactViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description > p', 2, 2);
             });
 
-            it('... should contain 1 `div.awg-masthead-description` with 5 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 5, 5);
+            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description > p', 5, 5);
             });
 
             it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements', () => {
@@ -310,10 +310,10 @@ describe('ContactViewComponent (DONE)', () => {
                 expect(headingCmps[1].id).toBe(expectedDocumentationId, `should have id: ${expectedDocumentationId}`);
 
                 expect(headingCmps[2].title).toBeTruthy();
-                expect(headingCmps[2].title).toBe(expectedMastHeadTitle, `should have title: ${expectedMastHeadTitle}`);
+                expect(headingCmps[2].title).toBe(expectedImprintTitle, `should have title: ${expectedImprintTitle}`);
 
                 expect(headingCmps[2].id).toBeTruthy();
-                expect(headingCmps[2].id).toBe(expectedMastHeadId, `should have id: ${expectedMastHeadId}`);
+                expect(headingCmps[2].id).toBe(expectedImprintId, `should have id: ${expectedImprintId}`);
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {

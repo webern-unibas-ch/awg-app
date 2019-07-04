@@ -114,16 +114,16 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 expect(routerLinks[1].linkParams).toEqual(['/contact']);
             });
 
-            it('... can click masthead link in template', () => {
-                const mastheadLinkDe = linkDes[0]; // contact link DebugElement
-                const mastheadLink = routerLinks[0]; // contact link directive
+            it('... can click imprint link in template', () => {
+                const imprintLinkDe = linkDes[0]; // contact link DebugElement
+                const imprintLink = routerLinks[0]; // contact link directive
 
-                expect(mastheadLink.navigatedTo).toBeNull('should not have navigated yet');
+                expect(imprintLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                click(mastheadLinkDe);
+                click(imprintLinkDe);
                 fixture.detectChanges();
 
-                expect(mastheadLink.navigatedTo).toEqual(['/contact']);
+                expect(imprintLink.navigatedTo).toEqual(['/contact']);
             });
 
             it('... can click documentation link in template', () => {
