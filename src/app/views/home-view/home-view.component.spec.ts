@@ -69,7 +69,7 @@ describe('HomeViewComponent (DONE)', () => {
         // changing the stub service has no effect on the injected service
         let changedEditionMetaData = new MetaEdition();
         changedEditionMetaData = {
-            editors: [{ name: 'Test Editor 2', contact: '' }],
+            editors: [{ name: 'Test Editor 2', contactUrl: '' }],
             lastModified: '10. Oktober 2018'
         };
 
@@ -100,16 +100,18 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.declamation', 1, 1);
             });
 
-            it('... should not render `editors` and `lastmodified` yet', () => {
+            it('... should not render `editors` yet', () => {
                 const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors a', 1, 1);
                 const editorsEl = editorsDes[0].nativeElement;
-
-                const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
-                const versionEl = versionDes[0].nativeElement;
 
                 expect(editorsEl).toBeDefined();
                 expect(editorsEl.href).toBe('', 'should be empty string');
                 expect(editorsEl.textContent).toBe('', 'should be empty string');
+            });
+
+            it('... should not render `lastmodified` yet', () => {
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
+                const versionEl = versionDes[0].nativeElement;
 
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'be contain empty string');
@@ -183,27 +185,24 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render `editors` and `lastmodified` in declamation', () => {
+            it('... should render `editors` in declamation', () => {
                 const editorsDes = getAndExpectDebugElementByCss(compDe, '.declamation .editors a', 1, 1);
                 const editorsEl = editorsDes[0].nativeElement;
 
-                const versionDes = getAndExpectDebugElementByCss(compDe, '.declamation .version', 1, 1);
-                const versionEl = versionDes[0].nativeElement;
-
-                console.log(editorsDes[0]);
-                console.log(editorsEl);
-                console.log(editorsEl.innerHTML);
-                console.log(expectedEditionMetaData.editors);
-
                 expect(editorsEl).toBeDefined();
                 expect(editorsEl.href).toBe(
-                    expectedEditionMetaData.editors[0].contact,
-                    `should be ${expectedEditionMetaData.editors[0].contact}`
+                    expectedEditionMetaData.editors[0].contactUrl,
+                    `should be ${expectedEditionMetaData.editors[0].contactUrl}`
                 );
                 expect(editorsEl.innerHTML).toBe(
                     expectedEditionMetaData.editors[0].name,
                     `should be ${expectedEditionMetaData.editors[0].name}`
                 );
+            });
+
+            it('... should render `lastmodified` in declamation', () => {
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.declamation .version', 1, 1);
+                const versionEl = versionDes[0].nativeElement;
 
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe(
