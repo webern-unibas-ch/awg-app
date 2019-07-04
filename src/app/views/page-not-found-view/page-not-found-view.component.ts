@@ -44,7 +44,7 @@ export class PageNotFoundViewComponent {
      * It keeps the url to the contact page
      * of the Webern project homepage.
      */
-    private _awgContactUrl = AppConfig.WEBERN_HOME + 'index.php?id=41';
+    private _awgContactUrl = AppConfig.AWG_PROJECT_URL + 'index.php?id=41';
 
     /**
      * Getter for the path to the image

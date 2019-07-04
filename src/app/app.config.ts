@@ -17,24 +17,12 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the URL of the AWG project website
-     * ({@link https://anton-webern.ch}).
+     * Getter for the url of the AWG edition website (awg-app).
      *
      * @returns {string}
      */
-    public static get WEBERN_HOME(): string {
-        return 'https://www.anton-webern.ch/';
-    }
-
-    /**
-     * Getter for the URL of the GitHub repository
-     * of the AWG edition website (awg-app).
-     * ({@link https://github.com/webern-unibas-ch/awg-app}).
-     *
-     * @returns {string}
-     */
-    public static get GITHUB_HOME(): string {
-        return 'https://github.com/webern-unibas-ch/awg-app';
+    public static get AWG_APP_URL(): string {
+        return appHomepage;
     }
 
     /**
@@ -44,17 +32,19 @@ export class AppConfig {
      *
      * @returns {string}
      */
-    public static get COMPODOC_HOME(): string {
+    public static get AWG_APP_COMPODOC_URL(): string {
         return 'compodoc/index.html';
     }
 
     /**
-     * Getter for the url of the AWG edition website (awg-app).
+     * Getter for the URL of the GitHub repository
+     * of the AWG edition website (awg-app).
+     * ({@link https://github.com/webern-unibas-ch/awg-app}).
      *
      * @returns {string}
      */
-    public static get EDITION_HOME(): string {
-        return appHomepage;
+    public static get AWG_APP_GITHUB_URL(): string {
+        return 'https://github.com/webern-unibas-ch/awg-app';
     }
 
     /**
@@ -62,7 +52,7 @@ export class AppConfig {
      *
      * @returns {string}
      */
-    public static get VERSION(): string {
+    public static get AWG_APP_VERSION(): string {
         return appVersion;
     }
 
@@ -71,7 +61,26 @@ export class AppConfig {
      *
      * @returns {string}
      */
-    public static get VERSION_RELEASE_DATE(): string {
+    public static get AWG_APP_VERSION_RELEASE_DATE(): string {
         return appVersionReleaseDate;
+    }
+
+    /**
+     * Getter for the name of the AWG.
+     *
+     * @returns {string}
+     */
+    public static get AWG_PROJECT_NAME(): string {
+        return 'Anton Webern Gesamtausgabe';
+    }
+
+    /**
+     * Getter for the URL of the AWG project website
+     * ({@link https://anton-webern.ch}).
+     *
+     * @returns {string}
+     */
+    public static get AWG_PROJECT_URL(): string {
+        return 'https://www.anton-webern.ch/';
     }
 }
