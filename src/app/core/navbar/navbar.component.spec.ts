@@ -150,7 +150,7 @@ describe('NavbarComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'nav.navbar > .navbar-collapse', 1, 1);
             });
 
-            it('... should not render awg project url yet', () => {
+            it('... should not render awg project url in navbar-brand yet', () => {
                 const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
                 const urlEl1 = urlDes[0].nativeElement;
                 const urlEl2 = urlDes[1].nativeElement;
@@ -166,12 +166,25 @@ describe('NavbarComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
+
             // trigger initial data binding
             fixture.detectChanges();
         });
 
+        describe('#provideMetaData', () => {
+            it('... should have been called', () => {
+                expect(component.provideMetaData).toHaveBeenCalled();
+            });
+
+            it('... should return metadata', () => {
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData).toBe(expectedPageMetaData);
+            });
+        });
+
         describe('VIEW', () => {
-            it('... should render contact url', () => {
+            it('... should render awg project url in navbar-brand', () => {
                 const urlDes = getAndExpectDebugElementByCss(compDe, 'a.navbar-brand', 2, 2);
                 const urlEl1 = urlDes[0].nativeElement;
                 const urlEl2 = urlDes[1].nativeElement;
@@ -190,17 +203,6 @@ describe('NavbarComponent (DONE)', () => {
             });
         });
 
-        describe('#provideMetaData', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return metadata', () => {
-                expect(component.pageMetaData).toBeDefined();
-                expect(component.pageMetaData).toBe(expectedPageMetaData);
-            });
-        });
-
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
@@ -210,7 +212,7 @@ describe('NavbarComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
+            it('... can get 14 routerLinks from template', () => {
                 expect(routerLinks.length).toBe(14, 'should have 14 routerLinks');
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual(['/edition', 'intro']);
@@ -226,6 +228,54 @@ describe('NavbarComponent (DONE)', () => {
                 expect(routerLinks[11].linkParams).toEqual(['/structure']);
                 expect(routerLinks[12].linkParams).toEqual(['/data/search', 'fulltext']);
                 expect(routerLinks[13].linkParams).toEqual(['/contact']);
+            });
+
+            it('... can click Home link in template', () => {
+                const homeLinkDe = linkDes[0]; // contact link DebugElement
+                const homeLink = routerLinks[0]; // contact link directive
+
+                expect(homeLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                click(homeLinkDe);
+                fixture.detectChanges();
+
+                expect(homeLink.navigatedTo).toEqual(['/home']);
+            });
+
+            it('... can click Edition link in template', () => {
+                const editionLinkDe = linkDes[1]; // contact link DebugElement
+                const editionLink = routerLinks[1]; // contact link directive
+
+                expect(editionLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                click(editionLinkDe);
+                fixture.detectChanges();
+
+                expect(editionLink.navigatedTo).toEqual(['/edition', 'intro']);
+            });
+
+            it('... can click Structure link in template', () => {
+                const structureLinkDe = linkDes[11]; // contact link DebugElement
+                const structureLink = routerLinks[11]; // contact link directive
+
+                expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                click(structureLinkDe);
+                fixture.detectChanges();
+
+                expect(structureLink.navigatedTo).toEqual(['/structure']);
+            });
+
+            it('... can click Data link in template', () => {
+                const dataLinkDe = linkDes[12]; // contact link DebugElement
+                const dataLink = routerLinks[12]; // contact link directive
+
+                expect(dataLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                click(dataLinkDe);
+                fixture.detectChanges();
+
+                expect(dataLink.navigatedTo).toEqual(['/data/search', 'fulltext']);
             });
 
             it('... can click Contact link in template', () => {
