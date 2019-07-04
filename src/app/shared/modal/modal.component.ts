@@ -19,21 +19,81 @@ const MODAL_TEXT = {
         '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>'
 };
 
+/**
+ * The Modal component.
+ *
+ * It contains a modal template that is
+ * provided via the {@link SharedModule}.
+ */
 @Component({
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
     styleUrls: ['./modal.component.css']
 })
 export class ModalComponent {
+    /**
+     * ViewChild variable: modalTemplate.
+     *
+     * It keeps the reference to the HTML template.
+     */
     @ViewChild('modalTemplate', { static: false })
     modalTemplate;
 
+    /**
+     * Public variable: modalTitle.
+     *
+     * It keeps the title of the modal
+     * to be displayed in the header.
+     */
+    modalTitle = 'Hinweis';
+
+    /**
+     * Public variable: modalCloseLabel.
+     *
+     * It keeps the label for the
+     * closing button of the modal
+     * to be displayed in the footer.
+     */
+    modalCloseLabel = 'Schließen';
+
+    /**
+     * Public variable: modalContent.
+     *
+     * It keeps the content of the modal
+     * to be displayed in the body.
+     */
     modalContent: string;
+
+    /**
+     * Public variable: closeResult.
+     *
+     * It keeps a message after the
+     * closing event of the modal.
+     */
     closeResult: string;
 
+    /**
+     * Constructor of the ModalComponent.
+     *
+     * It declares a private NgbModal instance
+     * to handle the modal.
+     *
+     * @param {NgbModal} modalService Instance of the NgbModal.
+     */
     constructor(private modalService: NgbModal) {}
 
     open(identifier: string): void {
+    /**
+     * Public method: open.
+     *
+     * It opens the modal with the text snippet
+     * represented by the given snippet key.
+     *
+     * Snippet key must be an existing key of MODALSNIPPETS.
+     *
+     * @param {string} modalSnippetKey The given snippet key.
+     * @returns {void} Opens the modal.
+     */
         // get modal text
         this.modalContent = MODAL_TEXT[identifier];
 
