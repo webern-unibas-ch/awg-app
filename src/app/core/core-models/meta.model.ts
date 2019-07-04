@@ -1,10 +1,22 @@
 /**
+ * The MetaSectionKey enumeration.
+ *
+ * It stores the possible meta data section keys.
+ */
+export enum MetaSectionKey {
+    page = 'page',
+    edition = 'edition',
+    structure = 'structure',
+    contact = 'contact'
+}
+
+/**
  * The MetaPage class.
  *
  * It is used in the context of the app framework
  * to store the meta data for the main framework.
  */
-class MetaPage {
+export class MetaPage {
     /**
      * The start year for the copyright information.
      */
@@ -14,11 +26,6 @@ class MetaPage {
      * The recent year for the copyright information.
      */
     yearCurrent: number;
-
-    /**
-     * The url to the awg-app.
-     */
-    editionUrl: string;
 
     /**
      * The url to the GitHub repository of the AWG edition website (awg-app).
@@ -31,9 +38,19 @@ class MetaPage {
     compodocUrl: string;
 
     /**
-     * The url to the Webern project homepage.
+     * The url to the AWG edition homepage (awg-app).
      */
-    webernUrl: string;
+    awgAppUrl: string;
+
+    /**
+     * The name of the AWG.
+     */
+    awgProjectName: string;
+
+    /**
+     * The url to the AWG project homepage.
+     */
+    awgProjectUrl: string;
 
     /**
      * The latest version of the AWG edition website (awg-app).
@@ -52,7 +69,7 @@ class MetaPage {
  * It is used in the context of the edition view
  * to store the meta data about the edition.
  */
-class MetaEdition {
+export class MetaEdition {
     /**
      * The editors of an edition.
      */
@@ -70,7 +87,7 @@ class MetaEdition {
  * It is used in the context of the structure view
  * to store the meta data about the structure overview.
  */
-class MetaStructure {
+export class MetaStructure {
     /**
      * The author of the structure overview.
      */
@@ -80,6 +97,83 @@ class MetaStructure {
      * The last modification date of the structure overview.
      */
     lastModified: string;
+}
+
+/**
+ * The MetaContact class.
+ *
+ * It is used in the context of the contact view
+ * to store the meta data about contact information.
+ */
+export class MetaContact {
+    /**
+     * The address info of the contact info.
+     */
+    address: {
+        /**
+         * The institution name of the address info.
+         */
+        institution: string;
+
+        /**
+         * The street of the address info.
+         */
+        street: string;
+
+        /**
+         * The postal code of the address info.
+         */
+        postalCode: string;
+
+        /**
+         * The city of the address info.
+         */
+        city: string;
+
+        /**
+         * The country of the address info.
+         */
+        country: string;
+    };
+
+    /**
+     * The phone info of the contact info.
+     */
+    phone: {
+        /**
+         * The label of the phone info.
+         * @example Telefon:
+         */
+        label: string;
+
+        /**
+         * The number of the phone info.
+         */
+        number: string;
+    };
+
+    /**
+     * The email info of the contact info.
+     */
+    email: {
+        /**
+         * The label of the email info.
+         * @example Email:
+         */
+        label: string;
+
+        /**
+         * The mailto of the email info.
+         * @example mailto:my_email@host.com
+         */
+        mailto: string;
+
+        /**
+         * The safe string of the email info.
+         * @example my_email [at] host [dot] com
+         */
+        safeString: string;
+    };
 }
 
 /**
@@ -103,4 +197,9 @@ export class Meta {
      * The meta data for the structure view.
      */
     structure: MetaStructure;
+
+    /**
+     * The meta data for the contact view.
+     */
+    contact: MetaContact;
 }

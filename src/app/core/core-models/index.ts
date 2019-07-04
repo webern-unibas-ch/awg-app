@@ -9,6 +9,6 @@
 
 import { GeoNames } from './geo-names.model';
 import { Logo, Logos } from './logos.model';
-import { Meta } from './meta.model';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaStructure, MetaSectionKey } from './meta.model';
 
-export { GeoNames, Logo, Logos, Meta };
+export { GeoNames, Logo, Logos, Meta, MetaContact, MetaEdition, MetaPage, MetaStructure, MetaSectionKey };
