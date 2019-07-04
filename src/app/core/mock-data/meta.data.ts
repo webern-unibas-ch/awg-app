@@ -24,10 +24,12 @@ const METAPAGE: MetaPage = {
  * It provides metadata used for the edition view.
  */
 const METAEDITION: MetaEdition = {
-    editors:
-        '<a href="' +
-        AppConfig.AWG_PROJECT_URL +
-        'index.php?id=3" target="_blank" ref="noopener noreferrer">Thomas Ahrend</a>',
+    editors: [
+        {
+            name: 'Thomas Ahrend',
+            contact: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+        }
+    ],
     lastModified: '29. Januar 2016'
 };
 

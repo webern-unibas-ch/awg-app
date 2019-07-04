@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -15,11 +15,11 @@ import { CoreService } from '@awg-core/services';
 })
 export class EditionInfoComponent implements OnInit {
     /**
-     * Public variable: metaData.
+     * Public variable: pageMetaData.
      *
      * It keeps the meta data for the edition info.
      */
-    metaData: Meta;
+    editionMetaData: MetaEdition;
 
     /**
      * Constructor of the EditionInfoComponent.
@@ -47,9 +47,9 @@ export class EditionInfoComponent implements OnInit {
      * It calls the CoreService to provide
      * the meta data for the edition info.
      *
-     * @returns {void} Sets the metaData variable.
+     * @returns {void} Sets the editionMetaData variable.
      */
     provideMetaData(): void {
-        this.metaData = this.coreService.getMetaData();
+        this.editionMetaData = this.coreService.getMetaDataSection(MetaSectionKey.edition);
     }
 }

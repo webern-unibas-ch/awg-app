@@ -49,7 +49,7 @@ describe('FooterComponent (DONE)', () => {
     beforeEach(async(() => {
         // stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: () => expectedPageMetaData,
+            getMetaDataSection: key => METADATA[key],
             getLogos: () => expectedLogos
         };
 
@@ -104,7 +104,7 @@ describe('FooterComponent (DONE)', () => {
         };
         mockCoreService.getMetaDataSection = () => changedPageMetaData;
 
-        expect(coreService.getMetaDataSection()).toBe(expectedPageMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionKey.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -160,8 +160,8 @@ describe('FooterComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
-            component.pageMetaData = expectedPageMetaData;
+            // mock the call to the meta service in #provideMetaData
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
 
             // trigger initial data binding
             fixture.detectChanges();

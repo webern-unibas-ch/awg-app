@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -17,11 +17,11 @@ import { CoreService } from '@awg-core/services';
 })
 export class HomeViewComponent implements OnInit {
     /**
-     * Public variable: metaData.
+     * Public variable: editionMetaData.
      *
-     * It keeps the meta data for the home view.
+     * It keeps the edition meta data for the home view.
      */
-    metaData: Meta;
+    editionMetaData: MetaEdition;
 
     /**
      * Constructor of the HomeViewComponent.
@@ -51,10 +51,10 @@ export class HomeViewComponent implements OnInit {
      * It calls the CoreService to provide
      * the meta data for the home view.
      *
-     * @returns {void} Sets the metaData variable.
+     * @returns {void} Sets the editionMetaData variable.
      */
     provideMetaData(): void {
-        this.metaData = this.coreService.getMetaData();
+        this.editionMetaData = this.coreService.getMetaDataSection(MetaSectionKey.edition);
     }
 
     /**

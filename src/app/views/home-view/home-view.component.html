@@ -56,8 +56,15 @@
 
 <!-- declamation -->
 <div class="declamation">
-    <p>Ediert von <span class="editors" [innerHtml]="metaData?.edition?.editors"></span></p>
     <p>
-        Versionsdatum: <span class="version">{{ metaData?.edition?.lastModified }}</span>
+        Ediert von
+        <span class="editors"
+            ><a href="{{ (editionMetaData?.editors)[0].contact }}" target="_blank" rel="noopener noreferrer">{{
+                (editionMetaData?.editors)[0].name
+            }}</a></span
+        >
+    </p>
+    <p>
+        Versionsdatum: <span class="version">{{ editionMetaData?.lastModified }}</span>
     </p>
 </div>

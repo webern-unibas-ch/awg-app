@@ -3,15 +3,13 @@
     <div class="card-body bg-light">
         <p class="bold">
             Strukturmodell
-            <br>
+            <br />
         </p>
         <p>&#9671;</p>
-        <p>
-            Konzept/Grafik: {{ author }}
-        </p>
+        <p>Konzept/Grafik: {{ structureMetaData?.author }}</p>
         <p>&#9671;</p>
         <p>
-            Versionsdatum: <span class="version">{{ lastModified }}</span>
+            Versionsdatum: <span class="version">{{ structureMetaData?.lastModified }}</span>
         </p>
     </div>
 </div>

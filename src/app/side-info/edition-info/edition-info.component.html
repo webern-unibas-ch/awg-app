@@ -3,7 +3,7 @@
     <div class="card-body bg-light">
         <p class="bold">
             AWG I/5 <i>Vier Lieder</i> op. 12 <a [routerLink]="['/edition', 'intro']">Skizzen</a>
-            <br>
+            <br />
         </p>
         <p>&#9671;</p>
         <p>
@@ -11,9 +11,14 @@
         </p>
         <p>&#9671;</p>
         <p>
-            Ediert von <span [innerHTML]="metaData?.edition?.editors"></span>
-            <br>
-            Versionsdatum: <span class="version">{{ metaData?.edition?.lastModified }}</span>
+            Ediert von
+            <span class="editors"
+                ><a href="{{ (editionMetaData?.editors)[0].contact }}" target="_blank" rel="noopener noreferrer">{{
+                    (editionMetaData?.editors)[0].name
+                }}</a></span
+            >
+            <br />
+            Versionsdatum: <span class="version">{{ editionMetaData?.lastModified }}</span>
         </p>
     </div>
 </div>

@@ -64,6 +64,24 @@ export class MetaPage {
 }
 
 /**
+ * The MetaEditionEditor class.
+ *
+ * It is used in the context of the edition view
+ * to store the meta data about the editors.
+ */
+export class MetaEditionEditor {
+    /**
+     * The name of the editor
+     */
+    name: string;
+
+    /**
+     * The contact of an editor
+     */
+    contact: string;
+}
+
+/**
  * The MetaEdition class.
  *
  * It is used in the context of the edition view
@@ -73,7 +91,7 @@ export class MetaEdition {
     /**
      * The editors of an edition.
      */
-    editors: string;
+    editors: MetaEditionEditor[];
 
     /**
      * The last modification date of an edition.
