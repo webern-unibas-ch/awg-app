@@ -2,13 +2,7 @@
 <div class="card">
     <div class="card-body bg-light">
         <h5 id="awg-contact-info-header" class="mb-3">{{ contactInfoHeader }}</h5>
-        <awg-address
-            *ngIf="pageMetaData && contactMetaData"
-            [pageMetaData]="pageMetaData"
-            [contactMetaData]="contactMetaData"
-        >
-        </awg-address>
-        <awg-open-street-map *ngIf="osmEmbedUrl && osmLinkUrl" [osmEmbedUrl]="osmEmbedUrl" [osmLinkUrl]="osmLinkUrl">
-        </awg-open-street-map>
+        <awg-address [pageMetaData]="pageMetaData" [contactMetaData]="contactMetaData"></awg-address>
+        <awg-open-street-map [osmEmbedUrl]="osmEmbedUrl" [osmLinkUrl]="osmLinkUrl"></awg-open-street-map>
     </div>
 </div>

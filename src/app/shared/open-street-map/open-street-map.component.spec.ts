@@ -6,7 +6,7 @@ import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { OpenStreetMapComponent } from './open-street-map.component';
 
-describe('OpenStreetMapComponent', () => {
+describe('OpenStreetMapComponent (DONE)', () => {
     let component: OpenStreetMapComponent;
     let fixture: ComponentFixture<OpenStreetMapComponent>;
     let compDe: DebugElement;
@@ -37,22 +37,22 @@ describe('OpenStreetMapComponent', () => {
         domSanitizer = TestBed.get(DomSanitizer);
 
         // test data
-        expectedUnsafeOsmEmbedUrl =
-            'https://www.openstreetmap.org/export/embed.html?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
-
-        expectedUnsafeOsmLinkUrl =
-            'https://www.openstreetmap.org/?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
-
-        // bypass the unsafe values
-        expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
-        expectedOsmLinkUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmLinkUrl);
-
         expectedOsmLinkLabel = 'Größere Karte anzeigen';
         expectedOsmIFrameSettings = {
             width: '100%',
             height: '350',
             scrolling: 'no'
         };
+
+        // unsafe link values for open streets map
+        expectedUnsafeOsmEmbedUrl =
+            'https://www.openstreetmap.org/export/embed.html?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
+        expectedUnsafeOsmLinkUrl =
+            'https://www.openstreetmap.org/?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
+
+        // bypass the unsafe values
+        expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
+        expectedOsmLinkUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmLinkUrl);
     });
 
     it('should create', () => {
@@ -111,7 +111,7 @@ describe('OpenStreetMapComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // simulate the parent setting the input properties
-            // it gets sanitized links (SafeResourceUrl)
+            // it gets the bypassed links (SafeResourceUrl)
             component.osmEmbedUrl = expectedOsmEmbedUrl;
             component.osmLinkUrl = expectedOsmLinkUrl;
 

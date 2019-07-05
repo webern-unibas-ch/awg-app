@@ -8,7 +8,7 @@ import { METADATA } from '@awg-core/mock-data';
 
 import { AddressComponent } from './address.component';
 
-describe('AddressComponent', () => {
+describe('AddressComponent (DONE)', () => {
     let component: AddressComponent;
     let fixture: ComponentFixture<AddressComponent>;
     let compDe: DebugElement;
