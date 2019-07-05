@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { AppConfig } from '@awg-app/app.config';
 import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
@@ -17,47 +18,25 @@ import { CoreService } from '@awg-core/services';
 })
 export class ContactInfoComponent implements OnInit {
     /**
-     * Private readonly variable: osmRoot.
+     * Public variable: contactInfoHeader.
      *
-     * The root of the OSM embed link.
+     * It keeps the header for the contact-info.
      */
-    private readonly osmRoot = 'https://www.openstreetmap.org/export/embed.html';
+    contactInfoHeader = 'Kontakt';
 
     /**
-     * Private readonly variable: osmId.
+     * Public variable: contactMetaData.
      *
-     * The id of the OSM embed link.
+     * It keeps the contact meta data for the contact-info.
      */
-    private readonly osmId =
-        '?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
+    contactMetaData: MetaContact;
 
     /**
-     * Private readonly variable: osmLinkRoot.
+     * Public variable: pageMetaData.
      *
-     * The root of the OSM external link.
+     * It keeps the page meta data for the contact-info.
      */
-    private readonly osmLinkRoot = 'https://www.openstreetmap.org/';
-
-    /**
-     * Private readonly variable: osmLinkId.
-     *
-     * The id of the OSM external link.
-     */
-    private readonly osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
-
-    /**
-     * Getter for the unsanitized OSM embed link.
-     */
-    get unsafeOsmUrl() {
-        return this.osmRoot + this.osmId;
-    }
-
-    /**
-     * Getter for the unsanitized OSM external link.
-     */
-    get unsafeOsmLinkUrl() {
-        return this.osmLinkRoot + this.osmLinkId;
-    }
+    pageMetaData: MetaPage;
 
     /**
      * Private variable: _osmEmbedUrl.
@@ -102,27 +81,6 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Public variable: contactInfoHeader.
-     *
-     * It keeps the header for the contact-info.
-     */
-    contactInfoHeader = 'Kontakt';
-
-    /**
-     * Public variable: contactMetaData.
-     *
-     * It keeps the contact meta data for the contact-info.
-     */
-    contactMetaData: MetaContact;
-
-    /**
-     * Public variable: pageMetaData.
-     *
-     * It keeps the page meta data for the contact-info.
-     */
-    pageMetaData: MetaPage;
-
-    /**
      * Constructor of the ContactInfoComponent.
      *
      * It declares a private CoreService instance
@@ -140,22 +98,8 @@ export class ContactInfoComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.sanitizeUrls();
         this.provideMetaData();
-    }
-
-    /**
-     * Public method: sanitizeUrls.
-     *
-     * It sanitizes the URLs and links
-     * for the OpenStreetMap
-     * using the Angular DomSanitizer.
-     *
-     * @returns {void} Sanitizes the URLs.
-     */
-    sanitizeUrls(): void {
-        this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeOsmUrl);
-        this.osmLinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeOsmLinkUrl);
+        this.sanitizeUrls();
     }
 
     /**
@@ -169,5 +113,19 @@ export class ContactInfoComponent implements OnInit {
     provideMetaData(): void {
         this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
         this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionKey.contact);
+    }
+
+    /**
+     * Public method: sanitizeUrls.
+     *
+     * It sanitizes the URLs and links
+     * for the OpenStreetMap
+     * using the Angular DomSanitizer.
+     *
+     * @returns {void} Sanitizes the URLs.
+     */
+    sanitizeUrls(): void {
+        this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
+        this.osmLinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_LINK_URL);
     }
 }
