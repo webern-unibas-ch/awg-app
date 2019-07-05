@@ -158,9 +158,6 @@ describe('EditionInfoComponent (DONE)', () => {
                 const editorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-edition-info-editors a', 1, 1);
                 const editorEl = editorDes[0].nativeElement;
 
-                console.log(editorDes[0]);
-                console.log(editorEl);
-
                 expect(editorEl).toBeDefined();
                 expect(editorEl.href).toBe(expectedEditor.contactUrl, `should be ${expectedEditor.contactUrl}`);
                 expect(editorEl.innerHTML).toBe(expectedEditor.name, `should be ${expectedEditor.name}`);

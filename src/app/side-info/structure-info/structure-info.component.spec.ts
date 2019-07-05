@@ -148,9 +148,6 @@ describe('StructureInfoComponent (DONE)', () => {
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
                 const authorEl = authorDes[0].nativeElement;
 
-                console.log(authorDes[0]);
-                console.log(authorEl);
-
                 expect(authorEl).toBeDefined();
                 expect(authorEl.href).toBe(expectedAuthor.contactUrl, `should be ${expectedAuthor.contactUrl}`);
                 expect(authorEl.innerHTML).toBe(expectedAuthor.name, `should be ${expectedAuthor.name}`);

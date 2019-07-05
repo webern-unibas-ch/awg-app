@@ -48,16 +48,18 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
             it('... should not render copyright period yet', () => {
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
+                const copyEl = copyDes[0].nativeElement;
 
-                expect(copyDes[0].nativeElement.textContent).toBeDefined();
-                expect(copyDes[0].nativeElement.textContent).toBe('', 'should be empty string');
+                expect(copyEl.textContent).toBeDefined();
+                expect(copyEl.textContent).toBe('', 'should be empty string');
             });
 
             it('... should not render project name yet', () => {
                 const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
+                const nameEl = nameDes[0].nativeElement;
 
-                expect(nameDes[0].nativeElement.textContent).toBeDefined();
-                expect(nameDes[0].nativeElement.textContent).toBe('', 'should be empty string');
+                expect(nameEl.textContent).toBeDefined();
+                expect(nameEl.textContent).toBe('', 'should be empty string');
             });
         });
     });
