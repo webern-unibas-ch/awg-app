@@ -102,6 +102,14 @@ describe('StructureInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body p', 4, 4);
             });
 
+            it('... should not render `structureInfoHeader` yet', () => {
+                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-structure-info-header', 1, 1);
+                const headerEl = headerDes[0].nativeElement;
+
+                expect(headerEl).toBeDefined();
+                expect(headerEl.textContent).toBe('', 'should be empty string');
+            });
+
             it('... should not render author information yet', () => {
                 const authorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-structure-info-author a', 1, 1);
                 const authorEl = authorDes[0].nativeElement;
@@ -142,6 +150,17 @@ describe('StructureInfoComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should render `structureInfoHeader`', () => {
+                const headerDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-structure-info-header', 1, 1);
+                const headerEl = headerDes[0].nativeElement;
+
+                expect(headerEl).toBeDefined();
+                expect(headerEl.textContent).toBe(
+                    expectedStructureInfoHeader,
+                    `should be ${expectedStructureInfoHeader}`
+                );
+            });
+
             it('should render author information', () => {
                 const expectedAuthor = expectedStructureMetaData.authors[0];
 
