@@ -60,18 +60,46 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Public variable: osmEmbedUrl.
+     * Private variable: _osmEmbedUrl.
      *
      * It keeps the sanitized link to embed the OSM map.
      */
-    osmEmbedUrl: SafeResourceUrl;
+    private _osmEmbedUrl: SafeResourceUrl;
 
     /**
-     * Public variable: osmLinkUrl.
+     * Private variable: _osmLinkUrl.
      *
      * It keeps the sanitized link to the OSM page.
      */
-    osmLinkUrl: SafeResourceUrl;
+    private _osmLinkUrl: SafeResourceUrl;
+
+    /**
+     * Getter for the sanitized OSM embed link.
+     */
+    get osmEmbedUrl() {
+        return this._osmEmbedUrl;
+    }
+
+    /**
+     * Setter for the sanitized OSM embed link.
+     */
+    set osmEmbedUrl(url: SafeResourceUrl) {
+        this._osmEmbedUrl = url;
+    }
+
+    /**
+     * Getter for the sanitized OSM external link.
+     */
+    get osmLinkUrl() {
+        return this._osmLinkUrl;
+    }
+
+    /**
+     * Setter for the sanitized OSM external link.
+     */
+    set osmLinkUrl(url: SafeResourceUrl) {
+        this._osmLinkUrl = url;
+    }
 
     /**
      * Public variable: contactInfoHeader.
