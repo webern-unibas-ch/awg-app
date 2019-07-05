@@ -1,16 +1,10 @@
 <!-- sideinfo: search -->
 <div class="card">
     <div class="card-body bg-light">
-        <p class="bold">
-            {{ searchInfoTitle }}
-        </p>
+        <h5 id="awg-searchInfoHeader">{{ searchInfoHeader }}</h5>
         <p>&#9671;</p>
-        <p>
-            <strong>Suchbegriff:</strong> {{ searchInfo ? searchInfo?.query : '---' }}
-        </p>
+        <p><strong>Suchbegriff:</strong> {{ searchInfoData ? searchInfoData?.query : '---' }}</p>
         <p>&#9671;</p>
-        <p>
-            <strong>Suchergebnisse:</strong> {{ searchInfo ? searchInfo?.nhits : '---' }}
-        </p>
+        <p><strong>Suchergebnisse:</strong> {{ searchInfoData ? searchInfoData?.nhits : '---' }}</p>
     </div>
 </div>
