@@ -132,7 +132,15 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         }
     }
 
-    // route to self to set new params
+    /**
+     * Public method: routeToSelf.
+     *
+     * It navigates to itself to set
+     * new search parameters.
+     *
+     * @param {SearchParams} sp The given search parameters.
+     * @returns {void} Navigates to itself.
+     */
     routeToSelf(sp: SearchParams) {
         this.router.navigate([], {
             relativeTo: this.route,

@@ -81,6 +81,15 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         return this.currentId === id;
     }
 
+    /**
+     * Public method: navigateToResource.
+     *
+     * It navigates to the '/data/resource' route
+     * with the given id.
+     *
+     * @param {string} id The given resource id.
+     * @returns {void} Navigates to the resource.
+     */
     navigateToResource(id: string): void {
         this.currentId = id;
         this.router.navigate(['/data/resource', this.currentId]);

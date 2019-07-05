@@ -52,7 +52,7 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
      * It declares a private SideInfoService instance
      * to get the search results and a private ChangeDetectorRef instance.
      *
-     * @param {SideInfoService} sideInfoService Instance of the CoreService.
+     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
      * @param {ChangeDetectorRef} cdRef Instance of the ChangeDetectorRef.
      */
     constructor(private sideInfoService: SideInfoService, private cdRef: ChangeDetectorRef) {}
@@ -119,8 +119,9 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
      * Angular life cycle hook: ngOnDestroy.
      *
      * It calls the containing methods
-     * (unsubscribing subscriptions)
      * when destroying the component.
+     *
+     * Destroys subscriptions.
      */
     ngOnDestroy() {
         // prevent memory leak when component gets destroyed

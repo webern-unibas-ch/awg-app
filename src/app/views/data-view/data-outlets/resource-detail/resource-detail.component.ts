@@ -50,7 +50,7 @@ export class ResourceDetailComponent implements OnInit {
 
     ngOnInit() {
         this.getResourceData();
-        this.activateSidenav();
+        this.routeToSidenav();
     }
 
     getResourceData() {
@@ -116,10 +116,18 @@ export class ResourceDetailComponent implements OnInit {
         return (this.resourceData = new ResourceData(resourceBody, html));
     }
 
-    /*
-     * Navigate to ResourceDetail:
-     * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
-     * if oldId not exists (first call), use resourceId
+    /**
+     * Public method: navigateToResource.
+     *
+     * It navigates to the '/data/resource' route
+     * with the given id.
+     *
+     * If nextId is emitted, use nextId for navigation,
+     * else navigate to oldId (backButton). If oldId
+     * not exists (first call), use resourceId.
+     *
+     * @param {string} [nextId] The given resource id.
+     * @returns {void} Navigates to the resource.
      */
     navigateToResource(nextId?: string): void {
         const showId = nextId ? nextId : this.oldId ? this.oldId : this.resourceId;
@@ -132,10 +140,14 @@ export class ResourceDetailComponent implements OnInit {
         this.router.navigate(['/data/resource', +this.resourceId]);
     }
 
-    /*
-     * Activate Sidenav: ResourceInfo
+    /**
+     * Public method: routeToSidenav.
+     *
+     * It activates the secondary outlet with the resource-info.
+     *
+     * @returns {void} Activates the resource-info side outlet.
      */
-    activateSidenav(): void {
+    routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve'

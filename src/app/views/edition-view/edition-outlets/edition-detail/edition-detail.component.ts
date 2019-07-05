@@ -65,6 +65,16 @@ export class EditionDetailComponent implements OnInit {
         });
     }
 
+    /**
+     * Public method: onSvgSheetSelect.
+     *
+     * It sets the id of the selected svg sheet and
+     * navigates to the '/edition/detail' route
+     * with this given id.
+     *
+     * @param {string} id The given svg sheet id.
+     * @returns {void} Navigates to the edition detail.
+     */
     onSvgSheetSelect(id: string): void {
         this.selectedSvgSheet = this.svgSheetsData[id];
         this.showTkA = false;
