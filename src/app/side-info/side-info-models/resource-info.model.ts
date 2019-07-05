@@ -1,5 +1,5 @@
 import { ResourceInfoResource } from './resource-info-resources.model';
-import { ResourceInfoSearchResults } from './resource-info-search-results.model';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 /**
  * The ResourceInfo class.
@@ -11,7 +11,7 @@ export class ResourceInfo {
     /**
      * The list of results of a search.
      */
-    searchResults: ResourceInfoSearchResults;
+    searchResults: SearchResponseWithQuery;
 
     /**
      * The actually displayed resources.

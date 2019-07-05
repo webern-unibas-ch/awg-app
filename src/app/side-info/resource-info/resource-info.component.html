@@ -14,33 +14,48 @@
 ************************************************/ -->
 
 <!-- sideinfo: resource -->
-<div class="card" *ngIf="resourceInfo">
+<div class="card" *ngIf="resourceInfoData">
     <div class="card-header d-flex">
         <div class="ml-3 mr-1 my-auto">
-            <button type="button" class="btn btn-outline-info btn-sm" ngbTooltip="Zur Suche" tooltipClass="d-none d-md-inline d-lg-none" (click)="navigateToSearchResults()">
+            <button
+                type="button"
+                class="btn btn-outline-info btn-sm"
+                ngbTooltip="Zur Suche"
+                tooltipClass="d-none d-md-inline d-lg-none"
+                (click)="navigateToSearchPanel()"
+            >
                 <fa-icon [icon]="faArrowLeft"></fa-icon>
-                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2" >Zur Suche</span>
+                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>
             </button>
         </div>
         <div class="text-center mx-auto">
             <strong class="text-muted small">Aktueller Suchbegriff</strong>
-            <br>
-            <span *ngIf="resourceInfo?.searchResults?.query; else noQuery">{{ resourceInfo?.searchResults?.query }}</span>
+            <br />
+            <span *ngIf="resourceInfoData?.searchResults?.query; else noQuery">{{
+                resourceInfoData?.searchResults?.query
+            }}</span>
             <ng-template #noQuery>
                 <span>---</span>
             </ng-template>
         </div>
-    </div><!-- end card-header -->
+    </div>
+    <!-- end card-header -->
     <div class="card-body bg-light">
         <!-- search results -->
-        <div *ngIf="resourceInfo?.searchResults?.size">
+        <div *ngIf="resultSize">
             <ul class="list-group awg-resource-info-list-group">
                 <!-- previous resource -->
-                <a *ngIf="resourceInfo?.resources?.previous; else noPrevious; let previous" class="list-group-item list-group-item-action flex-column awg-list-group-item text-left" (click)="navigateToResource(previous?.id)">
+                <a
+                    *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"
+                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"
+                    (click)="navigateToResource(previous?.id)"
+                >
                     <div>
                         <strong class="text-muted small">
                             <fa-icon [icon]="faChevronLeft"></fa-icon>
-                            <span class="awg-resource-info-btn-text ml-2">Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span>
+                            <span class="awg-resource-info-btn-text ml-2"
+                                >Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span
+                            >
                         </strong>
                     </div>
                     <div>
@@ -53,7 +68,10 @@
                     </div>
                 </a>
                 <ng-template #noPrevious>
-                    <a *ngIf="resourceInfo?.resources?.current?.displayIndex === 1" class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left">
+                    <a
+                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"
+                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left"
+                    >
                         <div>
                             <strong class="text-muted small">
                                 <fa-icon [icon]="faTimesCircle"></fa-icon>
@@ -70,35 +88,61 @@
                     </a>
                 </ng-template>
 
-
                 <!-- current resource -->
-                <li class="list-group-item list-group-item-info" *ngIf="resourceInfo?.resources?.current; let current">
-                    <strong class="text-muted small mb-1">Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</strong>
+                <li
+                    class="list-group-item list-group-item-info"
+                    *ngIf="resourceInfoData?.resources?.current; let current"
+                >
+                    <strong class="text-muted small mb-1"
+                        >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</strong
+                    >
 
-                    <form [formGroup]="resourceInfoForm">
+                    <form [formGroup]="resourceInfoFormGroup">
                         <div class="input-group input-group-sm">
                             <div class="input-group-prepend">
-                                <button type="submit" [ngClass]="{'btn': true, 'btn-outline-success': resourceInfoForm.valid, 'btn-outline-danger': resourceInfoForm.invalid}" id="awg-resource-info-input-group-text" [disabled]="resourceInfoIndex.value === current?.displayIndex || !resourceInfoForm?.valid" (click)="findResourceByIndex()">Gehe zu</button>
+                                <button
+                                    type="submit"
+                                    [ngClass]="{
+                                        btn: true,
+                                        'btn-outline-success': resourceInfoFormGroup.valid,
+                                        'btn-outline-danger': resourceInfoFormGroup.invalid
+                                    }"
+                                    id="awg-resource-info-input-group-text"
+                                    [disabled]="
+                                        resourceInfoIndex === current?.displayIndex || !resourceInfoFormGroup?.valid
+                                    "
+                                    (click)="navigateToResourceByIndex(resourceInfoIndex)"
+                                >
+                                    Gehe zu
+                                </button>
                             </div>
-                            <input type="number"
-                                   class="form-control"
-                                   formControlName="resourceInfoIndex"
-                                   id="awg-resource-info-input"
-                                   aria-label="Index of search result"
-                                   aria-describedby="awg-resource-info-input-group-text"
-                                   size="4"
-                                   min="1"
-                                   [max]="resultSize"
-                                   required>
+                            <input
+                                type="number"
+                                class="form-control"
+                                formControlName="resourceInfoIndex"
+                                id="awg-resource-info-input"
+                                aria-label="Index of search result"
+                                aria-describedby="awg-resource-info-input-group-text"
+                                size="4"
+                                min="1"
+                                [max]="resultSize"
+                                required
+                            />
                         </div>
                     </form>
                 </li>
 
                 <!-- next resource -->
-                <a *ngIf="resourceInfo?.resources?.next; else noNext; let next" class="list-group-item list-group-item-action flex-column awg-list-group-item text-right" (click)="navigateToResource(next?.id)">
+                <a
+                    *ngIf="resourceInfoData?.resources?.next; else noNext; let next"
+                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"
+                    (click)="navigateToResource(next?.id)"
+                >
                     <div class="mb-1">
                         <strong class="text-muted small">
-                            <span class="awg-resource-info-btn-text mr-2">Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span>
+                            <span class="awg-resource-info-btn-text mr-2"
+                                >Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span
+                            >
                             <fa-icon [icon]="faChevronRight"></fa-icon>
                         </strong>
                     </div>
@@ -112,7 +156,10 @@
                     </div>
                 </a>
                 <ng-template #noNext>
-                    <a *ngIf="resourceInfo?.resources?.current?.displayIndex === resultSize" class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right">
+                    <a
+                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"
+                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right"
+                    >
                         <div>
                             <strong class="text-muted small">
                                 <fa-icon [icon]="faTimesCircle"></fa-icon>
@@ -128,11 +175,16 @@
                         </div>
                     </a>
                 </ng-template>
-
             </ul>
-        </div><!-- end ngIf: resourceInfo?.searchResults?.size -->
-    </div><!-- end card-body -->
+        </div>
+        <!-- end ngIf: resultSize -->
+    </div>
+    <!-- end card-body -->
     <div class="card-footer text-muted small">
-        Design and structure of this resource view adapted from <<a href ="https://arachne.dainst.org/">iDAI.object arachne</a>> (11/2017)
-    </div><!-- end card-footer -->
-</div><!-- end card.ngIf: resourceInfo -->
+        Design and structure of this resource view adapted from <<a href="https://arachne.dainst.org/"
+            >iDAI.object arachne</a
+        >> (11/2017)
+    </div>
+    <!-- end card-footer -->
+</div>
+<!-- end card.ngIf: resourceInfo -->
