@@ -1,6 +1,5 @@
 <!-- content: report -->
 <div>
-
     <!-- modal -->
     <awg-modal #modal></awg-modal>
 
@@ -8,16 +7,15 @@
     <awg-heading [title]="reportTitle" [id]="reportId"></awg-heading>
 
     <!-- sources -->
-    <awg-sources *ngIf="sourceListData"
-        [sourceListData]="sourceListData"
-        (openModalRequest)="modal.open($event)">
+    <awg-sources *ngIf="sourceListData" [sourceListData]="sourceListData" (openModalRequest)="modal.open($event)">
     </awg-sources>
 
     <!-- textcritics -->
-    <awg-textcritics *ngIf="textcriticsData"
+    <awg-textcritics
+        *ngIf="textcriticsData"
         [textcriticsData]="textcriticsData"
         (openModalRequest)="modal.open($event)"
-        (selectSvgFileRequest)="onSvgFileSelect($event)">
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)"
+    >
     </awg-textcritics>
-
 </div>

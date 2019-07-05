@@ -39,7 +39,16 @@ export class ReportComponent implements OnInit {
         );
     }
 
-    onSvgFileSelect(id: string) {
+    /**
+     * Public method: onSvgSheetSelect.
+     *
+     * It navigates to the '/edition/detail' route
+     * with the given id.
+     *
+     * @param {string} id The given svg sheet id.
+     * @returns {void} Navigates to the edition detail.
+     */
+    onSvgSheetSelect(id: string) {
         this.router.navigate(['/edition/detail', id]);
     }
 }

@@ -13,7 +13,7 @@ export class TextcriticsComponent implements OnInit {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     ref: TextcriticsComponent;
     showPanel = true;
@@ -28,8 +28,8 @@ export class TextcriticsComponent implements OnInit {
         this.openModalRequest.emit(id);
     }
 
-    selectSvgFile(id: string): void {
-        this.selectSvgFileRequest.emit(id);
+    selectSvgSheet(id: string): void {
+        this.selectSvgSheetRequest.emit(id);
     }
 
     togglePanel(): boolean {
