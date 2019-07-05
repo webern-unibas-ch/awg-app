@@ -1,0 +1,31 @@
+<address>
+    <p id="awg-address-header" class="caps">
+        <strong>
+            <a href="{{ pageMetaData?.awgProjectUrl }}" target="_blank" rel="noopener noreferrer">{{
+                pageMetaData?.awgProjectName
+            }}</a>
+        </strong>
+    </p>
+    <p class="awg-address-content">
+        <span id="awg-address-institution">{{ contactMetaData?.address?.institution }}</span>
+        <br />
+        <span id="awg-address-street">{{ contactMetaData?.address?.street }}</span>
+        <br />
+        <span id="awg-address-postal-city"
+            >{{ contactMetaData?.address?.postalCode }}&nbsp;{{ contactMetaData?.address?.city }}</span
+        >
+        <br />
+        <span id="awg-address-country">{{ contactMetaData?.address?.country }}</span>
+    </p>
+    <p class="awg-address-content">
+        <span id="awg-address-phone"
+            >{{ contactMetaData?.phone?.label }}&nbsp;{{ contactMetaData?.phone?.number }}</span
+        >
+        <br />
+        <span id="awg-address-email"
+            >{{ contactMetaData?.email?.label }}&nbsp;<a href="{{ contactMetaData?.email?.mailto }}">{{
+                contactMetaData?.email?.safeString
+            }}</a></span
+        >
+    </p>
+</address>

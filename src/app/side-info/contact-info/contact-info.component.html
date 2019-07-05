@@ -2,39 +2,13 @@
 <div class="card">
     <div class="card-body bg-light">
         <h5 id="awg-contact-info-header" class="mb-3">{{ contactInfoHeader }}</h5>
-        <address>
-            <span class="caps">
-                <strong>
-                    <a href="{{ pageMetaData?.awgProjectUrl }}" target="_blank" rel="noopener noreferrer">
-                        {{ pageMetaData?.awgProjectName }}
-                    </a>
-                </strong>
-            </span>
-            <br />
-            <br />
-            {{ contactMetaData?.address?.institution }}<br />
-            {{ contactMetaData?.address?.street }}<br />
-            {{ contactMetaData?.address?.postalCode }} {{ contactMetaData?.address?.city }}<br />
-            {{ contactMetaData?.address?.country }}<br />
-            <br />
-            {{ contactMetaData?.phone?.label }}&nbsp;{{ contactMetaData?.phone?.number }}<br />
-            {{ contactMetaData?.email?.label }}&nbsp;<a href="{{ contactMetaData?.email?.mailto }}">{{
-                contactMetaData?.email?.safeString
-            }}</a
-            ><br />
-        </address>
-        <iframe
-            width="100%"
-            height="auto"
-            frameborder="0"
-            scrolling="no"
-            marginheight="0"
-            marginwidth="0"
-            [src]="osmEmbedUrl"
-            style="border: 1px solid black"
+        <awg-address
+            *ngIf="pageMetaData && contactMetaData"
+            [pageMetaData]="pageMetaData"
+            [contactMetaData]="contactMetaData"
         >
-        </iframe>
-        <br />
-        <small><a [href]="osmLinkUrl" target="_blank" rel="noopener noreferrer">Größere Karte anzeigen</a></small>
+        </awg-address>
+        <awg-open-street-map *ngIf="osmEmbedUrl && osmLinkUrl" [osmEmbedUrl]="osmEmbedUrl" [osmLinkUrl]="osmLinkUrl">
+        </awg-open-street-map>
     </div>
 </div>
