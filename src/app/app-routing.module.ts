@@ -21,7 +21,8 @@ const appRoutes: Routes = [
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundViewComponent }
+    { path: '404', component: PageNotFoundViewComponent },
+    { path: '**', redirectTo: '404', pathMatch: 'full' }
 ];
 
 /**
