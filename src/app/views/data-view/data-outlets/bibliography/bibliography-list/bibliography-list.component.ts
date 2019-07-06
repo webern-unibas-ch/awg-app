@@ -23,7 +23,17 @@ export class BibliographyListComponent implements OnInit {
         this.selectItemRequest.emit(item);
     }
 
-    trackByItemId(item): string {
+    /**
+     * Public method: trackById.
+     *
+     * It returns a unique identifier of a given item.
+     * Angular uses the value returned from
+     * tracking function to track items identity.
+     *
+     * @param {string} item The given item.
+     * @returns {string} The identifier of the item.
+     */
+    trackById(item): string {
         return item.obj_id;
     }
 }
