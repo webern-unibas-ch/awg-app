@@ -7,13 +7,17 @@
     <awg-heading [title]="reportTitle" [id]="reportId"></awg-heading>
 
     <!-- sources -->
-    <awg-sources *ngIf="sourceListData" [sourceListData]="sourceListData" (openModalRequest)="modal.open($event)">
+    <awg-sources
+        *ngIf="editionReportData$ | async; let editionReportData"
+        [sourceListData]="editionReportData[0]"
+        (openModalRequest)="modal.open($event)"
+    >
     </awg-sources>
 
     <!-- textcritics -->
     <awg-textcritics
-        *ngIf="textcriticsData"
-        [textcriticsData]="textcriticsData"
+        *ngIf="editionReportData$ | async; let editionReportData"
+        [textcriticsData]="editionReportData[1]"
         (openModalRequest)="modal.open($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"
     >
