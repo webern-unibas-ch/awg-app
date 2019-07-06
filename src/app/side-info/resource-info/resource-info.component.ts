@@ -3,6 +3,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -23,18 +24,11 @@ import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-mod
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: resourceIdSubscription.
+     * Public variable: resourceInfoDataSubscription.
      *
-     * It keeps the subscription for the current resource id.
+     * It keeps the subscription for the resource info data.
      */
-    resourceIdSubscription: Subscription;
-
-    /**
-     * Public variable: searchResultDataSubscription.
-     *
-     * It keeps the subscription for the search result data.
-     */
-    searchResultDataSubscription: Subscription;
+    resourceInfoDataSubscription: Subscription;
 
     /**
      * Public variable: faArrowLeft.
@@ -122,62 +116,48 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.subscribeResourceId();
+        this.subscribeResourceInfoData();
     }
 
     /**
-     * Public method: subscribeResourceId.
+     * Public method: subscribeResourceInfoData.
      *
-     * It calls the DataStreamerService to subscribe
-     * to the current resource id and loads it
-     * into resourceId.
-     *
-     * @returns {void} Subscribes to resource id
-     * and sets the resourceId variable.
-     */
-    subscribeResourceId(): void {
-        // subscribe to streamer service
-        this.resourceIdSubscription = this.streamerService.getResourceId().subscribe(
-            (id: string) => {
-                // update id from streamer service
-                this.resourceId = id;
-
-                // subscribte to search results
-                this.subscribeSearchResultData();
-            },
-            error => {
-                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
-            }
-        );
-    }
-
-    /**
-     * Public method: subscribeSearchResultData.
-     *
-     * It calls the DataStreamerService to subscribe
-     * to the search result data and loads it
+     * It calls the DataStreamerService to get
+     * the current resource id and loads it
+     * into resourceId. Then it gets the
+     * search result data and loads it
      * into resourceInfo data object.
      *
-     * @returns {void} Subscribes to search results
-     * and sets the resourceInfoData.searchResults.
+     * @returns {void} Subscribes to StreamerService.
      */
-    subscribeSearchResultData(): void {
+    subscribeResourceInfoData(): void {
         // subscribe to streamer service
-        this.searchResultDataSubscription = this.streamerService.getSearchResponseWithQuery().subscribe(
-            (res: SearchResponseWithQuery) => {
-                // update search results from streamer service
-                this.resourceInfoData.searchResults = { ...res };
+        this.resourceInfoDataSubscription = this.streamerService
+            .getResourceId()
+            .pipe(
+                switchMap(id => {
+                    // update id from streamer service
+                    this.resourceId = id;
 
-                // update the resource info data in regard to current resource id
-                this.updateResourceInfoResources(this.resourceId);
+                    // return search response with query from streamer service
+                    return this.streamerService.getSearchResponseWithQuery();
+                })
+            )
+            .subscribe(
+                (res: SearchResponseWithQuery) => {
+                    // update search results from streamer service
+                    this.resourceInfoData.searchResults = { ...res };
 
-                // build the form
-                this.buildForm(this.goToIndex, this.resultSize);
-            },
-            error => {
-                console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
-            }
-        );
+                    // update the resource info data in regard to current resource id
+                    this.updateResourceInfoResources(this.resourceId);
+
+                    // build the form
+                    this.buildForm(this.goToIndex, this.resultSize);
+                },
+                error => {
+                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
+                }
+            );
     }
 
     /**
@@ -316,11 +296,8 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // prevent memory leak when component destroyed
-        if (this.resourceIdSubscription) {
-            this.resourceIdSubscription.unsubscribe();
-        }
-        if (this.searchResultDataSubscription) {
-            this.searchResultDataSubscription.unsubscribe();
+        if (this.resourceInfoDataSubscription) {
+            this.resourceInfoDataSubscription.unsubscribe();
         }
     }
 }
