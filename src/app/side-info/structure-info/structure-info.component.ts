@@ -16,18 +16,18 @@ import { CoreService } from '@awg-core/services';
 })
 export class StructureInfoComponent implements OnInit {
     /**
-     * Public variable: structureMetaData.
-     *
-     * It keeps the meta data for the structure info.
-     */
-    structureMetaData: MetaStructure;
-
-    /**
      * Public variable: structureInfoHeader.
      *
      * It keeps the header for the structure-info.
      */
     structureInfoHeader = 'Strukturmodell';
+
+    /**
+     * Public variable: structureMetaData.
+     *
+     * It keeps the meta data for the structure info.
+     */
+    structureMetaData: MetaStructure;
 
     /**
      * Constructor of the StructureInfoComponent.

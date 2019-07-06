@@ -5,7 +5,7 @@ import { Router } from '@angular/router';
  * The EditionView component.
  *
  * It contains the edition view section of the app
- * with an {@link HeadingComponent} and
+ * with a {@link HeadingComponent} and
  * another router outlet for the edition routes.
  */
 @Component({
