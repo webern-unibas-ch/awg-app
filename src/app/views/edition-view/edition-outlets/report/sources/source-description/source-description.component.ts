@@ -1,9 +1,10 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-source-description',
     templateUrl: './source-description.component.html',
-    styleUrls: ['./source-description.component.css']
+    styleUrls: ['./source-description.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceDescriptionComponent implements OnInit {
     @Input()

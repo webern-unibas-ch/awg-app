@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { TextcriticsList } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-textcritics',
     templateUrl: './textcritics.component.html',
-    styleUrls: ['./textcritics.component.css']
+    styleUrls: ['./textcritics.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextcriticsComponent implements OnInit {
     @Input()

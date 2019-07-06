@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { SourceList } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-sources',
     templateUrl: './sources.component.html',
-    styleUrls: ['./sources.component.css']
+    styleUrls: ['./sources.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourcesComponent implements OnInit {
     @Input()

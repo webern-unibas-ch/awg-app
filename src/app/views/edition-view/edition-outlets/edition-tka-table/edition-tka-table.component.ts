@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Textcritics } from '../../models/index';
 
 @Component({
     selector: 'awg-edition-tka-table',
     templateUrl: './edition-tka-table.component.html',
-    styleUrls: ['./edition-tka-table.component.css']
+    styleUrls: ['./edition-tka-table.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionTkaTableComponent implements OnInit {
     @Input()

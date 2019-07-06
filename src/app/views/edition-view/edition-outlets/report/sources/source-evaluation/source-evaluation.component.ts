@@ -1,9 +1,10 @@
-import { Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-source-evaluation',
     templateUrl: './source-evaluation.component.html',
-    styleUrls: ['./source-evaluation.component.css']
+    styleUrls: ['./source-evaluation.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceEvaluationComponent implements OnInit {
     @Output()
