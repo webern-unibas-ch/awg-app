@@ -22,9 +22,9 @@ export class SideInfoService {
     private searchInfoDataSubject: Subject<SearchInfo> = new Subject<SearchInfo>();
 
     /**
-     * Private readonly search info data stream as observable (`Subject`).
+     * Readonly search info data stream as observable (`Subject`).
      */
-    private readonly searchInfoDataStream$ = this.searchInfoDataSubject.asObservable();
+    readonly searchInfoDataStream$ = this.searchInfoDataSubject.asObservable();
 
     /**
      * Private subject to handle search info title.
@@ -32,9 +32,9 @@ export class SideInfoService {
     private searchInfoTitleSubject: Subject<string> = new Subject<string>();
 
     /**
-     * Private readonly search info title stream as observable (`Subject`).
+     * Readonly search info title stream as observable (`Subject`).
      */
-    private readonly searchInfoTitleStream$ = this.searchInfoTitleSubject.asObservable();
+    readonly searchInfoTitleStream$ = this.searchInfoTitleSubject.asObservable();
 
     /**
      * Public method: getSearchInfoData.

@@ -2,7 +2,7 @@ import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angu
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 
@@ -123,7 +123,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     subscribeToStreamerService(): Subscription {
         // call to streamer service
-        const searchResponseWithQuery$ = this.streamerService.getSearchResponseWithQuery();
+        const searchResponseWithQuery$: Observable<
+            SearchResponseWithQuery
+        > = this.streamerService.getSearchResponseWithQuery();
 
         // subscribe to response to handle changes
         return searchResponseWithQuery$.subscribe(
