@@ -28,7 +28,19 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     };
 
     errorMessage: any;
+
+    /**
+     * Public variable: isLoadingData.
+     *
+     * If the data is loading.
+     */
     isLoadingData = false;
+
+    /**
+     * Public variable: viewChanged.
+     *
+     * If the view has changed.
+     */
     viewChanged = false;
 
     constructor(
@@ -43,17 +55,41 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.navigationSubscription = this.subscribeToDataApiService();
     }
 
-    // switch the load status
-    changeLoadingStatus(status: boolean) {
+    /**
+     * Public method: changeLoadingStatus.
+     *
+     * It changes the loading status
+     * to the given value.
+     *
+     * @param {boolean} status The given status value.
+     * @returns {void} Sets the isLoadingData variable.
+     */
+    changeLoadingStatus(status: boolean): void {
         this.isLoadingData = status;
     }
 
-    // start loading activities
+    /**
+     * Public method: onLoadingStart.
+     *
+     * It marks the start of a loading activity
+     * and calls the changeLoadingStatus method to
+     * set the loading status to true.
+     *
+     * @returns {void} Triggers the change of the loading status.
+     */
     onLoadingStart(): void {
         this.changeLoadingStatus(true);
     }
 
-    // end loading activities
+    /**
+     * Public method: onLoadingEnd.
+     *
+     * It marks the end of a loading activity
+     * and calls the changeLoadingStatus method to
+     * set the loading status to false.
+     *
+     * @returns {void} Triggers the change of the loading status.
+     */
     onLoadingEnd(): void {
         this.changeLoadingStatus(false);
     }

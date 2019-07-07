@@ -1,29 +1,27 @@
 <!-- content: search panel -->
 
-<awg-search-form
-    [searchValue]="searchParams.query"
-    (searchRequest)="onSearch($event)">
-</awg-search-form>
-
+<awg-search-form [searchValue]="searchParams.query" (searchRequest)="onSearch($event)"> </awg-search-form>
 
 <ng-container *ngIf="searchParams?.query">
-    <awg-search-result-list *ngIf="!isLoadingData; else loading"
-                            [searchParams]="searchParams"
-                            [searchUrl]="searchUrl"
-                            (pageChangeRequest)="onPageChange($event)"
-                            (rowChangeRequest)="onRowChange($event)"
-                            (viewChangeRequest)="onViewChange($event)">
+    <awg-search-result-list
+        *ngIf="!isLoadingData; else loading"
+        [searchParams]="searchParams"
+        [searchUrl]="searchUrl"
+        (pageChangeRequest)="onPageChange($event)"
+        (rowChangeRequest)="onRowChange($event)"
+        (viewChangeRequest)="onViewChange($event)"
+    >
     </awg-search-result-list>
 
+    <!-- loading spinner -->
     <ng-template #loading>
         <ng-container *ngIf="!errorMessage; else error">
-            <!-- loading spinner -->
             <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         </ng-container>
     </ng-template>
 </ng-container>
 
-
+<!-- error message -->
 <ng-template #error>
     <div class="errorMessage" *ngIf="errorMessage">
         <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>

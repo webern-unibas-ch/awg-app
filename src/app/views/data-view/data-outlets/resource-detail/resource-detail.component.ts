@@ -24,6 +24,13 @@ export class ResourceDetailComponent implements OnInit {
 
     errorMessage: any = undefined;
 
+    /**
+     * Public variable: isLoadingData.
+     *
+     * If the data is loading.
+     */
+    isLoadingData = false;
+
     tabTitle = {
         html: 'Detail',
         raw: 'JSON (raw)',
@@ -53,11 +60,52 @@ export class ResourceDetailComponent implements OnInit {
         this.routeToSidenav();
     }
 
+    /**
+     * Public method: changeLoadingStatus.
+     *
+     * It changes the loading status
+     * to the given value.
+     *
+     * @param {boolean} status The given status value.
+     * @returns {void} Sets the isLoadingData variable.
+     */
+    changeLoadingStatus(status: boolean): void {
+        this.isLoadingData = status;
+    }
+
+    /**
+     * Public method: onLoadingStart.
+     *
+     * It marks the start of a loading activity
+     * and calls the changeLoadingStatus method to
+     * set the loading status to true.
+     *
+     * @returns {void} Triggers the change of the loading status.
+     */
+    onLoadingStart(): void {
+        this.changeLoadingStatus(true);
+    }
+
+    /**
+     * Public method: onLoadingEnd.
+     *
+     * It marks the end of a loading activity
+     * and calls the changeLoadingStatus method to
+     * set the loading status to false.
+     *
+     * @returns {void} Triggers the change of the loading status.
+     */
+    onLoadingEnd(): void {
+        this.changeLoadingStatus(false);
+    }
+
     getResourceData() {
         // observe route params
         this.route.paramMap
             .pipe(
                 switchMap((params: ParamMap) => {
+                    this.onLoadingStart();
+
                     // store resource id
                     this.resourceId = params.get('id');
 
@@ -75,10 +123,13 @@ export class ResourceDetailComponent implements OnInit {
             )
             .subscribe(
                 (resourceData: ResourceData) => {
-                    this.resourceData = resourceData;
+                    // update resource data
+                    this.resourceData = { ...resourceData };
 
                     // scroll to Top of Page
                     ResourceDetailComponent.scrollToTop();
+
+                    this.onLoadingEnd();
                 },
                 error => {
                     this.errorMessage = error as any;
