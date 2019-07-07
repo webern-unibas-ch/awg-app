@@ -1,6 +1,6 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { AfterViewChecked, ChangeDetectorRef, Component } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
 import { SideInfoService } from '@awg-core/services';
 import { SearchInfo } from '@awg-side-info/side-info-models';
@@ -16,35 +16,21 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
     templateUrl: './search-info.component.html',
     styleUrls: ['./search-info.component.css']
 })
-export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
+export class SearchInfoComponent implements AfterViewChecked {
     /**
-     * Public variable: searchInfoDataSubscription.
+     * Public variable: searchInfoData$.
      *
-     * It keeps the subscription for the search-info data.
-     */
-    searchInfoDataSubscription: Subscription;
-
-    /**
-     * Public variable: searchInfoHeaderSubscription.
-     *
-     * It keeps the subscription for the search-info header.
-     */
-    searchInfoHeaderSubscription: Subscription;
-
-    /**
-     * Public variable: searchInfoData.
-     *
-     * It keeps the information about the search
+     * Observable that keeps the information about the search
      * to be displayed, i.e. the query and number of hits.
      */
-    searchInfoData: SearchInfo;
+    searchInfoData$: Observable<SearchInfo>;
 
     /**
-     * Public variable: searchInfoHeader.
+     * Public variable: searchInfoHeader$.
      *
-     * It keeps the header for the search-info.
+     * Observable that keeps the header for the search-info.
      */
-    searchInfoHeader: string;
+    searchInfoHeader$: Observable<string>;
 
     /**
      * Constructor of the SearchInfoComponent.
@@ -62,74 +48,25 @@ export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
      *
      * It calls the containing methods
      * when the component view was checked.
+     *
+     * Necessary (instead of OnInit) to update component correctly
+     * and to avoid ExpressionChangedAfterItHasBeenCheckedError.
      */
     ngAfterViewChecked() {
-        this.subscribeSearchInfoHeader();
-        this.subscribeSearchInfoData();
+        this.getSearchInfoData();
     }
 
     /**
-     * Public method: subscribeSearchInfoHeader.
+     * Public method: getSearchInfoData.
      *
-     * It calls the SideInfoService to subscribe
-     * to the search-info header.
+     * It calls the SideInfoService to provide
+     * the data for the search-info header and data.
      *
-     * @returns {void} Subscribes to search-info header
-     * and sets the searchInfoHeader variable.
+     * @returns {void} Sets the searchInfoHeader
+     * and searchInfoData observables.
      */
-    subscribeSearchInfoHeader(): void {
-        this.searchInfoHeaderSubscription = this.sideInfoService.getSearchInfoTitle().subscribe(
-            (header: string) => {
-                this.searchInfoHeader = header;
-                console.log('header', header);
-            },
-            error => {
-                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', error as any);
-            }
-        );
-    }
-
-    /**
-     * Public method: subscribeSearchInfoData.
-     *
-     * It calls the SideInfoService to subscribe
-     * to the side-info data for the search-info.
-     *
-     * @returns {void} Subscribes to search-info data
-     * and sets the searchInfoData variable.
-     */
-    subscribeSearchInfoData(): void {
-        // get sideInfoData from service
-        this.searchInfoDataSubscription = this.sideInfoService.getSideInfoData().subscribe(
-            (searchInfo: SearchInfo) => {
-                this.searchInfoData = new SearchInfo(searchInfo.query, searchInfo.nhits);
-
-                // detect changes only if component is not in destroy phase, compare: https://stackoverflow.com/a/46605947
-                if (!this.cdRef['destroyed']) {
-                    this.cdRef.detectChanges();
-                }
-            },
-            error => {
-                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', error as any);
-            }
-        );
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     *
-     * Destroys subscriptions.
-     */
-    ngOnDestroy() {
-        // prevent memory leak when component gets destroyed
-        if (this.searchInfoDataSubscription) {
-            this.searchInfoDataSubscription.unsubscribe();
-        }
-        if (this.searchInfoHeaderSubscription) {
-            this.searchInfoHeaderSubscription.unsubscribe();
-        }
+    getSearchInfoData(): void {
+        this.searchInfoHeader$ = this.sideInfoService.getSearchInfoTitle();
+        this.searchInfoData$ = this.sideInfoService.getSearchInfoData();
     }
 }

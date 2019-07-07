@@ -17,14 +17,14 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
 })
 export class SideInfoService {
     /**
-     * Private subject to handle side info data.
+     * Private subject to handle search info data.
      */
-    private sideInfoDataSubject: Subject<any> = new Subject<any>();
+    private searchInfoDataSubject: Subject<SearchInfo> = new Subject<SearchInfo>();
 
     /**
-     * Private readonly side info data stream as observable (`Subject`).
+     * Private readonly search info data stream as observable (`Subject`).
      */
-    private readonly sideInfoDataStream$ = this.sideInfoDataSubject.asObservable();
+    private readonly searchInfoDataStream$ = this.searchInfoDataSubject.asObservable();
 
     /**
      * Private subject to handle search info title.
@@ -37,14 +37,14 @@ export class SideInfoService {
     private readonly searchInfoTitleStream$ = this.searchInfoTitleSubject.asObservable();
 
     /**
-     * Public method: getSideInfoData.
+     * Public method: getSearchInfoData.
      *
-     * It provides the latest data from the side info data stream.
+     * It provides the latest data from the search info data stream.
      *
-     * @returns {Observable<any>} The side info data stream as observable.
+     * @returns {Observable<SearchInfo>} The search info data stream as observable.
      */
-    getSideInfoData(): Observable<any> {
-        return this.sideInfoDataStream$;
+    getSearchInfoData(): Observable<SearchInfo> {
+        return this.searchInfoDataStream$;
     }
 
     /**
@@ -59,17 +59,6 @@ export class SideInfoService {
     }
 
     /**
-     * Public method: updateSideInfoData.
-     *
-     * It updates the side info data stream with the given data (`any`).
-     *
-     * @returns {void} Sets the next data to the side info data stream.
-     */
-    updateSideInfoData(data: any): void {
-        this.sideInfoDataSubject.next(data);
-    }
-
-    /**
      * Public method: updateSearchInfoData.
      *
      * It updates the side info data stream with the given data (`searchInfo`).
@@ -77,7 +66,7 @@ export class SideInfoService {
      * @returns {void} Sets the next searchInfo to the side info data stream.
      */
     updateSearchInfoData(searchInfo: SearchInfo): void {
-        this.sideInfoDataSubject.next(searchInfo);
+        this.searchInfoDataSubject.next(searchInfo);
     }
 
     /**
