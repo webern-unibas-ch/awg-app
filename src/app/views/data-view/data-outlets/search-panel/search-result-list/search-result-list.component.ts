@@ -3,7 +3,6 @@ import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
 
 import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
 
@@ -123,27 +122,24 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     subscribeToStreamerService(): Subscription {
-        return this.streamerService
-            .getSearchResponseWithQuery()
-            .pipe(
-                map((searchResponseWithQuery: SearchResponseWithQuery) => {
-                    // update current search params (url, text, sideinfo) via streamer service
-                    this.updateSearchParams(searchResponseWithQuery);
+        // call to streamer service
+        const searchResponseWithQuery$ = this.streamerService.getSearchResponseWithQuery();
 
-                    return searchResponseWithQuery.data;
-                })
-            )
-            .subscribe(
-                (searchResponse: SearchResponseJson) => {
-                    this.searchResponse = searchResponse;
+        // subscribe to response to handle changes
+        return searchResponseWithQuery$.subscribe(
+            (searchResponseWithQuery: SearchResponseWithQuery) => {
+                // update current search params (url, text, sideinfo) via streamer service
+                this.updateSearchParams(searchResponseWithQuery);
 
-                    this.setPagination();
-                },
-                error => {
-                    this.errorMessage = error as any;
-                    console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
-                }
-            );
+                this.searchResponse = { ...searchResponseWithQuery.data };
+
+                this.setPagination();
+            },
+            error => {
+                this.errorMessage = error as any;
+                console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
+            }
+        );
     }
 
     /**
@@ -161,21 +157,21 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     // update search params
-    updateSearchParams(response: SearchResponseWithQuery): void {
+    updateSearchParams(searchResponseWithQuery: SearchResponseWithQuery): void {
         // update current search values
-        this.updateCurrentValues(response);
+        this.updateCurrentValues(searchResponseWithQuery);
 
         // update side info
         this.updateSearchInfoService();
     }
 
     // update current search values
-    updateCurrentValues(response: SearchResponseWithQuery): void {
+    updateCurrentValues(searchResponseWithQuery: SearchResponseWithQuery): void {
         // get current search value
-        this.searchValue = response.query;
+        this.searchValue = searchResponseWithQuery.query;
         // prepare result text for fulltext search
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
-            response.data,
+            searchResponseWithQuery.data,
             this.searchValue,
             this.searchUrl
         );
