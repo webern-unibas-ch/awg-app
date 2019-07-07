@@ -43,6 +43,9 @@ class ResourceDetailJsonRawStubComponent {
     resourceJsonRawData: ResourceFullResponseJson;
 }
 
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
+
 describe('ResourceDetailComponent', () => {
     let component: ResourceDetailComponent;
     let fixture: ComponentFixture<ResourceDetailComponent>;
@@ -71,7 +74,8 @@ describe('ResourceDetailComponent', () => {
                 ResourceDetailHeaderStubComponent,
                 ResourceDetailHtmlStubComponent,
                 ResourceDetailJsonConvertedStubComponent,
-                ResourceDetailJsonRawStubComponent
+                ResourceDetailJsonRawStubComponent,
+                TwelveToneSpinnerStubComponent
             ],
             providers: [
                 { provide: ConversionService, useValue: mockConversionService },
