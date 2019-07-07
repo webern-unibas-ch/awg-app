@@ -16,20 +16,22 @@ export class ResourceInfo {
     /**
      * The actually displayed resources.
      */
-    resources: {
-        /**
-         * The current resource.
-         */
-        current: ResourceInfoResource;
+    resources: IResourceInfoResources;
+}
 
-        /**
-         * The next resource.
-         */
-        next: ResourceInfoResource;
+export interface IResourceInfoResources {
+    /**
+     * The current resource.
+     */
+    current: ResourceInfoResource;
 
-        /**
-         * The previous resource.
-         */
-        previous: ResourceInfoResource;
-    };
+    /**
+     * The next resource.
+     */
+    next: ResourceInfoResource;
+
+    /**
+     * The previous resource.
+     */
+    previous: ResourceInfoResource;
 }
