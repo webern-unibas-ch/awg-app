@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
-import { catchError } from 'rxjs/operators';
+import { catchError, take } from 'rxjs/operators';
 
 import { Folio, EditionSvgSheet, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
@@ -73,10 +73,14 @@ export class EditionDataService {
      * as a fork-joined observable array.
      *
      * @returns {Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>}
-     * The fork-joined observable array with the Folio, EditionSvgSheet and TextcriticsList data.
+     * The fork-joined observable array with the Folio,
+     * EditionSvgSheet and TextcriticsList data.
+     * Only the first emit is needed.
      */
     getEditionDetailData(): Observable<[Folio[], EditionSvgSheet[], TextcriticsList]> {
-        return observableForkJoin([this.getFolioData(), this.getSvgSheetsData(), this.getTextcriticsListData()]);
+        return observableForkJoin([this.getFolioData(), this.getSvgSheetsData(), this.getTextcriticsListData()]).pipe(
+            take(1)
+        );
     }
 
     /**
@@ -88,10 +92,11 @@ export class EditionDataService {
      * as a fork-joined observable array.
      *
      * @returns {Observable<[SourceList, TextcriticsList]>}
-     * The fork-joined observable array with the SourceList and TextcriticsList data.
+     * The fork-joined observable array with the SourceList
+     * and TextcriticsList data. Only the first emit is needed.
      */
     getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
-        return observableForkJoin([this.getSourceListData(), this.getTextcriticsListData()]);
+        return observableForkJoin([this.getSourceListData(), this.getTextcriticsListData()]).pipe(take(1));
     }
 
     /**
