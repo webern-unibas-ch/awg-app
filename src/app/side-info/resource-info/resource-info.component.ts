@@ -145,11 +145,11 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             )
             .subscribe(
                 (res: SearchResponseWithQuery) => {
-                    // update search results from streamer service
-                    this.resourceInfoData.searchResults = { ...res };
+                    // deep clone search results from streamer service
+                    const response = { ...res };
 
-                    // update the resource info data in regard to current resource id
-                    this.updateResourceInfoResources(this.resourceId);
+                    // update resource Info
+                    this.updateResourceInfo(this.resourceId, response);
 
                     // build the form
                     this.buildForm(this.goToIndex, this.resultSize);
@@ -161,24 +161,22 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: updateResourceInfoResources.
+     * Public method: updateResourceInfo.
      *
-     * It updates the current resource and its neighbours
-     * for the resource info data resources
-     * that are displayed in the component.
+     * It updates the current resource info data.
      *
-     * @returns {void} Sets the resourceInfoData.resources.
+     * @returns {void} Sets the resourceInfoData.
      */
-    updateResourceInfoResources(id: string): void {
+    updateResourceInfo(id: string, response: SearchResponseWithQuery): void {
         // find index position of resource with given id in search results
-        const index = this.findIndexPositionInSearchResultsById(id);
+        const index = this.findIndexPositionInSearchResultsById(id, response);
 
         // shortcuts for indices
         const nextIndex = index + 1;
         const prevIndex = index - 1;
 
         // shortcuts for current subject and its neighbours
-        const subjects = this.resourceInfoData.searchResults.data.subjects;
+        const subjects = response.data.subjects;
         const current = subjects[index];
         const next = subjects[nextIndex];
         const prev = subjects[prevIndex];
@@ -187,11 +185,14 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         this.resultSize = subjects.length;
         this.goToIndex = index + 1;
 
-        // update resourceInfo.resources
-        this.resourceInfoData.resources = {
-            current: current ? new ResourceInfoResource(current, index) : undefined,
-            next: next ? new ResourceInfoResource(next, nextIndex) : undefined,
-            previous: prev ? new ResourceInfoResource(prev, prevIndex) : undefined
+        // update resourceInfoData (immutable)
+        this.resourceInfoData = {
+            searchResults: response,
+            resources: {
+                current: current ? new ResourceInfoResource(current, index) : undefined,
+                next: next ? new ResourceInfoResource(next, nextIndex) : undefined,
+                previous: prev ? new ResourceInfoResource(prev, prevIndex) : undefined
+            }
         };
     }
 
@@ -220,14 +221,15 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * Public method: findIndexPositionInSearchResultsById.
      *
      * It looks for the index position of the given resource id
-     * in the search results subjects array.
+     * in the search response subjects array.
      *
      * @param {string} id The given resource id.
+     * @param {SearchResponseWithQuery} response The given search response.
      * @returns {number} The array index position.
      */
-    findIndexPositionInSearchResultsById(id: string): number {
+    findIndexPositionInSearchResultsById(id: string, response: SearchResponseWithQuery): number {
         // shortcut for search result subjects
-        const subjects = this.resourceInfoData.searchResults.data.subjects;
+        const subjects = response.data.subjects;
 
         // compare given id with obj_id of subjects in searchResults.subjects array
         return subjects.findIndex(subject => subject.obj_id === id);
