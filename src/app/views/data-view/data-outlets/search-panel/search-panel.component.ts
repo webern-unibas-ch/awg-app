@@ -22,7 +22,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     searchParams: SearchParams = {
         query: '',
-        nRows: '10',
+        nRows: '25',
         startAt: '0',
         view: 'table'
     };
