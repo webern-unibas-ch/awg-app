@@ -20,7 +20,6 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit, O
 
     ngOnInit() {
         this.setOptions();
-
         this.setImages();
     }
 

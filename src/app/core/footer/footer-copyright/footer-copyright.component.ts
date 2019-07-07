@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MetaPage } from '@awg-core/core-models';
 
@@ -10,7 +10,8 @@ import { MetaPage } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-copyright',
     templateUrl: './footer-copyright.component.html',
-    styleUrls: ['./footer-copyright.component.css']
+    styleUrls: ['./footer-copyright.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterCopyrightComponent {
     /**

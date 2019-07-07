@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { EditionSvgSheet } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-svg-sheet-nav',
     templateUrl: './edition-svg-sheet-nav.component.html',
-    styleUrls: ['./edition-svg-sheet-nav.component.css']
+    styleUrls: ['./edition-svg-sheet-nav.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionSvgSheetNavComponent implements OnInit {
     @Input()

@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
@@ -13,7 +13,8 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
-    styleUrls: ['./home-view.component.css']
+    styleUrls: ['./home-view.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeViewComponent implements OnInit {
     /**

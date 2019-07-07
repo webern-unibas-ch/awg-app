@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Folio, EditionSvgSheet } from '@awg-views/edition-view/models';
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
@@ -6,7 +6,8 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 @Component({
     selector: 'awg-edition-convolute',
     templateUrl: './edition-convolute.component.html',
-    styleUrls: ['./edition-convolute.component.css']
+    styleUrls: ['./edition-convolute.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionConvoluteComponent implements OnInit {
     @Input()

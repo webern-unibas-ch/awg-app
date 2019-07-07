@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ResourceDetailContent } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-resource-detail-html-content',
     templateUrl: './resource-detail-html-content.component.html',
-    styleUrls: ['./resource-detail-html-content.component.css']
+    styleUrls: ['./resource-detail-html-content.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResourceDetailHtmlContentComponent implements OnInit {
     @Input()

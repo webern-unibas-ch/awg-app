@@ -1,11 +1,12 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 @Component({
     selector: 'awg-resource-detail-json-raw',
     templateUrl: './resource-detail-json-raw.component.html',
-    styleUrls: ['./resource-detail-json-raw.component.css']
+    styleUrls: ['./resource-detail-json-raw.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ResourceDetailJsonRawComponent implements OnInit {
     @Input()

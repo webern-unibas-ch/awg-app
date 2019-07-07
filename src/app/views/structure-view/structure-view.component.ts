@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 /**
@@ -10,7 +10,8 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
-    styleUrls: ['./structure-view.component.css']
+    styleUrls: ['./structure-view.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StructureViewComponent implements OnInit {
     /**

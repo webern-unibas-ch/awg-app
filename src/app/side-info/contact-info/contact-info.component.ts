@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -14,7 +14,8 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-contact-info',
     templateUrl: './contact-info.component.html',
-    styleUrls: ['./contact-info.component.css']
+    styleUrls: ['./contact-info.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactInfoComponent implements OnInit {
     /**

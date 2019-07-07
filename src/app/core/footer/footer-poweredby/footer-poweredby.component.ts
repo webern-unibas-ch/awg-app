@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Logos } from '@awg-core/core-models';
 
@@ -10,7 +10,8 @@ import { Logos } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-poweredby',
     templateUrl: './footer-poweredby.component.html',
-    styleUrls: ['./footer-poweredby.component.css']
+    styleUrls: ['./footer-poweredby.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterPoweredbyComponent {
     /**

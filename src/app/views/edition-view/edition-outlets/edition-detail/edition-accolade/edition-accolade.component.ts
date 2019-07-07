@@ -1,11 +1,12 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 @Component({
     selector: 'awg-edition-accolade',
     templateUrl: './edition-accolade.component.html',
-    styleUrls: ['./edition-accolade.component.css']
+    styleUrls: ['./edition-accolade.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionAccoladeComponent implements OnInit {
     @Input()

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { MetaPage } from '@awg-core/core-models';
 
@@ -11,7 +11,8 @@ import { MetaPage } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-declaration',
     templateUrl: './footer-declaration.component.html',
-    styleUrls: ['./footer-declaration.component.css']
+    styleUrls: ['./footer-declaration.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterDeclarationComponent {
     /**

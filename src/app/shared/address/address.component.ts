@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { MetaContact, MetaPage } from '@awg-core/core-models';
 
 /**
@@ -11,7 +11,8 @@ import { MetaContact, MetaPage } from '@awg-core/core-models';
 @Component({
     selector: 'awg-address',
     templateUrl: './address.component.html',
-    styleUrls: ['./address.component.css']
+    styleUrls: ['./address.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class AddressComponent {
     /**

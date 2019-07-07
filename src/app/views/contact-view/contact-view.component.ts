@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CoreService } from '@awg-core/services';
@@ -14,7 +14,8 @@ import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
 @Component({
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
-    styleUrls: ['./contact-view.component.css']
+    styleUrls: ['./contact-view.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactViewComponent implements OnInit {
     /**

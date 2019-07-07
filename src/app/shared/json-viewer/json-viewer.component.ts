@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 import { ResourceDetail } from '@awg-views/data-view/models';
@@ -17,7 +17,8 @@ import { ResourceDetail } from '@awg-views/data-view/models';
 @Component({
     selector: 'awg-json-viewer',
     templateUrl: './json-viewer.component.html',
-    styleUrls: ['./json-viewer.component.css']
+    styleUrls: ['./json-viewer.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class JsonViewerComponent {
     /**

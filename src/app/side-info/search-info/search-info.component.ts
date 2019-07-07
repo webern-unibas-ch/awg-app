@@ -1,4 +1,4 @@
-import { AfterViewChecked, ChangeDetectorRef, Component } from '@angular/core';
+import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -14,9 +14,10 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
 @Component({
     selector: 'awg-search-info',
     templateUrl: './search-info.component.html',
-    styleUrls: ['./search-info.component.css']
+    styleUrls: ['./search-info.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchInfoComponent implements AfterViewChecked {
+export class SearchInfoComponent implements OnInit {
     /**
      * Public variable: searchInfoData$.
      *
@@ -36,7 +37,8 @@ export class SearchInfoComponent implements AfterViewChecked {
      * Constructor of the SearchInfoComponent.
      *
      * It declares a private SideInfoService instance
-     * to get the search results and a private ChangeDetectorRef instance.
+     * to get the search results and
+     * a private ChangeDetectorRef instance.
      *
      * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
      * @param {ChangeDetectorRef} cdRef Instance of the ChangeDetectorRef.
@@ -44,16 +46,18 @@ export class SearchInfoComponent implements AfterViewChecked {
     constructor(private sideInfoService: SideInfoService, private cdRef: ChangeDetectorRef) {}
 
     /**
-     * Angular life cycle hook: ngAfterViewChecked.
+     * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
-     * when the component view was checked.
-     *
-     * Necessary (instead of OnInit) to update component correctly
-     * and to avoid ExpressionChangedAfterItHasBeenCheckedError.
+     * when initializing the component.
      */
-    ngAfterViewChecked() {
+    ngOnInit(): void {
         this.getSearchInfoData();
+
+        // trigger change detection for OnInit
+        if (!this.cdRef['destroyed']) {
+            this.cdRef.detectChanges();
+        }
     }
 
     /**

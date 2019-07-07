@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { Logo } from '@awg-core/core-models';
 
@@ -10,7 +10,8 @@ import { Logo } from '@awg-core/core-models';
 @Component({
     selector: 'awg-footer-logo',
     templateUrl: './footer-logo.component.html',
-    styleUrls: ['./footer-logo.component.css']
+    styleUrls: ['./footer-logo.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FooterLogoComponent {
     /**

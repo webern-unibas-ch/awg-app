@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -16,7 +16,8 @@ import { EditionDataService } from '@awg-views/edition-view/services';
 @Component({
     selector: 'awg-report',
     templateUrl: './report.component.html',
-    styleUrls: ['./report.component.css']
+    styleUrls: ['./report.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReportComponent implements OnInit {
     /**

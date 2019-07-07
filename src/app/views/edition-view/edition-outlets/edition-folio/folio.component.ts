@@ -1,4 +1,13 @@
-import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import {
+    AfterViewChecked,
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output
+} from '@angular/core';
 
 import { Folio, FolioSettings, FolioSvgData, EditionSvgSheet, ViewBox } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
@@ -13,7 +22,8 @@ declare var Snap: any;
 @Component({
     selector: 'awg-edition-folio',
     templateUrl: './folio.component.html',
-    styleUrls: ['./folio.component.css']
+    styleUrls: ['./folio.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Input()

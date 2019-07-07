@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -11,16 +11,10 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-edition-info',
     templateUrl: './edition-info.component.html',
-    styleUrls: ['./edition-info.component.css']
+    styleUrls: ['./edition-info.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionInfoComponent implements OnInit {
-    /**
-     * Public variable: pageMetaData.
-     *
-     * It keeps the meta data for the edition info.
-     */
-    editionMetaData: MetaEdition;
-
     /**
      * Public variable: editionInfoHeader.
      *
@@ -34,6 +28,13 @@ export class EditionInfoComponent implements OnInit {
         part: 'Skizzen',
         description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
     };
+
+    /**
+     * Public variable: editionMetaData.
+     *
+     * It keeps the meta data for the edition info.
+     */
+    editionMetaData: MetaEdition;
 
     /**
      * Constructor of the EditionInfoComponent.

@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 /**
  * The Heading component.
@@ -9,7 +9,8 @@ import { Component, Input } from '@angular/core';
 @Component({
     selector: 'awg-heading',
     templateUrl: 'heading.component.html',
-    styleUrls: ['heading.component.css']
+    styleUrls: ['heading.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HeadingComponent {
     /**

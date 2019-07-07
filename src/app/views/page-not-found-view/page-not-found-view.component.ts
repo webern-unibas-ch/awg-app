@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { AppConfig } from '@awg-app/app.config';
 
@@ -11,7 +11,8 @@ import { AppConfig } from '@awg-app/app.config';
 @Component({
     selector: 'awg-page-not-found-view',
     templateUrl: './page-not-found-view.component.html',
-    styleUrls: ['./page-not-found-view.component.css']
+    styleUrls: ['./page-not-found-view.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class PageNotFoundViewComponent {
     /**

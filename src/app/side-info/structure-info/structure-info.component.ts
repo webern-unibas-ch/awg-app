@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { MetaSectionKey, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
@@ -12,7 +12,8 @@ import { CoreService } from '@awg-core/services';
 @Component({
     selector: 'awg-structure-info',
     templateUrl: './structure-info.component.html',
-    styleUrls: ['./structure-info.component.css']
+    styleUrls: ['./structure-info.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class StructureInfoComponent implements OnInit {
     /**

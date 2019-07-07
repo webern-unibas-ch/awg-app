@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 import { SafeResourceUrl } from '@angular/platform-browser';
 
 /**
@@ -10,7 +10,8 @@ import { SafeResourceUrl } from '@angular/platform-browser';
 @Component({
     selector: 'awg-open-street-map',
     templateUrl: './open-street-map.component.html',
-    styleUrls: ['./open-street-map.component.css']
+    styleUrls: ['./open-street-map.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class OpenStreetMapComponent {
     /**
