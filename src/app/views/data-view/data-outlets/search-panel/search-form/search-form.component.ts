@@ -9,7 +9,7 @@ import {
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { distinctUntilChanged, debounceTime, filter } from 'rxjs/operators';
+import { distinctUntilChanged, debounceTime, filter, tap } from 'rxjs/operators';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -26,6 +26,8 @@ export class SearchFormComponent implements OnChanges {
 
     faSearch = faSearch;
 
+    errorHandler: (ex: any) => void = console.error;
+
     searchForm: FormGroup;
     searchFormStrings = {
         label: 'Search Input',
@@ -33,17 +35,26 @@ export class SearchFormComponent implements OnChanges {
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!'
     };
 
-    constructor(private fb: FormBuilder) {
-        // building form in constructor is necessary
-        // to check for input changes in ngOnChanges
-        this.buildForm(this.searchValue);
-    }
+    constructor(private fb: FormBuilder) {}
 
     // check for input changes
     ngOnChanges(changes: SimpleChanges) {
-        if (changes['searchValue']) {
-            // set input value to search form
-            this.searchForm.patchValue({ searchValueControl: this.searchValue });
+        this.setSearchValue();
+    }
+
+    setSearchValue() {
+        try {
+            if (this.searchValue === undefined || this.searchValue === null || this.searchValue.trim() === '') {
+                this.buildForm('');
+                return;
+            }
+            this.buildForm(this.searchValue);
+        } catch (e) {
+            if (this.errorHandler === undefined) {
+                throw e;
+            } else {
+                this.errorHandler(e);
+            }
         }
     }
 
@@ -65,9 +76,7 @@ export class SearchFormComponent implements OnChanges {
                 debounceTime(500),
                 distinctUntilChanged()
             )
-            .subscribe((query: string) => {
-                this.onSearch(query);
-            });
+            .subscribe((query: string) => this.onSearch(query));
     }
 
     // emit query to search panel

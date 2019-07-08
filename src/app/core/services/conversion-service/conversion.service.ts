@@ -64,26 +64,6 @@ export class ConversionService extends ApiService {
     filteredOut: number;
 
     /**
-     * Public method: getNestedArraysTotalItems.
-     *
-     * It sums up the total items (length) of all
-     * arrays nested in an ResourceDetailGroupedIncomingLinks
-     * object.
-     *
-     * @param {ResourceDetailGroupedIncomingLinks} obj The given grouped incoming links object.
-     * @returns {number} The number of total items (length) of the nested array.
-     */
-    getNestedArraysTotalItems(obj: ResourceDetailGroupedIncomingLinks): number {
-        let totalItems = 0;
-        // iterate over object keys
-        Object.keys(obj).forEach(key => {
-            // sum up length of array nested in object
-            totalItems += obj[key].length;
-        });
-        return totalItems;
-    }
-
-    /**
      * Public method: convertFullTextSearchResults.
      *
      * It converts the results of a full text search
