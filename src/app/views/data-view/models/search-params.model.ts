@@ -1,4 +1,14 @@
 /**
+ * The SearchParamsViewTypes enumeration.
+ *
+ * It stores the possible search params view types.
+ */
+export enum SearchParamsViewTypes {
+    table = 'table',
+    grid = 'grid'
+}
+
+/**
  * The SearchParams class.
  *
  * It is used in the context of the search
@@ -21,7 +31,7 @@ export class SearchParams {
     startAt: string;
 
     /**
-     * The requested view ('table', 'grid').
+     * The requested view type ('table', 'grid').
      */
-    view: string;
+    view: SearchParamsViewTypes;
 }

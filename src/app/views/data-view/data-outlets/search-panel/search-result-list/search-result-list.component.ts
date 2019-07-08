@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 
 import { Observable, Subscription } from 'rxjs';
 
-import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
+import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
@@ -55,15 +55,20 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     ngOnInit() {
         this.streamerServiceSubscription = this.subscribeToStreamerService();
-        if (this.searchParams.view && (this.searchParams.view === 'table' || this.searchParams.view === 'grid')) {
+
+        if (
+            this.searchParams.view &&
+            (this.searchParams.view === SearchParamsViewTypes.table ||
+                this.searchParams.view === SearchParamsViewTypes.grid)
+        ) {
             this.buildForm(this.searchParams.view);
         }
     }
 
     // build radio view form
-    buildForm(view: string) {
+    buildForm(view: SearchParamsViewTypes) {
         this.radioViewForm = this.fb.group({
-            radioViewControl: view
+            radioViewControl: SearchParamsViewTypes[view]
         });
 
         this.checkForUserInputChanges();

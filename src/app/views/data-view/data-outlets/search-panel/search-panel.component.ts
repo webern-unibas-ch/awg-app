@@ -7,7 +7,7 @@ import { ConversionService, DataStreamerService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 @Component({
     selector: 'awg-search-panel',
@@ -24,7 +24,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         query: '',
         nRows: '25',
         startAt: '0',
-        view: 'table'
+        view: SearchParamsViewTypes.table
     };
 
     errorMessage: any;
@@ -200,7 +200,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                             query: qp.get('query') || this.searchParams.query,
                             nRows: qp.get('nrows') || this.searchParams.nRows,
                             startAt: qp.get('startAt') || this.searchParams.startAt,
-                            view: qp.get('view') || this.searchParams.view
+                            view: SearchParamsViewTypes[qp.get('view')] || this.searchParams.view
                         };
                         this.routeToSelf(sp);
                     } else {
@@ -266,8 +266,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         }
         if (
             params.get('view') &&
-            (params.get('view') === 'table' || params.get('view') === 'grid') &&
-            params.get('view') !== this.searchParams.view
+            (params.get('view') === SearchParamsViewTypes.table || params.get('view') === SearchParamsViewTypes.grid)
         ) {
             this.searchParams.view = params.get('view');
         }
