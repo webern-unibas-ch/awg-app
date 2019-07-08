@@ -67,7 +67,7 @@
         </ngb-pagination>
 
         <!-- table with searchResults -->
-        <div *ngIf="searchParams?.view === 'table'" class="table-responsive">
+        <div *ngIf="!isGridView()" class="table-responsive">
             <table class="table table-sm awg-search-result-table">
                 <thead>
                     <tr class="d-flex">
@@ -98,7 +98,7 @@
         </div>
 
         <!-- grid with searchResults -->
-        <div class="card-columns" *ngIf="searchParams?.view === 'grid'">
+        <div *ngIf="isGridView()" class="card-columns">
             <div class="card" *ngFor="let subject of searchResponse?.subjects; trackBy: trackById">
                 <div class="card-header">
                     <img [attr.src]="subject?.iconsrc" alt="iconsrc" />

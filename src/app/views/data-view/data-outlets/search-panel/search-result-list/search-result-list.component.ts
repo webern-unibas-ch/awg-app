@@ -85,6 +85,10 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         return this.currentId === id;
     }
 
+    isGridView(): boolean {
+        return this.searchParams.view === SearchParamsViewTypes.grid;
+    }
+
     /**
      * Public method: navigateToResource.
      *
