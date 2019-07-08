@@ -100,14 +100,14 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // view has not changed
             this.viewChanged = false;
 
-            const sp: SearchParams = {
+            this.searchParams = {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: requestedStartAt,
                 view: this.searchParams.view
             };
             // route to new params
-            this.routeToSelf(sp);
+            this.routeToSelf(this.searchParams);
         }
     }
 
@@ -117,18 +117,15 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // view has not changed
             this.viewChanged = false;
 
-            // reset start position
-            this.searchParams.startAt = '0';
-
-            const sp: SearchParams = {
+            this.searchParams = {
                 query: this.searchParams.query,
                 nRows: requestedRows,
-                startAt: this.searchParams.startAt,
+                startAt: '0',
                 view: this.searchParams.view
             };
 
             // route to new params
-            this.routeToSelf(sp);
+            this.routeToSelf(this.searchParams);
         }
     }
 
@@ -138,15 +135,15 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // view has changed
             this.viewChanged = true;
 
-            const sp: SearchParams = {
+            this.searchParams = {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
-                view: requestedView
+                view: SearchParamsViewTypes[requestedView]
             };
 
             // route to new params
-            this.routeToSelf(sp);
+            this.routeToSelf(this.searchParams);
         }
     }
 
@@ -156,7 +153,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // view has not changed
             this.viewChanged = false;
 
-            const sp: SearchParams = {
+            this.searchParams = {
                 query: requestedQuery,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
@@ -164,7 +161,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             };
 
             // route to new search params
-            this.routeToSelf(sp);
+            this.routeToSelf(this.searchParams);
         }
     }
 
@@ -196,13 +193,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     this.currentQueryParams = qp;
 
                     if (qp.keys.length < 4) {
-                        const sp: SearchParams = {
-                            query: qp.get('query') || this.searchParams.query,
-                            nRows: qp.get('nrows') || this.searchParams.nRows,
-                            startAt: qp.get('startAt') || this.searchParams.startAt,
-                            view: SearchParamsViewTypes[qp.get('view')] || this.searchParams.view
-                        };
-                        this.routeToSelf(sp);
+                        // update search params (immutable)
+                        this.updateSearchParamsFromRoute(qp);
+
+                        this.routeToSelf(this.searchParams);
                     } else {
                         // update search params from route if available
                         this.updateSearchParamsFromRoute(qp);
@@ -255,21 +249,13 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             return;
         }
 
-        if (params.get('query') && params.get('query') !== this.searchParams.query) {
-            this.searchParams.query = params.get('query');
-        }
-        if (params.get('nrows') && params.get('nrows') !== this.searchParams.nRows) {
-            this.searchParams.nRows = params.get('nrows');
-        }
-        if (params.get('startAt') && params.get('startAt') !== this.searchParams.startAt) {
-            this.searchParams.startAt = params.get('startAt');
-        }
-        if (
-            params.get('view') &&
-            (params.get('view') === SearchParamsViewTypes.table || params.get('view') === SearchParamsViewTypes.grid)
-        ) {
-            this.searchParams.view = params.get('view');
-        }
+        // update search params (immutable)
+        this.searchParams = {
+            query: params.get('query') || this.searchParams.query,
+            nRows: params.get('nrows') || this.searchParams.nRows,
+            startAt: params.get('startAt') || this.searchParams.startAt,
+            view: SearchParamsViewTypes[params.get('view')] || this.searchParams.view
+        };
     }
 
     // update search data via streamer service

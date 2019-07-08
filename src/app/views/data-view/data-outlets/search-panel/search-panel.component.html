@@ -19,13 +19,13 @@
             <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
         </ng-container>
     </ng-template>
-</ng-container>
 
-<!-- error message -->
-<ng-template #error>
-    <div class="errorMessage" *ngIf="errorMessage">
-        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
-        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
-        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
-    </div>
-</ng-template>
+    <!-- error message -->
+    <ng-template #error>
+        <div class="errorMessage" *ngIf="errorMessage">
+            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
+            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+        </div>
+    </ng-template>
+</ng-container>
