@@ -17,7 +17,7 @@ export enum EditionSvgOverlayTypes {
  */
 export class EditionSvgOverlay {
     /**
-     * The type of an svg overlay (EditionSvgOverlaType).
+     * The type of an svg overlay (EditionSvgOverlayTypes).
      */
     type: EditionSvgOverlayTypes;
 

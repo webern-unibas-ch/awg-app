@@ -1,6 +1,6 @@
 <!-- resource detail box -->
-<div class="awg-resource-detail-tabs">
-    <ngb-tabset *ngIf="!isLoadingData && (resourceData$ | async) as resourceData; else loading">
+<div class="awg-resource-detail-tabs" *ngIf="!isLoadingData && (resourceData$ | async) as resourceData; else loading">
+    <ngb-tabset>
         <!-- html -->
         <ngb-tab id="html" class="awg-resource-detail-long-tab">
             <ng-template ngbTabTitle>

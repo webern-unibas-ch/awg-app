@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnChanges, OnInit, SimpleChanges } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
@@ -18,7 +18,7 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
     styleUrls: ['./resource-detail.component.css'],
     providers: [NgbTabsetConfig]
 })
-export class ResourceDetailComponent implements OnInit {
+export class ResourceDetailComponent implements OnInit, OnChanges {
     resourceData$: Observable<ResourceData>;
 
     resourceId: string;
@@ -32,7 +32,7 @@ export class ResourceDetailComponent implements OnInit {
      *
      * If the data is loading.
      */
-    isLoadingData = false;
+    isLoadingData: boolean;
 
     tabTitle = {
         html: 'Detail',
@@ -59,8 +59,12 @@ export class ResourceDetailComponent implements OnInit {
     }
 
     ngOnInit() {
-        this.getResourceData();
         this.routeToSidenav();
+        this.getResourceData();
+    }
+
+    ngOnChanges(changes: SimpleChanges) {
+        console.log(changes);
     }
 
     /**
@@ -85,8 +89,8 @@ export class ResourceDetailComponent implements OnInit {
      *
      * @returns {void} Triggers the change of the loading status.
      */
-    onLoadingStart(): void {
-        this.changeLoadingStatus(true);
+    onLoadingStart() {
+        return (this.isLoadingData = true);
     }
 
     /**
@@ -98,14 +102,16 @@ export class ResourceDetailComponent implements OnInit {
      *
      * @returns {void} Triggers the change of the loading status.
      */
-    onLoadingEnd(): void {
-        this.changeLoadingStatus(false);
+    onLoadingEnd() {
+        return (this.isLoadingData = false);
     }
 
     getResourceData() {
         // observe route params
         this.resourceData$ = this.route.paramMap.pipe(
-            tap(() => this.onLoadingStart()),
+            tap(() => {
+                this.onLoadingStart();
+            }),
             switchMap((params: ParamMap) => {
                 // store resource id
                 this.resourceId = params.get('id');
@@ -121,7 +127,9 @@ export class ResourceDetailComponent implements OnInit {
                     })
                 );
             }),
-            tap(() => this.onLoadingEnd())
+            tap(() => {
+                this.onLoadingEnd();
+            })
         );
     }
 
