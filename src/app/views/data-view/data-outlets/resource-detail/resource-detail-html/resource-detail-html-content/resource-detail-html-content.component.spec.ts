@@ -44,7 +44,7 @@ class ResourceDetailHtmlContentLinkedobjectsStubComponent {
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
-describe('ResourceDetailHtmlContentComponent (DONE)', () => {
+fdescribe('ResourceDetailHtmlContentComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentComponent>;
     let compDe: DebugElement;
@@ -89,7 +89,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         const props: ResourceDetailProperty[] = [
             new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
         ];
-        expectedContent = { props, images, incoming };
+        expectedContent = new ResourceDetailContent(props, images, incoming);
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -173,8 +173,12 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             it('... should contain one ResourceDetailHtmlContentPropsComponent (stubbed) only if props provided', () => {
                 getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentPropsStubComponent, 1, 1);
 
-                // provide data without props property
-                expectedContent.props = null;
+                // provide data without incoming property
+                const images = expectedContent.images;
+                const props = null;
+                const incoming = expectedContent.incoming;
+                expectedContent = new ResourceDetailContent(props, images, incoming);
+
                 component.content = expectedContent;
                 fixture.detectChanges();
 
@@ -185,7 +189,11 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentImageobjectsStubComponent, 1, 1);
 
                 // provide data without images property
-                expectedContent.images = [];
+                const images = [];
+                const props = expectedContent.props;
+                const incoming = expectedContent.incoming;
+                expectedContent = new ResourceDetailContent(props, images, incoming);
+
                 component.content = expectedContent;
                 fixture.detectChanges();
 
@@ -196,7 +204,11 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentLinkedobjectsStubComponent, 1, 1);
 
                 // provide data without incoming property
-                expectedContent.incoming = null;
+                const images = expectedContent.images;
+                const props = expectedContent.props;
+                const incoming = null;
+                expectedContent = new ResourceDetailContent(props, images, incoming);
+
                 component.content = expectedContent;
                 fixture.detectChanges();
 

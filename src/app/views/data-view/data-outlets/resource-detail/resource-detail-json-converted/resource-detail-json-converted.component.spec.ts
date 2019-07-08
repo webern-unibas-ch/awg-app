@@ -41,7 +41,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
         // test data
         expectedData = new ResourceDetail(
             { objID: '', icon: '', type: '', title: 'test', lastmod: '2019' },
-            new ResourceDetailContent()
+            new ResourceDetailContent(undefined, undefined, undefined)
         );
         expectedData.header = { objID: '', icon: '', type: '', title: 'test', lastmod: '2019' };
     });
