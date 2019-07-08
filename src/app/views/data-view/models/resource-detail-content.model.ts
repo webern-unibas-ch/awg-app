@@ -25,6 +25,23 @@ export class ResourceDetailContent {
     incoming: ResourceDetailGroupedIncomingLinks;
 
     /**
-     * @todo: use constructor to initialize class
+     * Constructor of the ResourceDetailContent class.
+     *
+     * It initializes the class with values from
+     * given properties, images and grouped incoming links.
+     *
+     * @param {ResourceDetailProperty[]} props The given resource detail properties array.
+     * @param {ResourceDetailImage[]} images The given resource detail image array.
+     * @param {ResourceDetailGroupedIncomingLinks} incoming
+     * The given resource detail grouped incoming links.
      */
+    constructor(
+        props: ResourceDetailProperty[],
+        images: ResourceDetailImage[],
+        incoming: ResourceDetailGroupedIncomingLinks
+    ) {
+        this.props = props;
+        this.images = images;
+        this.incoming = incoming;
+    }
 }

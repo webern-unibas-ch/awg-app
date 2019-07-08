@@ -286,7 +286,7 @@ export class ConversionService extends ApiService {
      * to be displayed via HTML.
      *
      * @param {ResourceFullResponseJson} resourceData The given resource data.
-     * @param {string} currentId The given id of the current resource.
+     * @param {string} currentResourceId The given id of the current resource.
      * @returns {ResourceDetail} The resource detail object.
      */
     private prepareRestrictedResource(
@@ -318,11 +318,11 @@ export class ConversionService extends ApiService {
 
         // prepare parts of resourceDetail
         const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData, currentResourceId);
-        const content: ResourceDetailContent = {
-            props: this.prepareResourceDetailProperties(resourceData.props),
-            images: this.prepareResourceDetailImage(currentResourceId),
-            incoming: this.prepareResourceDetailIncomingLinks(resourceData.incoming)
-        };
+        const props = this.prepareResourceDetailProperties(resourceData.props);
+        const images = this.prepareResourceDetailImage(currentResourceId);
+        const incoming = this.prepareResourceDetailIncomingLinks(resourceData.incoming);
+        const content = new ResourceDetailContent(props, images, incoming);
+
         return new ResourceDetail(header, content);
     }
 

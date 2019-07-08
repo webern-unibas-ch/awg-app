@@ -1,12 +1,14 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { switchMap, map } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { switchMap, map, tap } from 'rxjs/operators';
 
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { ConversionService, DataStreamerService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
+
 import { ResourceData, ResourceDetail } from '@awg-views/data-view/models';
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
@@ -17,7 +19,8 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
     providers: [NgbTabsetConfig]
 })
 export class ResourceDetailComponent implements OnInit {
-    resourceData: ResourceData;
+    resourceData$: Observable<ResourceData>;
+
     resourceId: string;
     resourceUrl: string;
     oldId: string;
@@ -101,40 +104,25 @@ export class ResourceDetailComponent implements OnInit {
 
     getResourceData() {
         // observe route params
-        this.route.paramMap
-            .pipe(
-                switchMap((params: ParamMap) => {
-                    this.onLoadingStart();
+        this.resourceData$ = this.route.paramMap.pipe(
+            tap(() => this.onLoadingStart()),
+            switchMap((params: ParamMap) => {
+                // store resource id
+                this.resourceId = params.get('id');
 
-                    // store resource id
-                    this.resourceId = params.get('id');
+                // fetch data
+                return this.searchService.getResourceDetailData(params.get('id')).pipe(
+                    map((resourceBody: ResourceFullResponseJson) => {
+                        // update current resource params (url and id) via streamer service
+                        this.updateResourceParams();
 
-                    // fetch data
-                    return this.searchService.getResourceDetailData(params.get('id')).pipe(
-                        map((resourceBody: ResourceFullResponseJson) => {
-                            // update current resource params (url and id) via streamer service
-                            this.updateResourceParams();
-
-                            // prepare resource detail
-                            return this.prepareResourceDetail(resourceBody);
-                        })
-                    );
-                })
-            )
-            .subscribe(
-                (resourceData: ResourceData) => {
-                    // update resource data
-                    this.resourceData = { ...resourceData };
-
-                    // scroll to Top of Page
-                    ResourceDetailComponent.scrollToTop();
-
-                    this.onLoadingEnd();
-                },
-                error => {
-                    this.errorMessage = error as any;
-                }
-            );
+                        // prepare resource detail
+                        return this.prepareResourceDetail(resourceBody);
+                    })
+                );
+            }),
+            tap(() => this.onLoadingEnd())
+        );
     }
 
     updateResourceParams() {
@@ -164,7 +152,7 @@ export class ResourceDetailComponent implements OnInit {
         const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
 
         // return new resource data
-        return (this.resourceData = new ResourceData(resourceBody, html));
+        return new ResourceData(resourceBody, html);
     }
 
     /**
