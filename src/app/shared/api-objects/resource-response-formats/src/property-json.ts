@@ -188,6 +188,14 @@ export class PropertyJson {
     public valuetype_id: string = undefined;
 
     /**
+     * The property's html serialization.
+     * @param toHtml: Array<string> OPTIONAL
+     * TODO
+     */
+    @JsonProperty('toHtml', [String], true)
+    public toHtml: string[] = undefined;
+
+    /**
      * Public method: getValuesAsPropertyJsonValues
      *
      * Converts the property's values to a PropertyJsonValue array.
