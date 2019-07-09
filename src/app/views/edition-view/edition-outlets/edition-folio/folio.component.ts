@@ -26,12 +26,36 @@ declare var Snap: any;
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
+    /**
+     * Input variable: folioData.
+     *
+     * It keeps the folio data of the edition detail.
+     */
     @Input()
-    convoluteData: Folio[];
+    folioData: Folio[];
+
+    /**
+     * Public variable: selectedSvgSheet.
+     *
+     * It keeps the selected svg sheet.
+     */
     @Input()
     selectedSvgSheet: EditionSvgSheet;
+
+    /**
+     * Output variable: openModalRequest.
+     *
+     * It keeps an event emitter to open the modal
+     * with the selected modal text snippet.
+     */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
@@ -56,6 +80,16 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         numberOfFolios: 0
     };
 
+    // getter function for format options
+    get folioSettings() {
+        // prepare folio width & height
+        this._folioSettings.numberOfFolios = +this.folioData.length;
+        this._folioSettings.formatX = +this.folio.format.width;
+        this._folioSettings.formatY = +this.folio.format.height;
+
+        return this._folioSettings;
+    }
+
     /**
      * Self-referring variable needed for CompileHtml library.
      */
@@ -65,15 +99,33 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.ref = this;
     }
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
         this.prepareFolioSvgOutput();
     }
 
+    /**
+     * Angular life cycle hook: ngAfterViewInit.
+     *
+     * It calls the containing methods
+     * after the view was initialized.
+     */
     ngAfterViewInit() {
         // start to render svg only after view, inputs and calculation are available
         this.renderSnapSvg();
     }
 
+    /**
+     * Angular life cycle hook: ngAfterViewChecked.
+     *
+     * It calls the containing methods
+     * after the view was built and checked.
+     */
     ngAfterViewChecked() {
         // apply active classes after view was checked
         this.applyActiveClass();
@@ -99,9 +151,9 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * FolioSvgOutput
      */
     prepareFolioSvgOutput(): void {
-        for (let folioIndex = 0; folioIndex < this.convoluteData.length; folioIndex++) {
+        for (let folioIndex = 0; folioIndex < this.folioData.length; folioIndex++) {
             // current folio
-            this.folio = this.convoluteData[folioIndex];
+            this.folio = this.folioData[folioIndex];
 
             // prepare viewbox settings
             this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
@@ -141,27 +193,33 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         });
     }
 
-    // getter function for format options
-    get folioSettings() {
-        // prepare folio width & height
-        this._folioSettings.numberOfFolios = +this.convoluteData.length;
-        this._folioSettings.formatX = +this.folio.format.width;
-        this._folioSettings.formatY = +this.folio.format.height;
-
-        return this._folioSettings;
-    }
-
     // helper function to compare id with that of selected sheet
     isSelectedSvgSheet(id: string) {
         return id === this.selectedSvgSheet.id;
     }
 
-    // request function to emit modal id
+    /**
+     * Public method: openModal.
+     *
+     * It emits a given id of a modal snippet text
+     * to the {@link openModalRequest}.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Emits the id.
+     */
     openModal(id: string) {
         this.openModalRequest.emit(id);
     }
 
-    // request function to emit selected sheet id
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
     selectSvgSheet(id: string) {
         this.selectSvgSheetRequest.emit(id);
     }

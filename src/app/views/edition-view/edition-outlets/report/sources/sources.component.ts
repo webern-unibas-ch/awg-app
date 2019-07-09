@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { SourceList } from '@awg-views/edition-view/models';
 
@@ -8,20 +8,31 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./sources.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourcesComponent implements OnInit {
+export class SourcesComponent {
     @Input()
     sourceListData: SourceList;
+
+    /**
+     * Output variable: openModalRequest.
+     *
+     * It keeps an event emitter to open the modal
+     * with the selected modal text snippet.
+     */
     @Output()
     openModalRequest: EventEmitter<any> = new EventEmitter();
 
     showDescriptionPanel = true;
 
-    constructor() {}
-
-    ngOnInit() {}
-
+    /**
+     * Public method: openModal.
+     *
+     * It emits a given id of a modal snippet text
+     * to the {@link openModalRequest}.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Emits the id.
+     */
     openModal(id: string) {
-        // emit event to open modal
         this.openModalRequest.emit(id);
     }
 

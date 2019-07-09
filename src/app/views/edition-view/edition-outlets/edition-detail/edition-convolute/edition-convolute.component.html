@@ -4,18 +4,18 @@
             <!-- convolute dropDown -->
             <div class="d-inline-block" ngbDropdown>
                 <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
-                    <span>{{ selectedConvoluteLabel }}</span>
+                    <span>{{ selectedConvolute }}</span>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
-                    <a class="dropdown-item" (click)="selectConvolute(convoluteLabel.A)">{{ convoluteLabel.A }}</a>
-                    <a class="dropdown-item" (click)="openModal('sourceNotA')">{{ convoluteLabel.B_H }}</a>
+                    <a class="dropdown-item" (click)="selectConvolute(convolutes.A)">{{ convolutes.A }}</a>
+                    <a class="dropdown-item" (click)="openModal('sourceNotA')">{{ convolutes.B_H }}</a>
                 </div>
             </div>
 
             <!-- folio overview -->
             <awg-edition-folio
-                *ngIf="convoluteData && selectedSvgSheet"
-                [convoluteData]="convoluteData"
+                *ngIf="folioData && selectedSvgSheet"
+                [folioData]="folioData"
                 [selectedSvgSheet]="selectedSvgSheet"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)"
@@ -25,7 +25,7 @@
             <!-- folio legend -->
             <div class="col-12">
                 Legende:&nbsp;
-                <ng-container *ngFor="let legend of folioLegend">
+                <ng-container *ngFor="let legend of folioLegends">
                     <span class="{{ legend.color }}">
                         <fa-icon [icon]="faSquare"></fa-icon>
                         {{ legend.label }}

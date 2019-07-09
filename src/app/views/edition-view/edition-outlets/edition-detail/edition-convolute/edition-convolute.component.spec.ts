@@ -10,7 +10,7 @@ import { Folio, EditionSvgSheet } from '@awg-views/edition-view/models';
 @Component({ selector: 'awg-edition-folio', template: '' })
 class FolioStubComponent {
     @Input()
-    convoluteData: Folio[];
+    folioData: Folio[];
     @Input()
     selectedSvgSheet: EditionSvgSheet;
 

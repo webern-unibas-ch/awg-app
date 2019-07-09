@@ -19,6 +19,11 @@ export class ResourceInfo {
     resources: IResourceInfoResources;
 }
 
+/**
+ * The IResourceInfoResources interface.
+ *
+ * It represents the resource info resources.
+ */
 export interface IResourceInfoResources {
     /**
      * The current resource.

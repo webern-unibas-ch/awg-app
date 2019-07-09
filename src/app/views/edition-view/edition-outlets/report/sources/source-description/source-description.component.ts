@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 @Component({
     selector: 'awg-source-description',
@@ -6,20 +6,32 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
     styleUrls: ['./source-description.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceDescriptionComponent implements OnInit {
+export class SourceDescriptionComponent {
     @Input()
     showDescriptionPanel: boolean;
     @Output()
     toggleDescriptionPanelRequest: EventEmitter<boolean> = new EventEmitter();
+
+    /**
+     * Output variable: openModalRequest.
+     *
+     * It keeps an event emitter to open the modal
+     * with the selected modal text snippet.
+     */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
-    constructor() {}
-
-    ngOnInit() {}
-
-    openModal(identifier: string) {
-        this.openModalRequest.emit(identifier);
+    /**
+     * Public method: openModal.
+     *
+     * It emits a given id of a modal snippet text
+     * to the {@link openModalRequest}.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Emits the id.
+     */
+    openModal(id: string) {
+        this.openModalRequest.emit(id);
     }
 
     togglePanel(): void {
