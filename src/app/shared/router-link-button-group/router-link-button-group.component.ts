@@ -42,7 +42,7 @@ export class RouterLinkButtonGroupComponent {
      * @returns {void}
      * Emits the selected router link button.
      */
-    onButtonSelect(routerLinkButton: RouterLinkButton): void {
+    selectButton(routerLinkButton: RouterLinkButton): void {
         this.selectButtonRequest.emit(routerLinkButton);
     }
 }

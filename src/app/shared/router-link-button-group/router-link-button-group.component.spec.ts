@@ -49,7 +49,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        selectButtonSpy = spyOn(component, 'onButtonSelect').and.callThrough();
+        selectButtonSpy = spyOn(component, 'selectButton').and.callThrough();
         emitSpy = spyOn(component.selectButtonRequest, 'emit').and.callThrough();
     });
 
@@ -64,7 +64,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('#onButtonSelect', () => {
             it('... should not have been called', () => {
-                expect(component.onButtonSelect).not.toHaveBeenCalled();
+                expect(component.selectButton).not.toHaveBeenCalled();
             });
         });
 
