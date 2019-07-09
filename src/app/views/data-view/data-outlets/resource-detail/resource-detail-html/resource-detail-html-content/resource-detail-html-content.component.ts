@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ResourceDetailContent } from '@awg-views/data-view/models';
 
@@ -8,15 +8,11 @@ import { ResourceDetailContent } from '@awg-views/data-view/models';
     styleUrls: ['./resource-detail-html-content.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResourceDetailHtmlContentComponent implements OnInit {
+export class ResourceDetailHtmlContentComponent {
     @Input()
     content: ResourceDetailContent;
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
-
-    constructor() {}
-
-    ngOnInit() {}
 
     navigateToResource(id?: string): void {
         if (!id) {
