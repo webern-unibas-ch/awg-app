@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 
 import { BibliographyService } from '@awg-views/data-view/services';
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
+import { map, tap } from 'rxjs/operators';
+import { Observable } from 'rxjs';
 
 /**
  * The Bibliography component.
@@ -18,19 +20,19 @@ import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
 })
 export class BibliographyComponent implements OnInit {
     /**
-     * Public variable: bibListResponse.
+     * Public variable: bibList$.
      *
-     * It keeps the whole list of bibliography items
-     * from a search response.
+     * Observable that keeps the subject array of bibliography items.
      */
-    bibListResponse: SearchResponseJson = new SearchResponseJson();
+    bibList$: Observable<SearchResponseJson>;
 
     /**
-     * Public variable: bibList.
+     * Public variable: nhits.
      *
-     * It keeps the subject array of bibliography items.
+     * It keeps the result number of a
+     * bibliography search response.
      */
-    bibList: SubjectItemJson[];
+    nhits: string | number;
 
     /**
      * Public variable: selectedBibItem.
@@ -75,15 +77,13 @@ export class BibliographyComponent implements OnInit {
      * @returns {void} Sets the bibListResponse variable.
      */
     getBibList(): void {
-        this.bibliographyService.getBibliographyList().subscribe((data: SearchResponseJson) => {
-            this.bibListResponse = { ...data };
-
-            // TODO: handle request with more than 1000 entries
-            console.log('BibComp # bibListResponse', this.bibListResponse);
-
-            this.bibList = this.bibListResponse.subjects.slice(1, 20);
-            this.isBibListLoaded = true;
-        });
+        // TODO: handle request with more than 1000 entries
+        this.bibList$ = this.bibliographyService.getBibliographyList().pipe(
+            tap((data: SearchResponseJson) => {
+                this.nhits = data.nhits;
+                this.isBibListLoaded = true;
+            })
+        );
     }
 
     /**
