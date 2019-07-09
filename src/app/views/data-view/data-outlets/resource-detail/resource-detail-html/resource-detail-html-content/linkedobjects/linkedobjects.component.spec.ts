@@ -30,7 +30,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
     let keyValuePipe: KeyValuePipe;
 
-    let updateTotalNumberSpy: Spy;
+    let totalNumberSpy: Spy;
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
 
@@ -81,7 +81,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        updateTotalNumberSpy = spyOn(component, 'updateTotalNumber').and.callThrough();
+        totalNumberSpy = spyOnProperty(component, 'totalNumber', 'get').and.callThrough();
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
         emitSpy = spyOn(component.resourceRequest, 'emit').and.callThrough();
     });
@@ -91,8 +91,9 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have totalNumber = 0', () => {
-            expect(component.totalNumber).toBe(0, 'should be 0');
+        it('should not have totalNumber', () => {
+            expectSpyCall(totalNumberSpy, 0);
+            expect(component.totalNumber).toBeUndefined('should be undefined');
         });
 
         it('should not have `incomingGroups` inputs', () => {
@@ -122,7 +123,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
         describe('#updateTotalNumber', () => {
             it('... should not have been called', () => {
-                expect(updateTotalNumberSpy).not.toHaveBeenCalled();
+                expect(totalNumberSpy).not.toHaveBeenCalled();
             });
         });
 
@@ -418,11 +419,11 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
         describe('#updateTotalNumber', () => {
             it('... should have been called', fakeAsync(() => {
-                expectSpyCall(updateTotalNumberSpy, 1);
+                expectSpyCall(totalNumberSpy, 1);
             }));
 
             it('... should have updated totalNumber with number of nested array items', fakeAsync(() => {
-                expectSpyCall(updateTotalNumberSpy, 1);
+                expectSpyCall(totalNumberSpy, 1);
 
                 expect(component.totalNumber).toBe(
                     expectedTotalItems,
@@ -442,11 +443,10 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 component.incomingGroups = newExpectedIncomingGroups;
 
                 // trigger ngOnChanges
-                component.ngOnChanges({ incomingGroups: new SimpleChange(null, component.incomingGroups, true) });
                 fixture.detectChanges();
 
                 // spy has been called only once with ngOnInit
-                expectSpyCall(updateTotalNumberSpy, 1);
+                expectSpyCall(totalNumberSpy, 1);
 
                 // output has not changed
                 expect(component.totalNumber).toBe(
@@ -468,11 +468,10 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 component.incomingGroups = newExpectedIncomingGroups;
 
                 // trigger ngOnChanges
-                component.ngOnChanges({ incomingGroups: new SimpleChange(null, component.incomingGroups, false) });
                 fixture.detectChanges();
 
                 // spy has been called twice now
-                expectSpyCall(updateTotalNumberSpy, 2);
+                expectSpyCall(totalNumberSpy, 2);
 
                 // output has changed
                 expect(component.totalNumber).toBe(newTotalItems, `should be newTotalItems: ${newTotalItems}`);
