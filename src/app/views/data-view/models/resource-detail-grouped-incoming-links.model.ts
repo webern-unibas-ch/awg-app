@@ -8,7 +8,12 @@ import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.mode
  */
 export class ResourceDetailGroupedIncomingLinks {
     /**
+     * The label of the resource type to be grouped.
+     */
+    restypeLabel: string;
+
+    /**
      * The array of incoming links.
      */
-    [key: string]: ResourceDetailIncomingLink[];
+    links: ResourceDetailIncomingLink[];
 }

@@ -1,29 +1,53 @@
-import { Component, EventEmitter, Input, OnChanges, Output, SimpleChanges } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
-import { ConversionService } from '@awg-core/services/conversion-service';
 import { ResourceDetailGroupedIncomingLinks } from '@awg-views/data-view/models';
 
+/**
+ * The ResourceDetailHtmlContentLinkedobjects component.
+ *
+ * It contains an accordion panel to display
+ * the incoming links of a resource and
+ * their total number.
+ */
 @Component({
     selector: 'awg-resource-detail-html-content-linkedobjects',
     templateUrl: './linkedobjects.component.html',
-    styleUrls: ['./linkedobjects.component.css']
+    styleUrls: ['./linkedobjects.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResourceDetailHtmlContentLinkedobjectsComponent implements OnChanges {
+export class ResourceDetailHtmlContentLinkedobjectsComponent {
+    /**
+     * Input variable: incomingGroups.
+     *
+     * It keeps the grouped incoming links array.
+     */
     @Input()
-    incoming: ResourceDetailGroupedIncomingLinks;
+    incomingGroups: ResourceDetailGroupedIncomingLinks[];
+
+    /**
+     * Output variable: resourceRequest.
+     *
+     * It keeps an event emitter for the resource request.
+     */
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 
-    totalNumber: number;
-
-    errorHandler: (ex: any) => void = console.error;
-
-    constructor(private conversionService: ConversionService) {}
-
-    ngOnChanges(changes: SimpleChanges) {
-        this.updateTotalNumber();
+    /**
+     * Getter for the total number of incoming links.
+     */
+    get totalNumber() {
+        return this.getNestedArraysTotalItems(this.incomingGroups) || 0;
     }
 
+    /**
+     * Public method: navigateToResource.
+     *
+     * It emits the given id to be handed
+     * to the parent component.
+     *
+     * @param {string} id The given resource id.
+     * @returns {void} Emits the id.
+     */
     navigateToResource(id?: string): void {
         if (!id) {
             return;
@@ -32,41 +56,26 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent implements OnChange
         this.resourceRequest.emit(id);
     }
 
-    updateTotalNumber(): void {
-        try {
-            // check for input variable to be unset
-            if (this.incoming === undefined || this.incoming === null) {
-                this.totalNumber = 0;
-                return;
-            }
-            // if input variable i set, update total number
-            this.totalNumber = this.getNestedArraysTotalItems(this.incoming);
-        } catch (e) {
-            if (this.errorHandler === undefined) {
-                throw e;
-            } else {
-                this.errorHandler(e);
-            }
-        }
-    }
-
     /**
-     * Private  method: getNestedArraysTotalItems.
+     * Private method: getNestedArraysTotalItems.
      *
-     * It sums up the total items (length) of all
-     * arrays nested in an ResourceDetailGroupedIncomingLinks
-     * object.
+     * It sums up the total items (length) of all arrays
+     * nested in an ResourceDetailGroupedIncomingLinks
+     * array.
      *
-     * @param {ResourceDetailGroupedIncomingLinks} obj The given grouped incoming links object.
+     * @param {ResourceDetailGroupedIncomingLinks[]} groupedLinksArr The given grouped incoming links array.
      * @returns {number} The number of total items (length) of the nested array.
      */
-    private getNestedArraysTotalItems(obj: ResourceDetailGroupedIncomingLinks): number {
-        let totalItems = 0;
-        // iterate over object keys
-        Object.keys(obj).forEach(key => {
-            // sum up length of array nested in object
-            totalItems += obj[key].length;
-        });
-        return totalItems;
+    private getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
+        if (!groupedLinksArr) {
+            return;
+        }
+
+        // callback for reduce function
+        // adds curValue to the previous result of the calculation (prevRes))
+        const reducer = (prevRes: number, curValue: number): number => prevRes + curValue;
+
+        // map the length of every nested link array into the reducer function; default initial value: 0
+        return groupedLinksArr.map(groupedLink => groupedLink.links.length).reduce(reducer, 0);
     }
 }

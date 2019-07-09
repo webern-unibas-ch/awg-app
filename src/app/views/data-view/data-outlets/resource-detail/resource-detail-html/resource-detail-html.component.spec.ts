@@ -51,7 +51,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         // test data
         const header: ResourceDetailHeader = { objID: '1234', icon: '', type: '', title: 'Test', lastmod: '' };
         const images: ResourceDetailImage[] = [];
-        const incoming = new ResourceDetailGroupedIncomingLinks();
+        const incoming = [new ResourceDetailGroupedIncomingLinks()];
         const props: ResourceDetailProperty[] = [
             new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
         ];

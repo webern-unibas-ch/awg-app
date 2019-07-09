@@ -15,14 +15,14 @@ export class ResourceDetailContent {
     props: ResourceDetailProperty[];
 
     /**
-     * The image of the resource content.
+     * The images of the resource content.
      */
     images: ResourceDetailImage[];
 
     /**
      * The grouped incoming links of the resource content.
      */
-    incoming: ResourceDetailGroupedIncomingLinks;
+    incoming: ResourceDetailGroupedIncomingLinks[];
 
     /**
      * Constructor of the ResourceDetailContent class.
@@ -32,13 +32,13 @@ export class ResourceDetailContent {
      *
      * @param {ResourceDetailProperty[]} props The given resource detail properties array.
      * @param {ResourceDetailImage[]} images The given resource detail image array.
-     * @param {ResourceDetailGroupedIncomingLinks} incoming
-     * The given resource detail grouped incoming links.
+     * @param {ResourceDetailGroupedIncomingLinks[]} incoming
+     * The given resource detail grouped incoming links array.
      */
     constructor(
         props: ResourceDetailProperty[],
         images: ResourceDetailImage[],
-        incoming: ResourceDetailGroupedIncomingLinks
+        incoming: ResourceDetailGroupedIncomingLinks[]
     ) {
         this.props = props;
         this.images = images;

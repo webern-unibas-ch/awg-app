@@ -298,9 +298,11 @@ export class ConversionService extends ApiService {
 
         // prepare parts of resourceDetail
         const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData, currentResourceId);
-        const props = this.prepareResourceDetailProperties(resourceData.props);
-        const images = this.prepareResourceDetailImage(currentResourceId);
-        const incoming = this.prepareResourceDetailIncomingLinks(resourceData.incoming);
+        const props: ResourceDetailProperty[] = this.prepareResourceDetailProperties(resourceData.props);
+        const images: ResourceDetailImage[] = this.prepareResourceDetailImage(currentResourceId);
+        const incoming: ResourceDetailGroupedIncomingLinks[] = this.prepareResourceDetailIncomingLinks(
+            resourceData.incoming
+        );
         const content = new ResourceDetailContent(props, images, incoming);
 
         return new ResourceDetail(header, content);
@@ -366,13 +368,21 @@ export class ConversionService extends ApiService {
      * of an accessible resource to be displayed via HTML.
      *
      * @param {IncomingItemJson[]} incomingArray The given IncomingItemJson.
-     * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links of the resource detail.
+     * @returns {ResourceDetailGroupedIncomingLinks[]} The grouped incoming links array of the resource detail.
      */
-    private prepareResourceDetailIncomingLinks(incomingArray: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
-        const incomingLinks: ResourceDetailIncomingLink[] = [];
-        incomingArray.forEach(incoming => {
-            incomingLinks.push(new ResourceDetailIncomingLink(incoming));
-        });
+    private prepareResourceDetailIncomingLinks(
+        incomingArray: IncomingItemJson[]
+    ): ResourceDetailGroupedIncomingLinks[] {
+        if (!incomingArray) {
+            return;
+        }
+
+        // map incoming array items into new array (immutable)
+        const incomingLinks: ResourceDetailIncomingLink[] = incomingArray.map(
+            incoming => new ResourceDetailIncomingLink({ ...incoming })
+        );
+
+        // return links grouped by restype
         return this.groupByRestype(incomingLinks);
     }
 
@@ -386,21 +396,23 @@ export class ConversionService extends ApiService {
      * @returns {ResourceDetailProperty[]} The properties array of the resource detail.
      */
     private prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
-        const detailProperties: ResourceDetailProperty[] = [];
+        if (!props) {
+            return;
+        }
 
-        // loop through properties keys
-        Object.keys(props).forEach((key: string) => {
-            const prop: any = props[key];
+        // helper method to clean value labels
+        const replaceLabel = (str: string): string => str.replace(' (Richtext)', '');
 
-            // clean value labels
-            if (prop.label) {
-                prop.label = prop.label.replace(' (Richtext)', '');
-            }
-
-            // push default values into detailProperties
-            detailProperties.push(new ResourceDetailProperty(prop.pid, prop.guielement, prop.label, prop.toHtml));
-        }); // END forEach props
-        return detailProperties;
+        // map default values into ResourceDetailProperties array
+        return Object.entries(props).map(
+            prop =>
+                new ResourceDetailProperty(
+                    prop[1].pid,
+                    prop[1].guielement,
+                    (prop[1].label = replaceLabel(prop[1].label)),
+                    prop[1].toHtml
+                )
+        );
     }
 
     /**
@@ -882,17 +894,18 @@ export class ConversionService extends ApiService {
      * @param {ResourceDetailIncomingLink[]} incomingLinks The given incoming links.
      * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links.
      */
-    private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks {
-        const groups: ResourceDetailGroupedIncomingLinks = {};
-        // iterate over incoming links to group by restype
-        incomingLinks.forEach(link => {
-            const group = link.restype.label;
-            if (group in groups) {
-                groups[group].push(link); // push link into existing restype group
-            } else {
-                groups[group] = [link]; // create restype group and make link the first entry
-            }
-        });
-        return groups;
+    private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {
+        if (!incomingLinks) {
+            return;
+        }
+
+        // find out and alphabetically sort all the unique restype labels
+        const restypeLabels = new Set(incomingLinks.map(incomingLink => incomingLink.restype.label).sort());
+
+        // produce a list of restypes with its incoming links
+        return Array.from(restypeLabels).map(label => ({
+            restypeLabel: label,
+            links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label)
+        }));
     }
 }

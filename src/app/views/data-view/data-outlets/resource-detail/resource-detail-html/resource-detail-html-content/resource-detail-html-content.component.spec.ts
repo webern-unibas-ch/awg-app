@@ -39,12 +39,12 @@ class ResourceDetailHtmlContentImageobjectsStubComponent {
 @Component({ selector: 'awg-resource-detail-html-content-linkedobjects', template: '' })
 class ResourceDetailHtmlContentLinkedobjectsStubComponent {
     @Input()
-    incoming: ResourceDetailGroupedIncomingLinks;
+    incomingGroups: ResourceDetailGroupedIncomingLinks[];
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
-fdescribe('ResourceDetailHtmlContentComponent (DONE)', () => {
+describe('ResourceDetailHtmlContentComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentComponent>;
     let compDe: DebugElement;
@@ -85,7 +85,7 @@ fdescribe('ResourceDetailHtmlContentComponent (DONE)', () => {
             new ResourceDetailImage(context, 0),
             new ResourceDetailImage(context, 1)
         ];
-        const incoming = new ResourceDetailGroupedIncomingLinks();
+        const incoming = [new ResourceDetailGroupedIncomingLinks()];
         const props: ResourceDetailProperty[] = [
             new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
         ];
@@ -259,8 +259,8 @@ fdescribe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentLinkedobjectsStubComponent
                 ) as ResourceDetailHtmlContentLinkedobjectsStubComponent;
 
-                expect(incomingCmp.incoming).toBeDefined();
-                expect(incomingCmp.incoming).toBe(expectedContent.incoming);
+                expect(incomingCmp.incomingGroups).toBeDefined();
+                expect(incomingCmp.incomingGroups).toBe(expectedContent.incoming);
             });
         });
 

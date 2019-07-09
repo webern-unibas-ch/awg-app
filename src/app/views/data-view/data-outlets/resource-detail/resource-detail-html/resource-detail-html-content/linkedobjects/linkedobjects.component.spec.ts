@@ -34,29 +34,16 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
 
-    let expectedIncoming: ResourceDetailGroupedIncomingLinks;
+    let expectedIncoming: ResourceDetailGroupedIncomingLinks[];
     let incomingLink1: ResourceDetailIncomingLink;
     let incomingLink2: ResourceDetailIncomingLink;
     let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
 
-    const mockConversionService = {
-        getNestedArraysTotalItems: (obj: ResourceDetailGroupedIncomingLinks): number => {
-            let size = 0;
-            // iterate over object keys
-            Object.keys(obj).forEach(key => {
-                // sum up length of array nested in object
-                size += obj[key].length;
-            });
-            return size;
-        }
-    };
-
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [NgbAccordionModule],
-            declarations: [ResourceDetailHtmlContentLinkedobjectsComponent],
-            providers: [{ provide: ConversionService, useValue: mockConversionService }]
+            declarations: [ResourceDetailHtmlContentLinkedobjectsComponent]
         }).compileComponents();
     }));
 
@@ -83,14 +70,13 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             restype: { id: '1236', label: 'test-type3', icon: '/assets/img/logos/awg.png' }
         };
 
-        expectedIncoming = new ResourceDetailGroupedIncomingLinks();
-        expectedIncoming = {
-            testkey1: [incomingLink1, incomingLink2],
-            testkey2: [incomingLink1, incomingLink2, incomingLink3]
-        };
-
-        // set mockService to return default value
-        mockConversionService.getNestedArraysTotalItems(expectedIncoming);
+        expectedIncoming = [
+            {
+                restypeLabel: 'testkey1',
+                links: [incomingLink1, incomingLink2]
+            },
+            { restypeLabel: 'testkey2', links: [incomingLink1, incomingLink2, incomingLink3] }
+        ];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -109,8 +95,8 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             expect(component.totalNumber).toBe(0, 'should be 0');
         });
 
-        it('should not have `incoming` inputs', () => {
-            expect(component.incoming).toBeUndefined('should be undefined');
+        it('should not have `incomingGroups` inputs', () => {
+            expect(component.incomingGroups).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -151,15 +137,15 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // simulate the parent setting the input properties
-            component.incoming = expectedIncoming;
+            component.incomingGroups = expectedIncoming;
 
             // trigger initial data binding
-            fixture.detectChanges();
+            fixture.autoDetectChanges();
         });
 
-        it('should have `incoming` inputs', () => {
-            expect(component.incoming).toBeDefined('should be defined');
-            expect(component.incoming).toBe(expectedIncoming, `should be expectedIncoming: ${expectedIncoming}`);
+        it('should have `incomingGroups` inputs', () => {
+            expect(component.incomingGroups).toBeDefined('should be defined');
+            expect(component.incomingGroups).toBe(expectedIncoming, `should be expectedIncoming: ${expectedIncoming}`);
         });
 
         describe('VIEW', () => {
@@ -257,13 +243,13 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 // check badge output
                 expect(badge0El.textContent).toBeDefined();
                 expect(badge0El.textContent).toContain(
-                    pipedExpectedIncoming[0].value.length.toString(),
-                    `should contain ${pipedExpectedIncoming[0].value.length}`
+                    pipedExpectedIncoming[0].value.links.length.toString(),
+                    `should contain ${pipedExpectedIncoming[0].value.links.length}`
                 );
                 expect(badge1El.textContent).toBeDefined();
                 expect(badge1El.textContent).toContain(
-                    pipedExpectedIncoming[1].value.length.toString(),
-                    `should contain ${pipedExpectedIncoming[1].value.length}`
+                    pipedExpectedIncoming[1].value.links.length.toString(),
+                    `should contain ${pipedExpectedIncoming[1].value.links.length}`
                 );
 
                 // check key output
@@ -351,10 +337,10 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             });
 
             it('... should render incomingLinks in table of panel content (div.card-body)', () => {
-                const id0 = expectedIncoming['testkey1'][0].id;
-                const id1 = expectedIncoming['testkey1'][1].id;
-                const value0 = expectedIncoming['testkey1'][0].value;
-                const value1 = expectedIncoming['testkey1'][1].value;
+                const id0 = expectedIncoming[0].links[0].restype.id;
+                const id1 = expectedIncoming[0].links[1].restype.id;
+                const value0 = expectedIncoming[0].links[0].value;
+                const value1 = expectedIncoming[0].links[1].value;
 
                 // button debug elements
                 const buttonDes = getAndExpectDebugElementByCss(
@@ -378,8 +364,8 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
                 // img
                 const imgDes = getAndExpectDebugElementByCss(tableDes[0], 'a.awg-linked-obj-link > img', 2, 2);
-                const icon0 = expectedIncoming['testkey1'][0].restype.icon;
-                const icon1 = expectedIncoming['testkey1'][1].restype.icon;
+                const icon0 = expectedIncoming[0].links[0].restype.icon;
+                const icon1 = expectedIncoming[0].links[1].restype.id;
 
                 // spanId
                 const spanIdDes = getAndExpectDebugElementByCss(
@@ -445,15 +431,18 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             }));
 
             it('... should do nothing on first onChanges', fakeAsync(() => {
-                const newExpectedIncoming: ResourceDetailGroupedIncomingLinks = {
-                    testkey1: [incomingLink1, incomingLink2]
-                };
+                const newExpectedIncomingGroups: ResourceDetailGroupedIncomingLinks[] = [
+                    {
+                        restypeLabel: 'testkey1',
+                        links: [incomingLink1, incomingLink2]
+                    }
+                ];
 
                 // simulate the parent changing the input properties for the first time
-                component.incoming = newExpectedIncoming;
+                component.incomingGroups = newExpectedIncomingGroups;
 
                 // trigger ngOnChanges
-                component.ngOnChanges({ incoming: new SimpleChange(null, component.incoming, true) });
+                component.ngOnChanges({ incomingGroups: new SimpleChange(null, component.incomingGroups, true) });
                 fixture.detectChanges();
 
                 // spy has been called only once with ngOnInit
@@ -467,16 +456,19 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             }));
 
             it('... should recalculate total number on input changes (second & more)', fakeAsync(() => {
-                const newExpectedIncoming: ResourceDetailGroupedIncomingLinks = {
-                    testkey1: [incomingLink1, incomingLink2, incomingLink3]
-                };
-                const newTotalItems = newExpectedIncoming['testkey1'].length;
+                const newExpectedIncomingGroups: ResourceDetailGroupedIncomingLinks[] = [
+                    {
+                        restypeLabel: 'testkey1',
+                        links: [incomingLink1, incomingLink2]
+                    }
+                ];
+                const newTotalItems = newExpectedIncomingGroups['testkey1'].length;
 
                 // simulate the parent changing the input properties for the first time
-                component.incoming = newExpectedIncoming;
+                component.incomingGroups = newExpectedIncomingGroups;
 
                 // trigger ngOnChanges
-                component.ngOnChanges({ incoming: new SimpleChange(null, component.incoming, false) });
+                component.ngOnChanges({ incomingGroups: new SimpleChange(null, component.incomingGroups, false) });
                 fixture.detectChanges();
 
                 // spy has been called twice now
