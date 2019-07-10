@@ -26,7 +26,7 @@ class EditionDetailNotificationStubComponent {}
 @Component({ selector: 'awg-edition-convolute', template: '' })
 class EditionConvoluteStubComponent {
     @Input()
-    convoluteData: Folio[];
+    folioData: Folio[];
     @Input()
     selectedSvgSheet: EditionSvgSheet;
 

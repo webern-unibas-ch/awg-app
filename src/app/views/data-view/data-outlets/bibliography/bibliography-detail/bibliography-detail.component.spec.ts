@@ -49,6 +49,9 @@ describe('BibliographyDetailComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyDetailComponent);
         component = fixture.componentInstance;
+
+        // test data
+        expectedObjId = '1234';
     });
 
     it('should create', () => {
@@ -56,25 +59,21 @@ describe('BibliographyDetailComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not get objId input', () => {
+        it('should not have objId input', () => {
             expect(component.objId).toBeUndefined('should be undefined');
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the inputs supplied by the parent component
-            expectedObjId = '1234';
-
             // simulate the parent setting the input properties
             component.objId = expectedObjId;
-            component.bibItemDetail.convertedData = expectedConvertedBibItemDetail;
 
             // trigger initial data binding
             fixture.detectChanges();
         });
 
-        it('should get objId input', () => {
+        it('should have objId input', () => {
             expect(component.objId).toBe(expectedObjId);
         });
     });

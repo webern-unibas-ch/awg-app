@@ -3,7 +3,7 @@
     <li
         *ngFor="let bibItem of bibList; trackBy: trackById"
         [class.selected]="bibItem === selectedBibItem"
-        (click)="selectItem(bibItem)"
+        (click)="onItemSelect(bibItem)"
     >
         <span class="badge">{{ bibItem.value[0] }}</span>
         <awg-bibliography-detail *ngIf="bibItem.obj_id === selectedBibItem.obj_id" [objId]="bibItem.obj_id">

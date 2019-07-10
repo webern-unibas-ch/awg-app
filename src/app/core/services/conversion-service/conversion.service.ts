@@ -18,6 +18,7 @@ import {
     SelectionJson,
     SubjectItemJson
 } from '@awg-shared/api-objects';
+import { PropertyJson } from '@awg-shared/api-objects/resource-response-formats/src/property-json';
 import {
     ResourceDetail,
     ResourceDetailContent,
@@ -27,7 +28,7 @@ import {
     ResourceDetailIncomingLink,
     ResourceDetailProperty
 } from '@awg-views/data-view/models';
-import { PropertyJson } from '@awg-shared/api-objects/resource-response-formats/src/property-json';
+import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
 /**
  * Declared variable: htmlConverter.
@@ -149,9 +150,9 @@ export class ConversionService extends ApiService {
      * to be displayed in the bibliography detail view.
      *
      * @param {ResourceFullResponseJson} resourceData The given resource data.
-     * @returns {*} The converted resource object.
+     * @returns {BibEntry} The converted resource object.
      */
-    convertObjectProperties(resourceData: ResourceFullResponseJson) {
+    convertObjectProperties(resourceData: ResourceFullResponseJson): BibEntry {
         const convObj = {};
         console.log('convertdata: ', resourceData);
         // add lastmod state
