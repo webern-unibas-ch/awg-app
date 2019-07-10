@@ -14,8 +14,8 @@
 
             <!-- folio overview -->
             <awg-edition-folio
-                *ngIf="folioData && selectedSvgSheet"
-                [folioData]="folioData"
+                *ngIf="folios && selectedSvgSheet"
+                [folios]="folios"
                 [selectedSvgSheet]="selectedSvgSheet"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)"

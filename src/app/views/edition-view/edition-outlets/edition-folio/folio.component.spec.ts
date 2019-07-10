@@ -7,7 +7,7 @@ import { Folio, FolioSvgData, EditionSvgSheet, FolioCalculation, FolioSettings }
 describe('FolioComponent', () => {
     let component: FolioComponent;
     let fixture: ComponentFixture<FolioComponent>;
-    let expectedFolioData: Folio[];
+    let expectedFolios: Folio[];
     let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(async(() => {
@@ -27,8 +27,8 @@ describe('FolioComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not get folioData input', () => {
-            expect(component.folioData).toBeUndefined('should be undefined');
+        it('should not get folios input', () => {
+            expect(component.folios).toBeUndefined('should be undefined');
         });
 
         it('should not get svg file input', () => {
@@ -53,7 +53,7 @@ describe('FolioComponent', () => {
                 initialOffsetY: 5,
                 numberOfFolios: 0
             };
-            expectedFolioData = [
+            expectedFolios = [
                 {
                     folioId: '1r',
                     systems: '16',
@@ -78,7 +78,7 @@ describe('FolioComponent', () => {
             ];
 
             // simulate the parent setting the input properties
-            component.folioData = expectedFolioData;
+            component.folios = expectedFolios;
             component.selectedSvgSheet = expectedSvgSheet;
 
             // trigger initial data binding
@@ -89,8 +89,8 @@ describe('FolioComponent', () => {
             expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
         });
 
-        it('should get folioData input', () => {
-            expect(component.folioData).toBe(expectedFolioData);
+        it('should get folios input', () => {
+            expect(component.folios).toBe(expectedFolios);
         });
     });
 });

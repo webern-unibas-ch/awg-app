@@ -26,11 +26,11 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 })
 export class EditionDetailComponent implements OnInit {
     /**
-     * Public variable: folioData.
+     * Public variable: folios.
      *
-     * It keeps the folio data of the edition detail.
+     * It keeps the folios of the edition detail.
      */
-    folioData: Folio[];
+    folios: Folio[];
 
     /**
      * Public variable: svgSheetsData.
@@ -116,13 +116,13 @@ export class EditionDetailComponent implements OnInit {
      * It calls the EditionDataService to provide
      * the data for the edition detail.
      *
-     * @returns {void} Sets the folioData,
+     * @returns {void} Sets the folios,
      * svgSheetsData and textcriticsData.
      */
     getEditionDetailData(): void {
         this.editionDataService.getEditionDetailData().subscribe(
             (data: [Folio[], EditionSvgSheet[], TextcriticsList]) => {
-                this.folioData = data[0]['convolute'];
+                this.folios = data[0]['convolute'];
                 this.svgSheetsData = data[1];
                 this.textcriticsData = data[2];
                 if (this.svgSheetsData) {

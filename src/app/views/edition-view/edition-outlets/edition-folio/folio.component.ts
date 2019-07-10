@@ -27,12 +27,12 @@ declare var Snap: any;
 })
 export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     /**
-     * Input variable: folioData.
+     * Input variable: folios.
      *
-     * It keeps the folio data of the edition detail.
+     * It keeps the folio data.
      */
     @Input()
-    folioData: Folio[];
+    folios: Folio[];
 
     /**
      * Public variable: selectedSvgSheet.
@@ -59,9 +59,6 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    folio: Folio;
-
-    // output
     canvasArray = [];
     folioSvgDataArray: FolioSvgData[] = [];
     vbArray: ViewBox[] = [];
@@ -82,12 +79,11 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
 
     // getter function for format options
     get folioSettings() {
-        // prepare folio width & height
-        this._folioSettings.numberOfFolios = +this.folioData.length;
-        this._folioSettings.formatX = +this.folio.format.width;
-        this._folioSettings.formatY = +this.folio.format.height;
-
         return this._folioSettings;
+    }
+
+    set folioSettings(settings: FolioSettings) {
+        this._folioSettings = settings;
     }
 
     /**
@@ -160,15 +156,25 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * FolioSvgOutput
      */
     prepareFolioSvgOutput(): void {
-        for (let folioIndex = 0; folioIndex < this.folioData.length; folioIndex++) {
+        for (let folioIndex = 0; folioIndex < this.folios.length; folioIndex++) {
             // current folio
-            this.folio = this.folioData[folioIndex];
+            const folio = this.folios[folioIndex];
+
+            // update folio settings
+            this.folioSettings = {
+                factor: this.folioSettings.factor,
+                formatX: +folio.format.width,
+                formatY: +folio.format.height,
+                initialOffsetX: this.folioSettings.initialOffsetX,
+                initialOffsetY: this.folioSettings.initialOffsetY,
+                numberOfFolios: +this.folios.length
+            };
 
             // prepare viewbox settings
             this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
 
             // calculate svg data
-            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, this.folio);
+            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
         }
     }
 

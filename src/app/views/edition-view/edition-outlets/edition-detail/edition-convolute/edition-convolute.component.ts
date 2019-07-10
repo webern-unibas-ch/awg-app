@@ -36,12 +36,12 @@ interface IFolioLegend {
 })
 export class EditionConvoluteComponent implements OnInit {
     /**
-     * Input variable: folioData.
+     * Input variable: folios.
      *
-     * It keeps the folio data of the edition detail.
+     * It keeps the folios of the edition detail.
      */
     @Input()
-    folioData: Folio[];
+    folios: Folio[];
 
     /**
      * Public variable: selectedSvgSheet.
@@ -131,7 +131,7 @@ export class EditionConvoluteComponent implements OnInit {
      * @param {string} id The given modal snippet id.
      * @returns {void} Emits the id.
      */
-    openModal(id: string) {
+    openModal(id: string): void {
         this.openModalRequest.emit(id);
     }
 
