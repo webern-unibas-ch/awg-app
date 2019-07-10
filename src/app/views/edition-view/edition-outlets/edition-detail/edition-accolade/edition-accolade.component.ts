@@ -18,7 +18,7 @@ import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edit
     styleUrls: ['./edition-accolade.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditionAccoladeComponent {
+export class EditionAccoladeComponent implements OnInit {
     /**
      * Input variable: svgSheetsData.
      *
@@ -26,6 +26,14 @@ export class EditionAccoladeComponent {
      */
     @Input()
     svgSheetsData: EditionSvgSheet[];
+
+    /**
+     * Input variable: selectedOverlay.
+     *
+     * It keeps the selected svg overlay.
+     */
+    @Input()
+    selectedOverlay: EditionSvgOverlay;
 
     /**
      * Input variable: selectedSvgSheet.
@@ -42,14 +50,6 @@ export class EditionAccoladeComponent {
      */
     @Input()
     selectedTextcritics: Textcritics[];
-
-    /**
-     * Input variable: selectedOverlay.
-     *
-     * It keeps the selected svg overlay.
-     */
-    @Input()
-    selectedOverlay: EditionSvgOverlay;
 
     /**
      * Input variable: showTkA.
@@ -69,6 +69,14 @@ export class EditionAccoladeComponent {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
+     * Output variable: selectOverlayRequest.
+     *
+     * It keeps an event emitter for the selected svg overlay.
+     */
+    @Output()
+    selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
+
+    /**
      * Output variable: selectSvgSheetRequest.
      *
      * It keeps an event emitter for the selected id of an svg sheet.
@@ -77,19 +85,19 @@ export class EditionAccoladeComponent {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Output variable: selectTextcriticRequest.
-     *
-     * It keeps an event emitter for the selected textcritics.
-     */
-    @Output()
-    selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
-
-    /**
      * Public variable: showAccoladePanel.
      *
      * If the accolade panel shall be displayed.
      */
     showAccoladePanel = true;
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {}
 
     /**
      * Public method: openModal.
@@ -105,6 +113,19 @@ export class EditionAccoladeComponent {
     }
 
     /**
+     * Public method: selectOverlay.
+     *
+     * It emits a given svg overlay
+     * to the {@link selectOverlayRequest}.
+     *
+     * @param {EditionSvgOverlay} overlay The given svg overlay.
+     * @returns {void} Emits the overlay.
+     */
+    selectOverlay(overlay: EditionSvgOverlay): void {
+        this.selectOverlayRequest.emit(overlay);
+    }
+
+    /**
      * Public method: selectSvgSheet.
      *
      * It emits a given id of a selected svg sheet
@@ -115,19 +136,6 @@ export class EditionAccoladeComponent {
      */
     selectSvgSheet(id: string): void {
         this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
-     * Public method: selectTextcritic.
-     *
-     * It emits a given svg overlay
-     * to the {@link selectTextcriticRequest}.
-     *
-     * @param {string} overlay The given svg overlay.
-     * @returns {void} Emits the overlay.
-     */
-    selectTextcritic(overlay: EditionSvgOverlay): void {
-        this.selectTextcriticRequest.emit(overlay);
     }
 
     /**

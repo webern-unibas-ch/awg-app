@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The Edition service.
@@ -48,13 +48,13 @@ export class EditionService {
     /**
      * Public method: getTextcritics.
      *
-     * It provides the textcritical comments for a selected overlay item defined by `type` and `ìd`.
+     * It provides the textcritical comments for a selected svg overlay.
      *
-     * @param {Textcritics[]} textcritics The textcritical comments.
-     * @param {{ type: string; id: string }} overlay The selected overlay item defined by `type` and `ìd`.
+     * @param {Textcritics[]} textcritics The given textcritical comments.
+     * @param {EditionSvgOverlay} overlay The given svg overlay.
      * @returns {Textcritics[]} Array with filtered textcritical comments.
      */
-    getTextcritics(textcritics: Textcritics[], overlay: { type: string; id: string }): Textcritics[] {
+    getTextcritics(textcritics: Textcritics[], overlay: EditionSvgOverlay): Textcritics[] {
         // filter the textcritics input array
         return textcritics.filter((textcritic, filterIndex) => {
             // get filtered results from private method

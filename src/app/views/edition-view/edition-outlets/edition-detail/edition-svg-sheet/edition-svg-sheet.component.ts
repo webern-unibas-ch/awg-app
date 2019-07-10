@@ -34,20 +34,46 @@ export class EditionSvgSheetComponent implements OnInit {
         return id === this.selectedSvgSheet.id;
     }
 
-    isSelectedTextcritic(type: any, id: string) {
-        // compare stringified objects
+    /**
+     * Public method: isSelectedOverlay.
+     *
+     * It compares a given svg overlay with
+     * the latest selected svg overlay.
+     *
+     * @param {string} type The given type of the svg overlay.
+     * @param {string} id The given id of the svg overlay.
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isSelectedOverlay(type: any, id: string): boolean {
         const overlay = new EditionSvgOverlay(type, id);
         return JSON.stringify(overlay) === JSON.stringify(this.selectedOverlay);
     }
 
-    // request function to emit svg sheet id
-    selectSvgSheet(id: string) {
-        this.selectSvgSheetRequest.emit(id);
+    /**
+     * Public method: selectOverlay.
+     *
+     * It emits a given svg overlay
+     * to the {@link selectOverlayRequest}.
+     *
+     * @param {string} type The given type of the svg overlay.
+     * @param {string} id The given id of the svg overlay.
+     * @returns {void} Emits the svg overlay.
+     */
+    selectOverlay(type: any, id: string): void {
+        const overlay = new EditionSvgOverlay(type, id);
+        this.selectOverlayRequest.emit(overlay);
     }
 
-    // request function to emit selected textcritic's type & id
-    selectTextcritic(type: any, id: string) {
-        const overlay = new EditionSvgOverlay(type, id);
-        this.selectTextcriticRequest.emit(overlay);
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
+    selectSvgSheet(id: string): void {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

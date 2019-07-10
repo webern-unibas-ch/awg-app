@@ -169,15 +169,15 @@ export class EditionDetailComponent implements OnInit {
     }
 
     /**
-     * Public method: onTextcriticSelect.
+     * Public method: onOverlaySelect.
      *
-     * It selects the textcritics for a given overlay.
+     * It selects a given overlay and its corresponding textcritics.
      *
      * @param {EditionSvgOverlay} overlay The given svg overlay.
      * @returns {void} Sets the selectedOverlay,
      * selectedTextcritis and showTka variable.
      */
-    onTextcriticSelect(overlay: EditionSvgOverlay): void {
+    onOverlaySelect(overlay: EditionSvgOverlay): void {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return;
         }
