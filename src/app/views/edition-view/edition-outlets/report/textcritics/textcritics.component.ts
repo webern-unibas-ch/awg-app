@@ -30,12 +30,7 @@ export class TextcriticsComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Public variable: showTextcriticsPanel.
-     *
-     * If the textcritics panel shall be displayed.
      */
-    showTextcriticsPanel = true;
-
     ref: TextcriticsComponent;
 
     constructor() {
@@ -68,16 +63,5 @@ export class TextcriticsComponent implements OnInit {
      */
     selectSvgSheet(id: string): void {
         this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
-     * Public method: togglePanel.
-     *
-     * It toggles the showPanel flag.
-     *
-     * @returns {boolean} Sets the showPanel flag.
-     */
-    togglePanel(): boolean {
-        return (this.showTextcriticsPanel = !this.showTextcriticsPanel);
     }
 }

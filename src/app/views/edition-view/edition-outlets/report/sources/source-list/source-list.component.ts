@@ -21,7 +21,6 @@ export class SourceListComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
-    showListPanel = true;
     ref: SourceListComponent;
 
     constructor() {
@@ -39,16 +38,5 @@ export class SourceListComponent {
      */
     openModal(id: string) {
         this.openModalRequest.emit(id);
-    }
-
-    /**
-     * Public method: togglePanel.
-     *
-     * It toggles the showListPanel flag.
-     *
-     * @returns {boolean} Sets the showListPanel flag.
-     */
-    togglePanel(): boolean {
-        return (this.showListPanel = !this.showListPanel);
     }
 }

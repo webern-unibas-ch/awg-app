@@ -1,14 +1,15 @@
 <ngb-accordion id="sourcesAcc" activeIds="sourcesPanel">
-    <ngb-panel id="sourcesPanel" title="I. Quellen" >
+    <ngb-panel id="sourcesPanel" title="I. Quellen">
         <ng-template ngbPanelContent>
             <ngb-accordion id="sourcesPanelAcc" activeIds="sourceList, sourceDesc, sourceEvaluation">
-
                 <!-- source list -->
                 <ngb-panel id="sourceList" title="1. Quellenübersicht">
                     <ng-template ngbPanelContent>
-                        <awg-source-list *ngIf="sourceListData"
-                                         [sourceListData]="sourceListData"
-                                         (openModalRequest)="openModal($event)">
+                        <awg-source-list
+                            *ngIf="sourceListData"
+                            [sourceListData]="sourceListData"
+                            (openModalRequest)="openModal($event)"
+                        >
                         </awg-source-list>
                     </ng-template>
                 </ngb-panel>
@@ -16,24 +17,19 @@
                 <!-- source description -->
                 <ngb-panel id="sourceDesc" title="2. Quellenbeschreibung">
                     <ng-template ngbPanelContent>
-                        <awg-source-description
-                            [showDescriptionPanel]="showDescriptionPanel"
-                            (toggleDescriptionPanelRequest)="toggleDescriptionPanel($event)"
-                            (openModalRequest)="openModal($event)">
-                        </awg-source-description>
+                        <awg-source-description (openModalRequest)="openModal($event)"> </awg-source-description>
                     </ng-template>
                 </ngb-panel>
 
                 <!-- source evaluation -->
                 <ngb-panel id="sourceEvaluation" title="3. Quellenbewertung">
                     <ng-template ngbPanelContent>
-                        <awg-source-evaluation
-                            (openModalRequest)="openModal($event)">
-                        </awg-source-evaluation>
+                        <awg-source-evaluation (openModalRequest)="openModal($event)"> </awg-source-evaluation>
                     </ng-template>
                 </ngb-panel>
-
-            </ngb-accordion> <!-- END inner accordion -->
+            </ngb-accordion>
+            <!-- END inner accordion -->
         </ng-template>
     </ngb-panel>
-</ngb-accordion> <!-- END outer accordion -->
+</ngb-accordion>
+<!-- END outer accordion -->

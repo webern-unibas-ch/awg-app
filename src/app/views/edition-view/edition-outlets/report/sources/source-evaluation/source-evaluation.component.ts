@@ -16,11 +16,6 @@ export class SourceEvaluationComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
-    // todo check to remove
-    @Output()
-    scrollRequest: EventEmitter<any> = new EventEmitter();
-
-    showEvaluationPanel = true;
 
     /**
      * Public method: openModal.
@@ -33,16 +28,5 @@ export class SourceEvaluationComponent {
      */
     openModal(id: string) {
         this.openModalRequest.emit(id);
-    }
-
-    /**
-     * Public method: togglePanel.
-     *
-     * It toggles the showEvaluationPanel flag.
-     *
-     * @returns {boolean} Sets the showEvaluationPanel flag.
-     */
-    togglePanel(): boolean {
-        return (this.showEvaluationPanel = !this.showEvaluationPanel);
     }
 }

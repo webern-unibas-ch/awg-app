@@ -85,13 +85,6 @@ export class EditionAccoladeComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Public variable: showAccoladePanel.
-     *
-     * If the accolade panel shall be displayed.
-     */
-    showAccoladePanel = true;
-
-    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -136,16 +129,5 @@ export class EditionAccoladeComponent implements OnInit {
      */
     selectSvgSheet(id: string): void {
         this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
-     * Public method: togglePanel.
-     *
-     * It toggles the showAccoladePanel flag.
-     *
-     * @returns {boolean} Sets the showAccoladePanel flag.
-     */
-    togglePanel(): boolean {
-        return (this.showAccoladePanel = !this.showAccoladePanel);
     }
 }

@@ -7,11 +7,6 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from 
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class SourceDescriptionComponent {
-    @Input()
-    showDescriptionPanel: boolean;
-    @Output()
-    toggleDescriptionPanelRequest: EventEmitter<boolean> = new EventEmitter();
-
     /**
      * Output variable: openModalRequest.
      *
@@ -32,9 +27,5 @@ export class SourceDescriptionComponent {
      */
     openModal(id: string) {
         this.openModalRequest.emit(id);
-    }
-
-    togglePanel(): void {
-        this.toggleDescriptionPanelRequest.emit(this.showDescriptionPanel);
     }
 }
