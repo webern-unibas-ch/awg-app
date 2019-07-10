@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -95,7 +95,7 @@ export class NavbarComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
     }
 
     /**

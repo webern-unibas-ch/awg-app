@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
+import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { EditionInfoComponent } from './edition-info.component';
@@ -42,7 +42,7 @@ describe('EditionInfoComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedEditionMetaData = METADATA[MetaSectionKey.edition];
+        expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
         expectedEditionInfoHeader = {
             section: 'AWG I/5',
             title: 'Vier Lieder',
@@ -79,7 +79,7 @@ describe('EditionInfoComponent (DONE)', () => {
         };
         mockCoreService.getMetaDataSection = () => changedEditionMetaData;
 
-        expect(coreService.getMetaDataSection(MetaSectionKey.edition)).toBe(expectedEditionMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -134,7 +134,7 @@ describe('EditionInfoComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.edition);
+            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.edition);
 
             // trigger initial data binding
             fixture.detectChanges();

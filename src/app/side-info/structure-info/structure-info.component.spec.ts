@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaStructure, MetaSectionKey } from '@awg-core/core-models';
+import { MetaStructure, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -40,7 +40,7 @@ describe('StructureInfoComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedStructureMetaData = METADATA[MetaSectionKey.structure];
+        expectedStructureMetaData = METADATA[MetaSectionTypes.structure];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -69,7 +69,7 @@ describe('StructureInfoComponent (DONE)', () => {
         };
         mockCoreService.getMetaDataSection = () => changedStructureMetaData;
 
-        expect(coreService.getMetaDataSection(MetaSectionKey.structure)).toBe(expectedStructureMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.structure)).toBe(expectedStructureMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -132,7 +132,7 @@ describe('StructureInfoComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.structureMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.structure);
+            component.structureMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.structure);
 
             // trigger initial data binding
             fixture.detectChanges();

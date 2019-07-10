@@ -4,7 +4,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Logo, Logos, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -49,7 +49,7 @@ describe('FooterComponent (DONE)', () => {
     beforeEach(async(() => {
         // stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: key => METADATA[key],
+            getMetaDataSection: sectionType => METADATA[sectionType],
             getLogos: () => expectedLogos
         };
 
@@ -73,7 +73,7 @@ describe('FooterComponent (DONE)', () => {
 
         // test data
         expectedLogos = LOGOSDATA;
-        expectedPageMetaData = METADATA[MetaSectionKey.page];
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -104,7 +104,7 @@ describe('FooterComponent (DONE)', () => {
         };
         mockCoreService.getMetaDataSection = () => changedPageMetaData;
 
-        expect(coreService.getMetaDataSection(MetaSectionKey.page)).toBe(expectedPageMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -161,7 +161,7 @@ describe('FooterComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
 
             // trigger initial data binding
             fixture.detectChanges();

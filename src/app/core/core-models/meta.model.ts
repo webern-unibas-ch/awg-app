@@ -1,9 +1,9 @@
 /**
- * The MetaSectionKey enumeration.
+ * The MetaSectionTypes enumeration.
  *
- * It stores the possible meta data section keys.
+ * It stores the possible meta data section types.
  */
-export enum MetaSectionKey {
+export enum MetaSectionTypes {
     page = 'page',
     edition = 'edition',
     structure = 'structure',

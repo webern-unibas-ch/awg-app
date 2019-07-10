@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CoreService } from '@awg-core/services';
-import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 
 /**
  * The ContactView component.
@@ -119,8 +119,8 @@ export class ContactViewComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
-        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionKey.contact);
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
     }
 
     /**

@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
-import { Logos, MetaSectionKey, MetaPage } from '@awg-core/core-models';
+import { Logos, MetaSectionTypes, MetaPage } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -61,7 +61,7 @@ export class FooterComponent implements OnInit {
      * @returns {void} Sets the pageMetaData and logos variables.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
         this.logos = this.coreService.getLogos();
     }
 }

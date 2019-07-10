@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { MetaSectionKey, MetaStructure } from '@awg-core/core-models';
+import { MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -59,6 +59,6 @@ export class StructureInfoComponent implements OnInit {
      * @returns {void} Sets the structureMetaData variable.
      */
     provideMetaData(): void {
-        this.structureMetaData = this.coreService.getMetaDataSection(MetaSectionKey.structure);
+        this.structureMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.structure);
     }
 }

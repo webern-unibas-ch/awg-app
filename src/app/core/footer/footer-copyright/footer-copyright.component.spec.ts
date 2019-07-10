@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { Meta, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { Meta, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 
 import { FooterCopyrightComponent } from './footer-copyright.component';
@@ -29,7 +29,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedPageMetaData = METADATA[MetaSectionKey.page];
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
     });
 
     it('should create', () => {

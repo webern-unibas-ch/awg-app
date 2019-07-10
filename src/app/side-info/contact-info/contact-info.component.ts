@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
-import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -112,8 +112,8 @@ export class ContactInfoComponent implements OnInit {
      * @returns {void} Sets the pageMetaData variable.
      */
     provideMetaData(): void {
-        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionKey.page);
-        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionKey.contact);
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
     }
 
     /**

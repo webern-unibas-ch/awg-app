@@ -1,6 +1,6 @@
 import { TestBed, inject, async } from '@angular/core/testing';
 
-import { Logos, Meta, MetaSectionKey } from '@awg-core/core-models';
+import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA, LOGOSDATA } from '@awg-core/mock-data';
 
 import { CoreService } from './core.service';
@@ -36,42 +36,42 @@ describe('CoreService (DONE)', () => {
 
     describe('#getMetaDataSection', () => {
         it(`... should return page METADATA if parameter is given`, () => {
-            const metaKey = MetaSectionKey.page;
+            const metaSection = MetaSectionTypes.page;
 
             // call service function
-            expect(coreService.getMetaDataSection(metaKey)).toBe(
-                expectedMetaData[metaKey],
-                `should be ${expectedMetaData[metaKey]}`
+            expect(coreService.getMetaDataSection(metaSection)).toBe(
+                expectedMetaData[metaSection],
+                `should be ${expectedMetaData[metaSection]}`
             );
         });
 
         it(`... should return edition METADATA if parameter is given`, () => {
-            const metaKey = MetaSectionKey.edition;
+            const metaSection = MetaSectionTypes.edition;
 
             // call service function
-            expect(coreService.getMetaDataSection(metaKey)).toBe(
-                expectedMetaData[metaKey],
-                `should be ${expectedMetaData[metaKey]}`
+            expect(coreService.getMetaDataSection(metaSection)).toBe(
+                expectedMetaData[metaSection],
+                `should be ${expectedMetaData[metaSection]}`
             );
         });
 
         it(`... should return structure METADATA if parameter is given`, () => {
-            const metaKey = MetaSectionKey.structure;
+            const metaSection = MetaSectionTypes.structure;
 
             // call service function
-            expect(coreService.getMetaDataSection(metaKey)).toBe(
-                expectedMetaData[metaKey],
-                `should be ${expectedMetaData[metaKey]}`
+            expect(coreService.getMetaDataSection(metaSection)).toBe(
+                expectedMetaData[metaSection],
+                `should be ${expectedMetaData[metaSection]}`
             );
         });
 
         it(`... should return contact METADATA if parameter is given`, () => {
-            const metaKey = MetaSectionKey.contact;
+            const metaSection = MetaSectionTypes.contact;
 
             // call service function
-            expect(coreService.getMetaDataSection(metaKey)).toBe(
-                expectedMetaData[metaKey],
-                `should be ${expectedMetaData[metaKey]}`
+            expect(coreService.getMetaDataSection(metaSection)).toBe(
+                expectedMetaData[metaSection],
+                `should be ${expectedMetaData[metaSection]}`
             );
         });
     });

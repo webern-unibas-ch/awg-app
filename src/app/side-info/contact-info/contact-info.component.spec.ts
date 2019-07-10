@@ -4,7 +4,7 @@ import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-
 
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -68,8 +68,8 @@ describe('ContactInfoComponent (DONE)', () => {
         domSanitizer = TestBed.get(DomSanitizer);
 
         // test data
-        expectedPageMetaData = METADATA[MetaSectionKey.page];
-        expectedContactMetaData = METADATA[MetaSectionKey.contact];
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
         // unsafe link values for open streets map
         expectedUnsafeOsmEmbedUrl =
@@ -110,7 +110,7 @@ describe('ContactInfoComponent (DONE)', () => {
             versionReleaseDate: '20. Oktober 2018'
         };
         mockCoreService.getMetaDataSection = () => changedPageMetaData;
-        expect(coreService.getMetaDataSection(MetaSectionKey.page)).toBe(expectedPageMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -190,8 +190,8 @@ describe('ContactInfoComponent (DONE)', () => {
             component.osmLinkUrl = expectedOsmLinkUrl;
 
             // mock the call to the meta service in #provideMetaData
-            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
-            component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.contact);
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
+            component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.contact);
 
             // trigger initial data binding
             fixture.detectChanges();

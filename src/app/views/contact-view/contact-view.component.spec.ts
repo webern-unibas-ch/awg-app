@@ -10,7 +10,7 @@ import {
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
 
-import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -70,8 +70,8 @@ describe('ContactViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedPageMetaData = METADATA[MetaSectionKey.page];
-        expectedContactMetaData = METADATA[MetaSectionKey.contact];
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -102,7 +102,7 @@ describe('ContactViewComponent (DONE)', () => {
             versionReleaseDate: '20. Oktober 2018'
         };
         mockCoreService.getMetaDataSection = () => changedPageMetaData;
-        expect(coreService.getMetaDataSection(MetaSectionKey.page)).toBe(expectedPageMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -222,8 +222,8 @@ describe('ContactViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
-            component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.contact);
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
+            component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.contact);
 
             // spy on Date.now() returning a mocked (fixed) date
             expectedToday = Date.now();

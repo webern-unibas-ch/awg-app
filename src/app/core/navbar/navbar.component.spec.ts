@@ -10,7 +10,7 @@ import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -50,7 +50,7 @@ describe('NavbarComponent (DONE)', () => {
 
         // test data
         expectedIsCollapsed = true;
-        expectedPageMetaData = METADATA[MetaSectionKey.page];
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -166,7 +166,7 @@ describe('NavbarComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.page);
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
 
             // trigger initial data binding
             fixture.detectChanges();

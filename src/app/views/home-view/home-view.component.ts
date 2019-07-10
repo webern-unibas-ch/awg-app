@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
+import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -55,7 +55,7 @@ export class HomeViewComponent implements OnInit {
      * @returns {void} Sets the editionMetaData variable.
      */
     provideMetaData(): void {
-        this.editionMetaData = this.coreService.getMetaDataSection(MetaSectionKey.edition);
+        this.editionMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.edition);
     }
 
     /**

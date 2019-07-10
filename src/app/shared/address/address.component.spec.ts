@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaContact, MetaPage, MetaSectionKey } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 
 import { AddressComponent } from './address.component';
@@ -30,8 +30,8 @@ describe('AddressComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedPageMetaData = METADATA[MetaSectionKey.page];
-        expectedContactMetaData = METADATA[MetaSectionKey.contact];
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
     });
 
     it('should create', () => {

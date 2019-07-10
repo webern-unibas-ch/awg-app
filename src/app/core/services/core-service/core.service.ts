@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Logos, Meta, MetaSectionKey } from '@awg-core/core-models';
+import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
 import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 
 /**
@@ -19,10 +19,10 @@ export class CoreService {
      *
      * It provides a section of the meta data object.
      *
-     * @params {<K extends MetaSectionKey>} [section] The given section.
+     * @params {<K extends MetaSectionTypes>} [section] The given section.
      * @returns {Meta[K]} The section K of the metadata object.
      */
-    getMetaDataSection<K extends MetaSectionKey>(section?: K): Meta[K] {
+    getMetaDataSection<K extends MetaSectionTypes>(section: K): Meta[K] {
         return METADATA[section];
     }
 

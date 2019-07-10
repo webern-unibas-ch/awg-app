@@ -10,7 +10,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { MetaEdition, MetaSectionKey } from '@awg-core/core-models';
+import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -49,7 +49,7 @@ describe('HomeViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedEditionMetaData = METADATA[MetaSectionKey.edition];
+        expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -74,7 +74,7 @@ describe('HomeViewComponent (DONE)', () => {
         };
 
         mockCoreService.getMetaDataSection = () => changedEditionMetaData;
-        expect(coreService.getMetaDataSection(MetaSectionKey.edition)).toBe(expectedEditionMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -122,7 +122,7 @@ describe('HomeViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionKey.edition);
+            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.edition);
 
             // trigger initial data binding
             fixture.detectChanges();
