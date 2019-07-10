@@ -64,7 +64,7 @@ export class SourceListComponent implements OnInit {
      * @param {string} id The given modal snippet id.
      * @returns {void} Emits the id.
      */
-    openModal(id: string) {
+    openModal(id: string): void {
         this.openModalRequest.emit(id);
     }
 }

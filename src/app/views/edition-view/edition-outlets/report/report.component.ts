@@ -83,7 +83,7 @@ export class ReportComponent implements OnInit {
      * @param {string} id The given svg sheet id.
      * @returns {void} Navigates to the edition detail.
      */
-    onSvgSheetSelect(id: string) {
+    onSvgSheetSelect(id: string): void {
         this.router.navigate(['/edition/detail', id]);
     }
 }

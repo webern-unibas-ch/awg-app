@@ -436,8 +436,10 @@ export class FolioCalculation {
      *
      * @param {FolioSettings} folioSettings The given folio settings.
      * @param {Folio} folioData The given folio data.
+     *
+     * @returns {void} Sets the sheet, systems and contentItemsArray variables.
      */
-    private calculateFolio(folioSettings: FolioSettings, folioData: Folio) {
+    private calculateFolio(folioSettings: FolioSettings, folioData: Folio): void {
         this.sheet = this.calculateSheet(folioSettings, folioData.folioId);
         this.systems = this.calculateSystems();
         this.contentItemsArray = this.calculateContentArray(folioData.content);
@@ -451,6 +453,8 @@ export class FolioCalculation {
      *
      * @param {FolioSettings} folioSettings The given folio settings.
      * @param {string} folioId The given folio id.
+     *
+     * @returns {FolioCalculationSheet} The calculated sheet.
      */
     private calculateSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
         return new FolioCalculationSheet(folioSettings, folioId);
@@ -461,6 +465,8 @@ export class FolioCalculation {
      *
      * It returns a FolioCalculationSystems class that provides
      * all the calculated values for the systems of a folio.
+     *
+     * @returns {FolioCalculationSystems} The calculated systems.
      */
     private calculateSystems(): FolioCalculationSystems {
         // init

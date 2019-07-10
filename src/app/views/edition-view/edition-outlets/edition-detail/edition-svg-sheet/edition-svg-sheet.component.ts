@@ -73,7 +73,6 @@ export class EditionSvgSheetComponent implements OnInit {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isSelectedSvgSheet(id: string): boolean {
-        // compare sheet id's
         return id === this.selectedSvgSheet.id;
     }
 
