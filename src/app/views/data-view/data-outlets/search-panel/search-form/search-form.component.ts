@@ -37,7 +37,13 @@ export class SearchFormComponent implements OnChanges {
 
     constructor(private fb: FormBuilder) {}
 
-    // check for input changes
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
+     */
     ngOnChanges(changes: SimpleChanges) {
         this.setSearchValue();
     }

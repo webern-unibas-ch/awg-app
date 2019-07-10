@@ -58,11 +58,24 @@ export class ResourceDetailComponent implements OnInit, OnChanges {
         window.scrollTo(0, 0);
     }
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
         this.routeToSidenav();
         this.getResourceData();
     }
 
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
+     */
     ngOnChanges(changes: SimpleChanges) {
         console.log(changes);
     }

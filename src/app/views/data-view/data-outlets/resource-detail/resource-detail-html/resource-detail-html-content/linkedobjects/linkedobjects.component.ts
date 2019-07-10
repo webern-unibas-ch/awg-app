@@ -5,8 +5,7 @@ import { ResourceDetailGroupedIncomingLinks } from '@awg-views/data-view/models'
 /**
  * The ResourceDetailHtmlContentLinkedobjects component.
  *
- * It contains an accordion panel to display
- * the incoming links of a resource and
+ * It displays the incoming links of a resource detail and
  * their total number.
  */
 @Component({
