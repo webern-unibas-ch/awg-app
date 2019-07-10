@@ -3,6 +3,18 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 /**
+ * The SvgSheetLabels enumeration.
+ *
+ * It stores the possible sheet labels.
+ */
+export enum SvgSheetLabels {
+    sheet2 = 'Aa:SkI/2',
+    sheet3 = 'Aa:SkI/3',
+    sheet4 = 'Aa:SkI/4',
+    sheet5 = 'Aa:SkI/5'
+}
+
+/**
  * The EditionSvgSheet component.
  *
  * It contains the svg sheet section
@@ -48,12 +60,17 @@ export class EditionSvgSheetComponent implements OnInit {
     @Output()
     selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
-    // init sheets
-    // TODO: other solution possible?
-    svgFile2 = 'Aa:SkI/2';
-    svgFile3 = 'Aa:SkI/3';
-    svgFile4 = 'Aa:SkI/4';
-    svgFile5 = 'Aa:SkI/5';
+    /**
+     * Public variable: svgSheetLabels.
+     *
+     * It keeps the labels of the svg sheets.
+     */
+    svgSheetLabels = {
+        sheet2: SvgSheetLabels.sheet2,
+        sheet3: SvgSheetLabels.sheet3,
+        sheet4: SvgSheetLabels.sheet4,
+        sheet5: SvgSheetLabels.sheet5
+    };
 
     /**
      * Angular life cycle hook: ngOnInit.
