@@ -2,6 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 
 import { TextcriticsList } from '@awg-views/edition-view/models';
 
+/**
+ * The Textcritics component.
+ *
+ * It contains the textcritical comments section
+ * of the critical report of the edition view of the app
+ * with an {@link EditionTkaTableComponent}.
+ */
 @Component({
     selector: 'awg-textcritics',
     templateUrl: './textcritics.component.html',
@@ -9,6 +16,11 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class TextcriticsComponent implements OnInit {
+    /**
+     * Input variable: textcriticsData.
+     *
+     * It keeps the textcritics data.
+     */
     @Input()
     textcriticsData: TextcriticsList;
 
@@ -30,13 +42,25 @@ export class TextcriticsComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
+     * Self-referring variable needed for CompileHtml library.
      */
     ref: TextcriticsComponent;
 
+    /**
+     * Constructor of the TextcriticsComponent.
+     *
+     * It initializes the self-referring ref variable needed for CompileHtml library.
+     */
     constructor() {
         this.ref = this;
     }
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {}
 
     /**

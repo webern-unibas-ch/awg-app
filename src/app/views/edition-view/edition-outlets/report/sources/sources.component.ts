@@ -1,14 +1,27 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { SourceList } from '@awg-views/edition-view/models';
 
+/**
+ * The Sources component.
+ *
+ * It contains the sources section of the critical report
+ * of the edition view of the app with a
+ * {@link SourceListComponent}, a {@link SourceDescriptionComponent},
+ * and the {@link SourceEvaluationComponent}.
+ */
 @Component({
     selector: 'awg-sources',
     templateUrl: './sources.component.html',
     styleUrls: ['./sources.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourcesComponent {
+export class SourcesComponent implements OnInit {
+    /**
+     * Input variable: sourceListData.
+     *
+     * It keeps the source list data.
+     */
     @Input()
     sourceListData: SourceList;
 
@@ -21,6 +34,13 @@ export class SourcesComponent {
     @Output()
     openModalRequest: EventEmitter<any> = new EventEmitter();
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {}
 
     /**
      * Public method: openModal.

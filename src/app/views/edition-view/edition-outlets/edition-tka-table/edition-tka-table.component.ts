@@ -1,14 +1,25 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Textcritics } from '../../models/index';
 
+/**
+ * The EditionTkaTable component.
+ *
+ * It contains the table for the textcritical comments
+ * of the edition view of the app.
+ */
 @Component({
     selector: 'awg-edition-tka-table',
     templateUrl: './edition-tka-table.component.html',
     styleUrls: ['./edition-tka-table.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class EditionTkaTableComponent {
+export class EditionTkaTableComponent implements OnInit {
+    /**
+     * Input variable: selectedTextcritics.
+     *
+     * It keeps the selected textcritics.
+     */
     @Input()
     selectedTextcritics: Textcritics[];
 
@@ -29,11 +40,27 @@ export class EditionTkaTableComponent {
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     */
     ref: EditionTkaTableComponent;
 
+    /**
+     * Constructor of the EditionTkaTableComponent.
+     *
+     * It initializes the self-referring ref variable needed for CompileHtml library.
+     */
     constructor() {
         this.ref = this;
     }
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {}
 
     /**
      * Public method: openModal.

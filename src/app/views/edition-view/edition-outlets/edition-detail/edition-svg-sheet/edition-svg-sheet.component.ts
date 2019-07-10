@@ -2,6 +2,13 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 
 import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
+/**
+ * The EditionSvgSheet component.
+ *
+ * It contains the svg sheet section
+ * of the edition view of the app
+ * and displays a selected svg sheet.
+ */
 @Component({
     selector: 'awg-edition-svg-sheet',
     templateUrl: './edition-svg-sheet.component.html',
@@ -9,14 +16,37 @@ import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/mode
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionSvgSheetComponent implements OnInit {
+    /**
+     * Input variable: selectedSvgSheet.
+     *
+     * It keeps the selected svg sheet.
+     */
     @Input()
     selectedSvgSheet: EditionSvgSheet;
+
+    /**
+     * Input variable: selectedOverlay.
+     *
+     * It keeps the selected svg overlay.
+     */
     @Input()
     selectedOverlay: EditionSvgOverlay;
+
+    /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: selectOverlayRequest.
+     *
+     * It keeps an event emitter for the selected textcritics.
+     */
     @Output()
-    selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
+    selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
 
     // init sheets
     // TODO: other solution possible?
@@ -25,11 +55,24 @@ export class EditionSvgSheetComponent implements OnInit {
     svgFile4 = 'Aa:SkI/4';
     svgFile5 = 'Aa:SkI/5';
 
-    constructor() {}
-
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {}
 
-    isSelectedSvgSheet(id: string) {
+    /**
+     * Public method: isSelectedSvgSheet.
+     *
+     * It compares a given id with the id
+     * of the latest selected svg sheet.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isSelectedSvgSheet(id: string): boolean {
         // compare sheet id's
         return id === this.selectedSvgSheet.id;
     }

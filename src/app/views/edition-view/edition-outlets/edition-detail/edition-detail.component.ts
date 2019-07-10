@@ -153,22 +153,6 @@ export class EditionDetailComponent implements OnInit {
     }
 
     /**
-     * Public method: onSvgSheetSelect.
-     *
-     * It selects a svg sheet by its id and
-     * navigates to the '/edition/detail' route
-     * with this given id.
-     *
-     * @param {string} id The given svg sheet id.
-     * @returns {void} Navigates to the edition detail.
-     */
-    onSvgSheetSelect(id: string): void {
-        this.selectedSvgSheet = this.svgSheetsData[id];
-        this.showTkA = false;
-        this.router.navigate(['/edition/detail', id]);
-    }
-
-    /**
      * Public method: onOverlaySelect.
      *
      * It selects a given overlay and its corresponding textcritics.
@@ -188,5 +172,21 @@ export class EditionDetailComponent implements OnInit {
         this.selectedOverlay = overlay;
         this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
         this.showTkA = this.selectedTextcritics !== [];
+    }
+
+    /**
+     * Public method: onSvgSheetSelect.
+     *
+     * It selects a svg sheet by its id and
+     * navigates to the '/edition/detail' route
+     * with this given id.
+     *
+     * @param {string} id The given svg sheet id.
+     * @returns {void} Navigates to the edition detail.
+     */
+    onSvgSheetSelect(id: string): void {
+        this.selectedSvgSheet = this.svgSheetsData[id];
+        this.showTkA = false;
+        this.router.navigate(['/edition/detail', id]);
     }
 }

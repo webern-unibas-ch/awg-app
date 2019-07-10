@@ -95,6 +95,15 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
      */
     ref: FolioComponent;
 
+    /**
+     * Constructor of the FolioComponent.
+     *
+     * It declares a private {@link FolioService} instance
+     * and initializes the self-referring ref variable
+     * needed for CompileHtml library.
+     *
+     * @param {FolioService} folioService Instance of the FolioService.
+     */
     constructor(private folioService: FolioService) {
         this.ref = this;
     }

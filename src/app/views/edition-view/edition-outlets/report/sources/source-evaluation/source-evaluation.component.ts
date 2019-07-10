@@ -1,12 +1,19 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
+/**
+ * The SourceEvaluation component.
+ *
+ * It contains the source evaluation section
+ * of the criitical report
+ * of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-evaluation',
     templateUrl: './source-evaluation.component.html',
     styleUrls: ['./source-evaluation.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceEvaluationComponent {
+export class SourceEvaluationComponent implements OnInit {
     /**
      * Output variable: openModalRequest.
      *
@@ -16,6 +23,13 @@ export class SourceEvaluationComponent {
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {}
 
     /**
      * Public method: openModal.

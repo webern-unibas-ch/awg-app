@@ -1,12 +1,19 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+/**
+ * The SourceDescription component.
+ *
+ * It contains the source description section
+ * of the criitical report
+ * of the edition view of the app.
+ */
 @Component({
     selector: 'awg-source-description',
     templateUrl: './source-description.component.html',
     styleUrls: ['./source-description.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SourceDescriptionComponent {
+export class SourceDescriptionComponent implements OnInit {
     /**
      * Output variable: openModalRequest.
      *
@@ -15,6 +22,14 @@ export class SourceDescriptionComponent {
      */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {}
 
     /**
      * Public method: openModal.
