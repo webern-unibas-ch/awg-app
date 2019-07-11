@@ -1,5 +1,13 @@
 <!-- resource detail box -->
 <div class="awg-resource-detail-tabs" *ngIf="!isLoadingData && (resourceData$ | async) as resourceData; else loading">
+    <!-- resourceDetailData header -->
+    <awg-resource-detail-header
+        *ngIf="resourceData?.html.header"
+        [header]="resourceData?.html.header"
+        [resourceUrl]="resourceUrl"
+        (resourceRequest)="navigateToResource($event)"
+    ></awg-resource-detail-header>
+
     <ngb-tabset>
         <!-- html -->
         <ngb-tab id="html" class="awg-resource-detail-long-tab">
@@ -7,19 +15,9 @@
                 {{ tabTitle?.html }}
             </ng-template>
             <ng-template ngbTabContent>
-                <!-- resourceDetailData header -->
-                <awg-resource-detail-header
-                    *ngIf="resourceData.html.header"
-                    [header]="resourceData.html.header"
-                    [resourceUrl]="resourceUrl"
-                    (resourceRequest)="navigateToResource($event)"
-                >
-                </awg-resource-detail-header>
-
                 <!-- html visualisation -->
                 <awg-resource-detail-html
-                    *ngIf="resourceData.html"
-                    [resourceDetailData]="resourceData.html"
+                    [resourceDetailData]="resourceData?.html"
                     (resourceRequest)="navigateToResource($event)"
                 >
                 </awg-resource-detail-html>
@@ -29,20 +27,8 @@
         <!-- JSON converted -->
         <ngb-tab id="converted" title="{{ tabTitle?.converted }}" class="awg-resource-detail-short-tab">
             <ng-template ngbTabContent>
-                <!-- resourceDetailData header -->
-                <awg-resource-detail-header
-                    *ngIf="resourceData.html.header"
-                    [header]="resourceData.html.header"
-                    [resourceUrl]="resourceUrl"
-                    (resourceRequest)="navigateToResource($event)"
-                >
-                </awg-resource-detail-header>
-
                 <!-- converted json visualisation -->
-                <awg-resource-detail-json-converted
-                    *ngIf="resourceData.jsonConverted"
-                    [resourceJsonConvertedData]="resourceData.jsonConverted"
-                >
+                <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData?.jsonConverted">
                 </awg-resource-detail-json-converted>
             </ng-template>
         </ngb-tab>
@@ -50,17 +36,8 @@
         <!-- JSON raw -->
         <ngb-tab id="raw" title="{{ tabTitle?.raw }}" class="awg-resource-detail-short-tab">
             <ng-template ngbTabContent>
-                <!-- resourceDetailData header -->
-                <awg-resource-detail-header
-                    *ngIf="resourceData.html.header"
-                    [header]="resourceData.html.header"
-                    [resourceUrl]="resourceUrl"
-                    (resourceRequest)="navigateToResource($event)"
-                >
-                </awg-resource-detail-header>
-
                 <!-- raw json visualisation -->
-                <awg-resource-detail-json-raw *ngIf="resourceData.jsonRaw" [resourceJsonRawData]="resourceData.jsonRaw">
+                <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData?.jsonRaw">
                 </awg-resource-detail-json-raw>
             </ng-template>
         </ngb-tab>

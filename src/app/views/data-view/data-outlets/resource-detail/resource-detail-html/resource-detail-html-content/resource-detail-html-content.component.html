@@ -18,7 +18,7 @@
         <!-- object properties -->
         <div class="col-lg-8">
             <awg-resource-detail-html-content-props
-                [props]="content.props"
+                [props]="content?.props"
                 (resourceRequest)="navigateToResource($event)"
             >
             </awg-resource-detail-html-content-props>
@@ -28,15 +28,12 @@
         <div class="col-lg-4 mt-3 mt-lg-0 mb-3">
             <div class="sidenav-right">
                 <!-- image objects -->
-                <awg-resource-detail-html-content-imageobjects
-                    *ngIf="content.images.length > 0"
-                    [images]="content.images"
-                >
+                <awg-resource-detail-html-content-imageobjects [images]="content?.images">
                 </awg-resource-detail-html-content-imageobjects>
 
                 <!-- connected objects -->
                 <awg-resource-detail-html-content-linkedobjects
-                    [incomingGroups]="content.incoming"
+                    [incomingGroups]="content?.incoming"
                     (resourceRequest)="navigateToResource($event)"
                 >
                 </awg-resource-detail-html-content-linkedobjects>
