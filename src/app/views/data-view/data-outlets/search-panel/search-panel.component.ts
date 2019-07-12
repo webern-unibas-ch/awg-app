@@ -3,7 +3,7 @@ import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router
 
 import { Subscription } from 'rxjs';
 
-import { ConversionService, DataStreamerService } from '@awg-core/services';
+import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { SearchResponseJson } from '@awg-shared/api-objects';
@@ -48,7 +48,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private router: Router,
         private conversionService: ConversionService,
         private dataApiService: DataApiService,
-        private streamerService: DataStreamerService
+        private streamerService: DataStreamerService,
+        public loadingService: LoadingService
     ) {}
 
     ngOnInit() {

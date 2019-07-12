@@ -18,11 +18,9 @@ import { HttpCacheService } from '@awg-views/data-view/services';
  *
  * It implements the `HttpInterceptor`
  * to intercept outgoing http requests and
- * it delegates them to the {@link HttpCacheService}.
+ * to delegate them to the {@link HttpCacheService}.
  */
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class CachingInterceptor implements HttpInterceptor {
     /**
      * Constructor of the CachingInterceptor.
@@ -37,13 +35,14 @@ export class CachingInterceptor implements HttpInterceptor {
     // private cache = {};
 
     /**
-     * Method: intercept.
+     * Public method: intercept.
      *
      * It intercepts outgoing http requests and
      * delegates them to the {@link HttpCacheService}.
      *
      * @param {HttpRequest<any>} req An HttpRequest to be intercepted.
      * @param {HttpHandler} next An HttpHandler.
+     *
      * @returns {Observable<HttpEvent<any>>} An HttpEvent observable.
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {

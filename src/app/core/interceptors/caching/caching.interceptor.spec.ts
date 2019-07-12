@@ -2,7 +2,7 @@ import { TestBed, inject } from '@angular/core/testing';
 
 import { CachingInterceptor } from './caching.interceptor';
 
-describe('CachingInterceptorService', () => {
+describe('CachingInterceptor', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [CachingInterceptor]

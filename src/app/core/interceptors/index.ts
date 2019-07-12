@@ -1,9 +1,9 @@
 /**
  *
- *              SearchInterceptors
+ *              DataInterceptors
  *
  * This file exports interceptors that are used
- * for the Search view.
+ * for the data (search) view.
  *
  */
 import { httpInterceptorProviders } from './interceptor-providers';

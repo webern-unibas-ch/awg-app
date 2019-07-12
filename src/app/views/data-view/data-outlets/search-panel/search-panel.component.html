@@ -2,9 +2,20 @@
 
 <awg-search-form [searchValue]="searchParams.query" (searchRequest)="onSearch($event)"> </awg-search-form>
 
-<ng-container *ngIf="searchParams?.query">
+<!-- loading spinner -->
+<div *ngIf="loadingService.isLoading$ | async; else notLoading">
+    <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+</div>
+
+<ng-template #notLoading>
+    <div class="errorMessage" *ngIf="errorMessage">
+        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+    </div>
+
     <awg-search-result-list
-        *ngIf="!isLoadingData; else loading"
+        *ngIf="searchParams?.query"
         [searchParams]="searchParams"
         [searchUrl]="searchUrl"
         (pageChangeRequest)="onPageChange($event)"
@@ -12,20 +23,4 @@
         (viewChangeRequest)="onViewChange($event)"
     >
     </awg-search-result-list>
-
-    <!-- loading spinner -->
-    <ng-template #loading>
-        <ng-container *ngIf="!errorMessage; else error">
-            <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-        </ng-container>
-    </ng-template>
-
-    <!-- error message -->
-    <ng-template #error>
-        <div class="errorMessage" *ngIf="errorMessage">
-            <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
-            <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
-            <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
-        </div>
-    </ng-template>
-</ng-container>
+</ng-template>

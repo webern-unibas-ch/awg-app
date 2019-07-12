@@ -2,8 +2,6 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { httpInterceptorProviders } from './interceptors';
-
 import { ResourceDetailModule } from './data-outlets/resource-detail/resource-detail.module';
 // bibliography module is lazy loaded, so not imported here
 
@@ -22,7 +20,6 @@ import { DataRoutingModule, routedDataComponents } from './data-routing.module';
  */
 @NgModule({
     imports: [SharedModule, ResourceDetailModule, DataRoutingModule],
-    declarations: [routedDataComponents, SearchFormComponent, SearchResultListComponent],
-    providers: [httpInterceptorProviders]
+    declarations: [routedDataComponents, SearchFormComponent, SearchResultListComponent]
 })
 export class DataModule {}

@@ -6,7 +6,7 @@ import { switchMap, map, tap } from 'rxjs/operators';
 
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConversionService, DataStreamerService } from '@awg-core/services';
+import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ResourceData, ResourceDetail } from '@awg-views/data-view/models';
@@ -27,13 +27,6 @@ export class ResourceDetailComponent implements OnInit, OnChanges {
 
     errorMessage: any = undefined;
 
-    /**
-     * Public variable: isLoadingData.
-     *
-     * If the data is loading.
-     */
-    isLoadingData: boolean;
-
     tabTitle = {
         html: 'Detail',
         raw: 'JSON (raw)',
@@ -41,10 +34,11 @@ export class ResourceDetailComponent implements OnInit, OnChanges {
     };
 
     constructor(
+        public loadingService: LoadingService,
         private route: ActivatedRoute,
         private router: Router,
         private conversionService: ConversionService,
-        private searchService: DataApiService,
+        private dataApiService: DataApiService,
         private streamerService: DataStreamerService,
         config: NgbTabsetConfig
     ) {
