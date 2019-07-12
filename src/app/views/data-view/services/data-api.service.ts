@@ -1,11 +1,19 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { forkJoin as observableForkJoin, Observable } from 'rxjs';
+import { defaultIfEmpty, map, take, tap } from 'rxjs/operators';
 
 import { ApiService, ConversionService } from '@awg-core/services/';
-import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
+import {
+    GeoDataJson,
+    HlistJson,
+    ResourceContextResponseJson,
+    ResourceFullResponseJson,
+    SearchResponseJson,
+    SelectionJson
+} from '@awg-shared/api-objects';
+import { IResourceDataResponse, ResourceData, ResourceDetail } from '@awg-views/data-view/models';
 
 /**
  * The DataApi service.
@@ -21,32 +29,32 @@ import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-ob
 })
 export class DataApiService extends ApiService {
     /**
-     * Public variable: projectId.
+     * Private variable: projectId.
      *
      * It keeps the SALSAH specific id of the webern project ('6').
      */
-    projectId = '6';
+    private projectId = '6';
 
     /**
-     * Public variable: resourceSuffix.
+     * Private variable: resourceSuffix.
      *
      * It keeps the SALSAH specific suffix for a resource ('_-_local').
      */
-    resourceSuffix = '_-_local';
+    private resourceSuffix = '_-_local';
 
     /**
-     * Public variable: resourcesRoute.
+     * Private variable: routes.
      *
-     * It keeps the SALSAH specific route for a resource ('resources/').
+     * It keeps the SALSAH specific routes for
+     * resources, search, geonames, hlists and selections.
      */
-    resourcesRoute = 'resources/';
-
-    /**
-     * Public variable: searchRoute.
-     *
-     * It keeps the SALSAH specific route for the search ('search/').
-     */
-    searchRoute = 'search/';
+    private routes = {
+        resources: 'resources/',
+        search: 'search/',
+        geonames: 'geonames/',
+        hlists: 'hlists/',
+        selections: 'selections/'
+    };
 
     /**
      * Constructor of the DataApiService.
@@ -73,6 +81,7 @@ export class DataApiService extends ApiService {
      * @params {string} searchString The search string of the query.
      * @params {string} [nRows] The optional number of rows to return with the query.
      * @params {string} [startAt] The optional start position in the result list to return results.
+     *
      * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
      */
     getFulltextSearchData(searchString: string, nRows?: string, startAt?: string): Observable<SearchResponseJson> {
@@ -88,15 +97,18 @@ export class DataApiService extends ApiService {
         }
 
         // set path and params of query
-        const queryPath: string = this.searchRoute + searchString;
+        const queryPath: string = this.routes.search + searchString;
+
         const queryHttpParams = new HttpParams()
             .set('searchtype', 'fulltext')
             .set('filter_by_project', this.projectId)
             .set('show_nrows', nRows)
             .set('start_at', startAt);
 
+        const searchData$ = super.getApiResponse(SearchResponseJson, queryPath, queryHttpParams);
+
         // request to API
-        return this.getApiResponse(SearchResponseJson, queryPath, queryHttpParams).pipe(
+        return searchData$.pipe(
             map((searchResponse: SearchResponseJson) => {
                 // conversion of search results for HTML display
                 return this.conversionService.convertFullTextSearchResults(searchResponse);
@@ -105,20 +117,158 @@ export class DataApiService extends ApiService {
     }
 
     /**
-     * Public method: getResourceDetailData.
+     * Public method: getResourceData.
      *
-     * It sets the path and params for a resource query
-     * to the given (SALSAH) API.
+     * It provides the data for the resource detail view
+     * as an ResourceData observable.
      *
      * @params {string} resourceId The id of the requested resource.
-     * @returns {Observable<ResourceFullResponseJson>} The observable with the ResourceFullResponseJson data.
+     *
+     * @returns {Observable<ResourceData>} The observable with the resource data.
      */
-    getResourceDetailData(resourceId: string): Observable<ResourceFullResponseJson> {
-        // set path and params of query
-        const queryPath: string = this.resourcesRoute + resourceId + this.resourceSuffix;
-        const queryHttpParams = new HttpParams();
-        // .set('reqtype', 'info');
-        //  .set('reqtype', 'context');
-        return this.getApiResponse(ResourceFullResponseJson, queryPath, queryHttpParams);
+    getResourceData(resourceId: string): Observable<ResourceData> {
+        if (!resourceId) {
+            return;
+        }
+
+        const fullResponseData$ = this.getResourceFullResponseData(resourceId);
+        const contextData$ = this.getResourceContextData(resourceId);
+
+        return observableForkJoin([fullResponseData$, contextData$]).pipe(
+            // default empty value
+            defaultIfEmpty([new ResourceFullResponseJson(), new ResourceContextResponseJson()]),
+
+            // map the forkJoined response to a ResourceData object
+            map((resourceDataResponse: IResourceDataResponse) => {
+                return this.prepareResourceData(resourceDataResponse, resourceId);
+            })
+        );
+    }
+
+    /**
+     * Private method: prepareResourceData.
+     *
+     * It converts the data response of a requested resource
+     * to a ResourceData object.
+     *
+     * @params {IResourceDataResponse} resourceData The data response of the requested resource.
+     * @params {string} resourceId The id of the requested resource.
+     *
+     * @returns {ResourceData} The resource data object.
+     */
+    private prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
+        if (Object.keys(resourceDataResponse[0]).length === 0 && resourceDataResponse[0].constructor === Object) {
+            return new ResourceData(new ResourceFullResponseJson(), undefined);
+        }
+
+        // convert data for displaying resource detail
+        const resourceDetail: ResourceDetail = this.conversionService.convertResourceData(
+            resourceDataResponse,
+            resourceId
+        );
+
+        // return new resource data
+        return new ResourceData(resourceDataResponse[0], resourceDetail);
+    }
+
+    // -----------------------------
+
+    /*
+   *
+   *           case '7': // SELECTION (pulldown): selection nodes have to be called separately
+                           prop.toHtml = this.convertSelectionValues(prop.values, prop.attributes);
+                           break; // END selection
+
+               case '12': // HLIST: hlist nodes have to be called separately
+                           prop.toHtml = this.convertHlistValues(prop.values, prop.attributes);
+                           break; // END hlist
+
+               case '15': // GeoNAMES: GeoName nodes have to be called separately
+                           prop.toHtml = this.convertGeoValues(prop.values);
+                           break; // END geonames
+   *
+   *
+   *
+   *
+   * */
+
+    private getGeoData(resourceId: string): Observable<GeoDataJson> {
+        return this.getResourceResponseFromApi(GeoDataJson, resourceId);
+    }
+
+    private getHlistData(resourceId: string): Observable<HlistJson> {
+        return this.getResourceResponseFromApi(HlistJson, resourceId);
+    }
+
+    private getResourceContextData(resourceId: string): Observable<ResourceContextResponseJson> {
+        return this.getResourceResponseFromApi(ResourceContextResponseJson, resourceId);
+    }
+
+    private getResourceFullResponseData(resourceId: string): Observable<ResourceFullResponseJson> {
+        return this.getResourceResponseFromApi(ResourceFullResponseJson, resourceId);
+    }
+
+    private getSelectionsData(resourceId: string): Observable<SelectionJson> {
+        return this.getResourceResponseFromApi(SelectionJson, resourceId);
+    }
+
+    // -----------------------------
+
+    /**
+     * Private method: getResourceResponseFromApi.
+     *
+     * It prepares the calls to the given (SALSAH) API
+     * for a resource id depending on the responseJsonType
+     * and the given resource id.
+     *
+     * @param {*} responseJsonType The given json type of the API response.
+     * @param {string} id The given id of a resource.
+     *
+     * @returns {Observable<any>} The observable of the HTTP response.
+     */
+    private getResourceResponseFromApi(responseJsonType: any, id: string): Observable<any> {
+        // init query path and params
+        let queryPath: string;
+        let queryHttpParams: HttpParams = new HttpParams();
+
+        // set path and params of query depending on responseJsonType
+        switch (responseJsonType) {
+            case GeoDataJson:
+                queryPath = this.routes.geonames + id;
+                queryHttpParams = queryHttpParams.set('reqtype', 'node');
+                break;
+            case HlistJson:
+                queryPath = this.routes.hlists + id;
+                break;
+            case ResourceContextResponseJson:
+                queryPath = this.routes.resources + id + this.resourceSuffix;
+                queryHttpParams = queryHttpParams.set('reqtype', 'context');
+                break;
+            case ResourceFullResponseJson:
+                queryPath = this.routes.resources + id + this.resourceSuffix;
+                break;
+            case SelectionJson:
+                queryPath = this.routes.selections + id;
+                break;
+        }
+
+        // trigger call to API
+        return super.getApiResponse(responseJsonType, queryPath, queryHttpParams);
+    }
+
+    /**
+     * Private method: getNodeIdFromAttributes.
+     *
+     * It gets a node id from the prop.attributes
+     * of a selections or hlists value.
+     *
+     * @param {string} attributes The given prop.attributes.
+     *
+     * @returns {string} id The node id.
+     */
+    private getNodeIdFromAttributes(attributes: string): string {
+        // identify node id from prop.attributes
+        // e.g. "hlist=17" or "selection=77"
+        return attributes.split('=')[1].toString();
     }
 }

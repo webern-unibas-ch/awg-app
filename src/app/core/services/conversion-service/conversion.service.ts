@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
+import { NgxGalleryImage } from 'ngx-gallery';
+
 import { ApiService } from '@awg-core/services/api-service';
 import { GeoNames } from '@awg-core/core-models';
 import {
@@ -11,6 +13,7 @@ import {
     HlistItemJson,
     HlistJson,
     IncomingItemJson,
+    PropertyJson,
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     SearchResponseJson,
@@ -18,8 +21,8 @@ import {
     SelectionJson,
     SubjectItemJson
 } from '@awg-shared/api-objects';
-import { PropertyJson } from '@awg-shared/api-objects/resource-response-formats/src/property-json';
 import {
+    IResourceDataResponse,
     ResourceDetail,
     ResourceDetailContent,
     ResourceDetailGroupedIncomingLinks,
@@ -149,17 +152,17 @@ export class ConversionService extends ApiService {
      * It converts object properties of a resource request
      * to be displayed in the bibliography detail view.
      *
-     * @param {ResourceFullResponseJson} resourceData The given resource data.
+     * @param {ResourceFullResponseJson} resourceFullResponseData The given resource data.
      * @returns {BibEntry} The converted resource object.
      */
-    convertObjectProperties(resourceData: ResourceFullResponseJson): BibEntry {
+    convertObjectProperties(resourceFullResponseData: ResourceFullResponseJson): BibEntry {
         const convObj = {};
-        console.log('convertdata: ', resourceData);
+        console.log('convertdata: ', resourceFullResponseData);
         // add lastmod state
-        convObj['lastmod'] = resourceData.resinfo.lastmod;
+        convObj['lastmod'] = resourceFullResponseData.resinfo.lastmod;
 
-        Object.keys(resourceData.props).forEach((key: string) => {
-            const prop = resourceData.props[key];
+        Object.keys(resourceFullResponseData.props).forEach((key: string) => {
+            const prop = resourceFullResponseData.props[key];
             let propValue = []; // empty text value array
 
             // check if values property is defined
@@ -242,21 +245,22 @@ export class ConversionService extends ApiService {
     } // END convertObjectProperties (func)
 
     /**
-     * Public method: prepareResourceDetail.
+     * Public method: convertResourceData.
      *
-     * It checks if the resource data is accessible and delegates
-     * it to the respective resource detail creation methods
-     * to return all needed information for a resource detail.
+     * It converts a resource response from the given (SALSAH) Api
+     * to a resource detail object. It checks if the resource data
+     * is accessible and delegates it to the respective
+     * resource detail creation methods.
      *
-     * @param {ResourceFullResponseJson} resourceData The given resource data.
-     * @param {string} currentResourceId The given id of the current resource.
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
      * @returns {ResourceDetail} The converted resource detail object.
      */
-    prepareResourceDetail(resourceData: ResourceFullResponseJson, currentResourceId: string): ResourceDetail {
-        if (resourceData.access === 'OK') {
-            return this.prepareAccessibleResource(resourceData, currentResourceId);
+    convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        if (resourceData[0].access === 'OK') {
+            return this.prepareAccessibleResource(resourceData, resourceId);
         } else {
-            return this.prepareRestrictedResource(resourceData, currentResourceId);
+            return this.prepareRestrictedResource(resourceData, resourceId);
         }
     }
 
@@ -266,15 +270,12 @@ export class ConversionService extends ApiService {
      * It prepares header and content of a restricted resource
      * to be displayed via HTML.
      *
-     * @param {ResourceFullResponseJson} resourceData The given resource data.
-     * @param {string} currentResourceId The given id of the current resource.
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
      * @returns {ResourceDetail} The resource detail object.
      */
-    private prepareRestrictedResource(
-        resourceData: ResourceFullResponseJson,
-        currentResourceId: string
-    ): ResourceDetail {
-        const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData, currentResourceId);
+    private prepareRestrictedResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData[0], resourceId);
         const content = undefined;
 
         return new ResourceDetail(header, content);
@@ -286,23 +287,23 @@ export class ConversionService extends ApiService {
      * It prepares header and content of an accessible resource
      * to be displayed via HTML.
      *
-     * @param {ResourceFullResponseJson} resourceData The given resource data.
-     * @param {string} currentResourceId The given id of the current resource.
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
      * @returns {ResourceDetail} The resource detail object.
      */
-    private prepareAccessibleResource(
-        resourceData: ResourceFullResponseJson,
-        currentResourceId: string
-    ): ResourceDetail {
+    private prepareAccessibleResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        const resourceFullResponseData = resourceData[0];
+        const resourceContextData = resourceData[1];
+
         // convert properties to be displayed via HTML
-        resourceData.props = this.convertGUISpecificProps(resourceData.props);
+        resourceFullResponseData.props = this.convertGUISpecificProps(resourceFullResponseData.props);
 
         // prepare parts of resourceDetail
-        const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData, currentResourceId);
-        const props: ResourceDetailProperty[] = this.prepareResourceDetailProperties(resourceData.props);
-        const images: ResourceDetailImage[] = this.prepareResourceDetailImage(currentResourceId);
+        const header: ResourceDetailHeader = new ResourceDetailHeader(resourceFullResponseData, resourceId);
+        const props: ResourceDetailProperty[] = this.prepareResourceDetailProperties(resourceFullResponseData.props);
+        const images: NgxGalleryImage[] = this.prepareResourceDetailImage(resourceContextData);
         const incoming: ResourceDetailGroupedIncomingLinks[] = this.prepareResourceDetailIncomingLinks(
-            resourceData.incoming
+            resourceFullResponseData.incoming
         );
         const content = new ResourceDetailContent(props, images, incoming);
 
@@ -315,50 +316,58 @@ export class ConversionService extends ApiService {
      * It prepares the images content of an accessible resource
      * to be displayed via HTML.
      *
-     * @param {string} currentResourceId The given id of the current resource.
-     * @returns {ResourceDetailImage[]} The image array of the resource detail.
+     * @param {ResourceContextResponseJson} resourceContextData The given resource context data.
+     * @returns {NgxGalleryImage[]} The image array of the resource detail.
      */
-    private prepareResourceDetailImage(currentResourceId: string): ResourceDetailImage[] {
+    private prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
         // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
-        // result is an array of ResourceDetailImage
-        const images: ResourceDetailImage[] = [];
+        // result is an array of NgxGalleryImage
+        const images: NgxGalleryImage[] = [];
 
-        // get resource context data
-        this.getAdditionalInfoFromApi(ResourceContextResponseJson, currentResourceId).subscribe(
-            (contextData: ResourceContextResponseJson) => {
-                // check for existing resource_context in response
-                // else return undefined output if necessary
-                if (!contextData.resource_context.res_id) {
-                    // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
-                    return;
-                } else {
-                    const context: ContextJson = { ...contextData.resource_context };
+        if (!resourceContextData.resource_context.res_id) {
+            // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+            return;
+        } else {
+            const context: ContextJson = { ...resourceContextData.resource_context };
 
-                    // IMAGE OBJECT (context == 2)
-                    if (context.context === 2 && context.resclass_name === 'image') {
-                        if (context.res_id.length === context.firstprop.length) {
-                            for (let i = 0; i < context.res_id.length; i++) {
-                                // build new ResourceDetailImage-Object from context and index
-                                const image = new ResourceDetailImage(context, i);
-                                images[i] = image;
-                            }
-                        } else {
-                            console.warn(
-                                'ConversionService - Array length for context objects is not consistent with firstprops length!',
-                                context
-                            );
-                            return;
-                        }
-                        // STANDARD OBJECT (context == 0 || 1)
-                    } else if (context.context < 2) {
-                        console.log('ConversionService - got no image context', context);
-                        return;
+            // IMAGE OBJECT (context == 2)
+            // IMAGE OBJECT (context == 2)
+            if (context.context === 2 && context.resclass_name === 'image') {
+                if (
+                    context.res_id.length === context.firstprop.length ||
+                    context.res_id.length === context.locations.length
+                ) {
+                    for (let i = 0; i < context.res_id.length; i++) {
+                        // build new ResourceDetailImage-Object from context and index
+                        const image = new ResourceDetailImage(context, i);
+
+                        const gImage = new NgxGalleryImage({
+                            small: image.reductSize,
+                            medium: image.reductSize,
+                            big: image.fullSize,
+                            description: image.origname,
+                            label: image.label,
+                            url: image.fullSize
+                        });
+
+                        images.push(gImage);
                     }
+                    return images;
+                } else {
+                    console.warn(
+                        'ConversionService - Array length for context objects is not consistent with firstprops length!',
+                        context
+                    );
+                    return;
                 }
-                return images;
-            },
-            err => console.error(err)
-        );
+                // STANDARD OBJECT (context == 0 || 1)
+            } else if (context.context < 2) {
+                console.log('ConversionService - got no image context', context);
+                return;
+            }
+        }
+        console.log('convService# test', images);
+
         return images;
     }
 

@@ -1,6 +1,7 @@
 import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
 import { ResourceDetailProperty } from './resource-detail-property.model';
+import { NgxGalleryImage } from 'ngx-gallery';
 
 /**
  * The ResourceDetailContent class.
@@ -17,7 +18,7 @@ export class ResourceDetailContent {
     /**
      * The images of the resource content.
      */
-    images: ResourceDetailImage[];
+    images: NgxGalleryImage[];
 
     /**
      * The grouped incoming links of the resource content.
@@ -31,13 +32,13 @@ export class ResourceDetailContent {
      * given properties, images and grouped incoming links.
      *
      * @param {ResourceDetailProperty[]} props The given resource detail properties array.
-     * @param {ResourceDetailImage[]} images The given resource detail image array.
+     * @param {NgxGalleryImage[]} images The given resource detail image array.
      * @param {ResourceDetailGroupedIncomingLinks[]} incoming
      * The given resource detail grouped incoming links array.
      */
     constructor(
         props: ResourceDetailProperty[],
-        images: ResourceDetailImage[],
+        images: NgxGalleryImage[],
         incoming: ResourceDetailGroupedIncomingLinks[]
     ) {
         this.props = props;

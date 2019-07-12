@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
-import { catchError, take } from 'rxjs/operators';
+import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
 import { Folio, EditionSvgSheet, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 
@@ -78,7 +78,14 @@ export class EditionDataService {
      * Only the first emit is needed.
      */
     getEditionDetailData(): Observable<[Folio[], EditionSvgSheet[], TextcriticsList]> {
-        return observableForkJoin([this.getFolioData(), this.getSvgSheetsData(), this.getTextcriticsListData()]).pipe(
+        const folioData$: Observable<Folio[]> = this.getFolioData();
+        const svgSheetsData$: Observable<EditionSvgSheet[]> = this.getSvgSheetsData();
+        const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
+
+        return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
+            // default empty value
+            defaultIfEmpty([[new Folio()], [new EditionSvgSheet()], new TextcriticsList()]),
+            // take only first request (JSON fetch)
             take(1)
         );
     }
@@ -96,7 +103,15 @@ export class EditionDataService {
      * and TextcriticsList data. Only the first emit is needed.
      */
     getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
-        return observableForkJoin([this.getSourceListData(), this.getTextcriticsListData()]).pipe(take(1));
+        const sourceListData$: Observable<SourceList> = this.getSourceListData();
+        const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
+
+        return observableForkJoin([sourceListData$, textciticsListData$]).pipe(
+            // default empty value
+            defaultIfEmpty([new SourceList(), new TextcriticsList()]),
+            // take only first request (JSON fetch)
+            take(1)
+        );
     }
 
     /**

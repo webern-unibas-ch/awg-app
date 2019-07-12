@@ -6,7 +6,7 @@ import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 /**
  * The IFolioLegend interface.
  *
- * It represents the folio legend
+ * It represents the interface for a folio legend
  * of an edition convolute folio.
  */
 interface IFolioLegend {

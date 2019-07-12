@@ -1,47 +1,63 @@
 <!-- resource detail box -->
-<div class="awg-resource-detail-tabs" *ngIf="!isLoadingData && (resourceData$ | async) as resourceData; else loading">
-    <!-- resourceDetailData header -->
-    <awg-resource-detail-header
-        *ngIf="resourceData?.html.header"
-        [header]="resourceData?.html.header"
-        [resourceUrl]="resourceUrl"
-        (resourceRequest)="navigateToResource($event)"
-    ></awg-resource-detail-header>
 
-    <ngb-tabset>
-        <!-- html -->
-        <ngb-tab id="html" class="awg-resource-detail-long-tab">
-            <ng-template ngbTabTitle>
-                {{ tabTitle?.html }}
-            </ng-template>
-            <ng-template ngbTabContent>
-                <!-- html visualisation -->
-                <awg-resource-detail-html
-                    [resourceDetailData]="resourceData?.html"
-                    (resourceRequest)="navigateToResource($event)"
-                >
-                </awg-resource-detail-html>
-            </ng-template>
-        </ngb-tab>
+<!-- loading spinner -->
+<div *ngIf="loadingService.isLoading$ | async; else notLoading">
+    <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+</div>
 
-        <!-- JSON converted -->
-        <ngb-tab id="converted" title="{{ tabTitle?.converted }}" class="awg-resource-detail-short-tab">
-            <ng-template ngbTabContent>
-                <!-- converted json visualisation -->
-                <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData?.jsonConverted">
-                </awg-resource-detail-json-converted>
-            </ng-template>
-        </ngb-tab>
+<ng-template #notLoading>
+    <!-- error message -->
+    <div class="errorMessage" *ngIf="errorMessage">
+        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
+        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+    </div>
 
-        <!-- JSON raw -->
-        <ngb-tab id="raw" title="{{ tabTitle?.raw }}" class="awg-resource-detail-short-tab">
-            <ng-template ngbTabContent>
-                <!-- raw json visualisation -->
-                <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData?.jsonRaw">
-                </awg-resource-detail-json-raw>
-            </ng-template>
-        </ngb-tab>
-    </ngb-tabset>
+    <!-- async data -->
+    <div class="awg-resource-detail-tabs" *ngIf="resourceData$ | async as resourceData">
+        <!-- resourceDetailData header -->
+        <awg-resource-detail-header
+            *ngIf="resourceData?.detail.header"
+            [header]="resourceData?.detail.header"
+            [resourceUrl]="dataApiService.httpGetUrl"
+            (resourceRequest)="navigateToResource($event)"
+        ></awg-resource-detail-header>
+
+        <ngb-tabset>
+            <!-- html -->
+            <ngb-tab id="html" class="awg-resource-detail-long-tab">
+                <ng-template ngbTabTitle>
+                    {{ tabTitle?.html }}
+                </ng-template>
+                <ng-template ngbTabContent>
+                    <!-- html visualisation -->
+                    <awg-resource-detail-html
+                        [resourceDetailData]="resourceData?.detail"
+                        (resourceRequest)="navigateToResource($event)"
+                    >
+                    </awg-resource-detail-html>
+                </ng-template>
+            </ngb-tab>
+
+            <!-- JSON converted -->
+            <ngb-tab id="converted" title="{{ tabTitle?.converted }}" class="awg-resource-detail-short-tab">
+                <ng-template ngbTabContent>
+                    <!-- converted json visualisation -->
+                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData?.jsonConverted">
+                    </awg-resource-detail-json-converted>
+                </ng-template>
+            </ngb-tab>
+
+            <!-- JSON raw -->
+            <ngb-tab id="raw" title="{{ tabTitle?.raw }}" class="awg-resource-detail-short-tab">
+                <ng-template ngbTabContent>
+                    <!-- raw json visualisation -->
+                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData?.jsonRaw">
+                    </awg-resource-detail-json-raw>
+                </ng-template>
+            </ngb-tab>
+        </ngb-tabset>
+    </div>
 
     <!--
     TODO: remove
@@ -58,20 +74,4 @@
         </li>
     </ul>
     -->
-</div>
-
-<!-- loading spinner -->
-<ng-template #loading>
-    <ng-container *ngIf="!errorMessage; else error">
-        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-    </ng-container>
-</ng-template>
-
-<!-- error message -->
-<ng-template #error>
-    <div class="errorMessage" *ngIf="errorMessage">
-        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
-        <p>Fehlermeldung: "{{ errorMessage?.statusText }}".</p>
-        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
-    </div>
 </ng-template>

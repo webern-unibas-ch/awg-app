@@ -1,5 +1,17 @@
 import { ResourceDetail } from './resource-detail.model';
-import { ResourceFullResponseJson } from '@awg-shared/api-objects/index';
+
+import { ResourceContextResponseJson, ResourceFullResponseJson } from '@awg-shared/api-objects/index';
+
+/**
+ * The IResourceDataResponse interface.
+ *
+ * It represents the interface for a resource data response
+ * of a resource detail.
+ */
+export interface IResourceDataResponse extends Array<ResourceFullResponseJson | ResourceContextResponseJson> {
+    0: ResourceFullResponseJson;
+    1: ResourceContextResponseJson;
+}
 
 /**
  * The ResourceData class.
@@ -21,7 +33,7 @@ export class ResourceData {
     /**
      * The html converted resource data.
      */
-    html: ResourceDetail;
+    detail: ResourceDetail;
 
     /**
      * Constructor of the ResourceData class.
@@ -30,17 +42,17 @@ export class ResourceData {
      * from a given ResourceFullResponseJson
      * and its html representation (resource detail).
      *
-     * @param {ResourceFullResponseJson} body The given ResourceFullResponseJson.
-     * @param {ResourceDetail} html The given resource detail html.
+     * @param {ResourceFullResponseJson} resourceFullResponse The given ResourceFullResponseJson.
+     * @param {ResourceDetail} detail The given resource detail.
      */
-    constructor(body: ResourceFullResponseJson, html: ResourceDetail) {
+    constructor(resourceFullResponse: ResourceFullResponseJson, detail: ResourceDetail) {
         // snapshot of raw json response
-        this.jsonRaw = JSON.parse(JSON.stringify(body));
+        this.jsonRaw = JSON.parse(JSON.stringify(resourceFullResponse));
 
         // converted html data
-        this.html = html;
+        this.detail = detail;
 
         // snapshot of json response from converted html data
-        this.jsonConverted = JSON.parse(JSON.stringify(html));
+        this.jsonConverted = JSON.parse(JSON.stringify(detail));
     }
 }

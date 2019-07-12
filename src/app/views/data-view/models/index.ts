@@ -7,7 +7,7 @@
  *
  */
 
-import { ResourceData } from './resource-data.model';
+import { ResourceData, IResourceDataResponse } from './resource-data.model';
 import { ResourceDetail } from './resource-detail.model';
 import { ResourceDetailContent } from './resource-detail-content.model';
 import { ResourceDetailHeader } from './resource-detail-header.model';
@@ -19,6 +19,7 @@ import { SearchParams, SearchParamsViewTypes } from './search-params.model';
 import { SearchResponseWithQuery } from './search-response-with-query.model';
 
 export {
+    IResourceDataResponse,
     ResourceData,
     ResourceDetail,
     ResourceDetailContent,
