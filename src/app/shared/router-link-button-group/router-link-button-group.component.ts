@@ -32,7 +32,7 @@ export class RouterLinkButtonGroupComponent {
     selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 
     /**
-     * Public method: onButtonSelect.
+     * Public method: selectButton.
      *
      * It emits a selected router link button
      * to the {@link selectButtonRequest}.

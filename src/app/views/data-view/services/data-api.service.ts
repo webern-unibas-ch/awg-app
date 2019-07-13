@@ -171,51 +171,90 @@ export class DataApiService extends ApiService {
         return new ResourceData(resourceDataResponse[0], resourceDetail);
     }
 
-    // -----------------------------
-
-    /*
-   *
-   *           case '7': // SELECTION (pulldown): selection nodes have to be called separately
-                           prop.toHtml = this.convertSelectionValues(prop.values, prop.attributes);
-                           break; // END selection
-
-               case '12': // HLIST: hlist nodes have to be called separately
-                           prop.toHtml = this.convertHlistValues(prop.values, prop.attributes);
-                           break; // END hlist
-
-               case '15': // GeoNAMES: GeoName nodes have to be called separately
-                           prop.toHtml = this.convertGeoValues(prop.values);
-                           break; // END geonames
-   *
-   *
-   *
-   *
-   * */
-
-    private getGeoData(resourceId: string): Observable<GeoDataJson> {
-        return this.getResourceResponseFromApi(GeoDataJson, resourceId);
-    }
-
-    private getHlistData(resourceId: string): Observable<HlistJson> {
-        return this.getResourceResponseFromApi(HlistJson, resourceId);
-    }
-
+    /**
+     * Private method: getResourceContextData.
+     *
+     * It calls the {@link getResourceDataResponseFromApi} method to
+     * provide an Observable with the ResourceContextResponseJson data.
+     *
+     * @params {string} resourceId The id of the requested resource.
+     *
+     * @returns {Observable<ResourceContextResponseJson>} The observable of the response data.
+     */
     private getResourceContextData(resourceId: string): Observable<ResourceContextResponseJson> {
-        return this.getResourceResponseFromApi(ResourceContextResponseJson, resourceId);
+        return this.getResourceDataResponseFromApi(ResourceContextResponseJson, resourceId);
     }
-
-    private getResourceFullResponseData(resourceId: string): Observable<ResourceFullResponseJson> {
-        return this.getResourceResponseFromApi(ResourceFullResponseJson, resourceId);
-    }
-
-    private getSelectionsData(resourceId: string): Observable<SelectionJson> {
-        return this.getResourceResponseFromApi(SelectionJson, resourceId);
-    }
-
-    // -----------------------------
 
     /**
-     * Private method: getResourceResponseFromApi.
+     * Private method: getResourceFullResponseData.
+     *
+     * It calls the {@link getResourceDataResponseFromApi} method to
+     * provide an Observable with the ResourceFullResponseJson data.
+     *
+     * @params {string} resourceId The id of the requested resource.
+     *
+     * @returns {Observable<ResourceFullResponseJson>} The observable of the response data.
+     */
+    private getResourceFullResponseData(resourceId: string): Observable<ResourceFullResponseJson> {
+        return this.getResourceDataResponseFromApi(ResourceFullResponseJson, resourceId);
+    }
+
+    /**
+     * Private method: getGeoData.
+     *
+     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * provide an Observable with the GeoDataJson data.
+     *
+     * NOT USED.
+     *
+     * IMPLEMENTATION FOR FUTURE USE.
+     *
+     * @params {string} resourceId The id of the requested resource.
+     *
+     * @returns {Observable<GeoDataJson>} The observable of the response data.
+     */
+    private getGeoData(resourceId: string): Observable<GeoDataJson> {
+        return this.getResourceDataResponseFromApi(GeoDataJson, resourceId);
+    }
+
+    /**
+     * Private method: getHlistData.
+     *
+     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * provide an Observable with the HlistJson data.
+     *
+     * NOT USED.
+     *
+     * IMPLEMENTATION FOR FUTURE USE.
+     *
+     * @params {string} resourceId The id of the requested resource.
+     *
+     * @returns {Observable<HlistJson>} The observable of the response data.
+     */
+    private getHlistData(resourceId: string): Observable<HlistJson> {
+        return this.getResourceDataResponseFromApi(HlistJson, resourceId);
+    }
+
+    /**
+     * Private method: getSelectionsData.
+     *
+     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * provide an Observable with the SelectionJson data.
+     *
+     * NOT USED.
+     *
+     * IMPLEMENTATION FOR FUTURE USE.
+     *
+     * @params {string} resourceId The id of the requested resource.
+     *
+     * @returns {Observable<SelectionJson>} The observable of the response data.
+     */
+    private getSelectionsData(resourceId: string): Observable<SelectionJson> {
+        return this.getResourceDataResponseFromApi(SelectionJson, resourceId);
+    }
+
+    /**
+     * Private method: getResourceDataResponseFromApi.
      *
      * It prepares the calls to the given (SALSAH) API
      * for a resource id depending on the responseJsonType
@@ -226,7 +265,7 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable<any>} The observable of the HTTP response.
      */
-    private getResourceResponseFromApi(responseJsonType: any, id: string): Observable<any> {
+    private getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable<any> {
         // init query path and params
         let queryPath: string;
         let queryHttpParams: HttpParams = new HttpParams();
@@ -261,6 +300,10 @@ export class DataApiService extends ApiService {
      *
      * It gets a node id from the prop.attributes
      * of a selections or hlists value.
+     *
+     * NOT USED.
+     *
+     * IMPLEMENTATION FOR FUTURE USE.
      *
      * @param {string} attributes The given prop.attributes.
      *

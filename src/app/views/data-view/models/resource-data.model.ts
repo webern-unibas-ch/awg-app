@@ -5,11 +5,19 @@ import { ResourceContextResponseJson, ResourceFullResponseJson } from '@awg-shar
 /**
  * The IResourceDataResponse interface.
  *
- * It represents the interface for a resource data response
+ * It represents the interface array
+ * for a resource data response
  * of a resource detail.
  */
 export interface IResourceDataResponse extends Array<ResourceFullResponseJson | ResourceContextResponseJson> {
+    /**
+     * The ResourceFullResponseJson data of a resource detail.
+     */
     0: ResourceFullResponseJson;
+
+    /**
+     * The ResourceContextResponseJson data of a resource detail.
+     */
     1: ResourceContextResponseJson;
 }
 
