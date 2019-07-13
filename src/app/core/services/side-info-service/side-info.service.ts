@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
 
@@ -19,7 +19,7 @@ export class SideInfoService {
     /**
      * Private subject to handle search info data.
      */
-    private searchInfoDataSubject: Subject<SearchInfo> = new Subject<SearchInfo>();
+    private searchInfoDataSubject: Subject<SearchInfo> = new BehaviorSubject<SearchInfo>(new SearchInfo('---', '---'));
 
     /**
      * Readonly search info data stream as observable (`Subject`).
@@ -27,12 +27,12 @@ export class SideInfoService {
     readonly searchInfoDataStream$ = this.searchInfoDataSubject.asObservable();
 
     /**
-     * Private subject to handle search info title.
+     * Private behavior subject to handle search info title.
      */
-    private searchInfoTitleSubject: Subject<string> = new Subject<string>();
+    private searchInfoTitleSubject: Subject<string> = new BehaviorSubject<string>('');
 
     /**
-     * Readonly search info title stream as observable (`Subject`).
+     * Readonly search info title stream as observable (`BehaviorSubject`).
      */
     readonly searchInfoTitleStream$ = this.searchInfoTitleSubject.asObservable();
 
@@ -77,7 +77,28 @@ export class SideInfoService {
      * @returns {void} Sets the next title to the search info title stream.
      */
     updateSearchInfoTitle(title: string): void {
-        console.log('updateSearchInfoTitle: title: ', title);
         this.searchInfoTitleSubject.next(title);
+    }
+
+    /**
+     * Public method: clearSearchInfoData.
+     *
+     * It clears the search info data stream.
+     *
+     * @returns {void} Clears the search info data stream.
+     */
+    clearSearchInfoData(): void {
+        this.searchInfoDataSubject.next(undefined);
+    }
+
+    /**
+     * Public method: clearSearchInfoTitle.
+     *
+     * It clears the search info title stream.
+     *
+     * @returns {void} Clears the search info title stream.
+     */
+    clearSearchInfoTitle(): void {
+        this.searchInfoTitleSubject.next('');
     }
 }

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, ChangeDetectorRef, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
@@ -41,9 +41,8 @@ export class SearchInfoComponent implements OnInit {
      * a private ChangeDetectorRef instance.
      *
      * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
-     * @param {ChangeDetectorRef} cdRef Instance of the ChangeDetectorRef.
      */
-    constructor(private sideInfoService: SideInfoService, private cdRef: ChangeDetectorRef) {}
+    constructor(private sideInfoService: SideInfoService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -53,11 +52,6 @@ export class SearchInfoComponent implements OnInit {
      */
     ngOnInit(): void {
         this.getSearchInfoData();
-
-        // trigger change detection for OnInit
-        if (!this.cdRef['destroyed']) {
-            this.cdRef.detectChanges();
-        }
     }
 
     /**

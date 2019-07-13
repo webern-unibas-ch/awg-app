@@ -18,10 +18,13 @@ const dataRoutes: Routes = [
                 component: SearchOverviewComponent,
                 children: [
                     { path: 'fulltext', component: SearchPanelComponent },
-                    { path: 'timeline', component: TimelineComponent },
                     { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
-                    // TODO: lazy loaded bibliography path muted for now
-                    // { path: 'bibliography', loadChildren: () => import('./data-outlets/bibliography/bibliography.module').then(m => m.BibliographyModule)}
+                    { path: 'timeline', component: TimelineComponent },
+                    {
+                        path: 'bibliography',
+                        loadChildren: () =>
+                            import('./data-outlets/bibliography/bibliography.module').then(m => m.BibliographyModule)
+                    },
                     { path: '', pathMatch: 'full', redirectTo: 'fulltext' }
                 ]
             }
