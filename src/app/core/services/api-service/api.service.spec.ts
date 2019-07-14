@@ -85,11 +85,6 @@ describe('ApiService', () => {
             expect(apiService.serviceName).toBe(expectedServiceName);
         });
 
-        it(`... should have 'loading = false'`, () => {
-            expect(apiService.loading).toBeDefined();
-            expect(apiService.loading).toBeFalsy();
-        });
-
         it(`... should have empty 'httpGetUrl'`, () => {
             expect(apiService.httpGetUrl).toBeDefined();
             expect(apiService.httpGetUrl).toBe('');

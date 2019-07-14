@@ -58,9 +58,9 @@ describe('ResourceDetailComponent', () => {
     beforeEach(async(() => {
         // stub services for test purposes
         // TODO: provide accurate types and service responses
-        const mockConversionService = { prepareResourceDetail: () => {} };
-        const mockSearchService = { httpGetUrl: '', getResourceDetailData: () => {} };
-        const mockStreamerService = { updateCurrentResourceIdStream: () => {} };
+        const mockConversionService = { prepareResourceData: () => {} };
+        const mockDataApiService = { httpGetUrl: '', getResourceData: () => {} };
+        const mockStreamerService = { updateResourceId: () => {} };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -79,7 +79,7 @@ describe('ResourceDetailComponent', () => {
             ],
             providers: [
                 { provide: ConversionService, useValue: mockConversionService },
-                { provide: DataApiService, useValue: mockSearchService },
+                { provide: DataApiService, useValue: mockDataApiService },
                 { provide: DataStreamerService, useValue: mockStreamerService },
                 { provide: Router, useValue: mockRouter },
                 { provide: ActivatedRoute, useValue: mockActivatedRoute }

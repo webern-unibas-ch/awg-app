@@ -101,11 +101,6 @@ describe('BibliographyService (DONE)', () => {
             expect(bibliographyService.searchRoute).toBe(expectedSearchRoute);
         });
 
-        it(`... should have 'loading = false' (inherited from ApiService)`, () => {
-            expect(bibliographyService.loading).toBeDefined();
-            expect(bibliographyService.loading).toBeFalsy();
-        });
-
         it(`... should have empty 'httpGetUrl' (inherited from ApiService)`, () => {
             expect(bibliographyService.httpGetUrl).toBeDefined();
             expect(bibliographyService.httpGetUrl).toBe('');

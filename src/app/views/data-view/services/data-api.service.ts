@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
 import { forkJoin as observableForkJoin, Observable } from 'rxjs';
-import { defaultIfEmpty, map, take, tap } from 'rxjs/operators';
+import { defaultIfEmpty, map } from 'rxjs/operators';
 
 import { ApiService, ConversionService } from '@awg-core/services/';
 import {
@@ -29,26 +29,26 @@ import { IResourceDataResponse, ResourceData, ResourceDetail } from '@awg-views/
 })
 export class DataApiService extends ApiService {
     /**
-     * Private variable: projectId.
+     * Public variable: projectId.
      *
      * It keeps the SALSAH specific id of the webern project ('6').
      */
-    private projectId = '6';
+    projectId = '6';
 
     /**
-     * Private variable: resourceSuffix.
+     * Public variable: resourceSuffix.
      *
      * It keeps the SALSAH specific suffix for a resource ('_-_local').
      */
-    private resourceSuffix = '_-_local';
+    resourceSuffix = '_-_local';
 
     /**
-     * Private variable: routes.
+     * Public variable: routes.
      *
      * It keeps the SALSAH specific routes for
      * resources, search, geonames, hlists and selections.
      */
-    private routes = {
+    routes = {
         resources: 'resources/',
         search: 'search/',
         geonames: 'geonames/',

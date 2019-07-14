@@ -49,11 +49,11 @@ export class SearchOverviewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.setButtonFromPath();
+        this.updateSearchInfoTitleFromPath();
     }
 
     /**
-     * Public method: setButtonFromPath.
+     * Public method: updateSearchInfoTitleFromPath.
      *
      * It gets the current url path
      * and sets  the search info title
@@ -61,7 +61,7 @@ export class SearchOverviewComponent implements OnInit {
      *
      * @returns {void} Updates the search info title.
      */
-    setButtonFromPath(): void {
+    updateSearchInfoTitleFromPath(): void {
         // get snapshot from current url path
         const path = this.route.firstChild.snapshot.url[0].path;
 
@@ -88,7 +88,10 @@ export class SearchOverviewComponent implements OnInit {
      * @returns {void} Updates the search info title.
      */
     onButtonSelect(routerLinkButton: RouterLinkButton): void {
-        if (!routerLinkButton || !routerLinkButton.label) {
+        const isButton = routerLinkButton instanceof RouterLinkButton;
+
+        if (!routerLinkButton || !isButton || !routerLinkButton.label) {
+            console.log('No button', typeof routerLinkButton);
             return;
         }
         this.sideInfoService.clearSearchInfoData();

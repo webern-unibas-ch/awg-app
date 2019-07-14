@@ -33,7 +33,7 @@
         >
             <ng-template ngbPanelTitle>
                 <span class="awg-linked-obj-title-group">
-                    <span class="badge badge-info mr-2">{{ restypeGroup?.links.length }}</span>
+                    <span class="badge badge-info mr-2">{{ restypeGroup?.links?.length }}</span>
                     <span class="awg-linked-obj-title single-line">{{ restypeGroup?.restypeLabel }}</span>
                 </span>
             </ng-template>
@@ -43,7 +43,7 @@
                         <tr *ngFor="let link of restypeGroup.links">
                             <td>
                                 <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
-                                    <img [src]="link?.restype.icon" alt="icon" />
+                                    <img [src]="link?.restype?.icon" alt="icon" />
                                     &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span
                                     >]&nbsp;
                                     <span class="awg-linked-obj-link-value">{{ link?.value }}</span>
