@@ -22,7 +22,7 @@ const sideInfoRoutes: Routes = [
  * {@link ResourceInfoComponent}, {@link SearchInfoComponent},
  * {@link StructureInfoComponent}.
  */
-export const routedSideinfoComponents = [
+export const routedSideInfoComponents = [
     ContactInfoComponent,
     EditionInfoComponent,
     ResourceInfoComponent,
