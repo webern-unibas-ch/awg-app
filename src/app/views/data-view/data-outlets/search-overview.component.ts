@@ -63,7 +63,7 @@ export class SearchOverviewComponent implements OnInit {
      */
     updateSearchInfoTitleFromPath(): void {
         // get snapshot from current url path
-        const path = this.route.firstChild.snapshot.url[0].path;
+        const path = this.route.snapshot.children[0].url[0].path;
 
         // filter searchButtonArray
         const selectedButton = this.searchButtonArray.filter(button => {
