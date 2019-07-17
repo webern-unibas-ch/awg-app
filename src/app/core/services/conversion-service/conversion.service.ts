@@ -157,7 +157,6 @@ export class ConversionService extends ApiService {
      */
     convertObjectProperties(resourceFullResponseData: ResourceFullResponseJson): BibEntry {
         const convObj = {};
-        console.log('convertdata: ', resourceFullResponseData);
         // add lastmod state
         convObj['lastmod'] = resourceFullResponseData.resinfo.lastmod;
 
@@ -181,7 +180,6 @@ export class ConversionService extends ApiService {
                         // TODO
                         if (prop.values !== []) {
                             propValue = this.convertSelectionValues(prop.values, prop.attributes);
-                            console.log('propValue: ', propValue);
                         }
                         break; // END selection
 
@@ -366,7 +364,6 @@ export class ConversionService extends ApiService {
                 return;
             }
         }
-        console.log('convService# test', images);
 
         return images;
     }

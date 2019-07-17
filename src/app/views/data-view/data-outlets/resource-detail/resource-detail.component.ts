@@ -54,7 +54,6 @@ export class ResourceDetailComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        console.log('ResourceDetail#onInit called');
         this.routeToSidenav();
         this.getResourceData();
     }

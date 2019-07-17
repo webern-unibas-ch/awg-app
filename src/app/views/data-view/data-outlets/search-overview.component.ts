@@ -91,7 +91,6 @@ export class SearchOverviewComponent implements OnInit {
         const isButton = routerLinkButton instanceof RouterLinkButton;
 
         if (!routerLinkButton || !isButton || !routerLinkButton.label) {
-            console.log('No button', typeof routerLinkButton);
             return;
         }
         this.sideInfoService.clearSearchInfoData();
