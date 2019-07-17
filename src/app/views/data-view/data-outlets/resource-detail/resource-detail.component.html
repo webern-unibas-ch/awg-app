@@ -14,11 +14,11 @@
     </div>
 
     <!-- async data -->
-    <div class="awg-resource-detail-tabs" *ngIf="resourceData$ | async as resourceData">
+    <div class="awg-resource-detail-tabs" *ngIf="resourceData">
         <!-- resourceDetailData header -->
         <awg-resource-detail-header
-            *ngIf="resourceData?.detail.header"
-            [header]="resourceData?.detail.header"
+            *ngIf="resourceData.detail.header"
+            [header]="resourceData.detail.header"
             [resourceUrl]="httpGetUrl"
             (resourceRequest)="navigateToResource($event)"
         ></awg-resource-detail-header>
@@ -32,7 +32,7 @@
                 <ng-template ngbTabContent>
                     <!-- html visualisation -->
                     <awg-resource-detail-html
-                        [resourceDetailData]="resourceData?.detail"
+                        [resourceDetailData]="resourceData.detail"
                         (resourceRequest)="navigateToResource($event)"
                     >
                     </awg-resource-detail-html>
@@ -43,7 +43,7 @@
             <ngb-tab id="converted" title="{{ tabTitle?.converted }}" class="awg-resource-detail-short-tab">
                 <ng-template ngbTabContent>
                     <!-- converted json visualisation -->
-                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData?.jsonConverted">
+                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">
                     </awg-resource-detail-json-converted>
                 </ng-template>
             </ngb-tab>
@@ -52,7 +52,7 @@
             <ngb-tab id="raw" title="{{ tabTitle?.raw }}" class="awg-resource-detail-short-tab">
                 <ng-template ngbTabContent>
                     <!-- raw json visualisation -->
-                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData?.jsonRaw">
+                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">
                     </awg-resource-detail-json-raw>
                 </ng-template>
             </ngb-tab>

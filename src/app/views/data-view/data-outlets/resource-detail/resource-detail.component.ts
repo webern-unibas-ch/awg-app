@@ -1,8 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { Observable, throwError } from 'rxjs';
-import { switchMap, catchError, shareReplay } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { switchMap } from 'rxjs/operators';
 
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -15,10 +15,11 @@ import { ResourceData } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail',
     templateUrl: './resource-detail.component.html',
     styleUrls: ['./resource-detail.component.css'],
-    providers: [NgbTabsetConfig]
+    providers: [NgbTabsetConfig],
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class ResourceDetailComponent implements OnInit {
-    resourceData$: Observable<ResourceData>;
+    resourceData: ResourceData;
 
     oldId: string;
     resourceId: string;
@@ -63,25 +64,23 @@ export class ResourceDetailComponent implements OnInit {
 
     getResourceData() {
         // observe route params
-        this.resourceData$ = this.route.paramMap.pipe(
-            switchMap((params: ParamMap) => {
-                // short cut for id param
-                const id = params.get('id');
+        this.route.paramMap
+            .pipe(
+                switchMap((params: ParamMap) => {
+                    // short cut for id param
+                    const id = params.get('id');
 
-                // update current resource params (url and id) via streamer service
-                this.updateResourceId(id);
+                    // update current resource id via streamer service
+                    this.updateResourceId(id);
 
-                // fetch resource data depending on param id
-                return this.dataApiService.getResourceData(id);
-            }),
-            // needed for the nested async pipes
-            shareReplay(1),
-            // catch any errors
-            catchError(err => {
-                this.errorMessage = err;
-                return throwError(err);
-            })
-        );
+                    // fetch resource data depending on param id
+                    return this.dataApiService.getResourceData(id);
+                })
+            )
+            .subscribe((data: ResourceData) => {
+                // subscribe to resource data to trigger loading service
+                this.resourceData = data;
+            });
     }
 
     updateResourceId(id: string) {
