@@ -6,7 +6,7 @@ import { switchMap, catchError, shareReplay } from 'rxjs/operators';
 
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
+import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ResourceData } from '@awg-views/data-view/models';
@@ -43,7 +43,6 @@ export class ResourceDetailComponent implements OnInit {
         private loadingService: LoadingService,
         private route: ActivatedRoute,
         private router: Router,
-        private conversionService: ConversionService,
         private dataApiService: DataApiService,
         private streamerService: DataStreamerService,
         config: NgbTabsetConfig

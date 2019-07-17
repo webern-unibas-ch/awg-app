@@ -10,7 +10,7 @@ import { JsonConvert } from 'json2typescript';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
-import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
+import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
@@ -70,7 +70,6 @@ describe('ResourceDetailComponent', () => {
     beforeEach(async(() => {
         // stub services for test purposes
         // TODO: provide accurate types and service responses
-        const mockConversionService = { prepareResourceData: () => {} };
         const mockDataApiService = {
             httpGetUrl: '',
             getResourceData: () => observableOf(expectedResourceData)
@@ -95,7 +94,6 @@ describe('ResourceDetailComponent', () => {
             ],
             providers: [
                 { provide: LoadingService, useValue: mockLoadingService },
-                { provide: ConversionService, useValue: mockConversionService },
                 { provide: DataApiService, useValue: mockDataApiService },
                 { provide: DataStreamerService, useValue: mockStreamerService },
                 { provide: Router, useValue: mockRouter },
@@ -110,8 +108,8 @@ describe('ResourceDetailComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        mockActivatedRoute.setParamMap({ id: '1234' });
-        mockActivatedRoute.paramMap.subscribe(value => console.log(value));
+        // mockActivatedRoute.setParamMap({ id: '1234' });
+        // mockActivatedRoute.paramMap.subscribe(value => console.log(value));
 
         // convert json objects
         jsonConvert = new JsonConvert();
