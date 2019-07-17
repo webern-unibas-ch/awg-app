@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { SubjectItemJson } from '@awg-shared/api-objects';
 
@@ -14,7 +14,7 @@ import { SubjectItemJson } from '@awg-shared/api-objects';
     templateUrl: './bibliography-list.component.html',
     styleUrls: ['./bibliography-list.component.css']
 })
-export class BibliographyListComponent {
+export class BibliographyListComponent implements OnInit {
     /**
      * Input variable: bibList.
      *
@@ -37,6 +37,14 @@ export class BibliographyListComponent {
      * It keeps the selected bibliography item.
      */
     selectedBibItem: SubjectItemJson = new SubjectItemJson();
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {}
 
     /**
      * Public method: onItemSelect.

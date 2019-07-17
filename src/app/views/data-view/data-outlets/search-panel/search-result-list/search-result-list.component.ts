@@ -42,7 +42,18 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     searchResultText: string;
     searchValue: string;
 
+    /**
+     * Public variable: faGripHorizontal.
+     *
+     * It instantiates fontawesome's faGripHorizontal icon.
+     */
     faGripHorizontal = faGripHorizontal;
+
+    /**
+     * Public variable: faTable.
+     *
+     * It instantiates fontawesome's faTable icon.
+     */
     faTable = faTable;
 
     constructor(
