@@ -88,7 +88,7 @@ export class SideInfoService {
      * @returns {void} Clears the search info data stream.
      */
     clearSearchInfoData(): void {
-        this.searchInfoDataSubject.next(undefined);
+        this.searchInfoDataSubject.next(new SearchInfo('---', '---'));
     }
 
     /**

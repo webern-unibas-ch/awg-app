@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
+import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 /**
@@ -96,7 +97,7 @@ export class DataStreamerService {
      * @returns {void} Clears the search results with query stream.
      */
     clearSearchResults(): void {
-        this.searchResponseWithQuerySubject.next(undefined);
+        this.searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), ''));
     }
 
     /**
