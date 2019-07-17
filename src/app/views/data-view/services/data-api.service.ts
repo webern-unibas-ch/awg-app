@@ -105,7 +105,11 @@ export class DataApiService extends ApiService {
             .set('show_nrows', nRows)
             .set('start_at', startAt);
 
-        const searchData$ = super.getApiResponse(SearchResponseJson, queryPath, queryHttpParams);
+        const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
+            SearchResponseJson,
+            queryPath,
+            queryHttpParams
+        );
 
         // request to API
         return searchData$.pipe(
@@ -131,8 +135,8 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        const fullResponseData$ = this.getResourceFullResponseData(resourceId);
-        const contextData$ = this.getResourceContextData(resourceId);
+        const fullResponseData$: Observable<ResourceFullResponseJson> = this.getResourceFullResponseData(resourceId);
+        const contextData$: Observable<ResourceContextResponseJson> = this.getResourceContextData(resourceId);
 
         return observableForkJoin([fullResponseData$, contextData$]).pipe(
             // default empty value
@@ -292,7 +296,7 @@ export class DataApiService extends ApiService {
         }
 
         // trigger call to API
-        return super.getApiResponse(responseJsonType, queryPath, queryHttpParams);
+        return this.getApiResponse(responseJsonType, queryPath, queryHttpParams);
     }
 
     /**
