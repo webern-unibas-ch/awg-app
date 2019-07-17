@@ -1,7 +1,7 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
+import { Observable, Subscription } from 'rxjs';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
@@ -29,12 +29,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
     errorMessage: any;
 
-    /**
-     * Public variable: isLoadingData.
-     *
-     * If the data is loading.
-     */
-    isLoadingData = false;
+    get isLoading$(): Observable<boolean> {
+        return this.loadingService.getLoadingStatus();
+    }
 
     /**
      * Public variable: viewChanged.
@@ -48,51 +45,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private router: Router,
         private conversionService: ConversionService,
         private dataApiService: DataApiService,
-        private streamerService: DataStreamerService,
-        public loadingService: LoadingService
+        private loadingService: LoadingService,
+        private streamerService: DataStreamerService
     ) {}
 
     ngOnInit() {
         this.navigationSubscription = this.subscribeToDataApiService();
-    }
-
-    /**
-     * Public method: changeLoadingStatus.
-     *
-     * It changes the loading status
-     * to the given value.
-     *
-     * @param {boolean} status The given status value.
-     * @returns {void} Sets the isLoadingData variable.
-     */
-    changeLoadingStatus(status: boolean): void {
-        this.isLoadingData = status;
-    }
-
-    /**
-     * Public method: onLoadingStart.
-     *
-     * It marks the start of a loading activity
-     * and calls the changeLoadingStatus method to
-     * set the loading status to true.
-     *
-     * @returns {void} Triggers the change of the loading status.
-     */
-    onLoadingStart(): void {
-        this.changeLoadingStatus(true);
-    }
-
-    /**
-     * Public method: onLoadingEnd.
-     *
-     * It marks the end of a loading activity
-     * and calls the changeLoadingStatus method to
-     * set the loading status to false.
-     *
-     * @returns {void} Triggers the change of the loading status.
-     */
-    onLoadingEnd(): void {
-        this.changeLoadingStatus(false);
     }
 
     // new startPosition after page change request
@@ -203,9 +161,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                         this.updateSearchParamsFromRoute(qp);
 
                         if (this.searchParams.query && !this.viewChanged) {
-                            // start loading
-                            this.onLoadingStart();
-
                             // fetch search data
                             return this.dataApiService
                                 .getFulltextSearchData(
@@ -220,9 +175,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
                                         // share search data via streamer service
                                         this.updateStreamerService(searchResponse, this.searchParams.query);
-
-                                        // end loading
-                                        this.onLoadingEnd();
                                     },
                                     error => {
                                         this.errorMessage = error as any;

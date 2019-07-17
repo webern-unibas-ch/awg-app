@@ -1,7 +1,7 @@
 <!-- resource detail box -->
 
 <!-- loading spinner -->
-<div *ngIf="loadingService.isLoading$ | async; else notLoading">
+<div *ngIf="isLoading$ | async; else notLoading">
     <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
 </div>
 

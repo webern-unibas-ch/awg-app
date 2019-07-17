@@ -35,7 +35,7 @@ export class LoadingInterceptor implements HttpInterceptor {
     constructor(private loadingService: LoadingService) {}
 
     /**
-     * Private method: removeRequest.
+     * Private method: decreaseRequest.
      *
      * It removes a given http request from the pendingRequests array
      * and sets the loading status of the {@link LoadingService}
@@ -45,7 +45,7 @@ export class LoadingInterceptor implements HttpInterceptor {
      *
      * @returns {void} Sets the loading status.
      */
-    private removeRequest(req: HttpRequest<any>): void {
+    private decreaseRequest(req: HttpRequest<any>): void {
         // find index position of request in pending requests array
         const i = this.pendingRequests.indexOf(req);
 
@@ -68,7 +68,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         */
 
         // update loading status depending on the pending requests
-        this.loadingService.isLoading$.next(this.pendingRequests.length > 0);
+        this.loadingService.updateLoadingStatus(this.pendingRequests.length > 0);
     }
 
     /**
@@ -91,7 +91,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         // console.log('REQ', req);
 
         // start loading and update status
-        this.loadingService.isLoading$.next(true);
+        this.loadingService.updateLoadingStatus(true);
 
         // create a new observable to return instead of the original
         return new Observable(observer => {
@@ -100,19 +100,19 @@ export class LoadingInterceptor implements HttpInterceptor {
                 event => {
                     if (event instanceof HttpResponse) {
                         // console.warn('------------> event', event.url);
-                        this.removeRequest(req);
+                        this.decreaseRequest(req);
                         observer.next(event);
                     }
                 },
                 err => {
                     // console.warn('------------> err', err);
-                    this.removeRequest(req);
+                    this.decreaseRequest(req);
                     observer.error(err);
                 },
                 () => {
                     // console.warn('------------> complete');
                     if (this.pendingRequests.length > 0) {
-                        this.removeRequest(req);
+                        this.decreaseRequest(req);
                     }
                     observer.complete();
                 }
@@ -121,7 +121,7 @@ export class LoadingInterceptor implements HttpInterceptor {
             return () => {
                 // console.warn('------------> teardown');
                 if (this.pendingRequests.length > 0) {
-                    this.removeRequest(req);
+                    this.decreaseRequest(req);
                 }
                 subscription.unsubscribe();
             };

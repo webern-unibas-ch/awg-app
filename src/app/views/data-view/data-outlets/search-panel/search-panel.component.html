@@ -3,7 +3,7 @@
 <awg-search-form [searchValue]="searchParams.query" (searchRequest)="onSearch($event)"> </awg-search-form>
 
 <!-- loading spinner -->
-<div *ngIf="loadingService.isLoading$ | async; else notLoading">
+<div *ngIf="isLoading$ | async; else notLoading">
     <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
 </div>
 

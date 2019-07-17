@@ -31,8 +31,12 @@ export class ResourceDetailComponent implements OnInit {
         converted: 'JSON (converted)'
     };
 
+    get isLoading$(): Observable<boolean> {
+        return this.loadingService.getLoadingStatus();
+    }
+
     constructor(
-        public loadingService: LoadingService,
+        private loadingService: LoadingService,
         private route: ActivatedRoute,
         private router: Router,
         private conversionService: ConversionService,
