@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { ActivatedRouteStub } from '@testing/router-stubs';
+import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-data';
+
+import { of as observableOf } from 'rxjs';
+import { JsonConvert } from 'json2typescript';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import Spy = jasmine.Spy;
 
-import { ResourceDetail, ResourceDetailHeader } from '@awg-views/data-view/models';
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
-
+import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
-import { ConversionService, DataStreamerService } from '@awg-core/services';
+
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { ResourceData, ResourceDetail, ResourceDetailHeader } from '@awg-views/data-view/models';
 
 import { ResourceDetailComponent } from './resource-detail.component';
 
@@ -19,16 +25,16 @@ class ResourceDetailHeaderStubComponent {
     header: ResourceDetailHeader;
     @Input()
     resourceUrl: string;
-
-    // TODO: handle outputs
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-resource-detail-html', template: '' })
 class ResourceDetailHtmlStubComponent {
     @Input()
     resourceDetailData: ResourceDetail;
-
-    // TODO: handle outputs
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-resource-detail-json-converted', template: '' })
@@ -52,14 +58,24 @@ describe('ResourceDetailComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let mockRouter;
+    let mockRouter: Spy;
     let mockActivatedRoute: ActivatedRouteStub;
+
+    // json object
+    let jsonConvert: JsonConvert;
+    let expectedResourceFullResponseJson: ResourceFullResponseJson;
+
+    let expectedResourceData: ResourceData;
 
     beforeEach(async(() => {
         // stub services for test purposes
         // TODO: provide accurate types and service responses
         const mockConversionService = { prepareResourceData: () => {} };
-        const mockDataApiService = { httpGetUrl: '', getResourceData: () => {} };
+        const mockDataApiService = {
+            httpGetUrl: '',
+            getResourceData: () => observableOf(expectedResourceData)
+        };
+        const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
         const mockStreamerService = { updateResourceId: () => {} };
 
         // router spy object
@@ -78,6 +94,7 @@ describe('ResourceDetailComponent', () => {
                 TwelveToneSpinnerStubComponent
             ],
             providers: [
+                { provide: LoadingService, useValue: mockLoadingService },
                 { provide: ConversionService, useValue: mockConversionService },
                 { provide: DataApiService, useValue: mockDataApiService },
                 { provide: DataStreamerService, useValue: mockStreamerService },
@@ -93,10 +110,18 @@ describe('ResourceDetailComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        /*
         mockActivatedRoute.setParamMap({ id: '1234' });
         mockActivatedRoute.paramMap.subscribe(value => console.log(value));
-        */
+
+        // convert json objects
+        jsonConvert = new JsonConvert();
+        expectedResourceFullResponseJson = jsonConvert.deserializeObject(
+            mockResourceFullResponseJson,
+            ResourceFullResponseJson
+        );
+
+        // test data
+        expectedResourceData = new ResourceData(expectedResourceFullResponseJson, mockResourceDetail);
 
         fixture.detectChanges();
     });

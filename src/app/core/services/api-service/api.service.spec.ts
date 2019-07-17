@@ -228,7 +228,7 @@ describe('ApiService', () => {
             describe('fail', () => {
                 // see http://www.syntaxsuccess.com/viewarticle/unit-testing-rxjs-retries
                 it(`... should throw default ApiServiceError if httpGet fails with undefined handler`, done => {
-                    const expectedErrorMsg = 'failed HTTP response';
+                    const expectedErrorMsg = 'should fail HTTP response';
                     expectedApiServiceError = new ApiServiceError();
 
                     // spy on mocked http get call & throw an error
@@ -250,7 +250,7 @@ describe('ApiService', () => {
                 });
 
                 it(`... should throw specified ApiServiceError if httpGet fails with specified handler`, done => {
-                    const expectedErrorMsg = 'failed HTTP response with 500 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 500 error';
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error', true);
 
                     // spy on mocked http get call & throw an error
@@ -272,9 +272,9 @@ describe('ApiService', () => {
                     );
                 });
 
-                /* test muted as long as console.error is commented out */
+                // test muted as long as console.error is commented out
                 xit(`... should log an error to the console on error`, async(() => {
-                    const expectedErrorMsg = 'failed HTTP response with 500 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 500 error';
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error');
 
                     const errorSpy = spyOn(console, 'error').and.callThrough();
@@ -298,7 +298,7 @@ describe('ApiService', () => {
                 }));
 
                 it(`... should return 'ApiServiceError' for 401 Unauthorized`, async(() => {
-                    const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 401 error';
                     expectedApiServiceError = createApiServiceError(401, 'Unauthorized');
 
                     // call service function (fail)
@@ -319,7 +319,7 @@ describe('ApiService', () => {
                 }));
 
                 it(`... should return 'ApiServiceError' for 404 Not found`, async(() => {
-                    const expectedErrorMsg = 'failed HTTP response with 404 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 404 error';
                     expectedApiServiceError = createApiServiceError(404, 'Not found');
 
                     // call service function (fail)

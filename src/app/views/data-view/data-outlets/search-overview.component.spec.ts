@@ -27,9 +27,14 @@ describe('SearchOverviewComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let expectedButtonArray: RouterLinkButton[];
+    let expectedButtonArray: RouterLinkButton[] = [
+        new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
+        new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
+        new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+    ];
 
     let mockActivatedRoute;
+    let mockActivatedRoutePath: string;
 
     let selectButtonSpy: Spy;
     let updateSearchInfoTitleFromPathSpy: Spy;
@@ -50,23 +55,28 @@ describe('SearchOverviewComponent (DONE)', () => {
         // mocked activated route
         // see https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
         mockActivatedRoute = {
-            firstChild: {
-                snapshot: {
-                    url: [
-                        {
-                            path: 'fulltext'
-                        }
-                    ]
-                }
+            snapshot: {
+                children: [
+                    {
+                        url: [
+                            {
+                                path: 'fulltext'
+                            }
+                        ]
+                    }
+                ]
             }
         };
+        mockActivatedRoutePath = mockActivatedRoute.snapshot.children[0].url[0].path;
 
         TestBed.configureTestingModule({
-            imports: [],
             declarations: [SearchOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
             providers: [
                 { provide: SideInfoService, useValue: mockSideInfoService },
-                { provide: ActivatedRoute, useValue: mockActivatedRoute }
+                {
+                    provide: ActivatedRoute,
+                    useValue: mockActivatedRoute
+                }
             ]
         }).compileComponents();
     }));
@@ -166,7 +176,8 @@ describe('SearchOverviewComponent (DONE)', () => {
             it('... should update search info title from path', () => {
                 expectSpyCall(updateSearchInfoTitleFromPathSpy, 1);
 
-                const path = mockActivatedRoute.firstChild.snapshot.url[0].path;
+                const path = mockActivatedRoutePath;
+
                 // filter searchButtonArray
                 const expectedButton = expectedButtonArray.filter(button => {
                     return button.link === path;

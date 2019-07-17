@@ -1,8 +1,7 @@
 /**
  * Test helper data file: mockContextJson.
  *
- * It provides a mocked ContextJson response
- * from the Salsah API.
+ * It provides a mocked ContextJson response from the Salsah API.
  *
  * Exposed to be called from tests.
  */

@@ -126,25 +126,25 @@ function expectDebugElement(
  * Exposed to be called from tests.
  *
  * @param {Spy} spy The input spy instance.
- * @param {number} expected The expected number of spy calls.
- * @param {any} [expectedValue] An optional expected value for the most recent spy call.
+ * @param {number} expectedTimes The expected number of spy calls.
+ * @param {any} [expectedMostRecentValue] An optional expected value for the most recent spy call.
  *
  * @returns {void} Throws the expectation statements.
  */
-export function expectSpyCall(spy: Spy, expected: number, expectedValue?: any): void {
+export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecentValue?: any): void {
     // spy has been called or not
-    expected > 0 ? expect(spy).toHaveBeenCalled() : expect(spy).not.toHaveBeenCalled();
+    expectedTimes > 0 ? expect(spy).toHaveBeenCalled() : expect(spy).not.toHaveBeenCalled();
 
     // spy has been called expected times
-    expect(spy).toHaveBeenCalledTimes(expected);
+    expect(spy).toHaveBeenCalledTimes(expectedTimes);
 
     // spy has been called with value x
-    if (expectedValue && Array.isArray(expectedValue)) {
-        expectedValue.forEach((value, index) => {
+    if (expectedMostRecentValue && Array.isArray(expectedMostRecentValue)) {
+        expectedMostRecentValue.forEach((value, index) => {
             expectRecentSpyCall(spy, value, index);
         });
-    } else if (expectedValue) {
-        expectRecentSpyCall(spy, expectedValue, 0);
+    } else if (expectedMostRecentValue) {
+        expectRecentSpyCall(spy, expectedMostRecentValue, 0);
     }
 }
 
@@ -156,15 +156,15 @@ export function expectSpyCall(spy: Spy, expected: number, expectedValue?: any): 
  * Not exposed, only called internally from {@link expectSpyCall}.
  *
  * @param {Spy} spy The input spy instance.
- * @param {any} expectedValue The expected value for the most recent spy call.
+ * @param {any} expectedMostRecentValue The expected value for the most recent spy call.
  * @param {number} index The index value of the most recent arguments array of a spy call.
  *
  * @returns {void} Throws the expectation statements.
  */
-function expectRecentSpyCall(spy: Spy, expectedValue: any, index: number): void {
-    if (expectedValue && expectedValue instanceof Object) {
-        expect(spy.calls.mostRecent().args[index]).toEqual(expectedValue);
-    } else if (expectedValue) {
-        expect(spy.calls.mostRecent().args[index]).toBe(expectedValue);
+function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
+    if (expectedMostRecentValue && expectedMostRecentValue instanceof Object) {
+        expect(spy.calls.mostRecent().args[index]).toEqual(expectedMostRecentValue);
+    } else if (expectedMostRecentValue) {
+        expect(spy.calls.mostRecent().args[index]).toBe(expectedMostRecentValue);
     }
 }
