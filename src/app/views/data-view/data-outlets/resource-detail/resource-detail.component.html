@@ -19,7 +19,7 @@
         <awg-resource-detail-header
             *ngIf="resourceData?.detail.header"
             [header]="resourceData?.detail.header"
-            [resourceUrl]="dataApiService.httpGetUrl"
+            [resourceUrl]="httpGetUrl"
             (resourceRequest)="navigateToResource($event)"
         ></awg-resource-detail-header>
 

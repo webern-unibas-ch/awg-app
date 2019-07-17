@@ -31,6 +31,10 @@ export class ResourceDetailComponent implements OnInit {
         converted: 'JSON (converted)'
     };
 
+    get httpGetUrl(): string {
+        return this.dataApiService.httpGetUrl;
+    }
+
     get isLoading$(): Observable<boolean> {
         return this.loadingService.getLoadingStatus();
     }

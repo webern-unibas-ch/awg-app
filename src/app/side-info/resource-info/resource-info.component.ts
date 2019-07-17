@@ -238,7 +238,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
      * Getter for the current index position of the form group.
      */
-    public get resourceInfoIndex(): number {
+    get resourceInfoIndex(): number {
         return this.resourceInfoFormGroup.get('resourceInfoIndex').value;
     }
 

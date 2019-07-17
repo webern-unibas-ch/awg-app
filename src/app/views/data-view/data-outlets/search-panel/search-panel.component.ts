@@ -17,7 +17,6 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
 export class SearchPanelComponent implements OnInit, OnDestroy {
     navigationSubscription: Subscription;
 
-    searchUrl = '';
     currentQueryParams: ParamMap;
 
     searchParams: SearchParams = {
@@ -27,11 +26,15 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         view: SearchParamsViewTypes.table
     };
 
-    errorMessage: any;
+    get httpGetUrl(): string {
+        return this.dataApiService.httpGetUrl;
+    }
 
     get isLoading$(): Observable<boolean> {
         return this.loadingService.getLoadingStatus();
     }
+
+    errorMessage: any;
 
     /**
      * Public variable: viewChanged.
@@ -170,9 +173,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                                 )
                                 .subscribe(
                                     (searchResponse: SearchResponseJson) => {
-                                        // update url for search
-                                        this.updateCurrentUrl();
-
                                         // share search data via streamer service
                                         this.updateStreamerService(searchResponse, this.searchParams.query);
                                     },
@@ -189,11 +189,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 }
             }
         });
-    }
-
-    updateCurrentUrl() {
-        // get url from search service
-        this.searchUrl = this.dataApiService.httpGetUrl;
     }
 
     // update search params from route
