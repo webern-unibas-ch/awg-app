@@ -27,7 +27,7 @@
             <!-- html -->
             <ngb-tab id="html" class="awg-resource-detail-long-tab">
                 <ng-template ngbTabTitle>
-                    {{ tabTitle?.html }}
+                    {{ tabTitles?.html }}
                 </ng-template>
                 <ng-template ngbTabContent>
                     <!-- html visualisation -->
@@ -40,7 +40,7 @@
             </ngb-tab>
 
             <!-- JSON converted -->
-            <ngb-tab id="converted" title="{{ tabTitle?.converted }}" class="awg-resource-detail-short-tab">
+            <ngb-tab id="converted" title="{{ tabTitles?.converted }}" class="awg-resource-detail-short-tab">
                 <ng-template ngbTabContent>
                     <!-- converted json visualisation -->
                     <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">
@@ -49,7 +49,7 @@
             </ngb-tab>
 
             <!-- JSON raw -->
-            <ngb-tab id="raw" title="{{ tabTitle?.raw }}" class="awg-resource-detail-short-tab">
+            <ngb-tab id="raw" title="{{ tabTitles?.raw }}" class="awg-resource-detail-short-tab">
                 <ng-template ngbTabContent>
                     <!-- raw json visualisation -->
                     <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">
@@ -62,14 +62,14 @@
     <!--
     TODO: remove
     <ul class="nav nav-tabs nav-justified" role="tablist">
-        <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitle?.html }}</a></li>
+        <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>
         <li class="dropdown awg-resource-detail-short-tab">
             <a href="#" data-toggle="dropdown" class="dropdown-toggle">
                 {{ '{' }} JSON {{ '}' }} <b class="caret"></b>
             </a>
             <ul class="dropdown-menu dropdown-menu-right">
-                <li><a data-toggle="tab" href="#converted">{{ tabTitle?.converted }}</a></li>
-                <li><a data-toggle="tab" href="#raw">{{ tabTitle?.raw }}</a></li>
+                <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>
+                <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>
             </ul>
         </li>
     </ul>
