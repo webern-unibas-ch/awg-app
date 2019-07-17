@@ -55,6 +55,7 @@
     </div>
 
     <ng-container *ngIf="searchResponse?.subjects && +searchResponse?.nhits > 0">
+        <!-- top pagination -->
         <ngb-pagination
             class="d-flex justify-content-center"
             [(page)]="page"
@@ -114,5 +115,17 @@
                 </div>
             </div>
         </div>
+
+        <!-- bottom pagination -->
+        <ngb-pagination
+            class="d-flex justify-content-center"
+            [(page)]="page"
+            [pageSize]="pageSize"
+            [collectionSize]="searchResponse?.nhits"
+            [maxSize]="4"
+            [boundaryLinks]="true"
+            (pageChange)="onPageChange($event)"
+        >
+        </ngb-pagination>
     </ng-container>
 </div>
