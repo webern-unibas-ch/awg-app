@@ -22,7 +22,7 @@ import { AppConfig } from '@awg-app/app.config';
 import { ConversionService } from '@awg-core/services';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
 import { ResourceContextResponseJson, ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
-import { ResourceData, ResourceDetail } from '@awg-views/data-view/models';
+import { ResourceData, ResourceDetail, SearchParams } from '@awg-views/data-view/models';
 
 import { DataApiService } from './data-api.service';
 
@@ -203,11 +203,12 @@ describe('DataApiService', () => {
 
             it(`... should not do anything if empty searchString is provided`, async(() => {
                 // empty string
-                const expectedSearchString = '';
-                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = '';
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString);
+                dataApiService.getFulltextSearchData(expectedSearchParams);
 
                 // expect no request to getApiResponse
                 expectSpyCall(getApiResponseSpy, 0);
@@ -219,11 +220,12 @@ describe('DataApiService', () => {
             }));
 
             it(`... should perform an HTTP GET request to the Knora API (via ApiService) with provided searchString`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe();
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
 
                 // expect one request to url with given settings
                 const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
@@ -236,13 +238,15 @@ describe('DataApiService', () => {
             }));
 
             it(`... should set default params for GET request if none is provided`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedRows = '-1';
-                const expectedStartAt = '0';
-                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+                expectedSearchParams.nRows = '-1';
+                expectedSearchParams.startAt = '0';
+
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe();
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
 
                 // expect one request to url with given settings
                 const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
@@ -259,18 +263,26 @@ describe('DataApiService', () => {
                     expectedProjectId,
                     `should be ${expectedProjectId}`
                 );
-                expect(call.request.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
-                expect(call.request.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
+                expect(call.request.params.get('show_nrows')).toBe(
+                    expectedSearchParams.nRows,
+                    `should be ${expectedSearchParams.nRows}`
+                );
+                expect(call.request.params.get('start_at')).toBe(
+                    expectedSearchParams.startAt,
+                    `should be ${expectedSearchParams.startAt}`
+                );
             }));
 
             it(`... should apply provided params for GET request`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedRows = '5';
-                const expectedStartAt = '20';
-                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+                expectedSearchParams.nRows = '5';
+                expectedSearchParams.startAt = '20';
+
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString, expectedRows, expectedStartAt).subscribe();
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
 
                 // expect one request to url with given settings
                 const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
@@ -287,13 +299,21 @@ describe('DataApiService', () => {
                     expectedProjectId,
                     `should be ${expectedProjectId}`
                 );
-                expect(call.request.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
-                expect(call.request.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
+                expect(call.request.params.get('show_nrows')).toBe(
+                    expectedSearchParams.nRows,
+                    `should be ${expectedSearchParams.nRows}`
+                );
+                expect(call.request.params.get('start_at')).toBe(
+                    expectedSearchParams.startAt,
+                    `should be ${expectedSearchParams.startAt}`
+                );
             }));
 
             it(`... should call getApiResponse (via ApiService) with search string`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedQueryPath = expectedRoutes.search + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+
+                const expectedQueryPath = expectedRoutes.search + expectedSearchParams.query;
                 const expectedQueryHttpParams = new HttpParams()
                     .set('searchtype', 'fulltext')
                     .set('filter_by_project', '6')
@@ -302,7 +322,7 @@ describe('DataApiService', () => {
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe((response: SearchResponseJson) => {
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
                     expectSpyCall(getApiResponseSpy, 1, [
                         SearchResponseJson,
                         expectedQueryPath,
@@ -315,12 +335,13 @@ describe('DataApiService', () => {
         describe('response', () => {
             describe('success', () => {
                 it(`... should return an SearchResponseJson observable (converted)`, async(() => {
-                    const expectedSearchString = 'Test';
+                    const expectedSearchParams: SearchParams = new SearchParams();
+                    expectedSearchParams.query = 'Test';
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
 
                     dataApiService
-                        .getFulltextSearchData(expectedSearchString)
+                        .getFulltextSearchData(expectedSearchParams)
                         .subscribe((response: SearchResponseJson) => {
                             expect(response).toEqual(expectedSearchResponseConverted);
                         });
@@ -329,8 +350,10 @@ describe('DataApiService', () => {
 
             describe('fail', () => {
                 it(`... should return an ApiServiceError observable`, async(() => {
-                    const expectedSearchString = 'Test';
-                    const expectedQueryPath = expectedRoutes.search + expectedSearchString;
+                    const expectedSearchParams: SearchParams = new SearchParams();
+                    expectedSearchParams.query = 'Test';
+
+                    const expectedQueryPath = expectedRoutes.search + expectedSearchParams.query;
                     const expectedQueryHttpParams = new HttpParams()
                         .set('searchtype', 'fulltext')
                         .set('filter_by_project', '6')
@@ -345,7 +368,7 @@ describe('DataApiService', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
 
-                    dataApiService.getFulltextSearchData(expectedSearchString).subscribe(
+                    dataApiService.getFulltextSearchData(expectedSearchParams).subscribe(
                         result => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [

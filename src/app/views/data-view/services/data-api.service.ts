@@ -13,7 +13,13 @@ import {
     SearchResponseJson,
     SelectionJson
 } from '@awg-shared/api-objects';
-import { IResourceDataResponse, ResourceData, ResourceDetail } from '@awg-views/data-view/models';
+import {
+    IResourceDataResponse,
+    ResourceData,
+    ResourceDetail,
+    SearchParams,
+    SearchParamsViewTypes
+} from '@awg-views/data-view/models';
 
 /**
  * The DataApi service.
@@ -78,43 +84,45 @@ export class DataApiService extends ApiService {
      * to retrieve all results for the searchstring
      * from the given (SALSAH) API.
      *
-     * @params {string} searchString The search string of the query.
-     * @params {string} [nRows] The optional number of rows to return with the query.
-     * @params {string} [startAt] The optional start position in the result list to return results.
+     * @params {SearchParams} searchParams The given search parameter of the query.
      *
      * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
      */
-    getFulltextSearchData(searchString: string, nRows?: string, startAt?: string): Observable<SearchResponseJson> {
-        if (!searchString) {
+    getFulltextSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
+        if (!searchParams || !searchParams.query) {
             return;
         }
+
         // default values
-        if (!nRows) {
-            nRows = '-1';
-        }
-        if (!startAt) {
-            startAt = '0';
-        }
+        const sp: SearchParams = {
+            query: searchParams.query,
+            nRows: searchParams.nRows || '-1',
+            startAt: searchParams.startAt || '0',
+            view: searchParams.view || SearchParamsViewTypes.table
+        };
 
         // set path and params of query
-        const queryPath: string = this.routes.search + searchString;
-
+        const queryPath: string = this.routes.search + sp.query;
         const queryHttpParams = new HttpParams()
             .set('searchtype', 'fulltext')
             .set('filter_by_project', this.projectId)
-            .set('show_nrows', nRows)
-            .set('start_at', startAt);
+            .set('show_nrows', sp.nRows)
+            .set('start_at', sp.startAt);
 
+        // cold request to API
         const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
             SearchResponseJson,
             queryPath,
             queryHttpParams
         );
 
-        // request to API
+        // return converted search response
         return searchData$.pipe(
+            // default empty value
+            defaultIfEmpty(new SearchResponseJson()),
+
+            // map the response to a converted search response object for HTML display
             map((searchResponse: SearchResponseJson) => {
-                // conversion of search results for HTML display
                 return this.conversionService.convertFullTextSearchResults(searchResponse);
             })
         );
@@ -135,9 +143,11 @@ export class DataApiService extends ApiService {
             return;
         }
 
+        // cold request to API
         const fullResponseData$: Observable<ResourceFullResponseJson> = this.getResourceFullResponseData(resourceId);
         const contextData$: Observable<ResourceContextResponseJson> = this.getResourceContextData(resourceId);
 
+        // return converted search response
         return observableForkJoin([fullResponseData$, contextData$]).pipe(
             // default empty value
             defaultIfEmpty([new ResourceFullResponseJson(), new ResourceContextResponseJson()]),

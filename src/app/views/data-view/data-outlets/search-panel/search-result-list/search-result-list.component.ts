@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
@@ -15,7 +15,8 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
 @Component({
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
-    styleUrls: ['./search-result-list.component.css']
+    styleUrls: ['./search-result-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
     @Input()
@@ -29,6 +30,11 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     @Output()
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
+    /**
+     * Public variable: errorMessage.
+     *
+     * It keeps an errorMessage for the searchResponseWithQuery subscription.
+     */
     errorMessage: any = undefined;
     currentId: string;
 

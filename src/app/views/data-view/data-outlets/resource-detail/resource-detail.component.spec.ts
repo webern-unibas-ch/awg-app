@@ -71,11 +71,11 @@ describe('ResourceDetailComponent', () => {
         // stub services for test purposes
         // TODO: provide accurate types and service responses
         const mockDataApiService = {
-            httpGetUrl: '',
+            httpGetUrl: '/testUrl',
             getResourceData: () => observableOf(expectedResourceData)
         };
         const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-        const mockStreamerService = { updateResourceId: () => {} };
+        const mockDataStreamerService = { updateResourceId: () => {} };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -93,11 +93,11 @@ describe('ResourceDetailComponent', () => {
                 TwelveToneSpinnerStubComponent
             ],
             providers: [
-                { provide: LoadingService, useValue: mockLoadingService },
-                { provide: DataApiService, useValue: mockDataApiService },
-                { provide: DataStreamerService, useValue: mockStreamerService },
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter },
-                { provide: ActivatedRoute, useValue: mockActivatedRoute }
+                { provide: DataApiService, useValue: mockDataApiService },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                { provide: LoadingService, useValue: mockLoadingService }
             ]
         }).compileComponents();
     }));
