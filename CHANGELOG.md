@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.6.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.6.0...v0.6.1) (2019-07-19)
+
+### Build System
+
+-   **app:** update `yarn.lock` to fix GitHub security alerts ([7602f14](https://github.com/webern-unibas-ch/awg-app/commit/7602f14))
+
 ## [0.6.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.4...v0.6.0) (2019-07-19)
 
 ### Bug Fixes
