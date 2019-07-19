@@ -299,6 +299,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
+        // clear search info
+        this.sideInfoService.clearSearchInfoData();
+
         // emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
