@@ -44,7 +44,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     errorMessage: any = undefined;
     currentId: string;
 
-    radioViewForm: FormGroup;
+    /**
+     * Public variable: searchResultControlForm.
+     *
+     * It keeps the reactive form group: searchResultControlForm.
+     */
+    searchResultControlForm: FormGroup;
+
     page: number;
     pageSize: number;
 
@@ -85,7 +91,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     faTable = faTable;
 
     constructor(
-        private fb: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private conversionService: ConversionService,
         private sideInfoService: SideInfoService,
@@ -100,22 +106,40 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             (this.searchParams.view === SearchParamsViewTypes.table ||
                 this.searchParams.view === SearchParamsViewTypes.grid)
         ) {
-            this.buildForm(this.searchParams.view);
+            this.createFormGroup(this.searchParams.view);
         }
     }
 
-    // build radio view form
-    buildForm(view: SearchParamsViewTypes) {
-        this.radioViewForm = this.fb.group({
-            radioViewControl: SearchParamsViewTypes[view]
+    /**
+     * Public method: createFormGroup.
+     *
+     * It creates the search result control form
+     * using the reactive FormBuilder with a formGroup
+     * and a search view control.
+     *
+     * @param {SearchParamsViewTypes} view The given view type.
+     *
+     * @returns {void} Creates the search view control form.
+     */
+    createFormGroup(view: SearchParamsViewTypes): void {
+        this.searchResultControlForm = this.formBuilder.group({
+            searchResultViewControl: SearchParamsViewTypes[view]
         });
 
-        this.checkForUserInputChanges();
+        this.listenToUserInputChange();
     }
 
-    // check for changing view values
-    checkForUserInputChanges(): void {
-        this.radioViewForm.get('radioViewControl').valueChanges.subscribe((view: string) => {
+    /**
+     * Public method: listenToUserInputChange.
+     *
+     * It listens to the user's input changes
+     * in the view control and triggers the
+     * onViewChange method with the new view type.
+     *
+     * @returns {void} Listens to changing view type.
+     */
+    listenToUserInputChange(): void {
+        this.searchResultControlForm.get('searchResultViewControl').valueChanges.subscribe((view: string) => {
             this.onViewChange(view);
         });
     }
