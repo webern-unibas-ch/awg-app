@@ -37,12 +37,18 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
     /**
+     * Private variable: selectedResourceId.
+     *
+     * It keeps the id of the selected resource.
+     */
+    private selectedResourceId: string;
+
+    /**
      * Public variable: errorMessage.
      *
      * It keeps an errorMessage for the searchResponseWithQuery subscription.
      */
     errorMessage: any = undefined;
-    currentId: string;
 
     /**
      * Public variable: searchResultControlForm.
@@ -145,7 +151,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     }
 
     isActiveResource(id: string): boolean {
-        return this.currentId === id;
+        return this.selectedResourceId === id;
     }
 
     isGridView(): boolean {
@@ -173,8 +179,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the resource.
      */
     navigateToResource(id: string): void {
-        this.currentId = id;
-        this.router.navigate(['/data/resource', this.currentId]);
+        this.selectedResourceId = id;
+        this.router.navigate(['/data/resource', this.selectedResourceId]);
     }
 
     // emit page change to search panel
