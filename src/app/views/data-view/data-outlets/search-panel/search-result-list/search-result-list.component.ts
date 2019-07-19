@@ -12,6 +12,14 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
+/**
+ * The SearchResultList component.
+ *
+ * It contains the search result list section
+ * of the data (search) view of the app
+ * with a control header, a Paginator
+ * and the results in table or grid view.
+ */
 @Component({
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
@@ -19,10 +27,29 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
+    /**
+     * Input variable: searchUrl.
+     *
+     * It keeps the url of the search request.
+     */
     @Input()
     searchUrl: string;
+
+    /**
+     * Input variable: searchParams.
+     *
+     * It keeps the parameters of the search request.
+     */
     @Input()
     searchParams: SearchParams;
+
+    /**
+     * Output variable: pageChangeRequest.
+     *
+     * It keeps an event emitter for the selected
+     * start position (startAt) of the paginator
+     * of the search result list.
+     */
     @Output()
     pageChangeRequest: EventEmitter<string> = new EventEmitter();
 
@@ -34,6 +61,12 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     @Output()
     rowNumberChangeRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: viewChangeRequest.
+     *
+     * It keeps an event emitter for the selected view type of the search result list.
+     */
     @Output()
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
@@ -43,6 +76,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It keeps the id of the selected resource.
      */
     private selectedResourceId: string;
+
+    /**
+     * variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Public variable: errorMessage.
@@ -58,7 +98,18 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     searchResultControlForm: FormGroup;
 
+    /**
+     * Public variable: page.
+     *
+     * It keeps the current page of the Paginator.
+     */
     page: number;
+
+    /**
+     * Public variable: pageSize.
+     *
+     * It keeps the total page size of the Paginator.
+     */
     pageSize: number;
 
     /**
@@ -96,6 +147,19 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     faTable = faTable;
 
+    /**
+     * Constructor of the SearchResultListComponent.
+     *
+     * It declares private instances of the Angular FormBuilder,
+     * the Angular Router, the ConversionService,
+     * the DataStreamerService, and the SideInfoService.
+     *
+     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
+     * @param {Router} router Instance of the Angular Router.
+     * @param {ConversionService} conversionService Instance of the ConversionService.
+     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
+     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
+     */
     constructor(
         private formBuilder: FormBuilder,
         private router: Router,
@@ -104,6 +168,12 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         private sideInfoService: SideInfoService
     ) {}
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
         this.getSearchResponseWithQueryData();
 
@@ -150,10 +220,27 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         });
     }
 
+    /**
+     * Public method: isActiveResource.
+     *
+     * It compares a given resource id
+     * with the current selectedResourceId.
+     *
+     * @param {string} id The given resource id.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
     isActiveResource(id: string): boolean {
         return this.selectedResourceId === id;
     }
 
+    /**
+     * Public method: isGridView.
+     *
+     * It checks if the current view type is 'grid'.
+     *
+     * @returns {boolean} The boolean value of the check result.
+     */
     isGridView(): boolean {
         return this.searchParams.view === SearchParamsViewTypes.grid;
     }
@@ -183,7 +270,16 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.router.navigate(['/data/resource', this.selectedResourceId]);
     }
 
-    // emit page change to search panel
+    /**
+     * Public method: onPageChange.
+     *
+     * It emits the new start position of the Paginator
+     * from a given page number to the {@link pageChangeRequest}.
+     *
+     * @param {number} pageNumber The given number of the page.
+     *
+     * @returns {void} Emits the new start position.
+     */
     onPageChange(pageNumber: number): void {
         const nRowsNumber = +this.searchParams.nRows;
         const newStartPosition = pageNumber * nRowsNumber - nRowsNumber;
@@ -205,12 +301,28 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.rowNumberChangeRequest.emit(String(rowNumber));
     }
 
-    // emit view change to search panel
+    /**
+     * Public method: onViewChange.
+     *
+     * It emits the new view type
+     * to the {@link viewChangeRequest}.
+     *
+     * @param {string} view The given view type.
+     *
+     * @returns {void} Emits the new view type.
+     */
     onViewChange(view: string): void {
         this.viewChangeRequest.emit(view);
     }
 
-    // set values for pagination
+    /**
+     * Public method: setPagination.
+     *
+     * It sets and calculates the page and pageSize
+     * values needed for the Paginator.
+     *
+     * @returns {void} Sets the Paginator values.
+     */
     setPagination(): void {
         const nRowsNumber = +this.searchParams.nRows;
         const startAtNumber = +this.searchParams.startAt;
