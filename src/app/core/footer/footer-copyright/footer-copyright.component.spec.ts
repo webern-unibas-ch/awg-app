@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { Meta } from '@awg-core/core-models';
+import { Meta, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 
 import { FooterCopyrightComponent } from './footer-copyright.component';
@@ -14,7 +14,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let expectedMetaData: Meta;
+    let expectedPageMetaData: MetaPage;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -29,7 +29,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = METADATA;
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
     });
 
     it('should create', () => {
@@ -37,8 +37,8 @@ describe('FooterCopyrightComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not have metaData', () => {
-            expect(component.metaData).toBeUndefined('should be undefined');
+        it('should not have pageMetaData', () => {
+            expect(component.pageMetaData).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -46,11 +46,20 @@ describe('FooterCopyrightComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-copyright-desc', 1, 1);
             });
 
-            it('... should not render metaData yet', () => {
+            it('... should not render copyright period yet', () => {
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
+                const copyEl = copyDes[0].nativeElement;
 
-                expect(copyDes[0].nativeElement.textContent).toBeDefined();
-                expect(copyDes[0].nativeElement.textContent).toBe('', 'should be empty string');
+                expect(copyEl.textContent).toBeDefined();
+                expect(copyEl.textContent).toBe('', 'should be empty string');
+            });
+
+            it('... should not render project name yet', () => {
+                const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
+                const nameEl = nameDes[0].nativeElement;
+
+                expect(nameEl.textContent).toBeDefined();
+                expect(nameEl.textContent).toBe('', 'should be empty string');
             });
         });
     });
@@ -58,25 +67,35 @@ describe('FooterCopyrightComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // simulate the parent setting the input properties
-            component.metaData = expectedMetaData;
+            component.pageMetaData = expectedPageMetaData;
 
             // trigger initial data binding
             fixture.detectChanges();
         });
 
         describe('VIEW', () => {
-            it('should render values', () => {
-                const expectedYearStart = expectedMetaData.page.yearStart;
-                const expectedYearRecent = expectedMetaData.page.yearRecent;
+            it('should render copyright period', () => {
+                const expectedYearStart = expectedPageMetaData.yearStart;
+                const expectedYearCurrent = expectedPageMetaData.yearCurrent;
 
                 const copyDes = getAndExpectDebugElementByCss(compDe, '#awg-copyright-period', 1, 1);
                 const copyEl = copyDes[0].nativeElement;
 
                 expect(copyEl.textContent).toBeDefined();
                 expect(copyEl.textContent).toContain(
-                    expectedYearStart + '–' + expectedYearRecent,
-                    `should contain ${expectedYearStart}-${expectedYearRecent}`
+                    expectedYearStart + '–' + expectedYearCurrent,
+                    `should contain ${expectedYearStart}-${expectedYearCurrent}`
                 );
+            });
+
+            it('should render project name', () => {
+                const expectedProjectName = expectedPageMetaData.awgProjectName;
+
+                const nameDes = getAndExpectDebugElementByCss(compDe, '.awg-project-name', 1, 1);
+                const nameEl = nameDes[0].nativeElement;
+
+                expect(nameEl.textContent).toBeDefined();
+                expect(nameEl.textContent).toContain(expectedProjectName, `should contain ${expectedProjectName}`);
             });
         });
     });

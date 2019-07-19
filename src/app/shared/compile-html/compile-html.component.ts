@@ -1,4 +1,5 @@
 /* tslint:disable:no-input-rename */
+/* tslint:disable:component-selector */
 
 /************************************************
  *
@@ -16,7 +17,6 @@ import {
     Component,
     Input,
     Injectable,
-    OnInit,
     OnChanges,
     SimpleChanges,
     Type,
@@ -27,95 +27,204 @@ import {
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
-let singletonDefaultModule: NgModule;
-
 import { cloneDeep } from 'lodash';
 
+/**
+ * compileHtml.reverse(str)
+ *
+ * @param {string} str
+ * @returns {string}
+ */
+const reverse = (str: string): string =>
+    str
+        .split('')
+        .reverse()
+        .join('');
+
+/**
+ * compileHtml.random()
+ *
+ * @returns {string}
+ */
+const random = (): string => {
+    return (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
+};
+
+/**
+ * compileHtml.currentIdTime
+ */
+let currentIdTime: number;
+
+/**
+ * compileHtml.currentId
+ */
+let currentId = 0;
+
+/**
+ * compileHtml.nextId()
+ *
+ * @returns {string} A randomly generated id for the dynamic component's selector.
+ */
+const nextId = (): string => {
+    const now = Date.now();
+    if (currentIdTime !== now) {
+        currentId = 0;
+        currentIdTime = now;
+    }
+    const comingId = ++currentId;
+    const randomHex = reverse(random()).padStart(15, '0');
+    const timeHex = reverse(currentIdTime.toString(16).padStart(12, '0'));
+    const comingIdHex = reverse(comingId.toString(16).padStart(3, '0'));
+    const newId = `compile-html-${timeHex}${comingIdHex}${randomHex}`;
+    return newId;
+};
+
+/**
+ * The CompileHtml component.
+ *
+ * It is declared as a Component, but used like a directive.
+ * It allows the dynamic creation of a component and is needed
+ * for the secondary compilation of HTML code.
+ *
+ * It does not allow for AOT compilation so far.
+ *
+ * Idea, code and usage is inspired, adapted or taken from:
+ * * [**patrikx3-angular-compile**](https://github.com/patrikx3/angular-compile) Build v1.1.113-149 on 02/26/2017, 7:43:58 PM
+ * [Corifeus](http://github.com/patrikx3/corifeus) by [Patrik Laszlo](http://patrikx3.tk)
+ *
+ * Provided in: `root`.
+ */
 @Component({
     selector: '[compile-html]',
     template: `
-        <span
-            *ngIf="
-                html !== undefined &&
-                html !== null &&
-                html.trim() !== '' &&
-                dynamicComponent !== undefined &&
-                dynamicModule !== undefined
-            "
-        >
+        <ng-container *ngIf="html !== undefined && html !== null && html.trim() !== ''">
             <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
-        </span>
+        </ng-container>
     `
 })
 @Injectable()
-export class CompileHtmlComponent implements OnInit, OnChanges {
+export class CompileHtmlComponent implements OnChanges {
+    /**
+     * Input variable: compile-html.
+     *
+     * It keeps the html template for the dynamic component.
+     */
     @Input('compile-html')
     html: string;
+
+    /**
+     * Input variable: compile-html-ref.
+     *
+     * It keeps the reference to the dynamic component.
+     */
     @Input('compile-html-ref')
     ref: any;
+
+    /**
+     * Input variable: compile-html-error-handler.
+     *
+     * It keeps the custom error handler for the dynamic component.
+     */
     @Input('compile-html-error-handler')
     errorHandler: (ex: any) => void = console.error;
+
+    /**
+     * Input variable: compile-html-module.
+     *
+     * It keeps the custom module for the dynamic component.
+     */
     @Input('compile-html-module')
     module: NgModule;
+
+    /**
+     * Input variable: compile-html-imports.
+     *
+     * It keeps the custom imports for the dynamic component.
+     */
     @Input('compile-html-imports')
     imports: Array<Type<any> | ModuleWithProviders | any[]>;
 
+    /**
+     * Public variable: dynamicComponent.
+     *
+     * It keeps the component that is to be created dynamically.
+     */
     dynamicComponent: any;
+
+    /**
+     * Public variable: dynamicModule.
+     *
+     * It keeps the module declarations for the component that is to be created dynamically.
+     */
     dynamicModule: NgModuleFactory<any> | any;
 
-    constructor(
-        //      private container: ViewContainerRef,
-        //      private service: CompileService
-        private compiler: Compiler
-    ) {}
+    /**
+     * Constructor of the CompileHtmlComponent.
+     *
+     * It declares a private {@link Compiler}
+     * instance for the dynamic compilation of a given component.
+     *
+     * @param {Compiler} compiler Instance of the Compiler.
+     */
+    constructor(private compiler: Compiler) {}
 
-    // reassign singletonDefaultModule (justify use of 'let') - unused
-    static reset() {
-        singletonDefaultModule = {};
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
+     */
+    ngOnChanges(changes: SimpleChanges) {
+        this.update();
     }
 
-    async update() {
-        if (this.html === undefined || this.html.trim() === '') {
-            //            this.container.clear();
-            this.dynamicComponent = undefined;
-            this.dynamicModule = undefined;
-            return;
-        }
-        /*
-                const cacheKey = this.html;
-                if (Object.keys(cache).indexOf(cacheKey) > -1) {
-                    return cache[cacheKey];
-                }
-        */
+    /**
+     * Public method: update.
+     *
+     * It updates the [dynamicComponent]{@link CompileHtmlComponent#dynamicComponent}
+     * and [dynamicModule]{@link CompileHtmlComponent#dynamicModule}
+     * and triggers their creation methods.
+     *
+     * @returns {void} The new dynamic component and its module.
+     */
+    update(): void {
         try {
+            if (this.html === undefined || this.html === null || this.html.trim() === '') {
+                //            this.container.clear();
+                this.dynamicComponent = undefined;
+                this.dynamicModule = undefined;
+                return;
+            }
+
             this.dynamicComponent = this.createNewComponent(this.html, this.ref);
             this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
-            //            cache[cacheKey] = this.dynamicComponent;
         } catch (e) {
-            this.errorHandler(e);
+            if (this.errorHandler === undefined) {
+                throw e;
+            } else {
+                this.errorHandler(e);
+            }
         }
-        /*
-        await this.service.compile({
-            template: this.html,
-            container: this.container,
-            ref: this.ref,
-            imports: this.imports,
-            module: this.module
-        })
-        */
     }
 
+    /**
+     * Private method: createComponentModule.
+     *
+     * It creates the module for the dynamic component.
+     *
+     * @params {*} componentType The component type to be created.
+     *
+     * @returns The RuntimeComponentModule.
+     */
     private createComponentModule(componentType: any) {
         let module: NgModule = {};
 
         if (this.module !== undefined) {
             module = cloneDeep(this.module);
-        } else if (singletonDefaultModule !== undefined && singletonDefaultModule !== null) {
-            module = cloneDeep(singletonDefaultModule);
         }
         module.imports = module.imports || [];
         module.imports.push(CommonModule);
-        //        module.imports.push( BrowserModule );
         if (this.imports !== undefined) {
             module.imports = module.imports.concat(this.imports);
         }
@@ -130,9 +239,19 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
         return RuntimeComponentModule;
     }
 
+    /**
+     * Private method: createNewComponent.
+     *
+     * It creates the the dynamic component.
+     *
+     * @params {string} html The given html template for the component.
+     * @params {*} ref The reference to the component type to be created.
+     *
+     * @returns The DynamicComponent.
+     */
     private createNewComponent(html: string, ref: any) {
         @Component({
-            selector: 'dynamic-component',
+            selector: nextId(),
             template: html
         })
         class DynamicComponent {
@@ -140,14 +259,5 @@ export class CompileHtmlComponent implements OnInit, OnChanges {
         }
 
         return DynamicComponent;
-    }
-
-    async ngOnInit() {
-        this.update();
-    }
-
-    async ngOnChanges(changes: SimpleChanges) {
-        // fixme only update with the required changes
-        this.update();
     }
 }

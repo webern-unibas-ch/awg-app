@@ -69,7 +69,7 @@
                 // cf. https://stackoverflow.com/questions/1251922/is-there-a-way-to-stop-google-analytics-counting-development-work-as-hits#8178283
                 console.log('Running non-production google analytics replacement now');
                 ga = function(arg) {
-                    console.info('ga:', arguments);
+                    // console.info('ga:', arguments);
                 };
             }
             ga('create', 'UA-64657372-2', 'auto');

@@ -2,53 +2,112 @@ import { Injectable } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
+import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
+/**
+ * The DataStreamer service.
+ *
+ * It handles the provision of search responses with queries
+ * and resource ids for the search components.
+ *
+ * Provided in: `root`.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class DataStreamerService {
-    /**************************************************
-     * ReplaySubjects that are used to stream the data
-     **************************************************/
+    /**
+     * Private variable for the replay subject´s buffer size.
+     */
     private bufferSize = 1;
 
-    private searchResponseStreamSource = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
-    private searchResponseStream$ = this.searchResponseStreamSource.asObservable();
+    /**
+     * Private replay subject to handle search response with query.
+     */
+    private searchResponseWithQuerySubject = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
 
-    private currentResourceIdStreamSource = new ReplaySubject<string>(this.bufferSize);
-    private currentResourceIdStream$ = this.currentResourceIdStreamSource.asObservable();
+    /**
+     * Private readonly search response with query stream as observable (`ReplaySubject`).
+     */
+    private readonly searchResponseWithQueryStream$ = this.searchResponseWithQuerySubject.asObservable();
 
-    /****************
-     *  request data
-     ****************/
-    public getCurrentSearchResults(): Observable<SearchResponseWithQuery> {
-        return this.searchResponseStream$;
+    /**
+     * Private replay subject to handle resource id.
+     */
+    private resourceIdSubject = new ReplaySubject<string>(this.bufferSize);
+
+    /**
+     * Private readonly resource id stream as observable (`ReplaySubject`).
+     */
+    private readonly resourceIdStream$ = this.resourceIdSubject.asObservable();
+
+    /**
+     * Public method: getSearchResponseWithQuery.
+     *
+     * It provides the latest search response with query
+     * from the search response with query stream.
+     *
+     * @returns {Observable<SearchResponseWithQuery>}
+     * The search response with query stream as observable.
+     */
+    getSearchResponseWithQuery(): Observable<SearchResponseWithQuery> {
+        return this.searchResponseWithQueryStream$;
     }
 
-    public getCurrentResourceId(): Observable<string> {
-        return this.currentResourceIdStream$;
+    /**
+     * Public method: getResourceId.
+     *
+     * It provides the latest resource id from the resource id stream.
+     *
+     * @returns {Observable<string>} The resource id stream as observable.
+     */
+    getResourceId(): Observable<string> {
+        return this.resourceIdStream$;
     }
 
-    /***************
-     *  update data
-     ***************/
-    public updateSearchResponseStream(results: SearchResponseWithQuery): void {
-        this.searchResponseStreamSource.next(results);
+    /**
+     * Public method: updateSearchResponseWithQuery.
+     *
+     * It updates the search response with query stream
+     * with the given searchResponseWithQuery.
+     *
+     * @returns {void} Sets the next search response with query to the stream.
+     */
+    updateSearchResponseWithQuery(searchResponseWithQuery: SearchResponseWithQuery): void {
+        this.searchResponseWithQuerySubject.next(searchResponseWithQuery);
     }
 
-    public updateCurrentResourceIdStream(id: string): void {
-        this.currentResourceIdStreamSource.next(id);
+    /**
+     * Public method: updateResourceId.
+     *
+     * It updates the resource id stream with the given id.
+     *
+     * @returns {void} Sets the next resource id to the stream.
+     */
+    updateResourceId(id: string): void {
+        this.resourceIdSubject.next(id);
     }
 
-    /**************
-     *  reset data
-     **************/
-    public clearSearchResults(): void {
-        this.searchResponseStreamSource.next(undefined);
+    /**
+     * Public method: clearSearchResults.
+     *
+     * It clears the search results with query stream.
+     *
+     * @returns {void} Clears the search results with query stream.
+     */
+    clearSearchResults(): void {
+        this.searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), ''));
     }
 
-    public clearResourceId(): void {
-        this.currentResourceIdStreamSource.next('');
+    /**
+     * Public method: clearResourceId.
+     *
+     * It clears the resource id stream.
+     *
+     * @returns {void} Clears the resource id stream.
+     */
+    clearResourceId(): void {
+        this.resourceIdSubject.next('');
     }
 }

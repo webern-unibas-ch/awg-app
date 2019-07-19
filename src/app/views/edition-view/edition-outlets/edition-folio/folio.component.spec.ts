@@ -2,19 +2,13 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FolioComponent } from './folio.component';
 import { FolioService } from './folio.service';
-import {
-    ConvoluteFolio,
-    ConvoluteFolioSvgOutput,
-    EditionSvgFile,
-    FolioCalculation,
-    FolioFormatOptions
-} from '@awg-views/edition-view/models';
+import { Folio, FolioSvgData, EditionSvgSheet, FolioCalculation, FolioSettings } from '@awg-views/edition-view/models';
 
 describe('FolioComponent', () => {
     let component: FolioComponent;
     let fixture: ComponentFixture<FolioComponent>;
-    let expectedConvoluteData: ConvoluteFolio[];
-    let expectedSvgFile: EditionSvgFile;
+    let expectedFolios: Folio[];
+    let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -33,25 +27,25 @@ describe('FolioComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should not get convoluteData input', () => {
-            expect(component.convoluteData).toBeUndefined('should be undefined');
+        it('should not get folios input', () => {
+            expect(component.folios).toBeUndefined('should be undefined');
         });
 
         it('should not get svg file input', () => {
-            expect(component.selectedSvgFile).toBeUndefined('should be undefined');
+            expect(component.selectedSvgSheet).toBeUndefined('should be undefined');
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the inputs supplied by the parent component
-            expectedSvgFile = {
+            expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/SkI_2n_small_cut_opt.svg',
                 image: 'assets/img/edition/SkI_2_small.jpg',
                 alt: 'Aa:SkI/2'
             };
-            const folioFormatOptions: FolioFormatOptions = {
+            const folioFormatSettings: FolioSettings = {
                 factor: 1.5,
                 formatX: 175,
                 formatY: 270,
@@ -59,7 +53,7 @@ describe('FolioComponent', () => {
                 initialOffsetY: 5,
                 numberOfFolios: 0
             };
-            expectedConvoluteData = [
+            expectedFolios = [
                 {
                     folioId: '1r',
                     systems: '16',
@@ -84,19 +78,19 @@ describe('FolioComponent', () => {
             ];
 
             // simulate the parent setting the input properties
-            component.convoluteData = expectedConvoluteData;
-            component.selectedSvgFile = expectedSvgFile;
+            component.folios = expectedFolios;
+            component.selectedSvgSheet = expectedSvgSheet;
 
             // trigger initial data binding
             fixture.detectChanges();
         });
 
         it('should get svg file input', () => {
-            expect(component.selectedSvgFile).toBe(expectedSvgFile);
+            expect(component.selectedSvgSheet).toBe(expectedSvgSheet);
         });
 
-        it('should get convoluteData input', () => {
-            expect(component.convoluteData).toBe(expectedConvoluteData);
+        it('should get folios input', () => {
+            expect(component.folios).toBe(expectedFolios);
         });
     });
 });

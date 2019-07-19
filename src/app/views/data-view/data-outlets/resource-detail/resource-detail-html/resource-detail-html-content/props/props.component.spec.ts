@@ -10,7 +10,7 @@ import {
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { ResourceDetailProps } from '@awg-views/data-view/models';
+import { ResourceDetailProperty } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentPropsComponent } from './props.component';
 
@@ -23,7 +23,7 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
 
-    let expectedProps: ResourceDetailProps[];
+    let expectedProps: ResourceDetailProperty[];
     let expectedMetaBreakLine: string;
 
     beforeEach(async(() => {
@@ -42,30 +42,17 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
         expectedMetaBreakLine = 'Versionsdatum';
 
         const prop1Value1 = `<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])`;
-        const props1: ResourceDetailProps = {
-            pid: '0',
-            guielement: 'text',
-            label: 'prop1',
-            value: [prop1Value1, 'prop1-value2']
-        };
-        const props2: ResourceDetailProps = {
-            pid: '1',
-            guielement: 'date',
-            label: 'Versionsdatum',
-            value: ['2019']
-        };
-        const props3: ResourceDetailProps = {
-            pid: '2',
-            guielement: 'richtext',
-            label: 'prop2',
-            value: ['prop2-value1', 'prop2-value2', 'prop2-value3']
-        };
-        const props4: ResourceDetailProps = {
-            pid: '3',
-            guielement: 'text',
-            label: 'prop1',
-            value: []
-        };
+        const props1: ResourceDetailProperty = new ResourceDetailProperty('0', 'text', 'prop1', [
+            prop1Value1,
+            'prop1-value2'
+        ]);
+        const props2: ResourceDetailProperty = new ResourceDetailProperty('1', 'date', 'Versionsdatum', ['2019']);
+        const props3: ResourceDetailProperty = new ResourceDetailProperty('2', 'richtext', 'prop2', [
+            'prop2-value1',
+            'prop2-value2',
+            'prop2-value3'
+        ]);
+        const props4: ResourceDetailProperty = new ResourceDetailProperty('3', 'text', 'prop1', []);
         expectedProps = [props1, props2, props3, props4];
 
         // spies on component functions
@@ -148,9 +135,9 @@ describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
             it('... should contain inner ul elements according to each props.value.length', () => {
                 const outerLiDes = getAndExpectDebugElementByCss(compDe, 'ul > li.awg-prop', 3, 3);
 
-                const expectedLength0 = expectedProps[0].value.length;
-                const expectedLength1 = expectedProps[1].value.length;
-                const expectedLength2 = expectedProps[2].value.length;
+                const expectedLength0 = expectedProps[0].values.length;
+                const expectedLength1 = expectedProps[1].values.length;
+                const expectedLength2 = expectedProps[2].values.length;
 
                 getAndExpectDebugElementByCss(outerLiDes[0], 'ul', expectedLength0, expectedLength0);
                 getAndExpectDebugElementByCss(outerLiDes[1], 'ul', expectedLength1, expectedLength1);

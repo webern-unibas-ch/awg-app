@@ -1,19 +1,28 @@
 <!-- sideinfo: edition -->
 <div class="card">
     <div class="card-body bg-light">
-        <p class="bold">
-            AWG I/5 <i>Vier Lieder</i> op. 12 <a [routerLink]="['/edition', 'intro']">Skizzen</a>
-            <br>
+        <h5 id="awg-edition-info-header">
+            {{ editionInfoHeader.section }}
+            <br />
+            <i>{{ editionInfoHeader.title }}</i
+            >&nbsp;{{ editionInfoHeader.catalogueType }}&nbsp;{{ editionInfoHeader.catalogueNumber }}
+            <br />
+            <a [routerLink]="['/edition', 'intro']">{{ editionInfoHeader.part }}</a>
+        </h5>
+        <p>&#9671;</p>
+        <p>
+            {{ editionInfoHeader.description }}
         </p>
         <p>&#9671;</p>
         <p>
-            [Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]
-        </p>
-        <p>&#9671;</p>
-        <p>
-            Ediert von <span [innerHTML]="metaData?.edition?.editors"></span>
-            <br>
-            Versionsdatum: <span class="version">{{ metaData?.edition?.lastModified }}</span>
+            Ediert von
+            <span class="awg-edition-info-editors"
+                ><a href="{{ (editionMetaData?.editors)[0].contactUrl }}" target="_blank" rel="noopener noreferrer">{{
+                    (editionMetaData?.editors)[0].name
+                }}</a></span
+            >
+            <br />
+            Versionsdatum: <span id="awg-edition-info-lastmodified">{{ editionMetaData?.lastModified }}</span>
         </p>
     </div>
 </div>

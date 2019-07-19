@@ -1,6 +1,100 @@
-# Change Log
+# Changelog
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
+
+## [0.6.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.4...v0.6.0) (2019-07-19)
+
+### Bug Fixes
+
+-   **app:** add 404 fallback route ([c0ade9b](https://github.com/webern-unibas-ch/awg-app/commit/c0ade9b))
+-   **app:** fix errors after update to Angular 8 ([2771649](https://github.com/webern-unibas-ch/awg-app/commit/2771649))
+-   **app:** get correct section of meta data for remaining views ([80bbe10](https://github.com/webern-unibas-ch/awg-app/commit/80bbe10))
+-   **app:** patch issue with CustomHammerConfig of ngx-gallery ([cb1a0d4](https://github.com/webern-unibas-ch/awg-app/commit/cb1a0d4))
+-   **app:** remove temporary workaround with static ngInjectableDef ([962ffeb](https://github.com/webern-unibas-ch/awg-app/commit/962ffeb))
+-   **app:** use onPush CD strategy on dumb components if possible ([f42f706](https://github.com/webern-unibas-ch/awg-app/commit/f42f706)), closes [#2](https://github.com/webern-unibas-ch/awg-app/issues/2)
+-   **contact:** get correct section of meta data for contact view ([5d5a754](https://github.com/webern-unibas-ch/awg-app/commit/5d5a754))
+-   **core:** fix missing space in copyright desc ([17f0865](https://github.com/webern-unibas-ch/awg-app/commit/17f0865))
+-   **core:** fix visibility of centered navbar-brand ([c879bec](https://github.com/webern-unibas-ch/awg-app/commit/c879bec))
+-   **core:** get only page meta data for footer and navbar ([2f51775](https://github.com/webern-unibas-ch/awg-app/commit/2f51775))
+-   **core:** use better default values for clearing subjects ([9f65f13](https://github.com/webern-unibas-ch/awg-app/commit/9f65f13))
+-   **core:** use MetaPerson class for authors and editors ([ff7df06](https://github.com/webern-unibas-ch/awg-app/commit/ff7df06))
+-   **edition:** remove unnecessary toggle methods ([7f4b303](https://github.com/webern-unibas-ch/awg-app/commit/7f4b303))
+-   **edition:** return only first emit of EditionDataService observables ([6e02f0b](https://github.com/webern-unibas-ch/awg-app/commit/6e02f0b))
+-   **edition:** use async pipe for data in report component ([075a97e](https://github.com/webern-unibas-ch/awg-app/commit/075a97e))
+-   **edition:** use CDS.onPush for report component's children ([a31483d](https://github.com/webern-unibas-ch/awg-app/commit/a31483d))
+-   **search:** add bottom pagination in search result list ([6668f87](https://github.com/webern-unibas-ch/awg-app/commit/6668f87))
+-   **search:** avoid bindings to pass static strings to native attributes ([945e259](https://github.com/webern-unibas-ch/awg-app/commit/945e259))
+-   **search:** change snapshot path to get current url in search overview ([46995ff](https://github.com/webern-unibas-ch/awg-app/commit/46995ff))
+-   **search:** clear search info on destroy of SearchResultListComponent ([c9ef240](https://github.com/webern-unibas-ch/awg-app/commit/c9ef240))
+-   **search:** fix ngIfs in nested children templates of resource detail ([90d64ac](https://github.com/webern-unibas-ch/awg-app/commit/90d64ac))
+-   **search:** improve communication btw overview and info ([357872e](https://github.com/webern-unibas-ch/awg-app/commit/357872e))
+-   **search:** improve handling of resource detail requests ([431f9ab](https://github.com/webern-unibas-ch/awg-app/commit/431f9ab))
+-   **search:** improve handling of searchResponseWithQuery subscription ([9be21c6](https://github.com/webern-unibas-ch/awg-app/commit/9be21c6))
+-   **search:** improve linked objects component ([4e1347e](https://github.com/webern-unibas-ch/awg-app/commit/4e1347e))
+-   **search:** improve search form building ([c2cab36](https://github.com/webern-unibas-ch/awg-app/commit/c2cab36))
+-   **search:** move interceptor providers into separate file ([d9c7d2d](https://github.com/webern-unibas-ch/awg-app/commit/d9c7d2d))
+-   **search:** move resource detail header out of tabset ([522c867](https://github.com/webern-unibas-ch/awg-app/commit/522c867))
+-   **search:** provide loading status as observable ([ca41c8d](https://github.com/webern-unibas-ch/awg-app/commit/ca41c8d))
+-   **search:** remove unused conversion service from resource detail ([5e377b3](https://github.com/webern-unibas-ch/awg-app/commit/5e377b3))
+-   **search:** set search parameter nRows to 25 per default ([39b3f63](https://github.com/webern-unibas-ch/awg-app/commit/39b3f63))
+-   **search:** simplify subscription to search result list data ([a9374d2](https://github.com/webern-unibas-ch/awg-app/commit/a9374d2))
+-   **search:** subscribe to resource data instead of async pipe ([c8dab3f](https://github.com/webern-unibas-ch/awg-app/commit/c8dab3f))
+-   **search:** use `this` instead of `super` in data api service ([42bac0a](https://github.com/webern-unibas-ch/awg-app/commit/42bac0a))
+-   **search:** use async pipe for data in bibliography component ([05ff800](https://github.com/webern-unibas-ch/awg-app/commit/05ff800))
+-   **search:** use async pipe for data in bibliography detail ([a95a45b](https://github.com/webern-unibas-ch/awg-app/commit/a95a45b))
+-   **search:** use async pipe for data in resource detail ([7ae1372](https://github.com/webern-unibas-ch/awg-app/commit/7ae1372))
+-   **search:** use enum for SearchParam view types ([7e53fa5](https://github.com/webern-unibas-ch/awg-app/commit/7e53fa5))
+-   **search:** use getter for httpGetUrl in resourceDetail & searchPanel ([272d618](https://github.com/webern-unibas-ch/awg-app/commit/272d618))
+-   **search:** use id tracker for search result list ([b9ebaa2](https://github.com/webern-unibas-ch/awg-app/commit/b9ebaa2))
+-   **search:** use loading spinner for resource detail ([23b1272](https://github.com/webern-unibas-ch/awg-app/commit/23b1272)), closes [#5](https://github.com/webern-unibas-ch/awg-app/issues/5)
+-   **search:** use SearchResponseWithQuery to update search params ([adb3d48](https://github.com/webern-unibas-ch/awg-app/commit/adb3d48))
+-   **shared:** add optional 'toHtml' property to property json ([f7a3de5](https://github.com/webern-unibas-ch/awg-app/commit/f7a3de5))
+-   **shared:** update compile html module & component ([73a9526](https://github.com/webern-unibas-ch/awg-app/commit/73a9526))
+-   **side-info:** add getter/setter for osm urls in contact-info ([d578987](https://github.com/webern-unibas-ch/awg-app/commit/d578987))
+-   **side-info:** get osm urls in contact-info from AppConfig ([f106c5f](https://github.com/webern-unibas-ch/awg-app/commit/f106c5f))
+-   **side-info:** make address & osm map of contact-info shared components ([8846558](https://github.com/webern-unibas-ch/awg-app/commit/8846558))
+-   **side-info:** make resource info data update immutable ([d248703](https://github.com/webern-unibas-ch/awg-app/commit/d248703))
+-   **side-info:** remove nested subscription from resource-info ([779965f](https://github.com/webern-unibas-ch/awg-app/commit/779965f))
+-   **side-info:** set edition info header from component ([15eb693](https://github.com/webern-unibas-ch/awg-app/commit/15eb693))
+-   **side-info:** use async pipe for data in search info ([c7c9791](https://github.com/webern-unibas-ch/awg-app/commit/c7c9791))
+
+### Build System
+
+-   **app:** add compodoc and format check scripts to package.json ([92a6852](https://github.com/webern-unibas-ch/awg-app/commit/92a6852))
+-   **app:** add compodoc build to build scripts in package.json ([f3047b5](https://github.com/webern-unibas-ch/awg-app/commit/f3047b5))
+-   **app:** configure karma.conf.js to run tests in order ([19cec04](https://github.com/webern-unibas-ch/awg-app/commit/19cec04))
+-   **app:** remove core-js and update dependencies ([f25fcd3](https://github.com/webern-unibas-ch/awg-app/commit/f25fcd3))
+-   **app:** update angular (^8.0.3) and cli (~8.0.6) ([001474e](https://github.com/webern-unibas-ch/awg-app/commit/001474e))
+-   **app:** update dependencies after upgrade to Angular 8 ([0b00a91](https://github.com/webern-unibas-ch/awg-app/commit/0b00a91))
+-   **app:** update dependency font-awesome ([bcc0f07](https://github.com/webern-unibas-ch/awg-app/commit/bcc0f07))
+-   **app:** update remaining dependencies after upgrade to Angular 8 ([aeb5bfa](https://github.com/webern-unibas-ch/awg-app/commit/aeb5bfa))
+
+### Features
+
+-   **app:** add compodoc for code documentation ([8945988](https://github.com/webern-unibas-ch/awg-app/commit/8945988))
+-   **app:** update angular (^8.0.2) and cli (~8.0.3) ([3844e27](https://github.com/webern-unibas-ch/awg-app/commit/3844e27))
+-   **contact:** add documentation section and link to Github repo ([3688358](https://github.com/webern-unibas-ch/awg-app/commit/3688358))
+-   **core:** add loading interceptor to set load status ([7669bad](https://github.com/webern-unibas-ch/awg-app/commit/7669bad))
+-   **core:** split meta object into sections and provide service method ([555fd11](https://github.com/webern-unibas-ch/awg-app/commit/555fd11))
+
+### Tests
+
+-   **app:** fix broken tests - ongoing ([42d8a5d](https://github.com/webern-unibas-ch/awg-app/commit/42d8a5d))
+-   **app:** fix broken tests after changes ([db2630f](https://github.com/webern-unibas-ch/awg-app/commit/db2630f))
+-   **app:** fix tests with HttpTestingController ([6743f2c](https://github.com/webern-unibas-ch/awg-app/commit/6743f2c))
+-   **app:** move nativeElement in own variable in tests ([70dba2d](https://github.com/webern-unibas-ch/awg-app/commit/70dba2d))
+-   **core:** extend navbar tests ([6410bf8](https://github.com/webern-unibas-ch/awg-app/commit/6410bf8))
+-   **home:** adjust tests for home-view component ([573ccd9](https://github.com/webern-unibas-ch/awg-app/commit/573ccd9))
+-   **page-not-found:** fix broken tests after renaming of variables ([6db4d3c](https://github.com/webern-unibas-ch/awg-app/commit/6db4d3c))
+-   **search:** add service method to searchResultList test after changes ([36512fb](https://github.com/webern-unibas-ch/awg-app/commit/36512fb))
+-   **search:** add TwelveToneSpinnerStub to resource detail test ([0dd7ee2](https://github.com/webern-unibas-ch/awg-app/commit/0dd7ee2))
+-   **search:** fix broken tests after switch to CD.OnPush - ongoing ([cb8a968](https://github.com/webern-unibas-ch/awg-app/commit/cb8a968))
+-   **search:** fix broken tests after switch to CD.OnPush - ongoing ([01e7fdc](https://github.com/webern-unibas-ch/awg-app/commit/01e7fdc))
+-   **search:** use SearchPramsViewTypes in search result list ([7793172](https://github.com/webern-unibas-ch/awg-app/commit/7793172))
+-   **side-info:** add header test for structure-info ([4a18b67](https://github.com/webern-unibas-ch/awg-app/commit/4a18b67))
+-   **side-info:** add test for contact-info and its child components ([48434d6](https://github.com/webern-unibas-ch/awg-app/commit/48434d6))
+-   **side-info:** add tests for edition-info component ([b08216c](https://github.com/webern-unibas-ch/awg-app/commit/b08216c))
+-   **side-info:** add tests for structure info component ([1a8bbaf](https://github.com/webern-unibas-ch/awg-app/commit/1a8bbaf))
 
 ## [0.5.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.5.3...v0.5.4) (2019-04-09)
 

@@ -2,73 +2,89 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
+import { NgxGalleryImage } from 'ngx-gallery';
+
 import { ApiService } from '@awg-core/services/api-service';
 import { GeoNames } from '@awg-core/core-models';
 import {
     ContextJson,
-    GeoDataJson,
     GeoDataItemJson,
-    HlistJson,
+    GeoDataJson,
     HlistItemJson,
+    HlistJson,
     IncomingItemJson,
+    PropertyJson,
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     SearchResponseJson,
-    SelectionJson,
     SelectionItemJson,
+    SelectionJson,
     SubjectItemJson
 } from '@awg-shared/api-objects';
 import {
+    IResourceDataResponse,
     ResourceDetail,
-    ResourceDetailHeader,
-    ResourceDetailIncomingLinks,
-    ResourceDetailProps,
+    ResourceDetailContent,
     ResourceDetailGroupedIncomingLinks,
+    ResourceDetailHeader,
     ResourceDetailImage,
-    ResourceDetailContent
+    ResourceDetailIncomingLink,
+    ResourceDetailProperty,
+    SearchResponseWithQuery
 } from '@awg-views/data-view/models';
+import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
-declare var htmlConverter;
-declare var dateConverter;
+/**
+ * Declared variable: htmlConverter.
+ *
+ * It provides access to the embedded htmlConverter plugin (see `/src/plugins/htmlConverter`).
+ */
+declare var htmlConverter: any;
 
+/**
+ * Declared variable: dateConverter.
+ *
+ * It provides access to the embedded dateConverter plugin (see `/src/plugins/dateConverter`).
+ */
+declare var dateConverter: any;
+
+/**
+ * The Conversion service.
+ *
+ * It handles the conversion of the HTTP response data (JSON)
+ * from the given (SALSAH) API into a form that can be
+ * displayed via HTML.
+ *
+ * Provided in: `root`.
+ */
 @Injectable({
     providedIn: 'root'
 })
 export class ConversionService extends ApiService {
-    // issue with ServiceInheritance, cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance
-    static ngInjectableDef = undefined;
-
+    /**
+     * Public variable: filteredOut.
+     *
+     * It keeps the number of filtered duplicates of a search response list.
+     */
     filteredOut: number;
 
-    /******************************************
+    /**
+     * Public method: convertFullTextSearchResults.
      *
-     * sum up length of all arrays nested in an
-     * ResourceDetailGroupedIncomingLinks object
+     * It converts the results of a full text search
+     * to be displayed via HTML.
      *
-     *****************************************/
-    getNestedArraysTotalItems(obj: ResourceDetailGroupedIncomingLinks): number {
-        let size = 0;
-        // iterate over object keys
-        Object.keys(obj).forEach(key => {
-            // sum up length of array nested in object
-            size += obj[key].length;
-        });
-        return size;
-    }
-
-    /******************************************
+     * @param {SearchResponseJson} searchResults The given results of a search request.
      *
-     *  convert full text search results
-     *  for displaying
-     *
-     *****************************************/
-    public convertFullTextSearchResults(results: SearchResponseJson): SearchResponseJson {
-        if (!results.subjects) {
-            return results;
+     * @returns {SearchResponseJson} The converted full text search results.
+     */
+    convertFullTextSearchResults(searchResults: SearchResponseJson): SearchResponseJson {
+        if (!searchResults.subjects) {
+            return searchResults;
         }
 
         // TODO: refactor with reduce??
-        results.subjects.forEach(subject => {
+        searchResults.subjects.forEach(subject => {
             // clean value labels
             subject.valuelabel[0] = subject.valuelabel[0].replace(' (Richtext)', '');
             subject.obj_id = subject.obj_id.replace('_-_local', '');
@@ -88,7 +104,7 @@ export class ConversionService extends ApiService {
                     // replace salsah links
                     htmlstr = this.replaceSalsahLink(htmlstr);
 
-                    // strip & replace <p>-tags for displaying objt
+                    // strip & replace <p>-tags for displaying
                     htmlstr = this.replaceParagraphTags(htmlstr);
 
                     subject.value[0] = htmlstr;
@@ -96,27 +112,32 @@ export class ConversionService extends ApiService {
             }
         });
         // remove duplicates from response
-        results.subjects = this.distinctSubjectItemArray(results.subjects);
-        return results;
+        searchResults.subjects = this.distinctSubjects(searchResults.subjects);
+        return searchResults;
     }
 
-    /******************************************
+    /**
+     * Public method: prepareFullTextSearchResultText.
      *
-     *  prepare fulltext search result string
-     * v
-     *****************************************/
-    public prepareFullTextSearchResultText(
-        searchData: SearchResponseJson,
-        searchValue: string,
-        searchUrl: string
-    ): string {
+     * It prepares the fulltext search result text
+     * to be displayed in the search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
+     * @param {string} searchUrl The given url of a search request.
+     *
+     * @returns {string} The text to be displayed.
+     */
+    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
         let resText: string;
 
-        if (searchData.subjects) {
-            const length = searchData.subjects.length;
+        const searchResults = { ...searchResponseWithQuery.data };
+        const searchValue = searchResponseWithQuery.query;
+
+        if (searchResults.subjects) {
+            const length = searchResults.subjects.length;
             const resString: string = length === 1 ? `Resultat` : `Resultate`;
             // resText = `${length}/${searchData.nhits} `;
-            resText = `${searchData.nhits} `;
+            resText = `${searchResults.nhits} `;
             resText += `${resString} für "${searchValue}"`;
 
             if (this.filteredOut > 0) {
@@ -130,19 +151,23 @@ export class ConversionService extends ApiService {
         return resText;
     }
 
-    /******************************************
+    /**
+     * Public method: convertObjectProperties.
      *
-     * convert object properties for displaying
+     * It converts object properties of a resource request
+     * to be displayed in the bibliography detail view.
      *
-     *****************************************/
-    public convertObjectProperties(data: ResourceFullResponseJson) {
+     * @param {ResourceFullResponseJson} resourceFullResponseData The given resource data.
+     *
+     * @returns {BibEntry} The converted resource object.
+     */
+    convertObjectProperties(resourceFullResponseData: ResourceFullResponseJson): BibEntry {
         const convObj = {};
-        console.log('convertdata: ', data);
         // add lastmod state
-        convObj['lastmod'] = data.resinfo.lastmod;
+        convObj['lastmod'] = resourceFullResponseData.resinfo.lastmod;
 
-        Object.keys(data.props).forEach((key: string) => {
-            const prop = data.props[key];
+        Object.keys(resourceFullResponseData.props).forEach((key: string) => {
+            const prop = resourceFullResponseData.props[key];
             let propValue = []; // empty text value array
 
             // check if values property is defined
@@ -160,8 +185,7 @@ export class ConversionService extends ApiService {
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
                         if (prop.values !== []) {
-                            propValue = this.convertSelectionValue(prop.values, prop.attributes);
-                            console.log('propValue: ', propValue);
+                            propValue = this.convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection
 
@@ -189,7 +213,7 @@ export class ConversionService extends ApiService {
 
                                 // replace bibliography links
                                 if (prop.label === 'Online-Zugang') {
-                                    propValue[i] = this.replaceBiblioLink(propValue[i]);
+                                    propValue[i] = this.adjustBiblioLink(propValue[i]);
                                 }
                             }
                         }
@@ -224,124 +248,224 @@ export class ConversionService extends ApiService {
         return convObj;
     } // END convertObjectProperties (func)
 
-    public prepareResourceDetail(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
-        if (data.access === 'OK') {
-            return this.prepareAccessibleResource(data, currentId);
+    /**
+     * Public method: convertResourceData.
+     *
+     * It converts a resource response from the given (SALSAH) Api
+     * to a resource detail object. It checks if the resource data
+     * is accessible and delegates it to the respective
+     * resource detail creation methods.
+     *
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
+     *
+     * @returns {ResourceDetail} The converted resource detail object.
+     */
+    convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        if (resourceData[0].access === 'OK') {
+            return this.prepareAccessibleResource(resourceData, resourceId);
         } else {
-            return this.prepareRestrictedResource(data, currentId);
+            return this.prepareRestrictedResource(resourceData, resourceId);
         }
     }
 
-    private prepareRestrictedResource(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
-        const header: ResourceDetailHeader = new ResourceDetailHeader(data, currentId);
+    /**
+     * Private method: prepareRestrictedResource.
+     *
+     * It prepares header and content of a restricted resource
+     * to be displayed via HTML.
+     *
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
+     *
+     * @returns {ResourceDetail} The resource detail object.
+     */
+    private prepareRestrictedResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData[0], resourceId);
         const content = undefined;
 
-        const detail: ResourceDetail = new ResourceDetail(header, content);
-        return detail;
+        return new ResourceDetail(header, content);
     }
 
-    private prepareAccessibleResource(data: ResourceFullResponseJson, currentId: string): ResourceDetail {
-        // convert properties
-        data = this.convertGUISpecificProps(data);
+    /**
+     * Private method: prepareAccessibleResource.
+     *
+     * It prepares header and content of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
+     *
+     * @returns {ResourceDetail} The resource detail object.
+     */
+    private prepareAccessibleResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        const resourceFullResponseData = resourceData[0];
+        const resourceContextData = resourceData[1];
+
+        // convert properties to be displayed via HTML
+        resourceFullResponseData.props = this.convertGUISpecificProps(resourceFullResponseData.props);
 
         // prepare parts of resourceDetail
-        const header: ResourceDetailHeader = new ResourceDetailHeader(data, currentId);
-        const content: ResourceDetailContent = {
-            props: this.prepareResourceDetailProperties(data.props),
-            images: this.prepareResourceDetailImage(currentId),
-            incoming: this.prepareResourceDetailIncomingLinks(data.incoming)
-        };
-
-        const detail: ResourceDetail = new ResourceDetail(header, content);
-        return detail;
-    }
-
-    private prepareResourceDetailImage(id: string): ResourceDetailImage[] {
-        // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
-        // result is an array of ResourceDetailImage
-        const output: ResourceDetailImage[] = [];
-
-        // get resource context data
-        this.getAdditionalInfoFromApi(ResourceContextResponseJson, id).subscribe(
-            (contextData: ResourceContextResponseJson) => {
-                // check for existing resource_context in response
-                // else return undefined output if necessary
-                if (!contextData.resource_context.res_id) {
-                    // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
-                    return;
-                } else {
-                    const context: ContextJson = { ...contextData.resource_context };
-
-                    // IMAGE OBJECT (context == 2)
-                    if (context.context === 2 && context.resclass_name === 'image') {
-                        if (context.res_id.length === context.firstprop.length) {
-                            for (let i = 0; i < context.res_id.length; i++) {
-                                // build new ResourceDetailImage-Object from context and index
-                                const image = new ResourceDetailImage(context, i);
-                                output[i] = image;
-                            }
-                        } else {
-                            console.warn(
-                                'ConversionService - Array length for context objects is not consistent with firstprops length!',
-                                context
-                            );
-                            return;
-                        }
-                        // STANDARD OBJECT (context == 0 || 1)
-                    } else if (context.context < 2) {
-                        console.log('ConversionService - got no image context', context);
-                        return;
-                    }
-                }
-                return output;
-            },
-            err => console.error(err)
+        const header: ResourceDetailHeader = new ResourceDetailHeader(resourceFullResponseData, resourceId);
+        const props: ResourceDetailProperty[] = this.prepareResourceDetailProperties(resourceFullResponseData.props);
+        const images: NgxGalleryImage[] = this.prepareResourceDetailImage(resourceContextData);
+        const incoming: ResourceDetailGroupedIncomingLinks[] = this.prepareResourceDetailIncomingLinks(
+            resourceFullResponseData.incoming
         );
-        return output;
+        const content = new ResourceDetailContent(props, images, incoming);
+
+        return new ResourceDetail(header, content);
     }
 
-    private prepareResourceDetailIncomingLinks(incomingArray: IncomingItemJson[]): ResourceDetailGroupedIncomingLinks {
-        const incomingLinks: ResourceDetailIncomingLinks[] = [];
-        incomingArray.forEach(incoming => {
-            incomingLinks.push(new ResourceDetailIncomingLinks(incoming));
-        });
-        const groupedIncomingLinks: ResourceDetailGroupedIncomingLinks = this.groupByRestype(incomingLinks);
-        return groupedIncomingLinks;
-    }
+    /**
+     * Private method: prepareResourceDetailImage.
+     *
+     * It prepares the images content of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {ResourceContextResponseJson} resourceContextData The given resource context data.
+     *
+     * @returns {NgxGalleryImage[]} The image array of the resource detail.
+     */
+    private prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
+        // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
+        // result is an array of NgxGalleryImage
+        const images: NgxGalleryImage[] = [];
 
-    private prepareResourceDetailProperties(props) {
-        const detailProperties: ResourceDetailProps[] = [];
+        if (!resourceContextData.resource_context.res_id) {
+            // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+            return;
+        } else {
+            const context: ContextJson = { ...resourceContextData.resource_context };
 
-        // loop through property keys
-        Object.keys(props).forEach((key: string) => {
-            const prop: any = props[key];
+            // IMAGE OBJECT (context == 2)
+            // IMAGE OBJECT (context == 2)
+            if (context.context === 2 && context.resclass_name === 'image') {
+                if (
+                    context.res_id.length === context.firstprop.length ||
+                    context.res_id.length === context.locations.length
+                ) {
+                    for (let i = 0; i < context.res_id.length; i++) {
+                        // build new ResourceDetailImage-Object from context and index
+                        const image = new ResourceDetailImage(context, i);
 
-            // clean value labels
-            if (prop.label) {
-                prop.label = prop.label.replace(' (Richtext)', '');
+                        const gImage = new NgxGalleryImage({
+                            small: image.reductSize,
+                            medium: image.reductSize,
+                            big: image.fullSize,
+                            description: image.origname,
+                            label: image.label,
+                            url: image.fullSize
+                        });
+
+                        images.push(gImage);
+                    }
+                    return images;
+                } else {
+                    console.warn(
+                        'ConversionService - Array length for context objects is not consistent with firstprops length!',
+                        context
+                    );
+                    return;
+                }
+                // STANDARD OBJECT (context == 0 || 1)
+            } else if (context.context < 2) {
+                console.log('ConversionService - got no image context', context);
+                return;
             }
+        }
 
-            // push default values into searchDetailProperties
-            detailProperties.push({
-                pid: prop.pid,
-                guielement: prop.guielement,
-                label: prop.label,
-                value: prop.toHtml
-            });
-        }); // END forEach props
-        return detailProperties;
+        return images;
     }
 
-    private convertGUISpecificProps(data: ResourceFullResponseJson) {
+    /**
+     * Private method: prepareResourceDetailIncomingLinks.
+     *
+     * It prepares and groups the incoming links content
+     * of an accessible resource to be displayed via HTML.
+     *
+     * @param {IncomingItemJson[]} incomingArray The given IncomingItemJson.
+     *
+     * @returns {ResourceDetailGroupedIncomingLinks[]} The grouped incoming links array of the resource detail.
+     */
+    private prepareResourceDetailIncomingLinks(
+        incomingArray: IncomingItemJson[]
+    ): ResourceDetailGroupedIncomingLinks[] {
+        if (!incomingArray) {
+            return;
+        }
+
+        // map incoming array items into new array (immutable)
+        const incomingLinks: ResourceDetailIncomingLink[] = incomingArray.map(
+            incoming => new ResourceDetailIncomingLink({ ...incoming })
+        );
+
+        // return links grouped by restype
+        return this.groupByRestype(incomingLinks);
+    }
+
+    /**
+     * Private method: prepareResourceDetailProperties.
+     *
+     * It prepares the properties content of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {PropertyJson[]} props The given properties.
+     *
+     * @returns {ResourceDetailProperty[]} The properties array of the resource detail.
+     */
+    private prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
+        if (!props) {
+            return;
+        }
+
+        // helper method to clean value labels
+        const replaceLabel = (str: string): string => str.replace(' (Richtext)', '');
+
+        // map default values into ResourceDetailProperties array
+        return Object.entries(props).map(
+            prop =>
+                new ResourceDetailProperty(
+                    prop[1].pid,
+                    prop[1].guielement,
+                    (prop[1].label = replaceLabel(prop[1].label)),
+                    prop[1].toHtml
+                )
+        );
+    }
+
+    /**
+     * Private method: convertGUISpecificProps.
+     *
+     * It converts properties of an accessible resource
+     * to be displayed via HTML.
+     *
+     * In fact, it adds an 'toHtml' property to the props array.
+     *
+     * @param {PropertyJson[]} props The given properties.
+     *
+     * @returns {*} The converted resource data.
+     */
+    private convertGUISpecificProps(props: PropertyJson[]): any {
         // loop through all properties and add toHtml values
-        Object.keys(data.props).forEach((key: string) => {
-            const prop = this.addHtmlValues(data.props[key]);
-            data.props[key] = prop;
+        Object.keys(props).forEach((key: string) => {
+            props[key] = this.addHtmlValues(props[key]);
         });
-        return data;
+        return props;
     }
 
-    private addHtmlValues(prop, url?): [string] {
+    /**
+     * Private method: convertGUISpecificProps.
+     *
+     * It adds an 'toHtml' property to the props array
+     * of an accessible resource to be displayed via HTML.
+     *
+     * @param {*} prop The given property.
+     * @param {string} [url] A given optional url.
+     *
+     * @returns {string[]} The converted property.
+     */
+    private addHtmlValues(prop: any, url?: string): [string] {
         prop.toHtml = [];
 
         if (prop.values) {
@@ -358,12 +482,12 @@ export class ConversionService extends ApiService {
                     }
                     break; // END linkvalue
 
-                case '7': // SELECTION (pulldown): selection nodes have to be read seperately
-                    prop.toHtml = this.convertSelectionValue(prop.values, prop.attributes);
+                case '7': // SELECTION (pulldown): selection nodes have to be called separately
+                    prop.toHtml = this.convertSelectionValues(prop.values, prop.attributes);
                     break; // END selection
 
-                case '12': // HLIST: hlist nodes have to be called seperately
-                    prop.toHtml = this.convertHlistValue(prop.values, prop.attributes);
+                case '12': // HLIST: hlist nodes have to be called separately
+                    prop.toHtml = this.convertHlistValues(prop.values, prop.attributes);
                     break; // END hlist
 
                 case '14': // RICHTEXT: salsah standoff needs to be converted
@@ -372,8 +496,8 @@ export class ConversionService extends ApiService {
                     }
                     break; // END richtext
 
-                case '15': // GeoNAMES: GeoName nodes have to called seperately
-                    prop.toHtml = this.convertGeoValue(prop.values);
+                case '15': // GeoNAMES: GeoName nodes have to be called separately
+                    prop.toHtml = this.convertGeoValues(prop.values);
                     break; // END geonames
 
                 // '1' => TEXT: properties come as they are
@@ -388,23 +512,36 @@ export class ConversionService extends ApiService {
         return prop;
     }
 
-    /******************************************
+    /**
+     * Private method: convertDateValue.
      *
-     * convert date values
+     * It converts date values of an accessible resource
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private convertDateValue(dateObj) {
+     * Conversion goes from Julian Day Number (JDN)
+     * to Gregorian Calendar.
+     *
+     * @param {*} dateObj The given date object.
+     *
+     * @returns {string} The converted date string.
+     */
+    private convertDateValue(dateObj: any): string {
         let date = dateConverter(dateObj);
         date = date.replace(' (G)', '');
         return date;
     }
 
-    /******************************************
+    /**
+     * Private method: convertGeoValues.
      *
-     * convert geoNames values
+     * It converts geonames values of an accessible resource
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private convertGeoValue(values): string[] {
+     * @param {string[]} values The given property values.
+     *
+     * @returns {string[]} The converted geo names array.
+     */
+    private convertGeoValues(values: string[]): string[] {
         // values give reference id to api + "/geonames/{{:id}}?reqtype=node"
         // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
@@ -419,7 +556,7 @@ export class ConversionService extends ApiService {
                 // else return empty prop if necessary
                 if (!geoNamesData.nodelist) {
                     console.log(
-                        'ConversionService# convertGeoValue: got no nodelist from geonames response: ',
+                        'ConversionService# convertGeoValues: got no nodelist from geonames response: ',
                         geoNamesData
                     );
                     return (output[index] = '');
@@ -427,7 +564,7 @@ export class ConversionService extends ApiService {
                 // snapshot of nodelist array
                 const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
 
-                // build new GeoNames-Object from nodelist array
+                // build new GeoNames-Object from geoData array
                 const geo: GeoNames = new GeoNames(geoDataArray);
 
                 // construct and return html value
@@ -438,12 +575,18 @@ export class ConversionService extends ApiService {
         return output;
     }
 
-    /******************************************
+    /**
+     * Private method: convertHlistValues.
      *
-     * convert hlist values
+     * It converts hierarchy list values of an accessible resource
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private convertHlistValue(values, attributes): string[] {
+     * @param {string[]} values The given property values.
+     * @param {string} attributes The given HTML attributes.
+     *
+     * @returns {string[]} The converted hlist array.
+     */
+    private convertHlistValues(values: string[], attributes: string): string[] {
         // prop.values give reference id to
         // api + /hlists/{{:id}}
         // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
@@ -477,42 +620,62 @@ export class ConversionService extends ApiService {
         return output;
     }
 
-    /******************************************
+    /**
+     * Private method: convertLinkValue.
      *
-     * convert link values
+     * It converts a link value of an accessible resource
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private convertLinkValue(prop, i: number): string {
+     * @param {*} prop The given property value.
+     * @param {number} index The given index position.
+     *
+     * @returns {string} The converted link value.
+     */
+    private convertLinkValue(prop: any, index: number): string {
         // add <a>-tag with click-directive; linktext is stored in "$&"
-        const firstValue = prop.value_firstprops[i];
+        const firstValue = prop.value_firstprops[index];
         const replaceValue =
-            '<a (click)="ref.navigateToResource(\'' + prop.values[i] + '\')">$& (' + prop.value_restype[i] + ')</a>';
-        const linkValue = firstValue.replace(firstValue, replaceValue);
-        return linkValue;
+            '<a (click)="ref.navigateToResource(\'' +
+            prop.values[index] +
+            '\')">$& (' +
+            prop.value_restype[index] +
+            ')</a>';
+        return firstValue.replace(firstValue, replaceValue);
     }
 
-    /******************************************
+    /**
+     * Private method: convertRichtextValue.
      *
-     * convert richtext values
+     * It converts a rich text value of an accessible resource
+     * to be displayed via HTML.
      *
-     *****************************************/
+     * @param {string} str The given utf8 string of a rich text property.
+     * @param {string} attr The given standoff attributes of a richtext property.
+     *
+     * @returns {string} The converted rich text value.
+     */
     private convertRichtextValue(str: string, attr: string): string {
         // convert salsah standoff to html (using plugin "htmlConverter")
-        let rtValue: string = this.convertStandoffToHTML(str, attr);
+        const rtValue: string = this.convertStandoffToHTML(str, attr);
 
         // replace salsah links
-        rtValue = this.replaceSalsahLink(rtValue);
-
-        return rtValue;
+        return this.replaceSalsahLink(rtValue);
     }
 
-    // TODO: check if it is possible to unify with hlist conversion?
-    /******************************************
+    /**
+     * Private method: convertSelectionValues.
      *
-     * convert selection values
+     * It converts selection values of an accessible resource
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private convertSelectionValue(values, attributes): string[] {
+     * @param {string[]} values The given property values.
+     * @param {string} attributes The given HTML attributes.
+     *
+     * @returns {string[]} The converted selection array.
+     *
+     * @todo check if it is possible to unify with hlist conversion?
+     */
+    private convertSelectionValues(values: string[], attributes: string): string[] {
         // values give reference id to api + "/selections/{{:id}}"
         // result is an array of selection labels
 
@@ -529,7 +692,7 @@ export class ConversionService extends ApiService {
                 // else return empty prop if necessary
                 if (!selectionData.selection) {
                     console.log(
-                        'ConversionService# convertSelectionValue: got no selection from response: ',
+                        'ConversionService# convertSelectionValues: got no selection from response: ',
                         selectionData
                     );
                     return output;
@@ -550,13 +713,20 @@ export class ConversionService extends ApiService {
         return output;
     }
 
-    /******************************************
+    /**
+     * Private method: convertStandoffToHTML.
      *
-     *  convert linear salsah standoff
-     *  (string with textattributes)
-     *  to html using plugin "htmlConverter"
+     * It converts linear SALSAH standoff
+     * (utf8 string with standoff attributes)
+     * to html using plugin 'htmlConverter'.
      *
-     *****************************************/
+     * @param {string} str The given utf8 string of a rich text property.
+     * @param {string} attr The given standoff attributes of a richtext property.
+     *
+     * @returns {string} The converted standoff.
+     *
+     * @todo check if it is possible to unify with hlist conversion?
+     */
     private convertStandoffToHTML(str: string, attr: string): string {
         if (!str) {
             return;
@@ -567,54 +737,73 @@ export class ConversionService extends ApiService {
         return htmlConverter(JSON.parse(attr), str);
     }
 
-    /******************************************
+    /**
+     * Private method: getAdditionalInfoFromApi.
      *
-     * get additional resource info from salsah api
+     * It makes additional calls to the given (SALSAH) API
+     * to get additional resource infos in case of geoames,
+     * hlists, selections or image values.
      *
-     *****************************************/
-    private getAdditionalInfoFromApi(responseType: any, valueId: string): Observable<any> {
+     * @param {*} responseJsonType The given json type of the API response.
+     * @param {string} id The given id of a resource.
+     *
+     * @returns {Observable<any>} The observable of the HTTP response.
+     */
+    private getAdditionalInfoFromApi(responseJsonType: any, id: string): Observable<any> {
         let queryPath: string;
-        switch (responseType) {
+        switch (responseJsonType) {
             case GeoDataJson:
-                queryPath = 'geonames/' + valueId + '?reqtype=node';
+                queryPath = 'geonames/' + id + '?reqtype=node';
                 break;
             case HlistJson:
-                queryPath = 'hlists/' + valueId;
+                queryPath = 'hlists/' + id;
                 break;
             case ResourceContextResponseJson:
-                queryPath = 'resources/' + valueId + '_-_local?reqtype=context';
+                queryPath = 'resources/' + id + '_-_local?reqtype=context';
                 break;
             case SelectionJson:
-                queryPath = 'selections/' + valueId;
+                queryPath = 'selections/' + id;
                 break;
         }
-        return this.getApiResponse(responseType, queryPath);
+        return this.getApiResponse(responseJsonType, queryPath);
     }
 
-    /******************************************
+    /**
+     * Private method: getNodeIdFromAttributes.
      *
-     * get node id from attributes value
+     * It gets a node id from the prop.attributes
+     * of a selections or hlists value.
      *
-     *****************************************/
-    private getNodeIdFromAttributes(attributes): string {
+     * @param {string} attributes The given prop.attributes.
+     *
+     * @returns {string} id The node id.
+     */
+    private getNodeIdFromAttributes(attributes: string): string {
         // identify node id from prop.attributes
         // e.g. "hlist=17" or "selection=77"
         return attributes.split('=')[1].toString();
     }
 
-    /******************************************
+    /**
+     * Private method: adjustBiblioLink.
      *
-     *  find inner links in online-access-property
-     *  and rebuild the values for displaying
+     * It finds internal links in the online-access property
+     * of a bibliography link and adjusts the values
+     * to be displayed via HTML.
      *
-     *****************************************/
-    private replaceBiblioLink(str: string): string {
+     * @param {string} str The given link string.
+     * @example
+     * str = '(PDF) http://www.example.com/myPdf.pdf'
+     *
+     * @returns {string} The adjusted bibliography link.
+     */
+    private adjustBiblioLink(str: string): string {
         if (!str) {
             return;
         }
 
-        let tmpStr: string;
-        let nameStr: string;
+        let outStr: string;
+        let labelStr: string;
         let splitArr: string[];
         let linkRegArr: RegExpExecArray;
         const regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
@@ -622,33 +811,37 @@ export class ConversionService extends ApiService {
         // check for double spaces
         str = str.replace('  ', ' ');
 
-        // split "str" behind parentheses
+        // split "str" behind closing parentheses
         splitArr = str.split(') ');
 
-        // get name of link from 1st part of "splitstr
-        nameStr = splitArr[0].replace('(', '');
+        // get label of link from 1st part of splitArr (without opening parentheses)
+        labelStr = splitArr[0].replace('(', '');
 
-        // check for link in 2nd part of "splitArr"
+        // check for link in 2nd part of splitArr
         if (regExLink.exec(splitArr[1])) {
             // ... link with <a> tag
             linkRegArr = regExLink.exec(splitArr[1]);
-            tmpStr = '<a target="_blank" ref="noopener noreferrer" ' + linkRegArr[1] + '>' + nameStr + '</a>';
-        } else if (nameStr !== 'DOI') {
+            outStr = '<a target="_blank" ref="noopener noreferrer" ' + linkRegArr[1] + '>' + labelStr + '</a>';
+        } else if (labelStr !== 'DOI') {
             // ... <a> tag is missing, add it
-            tmpStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitArr[1] + '">' + nameStr + '</a>';
+            outStr = '<a target="_blank" ref="noopener noreferrer" href="' + splitArr[1] + '">' + labelStr + '</a>';
         } else {
             // no links, pure string
-            tmpStr = nameStr + ': ' + splitArr[1];
+            outStr = labelStr + ': ' + splitArr[1];
         }
-        return tmpStr;
+        return outStr;
     }
 
-    /******************************************
+    /**
+     * Private method: replaceSalsahLink.
      *
-     * find inner salsah links in richtext
-     * and replace them with click-directive
+     * It finds internal salsah links in richtext values
+     * and replaces them with Angular click-directives.
      *
-     *****************************************/
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
     private replaceSalsahLink(str: string): string {
         if (!str) {
             return;
@@ -657,20 +850,19 @@ export class ConversionService extends ApiService {
         const regLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
         let regArr: RegExpExecArray;
 
-        // check only for salsah links
+        // check for salsah links in str
         while (regLink.exec(str)) {
             // i.e.: as long as patLink is detected in str do...
-
             regArr = regLink.exec(str);
 
             // identify resource id
-            const res_id = regNum.exec(regArr[1])[0];
+            const resId = regNum.exec(regArr[1])[0];
 
             // replace href attribute with click-directive
-            // linktext is stored in second regexp-result p[2]
+            // linktext is stored in second regexp-result regArr[2]
             const replaceValue =
                 '<a (click)="ref.navigateToResource(\'' +
-                res_id +
+                resId +
                 '\'); $event.stopPropagation()">' +
                 regArr[2] +
                 '</a>';
@@ -680,11 +872,16 @@ export class ConversionService extends ApiService {
         return str;
     }
 
-    /******************************************
+    /**
+     * Private method: replaceParagraphTags.
      *
-     * replace paragraph tags
+     * It removes paragraph tags in richtext values
+     * and replaces line breaks instead for multiple lines.
      *
-     *****************************************/
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
     private replaceParagraphTags(str: string): string {
         if (!str) {
             return;
@@ -696,46 +893,54 @@ export class ConversionService extends ApiService {
         return str;
     }
 
-    /******************************************
+    /**
+     * Private method: distinctSubjects.
      *
-     * remove duplicates from array (SubjectItemJson[])
+     * It removes duplicates from an array (SubjectItemJson[]).
+     * It checks for every array position (reduce) if the obj_id
+     * of the entry at the current position (y) is already
+     * in the array (findIndex). If that is not the case it
+     * pushes y into x which is initialized as empty array [].
      *
-     *****************************************/
-    private distinctSubjectItemArray(arr: SubjectItemJson[]) {
-        /*
-         * see https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855
-         *
-         * This function checks for every array position (reduce)
-         * if the obj_id of the entry at the current position (y) is already in the array (findIndex)
-         * and if not pushes y into x that is initalized as empty array []
-         *
-         */
-        if (!arr) {
+     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
+    private distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+        if (!subjects) {
             return;
         }
         this.filteredOut = 0;
-        return arr.reduce(
+        return subjects.reduce(
             (x, y) => (x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : ((this.filteredOut += 1), x)),
             []
         );
     }
 
-    /******************************************
+    /**
+     * Private method: groupByRestype.
      *
-     * group array of incoming links by restype
+     * It groups an array of incoming links
+     * by their resource type.
      *
-     *****************************************/
-    private groupByRestype(incomingLinks: ResourceDetailIncomingLinks[]): ResourceDetailGroupedIncomingLinks {
-        const groups = {};
-        // iterate over incoming links to group by restype
-        incomingLinks.forEach(link => {
-            const group = link.restype.label;
-            if (group in groups) {
-                groups[group].push(link); // push link into existing restype group
-            } else {
-                groups[group] = [link]; // create restype group and make link the first entry
-            }
-        });
-        return groups;
+     * @param {ResourceDetailIncomingLink[]} incomingLinks The given incoming links.
+     *
+     * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links.
+     */
+    private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {
+        if (!incomingLinks) {
+            return;
+        }
+
+        // find out and alphabetically sort all the unique restype labels
+        const restypeLabels = new Set(incomingLinks.map(incomingLink => incomingLink.restype.label).sort());
+
+        // produce a list of restypes with its incoming links
+        return Array.from(restypeLabels).map(label => ({
+            restypeLabel: label,
+            links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label)
+        }));
     }
 }

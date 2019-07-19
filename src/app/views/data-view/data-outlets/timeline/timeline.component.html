@@ -1,8 +1,9 @@
 <p class="help-block">
-    Datenbank-Suche nach Ereignissen mit heutigem Tagesdatum. Der erstmalige Aufruf kann einige Sekunden Ladezeit beanspruchen.
+    Datenbank-Suche nach Ereignissen mit heutigem Tagesdatum. Der erstmalige Aufruf kann einige Sekunden Ladezeit
+    beanspruchen.
 </p>
 <button class="btn btn-default" (click)="getTodaysEvents()">
-    Webern-Chronologie vom {{date.day}}.{{date.month}}.
+    Webern-Chronologie vom {{ date.day }}.{{ date.month }}.
 </button>
 
 <!--
@@ -37,8 +38,8 @@
                                     <p data-ng-if="event.value">
                                         [{{event.objID}}] {{event.value.valueString}} <small><a data-ng-click="showObject(event.objID)">[mehr…]</a></small>
                                     </p>
-                                </timeline-panel-body>
-                                <!-- <timeline-panel-footer>
+                                </timeline-panel-body> -->
+<!-- <timeline-panel-footer>
 
                                 </timeline-panel-footer> -->
 <!--

@@ -1,3 +1,11 @@
+/**
+ * Test helper data file: mockResourceFullResponseJson.
+ *
+ * It provides a mocked ResourceFullResponseJson response
+ * from the Salsah API.
+ *
+ * Exposed to be called from tests.
+ */
 export const mockResourceFullResponseJson = {
     resinfo: {
         project_id: '6',

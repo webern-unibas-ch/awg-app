@@ -4,7 +4,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Logo, Logos, Meta } from '@awg-core/core-models';
+import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -14,13 +14,13 @@ import { FooterComponent } from './footer.component';
 @Component({ selector: 'awg-footer-copyright', template: '' })
 class FooterCopyrightStubComponent {
     @Input()
-    metaData: Meta;
+    pageMetaData: MetaPage;
 }
 
 @Component({ selector: 'awg-footer-declaration', template: '' })
 class FooterDeclarationStubComponent {
     @Input()
-    metaData: Meta;
+    pageMetaData: MetaPage;
 }
 
 @Component({ selector: 'awg-footer-logo', template: '' })
@@ -43,13 +43,13 @@ describe('FooterComponent (DONE)', () => {
 
     let mockCoreService: Partial<CoreService>;
 
-    let expectedMetaData: Meta;
+    let expectedPageMetaData: MetaPage;
     let expectedLogos: Logos;
 
     beforeEach(async(() => {
         // stub service for test purposes
         mockCoreService = {
-            getMetaData: () => expectedMetaData,
+            getMetaDataSection: sectionType => METADATA[sectionType],
             getLogos: () => expectedLogos
         };
 
@@ -73,7 +73,7 @@ describe('FooterComponent (DONE)', () => {
 
         // test data
         expectedLogos = LOGOSDATA;
-        expectedMetaData = METADATA;
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -90,18 +90,21 @@ describe('FooterComponent (DONE)', () => {
         expect(mockCoreService === coreService).toBe(false);
 
         // changing the stub service has no effect on the injected service
-        const changedMetaData = new Meta();
-        changedMetaData.page = {
+        let changedPageMetaData = new MetaPage();
+        changedPageMetaData = {
             yearStart: 2015,
-            yearRecent: 2017,
-            editionUrl: '',
-            webernUrl: '',
+            yearCurrent: 2017,
+            awgAppUrl: '',
+            compodocUrl: '',
+            githubUrl: '',
+            awgProjectName: '',
+            awgProjectUrl: '',
             version: '1.0.0',
             versionReleaseDate: '8. November 2016'
         };
-        mockCoreService.getMetaData = () => changedMetaData;
+        mockCoreService.getMetaDataSection = () => changedPageMetaData;
 
-        expect(coreService.getMetaData()).toBe(expectedMetaData);
+        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -110,8 +113,8 @@ describe('FooterComponent (DONE)', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
             });
 
-            it('... should not have metaData', () => {
-                expect(component.metaData).toBeUndefined('should be undefined');
+            it('... should not have pageMetaData', () => {
+                expect(component.pageMetaData).toBeUndefined('should be undefined');
             });
 
             it('... should not have logos', () => {
@@ -157,8 +160,8 @@ describe('FooterComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
-            component.metaData = expectedMetaData;
+            // mock the call to the meta service in #provideMetaData
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -170,8 +173,8 @@ describe('FooterComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
-                expect(component.metaData).toBeDefined();
-                expect(component.metaData).toBe(expectedMetaData);
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData).toBe(expectedPageMetaData);
             });
 
             it('... should return logos', () => {
@@ -182,7 +185,7 @@ describe('FooterComponent (DONE)', () => {
 
         describe('VIEW', () => {
             describe('main top footer', () => {
-                it('... should pass down metaData to footer declaration component', () => {
+                it('... should pass down pageMetaData to footer declaration component', () => {
                     const footerDeclarationDes = getAndExpectDebugElementByDirective(
                         compDe,
                         FooterDeclarationStubComponent,
@@ -193,8 +196,8 @@ describe('FooterComponent (DONE)', () => {
                         FooterDeclarationStubComponent
                     ) as FooterDeclarationStubComponent;
 
-                    expect(footerDeclarationCmp.metaData).toBeTruthy();
-                    expect(footerDeclarationCmp.metaData).toEqual(expectedMetaData, 'should have metaData');
+                    expect(footerDeclarationCmp.pageMetaData).toBeTruthy();
+                    expect(footerDeclarationCmp.pageMetaData).toEqual(expectedPageMetaData, 'should have pageMetaData');
                 });
 
                 it('... should pass down logos to footer logo components', () => {
@@ -214,7 +217,7 @@ describe('FooterComponent (DONE)', () => {
             });
 
             describe('secondary bottom footer', () => {
-                it('... should pass down metaData to footer copyright component', () => {
+                it('... should pass down pageMetaData to footer copyright component', () => {
                     const footerCopyrightDes = getAndExpectDebugElementByDirective(
                         compDe,
                         FooterCopyrightStubComponent,
@@ -225,8 +228,8 @@ describe('FooterComponent (DONE)', () => {
                         FooterCopyrightStubComponent
                     ) as FooterCopyrightStubComponent;
 
-                    expect(footerCopyrightCmp.metaData).toBeTruthy();
-                    expect(footerCopyrightCmp.metaData).toEqual(expectedMetaData, 'should have metaData');
+                    expect(footerCopyrightCmp.pageMetaData).toBeTruthy();
+                    expect(footerCopyrightCmp.pageMetaData).toEqual(expectedPageMetaData, 'should have pageMetaData');
                 });
 
                 it('... should pass down logos to footer poweredby component', () => {

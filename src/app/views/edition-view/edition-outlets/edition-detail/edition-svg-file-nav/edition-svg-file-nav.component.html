@@ -1,6 +1,0 @@
-<div *ngIf="svgFileData" class="btn-group awg-btn-group d-flex" role="group">
-    <a class="btn btn-default w-100" *ngFor="let svgFile of svgFileData | keyvalue" [class.active]="isSelectedSvgFile(svgFile.value)" (click)="selectSvgFile(svgFile.value)">
-        {{ svgFile.key }}
-    </a>
-</div>
-

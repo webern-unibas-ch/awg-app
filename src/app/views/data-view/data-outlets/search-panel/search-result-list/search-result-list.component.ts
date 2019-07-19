@@ -1,92 +1,285 @@
-import { Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-import { map } from 'rxjs/operators';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
-import { faTable, faGripHorizontal } from '@fortawesome/free-solid-svg-icons';
+import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
-import { SearchResponseJson } from '@awg-shared/api-objects';
-import { SearchParams, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
+/**
+ * The SearchResultList component.
+ *
+ * It contains the search result list section
+ * of the data (search) view of the app
+ * with a control header, a Paginator
+ * and the results in table or grid view.
+ */
 @Component({
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
-    styleUrls: ['./search-result-list.component.css']
+    styleUrls: ['./search-result-list.component.css'],
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
+    /**
+     * Input variable: searchUrl.
+     *
+     * It keeps the url of the search request.
+     */
     @Input()
     searchUrl: string;
+
+    /**
+     * Input variable: searchParams.
+     *
+     * It keeps the parameters of the search request.
+     */
     @Input()
     searchParams: SearchParams;
+
+    /**
+     * Output variable: pageChangeRequest.
+     *
+     * It keeps an event emitter for the selected
+     * start position (startAt) of the paginator
+     * of the search result list.
+     */
     @Output()
     pageChangeRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: rowNumberChangeRequest.
+     *
+     * It keeps an event emitter for the selected row number (nRows)
+     * to be displayed in the search result list.
+     */
     @Output()
-    rowChangeRequest: EventEmitter<string> = new EventEmitter();
+    rowNumberChangeRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: viewChangeRequest.
+     *
+     * It keeps an event emitter for the selected view type of the search result list.
+     */
     @Output()
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
+    /**
+     * Private variable: selectedResourceId.
+     *
+     * It keeps the id of the selected resource.
+     */
+    private selectedResourceId: string;
+
+    /**
+     * variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    destroy$: Subject<boolean> = new Subject<boolean>();
+
+    /**
+     * Public variable: errorMessage.
+     *
+     * It keeps an errorMessage for the searchResponseWithQuery subscription.
+     */
     errorMessage: any = undefined;
-    currentId: string;
 
-    radioViewForm: FormGroup;
+    /**
+     * Public variable: searchResultControlForm.
+     *
+     * It keeps the reactive form group: searchResultControlForm.
+     */
+    searchResultControlForm: FormGroup;
+
+    /**
+     * Public variable: page.
+     *
+     * It keeps the current page of the Paginator.
+     */
     page: number;
+
+    /**
+     * Public variable: pageSize.
+     *
+     * It keeps the total page size of the Paginator.
+     */
     pageSize: number;
-    rowNumberArray = [5, 10, 25, 50, 100, 200];
 
-    streamerServiceSubscription: Subscription;
-    searchResponse: SearchResponseJson;
+    /**
+     * Public variable: rowNumbers.
+     *
+     * It keeps the array of possible row numbers.
+     */
+    rowNumbers = [5, 10, 25, 50, 100, 200];
+
+    /**
+     * Public variable: searchResponseWithQuery.
+     *
+     * It keeps the query and response of the search request.
+     */
+    searchResponseWithQuery: SearchResponseWithQuery;
+
+    /**
+     * Public variable: searchResultText.
+     *
+     * It keeps the info message about the search results.
+     */
     searchResultText: string;
-    searchValue: string;
 
+    /**
+     * Public variable: faGripHorizontal.
+     *
+     * It instantiates fontawesome's faGripHorizontal icon.
+     */
     faGripHorizontal = faGripHorizontal;
+
+    /**
+     * Public variable: faTable.
+     *
+     * It instantiates fontawesome's faTable icon.
+     */
     faTable = faTable;
 
+    /**
+     * Constructor of the SearchResultListComponent.
+     *
+     * It declares private instances of the Angular FormBuilder,
+     * the Angular Router, the ConversionService,
+     * the DataStreamerService, and the SideInfoService.
+     *
+     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
+     * @param {Router} router Instance of the Angular Router.
+     * @param {ConversionService} conversionService Instance of the ConversionService.
+     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
+     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
+     */
     constructor(
-        private fb: FormBuilder,
+        private formBuilder: FormBuilder,
         private router: Router,
         private conversionService: ConversionService,
-        private sideInfoService: SideInfoService,
-        private streamerService: DataStreamerService
+        private dataStreamerService: DataStreamerService,
+        private sideInfoService: SideInfoService
     ) {}
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
-        this.streamerServiceSubscription = this.subscribeToStreamerService();
-        if (this.searchParams.view && (this.searchParams.view === 'table' || this.searchParams.view === 'grid')) {
-            this.buildForm(this.searchParams.view);
+        this.getSearchResponseWithQueryData();
+
+        if (
+            this.searchParams.view &&
+            (this.searchParams.view === SearchParamsViewTypes.table ||
+                this.searchParams.view === SearchParamsViewTypes.grid)
+        ) {
+            this.createFormGroup(this.searchParams.view);
         }
     }
 
-    // build radio view form
-    buildForm(view: string) {
-        this.radioViewForm = this.fb.group({
-            radioViewControl: view
+    /**
+     * Public method: createFormGroup.
+     *
+     * It creates the search result control form
+     * using the reactive FormBuilder with a formGroup
+     * and a search view control.
+     *
+     * @param {SearchParamsViewTypes} view The given view type.
+     *
+     * @returns {void} Creates the search view control form.
+     */
+    createFormGroup(view: SearchParamsViewTypes): void {
+        this.searchResultControlForm = this.formBuilder.group({
+            searchResultViewControl: SearchParamsViewTypes[view]
         });
 
-        this.checkForUserInputChanges();
+        this.listenToUserInputChange();
     }
 
-    // check for changing view values
-    checkForUserInputChanges(): void {
-        this.radioViewForm.get('radioViewControl').valueChanges.subscribe((view: string) => {
+    /**
+     * Public method: listenToUserInputChange.
+     *
+     * It listens to the user's input changes
+     * in the view control and triggers the
+     * onViewChange method with the new view type.
+     *
+     * @returns {void} Listens to changing view type.
+     */
+    listenToUserInputChange(): void {
+        this.searchResultControlForm.get('searchResultViewControl').valueChanges.subscribe((view: string) => {
             this.onViewChange(view);
         });
     }
 
+    /**
+     * Public method: isActiveResource.
+     *
+     * It compares a given resource id
+     * with the current selectedResourceId.
+     *
+     * @param {string} id The given resource id.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
     isActiveResource(id: string): boolean {
-        return this.currentId === id;
+        return this.selectedResourceId === id;
     }
 
+    /**
+     * Public method: isGridView.
+     *
+     * It checks if the current view type is 'grid'.
+     *
+     * @returns {boolean} The boolean value of the check result.
+     */
+    isGridView(): boolean {
+        return this.searchParams.view === SearchParamsViewTypes.grid;
+    }
+
+    /**
+     * Public method: isNoResults.
+     *
+     * It checks if the current search response data has null results.
+     *
+     * @returns {boolean} The boolean value of the check result.
+     */
+    isNoResults(): boolean {
+        return +this.searchResponseWithQuery.data.nhits === 0;
+    }
+
+    /**
+     * Public method: navigateToResource.
+     *
+     * It navigates to the '/data/resource' route
+     * with the given id.
+     *
+     * @param {string} id The given resource id.
+     * @returns {void} Navigates to the resource.
+     */
     navigateToResource(id: string): void {
-        this.currentId = id;
-        this.router.navigate(['/data/resource', this.currentId]);
+        this.selectedResourceId = id;
+        this.router.navigate(['/data/resource', this.selectedResourceId]);
     }
 
-    // emit page change to search panel
+    /**
+     * Public method: onPageChange.
+     *
+     * It emits the new start position of the Paginator
+     * from a given page number to the {@link pageChangeRequest}.
+     *
+     * @param {number} pageNumber The given number of the page.
+     *
+     * @returns {void} Emits the new start position.
+     */
     onPageChange(pageNumber: number): void {
         const nRowsNumber = +this.searchParams.nRows;
         const newStartPosition = pageNumber * nRowsNumber - nRowsNumber;
@@ -94,17 +287,42 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.pageChangeRequest.emit(String(newStartPosition));
     }
 
-    // emit row change to search panel
-    onRowChange(rowNumber: number): void {
-        this.rowChangeRequest.emit(String(rowNumber));
+    /**
+     * Public method: onRowNumberChange.
+     *
+     * It emits the new number of rows to be displayed
+     * to the {@link rowNumberChangeRequest}.
+     *
+     * @param {number} rowNumber The given number of rows.
+     *
+     * @returns {void} Emits the new number of rows.
+     */
+    onRowNumberChange(rowNumber: number): void {
+        this.rowNumberChangeRequest.emit(String(rowNumber));
     }
 
-    // emit view change to search panel
+    /**
+     * Public method: onViewChange.
+     *
+     * It emits the new view type
+     * to the {@link viewChangeRequest}.
+     *
+     * @param {string} view The given view type.
+     *
+     * @returns {void} Emits the new view type.
+     */
     onViewChange(view: string): void {
         this.viewChangeRequest.emit(view);
     }
 
-    // set values for pagination
+    /**
+     * Public method: setPagination.
+     *
+     * It sets and calculates the page and pageSize
+     * values needed for the Paginator.
+     *
+     * @returns {void} Sets the Paginator values.
+     */
     setPagination(): void {
         const nRowsNumber = +this.searchParams.nRows;
         const startAtNumber = +this.searchParams.startAt;
@@ -113,61 +331,93 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.page = Math.floor(startAtNumber / nRowsNumber) + 1;
     }
 
-    subscribeToStreamerService(): Subscription {
-        return this.streamerService
-            .getCurrentSearchResults()
-            .pipe(
-                map((searchResponseWithQuery: SearchResponseWithQuery) => {
-                    // update current search params (url, text, sideinfo) via streamer service
-                    this.updateSearchParams(searchResponseWithQuery);
+    /**
+     * Public method: getSearchResponseWithQueryData.
+     *
+     * It gets the query and search response data
+     * from the {@link DataStreamerService}.
+     *
+     * @returns {void} Sets the search response with query data.
+     */
+    getSearchResponseWithQueryData(): void {
+        // cold request to streamer service
+        const searchResponseWithQuery$: Observable<
+            SearchResponseWithQuery
+        > = this.dataStreamerService.getSearchResponseWithQuery().pipe(takeUntil(this.destroy$));
 
-                    return searchResponseWithQuery.data;
-                })
-            )
-            .subscribe(
-                (searchResponse: SearchResponseJson) => {
-                    this.searchResponse = searchResponse;
+        // subscribe to response to handle changes
+        searchResponseWithQuery$.subscribe(
+            (searchResponseWithQuery: SearchResponseWithQuery) => {
+                // update current search params (url, text, sideinfo) via streamer service
+                this.updateSearchParams(searchResponseWithQuery);
 
-                    this.setPagination();
-                },
-                error => {
-                    this.errorMessage = error as any;
-                    console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
-                }
-            );
-    }
-
-    // update search params
-    updateSearchParams(response: SearchResponseWithQuery): void {
-        // update current search values
-        this.updateCurrentValues(response);
-
-        // update side info
-        this.updateSearchInfoService();
-    }
-
-    // update current search values
-    updateCurrentValues(response: SearchResponseWithQuery): void {
-        // get current search value
-        this.searchValue = response.query;
-        // prepare result text for fulltext search
-        this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
-            response.data,
-            this.searchValue,
-            this.searchUrl
+                this.setPagination();
+            },
+            error => {
+                this.errorMessage = error as any;
+                console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
+            }
         );
     }
 
-    // update data for searchInfo via sideinfo service
-    updateSearchInfoService(): void {
-        const searchInfo: SearchInfo = new SearchInfo(this.searchValue, this.searchResultText);
+    /**
+     * Public method: trackById.
+     *
+     * It returns a unique identifier of a given item.
+     * Angular uses the value returned from
+     * tracking function to track items identity.
+     *
+     * @param {string} item The given item.
+     * @returns {string} The identifier of the item.
+     */
+    trackById(item): string {
+        return item.obj_id;
+    }
+
+    /**
+     * Public method: updateSearchParams.
+     *
+     * It stores the given query and response of the search request
+     * and updates the info message and search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery
+     * The given query and response of the search request.
+     *
+     * @returns {void} Updates the search params.
+     */
+    updateSearchParams(searchResponseWithQuery: SearchResponseWithQuery): void {
+        if (!searchResponseWithQuery) {
+            return;
+        }
+
+        // store search response and query
+        this.searchResponseWithQuery = { ...searchResponseWithQuery };
+
+        // update info message about the search results
+        this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
+            searchResponseWithQuery,
+            this.searchUrl
+        );
+
+        // update data for searchInfo via SideInfoService
+        const searchInfo: SearchInfo = new SearchInfo(this.searchResponseWithQuery.query, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
 
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
     ngOnDestroy() {
-        // prevent memory leak when component destroyed
-        if (this.streamerServiceSubscription) {
-            this.streamerServiceSubscription.unsubscribe();
-        }
+        // clear search info
+        this.sideInfoService.clearSearchInfoData();
+
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
     }
 }

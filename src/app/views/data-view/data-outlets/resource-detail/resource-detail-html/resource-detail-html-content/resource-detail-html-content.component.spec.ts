@@ -3,6 +3,7 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import Spy = jasmine.Spy;
 
 import { JsonConvert } from 'json2typescript';
+import { NgxGalleryImage } from 'ngx-gallery';
 
 import {
     expectSpyCall,
@@ -16,7 +17,7 @@ import {
     ResourceDetailContent,
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailImage,
-    ResourceDetailProps
+    ResourceDetailProperty
 } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentComponent } from './resource-detail-html-content.component';
@@ -25,7 +26,7 @@ import { ResourceDetailHtmlContentComponent } from './resource-detail-html-conte
 @Component({ selector: 'awg-resource-detail-html-content-props', template: '' })
 class ResourceDetailHtmlContentPropsStubComponent {
     @Input()
-    props: ResourceDetailProps[];
+    props: ResourceDetailProperty[];
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -33,13 +34,13 @@ class ResourceDetailHtmlContentPropsStubComponent {
 @Component({ selector: 'awg-resource-detail-html-content-imageobjects', template: '' })
 class ResourceDetailHtmlContentImageobjectsStubComponent {
     @Input()
-    images: ResourceDetailImage[];
+    images: NgxGalleryImage[];
 }
 
 @Component({ selector: 'awg-resource-detail-html-content-linkedobjects', template: '' })
 class ResourceDetailHtmlContentLinkedobjectsStubComponent {
     @Input()
-    incoming: ResourceDetailGroupedIncomingLinks;
+    incomingGroups: ResourceDetailGroupedIncomingLinks[];
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -85,11 +86,11 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             new ResourceDetailImage(context, 0),
             new ResourceDetailImage(context, 1)
         ];
-        const incoming = new ResourceDetailGroupedIncomingLinks();
-        const props: ResourceDetailProps[] = [
-            { pid: '1', guielement: 'text', label: 'Test-Label', value: ['Test1', 'Test2'] }
+        const incoming = [new ResourceDetailGroupedIncomingLinks()];
+        const props: ResourceDetailProperty[] = [
+            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
         ];
-        expectedContent = { props, images, incoming };
+        expectedContent = new ResourceDetailContent(props, images, incoming);
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -129,16 +130,16 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.col-lg-4 > div.sidenav-right', 1, 1);
             });
 
-            it('... should not contain ResourceDetailHtmlContentPropsComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentPropsStubComponent, 0, 0);
+            it('... should contain one ResourceDetailHtmlContentPropsComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentPropsStubComponent, 1, 1);
             });
 
-            it('... should not contain ResourceDetailHtmlContentImageobjectsComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentImageobjectsStubComponent, 0, 0);
+            it('... should contain one ResourceDetailHtmlContentImageobjectsComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentImageobjectsStubComponent, 1, 1);
             });
 
-            it('... should not contain ResourceDetailHtmlContentLinkedobjectsComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentLinkedobjectsStubComponent, 0, 0);
+            it('... should contain one ResourceDetailHtmlContentLinkedobjectsComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentLinkedobjectsStubComponent, 1, 1);
             });
         });
     });
@@ -158,51 +159,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ResourceDetailHtmlContentPropsComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentPropsStubComponent, 1, 1);
-            });
-
-            it('... should contain one ResourceDetailHtmlContentImageobjectsComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentImageobjectsStubComponent, 1, 1);
-            });
-
-            it('... should contain one ResourceDetailHtmlContentLinkedobjectsComponent (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentLinkedobjectsStubComponent, 1, 1);
-            });
-
-            it('... should contain one ResourceDetailHtmlContentPropsComponent (stubbed) only if props provided', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentPropsStubComponent, 1, 1);
-
-                // provide data without props property
-                expectedContent.props = null;
-                component.content = expectedContent;
-                fixture.detectChanges();
-
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentPropsStubComponent, 0, 0);
-            });
-
-            it('... should contain one ResourceDetailHtmlContentImageobjectsComponent (stubbed) only if images provided', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentImageobjectsStubComponent, 1, 1);
-
-                // provide data without images property
-                expectedContent.images = [];
-                component.content = expectedContent;
-                fixture.detectChanges();
-
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentImageobjectsStubComponent, 0, 0);
-            });
-
-            it('... should contain one ResourceDetailHtmlContentLinkedobjectsComponent (stubbed) only if incoming provided', () => {
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentLinkedobjectsStubComponent, 1, 1);
-
-                // provide data without incoming property
-                expectedContent.incoming = null;
-                component.content = expectedContent;
-                fixture.detectChanges();
-
-                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentLinkedobjectsStubComponent, 0, 0);
-            });
-
             it('... should pass down `content.props` to ResourceDetailHtmlContentPropsComponent', () => {
                 // get debug and native element of stubbed child
                 const propsDes = getAndExpectDebugElementByDirective(
@@ -247,8 +203,8 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentLinkedobjectsStubComponent
                 ) as ResourceDetailHtmlContentLinkedobjectsStubComponent;
 
-                expect(incomingCmp.incoming).toBeDefined();
-                expect(incomingCmp.incoming).toBe(expectedContent.incoming);
+                expect(incomingCmp.incomingGroups).toBeDefined();
+                expect(incomingCmp.incomingGroups).toBe(expectedContent.incoming);
             });
         });
 

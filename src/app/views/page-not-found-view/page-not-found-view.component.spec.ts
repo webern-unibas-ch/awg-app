@@ -16,10 +16,10 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    const expectedTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
-    const expectedSubtitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
-    const expectedImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
-    const expectedAwgUrl = 'https://www.anton-webern.ch/index.php?id=41';
+    const expectedPageNotFoundTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
+    const expectedPageNotFoundSubTitle = '… aber möglicherweise können wir Ihnen anders weiterhelfen?';
+    const expectedPageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
+    const expectedAwgContactUrl = 'https://www.anton-webern.ch/index.php?id=41';
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -39,14 +39,14 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it(`should have title and subtitle`, () => {
-            expect(component.title).toBe(expectedTitle);
-            expect(component.subtitle).toBe(expectedSubtitle);
+        it(`should have pageNotFoundTitle and pageNotFoundSubtitle`, () => {
+            expect(component.pageNotFoundTitle).toBe(expectedPageNotFoundTitle);
+            expect(component.pageNotFoundSubTitle).toBe(expectedPageNotFoundSubTitle);
         });
 
         it('should have correct values from getters', () => {
-            expect(component.imgPath).toBe(expectedImgPath);
-            expect(component.awgUrl).toBe(expectedAwgUrl);
+            expect(component.pageNotFoundImgPath).toBe(expectedPageNotFoundImgPath);
+            expect(component.awgContactUrl).toBe(expectedAwgContactUrl);
         });
 
         describe('VIEW', () => {
@@ -70,16 +70,21 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 expect(imgEl.src).toBe('', 'should be empty string');
             });
 
-            it('... should not render title or subtitle yet', () => {
-                const h2Des = getAndExpectDebugElementByCss(compDe, 'h2', 1, 1);
-                const h2El = h2Des[0].nativeElement;
+            it('... should not render pageNotFoundTitle or pageNotFoundSubtitle yet', () => {
+                const titleDes = getAndExpectDebugElementByCss(compDe, 'h2#awg-page-not-found-title', 1, 1);
+                const titleEl = titleDes[0].nativeElement;
 
-                expect(h2El.textContent).toBeDefined();
-                expect(h2El.textContent).not.toContain(expectedSubtitle);
+                const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
+                const subtitleEl = subtitleDes[0].nativeElement;
+
+                expect(titleEl.textContent).toBeDefined();
+                expect(titleEl.textContent).not.toContain(expectedPageNotFoundTitle);
+
+                expect(subtitleEl.textContent).toBeDefined();
+                expect(subtitleEl.textContent).not.toContain(expectedPageNotFoundSubTitle);
             });
 
             it('... should not render contact url yet', () => {
-                // second h5 should have an anchor link
                 const contactDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-contact > a', 1, 1);
                 const contactEl = contactDes[0].nativeElement;
 
@@ -96,12 +101,26 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render title in the `h2`-element', () => {
-                const h2Des = getAndExpectDebugElementByCss(compDe, 'h2', 1, 1);
-                const h2El = h2Des[0].nativeElement;
+            it('... should render pageNotFoundTitle in the `h2`-element', () => {
+                const titleDes = getAndExpectDebugElementByCss(compDe, 'h2#awg-page-not-found-title', 1, 1);
+                const titleEl = titleDes[0].nativeElement;
 
-                expect(h2El.textContent).toBeDefined();
-                expect(h2El.textContent).toContain(expectedTitle, `should contain ${expectedTitle}`);
+                expect(titleEl.textContent).toBeDefined();
+                expect(titleEl.textContent).toContain(
+                    expectedPageNotFoundTitle,
+                    `should contain ${expectedPageNotFoundTitle}`
+                );
+            });
+
+            it('... should render pageNotFoundSubTitle in the first `h5`-element', () => {
+                const subtitleDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-subtitle', 1, 1);
+                const subtitleEl = subtitleDes[0].nativeElement;
+
+                expect(subtitleEl.textContent).toBeDefined();
+                expect(subtitleEl.textContent).toContain(
+                    expectedPageNotFoundSubTitle,
+                    `should contain ${expectedPageNotFoundSubTitle}`
+                );
             });
 
             it('... should render image', () => {
@@ -109,18 +128,15 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 const imgEl = imgDes[0].nativeElement;
 
                 expect(imgEl.src).toBeDefined();
-                expect(imgEl.src).toContain(expectedImgPath);
+                expect(imgEl.src).toContain(expectedPageNotFoundImgPath);
             });
 
-            it('... should render contact linkt', () => {
-                const h5Des = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h5', 3, 3);
-
-                // second h5 should have an anchor link with href
-                const contactDes = getAndExpectDebugElementByCss(h5Des[1], 'a[href]', 1, 1);
+            it('... should render contact url', () => {
+                const contactDes = getAndExpectDebugElementByCss(compDe, 'h5#awg-page-not-found-contact > a', 1, 1);
                 const contactEl = contactDes[0].nativeElement;
 
                 expect(contactEl.href).toBeDefined();
-                expect(contactEl.href).toBe(expectedAwgUrl);
+                expect(contactEl.href).toBe(expectedAwgContactUrl);
             });
         });
 

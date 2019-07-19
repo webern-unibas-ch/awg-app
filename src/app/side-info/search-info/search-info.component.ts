@@ -1,64 +1,70 @@
-import { AfterViewChecked, ChangeDetectorRef, Component, OnDestroy } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { Subscription } from 'rxjs';
+import { Observable } from 'rxjs';
 
-import { SearchInfo } from '@awg-side-info/side-info-models';
 import { SideInfoService } from '@awg-core/services';
+import { SearchInfo } from '@awg-side-info/side-info-models';
 
+/**
+ * The SearchInfo component.
+ *
+ * It contains the side-info section of the data (search) view
+ * showing information about search results.
+ */
 @Component({
     selector: 'awg-search-info',
     templateUrl: './search-info.component.html',
-    styleUrls: ['./search-info.component.css']
+    styleUrls: ['./search-info.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class SearchInfoComponent implements AfterViewChecked, OnDestroy {
-    sideInfoDataSubscription: Subscription;
-    sideInfoTitleSubscription: Subscription;
+export class SearchInfoComponent implements OnInit {
+    /**
+     * Public variable: searchInfoData$.
+     *
+     * Observable that keeps the information about the search
+     * to be displayed, i.e. the query and number of hits.
+     */
+    searchInfoData$: Observable<SearchInfo>;
 
-    searchInfo: SearchInfo;
-    searchInfoTitle: string;
+    /**
+     * Public variable: searchInfoHeader$.
+     *
+     * Observable that keeps the header for the search-info.
+     */
+    searchInfoHeader$: Observable<string>;
 
-    constructor(private sideInfoService: SideInfoService, private cdRef: ChangeDetectorRef) {}
+    /**
+     * Constructor of the SearchInfoComponent.
+     *
+     * It declares a private SideInfoService instance
+     * to get the search results and
+     * a private ChangeDetectorRef instance.
+     *
+     * @param {SideInfoService} sideInfoService Instance of the SideInfoService.
+     */
+    constructor(private sideInfoService: SideInfoService) {}
 
-    ngAfterViewChecked() {
-        this.getSideInfoTitle();
-        this.getSideInfoData();
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit(): void {
+        this.getSearchInfoData();
     }
 
-    getSideInfoTitle() {
-        this.sideInfoTitleSubscription = this.sideInfoService.getSearchInfoTitle().subscribe(
-            (title: string) => {
-                this.searchInfoTitle = title;
-            },
-            error => {
-                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', error as any);
-            }
-        );
-    }
-
-    getSideInfoData() {
-        // get sideInfoData from service
-        this.sideInfoDataSubscription = this.sideInfoService.getSideInfoData().subscribe(
-            (searchInfo: SearchInfo) => {
-                this.searchInfo = new SearchInfo(searchInfo.query, searchInfo.nhits);
-
-                // detect changes only if component is not in destroy phase, compare: https://stackoverflow.com/a/46605947
-                if (!this.cdRef['destroyed']) {
-                    this.cdRef.detectChanges();
-                }
-            },
-            error => {
-                console.log('SEARCH-INFO: Got no sideInfoData from Subscription!', error as any);
-            }
-        );
-    }
-
-    ngOnDestroy() {
-        // prevent memory leak when component destroyed
-        if (this.sideInfoDataSubscription) {
-            this.sideInfoDataSubscription.unsubscribe();
-        }
-        if (this.sideInfoTitleSubscription) {
-            this.sideInfoTitleSubscription.unsubscribe();
-        }
+    /**
+     * Public method: getSearchInfoData.
+     *
+     * It calls the SideInfoService to provide
+     * the data for the search-info header and data.
+     *
+     * @returns {void} Sets the searchInfoHeader
+     * and searchInfoData observables.
+     */
+    getSearchInfoData(): void {
+        this.searchInfoHeader$ = this.sideInfoService.getSearchInfoTitle();
+        this.searchInfoData$ = this.sideInfoService.getSearchInfoData();
     }
 }

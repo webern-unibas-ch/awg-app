@@ -1,40 +1,132 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
-import { Meta } from '@awg-core/core-models';
+import { AppConfig } from '@awg-app/app.config';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
+/**
+ * The ContactInfo component.
+ *
+ * It contains the side-info section of the contact view
+ * showing contact information and an Open Street Map (OSM).
+ */
 @Component({
     selector: 'awg-contact-info',
     templateUrl: './contact-info.component.html',
-    styleUrls: ['./contact-info.component.css']
+    styleUrls: ['./contact-info.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ContactInfoComponent implements OnInit {
-    private osmRoot = 'https://www.openstreetmap.org/export/embed.html';
-    private osmId =
-        '?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&amp;layer=mapnik&amp;marker=47.55896585846639%2C7.584506571292877';
-    private osmLinkRoot = 'https://www.openstreetmap.org/';
-    private osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
+    /**
+     * Public variable: contactInfoHeader.
+     *
+     * It keeps the header for the contact-info.
+     */
+    contactInfoHeader = 'Kontakt';
 
-    unsafeOsmUrl: string;
-    unsafeOsmLinkUrl: string;
-    osmUrl: SafeResourceUrl;
-    osmLinkUrl: SafeResourceUrl;
+    /**
+     * Public variable: contactMetaData.
+     *
+     * It keeps the contact meta data for the contact-info.
+     */
+    contactMetaData: MetaContact;
 
-    metaData: Meta;
+    /**
+     * Public variable: pageMetaData.
+     *
+     * It keeps the page meta data for the contact-info.
+     */
+    pageMetaData: MetaPage;
 
-    constructor(private coreService: CoreService, private sanitizer: DomSanitizer) {}
+    /**
+     * Private variable: _osmEmbedUrl.
+     *
+     * It keeps the sanitized link to embed the OSM map.
+     */
+    private _osmEmbedUrl: SafeResourceUrl;
 
-    ngOnInit() {
-        this.unsafeOsmUrl = this.osmRoot + this.osmId;
-        this.unsafeOsmLinkUrl = this.osmLinkRoot + this.osmLinkId;
-        this.osmUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeOsmUrl);
-        this.osmLinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(this.unsafeOsmLinkUrl);
+    /**
+     * Private variable: _osmLinkUrl.
+     *
+     * It keeps the sanitized link to the OSM page.
+     */
+    private _osmLinkUrl: SafeResourceUrl;
 
-        this.provideMetaData();
+    /**
+     * Getter for the sanitized OSM embed link.
+     */
+    get osmEmbedUrl() {
+        return this._osmEmbedUrl;
     }
 
+    /**
+     * Setter for the sanitized OSM embed link.
+     */
+    set osmEmbedUrl(url: SafeResourceUrl) {
+        this._osmEmbedUrl = url;
+    }
+
+    /**
+     * Getter for the sanitized OSM external link.
+     */
+    get osmLinkUrl() {
+        return this._osmLinkUrl;
+    }
+
+    /**
+     * Setter for the sanitized OSM external link.
+     */
+    set osmLinkUrl(url: SafeResourceUrl) {
+        this._osmLinkUrl = url;
+    }
+
+    /**
+     * Constructor of the ContactInfoComponent.
+     *
+     * It declares a private CoreService instance
+     * to get the meta data and a private DomSanitizer instance.
+     *
+     * @param {CoreService} coreService Instance of the CoreService.
+     * @param {DomSanitizer} sanitizer Instance of the Angular DomSanitizer.
+     */
+    constructor(private coreService: CoreService, private sanitizer: DomSanitizer) {}
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.provideMetaData();
+        this.sanitizeUrls();
+    }
+
+    /**
+     * Public method: provideMetaData.
+     *
+     * It calls the CoreService to provide
+     * the meta data for the contact-info.
+     *
+     * @returns {void} Sets the pageMetaData variable.
+     */
     provideMetaData(): void {
-        this.metaData = this.coreService.getMetaData();
+        this.pageMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.contact);
+    }
+
+    /**
+     * Public method: sanitizeUrls.
+     *
+     * It sanitizes the URLs and links
+     * for the OpenStreetMap
+     * using the Angular DomSanitizer.
+     *
+     * @returns {void} Sanitizes the URLs.
+     */
+    sanitizeUrls(): void {
+        this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
+        this.osmLinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_LINK_URL);
     }
 }

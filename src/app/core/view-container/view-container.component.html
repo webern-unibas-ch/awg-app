@@ -1,11 +1,11 @@
 <div class="container-fluid text-left">
     <div class="row">
-        <div class="col-md-4 col-xl-3 mt-4 awg-sidenav text-center">
-            <router-outlet name="side"></router-outlet>
-        </div>
-
         <div class="col-md-8 col-xl-9 my-4 awg-maincontent text-left">
             <router-outlet></router-outlet>
+        </div>
+
+        <div class="col-md-4 col-xl-3 order-first mt-4 awg-sidenav text-center">
+            <router-outlet name="side"></router-outlet>
         </div>
     </div>
 </div>

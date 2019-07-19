@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+
 import { ActivatedRouteStub } from '@testing/router-stubs';
+import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-data';
+
+import { of as observableOf } from 'rxjs';
+import { JsonConvert } from 'json2typescript';
 import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import Spy = jasmine.Spy;
 
-import { ResourceDetail, ResourceDetailHeader } from '@awg-views/data-view/models';
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
-
+import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
-import { ConversionService, DataStreamerService } from '@awg-core/services';
+
+import { ResourceFullResponseJson } from '@awg-shared/api-objects';
+import { ResourceData, ResourceDetail, ResourceDetailHeader } from '@awg-views/data-view/models';
 
 import { ResourceDetailComponent } from './resource-detail.component';
 
@@ -19,16 +25,16 @@ class ResourceDetailHeaderStubComponent {
     header: ResourceDetailHeader;
     @Input()
     resourceUrl: string;
-
-    // TODO: handle outputs
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-resource-detail-html', template: '' })
 class ResourceDetailHtmlStubComponent {
     @Input()
     resourceDetailData: ResourceDetail;
-
-    // TODO: handle outputs
+    @Output()
+    resourceRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-resource-detail-json-converted', template: '' })
@@ -43,21 +49,33 @@ class ResourceDetailJsonRawStubComponent {
     resourceJsonRawData: ResourceFullResponseJson;
 }
 
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
+
 describe('ResourceDetailComponent', () => {
     let component: ResourceDetailComponent;
     let fixture: ComponentFixture<ResourceDetailComponent>;
     let compDe: DebugElement;
     let compEl: any;
 
-    let mockRouter;
+    let mockRouter: Spy;
     let mockActivatedRoute: ActivatedRouteStub;
+
+    // json object
+    let jsonConvert: JsonConvert;
+    let expectedResourceFullResponseJson: ResourceFullResponseJson;
+
+    let expectedResourceData: ResourceData;
 
     beforeEach(async(() => {
         // stub services for test purposes
         // TODO: provide accurate types and service responses
-        const mockConversionService = { prepareResourceDetail: () => {} };
-        const mockSearchService = { httpGetUrl: '', getResourceDetailData: () => {} };
-        const mockStreamerService = { updateCurrentResourceIdStream: () => {} };
+        const mockDataApiService = {
+            httpGetUrl: '/testUrl',
+            getResourceData: () => observableOf(expectedResourceData)
+        };
+        const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
+        const mockDataStreamerService = { updateResourceId: () => {} };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -71,14 +89,15 @@ describe('ResourceDetailComponent', () => {
                 ResourceDetailHeaderStubComponent,
                 ResourceDetailHtmlStubComponent,
                 ResourceDetailJsonConvertedStubComponent,
-                ResourceDetailJsonRawStubComponent
+                ResourceDetailJsonRawStubComponent,
+                TwelveToneSpinnerStubComponent
             ],
             providers: [
-                { provide: ConversionService, useValue: mockConversionService },
-                { provide: DataApiService, useValue: mockSearchService },
-                { provide: DataStreamerService, useValue: mockStreamerService },
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
                 { provide: Router, useValue: mockRouter },
-                { provide: ActivatedRoute, useValue: mockActivatedRoute }
+                { provide: DataApiService, useValue: mockDataApiService },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                { provide: LoadingService, useValue: mockLoadingService }
             ]
         }).compileComponents();
     }));
@@ -89,10 +108,18 @@ describe('ResourceDetailComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        /*
-        mockActivatedRoute.setParamMap({ id: '1234' });
-        mockActivatedRoute.paramMap.subscribe(value => console.log(value));
-        */
+        // mockActivatedRoute.setParamMap({ id: '1234' });
+        // mockActivatedRoute.paramMap.subscribe(value => console.log(value));
+
+        // convert json objects
+        jsonConvert = new JsonConvert();
+        expectedResourceFullResponseJson = jsonConvert.deserializeObject(
+            mockResourceFullResponseJson,
+            ResourceFullResponseJson
+        );
+
+        // test data
+        expectedResourceData = new ResourceData(expectedResourceFullResponseJson, mockResourceDetail);
 
         fixture.detectChanges();
     });

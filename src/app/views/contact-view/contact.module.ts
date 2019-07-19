@@ -1,10 +1,18 @@
 import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
-import { ContactRoutingModule, routedComponents } from './contact-routing.module';
+/* Routing Module */
+import { ContactRoutingModule, routedContactComponents } from './contact-routing.module';
 
+/**
+ * The contact module.
+ *
+ * It embeds the {@link ContactViewComponent} and its
+ * [routing definition]{@link ContactRoutingModule}
+ * as well as the {@link SharedModule}.
+ */
 @NgModule({
     imports: [SharedModule, ContactRoutingModule],
-    declarations: [routedComponents]
+    declarations: [routedContactComponents]
 })
 export class ContactModule {}

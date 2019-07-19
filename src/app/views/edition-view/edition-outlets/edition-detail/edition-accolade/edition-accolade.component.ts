@@ -1,53 +1,133 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgFile, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
+/**
+ * The EditionAccolade component.
+ *
+ * It contains the edition accolade section
+ * of the edition view of the app
+ * with the {@link EditionSvgSheetNavComponent},
+ * the {@link EditionSvgSheetComponent},
+ * the {@link EditionDetailNotificationComponent}
+ * and the {@link EditionTkaTableComponent}.
+ */
 @Component({
     selector: 'awg-edition-accolade',
     templateUrl: './edition-accolade.component.html',
-    styleUrls: ['./edition-accolade.component.css']
+    styleUrls: ['./edition-accolade.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionAccoladeComponent implements OnInit {
+    /**
+     * Input variable: svgSheetsData.
+     *
+     * It keeps the svg sheets data.
+     */
     @Input()
-    svgFileData: EditionSvgFile[];
-    @Input()
-    selectedSvgFile: EditionSvgFile;
-    @Input()
-    selectedTextcritics: Textcritics[];
+    svgSheetsData: EditionSvgSheet[];
+
+    /**
+     * Input variable: selectedOverlay.
+     *
+     * It keeps the selected svg overlay.
+     */
     @Input()
     selectedOverlay: EditionSvgOverlay;
+
+    /**
+     * Input variable: selectedSvgSheet.
+     *
+     * It keeps the selected svg sheet.
+     */
+    @Input()
+    selectedSvgSheet: EditionSvgSheet;
+
+    /**
+     * Input variable: selectedTextcritics.
+     *
+     * It keeps the selected textcritics.
+     */
+    @Input()
+    selectedTextcritics: Textcritics[];
+
+    /**
+     * Input variable: showTkA.
+     *
+     * If the textcritics shall be displayed.
+     */
     @Input()
     showTkA: boolean;
+
+    /**
+     * Output variable: openModalRequest.
+     *
+     * It keeps an event emitter to open the modal
+     * with the selected modal text snippet.
+     */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: selectOverlayRequest.
+     *
+     * It keeps an event emitter for the selected svg overlay.
+     */
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectOverlayRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
+
+    /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
     @Output()
-    selectTextcriticRequest: EventEmitter<EditionSvgOverlay> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    showAccoladePanel = true;
-
-    constructor() {}
-
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {}
 
-    // request function to emit modal id
-    openModal(id: string) {
+    /**
+     * Public method: openModal.
+     *
+     * It emits a given id of a modal snippet text
+     * to the {@link openModalRequest}.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Emits the id.
+     */
+    openModal(id: string): void {
         this.openModalRequest.emit(id);
     }
 
-    // request function to emit selected svg file id
-    selectSvgFile(id: string) {
-        this.selectSvgFileRequest.emit(id);
+    /**
+     * Public method: selectOverlay.
+     *
+     * It emits a given svg overlay
+     * to the {@link selectOverlayRequest}.
+     *
+     * @param {EditionSvgOverlay} overlay The given svg overlay.
+     * @returns {void} Emits the overlay.
+     */
+    selectOverlay(overlay: EditionSvgOverlay): void {
+        this.selectOverlayRequest.emit(overlay);
     }
 
-    // request function to emit selected textcritic's type & id
-    selectTextcritic($event: EditionSvgOverlay) {
-        this.selectTextcriticRequest.emit($event);
-    }
-
-    // helper function to toggle panel
-    togglePanel(): boolean {
-        return (this.showAccoladePanel = !this.showAccoladePanel);
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
+    selectSvgSheet(id: string): void {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

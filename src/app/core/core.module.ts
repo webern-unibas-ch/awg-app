@@ -6,10 +6,13 @@ import { FooterModule } from './footer/footer.module';
 import { NavbarComponent } from './navbar/navbar.component';
 import { ViewContainerComponent } from './view-container/view-container.component';
 
+import { httpInterceptorProviders } from './interceptors';
+
 @NgModule({
     imports: [SharedModule, FooterModule],
     declarations: [NavbarComponent, ViewContainerComponent],
-    exports: [NavbarComponent, ViewContainerComponent, FooterModule]
+    exports: [NavbarComponent, ViewContainerComponent, FooterModule],
+    providers: [httpInterceptorProviders]
 })
 export class CoreModule {
     constructor(

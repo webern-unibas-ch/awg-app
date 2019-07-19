@@ -1,19 +1,25 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { SearchPanelComponent } from './search-panel.component';
+import { of as observableOf } from 'rxjs';
+
+import { ActivatedRouteStub } from '@testing/router-stubs';
+
 import { DataApiService } from '@awg-views/data-view/services';
-import { ConversionService, DataStreamerService } from '@awg-core/services';
+import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { SearchParams } from '@awg-views/data-view/models';
+
+import { SearchPanelComponent } from './search-panel.component';
 
 @Component({ selector: 'awg-search-form', template: '' })
 class SearchFormStubComponent {
     @Input()
     searchValue: string;
-
-    // TODO: handle outputs
+    @Output()
+    searchRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-search-result-list', template: '' })
@@ -22,6 +28,12 @@ class SearchResultListStubComponent {
     searchParams: SearchParams;
     @Input()
     searchUrl: string;
+    @Output()
+    pageChangeRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    rowChangeRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    viewChangeRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
@@ -33,10 +45,23 @@ describe('SearchPanelComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
+    let mockRouter;
+    let mockActivatedRoute: ActivatedRouteStub;
+
     // stub services for test purposes
     const mocConversionService = { convertFullTextSearchResults: () => {} };
-    const mockdataApiService = { httpGetUrl: '/testUrl', getFulltextSearchData: () => {} };
-    const mockStreamerService = { updateSearchResponseStream: () => {} };
+    const mockDataApiService = { httpGetUrl: '/testUrl', getFulltextSearchData: () => observableOf({}) };
+    const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
+    const mockDataStreamerService = { updateSearchResponseWithQuery: () => {} };
+
+    // router spy object
+    mockRouter = {
+        url: '/test-url',
+        events: observableOf(new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')),
+        navigate: jasmine.createSpy('navigate')
+    };
+    // mocked activated route
+    mockActivatedRoute = new ActivatedRouteStub();
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -48,9 +73,12 @@ describe('SearchPanelComponent', () => {
                 TwelveToneSpinnerStubComponent
             ],
             providers: [
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                { provide: Router, useValue: mockRouter },
                 { provide: ConversionService, useValue: mocConversionService },
-                { provide: DataApiService, useValue: mockdataApiService },
-                { provide: DataStreamerService, useValue: mockStreamerService }
+                { provide: DataApiService, useValue: mockDataApiService },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                { provide: LoadingService, useValue: mockLoadingService }
             ]
         }).compileComponents();
     }));

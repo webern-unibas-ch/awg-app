@@ -18,6 +18,9 @@ import { JsonConvert, OperationMode, ValueCheckingMode } from 'json2typescript';
  * Result class used as API url response in ApiService
  */
 export class ApiServiceResult {
+    /**
+     * Configuration and instantiation of JsonConvert.
+     */
     private static jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
     /**
@@ -42,12 +45,13 @@ export class ApiServiceResult {
 
     /**
      * Gets the result body as instance of classObject.
+     *
      * @param classObject
-     * @returns {any}
+     *
+     * @returns {*}
      * @throws
      */
-
-    getBody(classObject?: { new (): any }): any {
+    getBody(classObject?: new () => any): any {
         // console.log(this.body);
         return ApiServiceResult.jsonConvert.deserialize(this.body, classObject);
     }

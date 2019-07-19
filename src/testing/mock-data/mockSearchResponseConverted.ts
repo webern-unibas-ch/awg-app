@@ -1,3 +1,11 @@
+/**
+ * Test helper data file: mockSearchResponseConverted.
+ *
+ * It provides a mocked conversion of a SearchResponseJson
+ * response from the Salsah API.
+ *
+ * Exposed to be called from tests.
+ */
 export const mockSearchResponseConverted = {
     status: 0,
     userdata: {

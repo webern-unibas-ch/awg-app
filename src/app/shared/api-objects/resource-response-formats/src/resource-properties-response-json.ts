@@ -26,14 +26,18 @@ import { PropJson } from './prop-json';
 export class ResourcePropertiesResponseJson extends BasicResponseJson {
     /**
      * A map of property type IRIs to property instances
+     *
      * @param properties: object
-     * * @type [index: string]: prop
+     * @type [index: string]: prop
      * TODO
      */
     @JsonProperty('properties', [PropJson])
     public properties: IndexedPropJson[] = undefined;
 }
 
+/**
+ * Represents a IndexedPropJson
+ */
 interface IndexedPropJson {
     [index: string]: PropJson;
 }
