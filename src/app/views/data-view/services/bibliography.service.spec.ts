@@ -101,11 +101,6 @@ describe('BibliographyService (DONE)', () => {
             expect(bibliographyService.searchRoute).toBe(expectedSearchRoute);
         });
 
-        it(`... should have 'loading = false' (inherited from ApiService)`, () => {
-            expect(bibliographyService.loading).toBeDefined();
-            expect(bibliographyService.loading).toBeFalsy();
-        });
-
         it(`... should have empty 'httpGetUrl' (inherited from ApiService)`, () => {
             expect(bibliographyService.httpGetUrl).toBeDefined();
             expect(bibliographyService.httpGetUrl).toBe('');
@@ -121,15 +116,15 @@ describe('BibliographyService (DONE)', () => {
             });
 
             // match the request url
-            const r = httpTestingController.expectOne({
+            const call = httpTestingController.expectOne({
                 url: '/foo/bar'
             });
 
             // check for GET request
-            expect(r.request.method).toEqual('GET');
+            expect(call.request.method).toEqual('GET');
 
             // respond with mocked data
-            r.flush(testData);
+            call.flush(testData);
         }));
     });
 
@@ -142,9 +137,13 @@ describe('BibliographyService (DONE)', () => {
                 bibliographyService.getBibliographyList().subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
             }));
 
             it(`... should set filter params for GET request`, async(() => {
@@ -154,26 +153,29 @@ describe('BibliographyService (DONE)', () => {
                 bibliographyService.getBibliographyList().subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(5, 'should be 5');
-                    expect(req.params.get('searchtype')).toBe('extended', 'should be extended');
-                    expect(req.params.get('filter_by_project')).toBe(
-                        expectedProjectId,
-                        `should be ${expectedProjectId}`
-                    );
-                    expect(req.params.get('filter_by_restype')).toBe(
-                        expectedResTypeId,
-                        `should be ${expectedResTypeId}`
-                    );
-                    expect(req.params.get('property_id')).toBe(
-                        expectedBibShortTitlePropertyId,
-                        `should be ${expectedBibShortTitlePropertyId}`
-                    );
-                    expect(req.params.get('compop')).toBe('EXISTS', `should be EXISTS`);
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(5, 'should be 5');
+                expect(call.request.params.get('searchtype')).toBe('extended', 'should be extended');
+                expect(call.request.params.get('filter_by_project')).toBe(
+                    expectedProjectId,
+                    `should be ${expectedProjectId}`
+                );
+                expect(call.request.params.get('filter_by_restype')).toBe(
+                    expectedResTypeId,
+                    `should be ${expectedResTypeId}`
+                );
+                expect(call.request.params.get('property_id')).toBe(
+                    expectedBibShortTitlePropertyId,
+                    `should be ${expectedBibShortTitlePropertyId}`
+                );
+                expect(call.request.params.get('compop')).toBe('EXISTS', `should be EXISTS`);
             }));
 
             it(`... should call getApiResponse (via ApiService) with filter params`, async(() => {

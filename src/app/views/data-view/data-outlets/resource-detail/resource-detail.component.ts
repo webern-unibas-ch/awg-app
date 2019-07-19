@@ -1,144 +1,233 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 
-import { switchMap, map } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { ConversionService, DataStreamerService } from '@awg-core/services';
+import { DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';
-import { ResourceData, ResourceDetail } from '@awg-views/data-view/models';
-import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
+import { ResourceData } from '@awg-views/data-view/models';
+
+/**
+ * The ResourceDetail component.
+ *
+ * It contains the resource detail section
+ * of the data (search) view of the app
+ * with a {@link TwelveToneSpinnerComponent}
+ * and an ng-bootstrap tabset that contains
+ * the {@link ResourceDetailHeaderComponent},
+ * {@link ResourceDetailHtmlComponent},
+ * {@link ResourceDetailJsonConvertedComponent}
+ * and the {@link ResourceDetailJsonRawComponent}.
+ */
 @Component({
     selector: 'awg-resource-detail',
     templateUrl: './resource-detail.component.html',
     styleUrls: ['./resource-detail.component.css'],
-    providers: [NgbTabsetConfig]
+    providers: [NgbTabsetConfig],
+    changeDetection: ChangeDetectionStrategy.Default
 })
-export class ResourceDetailComponent implements OnInit {
-    resourceData: ResourceData;
-    resourceId: string;
-    resourceUrl: string;
-    oldId: string;
+export class ResourceDetailComponent implements OnInit, OnDestroy {
+    /**
+     * Public variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    destroy$: Subject<boolean> = new Subject<boolean>();
 
+    /**
+     * Public variable: errorMessage.
+     *
+     * It keeps an errorMessage for the resource data subscription.
+     */
     errorMessage: any = undefined;
 
-    tabTitle = {
+    /**
+     * Public variable: oldId.
+     *
+     * It keeps the id of the previous resource detail.
+     */
+    oldId: string;
+
+    /**
+     * Public variable: resourceData.
+     *
+     * It keeps the data of the resource detail.
+     */
+    resourceData: ResourceData;
+
+    /**
+     * Public variable: resourceId.
+     *
+     * It keeps the id of the current resource detail.
+     */
+    resourceId: string;
+
+    /**
+     * Public variable: tabTitles.
+     *
+     * It keeps the titles for the tab panels.
+     */
+    tabTitles = {
         html: 'Detail',
         raw: 'JSON (raw)',
         converted: 'JSON (converted)'
     };
 
+    /**
+     * Getter for the httpGetUrl of the {@link DataApiService}.
+     */
+    get httpGetUrl(): string {
+        return this.dataApiService.httpGetUrl;
+    }
+
+    /**
+     * Getter for the loading status observable of the {@link LoadingService}.
+     */
+    get isLoading$(): Observable<boolean> {
+        return this.loadingService.getLoadingStatus();
+    }
+
+    /**
+     * Constructor of the ResourceDetailComponent.
+     *
+     * It declares private instances of the Angular ActivatedRoute,
+     * the Angular Router, the DataApiService, the DataStreamerService,
+     * the LoadingService, and a configuration object for the
+     * ng-bootstrap tabset.
+     *
+     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
+     * @param {Router} router Instance of the Angular Router.
+     * @param {DataApiService} dataApiService Instance of the DataApiService.
+     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
+     * @param {LoadingService} loadingService Instance of the LoadingService.
+     * @param {NgbTabsetConfig} config Instance of the NgbTabsetConfig.
+     */
     constructor(
         private route: ActivatedRoute,
         private router: Router,
-        private conversionService: ConversionService,
-        private searchService: DataApiService,
-        private streamerService: DataStreamerService,
+        private dataApiService: DataApiService,
+        private dataStreamerService: DataStreamerService,
+        private loadingService: LoadingService,
         config: NgbTabsetConfig
     ) {
         config.justify = 'justified';
     }
 
-    /*
-     * Scroll to Top of Window
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
      */
-    static scrollToTop() {
-        window.scrollTo(0, 0);
-    }
-
     ngOnInit() {
+        this.routeToSidenav();
         this.getResourceData();
-        this.activateSidenav();
     }
 
-    getResourceData() {
+    /**
+     * Public method: getResourceData.
+     *
+     * It gets the resource id from the route params
+     * and fetches the corresponding resource data
+     * from the {@link DataApiService}.
+     *
+     * @returns {void} Sets the resource data.
+     */
+    getResourceData(): void {
         // observe route params
         this.route.paramMap
             .pipe(
                 switchMap((params: ParamMap) => {
-                    // store resource id
-                    this.resourceId = params.get('id');
+                    // short cut for id param
+                    const id = params.get('id');
 
-                    // fetch data
-                    return this.searchService.getResourceDetailData(params.get('id')).pipe(
-                        map((resourceBody: ResourceFullResponseJson) => {
-                            // update current resource params (url and id) via streamer service
-                            this.updateResourceParams();
+                    // update current resource id via streamer service
+                    this.updateResourceId(id);
 
-                            // prepare resource detail
-                            return this.prepareResourceDetail(resourceBody);
-                        })
-                    );
-                })
+                    // fetch resource data depending on param id
+                    return this.dataApiService.getResourceData(id);
+                }),
+                takeUntil(this.destroy$)
             )
             .subscribe(
-                (resourceData: ResourceData) => {
-                    this.resourceData = resourceData;
-
-                    // scroll to Top of Page
-                    ResourceDetailComponent.scrollToTop();
+                (data: ResourceData) => {
+                    // subscribe to resource data to trigger loading service
+                    this.resourceData = data;
                 },
-                error => {
-                    this.errorMessage = error as any;
-                }
+                err => (this.errorMessage = err)
             );
     }
 
-    updateResourceParams() {
-        // update current id
-        this.updateResourceId();
-
-        // update url for resource
-        this.updateCurrentUrl();
-    }
-
-    updateResourceId() {
-        // share current id via streamer service
-        this.streamerService.updateCurrentResourceIdStream(this.resourceId);
-    }
-
-    updateCurrentUrl() {
-        // get url from search service
-        this.resourceUrl = this.searchService.httpGetUrl;
-    }
-
-    prepareResourceDetail(resourceBody: ResourceFullResponseJson): ResourceData {
-        if (Object.keys(resourceBody).length === 0 && resourceBody.constructor === Object) {
-            return;
-        }
-
-        // convert data for displaying resource detail
-        const html: ResourceDetail = this.conversionService.prepareResourceDetail(resourceBody, this.resourceId);
-
-        // return new resource data
-        return (this.resourceData = new ResourceData(resourceBody, html));
-    }
-
-    /*
-     * Navigate to ResourceDetail:
-     * if nextId is emitted, use nextId for navigation, else navigate to oldId (backButton)
-     * if oldId not exists (first call), use resourceId
+    /**
+     * Public method: updateResourceId.
+     *
+     * It updates the resource id in the component
+     * and the streamer service.
+     *
+     * @param {string} id The given resource id.
+     *
+     * @returns {void} Sets the resource id.
      */
-    navigateToResource(nextId?: string): void {
-        const showId = nextId ? nextId : this.oldId ? this.oldId : this.resourceId;
+    updateResourceId(id: string): void {
+        // store current resource id
+        this.resourceId = id;
+
+        // share current id via streamer service
+        this.dataStreamerService.updateResourceId(id);
+    }
+
+    /**
+     * Public method: navigateToResource.
+     *
+     * It navigates to the '/data/resource' route
+     * with the given id.
+     *
+     * If nextId is emitted, use nextId for navigation,
+     * else navigate to oldId (backButton). If oldId
+     * not exists (first call), use resourceId.
+     *
+     * @param {string} [id] The given resource id.
+     * @returns {void} Navigates to the resource.
+     */
+    navigateToResource(id?: string): void {
+        const nextId = id ? id : this.oldId ? this.oldId : this.resourceId;
+
         // save resourceId as oldId
         this.oldId = this.resourceId;
-        // update resourceId
-        this.resourceId = showId;
 
         // navigate to new resource
-        this.router.navigate(['/data/resource', +this.resourceId]);
+        this.router.navigate(['/data/resource', +nextId]);
     }
 
-    /*
-     * Activate Sidenav: ResourceInfo
+    /**
+     * Public method: routeToSidenav.
+     *
+     * It activates the secondary outlet with the resource-info.
+     *
+     * @returns {void} Activates the resource-info side outlet.
      */
-    activateSidenav(): void {
+    routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
             queryParamsHandling: 'preserve'
         });
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
     }
 }

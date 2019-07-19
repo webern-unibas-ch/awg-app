@@ -5,20 +5,27 @@ import { registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
 
 //
-// main app modules & routes
+// main app modules
 import { AppComponent } from './app.component';
-import { AppRoutingModule, routedComponents } from './app-routing.module';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
 import { SideInfoModule } from '@awg-side-info/side-info.module';
 
-//
-//  load and register the used locale file
+/* Routing Module */
+import { AppRoutingModule, routedAppComponents } from './app-routing.module';
+
+/* load and register the used locale file */
 registerLocaleData(localeDeDE);
 
+/**
+ * The bootstrapping app module.
+ *
+ * It embeds the {@link AppComponent} and its [routing definition]{@link AppRoutingModule}
+ * as well as the {@link CoreModule}, {@link SharedModule} and {@link SideInfoModule}.
+ */
 @NgModule({
     imports: [BrowserModule, HttpClientModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
-    declarations: [AppComponent, routedComponents],
+    declarations: [AppComponent, routedAppComponents],
     providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }], // change global LOCALE-ID
     bootstrap: [AppComponent]
 })

@@ -1,1 +1,1 @@
-<span [innerHtml]="bibItemDetail?.converted | bibFormat"></span>
+<span [innerHtml]="bibEntry$ | async | bibFormat"></span>

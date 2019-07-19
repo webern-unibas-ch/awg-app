@@ -4,6 +4,7 @@ import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 import { HomeViewComponent } from './views/home-view/home-view.component';
 import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
 
+/* routes of the AppModule */
 const appRoutes: Routes = [
     // eager loaded
     { path: 'home', component: HomeViewComponent },
@@ -20,9 +21,21 @@ const appRoutes: Routes = [
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '**', component: PageNotFoundViewComponent }
+    { path: '404', component: PageNotFoundViewComponent },
+    { path: '**', redirectTo: '404', pathMatch: 'full' }
 ];
 
+/**
+ * Routed components of the {@link AppModule}:
+ * {@link HomeViewComponent} and {@link PageNotFoundViewComponent}.
+ */
+export const routedAppComponents = [HomeViewComponent, PageNotFoundViewComponent];
+
+/**
+ * Main app module routing.
+ *
+ * It activates the appRoutes, esp. lazy-loaded View Modules.
+ */
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes, {
@@ -36,5 +49,3 @@ const appRoutes: Routes = [
     exports: [RouterModule]
 })
 export class AppRoutingModule {}
-
-export const routedComponents = [HomeViewComponent, PageNotFoundViewComponent];

@@ -1,17 +1,43 @@
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
+/**
+ * The ResourceDetailHeader class.
+ *
+ * It is used in the context of the resource detail view
+ * to store the data for the resource detail header.
+ */
 export class ResourceDetailHeader {
+    /**
+     * The object id of the resource.
+     */
     objID: string;
+
+    /**
+     * The icon for the type of object of the resource.
+     */
     icon: string;
+
+    /**
+     * The type of the resource.
+     */
     type: string;
+
+    /**
+     * The title of the resource.
+     */
     title: string;
+
+    /**
+     * The last modification date of the resource.
+     */
     lastmod: string;
 
-    /******************************************
+    /**
+     * Private static method: replaceParagraphTags.
      *
-     * replace paragraph tags
-     *
-     *****************************************/
+     * It replaces paragraph tags with break lines
+     * in a resource's rich text area (here: title).
+     */
     private static replaceParagraphTags(str: string): string {
         if (!str) {
             return;
@@ -23,6 +49,16 @@ export class ResourceDetailHeader {
         return str;
     }
 
+    /**
+     * Constructor of the ResourceDetailHeader class.
+     *
+     * It initializes the class with values from a
+     * given ResourceFullResponseJson and the id
+     * of the current resource.
+     *
+     * @param {ResourceFullResponseJson} data The given ResourceFullResponseJson.
+     * @param {string} currentId The given id of the current resource.
+     */
     constructor(data: ResourceFullResponseJson, currentId: string) {
         // init values
         this.objID = '---';

@@ -2,30 +2,37 @@
     <ngb-panel id="awg-accolade-view" title="Edierter Notentext">
         <ng-template ngbPanelContent>
             <!-- accolade control -->
-            <awg-edition-svg-file-nav *ngIf="svgFileData && selectedSvgFile"
-                                      [svgFileData]="svgFileData"
-                                      [selectedSvgFile]="selectedSvgFile"
-                                      (selectSvgFileRequest)="selectSvgFile($event)">
-            </awg-edition-svg-file-nav>
+            <awg-edition-svg-sheet-nav
+                *ngIf="svgSheetsData && selectedSvgSheet"
+                [svgSheetsData]="svgSheetsData"
+                [selectedSvgSheet]="selectedSvgSheet"
+                (selectSvgSheetRequest)="selectSvgSheet($event)"
+            >
+            </awg-edition-svg-sheet-nav>
 
             <!-- pre-notification -->
             <awg-edition-detail-notification></awg-edition-detail-notification>
 
             <!-- svg panel -->
-            <awg-edition-svg-file *ngIf="selectedSvgFile"
-                                  [selectedSvgFile]="selectedSvgFile"
-                                  [selectedOverlay]="selectedOverlay"
-                                  (selectSvgFileRequest)="selectSvgFile($event)"
-                                  (selectTextcriticRequest)="selectTextcritic($event)">
-            </awg-edition-svg-file>
+            <awg-edition-svg-sheet
+                *ngIf="selectedSvgSheet"
+                [selectedSvgSheet]="selectedSvgSheet"
+                [selectedOverlay]="selectedOverlay"
+                (selectSvgSheetRequest)="selectSvgSheet($event)"
+                (selectOverlayRequest)="selectOverlay($event)"
+            >
+            </awg-edition-svg-sheet>
 
             <!-- table for TkA -->
             <div class="panel-footer" *ngIf="showTkA && selectedTextcritics">
-                <h4 class="mt-4">Textkritischer Kommentar ({{selectedOverlay.typeLabel}} {{selectedOverlay.id}}):</h4>
+                <h4 class="mt-4">
+                    Textkritischer Kommentar ({{ selectedOverlay.typeLabel }} {{ selectedOverlay.id }}):
+                </h4>
                 <awg-edition-tka-table
                     [selectedTextcritics]="selectedTextcritics"
                     (openModalRequest)="openModal($event)"
-                    (selectSvgFileRequest)="selectSvgFile($event)">
+                    (selectSvgSheetRequest)="selectSvgSheet($event)"
+                >
                 </awg-edition-tka-table>
             </div>
         </ng-template>

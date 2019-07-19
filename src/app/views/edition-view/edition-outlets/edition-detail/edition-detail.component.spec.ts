@@ -8,8 +8,8 @@ import { Observable, of as observableOf } from 'rxjs';
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import {
-    ConvoluteFolio,
-    EditionSvgFile,
+    Folio,
+    EditionSvgSheet,
     EditionSvgOverlay,
     Textcritics,
     TextcriticsList
@@ -26,9 +26,9 @@ class EditionDetailNotificationStubComponent {}
 @Component({ selector: 'awg-edition-convolute', template: '' })
 class EditionConvoluteStubComponent {
     @Input()
-    convoluteData: ConvoluteFolio[];
+    folios: Folio[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgSheet: EditionSvgSheet;
 
     // TODO: add outputs
 }
@@ -36,9 +36,9 @@ class EditionConvoluteStubComponent {
 @Component({ selector: 'awg-edition-accolade', template: '' })
 class EditionAccoladeStubComponent {
     @Input()
-    svgFileData: EditionSvgFile[];
+    svgSheetsData: EditionSvgSheet[];
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgSheet: EditionSvgSheet;
     @Input()
     selectedTextcritics: Textcritics[];
     @Input()
@@ -54,10 +54,10 @@ describe('EditionDetailComponent', () => {
     let fixture: ComponentFixture<EditionDetailComponent>;
 
     let mockEditionService: Partial<EditionService>;
-    let getEditionDetailDataSpy: Observable<[ConvoluteFolio[], EditionSvgFile[], TextcriticsList]>;
+    let getEditionDetailDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
 
     beforeEach(async(() => {
-        // create a fake service object with a `getCurrentSearchResults()` spy
+        // create a fake service object with a `getEditionDetailData()` spy
         const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
         // make the spies return a synchronous Observable with the test data
         getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data

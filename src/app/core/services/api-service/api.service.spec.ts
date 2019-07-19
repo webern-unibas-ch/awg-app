@@ -85,11 +85,6 @@ describe('ApiService', () => {
             expect(apiService.serviceName).toBe(expectedServiceName);
         });
 
-        it(`... should have 'loading = false'`, () => {
-            expect(apiService.loading).toBeDefined();
-            expect(apiService.loading).toBeFalsy();
-        });
-
         it(`... should have empty 'httpGetUrl'`, () => {
             expect(apiService.httpGetUrl).toBeDefined();
             expect(apiService.httpGetUrl).toBe('');
@@ -105,15 +100,15 @@ describe('ApiService', () => {
             });
 
             // match the request url
-            const r = httpTestingController.expectOne({
+            const call = httpTestingController.expectOne({
                 url: '/foo/bar'
             });
 
             // check for GET request
-            expect(r.request.method).toEqual('GET');
+            expect(call.request.method).toEqual('GET');
 
             // respond with mocked data
-            r.flush(testData);
+            call.flush(testData);
         }));
     });
 
@@ -124,9 +119,13 @@ describe('ApiService', () => {
                 apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe();
 
                 // expect one request to url with given settings
-                const r = httpTestingController.expectOne((req: HttpRequest<any>) => {
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
             }));
 
             it(`... should apply an empty param object for HTTP GET if none is provided`, async(() => {
@@ -134,10 +133,7 @@ describe('ApiService', () => {
                 apiService.getApiResponse(UserDataJson, queryPath).subscribe();
 
                 // expect one request to url with given settings
-                const r = httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(0);
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return (
                         req.method === 'GET' &&
                         req.responseType === 'json' &&
@@ -145,6 +141,12 @@ describe('ApiService', () => {
                         req.params.keys().length === 0
                     );
                 }, `GET to ${expectedUrl} without params`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(0, 'should be 0');
             }));
 
             it(`... should apply provided params for HTTP GET`, async(() => {
@@ -152,7 +154,7 @@ describe('ApiService', () => {
                 apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe();
 
                 // expect one request to url with given settings
-                const r = httpTestingController.expectOne((req: HttpRequest<any>) => {
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return (
                         req.method === 'GET' &&
                         req.responseType === 'json' &&
@@ -162,6 +164,17 @@ describe('ApiService', () => {
                         req.params.get('show_nrows') === expectedNRows
                     );
                 }, `GET to ${expectedUrl} with 'searchtype=fulltext' and 'nrows=10'`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(2, 'should be 2');
+                expect(call.request.params.get('searchtype')).toBe(
+                    expectedSearchType,
+                    `should be ${expectedSearchType}`
+                );
+                expect(call.request.params.get('show_nrows')).toBe(expectedNRows, `should be ${expectedNRows}`);
             }));
         });
 
@@ -182,12 +195,12 @@ describe('ApiService', () => {
                         });
 
                     // expect one request to url with given settings
-                    const r = httpTestingController.expectOne(
+                    const call = httpTestingController.expectOne(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
 
                     // respond with mock data
-                    r.flush(expectedApiServiceResult);
+                    call.flush(expectedApiServiceResult);
                 }));
 
                 it(`... should return a converted JSON object`, async(() => {
@@ -203,19 +216,19 @@ describe('ApiService', () => {
                         });
 
                     // expect one request to url with given settings
-                    const r = httpTestingController.expectOne(
+                    const call = httpTestingController.expectOne(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
 
                     // respond with mock data
-                    r.flush(expectedJsonResponse);
+                    call.flush(expectedJsonResponse);
                 }));
             });
 
             describe('fail', () => {
                 // see http://www.syntaxsuccess.com/viewarticle/unit-testing-rxjs-retries
                 it(`... should throw default ApiServiceError if httpGet fails with undefined handler`, done => {
-                    const expectedErrorMsg = 'failed HTTP response';
+                    const expectedErrorMsg = 'should fail HTTP response';
                     expectedApiServiceError = new ApiServiceError();
 
                     // spy on mocked http get call & throw an error
@@ -237,7 +250,7 @@ describe('ApiService', () => {
                 });
 
                 it(`... should throw specified ApiServiceError if httpGet fails with specified handler`, done => {
-                    const expectedErrorMsg = 'failed HTTP response with 500 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 500 error';
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error', true);
 
                     // spy on mocked http get call & throw an error
@@ -254,14 +267,14 @@ describe('ApiService', () => {
                     );
 
                     // expect no request to url with given settings
-                    const r = httpTestingController.expectNone(
+                    const call = httpTestingController.expectNone(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
                 });
 
-                /* test muted as long as console.error is commented out */
+                // test muted as long as console.error is commented out
                 xit(`... should log an error to the console on error`, async(() => {
-                    const expectedErrorMsg = 'failed HTTP response with 500 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 500 error';
                     expectedApiServiceError = createApiServiceError(500, 'Internal Server Error');
 
                     const errorSpy = spyOn(console, 'error').and.callThrough();
@@ -276,16 +289,16 @@ describe('ApiService', () => {
                     );
 
                     // expect one request to url with given settings
-                    const r = httpTestingController.expectOne(
+                    const call = httpTestingController.expectOne(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
 
                     // respond with mock error
-                    r.flush(expectedErrorMsg, expectedApiServiceError);
+                    call.flush(expectedErrorMsg, expectedApiServiceError);
                 }));
 
                 it(`... should return 'ApiServiceError' for 401 Unauthorized`, async(() => {
-                    const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 401 error';
                     expectedApiServiceError = createApiServiceError(401, 'Unauthorized');
 
                     // call service function (fail)
@@ -297,16 +310,16 @@ describe('ApiService', () => {
                     );
 
                     // expect one request to url with given settings
-                    const r = httpTestingController.expectOne(
+                    const call = httpTestingController.expectOne(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
 
                     // respond with mock error
-                    r.flush(expectedErrorMsg, expectedApiServiceError);
+                    call.flush(expectedErrorMsg, expectedApiServiceError);
                 }));
 
                 it(`... should return 'ApiServiceError' for 404 Not found`, async(() => {
-                    const expectedErrorMsg = 'failed HTTP response with 404 error';
+                    const expectedErrorMsg = 'should fail HTTP response with 404 error';
                     expectedApiServiceError = createApiServiceError(404, 'Not found');
 
                     // call service function (fail)
@@ -318,12 +331,12 @@ describe('ApiService', () => {
                     );
 
                     // expect one request to url with given settings
-                    const r = httpTestingController.expectOne(
+                    const call = httpTestingController.expectOne(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
 
                     // respond with mock error
-                    r.flush(expectedErrorMsg, expectedApiServiceError);
+                    call.flush(expectedErrorMsg, expectedApiServiceError);
                 }));
             });
         });

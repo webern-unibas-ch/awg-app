@@ -1,9 +1,11 @@
 <!-- content: bibliography -->
 <awg-bibliography-search></awg-bibliography-search>
 
-<p>Lade ... {{ bibList?.length }} von {{ bibListResponse?.nhits }} Einträgen</p>
+<p>Lade ... {{ (bibList$ | async)?.subjects.length }} von {{ nhits }} Einträgen</p>
 
-<awg-bibliography-list *ngIf="isBibListLoaded && bibList"
-    [bibList]="bibList"
-    (selectItemRequest)="onItemSelect($event)">
+<awg-bibliography-list
+    *ngIf="isBibListLoaded && (bibList$ | async) as bibList"
+    [bibList]="bibList.subjects"
+    (selectItemRequest)="onItemSelect($event)"
+>
 </awg-bibliography-list>

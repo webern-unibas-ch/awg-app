@@ -1,24 +1,87 @@
 import { AppConfig } from '@awg-app/app.config';
-import { Meta } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaStructure } from '@awg-core/core-models';
 
-export const METADATA: Meta = {
-    page: {
-        yearStart: 2015,
-        yearRecent: new Date().getFullYear(),
-        editionUrl: AppConfig.EDITION_HOME,
-        webernUrl: AppConfig.WEBERN_HOME,
-        version: AppConfig.VERSION,
-        versionReleaseDate: AppConfig.VERSION_RELEASE_DATE
+/**
+ * Object constant for page metadata.
+ *
+ * It provides metadata used for the page framework.
+ */
+const METAPAGE: MetaPage = {
+    yearStart: 2015,
+    yearCurrent: new Date().getFullYear(),
+    awgAppUrl: AppConfig.AWG_APP_URL,
+    compodocUrl: AppConfig.AWG_APP_COMPODOC_URL,
+    githubUrl: AppConfig.AWG_APP_GITHUB_URL,
+    version: AppConfig.AWG_APP_VERSION,
+    versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
+    awgProjectUrl: AppConfig.AWG_PROJECT_URL,
+    awgProjectName: AppConfig.AWG_PROJECT_NAME
+};
+
+/**
+ * Object constant for edition metadata.
+ *
+ * It provides metadata used for the edition view.
+ */
+const METAEDITION: MetaEdition = {
+    editors: [
+        {
+            name: 'Thomas Ahrend',
+            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+        }
+    ],
+    lastModified: '29. Januar 2016'
+};
+
+/**
+ * Object constant for edition metadata.
+ *
+ * It provides metadata used for the structure view.
+ */
+const METASTRUCTURE: MetaStructure = {
+    authors: [
+        {
+            name: 'Stefan Münnich',
+            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+        }
+    ],
+    lastModified: '29. Januar 2016'
+};
+
+/**
+ * Object constant for contact metadata.
+ *
+ * It provides metadata used for the contact view.
+ */
+const METACONTACT: MetaContact = {
+    address: {
+        institution: 'Musikwissenschaftliches Seminar der Universität Basel',
+        street: 'Petersgraben 27/29',
+        postalCode: 'CH-4051',
+        city: 'Basel',
+        country: 'Schweiz'
     },
-    edition: {
-        editors:
-            '<a href="' +
-            AppConfig.WEBERN_HOME +
-            'index.php?id=3" target="_blank" ref="noopener noreferrer">Thomas Ahrend</a>',
-        lastModified: '29. Januar 2016'
+    phone: {
+        label: 'Telefon:',
+        number: '+41 (0)61 207 28 21'
     },
-    structure: {
-        author: 'Stefan Münnich',
-        lastModified: '29. Januar 2016'
+    email: {
+        label: 'E-Mail:',
+        mailto: 'mailto:info-awg@unibas.ch',
+        safeString: 'info-awg [at] unibas [dot] ch'
     }
+};
+
+/**
+ * Object constant for metadata.
+ *
+ * It provides metadata used throughout different parts of the app.
+ *
+ * Available main sections: `page`, `edition`, `structure`, `contact`.
+ */
+export const METADATA: Meta = {
+    page: METAPAGE,
+    edition: METAEDITION,
+    structure: METASTRUCTURE,
+    contact: METACONTACT
 };

@@ -29,14 +29,14 @@ export class ProjectItemJson {
     public basepath: string = undefined;
 
     /**
-     *
+     * The institution a project belongs to
      * @param belongsToInstitution: any
      */
     @JsonProperty('belongsToInstitution', null)
     public belongsToInstitution: any = undefined;
 
     /**
-     *
+     * A named data graph
      * @param dataNamedGraph
      */
     @JsonProperty('dataNamedGraph', String)
@@ -50,6 +50,7 @@ export class ProjectItemJson {
     public description: string = undefined;
 
     /**
+     * Option for users to self join a project
      * @param hasSelfJoinEnabled: boolean
      */
     @JsonProperty('hasSelfJoinEnabled', Boolean)

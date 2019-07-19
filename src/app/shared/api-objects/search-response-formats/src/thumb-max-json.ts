@@ -14,7 +14,7 @@
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 
-/*
+/**
  * Represents maximal dimensions of preview representations
  * @used by SearchResponseJson
  */

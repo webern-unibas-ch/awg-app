@@ -10,17 +10,23 @@ import { of as observableOf, throwError as observableThrowError } from 'rxjs';
 import { JsonConvert } from 'json2typescript';
 
 import { expectSpyCall } from '@testing/expect-helper';
-import { mockResourceFullResponseJson, mockSearchResponseConverted, mockSearchResponseJson } from '@testing/mock-data';
+import {
+    mockResourceContextResponseJson,
+    mockResourceDetail,
+    mockResourceFullResponseJson,
+    mockSearchResponseConverted,
+    mockSearchResponseJson
+} from '@testing/mock-data';
 
 import { AppConfig } from '@awg-app/app.config';
 import { ConversionService } from '@awg-core/services';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
-import { ResourceFullResponseJson, SearchResponseJson, UserDataJson } from '@awg-shared/api-objects';
+import { ResourceContextResponseJson, ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-objects';
+import { ResourceData, ResourceDetail, SearchParams } from '@awg-views/data-view/models';
 
 import { DataApiService } from './data-api.service';
-import { ApiServiceResult } from '@awg-core/services/api-service/api-service-result.model';
 
-describe('DataApiService (DONE)', () => {
+describe('DataApiService', () => {
     let dataApiService: DataApiService;
 
     let httpClient: HttpClient;
@@ -33,25 +39,35 @@ describe('DataApiService (DONE)', () => {
     // json object
     let jsonConvert: JsonConvert;
     let expectedResourceFullResponseJson: ResourceFullResponseJson;
+    let expectedResourceContextResponseJson: ResourceContextResponseJson;
     let expectedSearchResponseJson: SearchResponseJson;
     let expectedSearchResponseConverted: any;
+    let expectedResourceDetail: ResourceDetail;
+    let expectedResourceData: ResourceData;
 
     const expectedProjectId = '6';
-    const expectedResourceAppendix = '_-_local';
-    const expectedResourcesRoute = 'resources/';
-    const expectedSearchRoute = 'search/';
+    const expectedResourceSuffix = '_-_local';
+    const expectedRoutes = {
+        resources: 'resources/',
+        search: 'search/',
+        geonames: 'geonames/',
+        hlists: 'hlists/',
+        selections: 'selections/'
+    };
     const apiUrl = AppConfig.API_ENDPOINT;
 
     beforeEach(() => {
         // stub service for test purposes
         mockConversionService = {
-            convertFullTextSearchResults: () => expectedSearchResponseConverted
+            convertFullTextSearchResults: () => expectedSearchResponseConverted,
+            convertResourceData: () => expectedResourceDetail
         };
 
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
             providers: [DataApiService, { provide: ConversionService, useValue: mockConversionService }]
         });
+
         // inject services and http client handler
         dataApiService = TestBed.get(DataApiService);
         httpClient = TestBed.get(HttpClient);
@@ -63,10 +79,16 @@ describe('DataApiService (DONE)', () => {
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );
+        expectedResourceContextResponseJson = jsonConvert.deserializeObject(
+            mockResourceContextResponseJson,
+            ResourceContextResponseJson
+        );
         expectedSearchResponseJson = jsonConvert.deserializeObject(mockSearchResponseJson, SearchResponseJson);
 
         // test data
         expectedSearchResponseConverted = mockSearchResponseConverted;
+        expectedResourceDetail = mockResourceDetail;
+        expectedResourceData = new ResourceData(expectedResourceFullResponseJson, expectedResourceDetail);
 
         // spies on service functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -98,35 +120,27 @@ describe('DataApiService (DONE)', () => {
             const expectedServiceName = 'DataApiService';
 
             expect(dataApiService.serviceName).toBeDefined();
-            expect(dataApiService.serviceName).toBe(expectedServiceName);
+            expect(dataApiService.serviceName).toBe(expectedServiceName, `should be ${expectedServiceName}`);
         });
 
         it('... should have projectId', () => {
             expect(dataApiService.projectId).toBeDefined();
-            expect(dataApiService.projectId).toBe(expectedProjectId);
+            expect(dataApiService.projectId).toBe(expectedProjectId, `should be ${expectedProjectId}`);
         });
 
-        it('... should have resourceAppendix', () => {
-            expect(dataApiService.resourceAppendix).toBeDefined();
-            expect(dataApiService.resourceAppendix).toBe(expectedResourceAppendix);
+        it('... should have resourceSuffix', () => {
+            expect(dataApiService.resourceSuffix).toBeDefined();
+            expect(dataApiService.resourceSuffix).toBe(expectedResourceSuffix, `should be ${expectedResourceSuffix}`);
         });
 
         it('... should have routes', () => {
-            expect(dataApiService.resourcesRoute).toBeDefined();
-            expect(dataApiService.resourcesRoute).toBe(expectedResourcesRoute);
-
-            expect(dataApiService.searchRoute).toBeDefined();
-            expect(dataApiService.searchRoute).toBe(expectedSearchRoute);
-        });
-
-        it(`... should have 'loading = false' (inherited from ApiService)`, () => {
-            expect(dataApiService.loading).toBeDefined();
-            expect(dataApiService.loading).toBeFalsy();
+            expect(dataApiService.routes).toBeDefined();
+            expect(dataApiService.routes).toEqual(expectedRoutes, `should be ${expectedRoutes}`);
         });
 
         it(`... should have empty 'httpGetUrl' (inherited from ApiService)`, () => {
             expect(dataApiService.httpGetUrl).toBeDefined();
-            expect(dataApiService.httpGetUrl).toBe('');
+            expect(dataApiService.httpGetUrl).toBe('', `should be empty string`);
         });
     });
 
@@ -139,41 +153,24 @@ describe('DataApiService (DONE)', () => {
             });
 
             // match the request url
-            const r = httpTestingController.expectOne({
+            const call = httpTestingController.expectOne({
                 url: '/foo/bar'
             });
 
             // check for GET request
-            expect(r.request.method).toEqual('GET');
+            expect(call.request.method).toEqual('GET');
 
             // respond with mocked data
-            r.flush(testData);
+            call.flush(testData);
         }));
     });
 
     describe('#getFulltextSearchData', () => {
         describe('request', () => {
-            it(`... should not do anything if empty searchString is provided`, async(() => {
-                // empty string
-                const expectedSearchString = '';
-                const expectedUrl = apiUrl + expectedSearchRoute + expectedSearchString;
-
-                // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString);
-
-                // expect no request to getApiResponse
-                expectSpyCall(getApiResponseSpy, 0);
-
-                // expect no request to url with given settings
-                httpTestingController.expectNone((req: HttpRequest<any>) => {
-                    return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
-                }, `GET to ${expectedUrl}`);
-            }));
-
             it(`... should not do anything if undefined is provided`, async(() => {
                 // undefined
                 const expectedSearchString = undefined;
-                const expectedUrl = apiUrl + expectedSearchRoute + expectedSearchString;
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
 
                 // call service function
                 dataApiService.getFulltextSearchData(expectedSearchString);
@@ -190,7 +187,7 @@ describe('DataApiService (DONE)', () => {
             it(`... should not do anything if null is provided`, async(() => {
                 // null
                 const expectedSearchString = null;
-                const expectedUrl = apiUrl + expectedSearchRoute + expectedSearchString;
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
 
                 // call service function
                 dataApiService.getFulltextSearchData(expectedSearchString);
@@ -204,72 +201,119 @@ describe('DataApiService (DONE)', () => {
                 }, `GET to ${expectedUrl}`);
             }));
 
-            it(`... should perform an HTTP GET request to the Knora API (via ApiService) with provided searchString`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedUrl = apiUrl + expectedSearchRoute + expectedSearchString;
+            it(`... should not do anything if empty searchString is provided`, async(() => {
+                // empty string
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = '';
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe();
+                dataApiService.getFulltextSearchData(expectedSearchParams);
 
-                // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
+                // expect no request to getApiResponse
+                expectSpyCall(getApiResponseSpy, 0);
+
+                // expect no request to url with given settings
+                httpTestingController.expectNone((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+            }));
+
+            it(`... should perform an HTTP GET request to the Knora API (via ApiService) with provided searchString`, async(() => {
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
+
+                // call service function
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
+
+                // expect one request to url with given settings
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
+                    return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
+                }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
             }));
 
             it(`... should set default params for GET request if none is provided`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedRows = '-1';
-                const expectedStartAt = '0';
-                const expectedUrl = apiUrl + expectedSearchRoute + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+                expectedSearchParams.nRows = '-1';
+                expectedSearchParams.startAt = '0';
+
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe();
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(4, 'should be 4');
-                    expect(req.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
-                    expect(req.params.get('filter_by_project')).toBe(
-                        expectedProjectId,
-                        `should be ${expectedProjectId}`
-                    );
-                    expect(req.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
-                    expect(req.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(4, 'should be 4');
+                expect(call.request.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
+                expect(call.request.params.get('filter_by_project')).toBe(
+                    expectedProjectId,
+                    `should be ${expectedProjectId}`
+                );
+                expect(call.request.params.get('show_nrows')).toBe(
+                    expectedSearchParams.nRows,
+                    `should be ${expectedSearchParams.nRows}`
+                );
+                expect(call.request.params.get('start_at')).toBe(
+                    expectedSearchParams.startAt,
+                    `should be ${expectedSearchParams.startAt}`
+                );
             }));
 
             it(`... should apply provided params for GET request`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedRows = '5';
-                const expectedStartAt = '20';
-                const expectedUrl = apiUrl + expectedSearchRoute + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+                expectedSearchParams.nRows = '5';
+                expectedSearchParams.startAt = '20';
+
+                const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                 // call service function
-                dataApiService.getFulltextSearchData(expectedSearchString, expectedRows, expectedStartAt).subscribe();
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
 
                 // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(4, 'should be 4');
-                    expect(req.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
-                    expect(req.params.get('filter_by_project')).toBe(
-                        expectedProjectId,
-                        `should be ${expectedProjectId}`
-                    );
-                    expect(req.params.get('show_nrows')).toBe(expectedRows, `should be ${expectedRows}`);
-                    expect(req.params.get('start_at')).toBe(expectedStartAt, `should be ${expectedStartAt}`);
-
+                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
+
+                expect(call.request.method).toEqual('GET', 'should be GET');
+                expect(call.request.responseType).toEqual('json', 'should be json');
+                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(call.request.params).toBeDefined();
+                expect(call.request.params.keys().length).toBe(4, 'should be 4');
+                expect(call.request.params.get('searchtype')).toBe('fulltext', 'should be fulltext');
+                expect(call.request.params.get('filter_by_project')).toBe(
+                    expectedProjectId,
+                    `should be ${expectedProjectId}`
+                );
+                expect(call.request.params.get('show_nrows')).toBe(
+                    expectedSearchParams.nRows,
+                    `should be ${expectedSearchParams.nRows}`
+                );
+                expect(call.request.params.get('start_at')).toBe(
+                    expectedSearchParams.startAt,
+                    `should be ${expectedSearchParams.startAt}`
+                );
             }));
 
             it(`... should call getApiResponse (via ApiService) with search string`, async(() => {
-                const expectedSearchString = 'Test';
-                const expectedQueryPath = expectedSearchRoute + expectedSearchString;
+                const expectedSearchParams: SearchParams = new SearchParams();
+                expectedSearchParams.query = 'Test';
+
+                const expectedQueryPath = expectedRoutes.search + expectedSearchParams.query;
                 const expectedQueryHttpParams = new HttpParams()
                     .set('searchtype', 'fulltext')
                     .set('filter_by_project', '6')
@@ -278,7 +322,7 @@ describe('DataApiService (DONE)', () => {
 
                 getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                dataApiService.getFulltextSearchData(expectedSearchString).subscribe((response: SearchResponseJson) => {
+                dataApiService.getFulltextSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
                     expectSpyCall(getApiResponseSpy, 1, [
                         SearchResponseJson,
                         expectedQueryPath,
@@ -290,13 +334,14 @@ describe('DataApiService (DONE)', () => {
 
         describe('response', () => {
             describe('success', () => {
-                it(`... should return an Observable<SearchResponseJson> (converted)`, async(() => {
-                    const expectedSearchString = 'Test';
+                it(`... should return an SearchResponseJson observable (converted)`, async(() => {
+                    const expectedSearchParams: SearchParams = new SearchParams();
+                    expectedSearchParams.query = 'Test';
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
 
                     dataApiService
-                        .getFulltextSearchData(expectedSearchString)
+                        .getFulltextSearchData(expectedSearchParams)
                         .subscribe((response: SearchResponseJson) => {
                             expect(response).toEqual(expectedSearchResponseConverted);
                         });
@@ -304,9 +349,11 @@ describe('DataApiService (DONE)', () => {
             });
 
             describe('fail', () => {
-                it(`... should return an Observable<ApiServiceError>`, async(() => {
-                    const expectedSearchString = 'Test';
-                    const expectedQueryPath = expectedSearchRoute + expectedSearchString;
+                it(`... should return an ApiServiceError observable`, async(() => {
+                    const expectedSearchParams: SearchParams = new SearchParams();
+                    expectedSearchParams.query = 'Test';
+
+                    const expectedQueryPath = expectedRoutes.search + expectedSearchParams.query;
                     const expectedQueryHttpParams = new HttpParams()
                         .set('searchtype', 'fulltext')
                         .set('filter_by_project', '6')
@@ -321,7 +368,7 @@ describe('DataApiService (DONE)', () => {
 
                     getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
 
-                    dataApiService.getFulltextSearchData(expectedSearchString).subscribe(
+                    dataApiService.getFulltextSearchData(expectedSearchParams).subscribe(
                         result => fail(expectedErrorMsg),
                         (error: ApiServiceError) => {
                             expectSpyCall(getApiResponseSpy, 1, [
@@ -337,85 +384,298 @@ describe('DataApiService (DONE)', () => {
         });
     });
 
-    describe('#getResourceDetailData', () => {
+    describe('#getResourceData', () => {
         describe('request', () => {
-            it(`... should perform an HTTP GET request to the Knora API (via ApiService)`, async(() => {
-                const expectedResourceId = '11398';
-                const expectedUrl = apiUrl + expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+            it(`... should not do anything if undefined is provided`, async(() => {
+                // undefined
+                const expectedResourceId = undefined;
+                const expectedUrl = apiUrl + expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
 
                 // call service function
-                dataApiService.getResourceDetailData(expectedResourceId).subscribe();
+                dataApiService.getResourceData(expectedResourceId);
 
-                // expect one request to url with given settings
-                httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    expect(req.params).toBeDefined();
-                    expect(req.params.keys().length).toBe(0, 'should be 0');
+                // expect no request to getApiResponse
+                expectSpyCall(getApiResponseSpy, 0);
 
+                // expect no request to url with given settings
+                httpTestingController.expectNone((req: HttpRequest<any>) => {
                     return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
                 }, `GET to ${expectedUrl}`);
             }));
 
-            it(`... should call getApiResponse (via ApiService) with resource id`, async(() => {
+            it(`... should not do anything if null is provided`, async(() => {
+                // null
+                const expectedResourceId = null;
+                const expectedUrl = apiUrl + expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+
+                // call service function
+                dataApiService.getResourceData(expectedResourceId);
+
+                // expect no request to getApiResponse
+                expectSpyCall(getApiResponseSpy, 0);
+
+                // expect no request to url with given settings
+                httpTestingController.expectNone((req: HttpRequest<any>) => {
+                    return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
+                }, `GET to ${expectedUrl}`);
+            }));
+
+            it(`... should not do anything if empty resource id string is provided`, async(() => {
+                // empty string
+                const expectedResourceId = '';
+                const expectedUrl = apiUrl + expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+
+                // call service function
+                dataApiService.getResourceData(expectedResourceId);
+
+                // expect no request to getApiResponse
+                expectSpyCall(getApiResponseSpy, 0);
+
+                // expect no request to url with given settings
+                httpTestingController.expectNone((req: HttpRequest<any>) => {
+                    return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
+                }, `GET to ${expectedUrl}`);
+            }));
+
+            it(`... should perform two HTTP GET requests to the Knora API (via ApiService)`, async(() => {
                 const expectedResourceId = '11398';
-                const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                const expectedUrl = apiUrl + expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+
+                // call service function
+                dataApiService.getResourceData(expectedResourceId).subscribe();
+
+                // expect two requests to url with given settings
+                const re = new RegExp(expectedUrl, 'g');
+                const calls = httpTestingController.match(req => {
+                    return req.url.match(re) && req.method === 'GET' && req.responseType === 'json';
+                });
+
+                expect(calls.length).toBe(2, 'should be 2 calls');
+            }));
+
+            it(`... first request to the Knora API (via ApiService) should be a ResourceFullResponse request`, async(() => {
+                const expectedResourceId = '11398';
+                const expectedUrl = apiUrl + expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+
+                // call service function
+                dataApiService.getResourceData(expectedResourceId).subscribe();
+
+                // expect two requests to url with given settings
+                const re = new RegExp(expectedUrl, 'g');
+                const calls = httpTestingController.match(req => {
+                    return req.url.match(re) && req.method === 'GET' && req.responseType === 'json';
+                });
+
+                expect(calls.length).toBe(2, 'should be 2 calls');
+
+                // call to GET https://www.salsah.org/api/resources/11398_-_local (ResourceFullResponseJson)
+                expect(calls[0].request.method).toEqual('GET', 'should be GET');
+                expect(calls[0].request.responseType).toEqual('json', 'should be json');
+                expect(calls[0].request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(calls[0].request.params).toBeDefined();
+                expect(calls[0].request.params.keys().length).toBe(0, 'should be 0');
+            }));
+
+            it(`... second request to the Knora API (via ApiService) should be a ResourceContextResponse request`, async(() => {
+                const expectedResourceId = '11398';
+                const expectedUrl = apiUrl + expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+
+                // call service function
+                dataApiService.getResourceData(expectedResourceId).subscribe();
+
+                // expect two requests to url with given settings
+                const re = new RegExp(expectedUrl, 'g');
+                const calls = httpTestingController.match(req => {
+                    return req.url.match(re) && req.method === 'GET' && req.responseType === 'json';
+                });
+
+                expect(calls.length).toBe(2, 'should be 2 calls');
+
+                // call to GET https://www.salsah.org/api/resources/11398_-_local?reqtype=context (ResourceContextResponseJson)
+                expect(calls[1].request.method).toEqual('GET', 'should be GET');
+                expect(calls[1].request.responseType).toEqual('json', 'should be json');
+                expect(calls[1].request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                expect(calls[1].request.params).toBeDefined();
+                expect(calls[1].request.params.keys().length).toBe(1, 'should be 1');
+                expect(calls[1].request.params.keys()[0]).toBe('reqtype', 'should be reqtype');
+                expect(calls[1].request.params.get('reqtype')).toBe('context', 'should be context');
+            }));
+
+            it(`... should call two times getApiResponse (via ApiService) with resource id`, async(() => {
+                const expectedResourceId = '11398';
+                const expectedQueryPath = expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+                const expectedUrl = apiUrl + expectedQueryPath;
+
+                dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
+                    // two calls
+                    expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
+                });
+
+                // expect two requests to url with given settings
+                const re = new RegExp(expectedUrl, 'g');
+                const calls = httpTestingController.match(req => {
+                    return req.url.match(re) && req.method === 'GET' && req.responseType === 'json';
+                });
+
+                calls[0].flush(expectedResourceFullResponseJson);
+                calls[1].flush(expectedResourceContextResponseJson);
+            }));
+
+            it(`... first call to getApiResponse (via ApiService) with resource id should be a ResourceFullResponse request`, async(() => {
+                const expectedResourceId = '11398';
+                const expectedQueryPath = expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
                 const expectedQueryHttpParams = new HttpParams();
+                const expectedUrl = apiUrl + expectedQueryPath;
 
-                getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
+                dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
+                    // two calls
+                    expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
 
-                dataApiService
-                    .getResourceDetailData(expectedResourceId)
-                    .subscribe((response: ResourceFullResponseJson) => {
-                        expectSpyCall(getApiResponseSpy, 1, [
-                            ResourceFullResponseJson,
-                            expectedQueryPath,
-                            expectedQueryHttpParams
-                        ]);
-                    });
+                    // shortcut
+                    const firstCallArgs = getApiResponseSpy.calls.allArgs()[0];
+
+                    // check args of call
+                    expect(firstCallArgs[0].name).toBe(
+                        'ResourceFullResponseJson',
+                        `should be ResourceFullResponseJson`
+                    );
+                    expect(firstCallArgs[1]).toBe(expectedQueryPath, `should be ${expectedQueryPath}`);
+                    expect(firstCallArgs[2]).toEqual(
+                        expectedQueryHttpParams,
+                        `should equal ${expectedQueryHttpParams}`
+                    );
+                });
+
+                // expect two requests to url with given settings
+                const re = new RegExp(expectedUrl, 'g');
+                const calls = httpTestingController.match(req => {
+                    return req.url.match(re) && req.method === 'GET' && req.responseType === 'json';
+                });
+
+                calls[0].flush(expectedResourceFullResponseJson);
+                calls[1].flush(expectedResourceContextResponseJson);
+            }));
+
+            it(`... second call to getApiResponse (via ApiService) with resource id should be a ResourceContextResponse request`, async(() => {
+                const expectedResourceId = '11398';
+                const expectedQueryPath = expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+                const expectedQueryHttpParams = new HttpParams().set('reqtype', 'context');
+                const expectedUrl = apiUrl + expectedQueryPath;
+
+                dataApiService.getResourceData(expectedResourceId).subscribe((response: ResourceData) => {
+                    // two calls
+                    expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
+
+                    // shortcut
+                    const secondCallArgs = getApiResponseSpy.calls.allArgs()[1];
+
+                    // check args of call
+                    expect(secondCallArgs[0].name).toBe(
+                        'ResourceContextResponseJson',
+                        `should be ResourceContextResponseJson`
+                    );
+                    expect(secondCallArgs[1]).toBe(expectedQueryPath, `should be ${expectedQueryPath}`);
+                    expect(secondCallArgs[2]).toEqual(
+                        expectedQueryHttpParams,
+                        `should equal ${expectedQueryHttpParams}`
+                    );
+                });
+
+                // expect two requests to url with given settings
+                const re = new RegExp(expectedUrl, 'g');
+                const calls = httpTestingController.match(req => {
+                    return req.url.match(re) && req.method === 'GET' && req.responseType === 'json';
+                });
+
+                calls[0].flush(expectedResourceFullResponseJson);
+                calls[1].flush(expectedResourceContextResponseJson);
             }));
         });
 
         describe('response', () => {
             describe('success', () => {
-                it(`... should return an Observable<ResourceFullResponseJson>`, async(() => {
-                    const expectedResourceId = '11398';
+                describe('... should return a ResourceData observable ', () => {
+                    it(`...when both API responses succeed`, async(() => {
+                        const expectedResourceId = '11398';
 
-                    getApiResponseSpy.and.returnValue(observableOf(expectedResourceFullResponseJson));
+                        // return fork joined observables from API
+                        getApiResponseSpy.and.returnValues(
+                            observableOf(expectedResourceFullResponseJson),
+                            observableOf(expectedResourceContextResponseJson)
+                        );
 
-                    dataApiService
-                        .getResourceDetailData(expectedResourceId)
-                        .subscribe((response: ResourceFullResponseJson) => {
-                            expect(response).toEqual(expectedResourceFullResponseJson);
+                        dataApiService.getResourceData(expectedResourceId).subscribe((resourceData: ResourceData) => {
+                            expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
+                            expect(resourceData).toEqual(expectedResourceData);
                         });
-                }));
+                    }));
+                });
             });
 
             describe('fail', () => {
-                it(`... should return an Observable<ApiServiceError>`, async(() => {
-                    const expectedResourceId = undefined;
-                    const expectedQueryPath = expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
-                    const expectedQueryHttpParams = new HttpParams();
+                describe(`... should return an ApiServiceError observable`, () => {
+                    const expectedResourceId = '11398';
+                    const expectedQueryPath = expectedRoutes.resources + expectedResourceId + expectedResourceSuffix;
+                    const expectedErrorMsg = 'should fail HTTP response with 401 error';
+                    let expectedApiServiceError;
 
-                    const expectedErrorMsg = 'failed HTTP response with 401 error';
+                    beforeEach(() => {
+                        expectedApiServiceError = new ApiServiceError();
+                        expectedApiServiceError.status = 401;
+                        expectedApiServiceError.url = expectedQueryPath;
+                    });
 
-                    const expectedApiServiceError = new ApiServiceError();
-                    expectedApiServiceError.status = 401;
-                    expectedApiServiceError.url =
-                        expectedResourcesRoute + expectedResourceId + expectedResourceAppendix;
+                    it('... when both API responses fail', async(() => {
+                        // return fork joined observables from API
+                        getApiResponseSpy.and.returnValues(
+                            observableThrowError(expectedApiServiceError),
+                            observableThrowError(expectedApiServiceError)
+                        );
 
-                    getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
+                        dataApiService.getResourceData(expectedResourceId).subscribe(
+                            result => fail(expectedErrorMsg),
+                            (error: ApiServiceError) => {
+                                // two calls
+                                expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
+                                expect(error).toEqual(expectedApiServiceError);
+                            }
+                        );
+                    }));
 
-                    dataApiService.getResourceDetailData(expectedResourceId).subscribe(
-                        result => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectSpyCall(getApiResponseSpy, 1, [
-                                ResourceFullResponseJson,
-                                expectedQueryPath,
-                                expectedQueryHttpParams
-                            ]);
-                            expect(error).toEqual(expectedApiServiceError);
-                        }
-                    );
-                }));
+                    it('... when first API response fails', async(() => {
+                        // return fork joined observables from API
+                        getApiResponseSpy.and.returnValues(
+                            observableThrowError(expectedApiServiceError),
+                            observableOf(expectedResourceContextResponseJson)
+                        );
+
+                        dataApiService.getResourceData(expectedResourceId).subscribe(
+                            result => fail(expectedErrorMsg),
+                            (error: ApiServiceError) => {
+                                // two calls
+                                expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
+                                expect(error).toEqual(expectedApiServiceError);
+                            }
+                        );
+                    }));
+
+                    it('... when second API response fails', async(() => {
+                        // return fork joined observables from API
+                        getApiResponseSpy.and.returnValues(
+                            observableOf(expectedResourceFullResponseJson),
+                            observableThrowError(expectedApiServiceError)
+                        );
+
+                        dataApiService.getResourceData(expectedResourceId).subscribe(
+                            result => fail(expectedErrorMsg),
+                            (error: ApiServiceError) => {
+                                // two calls
+                                expect(getApiResponseSpy.calls.all().length).toBe(2, 'should be 2 calls');
+                                expect(error).toEqual(expectedApiServiceError);
+                            }
+                        );
+                    }));
+                });
             });
         });
     });

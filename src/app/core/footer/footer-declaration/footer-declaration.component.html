@@ -3,18 +3,22 @@
 </p>
 <p class="awg-version-desc">
     <a
-        href="https://github.com/webern-unibas-ch/awg-app/blob/v{{ metaData?.page?.version }}/CHANGELOG.md"
+        href="https://github.com/webern-unibas-ch/awg-app/blob/v{{ pageMetaData?.version }}/CHANGELOG.md"
         target="_blank"
         rel="noopener noreferrer"
     >
-        Version <span id="awg-version">{{ metaData?.page?.version }}</span> &#9671;
-        <span id="awg-version-date">{{ metaData?.page?.versionReleaseDate }}</span>
+        Version <span id="awg-version">{{ pageMetaData?.version }}</span> &#9671;
+        <span id="awg-version-date">{{ pageMetaData?.versionReleaseDate }}</span>
     </a>
 </p>
 <p id="awg-contact-link">
     <small>
-        <a id="awg-imp" [routerLink]="['/contact']" fragment="awg-masthead">
+        <a id="awg-imp" [routerLink]="['/contact']" fragment="awg-imprint">
             Impressum
+        </a>
+        |
+        <a id="awg-doc" [routerLink]="['/contact']" fragment="awg-documentation">
+            Dokumentation
         </a>
     </small>
 </p>

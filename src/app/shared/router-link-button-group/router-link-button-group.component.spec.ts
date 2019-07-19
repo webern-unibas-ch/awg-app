@@ -49,7 +49,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        selectButtonSpy = spyOn(component, 'onButtonSelect').and.callThrough();
+        selectButtonSpy = spyOn(component, 'selectButton').and.callThrough();
         emitSpy = spyOn(component.selectButtonRequest, 'emit').and.callThrough();
     });
 
@@ -64,7 +64,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('#onButtonSelect', () => {
             it('... should not have been called', () => {
-                expect(component.onButtonSelect).not.toHaveBeenCalled();
+                expect(component.selectButton).not.toHaveBeenCalled();
             });
         });
 
@@ -95,30 +95,33 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
             it('... should disable buttons if necessary', () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
+                const btn0El = btnDes[0].nativeElement;
+                const btn1El = btnDes[1].nativeElement;
+                const btn2El = btnDes[2].nativeElement;
 
-                expect(btnDes[0].nativeElement.disabled).toBe(
-                    expectedButtonArray[0].disabled,
-                    'should not be disabled'
-                );
-                expect(btnDes[1].nativeElement.disabled).toBe(expectedButtonArray[1].disabled, 'should be disabled');
-                expect(btnDes[2].nativeElement.disabled).toBe(expectedButtonArray[2].disabled, 'should be disabled');
+                expect(btn0El.disabled).toBe(expectedButtonArray[0].disabled, 'should not be disabled');
+                expect(btn1El.disabled).toBe(expectedButtonArray[1].disabled, 'should be disabled');
+                expect(btn2El.disabled).toBe(expectedButtonArray[2].disabled, 'should be disabled');
             });
 
             it('... should render button labels', () => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
+                const btn0El = btnDes[0].nativeElement;
+                const btn1El = btnDes[1].nativeElement;
+                const btn2El = btnDes[2].nativeElement;
 
-                expect(btnDes[0].nativeElement.textContent).toBeDefined();
-                expect(btnDes[0].nativeElement.textContent).toMatch(
+                expect(btn0El.textContent).toBeDefined();
+                expect(btn0El.textContent).toMatch(
                     expectedButtonArray[0].label,
                     `should be ${expectedButtonArray[0].label}`
                 );
-                expect(btnDes[1].nativeElement.textContent).toBeDefined();
-                expect(btnDes[1].nativeElement.textContent).toMatch(
+                expect(btn1El.textContent).toBeDefined();
+                expect(btn1El.textContent).toMatch(
                     expectedButtonArray[1].label,
                     `should be ${expectedButtonArray[1].label}`
                 );
-                expect(btnDes[2].nativeElement.textContent).toBeDefined();
-                expect(btnDes[2].nativeElement.textContent).toMatch(
+                expect(btn2El.textContent).toBeDefined();
+                expect(btn2El.textContent).toMatch(
                     expectedButtonArray[2].label,
                     `should be ${expectedButtonArray[2].label}`
                 );

@@ -11,6 +11,12 @@ import {
 } from './sources';
 import { TextcriticsComponent } from './textcritics';
 
+/**
+ * The report module.
+ *
+ * It embeds the report components as well as the
+ * {@link EditionTkaTableModule} and {@link SharedModule}.
+ */
 @NgModule({
     imports: [SharedModule, EditionTkaTableModule],
     declarations: [

@@ -1,45 +1,114 @@
-import { AfterViewChecked, AfterViewInit, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-
 import {
-    ConvoluteFolio,
-    FolioFormatOptions,
-    ConvoluteFolioSvgOutput,
-    EditionSvgFile,
-    ViewBox
-} from '@awg-views/edition-view/models';
+    AfterViewChecked,
+    AfterViewInit,
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnInit,
+    Output
+} from '@angular/core';
+
+import { Folio, FolioSettings, FolioSvgData, EditionSvgSheet, ViewBox } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
-// embedded SnapSvg (snapsvg.io)
+/**
+ * Declared variable: Snap.
+ *
+ * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
+ */
 declare var Snap: any;
 
+/**
+ * The Folio component.
+ *
+ * It contains the folio section
+ * of the edition view of the app
+ * and displays the convolute folios.
+ */
 @Component({
     selector: 'awg-edition-folio',
     templateUrl: './folio.component.html',
-    styleUrls: ['./folio.component.css']
+    styleUrls: ['./folio.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
+    /**
+     * Input variable: folios.
+     *
+     * It keeps the folio data.
+     */
     @Input()
-    convoluteData: ConvoluteFolio[];
+    folios: Folio[];
+
+    /**
+     * Public variable: selectedSvgSheet.
+     *
+     * It keeps the selected svg sheet.
+     */
     @Input()
-    selectedSvgFile: EditionSvgFile;
+    selectedSvgSheet: EditionSvgSheet;
+
+    /**
+     * Output variable: openModalRequest.
+     *
+     * It keeps an event emitter to open the modal
+     * with the selected modal text snippet.
+     */
     @Output()
     openModalRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
     @Output()
-    selectSvgFileRequest: EventEmitter<string> = new EventEmitter();
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
-    folio: ConvoluteFolio;
-
-    // output
+    /**
+     * Public variable: canvasArray.
+     *
+     * It keeps the array with a Snap canvas per folio.
+     */
     canvasArray = [];
-    folioSvgOutputArray: ConvoluteFolioSvgOutput[] = [];
+
+    /**
+     * Public variable: folioSvgDataArray.
+     *
+     * It keeps the array with the svg data
+     * needed to draw the Snap canvas of the folios.
+     */
+    folioSvgDataArray: FolioSvgData[] = [];
+
+    /**
+     * Public variable: vbArray.
+     *
+     * It keeps the array with the
+     * viewbox data for the folios.
+     */
     vbArray: ViewBox[] = [];
 
-    // colors
+    /**
+     * Public variable: bgColor.
+     *
+     * It keeps the background color for the folio.
+     */
     bgColor = '#a3a3a3';
+
+    /**
+     * Public variable: fgColor.
+     *
+     * It keeps the foreground color for the folio.
+     */
     fgColor = 'orange';
 
-    // options
-    private _folioFormatOptions: FolioFormatOptions = {
+    /**
+     * Private variable: _folioSettings.
+     *
+     * It keeps the format settings for the folio.
+     */
+    private _folioSettings: FolioSettings = {
         factor: 1.5,
         formatX: 175,
         formatY: 270,
@@ -48,28 +117,79 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         numberOfFolios: 0
     };
 
+    /**
+     * Getter for folio format settings.
+     */
+    get folioSettings() {
+        return this._folioSettings;
+    }
+
+    /**
+     * Setter for folio format settings.
+     */
+    set folioSettings(settings: FolioSettings) {
+        this._folioSettings = settings;
+    }
+
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     */
     ref: FolioComponent;
 
+    /**
+     * Constructor of the FolioComponent.
+     *
+     * It declares a private {@link FolioService} instance
+     * and initializes the self-referring ref variable
+     * needed for CompileHtml library.
+     *
+     * @param {FolioService} folioService Instance of the FolioService.
+     */
     constructor(private folioService: FolioService) {
         this.ref = this;
     }
 
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
     ngOnInit() {
         this.prepareFolioSvgOutput();
     }
 
+    /**
+     * Angular life cycle hook: ngAfterViewInit.
+     *
+     * It calls the containing methods
+     * after the view was initialized.
+     */
     ngAfterViewInit() {
         // start to render svg only after view, inputs and calculation are available
         this.renderSnapSvg();
     }
 
+    /**
+     * Angular life cycle hook: ngAfterViewChecked.
+     *
+     * It calls the containing methods
+     * after the view was built and checked.
+     */
     ngAfterViewChecked() {
-        // apply active classes after view was checked
-        this.applyActiveClass();
+        // toggle active classes after view was checked
+        this.toggleActiveClass();
     }
 
-    // helper function to toggle active class on selected sheet
-    applyActiveClass() {
+    /**
+     * Public method: toggleActiveClass.
+     *
+     * It toggles css class 'active' on a selected sheet
+     * (canvas item-group).
+     *
+     * @returns {void} Toggles the css class.
+     */
+    toggleActiveClass(): void {
         // iterate over canvas Array
         if (!this.canvasArray) {
             return;
@@ -77,41 +197,58 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.canvasArray.forEach(canvas => {
             // find all item groups
             canvas.selectAll('.item-group').forEach(itemGroup => {
-                // toggle active class if itemId corresponds to selectedSvgFileId
+                // toggle active class if itemId corresponds to selectedSvgSheetId
                 const itemId = itemGroup.node.attributes.itemId.value;
-                itemGroup.toggleClass('active', this.isSelectedSvgFile(itemId));
+                itemGroup.toggleClass('active', this.isSelectedSvgSheet(itemId));
             });
         });
     }
 
-    /**********
-     * FolioSvgOutputData
+    /**
+     * Public method: prepareFolioSvgOutput.
+     *
+     * It prepares the viewbox and svg data for all folios
+     * to render the folio svg object (SnapCanvas).
+     *
+     * @returns {void} Sets the vbArray and folioSvgDataArray variable.
      */
     prepareFolioSvgOutput(): void {
-        for (let folioIndex = 0; folioIndex < this.convoluteData.length; folioIndex++) {
+        for (let folioIndex = 0; folioIndex < this.folios.length; folioIndex++) {
             // current folio
-            this.folio = this.convoluteData[folioIndex];
+            const folio = this.folios[folioIndex];
+
+            // update folio settings
+            this.folioSettings = {
+                factor: this.folioSettings.factor,
+                formatX: +folio.format.width,
+                formatY: +folio.format.height,
+                initialOffsetX: this.folioSettings.initialOffsetX,
+                initialOffsetY: this.folioSettings.initialOffsetY,
+                numberOfFolios: +this.folios.length
+            };
 
             // prepare viewbox settings
-            this.vbArray[folioIndex] = this.folioService.getViewBoxData(this.folioFormatOptions);
+            this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
 
-            // prepare output data
-            this.folioSvgOutputArray[folioIndex] = this.folioService.getFolioSvgOutputData(
-                this.folioFormatOptions,
-                this.folio
-            );
+            // calculate svg data
+            this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
         }
     }
 
-    /**********
-     * rendering of SVG
+    /**
+     * Public method: renderSnapSvg.
+     *
+     * It provides the folio viewbox and svg data
+     * to the SnapCanvas to render the folios.
+     *
+     * @returns {void} Sets the canvasArray variable.
      */
-    renderSnapSvg() {
+    renderSnapSvg(): void {
         // empty canvasArray
         this.canvasArray = [];
 
-        /* apply values from folioSvgOutputArray to render the svg image with snapsvg */
-        this.folioSvgOutputArray.forEach((folioSvg: ConvoluteFolioSvgOutput, folioIndex: number) => {
+        /* apply data from folioSvgDataArray to render the svg image with snapsvg */
+        this.folioSvgDataArray.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
             // init canvas
             const snapId: string = '#folio-' + folioSvg.sheet.folioId;
             const snapCanvas: any = Snap(snapId);
@@ -119,42 +256,52 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 return;
             }
 
-            /**********
-             * viewBox
-             */
-            this.folioService.setSvgViewBox(snapCanvas, this.vbArray[folioIndex]);
+            // svg viewBox
+            this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
 
-            /**********
-             * svg content
-             */
-            this.folioService.renderSvg(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
+            // svg content
+            this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
 
             this.canvasArray.push(snapCanvas);
         });
     }
 
-    // getter function for format options
-    get folioFormatOptions() {
-        // prepare folio width & height
-        this._folioFormatOptions.numberOfFolios = +this.convoluteData.length;
-        this._folioFormatOptions.formatX = +this.folio.format.width;
-        this._folioFormatOptions.formatY = +this.folio.format.height;
-
-        return this._folioFormatOptions;
+    /**
+     * Public method: isSelectedSvgSheet.
+     *
+     * It compares a given id with the id
+     * of the latest selected svg sheet.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isSelectedSvgSheet(id: string): boolean {
+        return id === this.selectedSvgSheet.id;
     }
 
-    // helper function to compare id with that of selected sheet
-    isSelectedSvgFile(id: string) {
-        return id === this.selectedSvgFile.id;
-    }
-
-    // request function to emit modal id
-    openModal(id: string) {
+    /**
+     * Public method: openModal.
+     *
+     * It emits a given id of a modal snippet text
+     * to the {@link openModalRequest}.
+     *
+     * @param {string} id The given modal snippet id.
+     * @returns {void} Emits the id.
+     */
+    openModal(id: string): void {
         this.openModalRequest.emit(id);
     }
 
-    // request function to emit selected sheet id
-    selectSvgFile(id: string) {
-        this.selectSvgFileRequest.emit(id);
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
+    selectSvgSheet(id: string): void {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

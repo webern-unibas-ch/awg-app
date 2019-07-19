@@ -3,7 +3,6 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
-import Spy = jasmine.Spy;
 
 import {
     expectSpyCall,
@@ -11,11 +10,12 @@ import {
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
+import Spy = jasmine.Spy;
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -39,16 +39,20 @@ describe('ContactViewComponent (DONE)', () => {
     let mockRouter;
 
     let expectedToday;
-    let expectedMetaData: Meta;
-    const expectedMastHeadTitle = 'Impressum';
-    const expectedMastHeadId = 'awg-masthead';
+    let expectedPageMetaData: MetaPage;
+    let expectedContactMetaData: MetaContact;
+
+    const expectedImprintTitle = 'Impressum';
+    const expectedImprintId = 'awg-imprint';
     const expectedCitationTitle = 'Zitation';
     const expectedCitationId = 'awg-citation';
+    const expectedDocumentationTitle = 'Dokumentation';
+    const expectedDocumentationId = 'awg-documentation';
     const expectedDateFormat = 'd. MMMM yyyy';
 
     beforeEach(async(() => {
         // mock service for test purposes
-        mockCoreService = { getMetaData: () => expectedMetaData };
+        mockCoreService = { getMetaDataSection: key => METADATA[key] };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -66,7 +70,8 @@ describe('ContactViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = METADATA;
+        expectedPageMetaData = METADATA[MetaSectionTypes.page];
+        expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -84,26 +89,29 @@ describe('ContactViewComponent (DONE)', () => {
         expect(mockCoreService === coreService).toBe(false);
 
         // changing the mock service has no effect on the injected service
-        const changedMetaData = new Meta();
-        changedMetaData.page = {
+        let changedPageMetaData = new MetaPage();
+        changedPageMetaData = {
             yearStart: 2015,
-            yearRecent: 2018,
-            editionUrl: '',
-            webernUrl: '',
+            yearCurrent: 2018,
+            awgAppUrl: '',
+            compodocUrl: '',
+            githubUrl: '',
+            awgProjectUrl: '',
+            awgProjectName: '',
             version: '0.2.1',
             versionReleaseDate: '20. Oktober 2018'
         };
-        mockCoreService.getMetaData = () => changedMetaData;
-        expect(coreService.getMetaData()).toBe(expectedMetaData);
+        mockCoreService.getMetaDataSection = () => changedPageMetaData;
+        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('should have masthead title and id', () => {
-            expect(component.mastHeadTitle).toBeDefined();
-            expect(component.mastHeadTitle).toBe(expectedMastHeadTitle);
+        it('should have imprint title and id', () => {
+            expect(component.imprintTitle).toBeDefined();
+            expect(component.imprintTitle).toBe(expectedImprintTitle);
 
-            expect(component.mastHeadId).toBeDefined();
-            expect(component.mastHeadId).toBe(expectedMastHeadId);
+            expect(component.imprintId).toBeDefined();
+            expect(component.imprintId).toBe(expectedImprintId);
         });
 
         it('should have citation title and id', () => {
@@ -112,6 +120,14 @@ describe('ContactViewComponent (DONE)', () => {
 
             expect(component.citationId).toBeDefined();
             expect(component.citationId).toBe(expectedCitationId);
+        });
+
+        it('should have documentation title and id', () => {
+            expect(component.documentationTitle).toBeDefined();
+            expect(component.documentationTitle).toBe(expectedDocumentationTitle);
+
+            expect(component.documentationId).toBeDefined();
+            expect(component.documentationId).toBe(expectedDocumentationId);
         });
 
         it('should have dateFormat', () => {
@@ -132,13 +148,14 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         it('should not have metadata nor `today`', () => {
-            expect(component.metaData).toBeUndefined('should be undefined');
+            expect(component.pageMetaData).toBeUndefined('should be undefined');
+            expect(component.contactMetaData).toBeUndefined('should be undefined');
             expect(component.today).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
-            it('... should contain two heading component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
+            it('... should contain 3 heading components (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
             });
 
             it('... should contain 1 `div.awg-citation-description` with 5 `p` elements', () => {
@@ -146,9 +163,14 @@ describe('ContactViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-citation-description > p', 5, 5);
             });
 
-            it('... should contain 1 `div.awg-masthead-description` with 5 `p` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.awg-masthead-description > p', 5, 5);
+            it('... should contain 1 `div.awg-documentation-description` with 2 `p` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-documentation-description > p', 2, 2);
+            });
+
+            it('... should contain 1 `div.awg-imprint-description` with 5 `p` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.awg-imprint-description > p', 5, 5);
             });
 
             it('... should contain 1 `div#awg-disclaimer` with 17 `p` elements', () => {
@@ -157,7 +179,7 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should not pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeUndefined();
@@ -165,6 +187,9 @@ describe('ContactViewComponent (DONE)', () => {
 
                 expect(headingCmps[1].title).toBeUndefined();
                 expect(headingCmps[1].id).toBeUndefined();
+
+                expect(headingCmps[2].title).toBeUndefined();
+                expect(headingCmps[2].id).toBeUndefined();
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
@@ -197,7 +222,8 @@ describe('ContactViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.metaData = mockCoreService.getMetaData();
+            component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
+            component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.contact);
 
             // spy on Date.now() returning a mocked (fixed) date
             expectedToday = Date.now();
@@ -258,8 +284,11 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
-                expect(component.metaData).toBeDefined();
-                expect(component.metaData).toBe(expectedMetaData);
+                expect(component.pageMetaData).toBeDefined();
+                expect(component.pageMetaData).toBe(expectedPageMetaData);
+
+                expect(component.contactMetaData).toBeDefined();
+                expect(component.contactMetaData).toBe(expectedContactMetaData);
             });
         });
 
@@ -271,7 +300,7 @@ describe('ContactViewComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to heading components', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 2, 2);
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 3, 3);
                 const headingCmps = headingDes.map(de => de.injector.get(HeadingStubComponent) as HeadingStubComponent);
 
                 expect(headingCmps[0].title).toBeTruthy();
@@ -281,10 +310,19 @@ describe('ContactViewComponent (DONE)', () => {
                 expect(headingCmps[0].id).toBe(expectedCitationId, `should have id: ${expectedCitationId}`);
 
                 expect(headingCmps[1].title).toBeTruthy();
-                expect(headingCmps[1].title).toBe(expectedMastHeadTitle, `should have title: ${expectedMastHeadTitle}`);
+                expect(headingCmps[1].title).toBe(
+                    expectedDocumentationTitle,
+                    `should have title: ${expectedDocumentationTitle}`
+                );
 
                 expect(headingCmps[1].id).toBeTruthy();
-                expect(headingCmps[1].id).toBe(expectedMastHeadId, `should have id: ${expectedMastHeadId}`);
+                expect(headingCmps[1].id).toBe(expectedDocumentationId, `should have id: ${expectedDocumentationId}`);
+
+                expect(headingCmps[2].title).toBeTruthy();
+                expect(headingCmps[2].title).toBe(expectedImprintTitle, `should have title: ${expectedImprintTitle}`);
+
+                expect(headingCmps[2].id).toBeTruthy();
+                expect(headingCmps[2].id).toBe(expectedImprintId, `should have id: ${expectedImprintId}`);
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
@@ -305,14 +343,14 @@ describe('ContactViewComponent (DONE)', () => {
                 // check output
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toContain(
-                    expectedMetaData.page.version,
-                    `should contain ${expectedMetaData.page.version}`
+                    expectedPageMetaData.version,
+                    `should contain ${expectedPageMetaData.version}`
                 );
 
                 expect(releaseEl).toBeDefined();
                 expect(releaseEl.textContent).toContain(
-                    expectedMetaData.page.versionReleaseDate,
-                    `should contain ${expectedMetaData.page.versionReleaseDate}`
+                    expectedPageMetaData.versionReleaseDate,
+                    `should contain ${expectedPageMetaData.versionReleaseDate}`
                 );
 
                 expect(dateEl0).toBeDefined();

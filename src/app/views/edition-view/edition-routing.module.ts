@@ -7,6 +7,7 @@ import { EditionOverviewComponent } from './edition-outlets/edition-overview.com
 import { IntroComponent } from './edition-outlets/intro';
 import { ReportComponent } from './edition-outlets/report';
 
+/* routes of the EditionModule */
 const editionRoutes: Routes = [
     {
         path: '',
@@ -26,16 +27,26 @@ const editionRoutes: Routes = [
     }
 ];
 
-@NgModule({
-    imports: [RouterModule.forChild(editionRoutes)],
-    exports: [RouterModule]
-})
-export class EditionRoutingModule {}
-
-export const routedComponents = [
+/**
+ * Routed components of the {@link EditionModule}:
+ * {@link IntroComponent}, {@link EditionDetailComponent},
+ * {@link ReportComponent}.
+ */
+export const routedEditionComponents = [
     EditionViewComponent,
     EditionDetailComponent,
     IntroComponent,
     EditionOverviewComponent,
     ReportComponent
 ];
+
+/**
+ * Edition module routing.
+ *
+ * It activates the editionRoutes.
+ */
+@NgModule({
+    imports: [RouterModule.forChild(editionRoutes)],
+    exports: [RouterModule]
+})
+export class EditionRoutingModule {}

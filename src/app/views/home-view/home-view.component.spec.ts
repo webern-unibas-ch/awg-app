@@ -10,7 +10,8 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { Meta } from '@awg-core/core-models';
+import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { HomeViewComponent } from './home-view.component';
@@ -26,11 +27,11 @@ describe('HomeViewComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
-    let expectedMetaData: Meta;
+    let expectedEditionMetaData: MetaEdition;
 
     beforeEach(async(() => {
         // stub service for test purposes
-        mockCoreService = { getMetaData: () => expectedMetaData };
+        mockCoreService = { getMetaDataSection: key => METADATA[key] };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -48,8 +49,7 @@ describe('HomeViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedMetaData = new Meta();
-        expectedMetaData.edition = { editors: 'Test Editor 1', lastModified: '9. Oktober 2018' };
+        expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -67,11 +67,14 @@ describe('HomeViewComponent (DONE)', () => {
         expect(mockCoreService === coreService).toBe(false);
 
         // changing the stub service has no effect on the injected service
-        const changedMetaData = new Meta();
-        changedMetaData.edition = { editors: 'Test Editor 2', lastModified: '10. Oktober 2018' };
-        mockCoreService.getMetaData = () => changedMetaData;
+        let changedEditionMetaData = new MetaEdition();
+        changedEditionMetaData = {
+            editors: [{ name: 'Test Editor 2', contactUrl: '' }],
+            lastModified: '10. Oktober 2018'
+        };
 
-        expect(coreService.getMetaData()).toBe(expectedMetaData);
+        mockCoreService.getMetaDataSection = () => changedEditionMetaData;
+        expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -88,7 +91,7 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         it('should not have metadata', () => {
-            expect(component.metaData).toBeUndefined('should be undefined');
+            expect(component.editionMetaData).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -97,15 +100,18 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.declamation', 1, 1);
             });
 
-            it('... should not render `editors` and `lastmodified` yet', () => {
-                const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors', 1, 1);
+            it('... should not render `editors` yet', () => {
+                const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors a', 1, 1);
                 const editorsEl = editorsDes[0].nativeElement;
 
+                expect(editorsEl).toBeDefined();
+                expect(editorsEl.href).toBe('', 'should be empty string');
+                expect(editorsEl.textContent).toBe('', 'should be empty string');
+            });
+
+            it('... should not render `lastmodified` yet', () => {
                 const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
                 const versionEl = versionDes[0].nativeElement;
-
-                expect(editorsEl).toBeDefined();
-                expect(editorsEl.innerHTML).toBe('', 'should be empty string');
 
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'be contain empty string');
@@ -116,7 +122,7 @@ describe('HomeViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // mock the call to the meta service in #provideMetaData
-            component.metaData = mockCoreService.getMetaData();
+            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.edition);
 
             // trigger initial data binding
             fixture.detectChanges();
@@ -173,29 +179,35 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should return metadata', () => {
-                expect(component.metaData).toBeDefined();
-                expect(component.metaData).toBe(expectedMetaData);
+                expect(component.editionMetaData).toBeDefined();
+                expect(component.editionMetaData).toBe(expectedEditionMetaData);
             });
         });
 
         describe('VIEW', () => {
-            it('... should render `editors` and `lastmodified` in declamation', () => {
-                const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors', 1, 1);
+            it('... should render `editors` in declamation', () => {
+                const editorsDes = getAndExpectDebugElementByCss(compDe, '.declamation .editors a', 1, 1);
                 const editorsEl = editorsDes[0].nativeElement;
 
-                const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
+                expect(editorsEl).toBeDefined();
+                expect(editorsEl.href).toBe(
+                    expectedEditionMetaData.editors[0].contactUrl,
+                    `should be ${expectedEditionMetaData.editors[0].contactUrl}`
+                );
+                expect(editorsEl.innerHTML).toBe(
+                    expectedEditionMetaData.editors[0].name,
+                    `should be ${expectedEditionMetaData.editors[0].name}`
+                );
+            });
+
+            it('... should render `lastmodified` in declamation', () => {
+                const versionDes = getAndExpectDebugElementByCss(compDe, '.declamation .version', 1, 1);
                 const versionEl = versionDes[0].nativeElement;
 
-                expect(editorsEl).toBeDefined();
-                expect(editorsEl.innerHTML).toContain(
-                    expectedMetaData.edition.editors,
-                    `should contain ${expectedMetaData.edition.editors}`
-                );
-
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toContain(
-                    expectedMetaData.edition.lastModified,
-                    `should contain ${expectedMetaData.edition.lastModified}`
+                expect(versionEl.textContent).toBe(
+                    expectedEditionMetaData.lastModified,
+                    `should be ${expectedEditionMetaData.lastModified}`
                 );
             });
         });

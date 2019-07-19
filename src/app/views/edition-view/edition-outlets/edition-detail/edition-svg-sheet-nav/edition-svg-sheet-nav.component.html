@@ -1,0 +1,10 @@
+<div *ngIf="svgSheetsData" class="btn-group awg-btn-group d-flex" role="group">
+    <a
+        class="btn btn-default w-100"
+        *ngFor="let svgSheet of svgSheetsData | keyvalue"
+        [class.active]="isSelectedSvgSheet(svgSheet.value.id)"
+        (click)="selectSvgSheet(svgSheet.value.id)"
+    >
+        {{ svgSheet.key }}
+    </a>
+</div>

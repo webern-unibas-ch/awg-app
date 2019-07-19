@@ -40,8 +40,8 @@ describe('ViewContainerComponent (DONE)', () => {
                 const divEl0 = divDes[0].nativeElement;
                 const divEl1 = divDes[1].nativeElement;
 
-                expect(divEl0).toHaveCssClass('awg-sidenav');
-                expect(divEl1).toHaveCssClass('awg-maincontent');
+                expect(divEl0).toHaveCssClass('awg-maincontent');
+                expect(divEl1).toHaveCssClass('awg-sidenav');
             });
 
             it('... should contain two router outlets (stubbed)', () => {
@@ -51,42 +51,15 @@ describe('ViewContainerComponent (DONE)', () => {
             it('... should contain only one named router outlet (stubbed)', () => {
                 const routletDes = getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 2, 2);
 
-                // first outlet should be named 'side'
+                // main outlet should not be named
                 expect(routletDes[0].attributes).toBeDefined();
-                expect(routletDes[0].attributes.name).toBeDefined();
-                expect(routletDes[0].attributes.name).toBe('side', 'should have name `side`');
+                expect(routletDes[0].attributes.name).not.toBeDefined();
 
-                // second outlet should not be named
+                // secondary outlet should be named 'side'
                 expect(routletDes[1].attributes).toBeDefined();
-                expect(routletDes[1].attributes.name).not.toBeDefined();
+                expect(routletDes[1].attributes.name).toBeDefined();
+                expect(routletDes[1].attributes.name).toBe('side', 'should have name `side`');
             });
-        });
-    });
-
-    describe('AFTER initial data binding', () => {
-        beforeEach(() => {
-            // trigger initial data binding
-            fixture.detectChanges();
-        });
-
-        it('... should still have all elements', () => {
-            const divDes = getAndExpectDebugElementByCss(compDe, 'div.container-fluid > div.row > div', 2, 2);
-            const routletDes = getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 2, 2);
-
-            const divEl0 = divDes[0].nativeElement;
-            const divEl1 = divDes[1].nativeElement;
-
-            expect(divEl0).toHaveCssClass('awg-sidenav');
-            expect(divEl1).toHaveCssClass('awg-maincontent');
-
-            // first outlet should be named 'side'
-            expect(routletDes[0].attributes).toBeDefined();
-            expect(routletDes[0].attributes.name).toBeDefined();
-            expect(routletDes[0].attributes.name).toBe('side', 'should have name `side`');
-
-            // second outlet should not be named
-            expect(routletDes[1].attributes).toBeDefined();
-            expect(routletDes[1].attributes.name).not.toBeDefined();
         });
     });
 });

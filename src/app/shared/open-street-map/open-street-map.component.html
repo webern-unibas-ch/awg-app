@@ -1,0 +1,14 @@
+<iframe
+    id="awg-osm-embed-map"
+    width="{{ osmIFrameSettings.width }}"
+    height="{{ osmIFrameSettings.height }}"
+    scrolling="{{ osmIFrameSettings.scrolling }}"
+    [src]="osmEmbedUrl"
+>
+</iframe>
+
+<div id="awg-osm-link">
+    <small>
+        <a [href]="osmLinkUrl" target="_blank" rel="noopener noreferrer">{{ osmLinkLabel }}</a>
+    </small>
+</div>

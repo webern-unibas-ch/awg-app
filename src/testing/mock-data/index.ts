@@ -8,8 +8,17 @@
  */
 
 import { mockContextJson } from '@testing/mock-data/mockContextJson';
+import { mockResourceContextResponseJson } from '@testing/mock-data/mockResourceContextResponseJson';
+import { mockResourceDetail } from '@testing/mock-data/mockResourceDetail';
 import { mockResourceFullResponseJson } from '@testing/mock-data/mockResourceFullResponseJson';
 import { mockSearchResponseConverted } from '@testing/mock-data/mockSearchResponseConverted';
 import { mockSearchResponseJson } from '@testing/mock-data/mockSearchResponseJson';
 
-export { mockContextJson, mockResourceFullResponseJson, mockSearchResponseConverted, mockSearchResponseJson };
+export {
+    mockContextJson,
+    mockResourceContextResponseJson,
+    mockResourceDetail,
+    mockResourceFullResponseJson,
+    mockSearchResponseConverted,
+    mockSearchResponseJson
+};

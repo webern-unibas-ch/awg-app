@@ -1,38 +1,8 @@
 <!-- sideinfo: contact -->
 <div class="card">
     <div class="card-body bg-light">
-        <h2>Kontakt</h2>
-        <br />
-        <address>
-            <span class="caps">
-                <strong>
-                    <a href="{{ metaData?.page?.webernUrl }}" target="_blank" rel="noopener noreferrer">
-                        Anton Webern Gesamtausgabe
-                    </a>
-                </strong>
-            </span>
-            <br />
-            <br />
-            Musikwissenschaftliches Seminar der Universität Basel<br />
-            Petersgraben 27/29<br />
-            CH-4051 Basel<br />
-            Schweiz<br />
-            <br />
-            Telefon: +41 (0)61 267 28 08<br />
-            E-Mail: <a href="mailto:info-awg@unibas.ch">info-awg [at] unibas [dot] ch</a><br />
-        </address>
-        <iframe
-            width="100%"
-            height="auto"
-            frameborder="0"
-            scrolling="no"
-            marginheight="0"
-            marginwidth="0"
-            [src]="osmUrl"
-            style="border: 1px solid black"
-        >
-        </iframe>
-        <br />
-        <small><a [href]="osmLinkUrl" target="_blank" rel="noopener noreferrer">Größere Karte anzeigen</a></small>
+        <h5 id="awg-contact-info-header" class="mb-3">{{ contactInfoHeader }}</h5>
+        <awg-address [pageMetaData]="pageMetaData" [contactMetaData]="contactMetaData"></awg-address>
+        <awg-open-street-map [osmEmbedUrl]="osmEmbedUrl" [osmLinkUrl]="osmLinkUrl"></awg-open-street-map>
     </div>
 </div>

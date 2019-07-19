@@ -1,17 +1,19 @@
 <!-- sideinfo: structure -->
 <div class="card">
     <div class="card-body bg-light">
-        <p class="bold">
-            Strukturmodell
-            <br>
+        <h5 id="awg-structure-info-header">{{ structureInfoHeader }}</h5>
+        <p>&#9671;</p>
+        <p>
+            Konzept/Grafik:
+            <span class="awg-structure-info-author">
+                <a href="{{ (structureMetaData?.authors)[0].contactUrl }}" target="_blank" rel="noopener noreferrer">{{
+                    (structureMetaData?.authors)[0].name
+                }}</a>
+            </span>
         </p>
         <p>&#9671;</p>
         <p>
-            Konzept/Grafik: {{ author }}
-        </p>
-        <p>&#9671;</p>
-        <p>
-            Versionsdatum: <span class="version">{{ lastModified }}</span>
+            Versionsdatum: <span id="awg-structure-info-lastmodified">{{ structureMetaData?.lastModified }}</span>
         </p>
     </div>
 </div>

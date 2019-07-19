@@ -13,15 +13,17 @@
 *
 ************************************************/ -->
 <!-- resourceDetailData content: image objects -->
-<div class="awg-image-obj mb-3">
-
+<div class="awg-image-obj mb-3" *ngIf="images?.length > 0">
     <!-- header -->
-    <h5>Abbildungen (<span id="awg-image-number">{{ galleryImages?.length }}</span>)</h5>
+    <h5>
+        Abbildungen (<span id="awg-image-number">{{ images?.length }}</span
+        >)
+    </h5>
 
     <!-- image slider -->
     <div class="card awg-image-slider">
-
-            <ngx-gallery *ngIf="galleryImages.length > 0" [options]="galleryOptions" [images]="galleryImages"></ngx-gallery>
-
-    </div><!-- end DIV image-slider -->
-</div><!-- end DIV image-obj -->
+        <ngx-gallery [options]="galleryOptions" [images]="images"></ngx-gallery>
+    </div>
+    <!-- end DIV image-slider -->
+</div>
+<!-- end DIV image-obj -->
