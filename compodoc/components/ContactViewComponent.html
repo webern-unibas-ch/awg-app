@@ -1,0 +1,1282 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ContactViewComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/contact-view/contact-view.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The ContactView component.</p>
+<p>It contains the contact view section of the app
+with multiple  <a href="../components/HeadingComponent.html">HeadingComponent</a>s and
+sections for citation, documentation and imprint.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-contact-view</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./contact-view.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./contact-view.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#citationId">citationId</a>
+                            </li>
+                            <li>
+                                <a href="#citationTitle">citationTitle</a>
+                            </li>
+                            <li>
+                                <a href="#contactMetaData">contactMetaData</a>
+                            </li>
+                            <li>
+                                <a href="#dateFormat">dateFormat</a>
+                            </li>
+                            <li>
+                                <a href="#documentationId">documentationId</a>
+                            </li>
+                            <li>
+                                <a href="#documentationTitle">documentationTitle</a>
+                            </li>
+                            <li>
+                                <a href="#imprintId">imprintId</a>
+                            </li>
+                            <li>
+                                <a href="#imprintTitle">imprintTitle</a>
+                            </li>
+                            <li>
+                                <a href="#pageMetaData">pageMetaData</a>
+                            </li>
+                            <li>
+                                <a href="#today">today</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#provideMetaData">provideMetaData</a>
+                            </li>
+                            <li>
+                                <a href="#routeToSidenav">routeToSidenav</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(coreService: <a href="../injectables/CoreService.html">CoreService</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:88</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the ContactViewComponent.</p>
+<p>It declares a private CoreService instance
+to get the meta data and a private Router instance.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>coreService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/CoreService.html" target="_self" >CoreService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the CoreService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the Angular router.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideMetaData"></a>
+                    <span class="name">
+                        <b>
+                            provideMetaData
+                        </b>
+                        <a href="#provideMetaData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideMetaData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: provideMetaData.</p>
+<p>It calls the CoreService to provide
+the meta data for the contact view.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the pageMetaData variable.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routeToSidenav"></a>
+                    <span class="name">
+                        <b>
+                            routeToSidenav
+                        </b>
+                        <a href="#routeToSidenav"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>routeToSidenav()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="133"
+                            class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:133</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: routeToSidenav.</p>
+<p>It activates the secondary outlet with the contact-info.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Activates the contact-info side outlet.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="citationId"></a>
+                        <span class="name">
+                            <b>
+                            citationId</b>
+                            <a href="#citationId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;awg-citation&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:46</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: citationId.</p>
+<p>It keeps the id of the citation section.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="citationTitle"></a>
+                        <span class="name">
+                            <b>
+                            citationTitle</b>
+                            <a href="#citationTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;Zitation&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: citationTitle.</p>
+<p>It keeps the title of the citation section.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="contactMetaData"></a>
+                        <span class="name">
+                            <b>
+                            contactMetaData</b>
+                            <a href="#contactMetaData"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/MetaContact.html" target="_self" >MetaContact</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:67</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: contactMetaData.</p>
+<p>It keeps the contact meta data for the contact view.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="dateFormat"></a>
+                        <span class="name">
+                            <b>
+                            dateFormat</b>
+                            <a href="#dateFormat"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;d. MMMM yyyy&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:88</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: dateFormat.</p>
+<p>It keeps the date format for the contact view.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="documentationId"></a>
+                        <span class="name">
+                            <b>
+                            documentationId</b>
+                            <a href="#documentationId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;awg-documentation&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:60</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: documentationId.</p>
+<p>It keeps the id of the documentation section.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="documentationTitle"></a>
+                        <span class="name">
+                            <b>
+                            documentationTitle</b>
+                            <a href="#documentationTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;Dokumentation&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:53</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: documentationTitle.</p>
+<p>It keeps the title of the documentation section.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="imprintId"></a>
+                        <span class="name">
+                            <b>
+                            imprintId</b>
+                            <a href="#imprintId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;awg-imprint&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: imprintId.</p>
+<p>It keeps the id of the imprint section.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="imprintTitle"></a>
+                        <span class="name">
+                            <b>
+                            imprintTitle</b>
+                            <a href="#imprintTitle"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;Impressum&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:26</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: imprintTitle.</p>
+<p>It keeps the title of the imprint section.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="pageMetaData"></a>
+                        <span class="name">
+                            <b>
+                            pageMetaData</b>
+                            <a href="#pageMetaData"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/MetaPage.html" target="_self" >MetaPage</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:74</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: pageMetaData.</p>
+<p>It keeps the page meta data for the contact view.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="today"></a>
+                        <span class="name">
+                            <b>
+                            today</b>
+                            <a href="#today"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/views/contact-view/contact-view.component.ts:81</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: today.</p>
+<p>It keeps the current date for the contact view.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+import { Router } from &#x27;@angular/router&#x27;;
+
+import { CoreService } from &#x27;@awg-core/services&#x27;;
+import { MetaContact, MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-models&#x27;;
+
+/**
+ * The ContactView component.
+ *
+ * It contains the contact view section of the app
+ * with multiple  {@link HeadingComponent}s and
+ * sections for citation, documentation and imprint.
+ */
+@Component({
+    selector: &#x27;awg-contact-view&#x27;,
+    templateUrl: &#x27;./contact-view.component.html&#x27;,
+    styleUrls: [&#x27;./contact-view.component.css&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ContactViewComponent implements OnInit {
+    /**
+     * Public variable: imprintTitle.
+     *
+     * It keeps the title of the imprint section.
+     */
+    imprintTitle &#x3D; &#x27;Impressum&#x27;;
+
+    /**
+     * Public variable: imprintId.
+     *
+     * It keeps the id of the imprint section.
+     */
+    imprintId &#x3D; &#x27;awg-imprint&#x27;;
+
+    /**
+     * Public variable: citationTitle.
+     *
+     * It keeps the title of the citation section.
+     */
+    citationTitle &#x3D; &#x27;Zitation&#x27;;
+    /**
+     * Public variable: citationId.
+     *
+     * It keeps the id of the citation section.
+     */
+    citationId &#x3D; &#x27;awg-citation&#x27;;
+
+    /**
+     * Public variable: documentationTitle.
+     *
+     * It keeps the title of the documentation section.
+     */
+    documentationTitle &#x3D; &#x27;Dokumentation&#x27;;
+
+    /**
+     * Public variable: documentationId.
+     *
+     * It keeps the id of the documentation section.
+     */
+    documentationId &#x3D; &#x27;awg-documentation&#x27;;
+
+    /**
+     * Public variable: contactMetaData.
+     *
+     * It keeps the contact meta data for the contact view.
+     */
+    contactMetaData: MetaContact;
+
+    /**
+     * Public variable: pageMetaData.
+     *
+     * It keeps the page meta data for the contact view.
+     */
+    pageMetaData: MetaPage;
+
+    /**
+     * Public variable: today.
+     *
+     * It keeps the current date for the contact view.
+     */
+    today: number;
+
+    /**
+     * Public variable: dateFormat.
+     *
+     * It keeps the date format for the contact view.
+     */
+    dateFormat &#x3D; &#x27;d. MMMM yyyy&#x27;;
+
+    /**
+     * Constructor of the ContactViewComponent.
+     *
+     * It declares a private CoreService instance
+     * to get the meta data and a private Router instance.
+     *
+     * @param {CoreService} coreService Instance of the CoreService.
+     * @param {Router} router Instance of the Angular router.
+     */
+    constructor(private coreService: CoreService, private router: Router) {}
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.routeToSidenav();
+        this.provideMetaData();
+        this.today &#x3D; Date.now();
+    }
+
+    /**
+     * Public method: provideMetaData.
+     *
+     * It calls the CoreService to provide
+     * the meta data for the contact view.
+     *
+     * @returns {void} Sets the pageMetaData variable.
+     */
+    provideMetaData(): void {
+        this.pageMetaData &#x3D; this.coreService.getMetaDataSection(MetaSectionTypes.page);
+        this.contactMetaData &#x3D; this.coreService.getMetaDataSection(MetaSectionTypes.contact);
+    }
+
+    /**
+     * Public method: routeToSidenav.
+     *
+     * It activates the secondary outlet with the contact-info.
+     *
+     * @returns {void} Activates the contact-info side outlet.
+     */
+    routeToSidenav(): void {
+        // opens the side-info outlet while preserving the router fragment for scrolling
+        this.router.navigate([{ outlets: { side: &#x27;contactInfo&#x27; } }], {
+            preserveFragment: true,
+            queryParamsHandling: &#x27;preserve&#x27;
+        });
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- content: contact --&gt;
+
+&lt;!-- citation --&gt;
+&lt;!-- citation heading --&gt;
+&lt;awg-heading [title]&#x3D;&quot;citationTitle&quot; [id]&#x3D;&quot;citationId&quot;&gt;&lt;/awg-heading&gt;
+
+&lt;!-- citation description --&gt;
+&lt;div class&#x3D;&quot;awg-citation-description mb-5&quot;&gt;
+    &lt;p class&#x3D;&quot;caps&quot;&gt;Empfohlene Zitierweisen:&lt;/p&gt;
+
+    &lt;p class&#x3D;&quot;italic&quot;&gt;Website:&lt;/p&gt;
+    &lt;p class&#x3D;&quot;awg-citation-text&quot;&gt;
+        {{ pageMetaData.awgProjectName }}. Projekt-Website:
+        &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;{{ pageMetaData?.awgProjectUrl }}&quot;&gt;
+            {{ pageMetaData?.awgProjectUrl }} &lt;/a
+        &gt;, abgerufen am &lt;span class&#x3D;&quot;awg-citation-date&quot;&gt;{{ today | date: dateFormat }}&lt;/span
+        &gt;.
+    &lt;/p&gt;
+
+    &lt;p class&#x3D;&quot;italic&quot;&gt;Online-Edition:&lt;/p&gt;
+    &lt;p class&#x3D;&quot;awg-citation-text&quot;&gt;
+        {{ pageMetaData.awgProjectName }}. Online-Edition (Version
+        &lt;span class&#x3D;&quot;awg-citation-version&quot;&gt;{{ pageMetaData?.version }}&lt;/span&gt; vom
+        &lt;span class&#x3D;&quot;awg-citation-version-release&quot;&gt;{{ pageMetaData?.versionReleaseDate }}&lt;/span
+        &gt;):
+        &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;{{ pageMetaData?.awgAppUrl }}&quot;&gt;
+            {{ pageMetaData?.awgAppUrl }} &lt;/a
+        &gt;, abgerufen am &lt;span class&#x3D;&quot;awg-citation-date&quot;&gt;{{ today | date: dateFormat }}&lt;/span
+        &gt;.
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- documentation --&gt;
+&lt;!-- documentation heading --&gt;
+&lt;awg-heading [title]&#x3D;&quot;documentationTitle&quot; [id]&#x3D;&quot;documentationId&quot;&gt;&lt;/awg-heading&gt;
+
+&lt;!-- documentation description --&gt;
+&lt;div class&#x3D;&quot;awg-documentation-description mb-5&quot;&gt;
+    &lt;p class&#x3D;&quot;awg-documentation-text&quot;&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;GitHub:&lt;/span&gt;&lt;br /&gt;
+        Repository unter:
+        &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;{{ pageMetaData?.githubUrl }}&quot;&gt;
+            {{ pageMetaData?.githubUrl }}
+        &lt;/a&gt;
+    &lt;/p&gt;
+
+    &lt;p class&#x3D;&quot;awg-documentation-text&quot;&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;Compodoc:&lt;/span&gt;&lt;br /&gt;
+        Dokumentation von Struktur und Funktionalitäten der Angular App:
+        &lt;a id&#x3D;&quot;awg-compodoc&quot; href&#x3D;&quot;{{ pageMetaData?.compodocUrl }} &quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;
+            awg-app documentation
+        &lt;/a&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- imprint --&gt;
+&lt;!-- imprint heading --&gt;
+&lt;awg-heading [title]&#x3D;&quot;imprintTitle&quot; [id]&#x3D;&quot;imprintId&quot;&gt;&lt;/awg-heading&gt;
+
+&lt;!-- imprint description --&gt;
+&lt;div class&#x3D;&quot;awg-imprint-description&quot;&gt;
+    &lt;p&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;Herausgeber:&lt;/span&gt;&lt;br /&gt;
+        {{ pageMetaData.awgProjectName }}&lt;br /&gt;
+        {{ contactMetaData.address.institution }}&lt;br /&gt;
+        {{ contactMetaData.address.street }}&lt;br /&gt;
+        {{ contactMetaData.address.postalCode }}&amp;nbsp;{{ contactMetaData.address.city }}&lt;br /&gt;
+        {{ contactMetaData.address.country }}&lt;br /&gt;&lt;br /&gt;
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;Konzept:&lt;/span&gt;&lt;br /&gt;
+        {{ pageMetaData.awgProjectName }}&lt;br /&gt;&lt;br /&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;Texte/Inhalte:&lt;/span&gt;&lt;br /&gt;
+        Die Verantwortung für die Inhalte der Website liegt bei der {{ pageMetaData.awgProjectName }}. Bei inhaltlichen
+        Fragen wenden Sie sich bitte an die unter Kontakt angegebene Adresse.&lt;br /&gt;&lt;br /&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;Materialien, Notentexte und Bilder (vgl. Lizenzierung):&lt;/span&gt;&lt;br /&gt;
+        Digitales Archiv der {{ pageMetaData.awgProjectName }}&lt;br /&gt;
+        Online-Edition der {{ pageMetaData.awgProjectName }}&lt;br /&gt;&lt;br /&gt;
+    &lt;/p&gt;
+    &lt;p&gt;
+        &lt;span class&#x3D;&quot;caps&quot;&gt;Programmierung &amp;amp; Webdesign:&lt;/span&gt;&lt;br /&gt;
+        Stefan Münnich&lt;br /&gt;
+        Wissenschaftlicher Mitarbeiter der {{ pageMetaData.awgProjectName }}, Basel&lt;br /&gt;&lt;a
+            href&#x3D;&quot;mailto:stefan.muennich@unibas.ch&quot;
+            &gt;stefan.muennich [at] unibas [dot] ch&lt;/a
+        &gt;&lt;br /&gt;&lt;br /&gt;
+    &lt;/p&gt;
+&lt;/div&gt;
+
+&lt;!-- disclaimer description --&gt;
+&lt;div id&#x3D;&quot;awg-disclaimer&quot;&gt;
+    &lt;p&gt;&lt;span class&#x3D;&quot;caps&quot;&gt;Disclaimer/Haftungserklärung:&lt;/span&gt;&lt;br /&gt;&lt;/p&gt;
+    &lt;p class&#x3D;&quot;italic&quot;&gt;Urheberrecht und Lizenzierung:&lt;/p&gt;
+    &lt;p&gt;
+        Sämtliche im Rahmen der {{ pageMetaData.awgProjectName }} erarbeiteten und auf ihrer Website oder ihrer
+        Online-Edition veröffentlichten Inhalte sowie auch alle Inhalte, die von der Website oder der Online-Edition der
+        Anton Webern Gesamtausgabe aus auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton
+        Webern Gesamtausgabe) für den Nutzer zugänglich sind, sind urheberrechtlich geschützt und werden – sofern nicht
+        anders deklariert – zu den Bedingungen der Creative Commons-Lizenz „Namensnennung – Nicht kommerziell – Keine
+        Bearbeitungen 4.0 International&quot; (&lt;a
+            target&#x3D;&quot;_blank&quot;
+            ref&#x3D;&quot;noopener noreferrer&quot;
+            href&#x3D;&quot;https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de&quot;
+            &gt;CC-BY-NC-ND-4.0&lt;/a
+        &gt;) zur Verfügung gestellt. Jede davon abweichende Verwertung bedarf der vorherigen schriftlichen Zustimmung
+        durch den jeweiligen Rechteinhaber. Allfällige Bewilligungsgesuche sind an die
+        {{ pageMetaData.awgProjectName }} zu richten (Kontakt). Alle Rechte an zugänglich gemachten externen
+        Bildinhalten verbleiben bei den Privateigentümern bzw. den archivierenden Institutionen, bei denen die Rechte
+        für eine allfällige Weiterverwendung einzuholen sind.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Der Software-Code dieses Prototyps wird auf
+        &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener norefferer&quot; href&#x3D;&quot;https://github.com/webern-unibas-ch/awg-app&quot;&gt;GitHub&lt;/a&gt; unter
+        einer &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener norefferer&quot; href&#x3D;&quot;https://opensource.org/licenses/MIT&quot;&gt;MIT&lt;/a&gt;-Lizenz zur
+        Verfügung gestellt.
+    &lt;/p&gt;
+
+    &lt;p class&#x3D;&quot;italic&quot;&gt;Externe Links:&lt;/p&gt;
+    &lt;p&gt;
+        Die {{ pageMetaData.awgProjectName }} hat keinen Einfluss auf und übernimmt keine Verantwortung für die Inhalte
+        der von ihrer Website, von ihrer Online-Edition oder von der wissenschaftlichen Plattform KNORA/SALSAH
+        (Projektbereich der {{ pageMetaData.awgProjectName }}) aus verlinkten externen Internetseiten. Eine Prüfung bei
+        der Verlinkung ergab keine strafbaren Inhalte auf diesen Seiten. Alle Linkangaben sind ohne Gewähr.
+        Seitenaufrufe externer Seiten über diese Links erfolgen auf eigene Gefahr. Dies gilt für alle Links auf der
+        Website und der Online-Edition der {{ pageMetaData.awgProjectName }} sowie auf der wissenschaftlichen Plattform
+        KNORA/SALSAH (Projektbereich der Anton Webern Gesamtausgabe).
+    &lt;/p&gt;
+
+    &lt;p class&#x3D;&quot;italic&quot;&gt;Haftungserklärung:&lt;/p&gt;
+    &lt;p&gt;
+        Die {{ pageMetaData.awgProjectName }} bemüht sich um richtige und aktualisierte Informationen auf ihrer Website
+        und ihrer Online-Edition, übernimmt jedoch keinerlei Garantien oder Zusicherungen betreffend der Vollständigkeit
+        der auf dieser enthaltenen bzw. referenzierten Informationen. Prinzipiell erfolgen Zugang, Benutzung und
+        Inanspruchnahme der Dienstleistungen der Website der {{ pageMetaData.awgProjectName }} ausschließlich auf
+        eigenes Risiko des Nutzers. Weder die Gesamtausgabe noch eine von ihr beigezogene, in Herstellung,
+        Informationseingabe und Informationsvermittlung der Website involvierte Hilfsperson sind in irgendeiner Form
+        haftbar für etwaige Schäden, die im Zusammenhang mit Zugang, Benutzung oder möglichen Störungen beim Gebrauch
+        der Website auftreten könnten.
+    &lt;/p&gt;
+
+    &lt;p class&#x3D;&quot;italic&quot;&gt;Google Analytics:&lt;/p&gt;
+    &lt;p&gt;
+        Die {{ pageMetaData.awgProjectName }} setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an der
+        Analyse und Optimierung unseres Onlineangebotes im Sinne des Art.
+        &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;https://dejure.org/gesetze/DSGVO/6.html&quot;&gt;6&lt;/a&gt; Abs. 1 lit. f.
+        DSGVO) Google Analytics, einen Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die
+        durch das Cookie erzeugten Informationen über Benutzung des Onlineangebotes durch die Nutzer werden in der Regel
+        an einen Server von Google in den USA übertragen und dort gespeichert.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Google ist unter dem Privacy-Shield-Abkommen zertifiziert und bietet hierdurch eine Garantie, das europäische
+        Datenschutzrecht einzuhalten (&lt;a
+            target&#x3D;&quot;_blank&quot;
+            ref&#x3D;&quot;noopener noreferrer&quot;
+            href&#x3D;&quot;https://www.privacyshield.gov/participant?id&#x3D;a2zt000000001L5AAI&amp;status&#x3D;Active&quot;
+            &gt;https://www.privacyshield.gov/participant?id&#x3D;a2zt000000001L5AAI&amp;status&#x3D;Active&lt;/a
+        &gt;).
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Google wird diese Informationen in unserem Auftrag benutzen, um die Nutzung unseres Onlineangebotes durch die
+        Nutzer auszuwerten, um Reports über die Aktivitäten innerhalb dieses Onlineangebotes zusammenzustellen und um
+        weitere, mit der Nutzung dieses Onlineangebotes und der Internetnutzung verbundene Dienstleistungen, uns
+        gegenüber zu erbringen. Dabei können aus den verarbeiteten Daten pseudonyme Nutzungsprofile der Nutzer erstellt
+        werden.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Die {{ pageMetaData.awgProjectName }} setzt Google Analytics nur mit aktivierter IP-Anonymisierung ein. Das
+        bedeutet, die IP-Adresse der Nutzer wird von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in
+        anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum gekürzt. Nur in Ausnahmefällen wird
+        die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Die von dem Browser des Nutzers übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.
+        Die Nutzer können die Speicherung der Cookies durch eine entsprechende Einstellung ihrer Browser-Software
+        verhindern; die Nutzer können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf ihre Nutzung
+        des Onlineangebotes bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem
+        sie das unter folgendem Link verfügbare Browser-Plugin herunterladen und installieren:
+        &lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;https://tools.google.com/dlpage/gaoptout?hl&#x3D;de&quot;
+            &gt;https://tools.google.com/dlpage/gaoptout?hl&#x3D;de&lt;/a
+        &gt;.
+    &lt;/p&gt;
+
+    &lt;p&gt;
+        Weitere Informationen zur Datennutzung durch Google, Einstellungs- und Widerspruchsmöglichkeiten, erfahren Sie
+        in der Datenschutzerklärung von Google (&lt;a
+            target&#x3D;&quot;_blank&quot;
+            ref&#x3D;&quot;noopener noreferrer&quot;
+            href&#x3D;&quot;https://policies.google.com/technologies/ads&quot;
+            &gt;https://policies.google.com/technologies/ads&lt;/a
+        &gt;) sowie in den Einstellungen für die Darstellung von Werbeeinblendungen durch Google (&lt;a
+            target&#x3D;&quot;_blank&quot;
+            ref&#x3D;&quot;noopener noreferrer&quot;
+            href&#x3D;&quot;https://adssettings.google.com/authenticated&quot;
+            &gt;https://adssettings.google.com/authenticated&lt;/a
+        &gt;).
+    &lt;/p&gt;
+
+    &lt;p&gt;Die personenbezogenen Daten der Nutzer werden nach 14 Monaten gelöscht.&lt;/p&gt;
+
+    &lt;p&gt;
+        [&lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;https://datenschutz-generator.de/&quot;
+            &gt;Erstellt mit Datenschutz-Generator.de von RA Dr. Thomas Schwenke&lt;/a
+        &gt;; vom Websiteinhaber angepasst]
+    &lt;/p&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./contact-view.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- content: contact --><!-- citation --><!-- citation heading --><awg-heading [title]="citationTitle" [id]="citationId"></awg-heading><!-- citation description --><div class="awg-citation-description mb-5">    <p class="caps">Empfohlene Zitierweisen:</p>    <p class="italic">Website:</p>    <p class="awg-citation-text">        {{ pageMetaData.awgProjectName }}. Projekt-Website:        <a target="_blank" ref="noopener noreferrer" href="{{ pageMetaData?.awgProjectUrl }}">            {{ pageMetaData?.awgProjectUrl }} </a        >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span        >.    </p>    <p class="italic">Online-Edition:</p>    <p class="awg-citation-text">        {{ pageMetaData.awgProjectName }}. Online-Edition (Version        <span class="awg-citation-version">{{ pageMetaData?.version }}</span> vom        <span class="awg-citation-version-release">{{ pageMetaData?.versionReleaseDate }}</span        >):        <a target="_blank" ref="noopener noreferrer" href="{{ pageMetaData?.awgAppUrl }}">            {{ pageMetaData?.awgAppUrl }} </a        >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span        >.    </p></div><!-- documentation --><!-- documentation heading --><awg-heading [title]="documentationTitle" [id]="documentationId"></awg-heading><!-- documentation description --><div class="awg-documentation-description mb-5">    <p class="awg-documentation-text">        <span class="caps">GitHub:</span><br />        Repository unter:        <a target="_blank" ref="noopener noreferrer" href="{{ pageMetaData?.githubUrl }}">            {{ pageMetaData?.githubUrl }}        </a>    </p>    <p class="awg-documentation-text">        <span class="caps">Compodoc:</span><br />        Dokumentation von Struktur und Funktionalitäten der Angular App:        <a id="awg-compodoc" href="{{ pageMetaData?.compodocUrl }} " target="_blank" rel="noopener noreferrer">            awg-app documentation        </a>    </p></div><!-- imprint --><!-- imprint heading --><awg-heading [title]="imprintTitle" [id]="imprintId"></awg-heading><!-- imprint description --><div class="awg-imprint-description">    <p>        <span class="caps">Herausgeber:</span><br />        {{ pageMetaData.awgProjectName }}<br />        {{ contactMetaData.address.institution }}<br />        {{ contactMetaData.address.street }}<br />        {{ contactMetaData.address.postalCode }}&nbsp;{{ contactMetaData.address.city }}<br />        {{ contactMetaData.address.country }}<br /><br />    </p>    <p>        <span class="caps">Konzept:</span><br />        {{ pageMetaData.awgProjectName }}<br /><br />    </p>    <p>        <span class="caps">Texte/Inhalte:</span><br />        Die Verantwortung für die Inhalte der Website liegt bei der {{ pageMetaData.awgProjectName }}. Bei inhaltlichen        Fragen wenden Sie sich bitte an die unter Kontakt angegebene Adresse.<br /><br />    </p>    <p>        <span class="caps">Materialien, Notentexte und Bilder (vgl. Lizenzierung):</span><br />        Digitales Archiv der {{ pageMetaData.awgProjectName }}<br />        Online-Edition der {{ pageMetaData.awgProjectName }}<br /><br />    </p>    <p>        <span class="caps">Programmierung &amp; Webdesign:</span><br />        Stefan Münnich<br />        Wissenschaftlicher Mitarbeiter der {{ pageMetaData.awgProjectName }}, Basel<br /><a            href="mailto:stefan.muennich@unibas.ch"            >stefan.muennich [at] unibas [dot] ch</a        ><br /><br />    </p></div><!-- disclaimer description --><div id="awg-disclaimer">    <p><span class="caps">Disclaimer/Haftungserklärung:</span><br /></p>    <p class="italic">Urheberrecht und Lizenzierung:</p>    <p>        Sämtliche im Rahmen der {{ pageMetaData.awgProjectName }} erarbeiteten und auf ihrer Website oder ihrer        Online-Edition veröffentlichten Inhalte sowie auch alle Inhalte, die von der Website oder der Online-Edition der        Anton Webern Gesamtausgabe aus auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton        Webern Gesamtausgabe) für den Nutzer zugänglich sind, sind urheberrechtlich geschützt und werden – sofern nicht        anders deklariert – zu den Bedingungen der Creative Commons-Lizenz „Namensnennung – Nicht kommerziell – Keine        Bearbeitungen 4.0 International" (<a            target="_blank"            ref="noopener noreferrer"            href="https://creativecommons.org/licenses/by-nc-nd/4.0/deed.de"            >CC-BY-NC-ND-4.0</a        >) zur Verfügung gestellt. Jede davon abweichende Verwertung bedarf der vorherigen schriftlichen Zustimmung        durch den jeweiligen Rechteinhaber. Allfällige Bewilligungsgesuche sind an die        {{ pageMetaData.awgProjectName }} zu richten (Kontakt). Alle Rechte an zugänglich gemachten externen        Bildinhalten verbleiben bei den Privateigentümern bzw. den archivierenden Institutionen, bei denen die Rechte        für eine allfällige Weiterverwendung einzuholen sind.    </p>    <p>        Der Software-Code dieses Prototyps wird auf        <a target="_blank" ref="noopener norefferer" href="https://github.com/webern-unibas-ch/awg-app">GitHub</a> unter        einer <a target="_blank" ref="noopener norefferer" href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur        Verfügung gestellt.    </p>    <p class="italic">Externe Links:</p>    <p>        Die {{ pageMetaData.awgProjectName }} hat keinen Einfluss auf und übernimmt keine Verantwortung für die Inhalte        der von ihrer Website, von ihrer Online-Edition oder von der wissenschaftlichen Plattform KNORA/SALSAH        (Projektbereich der {{ pageMetaData.awgProjectName }}) aus verlinkten externen Internetseiten. Eine Prüfung bei        der Verlinkung ergab keine strafbaren Inhalte auf diesen Seiten. Alle Linkangaben sind ohne Gewähr.        Seitenaufrufe externer Seiten über diese Links erfolgen auf eigene Gefahr. Dies gilt für alle Links auf der        Website und der Online-Edition der {{ pageMetaData.awgProjectName }} sowie auf der wissenschaftlichen Plattform        KNORA/SALSAH (Projektbereich der Anton Webern Gesamtausgabe).    </p>    <p class="italic">Haftungserklärung:</p>    <p>        Die {{ pageMetaData.awgProjectName }} bemüht sich um richtige und aktualisierte Informationen auf ihrer Website        und ihrer Online-Edition, übernimmt jedoch keinerlei Garantien oder Zusicherungen betreffend der Vollständigkeit        der auf dieser enthaltenen bzw. referenzierten Informationen. Prinzipiell erfolgen Zugang, Benutzung und        Inanspruchnahme der Dienstleistungen der Website der {{ pageMetaData.awgProjectName }} ausschließlich auf        eigenes Risiko des Nutzers. Weder die Gesamtausgabe noch eine von ihr beigezogene, in Herstellung,        Informationseingabe und Informationsvermittlung der Website involvierte Hilfsperson sind in irgendeiner Form        haftbar für etwaige Schäden, die im Zusammenhang mit Zugang, Benutzung oder möglichen Störungen beim Gebrauch        der Website auftreten könnten.    </p>    <p class="italic">Google Analytics:</p>    <p>        Die {{ pageMetaData.awgProjectName }} setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an der        Analyse und Optimierung unseres Onlineangebotes im Sinne des Art.        <a target="_blank" ref="noopener noreferrer" href="https://dejure.org/gesetze/DSGVO/6.html">6</a> Abs. 1 lit. f.        DSGVO) Google Analytics, einen Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die        durch das Cookie erzeugten Informationen über Benutzung des Onlineangebotes durch die Nutzer werden in der Regel        an einen Server von Google in den USA übertragen und dort gespeichert.    </p>    <p>        Google ist unter dem Privacy-Shield-Abkommen zertifiziert und bietet hierdurch eine Garantie, das europäische        Datenschutzrecht einzuhalten (<a            target="_blank"            ref="noopener noreferrer"            href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active"            >https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a        >).    </p>    <p>        Google wird diese Informationen in unserem Auftrag benutzen, um die Nutzung unseres Onlineangebotes durch die        Nutzer auszuwerten, um Reports über die Aktivitäten innerhalb dieses Onlineangebotes zusammenzustellen und um        weitere, mit der Nutzung dieses Onlineangebotes und der Internetnutzung verbundene Dienstleistungen, uns        gegenüber zu erbringen. Dabei können aus den verarbeiteten Daten pseudonyme Nutzungsprofile der Nutzer erstellt        werden.    </p>    <p>        Die {{ pageMetaData.awgProjectName }} setzt Google Analytics nur mit aktivierter IP-Anonymisierung ein. Das        bedeutet, die IP-Adresse der Nutzer wird von Google innerhalb von Mitgliedstaaten der Europäischen Union oder in        anderen Vertragsstaaten des Abkommens über den Europäischen Wirtschaftsraum gekürzt. Nur in Ausnahmefällen wird        die volle IP-Adresse an einen Server von Google in den USA übertragen und dort gekürzt.    </p>    <p>        Die von dem Browser des Nutzers übermittelte IP-Adresse wird nicht mit anderen Daten von Google zusammengeführt.        Die Nutzer können die Speicherung der Cookies durch eine entsprechende Einstellung ihrer Browser-Software        verhindern; die Nutzer können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf ihre Nutzung        des Onlineangebotes bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem        sie das unter folgendem Link verfügbare Browser-Plugin herunterladen und installieren:        <a target="_blank" ref="noopener noreferrer" href="https://tools.google.com/dlpage/gaoptout?hl=de"            >https://tools.google.com/dlpage/gaoptout?hl=de</a        >.    </p>    <p>        Weitere Informationen zur Datennutzung durch Google, Einstellungs- und Widerspruchsmöglichkeiten, erfahren Sie        in der Datenschutzerklärung von Google (<a            target="_blank"            ref="noopener noreferrer"            href="https://policies.google.com/technologies/ads"            >https://policies.google.com/technologies/ads</a        >) sowie in den Einstellungen für die Darstellung von Werbeeinblendungen durch Google (<a            target="_blank"            ref="noopener noreferrer"            href="https://adssettings.google.com/authenticated"            >https://adssettings.google.com/authenticated</a        >).    </p>    <p>Die personenbezogenen Daten der Nutzer werden nach 14 Monaten gelöscht.</p>    <p>        [<a target="_blank" ref="noopener noreferrer" href="https://datenschutz-generator.de/"            >Erstellt mit Datenschutz-Generator.de von RA Dr. Thomas Schwenke</a        >; vom Websiteinhaber angepasst]    </p></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'ContactViewComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ContactViewComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

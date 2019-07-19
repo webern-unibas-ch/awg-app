@@ -1,0 +1,300 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>IntroComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/edition-view/edition-outlets/intro/intro.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The Intro component.</p>
+<p>It contains the intro section
+of the edition view of the app.</p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-intro</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./intro.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./intro.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+
+
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component } from &#x27;@angular/core&#x27;;
+
+/**
+ * The Intro component.
+ *
+ * It contains the intro section
+ * of the edition view of the app.
+ */
+@Component({
+    selector: &#x27;awg-intro&#x27;,
+    templateUrl: &#x27;./intro.component.html&#x27;,
+    styleUrls: [&#x27;./intro.component.css&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class IntroComponent {}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- content: intro --&gt;
+&lt;div&gt;
+
+    &lt;!-- modal --&gt;
+    &lt;awg-modal #modal&gt;&lt;/awg-modal&gt;
+
+    &lt;!-- intro --&gt;
+    &lt;div&gt;
+        &lt;h2&gt;Einleitung&lt;/h2&gt;
+        &lt;p class&#x3D;&quot;small text-muted&quot;&gt;
+            [Die Einleitung zum gesamten Werkkomplex &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 erscheint im Zusammenhang der vollständigen  Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.]
+        &lt;/p&gt;
+        &lt;p&gt;
+            Die Skizzen in &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition&#x27;, &#x27;report&#x27;]&quot; fragment&#x3D;&quot;sourceA&quot;&gt;&lt;strong&gt;A&lt;/strong&gt;&lt;/a&gt; enthalten datierte Verlaufsskizzen zu allen vier Liedern: &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Aa:SkI/1&lt;/strong&gt;&lt;/a&gt; (13. Januar 1915), &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Ab:SkII/1&lt;/strong&gt;&lt;/a&gt; (10. April 1917), &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Ac:SkIII/1&lt;/strong&gt;&lt;/a&gt; und &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Ac:SkIII/7&lt;/strong&gt;&lt;/a&gt; (31. Januar 1915) sowie &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Ae:SkIV/1&lt;/strong&gt;&lt;/a&gt; (31. März 1917). Darüber hinaus finden sich Skizzen zu einzelnen Stellen.
+        &lt;/p&gt;
+        &lt;p class&#x3D;&quot;small text-muted&quot;&gt;
+            [Die Einleitung zu &lt;strong&gt;Aa:Sk1/1&lt;/strong&gt; erscheint im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in  AWG I/5.]
+        &lt;/p&gt;
+        &lt;p&gt;
+            In &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/2&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/2&lt;/strong&gt;&lt;/a&gt; werden T. [11]–[12] aus &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Aa:SkI/1&lt;/strong&gt;&lt;/a&gt; bzw. T. 10–11 aus &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; (&lt;a (click)&#x3D;&quot;modal.open(&#x27;editionComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Nr. I „Der Tag ist vergangen“ [Fassung 1]&lt;/strong&gt;&lt;/a&gt;) neu skizziert, in &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/3&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/3&lt;/strong&gt;&lt;/a&gt;, &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/4&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/4&lt;/strong&gt;&lt;/a&gt; und &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/5&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/5&lt;/strong&gt;&lt;/a&gt; weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; (&lt;a (click)&#x3D;&quot;modal.open(&#x27;editionComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Nr. I „Der Tag ist vergangen“ [Fassung2]&lt;/strong&gt;&lt;/a&gt;) entspricht. Da T. 10–11 in &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; offensichtlich zunächst aus &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Aa:SkI/1&lt;/strong&gt;&lt;/a&gt; übernommen wurden und Korrekturen in &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; mit Bleistift auf die Formulierung von &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/2&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/2&lt;/strong&gt;&lt;/a&gt; hindeuten, sind &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/2–5&lt;/strong&gt;&lt;/a&gt; offensichtlich erst nach der Niederschrift von &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; entstanden.
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/2&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/2&lt;/strong&gt;&lt;/a&gt; übernimmt, wie erwähnt, bestimmte Merkmale der Korrekturen in &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt;, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. [12] kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es1/as1 im oberen System geändert sowie der letzte Zweiklang im unteren System aus &lt;a (click)&#x3D;&quot;modal.open(&#x27;sheetComingSoon&#x27;)&quot;&gt;&lt;strong&gt;Aa:SkI/1&lt;/strong&gt;&lt;/a&gt; bzw. &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;B&lt;/strong&gt;&lt;/a&gt; (Gis/cis) getilgt.
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/3&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/3&lt;/strong&gt;&lt;/a&gt; verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/2&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/2&lt;/strong&gt;&lt;/a&gt; tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/5&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/5&lt;/strong&gt;&lt;/a&gt; formulierte und in &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; verwendete Variante.
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/4&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/4&lt;/strong&gt;&lt;/a&gt; erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6).
+        &lt;/p&gt;
+        &lt;p&gt;
+            &lt;a [routerLink]&#x3D;&quot;[&#x27;/edition/detail&#x27;, &#x27;Aa:SkI/5&#x27;]&quot;&gt;&lt;strong&gt;Aa:SkI/5&lt;/strong&gt;&lt;/a&gt; bringt in der letzten Korrekturschicht die in &lt;a (click)&#x3D;&quot;modal.open(&#x27;sourceNotA&#x27;)&quot;&gt;&lt;strong&gt;C&lt;/strong&gt;&lt;/a&gt; verwendete Variante.
+        &lt;/p&gt;
+        &lt;p class&#x3D;&quot;small text-muted&quot;&gt;
+            [Die Einleitungen zu den weiteren Skizzen aus &lt;strong&gt;A&lt;/strong&gt; erscheinen im Zusammenhang der vollständigen Edition der  &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.]
+        &lt;/p&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./intro.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- content: intro --><div>    <!-- modal -->    <awg-modal #modal></awg-modal>    <!-- intro -->    <div>        <h2>Einleitung</h2>        <p class="small text-muted">            [Die Einleitung zum gesamten Werkkomplex <i>Vier Lieder</i> op. 12 erscheint im Zusammenhang der vollständigen  Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]        </p>        <p>            Die Skizzen in <a [routerLink]="[\'/edition\', \'report\']" fragment="sourceA"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern: <a (click)="modal.open(\'sheetComingSoon\')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915), <a (click)="modal.open(\'sheetComingSoon\')"><strong>Ab:SkII/1</strong></a> (10. April 1917), <a (click)="modal.open(\'sheetComingSoon\')"><strong>Ac:SkIII/1</strong></a> und <a (click)="modal.open(\'sheetComingSoon\')"><strong>Ac:SkIII/7</strong></a> (31. Januar 1915) sowie <a (click)="modal.open(\'sheetComingSoon\')"><strong>Ae:SkIV/1</strong></a> (31. März 1917). Darüber hinaus finden sich Skizzen zu einzelnen Stellen.        </p>        <p class="small text-muted">            [Die Einleitung zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in  AWG I/5.]        </p>        <p>            In <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/2\']"><strong>Aa:SkI/2</strong></a> werden T. [11]–[12] aus <a (click)="modal.open(\'sheetComingSoon\')"><strong>Aa:SkI/1</strong></a> bzw. T. 10–11 aus <a (click)="modal.open(\'sourceNotA\')"><strong>B</strong></a> (<a (click)="modal.open(\'editionComingSoon\')"><strong>Nr. I „Der Tag ist vergangen“ [Fassung 1]</strong></a>) neu skizziert, in <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/3\']"><strong>Aa:SkI/3</strong></a>, <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/4\']"><strong>Aa:SkI/4</strong></a> und <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/5\']"><strong>Aa:SkI/5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)="modal.open(\'sourceNotA\')"><strong>C</strong></a> (<a (click)="modal.open(\'editionComingSoon\')"><strong>Nr. I „Der Tag ist vergangen“ [Fassung2]</strong></a>) entspricht. Da T. 10–11 in <a (click)="modal.open(\'sourceNotA\')"><strong>B</strong></a> offensichtlich zunächst aus <a (click)="modal.open(\'sheetComingSoon\')"><strong>Aa:SkI/1</strong></a> übernommen wurden und Korrekturen in <a (click)="modal.open(\'sourceNotA\')"><strong>B</strong></a> mit Bleistift auf die Formulierung von <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/2\']"><strong>Aa:SkI/2</strong></a> hindeuten, sind <a [routerLink]="[\'/edition/detail\']"><strong>Aa:SkI/2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)="modal.open(\'sourceNotA\')"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)="modal.open(\'sourceNotA\')"><strong>C</strong></a> entstanden.        </p>        <p>            <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/2\']"><strong>Aa:SkI/2</strong></a> übernimmt, wie erwähnt, bestimmte Merkmale der Korrekturen in <a (click)="modal.open(\'sourceNotA\')"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. [12] kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es1/as1 im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)="modal.open(\'sheetComingSoon\')"><strong>Aa:SkI/1</strong></a> bzw. <a (click)="modal.open(\'sourceNotA\')"><strong>B</strong></a> (Gis/cis) getilgt.        </p>        <p>            <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/3\']"><strong>Aa:SkI/3</strong></a> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/2\']"><strong>Aa:SkI/2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/5\']"><strong>Aa:SkI/5</strong></a> formulierte und in <a (click)="modal.open(\'sourceNotA\')"><strong>C</strong></a> verwendete Variante.        </p>        <p>            <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/4\']"><strong>Aa:SkI/4</strong></a> erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6).        </p>        <p>            <a [routerLink]="[\'/edition/detail\', \'Aa:SkI/5\']"><strong>Aa:SkI/5</strong></a> bringt in der letzten Korrekturschicht die in <a (click)="modal.open(\'sourceNotA\')"><strong>C</strong></a> verwendete Variante.        </p>        <p class="small text-muted">            [Die Einleitungen zu den weiteren Skizzen aus <strong>A</strong> erscheinen im Zusammenhang der vollständigen Edition der  <i>Vier Lieder</i> op. 12 in AWG I/5.]        </p>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'IntroComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'IntroComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,1 @@
+(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{wjQg:function(t,n,i){"use strict";i.d(n,"a",function(){return s});class s{constructor(t,n,i,s){this.root=t,this.link=n,this.label=i,this.disabled=s}}s.ctorParameters=(()=>[{type:String},{type:String},{type:String},{type:Boolean}])}}]);

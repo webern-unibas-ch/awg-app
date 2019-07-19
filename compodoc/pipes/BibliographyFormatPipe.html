@@ -1,0 +1,2086 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content pipe">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Pipes</li>
+  <li>BibliographyFormatPipe</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The bibliography format pipe.</p>
+<p>It converts a <a href="../classes/BibEntry.html">BibEntry</a> input into a formatted <code>BibEntry</code>.</p>
+<p><strong>Usage :</strong>
+   <code>{{ bibEntry | bibFormat }}</code></p>
+
+            </p>
+
+
+        <section>
+            <h3>Metadata</h3>
+            <table class="table table-sm table-hover">
+                <tbody>
+                    <tr>
+                        <td class="col-md-3">Name</td>
+                        <td class="col-md-9">bibFormat</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibAuthor"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibAuthor
+                        </b>
+                        <a href="#formatBibAuthor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibAuthor(authors: string | object)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:184</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibAuthor.</p>
+<p>It converts the author(s) of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>authors</td>
+                                    <td>
+                                            <code>string | object</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The author(s) of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted author(s).</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibEditor"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibEditor
+                        </b>
+                        <a href="#formatBibEditor"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibEditor(editors: string | object)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:243</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibEditor.</p>
+<p>It converts the editor(s) of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>editors</td>
+                                    <td>
+                                            <code>string | object</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The editor(s) of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted editor(s).</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibPages"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibPages
+                        </b>
+                        <a href="#formatBibPages"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibPages(pageNum: string | object)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="415"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:415</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibPages.</p>
+<p>It converts the page numbers of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pageNum</td>
+                                    <td>
+                                            <code>string | object</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The page numbers of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted page numbers.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibPubDate"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibPubDate
+                        </b>
+                        <a href="#formatBibPubDate"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibPubDate(pubDate: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="389"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:389</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibPubDate.</p>
+<p>It converts the publication date of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pubDate</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The publication date of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted publication date.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibPublisher"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibPublisher
+                        </b>
+                        <a href="#formatBibPublisher"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibPublisher(pub: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="376"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:376</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibPublisher.</p>
+<p>It converts the publisher of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pub</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The publisher of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted publisher.</p>
+<p>DONE IN {</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibPubPlace"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibPubPlace
+                        </b>
+                        <a href="#formatBibPubPlace"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibPubPlace(pubPlace: string | object)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="289"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:289</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibPubPlace.</p>
+<p>It converts the publication place and publisher of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>pubPlace</td>
+                                    <td>
+                                            <code>string | object</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The publication place of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted publication place and publisher.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibTitleDep"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibTitleDep
+                        </b>
+                        <a href="#formatBibTitleDep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibTitleDep(depTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="230"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:230</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibTitleDep.</p>
+<p>It converts the dependent title(s) of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>depTitle</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The dependent title(s) of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted dependent title(s).</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibTitleIndep"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibTitleIndep
+                        </b>
+                        <a href="#formatBibTitleIndep"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibTitleIndep(indepTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="217"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:217</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibTitleIndep.</p>
+<p>It converts the independent title(s) of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>indepTitle</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The independent title(s) of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted independent title(s).</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibTitleSeries"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibTitleSeries
+                        </b>
+                        <a href="#formatBibTitleSeries"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibTitleSeries(seriesTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="402"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:402</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibTitleSeries.</p>
+<p>It converts the series title of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>seriesTitle</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The series title of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted series title.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibTitleShort"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibTitleShort
+                        </b>
+                        <a href="#formatBibTitleShort"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibTitleShort(shortTitle: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibTitleShort.</p>
+<p>It converts the short title of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>shortTitle</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The short title of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted short title.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="formatBibUnpublished"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            formatBibUnpublished
+                        </b>
+                        <a href="#formatBibUnpublished"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>formatBibUnpublished(unpub: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="276"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:276</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: formatBibUnpublished.</p>
+<p>It converts the unpublished literature type (if any) of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>unpub</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The unpublished literature type of the BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted unpublished literature type.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFormatFields"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getFormatFields
+                        </b>
+                        <a href="#getFormatFields"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFormatFields(opt: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, entry: <a href="../classes/BibEntry.html">BibEntry</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="76"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:76</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: getFormatFields.</p>
+<p>It gets the fields to be formatted from <a href="formatFieldArr">formatFieldArr</a>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>opt</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>Options to be set: <code>output</code> or <code>edit</code></p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>entry</td>
+                                    <td>
+                                                <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The input BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFormattedValueByKey"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getFormattedValueByKey
+                        </b>
+                        <a href="#getFormattedValueByKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFormattedValueByKey(entry: <a href="../classes/BibEntry.html">BibEntry</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="118"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:118</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: getFormattedValueByKey.</p>
+<p>It requests the designated conversion
+methods for the values of the BibEntry.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>entry</td>
+                                    <td>
+                                                <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The input BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>key</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The key of a BibEntry key-value pair.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFormattedValues"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getFormattedValues
+                        </b>
+                        <a href="#getFormattedValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getFormattedValues(entry: <a href="../classes/BibEntry.html">BibEntry</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:100</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: getFormattedValues.</p>
+<p>It separates the BibEntries object key-value pairs
+by their keys and requests them to be converted.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>entry</td>
+                                    <td>
+                                                <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The input BibEntry.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="splitName"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            splitName
+                        </b>
+                        <a href="#splitName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>splitName(name: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, pre_delimiter: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="444"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:444</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private function: splitName.</p>
+<p>It splits a comma-separated name and defines the order
+of items (according to bibliography style).</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>name</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>A name to be converted.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>pre_delimiter</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The delimiter to appear before a name, e.g. a comma.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The splitted name(s).</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="transform"></a>
+                    <span class="name">
+                        <b>
+                            transform
+                        </b>
+                        <a href="#transform"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>transform(bibItem: <a href="../classes/BibEntry.html">BibEntry</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="55"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:55</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Transform method of the BibliographyFormatPipe.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>bibItem</td>
+                                    <td>
+                                                <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The input BibEntry to be piped.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The formatted BibEntry.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="entry"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            entry</b>
+                            <a href="#entry"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:22</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: entry.</p>
+<p>It keeps the input BibEntry.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formatFieldArr"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            formatFieldArr</b>
+                            <a href="#formatFieldArr"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Array&lt;string&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[
+        &#x27;Author&#x27;,
+        &#x27;Titel_unselbst&#x27;,
+        &#x27;Titel_selbst&#x27;,
+        &#x27;Herausgeber&#x27;,
+        &#x27;unpubliziert&#x27;,
+        &#x27;Verlagsort&#x27;,
+        &#x27;Publikationsdatum&#x27;,
+        &#x27;Reihentitel&#x27;,
+        &#x27;Seitenangabe&#x27;
+    ]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:36</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private array: formatFieldArr.</p>
+<p>It keeps the fields to be formatted.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="formattedEntry"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            formattedEntry</b>
+                            <a href="#formattedEntry"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:29</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: formattedEntry.</p>
+<p>It keeps the formatted BibEntry.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Pipe, PipeTransform } from &#x27;@angular/core&#x27;;
+
+import { BibEntry } from &#x27;./bibliography-entry.model&#x27;;
+
+/**
+ * The bibliography format pipe.
+ *
+ * It converts a {@link BibEntry} input into a formatted &#x60;BibEntry&#x60;.
+ *
+ * __Usage :__
+ *   &#x60;{{ bibEntry | bibFormat }}&#x60;
+ */
+@Pipe({
+    name: &#x27;bibFormat&#x27;
+})
+export class BibliographyFormatPipe implements PipeTransform {
+    /**
+     * Private variable: entry.
+     *
+     * It keeps the input BibEntry.
+     */
+    private entry: BibEntry;
+
+    /**
+     * Private variable: formattedEntry.
+     *
+     * It keeps the formatted BibEntry.
+     */
+    private formattedEntry: BibEntry;
+
+    /**
+     * Private array: formatFieldArr.
+     *
+     * It keeps the fields to be formatted.
+     */
+    private formatFieldArr: Array&lt;string&gt; &#x3D; [
+        &#x27;Author&#x27;,
+        &#x27;Titel_unselbst&#x27;,
+        &#x27;Titel_selbst&#x27;,
+        &#x27;Herausgeber&#x27;,
+        &#x27;unpubliziert&#x27;,
+        &#x27;Verlagsort&#x27;,
+        &#x27;Publikationsdatum&#x27;,
+        &#x27;Reihentitel&#x27;,
+        &#x27;Seitenangabe&#x27;
+    ];
+
+    /**
+     * Transform method of the BibliographyFormatPipe.
+     *
+     * @param {BibEntry} bibItem The input BibEntry to be piped.
+     *
+     * @returns {*} The formatted BibEntry.
+     */
+    transform(bibItem: BibEntry): any {
+        if (!bibItem) {
+            return null;
+        }
+        this.entry &#x3D; bibItem;
+        this.formattedEntry &#x3D; this.getFormatFields(&#x27;edit&#x27;, this.entry);
+        this.getFormattedValues(this.formattedEntry);
+
+        return this.getFormatFields(&#x27;output&#x27;, this.formattedEntry);
+    }
+
+    /**
+     * Private function: getFormatFields.
+     *
+     * It gets the fields to be formatted from {@link formatFieldArr}.
+     *
+     * @param {string} opt Options to be set: &#x60;output&#x60; or &#x60;edit&#x60;
+     * @param {BibEntry} entry The input BibEntry.
+     *
+     * @returns {*}
+     */
+    private getFormatFields(opt: string, entry: BibEntry): any {
+        let output: string | object &#x3D; {};
+        for (let i &#x3D; 0; i &lt; this.formatFieldArr.length; i++) {
+            if (entry[this.formatFieldArr[i]]) {
+                if (opt &#x3D;&#x3D;&#x3D; &#x27;edit&#x27;) {
+                    output[this.formatFieldArr[i]] &#x3D; entry[this.formatFieldArr[i]];
+                } else if (opt &#x3D;&#x3D;&#x3D; &#x27;output&#x27;) {
+                    output &#x3D; i &#x3D;&#x3D;&#x3D; 0 ? entry[this.formatFieldArr[i]] : output + entry[this.formatFieldArr[i]];
+                }
+            }
+        }
+        return output;
+    }
+
+    /**
+     * Private function: getFormattedValues.
+     *
+     * It separates the BibEntries object key-value pairs
+     * by their keys and requests them to be converted.
+     *
+     * @param {BibEntry} entry The input BibEntry.
+     *
+     * @returns {*}
+     */
+    private getFormattedValues(entry: BibEntry): any {
+        Object.keys(entry).forEach(key &#x3D;&gt; {
+            entry[key] &#x3D; this.getFormattedValueByKey(entry, key);
+        });
+        return entry;
+    }
+
+    /**
+     * Private function: getFormattedValueByKey.
+     *
+     * It requests the designated conversion
+     * methods for the values of the BibEntry.
+     *
+     * @param {BibEntry} entry The input BibEntry.
+     * @param {string} key The key of a BibEntry key-value pair.
+     *
+     * @returns {string}
+     */
+    private getFormattedValueByKey(entry: BibEntry, key: string): string {
+        let value &#x3D; &#x27;&#x27;;
+        switch (key) {
+            case &#x27;Kurztitel&#x27;:
+                value &#x3D; this.formatBibTitleShort(entry[key]);
+                break;
+            case &#x27;Author&#x27;:
+                value &#x3D; this.formatBibAuthor(entry[key]);
+                break;
+            case &#x27;Titel_selbst&#x27;:
+                value &#x3D; this.formatBibTitleIndep(entry[key]);
+                break;
+            case &#x27;Titel_unselbst&#x27;:
+                value &#x3D; this.formatBibTitleDep(entry[key]);
+                break;
+            case &#x27;Herausgeber&#x27;:
+                value &#x3D; this.formatBibEditor(entry[key]);
+                break;
+            case &#x27;unpubliziert&#x27;:
+                value &#x3D; this.formatBibUnpublished(entry[key]);
+                break;
+            case &#x27;Verlagsort&#x27;:
+                value &#x3D; this.formatBibPubPlace(entry[key]);
+                break;
+            /* done in pubplace
+             case &#x27;publisher&#x27;:
+             value &#x3D; this.formatBibPublisher(bibItem[key]);
+             break;
+             */
+            case &#x27;Publikationsdatum&#x27;:
+                value &#x3D; this.formatBibPubDate(entry[key]);
+                break;
+            case &#x27;Reihentitel&#x27;:
+                value &#x3D; this.formatBibTitleSeries(entry[key]);
+                break;
+            case &#x27;Seitenangabe&#x27;:
+                value &#x3D; this.formatBibPages(entry[key]);
+                break;
+            default:
+                value &#x3D; entry[key];
+        }
+        return value;
+    }
+
+    /**
+     * Private function: formatBibTitleShort.
+     *
+     * It converts the short title of the BibEntry.
+     *
+     * @param {string} shortTitle The short title of the BibEntry.
+     *
+     * @returns {string} The formatted short title.
+     */
+    private formatBibTitleShort(shortTitle: string): string {
+        return !shortTitle ? &#x27;&#x27; : shortTitle + &#x27; | &#x27;;
+    }
+
+    /**
+     * Private function: formatBibAuthor.
+     *
+     * It converts the author(s) of the BibEntry.
+     *
+     * @param {string} authors The author(s) of the BibEntry.
+     *
+     * @returns {string} The formatted author(s).
+     */
+    private formatBibAuthor(authors: string | object): string {
+        if (!authors) {
+            return &#x27;&#x27;;
+        }
+
+        let formattedAuthor &#x3D; &#x27;&#x27;;
+        if (typeof authors &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+            // get first author name
+            formattedAuthor +&#x3D; this.splitName(authors[0], &#x27;&#x27;);
+            // get further author names
+            const l: number &#x3D; Object.keys(authors).length;
+            for (let i &#x3D; 1; i &lt; l; i++) {
+                // last name seperated by &quot;und&quot;, others by comma
+                const divider &#x3D; i &#x3D;&#x3D;&#x3D; l - 1 ? &#x27; und &#x27; : &#x27;, &#x27;;
+                formattedAuthor +&#x3D; this.splitName(authors[i], divider);
+            }
+        } else if (typeof authors &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+            // get author name
+            formattedAuthor +&#x3D; this.splitName(authors, &#x27;&#x27;);
+        }
+        formattedAuthor +&#x3D; &#x27;: &#x27;; // ending author string with &quot;:&quot;
+        return formattedAuthor;
+    }
+
+    /**
+     * Private function: formatBibTitleIndep.
+     *
+     * It converts the independent title(s) of the BibEntry.
+     *
+     * @param {string} indepTitle The independent title(s) of the BibEntry.
+     *
+     * @returns {string} The formatted independent title(s).
+     */
+    private formatBibTitleIndep(indepTitle: string): string {
+        return !indepTitle ? &#x27;&#x27; : this.entry[&#x27;Typ&#x27;] !&#x3D;&#x3D; &#x27;Zeitschriftenartikel&#x27; ? indepTitle + &#x27;, &#x27; : indepTitle;
+    }
+
+    /**
+     * Private function: formatBibTitleDep.
+     *
+     * It converts the dependent title(s) of the BibEntry.
+     *
+     * @param {string} depTitle The dependent title(s) of the BibEntry.
+     *
+     * @returns {string} The formatted dependent title(s).
+     */
+    private formatBibTitleDep(depTitle: string): string {
+        return !depTitle ? &#x27;&#x27; : &#x27;„&#x27; + depTitle + &#x27;“, in: &#x27;;
+    }
+
+    /**
+     * Private function: formatBibEditor.
+     *
+     * It converts the editor(s) of the BibEntry.
+     *
+     * @param {string} editors The editor(s) of the BibEntry.
+     *
+     * @returns {string} The formatted editor(s).
+     */
+    private formatBibEditor(editors: string | object): string {
+        if (!editors) {
+            return &#x27;&#x27;;
+        }
+
+        let formattedEditor &#x3D; &#x27;hg. von &#x27;;
+        if (typeof editors &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+            // get first editor name
+            formattedEditor +&#x3D; this.splitName(editors[0], &#x27;&#x27;);
+            // get further editor names
+            const l: number &#x3D; Object.keys(editors).length;
+            for (let i &#x3D; 1; i &lt; l; i++) {
+                // last name separated by &quot;und&quot;, others by comma
+                const divider &#x3D; i &#x3D;&#x3D;&#x3D; l - 1 ? &#x27; und &#x27; : &#x27;, &#x27;;
+                formattedEditor +&#x3D; this.splitName(editors[i], divider);
+            }
+        } else if (typeof editors &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+            // get editor name
+            formattedEditor +&#x3D; this.splitName(editors, &#x27;&#x27;);
+        }
+        formattedEditor +&#x3D; &#x27;, &#x27;; // ending editor string with &quot;,&quot;
+        return formattedEditor;
+    }
+
+    /**
+     * Private function: formatBibUnpublished.
+     *
+     * It converts the unpublished literature type (if any) of the BibEntry.
+     *
+     * @param {string} unpub The unpublished literature type of the BibEntry.
+     *
+     * @returns {string} The formatted unpublished literature type.
+     */
+    private formatBibUnpublished(unpub: string): string {
+        return !unpub ? &#x27;&#x27; : unpub + &#x27; &#x27;;
+    }
+
+    /**
+     * Private function: formatBibPubPlace.
+     *
+     * It converts the publication place and publisher of the BibEntry.
+     *
+     * @param {string} pubPlace The publication place of the BibEntry.
+     *
+     * @returns {string} The formatted publication place and publisher.
+     */
+    private formatBibPubPlace(pubPlace: string | object): string {
+        const pub &#x3D; this.entry[&#x27;Verlag&#x27;] ? this.entry[&#x27;Verlag&#x27;] : null;
+        if (!pubPlace) {
+            // no place but publisher
+            if (pub) {
+                console.log(&#x27;Ort fehlt: &quot;&#x27; + pub + &#x27;&quot; (&#x27; + this.entry[&#x27;Kurztitel&#x27;] + &#x27;)&#x27;);
+            }
+            // no place nor publisher (&quot;zeitschriftenartikel&quot;)
+            return &#x27;&#x27;;
+        }
+
+        let out &#x3D; &#x27;&#x27;;
+        // pubPlace &#x3D;&#x3D; object
+        if (typeof pubPlace &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+            const locl &#x3D; Object.keys(pubPlace).length;
+            if (pub) {
+                if (typeof pub &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+                    const publ &#x3D; Object.keys(pub).length;
+                    if (publ &#x3D;&#x3D;&#x3D; locl) {
+                        // publisher &#x3D;&#x3D; object
+                        // case: &quot;Kassel: Bärenreiter, und Stuttgart: Metzler,&quot;
+                        for (let i &#x3D; 0; i &lt; locl; i++) {
+                            if (i &#x3D;&#x3D;&#x3D; locl - 1) {
+                                out +&#x3D; &#x27;und &#x27;;
+                            }
+                            out +&#x3D; pubPlace[i] + &#x27;: &#x27; + pub[i] + &#x27;, &#x27;;
+                        }
+                    }
+                } else {
+                    // publisher &#x3D;&#x3D; String
+                    // case: &quot;Kassel, New York: Bärenreiter,&quot;
+                    for (let i &#x3D; 0; i &lt; locl; i++) {
+                        if (i &#x3D;&#x3D;&#x3D; locl - 1) {
+                            out +&#x3D; pubPlace[i] + &#x27;: &#x27; + pub + &#x27;, &#x27;;
+                        } else {
+                            out +&#x3D; pubPlace[i] + &#x27;, &#x27;;
+                        }
+                    }
+                }
+            } else {
+                // no publisher
+                // case: &quot;Wien, Stuttgart,&quot;
+                for (let i &#x3D; 0; i &lt; locl; i++) {
+                    out +&#x3D; pubPlace[i] + &#x27;, &#x27;;
+                }
+                if (!this.entry[&#x27;unpubliziert&#x27;]) {
+                    console.log(&#x27;Verlag fehlt: &quot;&#x27; + out + &#x27;&quot; (&#x27; + this.entry[&#x27;Kurztitel&#x27;] + &#x27;)&#x27;);
+                }
+            }
+        } else {
+            if (pub) {
+                out +&#x3D; pubPlace + &#x27;: &#x27;;
+                // publisher &#x3D;&#x3D; object
+                // case: &quot;Wien: Böhlau, Lafite, &quot;
+                if (typeof pub &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+                    const publ &#x3D; Object.keys(pub).length;
+                    for (let i &#x3D; 0; i &lt; publ; i++) {
+                        out +&#x3D; pub[i] + &#x27;, &#x27;;
+                    }
+                } else {
+                    // publisher &#x3D;&#x3D; String
+                    // case: &quot;Wien: Böhlau,&quot;
+                    out +&#x3D; pub + &#x27;, &#x27;;
+                }
+            } else {
+                // place without publisher (e.g. &quot;Hochschulschriften&quot;)
+                // case: &quot;Wien, &quot;
+                if (!this.entry[&#x27;unpubliziert&#x27;]) {
+                    console.log(&#x27;Verlag fehlt: &quot;&#x27; + out + &#x27;&quot; (&#x27; + this.entry[&#x27;Kurztitel&#x27;] + &#x27;)&#x27;);
+                }
+                out +&#x3D; pubPlace + &#x27;, &#x27;;
+            }
+        }
+        return out;
+    }
+
+    /**
+     * Private function: formatBibPublisher.
+     *
+     * It converts the publisher of the BibEntry.
+     *
+     * @param {string} pub The publisher of the BibEntry.
+     *
+     * @returns {string} The formatted publisher.
+     *
+     * DONE IN {@link formatBibPubPlace}.
+     */
+    private formatBibPublisher(pub: string): string {
+        return &#x27;&#x27;;
+    }
+
+    /**
+     * Private function: formatBibPubDate.
+     *
+     * It converts the publication date of the BibEntry.
+     *
+     * @param {string} pubDate The publication date of the BibEntry.
+     *
+     * @returns {string} The formatted publication date.
+     */
+    private formatBibPubDate(pubDate: string) {
+        return this.entry[&#x27;Typ&#x27;] &#x3D;&#x3D;&#x3D; &#x27;Zeitschriftenartikel&#x27; ? &#x27; (&#x27; + pubDate + &#x27;)&#x27; : &#x27; &#x27; + pubDate;
+    }
+
+    /**
+     * Private function: formatBibTitleSeries.
+     *
+     * It converts the series title of the BibEntry.
+     *
+     * @param {string} seriesTitle The series title of the BibEntry.
+     *
+     * @returns {string} The formatted series title.
+     */
+    private formatBibTitleSeries(seriesTitle: string): string {
+        return !seriesTitle ? &#x27;&#x27; : &#x27; (&#x27; + seriesTitle + &#x27;)&#x27;;
+    }
+
+    /**
+     * Private function: formatBibPages.
+     *
+     * It converts the page numbers of the BibEntry.
+     *
+     * @param {string} pageNum The page numbers of the BibEntry.
+     *
+     * @returns {string} The formatted page numbers.
+     */
+    private formatBibPages(pageNum: string | object): string {
+        if (!pageNum) {
+            return &#x27;&#x27;;
+        }
+
+        let pages &#x3D; &#x27;&#x27;;
+        if (typeof pageNum &#x3D;&#x3D;&#x3D; &#x27;object&#x27;) {
+            const l: number &#x3D; Object.keys(pageNum).length;
+            for (let i &#x3D; 0; i &lt; l; i++) {
+                const prefix: string &#x3D; i &#x3D;&#x3D;&#x3D; 0 ? &#x27;, S. &#x27; : &#x27;, &#x27;;
+                pages +&#x3D; prefix + pageNum[i];
+            }
+        } else if (typeof pageNum &#x3D;&#x3D;&#x3D; &#x27;string&#x27; &amp;&amp; pageNum) {
+            pages &#x3D; &#x27;, S. &#x27; + pageNum;
+        }
+        return pages;
+    }
+
+    /**
+     * Private function: splitName.
+     *
+     * It splits a comma-separated name and defines the order
+     * of items (according to bibliography style).
+     *
+     * @param {string} name A name to be converted.
+     * @param {string} pre_delimiter The delimiter to appear before a name, e.g. a comma.
+     *
+     * @returns {string} The splitted name(s).
+     */
+    private splitName(name: string, pre_delimiter: string): string {
+        let tmp &#x3D; [];
+        if (name.match(&#x27;,&#x27;)) {
+            tmp &#x3D; name.split(&#x27;, &#x27;);
+            // changes positions of first and last name
+            // look here: http://stackoverflow.com/a/5306832
+            tmp.splice(1, 0, tmp.splice(0, 1)[0]);
+            return pre_delimiter + tmp[0] + &#x27; &#x27; + tmp[1];
+        } else {
+            return pre_delimiter + name;
+        }
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'pipe';
+            var COMPODOC_CURRENT_PAGE_URL = 'BibliographyFormatPipe.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

@@ -1,0 +1,814 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>ActivatedRouteStub</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/testing/router-stubs.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>An ActivatedRoute test double (stub) with a <code>paramMap</code> observable.</p>
+<p>Use the <code>setParamMap()</code> method to add the next <code>paramMap</code> value.</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_testParams">_testParams</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#paramMap">paramMap</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#paramMapSubject">paramMapSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#params">params</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#paramSubject">paramSubject</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#setParamMap">setParamMap</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#testParams">testParams</a>
+                                </li>
+                                <li>
+                                    <a href="#snapshot">snapshot</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(initialParams?: <a href="https://angular.io/api/router/Params" target="_blank">Params</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/testing/router-stubs.ts:127</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor for the ActivatedRoute.paramMap test double (stub).</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>initialParams</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Params" target="_blank" >Params</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            Yes
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>The optional initial route parameters.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setParamMap"></a>
+                    <span class="name">
+                        <b>
+                            setParamMap
+                        </b>
+                        <a href="#setParamMap"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setParamMap(params?: <a href="https://angular.io/api/router/Params" target="_blank">Params</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="149"
+                            class="link-to-prism">src/testing/router-stubs.ts:149</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Set the paramMap observable&#39;s next value.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>params</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/Params" target="_blank" >Params</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The optional route parameters to be set.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_testParams"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _testParams</b>
+                            <a href="#_testParams"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>literal type</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/testing/router-stubs.ts:97</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable for test parameters.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paramMap"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            paramMap</b>
+                            <a href="#paramMap"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.paramMapSubject.asObservable()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/testing/router-stubs.ts:142</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>An ActivatedRoute.paramMap test double (stub)
+as observable (<code>ReplaySubject</code>).</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paramMapSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            paramMapSubject</b>
+                            <a href="#paramMapSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new ReplaySubject&lt;ParamMap&gt;()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/testing/router-stubs.ts:127</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private ReplaySubject to handle route paramMaps.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="params"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            params</b>
+                            <a href="#params"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.paramSubject.asObservable()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/testing/router-stubs.ts:92</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly ActivatedRoute.params test double (stub)
+as observable (<code>BehaviorSubject</code>).</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="paramSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            paramSubject</b>
+                            <a href="#paramSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BehaviorSubject(this.testParams)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/testing/router-stubs.ts:86</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private BehaviorSubject to handle test route parameters.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="testParams"></a>
+                        <span class="name"><b>testParams</b><a href="#testParams"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>testParams()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/testing/router-stubs.ts:103</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for test route parameters.</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>testParams(params: literal type)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/testing/router-stubs.ts:111</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Setter for test route parameters.</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                        <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>params</td>
+                                                    
+                                                            <td>
+                                                                        <code>literal type</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                            <td>
+                                                                    <code><p>The test route parameters to be set.</p>
+</code>
+                                                            </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="snapshot"></a>
+                        <span class="name"><b>snapshot</b><a href="#snapshot"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>snapshot()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/testing/router-stubs.ts:120</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the ActivatedRoute.snapshot.params.</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Directive, HostListener, Injectable, Input, NgModule } from &#x27;@angular/core&#x27;;
+import { NavigationExtras } from &#x27;@angular/router&#x27;;
+
+import { AppModule } from &#x27;@awg-app/app.module&#x27;;
+
+// #docregion router-link-stub
+/**
+ * A RouterLink test double (stub) with a &#x60;click&#x60; listener.
+ *
+ * Use the &#x60;routerLink&#x60; input to set the &#x60;navigatedTo&#x60; value
+ * after click.
+ */
+@Directive({
+    selector: &#x27;[routerLink]&#x27;
+})
+export class RouterLinkStubDirective {
+    /**
+     * Input with navigation parameters.
+     */
+    @Input(&#x27;routerLink&#x27;)
+    linkParams: any;
+
+    /**
+     * The router params after navigation.
+     */
+    navigatedTo: any &#x3D; null;
+
+    /**
+     * Listener that sets the navigation target after click.
+     */
+    @HostListener(&#x27;click&#x27;)
+    onClick() {
+        this.navigatedTo &#x3D; this.linkParams;
+    }
+}
+// #enddocregion router-link-stub
+
+// #docregion router-outlet-stub
+/**
+ * A RouterOutlet test double (stub).
+ */
+@Component({
+    selector: &#x27;router-outlet&#x27;,
+    template: &#x27;&#x27;
+})
+export class RouterOutletStubComponent {}
+// #enddocregion router-outlet-stub
+
+// #docregion router-stub
+/**
+ * A Router test double (stub) for components that use the Router.
+ *
+ * Use the &#x60;navigate()&#x60; method to set the next navigation target.
+ */
+@Injectable()
+export class RouterStub {
+    /**
+     * A&#x60;router.navigate&#x60; test double (stub)
+     * to navigate to the next target.
+     *
+     * @params {any[]} commands - Array of navigation commands
+     * @params {NavigationExtras} [extras] - Optional NavigationExtras
+     *
+     * @returns {void}
+     */
+    navigate(commands: any[], extras?: NavigationExtras): void {}
+}
+// #enddocregion router-stub
+
+// #docregion activated-route-stub
+import { convertToParamMap, ParamMap, Params } from &#x27;@angular/router&#x27;;
+import { BehaviorSubject, ReplaySubject } from &#x27;rxjs&#x27;;
+
+/**
+ * An ActivatedRoute test double (stub) with a &#x60;paramMap&#x60; observable.
+ *
+ * Use the &#x60;setParamMap()&#x60; method to add the next &#x60;paramMap&#x60; value.
+ */
+@Injectable()
+export class ActivatedRouteStub {
+    /**
+     * Private BehaviorSubject to handle test route parameters.
+     */
+    private paramSubject &#x3D; new BehaviorSubject(this.testParams);
+
+    /**
+     * Readonly ActivatedRoute.params test double (stub)
+     * as observable (&#x60;BehaviorSubject&#x60;).
+     */
+    readonly params &#x3D; this.paramSubject.asObservable();
+
+    /**
+     * Private variable for test parameters.
+     */
+    private _testParams: {};
+
+    /**
+     * Getter for test route parameters.
+     * @returns The latest test route parameters.
+     */
+    get testParams() {
+        return this._testParams;
+    }
+
+    /**
+     * Setter for test route parameters.
+     * @param params The test route parameters to be set.
+     */
+    set testParams(params: {}) {
+        this._testParams &#x3D; params;
+        this.paramSubject.next(params);
+    }
+
+    /**
+     * Getter for the ActivatedRoute.snapshot.params.
+     * @returns Snapshot of the test route parameters.
+     */
+    get snapshot() {
+        return { params: this.testParams };
+    }
+
+    /**
+     * Private ReplaySubject to handle route paramMaps.
+     */
+    private paramMapSubject &#x3D; new ReplaySubject&lt;ParamMap&gt;();
+
+    /**
+     * Constructor for the ActivatedRoute.paramMap test double (stub).
+     *
+     * @param {Params} [initialParams] The optional initial route parameters.
+     */
+    constructor(initialParams?: Params) {
+        this.setParamMap(initialParams);
+    }
+
+    /**
+     * An ActivatedRoute.paramMap test double (stub)
+     * as observable (&#x60;ReplaySubject&#x60;).
+     */
+    readonly paramMap &#x3D; this.paramMapSubject.asObservable();
+
+    /**
+     * Set the paramMap observable&#x27;s next value.
+     *
+     * @param {Params} [params] The optional route parameters to be set.
+     */
+    setParamMap(params?: Params) {
+        this.paramMapSubject.next(convertToParamMap(params));
+    }
+}
+// #enddocregion activated-route-stub
+
+/**
+ * A fake router module.
+ *
+ * Needed so that &#x60;aot&#x60; build is working. But it isn&#x27;t used throughout our tests and/or app.
+ */
+@NgModule({
+    imports: [AppModule],
+    declarations: [RouterLinkStubDirective, RouterOutletStubComponent]
+})
+export class FakeRouterModule {}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ActivatedRouteStub.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

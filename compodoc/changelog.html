@@ -1,0 +1,554 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="changelog">Changelog</h1>
+<p>All notable changes to this project will be documented in this file. See <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> for commit guidelines.</p>
+<h2 id="060-2019-07-19"><a href="https://github.com/webern-unibas-ch/awg-app/compare/v0.5.4...v0.6.0">0.6.0</a> (2019-07-19)</h2>
+<h3 id="bug-fixes">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> add 404 fallback route (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c0ade9b">c0ade9b</a>)</li>
+<li><strong>app:</strong> fix errors after update to Angular 8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2771649">2771649</a>)</li>
+<li><strong>app:</strong> get correct section of meta data for remaining views (<a href="https://github.com/webern-unibas-ch/awg-app/commit/80bbe10">80bbe10</a>)</li>
+<li><strong>app:</strong> patch issue with CustomHammerConfig of ngx-gallery (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cb1a0d4">cb1a0d4</a>)</li>
+<li><strong>app:</strong> remove temporary workaround with static ngInjectableDef (<a href="https://github.com/webern-unibas-ch/awg-app/commit/962ffeb">962ffeb</a>)</li>
+<li><strong>app:</strong> use onPush CD strategy on dumb components if possible (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f42f706">f42f706</a>), closes <a href="https://github.com/webern-unibas-ch/awg-app/issues/2">#2</a></li>
+<li><strong>contact:</strong> get correct section of meta data for contact view (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5d5a754">5d5a754</a>)</li>
+<li><strong>core:</strong> fix missing space in copyright desc (<a href="https://github.com/webern-unibas-ch/awg-app/commit/17f0865">17f0865</a>)</li>
+<li><strong>core:</strong> fix visibility of centered navbar-brand (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c879bec">c879bec</a>)</li>
+<li><strong>core:</strong> get only page meta data for footer and navbar (<a href="https://github.com/webern-unibas-ch/awg-app/commit/2f51775">2f51775</a>)</li>
+<li><strong>core:</strong> use better default values for clearing subjects (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9f65f13">9f65f13</a>)</li>
+<li><strong>core:</strong> use MetaPerson class for authors and editors (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ff7df06">ff7df06</a>)</li>
+<li><strong>edition:</strong> remove unnecessary toggle methods (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7f4b303">7f4b303</a>)</li>
+<li><strong>edition:</strong> return only first emit of EditionDataService observables (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6e02f0b">6e02f0b</a>)</li>
+<li><strong>edition:</strong> use async pipe for data in report component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/075a97e">075a97e</a>)</li>
+<li><strong>edition:</strong> use CDS.onPush for report component&#39;s children (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a31483d">a31483d</a>)</li>
+<li><strong>search:</strong> add bottom pagination in search result list (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6668f87">6668f87</a>)</li>
+<li><strong>search:</strong> avoid bindings to pass static strings to native attributes (<a href="https://github.com/webern-unibas-ch/awg-app/commit/945e259">945e259</a>)</li>
+<li><strong>search:</strong> change snapshot path to get current url in search overview (<a href="https://github.com/webern-unibas-ch/awg-app/commit/46995ff">46995ff</a>)</li>
+<li><strong>search:</strong> clear search info on destroy of SearchResultListComponent (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c9ef240">c9ef240</a>)</li>
+<li><strong>search:</strong> fix ngIfs in nested children templates of resource detail (<a href="https://github.com/webern-unibas-ch/awg-app/commit/90d64ac">90d64ac</a>)</li>
+<li><strong>search:</strong> improve communication btw overview and info (<a href="https://github.com/webern-unibas-ch/awg-app/commit/357872e">357872e</a>)</li>
+<li><strong>search:</strong> improve handling of resource detail requests (<a href="https://github.com/webern-unibas-ch/awg-app/commit/431f9ab">431f9ab</a>)</li>
+<li><strong>search:</strong> improve handling of searchResponseWithQuery subscription (<a href="https://github.com/webern-unibas-ch/awg-app/commit/9be21c6">9be21c6</a>)</li>
+<li><strong>search:</strong> improve linked objects component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4e1347e">4e1347e</a>)</li>
+<li><strong>search:</strong> improve search form building (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c2cab36">c2cab36</a>)</li>
+<li><strong>search:</strong> move interceptor providers into separate file (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d9c7d2d">d9c7d2d</a>)</li>
+<li><strong>search:</strong> move resource detail header out of tabset (<a href="https://github.com/webern-unibas-ch/awg-app/commit/522c867">522c867</a>)</li>
+<li><strong>search:</strong> provide loading status as observable (<a href="https://github.com/webern-unibas-ch/awg-app/commit/ca41c8d">ca41c8d</a>)</li>
+<li><strong>search:</strong> remove unused conversion service from resource detail (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5e377b3">5e377b3</a>)</li>
+<li><strong>search:</strong> set search parameter nRows to 25 per default (<a href="https://github.com/webern-unibas-ch/awg-app/commit/39b3f63">39b3f63</a>)</li>
+<li><strong>search:</strong> simplify subscription to search result list data (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a9374d2">a9374d2</a>)</li>
+<li><strong>search:</strong> subscribe to resource data instead of async pipe (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c8dab3f">c8dab3f</a>)</li>
+<li><strong>search:</strong> use <code>this</code> instead of <code>super</code> in data api service (<a href="https://github.com/webern-unibas-ch/awg-app/commit/42bac0a">42bac0a</a>)</li>
+<li><strong>search:</strong> use async pipe for data in bibliography component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/05ff800">05ff800</a>)</li>
+<li><strong>search:</strong> use async pipe for data in bibliography detail (<a href="https://github.com/webern-unibas-ch/awg-app/commit/a95a45b">a95a45b</a>)</li>
+<li><strong>search:</strong> use async pipe for data in resource detail (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7ae1372">7ae1372</a>)</li>
+<li><strong>search:</strong> use enum for SearchParam view types (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7e53fa5">7e53fa5</a>)</li>
+<li><strong>search:</strong> use getter for httpGetUrl in resourceDetail &amp; searchPanel (<a href="https://github.com/webern-unibas-ch/awg-app/commit/272d618">272d618</a>)</li>
+<li><strong>search:</strong> use id tracker for search result list (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b9ebaa2">b9ebaa2</a>)</li>
+<li><strong>search:</strong> use loading spinner for resource detail (<a href="https://github.com/webern-unibas-ch/awg-app/commit/23b1272">23b1272</a>), closes <a href="https://github.com/webern-unibas-ch/awg-app/issues/5">#5</a></li>
+<li><strong>search:</strong> use SearchResponseWithQuery to update search params (<a href="https://github.com/webern-unibas-ch/awg-app/commit/adb3d48">adb3d48</a>)</li>
+<li><strong>shared:</strong> add optional &#39;toHtml&#39; property to property json (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f7a3de5">f7a3de5</a>)</li>
+<li><strong>shared:</strong> update compile html module &amp; component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/73a9526">73a9526</a>)</li>
+<li><strong>side-info:</strong> add getter/setter for osm urls in contact-info (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d578987">d578987</a>)</li>
+<li><strong>side-info:</strong> get osm urls in contact-info from AppConfig (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f106c5f">f106c5f</a>)</li>
+<li><strong>side-info:</strong> make address &amp; osm map of contact-info shared components (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8846558">8846558</a>)</li>
+<li><strong>side-info:</strong> make resource info data update immutable (<a href="https://github.com/webern-unibas-ch/awg-app/commit/d248703">d248703</a>)</li>
+<li><strong>side-info:</strong> remove nested subscription from resource-info (<a href="https://github.com/webern-unibas-ch/awg-app/commit/779965f">779965f</a>)</li>
+<li><strong>side-info:</strong> set edition info header from component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/15eb693">15eb693</a>)</li>
+<li><strong>side-info:</strong> use async pipe for data in search info (<a href="https://github.com/webern-unibas-ch/awg-app/commit/c7c9791">c7c9791</a>)</li>
+</ul>
+<h3 id="build-system">Build System</h3>
+<ul>
+<li><strong>app:</strong> add compodoc and format check scripts to package.json (<a href="https://github.com/webern-unibas-ch/awg-app/commit/92a6852">92a6852</a>)</li>
+<li><strong>app:</strong> add compodoc build to build scripts in package.json (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f3047b5">f3047b5</a>)</li>
+<li><strong>app:</strong> configure karma.conf.js to run tests in order (<a href="https://github.com/webern-unibas-ch/awg-app/commit/19cec04">19cec04</a>)</li>
+<li><strong>app:</strong> remove core-js and update dependencies (<a href="https://github.com/webern-unibas-ch/awg-app/commit/f25fcd3">f25fcd3</a>)</li>
+<li><strong>app:</strong> update angular (^8.0.3) and cli (~8.0.6) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/001474e">001474e</a>)</li>
+<li><strong>app:</strong> update dependencies after upgrade to Angular 8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0b00a91">0b00a91</a>)</li>
+<li><strong>app:</strong> update dependency font-awesome (<a href="https://github.com/webern-unibas-ch/awg-app/commit/bcc0f07">bcc0f07</a>)</li>
+<li><strong>app:</strong> update remaining dependencies after upgrade to Angular 8 (<a href="https://github.com/webern-unibas-ch/awg-app/commit/aeb5bfa">aeb5bfa</a>)</li>
+</ul>
+<h3 id="features">Features</h3>
+<ul>
+<li><strong>app:</strong> add compodoc for code documentation (<a href="https://github.com/webern-unibas-ch/awg-app/commit/8945988">8945988</a>)</li>
+<li><strong>app:</strong> update angular (^8.0.2) and cli (~8.0.3) (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3844e27">3844e27</a>)</li>
+<li><strong>contact:</strong> add documentation section and link to Github repo (<a href="https://github.com/webern-unibas-ch/awg-app/commit/3688358">3688358</a>)</li>
+<li><strong>core:</strong> add loading interceptor to set load status (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7669bad">7669bad</a>)</li>
+<li><strong>core:</strong> split meta object into sections and provide service method (<a href="https://github.com/webern-unibas-ch/awg-app/commit/555fd11">555fd11</a>)</li>
+</ul>
+<h3 id="tests">Tests</h3>
+<ul>
+<li><strong>app:</strong> fix broken tests - ongoing (<a href="https://github.com/webern-unibas-ch/awg-app/commit/42d8a5d">42d8a5d</a>)</li>
+<li><strong>app:</strong> fix broken tests after changes (<a href="https://github.com/webern-unibas-ch/awg-app/commit/db2630f">db2630f</a>)</li>
+<li><strong>app:</strong> fix tests with HttpTestingController (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6743f2c">6743f2c</a>)</li>
+<li><strong>app:</strong> move nativeElement in own variable in tests (<a href="https://github.com/webern-unibas-ch/awg-app/commit/70dba2d">70dba2d</a>)</li>
+<li><strong>core:</strong> extend navbar tests (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6410bf8">6410bf8</a>)</li>
+<li><strong>home:</strong> adjust tests for home-view component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/573ccd9">573ccd9</a>)</li>
+<li><strong>page-not-found:</strong> fix broken tests after renaming of variables (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6db4d3c">6db4d3c</a>)</li>
+<li><strong>search:</strong> add service method to searchResultList test after changes (<a href="https://github.com/webern-unibas-ch/awg-app/commit/36512fb">36512fb</a>)</li>
+<li><strong>search:</strong> add TwelveToneSpinnerStub to resource detail test (<a href="https://github.com/webern-unibas-ch/awg-app/commit/0dd7ee2">0dd7ee2</a>)</li>
+<li><strong>search:</strong> fix broken tests after switch to CD.OnPush - ongoing (<a href="https://github.com/webern-unibas-ch/awg-app/commit/cb8a968">cb8a968</a>)</li>
+<li><strong>search:</strong> fix broken tests after switch to CD.OnPush - ongoing (<a href="https://github.com/webern-unibas-ch/awg-app/commit/01e7fdc">01e7fdc</a>)</li>
+<li><strong>search:</strong> use SearchPramsViewTypes in search result list (<a href="https://github.com/webern-unibas-ch/awg-app/commit/7793172">7793172</a>)</li>
+<li><strong>side-info:</strong> add header test for structure-info (<a href="https://github.com/webern-unibas-ch/awg-app/commit/4a18b67">4a18b67</a>)</li>
+<li><strong>side-info:</strong> add test for contact-info and its child components (<a href="https://github.com/webern-unibas-ch/awg-app/commit/48434d6">48434d6</a>)</li>
+<li><strong>side-info:</strong> add tests for edition-info component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/b08216c">b08216c</a>)</li>
+<li><strong>side-info:</strong> add tests for structure info component (<a href="https://github.com/webern-unibas-ch/awg-app/commit/1a8bbaf">1a8bbaf</a>)</li>
+</ul>
+<h2 id="054-2019-04-09"><a href="https://github.com/webern-unibas-ch/awg-app/compare/v0.5.3...v0.5.4">0.5.4</a> (2019-04-09)</h2>
+<h3 id="bug-fixes-1">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> add angular-cli-ghpages to devDependencies (<a href="https://github.com/webern-unibas-ch/awg-app/commit/878852a">878852a</a>)</li>
+</ul>
+<h2 id="053-2019-04-09"><a href="https://github.com/webern-unibas-ch/awg-app/compare/v0.5.2...v0.5.3">0.5.3</a> (2019-04-09)</h2>
+<h3 id="bug-fixes-2">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> use HTTPS over HTTP whenever possible (<a href="https://github.com/webern-unibas-ch/awg-app/commit/5c573ad">5c573ad</a>)</li>
+<li><strong>core:</strong> add link to CHANGELOG from footer declaration (<a href="https://github.com/webern-unibas-ch/awg-app/commit/6f2004f">6f2004f</a>)</li>
+</ul>
+<h2 id="052-2019-04-09"><a href="https://github.com/webern-unibas-ch/awg-app/compare/v0.5.1...v0.5.2">0.5.2</a> (2019-04-09)</h2>
+<p>Empty patch version bump to trigger build via Travis CI after moving the repository to GitHub.</p>
+<h2 id="051-2019-04-09"><a href="https://github.com/webern-unibas-ch/awg-app/compare/v0.5.0...v0.5.1">0.5.1</a> (2019-04-09)</h2>
+<h3 id="breaking-changes">BREAKING CHANGES</h3>
+<p>Repository moved from Gitlab to public GitHub repository. All commit and version links prior to this version are not publicly available.</p>
+<p>Only patch version bump.</p>
+<h2 id="050-2019-04-09"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.4.0...v0.5.0">0.5.0</a> (2019-04-09)</h2>
+<h3 id="bug-fixes-3">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> add project specific favicon (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4d430f8">4d430f8</a>)</li>
+<li><strong>app:</strong> fix hostname for GoogleAnalytics (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a92f44e">a92f44e</a>)</li>
+<li><strong>app:</strong> get app version from package.json (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/6ab1a77">6ab1a77</a>)</li>
+<li><strong>app:</strong> get global constants from package.json (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/903f276">903f276</a>)</li>
+<li><strong>app:</strong> improve page not found view (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/bf134b4">bf134b4</a>)</li>
+<li><strong>app:</strong> make Contact &amp; Structure view lazy loading (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/879f5be">879f5be</a>)</li>
+<li><strong>app:</strong> preserve query params &amp; fragments on routing (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/408d1ea">408d1ea</a>)</li>
+<li><strong>app:</strong> use HTTPS for salsah API (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/63eb4a7">63eb4a7</a>)</li>
+<li><strong>app:</strong> use urls from AppConfig for main homepages (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a6b6c7f">a6b6c7f</a>)</li>
+<li><strong>contact:</strong> add license statement to disclaimer (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8134d97">8134d97</a>)</li>
+<li><strong>core:</strong> small changes &amp; renaming to api service routes &amp; inputs (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/53e403f">53e403f</a>)</li>
+<li><strong>core:</strong> use smaller version of snf logo (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d1209a4">d1209a4</a>)</li>
+<li><strong>edition:</strong> rename DataService -&gt; EditionDataService (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc99cc3">dc99cc3</a>)</li>
+<li><strong>search:</strong> add constructor to BibliographyService (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e9c91d9">e9c91d9</a>)</li>
+<li><strong>search:</strong> check for changes in ImageObjectComponent (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a2bdce9">a2bdce9</a>)</li>
+<li><strong>search:</strong> create search button array on init (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a2d6440">a2d6440</a>)</li>
+<li><strong>search:</strong> disable view buttons when there is no searchresult (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/723498a">723498a</a>)</li>
+<li><strong>search:</strong> do not call data API on view change (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0871432">0871432</a>)</li>
+<li><strong>search:</strong> improve handling of search params (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/779b179">779b179</a>)</li>
+<li><strong>search:</strong> move result conversion to data api service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/225ee3c">225ee3c</a>)</li>
+<li><strong>search:</strong> use ngOnChanges to detect input changes (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d7ce548">d7ce548</a>)</li>
+<li><strong>search:</strong> use NgxGallery in ImageObjectsComponent (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ced6906">ced6906</a>)</li>
+<li><strong>search:</strong> use search params model (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/383454b">383454b</a>)</li>
+<li><strong>shared:</strong> create RouterLinkButton with constructor (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/1b093d2">1b093d2</a>)</li>
+<li><strong>shared:</strong> remove custom get functions from property-json (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/61fa115">61fa115</a>)</li>
+<li><strong>shared:</strong> use typed jsonViewerData input (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/c0f0d34">c0f0d34</a>)</li>
+<li><strong>side-info:</strong> use query params when navigating back to search (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/30a7c0f">30a7c0f</a>)</li>
+</ul>
+<h3 id="features-1">Features</h3>
+<ul>
+<li><strong>search:</strong> add pagination for search results (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3e8ec1c">3e8ec1c</a>)</li>
+<li><strong>shared:</strong> add NgxGallery module (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b929629">b929629</a>)</li>
+</ul>
+<p><a name="0.4.0"></a></p>
+<h2 id="040-2019-01-22"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.3.0...v0.4.0">0.4.0</a> (2019-01-22)</h2>
+<h3 id="bug-fixes-4">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> add include files to tsconfig app (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/fa3a662">fa3a662</a>)</li>
+<li><strong>app:</strong> change LOCALE_ID to &quot;de-DE&quot; globally (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/c5d3b70">c5d3b70</a>)</li>
+<li><strong>contact:</strong> add separate section for citations (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/324d553">324d553</a>)</li>
+<li><strong>core:</strong> add fixed bottom footer (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/66b2c5a">66b2c5a</a>)</li>
+<li><strong>core:</strong> add footer module (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/253e6c7">253e6c7</a>)</li>
+<li><strong>core:</strong> add separate component for view container (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/5a3fe0c">5a3fe0c</a>)</li>
+<li><strong>core:</strong> highlight active nav-link on page load (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/41c7f81">41c7f81</a>)</li>
+<li><strong>core:</strong> make bottom footer logos wrap at breakpoint (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/184fbb4">184fbb4</a>)</li>
+<li><strong>core:</strong> make header fully responsive with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/963f228">963f228</a>)</li>
+<li><strong>core:</strong> move footer declaration &amp; attribution to own component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0bf9dc8">0bf9dc8</a>)</li>
+<li><strong>core:</strong> move footer text into own component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8207e82">8207e82</a>)</li>
+<li><strong>core:</strong> use fa-icons for navbar (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/fd1d77f">fd1d77f</a>)</li>
+<li><strong>edition:</strong> fix margin of textcritics panel footer (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d8a2cdb">d8a2cdb</a>)</li>
+<li><strong>edition:</strong> fix wrong folio format for folio 1r-v (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/adce66c">adce66c</a>)</li>
+<li><strong>edition:</strong> move pre-notification into accolade component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/7b12d60">7b12d60</a>)</li>
+<li><strong>edition:</strong> refactor button group with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a0b609d">a0b609d</a>)</li>
+<li><strong>edition:</strong> refactor edition accolade with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/208a870">208a870</a>)</li>
+<li><strong>edition:</strong> refactor edition convolute with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc9d959">dc9d959</a>)</li>
+<li><strong>edition:</strong> refactor report panels with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/7e68088">7e68088</a>)</li>
+<li><strong>edition:</strong> use json viewer to display API json response (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/6082869">6082869</a>)</li>
+<li><strong>search:</strong> add grid and table view buttons to searchResultsHeader (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/de6fc1f">de6fc1f</a>)</li>
+<li><strong>search:</strong> fix wrong id for linked obj links (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/51629ee">51629ee</a>)</li>
+<li><strong>search:</strong> refactor image objects with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/1c93f82">1c93f82</a>)</li>
+<li><strong>search:</strong> refactor linked objects accordion with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/cbc8d67">cbc8d67</a>)</li>
+<li><strong>search:</strong> refactor linked objects with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d2b1195">d2b1195</a>)</li>
+<li><strong>search:</strong> refactor props with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/67a2131">67a2131</a>)</li>
+<li><strong>search:</strong> refactor resource header with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/64c8ccb">64c8ccb</a>)</li>
+<li><strong>search:</strong> refactor search form with Angular 6 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8cf98e6">8cf98e6</a>)</li>
+<li><strong>search:</strong> refactor search form with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/27d7c37">27d7c37</a>)</li>
+<li><strong>search:</strong> refactor search results with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4a6416e">4a6416e</a>)</li>
+<li><strong>shared:</strong> refactor button group with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dfd8720">dfd8720</a>)</li>
+<li><strong>shared:</strong> refactor modal with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/28715a1">28715a1</a>)</li>
+<li><strong>side-info:</strong> refactor resource-info with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/66990a4">66990a4</a>)</li>
+</ul>
+<h3 id="features-2">Features</h3>
+<ul>
+<li><strong>app:</strong> add and configure GoogleAnalytics pageview events (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dc7d213">dc7d213</a>)</li>
+<li><strong>app:</strong> refactor the whole app with bootstrap 4 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/891ef5a">891ef5a</a>)</li>
+<li><strong>build:</strong> update <code>angular-cli</code>(^7.2.2) and <code>angular</code> (^7.2.1) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9baf470">9baf470</a>)</li>
+<li><strong>shared:</strong> add json viewer component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/92f3f3e">92f3f3e</a>)</li>
+</ul>
+<h3 id="breaking-changes-1">BREAKING CHANGES</h3>
+<ul>
+<li><strong>app:</strong> Bootstrap 4 is a major rewrite of the entire Bootstrap project, so the upgrade to Bootstrap 4 involves some refactoring of essential parts of the application structure, including<ul>
+<li>navbar, tabsets, dropdowns, list-items, panels (cards)</li>
+<li>a lot of style classes (mt, pb)</li>
+<li>the use of <code>ngx-bootstrap</code> instead of <code>jQuery</code></li>
+</ul>
+</li>
+</ul>
+<p>For more details, see</p>
+<ul>
+<li>https://getbootstrap.com/docs/4.1/migration/</li>
+</ul>
+<p>Only minor version bump.</p>
+<p><a name="0.3.0"></a></p>
+<h2 id="030-2018-11-15"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.2.0...v0.3.0">0.3.0</a> (2018-11-15)</h2>
+<h3 id="bug-fixes-5">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> add noopener norefferer to target blank links (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/5e465d8">5e465d8</a>)</li>
+<li><strong>app:</strong> apply new tree-shakable injector strategy for services (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/35e24ce">35e24ce</a>)</li>
+<li><strong>app:</strong> change root selector to <code>awg-app</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9a87bd4">9a87bd4</a>)</li>
+<li><strong>app:</strong> fix issue with service inheritance (<code>ngInjectableDef</code>), cf. https://stackoverflow.com/questions/50263722/angular-6-services-and-class-inheritance (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b260f2d">b260f2d</a>)</li>
+<li><strong>app:</strong> replace scroll fix with new anchorScroll strategy of angular 6 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/cb9c25e">cb9c25e</a>)</li>
+<li><strong>app:</strong> update CHANGELOG (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/68ecdf6">68ecdf6</a>)</li>
+<li><strong>core:</strong> fetch metaData and logos in FooterComponent (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0af8f57">0af8f57</a>)</li>
+<li><strong>core:</strong> move footer logos into separate component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/17a34f5">17a34f5</a>)</li>
+<li><strong>core:</strong> remove circular dependencies from api service and update service models (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/74637eb">74637eb</a>)</li>
+<li><strong>core:</strong> rename metaService -&gt; coreService (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4906516">4906516</a>)</li>
+<li><strong>edition:</strong> get active class from comparison of overlays (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/23095ee">23095ee</a>)</li>
+<li><strong>edition:</strong> use <code>SourceList</code> model instead of <code>Source[]</code> (array) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/53c5630">53c5630</a>)</li>
+<li><strong>shared:</strong> replace <code>mapToIterable</code> pipe with angular&#39;s in-built <code>keyvalue</code> pipe (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a52bce0">a52bce0</a>)</li>
+</ul>
+<h3 id="features-3">Features</h3>
+<ul>
+<li><strong>build:</strong> update to latest <code>angular-cli</code>(^6.2.4) and <code>angular</code> (^6.1.9) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3c0b115">3c0b115</a>)</li>
+<li><strong>contact:</strong> add OpenStreetMap map to contact page (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/2c68478">2c68478</a>)</li>
+</ul>
+<h3 id="breaking-changes-2">BREAKING CHANGES</h3>
+<ul>
+<li><strong>build:</strong> The update to Angular 6 involves some refactoring of essential parts of the application build structure, including</li>
+<li><code>angular-cli.json</code> -&gt; <code>angular.json</code></li>
+<li>upgrade to RxJS 6 (bundling of imports &amp; use of pipe() for operators)</li>
+</ul>
+<p>For more details, see</p>
+<ul>
+<li>https://blog.angular.io/version-6-of-angular-now-available-cc56b0efa7a4</li>
+<li>https://update.angular.io/</li>
+<li>https://github.com/ReactiveX/rxjs/blob/master/docs_app/content/guide/v6/migration.md</li>
+</ul>
+<p>Only minor version bump.</p>
+<p><a name="0.2.0"></a></p>
+<h2 id="020-2018-10-01"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.3...v0.2.0">0.2.0</a> (2018-10-01)</h2>
+<h3 id="bug-fixes-6">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> use path aliases (<code>awg-{app/core/shared/views}</code>) for imports (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3297cc9">3297cc9</a>)</li>
+<li><strong>build:</strong> add bundle analyzing tools to <code>devDependencies</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0ab8d4d">0ab8d4d</a>)</li>
+<li><strong>build:</strong> add <code>snapsvg</code> to project <code>dependencies</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3fec1ae">3fec1ae</a>)</li>
+<li><strong>build:</strong> add production build script (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/619c5bc">619c5bc</a>)</li>
+<li><strong>data:</strong> rename resource-detail models (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/f7151e0">f7151e0</a>)</li>
+<li><strong>edition:</strong> add overlay model to handle textcritics&#39; overlays (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e125b5c">e125b5c</a>)</li>
+<li><strong>edition:</strong> change behaviour of panels (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0f9dc31">0f9dc31</a>)</li>
+<li><strong>edition:</strong> move svg grid to folio component / service calculations to models (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/56a4176">56a4176</a>)</li>
+<li><strong>edition:</strong> move tka table beneath sheet svg (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/600861e">600861e</a>)</li>
+<li><strong>edition:</strong> move accolade to its own component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/37e006b">37e006b</a>)</li>
+<li><strong>edition:</strong> move convolute to its own component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d09dbfa">d09dbfa</a>)</li>
+<li><strong>edition:</strong> minimize the calls to dataservice (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/be779f5">be779f5</a>)</li>
+<li><strong>edition:</strong> coordinate folio view with sheet view (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b15572d">b15572d</a>)</li>
+<li><strong>edition:</strong> move content of overview folder directly under edition-outlets (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/6fabdab">6fabdab</a>)</li>
+<li><strong>edition:</strong> simplify tka handling &amp; display (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e534430">e534430</a>)</li>
+<li><strong>edition:</strong> remove sourceList type and clarify observable types of data service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e1694a8">e1694a8</a>)</li>
+<li><strong>edition:</strong> remove unnecessary form component from folio (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ede03f4">ede03f4</a>)</li>
+<li><strong>edition:</strong> group folio models in resp. main model file (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/8e5c9a2">8e5c9a2</a>)</li>
+<li><strong>edition:</strong> fix typo in <code>folio.json</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/627047d">627047d</a>)</li>
+<li><strong>edition:</strong> some styling to position svg-grid correctly (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b694768">b694768</a>)</li>
+</ul>
+<h3 id="features-4">Features</h3>
+<ul>
+<li><strong>edition:</strong> add basic support for folio visualisation (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/dacac10">dacac10</a>)</li>
+</ul>
+<p><a name="0.1.3"></a></p>
+<h2 id="013-2018-09-03"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.2...v0.1.3">0.1.3</a> (2018-09-03)</h2>
+<h3 id="bug-fixes-7">Bug Fixes</h3>
+<ul>
+<li><strong>edition:</strong> open source description panel when clicking on corresponding sigle (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ed41c4e">ed41c4e</a>)</li>
+<li><strong>edition:</strong> use <code>ngIf/else</code> template for sourcelist sources (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4424f0a">4424f0a</a>)</li>
+<li><strong>search:</strong> fix link label for JSON data (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3f54dc1">3f54dc1</a>)</li>
+</ul>
+<h3 id="features-5">Features</h3>
+<ul>
+<li><strong>app:</strong> add disclaimer information about citation, analytics, and data protection (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/acb5c8b">acb5c8b</a>)</li>
+<li><strong>build:</strong> add <code>standard-version</code> for automatic changelog &amp; release script (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3efd32b">3efd32b</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.1.2"></a></p>
+<h2 id="012-2018-08-31"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.1...v0.1.2">0.1.2</a> (2018-08-31)</h2>
+<h3 id="bug-fixes-8">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> move bootstrap modules from core to shared module (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/af42832">af42832</a>)</li>
+<li><strong>build:</strong> add <code>gitignore</code> file to Prototype v1 (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3b86faf">3b86faf</a>)</li>
+<li><strong>search:</strong> move <code>resource detail html header</code> one level up (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/42352ea">42352ea</a>)</li>
+<li><strong>search:</strong> rename <code>resource detail html header</code> -&gt; <code>resource detail header</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/21b2ab2">21b2ab2</a>)</li>
+<li><strong>search:</strong> adjust header texts for json views (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a349bb8">a349bb8</a>)</li>
+<li><strong>search:</strong> move streamerSubscription from searchPanel to search result list (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/46208b8">46208b8</a>)</li>
+<li><strong>search:</strong> refactor search panel subscriptions (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b82b647">b82b647</a>)</li>
+<li><strong>search:</strong> refactor resource detail subscriptions (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/04bbe2c">04bbe2c</a>)</li>
+<li><strong>search:</strong> prevent result list from being loaded twice (through search form <code>ng-model</code>) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/fa39e42">fa39e42</a>)</li>
+<li><strong>search:</strong> fix search result transmission between components (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/0af2740">0af2740</a>)</li>
+<li><strong>search:</strong> fix <code>ng-template</code> handling with nested <code>if-else</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/fad4624">fad4624</a>)</li>
+<li><strong>side-info:</strong> prevent change detection during destroy phase of component (search info)(<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d6cf75d">d6cf75d</a>)</li>
+</ul>
+<h3 id="features-6">Features</h3>
+<ul>
+<li><strong>app:</strong> add custom loading spinner (twelve-tone) for <code>index.html</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/1b71e36">1b71e36</a>)</li>
+<li><strong>app:</strong> add custom loading spinner (twelve-tone) for app (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/18840d7">18840d7</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.1.1"></a></p>
+<h2 id="011-2018-03-23"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0.2...v0.1.1">0.1.1</a> (2018-03-23)</h2>
+<h3 id="bug-fixes-9">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> add metadata, remove favicon from <code>index.html</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d75c7dc">d75c7dc</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0...v0.1.0.1">0.1.0.1</a> (2018-03-20)</li>
+<li><strong>app:</strong> update <code>gitignore</code> file (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ca10942">ca10942</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0.1...v0.1.0.2">0.1.0.2</a> (2018-03-21)</li>
+<li><strong>app:</strong> remove unused timeline plugin (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/79bedda">79bedda</a>)</li>
+<li><strong>search:</strong> rename <code>search-view</code> as <code>data-view</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/446b7fa">446b7fa</a>)</li>
+</ul>
+<h3 id="features-7">Features</h3>
+<ul>
+<li><strong>app:</strong> lazy load data (olim search) and edition modules (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b0b4f31">b0b4f31</a>)</li>
+<li><strong>build:</strong> update to latest <code>angular-cli</code> (v1.7.3) and <code>angular</code> (v5.2.9) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ca10942">ca10942</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.1.0.1...v0.1.0.2">0.1.0.2</a> (2018-03-21)</li>
+</ul>
+<h3 id="possible-breaking-changes">Possible Breaking Changes</h3>
+<ul>
+<li><strong>search:</strong> The former <code>search-view</code> is renamed to <code>data-view</code>.</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.1.0"></a></p>
+<h2 id="010-2018-03-20"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.4...v0.1.0">0.1.0</a> (2018-03-20)</h2>
+<h3 id="bug-fixes-10">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> remove unused directive sidenav-outlet (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9ff882d">9ff882d</a>)</li>
+<li><strong>build:</strong> add <code>gitignore</code> file (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d04020b">d04020b</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9...v0.0.9.1">0.0.9.1</a> (2016-12-12)</li>
+<li><strong>build:</strong> ignore nested system files (node modules, bower components, tmp, dist) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b3cd7b1">b3cd7b1</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.3...v0.0.9.4">0.0.9.4</a> (2017-08-28)</li>
+<li><strong>contact:</strong> remove unused end of <code>div</code>-tag (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/17a65ff">17a65ff</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.1...v0.0.9.2">0.0.9.2</a> (2017-01-06)</li>
+<li><strong>edition:</strong> add missing closing tag for comment (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/bbc03d0">bbc03d0</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.2...v0.0.9.3">0.0.9.3</a> (2017-01-09)</li>
+<li><strong>edition:</strong> set timeOut when scrolling into changing route (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/5f58cf2">5f58cf2</a>)</li>
+<li><strong>search:</strong> track search results by <code>$index</code> for unique numbering (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/ff3ddb6">ff3ddb6</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.9.3...v0.0.9.4">0.0.9.4</a> (2017-08-28)</li>
+<li><strong>search:</strong> disable timeline &amp; bibliography router buttons for now (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/52cb6a0">52cb6a0</a>)</li>
+</ul>
+<h3 id="features-8">Features</h3>
+<ul>
+<li><strong>app:</strong> start refactoring layout and app for Prototype v2 - ongoing(<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/72e589a">72e589a</a>)</li>
+<li><strong>app:</strong> add sidenav outlets (edition, structure, contact) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4710394">4710394</a>)</li>
+<li><strong>app:</strong> use yarn and add lock file (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d13322d">d13322d</a>)</li>
+<li><strong>search:</strong> refactor resource detail view (cf. <a href="https://arachne.dainst.org/entity/1121229">Arachne</a>)</li>
+<li><strong>shared:</strong> add pipe MapToIterable (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/7d542cb">7d542cb</a>)</li>
+<li><strong>shared:</strong> add pipe OrderBy (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/63f30c2">63f30c2</a>)</li>
+<li><strong>views:</strong> add PageNotFoundView (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/eba34d1">eba34d1</a>)</li>
+</ul>
+<h3 id="breaking-changes-3">Breaking Changes</h3>
+<ul>
+<li><strong>build:</strong> update from <code>angular.js</code> to <code>angular</code> (v5.0) &amp; <code>angular-cli</code> (v1.5.0) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/46a1f30">46a1f30</a>)</li>
+</ul>
+<p>Fundamental refactoring of the whole application, including:</p>
+<ul>
+<li><strong>app:</strong> move app routing configuration into a routing module (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a29a872">a29a872</a>)</li>
+<li><strong>app:</strong> move shared comps into separate module (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/76e0793">76e0793</a>)</li>
+<li><strong>app:</strong> move <code>framework</code> to <code>core</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9ff882d">2d79a3dd</a>)</li>
+<li><strong>app:</strong> move <code>/views</code> one level up (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e62a542">e62a542</a>)</li>
+<li><strong>build:</strong> upgrade <code>ng2-bootstrap</code> to <code>ngx-bootstrap</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/d772f68">d772f68</a>)</li>
+<li><strong>edition:</strong> refactor edition-view</li>
+<li><strong>search:</strong> refactor search-view</li>
+<li><strong>shared:</strong> refactor <code>awg-heading</code> as shared component (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e524c8b">e524c8b</a>)</li>
+</ul>
+<p>Only minor version bump.</p>
+<p><a name="0.0.9"></a></p>
+<h2 id="009-2016-11-21"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.8.2...v0.0.9">0.0.9</a> (2016-11-21)</h2>
+<h3 id="bug-fixes-11">Bug Fixes</h3>
+<ul>
+<li><strong>contact:</strong> remove unused end of <code>a</code>-tag (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/5e0a44d">5e0a44d</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.8.1...v0.0.8.2">0.0.8.2</a> (2016-10-20)</li>
+<li><strong>search:</strong> allow handling of multiple hlist values in search service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9eb0353">9eb0353</a>), cf. <a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.8...v0.0.8.1">0.0.8.1</a> (2016-08-19)</li>
+</ul>
+<h3 id="features-9">Features</h3>
+<ul>
+<li><strong>search:</strong> add handling of image objects (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/36b9658">36b9658</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.0.8"></a></p>
+<h2 id="008-2016-08-19"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.7...v0.0.8">0.0.8</a> (2016-08-19)</h2>
+<h3 id="bug-fixes-12">Bug Fixes</h3>
+<ul>
+<li><strong>build:</strong> embedd external libraries &amp; scripts locally (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/974f933">974f933</a>)</li>
+<li><strong>edition:</strong> fix wrong line number in <code>sourceDesc</code> (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/9322bed">9322bed</a>)</li>
+<li><strong>edition:</strong> rebuild getTkA-Functions and directives (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/09d00af">09d00af</a>)</li>
+<li><strong>search:</strong> fix control button for timeline (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/5894b79">5894b79</a>)</li>
+<li><strong>search:</strong> get search results number from array length, not from nhits (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/1925a71">1925a71</a>)</li>
+</ul>
+<h3 id="features-10">Features</h3>
+<ul>
+<li><strong>build:</strong> start using <a href="https://nvie.com/posts/a-successful-git-branching-model/">Git flow workflow</a></li>
+<li><strong>edition:</strong> add basic data for integration of sketch Aa:SkI/1 - ongoing (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/b2ff8ab">b2ff8ab</a>)</li>
+<li><strong>search:</strong> add handling for geoname values in search service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/a07dae6">a07dae6</a>)</li>
+<li><strong>search:</strong> add handling for hlist values in search service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/886911c">886911c</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.0.7"></a></p>
+<h2 id="007-2016-07-14"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.6...v0.0.7">0.0.7</a> (2016-07-14)</h2>
+<h3 id="bug-fixes-13">Bug Fixes</h3>
+<ul>
+<li><strong>app:</strong> use edition date separated from version &amp; its release date (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/2174277">2174277</a>)</li>
+<li><strong>search:</strong> change order of search results (by restype) (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/c9e2a05">c9e2a05</a>)</li>
+</ul>
+<h3 id="features-11">Features</h3>
+<ul>
+<li><strong>search:</strong> add timeline for &#39;daily events&#39; (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/18e4969">18e4969</a>)</li>
+</ul>
+<p>Timeline feature based on: Robert Pocklington (<a href="https://github.com/rpocklin/">@rpocklin</a>), Melbourne, VIC, AU, 2015–2016, <a href="https://github.com/rpocklin/angular-timeline">Angular Timeline</a> (accessed 10.7.2016).</p>
+<p>Only patch version bump.</p>
+<p><a name="0.0.6"></a></p>
+<h2 id="006-2016-04-28"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.5...v0.0.6">0.0.6</a> (2016-04-28)</h2>
+<h3 id="bug-fixes-14">Bug Fixes</h3>
+<ul>
+<li><strong>search:</strong> improve default object header in search service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/c1b9e79">c1b9e79</a>)</li>
+<li><strong>search:</strong> exclude html tags from highlighted search (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/7d09f19">7d09f19</a>)</li>
+</ul>
+<p><a name="0.0.5"></a></p>
+<h2 id="005-2016-04-14"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.4...v0.0.5">0.0.5</a> (2016-04-14)</h2>
+<h3 id="bug-fixes-15">Bug Fixes</h3>
+<ul>
+<li><strong>search:</strong> improve routine for highlighted search (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/e435868">e435868</a>)</li>
+</ul>
+<h3 id="features-12">Features</h3>
+<ul>
+<li><strong>search:</strong> add handling of selection lists and supplements in search service (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/3143f71">3143f71</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.0.4"></a></p>
+<h2 id="004-2016-03-31"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.3...v0.0.4">0.0.4</a> (2016-03-31)</h2>
+<h3 id="bug-fixes-16">Bug Fixes</h3>
+<ul>
+<li><strong>search:</strong> use <code>restype_id</code> instead of <code>restype_label</code> to identify correct resource type (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/2a3983a">2a3983a</a>)</li>
+</ul>
+<p><a name="0.0.3"></a></p>
+<h2 id="003-2016-03-17"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.2...v0.0.3">0.0.3</a> (2016-03-17)</h2>
+<h3 id="features-13">Features</h3>
+<ul>
+<li><strong>search:</strong> add highlighting for searchresults (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4149940">4149940</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.0.2"></a></p>
+<h2 id="002-2016-03-03"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/compare/v0.0.1...v0.0.2">0.0.2</a> (2016-03-03)</h2>
+<h3 id="bug-fixes-17">Bug Fixes</h3>
+<ul>
+<li><strong>search:</strong> replace salsah links in searchresults (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/f451123">f451123</a>)</li>
+</ul>
+<h3 id="features-14">Features</h3>
+<ul>
+<li><strong>app:</strong> add sidenav templates for app views (<a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/4758bc1">4758bc1</a>)</li>
+</ul>
+<p>Only patch version bump.</p>
+<p><a name="0.0.1"></a></p>
+<h2 id="001-2016-02-02"><a href="https://git.iml.unibas.ch/muennich/WebernLiveApp/commits/68eac337">0.0.1</a> (2016-02-02)</h2>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'changelog.html';
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

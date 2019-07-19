@@ -1,0 +1,3965 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>ConversionService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/conversion-service/conversion.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The Conversion service.</p>
+<p>It handles the conversion of the HTTP response data (JSON)
+from the given (SALSAH) API into a form that can be
+displayed via HTML.</p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+            <p class="comment">
+                <h3>Extends</h3>
+            </p>
+            <p class="comment">
+                        <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+            </p>
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#filteredOut">filteredOut</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Public</span>
+                                <a href="#http">http</a>
+                            </li>
+                            <li>
+                                <a href="#httpGetUrl">httpGetUrl</a>
+                            </li>
+                            <li>
+                                <a href="#serviceName">serviceName</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#addHtmlValues">addHtmlValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#adjustBiblioLink">adjustBiblioLink</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertDateValue">convertDateValue</a>
+                            </li>
+                            <li>
+                                <a href="#convertFullTextSearchResults">convertFullTextSearchResults</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertGeoValues">convertGeoValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertGUISpecificProps">convertGUISpecificProps</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertHlistValues">convertHlistValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertLinkValue">convertLinkValue</a>
+                            </li>
+                            <li>
+                                <a href="#convertObjectProperties">convertObjectProperties</a>
+                            </li>
+                            <li>
+                                <a href="#convertResourceData">convertResourceData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertRichtextValue">convertRichtextValue</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertSelectionValues">convertSelectionValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#convertStandoffToHTML">convertStandoffToHTML</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#distinctSubjects">distinctSubjects</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getAdditionalInfoFromApi">getAdditionalInfoFromApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getNodeIdFromAttributes">getNodeIdFromAttributes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#groupByRestype">groupByRestype</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#prepareAccessibleResource">prepareAccessibleResource</a>
+                            </li>
+                            <li>
+                                <a href="#prepareFullTextSearchResultText">prepareFullTextSearchResultText</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#prepareResourceDetailImage">prepareResourceDetailImage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#prepareResourceDetailIncomingLinks">prepareResourceDetailIncomingLinks</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#prepareResourceDetailProperties">prepareResourceDetailProperties</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#prepareRestrictedResource">prepareRestrictedResource</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#replaceParagraphTags">replaceParagraphTags</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#replaceSalsahLink">replaceSalsahLink</a>
+                            </li>
+                            <li>
+                                <a href="#getApiResponse">getApiResponse</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#handleRequestError">handleRequestError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#httpGet">httpGet</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="addHtmlValues"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            addHtmlValues
+                        </b>
+                        <a href="#addHtmlValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>addHtmlValues(prop: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, url?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="468"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:468</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertGUISpecificProps.</p>
+<p>It adds an &#39;toHtml&#39; property to the props array
+of an accessible resource to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>prop</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given property.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>url</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>A given optional url.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="adjustBiblioLink"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            adjustBiblioLink
+                        </b>
+                        <a href="#adjustBiblioLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>adjustBiblioLink(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="800"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:800</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: adjustBiblioLink.</p>
+<p>It finds internal links in the online-access property
+of a bibliography link and adjusts the values
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>str</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given link string.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                        <b>Example :</b>
+                        <div>
+                            <pre class="line-numbers"><code class="language-html">str = &amp;#39;(PDF) http://www.example.com/myPdf.pdf&amp;#39;</code></pre>
+                        </div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The adjusted bibliography link.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertDateValue"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertDateValue
+                        </b>
+                        <a href="#convertDateValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertDateValue(dateObj: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="528"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:528</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertDateValue.</p>
+<p>It converts date values of an accessible resource
+to be displayed via HTML.</p>
+<p>Conversion goes from Julian Day Number (JDN)
+to Gregorian Calendar.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dateObj</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given date object.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted date string.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertFullTextSearchResults"></a>
+                    <span class="name">
+                        <b>
+                            convertFullTextSearchResults
+                        </b>
+                        <a href="#convertFullTextSearchResults"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertFullTextSearchResults(searchResults: <a href="../classes/SearchResponseJson.html">SearchResponseJson</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="81"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:81</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: convertFullTextSearchResults.</p>
+<p>It converts the results of a full text search
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>searchResults</td>
+                                    <td>
+                                                <code><a href="../classes/SearchResponseJson.html" target="_self" >SearchResponseJson</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given results of a search request.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SearchResponseJson.html" target="_self" >SearchResponseJson</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted full text search results.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertGeoValues"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertGeoValues
+                        </b>
+                        <a href="#convertGeoValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertGeoValues(values: string[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="544"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:544</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertGeoValues.</p>
+<p>It converts geonames values of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>values</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given property values.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted geo names array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertGUISpecificProps"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertGUISpecificProps
+                        </b>
+                        <a href="#convertGUISpecificProps"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertGUISpecificProps(props: <a href="../classes/PropertyJson.html">PropertyJson[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="449"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:449</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertGUISpecificProps.</p>
+<p>It converts properties of an accessible resource
+to be displayed via HTML.</p>
+<p>In fact, it adds an &#39;toHtml&#39; property to the props array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>props</td>
+                                    <td>
+                                                <code><a href="../classes/PropertyJson.html" target="_self" >PropertyJson[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given properties.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted resource data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertHlistValues"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertHlistValues
+                        </b>
+                        <a href="#convertHlistValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertHlistValues(values: string[], attributes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="589"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:589</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertHlistValues.</p>
+<p>It converts hierarchy list values of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>values</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given property values.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>attributes</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given HTML attributes.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted hlist array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertLinkValue"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertLinkValue
+                        </b>
+                        <a href="#convertLinkValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertLinkValue(prop: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, index: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="634"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:634</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertLinkValue.</p>
+<p>It converts a link value of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>prop</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given property value.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>index</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given index position.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted link value.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertObjectProperties"></a>
+                    <span class="name">
+                        <b>
+                            convertObjectProperties
+                        </b>
+                        <a href="#convertObjectProperties"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertObjectProperties(resourceFullResponseData: <a href="../classes/ResourceFullResponseJson.html">ResourceFullResponseJson</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="164"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:164</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: convertObjectProperties.</p>
+<p>It converts object properties of a resource request
+to be displayed in the bibliography detail view.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceFullResponseData</td>
+                                    <td>
+                                                <code><a href="../classes/ResourceFullResponseJson.html" target="_self" >ResourceFullResponseJson</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given resource data.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted resource object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertResourceData"></a>
+                    <span class="name">
+                        <b>
+                            convertResourceData
+                        </b>
+                        <a href="#convertResourceData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>convertResourceData(resourceData: <a href="../interfaces/IResourceDataResponse.html">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="264"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:264</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: convertResourceData.</p>
+<p>It converts a resource response from the given (SALSAH) Api
+to a resource detail object. It checks if the resource data
+is accessible and delegates it to the respective
+resource detail creation methods.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceData</td>
+                                    <td>
+                                                <code><a href="../interfaces/IResourceDataResponse.html" target="_self" >IResourceDataResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given resource data.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id of the current resource.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResourceDetail.html" target="_self" >ResourceDetail</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted resource detail object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertRichtextValue"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertRichtextValue
+                        </b>
+                        <a href="#convertRichtextValue"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertRichtextValue(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="657"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:657</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertRichtextValue.</p>
+<p>It converts a rich text value of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>str</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given utf8 string of a rich text property.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>attr</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given standoff attributes of a richtext property.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted rich text value.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertSelectionValues"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertSelectionValues
+                        </b>
+                        <a href="#convertSelectionValues"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertSelectionValues(values: string[], attributes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="678"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:678</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertSelectionValues.</p>
+<p>It converts selection values of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>values</td>
+                                    <td>
+                                            <code>string[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given property values.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>attributes</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given HTML attributes.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted selection array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="convertStandoffToHTML"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            convertStandoffToHTML
+                        </b>
+                        <a href="#convertStandoffToHTML"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>convertStandoffToHTML(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, attr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="730"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:730</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: convertStandoffToHTML.</p>
+<p>It converts linear SALSAH standoff
+(utf8 string with standoff attributes)
+to html using plugin &#39;htmlConverter&#39;.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>str</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given utf8 string of a rich text property.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>attr</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given standoff attributes of a richtext property.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The converted standoff.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="distinctSubjects"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            distinctSubjects
+                        </b>
+                        <a href="#distinctSubjects"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>distinctSubjects(subjects: <a href="../classes/SubjectItemJson.html">SubjectItemJson[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="911"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:911</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: distinctSubjects.</p>
+<p>It removes duplicates from an array (SubjectItemJson[]).
+It checks for every array position (reduce) if the obj_id
+of the entry at the current position (y) is already
+in the array (findIndex). If that is not the case it
+pushes y into x which is initialized as empty array [].</p>
+<p>See also <a href="https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855">https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855</a>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>subjects</td>
+                                    <td>
+                                                <code><a href="../classes/SubjectItemJson.html" target="_self" >SubjectItemJson[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given subject with possible duplicates.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SubjectItemJson.html" target="_self" >SubjectItemJson[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The distinct subjects.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getAdditionalInfoFromApi"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getAdditionalInfoFromApi
+                        </b>
+                        <a href="#getAdditionalInfoFromApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getAdditionalInfoFromApi(responseJsonType: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="752"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:752</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: getAdditionalInfoFromApi.</p>
+<p>It makes additional calls to the given (SALSAH) API
+to get additional resource infos in case of geoames,
+hlists, selections or image values.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>responseJsonType</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given json type of the API response.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id of a resource.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the HTTP response.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getNodeIdFromAttributes"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getNodeIdFromAttributes
+                        </b>
+                        <a href="#getNodeIdFromAttributes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getNodeIdFromAttributes(attributes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="781"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:781</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: getNodeIdFromAttributes.</p>
+<p>It gets a node id from the prop.attributes
+of a selections or hlists value.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>attributes</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given prop.attributes.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>id The node id.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="groupByRestype"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            groupByRestype
+                        </b>
+                        <a href="#groupByRestype"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>groupByRestype(incomingLinks: ResourceDetailIncomingLink[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="932"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:932</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: groupByRestype.</p>
+<p>It groups an array of incoming links
+by their resource type.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>incomingLinks</td>
+                                    <td>
+                                            <code>ResourceDetailIncomingLink[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given incoming links.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResourceDetailGroupedIncomingLinks[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The grouped incoming links.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareAccessibleResource"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            prepareAccessibleResource
+                        </b>
+                        <a href="#prepareAccessibleResource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prepareAccessibleResource(resourceData: <a href="../interfaces/IResourceDataResponse.html">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="301"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:301</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: prepareAccessibleResource.</p>
+<p>It prepares header and content of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceData</td>
+                                    <td>
+                                                <code><a href="../interfaces/IResourceDataResponse.html" target="_self" >IResourceDataResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given resource data.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id of the current resource.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResourceDetail.html" target="_self" >ResourceDetail</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The resource detail object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareFullTextSearchResultText"></a>
+                    <span class="name">
+                        <b>
+                            prepareFullTextSearchResultText
+                        </b>
+                        <a href="#prepareFullTextSearchResultText"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>prepareFullTextSearchResultText(searchResponseWithQuery: <a href="../classes/SearchResponseWithQuery.html">SearchResponseWithQuery</a>, searchUrl: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:130</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: prepareFullTextSearchResultText.</p>
+<p>It prepares the fulltext search result text
+to be displayed in the search info.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>searchResponseWithQuery</td>
+                                    <td>
+                                                <code><a href="../classes/SearchResponseWithQuery.html" target="_self" >SearchResponseWithQuery</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given results and query of a search request.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>searchUrl</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given url of a search request.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The text to be displayed.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareResourceDetailImage"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            prepareResourceDetailImage
+                        </b>
+                        <a href="#prepareResourceDetailImage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prepareResourceDetailImage(resourceContextData: <a href="../classes/ResourceContextResponseJson.html">ResourceContextResponseJson</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="330"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:330</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: prepareResourceDetailImage.</p>
+<p>It prepares the images content of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceContextData</td>
+                                    <td>
+                                                <code><a href="../classes/ResourceContextResponseJson.html" target="_self" >ResourceContextResponseJson</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given resource context data.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>NgxGalleryImage[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The image array of the resource detail.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareResourceDetailIncomingLinks"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            prepareResourceDetailIncomingLinks
+                        </b>
+                        <a href="#prepareResourceDetailIncomingLinks"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prepareResourceDetailIncomingLinks(incomingArray: <a href="../classes/IncomingItemJson.html">IncomingItemJson[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="391"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:391</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: prepareResourceDetailIncomingLinks.</p>
+<p>It prepares and groups the incoming links content
+of an accessible resource to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>incomingArray</td>
+                                    <td>
+                                                <code><a href="../classes/IncomingItemJson.html" target="_self" >IncomingItemJson[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given IncomingItemJson.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResourceDetailGroupedIncomingLinks[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The grouped incoming links array of the resource detail.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareResourceDetailProperties"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            prepareResourceDetailProperties
+                        </b>
+                        <a href="#prepareResourceDetailProperties"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prepareResourceDetailProperties(props: <a href="../classes/PropertyJson.html">PropertyJson[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="417"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:417</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: prepareResourceDetailProperties.</p>
+<p>It prepares the properties content of an accessible resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>props</td>
+                                    <td>
+                                                <code><a href="../classes/PropertyJson.html" target="_self" >PropertyJson[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given properties.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>ResourceDetailProperty[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The properties array of the resource detail.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="prepareRestrictedResource"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            prepareRestrictedResource
+                        </b>
+                        <a href="#prepareRestrictedResource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>prepareRestrictedResource(resourceData: <a href="../interfaces/IResourceDataResponse.html">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="283"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:283</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: prepareRestrictedResource.</p>
+<p>It prepares header and content of a restricted resource
+to be displayed via HTML.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceData</td>
+                                    <td>
+                                                <code><a href="../interfaces/IResourceDataResponse.html" target="_self" >IResourceDataResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given resource data.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id of the current resource.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResourceDetail.html" target="_self" >ResourceDetail</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The resource detail object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceParagraphTags"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            replaceParagraphTags
+                        </b>
+                        <a href="#replaceParagraphTags"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>replaceParagraphTags(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="885"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:885</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: replaceParagraphTags.</p>
+<p>It removes paragraph tags in richtext values
+and replaces line breaks instead for multiple lines.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>str</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given richtext value.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The adjusted richtext value.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="replaceSalsahLink"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            replaceSalsahLink
+                        </b>
+                        <a href="#replaceSalsahLink"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>replaceSalsahLink(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="845"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:845</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: replaceSalsahLink.</p>
+<p>It finds internal salsah links in richtext values
+and replaces them with Angular click-directives.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>str</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given richtext value.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The adjusted richtext value.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getApiResponse"></a>
+                    <span class="name">
+                        <b>
+                            getApiResponse
+                        </b>
+                        <a href="#getApiResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getApiResponse(responseJsonType: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, queryPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryHttpParams?: <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:60</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getApiResponse.</p>
+<p>It returns an HTTP GET request response from the given (Salsah) API.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>responseJsonType</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given expected response JSON type of the query.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>queryPath</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given path of the query.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>queryHttpParams</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpParams" target="_blank" >HttpParams</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given optional HTTP params for the query.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the API request.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="handleRequestError"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            handleRequestError
+                        </b>
+                        <a href="#handleRequestError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>handleRequestError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:134</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: handleRequestError.</p>
+<p>It handles request errors in case of server error.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given error.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceError&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the api service error.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="httpGet"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            httpGet
+                        </b>
+                        <a href="#httpGet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>httpGet(queryPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryHttpParams: <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:90</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: httpGet.</p>
+<p>Performs an HTTP GET request to the given (Salsah) API.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryPath</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given path of the query.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>queryHttpParams</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpParams" target="_blank" >HttpParams</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given HTTP params for the query.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceResult | ApiServiceError&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the api service result or error.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="filteredOut"></a>
+                        <span class="name">
+                            <b>
+                            filteredOut</b>
+                            <a href="#filteredOut"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:69</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: filteredOut.</p>
+<p>It keeps the number of filtered duplicates of a search response list.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="http"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Public</span>
+                            http</b>
+                            <a href="#http"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:45</a></code>
+</div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description">Instance of the HttpClient.</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="httpGetUrl"></a>
+                        <span class="name">
+                            <b>
+                            httpGetUrl</b>
+                            <a href="#httpGetUrl"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:35</a></code>
+</div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: httpGetUrl.</p>
+<p>It keeps the url of the HTTP GET request.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="serviceName"></a>
+                        <span class="name">
+                            <b>
+                            serviceName</b>
+                            <a href="#serviceName"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;ApiService&#x27;</code>
+                        </td>
+                    </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                                </td>
+                            </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:28</a></code>
+</div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: serviceName.</p>
+<p>It keeps the name of the service.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+
+import { Observable } from &#x27;rxjs&#x27;;
+
+import { NgxGalleryImage } from &#x27;ngx-gallery&#x27;;
+
+import { ApiService } from &#x27;@awg-core/services/api-service&#x27;;
+import { GeoNames } from &#x27;@awg-core/core-models&#x27;;
+import {
+    ContextJson,
+    GeoDataItemJson,
+    GeoDataJson,
+    HlistItemJson,
+    HlistJson,
+    IncomingItemJson,
+    PropertyJson,
+    ResourceContextResponseJson,
+    ResourceFullResponseJson,
+    SearchResponseJson,
+    SelectionItemJson,
+    SelectionJson,
+    SubjectItemJson
+} from &#x27;@awg-shared/api-objects&#x27;;
+import {
+    IResourceDataResponse,
+    ResourceDetail,
+    ResourceDetailContent,
+    ResourceDetailGroupedIncomingLinks,
+    ResourceDetailHeader,
+    ResourceDetailImage,
+    ResourceDetailIncomingLink,
+    ResourceDetailProperty,
+    SearchResponseWithQuery
+} from &#x27;@awg-views/data-view/models&#x27;;
+import { BibEntry } from &#x27;@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model&#x27;;
+
+/**
+ * Declared variable: htmlConverter.
+ *
+ * It provides access to the embedded htmlConverter plugin (see &#x60;/src/plugins/htmlConverter&#x60;).
+ */
+declare var htmlConverter: any;
+
+/**
+ * Declared variable: dateConverter.
+ *
+ * It provides access to the embedded dateConverter plugin (see &#x60;/src/plugins/dateConverter&#x60;).
+ */
+declare var dateConverter: any;
+
+/**
+ * The Conversion service.
+ *
+ * It handles the conversion of the HTTP response data (JSON)
+ * from the given (SALSAH) API into a form that can be
+ * displayed via HTML.
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;
+})
+export class ConversionService extends ApiService {
+    /**
+     * Public variable: filteredOut.
+     *
+     * It keeps the number of filtered duplicates of a search response list.
+     */
+    filteredOut: number;
+
+    /**
+     * Public method: convertFullTextSearchResults.
+     *
+     * It converts the results of a full text search
+     * to be displayed via HTML.
+     *
+     * @param {SearchResponseJson} searchResults The given results of a search request.
+     *
+     * @returns {SearchResponseJson} The converted full text search results.
+     */
+    convertFullTextSearchResults(searchResults: SearchResponseJson): SearchResponseJson {
+        if (!searchResults.subjects) {
+            return searchResults;
+        }
+
+        // TODO: refactor with reduce??
+        searchResults.subjects.forEach(subject &#x3D;&gt; {
+            // clean value labels
+            subject.valuelabel[0] &#x3D; subject.valuelabel[0].replace(&#x27; (Richtext)&#x27;, &#x27;&#x27;);
+            subject.obj_id &#x3D; subject.obj_id.replace(&#x27;_-_local&#x27;, &#x27;&#x27;);
+
+            // &#x3D;&gt;Chronologie: salsah standoff needs to be converted before displaying
+            // valuetype_id 14 &#x3D; valuelabel &#x27;Ereignis&#x27;
+            if (subject.valuetype_id[0] &#x3D;&#x3D;&#x3D; &#x27;14&#x27; &amp;&amp; subject.value[0]) {
+                let htmlstr &#x3D; &#x27;&#x27;;
+                const utf8str: string &#x3D; subject.value[0].utf8str;
+                const textattr: string &#x3D; subject.value[0].textattr;
+
+                // check if there is standoff, otherwise leave res.value[0] alone
+                // because when retrieved from cache the standoff is already converted
+                if (utf8str &amp;&amp; textattr) {
+                    htmlstr &#x3D; this.convertStandoffToHTML(utf8str, textattr);
+
+                    // replace salsah links
+                    htmlstr &#x3D; this.replaceSalsahLink(htmlstr);
+
+                    // strip &amp; replace &lt;p&gt;-tags for displaying
+                    htmlstr &#x3D; this.replaceParagraphTags(htmlstr);
+
+                    subject.value[0] &#x3D; htmlstr;
+                }
+            }
+        });
+        // remove duplicates from response
+        searchResults.subjects &#x3D; this.distinctSubjects(searchResults.subjects);
+        return searchResults;
+    }
+
+    /**
+     * Public method: prepareFullTextSearchResultText.
+     *
+     * It prepares the fulltext search result text
+     * to be displayed in the search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
+     * @param {string} searchUrl The given url of a search request.
+     *
+     * @returns {string} The text to be displayed.
+     */
+    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
+        let resText: string;
+
+        const searchResults &#x3D; { ...searchResponseWithQuery.data };
+        const searchValue &#x3D; searchResponseWithQuery.query;
+
+        if (searchResults.subjects) {
+            const length &#x3D; searchResults.subjects.length;
+            const resString: string &#x3D; length &#x3D;&#x3D;&#x3D; 1 ? &#x60;Resultat&#x60; : &#x60;Resultate&#x60;;
+            // resText &#x3D; &#x60;${length}/${searchData.nhits} &#x60;;
+            resText &#x3D; &#x60;${searchResults.nhits} &#x60;;
+            resText +&#x3D; &#x60;${resString} für &quot;${searchValue}&quot;&#x60;;
+
+            if (this.filteredOut &gt; 0) {
+                const duplString: string &#x3D; this.filteredOut &#x3D;&#x3D;&#x3D; 1 ? &#x60;Duplikat&#x60; : &#x60;Duplikate&#x60;;
+                resText +&#x3D; &#x60; (${this.filteredOut} ${duplString} entfernt)&#x60;;
+            }
+        } else {
+            resText &#x3D; &#x60;Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.&#x60;;
+        }
+
+        return resText;
+    }
+
+    /**
+     * Public method: convertObjectProperties.
+     *
+     * It converts object properties of a resource request
+     * to be displayed in the bibliography detail view.
+     *
+     * @param {ResourceFullResponseJson} resourceFullResponseData The given resource data.
+     *
+     * @returns {BibEntry} The converted resource object.
+     */
+    convertObjectProperties(resourceFullResponseData: ResourceFullResponseJson): BibEntry {
+        const convObj &#x3D; {};
+        // add lastmod state
+        convObj[&#x27;lastmod&#x27;] &#x3D; resourceFullResponseData.resinfo.lastmod;
+
+        Object.keys(resourceFullResponseData.props).forEach((key: string) &#x3D;&gt; {
+            const prop &#x3D; resourceFullResponseData.props[key];
+            let propValue &#x3D; []; // empty text value array
+
+            // check if values property is defined
+            if (prop.hasOwnProperty(&#x27;values&#x27;) &amp;&amp; prop.values !&#x3D;&#x3D; undefined) {
+                // check for gui-elements
+                switch (prop.valuetype_id) {
+                    case &#x27;4&#x27;:
+                        // DATE: salsah object needs to be converted (using plugin &quot;dateConverter&quot;)
+                        if (prop.values[0] !&#x3D;&#x3D; &#x27;&#x27;) {
+                            propValue[0] &#x3D; this.convertDateValue(prop.values[0]);
+                        }
+                        break; // END date
+
+                    case &#x27;7&#x27;:
+                        // SELECTION PULLDOWN: selection nodes have to be read seperately
+                        // TODO
+                        if (prop.values !&#x3D;&#x3D; []) {
+                            propValue &#x3D; this.convertSelectionValues(prop.values, prop.attributes);
+                        }
+                        break; // END selection
+
+                    case &#x27;14&#x27;:
+                        // RICHTEXT: salsah standoff needs to be converted
+
+                        // check for multiple &amp;&amp; not empty values
+                        if (prop.values.length &gt; 0 &amp;&amp; prop.values[0].utf8str !&#x3D;&#x3D; &#x27;&#x27;) {
+                            // clean value labels
+                            prop.label &#x3D; prop.label.replace(&#x27; (Richtext)&#x27;, &#x27;&#x27;);
+
+                            for (let i &#x3D; 0; i &lt; prop.values.length; i++) {
+                                // init
+                                let htmlstr &#x3D; &#x27;&#x27;;
+
+                                // convert linear salsah standoff to html (using plugin &quot;htmlConverter&quot;)
+                                htmlstr &#x3D; this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
+
+                                // replace salsah links &amp; &lt;p&gt;-tags
+                                htmlstr &#x3D; this.replaceSalsahLink(htmlstr);
+                                htmlstr &#x3D; htmlstr.replace(&#x27;&lt;p&gt;&#x27;, &#x27;&#x27;).replace(&#x27;&lt;/p&gt;&#x27;, &#x27;&#x27;);
+
+                                // trim string
+                                propValue[i] &#x3D; htmlstr.trim();
+
+                                // replace bibliography links
+                                if (prop.label &#x3D;&#x3D;&#x3D; &#x27;Online-Zugang&#x27;) {
+                                    propValue[i] &#x3D; this.adjustBiblioLink(propValue[i]);
+                                }
+                            }
+                        }
+                        break; // END richtext
+
+                    default:
+                        // &#x27;1&#x27;&#x3D;&gt; TEXT: properties come as they are
+                        if (prop.values[0] !&#x3D;&#x3D; &#x27;&#x27;) {
+                            for (let i &#x3D; 0; i &lt; prop.values.length; i++) {
+                                propValue[i] &#x3D; prop.values[i].trim();
+                            }
+                        }
+                } // END switch
+                if (propValue.length &gt; 1) {
+                    convObj[prop.label] &#x3D; propValue; // &#x3D;&gt; array
+                } else if (propValue.length &#x3D;&#x3D;&#x3D; 1) {
+                    convObj[prop.label] &#x3D; propValue[0]; // &#x3D;&gt; string
+                }
+            } // END if value
+
+            // extract publication year from publication date
+            /*
+             TODO#add:
+             let splitDate;
+             if (splitDate &#x3D; convObj[&#x27;Publikationsdatum&#x27;]) {
+             let s &#x3D; splitDate.split(&#x27; &#x27;);
+             convObj[&#x27;Jahr&#x27;] &#x3D; s[s.length-1];
+             }
+             */
+        }); // END forEach PROPS
+
+        return convObj;
+    } // END convertObjectProperties (func)
+
+    /**
+     * Public method: convertResourceData.
+     *
+     * It converts a resource response from the given (SALSAH) Api
+     * to a resource detail object. It checks if the resource data
+     * is accessible and delegates it to the respective
+     * resource detail creation methods.
+     *
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
+     *
+     * @returns {ResourceDetail} The converted resource detail object.
+     */
+    convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        if (resourceData[0].access &#x3D;&#x3D;&#x3D; &#x27;OK&#x27;) {
+            return this.prepareAccessibleResource(resourceData, resourceId);
+        } else {
+            return this.prepareRestrictedResource(resourceData, resourceId);
+        }
+    }
+
+    /**
+     * Private method: prepareRestrictedResource.
+     *
+     * It prepares header and content of a restricted resource
+     * to be displayed via HTML.
+     *
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
+     *
+     * @returns {ResourceDetail} The resource detail object.
+     */
+    private prepareRestrictedResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        const header: ResourceDetailHeader &#x3D; new ResourceDetailHeader(resourceData[0], resourceId);
+        const content &#x3D; undefined;
+
+        return new ResourceDetail(header, content);
+    }
+
+    /**
+     * Private method: prepareAccessibleResource.
+     *
+     * It prepares header and content of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {IResourceDataResponse} resourceData The given resource data.
+     * @param {string} resourceId The given id of the current resource.
+     *
+     * @returns {ResourceDetail} The resource detail object.
+     */
+    private prepareAccessibleResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+        const resourceFullResponseData &#x3D; resourceData[0];
+        const resourceContextData &#x3D; resourceData[1];
+
+        // convert properties to be displayed via HTML
+        resourceFullResponseData.props &#x3D; this.convertGUISpecificProps(resourceFullResponseData.props);
+
+        // prepare parts of resourceDetail
+        const header: ResourceDetailHeader &#x3D; new ResourceDetailHeader(resourceFullResponseData, resourceId);
+        const props: ResourceDetailProperty[] &#x3D; this.prepareResourceDetailProperties(resourceFullResponseData.props);
+        const images: NgxGalleryImage[] &#x3D; this.prepareResourceDetailImage(resourceContextData);
+        const incoming: ResourceDetailGroupedIncomingLinks[] &#x3D; this.prepareResourceDetailIncomingLinks(
+            resourceFullResponseData.incoming
+        );
+        const content &#x3D; new ResourceDetailContent(props, images, incoming);
+
+        return new ResourceDetail(header, content);
+    }
+
+    /**
+     * Private method: prepareResourceDetailImage.
+     *
+     * It prepares the images content of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {ResourceContextResponseJson} resourceContextData The given resource context data.
+     *
+     * @returns {NgxGalleryImage[]} The image array of the resource detail.
+     */
+    private prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
+        // id of image context for api + &quot;/resources/{{:id}}_-_local?reqtype&#x3D;context&quot;
+        // result is an array of NgxGalleryImage
+        const images: NgxGalleryImage[] &#x3D; [];
+
+        if (!resourceContextData.resource_context.res_id) {
+            // console.log(&#x27;ConversionService# prepareResourceDetailImage: got no resource_context id\&#x27;s from context response: &#x27;, contextData);
+            return;
+        } else {
+            const context: ContextJson &#x3D; { ...resourceContextData.resource_context };
+
+            // IMAGE OBJECT (context &#x3D;&#x3D; 2)
+            // IMAGE OBJECT (context &#x3D;&#x3D; 2)
+            if (context.context &#x3D;&#x3D;&#x3D; 2 &amp;&amp; context.resclass_name &#x3D;&#x3D;&#x3D; &#x27;image&#x27;) {
+                if (
+                    context.res_id.length &#x3D;&#x3D;&#x3D; context.firstprop.length ||
+                    context.res_id.length &#x3D;&#x3D;&#x3D; context.locations.length
+                ) {
+                    for (let i &#x3D; 0; i &lt; context.res_id.length; i++) {
+                        // build new ResourceDetailImage-Object from context and index
+                        const image &#x3D; new ResourceDetailImage(context, i);
+
+                        const gImage &#x3D; new NgxGalleryImage({
+                            small: image.reductSize,
+                            medium: image.reductSize,
+                            big: image.fullSize,
+                            description: image.origname,
+                            label: image.label,
+                            url: image.fullSize
+                        });
+
+                        images.push(gImage);
+                    }
+                    return images;
+                } else {
+                    console.warn(
+                        &#x27;ConversionService - Array length for context objects is not consistent with firstprops length!&#x27;,
+                        context
+                    );
+                    return;
+                }
+                // STANDARD OBJECT (context &#x3D;&#x3D; 0 || 1)
+            } else if (context.context &lt; 2) {
+                console.log(&#x27;ConversionService - got no image context&#x27;, context);
+                return;
+            }
+        }
+
+        return images;
+    }
+
+    /**
+     * Private method: prepareResourceDetailIncomingLinks.
+     *
+     * It prepares and groups the incoming links content
+     * of an accessible resource to be displayed via HTML.
+     *
+     * @param {IncomingItemJson[]} incomingArray The given IncomingItemJson.
+     *
+     * @returns {ResourceDetailGroupedIncomingLinks[]} The grouped incoming links array of the resource detail.
+     */
+    private prepareResourceDetailIncomingLinks(
+        incomingArray: IncomingItemJson[]
+    ): ResourceDetailGroupedIncomingLinks[] {
+        if (!incomingArray) {
+            return;
+        }
+
+        // map incoming array items into new array (immutable)
+        const incomingLinks: ResourceDetailIncomingLink[] &#x3D; incomingArray.map(
+            incoming &#x3D;&gt; new ResourceDetailIncomingLink({ ...incoming })
+        );
+
+        // return links grouped by restype
+        return this.groupByRestype(incomingLinks);
+    }
+
+    /**
+     * Private method: prepareResourceDetailProperties.
+     *
+     * It prepares the properties content of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {PropertyJson[]} props The given properties.
+     *
+     * @returns {ResourceDetailProperty[]} The properties array of the resource detail.
+     */
+    private prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
+        if (!props) {
+            return;
+        }
+
+        // helper method to clean value labels
+        const replaceLabel &#x3D; (str: string): string &#x3D;&gt; str.replace(&#x27; (Richtext)&#x27;, &#x27;&#x27;);
+
+        // map default values into ResourceDetailProperties array
+        return Object.entries(props).map(
+            prop &#x3D;&gt;
+                new ResourceDetailProperty(
+                    prop[1].pid,
+                    prop[1].guielement,
+                    (prop[1].label &#x3D; replaceLabel(prop[1].label)),
+                    prop[1].toHtml
+                )
+        );
+    }
+
+    /**
+     * Private method: convertGUISpecificProps.
+     *
+     * It converts properties of an accessible resource
+     * to be displayed via HTML.
+     *
+     * In fact, it adds an &#x27;toHtml&#x27; property to the props array.
+     *
+     * @param {PropertyJson[]} props The given properties.
+     *
+     * @returns {*} The converted resource data.
+     */
+    private convertGUISpecificProps(props: PropertyJson[]): any {
+        // loop through all properties and add toHtml values
+        Object.keys(props).forEach((key: string) &#x3D;&gt; {
+            props[key] &#x3D; this.addHtmlValues(props[key]);
+        });
+        return props;
+    }
+
+    /**
+     * Private method: convertGUISpecificProps.
+     *
+     * It adds an &#x27;toHtml&#x27; property to the props array
+     * of an accessible resource to be displayed via HTML.
+     *
+     * @param {*} prop The given property.
+     * @param {string} [url] A given optional url.
+     *
+     * @returns {string[]} The converted property.
+     */
+    private addHtmlValues(prop: any, url?: string): [string] {
+        prop.toHtml &#x3D; [];
+
+        if (prop.values) {
+            switch (prop.valuetype_id) {
+                case &#x27;4&#x27;: // DATE: salsah object needs to be converted (using plugin &quot;dateConverter&quot;)
+                    for (let i &#x3D; 0; i &lt; prop.values.length; i++) {
+                        prop.toHtml[i] &#x3D; this.convertDateValue(prop.values[i]);
+                    }
+                    break; // END date
+
+                case &#x27;6&#x27;: // LINKVALUE (searchbox): links to another salsah object need to be converted
+                    for (let i &#x3D; 0; i &lt; prop.values.length; i++) {
+                        prop.toHtml[i] &#x3D; this.convertLinkValue(prop, i);
+                    }
+                    break; // END linkvalue
+
+                case &#x27;7&#x27;: // SELECTION (pulldown): selection nodes have to be called separately
+                    prop.toHtml &#x3D; this.convertSelectionValues(prop.values, prop.attributes);
+                    break; // END selection
+
+                case &#x27;12&#x27;: // HLIST: hlist nodes have to be called separately
+                    prop.toHtml &#x3D; this.convertHlistValues(prop.values, prop.attributes);
+                    break; // END hlist
+
+                case &#x27;14&#x27;: // RICHTEXT: salsah standoff needs to be converted
+                    for (let i &#x3D; 0; i &lt; prop.values.length; i++) {
+                        prop.toHtml[i] &#x3D; this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
+                    }
+                    break; // END richtext
+
+                case &#x27;15&#x27;: // GeoNAMES: GeoName nodes have to be called separately
+                    prop.toHtml &#x3D; this.convertGeoValues(prop.values);
+                    break; // END geonames
+
+                // &#x27;1&#x27; &#x3D;&gt; TEXT: properties come as they are
+                default:
+                    for (let i &#x3D; 0; i &lt; prop.values.length; i++) {
+                        prop.toHtml[i] &#x3D; prop.values[i];
+                    }
+            } // END switch
+        } else {
+            // console.log(&#x27;empty prop.values for&#x27;, prop.guielement.toUpperCase(), &#x27;in property &quot;&#x27;, prop.label, &#x27;&quot; :::: &#x27;);
+        }
+        return prop;
+    }
+
+    /**
+     * Private method: convertDateValue.
+     *
+     * It converts date values of an accessible resource
+     * to be displayed via HTML.
+     *
+     * Conversion goes from Julian Day Number (JDN)
+     * to Gregorian Calendar.
+     *
+     * @param {*} dateObj The given date object.
+     *
+     * @returns {string} The converted date string.
+     */
+    private convertDateValue(dateObj: any): string {
+        let date &#x3D; dateConverter(dateObj);
+        date &#x3D; date.replace(&#x27; (G)&#x27;, &#x27;&#x27;);
+        return date;
+    }
+
+    /**
+     * Private method: convertGeoValues.
+     *
+     * It converts geonames values of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {string[]} values The given property values.
+     *
+     * @returns {string[]} The converted geo names array.
+     */
+    private convertGeoValues(values: string[]): string[] {
+        // values give reference id to api + &quot;/geonames/{{:id}}?reqtype&#x3D;node&quot;
+        // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+
+        const output &#x3D; [];
+
+        // identify geonames gui-id from values
+        // e.g. [&quot;4136&quot;] or [&quot;4136&quot;, &quot;4132&quot;]
+        values.forEach((valueId, index) &#x3D;&gt; {
+            // get geonames data
+            this.getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe((geoNamesData: GeoDataJson) &#x3D;&gt; {
+                // check for existing nodelist in geonames response
+                // else return empty prop if necessary
+                if (!geoNamesData.nodelist) {
+                    console.log(
+                        &#x27;ConversionService# convertGeoValues: got no nodelist from geonames response: &#x27;,
+                        geoNamesData
+                    );
+                    return (output[index] &#x3D; &#x27;&#x27;);
+                }
+                // snapshot of nodelist array
+                const geoDataArray: GeoDataItemJson[] &#x3D; [...geoNamesData.nodelist];
+
+                // build new GeoNames-Object from geoData array
+                const geo: GeoNames &#x3D; new GeoNames(geoDataArray);
+
+                // construct and return html value
+                output[index] &#x3D; geo.html;
+                return output;
+            });
+        });
+        return output;
+    }
+
+    /**
+     * Private method: convertHlistValues.
+     *
+     * It converts hierarchy list values of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {string[]} values The given property values.
+     * @param {string} attributes The given HTML attributes.
+     *
+     * @returns {string[]} The converted hlist array.
+     */
+    private convertHlistValues(values: string[], attributes: string): string[] {
+        // prop.values give reference id to
+        // api + /hlists/{{:id}}
+        // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
+
+        const output &#x3D; [];
+
+        // identify id of hlist from prop.attributes
+        // e.g. &quot;hlist&#x3D;17&quot;
+        const nodeId: string &#x3D; this.getNodeIdFromAttributes(attributes);
+
+        // get hlist data
+        this.getAdditionalInfoFromApi(HlistJson, nodeId).subscribe(
+            (hlistData: HlistJson) &#x3D;&gt; {
+                // check for existing hlist in response
+                // esle return empty prop if necessary
+                if (!hlistData.hlist) {
+                    console.log(&#x27;ConversionService# convertHListValue: got no hlist from response: &#x27;, hlistData);
+                    return output;
+                }
+                // snapshot of hlist array
+                const hlistArray: HlistItemJson[] &#x3D; [...hlistData.hlist];
+                // localize id in hlist array and identify the label
+                values.forEach((valueId, index) &#x3D;&gt; {
+                    const filteredHlist: HlistItemJson[] &#x3D; hlistArray.filter(hlistItem &#x3D;&gt; hlistItem.id &#x3D;&#x3D;&#x3D; valueId);
+                    output[index] &#x3D; filteredHlist[0].label;
+                });
+                return output;
+            },
+            err &#x3D;&gt; console.error(err)
+        );
+        return output;
+    }
+
+    /**
+     * Private method: convertLinkValue.
+     *
+     * It converts a link value of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {*} prop The given property value.
+     * @param {number} index The given index position.
+     *
+     * @returns {string} The converted link value.
+     */
+    private convertLinkValue(prop: any, index: number): string {
+        // add &lt;a&gt;-tag with click-directive; linktext is stored in &quot;$&amp;&quot;
+        const firstValue &#x3D; prop.value_firstprops[index];
+        const replaceValue &#x3D;
+            &#x27;&lt;a (click)&#x3D;&quot;ref.navigateToResource(\&#x27;&#x27; +
+            prop.values[index] +
+            &#x27;\&#x27;)&quot;&gt;$&amp; (&#x27; +
+            prop.value_restype[index] +
+            &#x27;)&lt;/a&gt;&#x27;;
+        return firstValue.replace(firstValue, replaceValue);
+    }
+
+    /**
+     * Private method: convertRichtextValue.
+     *
+     * It converts a rich text value of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {string} str The given utf8 string of a rich text property.
+     * @param {string} attr The given standoff attributes of a richtext property.
+     *
+     * @returns {string} The converted rich text value.
+     */
+    private convertRichtextValue(str: string, attr: string): string {
+        // convert salsah standoff to html (using plugin &quot;htmlConverter&quot;)
+        const rtValue: string &#x3D; this.convertStandoffToHTML(str, attr);
+
+        // replace salsah links
+        return this.replaceSalsahLink(rtValue);
+    }
+
+    /**
+     * Private method: convertSelectionValues.
+     *
+     * It converts selection values of an accessible resource
+     * to be displayed via HTML.
+     *
+     * @param {string[]} values The given property values.
+     * @param {string} attributes The given HTML attributes.
+     *
+     * @returns {string[]} The converted selection array.
+     *
+     * @todo check if it is possible to unify with hlist conversion?
+     */
+    private convertSelectionValues(values: string[], attributes: string): string[] {
+        // values give reference id to api + &quot;/selections/{{:id}}&quot;
+        // result is an array of selection labels
+
+        const output &#x3D; [];
+
+        // identify id of selection-list from attributes
+        // e.g. &quot;selection&#x3D;66&quot;
+        const nodeId: string &#x3D; this.getNodeIdFromAttributes(attributes);
+
+        // get selection-list data
+        this.getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe(
+            (selectionData: SelectionJson) &#x3D;&gt; {
+                // check for existing selection in response
+                // else return empty prop if necessary
+                if (!selectionData.selection) {
+                    console.log(
+                        &#x27;ConversionService# convertSelectionValues: got no selection from response: &#x27;,
+                        selectionData
+                    );
+                    return output;
+                }
+                // snapshot of selection array
+                const selectionArray: SelectionItemJson[] &#x3D; [...selectionData.selection];
+                // localize id in selection-list array and identify the label
+                values.forEach((valueId, index) &#x3D;&gt; {
+                    const filteredSelection: SelectionItemJson[] &#x3D; selectionArray.filter(
+                        selectionItem &#x3D;&gt; selectionItem.id &#x3D;&#x3D;&#x3D; valueId
+                    );
+                    output[index] &#x3D; filteredSelection[0].label;
+                });
+                return output;
+            },
+            err &#x3D;&gt; console.error(err)
+        );
+        return output;
+    }
+
+    /**
+     * Private method: convertStandoffToHTML.
+     *
+     * It converts linear SALSAH standoff
+     * (utf8 string with standoff attributes)
+     * to html using plugin &#x27;htmlConverter&#x27;.
+     *
+     * @param {string} str The given utf8 string of a rich text property.
+     * @param {string} attr The given standoff attributes of a richtext property.
+     *
+     * @returns {string} The converted standoff.
+     *
+     * @todo check if it is possible to unify with hlist conversion?
+     */
+    private convertStandoffToHTML(str: string, attr: string): string {
+        if (!str) {
+            return;
+        }
+        if (!attr) {
+            return str;
+        }
+        return htmlConverter(JSON.parse(attr), str);
+    }
+
+    /**
+     * Private method: getAdditionalInfoFromApi.
+     *
+     * It makes additional calls to the given (SALSAH) API
+     * to get additional resource infos in case of geoames,
+     * hlists, selections or image values.
+     *
+     * @param {*} responseJsonType The given json type of the API response.
+     * @param {string} id The given id of a resource.
+     *
+     * @returns {Observable&lt;any&gt;} The observable of the HTTP response.
+     */
+    private getAdditionalInfoFromApi(responseJsonType: any, id: string): Observable&lt;any&gt; {
+        let queryPath: string;
+        switch (responseJsonType) {
+            case GeoDataJson:
+                queryPath &#x3D; &#x27;geonames/&#x27; + id + &#x27;?reqtype&#x3D;node&#x27;;
+                break;
+            case HlistJson:
+                queryPath &#x3D; &#x27;hlists/&#x27; + id;
+                break;
+            case ResourceContextResponseJson:
+                queryPath &#x3D; &#x27;resources/&#x27; + id + &#x27;_-_local?reqtype&#x3D;context&#x27;;
+                break;
+            case SelectionJson:
+                queryPath &#x3D; &#x27;selections/&#x27; + id;
+                break;
+        }
+        return this.getApiResponse(responseJsonType, queryPath);
+    }
+
+    /**
+     * Private method: getNodeIdFromAttributes.
+     *
+     * It gets a node id from the prop.attributes
+     * of a selections or hlists value.
+     *
+     * @param {string} attributes The given prop.attributes.
+     *
+     * @returns {string} id The node id.
+     */
+    private getNodeIdFromAttributes(attributes: string): string {
+        // identify node id from prop.attributes
+        // e.g. &quot;hlist&#x3D;17&quot; or &quot;selection&#x3D;77&quot;
+        return attributes.split(&#x27;&#x3D;&#x27;)[1].toString();
+    }
+
+    /**
+     * Private method: adjustBiblioLink.
+     *
+     * It finds internal links in the online-access property
+     * of a bibliography link and adjusts the values
+     * to be displayed via HTML.
+     *
+     * @param {string} str The given link string.
+     * @example
+     * str &#x3D; &#x27;(PDF) http://www.example.com/myPdf.pdf&#x27;
+     *
+     * @returns {string} The adjusted bibliography link.
+     */
+    private adjustBiblioLink(str: string): string {
+        if (!str) {
+            return;
+        }
+
+        let outStr: string;
+        let labelStr: string;
+        let splitArr: string[];
+        let linkRegArr: RegExpExecArray;
+        const regExLink &#x3D; /&lt;a (.*?)&gt;(.*?)&lt;\/a&gt;/i; // regexp for links
+
+        // check for double spaces
+        str &#x3D; str.replace(&#x27;  &#x27;, &#x27; &#x27;);
+
+        // split &quot;str&quot; behind closing parentheses
+        splitArr &#x3D; str.split(&#x27;) &#x27;);
+
+        // get label of link from 1st part of splitArr (without opening parentheses)
+        labelStr &#x3D; splitArr[0].replace(&#x27;(&#x27;, &#x27;&#x27;);
+
+        // check for link in 2nd part of splitArr
+        if (regExLink.exec(splitArr[1])) {
+            // ... link with &lt;a&gt; tag
+            linkRegArr &#x3D; regExLink.exec(splitArr[1]);
+            outStr &#x3D; &#x27;&lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; &#x27; + linkRegArr[1] + &#x27;&gt;&#x27; + labelStr + &#x27;&lt;/a&gt;&#x27;;
+        } else if (labelStr !&#x3D;&#x3D; &#x27;DOI&#x27;) {
+            // ... &lt;a&gt; tag is missing, add it
+            outStr &#x3D; &#x27;&lt;a target&#x3D;&quot;_blank&quot; ref&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;&#x27; + splitArr[1] + &#x27;&quot;&gt;&#x27; + labelStr + &#x27;&lt;/a&gt;&#x27;;
+        } else {
+            // no links, pure string
+            outStr &#x3D; labelStr + &#x27;: &#x27; + splitArr[1];
+        }
+        return outStr;
+    }
+
+    /**
+     * Private method: replaceSalsahLink.
+     *
+     * It finds internal salsah links in richtext values
+     * and replaces them with Angular click-directives.
+     *
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
+    private replaceSalsahLink(str: string): string {
+        if (!str) {
+            return;
+        }
+        const regNum &#x3D; /\d{4,8}/; // regexp for object id (4-8 DIGITS)
+        const regLink &#x3D; /&lt;a href&#x3D;&quot;(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})&quot; class&#x3D;&quot;salsah-link&quot;&gt;(.*?)&lt;\/a&gt;/i; // regexp for salsah links
+        let regArr: RegExpExecArray;
+
+        // check for salsah links in str
+        while (regLink.exec(str)) {
+            // i.e.: as long as patLink is detected in str do...
+            regArr &#x3D; regLink.exec(str);
+
+            // identify resource id
+            const resId &#x3D; regNum.exec(regArr[1])[0];
+
+            // replace href attribute with click-directive
+            // linktext is stored in second regexp-result regArr[2]
+            const replaceValue &#x3D;
+                &#x27;&lt;a (click)&#x3D;&quot;ref.navigateToResource(\&#x27;&#x27; +
+                resId +
+                &#x27;\&#x27;); $event.stopPropagation()&quot;&gt;&#x27; +
+                regArr[2] +
+                &#x27;&lt;/a&gt;&#x27;;
+            str &#x3D; str.replace(regArr[0], replaceValue);
+        } // END while
+
+        return str;
+    }
+
+    /**
+     * Private method: replaceParagraphTags.
+     *
+     * It removes paragraph tags in richtext values
+     * and replaces line breaks instead for multiple lines.
+     *
+     * @param {string} str The given richtext value.
+     *
+     * @returns {string} The adjusted richtext value.
+     */
+    private replaceParagraphTags(str: string): string {
+        if (!str) {
+            return;
+        }
+        str &#x3D; str
+            .replace(/&lt;\/p&gt;&lt;p&gt;/g, &#x27;&lt;br /&gt;&#x27;)
+            .replace(/&lt;p&gt;|&lt;\/p&gt;/g, &#x27;&#x27;)
+            .replace(str, &#x27;«$&amp;»&#x27;);
+        return str;
+    }
+
+    /**
+     * Private method: distinctSubjects.
+     *
+     * It removes duplicates from an array (SubjectItemJson[]).
+     * It checks for every array position (reduce) if the obj_id
+     * of the entry at the current position (y) is already
+     * in the array (findIndex). If that is not the case it
+     * pushes y into x which is initialized as empty array [].
+     *
+     * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
+     *
+     * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
+     * @returns {SubjectItemJson[]} The distinct subjects.
+     */
+    private distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+        if (!subjects) {
+            return;
+        }
+        this.filteredOut &#x3D; 0;
+        return subjects.reduce(
+            (x, y) &#x3D;&gt; (x.findIndex(e &#x3D;&gt; e.obj_id &#x3D;&#x3D;&#x3D; y.obj_id) &lt; 0 ? [...x, y] : ((this.filteredOut +&#x3D; 1), x)),
+            []
+        );
+    }
+
+    /**
+     * Private method: groupByRestype.
+     *
+     * It groups an array of incoming links
+     * by their resource type.
+     *
+     * @param {ResourceDetailIncomingLink[]} incomingLinks The given incoming links.
+     *
+     * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links.
+     */
+    private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {
+        if (!incomingLinks) {
+            return;
+        }
+
+        // find out and alphabetically sort all the unique restype labels
+        const restypeLabels &#x3D; new Set(incomingLinks.map(incomingLink &#x3D;&gt; incomingLink.restype.label).sort());
+
+        // produce a list of restypes with its incoming links
+        return Array.from(restypeLabels).map(label &#x3D;&gt; ({
+            restypeLabel: label,
+            links: incomingLinks.filter(incomingLink &#x3D;&gt; incomingLink.restype.label &#x3D;&#x3D;&#x3D; label)
+        }));
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'ConversionService.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

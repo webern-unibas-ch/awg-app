@@ -1,0 +1,470 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content class">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Classes</li>
+  <li>MetaEdition</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/core-models/meta.model.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The MetaEdition class.</p>
+<p>It is used in the context of the edition view
+to store the meta data about the edition.</p>
+
+            </p>
+
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#editors">editors</a>
+                            </li>
+                            <li>
+                                <a href="#lastModified">lastModified</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editors"></a>
+                        <span class="name">
+                            <b>
+                            editors</b>
+                            <a href="#editors"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>MetaPerson[]</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/core/core-models/meta.model.ts:93</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The editors of an edition.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="lastModified"></a>
+                        <span class="name">
+                            <b>
+                            lastModified</b>
+                            <a href="#lastModified"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/app/core/core-models/meta.model.ts:98</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The last modification date of an edition.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum MetaSectionTypes {
+    page &#x3D; &#x27;page&#x27;,
+    edition &#x3D; &#x27;edition&#x27;,
+    structure &#x3D; &#x27;structure&#x27;,
+    contact &#x3D; &#x27;contact&#x27;
+}
+
+/**
+ * The MetaPerson class.
+ *
+ * It is used to store the meta data about a Person.
+ */
+export class MetaPerson {
+    /**
+     * The name of the person.
+     */
+    name: string;
+
+    /**
+     * The contact (webadress) of a person.
+     */
+    contactUrl: string;
+}
+
+/**
+ * The MetaPage class.
+ *
+ * It is used in the context of the app framework
+ * to store the meta data for the main framework.
+ */
+export class MetaPage {
+    /**
+     * The start year for the copyright information.
+     */
+    yearStart: number;
+
+    /**
+     * The recent year for the copyright information.
+     */
+    yearCurrent: number;
+
+    /**
+     * The url to the GitHub repository of the AWG edition website (awg-app).
+     */
+    githubUrl: string;
+
+    /**
+     * The url to the compodoc documentation of the AWG edition website (awg-app).
+     */
+    compodocUrl: string;
+
+    /**
+     * The url to the AWG edition homepage (awg-app).
+     */
+    awgAppUrl: string;
+
+    /**
+     * The name of the AWG.
+     */
+    awgProjectName: string;
+
+    /**
+     * The url to the AWG project homepage.
+     */
+    awgProjectUrl: string;
+
+    /**
+     * The latest version of the AWG edition website (awg-app).
+     */
+    version: string;
+
+    /**
+     * The release date of the latest version of the AWG edition website (awg-app).
+     */
+    versionReleaseDate: string;
+}
+
+/**
+ * The MetaEdition class.
+ *
+ * It is used in the context of the edition view
+ * to store the meta data about the edition.
+ */
+export class MetaEdition {
+    /**
+     * The editors of an edition.
+     */
+    editors: MetaPerson[];
+
+    /**
+     * The last modification date of an edition.
+     */
+    lastModified: string;
+}
+
+/**
+ * The MetaStructure class.
+ *
+ * It is used in the context of the structure view
+ * to store the meta data about the structure overview.
+ */
+export class MetaStructure {
+    /**
+     * The authors of the structure overview.
+     */
+    authors: MetaPerson[];
+
+    /**
+     * The last modification date of the structure overview.
+     */
+    lastModified: string;
+}
+
+/**
+ * The MetaContact class.
+ *
+ * It is used in the context of the contact view
+ * to store the meta data about contact information.
+ */
+export class MetaContact {
+    /**
+     * The address info of the contact info.
+     */
+    address: {
+        /**
+         * The institution name of the address info.
+         */
+        institution: string;
+
+        /**
+         * The street of the address info.
+         */
+        street: string;
+
+        /**
+         * The postal code of the address info.
+         */
+        postalCode: string;
+
+        /**
+         * The city of the address info.
+         */
+        city: string;
+
+        /**
+         * The country of the address info.
+         */
+        country: string;
+    };
+
+    /**
+     * The phone info of the contact info.
+     */
+    phone: {
+        /**
+         * The label of the phone info.
+         * @example Telefon:
+         */
+        label: string;
+
+        /**
+         * The number of the phone info.
+         */
+        number: string;
+    };
+
+    /**
+     * The email info of the contact info.
+     */
+    email: {
+        /**
+         * The label of the email info.
+         * @example Email:
+         */
+        label: string;
+
+        /**
+         * The mailto of the email info.
+         * @example mailto:my_email@host.com
+         */
+        mailto: string;
+
+        /**
+         * The safe string of the email info.
+         * @example my_email [at] host [dot] com
+         */
+        safeString: string;
+    };
+}
+
+/**
+ * The Meta class.
+ *
+ * It is used in the context of the app framework
+ * to store the meta data for different parts of the app.
+ */
+export class Meta {
+    /**
+     * The meta data for the main app framework.
+     */
+    page: MetaPage;
+
+    /**
+     * The meta data for the edition view.
+     */
+    edition: MetaEdition;
+
+    /**
+     * The meta data for the structure view.
+     */
+    structure: MetaStructure;
+
+    /**
+     * The meta data for the contact view.
+     */
+    contact: MetaContact;
+}
+</code></pre>
+    </div>
+</div>
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
+            var COMPODOC_CURRENT_PAGE_URL = 'MetaEdition.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

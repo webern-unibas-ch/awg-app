@@ -1,0 +1,641 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>TimelineComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/data-view/data-outlets/timeline/timeline.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The Timeline component.</p>
+<p>It contains the timeline section
+of the data view of the app
+that displays a timeline of chronology events
+of the current date.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-timeline</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./timeline.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./timeline.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#date">date</a>
+                            </li>
+                            <li>
+                                <a href="#side">side</a>
+                            </li>
+                            <li>
+                                <a href="#today">today</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getTodaysEvents">getTodaysEvents</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTodaysEvents"></a>
+                    <span class="name">
+                        <b>
+                            getTodaysEvents
+                        </b>
+                        <a href="#getTodaysEvents"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTodaysEvents()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="63"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/timeline/timeline.component.ts:63</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getTodaysEvents.</p>
+<p>It calls the given (SALSAH) API
+to get the chronology events
+of the current date.</p>
+<p>NOT USED.</p>
+<p>IMPLEMENTATION FOR FUTURE USE.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Prints a message to the console.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/timeline/timeline.component.ts:46</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="date"></a>
+                        <span class="name">
+                            <b>
+                            date</b>
+                            <a href="#date"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Date.html" target="_self" >TimelineDate</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new TimelineDate(this.today)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/data-view/data-outlets/timeline/timeline.component.ts:38</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: date.</p>
+<p>It keeps the current date data for the timeline.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="side"></a>
+                        <span class="name">
+                            <b>
+                            side</b>
+                            <a href="#side"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>&#x27;&#x27;</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/data-view/data-outlets/timeline/timeline.component.ts:24</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: side.</p>
+<p>It sets the side position of the timeline.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="today"></a>
+                        <span class="name">
+                            <b>
+                            today</b>
+                            <a href="#today"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/Date.html" target="_self" >Date</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Date()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/data-view/data-outlets/timeline/timeline.component.ts:31</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: today.</p>
+<p>It keeps the current date for the timeline.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+
+import { TimelineDate } from &#x27;@awg-views/data-view/models/timeline-date.model&#x27;;
+
+/**
+ * The Timeline component.
+ *
+ * It contains the timeline section
+ * of the data view of the app
+ * that displays a timeline of chronology events
+ * of the current date.
+ */
+@Component({
+    selector: &#x27;awg-timeline&#x27;,
+    templateUrl: &#x27;./timeline.component.html&#x27;,
+    styleUrls: [&#x27;./timeline.component.css&#x27;]
+})
+export class TimelineComponent implements OnInit {
+    /**
+     * Public variable: side.
+     *
+     * It sets the side position of the timeline.
+     */
+    side &#x3D; &#x27;&#x27;;
+
+    /**
+     * Public variable: today.
+     *
+     * It keeps the current date for the timeline.
+     */
+    today: Date &#x3D; new Date();
+
+    /**
+     * Public variable: date.
+     *
+     * It keeps the current date data for the timeline.
+     */
+    date: TimelineDate &#x3D; new TimelineDate(this.today);
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.getTodaysEvents();
+    }
+
+    /**
+     * Public method: getTodaysEvents.
+     *
+     * It calls the given (SALSAH) API
+     * to get the chronology events
+     * of the current date.
+     *
+     * NOT USED.
+     *
+     * IMPLEMENTATION FOR FUTURE USE.
+     *
+     * @returns {void} Prints a message to the console.
+     */
+    getTodaysEvents(): void {
+        console.log(&#x27;Timeline: called func getTodaysEvents&#x27;);
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;p class&#x3D;&quot;help-block&quot;&gt;
+    Datenbank-Suche nach Ereignissen mit heutigem Tagesdatum. Der erstmalige Aufruf kann einige Sekunden Ladezeit
+    beanspruchen.
+&lt;/p&gt;
+&lt;button class&#x3D;&quot;btn btn-default&quot; (click)&#x3D;&quot;getTodaysEvents()&quot;&gt;
+    Webern-Chronologie vom {{ date.day }}.{{ date.month }}.
+&lt;/button&gt;
+
+&lt;!--
+            &lt;div data-ng-if&#x3D;&quot;isEventLoaded&quot;&gt;
+                &lt;div class&#x3D;&quot;timeline-control-button&quot;&gt;
+                    &lt;button class&#x3D;&quot;btn btn-default&quot; data-ng-click&#x3D;&quot;timeline.leftAlign()&quot;&gt;linksseitig&lt;/button&gt;
+                    &lt;button class&#x3D;&quot;btn btn-default&quot; data-ng-click&#x3D;&quot;timeline.rightAlign()&quot;&gt;rechtsseitig&lt;/button&gt;
+                    &lt;button class&#x3D;&quot;btn btn-default&quot; data-ng-click&#x3D;&quot;timeline.defaultAlign()&quot;&gt;alternierend&lt;/button&gt;
+                &lt;/div&gt;
+
+                &lt;timeline&gt;
+                    &lt;timeline-header&gt;
+                        &lt;h3 data-ng-if&#x3D;&quot;date.searchStart &amp;&amp; date.searchEnd&quot;&gt;
+                            Suchzeitraum: {{date.searchStart}}–{{date.searchEnd}}
+                        &lt;/h3&gt;
+                        &lt;p&gt;
+                            In {{eventData.overallQueries}} Suchanfragen {{eventData.nhits}} Ereignisse zwischen {{date.findStart}} und {{date.findEnd}} gefunden
+                        &lt;/p&gt;
+                    &lt;/timeline-header&gt;
+                    &lt;timeline-body&gt;
+                        &lt;timeline-event ng-repeat&#x3D;&quot;event in eventData.events | orderBy:&#x27;-jdate.dateval1&#x27;&quot; side&#x3D;&quot;{{side}}&quot;&gt;
+                            &lt;timeline-badge class&#x3D;&quot;{{event.badgeClass}}&quot;&gt;
+                                &lt;img title&#x3D;&quot;{{event.objLabel}}: {{event.value.label}}&quot; data-ng-src&#x3D;&quot;{{event.objSrc}}&quot; alt&#x3D;&quot;icon&quot; /&gt;
+                            &lt;/timeline-badge&gt;
+                            &lt;timeline-panel class&#x3D;&quot;{{event.badgeClass}}&quot;&gt;
+                                &lt;timeline-panel-heading&gt;
+                                    &lt;p ng-if&#x3D;&quot;event.date&quot;&gt;
+                                        &lt;small class&#x3D;&quot;text-muted&quot;&gt;&lt;i class&#x3D;&quot;glyphicon glyphicon-time&quot;&gt;&lt;/i&gt; &lt;em&gt;{{event.date.label}}&lt;/em&gt;: {{event.date.dateString}}&lt;/small&gt;
+                                    &lt;/p&gt;
+                                &lt;/timeline-panel-heading&gt;
+                                &lt;timeline-panel-body&gt;
+                                    &lt;p data-ng-if&#x3D;&quot;event.value&quot;&gt;
+                                        [{{event.objID}}] {{event.value.valueString}} &lt;small&gt;&lt;a data-ng-click&#x3D;&quot;showObject(event.objID)&quot;&gt;[mehr…]&lt;/a&gt;&lt;/small&gt;
+                                    &lt;/p&gt;
+                                &lt;/timeline-panel-body&gt; --&gt;
+&lt;!-- &lt;timeline-panel-footer&gt;
+
+                                &lt;/timeline-panel-footer&gt; --&gt;
+&lt;!--
+                    &lt;/timeline-panel&gt;
+                &lt;/timeline-event&gt;
+            &lt;/timeline-body&gt;
+        &lt;/timeline&gt;
+    &lt;/div&gt;
+--&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./timeline.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><p class="help-block">    Datenbank-Suche nach Ereignissen mit heutigem Tagesdatum. Der erstmalige Aufruf kann einige Sekunden Ladezeit    beanspruchen.</p><button class="btn btn-default" (click)="getTodaysEvents()">    Webern-Chronologie vom {{ date.day }}.{{ date.month }}.</button><!--            <div data-ng-if="isEventLoaded">                <div class="timeline-control-button">                    <button class="btn btn-default" data-ng-click="timeline.leftAlign()">linksseitig</button>                    <button class="btn btn-default" data-ng-click="timeline.rightAlign()">rechtsseitig</button>                    <button class="btn btn-default" data-ng-click="timeline.defaultAlign()">alternierend</button>                </div>                <timeline>                    <timeline-header>                        <h3 data-ng-if="date.searchStart && date.searchEnd">                            Suchzeitraum: {{date.searchStart}}–{{date.searchEnd}}                        </h3>                        <p>                            In {{eventData.overallQueries}} Suchanfragen {{eventData.nhits}} Ereignisse zwischen {{date.findStart}} und {{date.findEnd}} gefunden                        </p>                    </timeline-header>                    <timeline-body>                        <timeline-event ng-repeat="event in eventData.events | orderBy:\'-jdate.dateval1\'" side="{{side}}">                            <timeline-badge class="{{event.badgeClass}}">                                <img title="{{event.objLabel}}: {{event.value.label}}" data-ng-src="{{event.objSrc}}" alt="icon" />                            </timeline-badge>                            <timeline-panel class="{{event.badgeClass}}">                                <timeline-panel-heading>                                    <p ng-if="event.date">                                        <small class="text-muted"><i class="glyphicon glyphicon-time"></i> <em>{{event.date.label}}</em>: {{event.date.dateString}}</small>                                    </p>                                </timeline-panel-heading>                                <timeline-panel-body>                                    <p data-ng-if="event.value">                                        [{{event.objID}}] {{event.value.valueString}} <small><a data-ng-click="showObject(event.objID)">[mehr…]</a></small>                                    </p>                                </timeline-panel-body> --><!-- <timeline-panel-footer>                                </timeline-panel-footer> --><!--                    </timeline-panel>                </timeline-event>            </timeline-body>        </timeline>    </div>--></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'TimelineComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'TimelineComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

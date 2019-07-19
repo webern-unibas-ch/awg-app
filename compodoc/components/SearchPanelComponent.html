@@ -1,0 +1,1766 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>SearchPanelComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The SearchPanel component.</p>
+<p>It contains the search panel section
+of the data (search) view of the app
+with a <a href="../components/TwelveToneSpinnerComponent.html">TwelveToneSpinnerComponent</a>,
+the <a href="../components/SearchFormComponent.html">SearchFormComponent</a>
+and the <a href="../components/SearchResultListComponent.html">SearchResultListComponent</a>.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-search-panel</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./search-panel.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./search-panel.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#currentQueryParams">currentQueryParams</a>
+                            </li>
+                            <li>
+                                <a href="#destroy$">destroy$</a>
+                            </li>
+                            <li>
+                                <a href="#errorMessage">errorMessage</a>
+                            </li>
+                            <li>
+                                <a href="#searchParams">searchParams</a>
+                            </li>
+                            <li>
+                                <a href="#viewChanged">viewChanged</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#getFulltextSearchData">getFulltextSearchData</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                <a href="#onPageChange">onPageChange</a>
+                            </li>
+                            <li>
+                                <a href="#onRowNumberChange">onRowNumberChange</a>
+                            </li>
+                            <li>
+                                <a href="#onSearch">onSearch</a>
+                            </li>
+                            <li>
+                                <a href="#onViewChange">onViewChange</a>
+                            </li>
+                            <li>
+                                <a href="#routeToSelf">routeToSelf</a>
+                            </li>
+                            <li>
+                                <a href="#updateSearchParamsFromRoute">updateSearchParamsFromRoute</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#httpGetUrl">httpGetUrl</a>
+                                </li>
+                                <li>
+                                    <a href="#isLoading$">isLoading$</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, conversionService: <a href="../injectables/ConversionService.html">ConversionService</a>, dataApiService: <a href="../injectables/DataApiService.html">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html">DataStreamerService</a>, loadingService: <a href="../injectables/LoadingService.html">LoadingService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:80</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the SearchPanelComponent.</p>
+<p>It declares private instances of the Angular ActivatedRoute,
+the Angular Router, the ConversionService, the DataApiService,
+the DataStreamerService, and the LoadingService.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>route</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the Angular ActivatedRoute.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the Angular Router.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>conversionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/ConversionService.html" target="_self" >ConversionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the ConversionService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>dataApiService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataApiService.html" target="_self" >DataApiService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the DataApiService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>dataStreamerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/DataStreamerService.html" target="_self" >DataStreamerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the DataStreamerService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>loadingService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/LoadingService.html" target="_self" >LoadingService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the LoadingService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getFulltextSearchData"></a>
+                    <span class="name">
+                        <b>
+                            getFulltextSearchData
+                        </b>
+                        <a href="#getFulltextSearchData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getFulltextSearchData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="126"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:126</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getFulltextSearchData.</p>
+<p>It gets the query parameters from the route&#39;s query params
+and fetches the corresponding fulltext search data
+from the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the search data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="339"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:339</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
+<p>It calls the containing methods
+when destroying the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:111</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onPageChange"></a>
+                    <span class="name">
+                        <b>
+                            onPageChange
+                        </b>
+                        <a href="#onPageChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onPageChange(requestedStartAt: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="185"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:185</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onPageChange.</p>
+<p>It sets a new start position value in the searchParams
+after a page change request and triggers the
+<a href="routeToSelf">routeToSelf</a> method.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestedStartAt</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given start position.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the search params and routes to itself.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onRowNumberChange"></a>
+                    <span class="name">
+                        <b>
+                            onRowNumberChange
+                        </b>
+                        <a href="#onRowNumberChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onRowNumberChange(requestedRows: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:212</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onRowNumberChange.</p>
+<p>It sets new row number value in the searchParams
+after a row change request and triggers the
+<a href="routeToSelf">routeToSelf</a> method.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestedRows</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given row.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the search params and routes to itself.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onSearch"></a>
+                    <span class="name">
+                        <b>
+                            onSearch
+                        </b>
+                        <a href="#onSearch"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onSearch(requestedQuery: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="268"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:268</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onSearch.</p>
+<p>It sets new query value in the searchParams
+after a search request and triggers the
+<a href="routeToSelf">routeToSelf</a> method.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestedQuery</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given search query.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the search params and routes to itself.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onViewChange"></a>
+                    <span class="name">
+                        <b>
+                            onViewChange
+                        </b>
+                        <a href="#onViewChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onViewChange(requestedView: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="240"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:240</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onViewChange.</p>
+<p>It sets new view type value in the searchParams
+after a view change request and triggers the
+<a href="routeToSelf">routeToSelf</a> method.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>requestedView</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given view.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the search params and routes to itself.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routeToSelf"></a>
+                    <span class="name">
+                        <b>
+                            routeToSelf
+                        </b>
+                        <a href="#routeToSelf"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>routeToSelf(sp: <a href="../classes/SearchParams.html">SearchParams</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="294"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:294</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: routeToSelf.</p>
+<p>It navigates to itself to set
+new search parameters.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>sp</td>
+                                    <td>
+                                                <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given search parameters.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Navigates to itself.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSearchParamsFromRoute"></a>
+                    <span class="name">
+                        <b>
+                            updateSearchParamsFromRoute
+                        </b>
+                        <a href="#updateSearchParamsFromRoute"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateSearchParamsFromRoute(params: <a href="https://angular.io/api/router/ParamMap" target="_blank">ParamMap</a>, routing: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank">boolean</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="315"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:315</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: updateSearchParamsFromRoute.</p>
+<p>It updates the searchParams from the query params
+of the current route and routes to the component
+itself again if &#39;routing&#39; is truthy.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>params</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given url query params.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>routing</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>If the search parameters should be set
+by routing to the component itself again.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the search params and routes to itself if routing is truthy.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="currentQueryParams"></a>
+                        <span class="name">
+                            <b>
+                            currentQueryParams</b>
+                            <a href="#currentQueryParams"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:40</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: currentQueryParams.</p>
+<p>It keeps the current ParamMap from the query url.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="destroy$"></a>
+                        <span class="name">
+                            <b>
+                            destroy$</b>
+                            <a href="#destroy$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: destroy$.</p>
+<p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="errorMessage"></a>
+                        <span class="name">
+                            <b>
+                            errorMessage</b>
+                            <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>undefined</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:73</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: errorMessage.</p>
+<p>It keeps an errorMessage for the search response subscription.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="searchParams"></a>
+                        <span class="name">
+                            <b>
+                            searchParams</b>
+                            <a href="#searchParams"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+        query: &#x27;&#x27;,
+        nRows: &#x27;25&#x27;,
+        startAt: &#x27;0&#x27;,
+        view: SearchParamsViewTypes.table
+    }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: searchParams.</p>
+<p>It keeps the default parameters for the search.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="viewChanged"></a>
+                        <span class="name">
+                            <b>
+                            viewChanged</b>
+                            <a href="#viewChanged"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:80</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: viewChanged.</p>
+<p>If the view has changed.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="httpGetUrl"></a>
+                        <span class="name"><b>httpGetUrl</b><a href="#httpGetUrl"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>httpGetUrl()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:57</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the httpGetUrl of the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isLoading$"></a>
+                        <span class="name"><b>isLoading$</b><a href="#isLoading$"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>isLoading$()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:64</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the loading status observable of the <a href="../injectables/LoadingService.html">LoadingService</a>.</p>
+</div>
+
+                                <div class="io-description">
+                                    <b>Returns : </b>    <code>Observable&lt;boolean&gt;</code>
+
+                                </div>
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute, NavigationEnd, ParamMap, Router } from &#x27;@angular/router&#x27;;
+
+import { Observable, Subject, Subscription } from &#x27;rxjs&#x27;;
+import { filter, map, takeUntil } from &#x27;rxjs/operators&#x27;;
+
+import { ConversionService, DataStreamerService, LoadingService } from &#x27;@awg-core/services&#x27;;
+import { DataApiService } from &#x27;@awg-views/data-view/services&#x27;;
+
+import { SearchResponseJson } from &#x27;@awg-shared/api-objects&#x27;;
+import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from &#x27;@awg-views/data-view/models&#x27;;
+
+/**
+ * The SearchPanel component.
+ *
+ * It contains the search panel section
+ * of the data (search) view of the app
+ * with a {@link TwelveToneSpinnerComponent},
+ * the {@link SearchFormComponent}
+ * and the {@link SearchResultListComponent}.
+ */
+@Component({
+    selector: &#x27;awg-search-panel&#x27;,
+    templateUrl: &#x27;./search-panel.component.html&#x27;,
+    styleUrls: [&#x27;./search-panel.component.css&#x27;]
+})
+export class SearchPanelComponent implements OnInit, OnDestroy {
+    /**
+     * Public variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Public variable: currentQueryParams.
+     *
+     * It keeps the current ParamMap from the query url.
+     */
+    currentQueryParams: ParamMap;
+
+    /**
+     * Public variable: searchParams.
+     *
+     * It keeps the default parameters for the search.
+     */
+    searchParams: SearchParams &#x3D; {
+        query: &#x27;&#x27;,
+        nRows: &#x27;25&#x27;,
+        startAt: &#x27;0&#x27;,
+        view: SearchParamsViewTypes.table
+    };
+
+    /**
+     * Getter for the httpGetUrl of the {@link DataApiService}.
+     */
+    get httpGetUrl(): string {
+        return this.dataApiService.httpGetUrl;
+    }
+
+    /**
+     * Getter for the loading status observable of the {@link LoadingService}.
+     */
+    get isLoading$(): Observable&lt;boolean&gt; {
+        return this.loadingService.getLoadingStatus();
+    }
+
+    /**
+     * Public variable: errorMessage.
+     *
+     * It keeps an errorMessage for the search response subscription.
+     */
+    errorMessage: any &#x3D; undefined;
+
+    /**
+     * Public variable: viewChanged.
+     *
+     * If the view has changed.
+     */
+    viewChanged &#x3D; false;
+
+    /**
+     * Constructor of the SearchPanelComponent.
+     *
+     * It declares private instances of the Angular ActivatedRoute,
+     * the Angular Router, the ConversionService, the DataApiService,
+     * the DataStreamerService, and the LoadingService.
+     *
+     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
+     * @param {Router} router Instance of the Angular Router.
+     * @param {ConversionService} conversionService Instance of the ConversionService.
+     * @param {DataApiService} dataApiService Instance of the DataApiService.
+     * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
+     * @param {LoadingService} loadingService Instance of the LoadingService.
+     */
+    constructor(
+        private route: ActivatedRoute,
+        private router: Router,
+        private conversionService: ConversionService,
+        private dataApiService: DataApiService,
+        private dataStreamerService: DataStreamerService,
+        private loadingService: LoadingService
+    ) {}
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        this.getFulltextSearchData();
+    }
+
+    /**
+     * Public method: getFulltextSearchData.
+     *
+     * It gets the query parameters from the route&#x27;s query params
+     * and fetches the corresponding fulltext search data
+     * from the {@link DataApiService}.
+     *
+     * @returns {void} Sets the search data.
+     *
+     * @todo Refactor nested subscription.
+     */
+    getFulltextSearchData(): void {
+        this.router.events.pipe(takeUntil(this.destroy$)).subscribe(
+            (e: any) &#x3D;&gt; {
+                // check for end of navigation
+                if (e instanceof NavigationEnd) {
+                    // snapshot of current route query params
+                    const qp &#x3D; this.route.snapshot.queryParamMap;
+
+                    if (qp !&#x3D;&#x3D; this.currentQueryParams) {
+                        this.currentQueryParams &#x3D; qp;
+
+                        if (qp.keys.length &lt; 4) {
+                            // update search params
+                            this.updateSearchParamsFromRoute(qp, true);
+                        } else {
+                            // update search params from route if available
+                            this.updateSearchParamsFromRoute(qp, false);
+
+                            if (this.searchParams.query &amp;&amp; !this.viewChanged) {
+                                // fetch search data
+                                return this.dataApiService.getFulltextSearchData(this.searchParams).subscribe(
+                                    (searchResponse: SearchResponseJson) &#x3D;&gt; {
+                                        // share search data via streamer service
+                                        const searchResponseWithQuery: SearchResponseWithQuery &#x3D; new SearchResponseWithQuery(
+                                            searchResponse,
+                                            this.searchParams.query
+                                        );
+                                        this.dataStreamerService.updateSearchResponseWithQuery(searchResponseWithQuery);
+                                    },
+                                    error &#x3D;&gt; {
+                                        this.errorMessage &#x3D; error as any;
+                                    }
+                                );
+                            } else {
+                                // console.log(&#x27;No search query!&#x27;);
+                            }
+                        }
+                    } else {
+                        // console.log(&#x27;Routed on same page with same query params&#x27;);
+                    }
+                }
+            },
+            error &#x3D;&gt; {
+                this.errorMessage &#x3D; error as any;
+            }
+        );
+    }
+
+    /**
+     * Public method: onPageChange.
+     *
+     * It sets a new start position value in the searchParams
+     * after a page change request and triggers the
+     * {@link routeToSelf} method.
+     *
+     * @param {string} requestedStartAt The given start position.
+     *
+     * @returns {void} Sets the search params and routes to itself.
+     */
+    onPageChange(requestedStartAt: string): void {
+        if (requestedStartAt !&#x3D;&#x3D; this.searchParams.startAt) {
+            // view has not changed
+            this.viewChanged &#x3D; false;
+
+            this.searchParams &#x3D; {
+                query: this.searchParams.query,
+                nRows: this.searchParams.nRows,
+                startAt: requestedStartAt,
+                view: this.searchParams.view
+            };
+            // route to new params
+            this.routeToSelf(this.searchParams);
+        }
+    }
+
+    /**
+     * Public method: onRowNumberChange.
+     *
+     * It sets new row number value in the searchParams
+     * after a row change request and triggers the
+     * {@link routeToSelf} method.
+     *
+     * @param {string} requestedRows The given row.
+     *
+     * @returns {void} Sets the search params and routes to itself.
+     */
+    onRowNumberChange(requestedRows: string): void {
+        if (requestedRows !&#x3D;&#x3D; this.searchParams.nRows) {
+            // view has not changed
+            this.viewChanged &#x3D; false;
+
+            this.searchParams &#x3D; {
+                query: this.searchParams.query,
+                nRows: requestedRows,
+                startAt: &#x27;0&#x27;,
+                view: this.searchParams.view
+            };
+
+            // route to new params
+            this.routeToSelf(this.searchParams);
+        }
+    }
+
+    /**
+     * Public method: onViewChange.
+     *
+     * It sets new view type value in the searchParams
+     * after a view change request and triggers the
+     * {@link routeToSelf} method.
+     *
+     * @param {string} requestedView The given view.
+     *
+     * @returns {void} Sets the search params and routes to itself.
+     */
+    onViewChange(requestedView: string): void {
+        if (requestedView !&#x3D;&#x3D; this.searchParams.view) {
+            // view has changed
+            this.viewChanged &#x3D; true;
+
+            this.searchParams &#x3D; {
+                query: this.searchParams.query,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: SearchParamsViewTypes[requestedView]
+            };
+
+            // route to new params
+            this.routeToSelf(this.searchParams);
+        }
+    }
+
+    /**
+     * Public method: onSearch.
+     *
+     * It sets new query value in the searchParams
+     * after a search request and triggers the
+     * {@link routeToSelf} method.
+     *
+     * @param {string} requestedQuery The given search query.
+     *
+     * @returns {void} Sets the search params and routes to itself.
+     */
+    onSearch(requestedQuery: string): void {
+        if (requestedQuery !&#x3D;&#x3D; this.searchParams.query) {
+            // view has not changed
+            this.viewChanged &#x3D; false;
+
+            this.searchParams &#x3D; {
+                query: requestedQuery,
+                nRows: this.searchParams.nRows,
+                startAt: this.searchParams.startAt,
+                view: this.searchParams.view
+            };
+
+            // route to new search params
+            this.routeToSelf(this.searchParams);
+        }
+    }
+
+    /**
+     * Public method: routeToSelf.
+     *
+     * It navigates to itself to set
+     * new search parameters.
+     *
+     * @param {SearchParams} sp The given search parameters.
+     * @returns {void} Navigates to itself.
+     */
+    routeToSelf(sp: SearchParams) {
+        this.router.navigate([], {
+            relativeTo: this.route,
+            queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
+            queryParamsHandling: &#x27;merge&#x27;
+        });
+    }
+
+    /**
+     * Public method: updateSearchParamsFromRoute.
+     *
+     * It updates the searchParams from the query params
+     * of the current route and routes to the component
+     * itself again if &#x27;routing&#x27; is truthy.
+     *
+     * @param {ParamMap} params The given url query params.
+     * @param {boolean} routing If the search parameters should be set
+     * by routing to the component itself again.
+     *
+     * @returns {void} Sets the search params and routes to itself if routing is truthy.
+     */
+    updateSearchParamsFromRoute(params: ParamMap, routing: boolean) {
+        if (!params) {
+            return;
+        }
+
+        // update search params (immutable)
+        this.searchParams &#x3D; {
+            query: params.get(&#x27;query&#x27;) || this.searchParams.query,
+            nRows: params.get(&#x27;nrows&#x27;) || this.searchParams.nRows,
+            startAt: params.get(&#x27;startAt&#x27;) || this.searchParams.startAt,
+            view: SearchParamsViewTypes[params.get(&#x27;view&#x27;)] || this.searchParams.view
+        };
+
+        if (routing) {
+            this.routeToSelf(this.searchParams);
+        }
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let&#x27;s also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!-- content: search panel --&gt;
+
+&lt;awg-search-form [searchValue]&#x3D;&quot;searchParams?.query&quot; (searchRequest)&#x3D;&quot;onSearch($event)&quot;&gt; &lt;/awg-search-form&gt;
+
+&lt;!-- loading spinner --&gt;
+&lt;div *ngIf&#x3D;&quot;isLoading$ | async; else notLoading&quot;&gt;
+    &lt;awg-twelve-tone-spinner&gt;&lt;/awg-twelve-tone-spinner&gt;
+&lt;/div&gt;
+
+&lt;ng-template #notLoading&gt;
+    &lt;div class&#x3D;&quot;errorMessage&quot; *ngIf&#x3D;&quot;errorMessage&quot;&gt;
+        &lt;p&gt;Die Anfrage &quot;{{ errorMessage?.route }}&quot; ist fehlgeschlagen.&lt;/p&gt;
+        &lt;p&gt;Fehlermeldung: &quot;{{ errorMessage?.statusText || errorMessage }}&quot;.&lt;/p&gt;
+        &lt;p&gt;Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.&lt;/p&gt;
+    &lt;/div&gt;
+
+    &lt;awg-search-result-list
+        *ngIf&#x3D;&quot;searchParams?.query&quot;
+        [searchParams]&#x3D;&quot;searchParams&quot;
+        [searchUrl]&#x3D;&quot;httpGetUrl&quot;
+        (pageChangeRequest)&#x3D;&quot;onPageChange($event)&quot;
+        (rowNumberChangeRequest)&#x3D;&quot;onRowNumberChange($event)&quot;
+        (viewChangeRequest)&#x3D;&quot;onViewChange($event)&quot;
+    &gt;
+    &lt;/awg-search-result-list&gt;
+&lt;/ng-template&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./search-panel.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss"></code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!-- content: search panel --><awg-search-form [searchValue]="searchParams?.query" (searchRequest)="onSearch($event)"> </awg-search-form><!-- loading spinner --><div *ngIf="isLoading$ | async; else notLoading">    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></div><ng-template #notLoading>    <div class="errorMessage" *ngIf="errorMessage">        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>    </div>    <awg-search-result-list        *ngIf="searchParams?.query"        [searchParams]="searchParams"        [searchUrl]="httpGetUrl"        (pageChangeRequest)="onPageChange($event)"        (rowNumberChangeRequest)="onRowNumberChange($event)"        (viewChangeRequest)="onViewChange($event)"    >    </awg-search-result-list></ng-template></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'SearchPanelComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'SearchPanelComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

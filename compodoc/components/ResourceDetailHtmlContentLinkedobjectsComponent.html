@@ -1,0 +1,754 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ResourceDetailHtmlContentLinkedobjectsComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The ResourceDetailHtmlContentLinkedobjects component.</p>
+<p>It displays the incoming links of a resource detail and
+their total number.</p>
+
+    </p>
+
+
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+            <tr>
+                <td class="col-md-3">changeDetection</td>
+                <td class="col-md-9"><code>ChangeDetectionStrategy.OnPush</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-resource-detail-html-content-linkedobjects</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./linkedobjects.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./linkedobjects.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getNestedArraysTotalItems">getNestedArraysTotalItems</a>
+                            </li>
+                            <li>
+                                <a href="#navigateToResource">navigateToResource</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#incomingGroups">incomingGroups</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#resourceRequest">resourceRequest</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Accessors</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                    <a href="#totalNumber">totalNumber</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+        </tbody>
+    </table>
+</section>
+
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="incomingGroups"></a>
+                        <b>incomingGroups</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>ResourceDetailGroupedIncomingLinks[]</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:24</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: incomingGroups.</p>
+<p>It keeps the grouped incoming links array.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resourceRequest"></a>
+                        <b>resourceRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:32</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output variable: resourceRequest.</p>
+<p>It keeps an event emitter for the resource request.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getNestedArraysTotalItems"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getNestedArraysTotalItems
+                        </b>
+                        <a href="#getNestedArraysTotalItems"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: getNestedArraysTotalItems.</p>
+<p>It sums up the total items (length) of all arrays
+nested in an ResourceDetailGroupedIncomingLinks
+array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>groupedLinksArr</td>
+                                    <td>
+                                            <code>ResourceDetailGroupedIncomingLinks[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given grouped incoming links array.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The number of total items (length) of the nested array.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="navigateToResource"></a>
+                    <span class="name">
+                        <b>
+                            navigateToResource
+                        </b>
+                        <a href="#navigateToResource"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>navigateToResource(id?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="51"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:51</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: navigateToResource.</p>
+<p>It emits the given id to be handed
+to the parent component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given resource id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Emits the id.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="accessors">
+        Accessors
+    </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="totalNumber"></a>
+                        <span class="name"><b>totalNumber</b><a href="#totalNumber"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>totalNumber()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="37" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/linkedobjects/linkedobjects.component.ts:37</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the total number of incoming links.</p>
+</div>
+
+                        </td>
+                    </tr>
+
+            </tbody>
+        </table>
+</section>
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from &#x27;@angular/core&#x27;;
+
+import { ResourceDetailGroupedIncomingLinks } from &#x27;@awg-views/data-view/models&#x27;;
+
+/**
+ * The ResourceDetailHtmlContentLinkedobjects component.
+ *
+ * It displays the incoming links of a resource detail and
+ * their total number.
+ */
+@Component({
+    selector: &#x27;awg-resource-detail-html-content-linkedobjects&#x27;,
+    templateUrl: &#x27;./linkedobjects.component.html&#x27;,
+    styleUrls: [&#x27;./linkedobjects.component.css&#x27;],
+    changeDetection: ChangeDetectionStrategy.OnPush
+})
+export class ResourceDetailHtmlContentLinkedobjectsComponent {
+    /**
+     * Input variable: incomingGroups.
+     *
+     * It keeps the grouped incoming links array.
+     */
+    @Input()
+    incomingGroups: ResourceDetailGroupedIncomingLinks[];
+
+    /**
+     * Output variable: resourceRequest.
+     *
+     * It keeps an event emitter for the resource request.
+     */
+    @Output()
+    resourceRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+
+    /**
+     * Getter for the total number of incoming links.
+     */
+    get totalNumber() {
+        return this.getNestedArraysTotalItems(this.incomingGroups) || 0;
+    }
+
+    /**
+     * Public method: navigateToResource.
+     *
+     * It emits the given id to be handed
+     * to the parent component.
+     *
+     * @param {string} id The given resource id.
+     *
+     * @returns {void} Emits the id.
+     */
+    navigateToResource(id?: string): void {
+        if (!id) {
+            return;
+        }
+        id &#x3D; id.toString();
+        this.resourceRequest.emit(id);
+    }
+
+    /**
+     * Private method: getNestedArraysTotalItems.
+     *
+     * It sums up the total items (length) of all arrays
+     * nested in an ResourceDetailGroupedIncomingLinks
+     * array.
+     *
+     * @param {ResourceDetailGroupedIncomingLinks[]} groupedLinksArr The given grouped incoming links array.
+     *
+     * @returns {number} The number of total items (length) of the nested array.
+     */
+    private getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
+        if (!groupedLinksArr) {
+            return;
+        }
+
+        // callback for reduce function
+        // adds curValue to the previous result of the calculation (prevRes))
+        const reducer &#x3D; (prevRes: number, curValue: number): number &#x3D;&gt; prevRes + curValue;
+
+        // map the length of every nested link array into the reducer function; default initial value: 0
+        return groupedLinksArr.map(groupedLink &#x3D;&gt; groupedLink.links.length).reduce(reducer, 0);
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;!--
+/************************************************
+*
+*               CREDITS
+*
+* This code is inspired, adapted or taken from:
+*
+* ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+* https://arachne.dainst.org/entity/1121229**]
+* 20.11.2017
+*
+*
+*
+************************************************/ --&gt;
+&lt;!-- resourceDetailData content: linked objects --&gt;
+&lt;div class&#x3D;&quot;awg-linked-obj&quot;&gt;
+    &lt;h5&gt;
+        &lt;!-- TODO: link to linked objects overview
+        &lt;a (click)&#x3D;&quot;navigateToSearchResults()&quot;&gt;
+        --&gt;
+        Verknüpfte Objekte (&lt;span id&#x3D;&quot;awg-incoming-size&quot; *ngIf&#x3D;&quot;incomingGroups&quot;&gt;{{ totalNumber }}&lt;/span
+        &gt;)
+        &lt;!--
+        &lt;/a&gt;
+        --&gt;
+    &lt;/h5&gt;
+
+    &lt;ngb-accordion [closeOthers]&#x3D;&quot;true&quot;&gt;
+        &lt;ngb-panel
+            id&#x3D;&quot;incoming-linkgroup-{{ i }}&quot;
+            class&#x3D;&quot;awg-linked-obj-incoming-linkgroup&quot;
+            *ngFor&#x3D;&quot;let restypeGroup of incomingGroups; let i &#x3D; index&quot;
+        &gt;
+            &lt;ng-template ngbPanelTitle&gt;
+                &lt;span class&#x3D;&quot;awg-linked-obj-title-group&quot;&gt;
+                    &lt;span class&#x3D;&quot;badge badge-info mr-2&quot;&gt;{{ restypeGroup?.links?.length }}&lt;/span&gt;
+                    &lt;span class&#x3D;&quot;awg-linked-obj-title single-line&quot;&gt;{{ restypeGroup?.restypeLabel }}&lt;/span&gt;
+                &lt;/span&gt;
+            &lt;/ng-template&gt;
+            &lt;ng-template ngbPanelContent&gt;
+                &lt;table class&#x3D;&quot;table table-sm table-hover borderless awg-linked-obj-table mb-0&quot;&gt;
+                    &lt;tbody&gt;
+                        &lt;tr *ngFor&#x3D;&quot;let link of restypeGroup.links&quot;&gt;
+                            &lt;td&gt;
+                                &lt;a class&#x3D;&quot;awg-linked-obj-link&quot; (click)&#x3D;&quot;navigateToResource(link?.id)&quot;&gt;
+                                    &lt;img [src]&#x3D;&quot;link?.restype?.icon&quot; alt&#x3D;&quot;icon&quot; /&gt;
+                                    &amp;nbsp;[&lt;span class&#x3D;&quot;awg-linked-obj-link-id&quot;&gt;{{ link?.id }}&lt;/span
+                                    &gt;]&amp;nbsp;
+                                    &lt;span class&#x3D;&quot;awg-linked-obj-link-value&quot;&gt;{{ link?.value }}&lt;/span&gt;
+                                &lt;/a&gt;
+                            &lt;/td&gt;
+                        &lt;/tr&gt;
+                    &lt;/tbody&gt;
+                &lt;/table&gt;
+            &lt;/ng-template&gt;
+        &lt;/ngb-panel&gt;
+    &lt;/ngb-accordion&gt;
+&lt;/div&gt;
+&lt;!-- end DIV linkedObj --&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./linkedobjects.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/************************************************
+ *
+ *               CREDITS
+ *
+ * This code is inspired, adapted or taken from:
+ *
+ * ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)
+ * https://arachne.dainst.org/entity/1121229**]
+ * 20.11.2017
+ *
+ *
+ *
+ ************************************************/
+
+/* image objects */
+.awg-linked-obj-link {
+    cursor: pointer;
+}
+.awg-linked-obj-link {
+    color: #333 !important;
+}
+.awg-linked-obj-link:hover {
+    border-bottom: none !important;
+}
+
+.awg-linked-obj-table td {
+    max-width: 0;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229**]* 20.11.2017***************************************************/ --><!-- resourceDetailData content: linked objects --><div class="awg-linked-obj">    <h5>        <!-- TODO: link to linked objects overview        <a (click)="navigateToSearchResults()">        -->        Verknüpfte Objekte (<span id="awg-incoming-size" *ngIf="incomingGroups">{{ totalNumber }}</span        >)        <!--        </a>        -->    </h5>    <ngb-accordion [closeOthers]="true">        <ngb-panel            id="incoming-linkgroup-{{ i }}"            class="awg-linked-obj-incoming-linkgroup"            *ngFor="let restypeGroup of incomingGroups; let i = index"        >            <ng-template ngbPanelTitle>                <span class="awg-linked-obj-title-group">                    <span class="badge badge-info mr-2">{{ restypeGroup?.links?.length }}</span>                    <span class="awg-linked-obj-title single-line">{{ restypeGroup?.restypeLabel }}</span>                </span>            </ng-template>            <ng-template ngbPanelContent>                <table class="table table-sm table-hover borderless awg-linked-obj-table mb-0">                    <tbody>                        <tr *ngFor="let link of restypeGroup.links">                            <td>                                <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">                                    <img [src]="link?.restype?.icon" alt="icon" />                                    &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span                                    >]&nbsp;                                    <span class="awg-linked-obj-link-value">{{ link?.value }}</span>                                </a>                            </td>                        </tr>                    </tbody>                </table>            </ng-template>        </ngb-panel>    </ngb-accordion></div><!-- end DIV linkedObj --></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'ResourceDetailHtmlContentLinkedobjectsComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ResourceDetailHtmlContentLinkedobjectsComponent.html';
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

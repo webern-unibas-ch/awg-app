@@ -1,0 +1,198 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
+	      <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="./" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content getting-started">
+                   <div class="content-data">
+
+<h1 id="contributing">Contributing</h1>
+<p>When contributing to this repository, please first discuss the change you wish to make via issue,
+email, or any other method with the owners of this repository before making a change.</p>
+<p>Please note that this project is released with a <a href="CODE_OF_CONDUCT.md">Code of Conduct</a>, please follow it in all your interactions with the project.</p>
+<h2 id="table-of-contents">Table of Contents</h2>
+<ul>
+<li><a href="#contribution-process">Contribution process</a><ul>
+<li><a href="#branching--git-flow">Branching / Git flow</a></li>
+<li><a href="#commit-message-schema">Commit Message Schema</a></li>
+<li><a href="#release-versioning-convention">Release Versioning Convention</a></li>
+</ul>
+</li>
+<li><a href="#quick-start-guide">Angular quick start guide</a><ul>
+<li><a href="#prerequisites">Prerequisites</a></li>
+<li><a href="#development-server">Development server</a></li>
+<li><a href="#code-scaffolding">Code scaffolding</a></li>
+<li><a href="#build">Build</a></li>
+<li><a href="#running-unit-tests">Running unit tests</a></li>
+<li><a href="#running-end-to-end-tests">Running end-to-end tests</a></li>
+<li><a href="#further-help">Further help</a></li>
+</ul>
+</li>
+<li><a href="#code-of-conduct">Code of Conduct</a></li>
+</ul>
+<h2 id="contribution-process">Contribution process</h2>
+<h3 id="branching--git-flow">Branching / Git flow</h3>
+<p>This project uses the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> which defines a strict branching model designed around the project releases. Therefore the following branch structure is used</p>
+<ul>
+<li><code>master</code> (stores the official release history; all commits are tagged with a version number)</li>
+<li><code>develop</code> (serves as an integration branch for features; gets released into <code>release/xxx</code>)</li>
+<li><code>feature/XXX</code> (main branch for developing new features; gets branched from and merged into <code>develop</code>, never interacts with <code>master</code>)</li>
+<li><code>release/xxx</code> (used to prepare a release with latest features from <code>develop</code>; gets merged into <code>master</code>)</li>
+<li><code>hotfix/xxx</code> (used to quickly patch production releases; forked from and merged directly into <code>master</code>)</li>
+</ul>
+<p>To initialize the GitFlow workflow execute <code>git flow init</code> inside your local copy of the repository.</p>
+<p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
+<p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
+<h3 id="commit-message-schema">Commit Message Schema</h3>
+<p>This project follows the <a href="https://conventionalcommits.org">Conventional Commits Specification</a> using <a href="https://conventional-changelog.github.io/commitlint/#/">commitlint</a> based on the <a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular">Angular configuration</a> (further explanation can be found in the <a href="https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines">Angular commit-message-guidelines</a>).</p>
+<p>Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/master/LICENSE.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> (see &quot;Release Versioning Convention&quot; section below).</p>
+<p>When writing commit messages, we stick to this schema:</p>
+<p>```
+<type>(<scope>): <subject>
+<BLANK LINE></p>
+<body>
+<BLANK LINE>
+<footer>
+```
+
+<p>The <strong>header</strong> is mandatory, and <strong>type</strong> and <strong>scope</strong> of the header must be one of the following:</p>
+<p>Types:</p>
+<ul>
+<li><code>build</code> (changes that affect the build system or external dependencies; no production code changes),</li>
+<li><code>ci</code> (changes to Continuous Integration, no production code changes)</li>
+<li><code>docs</code> (changes to the documentation, no production code changes),</li>
+<li><code>feat</code> (new feature for the user),</li>
+<li><code>fix</code> (bug fix for the user),</li>
+<li><code>perf</code> (code change that improves performance),</li>
+<li><code>refactor</code> (refactoring production code, eg. renaming a variable),</li>
+<li><code>revert</code> (reverting a former commit),</li>
+<li><code>style</code> (formatting, etc; no production code changes),</li>
+<li><code>test</code> (adding missing tests, refactoring tests; no production code changes)</li>
+</ul>
+<p>Scopes (specific to this project, not part of the Angular convention):</p>
+<ul>
+<li><code>app</code></li>
+<li><code>home</code></li>
+<li><code>edition</code></li>
+<li><code>search</code></li>
+<li><code>structure</code></li>
+<li><code>contact</code></li>
+</ul>
+<p>Example:</p>
+<p>```
+feat(edition): add route for resource creation</p>
+<ul>
+<li>add path for multipart request</li>
+<li>adapt handling of resources responder
+```</li>
+</ul>
+<h3 id="release-versioning-convention">Release Versioning Convention</h3>
+<p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/master/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a>.</p>
+<h2 id="angular-quick-start-guide">Angular quick start guide</h2>
+<p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 8.0.3. Check there for necessary prerequisites (which comprise <code>Node</code> and <code>npm</code>or <code>yarn</code>).</p>
+<h3 id="development-server">Development server</h3>
+<p>Run <code>ng serve</code> for a dev server. Navigate to <code>http://localhost:4200/</code>. The app will automatically reload if you change any of the source files.</p>
+<h3 id="code-scaffolding">Code scaffolding</h3>
+<p>Run <code>ng generate component component-name</code> to generate a new component. You can also use <code>ng generate directive|pipe|service|class|guard|interface|enum|module</code>.</p>
+<h3 id="build">Build</h3>
+<p>Run <code>ng build</code> to build the project. The build artifacts will be stored in the <code>dist/</code> directory. Use the <code>--prod</code> flag for a production build.</p>
+<h3 id="running-unit-tests">Running unit tests</h3>
+<p>Run <code>ng test</code> to execute the unit tests via <a href="https://karma-runner.github.io">Karma</a>.</p>
+<h3 id="running-end-to-end-tests">Running end-to-end tests</h3>
+<p>Run <code>ng e2e</code> to execute the end-to-end tests via <a href="http://www.protractortest.org/">Protractor</a>.</p>
+<h3 id="further-help">Further help</h3>
+<p>To get more help on the Angular CLI use <code>ng help</code> or go check out the <a href="https://github.com/angular/angular-cli/blob/master/README.md">Angular CLI README</a>.</p>
+<h2 id="code-of-conduct">Code of Conduct</h2>
+<p>See <a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a>.</p>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 0;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'getting-started';
+            var COMPODOC_CURRENT_PAGE_URL = 'contributing.html';
+       </script>
+
+       <script src="./js/libs/custom-elements.min.js"></script>
+       <script src="./js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="./js/menu-wc.js" defer></script>
+
+       <script src="./js/libs/bootstrap-native.js"></script>
+
+       <script src="./js/libs/es6-shim.min.js"></script>
+       <script src="./js/libs/EventDispatcher.js"></script>
+       <script src="./js/libs/promise.min.js"></script>
+       <script src="./js/libs/zepto.min.js"></script>
+
+       <script src="./js/compodoc.js"></script>
+
+       <script src="./js/tabs.js"></script>
+       <script src="./js/menu.js"></script>
+       <script src="./js/libs/clipboard.min.js"></script>
+       <script src="./js/libs/prism.js"></script>
+       <script src="./js/sourceCode.js"></script>
+          <script src="./js/search/search.js"></script>
+          <script src="./js/search/lunr.min.js"></script>
+          <script src="./js/search/search-lunr.js"></script>
+          <script src="./js/search/search_index.js"></script>
+       <script src="./js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
