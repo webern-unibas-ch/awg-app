@@ -30,7 +30,7 @@ export class OrderByPipe implements PipeTransform {
      * Transform method of the OrderByPipe.
      *
      * @param {Array<any>} array The input array with the data to be piped.
-     * @param {any} [args] The optional arguments to be ordered by. Needs `property` and optional `direction`.
+     * @param {*} [args] The optional arguments to be ordered by. Needs `property` and optional `direction`.
      */
     transform(array: Array<any>, args?: any): any {
         return array.sort((a, b) => {

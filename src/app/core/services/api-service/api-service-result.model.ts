@@ -47,7 +47,8 @@ export class ApiServiceResult {
      * Gets the result body as instance of classObject.
      *
      * @param classObject
-     * @returns {any}
+     *
+     * @returns {*}
      * @throws
      */
     getBody(classObject?: new () => any): any {

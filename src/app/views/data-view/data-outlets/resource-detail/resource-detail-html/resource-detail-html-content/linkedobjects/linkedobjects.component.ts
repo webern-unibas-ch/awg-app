@@ -45,6 +45,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      * to the parent component.
      *
      * @param {string} id The given resource id.
+     *
      * @returns {void} Emits the id.
      */
     navigateToResource(id?: string): void {
@@ -63,6 +64,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      * array.
      *
      * @param {ResourceDetailGroupedIncomingLinks[]} groupedLinksArr The given grouped incoming links array.
+     *
      * @returns {number} The number of total items (length) of the nested array.
      */
     private getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {

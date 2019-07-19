@@ -75,6 +75,7 @@ export class ConversionService extends ApiService {
      * to be displayed via HTML.
      *
      * @param {SearchResponseJson} searchResults The given results of a search request.
+     *
      * @returns {SearchResponseJson} The converted full text search results.
      */
     convertFullTextSearchResults(searchResults: SearchResponseJson): SearchResponseJson {
@@ -123,6 +124,7 @@ export class ConversionService extends ApiService {
      *
      * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
      * @param {string} searchUrl The given url of a search request.
+     *
      * @returns {string} The text to be displayed.
      */
     prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
@@ -156,6 +158,7 @@ export class ConversionService extends ApiService {
      * to be displayed in the bibliography detail view.
      *
      * @param {ResourceFullResponseJson} resourceFullResponseData The given resource data.
+     *
      * @returns {BibEntry} The converted resource object.
      */
     convertObjectProperties(resourceFullResponseData: ResourceFullResponseJson): BibEntry {
@@ -255,6 +258,7 @@ export class ConversionService extends ApiService {
      *
      * @param {IResourceDataResponse} resourceData The given resource data.
      * @param {string} resourceId The given id of the current resource.
+     *
      * @returns {ResourceDetail} The converted resource detail object.
      */
     convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
@@ -273,6 +277,7 @@ export class ConversionService extends ApiService {
      *
      * @param {IResourceDataResponse} resourceData The given resource data.
      * @param {string} resourceId The given id of the current resource.
+     *
      * @returns {ResourceDetail} The resource detail object.
      */
     private prepareRestrictedResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
@@ -290,6 +295,7 @@ export class ConversionService extends ApiService {
      *
      * @param {IResourceDataResponse} resourceData The given resource data.
      * @param {string} resourceId The given id of the current resource.
+     *
      * @returns {ResourceDetail} The resource detail object.
      */
     private prepareAccessibleResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
@@ -318,6 +324,7 @@ export class ConversionService extends ApiService {
      * to be displayed via HTML.
      *
      * @param {ResourceContextResponseJson} resourceContextData The given resource context data.
+     *
      * @returns {NgxGalleryImage[]} The image array of the resource detail.
      */
     private prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
@@ -378,6 +385,7 @@ export class ConversionService extends ApiService {
      * of an accessible resource to be displayed via HTML.
      *
      * @param {IncomingItemJson[]} incomingArray The given IncomingItemJson.
+     *
      * @returns {ResourceDetailGroupedIncomingLinks[]} The grouped incoming links array of the resource detail.
      */
     private prepareResourceDetailIncomingLinks(
@@ -403,6 +411,7 @@ export class ConversionService extends ApiService {
      * to be displayed via HTML.
      *
      * @param {PropertyJson[]} props The given properties.
+     *
      * @returns {ResourceDetailProperty[]} The properties array of the resource detail.
      */
     private prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
@@ -434,6 +443,7 @@ export class ConversionService extends ApiService {
      * In fact, it adds an 'toHtml' property to the props array.
      *
      * @param {PropertyJson[]} props The given properties.
+     *
      * @returns {*} The converted resource data.
      */
     private convertGUISpecificProps(props: PropertyJson[]): any {
@@ -452,6 +462,7 @@ export class ConversionService extends ApiService {
      *
      * @param {*} prop The given property.
      * @param {string} [url] A given optional url.
+     *
      * @returns {string[]} The converted property.
      */
     private addHtmlValues(prop: any, url?: string): [string] {
@@ -511,6 +522,7 @@ export class ConversionService extends ApiService {
      * to Gregorian Calendar.
      *
      * @param {*} dateObj The given date object.
+     *
      * @returns {string} The converted date string.
      */
     private convertDateValue(dateObj: any): string {
@@ -526,6 +538,7 @@ export class ConversionService extends ApiService {
      * to be displayed via HTML.
      *
      * @param {string[]} values The given property values.
+     *
      * @returns {string[]} The converted geo names array.
      */
     private convertGeoValues(values: string[]): string[] {
@@ -570,6 +583,7 @@ export class ConversionService extends ApiService {
      *
      * @param {string[]} values The given property values.
      * @param {string} attributes The given HTML attributes.
+     *
      * @returns {string[]} The converted hlist array.
      */
     private convertHlistValues(values: string[], attributes: string): string[] {
@@ -614,6 +628,7 @@ export class ConversionService extends ApiService {
      *
      * @param {*} prop The given property value.
      * @param {number} index The given index position.
+     *
      * @returns {string} The converted link value.
      */
     private convertLinkValue(prop: any, index: number): string {
@@ -636,6 +651,7 @@ export class ConversionService extends ApiService {
      *
      * @param {string} str The given utf8 string of a rich text property.
      * @param {string} attr The given standoff attributes of a richtext property.
+     *
      * @returns {string} The converted rich text value.
      */
     private convertRichtextValue(str: string, attr: string): string {
@@ -654,6 +670,7 @@ export class ConversionService extends ApiService {
      *
      * @param {string[]} values The given property values.
      * @param {string} attributes The given HTML attributes.
+     *
      * @returns {string[]} The converted selection array.
      *
      * @todo check if it is possible to unify with hlist conversion?
@@ -705,6 +722,7 @@ export class ConversionService extends ApiService {
      *
      * @param {string} str The given utf8 string of a rich text property.
      * @param {string} attr The given standoff attributes of a richtext property.
+     *
      * @returns {string} The converted standoff.
      *
      * @todo check if it is possible to unify with hlist conversion?
@@ -728,6 +746,7 @@ export class ConversionService extends ApiService {
      *
      * @param {*} responseJsonType The given json type of the API response.
      * @param {string} id The given id of a resource.
+     *
      * @returns {Observable<any>} The observable of the HTTP response.
      */
     private getAdditionalInfoFromApi(responseJsonType: any, id: string): Observable<any> {
@@ -756,6 +775,7 @@ export class ConversionService extends ApiService {
      * of a selections or hlists value.
      *
      * @param {string} attributes The given prop.attributes.
+     *
      * @returns {string} id The node id.
      */
     private getNodeIdFromAttributes(attributes: string): string {
@@ -774,7 +794,8 @@ export class ConversionService extends ApiService {
      * @param {string} str The given link string.
      * @example
      * str = '(PDF) http://www.example.com/myPdf.pdf'
-     * @returns {string} The adjusted biblio link.
+     *
+     * @returns {string} The adjusted bibliography link.
      */
     private adjustBiblioLink(str: string): string {
         if (!str) {
@@ -818,6 +839,7 @@ export class ConversionService extends ApiService {
      * and replaces them with Angular click-directives.
      *
      * @param {string} str The given richtext value.
+     *
      * @returns {string} The adjusted richtext value.
      */
     private replaceSalsahLink(str: string): string {
@@ -857,6 +879,7 @@ export class ConversionService extends ApiService {
      * and replaces line breaks instead for multiple lines.
      *
      * @param {string} str The given richtext value.
+     *
      * @returns {string} The adjusted richtext value.
      */
     private replaceParagraphTags(str: string): string {
@@ -882,6 +905,7 @@ export class ConversionService extends ApiService {
      * See also {@link https://gist.github.com/telekosmos/3b62a31a5c43f40849bb#gistcomment-2137855}.
      *
      * @param {SubjectItemJson[]} subjects The given subject with possible duplicates.
+     *
      * @returns {SubjectItemJson[]} The distinct subjects.
      */
     private distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
@@ -902,6 +926,7 @@ export class ConversionService extends ApiService {
      * by their resource type.
      *
      * @param {ResourceDetailIncomingLink[]} incomingLinks The given incoming links.
+     *
      * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links.
      */
     private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {

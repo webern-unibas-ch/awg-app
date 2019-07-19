@@ -96,10 +96,12 @@ export class BibliographyService extends ApiService {
      *
      * It sets the path and params for a resource query
      * to the given (SALSAH) API.
-     * @todo Replace with {@link DataApiService#getResourceDetailData}.
      *
      * @params {string} resourceId The id of the requested resource.
+     *
      * @returns {Observable<ResourceFullResponseJson>} The observable with the ResourceFullResponseJson data.
+     *
+     * @todo Replace with {@link DataApiService#getResourceDetailData}.
      */
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
         // set path and params of query

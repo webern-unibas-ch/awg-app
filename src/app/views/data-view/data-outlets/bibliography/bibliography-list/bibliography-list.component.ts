@@ -53,6 +53,7 @@ export class BibliographyListComponent implements OnInit {
      * to the {@link selectItemRequest}.
      *
      * @param {SubjectItemJson} item The given bibliography item.
+     *
      * @returns {void} Emits the selected bibliography item.
      */
     onItemSelect(item: SubjectItemJson) {
@@ -68,6 +69,7 @@ export class BibliographyListComponent implements OnInit {
      * tracking function to track items identity.
      *
      * @param {string} item The given item.
+     *
      * @returns {string} The identifier of the item.
      */
     trackById(item): string {

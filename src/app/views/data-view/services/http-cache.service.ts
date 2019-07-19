@@ -10,22 +10,19 @@ abstract class HttpCache {
     /**
      * Abstract getter for a cached response.
      *
-     * Returns a cached response, if any, or null if not present.
-     *
      * @param {HttpRequest<any>} req An HttpRequest to be checked for.
-     * @returns {HttpResponse<any> | null} A cached response or null.
+     *
+     * @returns {HttpResponse<any> | null} A cached response, if any, or null if not present.
      */
     abstract get(req: HttpRequest<any>): HttpResponse<any> | null;
 
     /**
-     *
      * Abstract setter for a cached response.
-     *
-     * Adds or updates the response in the cache.
      *
      * @param {HttpRequest<any>} req An HttpRequest to be used as an index.
      * @param {HttpResponse<any>} resp The HttpResponse to be stored.
-     * @returns {void} Caches the response.
+     *
+     * @returns {void} Adds or updates the response in the cache.
      */
     abstract put(req: HttpRequest<any>, resp: HttpResponse<any>): void;
 }
@@ -54,6 +51,7 @@ export class HttpCacheService implements HttpCache {
      * Uses the `urlWithParams` of an HttpRequest to identify a request.
      *
      * @param {HttpRequest<any>} req An HttpRequest to be checked for in the cached responses.
+     *
      * @returns {HttpResponse<any> | null} A cached response or null.
      */
     get(req: HttpRequest<any>): HttpResponse<any> | null {
@@ -67,6 +65,7 @@ export class HttpCacheService implements HttpCache {
      *
      * @param {HttpRequest<any>} req An HttpRequest to be used as an index in the cached responses.
      * @param {HttpResponse<any>} resp The HttpResponse to be stored at this index position in the cached responses.
+     *
      * @returns {void} Caches the response.
      */
     put(req: HttpRequest<any>, resp: HttpResponse<any>): void {

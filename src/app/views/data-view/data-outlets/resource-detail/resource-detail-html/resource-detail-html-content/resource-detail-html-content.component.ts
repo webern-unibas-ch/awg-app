@@ -49,6 +49,7 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
      * to the {@link resourceRequest}.
      *
      * @param {string} id The given resource id.
+     *
      * @returns {void} Emits the id.
      */
     navigateToResource(id?: string): void {

@@ -51,7 +51,7 @@ export class ApiService {
      *
      * It returns an HTTP GET request response from the given (Salsah) API.
      *
-     * @param {any} responseJsonType The given expected response JSON type of the query.
+     * @param {*} responseJsonType The given expected response JSON type of the query.
      * @param {string} queryPath The given path of the query.
      * @param {HttpParams} [queryHttpParams] The given optional HTTP params for the query.
      *

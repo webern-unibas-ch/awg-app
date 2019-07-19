@@ -213,7 +213,8 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * It creates the module for the dynamic component.
      *
-     * @params {any} componentType The component type to be created.
+     * @params {*} componentType The component type to be created.
+     *
      * @returns The RuntimeComponentModule.
      */
     private createComponentModule(componentType: any) {
@@ -244,7 +245,8 @@ export class CompileHtmlComponent implements OnChanges {
      * It creates the the dynamic component.
      *
      * @params {string} html The given html template for the component.
-     * @params {any} ref The reference to the component type to be created.
+     * @params {*} ref The reference to the component type to be created.
+     *
      * @returns The DynamicComponent.
      */
     private createNewComponent(html: string, ref: any) {

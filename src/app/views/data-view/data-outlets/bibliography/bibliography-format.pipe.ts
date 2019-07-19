@@ -49,7 +49,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * Transform method of the BibliographyFormatPipe.
      *
      * @param {BibEntry} bibItem The input BibEntry to be piped.
-     * @returns {any} The formatted BibEntry.
+     *
+     * @returns {*} The formatted BibEntry.
      */
     transform(bibItem: BibEntry): any {
         if (!bibItem) {
@@ -69,7 +70,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @param {string} opt Options to be set: `output` or `edit`
      * @param {BibEntry} entry The input BibEntry.
-     * @returns {any}
+     *
+     * @returns {*}
      */
     private getFormatFields(opt: string, entry: BibEntry): any {
         let output: string | object = {};
@@ -92,7 +94,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * by their keys and requests them to be converted.
      *
      * @param {BibEntry} entry The input BibEntry.
-     * @returns {any}
+     *
+     * @returns {*}
      */
     private getFormattedValues(entry: BibEntry): any {
         Object.keys(entry).forEach(key => {
@@ -109,6 +112,7 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @param {BibEntry} entry The input BibEntry.
      * @param {string} key The key of a BibEntry key-value pair.
+     *
      * @returns {string}
      */
     private getFormattedValueByKey(entry: BibEntry, key: string): string {
@@ -161,7 +165,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the short title of the BibEntry.
      *
      * @param {string} shortTitle The short title of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted short title.
      */
     private formatBibTitleShort(shortTitle: string): string {
         return !shortTitle ? '' : shortTitle + ' | ';
@@ -173,7 +178,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the author(s) of the BibEntry.
      *
      * @param {string} authors The author(s) of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted author(s).
      */
     private formatBibAuthor(authors: string | object): string {
         if (!authors) {
@@ -205,7 +211,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the independent title(s) of the BibEntry.
      *
      * @param {string} indepTitle The independent title(s) of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted independent title(s).
      */
     private formatBibTitleIndep(indepTitle: string): string {
         return !indepTitle ? '' : this.entry['Typ'] !== 'Zeitschriftenartikel' ? indepTitle + ', ' : indepTitle;
@@ -217,7 +224,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the dependent title(s) of the BibEntry.
      *
      * @param {string} depTitle The dependent title(s) of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted dependent title(s).
      */
     private formatBibTitleDep(depTitle: string): string {
         return !depTitle ? '' : '„' + depTitle + '“, in: ';
@@ -229,7 +237,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the editor(s) of the BibEntry.
      *
      * @param {string} editors The editor(s) of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted editor(s).
      */
     private formatBibEditor(editors: string | object): string {
         if (!editors) {
@@ -261,7 +270,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the unpublished literature type (if any) of the BibEntry.
      *
      * @param {string} unpub The unpublished literature type of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted unpublished literature type.
      */
     private formatBibUnpublished(unpub: string): string {
         return !unpub ? '' : unpub + ' ';
@@ -270,10 +280,11 @@ export class BibliographyFormatPipe implements PipeTransform {
     /**
      * Private function: formatBibPubPlace.
      *
-     * It converts the publication place of the BibEntry.
+     * It converts the publication place and publisher of the BibEntry.
      *
      * @param {string} pubPlace The publication place of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted publication place and publisher.
      */
     private formatBibPubPlace(pubPlace: string | object): string {
         const pub = this.entry['Verlag'] ? this.entry['Verlag'] : null;
@@ -357,7 +368,10 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the publisher of the BibEntry.
      *
      * @param {string} pub The publisher of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted publisher.
+     *
+     * DONE IN {@link formatBibPubPlace}.
      */
     private formatBibPublisher(pub: string): string {
         return '';
@@ -369,7 +383,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the publication date of the BibEntry.
      *
      * @param {string} pubDate The publication date of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted publication date.
      */
     private formatBibPubDate(pubDate: string) {
         return this.entry['Typ'] === 'Zeitschriftenartikel' ? ' (' + pubDate + ')' : ' ' + pubDate;
@@ -381,7 +396,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the series title of the BibEntry.
      *
      * @param {string} seriesTitle The series title of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted series title.
      */
     private formatBibTitleSeries(seriesTitle: string): string {
         return !seriesTitle ? '' : ' (' + seriesTitle + ')';
@@ -393,7 +409,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      * It converts the page numbers of the BibEntry.
      *
      * @param {string} pageNum The page numbers of the BibEntry.
-     * @returns {string}
+     *
+     * @returns {string} The formatted page numbers.
      */
     private formatBibPages(pageNum: string | object): string {
         if (!pageNum) {
@@ -421,7 +438,8 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @param {string} name A name to be converted.
      * @param {string} pre_delimiter The delimiter to appear before a name, e.g. a comma.
-     * @returns {string}
+     *
+     * @returns {string} The splitted name(s).
      */
     private splitName(name: string, pre_delimiter: string): string {
         let tmp = [];
