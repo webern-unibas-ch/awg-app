@@ -1,5 +1,17 @@
 // THIS IS AN AUTO-GENERATED FILE. DO NOT CHANGE IT MANUALLY!
-// Generated last time on Tue Apr  9 23:10:55     2019
-export const appVersion = '0.5.4';
-export const appVersionReleaseDate = '09. April 2019';
+// Generated last time on Fri Jul 19 14:01:50 CEST 2019
+
+/**
+ * The latest version of the AWG App
+ */
+export const appVersion = '0.6.0';
+
+/**
+ * The release date of the latest version of the AWG App
+ */
+export const appVersionReleaseDate = '19. Juli 2019';
+
+/**
+ * The URL of the AWG App
+ */
 export const appHomepage = 'https://edition.anton-webern.ch/';
