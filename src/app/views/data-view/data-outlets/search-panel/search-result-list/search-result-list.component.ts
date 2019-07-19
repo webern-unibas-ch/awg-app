@@ -2,7 +2,8 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnI
 import { FormBuilder, FormGroup } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Observable, Subscription } from 'rxjs';
+import { Observable, Subject, Subscription } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
@@ -60,7 +61,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     page: number;
     pageSize: number;
 
-    streamerServiceSubscription: Subscription;
     /**
      * Public variable: rowNumbers.
      *
@@ -100,12 +100,12 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         private formBuilder: FormBuilder,
         private router: Router,
         private conversionService: ConversionService,
-        private sideInfoService: SideInfoService,
-        private streamerService: DataStreamerService
+        private dataStreamerService: DataStreamerService,
+        private sideInfoService: SideInfoService
     ) {}
 
     ngOnInit() {
-        this.streamerServiceSubscription = this.subscribeToStreamerService();
+        this.getSearchResponseWithQueryData();
 
         if (
             this.searchParams.view &&
@@ -219,14 +219,22 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.page = Math.floor(startAtNumber / nRowsNumber) + 1;
     }
 
-    subscribeToStreamerService(): Subscription {
-        // call to streamer service
+    /**
+     * Public method: getSearchResponseWithQueryData.
+     *
+     * It gets the query and search response data
+     * from the {@link DataStreamerService}.
+     *
+     * @returns {void} Sets the search response with query data.
+     */
+    getSearchResponseWithQueryData(): void {
+        // cold request to streamer service
         const searchResponseWithQuery$: Observable<
             SearchResponseWithQuery
-        > = this.streamerService.getSearchResponseWithQuery();
+        > = this.dataStreamerService.getSearchResponseWithQuery().pipe(takeUntil(this.destroy$));
 
         // subscribe to response to handle changes
-        return searchResponseWithQuery$.subscribe(
+        searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) => {
                 // update current search params (url, text, sideinfo) via streamer service
                 this.updateSearchParams(searchResponseWithQuery);
@@ -284,10 +292,17 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
 
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
     ngOnDestroy() {
-        // prevent memory leak when component destroyed
-        if (this.streamerServiceSubscription) {
-            this.streamerServiceSubscription.unsubscribe();
-        }
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
     }
 }
