@@ -39,8 +39,8 @@
                         <div class="dropdown-menu" ngbDropdownMenu>
                             <button
                                 class="dropdown-item"
-                                *ngFor="let rowNumber of rowNumberArray"
-                                (click)="onRowChange(rowNumber)"
+                                *ngFor="let rowNumber of rowNumbers"
+                                (click)="onRowNumberChange(rowNumber)"
                             >
                                 {{ rowNumber }}
                             </button>

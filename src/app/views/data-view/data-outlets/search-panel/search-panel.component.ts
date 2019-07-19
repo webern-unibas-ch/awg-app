@@ -199,7 +199,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onRowChange.
+     * Public method: onRowNumberChange.
      *
      * It sets new row number value in the searchParams
      * after a row change request and triggers the
@@ -209,7 +209,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * @returns {void} Sets the search params and routes to itself.
      */
-    onRowChange(requestedRows: string): void {
+    onRowNumberChange(requestedRows: string): void {
         if (requestedRows !== this.searchParams.nRows) {
             // view has not changed
             this.viewChanged = false;

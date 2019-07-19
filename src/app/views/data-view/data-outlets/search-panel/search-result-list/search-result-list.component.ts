@@ -25,8 +25,15 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     searchParams: SearchParams;
     @Output()
     pageChangeRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Output variable: rowNumberChangeRequest.
+     *
+     * It keeps an event emitter for the selected row number (nRows)
+     * to be displayed in the search result list.
+     */
     @Output()
-    rowChangeRequest: EventEmitter<string> = new EventEmitter();
+    rowNumberChangeRequest: EventEmitter<string> = new EventEmitter();
     @Output()
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
@@ -41,10 +48,15 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     radioViewForm: FormGroup;
     page: number;
     pageSize: number;
-    rowNumberArray = [5, 10, 25, 50, 100, 200];
 
     streamerServiceSubscription: Subscription;
     searchResponse: SearchResponseJson;
+    /**
+     * Public variable: rowNumbers.
+     *
+     * It keeps the array of possible row numbers.
+     */
+    rowNumbers = [5, 10, 25, 50, 100, 200];
     searchResultText: string;
     searchValue: string;
 
@@ -128,9 +140,18 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.pageChangeRequest.emit(String(newStartPosition));
     }
 
-    // emit row change to search panel
-    onRowChange(rowNumber: number): void {
-        this.rowChangeRequest.emit(String(rowNumber));
+    /**
+     * Public method: onRowNumberChange.
+     *
+     * It emits the new number of rows to be displayed
+     * to the {@link rowNumberChangeRequest}.
+     *
+     * @param {number} rowNumber The given number of rows.
+     *
+     * @returns {void} Emits the new number of rows.
+     */
+    onRowNumberChange(rowNumber: number): void {
+        this.rowNumberChangeRequest.emit(String(rowNumber));
     }
 
     // emit view change to search panel
