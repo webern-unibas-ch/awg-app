@@ -34,22 +34,24 @@ describe('SearchResultListComponent', () => {
         expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), ''); // TODO: provide real test data
         expectedSearchResultText = ''; // TODO: provide real test data
 
-        // create a fake StreamerService object with a `getSearchResponseWithQuery()` spy
-        const mockStreamerService = jasmine.createSpyObj('StreamerService', ['getSearchResponseWithQuery']);
+        // create a fake DataStreamerService object with a `getSearchResponseWithQuery()` spy
+        const mockDataStreamerService = jasmine.createSpyObj('DataStreamerService', ['getSearchResponseWithQuery']);
         // make the spies return a synchronous Observable with the test data
-        getSearchResponseWithQuerySpy = mockStreamerService.getSearchResponseWithQuery.and.returnValue(observableOf()); // TODO: provide real test data
+        getSearchResponseWithQuerySpy = mockDataStreamerService.getSearchResponseWithQuery.and.returnValue(
+            observableOf()
+        ); // TODO: provide real test data
 
         // mock services
         mockConversionService = {
             prepareFullTextSearchResultText: () => expectedSearchResultText
         };
-        mockSideInfoService = { updateSearchInfoData: () => {} }; // TODO: provide real test data
+        mockSideInfoService = { updateSearchInfoData: () => {}, clearSearchInfoData: () => {} }; // TODO: provide real test data
 
         TestBed.configureTestingModule({
             imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
             declarations: [SearchResultListComponent, CompileHtmlComponent, OrderByPipe],
             providers: [
-                { provide: DataStreamerService, useValue: mockStreamerService },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
                 { provide: ConversionService, useValue: mockConversionService },
                 { provide: SideInfoService, useValue: mockSideInfoService }
             ]
