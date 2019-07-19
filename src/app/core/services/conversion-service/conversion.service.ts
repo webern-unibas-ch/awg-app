@@ -29,7 +29,8 @@ import {
     ResourceDetailHeader,
     ResourceDetailImage,
     ResourceDetailIncomingLink,
-    ResourceDetailProperty
+    ResourceDetailProperty,
+    SearchResponseWithQuery
 } from '@awg-views/data-view/models';
 import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
@@ -120,13 +121,15 @@ export class ConversionService extends ApiService {
      * It prepares the fulltext search result text
      * to be displayed in the search info.
      *
-     * @param {SearchResponseJson} searchResults The given results of a search request.
-     * @param {string} searchValue The given query string of a search request.
+     * @param {SearchResponseWithQuery} searchResponseWithQuery The given results and query of a search request.
      * @param {string} searchUrl The given url of a search request.
      * @returns {string} The text to be displayed.
      */
-    prepareFullTextSearchResultText(searchResults: SearchResponseJson, searchValue: string, searchUrl: string): string {
+    prepareFullTextSearchResultText(searchResponseWithQuery: SearchResponseWithQuery, searchUrl: string): string {
         let resText: string;
+
+        const searchResults = { ...searchResponseWithQuery.data };
+        const searchValue = searchResponseWithQuery.query;
 
         if (searchResults.subjects) {
             const length = searchResults.subjects.length;

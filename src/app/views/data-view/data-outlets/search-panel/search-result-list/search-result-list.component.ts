@@ -7,7 +7,6 @@ import { Observable, Subscription } from 'rxjs';
 import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
-import { SearchResponseJson } from '@awg-shared/api-objects';
 import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
@@ -50,15 +49,26 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     pageSize: number;
 
     streamerServiceSubscription: Subscription;
-    searchResponse: SearchResponseJson;
     /**
      * Public variable: rowNumbers.
      *
      * It keeps the array of possible row numbers.
      */
     rowNumbers = [5, 10, 25, 50, 100, 200];
+
+    /**
+     * Public variable: searchResponseWithQuery.
+     *
+     * It keeps the query and response of the search request.
+     */
+    searchResponseWithQuery: SearchResponseWithQuery;
+
+    /**
+     * Public variable: searchResultText.
+     *
+     * It keeps the info message about the search results.
+     */
     searchResultText: string;
-    searchValue: string;
 
     /**
      * Public variable: faGripHorizontal.
@@ -116,6 +126,17 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
     isGridView(): boolean {
         return this.searchParams.view === SearchParamsViewTypes.grid;
+    }
+
+    /**
+     * Public method: isNoResults.
+     *
+     * It checks if the current search response data has null results.
+     *
+     * @returns {boolean} The boolean value of the check result.
+     */
+    isNoResults(): boolean {
+        return +this.searchResponseWithQuery.data.nhits === 0;
     }
 
     /**
@@ -180,8 +201,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
                 // update current search params (url, text, sideinfo) via streamer service
                 this.updateSearchParams(searchResponseWithQuery);
 
-                this.searchResponse = { ...searchResponseWithQuery.data };
-
                 this.setPagination();
             },
             error => {
@@ -205,30 +224,33 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         return item.obj_id;
     }
 
-    // update search params
+    /**
+     * Public method: updateSearchParams.
+     *
+     * It stores the given query and response of the search request
+     * and updates the info message and search info.
+     *
+     * @param {SearchResponseWithQuery} searchResponseWithQuery
+     * The given query and response of the search request.
+     *
+     * @returns {void} Updates the search params.
+     */
     updateSearchParams(searchResponseWithQuery: SearchResponseWithQuery): void {
-        // update current search values
-        this.updateCurrentValues(searchResponseWithQuery);
+        if (!searchResponseWithQuery) {
+            return;
+        }
 
-        // update side info
-        this.updateSearchInfoService();
-    }
+        // store search response and query
+        this.searchResponseWithQuery = { ...searchResponseWithQuery };
 
-    // update current search values
-    updateCurrentValues(searchResponseWithQuery: SearchResponseWithQuery): void {
-        // get current search value
-        this.searchValue = searchResponseWithQuery.query;
-        // prepare result text for fulltext search
+        // update info message about the search results
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
-            searchResponseWithQuery.data,
-            this.searchValue,
+            searchResponseWithQuery,
             this.searchUrl
         );
-    }
 
-    // update data for searchInfo via sideinfo service
-    updateSearchInfoService(): void {
-        const searchInfo: SearchInfo = new SearchInfo(this.searchValue, this.searchResultText);
+        // update data for searchInfo via SideInfoService
+        const searchInfo: SearchInfo = new SearchInfo(this.searchResponseWithQuery.query, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
 

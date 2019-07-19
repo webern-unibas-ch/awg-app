@@ -1,5 +1,5 @@
 <!-- content: search results -->
-<div class="awg-search-results" *ngIf="searchResponse">
+<div class="awg-search-results" *ngIf="searchResponseWithQuery?.data">
     <!-- header -->
     <div class="row d-flex justify-content-between mb-4 awg-search-results-header">
         <div class="col-6 mr-auto awg-search-results-header-icons">
@@ -12,11 +12,11 @@
                         formControlName="radioViewControl"
                     >
                         <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
-                            <input ngbButton type="radio" value="table" [disabled]="+searchResponse?.nhits === 0" />
+                            <input ngbButton type="radio" value="table" [disabled]="isNoResults()" />
                             <fa-icon [icon]="faTable"></fa-icon>
                         </label>
                         <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Grid view">
-                            <input ngbButton type="radio" value="grid" [disabled]="+searchResponse?.nhits === 0" />
+                            <input ngbButton type="radio" value="grid" [disabled]="isNoResults()" />
                             <fa-icon [icon]="faGripHorizontal"></fa-icon>
                         </label>
                     </div>
@@ -34,7 +34,7 @@
                         <button
                             class="btn btn-info dropdown-toggle-split"
                             ngbDropdownToggle
-                            [disabled]="+searchResponse?.nhits === 0"
+                            [disabled]="isNoResults()"
                         ></button>
                         <div class="dropdown-menu" ngbDropdownMenu>
                             <button
@@ -54,13 +54,13 @@
         </div>
     </div>
 
-    <ng-container *ngIf="searchResponse?.subjects && +searchResponse?.nhits > 0">
+    <ng-container *ngIf="searchResponseWithQuery?.data?.subjects && !isNoResults()">
         <!-- top pagination -->
         <ngb-pagination
             class="d-flex justify-content-center"
             [(page)]="page"
             [pageSize]="pageSize"
-            [collectionSize]="searchResponse?.nhits"
+            [collectionSize]="+searchResponseWithQuery?.data?.nhits"
             [maxSize]="4"
             [boundaryLinks]="true"
             (pageChange)="onPageChange($event)"
@@ -80,7 +80,7 @@
                     <!-- show searchResultDetail by clicking on single entry -->
                     <tr
                         class="d-flex"
-                        *ngFor="let subject of searchResponse?.subjects; trackBy: trackById"
+                        *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById"
                         (click)="navigateToResource(subject?.obj_id)"
                         [class.active]="isActiveResource(subject?.obj_id)"
                     >
@@ -100,7 +100,7 @@
 
         <!-- grid with searchResults -->
         <div *ngIf="isGridView()" class="card-columns">
-            <div class="card" *ngFor="let subject of searchResponse?.subjects; trackBy: trackById">
+            <div class="card" *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById">
                 <div class="card-header">
                     <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
                     &nbsp;{{ subject?.iconlabel }}
@@ -121,7 +121,7 @@
             class="d-flex justify-content-center"
             [(page)]="page"
             [pageSize]="pageSize"
-            [collectionSize]="searchResponse?.nhits"
+            [collectionSize]="+searchResponseWithQuery?.data?.nhits"
             [maxSize]="4"
             [boundaryLinks]="true"
             (pageChange)="onPageChange($event)"
