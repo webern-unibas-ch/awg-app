@@ -41,7 +41,7 @@
         "build:gh": "cross-var yarn build:prod --base-href $npm_package_homepage",
         "gzip:dist": "gzipper ./dist",
         "prewpanalyzer": "yarn build:prod --statsJson",
-        "wpanalyzer": "webpack-bundle-analyzer dist/stats.json",
+        "wpanalyzer": "webpack-bundle-analyzer dist/stats-es2015.json",
         "presourcemap": "yarn build:prod --sourceMap",
         "sourcemap": "source-map-explorer dist/*.js",
         "build:css": "./themes/bin/build-css",
