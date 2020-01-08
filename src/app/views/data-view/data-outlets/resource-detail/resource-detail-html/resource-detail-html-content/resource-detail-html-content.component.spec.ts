@@ -3,7 +3,7 @@ import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/c
 import Spy = jasmine.Spy;
 
 import { JsonConvert } from 'json2typescript';
-import { NgxGalleryImage } from 'ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
 import {
     expectSpyCall,

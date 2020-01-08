@@ -1184,6 +1184,13 @@
   dependencies:
     "@fortawesome/fontawesome-common-types" "^0.2.26"
 
+"@kolkov/ngx-gallery@^1.0.9":
+  version "1.0.9"
+  resolved "https://registry.yarnpkg.com/@kolkov/ngx-gallery/-/ngx-gallery-1.0.9.tgz#38f66bb501fe5b3fac83ae6e49aee1d803ecdf0b"
+  integrity sha512-2B8qb2MvMAHtkThOtfUqNHbk9WqjJw93JGrOSVRI7VBDdoc5pwrwTWdSRAyILfGrocRL+H3Z4EcKlI79FXwm3w==
+  dependencies:
+    tslib "^1.9.0"
+
 "@marionebl/sander@^0.6.0":
   version "0.6.1"
   resolved "https://registry.yarnpkg.com/@marionebl/sander/-/sander-0.6.1.tgz#1958965874f24bc51be48875feb50d642fc41f7b"
@@ -8059,10 +8066,6 @@ next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
-
-"ngx-gallery@git://github.com/musicEnfanthen/ngx-gallery-dist-patch":
-  version "5.10.0"
-  resolved "git://github.com/musicEnfanthen/ngx-gallery-dist-patch#9ee16e59d050c072f76bfc65a313c81eb7e03cf3"
 
 ngx-json-viewer@^2.4.0:
   version "2.4.0"

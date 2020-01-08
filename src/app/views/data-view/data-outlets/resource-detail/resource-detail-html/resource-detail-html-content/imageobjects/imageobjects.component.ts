@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
+import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 
 /**
  * The ResourceDetailHtmlContentImageobjects component.

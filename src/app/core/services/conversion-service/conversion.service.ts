@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
 
-import { NgxGalleryImage } from 'ngx-gallery';
+import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
 import { ApiService } from '@awg-core/services/api-service';
 import { GeoNames } from '@awg-core/core-models';
