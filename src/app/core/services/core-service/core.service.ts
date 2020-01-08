@@ -19,12 +19,12 @@ export class CoreService {
      *
      * It provides a section of the meta data object.
      *
-     * @params {<K extends MetaSectionTypes>} [section] The given section.
+     * @params {<S extends MetaSectionTypes>S} [sectionType] The given sectionType.
      *
-     * @returns {Meta[K]} The section K of the metadata object.
+     * @returns {Meta[S]} The sectionType S of the metadata object.
      */
-    getMetaDataSection<K extends MetaSectionTypes>(section: K): Meta[K] {
-        return METADATA[section];
+    getMetaDataSection<S extends MetaSectionTypes>(sectionType: S): Meta[S] {
+        return METADATA[sectionType];
     }
 
     /**
