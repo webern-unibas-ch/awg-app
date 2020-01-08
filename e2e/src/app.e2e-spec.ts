@@ -10,7 +10,7 @@ describe('awg-app', () => {
 
     it('should display welcome message', () => {
         page.navigateTo();
-        expect(page.getTitleText()).toEqual('Welcome to awg-app!');
+        expect(page.getTitleText()).toEqual('awg-app is running!');
     });
 
     afterEach(async () => {
