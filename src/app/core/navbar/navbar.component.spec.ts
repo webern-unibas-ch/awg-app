@@ -10,7 +10,7 @@ import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
 
-import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -32,7 +32,7 @@ describe('NavbarComponent (DONE)', () => {
     beforeEach(async(() => {
         // stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: () => expectedPageMetaData
+            getMetaDataSection: sectionType => METADATA[sectionType]
         };
 
         TestBed.configureTestingModule({
@@ -59,30 +59,26 @@ describe('NavbarComponent (DONE)', () => {
         spyOn(component, 'toggleNav').and.callThrough();
     });
 
+    it('should create', () => {
+        expect(component).toBeTruthy();
+    });
+
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
-
-        // changing the stub service has no effect on the injected service
-        let changedPageMetaData = new MetaPage();
-        changedPageMetaData = {
-            yearStart: 2015,
-            yearCurrent: 2017,
-            awgAppUrl: '',
-            compodocUrl: '',
-            githubUrl: '',
-            awgProjectName: '',
-            awgProjectUrl: '',
-            version: '1.0.0',
-            versionReleaseDate: '8. November 2016'
-        };
-        mockCoreService.getMetaDataSection = () => changedPageMetaData;
-
-        expect(coreService.getMetaDataSection()).toBe(expectedPageMetaData);
     });
 
-    it('should create', () => {
-        expect(component).toBeTruthy();
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
+        };
+        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
+
+        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 
     describe('BEFORE initial data binding', () => {

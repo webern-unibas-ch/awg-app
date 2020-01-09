@@ -12,6 +12,7 @@
             "@awg-views/*": ["app/views/*"]
         }
     },
+    "files": ["src/main.ts", "src/polyfills.ts"],
     "include": ["src/**/*.ts"],
     "exclude": ["src/test.ts", "src/**/*.spec.ts", "src/testing/"]
 }

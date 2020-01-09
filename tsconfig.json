@@ -6,7 +6,6 @@
         "sourceMap": true,
         "declaration": false,
         "downlevelIteration": true,
-        "emitDecoratorMetadata": true,
         "experimentalDecorators": true,
         "module": "esnext",
         "moduleResolution": "node",
@@ -22,5 +21,9 @@
             "@awg-views/*": ["app/views/*"],
             "@testing/*": ["testing/*"]
         }
+    },
+    "angularCompilerOptions": {
+        "fullTemplateTypeCheck": true,
+        "strictInjectionParameters": true
     }
 }

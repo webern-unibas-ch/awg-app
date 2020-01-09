@@ -10,7 +10,7 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -31,14 +31,17 @@ describe('HomeViewComponent (DONE)', () => {
 
     beforeEach(async(() => {
         // stub service for test purposes
-        mockCoreService = { getMetaDataSection: key => METADATA[key] };
+        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
             declarations: [HomeViewComponent, RouterLinkStubDirective],
-            providers: [{ provide: CoreService, useValue: mockCoreService }, { provide: Router, useValue: mockRouter }]
+            providers: [
+                { provide: CoreService, useValue: mockCoreService },
+                { provide: Router, useValue: mockRouter }
+            ]
         }).compileComponents();
     }));
 
@@ -65,15 +68,18 @@ describe('HomeViewComponent (DONE)', () => {
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
+    });
 
-        // changing the stub service has no effect on the injected service
-        let changedEditionMetaData = new MetaEdition();
-        changedEditionMetaData = {
-            editors: [{ name: 'Test Editor 2', contactUrl: '' }],
-            lastModified: '10. Oktober 2018'
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
         };
+        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
 
-        mockCoreService.getMetaDataSection = () => changedEditionMetaData;
         expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 

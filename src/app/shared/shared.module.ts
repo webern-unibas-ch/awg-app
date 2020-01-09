@@ -17,7 +17,7 @@ import {
     NgbTabsetModule,
     NgbTooltipModule
 } from '@ng-bootstrap/ng-bootstrap';
-import { NgxGalleryModule } from 'ngx-gallery';
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
 
 //

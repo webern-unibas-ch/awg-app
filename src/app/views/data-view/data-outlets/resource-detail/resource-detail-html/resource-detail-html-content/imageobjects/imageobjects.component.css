@@ -3,6 +3,10 @@
     height: 300px;
 }
 
+.awg-image-slider .ngx-gallery {
+    display: inline-block;
+}
+
 /* image preview */
 ngx-gallery ::ng-deep .ngx-gallery-image-wrapper {
     background-color: #e7e7e7;
@@ -10,10 +14,10 @@ ngx-gallery ::ng-deep .ngx-gallery-image-wrapper {
 
 /* arrows */
 ngx-gallery ::ng-deep .ngx-gallery-arrow {
-    color: black;
+    color: #676767;
 }
 ngx-gallery ::ng-deep .ngx-gallery-arrow.ngx-gallery-disabled {
-    display: none;
+    opacity: 0.3;
 }
 
 /* thumbnails */

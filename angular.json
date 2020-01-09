@@ -21,8 +21,9 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "aot": false,
                         "styles": [
-                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "src/index.style.css",
+                            "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/font-awesome/scss/font-awesome.scss",
                             "src/styles.css"
                         ],
                         "scripts": [
@@ -53,6 +54,11 @@
                                     "type": "initial",
                                     "maximumWarning": "2mb",
                                     "maximumError": "5mb"
+                                },
+                                {
+                                    "type": "anyComponentStyle",
+                                    "maximumWarning": "6kb",
+                                    "maximumError": "10kb"
                                 }
                             ]
                         }
@@ -86,6 +92,7 @@
                         "styles": [
                             "src/index.style.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
+                            "node_modules/font-awesome/scss/font-awesome.scss",
                             "src/styles.css"
                         ],
                         "scripts": [

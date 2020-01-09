@@ -4,7 +4,16 @@ import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import {
+    Logo,
+    Logos,
+    Meta,
+    MetaContact,
+    MetaEdition,
+    MetaPage,
+    MetaSectionTypes,
+    MetaStructure
+} from '@awg-core/core-models';
 import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -88,21 +97,20 @@ describe('FooterComponent (DONE)', () => {
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
+    });
 
-        // changing the stub service has no effect on the injected service
-        let changedPageMetaData = new MetaPage();
-        changedPageMetaData = {
-            yearStart: 2015,
-            yearCurrent: 2017,
-            awgAppUrl: '',
-            compodocUrl: '',
-            githubUrl: '',
-            awgProjectName: '',
-            awgProjectUrl: '',
-            version: '1.0.0',
-            versionReleaseDate: '8. November 2016'
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
         };
-        mockCoreService.getMetaDataSection = () => changedPageMetaData;
+        mockCoreService = {
+            getMetaDataSection: sectionType => CHANGEDMETA[sectionType],
+            getLogos: () => expectedLogos
+        };
 
         expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });

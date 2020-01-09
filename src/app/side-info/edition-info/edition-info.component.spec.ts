@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { EditionInfoComponent } from './edition-info.component';
@@ -25,7 +25,7 @@ describe('EditionInfoComponent (DONE)', () => {
     beforeEach(async(() => {
         // stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: key => METADATA[key]
+            getMetaDataSection: sectionType => METADATA[sectionType]
         };
 
         TestBed.configureTestingModule({
@@ -65,19 +65,17 @@ describe('EditionInfoComponent (DONE)', () => {
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
+    });
 
-        // changing the stub service has no effect on the injected service
-        let changedEditionMetaData = new MetaEdition();
-        changedEditionMetaData = {
-            editors: [
-                {
-                    name: 'Test Editor',
-                    contactUrl: 'www.example.com/test-editor'
-                }
-            ],
-            lastModified: '2017'
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
         };
-        mockCoreService.getMetaDataSection = () => changedEditionMetaData;
+        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
 
         expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
