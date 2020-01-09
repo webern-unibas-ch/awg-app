@@ -40,7 +40,8 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
             previewCloseOnClick: true,
             previewCloseOnEsc: true,
             previewZoom: true,
-            previewRotate: true
+            previewRotate: true,
+            linkTarget: '_blank'
         })
     ];
 
