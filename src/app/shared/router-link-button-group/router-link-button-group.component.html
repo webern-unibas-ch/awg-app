@@ -4,7 +4,7 @@
         class="btn btn-default w-100"
         *ngFor="let button of buttonArray"
         [routerLink]="[button?.root, button?.link]"
-        queryParamsHandling="preserve"
+        [queryParamsHandling]="preserveQueryParams"
         routerLinkActive="active"
         [disabled]="button?.disabled"
         (click)="selectButton(button)"

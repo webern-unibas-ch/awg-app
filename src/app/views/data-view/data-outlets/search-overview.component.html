@@ -1,6 +1,9 @@
-<awg-router-link-button-group *ngIf="searchButtonArray"
+<awg-router-link-button-group
+    *ngIf="searchButtonArray"
     [buttonArray]="searchButtonArray"
-    (selectButtonRequest)="onButtonSelect($event)">
+    [queryParamsHandling]="'preserve'"
+    (selectButtonRequest)="onButtonSelect($event)"
+>
 </awg-router-link-button-group>
 
 <router-outlet></router-outlet>
