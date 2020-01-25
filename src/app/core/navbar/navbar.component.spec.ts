@@ -13,7 +13,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
-import { EditionConstants } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -29,10 +29,8 @@ describe('NavbarComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
     let expectedIsCollapsed: boolean;
-    const expectedEditionPath = EditionConstants.editionPath + EditionConstants.op12;
-    const expectedEditionIntroPath = EditionConstants.editionIntro;
-    const expectedEditionDetailPath = EditionConstants.editionDetail;
-    const expectedEditionReportPath = EditionConstants.editionReport;
+
+    const expectedEditionPath: EditionPath = new EditionPath(EditionConstants.op12);
 
     beforeEach(async(() => {
         // stub service for test purposes
@@ -219,16 +217,16 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... can get correct routes from routerLinks', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
-                expect(routerLinks[1].linkParams).toEqual([expectedEditionPath, expectedEditionIntroPath]);
-                expect(routerLinks[2].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
-                expect(routerLinks[3].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
-                expect(routerLinks[4].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
-                expect(routerLinks[5].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
-                expect(routerLinks[6].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
-                expect(routerLinks[7].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
-                expect(routerLinks[8].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
-                expect(routerLinks[9].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
-                expect(routerLinks[10].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
+                expect(routerLinks[1].linkParams).toEqual([expectedEditionPath.intro]);
+                expect(routerLinks[2].linkParams).toEqual([expectedEditionPath.detail]);
+                expect(routerLinks[3].linkParams).toEqual([expectedEditionPath.detail]);
+                expect(routerLinks[4].linkParams).toEqual([expectedEditionPath.detail]);
+                expect(routerLinks[5].linkParams).toEqual([expectedEditionPath.detail]);
+                expect(routerLinks[6].linkParams).toEqual([expectedEditionPath.report]);
+                expect(routerLinks[7].linkParams).toEqual([expectedEditionPath.report]);
+                expect(routerLinks[8].linkParams).toEqual([expectedEditionPath.report]);
+                expect(routerLinks[9].linkParams).toEqual([expectedEditionPath.report]);
+                expect(routerLinks[10].linkParams).toEqual([expectedEditionPath.report]);
                 expect(routerLinks[11].linkParams).toEqual(['/structure']);
                 expect(routerLinks[12].linkParams).toEqual(['/data/search', 'fulltext']);
                 expect(routerLinks[13].linkParams).toEqual(['/contact']);
@@ -262,7 +260,7 @@ describe('NavbarComponent (DONE)', () => {
                 click(editionLinkDe);
                 fixture.detectChanges();
 
-                expect(editionLink.navigatedTo).toEqual([expectedEditionPath, expectedEditionIntroPath]);
+                expect(editionLink.navigatedTo).toEqual([expectedEditionPath.intro]);
             });
 
             it('... can click Structure link in template', () => {

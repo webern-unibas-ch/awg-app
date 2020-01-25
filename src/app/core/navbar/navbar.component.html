@@ -44,61 +44,50 @@
                     <fa-icon [icon]="faFileAlt" class="order-md-minus-1"></fa-icon>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
-                    <a class="dropdown-item" [routerLink]="[editionPath, editionIntroPath]" routerLinkActive="active"
-                        >Einleitung</a
-                    >
+                    <a class="dropdown-item" [routerLink]="[editionPath.intro]" routerLinkActive="active">Einleitung</a>
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Edierter Notentext</h6>
                     <a
                         class="dropdown-item"
-                        [routerLink]="[editionPath, editionDetailPath]"
+                        [routerLink]="[editionPath.detail]"
                         [queryParams]="{ sketch: 'Aa:SkI/2' }"
                         routerLinkActive="active"
                         >Aa:SkI/2</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[editionPath, editionDetailPath]"
+                        [routerLink]="[editionPath.detail]"
                         [queryParams]="{ sketch: 'Aa:SkI/3' }"
                         routerLinkActive="active"
                         >Aa:SkI/3</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[editionPath, editionDetailPath]"
+                        [routerLink]="[editionPath.detail]"
                         [queryParams]="{ sketch: 'Aa:SkI/4' }"
                         routerLinkActive="active"
                         >Aa:SkI/4</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[editionPath, editionDetailPath]"
+                        [routerLink]="[editionPath.detail]"
                         [queryParams]="{ sketch: 'Aa:SkI/5' }"
                         routerLinkActive="active"
                         >Aa:SkI/5</a
                     >
                     <div class="dropdown-divider"></div>
                     <h6 class="dropdown-header">Kritischer Bericht</h6>
-                    <a class="dropdown-item" [routerLink]="[editionPath, editionReportPath]">I. Quellen</a>
-                    <a
-                        class="dropdown-item awg-subitem"
-                        [routerLink]="[editionPath, editionReportPath]"
-                        fragment="sourceList"
+                    <a class="dropdown-item" [routerLink]="[editionPath.report]">I. Quellen</a>
+                    <a class="dropdown-item awg-subitem" [routerLink]="[editionPath.report]" fragment="sourceList"
                         >1. Quellenübersicht</a
                     >
-                    <a
-                        class="dropdown-item awg-subitem"
-                        [routerLink]="[editionPath, editionReportPath]"
-                        fragment="sourceDesc"
+                    <a class="dropdown-item awg-subitem" [routerLink]="[editionPath.report]" fragment="sourceDesc"
                         >2. Quellenbeschreibung</a
                     >
-                    <a
-                        class="dropdown-item awg-subitem"
-                        [routerLink]="[editionPath, editionReportPath]"
-                        fragment="sourceEvaluation"
+                    <a class="dropdown-item awg-subitem" [routerLink]="[editionPath.report]" fragment="sourceEvaluation"
                         >3. Quellenbewertung</a
                     >
-                    <a class="dropdown-item" [routerLink]="[editionPath, editionReportPath]" fragment="tkaPanel"
+                    <a class="dropdown-item" [routerLink]="[editionPath.report]" fragment="tkaPanel"
                         >II. Textkritischer Kommentar</a
                     >
                 </div>

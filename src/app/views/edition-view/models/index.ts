@@ -8,8 +8,9 @@
  */
 
 import { EditionConstants } from './edition-constants';
+import { EditionPath } from './edition-path.model';
 
-import { EditionSvgOverlay } from './edition-svg-overlay';
+import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet } from './edition-svg-sheet.model';
 
 import { Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
@@ -23,7 +24,9 @@ import { ViewBox } from './view-box.model';
 
 export {
     EditionConstants,
+    EditionPath,
     EditionSvgOverlay,
+    EditionSvgOverlayTypes,
     EditionSvgSheet,
     Folio,
     FolioFormat,

@@ -4,7 +4,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EditionConstants } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
 
 /**
  * The Header component.
@@ -70,30 +70,9 @@ export class NavbarComponent implements OnInit {
     /**
      * Readonly constant: editionPath.
      *
-     * It keeps the path to the edition section of the current composition.
+     * It keeps the path to the edition sections of the current composition.
      */
-    readonly editionPath = EditionConstants.editionPath + EditionConstants.op12;
-
-    /**
-     * Readonly constant: editionIntroPath.
-     *
-     * It keeps the path to the edition intro.
-     */
-    readonly editionIntroPath = EditionConstants.editionIntro;
-
-    /**
-     * Readonly constant: editionReportPath.
-     *
-     * It keeps the path to the edition report.
-     */
-    readonly editionReportPath = EditionConstants.editionReport;
-
-    /**
-     * Readonly constant: editionDetailPath.
-     *
-     * It keeps the path to the edition detail.
-     */
-    readonly editionDetailPath = EditionConstants.editionDetail;
+    readonly editionPath = new EditionPath(EditionConstants.op12);
 
     /**
      * Constructor of the HeaderComponent.
