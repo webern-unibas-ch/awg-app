@@ -13,6 +13,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
+import { EditionConstants } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -28,6 +29,10 @@ describe('NavbarComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
     let expectedIsCollapsed: boolean;
+    const expectedEditionPath = EditionConstants.editionPath + EditionConstants.op12;
+    const expectedEditionIntroPath = EditionConstants.editionIntro;
+    const expectedEditionDetailPath = EditionConstants.editionDetail;
+    const expectedEditionReportPath = EditionConstants.editionReport;
 
     beforeEach(async(() => {
         // stub service for test purposes
@@ -210,20 +215,30 @@ describe('NavbarComponent (DONE)', () => {
 
             it('... can get 14 routerLinks from template', () => {
                 expect(routerLinks.length).toBe(14, 'should have 14 routerLinks');
+            });
+
+            it('... can get correct routes from routerLinks', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
-                expect(routerLinks[1].linkParams).toEqual(['/edition', 'intro']);
-                expect(routerLinks[2].linkParams).toEqual(['/edition/detail', 'Aa:SkI/2']);
-                expect(routerLinks[3].linkParams).toEqual(['/edition/detail', 'Aa:SkI/3']);
-                expect(routerLinks[4].linkParams).toEqual(['/edition/detail', 'Aa:SkI/4']);
-                expect(routerLinks[5].linkParams).toEqual(['/edition/detail', 'Aa:SkI/5']);
-                expect(routerLinks[6].linkParams).toEqual(['/edition', 'report']);
-                expect(routerLinks[7].linkParams).toEqual(['/edition', 'report']);
-                expect(routerLinks[8].linkParams).toEqual(['/edition', 'report']);
-                expect(routerLinks[9].linkParams).toEqual(['/edition', 'report']);
-                expect(routerLinks[10].linkParams).toEqual(['/edition', 'report']);
+                expect(routerLinks[1].linkParams).toEqual([expectedEditionPath, expectedEditionIntroPath]);
+                expect(routerLinks[2].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
+                expect(routerLinks[3].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
+                expect(routerLinks[4].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
+                expect(routerLinks[5].linkParams).toEqual([expectedEditionPath, expectedEditionDetailPath]);
+                expect(routerLinks[6].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
+                expect(routerLinks[7].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
+                expect(routerLinks[8].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
+                expect(routerLinks[9].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
+                expect(routerLinks[10].linkParams).toEqual([expectedEditionPath, expectedEditionReportPath]);
                 expect(routerLinks[11].linkParams).toEqual(['/structure']);
                 expect(routerLinks[12].linkParams).toEqual(['/data/search', 'fulltext']);
                 expect(routerLinks[13].linkParams).toEqual(['/contact']);
+            });
+
+            it('... can get correct queryParams from routerLinks', () => {
+                expect(routerLinks[2].queryParams).toEqual({ sketch: 'Aa:SkI/2' });
+                expect(routerLinks[3].queryParams).toEqual({ sketch: 'Aa:SkI/3' });
+                expect(routerLinks[4].queryParams).toEqual({ sketch: 'Aa:SkI/4' });
+                expect(routerLinks[5].queryParams).toEqual({ sketch: 'Aa:SkI/5' });
             });
 
             it('... can click Home link in template', () => {
@@ -247,7 +262,7 @@ describe('NavbarComponent (DONE)', () => {
                 click(editionLinkDe);
                 fixture.detectChanges();
 
-                expect(editionLink.navigatedTo).toEqual(['/edition', 'intro']);
+                expect(editionLink.navigatedTo).toEqual([expectedEditionPath, expectedEditionIntroPath]);
             });
 
             it('... can click Structure link in template', () => {

@@ -40,8 +40,8 @@ export const routedAppComponents = [HomeViewComponent, PageNotFoundViewComponent
     imports: [
         RouterModule.forRoot(appRoutes, {
             anchorScrolling: 'enabled', // use anchor scrolling
-            scrollPositionRestoration: 'enabled', // restore scroll position
             onSameUrlNavigation: 'reload', // reload when navigating to same url
+            scrollPositionRestoration: 'enabled', // restore scroll position
             preloadingStrategy: PreloadAllModules // preload all lazy modules
             // enableTracing: true          // TODO: do not enable tracing for prodcution
         })

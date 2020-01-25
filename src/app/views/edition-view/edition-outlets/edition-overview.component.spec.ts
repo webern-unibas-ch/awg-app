@@ -7,7 +7,7 @@ import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-
+import { EditionConstants } from '@awg-views/edition-view/models';
 import { EditionOverviewComponent } from './edition-overview.component';
 
 // mock components
@@ -42,9 +42,24 @@ describe('EditionOverviewComponent (DONE)', () => {
 
         // test data
         expectedButtonArray = [
-            new RouterLinkButton('/edition', 'intro', 'Einleitung', false),
-            new RouterLinkButton('/edition', 'detail', 'Edierter Notentext', false),
-            new RouterLinkButton('/edition', 'report', 'Kritischer Bericht', false)
+            new RouterLinkButton(
+                EditionConstants.editionPath + EditionConstants.op12,
+                EditionConstants.editionIntro,
+                'Einleitung',
+                false
+            ),
+            new RouterLinkButton(
+                EditionConstants.editionPath + EditionConstants.op12,
+                EditionConstants.editionDetail,
+                'Edierter Notentext',
+                false
+            ),
+            new RouterLinkButton(
+                EditionConstants.editionPath + EditionConstants.op12,
+                EditionConstants.editionReport,
+                'Kritischer Bericht',
+                false
+            )
         ];
     });
 

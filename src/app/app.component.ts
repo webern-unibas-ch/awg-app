@@ -20,7 +20,7 @@ export class AppComponent {
      *
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private router: Router) {
+    constructor(private readonly router: Router) {
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
                 (window as any).ga('set', 'page', event.urlAfterRedirects);

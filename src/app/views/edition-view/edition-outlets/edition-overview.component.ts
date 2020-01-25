@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
+import { EditionConstants } from '@awg-views/edition-view/models';
 
 /**
  * The EditionOverview component.
@@ -42,9 +43,24 @@ export class EditionOverviewComponent implements OnInit {
      */
     setButtons(): void {
         this.editionButtonArray = [
-            new RouterLinkButton('/edition', 'intro', 'Einleitung', false),
-            new RouterLinkButton('/edition', 'detail', 'Edierter Notentext', false),
-            new RouterLinkButton('/edition', 'report', 'Kritischer Bericht', false)
+            new RouterLinkButton(
+                EditionConstants.editionPath + EditionConstants.op12,
+                EditionConstants.editionIntro,
+                'Einleitung',
+                false
+            ),
+            new RouterLinkButton(
+                EditionConstants.editionPath + EditionConstants.op12,
+                EditionConstants.editionDetail,
+                'Edierter Notentext',
+                false
+            ),
+            new RouterLinkButton(
+                EditionConstants.editionPath + EditionConstants.op12,
+                EditionConstants.editionReport,
+                'Kritischer Bericht',
+                false
+            )
         ];
     }
 }
