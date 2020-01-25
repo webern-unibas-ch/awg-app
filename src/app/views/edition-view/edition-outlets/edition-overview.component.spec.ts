@@ -1,6 +1,7 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { QueryParamsHandling } from '@angular/router';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
@@ -14,6 +15,7 @@ import { EditionOverviewComponent } from './edition-overview.component';
 class RouterLinkButtonGroupStubComponent {
     @Input()
     buttonArray: RouterLinkButton[];
+    @Input() queryParamsHandling?: QueryParamsHandling = '';
     @Output()
     selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 }

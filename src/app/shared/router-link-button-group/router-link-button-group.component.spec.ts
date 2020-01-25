@@ -1,5 +1,7 @@
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { QueryParamsHandling } from '@angular/router';
+
 import Spy = jasmine.Spy;
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
@@ -11,7 +13,6 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-
 import { RouterLinkButtonGroupComponent } from './router-link-button-group.component';
 
 describe('RouterLinkButtonGroupComponent (DONE)', () => {
@@ -23,6 +24,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let routerLinks;
 
     let expectedButtonArray: RouterLinkButton[];
+    let expectedQueryParamsHandling: QueryParamsHandling;
 
     let selectButtonSpy: Spy;
     let emitSpy: Spy;
@@ -45,6 +47,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
             new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
         ];
+        expectedQueryParamsHandling = 'preserve';
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -60,6 +63,10 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('should not have `buttonArray` input', () => {
             expect(component.buttonArray).toBeUndefined('should be undefined');
+        });
+
+        it('should have default `queryParamsHandling` input', () => {
+            expect(component.queryParamsHandling).toBe('');
         });
 
         describe('#onButtonSelect', () => {
@@ -83,9 +90,18 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         beforeEach(() => {
             // simulate the parent setting the input properties
             component.buttonArray = expectedButtonArray;
+            component.queryParamsHandling = expectedQueryParamsHandling;
 
             // trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('should have `buttonArray` input', () => {
+            expect(component.buttonArray).toEqual(expectedButtonArray, 'should equal expectedButtonArray');
+        });
+
+        it('should have `queryParamsHandling` input', () => {
+            expect(component.queryParamsHandling).toBe(expectedQueryParamsHandling, 'should be preserve');
         });
 
         describe('VIEW', () => {
@@ -137,8 +153,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length).toBe(3, 'should have 3 routerLinks');
+            });
+
+            it('... can get correct paths from routerLinks', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/data/search', 'fulltext']);
                 expect(routerLinks[1].linkParams).toEqual(['/data/search', 'timeline']);
                 expect(routerLinks[2].linkParams).toEqual(['/data/search', 'bibliography']);

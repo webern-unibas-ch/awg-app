@@ -10,13 +10,14 @@ import { SideInfoService } from '@awg-core/services';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { SearchOverviewComponent } from './search-overview.component';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, QueryParamsHandling } from '@angular/router';
 
 // mock components
 @Component({ selector: 'awg-router-link-button-group', template: '' })
 class RouterLinkButtonGroupStubComponent {
     @Input()
     buttonArray: RouterLinkButton[];
+    @Input() queryParamsHandling?: QueryParamsHandling = 'preserve';
     @Output()
     selectButtonRequest: EventEmitter<RouterLinkButton> = new EventEmitter<RouterLinkButton>();
 }

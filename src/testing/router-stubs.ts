@@ -1,7 +1,7 @@
 /* tslint:disable:no-input-rename */
 /* tslint:disable:directive-selector component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
-import { NavigationExtras } from '@angular/router';
+import { NavigationExtras, QueryParamsHandling } from '@angular/router';
 
 import { AppModule } from '@awg-app/app.module';
 
@@ -21,6 +21,18 @@ export class RouterLinkStubDirective {
      */
     @Input('routerLink')
     linkParams: any;
+
+    /**
+     * Input with query parameters.
+     */
+    @Input('queryParams')
+    queryParams?: any;
+
+    /**
+     * Input with query param handling option.
+     */
+    @Input('queryParamsHandling')
+    queryParamsHandling?: QueryParamsHandling = '';
 
     /**
      * The router params after navigation.
