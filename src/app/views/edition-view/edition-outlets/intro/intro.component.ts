@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component } from '@angular/core';
+import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
 
 /**
  * The Intro component.
@@ -12,4 +13,11 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     styleUrls: ['./intro.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IntroComponent {}
+export class IntroComponent {
+    /**
+     * Readonly constant: editionPath.
+     *
+     * It keeps the path to the edition sections of the current composition.
+     */
+    readonly editionPath = new EditionPath(EditionConstants.op12);
+}

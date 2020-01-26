@@ -1,10 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, ParamMap, Params, Router } from '@angular/router';
 
 import {
-    Folio,
+    EditionConstants,
+    EditionPath,
     EditionSvgSheet,
     EditionSvgOverlay,
+    Folio,
     Textcritics,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -141,13 +143,15 @@ export class EditionDetailComponent implements OnInit {
      * It checks the route params for a given sheet id
      * and sets the selected sheet if any.
      *
-     * @returns {void} Sets selectd sheet.
+     * @returns {void} Sets selected sheet.
      */
     private getRouteParams(): void {
-        this.route.params.forEach((params: Params) => {
+        this.route.queryParamMap.subscribe((queryParams: ParamMap) => {
             // if there is no id in route params
             // take first entry of svg sheets data as default
-            const fileId: string = params['id'] ? params['id'] : Object.keys(this.svgSheetsData)[0];
+            const fileId: string = queryParams.get('sketch')
+                ? queryParams.get('sketch')
+                : Object.keys(this.svgSheetsData)[0];
             this.selectedSvgSheet = this.svgSheetsData[fileId];
         });
     }
@@ -178,7 +182,7 @@ export class EditionDetailComponent implements OnInit {
      * Public method: onSvgSheetSelect.
      *
      * It selects a svg sheet by its id and
-     * navigates to the '/edition/detail' route
+     * navigates to the '/edition/{compositionID}/detail' route
      * with this given id.
      *
      * @param {string} id The given svg sheet id.
@@ -187,6 +191,13 @@ export class EditionDetailComponent implements OnInit {
     onSvgSheetSelect(id: string): void {
         this.selectedSvgSheet = this.svgSheetsData[id];
         this.showTkA = false;
-        this.router.navigate(['/edition/detail', id]);
+
+        const editionPath = new EditionPath(EditionConstants.op12);
+        const navigationExtras: NavigationExtras = {
+            queryParams: { sketch: id },
+            queryParamsHandling: ''
+        };
+
+        this.router.navigate([editionPath.detail], navigationExtras);
     }
 }

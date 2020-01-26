@@ -1,6 +1,5 @@
 <!-- content: intro -->
 <div>
-
     <!-- modal -->
     <awg-modal #modal></awg-modal>
 
@@ -8,31 +7,84 @@
     <div>
         <h2>Einleitung</h2>
         <p class="small text-muted">
-            [Die Einleitung zum gesamten Werkkomplex <i>Vier Lieder</i> op. 12 erscheint im Zusammenhang der vollständigen  Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
+            [Die Einleitung zum gesamten Werkkomplex <i>Vier Lieder</i> op. 12 erscheint im Zusammenhang der
+            vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
         </p>
         <p>
-            Die Skizzen in <a [routerLink]="['/edition', 'report']" fragment="sourceA"><strong>A</strong></a> enthalten datierte Verlaufsskizzen zu allen vier Liedern: <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915), <a (click)="modal.open('sheetComingSoon')"><strong>Ab:SkII/1</strong></a> (10. April 1917), <a (click)="modal.open('sheetComingSoon')"><strong>Ac:SkIII/1</strong></a> und <a (click)="modal.open('sheetComingSoon')"><strong>Ac:SkIII/7</strong></a> (31. Januar 1915) sowie <a (click)="modal.open('sheetComingSoon')"><strong>Ae:SkIV/1</strong></a> (31. März 1917). Darüber hinaus finden sich Skizzen zu einzelnen Stellen.
+            Die Skizzen in <a [routerLink]="[editionPath.report]" fragment="sourceA"><strong>A</strong></a> enthalten
+            datierte Verlaufsskizzen zu allen vier Liedern:
+            <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915),
+            <a (click)="modal.open('sheetComingSoon')"><strong>Ab:SkII/1</strong></a> (10. April 1917),
+            <a (click)="modal.open('sheetComingSoon')"><strong>Ac:SkIII/1</strong></a> und
+            <a (click)="modal.open('sheetComingSoon')"><strong>Ac:SkIII/7</strong></a> (31. Januar 1915) sowie
+            <a (click)="modal.open('sheetComingSoon')"><strong>Ae:SkIV/1</strong></a> (31. März 1917). Darüber hinaus
+            finden sich Skizzen zu einzelnen Stellen.
         </p>
         <p class="small text-muted">
-            [Die Einleitung zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in  AWG I/5.]
+            [Die Einleitung zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der vollständigen Edition der
+            <i>Vier Lieder</i> op. 12 in AWG I/5.]
         </p>
         <p>
-            In <a [routerLink]="['/edition/detail', 'Aa:SkI/2']"><strong>Aa:SkI/2</strong></a> werden T. [11]–[12] aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> bzw. T. 10–11 aus <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> (<a (click)="modal.open('editionComingSoon')"><strong>Nr. I „Der Tag ist vergangen“ [Fassung 1]</strong></a>) neu skizziert, in <a [routerLink]="['/edition/detail', 'Aa:SkI/3']"><strong>Aa:SkI/3</strong></a>, <a [routerLink]="['/edition/detail', 'Aa:SkI/4']"><strong>Aa:SkI/4</strong></a> und <a [routerLink]="['/edition/detail', 'Aa:SkI/5']"><strong>Aa:SkI/5</strong></a> weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> (<a (click)="modal.open('editionComingSoon')"><strong>Nr. I „Der Tag ist vergangen“ [Fassung2]</strong></a>) entspricht. Da T. 10–11 in <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> offensichtlich zunächst aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> übernommen wurden und Korrekturen in <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> mit Bleistift auf die Formulierung von <a [routerLink]="['/edition/detail', 'Aa:SkI/2']"><strong>Aa:SkI/2</strong></a> hindeuten, sind <a [routerLink]="['/edition/detail']"><strong>Aa:SkI/2–5</strong></a> offensichtlich erst nach der Niederschrift von <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> und während oder nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> entstanden.
+            In
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/2' }"><strong>Aa:SkI/2</strong></a>
+            werden T. [11]–[12] aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> bzw. T.
+            10–11 aus <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> (<a
+                (click)="modal.open('editionComingSoon')"
+                ><strong>Nr. I „Der Tag ist vergangen“ [Fassung 1]</strong></a
+            >) neu skizziert, in
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/3' }"><strong>Aa:SkI/3</strong></a
+            >,
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/4' }"><strong>Aa:SkI/4</strong></a>
+            und
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/5' }"><strong>Aa:SkI/5</strong></a>
+            weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus
+            <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> (<a (click)="modal.open('editionComingSoon')"
+                ><strong>Nr. I „Der Tag ist vergangen“ [Fassung2]</strong></a
+            >) entspricht. Da T. 10–11 in <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> offensichtlich
+            zunächst aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> übernommen wurden und
+            Korrekturen in <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> mit Bleistift auf die
+            Formulierung von
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/2' }"><strong>Aa:SkI/2</strong></a>
+            hindeuten, sind <a [routerLink]="[editionPath.detail]"><strong>Aa:SkI/2–5</strong></a> offensichtlich erst
+            nach der Niederschrift von <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> und während oder
+            nach den dort vorhandenen Korrekturen, vermutlich als Arbeitsvorlage für
+            <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> entstanden.
         </p>
         <p>
-            <a [routerLink]="['/edition/detail', 'Aa:SkI/2']"><strong>Aa:SkI/2</strong></a> übernimmt, wie erwähnt, bestimmte Merkmale der Korrekturen in <a (click)="modal.open('sourceNotA')"><strong>B</strong></a>, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. [12] kenntlich gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische Konstellation der Zweiklänge F/e im unteren System und es1/as1 im oberen System geändert sowie der letzte Zweiklang im unteren System aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> bzw. <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> (Gis/cis) getilgt.
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/2' }"><strong>Aa:SkI/2</strong></a>
+            übernimmt, wie erwähnt, bestimmte Merkmale der Korrekturen in
+            <a (click)="modal.open('sourceNotA')"><strong>B</strong></a
+            >, die bei einem gleichbleibenden Metrum (das allerdings weder durch einen Taktstrich vor T. [12] kenntlich
+            gemacht noch durch eine neue Taktartvorzeichnung explizit geändert wird) zu einer Erweiterung der vormals
+            zweitaktigen zu einer dreitaktigen Figur führen. Im Klavier (System 13–12) wird die rhythmische
+            Konstellation der Zweiklänge F/e im unteren System und es1/as1 im oberen System geändert sowie der letzte
+            Zweiklang im unteren System aus
+            <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> bzw.
+            <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> (Gis/cis) getilgt.
         </p>
         <p>
-            <a [routerLink]="['/edition/detail', 'Aa:SkI/3']"><strong>Aa:SkI/3</strong></a> verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten Tons der Singstimme („e–[wig]“) wie in <a [routerLink]="['/edition/detail', 'Aa:SkI/2']"><strong>Aa:SkI/2</strong></a> tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in <a [routerLink]="['/edition/detail', 'Aa:SkI/5']"><strong>Aa:SkI/5</strong></a> formulierte und in <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> verwendete Variante.
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/3' }"><strong>Aa:SkI/3</strong></a>
+            verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten
+            Tons der Singstimme („e–[wig]“) wie in
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/2' }"><strong>Aa:SkI/2</strong></a>
+            tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die
+            Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/5' }"><strong>Aa:SkI/5</strong></a>
+            formulierte und in <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> verwendete Variante.
         </p>
         <p>
-            <a [routerLink]="['/edition/detail', 'Aa:SkI/4']"><strong>Aa:SkI/4</strong></a> erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6).
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/4' }"><strong>Aa:SkI/4</strong></a>
+            erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine
+            rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6).
         </p>
         <p>
-            <a [routerLink]="['/edition/detail', 'Aa:SkI/5']"><strong>Aa:SkI/5</strong></a> bringt in der letzten Korrekturschicht die in <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> verwendete Variante.
+            <a [routerLink]="[editionPath.detail]" [queryParams]="{ sketch: 'Aa:SkI/5' }"><strong>Aa:SkI/5</strong></a>
+            bringt in der letzten Korrekturschicht die in
+            <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> verwendete Variante.
         </p>
         <p class="small text-muted">
-            [Die Einleitungen zu den weiteren Skizzen aus <strong>A</strong> erscheinen im Zusammenhang der vollständigen Edition der  <i>Vier Lieder</i> op. 12 in AWG I/5.]
+            [Die Einleitungen zu den weiteren Skizzen aus <strong>A</strong> erscheinen im Zusammenhang der
+            vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
         </p>
     </div>
 </div>

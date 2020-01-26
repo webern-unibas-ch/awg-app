@@ -1,9 +1,9 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
 import { Observable } from 'rxjs';
 
-import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
 import { EditionDataService } from '@awg-views/edition-view/services';
 
 /**
@@ -77,13 +77,19 @@ export class ReportComponent implements OnInit {
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It navigates to the '/edition/detail'
+     * It navigates to the '/edition/{compositionID}/detail'
      * route with the given id.
      *
      * @param {string} id The given svg sheet id.
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
-        this.router.navigate(['/edition/detail', id]);
+        const editionPath = new EditionPath(EditionConstants.op12);
+        const navigationExtras: NavigationExtras = {
+            queryParams: { sketch: id },
+            queryParamsHandling: ''
+        };
+
+        this.router.navigate([editionPath.detail], navigationExtras);
     }
 }

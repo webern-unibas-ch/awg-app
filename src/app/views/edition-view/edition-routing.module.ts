@@ -7,6 +7,8 @@ import { EditionOverviewComponent } from './edition-outlets/edition-overview.com
 import { IntroComponent } from './edition-outlets/intro';
 import { ReportComponent } from './edition-outlets/report';
 
+import { EditionConstants } from './models/edition-constants';
+
 /* routes of the EditionModule */
 const editionRoutes: Routes = [
     {
@@ -14,13 +16,13 @@ const editionRoutes: Routes = [
         component: EditionViewComponent,
         children: [
             {
-                path: '',
+                // compositionID (op12, M317, etc.)
+                path: ':id',
                 component: EditionOverviewComponent,
                 children: [
-                    { path: 'intro', component: IntroComponent },
-                    { path: 'detail', component: EditionDetailComponent },
-                    { path: 'detail/:id', component: EditionDetailComponent },
-                    { path: 'report', component: ReportComponent }
+                    { path: EditionConstants.editionIntro, component: IntroComponent },
+                    { path: EditionConstants.editionDetail, component: EditionDetailComponent },
+                    { path: EditionConstants.editionReport, component: ReportComponent }
                 ]
             }
         ]
