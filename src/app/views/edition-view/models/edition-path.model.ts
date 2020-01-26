@@ -1,4 +1,4 @@
-import { EditionConstants } from '@awg-views/edition-view/models';
+import { EditionConstants } from './edition-constants';
 
 export class EditionPath {
     intro: string;
