@@ -7,7 +7,7 @@ import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
 import { EditionOverviewComponent } from './edition-overview.component';
 
 // mock components
@@ -41,25 +41,11 @@ describe('EditionOverviewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
+        const expectedEditionPath = new EditionPath(EditionConstants.op12);
         expectedButtonArray = [
-            new RouterLinkButton(
-                EditionConstants.editionPath + EditionConstants.op12,
-                EditionConstants.editionIntro,
-                'Einleitung',
-                false
-            ),
-            new RouterLinkButton(
-                EditionConstants.editionPath + EditionConstants.op12,
-                EditionConstants.editionDetail,
-                'Edierter Notentext',
-                false
-            ),
-            new RouterLinkButton(
-                EditionConstants.editionPath + EditionConstants.op12,
-                EditionConstants.editionReport,
-                'Kritischer Bericht',
-                false
-            )
+            new RouterLinkButton(expectedEditionPath.root, EditionConstants.editionIntro, 'Einleitung', false),
+            new RouterLinkButton(expectedEditionPath.root, EditionConstants.editionDetail, 'Edierter Notentext', false),
+            new RouterLinkButton(expectedEditionPath.root, EditionConstants.editionReport, 'Kritischer Bericht', false)
         ];
     });
 
