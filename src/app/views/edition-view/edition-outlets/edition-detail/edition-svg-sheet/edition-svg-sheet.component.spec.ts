@@ -2,8 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
-import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
-import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay';
+import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 
 describe('EditionSvgSheetComponent', () => {
     let component: EditionSvgSheetComponent;
