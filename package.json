@@ -28,7 +28,7 @@
         "e2e": "ng e2e",
         "test": "ng test",
         "test:cov": "ng test awg-app --code-coverage",
-        "test:ci": "yarn test:cov --watch=false --browsers=ChromeHeadless",
+        "test:ci": "yarn test:cov --watch=false --browsers=ChromeHeadlessNoSandbox",
         "lint": "ng lint awg-app",
         "tslint-check": "tslint-config-prettier-check ./tslint.json",
         "format:check": "prettier --check \"src/**/*.ts\"",
