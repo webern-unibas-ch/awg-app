@@ -38,5 +38,5 @@ export class EditionConstants {
     /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
-    static readonly firmJENo9Lin28 = 'assets/img/edition/firm_je_no9_lin28.png';
+    static readonly firmJENo9Lin28 = 'assets/img/edition/sI/a5/op12/firm_je_no9_lin28.png';
 }
