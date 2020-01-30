@@ -43,9 +43,24 @@ describe('EditionOverviewComponent (DONE)', () => {
         // test data
         const expectedEditionPath = new EditionPath(EditionConstants.op12);
         expectedButtonArray = [
-            new RouterLinkButton(expectedEditionPath.root, EditionConstants.editionIntro, 'Einleitung', false),
-            new RouterLinkButton(expectedEditionPath.root, EditionConstants.editionDetail, 'Edierter Notentext', false),
-            new RouterLinkButton(expectedEditionPath.root, EditionConstants.editionReport, 'Kritischer Bericht', false)
+            new RouterLinkButton(
+                expectedEditionPath.root,
+                EditionConstants.editionIntro.path,
+                EditionConstants.editionIntro.short,
+                false
+            ),
+            new RouterLinkButton(
+                expectedEditionPath.root,
+                EditionConstants.editionDetail.path,
+                EditionConstants.editionDetail.short,
+                false
+            ),
+            new RouterLinkButton(
+                expectedEditionPath.root,
+                EditionConstants.editionReport.path,
+                EditionConstants.editionDetail.short,
+                false
+            )
         ];
     });
 

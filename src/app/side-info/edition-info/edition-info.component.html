@@ -7,7 +7,7 @@
             <i>{{ editionInfoHeader.title }}</i
             >&nbsp;{{ editionInfoHeader.catalogueType }}&nbsp;{{ editionInfoHeader.catalogueNumber }}
             <br />
-            <a [routerLink]="['/edition', 'intro']">{{ editionInfoHeader.part }}</a>
+            <a [routerLink]="[editionPath.root, editionPath.intro]">{{ editionInfoHeader?.part }}</a>
         </h5>
         <p>&#9671;</p>
         <p>

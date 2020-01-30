@@ -45,9 +45,24 @@ export class EditionOverviewComponent implements OnInit {
         const editionPath = new EditionPath(EditionConstants.op12);
 
         this.editionButtonArray = [
-            new RouterLinkButton(editionPath.root, EditionConstants.editionIntro, 'Einleitung', false),
-            new RouterLinkButton(editionPath.root, EditionConstants.editionDetail, 'Edierter Notentext', false),
-            new RouterLinkButton(editionPath.root, EditionConstants.editionReport, 'Kritischer Bericht', false)
+            new RouterLinkButton(
+                editionPath.root,
+                EditionConstants.editionIntro.path,
+                EditionConstants.editionIntro.short,
+                false
+            ),
+            new RouterLinkButton(
+                editionPath.root,
+                EditionConstants.editionDetail.path,
+                EditionConstants.editionDetail.short,
+                false
+            ),
+            new RouterLinkButton(
+                editionPath.root,
+                EditionConstants.editionReport.path,
+                EditionConstants.editionReport.short,
+                false
+            )
         ];
     }
 }

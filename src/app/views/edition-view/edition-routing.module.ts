@@ -20,9 +20,9 @@ const editionRoutes: Routes = [
                 path: ':id',
                 component: EditionOverviewComponent,
                 children: [
-                    { path: EditionConstants.editionIntro, component: IntroComponent },
-                    { path: EditionConstants.editionDetail, component: EditionDetailComponent },
-                    { path: EditionConstants.editionReport, component: ReportComponent }
+                    { path: EditionConstants.editionIntro.path, component: IntroComponent },
+                    { path: EditionConstants.editionDetail.path, component: EditionDetailComponent },
+                    { path: EditionConstants.editionReport.path, component: ReportComponent }
                 ]
             }
         ]

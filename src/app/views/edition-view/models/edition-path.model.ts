@@ -34,12 +34,17 @@ export class EditionPath {
      *
      * @param {string} compositionId The given id of a composition.
      */
-    constructor(compositionId: string) {
+    constructor(compositionId: string, series?: string, section?: string, type?: string) {
         const delimiter = '/';
 
-        this.root = EditionConstants.editionPath + compositionId;
-        this.intro = this.root + delimiter + EditionConstants.editionIntro;
-        this.detail = this.root + delimiter + EditionConstants.editionDetail;
-        this.report = this.root + delimiter + EditionConstants.editionReport;
+        let rootPath = EditionConstants.editionPath;
+        rootPath += series ? series : ''; // EditionConstants.series1.path;
+        rootPath += section ? section : ''; // EditionConstants.section1.path;
+        rootPath += type ? type : ''; // EditionConstants.textEdition.path;
+
+        this.root = rootPath + compositionId + delimiter;
+        this.intro = EditionConstants.editionIntro.path;
+        this.detail = EditionConstants.editionDetail.path;
+        this.report = EditionConstants.editionReport.path;
     }
 }
