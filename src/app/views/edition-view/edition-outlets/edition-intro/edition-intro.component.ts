@@ -9,11 +9,11 @@ import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
  */
 @Component({
     selector: 'awg-intro',
-    templateUrl: './intro.component.html',
-    styleUrls: ['./intro.component.css'],
+    templateUrl: './edition-intro.component.html',
+    styleUrls: ['./edition-intro.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class IntroComponent {
+export class EditionIntroComponent {
     /**
      * Readonly constant: editionPath.
      *

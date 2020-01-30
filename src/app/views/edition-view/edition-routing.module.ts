@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { EditionViewComponent } from './edition-view.component';
 import { EditionDetailComponent } from './edition-outlets/edition-detail';
 import { EditionOverviewComponent } from './edition-outlets/edition-overview.component';
-import { IntroComponent } from './edition-outlets/intro';
+import { EditionIntroComponent } from './edition-outlets/edition-intro';
 import { ReportComponent } from './edition-outlets/report';
 
 import { EditionConstants } from './models/edition-constants';
@@ -20,7 +20,7 @@ const editionRoutes: Routes = [
                 path: ':id',
                 component: EditionOverviewComponent,
                 children: [
-                    { path: EditionConstants.editionIntro.path, component: IntroComponent },
+                    { path: EditionConstants.editionIntro.path, component: EditionIntroComponent },
                     { path: EditionConstants.editionDetail.path, component: EditionDetailComponent },
                     { path: EditionConstants.editionReport.path, component: ReportComponent }
                 ]
@@ -31,13 +31,13 @@ const editionRoutes: Routes = [
 
 /**
  * Routed components of the {@link EditionModule}:
- * {@link IntroComponent}, {@link EditionDetailComponent},
+ * {@link EditionIntroComponent}, {@link EditionDetailComponent},
  * {@link ReportComponent}.
  */
 export const routedEditionComponents = [
     EditionViewComponent,
     EditionDetailComponent,
-    IntroComponent,
+    EditionIntroComponent,
     EditionOverviewComponent,
     ReportComponent
 ];

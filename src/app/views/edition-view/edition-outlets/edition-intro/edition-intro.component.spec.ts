@@ -8,21 +8,21 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 
-import { IntroComponent } from './intro.component';
+import { EditionIntroComponent } from './edition-intro.component';
 
 describe('IntroComponent', () => {
-    let component: IntroComponent;
-    let fixture: ComponentFixture<IntroComponent>;
+    let component: EditionIntroComponent;
+    let fixture: ComponentFixture<EditionIntroComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
-            declarations: [CompileHtmlComponent, IntroComponent, ModalComponent, RouterLinkStubDirective]
+            declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(IntroComponent);
+        fixture = TestBed.createComponent(EditionIntroComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });
