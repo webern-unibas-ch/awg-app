@@ -28,18 +28,18 @@ export class ReportComponent implements OnInit {
     editionReportData$: Observable<[SourceList, TextcriticsList]>;
 
     /**
+     * Public variable: reportTitle.
+     *
+     * It keeps the title of the report section.
+     */
+    reportTitle = EditionConstants.editionReport.short;
+
+    /**
      * Public variable: reportId.
      *
      * It keeps the id of the report section.
      */
     reportId = 'report';
-
-    /**
-     * Public variable: reportTitle.
-     *
-     * It keeps the title of the report section.
-     */
-    reportTitle = 'Kritischer Bericht';
 
     /**
      * Constructor of the ReportComponent.

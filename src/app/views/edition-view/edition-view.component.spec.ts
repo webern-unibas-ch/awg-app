@@ -25,8 +25,8 @@ describe('EditionViewComponent (DONE)', () => {
 
     let mockRouter;
 
-    const expectedTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
-    const expectedId = 'edition';
+    const expectedTitle = 'Beispieledition ausgewählter Skizzen';
+    const expectedId = 'awg-edition-view';
 
     beforeEach(async(() => {
         // router spy object
@@ -56,11 +56,11 @@ describe('EditionViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should have title and id', () => {
-            expect(component.editionTitle).toBeDefined();
-            expect(component.editionTitle).toBe(expectedTitle);
+            expect(component.editionViewTitle).toBeDefined();
+            expect(component.editionViewTitle).toBe(expectedTitle);
 
-            expect(component.editionId).toBeDefined();
-            expect(component.editionId).toBe(expectedId);
+            expect(component.editionViewId).toBeDefined();
+            expect(component.editionViewId).toBe(expectedId);
         });
 
         describe('#routeToSidenav', () => {

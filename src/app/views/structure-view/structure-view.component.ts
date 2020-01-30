@@ -15,12 +15,12 @@ import { Router } from '@angular/router';
 })
 export class StructureViewComponent implements OnInit {
     /**
-     * Public variable: structureTitle.
+     * Public variable: structureViewTitle.
      *
      * It keeps the title for the heading component
      * of the structure view section.
      */
-    structureTitle = 'Datenstrukturmodell';
+    structureViewTitle = 'Datenstrukturmodell';
 
     /**
      * Public variable: structureId.
@@ -28,7 +28,7 @@ export class StructureViewComponent implements OnInit {
      * It keeps the id for the heading component
      * of the structure view section.
      */
-    structureId = 'structure';
+    structureViewId = 'awg-structure-view';
 
     /**
      * Constructor of the StructureViewComponent.

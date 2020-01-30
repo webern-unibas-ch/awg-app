@@ -15,18 +15,18 @@ import { Router } from '@angular/router';
 })
 export class EditionViewComponent implements OnInit {
     /**
-     * Public variable: editionTitle.
+     * Public variable: editionViewTitle
      *
      * It keeps the title of the edition view section.
      */
-    editionTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
+    editionViewTitle = 'Beispieledition ausgewählter Skizzen';
 
     /**
-     * Public variable: editionId.
+     * Public variable: editionViewId.
      *
      * It keeps the id of the edition view section.
      */
-    editionId = 'edition';
+    editionViewId = 'awg-edition-view';
 
     /**
      * Constructor of the EditionViewComponent.
