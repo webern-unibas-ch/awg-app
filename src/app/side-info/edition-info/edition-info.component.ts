@@ -2,7 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.
@@ -27,15 +27,15 @@ export class EditionInfoComponent implements OnInit {
         catalogueType: 'op.',
         catalogueNumber: '12',
         part: 'Skizzen',
-        description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
+        description: '[Beispieledition ausgewählter Skizzen]'
     };
 
     /**
-     * Readonly constant: editionPath.
+     * Readonly constant: editionWork.
      *
-     * It keeps the path to the edition sections of the current composition.
+     * It keeps the current composition.
      */
-    readonly editionPath = new EditionPath(EditionConstants.op12);
+    readonly editionWork = EditionWorks.op12;
 
     /**
      * Public variable: editionMetaData.

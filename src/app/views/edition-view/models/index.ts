@@ -13,6 +13,8 @@ import { EditionPath } from './edition-path.model';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet } from './edition-svg-sheet.model';
 
+import { EditionWorks } from './edition-works.model';
+
 import { Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
 import { FolioSettings } from './folio-settings.model';
@@ -28,6 +30,7 @@ export {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
+    EditionWorks,
     Folio,
     FolioFormat,
     FolioContent,

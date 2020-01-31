@@ -18,9 +18,32 @@ const editionViewRoutes: Routes = [
         path: '',
         component: EditionViewComponent,
         children: [
-            { path: '', redirectTo: 'series', pathMatch: 'full' },
-            { path: 'series', component: EditionSeriesOverviewComponent },
             {
+                // compositionID (op12, M317, etc.
+                path: 'composition/:compositionId',
+                component: EditionOverviewComponent,
+                children: [
+                    {
+                        path: EditionConstants.editionIntro.path,
+                        component: EditionIntroComponent
+                    },
+                    {
+                        path: EditionConstants.editionDetail.path,
+                        component: EditionDetailComponent
+                    },
+                    { path: EditionConstants.editionReport.path, component: ReportComponent },
+                    {
+                        path: '',
+                        redirectTo: '/' + EditionConstants.editionIntro.path,
+                        pathMatch: 'full'
+                    }
+                ]
+            }
+        ]
+
+        /*{
+            { path: '', redirectTo: 'series', pathMatch: 'full' },
+            { path: 'series', component: EditionOverviewComponent }
                 // seriesID (series/1, etc.) // TODO: add Overview , cf. https://stackblitz.com/edit/angular-nested-routing-with-modules-with-bootstrap?embed=1&file=src/index.html
                 path: 'series/:id',
                 component: EditionSeriesDetailComponent,
@@ -60,8 +83,8 @@ const editionViewRoutes: Routes = [
                         ]
                     }
                 ]
-            }
-        ]
+            ]
+        }*/
     }
 ];
 

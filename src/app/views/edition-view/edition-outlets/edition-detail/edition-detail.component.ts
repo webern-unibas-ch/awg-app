@@ -2,13 +2,13 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, ParamMap, Params, Router } from '@angular/router';
 
 import {
-    EditionConstants,
-    EditionPath,
     EditionSvgSheet,
     EditionSvgOverlay,
     Folio,
     Textcritics,
-    TextcriticsList
+    TextcriticsList,
+    EditionWorks,
+    EditionPath
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
@@ -192,12 +192,12 @@ export class EditionDetailComponent implements OnInit {
         this.selectedSvgSheet = this.svgSheetsData[id];
         this.showTkA = false;
 
-        const editionPath = new EditionPath(EditionConstants.op12);
+        const editionWork: EditionPath = EditionWorks.op12;
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
             queryParamsHandling: ''
         };
 
-        this.router.navigate([editionPath.root, editionPath.detail], navigationExtras);
+        this.router.navigate([editionWork.rootRoute, editionWork.detailRoute], navigationExtras);
     }
 }

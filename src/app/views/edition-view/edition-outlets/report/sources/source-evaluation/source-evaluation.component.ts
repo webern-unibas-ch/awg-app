@@ -1,12 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The SourceEvaluation component.
  *
  * It contains the source evaluation section
- * of the criitical report
+ * of the critical report
  * of the edition view of the app.
  */
 @Component({
@@ -26,11 +26,11 @@ export class SourceEvaluationComponent implements OnInit {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Readonly constant: editionPath.
+     * Readonly constant: editionWork.
      *
-     * It keeps the path to the edition sections of the current composition.
+     * It keeps the current composition.
      */
-    readonly editionPath = new EditionPath(EditionConstants.op12);
+    readonly editionWork = EditionWorks.op12;
 
     /**
      * Angular life cycle hook: ngOnInit.

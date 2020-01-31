@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The EditionOverview component.
@@ -42,24 +42,24 @@ export class EditionOverviewComponent implements OnInit {
      * @returns {void} Sets the editionButtonArray.
      */
     setButtons(): void {
-        const editionPath = new EditionPath(EditionConstants.op12);
+        const editionWork: EditionPath = EditionWorks.op12;
 
         this.editionButtonArray = [
             new RouterLinkButton(
-                editionPath.root,
-                EditionConstants.editionIntro.path,
+                editionWork.rootRoute,
+                editionWork.introRoute,
                 EditionConstants.editionIntro.short,
                 false
             ),
             new RouterLinkButton(
-                editionPath.root,
-                EditionConstants.editionDetail.path,
+                editionWork.rootRoute,
+                editionWork.detailRoute,
                 EditionConstants.editionDetail.short,
                 false
             ),
             new RouterLinkButton(
-                editionPath.root,
-                EditionConstants.editionReport.path,
+                editionWork.rootRoute,
+                editionWork.reportRoute,
                 EditionConstants.editionReport.short,
                 false
             )

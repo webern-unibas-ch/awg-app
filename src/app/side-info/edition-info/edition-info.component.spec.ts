@@ -49,7 +49,7 @@ describe('EditionInfoComponent (DONE)', () => {
             catalogueType: 'op.',
             catalogueNumber: '12',
             part: 'Skizzen',
-            description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
+            description: '[Beispieledition ausgewählter Skizzen]'
         };
 
         // spies on component functions

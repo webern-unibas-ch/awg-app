@@ -7,7 +7,7 @@ import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-view/models';
 import { EditionOverviewComponent } from './edition-overview.component';
 
 // mock components
@@ -41,23 +41,23 @@ describe('EditionOverviewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        const expectedEditionPath = new EditionPath(EditionConstants.op12);
+        const expectedEditionWork: EditionPath = EditionWorks.op12;
         expectedButtonArray = [
             new RouterLinkButton(
-                expectedEditionPath.root,
-                EditionConstants.editionIntro.path,
+                expectedEditionWork.rootRoute,
+                expectedEditionWork.introRoute,
                 EditionConstants.editionIntro.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionPath.root,
-                EditionConstants.editionDetail.path,
+                expectedEditionWork.rootRoute,
+                expectedEditionWork.detailRoute,
                 EditionConstants.editionDetail.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionPath.root,
-                EditionConstants.editionReport.path,
+                expectedEditionWork.rootRoute,
+                expectedEditionWork.reportRoute,
                 EditionConstants.editionReport.short,
                 false
             )

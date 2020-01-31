@@ -6,9 +6,14 @@
  */
 export class EditionConstants {
     /**
-     * The root path to the edition section of the app.
+     * The route to the edition path of the app.
      */
-    static readonly editionPath = '/edition';
+    static readonly editionRoute = '/edition';
+
+    /**
+     * The route to the composition path of an edition.
+     */
+    static readonly compositionRoute = '/composition';
 
     /**
      * The path to the edition section of series I.
@@ -126,16 +131,6 @@ export class EditionConstants {
         short: 'Kritischer Bericht',
         full: 'Kritischer Bericht'
     };
-
-    /**
-     * The path to the edition section of a composition: op. 12.
-     */
-    static readonly op12 = '/op12';
-
-    /**
-     * The path to the edition section of a composition: op. 25.
-     */
-    static readonly op25 = '/op25';
 
     /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
@@ -26,11 +26,11 @@ export class SourceDescriptionComponent implements OnInit {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Readonly constant: editionPath.
+     * Readonly constant: editionWork.
      *
-     * It keeps the path to the edition sections of the current composition.
+     * It keeps the current composition.
      */
-    readonly editionPath = new EditionPath(EditionConstants.op12);
+    readonly editionWork: EditionPath = EditionWorks.op12;
 
     /**
      * Readonly constant: firmSignPath.
