@@ -1,6 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
 import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 
@@ -12,6 +14,7 @@ describe('EditionSvgSheetComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [NgxGalleryModule],
             declarations: [EditionSvgSheetComponent]
         }).compileComponents();
     }));

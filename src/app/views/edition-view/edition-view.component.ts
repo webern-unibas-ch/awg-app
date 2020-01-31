@@ -31,7 +31,7 @@ export class EditionViewComponent implements OnInit {
     /**
      * Constructor of the EditionViewComponent.
      *
-     * It declares a private Router instance.
+     * It declares a private ActivatedRoute and Router instance.
      *
      * @param {Router} router Instance of the Angular router.
      */
