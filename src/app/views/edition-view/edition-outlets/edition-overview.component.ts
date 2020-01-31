@@ -18,11 +18,11 @@ import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-
 })
 export class EditionOverviewComponent implements OnInit {
     /**
-     * Public variable: editionButtonArray.
+     * Public variable: editionRouterLinkButtons.
      *
      * It keeps the array for the edition router link buttons.
      */
-    editionButtonArray: RouterLinkButton[];
+    editionRouterLinkButtons: RouterLinkButton[];
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -44,7 +44,7 @@ export class EditionOverviewComponent implements OnInit {
     setButtons(): void {
         const editionWork: EditionPath = EditionWorks.op12;
 
-        this.editionButtonArray = [
+        this.editionRouterLinkButtons = [
             new RouterLinkButton(
                 editionWork.rootRoute,
                 editionWork.introRoute,

@@ -1,6 +1,6 @@
 <awg-router-link-button-group
-    *ngIf="searchButtonArray"
-    [buttonArray]="searchButtonArray"
+    *ngIf="searchRouterLinkButtons"
+    [routerLinkButtons]="searchRouterLinkButtons"
     [queryParamsHandling]="'preserve'"
     (selectButtonRequest)="onButtonSelect($event)"
 >
