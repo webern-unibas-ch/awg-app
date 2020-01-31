@@ -9,17 +9,17 @@ import { SearchFormComponent } from './data-outlets/search-panel/search-form/sea
 import { SearchResultListComponent } from './data-outlets/search-panel/search-result-list/search-result-list.component';
 
 /* Routing Module */
-import { DataRoutingModule, routedDataComponents } from './data-routing.module';
+import { DataViewRoutingModule, routedDataViewComponents } from './data-view-routing.module';
 
 /**
- * The data module.
+ * The dataView module.
  *
- * It embeds the data components and their [routing definition]{@link DataRoutingModule},
+ * It embeds the data components and their [routing definition]{@link DataViewRoutingModule},
  * the {@link SearchFormComponent}, {@link SearchResultListComponent},
  * as well as the {@link ResourceDetailModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, ResourceDetailModule, DataRoutingModule],
-    declarations: [routedDataComponents, SearchFormComponent, SearchResultListComponent]
+    imports: [SharedModule, ResourceDetailModule, DataViewRoutingModule],
+    declarations: [routedDataViewComponents, SearchFormComponent, SearchResultListComponent]
 })
-export class DataModule {}
+export class DataViewModule {}

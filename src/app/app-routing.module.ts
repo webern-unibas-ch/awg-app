@@ -1,35 +1,34 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
-import { HomeViewComponent } from './views/home-view/home-view.component';
-import { PageNotFoundViewComponent } from './views/page-not-found-view/page-not-found-view.component';
-
 /* routes of the AppModule */
 const appRoutes: Routes = [
-    // eager loaded
-    { path: 'home', component: HomeViewComponent },
-
     // lazy loaded
-    { path: 'contact', loadChildren: () => import('./views/contact-view/contact.module').then(m => m.ContactModule) },
-    { path: 'data', loadChildren: () => import('./views/data-view/data.module').then(m => m.DataModule) },
-    { path: 'edition', loadChildren: () => import('./views/edition-view/edition.module').then(m => m.EditionModule) },
+    { path: 'home', loadChildren: () => import('@awg-views/home-view/home-view.module').then(m => m.HomeViewModule) },
+    {
+        path: 'contact',
+        loadChildren: () => import('@awg-views/contact-view/contact-view.module').then(m => m.ContactViewModule)
+    },
+    { path: 'data', loadChildren: () => import('@awg-views/data-view/data-view.module').then(m => m.DataViewModule) },
+    {
+        path: 'edition',
+        loadChildren: () => import('@awg-views/edition-view/edition-view.module').then(m => m.EditionViewModule)
+    },
     { path: 'editions', redirectTo: 'edition', pathMatch: 'full' },
     {
         path: 'structure',
-        loadChildren: () => import('./views/structure-view/structure.module').then(m => m.StructureModule)
+        loadChildren: () => import('@awg-views/structure-view/structure-view.module').then(m => m.StructureViewModule)
     },
 
     // default routes
     { path: '', redirectTo: 'home', pathMatch: 'full' },
-    { path: '404', component: PageNotFoundViewComponent },
+    {
+        path: '404',
+        loadChildren: () =>
+            import('@awg-views/page-not-found-view/page-not-found-view.module').then(m => m.PageNotFoundViewModule)
+    },
     { path: '**', redirectTo: '404', pathMatch: 'full' }
 ];
-
-/**
- * Routed components of the {@link AppModule}:
- * {@link HomeViewComponent} and {@link PageNotFoundViewComponent}.
- */
-export const routedAppComponents = [HomeViewComponent, PageNotFoundViewComponent];
 
 /**
  * Main app module routing.
@@ -43,7 +42,7 @@ export const routedAppComponents = [HomeViewComponent, PageNotFoundViewComponent
             onSameUrlNavigation: 'reload', // reload when navigating to same url
             scrollPositionRestoration: 'enabled', // restore scroll position
             preloadingStrategy: PreloadAllModules // preload all lazy modules
-            // enableTracing: true          // TODO: do not enable tracing for prodcution
+            // enableTracing: true          // TODO: do not enable tracing for production
         })
     ],
     exports: [RouterModule]

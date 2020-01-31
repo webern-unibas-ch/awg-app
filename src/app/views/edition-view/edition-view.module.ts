@@ -5,18 +5,18 @@ import { EditionDetailModule } from './edition-outlets/edition-detail/edition-de
 import { ReportModule } from './edition-outlets/report/report.module';
 
 /* Routing Module */
-import { EditionRoutingModule, routedEditionComponents } from './edition-routing.module';
+import { EditionViewRoutingModule, routedEditionViewComponents } from './edition-view-routing.module';
 
 /**
- * The edition module.
+ * The editionView module.
  *
  * It embeds the edition components and their
- * [routing definition]{@link EditionRoutingModule}
+ * [routing definition]{@link EditionViewRoutingModule}
  * as well as the {@link EditionDetailModule},
  * {@link ReportModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, EditionDetailModule, ReportModule, EditionRoutingModule],
-    declarations: [routedEditionComponents]
+    imports: [SharedModule, EditionDetailModule, ReportModule, EditionViewRoutingModule],
+    declarations: [routedEditionViewComponents]
 })
-export class EditionModule {}
+export class EditionViewModule {}
