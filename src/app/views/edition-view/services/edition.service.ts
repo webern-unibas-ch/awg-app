@@ -1,12 +1,14 @@
 import { Injectable } from '@angular/core';
 
-import { EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { Observable, ReplaySubject } from 'rxjs';
+
+import { EditionPath, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The Edition service.
  *
- * It handles the provision of the textcritical comments
- * for a selected overlay item.
+ * It handles the provision of the current work and
+ * of the textcritical comments for a selected overlay item.
  *
  * Provided in: `root`.
  * @used in the {@link EditionDetailComponent}.
@@ -15,6 +17,21 @@ import { EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
     providedIn: 'root'
 })
 export class EditionService {
+    /**
+     * Private variable for the replay subject´s buffer size.
+     */
+    private bufferSize = 1;
+
+    /**
+     * Private replay subject to handle edition work.
+     */
+    private editionWorkSubject = new ReplaySubject<EditionPath>(this.bufferSize);
+
+    /**
+     * Private readonly edition work stream as observable (`ReplaySubject`).
+     */
+    private readonly editionWorkStream$ = this.editionWorkSubject.asObservable();
+
     /**
      * Private static method: filterTextcritics.
      *
@@ -43,6 +60,39 @@ export class EditionService {
             case 'item':
                 return filterIndex === +overlay.id;
         }
+    }
+
+    /**
+     * Public method: getEditionWork.
+     *
+     * It provides the latest edition work from the edition work stream.
+     *
+     * @returns {Observable<EditionPath>} The edition work stream as observable.
+     */
+    getEditionWork(): Observable<EditionPath> {
+        return this.editionWorkStream$;
+    }
+
+    /**
+     * Public method: updateEditionWork.
+     *
+     * It updates the edition work stream with the given work.
+     *
+     * @returns {void} Sets the next edition work to the stream.
+     */
+    updateEditionWork(editionWork: EditionPath): void {
+        this.editionWorkSubject.next(editionWork);
+    }
+
+    /**
+     * Public method: clearEditionWork.
+     *
+     * It clears the edition work stream.
+     *
+     * @returns {void} Clears the edition work stream.
+     */
+    clearEditionWork(): void {
+        this.editionWorkSubject.next(null);
     }
 
     /**

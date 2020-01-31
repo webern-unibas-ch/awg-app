@@ -4,7 +4,8 @@
  * It is used in the context of the edition view
  * to store work information of the editions.
  */
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionConstants } from './edition-constants';
+import { EditionPath } from './edition-path.model';
 
 export class EditionWorks {
     /**

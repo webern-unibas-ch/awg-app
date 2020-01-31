@@ -3,5 +3,11 @@
 <!-- heading -->
 <awg-heading [title]="editionViewTitle" [id]="editionViewId"></awg-heading>
 
+<div *ngIf="editionWork$ | async as editionWork">
+    <!-- TODO: make this selectable -->
+    <h5>AWG / {{ editionWork.series.full }} / {{ editionWork.section.full }}</h5>
+    <h3>{{ editionWork.fullLabel }}</h3>
+</div>
+
 <!-- edition routes -->
 <router-outlet></router-outlet>

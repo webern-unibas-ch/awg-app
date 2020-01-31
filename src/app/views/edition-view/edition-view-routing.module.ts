@@ -3,39 +3,50 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionViewComponent } from './edition-view.component';
 import { EditionDetailComponent } from './edition-outlets/edition-detail';
+import { EditionGraphComponent } from './edition-outlets/edition-graph';
 import { EditionIntroComponent } from './edition-outlets/edition-intro';
 import { EditionOverviewComponent } from './edition-outlets/edition-overview.component';
 import { EditionSectionComponent } from './edition-outlets/edition-section';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionTypeComponent } from './edition-outlets/edition-type';
-import { ReportComponent } from './edition-outlets/report';
 
+import { ReportComponent } from './edition-outlets/report';
 import { EditionConstants } from './models/edition-constants';
 
 /* routes of the EditionViewModule */
 const editionViewRoutes: Routes = [
     {
         path: '',
-        component: EditionViewComponent,
+        // component: EditionViewComponent,
         children: [
             {
                 // compositionID (op12, M317, etc.
                 path: 'composition/:compositionId',
-                component: EditionOverviewComponent,
+                component: EditionViewComponent,
                 children: [
                     {
-                        path: EditionConstants.editionIntro.path,
-                        component: EditionIntroComponent
-                    },
-                    {
-                        path: EditionConstants.editionDetail.path,
-                        component: EditionDetailComponent
-                    },
-                    { path: EditionConstants.editionReport.path, component: ReportComponent },
-                    {
                         path: '',
-                        redirectTo: '/' + EditionConstants.editionIntro.path,
-                        pathMatch: 'full'
+                        component: EditionOverviewComponent,
+                        children: [
+                            {
+                                path: EditionConstants.editionGraph.path,
+                                component: EditionGraphComponent
+                            },
+                            {
+                                path: EditionConstants.editionIntro.path,
+                                component: EditionIntroComponent
+                            },
+                            {
+                                path: EditionConstants.editionDetail.path,
+                                component: EditionDetailComponent
+                            },
+                            { path: EditionConstants.editionReport.path, component: ReportComponent },
+                            {
+                                path: '',
+                                redirectTo: '/' + EditionConstants.editionIntro.path,
+                                pathMatch: 'full'
+                            }
+                        ]
                     }
                 ]
             }
@@ -96,6 +107,7 @@ const editionViewRoutes: Routes = [
 export const routedEditionViewComponents = [
     EditionViewComponent,
     EditionDetailComponent,
+    EditionGraphComponent,
     EditionIntroComponent,
     EditionOverviewComponent,
     EditionSectionComponent,

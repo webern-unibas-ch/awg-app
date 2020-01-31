@@ -2,17 +2,30 @@
 <div class="card">
     <div class="card-body bg-light">
         <p>
-            {{ editionInfoHeader?.description }}
+            {{ editionInfoHeaderOp12?.description }}
         </p>
         <p>&#9671;</p>
-        <h5 id="awg-edition-info-header">
-            {{ editionInfoHeader?.section }}
+        <h6 class="awg-edition-info-header">
+            {{ editionInfoHeaderOp12?.section }}
             <br />
-            <i>{{ editionInfoHeader?.title }}</i
-            >&nbsp;{{ editionInfoHeader?.catalogueType }}&nbsp;{{ editionInfoHeader?.catalogueNumber }}
+            <i>{{ editionInfoHeaderOp12?.title }}</i
+            >&nbsp;{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}
             <br />
-            <a [routerLink]="[editionWork.rootRoute, editionWork.introRoute]">{{ editionInfoHeader?.part }}</a>
-        </h5>
+            <a [routerLink]="[editionWorkOp12.rootRoute, editionWorkOp12.introRoute]">{{
+                editionInfoHeaderOp12?.part
+            }}</a>
+        </h6>
+        <p>&#9671;</p>
+        <h6 class="awg-edition-info-header">
+            {{ editionInfoHeaderOp25?.section }}
+            <br />
+            <i>{{ editionInfoHeaderOp25?.title }}</i
+            >&nbsp;{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}
+            <br />
+            <a [routerLink]="[editionWorkOp25.rootRoute, editionWorkOp25.graphRoute]">{{
+                editionInfoHeaderOp25?.part
+            }}</a>
+        </h6>
         <p>&#9671;</p>
         <p>
             Ediert von

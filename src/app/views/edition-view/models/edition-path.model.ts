@@ -25,17 +25,22 @@ export class EditionPath {
     /**
      * The path to the series of an edition.
      */
-    seriesRoute: string;
+    series: any;
 
     /**
      * The path to the section of an edition.
      */
-    sectionRoute: string;
+    section: any;
 
     /**
      * The route to the type of an edition.
      */
-    typeRoute: string;
+    type: any;
+
+    /**
+     * The route to the graph section of an edition.
+     */
+    graphRoute: string;
 
     /**
      * The route to the intro section of an edition.
@@ -73,9 +78,10 @@ export class EditionPath {
         this.shortLabel = compositionObj.short ? compositionObj.short : '';
         this.fullLabel = compositionObj.full ? compositionObj.full : '';
         this.compositionRoute = compositionObj.path ? compositionObj.path : '';
-        this.seriesRoute = series ? series.path : ''; // EditionConstants.series1.path;
-        this.sectionRoute = section ? section.path : ''; // EditionConstants.section1.path;
-        this.typeRoute = type ? type.path : ''; // EditionConstants.textEdition.path;
+        this.series = series ? series : ''; // EditionConstants.series1.path;
+        this.section = section ? section : ''; // EditionConstants.section1.path;
+        this.type = type ? type : ''; // EditionConstants.textEdition.path;
+        this.graphRoute = EditionConstants.editionGraph.path;
         this.introRoute = EditionConstants.editionIntro.path;
         this.detailRoute = EditionConstants.editionDetail.path;
         this.reportRoute = EditionConstants.editionReport.path;

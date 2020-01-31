@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
+import { Observable } from 'rxjs';
 
 /**
  * The EditionView component.
@@ -29,13 +33,24 @@ export class EditionViewComponent implements OnInit {
     editionViewId = 'awg-edition-view';
 
     /**
+     * Public variable: editionWork$.
+     *
+     * Observable that keeps the information
+     * about the current composition.
+     */
+    editionWork$: Observable<EditionPath>;
+
+    /**
      * Constructor of the EditionViewComponent.
      *
-     * It declares a private ActivatedRoute and Router instance.
+     * It declares private instances of
+     * EditionService, ActivatedRoute and Router.
      *
+     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private router: Router) {}
+    constructor(private editionService: EditionService, private route: ActivatedRoute, private router: Router) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -45,6 +60,11 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
+        this.route.paramMap.subscribe(params => {
+            const id: string = params.get('compositionId') ? params.get('compositionId') : '';
+            this.editionService.updateEditionWork(EditionWorks[id]);
+            this.editionWork$ = this.editionService.getEditionWork();
+        });
     }
 
     /**

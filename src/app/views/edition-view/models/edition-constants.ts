@@ -106,6 +106,15 @@ export class EditionConstants {
     };
 
     /**
+     * The path to the graph section of an edition.
+     */
+    static readonly editionGraph = {
+        path: 'graph',
+        short: 'Graph',
+        full: 'Graph'
+    };
+
+    /**
      * The path to the intro section of an edition.
      */
     static readonly editionIntro = {
