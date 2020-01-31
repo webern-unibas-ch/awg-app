@@ -43,13 +43,13 @@ describe('ReportComponent', () => {
     let component: ReportComponent;
     let fixture: ComponentFixture<ReportComponent>;
 
-    let getDataSpy: Spy;
+    let getEditionReportDataSpy: Spy;
 
     beforeEach(async(() => {
-        // create a fake service object with a `getData()` spy
+        // create a fake service object with a `getEditionReportData()` spy
         const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
         // make the spy return a synchronous Observable with the test data
-        getDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
+        getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
@@ -80,9 +80,9 @@ describe('ReportComponent', () => {
             fixture.detectChanges();
         });
 
-        it('should have called `getData()`', () => {
+        it('should have called `getEditionReportData()`', () => {
             // `getEditionReportData()` called immediately after init
-            expect(getDataSpy.calls.any()).toBe(true, 'getData called');
+            expect(getEditionReportDataSpy.calls.any()).toBe(true, 'getData called');
         });
     });
 });

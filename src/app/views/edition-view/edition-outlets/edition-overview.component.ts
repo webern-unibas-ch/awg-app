@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -77,9 +77,9 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     /**
      * Public method: setButtons.
      *
-     * It initializes the editionButtonArray.
+     * It initializes the editionRouterLinkButtons.
      *
-     * @returns {void} Sets the editionButtonArray.
+     * @returns {void} Sets the editionRouterLinkButtons.
      */
     setButtons(): void {
         this.editionRouterLinkButtons = [

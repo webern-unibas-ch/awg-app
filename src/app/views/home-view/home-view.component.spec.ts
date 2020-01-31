@@ -1,6 +1,6 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
 import {
@@ -15,6 +15,15 @@ import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { HomeViewComponent } from './home-view.component';
+
+// mock heading component
+@Component({ selector: 'awg-heading', template: '' })
+class HeadingStubComponent {
+    @Input()
+    title: string;
+    @Input()
+    id: string;
+}
 
 describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
@@ -37,7 +46,7 @@ describe('HomeViewComponent (DONE)', () => {
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
-            declarations: [HomeViewComponent, RouterLinkStubDirective],
+            declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
             providers: [
                 { provide: CoreService, useValue: mockCoreService },
                 { provide: Router, useValue: mockRouter }
@@ -101,8 +110,8 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain three `div.para` & one `div.declamation` elements', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.para', 3, 3);
+            it('... should contain two `div.para` & one `div.declamation` elements', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.para', 2, 2);
                 getAndExpectDebugElementByCss(compDe, 'div.declamation', 1, 1);
             });
 

@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { RouterOutletStubComponent } from '@testing/router-stubs';
+import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -24,6 +24,7 @@ describe('EditionViewComponent (DONE)', () => {
     let compEl: any;
 
     let mockRouter;
+    let mockActivatedRoute: ActivatedRouteStub;
 
     const expectedTitle = 'Beispieledition ausgewählter Skizzen';
     const expectedId = 'awg-edition-view';
@@ -31,10 +32,15 @@ describe('EditionViewComponent (DONE)', () => {
     beforeEach(async(() => {
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+        // mocked activated route
+        mockActivatedRoute = new ActivatedRouteStub();
 
         TestBed.configureTestingModule({
             declarations: [EditionViewComponent, HeadingStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: Router, useValue: mockRouter }]
+            providers: [
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                { provide: Router, useValue: mockRouter }
+            ]
         }).compileComponents();
     }));
 
