@@ -142,7 +142,23 @@ export class EditionConstants {
     };
 
     /**
+     * ASSETS
+     */
+
+    /**
+     * The paths to the edition assets JSON files.
+     */
+    static readonly editionAssets = {
+        baseRoot: 'assets/data/edition',
+        folioFile: 'folio.json',
+        introFile: 'intro.json',
+        svgSheetsFile: 'svg-sheets.json',
+        sourcelistFile: 'sourcelist.json',
+        textcriticsFile: 'textcritics.json'
+    };
+
+    /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
-    static readonly firmJENo9Lin28 = 'assets/img/edition/sI/a5/op12/firm_je_no9_lin28.png';
+    static readonly firmJENo9Lin28 = 'assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png';
 }
