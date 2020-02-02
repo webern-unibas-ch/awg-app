@@ -11,7 +11,7 @@ import { EditionConstants } from './edition-constants';
 import { EditionPath } from './edition-path.model';
 
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
-import { EditionSvgSheet } from './edition-svg-sheet.model';
+import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
 import { EditionWorks } from './edition-works.model';
 
@@ -30,6 +30,7 @@ export {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,
+    EditionSvgSheetList,
     EditionWorks,
     Folio,
     FolioFormat,

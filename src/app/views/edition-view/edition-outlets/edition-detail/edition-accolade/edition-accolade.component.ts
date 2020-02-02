@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgSheetList, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The EditionAccolade component.
@@ -25,7 +25,7 @@ export class EditionAccoladeComponent implements OnInit {
      * It keeps the svg sheets data.
      */
     @Input()
-    svgSheetsData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheetList;
 
     /**
      * Input variable: selectedOverlay.

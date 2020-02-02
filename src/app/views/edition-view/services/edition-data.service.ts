@@ -8,6 +8,7 @@ import {
     EditionConstants,
     EditionPath,
     EditionSvgSheet,
+    EditionSvgSheetList,
     Folio,
     SourceList,
     TextcriticsList
@@ -51,21 +52,22 @@ export class EditionDataService {
      * (folios, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
-     * @returns {Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>}
      * @param {EditionPath} editionWork The current composition input.
+     *
+     * @returns {Observable<[Folio[], EditionSvgSheetList, TextcriticsList]>}
      * The fork-joined observable array with the Folio,
-     * EditionSvgSheet and TextcriticsList data.
+     * EditionSvgSheetList and TextcriticsList data.
      * Only the first emit is needed.
      */
-    getEditionDetailData(editionWork: EditionPath): Observable<[Folio[], EditionSvgSheet[], TextcriticsList]> {
+    getEditionDetailData(editionWork: EditionPath): Observable<[Folio[], EditionSvgSheetList, TextcriticsList]> {
         this.setBasePath(editionWork);
         const folioData$: Observable<Folio[]> = this.getFolioData();
-        const svgSheetsData$: Observable<EditionSvgSheet[]> = this.getSvgSheetsData();
+        const svgSheetsData$: Observable<EditionSvgSheetList> = this.getSvgSheetsData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
         return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
             // default empty value
-            defaultIfEmpty([[new Folio()], [new EditionSvgSheet()], new TextcriticsList()]),
+            defaultIfEmpty([[new Folio()], new EditionSvgSheetList(), new TextcriticsList()]),
             // take only first request (JSON fetch)
             take(1)
         );
@@ -130,9 +132,9 @@ export class EditionDataService {
      * the svg sheets data and triggers
      * the method to get the JSON data.
      *
-     * @returns {Observable<EditionSvgSheet[]>} The observable with the EditionSvgSheet data.
+     * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
      */
-    private getSvgSheetsData(): Observable<EditionSvgSheet[]> {
+    private getSvgSheetsData(): Observable<EditionSvgSheetList> {
         const file = EditionConstants.editionAssets.svgSheetsFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
