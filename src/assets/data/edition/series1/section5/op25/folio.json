@@ -1,0 +1,22 @@
+{
+    "convolute": [
+        {
+            "folioId": "38v",
+            "systems": "16",
+            "format": {
+                "height": 270,
+                "width": 335
+            },
+            "content": []
+        },
+        {
+            "folioId": "39r",
+            "systems": "16",
+            "format": {
+                "height": 270,
+                "width": 335
+            },
+            "content": []
+        }
+    ]
+}
