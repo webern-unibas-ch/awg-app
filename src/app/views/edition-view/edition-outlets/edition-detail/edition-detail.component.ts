@@ -241,12 +241,11 @@ export class EditionDetailComponent implements OnInit {
         this.selectedSvgSheet = this.setSelectedSvgSheet(id);
         this.showTkA = false;
 
-        const editionWork: EditionWork = EditionWorks.op12;
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
             queryParamsHandling: ''
         };
 
-        this.router.navigate([editionWork.baseRoute, editionWork.detailRoute], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
     }
 }
