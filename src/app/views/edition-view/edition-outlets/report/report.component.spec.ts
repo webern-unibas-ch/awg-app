@@ -10,7 +10,13 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
-import { EditionWorks, SourceDescriptionList, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import {
+    EditionWorks,
+    SourceDescriptionList,
+    SourceEvaluationList,
+    SourceList,
+    TextcriticsList
+} from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { ReportComponent } from './report.component';
@@ -30,6 +36,8 @@ class SourcesStubComponent {
     sourceListData: SourceList;
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
+    @Input()
+    sourceEvaluationListData: SourceEvaluationList;
 
     // TODO: handle output
 }

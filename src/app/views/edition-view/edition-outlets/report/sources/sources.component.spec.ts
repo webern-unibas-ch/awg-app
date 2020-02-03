@@ -8,7 +8,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SourceDescriptionList, SourceList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
 import { SourcesComponent } from './sources.component';
 
@@ -30,6 +30,8 @@ class SourceDescriptionStubComponent {
 
 @Component({ selector: 'awg-source-evaluation', template: '' })
 class SourceEvaluationStubComponent {
+    @Input()
+    sourceEvaluationListData: SourceEvaluationList;
     // TODO: handle outputs
 }
 
@@ -40,6 +42,8 @@ describe('SourcesComponent', () => {
     let compEl: any;
 
     let expectedSourceListData: SourceList;
+    let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedSourceEvaluationListData: SourceEvaluationList;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -68,6 +72,14 @@ describe('SourcesComponent', () => {
     describe('BEFORE initial data binding', () => {
         it('should not get sourceListData input', () => {
             expect(component.sourceListData).toBeUndefined('should be undefined');
+        });
+
+        it('should not get sourceDescriptionListData input', () => {
+            expect(component.sourceDescriptionListData).toBeUndefined('should be undefined');
+        });
+
+        it('should not get sourceEvaluationListData input', () => {
+            expect(component.sourceEvaluationListData).toBeUndefined('should be undefined');
         });
 
         it('should not contain source list component (stubbed)', () => {
@@ -108,9 +120,29 @@ describe('SourcesComponent', () => {
                     }
                 ]
             };
+            expectedSourceDescriptionListData = {
+                sources: [
+                    {
+                        id: 'sourceA',
+                        siglum: 'A',
+                        location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                        description: []
+                    }
+                ]
+            };
+            expectedSourceEvaluationListData = {
+                sources: [
+                    {
+                        id: 'op12',
+                        content: ['Die Skizzen in A sind zum Testen da.']
+                    }
+                ]
+            };
 
             // simulate the parent setting the input properties
             component.sourceListData = expectedSourceListData;
+            component.sourceDescriptionListData = expectedSourceDescriptionListData;
+            component.sourceEvaluationListData = expectedSourceEvaluationListData;
 
             // trigger initial data binding
             fixture.detectChanges();
