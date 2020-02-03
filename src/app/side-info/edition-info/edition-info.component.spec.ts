@@ -54,7 +54,7 @@ describe('EditionInfoComponent (DONE)', () => {
         };
         expectedEditionInfoHeaderOp25 = {
             section: 'AWG I/5',
-            title: 'Drei Lieder',
+            title: 'Drei Lieder nach Gedichten von Hildegard Jone',
             catalogueType: 'op.',
             catalogueNumber: '25',
             part: 'Graph',
