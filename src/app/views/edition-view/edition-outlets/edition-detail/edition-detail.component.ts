@@ -96,14 +96,14 @@ export class EditionDetailComponent implements OnInit {
     /**
      * Constructor of the EditionDetailComponent.
      *
-     * It declares a private instances of
+     * It declares private instances of
      * EditionDataService and EditionService,
      * ActivatedRoute and Router.
      *
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {Router} router Instance of the Angular Router.
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
+     * @param {Router} router Instance of the Angular Router.
      */
     constructor(
         private editionDataService: EditionDataService,

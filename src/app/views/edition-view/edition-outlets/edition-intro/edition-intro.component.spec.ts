@@ -1,6 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -16,7 +18,7 @@ describe('IntroComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [NgbModalModule, RouterTestingModule],
+            imports: [NgbModalModule, HttpClientTestingModule, RouterTestingModule],
             declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));

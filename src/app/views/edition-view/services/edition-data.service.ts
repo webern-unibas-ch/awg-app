@@ -9,6 +9,7 @@ import {
     EditionWork,
     EditionSvgSheetList,
     FolioConvoluteList,
+    IntroList,
     SourceList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -75,6 +76,31 @@ export class EditionDataService {
     }
 
     /**
+     * Public method: getEditionIntroData.
+     *
+     * It provides the data from a JSON file
+     * for the intro of the edition detail view.
+     *
+     * @param {EditionWork} editionWork The current composition input.
+     *
+     * @returns {Observable<IntroList>}
+     * The fork-joined observable array with the FolioConvoluteList,
+     * EditionSvgSheetList and TextcriticsList data.
+     * Only the first emit is needed.
+     */
+    getEditionIntroData(editionWork: EditionWork): Observable<IntroList> {
+        this.setBasePath(editionWork);
+        const introData$: Observable<IntroList> = this.getIntroData();
+
+        return introData$.pipe(
+            // default empty value
+            defaultIfEmpty(new IntroList()),
+            // take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
      * Public method: getEditionReportData.
      *
      * It provides the data from a JSON file
@@ -126,16 +152,16 @@ export class EditionDataService {
     }
 
     /**
-     * Private method: getSvgSheetsData.
+     * Private method: getIntroData.
      *
      * It sets the path to the JSON file with
-     * the svg sheets data and triggers
+     * the intro data and triggers
      * the method to get the JSON data.
      *
-     * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
+     * @returns {Observable<IntroList>} The observable with the Intro data.
      */
-    private getSvgSheetsData(): Observable<EditionSvgSheetList> {
-        const file = EditionConstants.editionAssets.svgSheetsFile;
+    private getIntroData(): Observable<IntroList> {
+        const file = EditionConstants.editionAssets.introFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
@@ -151,6 +177,21 @@ export class EditionDataService {
      */
     private getSourceListData(): Observable<SourceList> {
         const file = EditionConstants.editionAssets.sourcelistFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getSvgSheetsData.
+     *
+     * It sets the path to the JSON file with
+     * the svg sheets data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
+     */
+    private getSvgSheetsData(): Observable<EditionSvgSheetList> {
+        const file = EditionConstants.editionAssets.svgSheetsFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }

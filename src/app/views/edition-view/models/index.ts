@@ -20,6 +20,8 @@ import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from '.
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 
+import { Intro, IntroList } from './intro.model';
+
 import { Source, SourceList } from './source.model';
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
@@ -43,6 +45,8 @@ export {
     FolioCalculationPoint,
     FolioSettings,
     FolioSvgData,
+    Intro,
+    IntroList,
     Source,
     SourceList,
     Textcritics,
