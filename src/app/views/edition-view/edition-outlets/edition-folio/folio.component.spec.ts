@@ -28,7 +28,7 @@ describe('FolioComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not get folios input', () => {
-            expect(component.folios).toBeUndefined('should be undefined');
+            expect(component.folioData).toBeUndefined('should be undefined');
         });
 
         it('should not get svg file input', () => {
@@ -78,7 +78,7 @@ describe('FolioComponent', () => {
             ];
 
             // simulate the parent setting the input properties
-            component.folios = expectedFolios;
+            component.folioData = expectedFolios;
             component.selectedSvgSheet = expectedSvgSheet;
 
             // trigger initial data binding
@@ -90,7 +90,7 @@ describe('FolioComponent', () => {
         });
 
         it('should get folios input', () => {
-            expect(component.folios).toBe(expectedFolios);
+            expect(component.folioData).toBe(expectedFolios);
         });
     });
 });

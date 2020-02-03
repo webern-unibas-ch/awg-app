@@ -12,7 +12,11 @@ import {
     EditionSvgSheet,
     EditionSvgOverlay,
     Textcritics,
-    TextcriticsList
+    TextcriticsList,
+    EditionSvgSheetList,
+    FolioConvoluteList,
+    EditionPath,
+    EditionWorks
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -26,7 +30,7 @@ class EditionDetailNotificationStubComponent {}
 @Component({ selector: 'awg-edition-convolute', template: '' })
 class EditionConvoluteStubComponent {
     @Input()
-    folios: Folio[];
+    folioConvoluteData: FolioConvoluteList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
 
@@ -36,7 +40,7 @@ class EditionConvoluteStubComponent {
 @Component({ selector: 'awg-edition-accolade', template: '' })
 class EditionAccoladeStubComponent {
     @Input()
-    svgSheetsData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
@@ -53,8 +57,9 @@ describe('EditionDetailComponent', () => {
     let component: EditionDetailComponent;
     let fixture: ComponentFixture<EditionDetailComponent>;
 
-    let mockEditionService: Partial<EditionService>;
     let getEditionDetailDataSpy: Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>;
+    let getTextcriticsListSpy;
+    let getEditionWorkSpy;
 
     beforeEach(async(() => {
         // create a fake service object with a `getEditionDetailData()` spy
@@ -63,9 +68,17 @@ describe('EditionDetailComponent', () => {
         getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
         const expectedTextcritics = []; // TODO: provide real test data
+        // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+        const mockEditionService = jasmine.createSpyObj('EditionService', ['getTextcritics', 'getEditionWork']);
+        // make the spies return a synchronous Observable with the test data
+        getTextcriticsListSpy = mockEditionService.getTextcritics.and.returnValue(expectedTextcritics);
+        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+        /*
         mockEditionService = {
-            getTextcritics: (textcritics: Textcritics[], overlay: { type: string; id: string }) => expectedTextcritics
+            // getTextcritics: (textcritics: Textcritics[], overlay: { type: string; id: string }) => expectedTextcritics,
+
         };
+    */
 
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],

@@ -5,7 +5,15 @@ import { Data } from '@angular/router';
 
 import { forkJoin, Observable, of } from 'rxjs';
 
-import { Folio, EditionSvgSheet, SourceList, TextcriticsList, Source } from '@awg-views/edition-view/models';
+import {
+    Folio,
+    EditionSvgSheet,
+    SourceList,
+    TextcriticsList,
+    Source,
+    EditionWorks,
+    EditionConstants
+} from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
@@ -16,12 +24,13 @@ describe('EditionDataService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    const BASE = 'assets/data';
+    const BASE = `${EditionConstants.editionAssets.baseRoot}/series1/section5/op12`; // TODO: generate from EditionWorks
     const regexBase = new RegExp(BASE);
-    const folioFilePath = `${BASE}/folio.json`;
-    const sheetsFilePath = `${BASE}/svg-sheets.json`;
-    const sourcelistFilePath = `${BASE}/sourcelist.json`;
-    const textcriticsFilePath = `${BASE}/textcritics.json`;
+    const folioConvoluteFilePath = `${BASE}/${EditionConstants.editionAssets.folioConvoluteFile}`;
+    const sheetsFilePath = `${BASE}/${EditionConstants.editionAssets.svgSheetsFile}`;
+    const sourcelistFilePath = `${BASE}/${EditionConstants.editionAssets.sourcelistFile}`;
+    const textcriticsFilePath = `${BASE}/${EditionConstants.editionAssets.textcriticsFile}`;
+    const expectedEditionWork = EditionWorks.op12;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -68,7 +77,7 @@ describe('EditionDataService', () => {
         describe('request', () => {
             it(`... should perform an HTTP GET request to convolute, sheets & textcritics file`, async(() => {
                 // call service function
-                editionDataService.getEditionDetailData().subscribe();
+                editionDataService.getEditionDetailData(expectedEditionWork).subscribe();
 
                 // expect one request to to every file with given settings
                 const call = httpTestingController.match((req: HttpRequest<any>) => {
@@ -82,7 +91,7 @@ describe('EditionDataService', () => {
                 expect(call[0].request.responseType).toBe('json', 'should be json');
                 expect(call[1].request.responseType).toBe('json', 'should be json');
                 expect(call[2].request.responseType).toBe('json', 'should be json');
-                expect(call[0].request.url).toBe(folioFilePath, `should be ${folioFilePath}`);
+                expect(call[0].request.url).toBe(folioConvoluteFilePath, `should be ${folioConvoluteFilePath}`);
                 expect(call[1].request.url).toBe(sheetsFilePath, `should be ${sheetsFilePath}`);
                 expect(call[2].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
             }));
