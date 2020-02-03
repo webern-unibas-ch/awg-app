@@ -8,12 +8,12 @@
  */
 
 import { EditionConstants } from './edition-constants';
-import { EditionWork } from './edition-work.model';
 
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { EditionWorks } from './edition-works.model';
+import { EditionWork } from './edition-work.model';
+import { EditionWorks } from './edition-works';
 
 import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
 import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from './folio-calculation.model';
