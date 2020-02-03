@@ -151,7 +151,8 @@
         },
         {
             "convoluteId": "B–H (siehe Kritischer Bericht)",
-            "folios": []
+            "folios": [],
+            "linkTo": "op12_sourceNotA"
         }
     ]
 }

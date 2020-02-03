@@ -29,6 +29,11 @@ export class FolioConvolute {
      * The array of folios from a convolute.
      */
     folios: Folio[];
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo?: string;
 }
 
 /**

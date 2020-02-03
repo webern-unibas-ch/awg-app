@@ -109,7 +109,13 @@ export class EditionConvoluteComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.selectedConvolute = this.folioConvoluteData.convolutes[0];
+        if (
+            this.folioConvoluteData.convolutes &&
+            this.folioConvoluteData.convolutes.constructor === Array &&
+            this.folioConvoluteData.convolutes.length > 0
+        ) {
+            this.selectedConvolute = this.folioConvoluteData.convolutes[0];
+        }
     }
 
     /**
@@ -142,7 +148,9 @@ export class EditionConvoluteComponent implements OnInit {
         const convolute: FolioConvolute = this.folioConvoluteData.convolutes[convoluteIndex];
         if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
             // if no folio data provided, open modal
-            this.openModal('sourceNotA');
+            if (convolute.linkTo) {
+                this.openModal(convolute.linkTo);
+            }
             return;
         }
         this.selectedConvolute = convolute;

@@ -3,20 +3,15 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Data } from '@angular/router';
 
-import { forkJoin, Observable, of } from 'rxjs';
-
 import {
-    Folio,
-    EditionSvgSheet,
-    SourceList,
-    TextcriticsList,
-    Source,
+    EditionConstants,
     EditionWorks,
-    EditionConstants
+    EditionWork,
+    SourceList,
+    TextcriticsList
 } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
-import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
 
 describe('EditionDataService', () => {
     let editionDataService: EditionDataService;
@@ -24,13 +19,13 @@ describe('EditionDataService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    const BASE = `${EditionConstants.editionAssets.baseRoute}/series1/section5/op12`; // TODO: generate from EditionWorks
-    const regexBase = new RegExp(BASE);
-    const folioConvoluteFilePath = `${BASE}/${EditionConstants.editionAssets.folioConvoluteFile}`;
-    const sheetsFilePath = `${BASE}/${EditionConstants.editionAssets.svgSheetsFile}`;
-    const sourcelistFilePath = `${BASE}/${EditionConstants.editionAssets.sourcelistFile}`;
-    const textcriticsFilePath = `${BASE}/${EditionConstants.editionAssets.textcriticsFile}`;
-    const expectedEditionWork = EditionWorks.op12;
+    const expectedBASE = `${EditionConstants.editionAssets.baseRoute}/series1/section5/op12`; // TODO: generate from EditionWorks
+    const regexBase = new RegExp(expectedBASE);
+    const expectedFolioConvoluteFilePath = `${expectedBASE}/${EditionConstants.editionAssets.folioConvoluteFile}`;
+    const expectedSheetsFilePath = `${expectedBASE}/${EditionConstants.editionAssets.svgSheetsFile}`;
+    const expectedSourcelistFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourcelistFile}`;
+    const expectedTextcriticsFilePath = `${expectedBASE}/${EditionConstants.editionAssets.textcriticsFile}`;
+    let expectedEditionWork: EditionWork;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -41,6 +36,9 @@ describe('EditionDataService', () => {
         editionDataService = TestBed.get(EditionDataService);
         httpClient = TestBed.get(HttpClient);
         httpTestingController = TestBed.get(HttpTestingController);
+
+        // data
+        expectedEditionWork = EditionWorks.op12;
     });
 
     // after every test, assert that there are no more pending requests
@@ -91,9 +89,15 @@ describe('EditionDataService', () => {
                 expect(call[0].request.responseType).toBe('json', 'should be json');
                 expect(call[1].request.responseType).toBe('json', 'should be json');
                 expect(call[2].request.responseType).toBe('json', 'should be json');
-                expect(call[0].request.url).toBe(folioConvoluteFilePath, `should be ${folioConvoluteFilePath}`);
-                expect(call[1].request.url).toBe(sheetsFilePath, `should be ${sheetsFilePath}`);
-                expect(call[2].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
+                expect(call[0].request.url).toBe(
+                    expectedFolioConvoluteFilePath,
+                    `should be ${expectedFolioConvoluteFilePath}`
+                );
+                expect(call[1].request.url).toBe(expectedSheetsFilePath, `should be ${expectedSheetsFilePath}`);
+                expect(call[2].request.url).toBe(
+                    expectedTextcriticsFilePath,
+                    `should be ${expectedTextcriticsFilePath}`
+                );
             }));
         });
     });
@@ -114,8 +118,11 @@ describe('EditionDataService', () => {
                 expect(call[1].request.method).toBe('GET', 'should be GET');
                 expect(call[0].request.responseType).toBe('json', 'should be json');
                 expect(call[1].request.responseType).toBe('json', 'should be json');
-                expect(call[0].request.url).toBe(sourcelistFilePath, `should be ${sourcelistFilePath}`);
-                expect(call[1].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
+                expect(call[0].request.url).toBe(expectedSourcelistFilePath, `should be ${expectedSourcelistFilePath}`);
+                expect(call[1].request.url).toBe(
+                    expectedTextcriticsFilePath,
+                    `should be ${expectedTextcriticsFilePath}`
+                );
             }));
         });
 
@@ -155,8 +162,14 @@ describe('EditionDataService', () => {
                     expect(call[1].request.method).toBe('GET', 'should be GET');
                     expect(call[0].request.responseType).toBe('json', 'should be json');
                     expect(call[1].request.responseType).toBe('json', 'should be json');
-                    expect(call[0].request.url).toBe(sourcelistFilePath, `should be ${sourcelistFilePath}`);
-                    expect(call[1].request.url).toBe(textcriticsFilePath, `should be ${textcriticsFilePath}`);
+                    expect(call[0].request.url).toBe(
+                        expectedSourcelistFilePath,
+                        `should be ${expectedSourcelistFilePath}`
+                    );
+                    expect(call[1].request.url).toBe(
+                        expectedTextcriticsFilePath,
+                        `should be ${expectedTextcriticsFilePath}`
+                    );
 
                     // mock input from HTTP request
                     call[0].flush(expectedResult[0]);
