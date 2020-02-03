@@ -99,6 +99,5 @@ export class EditionWork {
         // rootPath += this.type.route;       // '/sketches' or // '/texts'
 
         this.baseRoute = rootPath + this.work.route + delimiter;
-        console.log(this.baseRoute);
     }
 }

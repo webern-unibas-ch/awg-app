@@ -156,7 +156,6 @@ export class EditionDetailComponent implements OnInit {
             )
             .subscribe(
                 (queryParams: ParamMap) => {
-                    console.log(this.editionWork, this.svgSheetsData, this.folioConvoluteData);
                     const sheetId: string = this.getSketchParams(queryParams);
                     this.selectedSvgSheet = this.setSelectedSvgSheet(sheetId);
                 },
@@ -231,7 +230,7 @@ export class EditionDetailComponent implements OnInit {
      * Public method: onSvgSheetSelect.
      *
      * It selects a svg sheet by its id and
-     * navigates to the '/edition/{compositionID}/detail' route
+     * navigates to the edition detail route
      * with this given id.
      *
      * @param {string} id The given svg sheet id.

@@ -108,7 +108,6 @@ export class EditionDataService {
     private setBasePath(editionWork: EditionWork): void {
         const workRoute = editionWork.series.route + editionWork.section.route + editionWork.work.route;
         this.BASE = EditionConstants.editionAssets.baseRoute + workRoute;
-        console.log(this.BASE);
     }
 
     /**
