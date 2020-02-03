@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { NavigationExtras, Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
 import {
     EditionConstants,
@@ -10,7 +10,8 @@ import {
     SourceList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
-import { EditionDataService } from '@awg-views/edition-view/services';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { catchError, switchMap } from 'rxjs/operators';
 
 /**
  * The Report component.
@@ -26,6 +27,13 @@ import { EditionDataService } from '@awg-views/edition-view/services';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ReportComponent implements OnInit {
+    /**
+     * Public variable: editionWork.
+     *
+     * It keeps the information about the current composition.
+     */
+    editionWork: EditionWork;
+
     /**
      * Public variable: editionReportData$.
      *
@@ -48,15 +56,27 @@ export class ReportComponent implements OnInit {
     reportId = 'report';
 
     /**
+     * Public variable: errorObject.
+     *
+     * It keeps an errorObject for the service calls.
+     */
+    errorObject = null;
+
+    /**
      * Constructor of the ReportComponent.
      *
      * It declares a private EditionDataService instance
      * to get the report data and a private Router instance.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
+     * @param {EditionService} editionService Instance of the EditionService.
      * @param {Router} router Instance of the Router.
      */
-    constructor(private editionDataService: EditionDataService, private router: Router) {}
+    constructor(
+        private editionDataService: EditionDataService,
+        private editionService: EditionService,
+        private router: Router
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -77,13 +97,29 @@ export class ReportComponent implements OnInit {
      * @returns {void} Sets the editionReportData observable.
      */
     getEditionReportData(): void {
-        this.editionReportData$ = this.editionDataService.getEditionReportData();
+        this.editionReportData$ = this.editionService
+            // get current editionWork from editionService
+            .getEditionWork()
+            .pipe(
+                switchMap((work: EditionWork) => {
+                    // set current editionWork
+                    this.editionWork = work;
+                    // get intro data from editionDataService
+                    return this.editionDataService.getEditionReportData(this.editionWork);
+                }),
+                // error handling
+                catchError(err => {
+                    this.errorObject = err;
+                    return throwError(err);
+                })
+            );
+        console.log(this.editionReportData$);
     }
 
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It navigates to the '/edition/{compositionID}/detail'
+     * It navigates to the '/edition/composition/{id}/detail'
      * route with the given id.
      *
      * @param {string} id The given svg sheet id.

@@ -112,7 +112,8 @@ export class EditionDataService {
      * The fork-joined observable array with the SourceList
      * and TextcriticsList data. Only the first emit is needed.
      */
-    getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
+    getEditionReportData(editionWork: EditionWork): Observable<[SourceList, TextcriticsList]> {
+        this.setBasePath(editionWork);
         const sourceListData$: Observable<SourceList> = this.getSourceListData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
