@@ -4,18 +4,22 @@
             <!-- convolute dropDown -->
             <div class="d-inline-block" ngbDropdown>
                 <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
-                    <span>{{ selectedConvolute }}</span>
+                    <span>{{ selectedConvolute.convoluteId }}</span>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
-                    <a class="dropdown-item" (click)="selectConvolute(convolutes.A)">{{ convolutes.A }}</a>
-                    <a class="dropdown-item" (click)="openModal('sourceNotA')">{{ convolutes.B_H }}</a>
+                    <a
+                        class="dropdown-item"
+                        *ngFor="let conv of folioConvoluteData.convolutes"
+                        (click)="selectConvolute(conv.convoluteId)"
+                        >{{ conv.convoluteId }}</a
+                    >
                 </div>
             </div>
 
             <!-- folio overview -->
             <awg-edition-folio
-                *ngIf="folios && selectedSvgSheet"
-                [folios]="folios"
+                *ngIf="selectedConvolute && selectedConvolute.folios && selectedSvgSheet"
+                [folioData]="selectedConvolute.folios"
                 [selectedSvgSheet]="selectedSvgSheet"
                 (openModalRequest)="openModal($event)"
                 (selectSvgSheetRequest)="selectSvgSheet($event)"

@@ -39,7 +39,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * It keeps the folio data.
      */
     @Input()
-    folios: Folio[];
+    folioData: Folio[];
 
     /**
      * Public variable: selectedSvgSheet.
@@ -213,9 +213,9 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * @returns {void} Sets the vbArray and folioSvgDataArray variable.
      */
     prepareFolioSvgOutput(): void {
-        for (let folioIndex = 0; folioIndex < this.folios.length; folioIndex++) {
+        for (let folioIndex = 0; folioIndex < this.folioData.length; folioIndex++) {
             // current folio
-            const folio = this.folios[folioIndex];
+            const folio = this.folioData[folioIndex];
 
             // update folio settings
             this.folioSettings = {
@@ -224,7 +224,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
                 formatY: +folio.format.height,
                 initialOffsetX: this.folioSettings.initialOffsetX,
                 initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.folios.length
+                numberOfFolios: +this.folioData.length
             };
 
             // prepare viewbox settings

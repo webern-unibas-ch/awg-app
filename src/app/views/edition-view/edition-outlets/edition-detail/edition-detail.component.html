@@ -7,8 +7,8 @@
 
     <!-- convolute view -->
     <awg-edition-convolute
-        *ngIf="folios && selectedSvgSheet"
-        [folios]="folios"
+        *ngIf="folioConvoluteData && selectedSvgSheet"
+        [folioConvoluteData]="folioConvoluteData"
         [selectedSvgSheet]="selectedSvgSheet"
         (openModalRequest)="modal.open($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"

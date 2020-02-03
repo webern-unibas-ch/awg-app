@@ -100,7 +100,6 @@ export class NavbarComponent implements OnInit {
     ngOnInit() {
         // TODO: move to method
         this.selectedEditionWork = this.editionWorks[0];
-        console.log(this.editionWorks);
 
         this.provideMetaData();
     }

@@ -1,0 +1,54 @@
+{
+    "convolute": [
+        {
+            "convoluteId": "A Skizzen (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "38v",
+                    "systems": "16",
+                    "format": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "39r",
+                    "systems": "16",
+                    "format": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "C Reihentabelle (Basel, Paul Sacher Stiftung)",
+            "folios": [
+                {
+                    "folioId": "38v",
+                    "systems": "16",
+                    "format": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": []
+                },
+                {
+                    "folioId": "39r",
+                    "systems": "16",
+                    "format": {
+                        "height": 270,
+                        "width": 335
+                    },
+                    "content": []
+                }
+            ]
+        },
+        {
+            "convoluteId": "B, D–E (siehe kritischer Bericht)",
+            "folios": []
+        }
+    ]
+}

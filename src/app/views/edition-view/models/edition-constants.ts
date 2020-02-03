@@ -150,7 +150,7 @@ export class EditionConstants {
      */
     static readonly editionAssets = {
         baseRoot: 'assets/data/edition',
-        folioFile: 'folio.json',
+        folioConvoluteFile: 'folio-convolute.json',
         introFile: 'intro.json',
         svgSheetsFile: 'svg-sheets.json',
         sourcelistFile: 'sourcelist.json',

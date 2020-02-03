@@ -7,9 +7,8 @@ import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 import {
     EditionConstants,
     EditionPath,
-    EditionSvgSheet,
     EditionSvgSheetList,
-    Folio,
+    FolioConvoluteList,
     SourceList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -49,25 +48,27 @@ export class EditionDataService {
      *
      * It provides the data from a JSON file
      * for the current composition of the edition detail view
-     * (folios, edition svg sheets and textcritics list)
+     * (folio convolute, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
      * @param {EditionPath} editionWork The current composition input.
      *
-     * @returns {Observable<[Folio[], EditionSvgSheetList, TextcriticsList]>}
-     * The fork-joined observable array with the Folio,
+     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
+     * The fork-joined observable array with the FolioConvoluteList,
      * EditionSvgSheetList and TextcriticsList data.
      * Only the first emit is needed.
      */
-    getEditionDetailData(editionWork: EditionPath): Observable<[Folio[], EditionSvgSheetList, TextcriticsList]> {
+    getEditionDetailData(
+        editionWork: EditionPath
+    ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
         this.setBasePath(editionWork);
-        const folioData$: Observable<Folio[]> = this.getFolioData();
+        const folioData$: Observable<FolioConvoluteList> = this.getFolioConvoluteData();
         const svgSheetsData$: Observable<EditionSvgSheetList> = this.getSvgSheetsData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
         return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
             // default empty value
-            defaultIfEmpty([[new Folio()], new EditionSvgSheetList(), new TextcriticsList()]),
+            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
             // take only first request (JSON fetch)
             take(1)
         );
@@ -111,16 +112,16 @@ export class EditionDataService {
     }
 
     /**
-     * Private method: getFolioData.
+     * Private method: getFolioConvoluteData.
      *
      * It sets the path to the JSON file with
-     * the folio data and triggers
+     * the folio convolute data and triggers
      * the method to get the JSON data.
      *
-     * @returns {Observable<Folio[]>} The observable with the Folio data.
+     * @returns {Observable<FolioConvoluteList>} The observable with the FolioConvolute data.
      */
-    private getFolioData(): Observable<Folio[]> {
-        const file = EditionConstants.editionAssets.folioFile;
+    private getFolioConvoluteData(): Observable<FolioConvoluteList> {
+        const file = EditionConstants.editionAssets.folioConvoluteFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }

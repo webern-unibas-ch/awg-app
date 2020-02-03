@@ -9,7 +9,7 @@ import {
     EditionSvgSheetList,
     EditionPath,
     EditionWorks,
-    Folio,
+    FolioConvoluteList,
     Textcritics,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -38,11 +38,11 @@ export class EditionDetailComponent implements OnInit {
     editionWork: EditionPath;
 
     /**
-     * Public variable: folios.
+     * Public variable: folioConvoluteData.
      *
-     * It keeps the folios of the edition detail.
+     * It keeps the folio convolute Data of the edition detail.
      */
-    folios: Folio[];
+    folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: svgSheetsData.
@@ -144,8 +144,8 @@ export class EditionDetailComponent implements OnInit {
                 })
             )
             .pipe(
-                switchMap((data: [Folio[], EditionSvgSheetList, TextcriticsList]) => {
-                    this.folios = data[0]['convolute'];
+                switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+                    this.folioConvoluteData = data[0];
                     this.svgSheetsData = data[1];
                     this.textcriticsData = data[2];
                     if (this.svgSheetsData) {
@@ -156,6 +156,7 @@ export class EditionDetailComponent implements OnInit {
             )
             .subscribe(
                 (queryParams: ParamMap) => {
+                    console.log(this.editionWork, this.svgSheetsData, this.folioConvoluteData);
                     const sheetId: string = this.getSketchParams(queryParams);
                     this.selectedSvgSheet = this.setSelectedSvgSheet(sheetId);
                 },
