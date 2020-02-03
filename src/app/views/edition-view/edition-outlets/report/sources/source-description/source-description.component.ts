@@ -1,12 +1,12 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionWorks, SourceDescriptionList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
  *
  * It contains the source description section
- * of the criitical report
+ * of the critical report
  * of the edition view of the app.
  */
 @Component({
@@ -17,6 +17,14 @@ import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-
 })
 export class SourceDescriptionComponent implements OnInit {
     /**
+     * Input variable: sourceDescriptionListData.
+     *
+     * It keeps the source list data.
+     */
+    @Input()
+    sourceDescriptionListData: SourceDescriptionList;
+
+    /**
      * Output variable: openModalRequest.
      *
      * It keeps an event emitter to open the modal
@@ -26,11 +34,19 @@ export class SourceDescriptionComponent implements OnInit {
     openModalRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Readonly constant: editionWork.
+     * Output variable: selectSvgSheetRequest.
      *
-     * It keeps the current composition.
+     * It keeps an event emitter for the selected id of an svg sheet.
      */
-    readonly editionWork: EditionWork = EditionWorks.op12;
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Readonly constant: firmSignPath.
+     *
+     * It keeps the path to the firm sign.
+     */
+    readonly editionWork = EditionWorks.op12;
 
     /**
      * Readonly constant: firmSignPath.
@@ -40,12 +56,29 @@ export class SourceDescriptionComponent implements OnInit {
     readonly firmSignPath = EditionConstants.firmJENo9Lin28;
 
     /**
+     * Self-referring variable needed for CompileHtml library.
+     */
+    ref: SourceDescriptionComponent;
+
+    /**
+     * Constructor of the EditionDetailComponent.
+     *
+     * It declares the self-referring variable
+     * needed for CompileHtml library.
+     */
+    constructor() {
+        this.ref = this;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {}
+    ngOnInit() {
+        console.log(this.sourceDescriptionListData);
+    }
 
     /**
      * Public method: openModal.
@@ -58,5 +91,18 @@ export class SourceDescriptionComponent implements OnInit {
      */
     openModal(id: string): void {
         this.openModalRequest.emit(id);
+    }
+
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
+    selectSvgSheet(id: string): void {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

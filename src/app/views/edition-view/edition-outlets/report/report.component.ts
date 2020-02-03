@@ -7,6 +7,7 @@ import {
     EditionConstants,
     EditionWork,
     EditionWorks,
+    SourceDescriptionList,
     SourceList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -39,7 +40,7 @@ export class ReportComponent implements OnInit {
      *
      * Observable that keeps the report data.
      */
-    editionReportData$: Observable<[SourceList, TextcriticsList]>;
+    editionReportData$: Observable<[SourceList, SourceDescriptionList, TextcriticsList]>;
 
     /**
      * Public variable: reportTitle.
@@ -113,7 +114,6 @@ export class ReportComponent implements OnInit {
                     return throwError(err);
                 })
             );
-        console.log(this.editionReportData$);
     }
 
     /**

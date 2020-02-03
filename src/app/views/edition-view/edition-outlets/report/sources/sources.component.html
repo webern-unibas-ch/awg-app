@@ -17,7 +17,13 @@
                 <!-- source description -->
                 <ngb-panel id="sourceDesc" title="2. Quellenbeschreibung">
                     <ng-template ngbPanelContent>
-                        <awg-source-description (openModalRequest)="openModal($event)"> </awg-source-description>
+                        <awg-source-description
+                            *ngIf="sourceListData"
+                            [sourceDescriptionListData]="sourceDescriptionListData"
+                            (openModalRequest)="openModal($event)"
+                            (selectSvgSheetRequest)="selectSvgSheet($event)"
+                        >
+                        </awg-source-description>
                     </ng-template>
                 </ngb-panel>
 

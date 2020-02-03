@@ -11,6 +11,7 @@ import {
     FolioConvoluteList,
     IntroList,
     SourceList,
+    SourceDescriptionList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
 
@@ -105,21 +106,22 @@ export class EditionDataService {
      *
      * It provides the data from a JSON file
      * for the edition report view
-     * (source list and textcritics list)
+     * (source list, source description list and textcritics list)
      * as a fork-joined observable array.
      *
-     * @returns {Observable<[SourceList, TextcriticsList]>}
-     * The fork-joined observable array with the SourceList
+     * @returns {Observable<[SourceList, SourceDescriptionList, TextcriticsList]>}
+     * The fork-joined observable array with the SourceList, SourceDescriptionList
      * and TextcriticsList data. Only the first emit is needed.
      */
-    getEditionReportData(editionWork: EditionWork): Observable<[SourceList, TextcriticsList]> {
+    getEditionReportData(editionWork: EditionWork): Observable<[SourceList, SourceDescriptionList, TextcriticsList]> {
         this.setBasePath(editionWork);
         const sourceListData$: Observable<SourceList> = this.getSourceListData();
+        const sourceDescriptionListData$: Observable<SourceDescriptionList> = this.getSourceDescriptionListData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
-        return observableForkJoin([sourceListData$, textciticsListData$]).pipe(
+        return observableForkJoin([sourceListData$, sourceDescriptionListData$, textciticsListData$]).pipe(
             // default empty value
-            defaultIfEmpty([new SourceList(), new TextcriticsList()]),
+            defaultIfEmpty([new SourceList(), new SourceDescriptionList(), new TextcriticsList()]),
             // take only first request (JSON fetch)
             take(1)
         );
@@ -177,7 +179,22 @@ export class EditionDataService {
      * @returns {Observable<SourceList>} The observable with the SourceList data.
      */
     private getSourceListData(): Observable<SourceList> {
-        const file = EditionConstants.editionAssets.sourcelistFile;
+        const file = EditionConstants.editionAssets.sourceListFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getSourceDescriptionListData.
+     *
+     * It sets the path to the JSON file with
+     * the source list data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<SourceList>} The observable with the SourceList data.
+     */
+    private getSourceDescriptionListData(): Observable<SourceDescriptionList> {
+        const file = EditionConstants.editionAssets.sourceDescriptionListFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }

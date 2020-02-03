@@ -1,64 +1,22 @@
-<div class="para" id="sourceA">
-    <p class="bold">A</p>
-    <p>Basel, Paul Sacher Stiftung, Sammlung Anton Webern.</p>
-</div>
+<div *ngIf="sourceDescriptionListData">
+    <div *ngFor="let sourceDescription of sourceDescriptionListData.sources" class="para" [id]="sourceDescription.id">
+        <p *ngIf="sourceDescription.siglum" class="bold">{{ sourceDescription.siglum }}</p>
+        <p *ngIf="sourceDescription.location">{{ sourceDescription.location }}</p>
+        <div *ngIf="sourceDescription.siglum && sourceDescription.description; else smallText">
+            <p
+                *ngFor="let description of sourceDescription.description"
+                [compile-html]="description"
+                [compile-html-ref]="this"
+            ></p>
+        </div>
 
-<div class="para" id="sourceAa">
-    <p class="bold">Aa</p>
-    <p>
-        2 Blätter (Bl. 1–2). Archivalische Paginierung [<i>1</i>] bis [<i>4</i>] unten links (recto) bzw. rechts (verso)
-        mit Bleistift. Bl. 2<sup>v</sup> mit Ausnahme der archivalischen Paginierung unbeschriftet. Rissspuren am linken
-        und oberen Rand: Blätter von Bogen abgetrennt und im Format verändert.
-    </p>
-    <p>
-        <span class="caps">Beschreibstoff</span>: Notenpapier, 14 Systeme, Format: quer ca. 160–180 × 267 mm,
-        Firmenzeichen: <br />
-        <img class="img-thumbnail" [src]="firmSignPath" alt="firm" /> <br />
-        auf Bl. 1<sup>r</sup> unten links (Bl. 1); <br />
-        Notenpapier, 16 Systeme, Format: quer 175 × 270 mm, kein Firmenzeichen (Bl. 2).
-    </p>
-    <p><span class="caps">Schreibstoff</span>: Bleistift.</p>
-    <p>
-        <span class="caps">Inhalt</span>: <br />
-        Bl. 1<sup>r</sup> System 2–4 | 6–9 | 10–14: Skizze zu Nr. I T. 1–2, [3–6] | [7–12] | [13–17] (<a
-            (click)="openModal('op12_sheetComingSoon')"
-            ><strong>SkI/1a</strong></a
-        >). <br />
-        Bl. 1<sup>v</sup> System 14-12b (auf dem Kopf stehend): Skizze zu Nr. I T. 10, [11-12] (<a
-            [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]"
-            [queryParams]="{ sketch: 'Aa:SkI/2' }"
-            routerLinkActive="active"
-            ><strong>SkI/2</strong></a
-        >). <br />
-        Bl. 1<sup>v</sup> System 12a-9a (auf dem Kopf stehend): Skizze zu Nr. I T. 10-11 (<a
-            [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]"
-            [queryParams]="{ sketch: 'Aa:SkI/3' }"
-            routerLinkActive="active"
-            ><strong>SkI/3</strong></a
-        >). <br />
-        Bl. 1<sup>v</sup> System 9b-6 (auf dem Kopf stehend): Skizze zu Nr. I T. 10-11 (<a
-            [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]"
-            [queryParams]="{ sketch: 'Aa:SkI/5' }"
-            routerLinkActive="active"
-            ><strong>SkI/5</strong></a
-        >). <br />
-        Bl. 1<sup>v</sup> System 7a-4 (auf dem Kopf stehend): Skizze zu Nr. I T. 10-11 (<a
-            [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]"
-            [queryParams]="{ sketch: 'Aa:SkI/4' }"
-            routerLinkActive="active"
-            ><strong>SkI/4</strong></a
-        >). <br />
-        Bl. 2<sup>r</sup> System 6–10 | 12–15: Skizze zu Nr. I T. [18–22] | [23–24] (<a
-            (click)="openModal('op12_sheetComingSoon')"
-            ><strong>SkI/1b</strong></a
-        >). <br />
-        Bl. 2<sup>v</sup> unbeschriftet.
-    </p>
-</div>
-<div class="para" id="notA">
-    <p class="small text-muted">
-        [Die Beschreibung der weiteren Quellenbestandteile von A sowie der Quellen B bis G1 einschließlich der darin
-        gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der Vier Lieder op. 12
-        in AWG I/5.]
-    </p>
+        <ng-template #smallText>
+            <p
+                class="small text-muted"
+                *ngFor="let description of sourceDescription.description"
+                [compile-html]="description"
+                [compile-html-ref]="this"
+            ></p>
+        </ng-template>
+    </div>
 </div>

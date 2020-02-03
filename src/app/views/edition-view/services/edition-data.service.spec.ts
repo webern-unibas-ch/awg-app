@@ -23,7 +23,8 @@ describe('EditionDataService', () => {
     const regexBase = new RegExp(expectedBASE);
     const expectedFolioConvoluteFilePath = `${expectedBASE}/${EditionConstants.editionAssets.folioConvoluteFile}`;
     const expectedSheetsFilePath = `${expectedBASE}/${EditionConstants.editionAssets.svgSheetsFile}`;
-    const expectedSourcelistFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourcelistFile}`;
+    const expectedSourceListFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourceListFile}`;
+    const expectedSourceDescriptionFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourceDescriptionListFile}`;
     const expectedTextcriticsFilePath = `${expectedBASE}/${EditionConstants.editionAssets.textcriticsFile}`;
     let expectedEditionWork: EditionWork;
 
@@ -118,7 +119,7 @@ describe('EditionDataService', () => {
                 expect(call[1].request.method).toBe('GET', 'should be GET');
                 expect(call[0].request.responseType).toBe('json', 'should be json');
                 expect(call[1].request.responseType).toBe('json', 'should be json');
-                expect(call[0].request.url).toBe(expectedSourcelistFilePath, `should be ${expectedSourcelistFilePath}`);
+                expect(call[0].request.url).toBe(expectedSourceListFilePath, `should be ${expectedSourceListFilePath}`);
                 expect(call[1].request.url).toBe(
                     expectedTextcriticsFilePath,
                     `should be ${expectedTextcriticsFilePath}`
@@ -163,8 +164,8 @@ describe('EditionDataService', () => {
                     expect(call[0].request.responseType).toBe('json', 'should be json');
                     expect(call[1].request.responseType).toBe('json', 'should be json');
                     expect(call[0].request.url).toBe(
-                        expectedSourcelistFilePath,
-                        `should be ${expectedSourcelistFilePath}`
+                        expectedSourceListFilePath,
+                        `should be ${expectedSourceListFilePath}`
                     );
                     expect(call[1].request.url).toBe(
                         expectedTextcriticsFilePath,

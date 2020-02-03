@@ -22,7 +22,8 @@ import { FolioSvgData } from './folio-svg-data.model';
 
 import { Intro, IntroList } from './intro.model';
 
-import { Source, SourceList } from './source.model';
+import { Source, SourceList } from './source-list.model';
+import { SourceDescription, SourceDescriptionList } from './source-description.model';
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
@@ -49,6 +50,8 @@ export {
     IntroList,
     Source,
     SourceList,
+    SourceDescription,
+    SourceDescriptionList,
     Textcritics,
     TextcriticsList,
     ViewBox

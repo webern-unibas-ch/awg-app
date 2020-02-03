@@ -173,7 +173,8 @@ export class EditionConstants {
         folioConvoluteFile: 'folio-convolute.json',
         introFile: 'intro.json',
         svgSheetsFile: 'svg-sheets.json',
-        sourcelistFile: 'sourcelist.json',
+        sourceListFile: 'source-list.json',
+        sourceDescriptionListFile: 'source-description.json',
         textcriticsFile: 'textcritics.json'
     };
 
