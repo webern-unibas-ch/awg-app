@@ -113,14 +113,14 @@ export class EditionIntroComponent implements OnInit {
     }
 
     /**
-     * Public method: navigateToSourceDescription.
+     * Public method: navigateToReportFragment.
      *
      * It navigates to the '/report/' route with the given fragmentId.
      *
      * @param {string}  fragmentId The given fragment id.
      * @returns {void} Navigates to the edition report.
      */
-    navigateToSourceDescription(fragmentId: string) {
+    navigateToReportFragment(fragmentId: string) {
         if (!fragmentId) {
             fragmentId = '';
         }

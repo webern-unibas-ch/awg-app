@@ -237,6 +237,9 @@ export class EditionDetailComponent implements OnInit {
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
+        if (!id) {
+            id = '';
+        }
         this.selectedSvgSheet = this.setSelectedSvgSheet(id);
         this.showTkA = false;
 
