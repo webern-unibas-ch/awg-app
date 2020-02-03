@@ -8,7 +8,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SourceList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceList } from '@awg-views/edition-view/models';
 
 import { SourcesComponent } from './sources.component';
 
@@ -24,8 +24,7 @@ class SourceListStubComponent {
 @Component({ selector: 'awg-source-description', template: '' })
 class SourceDescriptionStubComponent {
     @Input()
-    showDescriptionPanel: boolean;
-
+    sourceDescriptionListData: SourceDescriptionList;
     // TODO: handle outputs
 }
 

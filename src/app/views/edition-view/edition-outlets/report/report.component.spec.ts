@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
+
 import { of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
@@ -9,8 +10,8 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
-import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
-import { EditionDataService } from '@awg-views/edition-view/services';
+import { EditionWorks, SourceDescriptionList, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { ReportComponent } from './report.component';
 
@@ -27,6 +28,8 @@ class HeadingStubComponent {
 class SourcesStubComponent {
     @Input()
     sourceListData: SourceList;
+    @Input()
+    sourceDescriptionListData: SourceDescriptionList;
 
     // TODO: handle output
 }
@@ -44,12 +47,18 @@ describe('ReportComponent', () => {
     let fixture: ComponentFixture<ReportComponent>;
 
     let getEditionReportDataSpy: Spy;
+    let getEditionWorkSpy: Spy;
 
     beforeEach(async(() => {
         // create a fake service object with a `getEditionReportData()` spy
         const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
         // make the spy return a synchronous Observable with the test data
         getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
+
+        // create a fake service object with a `getEditionWork()` spy
+        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
+        // make the spy return a synchronous Observable with the test data
+        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12)); // TODO: provide real test data
 
         TestBed.configureTestingModule({
             imports: [NgbModalModule, RouterTestingModule],
@@ -61,7 +70,10 @@ describe('ReportComponent', () => {
                 TextcritisStubComponent,
                 ModalComponent
             ],
-            providers: [{ provide: EditionDataService, useValue: mockEditionDataService }]
+            providers: [
+                { provide: EditionDataService, useValue: mockEditionDataService },
+                { provide: EditionService, useValue: mockEditionService }
+            ]
         }).compileComponents();
     }));
 
@@ -80,9 +92,14 @@ describe('ReportComponent', () => {
             fixture.detectChanges();
         });
 
+        it('should have called `getEditionWork()`', () => {
+            // `getEditionReportData()` called immediately after init
+            expect(getEditionWorkSpy.calls.any()).toBe(true, 'getEditionWork() called');
+        });
+
         it('should have called `getEditionReportData()`', () => {
             // `getEditionReportData()` called immediately after init
-            expect(getEditionReportDataSpy.calls.any()).toBe(true, 'getData called');
+            expect(getEditionReportDataSpy.calls.any()).toBe(true, 'getEditionReportData() called');
         });
     });
 });

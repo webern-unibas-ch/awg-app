@@ -24,7 +24,7 @@ export class SourceDescription {
     /**
      * The description of a sourceDescription.
      */
-    description: string;
+    description: string[];
 }
 
 /**
