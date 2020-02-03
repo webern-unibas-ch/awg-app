@@ -3,16 +3,13 @@
     <!-- modal -->
     <awg-modal #modal></awg-modal>
 
-    <!--  TODO: remove  {{ editionReportData$ | async | json }}-->
-
-    <!-- header -->
-    <awg-heading [title]="reportTitle" [id]="reportId"></awg-heading>
-
     <!-- sources -->
     <awg-sources
         *ngIf="editionReportData$ | async; let editionReportData"
         [sourceListData]="editionReportData[0]"
         [sourceDescriptionListData]="editionReportData[1]"
+        [sourceEvaluationListData]="editionReportData[2]"
+        (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
         (openModalRequest)="modal.open($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"
     >
@@ -21,7 +18,7 @@
     <!-- textcritics -->
     <awg-textcritics
         *ngIf="editionReportData$ | async; let editionReportData"
-        [textcriticsData]="editionReportData[2]"
+        [textcriticsData]="editionReportData[3]"
         (openModalRequest)="modal.open($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"
     >

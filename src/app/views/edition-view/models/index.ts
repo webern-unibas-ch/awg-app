@@ -24,6 +24,8 @@ import { Intro, IntroList } from './intro.model';
 
 import { Source, SourceList } from './source-list.model';
 import { SourceDescription, SourceDescriptionList } from './source-description.model';
+import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
+
 import { Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
@@ -52,6 +54,8 @@ export {
     SourceList,
     SourceDescription,
     SourceDescriptionList,
+    SourceEvaluation,
+    SourceEvaluationList,
     Textcritics,
     TextcriticsList,
     ViewBox

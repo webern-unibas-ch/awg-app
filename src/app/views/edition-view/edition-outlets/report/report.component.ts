@@ -6,8 +6,8 @@ import { Observable, throwError } from 'rxjs';
 import {
     EditionConstants,
     EditionWork,
-    EditionWorks,
     SourceDescriptionList,
+    SourceEvaluationList,
     SourceList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
@@ -40,21 +40,7 @@ export class ReportComponent implements OnInit {
      *
      * Observable that keeps the report data.
      */
-    editionReportData$: Observable<[SourceList, SourceDescriptionList, TextcriticsList]>;
-
-    /**
-     * Public variable: reportTitle.
-     *
-     * It keeps the title of the report section.
-     */
-    reportTitle = EditionConstants.editionReport.short;
-
-    /**
-     * Public variable: reportId.
-     *
-     * It keeps the id of the report section.
-     */
-    reportId = 'report';
+    editionReportData$: Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>;
 
     /**
      * Public variable: errorObject.
@@ -117,6 +103,24 @@ export class ReportComponent implements OnInit {
     }
 
     /**
+     * Public method: onReportFragmentNavigate.
+     *
+     * It navigates to the '/report/' route with the given fragmentId.
+     *
+     * @param {string}  fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    onReportFragmentNavigate(fragmentId: string) {
+        if (!fragmentId) {
+            fragmentId = '';
+        }
+        const navigationExtras: NavigationExtras = {
+            fragment: fragmentId
+        };
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute], navigationExtras);
+    }
+
+    /**
      * Public method: onSvgSheetSelect.
      *
      * It navigates to the '/edition/composition/{id}/detail'
@@ -126,12 +130,14 @@ export class ReportComponent implements OnInit {
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
-        const editionWork: EditionWork = EditionWorks.op12;
+        if (!id) {
+            id = '';
+        }
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
             queryParamsHandling: ''
         };
 
-        this.router.navigate([editionWork.baseRoute, editionWork.detailRoute], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
     }
 }

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { SourceDescriptionList, SourceList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
 /**
  * The Sources component.
@@ -28,10 +28,26 @@ export class SourcesComponent implements OnInit {
     /**
      * Input variable: sourceDescriptionListData.
      *
-     * It keeps the source list data.
+     * It keeps the source description data.
      */
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
+
+    /**
+     * Input variable: sourceEvaluationListData.
+     *
+     * It keeps the source evaluation data.
+     */
+    @Input()
+    sourceEvaluationListData: SourceEvaluationList;
+
+    /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Output variable: openModalRequest.
@@ -57,6 +73,19 @@ export class SourcesComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {}
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given fragment id of the edition report
+     * to the {@link navigateToReportFragmentRquest}.
+     *
+     * @param {string}  fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(fragmentId: string) {
+        this.navigateToReportFragmentRequest.emit(fragmentId);
+    }
 
     /**
      * Public method: openModal.

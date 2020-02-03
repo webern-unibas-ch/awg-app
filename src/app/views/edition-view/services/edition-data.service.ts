@@ -12,6 +12,7 @@ import {
     IntroList,
     SourceList,
     SourceDescriptionList,
+    SourceEvaluationList,
     TextcriticsList
 } from '@awg-views/edition-view/models';
 
@@ -106,22 +107,36 @@ export class EditionDataService {
      *
      * It provides the data from a JSON file
      * for the edition report view
-     * (source list, source description list and textcritics list)
+     * (source list, source description list,
+     * source evaluation list and textcritics list)
      * as a fork-joined observable array.
      *
-     * @returns {Observable<[SourceList, SourceDescriptionList, TextcriticsList]>}
-     * The fork-joined observable array with the SourceList, SourceDescriptionList
+     * @returns {Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>}
+     * The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
      * and TextcriticsList data. Only the first emit is needed.
      */
-    getEditionReportData(editionWork: EditionWork): Observable<[SourceList, SourceDescriptionList, TextcriticsList]> {
+    getEditionReportData(
+        editionWork: EditionWork
+    ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> {
         this.setBasePath(editionWork);
         const sourceListData$: Observable<SourceList> = this.getSourceListData();
         const sourceDescriptionListData$: Observable<SourceDescriptionList> = this.getSourceDescriptionListData();
+        const sourceEvaluationListData$: Observable<SourceEvaluationList> = this.getSourceEvaluationListData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
-        return observableForkJoin([sourceListData$, sourceDescriptionListData$, textciticsListData$]).pipe(
+        return observableForkJoin([
+            sourceListData$,
+            sourceDescriptionListData$,
+            sourceEvaluationListData$,
+            textciticsListData$
+        ]).pipe(
             // default empty value
-            defaultIfEmpty([new SourceList(), new SourceDescriptionList(), new TextcriticsList()]),
+            defaultIfEmpty([
+                new SourceList(),
+                new SourceDescriptionList(),
+                new SourceEvaluationList(),
+                new TextcriticsList()
+            ]),
             // take only first request (JSON fetch)
             take(1)
         );
@@ -188,13 +203,28 @@ export class EditionDataService {
      * Private method: getSourceDescriptionListData.
      *
      * It sets the path to the JSON file with
-     * the source list data and triggers
+     * the source description list data and triggers
      * the method to get the JSON data.
      *
-     * @returns {Observable<SourceList>} The observable with the SourceList data.
+     * @returns {Observable<SourceDescriptionList>} The observable with the SourceDescriptionList data.
      */
     private getSourceDescriptionListData(): Observable<SourceDescriptionList> {
         const file = EditionConstants.editionAssets.sourceDescriptionListFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getSourceEvaluationListData.
+     *
+     * It sets the path to the JSON file with
+     * the source evaluation list data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<SourceEvaluationList>} The observable with the SourceEvaluationList data.
+     */
+    private getSourceEvaluationListData(): Observable<SourceEvaluationList> {
+        const file = EditionConstants.editionAssets.sourceEvaluationListFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }

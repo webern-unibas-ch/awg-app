@@ -175,6 +175,7 @@ export class EditionConstants {
         svgSheetsFile: 'svg-sheets.json',
         sourceListFile: 'source-list.json',
         sourceDescriptionListFile: 'source-description.json',
+        sourceEvaluationListFile: 'source-evaluation.json',
         textcriticsFile: 'textcritics.json'
     };
 
