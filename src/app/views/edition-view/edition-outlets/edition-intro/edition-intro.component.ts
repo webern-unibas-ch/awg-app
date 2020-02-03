@@ -22,6 +22,11 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionIntroComponent implements OnInit {
+    /**
+     * ViewChild variable: modal.
+     *
+     * It keeps the reference to the awg-modal.
+     */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**
@@ -62,8 +67,8 @@ export class EditionIntroComponent implements OnInit {
      * @param {Router} router Instance of the Router.
      */
     constructor(
-        private editionService: EditionService,
         private editionDataService: EditionDataService,
+        private editionService: EditionService,
         private router: Router
     ) {
         this.ref = this;
@@ -76,11 +81,11 @@ export class EditionIntroComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getIntroData();
+        this.getEditionIntroData();
     }
 
     /**
-     * Public method: getIntroData.
+     * Public method: getEditionIntroData.
      *
      * It gets the the current edition work of the edition service
      * and the observable of the corresponding intro data
@@ -88,7 +93,7 @@ export class EditionIntroComponent implements OnInit {
      *
      * @returns {void} Gets the current edition work and the corresponding intro data.
      */
-    getIntroData(): void {
+    getEditionIntroData(): void {
         this.editionIntroData$ = this.editionService
             // get current editionWork from editionService
             .getEditionWork()
