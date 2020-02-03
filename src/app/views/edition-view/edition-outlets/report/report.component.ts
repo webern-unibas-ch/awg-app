@@ -5,7 +5,7 @@ import { Observable } from 'rxjs';
 
 import {
     EditionConstants,
-    EditionPath,
+    EditionWork,
     EditionWorks,
     SourceList,
     TextcriticsList
@@ -90,12 +90,12 @@ export class ReportComponent implements OnInit {
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
-        const editionWork: EditionPath = EditionWorks.op12;
+        const editionWork: EditionWork = EditionWorks.op12;
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
             queryParamsHandling: ''
         };
 
-        this.router.navigate([editionWork.rootRoute, editionWork.detailRoute], navigationExtras);
+        this.router.navigate([editionWork.baseRoute, editionWork.detailRoute], navigationExtras);
     }
 }

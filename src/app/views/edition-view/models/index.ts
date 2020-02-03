@@ -8,7 +8,7 @@
  */
 
 import { EditionConstants } from './edition-constants';
-import { EditionPath } from './edition-path.model';
+import { EditionWork } from './edition-work.model';
 
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
@@ -26,7 +26,7 @@ import { ViewBox } from './view-box.model';
 
 export {
     EditionConstants,
-    EditionPath,
+    EditionWork,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionSvgSheet,

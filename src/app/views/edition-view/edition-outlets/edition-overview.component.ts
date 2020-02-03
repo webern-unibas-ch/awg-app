@@ -2,7 +2,7 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Subscription } from 'rxjs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionPath } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 
 /**
@@ -31,7 +31,7 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      *
      * It keeps the current composition.
      */
-    editionWork: EditionPath;
+    editionWork: EditionWork;
 
     /**
      * Private variable: subscription.
@@ -84,25 +84,25 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     setButtons(): void {
         this.editionRouterLinkButtons = [
             new RouterLinkButton(
-                this.editionWork.rootRoute,
+                this.editionWork.baseRoute,
                 this.editionWork.introRoute,
                 EditionConstants.editionIntro.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.rootRoute,
+                this.editionWork.baseRoute,
                 this.editionWork.detailRoute,
                 EditionConstants.editionDetail.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.rootRoute,
+                this.editionWork.baseRoute,
                 this.editionWork.reportRoute,
                 EditionConstants.editionReport.short,
                 false
             ),
             new RouterLinkButton(
-                this.editionWork.rootRoute,
+                this.editionWork.baseRoute,
                 this.editionWork.graphRoute,
                 EditionConstants.editionGraph.short,
                 false

@@ -4,7 +4,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
-import { EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The Header component.
@@ -72,14 +72,14 @@ export class NavbarComponent implements OnInit {
      *
      * It keeps the array of compositions.
      */
-    readonly editionWorks: EditionPath[] = [EditionWorks.op12, EditionWorks.op25];
+    readonly editionWorks: EditionWork[] = [EditionWorks.op12, EditionWorks.op25];
 
     /**
      * Public variable: editionWork.
      *
      * It keeps the currently selected compositions.
      */
-    selectedEditionWork: EditionPath;
+    selectedEditionWork: EditionWork;
 
     /**
      * Constructor of the HeaderComponent.

@@ -1,19 +1,19 @@
+import { EditionConstants } from './edition-constants';
+import { EditionWork } from './edition-work.model';
+
 /**
  * The EditionWorksModel class.
  *
  * It is used in the context of the edition view
  * to store work information of the editions.
  */
-import { EditionConstants } from './edition-constants';
-import { EditionPath } from './edition-path.model';
-
 export class EditionWorks {
     /**
      * An EditionWork object for a composition: op. 12.
      */
-    static readonly op12: EditionPath = new EditionPath(
+    static readonly op12: EditionWork = new EditionWork(
         {
-            path: '/op12',
+            route: '/op12',
             short: 'op. 12',
             full: 'Vier Lieder op. 12'
         },
@@ -24,11 +24,11 @@ export class EditionWorks {
     /**
      * An EditionWork object for a composition: op. 25.
      */
-    static readonly op25: EditionPath = new EditionPath(
+    static readonly op25: EditionWork = new EditionWork(
         {
-            path: '/op25',
+            route: '/op25',
             short: 'op. 25',
-            full: 'Drei Lieder op. 25'
+            full: 'Drei Lieder nach Gedichten von Hildegard Jone op. 25'
         },
         EditionConstants.series1,
         EditionConstants.section5

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, OnInit, Output } from '@angular/core';
 
-import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
@@ -30,7 +30,7 @@ export class SourceDescriptionComponent implements OnInit {
      *
      * It keeps the current composition.
      */
-    readonly editionWork: EditionPath = EditionWorks.op12;
+    readonly editionWork: EditionWork = EditionWorks.op12;
 
     /**
      * Readonly constant: firmSignPath.

@@ -5,8 +5,8 @@
 
 <div *ngIf="editionWork$ | async as editionWork">
     <!-- TODO: make this selectable -->
-    <h5>AWG / {{ editionWork.series.full }} / {{ editionWork.section.full }}</h5>
-    <h3>{{ editionWork.fullLabel }}</h3>
+    <h6>{{ editionWork.edition.short }} / {{ editionWork.series.full }} / {{ editionWork.section.full }}</h6>
+    <h3>{{ editionWork.work.full }}</h3>
 </div>
 
 <!-- edition routes -->

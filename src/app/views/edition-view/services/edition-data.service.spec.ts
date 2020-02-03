@@ -24,7 +24,7 @@ describe('EditionDataService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    const BASE = `${EditionConstants.editionAssets.baseRoot}/series1/section5/op12`; // TODO: generate from EditionWorks
+    const BASE = `${EditionConstants.editionAssets.baseRoute}/series1/section5/op12`; // TODO: generate from EditionWorks
     const regexBase = new RegExp(BASE);
     const folioConvoluteFilePath = `${BASE}/${EditionConstants.editionAssets.folioConvoluteFile}`;
     const sheetsFilePath = `${BASE}/${EditionConstants.editionAssets.svgSheetsFile}`;

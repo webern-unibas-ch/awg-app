@@ -12,7 +12,7 @@
         </p>
         <p>
             Die Skizzen in
-            <a [routerLink]="[editionWork.rootRoute, editionWork.reportRoute]" fragment="sourceA"><strong>A</strong></a>
+            <a [routerLink]="[editionWork.baseRoute, editionWork.reportRoute]" fragment="sourceA"><strong>A</strong></a>
             enthalten datierte Verlaufsskizzen zu allen vier Liedern:
             <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> (13. Januar 1915),
             <a (click)="modal.open('sheetComingSoon')"><strong>Ab:SkII/1</strong></a> (10. April 1917),
@@ -27,7 +27,7 @@
         </p>
         <p>
             In
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
                 ><strong>Aa:SkI/2</strong></a
             >
             werden T. [11]–[12] aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> bzw. T.
@@ -35,14 +35,14 @@
                 (click)="modal.open('editionComingSoon')"
                 ><strong>Nr. I „Der Tag ist vergangen“ [Fassung 1]</strong></a
             >) neu skizziert, in
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/3' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/3' }"
                 ><strong>Aa:SkI/3</strong></a
             >,
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/4' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/4' }"
                 ><strong>Aa:SkI/4</strong></a
             >
             und
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/5' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/5' }"
                 ><strong>Aa:SkI/5</strong></a
             >
             weiter modifiziert und zu einer Formulierung gebracht, die T. 10–11 aus
@@ -52,18 +52,18 @@
             zunächst aus <a (click)="modal.open('sheetComingSoon')"><strong>Aa:SkI/1</strong></a> übernommen wurden und
             Korrekturen in <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> mit Bleistift auf die
             Formulierung von
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
                 ><strong>Aa:SkI/2</strong></a
             >
             hindeuten, sind
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]"><strong>Aa:SkI/2–5</strong></a>
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]"><strong>Aa:SkI/2–5</strong></a>
             offensichtlich erst nach der Niederschrift von
             <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> und während oder nach den dort vorhandenen
             Korrekturen, vermutlich als Arbeitsvorlage für
             <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> entstanden.
         </p>
         <p>
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
                 ><strong>Aa:SkI/2</strong></a
             >
             übernimmt, wie erwähnt, bestimmte Merkmale der Korrekturen in
@@ -77,30 +77,30 @@
             <a (click)="modal.open('sourceNotA')"><strong>B</strong></a> (Gis/cis) getilgt.
         </p>
         <p>
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/3' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/3' }"
                 ><strong>Aa:SkI/3</strong></a
             >
             verkürzt die Figur wieder zu einer zweitaktigen, wobei in System 11 zunächst die Verlängerung des ersten
             Tons der Singstimme („e–[wig]“) wie in
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/2' }"
                 ><strong>Aa:SkI/2</strong></a
             >
             tendenziell übernommen, dann in System 12 wieder in die rhythmische Ausgangs-Konfiguration geführt wird. Die
             Klavierstimme (System 10–9) bringt in der letzten Korrekturschicht bereits die in
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/5' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/5' }"
                 ><strong>Aa:SkI/5</strong></a
             >
             formulierte und in <a (click)="modal.open('sourceNotA')"><strong>C</strong></a> verwendete Variante.
         </p>
         <p>
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/4' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/4' }"
                 ><strong>Aa:SkI/4</strong></a
             >
             erprobt weitere diastematische Varianten der zweitaktigen Figur der Singstimme (System 5 und 4) sowie eine
             rhythmische Modifizierung und Oktavierung des Zweiklangs es/as im Klavier (System 7–6).
         </p>
         <p>
-            <a [routerLink]="[editionWork.rootRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/5' }"
+            <a [routerLink]="[editionWork.baseRoute, editionWork.detailRoute]" [queryParams]="{ sketch: 'Aa:SkI/5' }"
                 ><strong>Aa:SkI/5</strong></a
             >
             bringt in der letzten Korrekturschicht die in

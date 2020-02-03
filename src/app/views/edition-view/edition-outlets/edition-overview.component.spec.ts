@@ -11,7 +11,7 @@ import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-import { EditionConstants, EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 import { EditionOverviewComponent } from './edition-overview.component';
 
 // mock components
@@ -31,7 +31,7 @@ describe('EditionOverviewComponent (DONE)', () => {
     let compEl: any;
 
     let expectedEditionRouterLinkButtons: RouterLinkButton[];
-    let expectedEditionWork: EditionPath;
+    let expectedEditionWork: EditionWork;
 
     let setButtonsSpy: Spy;
     let getEditionWorkSpy: Spy;
@@ -58,25 +58,25 @@ describe('EditionOverviewComponent (DONE)', () => {
         expectedEditionWork = EditionWorks.op12;
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
-                expectedEditionWork.rootRoute,
+                expectedEditionWork.baseRoute,
                 expectedEditionWork.introRoute,
                 EditionConstants.editionIntro.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionWork.rootRoute,
+                expectedEditionWork.baseRoute,
                 expectedEditionWork.detailRoute,
                 EditionConstants.editionDetail.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionWork.rootRoute,
+                expectedEditionWork.baseRoute,
                 expectedEditionWork.reportRoute,
                 EditionConstants.editionReport.short,
                 false
             ),
             new RouterLinkButton(
-                expectedEditionWork.rootRoute,
+                expectedEditionWork.baseRoute,
                 expectedEditionWork.graphRoute,
                 EditionConstants.editionGraph.short,
                 false

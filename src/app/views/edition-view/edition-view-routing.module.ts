@@ -29,21 +29,21 @@ const editionViewRoutes: Routes = [
                         component: EditionOverviewComponent,
                         children: [
                             {
-                                path: EditionConstants.editionGraph.path,
+                                path: EditionConstants.editionGraph.route,
                                 component: EditionGraphComponent
                             },
                             {
-                                path: EditionConstants.editionIntro.path,
+                                path: EditionConstants.editionIntro.route,
                                 component: EditionIntroComponent
                             },
                             {
-                                path: EditionConstants.editionDetail.path,
+                                path: EditionConstants.editionDetail.route,
                                 component: EditionDetailComponent
                             },
-                            { path: EditionConstants.editionReport.path, component: ReportComponent },
+                            { path: EditionConstants.editionReport.route, component: ReportComponent },
                             {
                                 path: '',
-                                redirectTo: '/' + EditionConstants.editionIntro.path,
+                                redirectTo: '/' + EditionConstants.editionIntro.route,
                                 pathMatch: 'full'
                             }
                         ]

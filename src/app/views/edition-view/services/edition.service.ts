@@ -2,7 +2,7 @@ import { Injectable } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
-import { EditionPath, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionWork, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
 
 /**
  * The Edition service.
@@ -25,7 +25,7 @@ export class EditionService {
     /**
      * Private replay subject to handle edition work.
      */
-    private editionWorkSubject = new ReplaySubject<EditionPath>(this.bufferSize);
+    private editionWorkSubject = new ReplaySubject<EditionWork>(this.bufferSize);
 
     /**
      * Private readonly edition work stream as observable (`ReplaySubject`).
@@ -67,9 +67,9 @@ export class EditionService {
      *
      * It provides the latest edition work from the edition work stream.
      *
-     * @returns {Observable<EditionPath>} The edition work stream as observable.
+     * @returns {Observable<EditionWork>} The edition work stream as observable.
      */
-    getEditionWork(): Observable<EditionPath> {
+    getEditionWork(): Observable<EditionWork> {
         return this.editionWorkStream$;
     }
 
@@ -80,7 +80,7 @@ export class EditionService {
      *
      * @returns {void} Sets the next edition work to the stream.
      */
-    updateEditionWork(editionWork: EditionPath): void {
+    updateEditionWork(editionWork: EditionWork): void {
         this.editionWorkSubject.next(editionWork);
     }
 

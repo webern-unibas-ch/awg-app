@@ -15,7 +15,7 @@ import {
     TextcriticsList,
     EditionSvgSheetList,
     FolioConvoluteList,
-    EditionPath,
+    EditionWork,
     EditionWorks
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';

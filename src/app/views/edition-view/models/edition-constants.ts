@@ -1,4 +1,16 @@
 /**
+ * The EditionRoute class.
+ *
+ * It is used in the context of the edition view
+ * to store string constants of the editions.
+ */
+export class EditionRoute {
+    route: string;
+    short: string;
+    full: string;
+}
+
+/**
  * The EditionConstants class.
  *
  * It is used in the context of the edition view
@@ -6,137 +18,145 @@
  */
 export class EditionConstants {
     /**
-     * The route to the edition path of the app.
+     * The edition route for the edition.
      */
-    static readonly editionRoute = '/edition';
+    static readonly edition: EditionRoute = {
+        route: '/edition',
+        short: 'AWG',
+        full: 'Anton Webern Gesamtausgabe'
+    };
 
     /**
-     * The route to the composition path of an edition.
+     * The edition route for a composition.
      */
-    static readonly compositionRoute = '/composition';
+    static readonly composition: EditionRoute = {
+        route: '/composition',
+        short: 'Komposition',
+        full: 'Komposition'
+    };
 
     /**
-     * The path to the edition section of series I.
+     * The edition route for series I.
      */
-    static readonly series1 = {
-        path: '/series1',
+    static readonly series1: EditionRoute = {
+        route: '/series1',
         short: 'Serie I',
         full: 'Serie I (Werke mit Opuszahlen)'
     };
 
     /**
-     * The path to the edition section of series II.
+     * The edition route for series II.
      */
-    static readonly series2 = {
-        path: '/series2',
+    static readonly series2: EditionRoute = {
+        route: '/series2',
         short: 'Serie II',
         full: 'Serie II (Nachgelassene Kompositionen und Fragmente)'
     };
 
     /**
-     * The path to the edition section of series III.
+     * The edition route for series III.
      */
-    static readonly series3 = {
-        path: '/series3',
+    static readonly series3: EditionRoute = {
+        route: '/series3',
         short: 'Serie III',
         full: 'Serie III (Bearbeitungen von Werken anderer Komponisten)'
     };
 
     /**
-     * The path to the edition section of section 1.
+     * The edition route for section 1.
      */
-    static readonly section1 = {
-        path: '/section1',
+    static readonly section1: EditionRoute = {
+        route: '/section1',
         short: 'Abteilung 1',
         full: 'Abteilung 1 (Orchestermusik)'
     };
 
     /**
-     * The path to the edition section of section 1.
+     * The edition route for section 2.
      */
-    static readonly section2 = {
-        path: '/section2',
+    static readonly section2: EditionRoute = {
+        route: '/section2',
         short: 'Abteilung 2',
         full: 'Abteilung 2 (Kammer- und Klaviermusik)'
     };
 
     /**
-     * The path to the edition section of section 3.
+     * The edition route for section 3.
      */
-    static readonly section3 = {
-        path: '/section3',
+    static readonly section3: EditionRoute = {
+        route: '/section3',
         short: 'Abteilung 3',
         full: 'Abteilung 3 (Chormusik)'
     };
 
     /**
-     * The path to the edition section of section 1.
+     * The edition route for section 4.
      */
-    static readonly section4 = {
-        path: '/section4',
+    static readonly section4: EditionRoute = {
+        route: '/section4',
         short: 'Abteilung 4',
         full: 'Abteilung 4 (Vokalmusik mit Ensemblebegleitung)'
     };
 
     /**
-     * The path to the edition section of section 1.
+     * The edition route for section 5.
      */
     static readonly section5 = {
-        path: '/section5',
+        route: '/section5',
         short: 'Abteilung 5',
         full: 'Abteilung 5 (Klavierlieder)'
     };
 
     /**
-     * The path to the edition section of a text edition.
+     * The edition route for a text edition.
      */
-    static readonly textEdition = {
-        path: '/texts',
+    static readonly textEdition: EditionRoute = {
+        route: '/texts',
         short: 'Textedition',
         full: 'Textedition'
     };
 
     /**
-     * The path to the edition section of a sketch edition.
+     * The edition route for a sketch edition.
      */
-    static readonly sketchEdition = {
-        path: '/sketches',
+    static readonly sketchEdition: EditionRoute = {
+        route: '/sketches',
         short: 'Skizzenedition',
         full: 'Skizzenedition'
     };
 
     /**
-     * The path to the graph section of an edition.
+     * The edition route for the graph section of an edition.
      */
-    static readonly editionGraph = {
-        path: 'graph',
+    static readonly editionGraph: EditionRoute = {
+        route: 'graph',
         short: 'Graph',
         full: 'Graph'
     };
 
     /**
-     * The path to the intro section of an edition.
+     * The edition route for the intro section of an edition.
      */
-    static readonly editionIntro = {
-        path: 'intro',
+    static readonly editionIntro: EditionRoute = {
+        route: 'intro',
         short: 'Einleitung',
         full: 'Einleitung'
     };
 
     /**
-     * The path to the detail section of an edition.
+     * The edition route for the detail section of an edition.
      */
-    static readonly editionDetail = {
-        path: 'detail',
+    static readonly editionDetail: EditionRoute = {
+        route: 'detail',
         short: 'Edierter Notentext',
         full: 'Edierter Notentext'
     };
 
     /**
-     * The path to the report section of an edition.
+     * The edition route for the report section of an edition.
      */
-    static readonly editionReport = {
-        path: 'report',
+    static readonly editionReport: EditionRoute = {
+        route: 'report',
         short: 'Kritischer Bericht',
         full: 'Kritischer Bericht'
     };
@@ -149,7 +169,7 @@ export class EditionConstants {
      * The paths to the edition assets JSON files.
      */
     static readonly editionAssets = {
-        baseRoot: 'assets/data/edition',
+        baseRoute: 'assets/data/edition',
         folioConvoluteFile: 'folio-convolute.json',
         introFile: 'intro.json',
         svgSheetsFile: 'svg-sheets.json',

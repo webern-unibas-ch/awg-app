@@ -6,7 +6,7 @@ import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
 import {
     EditionConstants,
-    EditionPath,
+    EditionWork,
     EditionSvgSheetList,
     FolioConvoluteList,
     SourceList,
@@ -51,7 +51,7 @@ export class EditionDataService {
      * (folio convolute, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
-     * @param {EditionPath} editionWork The current composition input.
+     * @param {EditionWork} editionWork The current composition input.
      *
      * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
      * The fork-joined observable array with the FolioConvoluteList,
@@ -59,7 +59,7 @@ export class EditionDataService {
      * Only the first emit is needed.
      */
     getEditionDetailData(
-        editionWork: EditionPath
+        editionWork: EditionWork
     ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
         this.setBasePath(editionWork);
         const folioData$: Observable<FolioConvoluteList> = this.getFolioConvoluteData();
@@ -105,9 +105,9 @@ export class EditionDataService {
      *
      * @returns {void} It sets the BASE path.
      */
-    private setBasePath(editionWork: EditionPath): void {
-        const basePath = editionWork.series.path + editionWork.section.path + editionWork.compositionRoute;
-        this.BASE = EditionConstants.editionAssets.baseRoot + basePath;
+    private setBasePath(editionWork: EditionWork): void {
+        const workRoute = editionWork.series.route + editionWork.section.route + editionWork.work.route;
+        this.BASE = EditionConstants.editionAssets.baseRoute + workRoute;
         console.log(this.BASE);
     }
 

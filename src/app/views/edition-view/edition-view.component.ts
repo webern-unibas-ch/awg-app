@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
-import { EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
 import { Observable } from 'rxjs';
 
@@ -38,7 +38,7 @@ export class EditionViewComponent implements OnInit {
      * Observable that keeps the information
      * about the current composition.
      */
-    editionWork$: Observable<EditionPath>;
+    editionWork$: Observable<EditionWork>;
 
     /**
      * Constructor of the EditionViewComponent.

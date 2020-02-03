@@ -13,7 +13,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
-import { EditionPath, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
 
@@ -30,8 +30,8 @@ describe('NavbarComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedIsCollapsed: boolean;
 
-    let expectedEditionWorks: EditionPath[] = [EditionWorks.op12, EditionWorks.op25];
-    let expectedSelectEditionWork: EditionPath = EditionWorks.op12;
+    let expectedEditionWorks: EditionWork[] = [EditionWorks.op12, EditionWorks.op25];
+    let expectedSelectEditionWork: EditionWork = EditionWorks.op12;
 
     beforeEach(async(() => {
         // stub service for test purposes
@@ -221,51 +221,51 @@ describe('NavbarComponent (DONE)', () => {
             it('... can get correct routes from routerLinks', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual([
-                    expectedEditionWorks[0].rootRoute,
+                    expectedEditionWorks[0].baseRoute,
                     expectedEditionWorks[0].introRoute
                 ]);
                 expect(routerLinks[2].linkParams).toEqual([
-                    expectedEditionWorks[1].rootRoute,
+                    expectedEditionWorks[1].baseRoute,
                     expectedEditionWorks[1].introRoute
                 ]);
                 expect(routerLinks[3].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.introRoute
                 ]);
                 expect(routerLinks[4].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.detailRoute
                 ]);
                 expect(routerLinks[5].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.detailRoute
                 ]);
                 expect(routerLinks[6].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.detailRoute
                 ]);
                 expect(routerLinks[7].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.detailRoute
                 ]);
                 expect(routerLinks[8].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.reportRoute
                 ]);
                 expect(routerLinks[9].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.reportRoute
                 ]);
                 expect(routerLinks[10].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.reportRoute
                 ]);
                 expect(routerLinks[11].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.reportRoute
                 ]);
                 expect(routerLinks[12].linkParams).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.reportRoute
                 ]);
                 expect(routerLinks[13].linkParams).toEqual(['/structure']);
@@ -302,7 +302,7 @@ describe('NavbarComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 expect(editionLink.navigatedTo).toEqual([
-                    expectedSelectEditionWork.rootRoute,
+                    expectedSelectEditionWork.baseRoute,
                     expectedSelectEditionWork.introRoute
                 ]);
             });
