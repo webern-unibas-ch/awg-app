@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
+// import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 /**
@@ -73,8 +73,10 @@ export class EditionSvgSheetComponent implements OnInit {
         sheet5: SvgSheetLabels.sheet5
     };
 
+    /* TODO: mute for now sind not working yet
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
+    */
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -83,6 +85,8 @@ export class EditionSvgSheetComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
+        /*
+        TODO: mute for now since not working yet
         this.galleryOptions = [
             {
                 width: '100%',
@@ -113,7 +117,7 @@ export class EditionSvgSheetComponent implements OnInit {
         ];
 
         this.galleryImages = [2, 3, 4, 5].map(fileNumber => {
-            const fileName = `assets/img/edition/SkI_${fileNumber}n_small_cut_opt.svg`;
+            const fileName = `assets/img/edition/series1/section5/op12/SkI_${fileNumber}n_small_cut_opt.svg`;
             return {
                 small: fileName,
                 medium: fileName,
@@ -121,6 +125,7 @@ export class EditionSvgSheetComponent implements OnInit {
                 url: fileName
             };
         });
+        */
     }
 
     /**
