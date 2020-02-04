@@ -5,8 +5,19 @@
  * to store string constants of the editions.
  */
 export class EditionRoute {
+    /**
+     * The route path of an edition route.
+     */
     route: string;
+
+    /**
+     * The short label of an edition route.
+     */
     short: string;
+
+    /**
+     * The full label of an edition route.
+     */
     full: string;
 }
 

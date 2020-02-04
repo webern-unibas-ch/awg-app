@@ -10,7 +10,7 @@ import { EditionWork, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 /**
- * The Intro component.
+ * The EditionIntro component.
  *
  * It contains the intro section
  * of the edition view of the app.

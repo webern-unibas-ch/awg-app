@@ -1,5 +1,4 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -7,6 +6,12 @@ import { catchError, switchMap } from 'rxjs/operators';
 import { EditionConstants, EditionWork, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
+/**
+ * The EditionGraph component.
+ *
+ * It contains the graph section
+ * of the edition view of the app.
+ */
 @Component({
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
@@ -69,19 +74,19 @@ export class EditionGraphComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.getEditionIntroData();
+        this.getEditionGraphData();
     }
 
     /**
-     * Public method: getEditionIntroData.
+     * Public method: getEditionGraphData.
      *
      * It gets the the current edition work of the edition service
-     * and the observable of the corresponding intro data
+     * and the observable of the corresponding graph data
      * from the EditionDataService.
      *
-     * @returns {void} Gets the current edition work and the corresponding intro data.
+     * @returns {void} Gets the current edition work and the corresponding graph data.
      */
-    getEditionIntroData(): void {
+    getEditionGraphData(): void {
         this.editionGraphData$ = this.editionService
             // get current editionWork from editionService
             .getEditionWork()
@@ -89,7 +94,7 @@ export class EditionGraphComponent implements OnInit {
                 switchMap((work: EditionWork) => {
                     // set current editionWork
                     this.editionWork = work;
-                    // get intro data from editionDataService
+                    // get graph data from editionDataService
                     return this.editionDataService.getEditionGraphData(this.editionWork);
                 }),
                 // error handling
