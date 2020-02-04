@@ -37,9 +37,9 @@ export class EditionIntroComponent implements OnInit {
     editionWork: EditionWork;
 
     /**
-     * Public variable: introData.
+     * Public variable: editionIntroData$.
      *
-     * It keeps the svg sheets data of the edition detail.
+     * It keeps the observable of the edition intro data.
      */
     editionIntroData$: Observable<IntroList>;
 

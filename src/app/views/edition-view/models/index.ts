@@ -20,6 +20,7 @@ import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from '.
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 
+import { Graph, GraphList } from './graph.model';
 import { Intro, IntroList } from './intro.model';
 
 import { Source, SourceList } from './source-list.model';
@@ -48,6 +49,8 @@ export {
     FolioCalculationPoint,
     FolioSettings,
     FolioSvgData,
+    Graph,
+    GraphList,
     Intro,
     IntroList,
     Source,

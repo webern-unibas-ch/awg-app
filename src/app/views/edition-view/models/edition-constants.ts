@@ -171,6 +171,7 @@ export class EditionConstants {
     static readonly editionAssets = {
         baseRoute: 'assets/data/edition',
         folioConvoluteFile: 'folio-convolute.json',
+        graphFile: 'graph.json',
         introFile: 'intro.json',
         svgSheetsFile: 'svg-sheets.json',
         sourceListFile: 'source-list.json',
@@ -183,4 +184,13 @@ export class EditionConstants {
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
     static readonly firmJENo9Lin28 = 'assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png';
+
+    /**
+     * The path to the assets image of the graph for op 25.
+     */
+    static readonly graphImageOp25: EditionRoute = {
+        route: 'assets/img/edition/series1/section5/op25/graph_op25_1.png',
+        short: 'Graph op. 25/I',
+        full: 'Graph der Skizzen von Opus 25/I.'
+    };
 }
