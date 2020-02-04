@@ -182,5 +182,20 @@ export class EditionConstants {
     /**
      * The path to the assets image of a firm sign: JE No. 9, 28 Lines.
      */
-    static readonly firmJENo9Lin28 = 'assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png';
+    static readonly firmJENo9Lin28: EditionRoute = {
+        route: 'assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png',
+        short: '[JE] | No. 9 | 28 linig.',
+        full:
+            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.'
+    };
+
+    /**
+     * The edition route to the assets image of a firm sign: JE No. 15, 16 Lines.
+     */
+    static readonly firmJENo15Lin16: EditionRoute = {
+        route: 'assets/img/edition/series1/section5/op25/firm_je_no15_lin16.png',
+        short: '[JE] | No. 15 | 16 linig.',
+        full:
+            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.'
+    };
 }

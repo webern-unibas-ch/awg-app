@@ -42,18 +42,18 @@ export class SourceDescriptionComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Readonly constant: firmSignPath.
+     * Readonly constant: firmSigns.
      *
-     * It keeps the path to the firm sign.
+     * It keeps the routes to the firm signs.
      */
-    readonly editionWork = EditionWorks.op12;
-
-    /**
-     * Readonly constant: firmSignPath.
-     *
-     * It keeps the path to the firm sign.
-     */
-    readonly firmSignPath = EditionConstants.firmJENo9Lin28;
+    readonly firmSigns = {
+        op12: {
+            A: [EditionConstants.firmJENo9Lin28]
+        },
+        op25: {
+            A: [EditionConstants.firmJENo15Lin16]
+        }
+    };
 
     /**
      * Self-referring variable needed for CompileHtml library.
@@ -77,7 +77,7 @@ export class SourceDescriptionComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        console.log(this.sourceDescriptionListData);
+        console.log(this.firmSigns.op12.A[0].full);
     }
 
     /**
