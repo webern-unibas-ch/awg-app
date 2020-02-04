@@ -5,11 +5,7 @@
 
     <!-- intro -->
     <div *ngIf="editionIntroData$ | async as editionIntroData; else error">
-        <div
-            *ngFor="let intro of editionIntroData.intro[0].content"
-            [compile-html]="intro"
-            [compile-html-ref]="this"
-        ></div>
+        <p *ngFor="let intro of editionIntroData.intro[0].content" [compile-html]="intro" [compile-html-ref]="this"></p>
     </div>
 
     <ng-template #error>

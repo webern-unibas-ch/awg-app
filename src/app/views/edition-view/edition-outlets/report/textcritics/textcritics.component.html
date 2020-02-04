@@ -1,21 +1,24 @@
 <ngb-accordion id="tkaAcc" activeIds="tkaPanel">
     <ngb-panel id="tkaPanel" title="II. Textkritischer Kommentar">
         <ng-template ngbPanelContent>
-            <div class="para">
-                <p class="bold"><a (click)="openModal('op12_sheetComingSoon')">Aa:SkI/1</a>:</p>
-                <p class="small text-muted">
-                    [Der Textkritische Kommentar zu <strong>Aa:Sk1/1</strong> erscheint im Zusammenhang der
-                    vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]
-                </p>
-            </div>
-
-            <div class="para" *ngFor="let textcritics of textcriticsData | keyvalue">
-                <caption class="bold">
-                    <a [routerLink]="['/edition/detail', textcritics.key]">{{ textcritics.key }}</a
-                    >:
-                </caption>
+            <div class="para" *ngFor="let textcritic of textcriticsData.textcritics">
+                <h6 class="bold">
+                    <a (click)="selectSvgSheet(textcritic.id)">{{ textcritic.id }}</a>
+                </h6>
+                <div *ngIf="textcritic.description">
+                    <p
+                        *ngFor="let description of textcritic.description"
+                        [compile-html]="description"
+                        [compile-html-ref]="ref"
+                    ></p>
+                </div>
                 <awg-edition-tka-table
-                    [selectedTextcritics]="textcritics.value"
+                    *ngIf="
+                        textcritic.comments &&
+                        textcritic.comments.constructor === Array &&
+                        textcritic.comments.length > 0
+                    "
+                    [selectedTextcriticalComments]="textcritic.comments"
                     (openModalRequest)="openModal($event)"
                     (selectSvgSheetRequest)="selectSvgSheet($event)"
                 >

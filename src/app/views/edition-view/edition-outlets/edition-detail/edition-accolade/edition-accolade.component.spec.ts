@@ -3,7 +3,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgSheet, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgOverlay, TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
@@ -34,7 +34,7 @@ class EditionSvgSheetStubComponent {
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    selectedTextcritics: Textcritics[];
+    selectedTextcriticalComments: TextcriticalComment[];
 
     // TODO: handle outputs
 }

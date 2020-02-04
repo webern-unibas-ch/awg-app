@@ -1,6 +1,11 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgSheet, EditionSvgSheetList, EditionSvgOverlay, Textcritics } from '@awg-views/edition-view/models';
+import {
+    EditionSvgSheet,
+    EditionSvgSheetList,
+    EditionSvgOverlay,
+    TextcriticalComment
+} from '@awg-views/edition-view/models';
 
 /**
  * The EditionAccolade component.
@@ -44,12 +49,12 @@ export class EditionAccoladeComponent implements OnInit {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Input variable: selectedTextcritics.
+     * Input variable: selectedTextcriticalComments.
      *
-     * It keeps the selected textcritics.
+     * It keeps the selected textcritical comments.
      */
     @Input()
-    selectedTextcritics: Textcritics[];
+    selectedTextcriticalComments: TextcriticalComment[];
 
     /**
      * Input variable: showTkA.

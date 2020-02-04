@@ -3,7 +3,7 @@ import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output
 import { TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
- * The Textcritics component.
+ * The TextcriticalComment component.
  *
  * It contains the textcritical comments section
  * of the critical report of the edition view of the app

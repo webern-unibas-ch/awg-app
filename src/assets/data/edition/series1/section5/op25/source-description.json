@@ -15,7 +15,7 @@
                 "<span class=\"caps\">Instrumentenvorsatz</span>: Akkoladenstrich und teilweise Schlüsselvorsatz auf Bl. 38<sup>v</sup> System 1–4 (zu <strong>op. 24/1</strong>).<br />Akkoladenstrich und Schlüsselvorsatz auf Bl. 39<sup>r</sup> System 1–4 (zu <strong>op. 24/1</strong>), eingekreist und gestrichen mit rotem Buntstift.",
                 "<span class=\"caps\">Eintragungen</span>: <u>Reihe</u> auf Bl. 38<sup>v</sup> System 5 links (zu <strong>M 317 Sk3.1.3</strong>) mit schwarzem Buntstift.",
                 "<span class=\"caps\">Inhalt</span>: <br /> Bl. 38<sup>v</sup> System 1b: T. 1–2: Skizze zu Nr. I T. 1–2 (<strong>M317 SkI/1</strong>). <br /> Bl. 38<sup>v</sup> System 1a: Reihenfragment (Teil A); Zwölftonreihe G<sub>cis</sub> (Teil B) (<strong>SkI/2</strong>). <br /> ...",
-                "<small class=\"muted\">[Weitere Inhaltsangaben folgen demnächst (02/2020).]"
+                "<small class=\"text-muted\">[Weitere Inhaltsangaben folgen in Kürze (02/2020).]"
             ]
         },
         {
@@ -23,7 +23,7 @@
             "siglum": "",
             "location": "",
             "description": [
-                "[Die Beschreibung der weiteren Quellenbestandteile von A sowie der Quellen B bis G1 einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der Vier Lieder op. 12 in AWG I/5.]"
+                "<small class=\"text-muted\">[Die Beschreibung der Quellen B bis E einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 in AWG I/5.]</small>"
             ]
         }
     ]

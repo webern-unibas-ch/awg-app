@@ -10,7 +10,7 @@ import {
     EditionWork,
     EditionWorks,
     FolioConvoluteList,
-    Textcritics,
+    TextcriticalComment,
     TextcriticsList
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
@@ -66,11 +66,11 @@ export class EditionDetailComponent implements OnInit {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Public variable: selectedTextcritics.
+     * Public variable: selectedTextcriticalComments.
      *
-     * It keeps the selected textcritics.
+     * It keeps the selected textcritical comments.
      */
-    selectedTextcritics: Textcritics[];
+    selectedTextcriticalComments: TextcriticalComment[];
 
     /**
      * Public variable: selectedOverlay.
@@ -222,8 +222,8 @@ export class EditionDetailComponent implements OnInit {
         const textcritics = this.textcriticsData[this.selectedSvgSheet.id];
 
         this.selectedOverlay = overlay;
-        this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
-        this.showTkA = this.selectedTextcritics !== [];
+        this.selectedTextcriticalComments = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
+        this.showTkA = this.selectedTextcriticalComments !== [];
     }
 
     /**

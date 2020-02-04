@@ -11,7 +11,7 @@ import {
     Folio,
     EditionSvgSheet,
     EditionSvgOverlay,
-    Textcritics,
+    TextcriticalComment,
     TextcriticsList,
     EditionSvgSheetList,
     FolioConvoluteList,
@@ -44,7 +44,7 @@ class EditionAccoladeStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
-    selectedTextcritics: Textcritics[];
+    selectedTextcritics: TextcriticalComment[];
     @Input()
     selectedOverlay: EditionSvgOverlay;
     @Input()
@@ -75,7 +75,7 @@ describe('EditionDetailComponent', () => {
         getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
         /*
         mockEditionService = {
-            // getTextcritics: (textcritics: Textcritics[], overlay: { type: string; id: string }) => expectedTextcritics,
+            // getTextcritics: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
 
         };
     */

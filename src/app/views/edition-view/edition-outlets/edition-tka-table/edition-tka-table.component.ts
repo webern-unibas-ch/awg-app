@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Textcritics } from '../../models/index';
+import { TextcriticalComment } from '../../models/index';
 
 /**
  * The EditionTkaTable component.
@@ -16,12 +16,12 @@ import { Textcritics } from '../../models/index';
 })
 export class EditionTkaTableComponent implements OnInit {
     /**
-     * Input variable: selectedTextcritics.
+     * Input variable: selectedTextcriticalComments.
      *
-     * It keeps the selected textcritics.
+     * It keeps the selected textcritical comments.
      */
     @Input()
-    selectedTextcritics: Textcritics[];
+    selectedTextcriticalComments: TextcriticalComment[];
 
     /**
      * Output variable: openModalRequest.

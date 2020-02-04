@@ -26,7 +26,7 @@ import { Source, SourceList } from './source-list.model';
 import { SourceDescription, SourceDescriptionList } from './source-description.model';
 import { SourceEvaluation, SourceEvaluationList } from './source-evaluation.model';
 
-import { Textcritics, TextcriticsList } from './textcritics.model';
+import { TextcriticalComment, Textcritics, TextcriticsList } from './textcritics.model';
 import { ViewBox } from './view-box.model';
 
 export {
@@ -56,6 +56,7 @@ export {
     SourceDescriptionList,
     SourceEvaluation,
     SourceEvaluationList,
+    TextcriticalComment,
     Textcritics,
     TextcriticsList,
     ViewBox

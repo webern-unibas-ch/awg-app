@@ -5,7 +5,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { TextcriticsComponent } from './textcritics.component';
 
@@ -13,7 +13,7 @@ import { TextcriticsComponent } from './textcritics.component';
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    selectedTextcritics: Textcritics[];
+    selectedTextcriticalComments: TextcriticalComment[];
 
     // TODO: handle outputs
 }

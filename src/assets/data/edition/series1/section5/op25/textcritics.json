@@ -1,34 +1,32 @@
 {
-    "A:SkI/1": [
+    "textcritics": [
         {
-            "measure": "",
-            "system": "",
-            "position": "",
-            "comment": ""
-        }
-    ],
-    "A:SkI/2": [
+            "id": "A:Sk1",
+            "description": [
+                "<small class=\"text-muted\">[Der Textkritische Kommentar zu <strong>A:Sk1</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Drei Lieder nach Gedichten von Hildegard Jone</i> op. 25 in AWG I/5.]</small>"
+            ],
+            "comments": []
+        },
         {
-            "measure": "",
-            "system": "",
-            "position": "",
-            "comment": ""
-        }
-    ],
-    "A:SkI/3": [
+            "id": "A:Sk2",
+            "description": [
+                "<small class=\"text-muted\">[Der Textkritische Kommentar zu <strong>A:Sk2</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Drei Lieder nach Gedichten von Hildegard Jone</i> op. 25 in AWG I/5.]</small>"
+            ],
+            "comments": []
+        },
         {
-            "measure": "",
-            "system": "",
-            "position": "",
-            "comment": ""
-        }
-    ],
-    "A:SkI/4": [
+            "id": "A:Sk3",
+            "description": [
+                "<small class=\"text-muted\">[Der Textkritische Kommentar zu <strong>A:Sk3</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Drei Lieder nach Gedichten von Hildegard Jone</i> op. 25 in AWG I/5.]</small>"
+            ],
+            "comments": []
+        },
         {
-            "measure": "",
-            "system": "",
-            "position": "",
-            "comment": ""
+            "id": "A:Sk4",
+            "description": [
+                "<small class=\"text-muted\">[Der Textkritische Kommentar zu <strong>A:Sk4</strong> erscheint im Zusammenhang der vollständigen Edition der <i>Drei Lieder nach Gedichten von Hildegard Jone</i> op. 25 in AWG I/5.]</small>"
+            ],
+            "comments": []
         }
     ]
 }

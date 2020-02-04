@@ -2,21 +2,12 @@
     <div *ngFor="let sourceDescription of sourceDescriptionListData.sources" class="para" [id]="sourceDescription.id">
         <p *ngIf="sourceDescription.siglum" class="bold">{{ sourceDescription.siglum }}</p>
         <p *ngIf="sourceDescription.location">{{ sourceDescription.location }}</p>
-        <div *ngIf="sourceDescription.siglum && sourceDescription.description; else smallText">
+        <div *ngIf="sourceDescription.description">
             <p
                 *ngFor="let description of sourceDescription.description"
                 [compile-html]="description"
                 [compile-html-ref]="this"
             ></p>
         </div>
-
-        <ng-template #smallText>
-            <p
-                class="small text-muted"
-                *ngFor="let description of sourceDescription.description"
-                [compile-html]="description"
-                [compile-html-ref]="this"
-            ></p>
-        </ng-template>
     </div>
 </div>
