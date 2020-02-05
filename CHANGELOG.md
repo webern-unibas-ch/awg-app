@@ -2,6 +2,49 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+## [0.7.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.6.1...v0.7.0) (2020-02-05)
+
+### ⚠ BREAKING CHANGES
+
+-   **edition:** This change affects the url of the edition sheet view.
+    Sketch id's are now provided via query params instead of "normal" route params.
+
+### Features
+
+-   **core:** write the GND value of a resource to the localStorage ([29234f5](https://github.com/webern-unibas-ch/awg-app/commit/29234f5ae995a5699613c93b5e2c475f6579cde3))
+-   **edition:** add edition constants ([74f7156](https://github.com/webern-unibas-ch/awg-app/commit/74f715678ace35442ac7d92adaff3c40b4e802d5))
+-   **edition:** add graph component with static graphs ([f7cf641](https://github.com/webern-unibas-ch/awg-app/commit/f7cf641e7cb9ca9c7fead047118dd8f2d2597048))
+-   **edition:** add svg assets for op25 ([aac1f2f](https://github.com/webern-unibas-ch/awg-app/commit/aac1f2f7978bb899c41f7e73ddb92be177387357))
+-   **edition:** add SvgSheetList to handle SvgSheet array ([f9a1c53](https://github.com/webern-unibas-ch/awg-app/commit/f9a1c53ec1473f1a91b09fdc3b04d6b8a74d543e))
+-   **edition:** auto-instantiate EditionPath from class ([c7403dc](https://github.com/webern-unibas-ch/awg-app/commit/c7403dca7e200b70e75f2c8cc5c690ed510ccc2c))
+-   **edition:** get EditionReportData for multiple works ([782d0b3](https://github.com/webern-unibas-ch/awg-app/commit/782d0b34f84acb76590fb1b78a95aece418f71ca))
+-   **edition:** make convolute view handle multiple convolutes ([81e8fef](https://github.com/webern-unibas-ch/awg-app/commit/81e8fef2a8143422fcdec9cf3c27615ebf6e40a0))
+-   **edition:** make EditionIntro handle multiple works ([f0d3215](https://github.com/webern-unibas-ch/awg-app/commit/f0d32159f806d4b712e4aadeb77d320864053421))
+-   **edition:** make routes working with multiple compositions ([c37be2a](https://github.com/webern-unibas-ch/awg-app/commit/c37be2ad394758ff4f6904a4b02dcba33080e55d))
+-   **edition:** make source description work with multiple compositions ([d31b29d](https://github.com/webern-unibas-ch/awg-app/commit/d31b29df98a54400a18f22569b8fd9dbc7212467))
+-   **edition:** make source evaluation work with multiple compositions ([2743b42](https://github.com/webern-unibas-ch/awg-app/commit/2743b426438be49d390e28a1cdea93852e1e325e))
+-   **edition:** make textcritics work with multiple compositions ([a03430d](https://github.com/webern-unibas-ch/awg-app/commit/a03430da0ee2d052100405ce423beb1325d977b5))
+-   **edition:** move edition assets into structured folders ([afe526b](https://github.com/webern-unibas-ch/awg-app/commit/afe526bc84e0aa4034810415e6fef6ccc19dc17a))
+-   **edition:** prepare EditionView to handle multiple EditionWorks ([c26d355](https://github.com/webern-unibas-ch/awg-app/commit/c26d355bdb9c7401b503e1f33c9c0d135d0b3da6))
+-   **edition:** use queryParams instead of urlParams for sketch routing ([af9ef35](https://github.com/webern-unibas-ch/awg-app/commit/af9ef357c0bfedd3111b3172657b35e70b672053))
+
+### Bug Fixes
+
+-   **app:** move op12 assets into separate folder ([7036d30](https://github.com/webern-unibas-ch/awg-app/commit/7036d301e10c4c8e384d70bb58750fdd9882c0cd))
+-   **app:** use EditionConstants for routerLinks ([7824cd8](https://github.com/webern-unibas-ch/awg-app/commit/7824cd8cda686dd75f9fbc4f747e2b9dc24a3e40))
+-   **core:** improve handling for gnd recognition ([c2fdbd8](https://github.com/webern-unibas-ch/awg-app/commit/c2fdbd86ec3c07aa0dd0edd18ee874430122a916))
+-   **edition:** avoid circular dependency in EditionPath imports ([15ee461](https://github.com/webern-unibas-ch/awg-app/commit/15ee461137e89225f506b09742b539f3350aedf7))
+-   **edition:** get firmSigns dynamically ([3415f84](https://github.com/webern-unibas-ch/awg-app/commit/3415f8447b7fbb7044a2f34baea79ac4b8193c34))
+-   **edition:** improve handling of textcritical comments flow ([de94dbe](https://github.com/webern-unibas-ch/awg-app/commit/de94dbe367c6279f0535d0edbc07904f809dc66c))
+-   **edition:** make modals work with multiple works ([5c84f76](https://github.com/webern-unibas-ch/awg-app/commit/5c84f76bee00eac87dabcf0a6bf9ba3d4989cd2c))
+-   **edition:** move back to root and link for routerLinks ([8f1c476](https://github.com/webern-unibas-ch/awg-app/commit/8f1c4764cb549eb84acc198b7372ca08404d254c))
+-   **edition:** move edition assets path to edition constants ([e906b6d](https://github.com/webern-unibas-ch/awg-app/commit/e906b6d620edb4a39e915e8f165f44bbca07d1bf))
+-   **edition:** remove hard-coded EditionWork from navigation ([8ed8f47](https://github.com/webern-unibas-ch/awg-app/commit/8ed8f476caea6d4f0ba656e86c3ec16a4747b054))
+-   **edition:** use EditionRoutes for EditionWork class ([c6e0da7](https://github.com/webern-unibas-ch/awg-app/commit/c6e0da71a08aab14ff41a99fa914d5a24313f40e))
+-   **search:** repair nav arrows for imageobject component ([78e0f73](https://github.com/webern-unibas-ch/awg-app/commit/78e0f730e573311bad52fe4fc4867b8e4bfdc246))
+-   **shared:** make queryParamsHandling for routerLinkButton configurable ([233e1d8](https://github.com/webern-unibas-ch/awg-app/commit/233e1d831e1aed39a744832f78f6efded612dda7))
+-   **shared:** name routerLinkButtons consistently ([fba09ab](https://github.com/webern-unibas-ch/awg-app/commit/fba09abbccb1170118056e8e4a863f4415560a9d))
+
 ### [0.6.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.6.0...v0.6.1) (2019-07-19)
 
 ### Build System
