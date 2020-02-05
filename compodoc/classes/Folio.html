@@ -70,7 +70,7 @@
             <p class="comment">
                 <p>The Folio class.</p>
 <p>It is used in the context of the edition folio convolutes
-to store the top level data for a folio
+to store the top level data for a single folio
 from a folio json file.</p>
 
             </p>
@@ -141,7 +141,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -174,7 +174,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:50</a></div>
                             </td>
                         </tr>
 
@@ -207,7 +207,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -240,7 +240,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -265,7 +265,45 @@ from a folio json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class Folio {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class FolioConvoluteList {
+    /**
+     * The array of FolioLists from a convolute list.
+     */
+    convolutes: FolioConvolute[];
+}
+
+/**
+ * The FolioConvolute class.
+ *
+ * It is used in the context of the edition convolutes
+ * to store the data for a single convolute
+ * from a convolute json file.
+ */
+export class FolioConvolute {
+    /**
+     * The convolute&#x27;s id (string).
+     */
+    convoluteId: string;
+
+    /**
+     * The array of folios from a convolute.
+     */
+    folios: Folio[];
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo?: string;
+}
+
+/**
+ * The Folio class.
+ *
+ * It is used in the context of the edition folio convolutes
+ * to store the top level data for a single folio
+ * from a folio json file.
+ */
+export class Folio {
     /**
      * The folio&#x27;s id (string).
      */
@@ -387,6 +425,7 @@ export class FolioSection {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
             var COMPODOC_CURRENT_PAGE_URL = 'Folio.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

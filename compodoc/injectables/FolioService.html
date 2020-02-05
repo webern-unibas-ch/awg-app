@@ -1290,7 +1290,7 @@ export class FolioService {
             // add click event handler
             // exclude and mute sketch Aa:SkI for now
             if (contentItem.sigle &#x3D;&#x3D;&#x3D; &#x27;Aa:SkI/1a&#x27; || contentItem.sigle &#x3D;&#x3D;&#x3D; &#x27;Aa:SkI/1b&#x27;) {
-                snapItemGroup.click(() &#x3D;&gt; this.ref.openModal(&#x27;sourceNotA&#x27;));
+                snapItemGroup.click(() &#x3D;&gt; this.ref.openModal(&#x27;op12_sourceNotA&#x27;));
                 snapItemGroup.attr({
                     stroke: &#x27;grey&#x27;,
                     fill: &#x27;grey&#x27;
@@ -1342,6 +1342,7 @@ export class FolioService {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
             var COMPODOC_CURRENT_PAGE_URL = 'FolioService.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

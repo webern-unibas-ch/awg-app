@@ -65,8 +65,8 @@
             </p>
             <p class="comment">
                 <p>The Edition service.</p>
-<p>It handles the provision of the textcritical comments
-for a selected overlay item.</p>
+<p>It handles the provision of the current work and
+of the textcritical comments for a selected overlay item.</p>
 <p>Provided in: <code>root</code>.</p>
 
             </p>
@@ -82,6 +82,30 @@ for a selected overlay item.</p>
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#bufferSize">bufferSize</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#editionWorkStream$">editionWorkStream$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#editionWorkSubject">editionWorkSubject</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -92,12 +116,21 @@ for a selected overlay item.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Static</span>
-                                <a href="#filterTextcritics">filterTextcritics</a>
+                                <a href="#clearEditionWork">clearEditionWork</a>
                             </li>
                             <li>
-                                <a href="#getTextcritics">getTextcritics</a>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Static</span>
+                                <a href="#filterTextcriticalComments">filterTextcriticalComments</a>
+                            </li>
+                            <li>
+                                <a href="#getEditionWork">getEditionWork</a>
+                            </li>
+                            <li>
+                                <a href="#getTextcriticalComments">getTextcriticalComments</a>
+                            </li>
+                            <li>
+                                <a href="#updateEditionWork">updateEditionWork</a>
                             </li>
                         </ul>
                     </td>
@@ -121,37 +154,85 @@ for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="filterTextcritics"></a>
+                    <a name="clearEditionWork"></a>
+                    <span class="name">
+                        <b>
+                            clearEditionWork
+                        </b>
+                        <a href="#clearEditionWork"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>clearEditionWork()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="94"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:94</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: clearEditionWork.</p>
+<p>It clears the edition work stream.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Clears the edition work stream.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterTextcriticalComments"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
                             <span class="modifier">Static</span>
-                            filterTextcritics
+                            filterTextcriticalComments
                         </b>
-                        <a href="#filterTextcritics"><span class="icon ion-ios-link"></span></a>
+                        <a href="#filterTextcriticalComments"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>filterTextcritics(textcritics: <a href="../classes/Textcritics.html">Textcritics</a>, overlay: literal type, filterIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>filterTextcriticalComments(textcriticalComment: <a href="../classes/TextcriticalComment.html">TextcriticalComment</a>, overlay: literal type, filterIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="28"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:28</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="45"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:45</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private static method: filterTextcritics.</p>
-<p>It filters a textcritics object in regard of a selected overlay item.</p>
+                    <div class="io-description"><p>Private static method: filterTextcriticalComments.</p>
+<p>It filters a textcritical comments array in regard of a selected overlay item.</p>
 </div>
 
                     <div class="io-description">
@@ -167,9 +248,9 @@ for a selected overlay item.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>textcritics</td>
+                                    <td>textcriticalComment</td>
                                     <td>
-                                                <code><a href="../classes/Textcritics.html" target="_self" >Textcritics</a></code>
+                                                <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment</a></code>
                                     </td>
 
                                     <td>
@@ -178,7 +259,7 @@ for a selected overlay item.</p>
 
 
                                     <td>
-                                        <p>The given textcritical comments to be filtered.</p>
+                                        <p>The given textcritical comment to be filtered.</p>
 
                                     </td>
                                 </tr>
@@ -194,8 +275,6 @@ for a selected overlay item.</p>
 
 
                                     <td>
-                                        <p>The given selected overlay item defined by <code>type</code> and <code>ìd</code>.</p>
-
                                     </td>
                                 </tr>
                                 <tr>
@@ -235,33 +314,81 @@ for a selected overlay item.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getTextcritics"></a>
+                    <a name="getEditionWork"></a>
                     <span class="name">
                         <b>
-                            getTextcritics
+                            getEditionWork
                         </b>
-                        <a href="#getTextcritics"><span class="icon ion-ios-link"></span></a>
+                        <a href="#getEditionWork"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getTextcritics(textcritics: <a href="../classes/Textcritics.html">Textcritics[]</a>, overlay: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay</a>)</code>
+<code>getEditionWork()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="57"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:57</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:72</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: getTextcritics.</p>
+                    <div class="io-description"><p>Public method: getEditionWork.</p>
+<p>It provides the latest edition work from the edition work stream.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/EditionWork.html" target="_self" >Observable&lt;EditionWork&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The edition work stream as observable.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getTextcriticalComments"></a>
+                    <span class="name">
+                        <b>
+                            getTextcriticalComments
+                        </b>
+                        <a href="#getTextcriticalComments"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getTextcriticalComments(textcriticalComments: <a href="../classes/TextcriticalComment.html">TextcriticalComment[]</a>, overlay: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getTextcriticalComments.</p>
 <p>It provides the textcritical comments for a selected svg overlay.</p>
 </div>
 
@@ -278,9 +405,9 @@ for a selected overlay item.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>textcritics</td>
+                                    <td>textcriticalComments</td>
                                     <td>
-                                                <code><a href="../classes/Textcritics.html" target="_self" >Textcritics[]</a></code>
+                                                <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment[]</a></code>
                                     </td>
 
                                     <td>
@@ -315,7 +442,7 @@ for a selected overlay item.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/Textcritics.html" target="_self" >Textcritics[]</a></code>
+                        <b>Returns : </b>        <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment[]</a></code>
 
                     </div>
                     <div class="io-description">
@@ -326,6 +453,192 @@ for a selected overlay item.</p>
             </tr>
         </tbody>
     </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateEditionWork"></a>
+                    <span class="name">
+                        <b>
+                            updateEditionWork
+                        </b>
+                        <a href="#updateEditionWork"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>updateEditionWork(editionWork: <a href="../classes/EditionWork.html">EditionWork</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:83</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: updateEditionWork.</p>
+<p>It updates the edition work stream with the given work.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>editionWork</td>
+                                    <td>
+                                                <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the next edition work to the stream.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="bufferSize"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            bufferSize</b>
+                            <a href="#bufferSize"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>1</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:23</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable for the replay subject´s buffer size.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionWorkStream$"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                                <span class="modifier">Readonly</span>
+                            editionWorkStream$</b>
+                            <a href="#editionWorkStream$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this.editionWorkSubject.asObservable()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:33</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private readonly edition work stream as observable (<code>ReplaySubject</code>).</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionWorkSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            editionWorkSubject</b>
+                            <a href="#editionWorkSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new ReplaySubject&lt;EditionWork&gt;(this.bufferSize)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:28</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private replay subject to handle edition work.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
 </section>
 
     </div>
@@ -334,13 +647,15 @@ for a selected overlay item.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { EditionSvgOverlay, Textcritics } from &#x27;@awg-views/edition-view/models&#x27;;
+import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
+
+import { EditionWork, EditionSvgOverlay, TextcriticalComment } from &#x27;@awg-views/edition-view/models&#x27;;
 
 /**
  * The Edition service.
  *
- * It handles the provision of the textcritical comments
- * for a selected overlay item.
+ * It handles the provision of the current work and
+ * of the textcritical comments for a selected overlay item.
  *
  * Provided in: &#x60;root&#x60;.
  * @used in the {@link EditionDetailComponent}.
@@ -350,23 +665,38 @@ import { EditionSvgOverlay, Textcritics } from &#x27;@awg-views/edition-view/mod
 })
 export class EditionService {
     /**
-     * Private static method: filterTextcritics.
+     * Private variable for the replay subject´s buffer size.
+     */
+    private bufferSize &#x3D; 1;
+
+    /**
+     * Private replay subject to handle edition work.
+     */
+    private editionWorkSubject &#x3D; new ReplaySubject&lt;EditionWork&gt;(this.bufferSize);
+
+    /**
+     * Private readonly edition work stream as observable (&#x60;ReplaySubject&#x60;).
+     */
+    private readonly editionWorkStream$ &#x3D; this.editionWorkSubject.asObservable();
+
+    /**
+     * Private static method: filterTextcriticalComments.
      *
-     * It filters a textcritics object in regard of a selected overlay item.
+     * It filters a textcritical comments array in regard of a selected overlay item.
      *
-     * @param {Textcritics[]} textcritics The given textcritical comments to be filtered.
-     * @param {{ type: string; id: string }} overlay The given selected overlay item defined by &#x60;type&#x60; and &#x60;ìd&#x60;.
+     * @param {TextcriticalComment} textcriticalComment The given textcritical comment to be filtered.
+     * @param { type: string; id: string } overlay The given selected overlay item defined by &#x60;type&#x60; and &#x60;ìd&#x60;.
      * @param {number} filterIndex The given index position of the filter.
      * @returns {boolean} A boolean value if the input contains the overlay type and id
      */
-    private static filterTextcritics(
-        textcritics: Textcritics,
+    private static filterTextcriticalComments(
+        textcriticalComment: TextcriticalComment,
         overlay: { type: string; id: string },
         filterIndex: number
     ): boolean {
         // shortcuts &amp; trimmed values
-        const measure &#x3D; textcritics.measure.replace(&#x27;[&#x27;, &#x27;&#x27;).replace(&#x27;]&#x27;, &#x27;&#x27;);
-        const system &#x3D; textcritics.system.replace(&#x27;[&#x27;, &#x27;&#x27;).replace(&#x27;]&#x27;, &#x27;&#x27;);
+        const measure &#x3D; textcriticalComment.measure.replace(&#x27;[&#x27;, &#x27;&#x27;).replace(&#x27;]&#x27;, &#x27;&#x27;);
+        const system &#x3D; textcriticalComment.system.replace(&#x27;[&#x27;, &#x27;&#x27;).replace(&#x27;]&#x27;, &#x27;&#x27;);
 
         // filter the comments by overlay type and id
         switch (overlay.type) {
@@ -380,19 +710,55 @@ export class EditionService {
     }
 
     /**
-     * Public method: getTextcritics.
+     * Public method: getEditionWork.
+     *
+     * It provides the latest edition work from the edition work stream.
+     *
+     * @returns {Observable&lt;EditionWork&gt;} The edition work stream as observable.
+     */
+    getEditionWork(): Observable&lt;EditionWork&gt; {
+        return this.editionWorkStream$;
+    }
+
+    /**
+     * Public method: updateEditionWork.
+     *
+     * It updates the edition work stream with the given work.
+     *
+     * @returns {void} Sets the next edition work to the stream.
+     */
+    updateEditionWork(editionWork: EditionWork): void {
+        this.editionWorkSubject.next(editionWork);
+    }
+
+    /**
+     * Public method: clearEditionWork.
+     *
+     * It clears the edition work stream.
+     *
+     * @returns {void} Clears the edition work stream.
+     */
+    clearEditionWork(): void {
+        this.editionWorkSubject.next(null);
+    }
+
+    /**
+     * Public method: getTextcriticalComments.
      *
      * It provides the textcritical comments for a selected svg overlay.
      *
-     * @param {Textcritics[]} textcritics The given textcritical comments.
+     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
      * @param {EditionSvgOverlay} overlay The given svg overlay.
-     * @returns {Textcritics[]} Array with filtered textcritical comments.
+     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
      */
-    getTextcritics(textcritics: Textcritics[], overlay: EditionSvgOverlay): Textcritics[] {
+    getTextcriticalComments(
+        textcriticalComments: TextcriticalComment[],
+        overlay: EditionSvgOverlay
+    ): TextcriticalComment[] {
         // filter the textcritics input array
-        return textcritics.filter((textcritic, filterIndex) &#x3D;&gt; {
+        return textcriticalComments.filter((textcriticalComment, filterIndex) &#x3D;&gt; {
             // get filtered results from private method
-            return EditionService.filterTextcritics(textcritic, overlay, filterIndex);
+            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
         });
     }
 }
@@ -430,6 +796,7 @@ export class EditionService {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
             var COMPODOC_CURRENT_PAGE_URL = 'EditionService.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

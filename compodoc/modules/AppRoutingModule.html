@@ -74,35 +74,34 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-import { HomeViewComponent } from &#x27;./views/home-view/home-view.component&#x27;;
-import { PageNotFoundViewComponent } from &#x27;./views/page-not-found-view/page-not-found-view.component&#x27;;
-
 /* routes of the AppModule */
 const appRoutes: Routes &#x3D; [
-    // eager loaded
-    { path: &#x27;home&#x27;, component: HomeViewComponent },
-
     // lazy loaded
-    { path: &#x27;contact&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;./views/contact-view/contact.module&#x27;).then(m &#x3D;&gt; m.ContactModule)&quot; },
-    { path: &#x27;data&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;./views/data-view/data.module&#x27;).then(m &#x3D;&gt; m.DataModule)&quot; },
-    { path: &#x27;edition&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;./views/edition-view/edition.module&#x27;).then(m &#x3D;&gt; m.EditionModule)&quot; },
+    { path: &#x27;home&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/home-view/home-view.module&#x27;).then(m &#x3D;&gt; m.HomeViewModule)&quot; },
+    {
+        path: &#x27;contact&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)&quot;
+    },
+    { path: &#x27;data&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule)&quot; },
+    {
+        path: &#x27;edition&#x27;,
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule)&quot;
+    },
     { path: &#x27;editions&#x27;, redirectTo: &#x27;edition&#x27;, pathMatch: &#x27;full&#x27; },
     {
         path: &#x27;structure&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;./views/structure-view/structure.module&#x27;).then(m &#x3D;&gt; m.StructureModule)&quot;
+        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)&quot;
     },
 
     // default routes
     { path: &#x27;&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27; },
-    { path: &#x27;404&#x27;, component: PageNotFoundViewComponent },
+    {
+        path: &#x27;404&#x27;,
+        loadChildren: () &#x3D;&gt;
+            &quot;import(&#x27;@awg-views/page-not-found-view/page-not-found-view.module&#x27;).then(m &#x3D;&gt; m.PageNotFoundViewModule)&quot;
+    },
     { path: &#x27;**&#x27;, redirectTo: &#x27;404&#x27;, pathMatch: &#x27;full&#x27; }
 ];
-
-/**
- * Routed components of the {@link AppModule}:
- * {@link HomeViewComponent} and {@link PageNotFoundViewComponent}.
- */
-export const routedAppComponents &#x3D; [HomeViewComponent, PageNotFoundViewComponent];
 
 /**
  * Main app module routing.
@@ -113,10 +112,10 @@ export const routedAppComponents &#x3D; [HomeViewComponent, PageNotFoundViewComp
     imports: [
         RouterModule.forRoot(appRoutes, {
             anchorScrolling: &#x27;enabled&#x27;, // use anchor scrolling
-            scrollPositionRestoration: &#x27;enabled&#x27;, // restore scroll position
             onSameUrlNavigation: &#x27;reload&#x27;, // reload when navigating to same url
+            scrollPositionRestoration: &#x27;enabled&#x27;, // restore scroll position
             preloadingStrategy: PreloadAllModules // preload all lazy modules
-            // enableTracing: true          // TODO: do not enable tracing for prodcution
+            // enableTracing: true          // TODO: do not enable tracing for production
         })
     ],
     exports: [RouterModule]
@@ -158,6 +157,7 @@ export class AppRoutingModule {}
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
             var COMPODOC_CURRENT_PAGE_URL = 'AppRoutingModule.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

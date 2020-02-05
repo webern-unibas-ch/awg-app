@@ -70,7 +70,7 @@
             <p class="comment">
                 <p>The EditionSvgSheet class.</p>
 <p>It is used in the context of the edition view
-to store the data of a svg sheet
+to store the data for a single svg sheet
 from a svg sheet json file.</p>
 
             </p>
@@ -141,7 +141,7 @@ from a svg sheet json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:29</a></div>
                             </td>
                         </tr>
 
@@ -174,7 +174,7 @@ from a svg sheet json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="12" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:12</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:14</a></div>
                             </td>
                         </tr>
 
@@ -207,7 +207,7 @@ from a svg sheet json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:24</a></div>
                             </td>
                         </tr>
 
@@ -240,7 +240,7 @@ from a svg sheet json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="17" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:17</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="19" class="link-to-prism">src/app/views/edition-view/models/edition-svg-sheet.model.ts:19</a></div>
                             </td>
                         </tr>
 
@@ -265,7 +265,16 @@ from a svg sheet json file.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export class EditionSvgSheet {
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Source } from &#x27;@awg-views/edition-view/models/source-list.model&#x27;;
+
+/**
+ * The EditionSvgSheet class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single svg sheet
+ * from a svg sheet json file.
+ */
+export class EditionSvgSheet {
     /**
      * The sheet&#x27;s id (string).
      */
@@ -285,6 +294,20 @@ from a svg sheet json file.</p>
      * The alternative label for the sheet.
      */
     alt: string;
+}
+
+/**
+ * The EditionSvgSheetList class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a svg sheet list
+ * from a svg sheet json file.
+ */
+export class EditionSvgSheetList {
+    /**
+     * The array of sheets from a svg sheet list.
+     */
+    sheets: EditionSvgSheet[];
 }
 </code></pre>
     </div>
@@ -315,6 +338,7 @@ from a svg sheet json file.</p>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'class';
             var COMPODOC_CURRENT_PAGE_URL = 'EditionSvgSheet.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

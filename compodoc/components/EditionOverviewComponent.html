@@ -83,6 +83,7 @@ another router outlet for the edition routes.</p>
     </p>
     <p class="comment">
                     <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
 
@@ -142,7 +143,14 @@ another router outlet for the edition routes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#editionButtonArray">editionButtonArray</a>
+                                <a href="#editionRouterLinkButtons">editionRouterLinkButtons</a>
+                            </li>
+                            <li>
+                                <a href="#editionWork">editionWork</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#subscription">subscription</a>
                             </li>
                         </ul>
                     </td>
@@ -156,6 +164,12 @@ another router outlet for the edition routes.</p>
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
+                            <li>
+                                <a href="#getEditionWork">getEditionWork</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
@@ -174,6 +188,62 @@ another router outlet for the edition routes.</p>
     </table>
 </section>
 
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(editionService: <a href="../injectables/EditionService.html">EditionService</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the EditionOverviewComponent.</p>
+<p>It declares a private instance of EditionService.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>editionService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/EditionService.html" target="_self" >EditionService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the EditionService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
 
 
 
@@ -184,6 +254,99 @@ another router outlet for the edition routes.</p>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getEditionWork"></a>
+                    <span class="name">
+                        <b>
+                            getEditionWork
+                        </b>
+                        <a href="#getEditionWork"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getEditionWork()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="70"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:70</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: getEditionWork.</p>
+<p>It subscribes to the current edition work
+of the edition service.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Gets the current edition work.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="121"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:121</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
+<p>It calls the containing methods
+when destroying the component.</p>
+<p>Destroys subscriptions.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -206,8 +369,8 @@ another router outlet for the edition routes.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:58</a></div>
                 </td>
             </tr>
 
@@ -249,8 +412,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="43"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:43</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:84</a></div>
                 </td>
             </tr>
 
@@ -258,7 +421,7 @@ when initializing the component.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: setButtons.</p>
-<p>It initializes the editionButtonArray.</p>
+<p>It initializes the editionRouterLinkButtons.</p>
 </div>
 
                     <div>
@@ -268,7 +431,7 @@ when initializing the component.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Sets the editionButtonArray.</p>
+                        <p>Sets the editionRouterLinkButtons.</p>
 
                     </div>
                 </td>
@@ -285,11 +448,11 @@ when initializing the component.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editionButtonArray"></a>
+                        <a name="editionRouterLinkButtons"></a>
                         <span class="name">
                             <b>
-                            editionButtonArray</b>
-                            <a href="#editionButtonArray"><span class="icon ion-ios-link"></span></a>
+                            editionRouterLinkButtons</b>
+                            <a href="#editionRouterLinkButtons"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -301,14 +464,83 @@ when initializing the component.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="24" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:24</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:27</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: editionButtonArray.</p>
+                        <div class="io-description"><p>Public variable: editionRouterLinkButtons.</p>
 <p>It keeps the array for the edition router link buttons.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="editionWork"></a>
+                        <span class="name">
+                            <b>
+                            editionWork</b>
+                            <a href="#editionWork"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:34</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: editionWork.</p>
+<p>It keeps the current composition.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="subscription"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            subscription</b>
+                            <a href="#subscription"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subscription</code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-overview.component.ts:41</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: subscription.</p>
+<p>It keeps the subscriptions of the component.</p>
 </div>
                     </td>
                 </tr>
@@ -321,9 +553,12 @@ when initializing the component.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnDestroy, OnInit } from &#x27;@angular/core&#x27;;
+import { Subscription } from &#x27;rxjs&#x27;;
 
 import { RouterLinkButton } from &#x27;@awg-shared/router-link-button-group/router-link-button.model&#x27;;
+import { EditionConstants, EditionWork } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionService } from &#x27;@awg-views/edition-view/services&#x27;;
 
 /**
  * The EditionOverview component.
@@ -338,13 +573,36 @@ import { RouterLinkButton } from &#x27;@awg-shared/router-link-button-group/rout
     templateUrl: &#x27;./edition-overview.component.html&#x27;,
     styleUrls: [&#x27;./edition-overview.component.css&#x27;]
 })
-export class EditionOverviewComponent implements OnInit {
+export class EditionOverviewComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: editionButtonArray.
+     * Public variable: editionRouterLinkButtons.
      *
      * It keeps the array for the edition router link buttons.
      */
-    editionButtonArray: RouterLinkButton[];
+    editionRouterLinkButtons: RouterLinkButton[];
+
+    /**
+     * Public variable: editionWork.
+     *
+     * It keeps the current composition.
+     */
+    editionWork: EditionWork;
+
+    /**
+     * Private variable: subscription.
+     *
+     * It keeps the subscriptions of the component.
+     */
+    private subscription: Subscription;
+
+    /**
+     * Constructor of the EditionOverviewComponent.
+     *
+     * It declares a private instance of EditionService.
+     *
+     * @param {EditionService} editionService Instance of the EditionService.
+     */
+    constructor(private editionService: EditionService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -353,30 +611,83 @@ export class EditionOverviewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.setButtons();
+        this.getEditionWork();
+    }
+
+    /**
+     * Public method: getEditionWork.
+     *
+     * It subscribes to the current edition work
+     * of the edition service.
+     *
+     * @returns {void} Gets the current edition work.
+     */
+    getEditionWork(): void {
+        this.subscription &#x3D; this.editionService.getEditionWork().subscribe(work &#x3D;&gt; {
+            this.editionWork &#x3D; work;
+            this.setButtons();
+        });
     }
 
     /**
      * Public method: setButtons.
      *
-     * It initializes the editionButtonArray.
+     * It initializes the editionRouterLinkButtons.
      *
-     * @returns {void} Sets the editionButtonArray.
+     * @returns {void} Sets the editionRouterLinkButtons.
      */
     setButtons(): void {
-        this.editionButtonArray &#x3D; [
-            new RouterLinkButton(&#x27;/edition&#x27;, &#x27;intro&#x27;, &#x27;Einleitung&#x27;, false),
-            new RouterLinkButton(&#x27;/edition&#x27;, &#x27;detail&#x27;, &#x27;Edierter Notentext&#x27;, false),
-            new RouterLinkButton(&#x27;/edition&#x27;, &#x27;report&#x27;, &#x27;Kritischer Bericht&#x27;, false)
+        this.editionRouterLinkButtons &#x3D; [
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.introRoute,
+                EditionConstants.editionIntro.short,
+                false
+            ),
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.detailRoute,
+                EditionConstants.editionDetail.short,
+                false
+            ),
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.reportRoute,
+                EditionConstants.editionReport.short,
+                false
+            ),
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.graphRoute,
+                EditionConstants.editionGraph.short,
+                false
+            )
         ];
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     *
+     * Destroys subscriptions.
+     */
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }
 </code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;awg-router-link-button-group *ngIf&#x3D;&quot;editionButtonArray&quot;
-    [buttonArray]&#x3D;&quot;editionButtonArray&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;awg-router-link-button-group
+    *ngIf&#x3D;&quot;editionRouterLinkButtons&quot;
+    [routerLinkButtons]&#x3D;&quot;editionRouterLinkButtons&quot;
+    [queryParamsHandling]&#x3D;&quot;&#x27;&#x27;&quot;
+&gt;
 &lt;/awg-router-link-button-group&gt;
 
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -415,8 +726,8 @@ export class EditionOverviewComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><awg-router-link-button-group *ngIf="editionButtonArray"    [buttonArray]="editionButtonArray"></awg-router-link-button-group><router-outlet></router-outlet></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><awg-router-link-button-group    *ngIf="editionRouterLinkButtons"    [routerLinkButtons]="editionRouterLinkButtons"    [queryParamsHandling]="\'\'"></awg-router-link-button-group><router-outlet></router-outlet></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionOverviewComponent'};
 </script>
@@ -454,6 +765,7 @@ export class EditionOverviewComponent implements OnInit {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
             var COMPODOC_CURRENT_PAGE_URL = 'EditionOverviewComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

@@ -194,7 +194,7 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">/* tslint:disable:no-input-rename */
 /* tslint:disable:directive-selector component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from &#x27;@angular/core&#x27;;
-import { NavigationExtras } from &#x27;@angular/router&#x27;;
+import { NavigationExtras, QueryParamsHandling } from &#x27;@angular/router&#x27;;
 
 import { AppModule } from &#x27;@awg-app/app.module&#x27;;
 
@@ -214,6 +214,18 @@ export class RouterLinkStubDirective {
      */
     @Input(&#x27;routerLink&#x27;)
     linkParams: any;
+
+    /**
+     * Input with query parameters.
+     */
+    @Input(&#x27;queryParams&#x27;)
+    queryParams?: any;
+
+    /**
+     * Input with query param handling option.
+     */
+    @Input(&#x27;queryParamsHandling&#x27;)
+    queryParamsHandling?: QueryParamsHandling &#x3D; &#x27;&#x27;;
 
     /**
      * The router params after navigation.
@@ -391,6 +403,7 @@ export class FakeRouterModule {}
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'module';
             var COMPODOC_CURRENT_PAGE_URL = 'FakeRouterModule.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

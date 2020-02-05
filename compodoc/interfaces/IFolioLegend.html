@@ -182,7 +182,7 @@ of an edition convolute folio.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 
-import { Folio, EditionSvgSheet } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from &#x27;@awg-views/edition-view/models&#x27;;
 import { faSquare } from &#x27;@fortawesome/free-solid-svg-icons/faSquare&#x27;;
 
 /**
@@ -223,7 +223,7 @@ export class EditionConvoluteComponent implements OnInit {
      * It keeps the folios of the edition detail.
      */
     @Input()
-    folios: Folio[];
+    folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: selectedSvgSheet.
@@ -260,19 +260,9 @@ export class EditionConvoluteComponent implements OnInit {
     /**
      * Public variable: selectedConvolute.
      *
-     * It keeps the selected convolute string.
+     * It keeps the selected convolute.
      */
-    selectedConvolute: string;
-
-    /**
-     * Public variable: convolutes.
-     *
-     * It keeps the labels for the convolutes.
-     */
-    convolutes &#x3D; {
-        A: &#x27;A Skizzen (Basel, Paul Sacher Stiftung)&#x27;,
-        B_H: &#x27;B–H (siehe Kritischer Bericht)&#x27;
-    };
+    selectedConvolute: FolioConvolute;
 
     /**
      * Public variable: folioLegends.
@@ -301,7 +291,13 @@ export class EditionConvoluteComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.selectedConvolute &#x3D; this.convolutes.A;
+        if (
+            this.folioConvoluteData.convolutes &amp;&amp;
+            this.folioConvoluteData.convolutes.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp;
+            this.folioConvoluteData.convolutes.length &gt; 0
+        ) {
+            this.selectedConvolute &#x3D; this.folioConvoluteData.convolutes[0];
+        }
     }
 
     /**
@@ -320,14 +316,26 @@ export class EditionConvoluteComponent implements OnInit {
     /**
      * Public method: selectConvolute.
      *
-     * It sets a given convolutelabel to the
-     * to the {@link selectSvgSheetRequest}.
+     * It sets a given id to the
+     * to the selectedConvolute.
      *
-     * @param {string} convoluteLabel The given label.
-     * @returns {void} Sets the selectedConvoluteLabel variable.
+     * @param {string} id The given id.
+     * @returns {void} Sets the selectedConvolute variable.
      */
-    selectConvolute(convoluteLabel: string): void {
-        this.selectedConvolute &#x3D; convoluteLabel;
+    selectConvolute(id: string): void {
+        if (!id) {
+            return;
+        }
+        const convoluteIndex &#x3D; this.folioConvoluteData.convolutes.findIndex(c &#x3D;&gt; c.convoluteId &#x3D;&#x3D;&#x3D; id);
+        const convolute: FolioConvolute &#x3D; this.folioConvoluteData.convolutes[convoluteIndex];
+        if (convolute.folios &amp;&amp; convolute.folios.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp; convolute.folios.length &#x3D;&#x3D;&#x3D; 0) {
+            // if no folio data provided, open modal
+            if (convolute.linkTo) {
+                this.openModal(convolute.linkTo);
+            }
+            return;
+        }
+        this.selectedConvolute &#x3D; convolute;
     }
 
     /**
@@ -371,6 +379,7 @@ export class EditionConvoluteComponent implements OnInit {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
             var COMPODOC_CURRENT_PAGE_URL = 'IFolioLegend.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

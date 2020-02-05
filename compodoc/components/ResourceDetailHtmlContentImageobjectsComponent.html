@@ -251,8 +251,8 @@ of the resource detail.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="56"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/imageobjects/imageobjects.component.ts:56</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="54"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/imageobjects/imageobjects.component.ts:54</a></div>
                 </td>
             </tr>
 
@@ -301,17 +301,15 @@ when initializing the component.</p>
                             <i>Default value : </i><code>[
         new NgxGalleryOptions({
             width: &#x27;100%&#x27;,
-            height: &#x27;100%&#x27;,
-            imageBullets: true,
             imageSize: &#x27;contain&#x27;,
             thumbnailSize: &#x27;contain&#x27;,
-            thumbnailsColumns: 4,
             thumbnailMargin: 5,
             thumbnailsMargin: 0,
             previewCloseOnClick: true,
             previewCloseOnEsc: true,
             previewZoom: true,
-            previewRotate: true
+            previewRotate: true,
+            linkTarget: &#x27;_blank&#x27;
         })
     ]</code>
                         </td>
@@ -340,7 +338,7 @@ when initializing the component.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnInit } from &#x27;@angular/core&#x27;;
 
-import { NgxGalleryImage, NgxGalleryOptions } from &#x27;ngx-gallery&#x27;;
+import { NgxGalleryImage, NgxGalleryOptions } from &#x27;@kolkov/ngx-gallery&#x27;;
 
 /**
  * The ResourceDetailHtmlContentImageobjects component.
@@ -373,17 +371,15 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[] &#x3D; [
         new NgxGalleryOptions({
             width: &#x27;100%&#x27;,
-            height: &#x27;100%&#x27;,
-            imageBullets: true,
             imageSize: &#x27;contain&#x27;,
             thumbnailSize: &#x27;contain&#x27;,
-            thumbnailsColumns: 4,
             thumbnailMargin: 5,
             thumbnailsMargin: 0,
             previewCloseOnClick: true,
             previewCloseOnEsc: true,
             previewZoom: true,
-            previewRotate: true
+            previewRotate: true,
+            linkTarget: &#x27;_blank&#x27;
         })
     ];
 
@@ -423,7 +419,7 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
 
     &lt;!-- image slider --&gt;
     &lt;div class&#x3D;&quot;card awg-image-slider&quot;&gt;
-        &lt;ngx-gallery [options]&#x3D;&quot;galleryOptions&quot; [images]&#x3D;&quot;images&quot;&gt;&lt;/ngx-gallery&gt;
+        &lt;ngx-gallery class&#x3D;&quot;ngx-gallery&quot; [options]&#x3D;&quot;galleryOptions&quot; [images]&#x3D;&quot;images&quot;&gt;&lt;/ngx-gallery&gt;
     &lt;/div&gt;
     &lt;!-- end DIV image-slider --&gt;
 &lt;/div&gt;
@@ -440,6 +436,10 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     height: 300px;
 }
 
+.awg-image-slider .ngx-gallery {
+    display: inline-block;
+}
+
 /* image preview */
 ngx-gallery ::ng-deep .ngx-gallery-image-wrapper {
     background-color: #e7e7e7;
@@ -447,10 +447,10 @@ ngx-gallery ::ng-deep .ngx-gallery-image-wrapper {
 
 /* arrows */
 ngx-gallery ::ng-deep .ngx-gallery-arrow {
-    color: black;
+    color: #676767;
 }
 ngx-gallery ::ng-deep .ngx-gallery-arrow.ngx-gallery-disabled {
-    display: none;
+    opacity: 0.3;
 }
 
 /* thumbnails */
@@ -489,8 +489,8 @@ ngx-gallery ::ng-deep .ngx-gallery-thumbnail:hover {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229**]* 20.11.2017***************************************************/ --><!-- resourceDetailData content: image objects --><div class="awg-image-obj mb-3" *ngIf="images?.length > 0">    <!-- header -->    <h5>        Abbildungen (<span id="awg-image-number">{{ images?.length }}</span        >)    </h5>    <!-- image slider -->    <div class="card awg-image-slider">        <ngx-gallery [options]="galleryOptions" [images]="images"></ngx-gallery>    </div>    <!-- end DIV image-slider --></div><!-- end DIV image-obj --></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229**]* 20.11.2017***************************************************/ --><!-- resourceDetailData content: image objects --><div class="awg-image-obj mb-3" *ngIf="images?.length > 0">    <!-- header -->    <h5>        Abbildungen (<span id="awg-image-number">{{ images?.length }}</span        >)    </h5>    <!-- image slider -->    <div class="card awg-image-slider">        <ngx-gallery class="ngx-gallery" [options]="galleryOptions" [images]="images"></ngx-gallery>    </div>    <!-- end DIV image-slider --></div><!-- end DIV image-obj --></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceDetailHtmlContentImageobjectsComponent'};
 </script>
@@ -528,6 +528,7 @@ ngx-gallery ::ng-deep .ngx-gallery-thumbnail:hover {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
             var COMPODOC_CURRENT_PAGE_URL = 'ResourceDetailHtmlContentImageobjectsComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

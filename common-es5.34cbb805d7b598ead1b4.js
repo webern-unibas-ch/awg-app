@@ -1,0 +1,1 @@
+function _classCallCheck(n,s){if(!(n instanceof s))throw new TypeError("Cannot call a class as a function")}(window.webpackJsonp=window.webpackJsonp||[]).push([[1],{wjQg:function(n,s,a){"use strict";a.d(s,"a",(function(){return i})),a("mrSG");var i=function n(s,a,i,t){_classCallCheck(this,n),this.root=s,this.link=a,this.label=i,this.disabled=t}}}]);

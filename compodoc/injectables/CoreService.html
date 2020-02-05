@@ -223,7 +223,7 @@
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getMetaDataSection(section: K)</code>
+<code>getMetaDataSection(sectionType: S)</code>
                 </td>
             </tr>
 
@@ -239,7 +239,7 @@
                 <td class="col-md-4">
                     <b>Type parameters :</b>
                     <ul class="type-parameters">
-                        <li>K</li>
+                        <li>S</li>
                     </ul>
                 </td>
             </tr>
@@ -262,9 +262,9 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>section</td>
+                                    <td>sectionType</td>
                                     <td>
-                                            <code>K</code>
+                                            <code>S</code>
                                     </td>
 
                                     <td>
@@ -309,12 +309,12 @@ export class CoreService {
      *
      * It provides a section of the meta data object.
      *
-     * @params {&lt;K extends MetaSectionTypes&gt;} [section] The given section.
+     * @params {&lt;S extends MetaSectionTypes&gt;S} [sectionType] The given sectionType.
      *
-     * @returns {Meta[K]} The section K of the metadata object.
+     * @returns {Meta[S]} The sectionType S of the metadata object.
      */
-    getMetaDataSection&lt;K extends MetaSectionTypes&gt;(section: K): Meta[K] {
-        return METADATA[section];
+    getMetaDataSection&lt;S extends MetaSectionTypes&gt;(sectionType: S): Meta[S] {
+        return METADATA[sectionType];
     }
 
     /**
@@ -373,6 +373,7 @@ export class CoreService {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
             var COMPODOC_CURRENT_PAGE_URL = 'CoreService.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

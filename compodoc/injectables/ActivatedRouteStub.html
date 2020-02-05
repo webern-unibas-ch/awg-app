@@ -158,7 +158,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/testing/router-stubs.ts:127</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/testing/router-stubs.ts:139</a></div>
                             </td>
                         </tr>
 
@@ -230,8 +230,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="149"
-                            class="link-to-prism">src/testing/router-stubs.ts:149</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="161"
+                            class="link-to-prism">src/testing/router-stubs.ts:161</a></div>
                 </td>
             </tr>
 
@@ -312,7 +312,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/testing/router-stubs.ts:97</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="109" class="link-to-prism">src/testing/router-stubs.ts:109</a></div>
                             </td>
                         </tr>
 
@@ -345,7 +345,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/testing/router-stubs.ts:142</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="154" class="link-to-prism">src/testing/router-stubs.ts:154</a></div>
                             </td>
                         </tr>
 
@@ -379,7 +379,7 @@ as observable (<code>ReplaySubject</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/testing/router-stubs.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="139" class="link-to-prism">src/testing/router-stubs.ts:139</a></div>
                             </td>
                         </tr>
 
@@ -412,7 +412,7 @@ as observable (<code>ReplaySubject</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/testing/router-stubs.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/testing/router-stubs.ts:104</a></div>
                             </td>
                         </tr>
 
@@ -446,7 +446,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/testing/router-stubs.ts:86</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="98" class="link-to-prism">src/testing/router-stubs.ts:98</a></div>
                             </td>
                         </tr>
 
@@ -481,7 +481,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="103" class="link-to-prism">src/testing/router-stubs.ts:103</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/testing/router-stubs.ts:115</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -501,7 +501,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/testing/router-stubs.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="123" class="link-to-prism">src/testing/router-stubs.ts:123</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -566,7 +566,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/testing/router-stubs.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/testing/router-stubs.ts:132</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -587,7 +587,7 @@ as observable (<code>BehaviorSubject</code>).</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, Directive, HostListener, Injectable, Input, NgModule } from &#x27;@angular/core&#x27;;
-import { NavigationExtras } from &#x27;@angular/router&#x27;;
+import { NavigationExtras, QueryParamsHandling } from &#x27;@angular/router&#x27;;
 
 import { AppModule } from &#x27;@awg-app/app.module&#x27;;
 
@@ -607,6 +607,18 @@ export class RouterLinkStubDirective {
      */
     @Input(&#x27;routerLink&#x27;)
     linkParams: any;
+
+    /**
+     * Input with query parameters.
+     */
+    @Input(&#x27;queryParams&#x27;)
+    queryParams?: any;
+
+    /**
+     * Input with query param handling option.
+     */
+    @Input(&#x27;queryParamsHandling&#x27;)
+    queryParamsHandling?: QueryParamsHandling &#x3D; &#x27;&#x27;;
 
     /**
      * The router params after navigation.
@@ -782,6 +794,7 @@ export class FakeRouterModule {}
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
             var COMPODOC_CURRENT_PAGE_URL = 'ActivatedRouteStub.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

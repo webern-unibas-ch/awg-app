@@ -145,9 +145,6 @@ with the <a href="EditionFolioComponent">EditionFolioComponent</a>.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#convolutes">convolutes</a>
-                            </li>
-                            <li>
                                 <a href="#faSquare">faSquare</a>
                             </li>
                             <li>
@@ -193,7 +190,7 @@ with the <a href="EditionFolioComponent">EditionFolioComponent</a>.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#folios">folios</a>
+                                <a href="#folioConvoluteData">folioConvoluteData</a>
                             </li>
                             <li>
                                 <a href="#selectedSvgSheet">selectedSvgSheet</a>
@@ -233,13 +230,13 @@ with the <a href="EditionFolioComponent">EditionFolioComponent</a>.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="folios"></a>
-                        <b>folios</b>
+                        <a name="folioConvoluteData"></a>
+                        <b>folioConvoluteData</b>
                     </td>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/Folio.html" target="_self" >Folio[]</a></code>
+                        <i>Type : </i>        <code><a href="../classes/FolioConvoluteList.html" target="_self" >FolioConvoluteList</a></code>
 
                     </td>
                 </tr>
@@ -375,8 +372,8 @@ with the selected modal text snippet.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="121"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:121</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:111</a></div>
                 </td>
             </tr>
 
@@ -418,8 +415,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="134"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:134</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="130"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:130</a></div>
                 </td>
             </tr>
 
@@ -491,15 +488,15 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectConvolute(convoluteLabel: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>selectConvolute(id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:147</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:143</a></div>
                 </td>
             </tr>
 
@@ -507,8 +504,8 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: selectConvolute.</p>
-<p>It sets a given convolutelabel to the
-to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
+<p>It sets a given id to the
+to the selectedConvolute.</p>
 </div>
 
                     <div class="io-description">
@@ -524,7 +521,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>convoluteLabel</td>
+                                    <td>id</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -535,7 +532,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 
 
                                     <td>
-                                        <p>The given label.</p>
+                                        <p>The given id.</p>
 
                                     </td>
                                 </tr>
@@ -549,7 +546,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Sets the selectedConvoluteLabel variable.</p>
+                        <p>Sets the selectedConvolute variable.</p>
 
                     </div>
                 </td>
@@ -578,8 +575,8 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="160"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:160</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="168"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:168</a></div>
                 </td>
             </tr>
 
@@ -642,48 +639,6 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
         <h3 id="inputs">
             Properties
         </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="convolutes"></a>
-                        <span class="name">
-                            <b>
-                            convolutes</b>
-                            <a href="#convolutes"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-        A: &#x27;A Skizzen (Basel, Paul Sacher Stiftung)&#x27;,
-        B_H: &#x27;B–H (siehe Kritischer Bericht)&#x27;
-    }</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:90</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: convolutes.</p>
-<p>It keeps the labels for the convolutes.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -755,7 +710,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:100</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-convolute/edition-convolute.component.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -783,7 +738,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="../classes/FolioConvolute.html" target="_self" >FolioConvolute</a></code>
 
                         </td>
                     </tr>
@@ -796,7 +751,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Public variable: selectedConvolute.</p>
-<p>It keeps the selected convolute string.</p>
+<p>It keeps the selected convolute.</p>
 </div>
                     </td>
                 </tr>
@@ -811,7 +766,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 
-import { Folio, EditionSvgSheet } from &#x27;@awg-views/edition-view/models&#x27;;
+import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from &#x27;@awg-views/edition-view/models&#x27;;
 import { faSquare } from &#x27;@fortawesome/free-solid-svg-icons/faSquare&#x27;;
 
 /**
@@ -852,7 +807,7 @@ export class EditionConvoluteComponent implements OnInit {
      * It keeps the folios of the edition detail.
      */
     @Input()
-    folios: Folio[];
+    folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: selectedSvgSheet.
@@ -889,19 +844,9 @@ export class EditionConvoluteComponent implements OnInit {
     /**
      * Public variable: selectedConvolute.
      *
-     * It keeps the selected convolute string.
+     * It keeps the selected convolute.
      */
-    selectedConvolute: string;
-
-    /**
-     * Public variable: convolutes.
-     *
-     * It keeps the labels for the convolutes.
-     */
-    convolutes &#x3D; {
-        A: &#x27;A Skizzen (Basel, Paul Sacher Stiftung)&#x27;,
-        B_H: &#x27;B–H (siehe Kritischer Bericht)&#x27;
-    };
+    selectedConvolute: FolioConvolute;
 
     /**
      * Public variable: folioLegends.
@@ -930,7 +875,13 @@ export class EditionConvoluteComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.selectedConvolute &#x3D; this.convolutes.A;
+        if (
+            this.folioConvoluteData.convolutes &amp;&amp;
+            this.folioConvoluteData.convolutes.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp;
+            this.folioConvoluteData.convolutes.length &gt; 0
+        ) {
+            this.selectedConvolute &#x3D; this.folioConvoluteData.convolutes[0];
+        }
     }
 
     /**
@@ -949,14 +900,26 @@ export class EditionConvoluteComponent implements OnInit {
     /**
      * Public method: selectConvolute.
      *
-     * It sets a given convolutelabel to the
-     * to the {@link selectSvgSheetRequest}.
+     * It sets a given id to the
+     * to the selectedConvolute.
      *
-     * @param {string} convoluteLabel The given label.
-     * @returns {void} Sets the selectedConvoluteLabel variable.
+     * @param {string} id The given id.
+     * @returns {void} Sets the selectedConvolute variable.
      */
-    selectConvolute(convoluteLabel: string): void {
-        this.selectedConvolute &#x3D; convoluteLabel;
+    selectConvolute(id: string): void {
+        if (!id) {
+            return;
+        }
+        const convoluteIndex &#x3D; this.folioConvoluteData.convolutes.findIndex(c &#x3D;&gt; c.convoluteId &#x3D;&#x3D;&#x3D; id);
+        const convolute: FolioConvolute &#x3D; this.folioConvoluteData.convolutes[convoluteIndex];
+        if (convolute.folios &amp;&amp; convolute.folios.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp; convolute.folios.length &#x3D;&#x3D;&#x3D; 0) {
+            // if no folio data provided, open modal
+            if (convolute.linkTo) {
+                this.openModal(convolute.linkTo);
+            }
+            return;
+        }
+        this.selectedConvolute &#x3D; convolute;
     }
 
     /**
@@ -982,18 +945,22 @@ export class EditionConvoluteComponent implements OnInit {
             &lt;!-- convolute dropDown --&gt;
             &lt;div class&#x3D;&quot;d-inline-block&quot; ngbDropdown&gt;
                 &lt;a class&#x3D;&quot;btn&quot; id&#x3D;&quot;dropDownConvolutes&quot; ngbDropdownToggle&gt;
-                    &lt;span&gt;{{ selectedConvolute }}&lt;/span&gt;
+                    &lt;span&gt;{{ selectedConvolute.convoluteId }}&lt;/span&gt;
                 &lt;/a&gt;
                 &lt;div ngbDropdownMenu aria-labelledby&#x3D;&quot;dropDownConvolutes&quot;&gt;
-                    &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;selectConvolute(convolutes.A)&quot;&gt;{{ convolutes.A }}&lt;/a&gt;
-                    &lt;a class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;openModal(&#x27;sourceNotA&#x27;)&quot;&gt;{{ convolutes.B_H }}&lt;/a&gt;
+                    &lt;a
+                        class&#x3D;&quot;dropdown-item&quot;
+                        *ngFor&#x3D;&quot;let conv of folioConvoluteData.convolutes&quot;
+                        (click)&#x3D;&quot;selectConvolute(conv.convoluteId)&quot;
+                        &gt;{{ conv.convoluteId }}&lt;/a
+                    &gt;
                 &lt;/div&gt;
             &lt;/div&gt;
 
             &lt;!-- folio overview --&gt;
             &lt;awg-edition-folio
-                *ngIf&#x3D;&quot;folios &amp;&amp; selectedSvgSheet&quot;
-                [folios]&#x3D;&quot;folios&quot;
+                *ngIf&#x3D;&quot;selectedConvolute &amp;&amp; selectedConvolute.folios &amp;&amp; selectedSvgSheet&quot;
+                [folioData]&#x3D;&quot;selectedConvolute.folios&quot;
                 [selectedSvgSheet]&#x3D;&quot;selectedSvgSheet&quot;
                 (openModalRequest)&#x3D;&quot;openModal($event)&quot;
                 (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;
@@ -1048,8 +1015,8 @@ export class EditionConvoluteComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngb-accordion activeIds="awg-convolute-view">    <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">        <ng-template ngbPanelContent>            <!-- convolute dropDown -->            <div class="d-inline-block" ngbDropdown>                <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>                    <span>{{ selectedConvolute }}</span>                </a>                <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">                    <a class="dropdown-item" (click)="selectConvolute(convolutes.A)">{{ convolutes.A }}</a>                    <a class="dropdown-item" (click)="openModal(\'sourceNotA\')">{{ convolutes.B_H }}</a>                </div>            </div>            <!-- folio overview -->            <awg-edition-folio                *ngIf="folios && selectedSvgSheet"                [folios]="folios"                [selectedSvgSheet]="selectedSvgSheet"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)"            >            </awg-edition-folio>            <!-- folio legend -->            <div class="col-12">                Legende:&nbsp;                <ng-container *ngFor="let legend of folioLegends">                    <span class="{{ legend.color }}">                        <fa-icon [icon]="faSquare"></fa-icon>                        {{ legend.label }}                    </span>                </ng-container>            </div>        </ng-template>    </ngb-panel></ngb-accordion></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><ngb-accordion activeIds="awg-convolute-view">    <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">        <ng-template ngbPanelContent>            <!-- convolute dropDown -->            <div class="d-inline-block" ngbDropdown>                <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>                    <span>{{ selectedConvolute.convoluteId }}</span>                </a>                <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">                    <a                        class="dropdown-item"                        *ngFor="let conv of folioConvoluteData.convolutes"                        (click)="selectConvolute(conv.convoluteId)"                        >{{ conv.convoluteId }}</a                    >                </div>            </div>            <!-- folio overview -->            <awg-edition-folio                *ngIf="selectedConvolute && selectedConvolute.folios && selectedSvgSheet"                [folioData]="selectedConvolute.folios"                [selectedSvgSheet]="selectedSvgSheet"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)"            >            </awg-edition-folio>            <!-- folio legend -->            <div class="col-12">                Legende:&nbsp;                <ng-container *ngFor="let legend of folioLegends">                    <span class="{{ legend.color }}">                        <fa-icon [icon]="faSquare"></fa-icon>                        {{ legend.label }}                    </span>                </ng-container>            </div>        </ng-template>    </ngb-panel></ngb-accordion></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'EditionConvoluteComponent'};
 </script>
@@ -1087,6 +1054,7 @@ export class EditionConvoluteComponent implements OnInit {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
             var COMPODOC_CURRENT_PAGE_URL = 'EditionConvoluteComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>

@@ -142,7 +142,7 @@ another router outlet for the data (search) routes.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#searchButtonArray">searchButtonArray</a>
+                                <a href="#searchRouterLinkButtons">searchRouterLinkButtons</a>
                             </li>
                         </ul>
                     </td>
@@ -161,6 +161,9 @@ another router outlet for the data (search) routes.</p>
                             </li>
                             <li>
                                 <a href="#onButtonSelect">onButtonSelect</a>
+                            </li>
+                            <li>
+                                <a href="#setButtons">setButtons</a>
                             </li>
                             <li>
                                 <a href="#updateSearchInfoTitleFromPath">updateSearchInfoTitleFromPath</a>
@@ -188,7 +191,7 @@ another router outlet for the data (search) routes.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="31" class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:31</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:26</a></div>
                             </td>
                         </tr>
 
@@ -283,8 +286,8 @@ ActivatedRoute instance.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:46</a></div>
                 </td>
             </tr>
 
@@ -326,8 +329,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:101</a></div>
                 </td>
             </tr>
 
@@ -388,6 +391,54 @@ a selected button label to the SideInfoService.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="setButtons"></a>
+                    <span class="name">
+                        <b>
+                            setButtons
+                        </b>
+                        <a href="#setButtons"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>setButtons()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:58</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: setButtons.</p>
+<p>It initializes the searchRouterLinkButtons.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the searchRouterLinkButtons.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="updateSearchInfoTitleFromPath"></a>
                     <span class="name">
                         <b>
@@ -406,8 +457,8 @@ a selected button label to the SideInfoService.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="75"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:75</a></div>
                 </td>
             </tr>
 
@@ -444,11 +495,11 @@ from it via the SideInfoService.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchButtonArray"></a>
+                        <a name="searchRouterLinkButtons"></a>
                         <span class="name">
                             <b>
-                            searchButtonArray</b>
-                            <a href="#searchButtonArray"><span class="icon ion-ios-link"></span></a>
+                            searchRouterLinkButtons</b>
+                            <a href="#searchRouterLinkButtons"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -458,24 +509,15 @@ from it via the SideInfoService.</p>
 
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[
-        new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;fulltext&#x27;, &#x27;Volltext-Suche&#x27;, false),
-        new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;timeline&#x27;, &#x27;Timeline&#x27;, true),
-        new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;bibliography&#x27;, &#x27;Bibliographie&#x27;, true)
-    ]</code>
-                        </td>
-                    </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:26</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: searchButtonArray.</p>
+                        <div class="io-description"><p>Public variable: searchRouterLinkButtons.</p>
 <p>It keeps the array for the search router link buttons.</p>
 </div>
                     </td>
@@ -490,11 +532,10 @@ from it via the SideInfoService.</p>
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component, OnInit } from &#x27;@angular/core&#x27;;
+import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 
 import { RouterLinkButton } from &#x27;@awg-shared/router-link-button-group/router-link-button.model&#x27;;
-
 import { SideInfoService } from &#x27;@awg-core/services&#x27;;
-import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 
 /**
  * The SearchOverview component.
@@ -511,15 +552,11 @@ import { ActivatedRoute } from &#x27;@angular/router&#x27;;
 })
 export class SearchOverviewComponent implements OnInit {
     /**
-     * Public variable: searchButtonArray.
+     * Public variable: searchRouterLinkButtons.
      *
      * It keeps the array for the search router link buttons.
      */
-    searchButtonArray: RouterLinkButton[] &#x3D; [
-        new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;fulltext&#x27;, &#x27;Volltext-Suche&#x27;, false),
-        new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;timeline&#x27;, &#x27;Timeline&#x27;, true),
-        new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;bibliography&#x27;, &#x27;Bibliographie&#x27;, true)
-    ];
+    searchRouterLinkButtons: RouterLinkButton[];
 
     /**
      * Constructor of the SearchOverviewComponent.
@@ -540,7 +577,23 @@ export class SearchOverviewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
+        this.setButtons();
         this.updateSearchInfoTitleFromPath();
+    }
+
+    /**
+     * Public method: setButtons.
+     *
+     * It initializes the searchRouterLinkButtons.
+     *
+     * @returns {void} Sets the searchRouterLinkButtons.
+     */
+    setButtons(): void {
+        this.searchRouterLinkButtons &#x3D; [
+            new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;fulltext&#x27;, &#x27;Volltext-Suche&#x27;, false),
+            new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;timeline&#x27;, &#x27;Timeline&#x27;, true),
+            new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;bibliography&#x27;, &#x27;Bibliographie&#x27;, true)
+        ];
     }
 
     /**
@@ -557,7 +610,7 @@ export class SearchOverviewComponent implements OnInit {
         const path &#x3D; this.route.snapshot.children[0].url[0].path;
 
         // filter searchButtonArray
-        const selectedButton &#x3D; this.searchButtonArray.filter(button &#x3D;&gt; {
+        const selectedButton &#x3D; this.searchRouterLinkButtons.filter(button &#x3D;&gt; {
             return button.link &#x3D;&#x3D;&#x3D; path;
         });
 
@@ -592,9 +645,12 @@ export class SearchOverviewComponent implements OnInit {
     </div>
 
     <div class="tab-pane fade " id="c-templateData">
-        <pre class="line-numbers"><code class="language-html">&lt;awg-router-link-button-group *ngIf&#x3D;&quot;searchButtonArray&quot;
-    [buttonArray]&#x3D;&quot;searchButtonArray&quot;
-    (selectButtonRequest)&#x3D;&quot;onButtonSelect($event)&quot;&gt;
+        <pre class="line-numbers"><code class="language-html">&lt;awg-router-link-button-group
+    *ngIf&#x3D;&quot;searchRouterLinkButtons&quot;
+    [routerLinkButtons]&#x3D;&quot;searchRouterLinkButtons&quot;
+    [queryParamsHandling]&#x3D;&quot;&#x27;preserve&#x27;&quot;
+    (selectButtonRequest)&#x3D;&quot;onButtonSelect($event)&quot;
+&gt;
 &lt;/awg-router-link-button-group&gt;
 
 &lt;router-outlet&gt;&lt;/router-outlet&gt;
@@ -633,8 +689,8 @@ export class SearchOverviewComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><awg-router-link-button-group *ngIf="searchButtonArray"    [buttonArray]="searchButtonArray"    (selectButtonRequest)="onButtonSelect($event)"></awg-router-link-button-group><router-outlet></router-outlet></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'IntroComponent', 'selector': 'awg-intro'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><awg-router-link-button-group    *ngIf="searchRouterLinkButtons"    [routerLinkButtons]="searchRouterLinkButtons"    [queryParamsHandling]="\'preserve\'"    (selectButtonRequest)="onButtonSelect($event)"></awg-router-link-button-group><router-outlet></router-outlet></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'SearchOverviewComponent'};
 </script>
@@ -672,6 +728,7 @@ export class SearchOverviewComponent implements OnInit {
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
             var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
             var COMPODOC_CURRENT_PAGE_URL = 'SearchOverviewComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
        </script>
 
        <script src="../js/libs/custom-elements.min.js"></script>
