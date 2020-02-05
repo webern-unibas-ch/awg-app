@@ -1,0 +1,14 @@
+{
+    "graph": [
+        {
+            "id": "Op25",
+            "title": "Skizzengraph Opus 25",
+            "description": [
+                "<small class=\"text-muted\">[Eine dynamische Graph-Visualisierung der Skizzen zu <em>Drei Lieder nach Gedichten von Hildegard Jone</em> op. 25 erscheint in Kürze (02/2020).]<small>"
+            ],
+            "query": "",
+            "triples": "",
+            "staticImage": "<img [src]=\"ref.graphImages.op25\" width=\"100%\" alt=\"graphOp25\" />"
+        }
+    ]
+}

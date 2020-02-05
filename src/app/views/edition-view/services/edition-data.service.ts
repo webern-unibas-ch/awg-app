@@ -9,6 +9,7 @@ import {
     EditionWork,
     EditionSvgSheetList,
     FolioConvoluteList,
+    GraphList,
     IntroList,
     SourceList,
     SourceDescriptionList,
@@ -78,17 +79,36 @@ export class EditionDataService {
     }
 
     /**
-     * Public method: getEditionIntroData.
+     * Public method: getEditionGraphData.
      *
      * It provides the data from a JSON file
-     * for the intro of the edition detail view.
+     * for the graph of the edition view.
      *
      * @param {EditionWork} editionWork The current composition input.
      *
-     * @returns {Observable<IntroList>}
-     * The fork-joined observable array with the FolioConvoluteList,
-     * EditionSvgSheetList and TextcriticsList data.
-     * Only the first emit is needed.
+     * @returns {Observable<GraphList>} The observable with the GraphList data.
+     */
+    getEditionGraphData(editionWork: EditionWork): Observable<GraphList> {
+        this.setBasePath(editionWork);
+        const graphData$: Observable<GraphList> = this.getGraphData();
+
+        return graphData$.pipe(
+            // default empty value
+            defaultIfEmpty(new GraphList()),
+            // take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
+     * Public method: getEditionIntroData.
+     *
+     * It provides the data from a JSON file
+     * for the intro of the edition view.
+     *
+     * @param {EditionWork} editionWork The current composition input.
+     *
+     * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
     getEditionIntroData(editionWork: EditionWork): Observable<IntroList> {
         this.setBasePath(editionWork);
@@ -165,6 +185,21 @@ export class EditionDataService {
      */
     private getFolioConvoluteData(): Observable<FolioConvoluteList> {
         const file = EditionConstants.editionAssets.folioConvoluteFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getGraphData.
+     *
+     * It sets the path to the JSON file with
+     * the graph data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<GraphList>} The observable with the Graph data.
+     */
+    private getGraphData(): Observable<GraphList> {
+        const file = EditionConstants.editionAssets.graphFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }

@@ -5,8 +5,19 @@
  * to store string constants of the editions.
  */
 export class EditionRoute {
+    /**
+     * The route path of an edition route.
+     */
     route: string;
+
+    /**
+     * The short label of an edition route.
+     */
     short: string;
+
+    /**
+     * The full label of an edition route.
+     */
     full: string;
 }
 
@@ -171,6 +182,7 @@ export class EditionConstants {
     static readonly editionAssets = {
         baseRoute: 'assets/data/edition',
         folioConvoluteFile: 'folio-convolute.json',
+        graphFile: 'graph.json',
         introFile: 'intro.json',
         svgSheetsFile: 'svg-sheets.json',
         sourceListFile: 'source-list.json',
@@ -197,5 +209,14 @@ export class EditionConstants {
         short: '[JE] | No. 15 | 16 linig.',
         full:
             'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.'
+    };
+
+    /**
+     * The path to the assets image of the graph for op 25.
+     */
+    static readonly graphImageOp25: EditionRoute = {
+        route: 'assets/img/edition/series1/section5/op25/graph_op25_1.png',
+        short: 'Graph op. 25/I',
+        full: 'Graph der Skizzen von Opus 25/I.'
     };
 }

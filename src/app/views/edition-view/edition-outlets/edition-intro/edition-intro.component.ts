@@ -10,7 +10,7 @@ import { EditionWork, IntroList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 /**
- * The Intro component.
+ * The EditionIntro component.
  *
  * It contains the intro section
  * of the edition view of the app.
@@ -37,9 +37,9 @@ export class EditionIntroComponent implements OnInit {
     editionWork: EditionWork;
 
     /**
-     * Public variable: introData.
+     * Public variable: editionIntroData$.
      *
-     * It keeps the svg sheets data of the edition detail.
+     * It keeps the observable of the edition intro data.
      */
     editionIntroData$: Observable<IntroList>;
 
