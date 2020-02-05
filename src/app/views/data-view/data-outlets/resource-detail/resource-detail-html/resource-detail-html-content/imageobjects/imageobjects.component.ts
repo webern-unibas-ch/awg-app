@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { NgxGalleryImage, NgxGalleryOptions } from 'ngx-gallery';
+import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 
 /**
  * The ResourceDetailHtmlContentImageobjects component.
@@ -33,17 +33,15 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     galleryOptions: NgxGalleryOptions[] = [
         new NgxGalleryOptions({
             width: '100%',
-            height: '100%',
-            imageBullets: true,
             imageSize: 'contain',
             thumbnailSize: 'contain',
-            thumbnailsColumns: 4,
             thumbnailMargin: 5,
             thumbnailsMargin: 0,
             previewCloseOnClick: true,
             previewCloseOnEsc: true,
             previewZoom: true,
-            previewRotate: true
+            previewRotate: true,
+            linkTarget: '_blank'
         })
     ];
 

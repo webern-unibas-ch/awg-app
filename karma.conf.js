@@ -30,24 +30,19 @@ module.exports = function(config) {
             fixWebpackSourcePaths: true
         },
         reporters: ['progress', 'kjhtml'],
+        customLaunchers: {
+            // cf. https://medium.com/faun/configuring-travis-ci-for-angular-application-34afee1715f
+            ChromeHeadlessNoSandbox: {
+                base: 'ChromeHeadless',
+                flags: ['--no-sandbox']
+            }
+        },
         port: 9876,
         colors: true,
         logLevel: config.LOG_INFO,
         autoWatch: true,
         browsers: ['Chrome'],
         singleRun: false,
-        restartOnFileChange: true,
-        customLaunchers: {
-            ChromeHeadless: {
-                base: 'Chrome',
-                flags: [
-                    // See https://chromium.googlesource.com/chromium/src/+/lkgr/headless/README.md
-                    '--headless',
-                    '--disable-gpu',
-                    // Without a remote debugging port, Google Chrome exits immediately.
-                    '--remote-debugging-port=9222'
-                ]
-            }
-        }
+        restartOnFileChange: true
     });
 };

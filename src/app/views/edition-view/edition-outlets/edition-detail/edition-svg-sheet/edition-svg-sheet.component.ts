@@ -1,5 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+// import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
 
 /**
@@ -72,13 +73,60 @@ export class EditionSvgSheetComponent implements OnInit {
         sheet5: SvgSheetLabels.sheet5
     };
 
+    /* TODO: mute for now sind not working yet
+    galleryOptions: NgxGalleryOptions[];
+    galleryImages: NgxGalleryImage[];
+    */
+
     /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {}
+    ngOnInit() {
+        /*
+        TODO: mute for now since not working yet
+        this.galleryOptions = [
+            {
+                width: '100%',
+                height: '600px',
+                imageSize: 'contain',
+                thumbnailsColumns: 4,
+                previewCloseOnClick: true,
+                previewCloseOnEsc: true,
+                previewZoom: true,
+                previewRotate: true,
+                linkTarget: '_blank'
+            },
+            // max-width 800
+            {
+                breakpoint: 800,
+                width: '100%',
+                height: '600px',
+                imagePercent: 80,
+                thumbnailsPercent: 20,
+                thumbnailsMargin: 20,
+                thumbnailMargin: 20
+            },
+            // max-width 400
+            {
+                breakpoint: 400,
+                preview: false
+            }
+        ];
+
+        this.galleryImages = [2, 3, 4, 5].map(fileNumber => {
+            const fileName = `assets/img/edition/series1/section5/op12/SkI_${fileNumber}n_small_cut_opt.svg`;
+            return {
+                small: fileName,
+                medium: fileName,
+                big: fileName,
+                url: fileName
+            };
+        });
+        */
+    }
 
     /**
      * Public method: isSelectedSvgSheet.

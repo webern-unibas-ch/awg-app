@@ -1,7 +1,13 @@
 <!-- content: edition-view -->
 
 <!-- heading -->
-<awg-heading [title]="editionTitle" [id]="editionId"></awg-heading>
+<awg-heading [title]="editionViewTitle" [id]="editionViewId"></awg-heading>
+
+<div *ngIf="editionWork$ | async as editionWork">
+    <!-- TODO: refactor this as selectable breadcrumb -->
+    <h6>{{ editionWork.edition.short }} / {{ editionWork.series.full }} / {{ editionWork.section.full }}</h6>
+    <h3>{{ editionWork.work.full }}</h3>
+</div>
 
 <!-- edition routes -->
 <router-outlet></router-outlet>

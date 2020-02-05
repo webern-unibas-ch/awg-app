@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { SourceList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
 /**
  * The Sources component.
@@ -26,6 +26,30 @@ export class SourcesComponent implements OnInit {
     sourceListData: SourceList;
 
     /**
+     * Input variable: sourceDescriptionListData.
+     *
+     * It keeps the source description data.
+     */
+    @Input()
+    sourceDescriptionListData: SourceDescriptionList;
+
+    /**
+     * Input variable: sourceEvaluationListData.
+     *
+     * It keeps the source evaluation data.
+     */
+    @Input()
+    sourceEvaluationListData: SourceEvaluationList;
+
+    /**
+     * Output variable: navigateToReportFragment.
+     *
+     * It keeps an event emitter for a fragment id of the edition report.
+     */
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
      * Output variable: openModalRequest.
      *
      * It keeps an event emitter to open the modal
@@ -35,12 +59,33 @@ export class SourcesComponent implements OnInit {
     openModalRequest: EventEmitter<any> = new EventEmitter();
 
     /**
+     * Output variable: selectSvgSheetRequest.
+     *
+     * It keeps an event emitter for the selected id of an svg sheet.
+     */
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
      * when initializing the component.
      */
     ngOnInit() {}
+
+    /**
+     * Public method: navigateToReportFragment.
+     *
+     * It emits a given fragment id of the edition report
+     * to the {@link navigateToReportFragmentRquest}.
+     *
+     * @param {string}  fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    navigateToReportFragment(fragmentId: string) {
+        this.navigateToReportFragmentRequest.emit(fragmentId);
+    }
 
     /**
      * Public method: openModal.
@@ -54,5 +99,18 @@ export class SourcesComponent implements OnInit {
      */
     openModal(id: string): void {
         this.openModalRequest.emit(id);
+    }
+
+    /**
+     * Public method: selectSvgSheet.
+     *
+     * It emits a given id of a selected svg sheet
+     * to the {@link selectSvgSheetRequest}.
+     *
+     * @param {string} id The given sheet id.
+     * @returns {void} Emits the id.
+     */
+    selectSvgSheet(id: string): void {
+        this.selectSvgSheetRequest.emit(id);
     }
 }

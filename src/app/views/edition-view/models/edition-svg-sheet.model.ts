@@ -1,8 +1,10 @@
+import { Source } from '@awg-views/edition-view/models/source-list.model';
+
 /**
  * The EditionSvgSheet class.
  *
  * It is used in the context of the edition view
- * to store the data of a svg sheet
+ * to store the data for a single svg sheet
  * from a svg sheet json file.
  */
 export class EditionSvgSheet {
@@ -25,4 +27,18 @@ export class EditionSvgSheet {
      * The alternative label for the sheet.
      */
     alt: string;
+}
+
+/**
+ * The EditionSvgSheetList class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a svg sheet list
+ * from a svg sheet json file.
+ */
+export class EditionSvgSheetList {
+    /**
+     * The array of sheets from a svg sheet list.
+     */
+    sheets: EditionSvgSheet[];
 }

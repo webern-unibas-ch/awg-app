@@ -1,11 +1,11 @@
 /**
- * The Textcritics class.
+ * The TextcriticalComment class.
  *
  * It is used in the context of the edition view
  * to store the data for a single textcritical comment
  * from a textcritics json file.
  */
-export class Textcritics {
+export class TextcriticalComment {
     /**
      * The measure that the textcritical comment is addressing.
      */
@@ -28,6 +28,30 @@ export class Textcritics {
 }
 
 /**
+ * The Textcritics class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a single textcritical comment
+ * from a textcritics json file.
+ */
+export class Textcritics {
+    /**
+     * The id of the textcritics.
+     */
+    id: string;
+
+    /**
+     * The description of the textcritics.
+     */
+    description: string;
+
+    /**
+     * The array of textcritical comments from a textcritics list.
+     */
+    comments: TextcriticalComment[];
+}
+
+/**
  * The TextcriticsList class.
  *
  * It is used in the context of the edition view
@@ -36,7 +60,7 @@ export class Textcritics {
  */
 export class TextcriticsList {
     /**
-     * The array of textcritical comments from a textcritics list.
+     * The array of textcritics from a textcritics list.
      */
-    [key: string]: Textcritics[];
+    textcritics: Textcritics[];
 }

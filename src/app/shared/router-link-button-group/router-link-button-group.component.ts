@@ -1,4 +1,5 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
+import { QueryParamsHandling } from '@angular/router';
 
 import { RouterLinkButton } from './router-link-button.model';
 
@@ -21,7 +22,15 @@ export class RouterLinkButtonGroupComponent {
      * It keeps the array of router link buttons.
      */
     @Input()
-    buttonArray: RouterLinkButton[];
+    routerLinkButtons: RouterLinkButton[];
+
+    /**
+     * Optional input variable: queryParamsHandling.
+     *
+     * It keeps a flag how to handle query params (preserve, merge or nothing '').
+     * Defaults to nothing ''.
+     */
+    @Input() queryParamsHandling?: QueryParamsHandling = '';
 
     /**
      * Output variable: selectButtonRequest.

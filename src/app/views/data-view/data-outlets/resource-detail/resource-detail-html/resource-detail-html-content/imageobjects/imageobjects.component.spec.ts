@@ -2,7 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { JsonConvert } from 'json2typescript';
-import { NgxGalleryImage, NgxGalleryComponent, NgxGalleryOptions, NgxGalleryModule } from 'ngx-gallery';
+import { NgxGalleryImage, NgxGalleryComponent, NgxGalleryOptions, NgxGalleryModule } from '@kolkov/ngx-gallery';
 
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
@@ -46,11 +46,8 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         expectedGalleryOptions = [
             new NgxGalleryOptions({
                 width: '100%',
-                height: '100%',
-                imageBullets: true,
                 imageSize: 'contain',
                 thumbnailSize: 'contain',
-                thumbnailsColumns: 4,
                 thumbnailMargin: 5,
                 thumbnailsMargin: 0,
                 previewCloseOnClick: true,

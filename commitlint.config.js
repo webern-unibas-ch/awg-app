@@ -8,6 +8,7 @@ module.exports = {
             'always',
             [
                 'app',
+                'deps',
                 'core',
                 'shared',
                 'side-info',

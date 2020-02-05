@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute } from '@angular/router';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-
 import { SideInfoService } from '@awg-core/services';
-import { ActivatedRoute } from '@angular/router';
 
 /**
  * The SearchOverview component.
@@ -20,15 +19,11 @@ import { ActivatedRoute } from '@angular/router';
 })
 export class SearchOverviewComponent implements OnInit {
     /**
-     * Public variable: searchButtonArray.
+     * Public variable: searchRouterLinkButtons.
      *
      * It keeps the array for the search router link buttons.
      */
-    searchButtonArray: RouterLinkButton[] = [
-        new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
-        new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-        new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
-    ];
+    searchRouterLinkButtons: RouterLinkButton[];
 
     /**
      * Constructor of the SearchOverviewComponent.
@@ -49,7 +44,23 @@ export class SearchOverviewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
+        this.setButtons();
         this.updateSearchInfoTitleFromPath();
+    }
+
+    /**
+     * Public method: setButtons.
+     *
+     * It initializes the searchRouterLinkButtons.
+     *
+     * @returns {void} Sets the searchRouterLinkButtons.
+     */
+    setButtons(): void {
+        this.searchRouterLinkButtons = [
+            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
+            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+        ];
     }
 
     /**
@@ -66,7 +77,7 @@ export class SearchOverviewComponent implements OnInit {
         const path = this.route.snapshot.children[0].url[0].path;
 
         // filter searchButtonArray
-        const selectedButton = this.searchButtonArray.filter(button => {
+        const selectedButton = this.searchRouterLinkButtons.filter(button => {
             return button.link === path;
         });
 

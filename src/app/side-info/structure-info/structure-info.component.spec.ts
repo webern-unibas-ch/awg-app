@@ -3,7 +3,7 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaStructure, MetaSectionTypes } from '@awg-core/core-models';
+import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaEdition, MetaContact } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -22,9 +22,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
     beforeEach(async(() => {
         // stub service for test purposes
-        mockCoreService = {
-            getMetaDataSection: key => METADATA[key]
-        };
+        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
         TestBed.configureTestingModule({
             declarations: [StructureInfoComponent],
@@ -55,19 +53,17 @@ describe('StructureInfoComponent (DONE)', () => {
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
+    });
 
-        // changing the stub service has no effect on the injected service
-        let changedStructureMetaData = new MetaStructure();
-        changedStructureMetaData = {
-            authors: [
-                {
-                    name: 'Test Author',
-                    contactUrl: 'www.example.com/test-author'
-                }
-            ],
-            lastModified: '2017'
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
         };
-        mockCoreService.getMetaDataSection = () => changedStructureMetaData;
+        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
 
         expect(coreService.getMetaDataSection(MetaSectionTypes.structure)).toBe(expectedStructureMetaData);
     });

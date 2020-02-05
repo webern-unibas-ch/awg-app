@@ -8,7 +8,7 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { SourceList } from '@awg-views/edition-view/models';
+import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
 import { SourcesComponent } from './sources.component';
 
@@ -24,13 +24,14 @@ class SourceListStubComponent {
 @Component({ selector: 'awg-source-description', template: '' })
 class SourceDescriptionStubComponent {
     @Input()
-    showDescriptionPanel: boolean;
-
+    sourceDescriptionListData: SourceDescriptionList;
     // TODO: handle outputs
 }
 
 @Component({ selector: 'awg-source-evaluation', template: '' })
 class SourceEvaluationStubComponent {
+    @Input()
+    sourceEvaluationListData: SourceEvaluationList;
     // TODO: handle outputs
 }
 
@@ -41,6 +42,8 @@ describe('SourcesComponent', () => {
     let compEl: any;
 
     let expectedSourceListData: SourceList;
+    let expectedSourceDescriptionListData: SourceDescriptionList;
+    let expectedSourceEvaluationListData: SourceEvaluationList;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
@@ -71,6 +74,14 @@ describe('SourcesComponent', () => {
             expect(component.sourceListData).toBeUndefined('should be undefined');
         });
 
+        it('should not get sourceDescriptionListData input', () => {
+            expect(component.sourceDescriptionListData).toBeUndefined('should be undefined');
+        });
+
+        it('should not get sourceEvaluationListData input', () => {
+            expect(component.sourceEvaluationListData).toBeUndefined('should be undefined');
+        });
+
         it('should not contain source list component (stubbed)', () => {
             getAndExpectDebugElementByDirective(compDe, SourceListStubComponent, 0, 0);
         });
@@ -99,19 +110,39 @@ describe('SourcesComponent', () => {
                         siglum: 'B',
                         type: 'Autograph von Nr. I.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'sourceNotA'
+                        linkTo: 'op12_sourceNotA'
                     },
                     {
                         siglum: 'C',
                         type: 'Autograph von Nr. I–IV.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'sourceNotA'
+                        linkTo: 'op12_sourceNotA'
+                    }
+                ]
+            };
+            expectedSourceDescriptionListData = {
+                sources: [
+                    {
+                        id: 'sourceA',
+                        siglum: 'A',
+                        location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
+                        description: []
+                    }
+                ]
+            };
+            expectedSourceEvaluationListData = {
+                sources: [
+                    {
+                        id: 'op12',
+                        content: ['Die Skizzen in A sind zum Testen da.']
                     }
                 ]
             };
 
             // simulate the parent setting the input properties
             component.sourceListData = expectedSourceListData;
+            component.sourceDescriptionListData = expectedSourceDescriptionListData;
+            component.sourceEvaluationListData = expectedSourceEvaluationListData;
 
             // trigger initial data binding
             fixture.detectChanges();

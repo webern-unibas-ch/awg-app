@@ -1,8 +1,46 @@
 /**
+ * The FolioConvoluteList class.
+ *
+ * It is used in the context of the edition convolutes
+ * to store the data for a convolute list
+ * from a convolute json file.
+ */
+export class FolioConvoluteList {
+    /**
+     * The array of FolioLists from a convolute list.
+     */
+    convolutes: FolioConvolute[];
+}
+
+/**
+ * The FolioConvolute class.
+ *
+ * It is used in the context of the edition convolutes
+ * to store the data for a single convolute
+ * from a convolute json file.
+ */
+export class FolioConvolute {
+    /**
+     * The convolute's id (string).
+     */
+    convoluteId: string;
+
+    /**
+     * The array of folios from a convolute.
+     */
+    folios: Folio[];
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo?: string;
+}
+
+/**
  * The Folio class.
  *
  * It is used in the context of the edition folio convolutes
- * to store the top level data for a folio
+ * to store the top level data for a single folio
  * from a folio json file.
  */
 export class Folio {

@@ -1,11 +1,16 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Params, Router } from '@angular/router';
+import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
+
+import { switchMap } from 'rxjs/operators';
 
 import {
-    Folio,
-    EditionSvgSheet,
     EditionSvgOverlay,
-    Textcritics,
+    EditionSvgSheet,
+    EditionSvgSheetList,
+    EditionWork,
+    EditionWorks,
+    FolioConvoluteList,
+    TextcriticalComment,
     TextcriticsList
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
@@ -16,8 +21,8 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
  * It contains the edition detail section
  * of the edition view of the app
  * with a {@link ModalComponent},
- * the {@link ConvoluteComponent}
- * and the {@link AccoladeComponent}.
+ * the {@link EditionConvoluteComponent}
+ * and the {@link EditionAccoladeComponent}.
  */
 @Component({
     selector: 'awg-edition-detail',
@@ -26,18 +31,25 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 })
 export class EditionDetailComponent implements OnInit {
     /**
-     * Public variable: folios.
+     * Public variable: editionWork.
      *
-     * It keeps the folios of the edition detail.
+     * It keeps the information about the current composition.
      */
-    folios: Folio[];
+    editionWork: EditionWork;
+
+    /**
+     * Public variable: folioConvoluteData.
+     *
+     * It keeps the folio convolute Data of the edition detail.
+     */
+    folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: svgSheetsData.
      *
      * It keeps the svg sheets data of the edition detail.
      */
-    svgSheetsData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheetList;
 
     /**
      * Public variable: textcriticsData.
@@ -54,11 +66,11 @@ export class EditionDetailComponent implements OnInit {
     selectedSvgSheet: EditionSvgSheet;
 
     /**
-     * Public variable: selectedTextcritics.
+     * Public variable: selectedTextcriticalComments.
      *
-     * It keeps the selected textcritics.
+     * It keeps the selected textcritical comments.
      */
-    selectedTextcritics: Textcritics[];
+    selectedTextcriticalComments: TextcriticalComment[];
 
     /**
      * Public variable: selectedOverlay.
@@ -84,14 +96,14 @@ export class EditionDetailComponent implements OnInit {
     /**
      * Constructor of the EditionDetailComponent.
      *
-     * It declares a private instances of
+     * It declares private instances of
      * EditionDataService and EditionService,
      * ActivatedRoute and Router.
      *
-     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
-     * @param {Router} router Instance of the Angular Router.
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
+     * @param {Router} router Instance of the Angular Router.
      */
     constructor(
         private editionDataService: EditionDataService,
@@ -113,53 +125,93 @@ export class EditionDetailComponent implements OnInit {
     /**
      * Public method: getEditionDetailData.
      *
-     * It calls the EditionDataService to provide
-     * the data for the edition detail.
+     * It subscribes to the current edition work
+     * of the edition service and gets all necessary edition data
+     * from the EditionDataService and the queryParams.
      *
-     * @returns {void} Sets the folios,
-     * svgSheetsData and textcriticsData.
+     * @returns {void} Gets the current edition work and all necessary edition data.
      */
     getEditionDetailData(): void {
-        this.editionDataService.getEditionDetailData().subscribe(
-            (data: [Folio[], EditionSvgSheet[], TextcriticsList]) => {
-                this.folios = data[0]['convolute'];
-                this.svgSheetsData = data[1];
-                this.textcriticsData = data[2];
-                if (this.svgSheetsData) {
-                    this.getRouteParams();
+        this.editionService
+            // get current editionWork from editionService
+            .getEditionWork()
+            .pipe(
+                switchMap(work => {
+                    // set current editionWork
+                    this.editionWork = work;
+                    // return EditionDetailData from editionDataService
+                    return this.editionDataService.getEditionDetailData(this.editionWork);
+                })
+            )
+            .pipe(
+                switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
+                    this.folioConvoluteData = data[0];
+                    this.svgSheetsData = data[1];
+                    this.textcriticsData = data[2];
+                    if (this.svgSheetsData) {
+                        // return queryParams if available
+                        return this.route.queryParamMap;
+                    }
+                })
+            )
+            .subscribe(
+                (queryParams: ParamMap) => {
+                    const sheetId: string = this.getSketchParams(queryParams);
+                    this.selectedSvgSheet = this.setSelectedSvgSheet(sheetId);
+                },
+                error => {
+                    this.errorMessage = error as any;
                 }
-            },
-            error => {
-                this.errorMessage = error as any;
-            }
-        );
+            );
     }
 
     /**
-     * Private method: getRouteParams.
+     * Private method: getSketchParams.
      *
-     * It checks the route params for a given sheet id
-     * and sets the selected sheet if any.
+     * It checks the route params for a sketch query
+     * and returns the id of the selected sheet.
      *
-     * @returns {void} Sets selectd sheet.
+     * @default first entry of this.svgSheetsData
+     *
+     * @param {ParamMap} queryParams The query paramMap of the activated route.
+     * @returns {string} The id of the selected sheet.
      */
-    private getRouteParams(): void {
-        this.route.params.forEach((params: Params) => {
-            // if there is no id in route params
-            // take first entry of svg sheets data as default
-            const fileId: string = params['id'] ? params['id'] : Object.keys(this.svgSheetsData)[0];
-            this.selectedSvgSheet = this.svgSheetsData[fileId];
-        });
+    private getSketchParams(queryParams?: ParamMap): string {
+        // if there is no id in query params
+        // take first entry of svg sheets data as default
+        if (!queryParams.get('sketch')) {
+            this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
+            return;
+        }
+        return queryParams.get('sketch') ? queryParams.get('sketch') : this.svgSheetsData.sheets[0].id;
+    }
+
+    /**
+     * Private method: setSelectedSvgSheet.
+     *
+     * It sets the selectedSvg from a given id.
+     *
+     * @param {string} id The given id input.
+     * @returns {EditionSvgSheet} The selected sheet.
+     */
+    private setSelectedSvgSheet(id: string): EditionSvgSheet {
+        if (!id) {
+            return;
+        }
+        // find index of given id in svgSheetsData.sheets array
+        const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
+        // return the sheet with the given id
+        return this.svgSheetsData.sheets[sheetIndex];
     }
 
     /**
      * Public method: onOverlaySelect.
      *
-     * It selects a given overlay and its corresponding textcritics.
+     * It selects a given overlay and its corresponding textcritical comments.
      *
      * @param {EditionSvgOverlay} overlay The given svg overlay.
      * @returns {void} Sets the selectedOverlay,
-     * selectedTextcritis and showTka variable.
+     * selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlay: EditionSvgOverlay): void {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
@@ -167,26 +219,41 @@ export class EditionDetailComponent implements OnInit {
         }
 
         // shortcut
-        const textcritics = this.textcriticsData[this.selectedSvgSheet.id];
+        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(textcritic => {
+            return textcritic.id === this.selectedSvgSheet.id;
+        });
+        const textcriticalComments = this.textcriticsData.textcritics[textcriticsIndex].comments;
 
         this.selectedOverlay = overlay;
-        this.selectedTextcritics = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
-        this.showTkA = this.selectedTextcritics !== [];
+        this.selectedTextcriticalComments = this.editionService.getTextcriticalComments(
+            textcriticalComments,
+            this.selectedOverlay
+        );
+        this.showTkA = this.selectedTextcriticalComments !== [];
     }
 
     /**
      * Public method: onSvgSheetSelect.
      *
      * It selects a svg sheet by its id and
-     * navigates to the '/edition/detail' route
+     * navigates to the edition detail route
      * with this given id.
      *
      * @param {string} id The given svg sheet id.
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
-        this.selectedSvgSheet = this.svgSheetsData[id];
+        if (!id) {
+            id = '';
+        }
+        this.selectedSvgSheet = this.setSelectedSvgSheet(id);
         this.showTkA = false;
-        this.router.navigate(['/edition/detail', id]);
+
+        const navigationExtras: NavigationExtras = {
+            queryParams: { sketch: id },
+            queryParamsHandling: ''
+        };
+
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
     }
 }

@@ -1,6 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
+import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
 
 /**
  * The EditionOverview component.
@@ -15,13 +18,36 @@ import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-li
     templateUrl: './edition-overview.component.html',
     styleUrls: ['./edition-overview.component.css']
 })
-export class EditionOverviewComponent implements OnInit {
+export class EditionOverviewComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: editionButtonArray.
+     * Public variable: editionRouterLinkButtons.
      *
      * It keeps the array for the edition router link buttons.
      */
-    editionButtonArray: RouterLinkButton[];
+    editionRouterLinkButtons: RouterLinkButton[];
+
+    /**
+     * Public variable: editionWork.
+     *
+     * It keeps the current composition.
+     */
+    editionWork: EditionWork;
+
+    /**
+     * Private variable: subscription.
+     *
+     * It keeps the subscriptions of the component.
+     */
+    private subscription: Subscription;
+
+    /**
+     * Constructor of the EditionOverviewComponent.
+     *
+     * It declares a private instance of EditionService.
+     *
+     * @param {EditionService} editionService Instance of the EditionService.
+     */
+    constructor(private editionService: EditionService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -30,21 +56,71 @@ export class EditionOverviewComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.setButtons();
+        this.getEditionWork();
+    }
+
+    /**
+     * Public method: getEditionWork.
+     *
+     * It subscribes to the current edition work
+     * of the edition service.
+     *
+     * @returns {void} Gets the current edition work.
+     */
+    getEditionWork(): void {
+        this.subscription = this.editionService.getEditionWork().subscribe(work => {
+            this.editionWork = work;
+            this.setButtons();
+        });
     }
 
     /**
      * Public method: setButtons.
      *
-     * It initializes the editionButtonArray.
+     * It initializes the editionRouterLinkButtons.
      *
-     * @returns {void} Sets the editionButtonArray.
+     * @returns {void} Sets the editionRouterLinkButtons.
      */
     setButtons(): void {
-        this.editionButtonArray = [
-            new RouterLinkButton('/edition', 'intro', 'Einleitung', false),
-            new RouterLinkButton('/edition', 'detail', 'Edierter Notentext', false),
-            new RouterLinkButton('/edition', 'report', 'Kritischer Bericht', false)
+        this.editionRouterLinkButtons = [
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.introRoute,
+                EditionConstants.editionIntro.short,
+                false
+            ),
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.detailRoute,
+                EditionConstants.editionDetail.short,
+                false
+            ),
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.reportRoute,
+                EditionConstants.editionReport.short,
+                false
+            ),
+            new RouterLinkButton(
+                this.editionWork.baseRoute,
+                this.editionWork.graphRoute,
+                EditionConstants.editionGraph.short,
+                false
+            )
         ];
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     *
+     * Destroys subscriptions.
+     */
+    ngOnDestroy() {
+        if (this.subscription) {
+            this.subscription.unsubscribe();
+        }
     }
 }

@@ -10,7 +10,7 @@ import {
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
 
-import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -52,14 +52,17 @@ describe('ContactViewComponent (DONE)', () => {
 
     beforeEach(async(() => {
         // mock service for test purposes
-        mockCoreService = { getMetaDataSection: key => METADATA[key] };
+        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
             declarations: [ContactViewComponent, HeadingStubComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }, { provide: Router, useValue: mockRouter }]
+            providers: [
+                { provide: CoreService, useValue: mockCoreService },
+                { provide: Router, useValue: mockRouter }
+            ]
         }).compileComponents();
     }));
 
@@ -87,21 +90,18 @@ describe('ContactViewComponent (DONE)', () => {
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
+    });
 
-        // changing the mock service has no effect on the injected service
-        let changedPageMetaData = new MetaPage();
-        changedPageMetaData = {
-            yearStart: 2015,
-            yearCurrent: 2018,
-            awgAppUrl: '',
-            compodocUrl: '',
-            githubUrl: '',
-            awgProjectUrl: '',
-            awgProjectName: '',
-            version: '0.2.1',
-            versionReleaseDate: '20. Oktober 2018'
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
         };
-        mockCoreService.getMetaDataSection = () => changedPageMetaData;
+        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
+
         expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
     });
 

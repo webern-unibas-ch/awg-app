@@ -24,12 +24,12 @@
             </awg-edition-svg-sheet>
 
             <!-- table for TkA -->
-            <div class="panel-footer" *ngIf="showTkA && selectedTextcritics">
+            <div class="panel-footer" *ngIf="showTkA && selectedTextcriticalComments">
                 <h4 class="mt-4">
                     Textkritischer Kommentar ({{ selectedOverlay.typeLabel }} {{ selectedOverlay.id }}):
                 </h4>
                 <awg-edition-tka-table
-                    [selectedTextcritics]="selectedTextcritics"
+                    [textcriticalComments]="selectedTextcriticalComments"
                     (openModalRequest)="openModal($event)"
                     (selectSvgSheetRequest)="selectSvgSheet($event)"
                 >

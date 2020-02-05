@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 
 import { RouterLinkStubDirective } from 'testing/router-stubs';
 
-import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 import { EditionInfoComponent } from './edition-info.component';
@@ -20,12 +20,13 @@ describe('EditionInfoComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
 
     let expectedEditionMetaData: MetaEdition;
-    let expectedEditionInfoHeader;
+    let expectedEditionInfoHeaderOp12;
+    let expectedEditionInfoHeaderOp25;
 
     beforeEach(async(() => {
         // stub service for test purposes
         mockCoreService = {
-            getMetaDataSection: key => METADATA[key]
+            getMetaDataSection: sectionType => METADATA[sectionType]
         };
 
         TestBed.configureTestingModule({
@@ -43,13 +44,21 @@ describe('EditionInfoComponent (DONE)', () => {
 
         // test data
         expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
-        expectedEditionInfoHeader = {
+        expectedEditionInfoHeaderOp12 = {
             section: 'AWG I/5',
             title: 'Vier Lieder',
             catalogueType: 'op.',
             catalogueNumber: '12',
             part: 'Skizzen',
-            description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
+            description: '[Beispieledition ausgewählter Skizzen]'
+        };
+        expectedEditionInfoHeaderOp25 = {
+            section: 'AWG I/5',
+            title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+            catalogueType: 'op.',
+            catalogueNumber: '25',
+            part: 'Graph',
+            description: '[Beispieledition ausgewählter Skizzen]'
         };
 
         // spies on component functions
@@ -65,29 +74,35 @@ describe('EditionInfoComponent (DONE)', () => {
     it('stub service and injected coreService should not be the same', () => {
         const coreService = TestBed.get(CoreService);
         expect(mockCoreService === coreService).toBe(false);
+    });
 
-        // changing the stub service has no effect on the injected service
-        let changedEditionMetaData = new MetaEdition();
-        changedEditionMetaData = {
-            editors: [
-                {
-                    name: 'Test Editor',
-                    contactUrl: 'www.example.com/test-editor'
-                }
-            ],
-            lastModified: '2017'
+    it('changing the stub service has no effect on the injected service', () => {
+        const coreService = TestBed.get(CoreService);
+        const CHANGEDMETA: Meta = {
+            page: new MetaPage(),
+            edition: new MetaEdition(),
+            structure: new MetaStructure(),
+            contact: new MetaContact()
         };
-        mockCoreService.getMetaDataSection = () => changedEditionMetaData;
+        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
 
         expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have editionInfoHeader', () => {
-            expect(component.editionInfoHeader).toBeDefined();
-            expect(component.editionInfoHeader).toEqual(
-                expectedEditionInfoHeader,
-                `should equal ${expectedEditionInfoHeader}`
+        it('... should have editionInfoHeaderOp12', () => {
+            expect(component.editionInfoHeaderOp12).toBeDefined();
+            expect(component.editionInfoHeaderOp12).toEqual(
+                expectedEditionInfoHeaderOp12,
+                `should equal ${expectedEditionInfoHeaderOp12}`
+            );
+        });
+
+        it('... should have editionInfoHeaderOp25', () => {
+            expect(component.editionInfoHeaderOp25).toBeDefined();
+            expect(component.editionInfoHeaderOp25).toEqual(
+                expectedEditionInfoHeaderOp25,
+                `should equal ${expectedEditionInfoHeaderOp25}`
             );
         });
 
@@ -107,9 +122,9 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });
 
-            it('... should contain one `h5` header and 4 `p` elements in div.card-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.card-body h5#awg-edition-info-header', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.card-body p', 4, 4);
+            it('... should contain two `h6` header and 5 `p` elements in div.card-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card-body h6.awg-edition-info-header', 2, 2);
+                getAndExpectDebugElementByCss(compDe, 'div.card-body p', 5, 5);
             });
 
             it('... should not render editor information yet', () => {

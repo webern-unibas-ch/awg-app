@@ -4,6 +4,7 @@ import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortaw
 
 import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The Header component.
@@ -67,6 +68,20 @@ export class NavbarComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
+     * Readonly constant: editionWorks.
+     *
+     * It keeps the array of compositions.
+     */
+    readonly editionWorks: EditionWork[] = [EditionWorks.op12, EditionWorks.op25];
+
+    /**
+     * Public variable: editionWork.
+     *
+     * It keeps the currently selected compositions.
+     */
+    selectedEditionWork: EditionWork;
+
+    /**
      * Constructor of the HeaderComponent.
      *
      * It declares a private CoreService instance
@@ -83,6 +98,9 @@ export class NavbarComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
+        // TODO: move to method
+        this.selectedEditionWork = this.editionWorks[0];
+
         this.provideMetaData();
     }
 

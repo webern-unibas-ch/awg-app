@@ -2,13 +2,13 @@
     <button
         type="button"
         class="btn btn-default w-100"
-        *ngFor="let button of buttonArray"
-        [routerLink]="[button?.root, button?.link]"
-        queryParamsHandling="preserve"
+        *ngFor="let routerLinkButton of routerLinkButtons"
+        [routerLink]="[routerLinkButton?.root, routerLinkButton?.link]"
+        [queryParamsHandling]="queryParamsHandling"
         routerLinkActive="active"
-        [disabled]="button?.disabled"
-        (click)="selectButton(button)"
+        [disabled]="routerLinkButton?.disabled"
+        (click)="selectButton(routerLinkButton)"
     >
-        {{ button?.label }}
+        {{ routerLinkButton?.label }}
     </button>
 </div>
