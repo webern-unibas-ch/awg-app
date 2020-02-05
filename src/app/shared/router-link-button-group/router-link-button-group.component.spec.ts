@@ -1,5 +1,7 @@
 import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { QueryParamsHandling } from '@angular/router';
+
 import Spy = jasmine.Spy;
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
@@ -11,7 +13,6 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
-
 import { RouterLinkButtonGroupComponent } from './router-link-button-group.component';
 
 describe('RouterLinkButtonGroupComponent (DONE)', () => {
@@ -22,7 +23,8 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let expectedButtonArray: RouterLinkButton[];
+    let expectedRouterLinkButtons: RouterLinkButton[];
+    let expectedQueryParamsHandling: QueryParamsHandling;
 
     let selectButtonSpy: Spy;
     let emitSpy: Spy;
@@ -40,11 +42,12 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
-        expectedButtonArray = [
+        expectedRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
             new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
         ];
+        expectedQueryParamsHandling = 'preserve';
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -59,7 +62,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not have `buttonArray` input', () => {
-            expect(component.buttonArray).toBeUndefined('should be undefined');
+            expect(component.routerLinkButtons).toBeUndefined('should be undefined');
+        });
+
+        it('should have default `queryParamsHandling` input', () => {
+            expect(component.queryParamsHandling).toBe('');
         });
 
         describe('#onButtonSelect', () => {
@@ -82,10 +89,22 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // simulate the parent setting the input properties
-            component.buttonArray = expectedButtonArray;
+            component.routerLinkButtons = expectedRouterLinkButtons;
+            component.queryParamsHandling = expectedQueryParamsHandling;
 
             // trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('should have `buttonArray` input', () => {
+            expect(component.routerLinkButtons).toEqual(
+                expectedRouterLinkButtons,
+                'should equal expectedRouterLinkButtons'
+            );
+        });
+
+        it('should have `queryParamsHandling` input', () => {
+            expect(component.queryParamsHandling).toBe(expectedQueryParamsHandling, 'should be preserve');
         });
 
         describe('VIEW', () => {
@@ -99,9 +118,9 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 const btn1El = btnDes[1].nativeElement;
                 const btn2El = btnDes[2].nativeElement;
 
-                expect(btn0El.disabled).toBe(expectedButtonArray[0].disabled, 'should not be disabled');
-                expect(btn1El.disabled).toBe(expectedButtonArray[1].disabled, 'should be disabled');
-                expect(btn2El.disabled).toBe(expectedButtonArray[2].disabled, 'should be disabled');
+                expect(btn0El.disabled).toBe(expectedRouterLinkButtons[0].disabled, 'should not be disabled');
+                expect(btn1El.disabled).toBe(expectedRouterLinkButtons[1].disabled, 'should be disabled');
+                expect(btn2El.disabled).toBe(expectedRouterLinkButtons[2].disabled, 'should be disabled');
             });
 
             it('... should render button labels', () => {
@@ -112,18 +131,18 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
                 expect(btn0El.textContent).toBeDefined();
                 expect(btn0El.textContent).toMatch(
-                    expectedButtonArray[0].label,
-                    `should be ${expectedButtonArray[0].label}`
+                    expectedRouterLinkButtons[0].label,
+                    `should be ${expectedRouterLinkButtons[0].label}`
                 );
                 expect(btn1El.textContent).toBeDefined();
                 expect(btn1El.textContent).toMatch(
-                    expectedButtonArray[1].label,
-                    `should be ${expectedButtonArray[1].label}`
+                    expectedRouterLinkButtons[1].label,
+                    `should be ${expectedRouterLinkButtons[1].label}`
                 );
                 expect(btn2El.textContent).toBeDefined();
                 expect(btn2El.textContent).toMatch(
-                    expectedButtonArray[2].label,
-                    `should be ${expectedButtonArray[2].label}`
+                    expectedRouterLinkButtons[2].label,
+                    `should be ${expectedRouterLinkButtons[2].label}`
                 );
             });
         });
@@ -137,8 +156,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
-            it('... can get routerLink from template', () => {
+            it('... can get correct number of routerLinks from template', () => {
                 expect(routerLinks.length).toBe(3, 'should have 3 routerLinks');
+            });
+
+            it('... can get correct paths from routerLinks', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/data/search', 'fulltext']);
                 expect(routerLinks[1].linkParams).toEqual(['/data/search', 'timeline']);
                 expect(routerLinks[2].linkParams).toEqual(['/data/search', 'bibliography']);
@@ -164,17 +186,17 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
-                expectSpyCall(selectButtonSpy, 1, expectedButtonArray[0]);
+                expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
-                expectSpyCall(selectButtonSpy, 2, expectedButtonArray[1]);
+                expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
-                expectSpyCall(selectButtonSpy, 3, expectedButtonArray[2]);
+                expectSpyCall(selectButtonSpy, 3, expectedRouterLinkButtons[2]);
             }));
 
             it('... should emit selected button on click', fakeAsync(() => {
@@ -183,17 +205,17 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
-                expectSpyCall(emitSpy, 1, expectedButtonArray[0]);
+                expectSpyCall(emitSpy, 1, expectedRouterLinkButtons[0]);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
-                expectSpyCall(emitSpy, 2, expectedButtonArray[1]);
+                expectSpyCall(emitSpy, 2, expectedRouterLinkButtons[1]);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
-                expectSpyCall(emitSpy, 3, expectedButtonArray[2]);
+                expectSpyCall(emitSpy, 3, expectedRouterLinkButtons[2]);
             }));
         });
     });

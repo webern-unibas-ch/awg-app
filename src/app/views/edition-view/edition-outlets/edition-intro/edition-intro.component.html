@@ -1,0 +1,21 @@
+<!-- content: intro -->
+<div>
+    <!-- modal -->
+    <awg-modal #modal></awg-modal>
+
+    <!-- intro -->
+    <div *ngIf="editionIntroData$ | async as editionIntroData; else error">
+        <p *ngFor="let intro of editionIntroData.intro[0].content" [compile-html]="intro" [compile-html-ref]="this"></p>
+    </div>
+
+    <ng-template #error>
+        <!-- error message -->
+        <div class="errorMessage" *ngIf="errorObject">
+            <div class="col-12 text-center">
+                <div class="alert alert-danger">
+                    {{ errorObject }}
+                </div>
+            </div>
+        </div>
+    </ng-template>
+</div>

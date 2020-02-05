@@ -1,0 +1,58 @@
+{
+    "sources": [
+        {
+            "siglum": "A",
+            "type": "Skizzen",
+            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "linkTo": "sourceA"
+        },
+        {
+            "siglum": "B",
+            "type": "Autograph von Nr. I.",
+            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "C",
+            "type": "Autograph von Nr. I–IV.",
+            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "D",
+            "type": "Autograph von Nr. IV.",
+            "location": "London, British Library, O. W. Neighbour Collection.",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "E",
+            "type": "Druck von Nr. I, in: <em>Musikblätter des Anbruch</em> IV (Mai 1922).",
+            "location": "",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "E<sup>1</sup>",
+            "type": "Handexemplar von <a (click)=\"ref.openModal('op12_sourceNotA')\"><strong>E</strong></a>.",
+            "location": "Basel, Paul Sacher Stiftung, Sammlung Anton Webern.",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "F",
+            "type": "Autograph.",
+            "location": "New York, NY, Pierpont Morgan Library, Dept. of Music Manuscripts and Books, Robert Owen Lehman Collection, W376.L716.",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "G",
+            "type": "Druck.",
+            "location": "Wien: Universal Edition, 1925.",
+            "linkTo": "op12_sourceNotA"
+        },
+        {
+            "siglum": "G<sup>1</sup>",
+            "type": "Handexemplar von <a (click)=\"ref.openModal('op12_sourceNotA')\"><strong>G</strong></a>.",
+            "location": "Washington, DC, Library of Congress, Moldenhauer Archives, Box-Folder: 59/10.",
+            "linkTo": "op12_sourceNotA"
+        }
+    ]
+}

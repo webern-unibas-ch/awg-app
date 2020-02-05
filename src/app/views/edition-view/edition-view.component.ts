@@ -1,5 +1,9 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+import { EditionService } from '@awg-views/edition-view/services';
+import { Observable } from 'rxjs';
 
 /**
  * The EditionView component.
@@ -15,27 +19,38 @@ import { Router } from '@angular/router';
 })
 export class EditionViewComponent implements OnInit {
     /**
-     * Public variable: editionTitle.
+     * Public variable: editionViewTitle
      *
      * It keeps the title of the edition view section.
      */
-    editionTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
+    editionViewTitle = 'Beispieledition ausgewählter Skizzen';
 
     /**
-     * Public variable: editionId.
+     * Public variable: editionViewId.
      *
      * It keeps the id of the edition view section.
      */
-    editionId = 'edition';
+    editionViewId = 'awg-edition-view';
+
+    /**
+     * Public variable: editionWork$.
+     *
+     * Observable that keeps the information
+     * about the current composition.
+     */
+    editionWork$: Observable<EditionWork>;
 
     /**
      * Constructor of the EditionViewComponent.
      *
-     * It declares a private Router instance.
+     * It declares private instances of
+     * EditionService, ActivatedRoute and Router.
      *
+     * @param {EditionService} editionService Instance of the EditionService.
+     * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private router: Router) {}
+    constructor(private editionService: EditionService, private route: ActivatedRoute, private router: Router) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -45,6 +60,11 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
+        this.route.paramMap.subscribe(params => {
+            const id: string = params.get('compositionId') ? params.get('compositionId') : '';
+            this.editionService.updateEditionWork(EditionWorks[id]);
+            this.editionWork$ = this.editionService.getEditionWork();
+        });
     }
 
     /**

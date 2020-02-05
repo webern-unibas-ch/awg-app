@@ -8,12 +8,12 @@
                 <th style="width:auto">Kommentar</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let textcritic of selectedTextcritics">
-                <td>{{ textcritic.measure }}</td>
-                <td>{{ textcritic.system }}</td>
-                <td [innerHTML]="textcritic.position"></td>
-                <td><span [compile-html]="textcritic.comment" [compile-html-ref]="ref"></span></td>
+        <tbody *ngIf="textcriticalComments">
+            <tr *ngFor="let textcriticalComment of textcriticalComments">
+                <td>{{ textcriticalComment.measure }}</td>
+                <td>{{ textcriticalComment.system }}</td>
+                <td [innerHTML]="textcriticalComment.position"></td>
+                <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
             </tr>
         </tbody>
     </table>

@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { Folio, EditionSvgSheet } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvolute, FolioConvoluteList } from '@awg-views/edition-view/models';
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 
 /**
@@ -41,7 +41,7 @@ export class EditionConvoluteComponent implements OnInit {
      * It keeps the folios of the edition detail.
      */
     @Input()
-    folios: Folio[];
+    folioConvoluteData: FolioConvoluteList;
 
     /**
      * Public variable: selectedSvgSheet.
@@ -78,19 +78,9 @@ export class EditionConvoluteComponent implements OnInit {
     /**
      * Public variable: selectedConvolute.
      *
-     * It keeps the selected convolute string.
+     * It keeps the selected convolute.
      */
-    selectedConvolute: string;
-
-    /**
-     * Public variable: convolutes.
-     *
-     * It keeps the labels for the convolutes.
-     */
-    convolutes = {
-        A: 'A Skizzen (Basel, Paul Sacher Stiftung)',
-        B_H: 'B–H (siehe Kritischer Bericht)'
-    };
+    selectedConvolute: FolioConvolute;
 
     /**
      * Public variable: folioLegends.
@@ -119,7 +109,13 @@ export class EditionConvoluteComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        this.selectedConvolute = this.convolutes.A;
+        if (
+            this.folioConvoluteData.convolutes &&
+            this.folioConvoluteData.convolutes.constructor === Array &&
+            this.folioConvoluteData.convolutes.length > 0
+        ) {
+            this.selectedConvolute = this.folioConvoluteData.convolutes[0];
+        }
     }
 
     /**
@@ -138,14 +134,26 @@ export class EditionConvoluteComponent implements OnInit {
     /**
      * Public method: selectConvolute.
      *
-     * It sets a given convolutelabel to the
-     * to the {@link selectSvgSheetRequest}.
+     * It sets a given id to the
+     * to the selectedConvolute.
      *
-     * @param {string} convoluteLabel The given label.
-     * @returns {void} Sets the selectedConvoluteLabel variable.
+     * @param {string} id The given id.
+     * @returns {void} Sets the selectedConvolute variable.
      */
-    selectConvolute(convoluteLabel: string): void {
-        this.selectedConvolute = convoluteLabel;
+    selectConvolute(id: string): void {
+        if (!id) {
+            return;
+        }
+        const convoluteIndex = this.folioConvoluteData.convolutes.findIndex(c => c.convoluteId === id);
+        const convolute: FolioConvolute = this.folioConvoluteData.convolutes[convoluteIndex];
+        if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
+            // if no folio data provided, open modal
+            if (convolute.linkTo) {
+                this.openModal(convolute.linkTo);
+            }
+            return;
+        }
+        this.selectedConvolute = convolute;
     }
 
     /**

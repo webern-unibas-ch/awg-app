@@ -1,10 +1,18 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { NavigationExtras, Router } from '@angular/router';
 
-import { Observable } from 'rxjs';
+import { Observable, throwError } from 'rxjs';
 
-import { SourceList, TextcriticsList } from '@awg-views/edition-view/models';
-import { EditionDataService } from '@awg-views/edition-view/services';
+import {
+    EditionConstants,
+    EditionWork,
+    SourceDescriptionList,
+    SourceEvaluationList,
+    SourceList,
+    TextcriticsList
+} from '@awg-views/edition-view/models';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { catchError, switchMap } from 'rxjs/operators';
 
 /**
  * The Report component.
@@ -21,25 +29,25 @@ import { EditionDataService } from '@awg-views/edition-view/services';
 })
 export class ReportComponent implements OnInit {
     /**
+     * Public variable: editionWork.
+     *
+     * It keeps the information about the current composition.
+     */
+    editionWork: EditionWork;
+
+    /**
      * Public variable: editionReportData$.
      *
      * Observable that keeps the report data.
      */
-    editionReportData$: Observable<[SourceList, TextcriticsList]>;
+    editionReportData$: Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>;
 
     /**
-     * Public variable: reportId.
+     * Public variable: errorObject.
      *
-     * It keeps the id of the report section.
+     * It keeps an errorObject for the service calls.
      */
-    reportId = 'report';
-
-    /**
-     * Public variable: reportTitle.
-     *
-     * It keeps the title of the report section.
-     */
-    reportTitle = 'Kritischer Bericht';
+    errorObject = null;
 
     /**
      * Constructor of the ReportComponent.
@@ -48,9 +56,14 @@ export class ReportComponent implements OnInit {
      * to get the report data and a private Router instance.
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
+     * @param {EditionService} editionService Instance of the EditionService.
      * @param {Router} router Instance of the Router.
      */
-    constructor(private editionDataService: EditionDataService, private router: Router) {}
+    constructor(
+        private editionDataService: EditionDataService,
+        private editionService: EditionService,
+        private router: Router
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -71,19 +84,60 @@ export class ReportComponent implements OnInit {
      * @returns {void} Sets the editionReportData observable.
      */
     getEditionReportData(): void {
-        this.editionReportData$ = this.editionDataService.getEditionReportData();
+        this.editionReportData$ = this.editionService
+            // get current editionWork from editionService
+            .getEditionWork()
+            .pipe(
+                switchMap((work: EditionWork) => {
+                    // set current editionWork
+                    this.editionWork = work;
+                    // get intro data from editionDataService
+                    return this.editionDataService.getEditionReportData(this.editionWork);
+                }),
+                // error handling
+                catchError(err => {
+                    this.errorObject = err;
+                    return throwError(err);
+                })
+            );
+    }
+
+    /**
+     * Public method: onReportFragmentNavigate.
+     *
+     * It navigates to the '/report/' route with the given fragmentId.
+     *
+     * @param {string}  fragmentId The given fragment id.
+     * @returns {void} Navigates to the edition report.
+     */
+    onReportFragmentNavigate(fragmentId: string) {
+        if (!fragmentId) {
+            fragmentId = '';
+        }
+        const navigationExtras: NavigationExtras = {
+            fragment: fragmentId
+        };
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute], navigationExtras);
     }
 
     /**
      * Public method: onSvgSheetSelect.
      *
-     * It navigates to the '/edition/detail'
+     * It navigates to the '/edition/composition/{id}/detail'
      * route with the given id.
      *
      * @param {string} id The given svg sheet id.
      * @returns {void} Navigates to the edition detail.
      */
     onSvgSheetSelect(id: string): void {
-        this.router.navigate(['/edition/detail', id]);
+        if (!id) {
+            id = '';
+        }
+        const navigationExtras: NavigationExtras = {
+            queryParams: { sketch: id },
+            queryParamsHandling: ''
+        };
+
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
     }
 }

@@ -1,9 +1,9 @@
 /**
  *
- *       (EditionReport) Textcritics
+ *       (EditionReport) TextcriticalComment
  *
  * This file exports components that are used
- * for the (EditionReport) Textcritics view.
+ * for the (EditionReport) TextcriticalComment view.
  *
  */
 

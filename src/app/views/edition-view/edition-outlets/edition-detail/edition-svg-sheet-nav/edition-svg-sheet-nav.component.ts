@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionSvgSheet } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
 /**
  * The EditionSvgSheetNav component.
@@ -22,7 +22,7 @@ export class EditionSvgSheetNavComponent implements OnInit {
      * It keeps the svg sheets data.
      */
     @Input()
-    svgSheetsData: EditionSvgSheet[];
+    svgSheetsData: EditionSvgSheetList;
 
     /**
      * Input variable: selectedSvgSheet.

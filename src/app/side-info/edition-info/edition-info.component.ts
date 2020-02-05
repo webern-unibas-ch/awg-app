@@ -2,6 +2,7 @@ import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
+import { EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The EditionInfo component.
@@ -16,18 +17,46 @@ import { CoreService } from '@awg-core/services';
 })
 export class EditionInfoComponent implements OnInit {
     /**
-     * Public variable: editionInfoHeader.
+     * Public variable: editionInfoHeaderOp12.
      *
-     * It keeps the header information for the edition-info.
+     * It keeps the header information for the edition-info for Op12.
      */
-    editionInfoHeader = {
+    editionInfoHeaderOp12 = {
         section: 'AWG I/5',
         title: 'Vier Lieder',
         catalogueType: 'op.',
         catalogueNumber: '12',
         part: 'Skizzen',
-        description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
+        description: '[Beispieledition ausgewählter Skizzen]'
     };
+
+    /**
+     * Public variable: editionInfoHeaderOp25.
+     *
+     * It keeps the header information for the edition-info for Op25.
+     */
+    editionInfoHeaderOp25 = {
+        section: 'AWG I/5',
+        title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+        catalogueType: 'op.',
+        catalogueNumber: '25',
+        part: 'Graph',
+        description: '[Beispieledition ausgewählter Skizzen]'
+    };
+
+    /**
+     * Readonly constant: editionWorkOp12.
+     *
+     * It keeps the current composition.
+     */
+    readonly editionWorkOp12 = EditionWorks.op12;
+
+    /**
+     * Readonly constant: editionWorkOp25.
+     *
+     * It keeps the current composition.
+     */
+    readonly editionWorkOp25 = EditionWorks.op25;
 
     /**
      * Public variable: editionMetaData.

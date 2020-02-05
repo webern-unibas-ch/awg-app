@@ -1,10 +1,10 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
-import { RouterOutletStubComponent } from '@testing/router-stubs';
+import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionViewComponent } from './edition-view.component';
 
@@ -24,17 +24,23 @@ describe('EditionViewComponent (DONE)', () => {
     let compEl: any;
 
     let mockRouter;
+    let mockActivatedRoute: ActivatedRouteStub;
 
-    const expectedTitle = 'Beispieledition ausgewählter Skizzen zu <em>Vier Lieder</em> op. 12, Nr. 1';
-    const expectedId = 'edition';
+    const expectedTitle = 'Beispieledition ausgewählter Skizzen';
+    const expectedId = 'awg-edition-view';
 
     beforeEach(async(() => {
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+        // mocked activated route
+        mockActivatedRoute = new ActivatedRouteStub();
 
         TestBed.configureTestingModule({
             declarations: [EditionViewComponent, HeadingStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: Router, useValue: mockRouter }]
+            providers: [
+                { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                { provide: Router, useValue: mockRouter }
+            ]
         }).compileComponents();
     }));
 
@@ -56,11 +62,11 @@ describe('EditionViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should have title and id', () => {
-            expect(component.editionTitle).toBeDefined();
-            expect(component.editionTitle).toBe(expectedTitle);
+            expect(component.editionViewTitle).toBeDefined();
+            expect(component.editionViewTitle).toBe(expectedTitle);
 
-            expect(component.editionId).toBeDefined();
-            expect(component.editionId).toBe(expectedId);
+            expect(component.editionViewId).toBeDefined();
+            expect(component.editionViewId).toBe(expectedId);
         });
 
         describe('#routeToSidenav', () => {

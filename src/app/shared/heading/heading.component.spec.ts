@@ -43,9 +43,9 @@ describe('HeadingComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one div.para with an h2', () => {
+            it('... should contain one div.para with an h3', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.para > h2', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
             });
         });
     });
@@ -63,7 +63,7 @@ describe('HeadingComponent (DONE)', () => {
         describe('VIEW', () => {
             it('... should pass down `title` and `id` to component', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 1, 1);
-                const headerDes = getAndExpectDebugElementByCss(compDe, 'div.para > h2', 1, 1);
+                const headerDes = getAndExpectDebugElementByCss(compDe, 'div.para > h3', 1, 1);
 
                 const divEl = divDes[0].nativeElement;
                 const headerEl = headerDes[0].nativeElement;

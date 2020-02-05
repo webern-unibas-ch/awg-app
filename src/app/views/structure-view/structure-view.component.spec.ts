@@ -29,7 +29,7 @@ describe('StructureViewComponent (DONE)', () => {
     let mockRouter;
 
     const expectedTitle = 'Datenstrukturmodell';
-    const expectedId = 'structure';
+    const expectedId = 'awg-structure-view';
 
     beforeEach(async(() => {
         // router spy object
@@ -59,11 +59,11 @@ describe('StructureViewComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should have title and id', () => {
-            expect(component.structureTitle).toBeDefined();
-            expect(component.structureTitle).toBe(expectedTitle);
+            expect(component.structureViewTitle).toBeDefined();
+            expect(component.structureViewTitle).toBe(expectedTitle);
 
-            expect(component.structureId).toBeDefined();
-            expect(component.structureId).toBe(expectedId);
+            expect(component.structureViewId).toBeDefined();
+            expect(component.structureViewId).toBe(expectedId);
         });
 
         describe('#routeToSidenav', () => {

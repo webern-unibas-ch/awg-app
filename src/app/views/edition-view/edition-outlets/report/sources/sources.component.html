@@ -17,14 +17,27 @@
                 <!-- source description -->
                 <ngb-panel id="sourceDesc" title="2. Quellenbeschreibung">
                     <ng-template ngbPanelContent>
-                        <awg-source-description (openModalRequest)="openModal($event)"> </awg-source-description>
+                        <awg-source-description
+                            *ngIf="sourceDescriptionListData"
+                            [sourceDescriptionListData]="sourceDescriptionListData"
+                            (openModalRequest)="openModal($event)"
+                            (selectSvgSheetRequest)="selectSvgSheet($event)"
+                        >
+                        </awg-source-description>
                     </ng-template>
                 </ngb-panel>
 
                 <!-- source evaluation -->
                 <ngb-panel id="sourceEvaluation" title="3. Quellenbewertung">
                     <ng-template ngbPanelContent>
-                        <awg-source-evaluation (openModalRequest)="openModal($event)"> </awg-source-evaluation>
+                        <awg-source-evaluation
+                            *ngIf="sourceEvaluationListData"
+                            [sourceEvaluationListData]="sourceEvaluationListData"
+                            (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
+                            (openModalRequest)="openModal($event)"
+                            (selectSvgSheetRequest)="selectSvgSheet($event)"
+                        >
+                        </awg-source-evaluation>
                     </ng-template>
                 </ngb-panel>
             </ngb-accordion>

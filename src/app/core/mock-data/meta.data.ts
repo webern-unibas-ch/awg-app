@@ -30,7 +30,7 @@ const METAEDITION: MetaEdition = {
             contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
         }
     ],
-    lastModified: '29. Januar 2016'
+    lastModified: '29. Januar 2020'
 };
 
 /**

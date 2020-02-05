@@ -21,6 +21,7 @@ import {
     SelectionJson,
     SubjectItemJson
 } from '@awg-shared/api-objects';
+import { PropertyJsonValue } from '@awg-shared/api-objects/resource-response-formats/src/property-json';
 import {
     IResourceDataResponse,
     ResourceDetail,
@@ -199,6 +200,7 @@ export class ConversionService extends ApiService {
 
                             for (let i = 0; i < prop.values.length; i++) {
                                 // init
+
                                 let htmlstr = '';
 
                                 // convert linear salsah standoff to html (using plugin "htmlConverter")
@@ -492,6 +494,11 @@ export class ConversionService extends ApiService {
 
                 case '14': // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
+                        // if we have a gnd (prop.pid=856), write it to localstorage
+                        if (prop.pid === '856' && prop.values[i]) {
+                            this.writeGndToLocalStorage(prop.values[i]);
+                        }
+                        // convert richtext standoff
                         prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
                     break; // END richtext
@@ -942,5 +949,33 @@ export class ConversionService extends ApiService {
             restypeLabel: label,
             links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label)
         }));
+    }
+
+    /**
+     * Private method: writeGndToLocalStorage.
+     *
+     * It writes the GND number to the localStorage
+     * for further processing.
+     *
+     * @param {} value The given incoming property value.
+     *
+     * @returns {void} Writes the GND number to the localStorage.
+     */
+    private writeGndToLocalStorage(value: PropertyJsonValue): void {
+        const dnbReg = 'http://d-nb.info/gnd/';
+        const gndKey = 'gnd';
+        let gndItem: string;
+
+        const valueHasGnd = (checkValue: PropertyJsonValue) => {
+            return !(!checkValue || !checkValue.utf8str || !checkValue.utf8str.includes(dnbReg));
+        };
+
+        if (valueHasGnd(value)) {
+            // split utf8str with gnd value into array and take last argument (pop)
+            gndItem = value.utf8str.split(dnbReg).pop();
+            localStorage.setItem(gndKey, gndItem);
+        } else {
+            localStorage.removeItem(gndKey);
+        }
     }
 }

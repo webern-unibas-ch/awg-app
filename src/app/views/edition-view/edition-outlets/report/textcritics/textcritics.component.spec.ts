@@ -1,11 +1,13 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
+
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { Textcritics } from '@awg-views/edition-view/models';
+import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { TextcriticsComponent } from './textcritics.component';
 
@@ -13,7 +15,7 @@ import { TextcriticsComponent } from './textcritics.component';
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    selectedTextcritics: Textcritics[];
+    textcriticalComments: TextcriticalComment[];
 
     // TODO: handle outputs
 }
@@ -25,7 +27,12 @@ describe('TextcriticsComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [NgbAccordionModule],
-            declarations: [TextcriticsComponent, EditionTkaTableStubComponent, RouterLinkStubDirective]
+            declarations: [
+                TextcriticsComponent,
+                EditionTkaTableStubComponent,
+                CompileHtmlComponent,
+                RouterLinkStubDirective
+            ]
         }).compileComponents();
     }));
 

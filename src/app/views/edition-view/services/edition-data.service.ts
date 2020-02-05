@@ -4,7 +4,18 @@ import { HttpClient } from '@angular/common/http';
 import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
 import { catchError, defaultIfEmpty, take } from 'rxjs/operators';
 
-import { Folio, EditionSvgSheet, SourceList, TextcriticsList } from '@awg-views/edition-view/models';
+import {
+    EditionConstants,
+    EditionWork,
+    EditionSvgSheetList,
+    FolioConvoluteList,
+    GraphList,
+    IntroList,
+    SourceList,
+    SourceDescriptionList,
+    SourceEvaluationList,
+    TextcriticsList
+} from '@awg-views/edition-view/models';
 
 /**
  * The EditionData service.
@@ -24,35 +35,7 @@ export class EditionDataService {
      *
      * It keeps the base path to the JSON files.
      */
-    private BASE = 'assets/data';
-
-    /**
-     * Private variable: folioFile.
-     *
-     * It keeps the path to the folio JSON file.
-     */
-    private folioFile = 'folio.json';
-
-    /**
-     * Private variable: svgSheetsFile.
-     *
-     * It keeps the path to the svgSheets JSON file.
-     */
-    private svgSheetsFile = 'svg-sheets.json';
-
-    /**
-     * Private variable: sourcelistFile.
-     *
-     * It keeps the path to the sourcelist JSON file.
-     */
-    private sourcelistFile = 'sourcelist.json';
-
-    /**
-     * Private variable: textcriticsFile.
-     *
-     * It keeps the path to the textcritics JSON file.
-     */
-    private textcriticsFile = 'textcritics.json';
+    private BASE = '';
 
     /**
      * Constructor of the EditionDataService.
@@ -68,23 +51,72 @@ export class EditionDataService {
      * Public method: getEditionDetailData.
      *
      * It provides the data from a JSON file
-     * for the edition detail view
-     * (folios, edition svg sheets and textcritics list)
+     * for the current composition of the edition detail view
+     * (folio convolute, edition svg sheets and textcritics list)
      * as a fork-joined observable array.
      *
-     * @returns {Observable<[Folio[], EditionSvgSheet[], TextcriticsList]>}
-     * The fork-joined observable array with the Folio,
-     * EditionSvgSheet and TextcriticsList data.
+     * @param {EditionWork} editionWork The current composition input.
+     *
+     * @returns {Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]>}
+     * The fork-joined observable array with the FolioConvoluteList,
+     * EditionSvgSheetList and TextcriticsList data.
      * Only the first emit is needed.
      */
-    getEditionDetailData(): Observable<[Folio[], EditionSvgSheet[], TextcriticsList]> {
-        const folioData$: Observable<Folio[]> = this.getFolioData();
-        const svgSheetsData$: Observable<EditionSvgSheet[]> = this.getSvgSheetsData();
+    getEditionDetailData(
+        editionWork: EditionWork
+    ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
+        this.setBasePath(editionWork);
+        const folioData$: Observable<FolioConvoluteList> = this.getFolioConvoluteData();
+        const svgSheetsData$: Observable<EditionSvgSheetList> = this.getSvgSheetsData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
         return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
             // default empty value
-            defaultIfEmpty([[new Folio()], [new EditionSvgSheet()], new TextcriticsList()]),
+            defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
+            // take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
+     * Public method: getEditionGraphData.
+     *
+     * It provides the data from a JSON file
+     * for the graph of the edition view.
+     *
+     * @param {EditionWork} editionWork The current composition input.
+     *
+     * @returns {Observable<GraphList>} The observable with the GraphList data.
+     */
+    getEditionGraphData(editionWork: EditionWork): Observable<GraphList> {
+        this.setBasePath(editionWork);
+        const graphData$: Observable<GraphList> = this.getGraphData();
+
+        return graphData$.pipe(
+            // default empty value
+            defaultIfEmpty(new GraphList()),
+            // take only first request (JSON fetch)
+            take(1)
+        );
+    }
+
+    /**
+     * Public method: getEditionIntroData.
+     *
+     * It provides the data from a JSON file
+     * for the intro of the edition view.
+     *
+     * @param {EditionWork} editionWork The current composition input.
+     *
+     * @returns {Observable<IntroList>} The observable with the IntroList data.
+     */
+    getEditionIntroData(editionWork: EditionWork): Observable<IntroList> {
+        this.setBasePath(editionWork);
+        const introData$: Observable<IntroList> = this.getIntroData();
+
+        return introData$.pipe(
+            // default empty value
+            defaultIfEmpty(new IntroList()),
             // take only first request (JSON fetch)
             take(1)
         );
@@ -95,51 +127,94 @@ export class EditionDataService {
      *
      * It provides the data from a JSON file
      * for the edition report view
-     * (source list and textcritics list)
+     * (source list, source description list,
+     * source evaluation list and textcritics list)
      * as a fork-joined observable array.
      *
-     * @returns {Observable<[SourceList, TextcriticsList]>}
-     * The fork-joined observable array with the SourceList
+     * @returns {Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>}
+     * The fork-joined observable array with the SourceList, SourceDescriptionList, SourceEvaluationList,
      * and TextcriticsList data. Only the first emit is needed.
      */
-    getEditionReportData(): Observable<[SourceList, TextcriticsList]> {
+    getEditionReportData(
+        editionWork: EditionWork
+    ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> {
+        this.setBasePath(editionWork);
         const sourceListData$: Observable<SourceList> = this.getSourceListData();
+        const sourceDescriptionListData$: Observable<SourceDescriptionList> = this.getSourceDescriptionListData();
+        const sourceEvaluationListData$: Observable<SourceEvaluationList> = this.getSourceEvaluationListData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
-        return observableForkJoin([sourceListData$, textciticsListData$]).pipe(
+        return observableForkJoin([
+            sourceListData$,
+            sourceDescriptionListData$,
+            sourceEvaluationListData$,
+            textciticsListData$
+        ]).pipe(
             // default empty value
-            defaultIfEmpty([new SourceList(), new TextcriticsList()]),
+            defaultIfEmpty([
+                new SourceList(),
+                new SourceDescriptionList(),
+                new SourceEvaluationList(),
+                new TextcriticsList()
+            ]),
             // take only first request (JSON fetch)
             take(1)
         );
     }
 
     /**
-     * Private method: getFolioData.
+     * Private method: setBasePath.
+     *
+     * It sets the base path to correct assets folder.
+     *
+     * @returns {void} It sets the BASE path.
+     */
+    private setBasePath(editionWork: EditionWork): void {
+        const workRoute = editionWork.series.route + editionWork.section.route + editionWork.work.route;
+        this.BASE = EditionConstants.editionAssets.baseRoute + workRoute;
+    }
+
+    /**
+     * Private method: getFolioConvoluteData.
      *
      * It sets the path to the JSON file with
-     * the folio data and triggers
+     * the folio convolute data and triggers
      * the method to get the JSON data.
      *
-     * @returns {Observable<Folio[]>} The observable with the Folio data.
+     * @returns {Observable<FolioConvoluteList>} The observable with the FolioConvolute data.
      */
-    private getFolioData(): Observable<Folio[]> {
-        const file = this.folioFile;
+    private getFolioConvoluteData(): Observable<FolioConvoluteList> {
+        const file = EditionConstants.editionAssets.folioConvoluteFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
 
     /**
-     * Private method: getSvgSheetsData.
+     * Private method: getGraphData.
      *
      * It sets the path to the JSON file with
-     * the svg sheets data and triggers
+     * the graph data and triggers
      * the method to get the JSON data.
      *
-     * @returns {Observable<EditionSvgSheet[]>} The observable with the EditionSvgSheet data.
+     * @returns {Observable<GraphList>} The observable with the Graph data.
      */
-    private getSvgSheetsData(): Observable<EditionSvgSheet[]> {
-        const file = this.svgSheetsFile;
+    private getGraphData(): Observable<GraphList> {
+        const file = EditionConstants.editionAssets.graphFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getIntroData.
+     *
+     * It sets the path to the JSON file with
+     * the intro data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<IntroList>} The observable with the Intro data.
+     */
+    private getIntroData(): Observable<IntroList> {
+        const file = EditionConstants.editionAssets.introFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
@@ -154,7 +229,52 @@ export class EditionDataService {
      * @returns {Observable<SourceList>} The observable with the SourceList data.
      */
     private getSourceListData(): Observable<SourceList> {
-        const file = this.sourcelistFile;
+        const file = EditionConstants.editionAssets.sourceListFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getSourceDescriptionListData.
+     *
+     * It sets the path to the JSON file with
+     * the source description list data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<SourceDescriptionList>} The observable with the SourceDescriptionList data.
+     */
+    private getSourceDescriptionListData(): Observable<SourceDescriptionList> {
+        const file = EditionConstants.editionAssets.sourceDescriptionListFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getSourceEvaluationListData.
+     *
+     * It sets the path to the JSON file with
+     * the source evaluation list data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<SourceEvaluationList>} The observable with the SourceEvaluationList data.
+     */
+    private getSourceEvaluationListData(): Observable<SourceEvaluationList> {
+        const file = EditionConstants.editionAssets.sourceEvaluationListFile;
+        const url = `${this.BASE}/${file}`;
+        return this.getJsonData(url);
+    }
+
+    /**
+     * Private method: getSvgSheetsData.
+     *
+     * It sets the path to the JSON file with
+     * the svg sheets data and triggers
+     * the method to get the JSON data.
+     *
+     * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
+     */
+    private getSvgSheetsData(): Observable<EditionSvgSheetList> {
+        const file = EditionConstants.editionAssets.svgSheetsFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }
@@ -169,7 +289,7 @@ export class EditionDataService {
      * @returns {Observable<TextcriticsList>} The observable with the TextcriticsList data.
      */
     private getTextcriticsListData(): Observable<TextcriticsList> {
-        const file = this.textcriticsFile;
+        const file = EditionConstants.editionAssets.textcriticsFile;
         const url = `${this.BASE}/${file}`;
         return this.getJsonData(url);
     }

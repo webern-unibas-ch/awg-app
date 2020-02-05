@@ -332,7 +332,7 @@ export class FolioService {
             // add click event handler
             // exclude and mute sketch Aa:SkI for now
             if (contentItem.sigle === 'Aa:SkI/1a' || contentItem.sigle === 'Aa:SkI/1b') {
-                snapItemGroup.click(() => this.ref.openModal('sourceNotA'));
+                snapItemGroup.click(() => this.ref.openModal('op12_sourceNotA'));
                 snapItemGroup.attr({
                     stroke: 'grey',
                     fill: 'grey'

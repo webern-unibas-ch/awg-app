@@ -1,5 +1,8 @@
-<awg-router-link-button-group *ngIf="editionButtonArray"
-    [buttonArray]="editionButtonArray">
+<awg-router-link-button-group
+    *ngIf="editionRouterLinkButtons"
+    [routerLinkButtons]="editionRouterLinkButtons"
+    [queryParamsHandling]="''"
+>
 </awg-router-link-button-group>
 
 <router-outlet></router-outlet>

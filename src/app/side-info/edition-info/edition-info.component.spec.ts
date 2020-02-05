@@ -20,7 +20,8 @@ describe('EditionInfoComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
 
     let expectedEditionMetaData: MetaEdition;
-    let expectedEditionInfoHeader;
+    let expectedEditionInfoHeaderOp12;
+    let expectedEditionInfoHeaderOp25;
 
     beforeEach(async(() => {
         // stub service for test purposes
@@ -43,13 +44,21 @@ describe('EditionInfoComponent (DONE)', () => {
 
         // test data
         expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
-        expectedEditionInfoHeader = {
+        expectedEditionInfoHeaderOp12 = {
             section: 'AWG I/5',
             title: 'Vier Lieder',
             catalogueType: 'op.',
             catalogueNumber: '12',
             part: 'Skizzen',
-            description: '[Beispieledition ausgewählter Skizzen zu op. 12 Nr. 1]'
+            description: '[Beispieledition ausgewählter Skizzen]'
+        };
+        expectedEditionInfoHeaderOp25 = {
+            section: 'AWG I/5',
+            title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+            catalogueType: 'op.',
+            catalogueNumber: '25',
+            part: 'Graph',
+            description: '[Beispieledition ausgewählter Skizzen]'
         };
 
         // spies on component functions
@@ -81,11 +90,19 @@ describe('EditionInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have editionInfoHeader', () => {
-            expect(component.editionInfoHeader).toBeDefined();
-            expect(component.editionInfoHeader).toEqual(
-                expectedEditionInfoHeader,
-                `should equal ${expectedEditionInfoHeader}`
+        it('... should have editionInfoHeaderOp12', () => {
+            expect(component.editionInfoHeaderOp12).toBeDefined();
+            expect(component.editionInfoHeaderOp12).toEqual(
+                expectedEditionInfoHeaderOp12,
+                `should equal ${expectedEditionInfoHeaderOp12}`
+            );
+        });
+
+        it('... should have editionInfoHeaderOp25', () => {
+            expect(component.editionInfoHeaderOp25).toBeDefined();
+            expect(component.editionInfoHeaderOp25).toEqual(
+                expectedEditionInfoHeaderOp25,
+                `should equal ${expectedEditionInfoHeaderOp25}`
             );
         });
 
@@ -105,9 +122,9 @@ describe('EditionInfoComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });
 
-            it('... should contain one `h5` header and 4 `p` elements in div.card-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'div.card-body h5#awg-edition-info-header', 1, 1);
-                getAndExpectDebugElementByCss(compDe, 'div.card-body p', 4, 4);
+            it('... should contain two `h6` header and 5 `p` elements in div.card-body', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.card-body h6.awg-edition-info-header', 2, 2);
+                getAndExpectDebugElementByCss(compDe, 'div.card-body p', 5, 5);
             });
 
             it('... should not render editor information yet', () => {

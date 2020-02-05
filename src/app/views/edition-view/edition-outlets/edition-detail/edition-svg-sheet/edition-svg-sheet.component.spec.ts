@@ -1,9 +1,10 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NgxGalleryModule } from '@kolkov/ngx-gallery';
+
 import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
-import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/models';
-import { EditionSvgOverlayTypes } from '@awg-views/edition-view/models/edition-svg-overlay';
+import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 
 describe('EditionSvgSheetComponent', () => {
     let component: EditionSvgSheetComponent;
@@ -13,6 +14,7 @@ describe('EditionSvgSheetComponent', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
+            imports: [NgxGalleryModule],
             declarations: [EditionSvgSheetComponent]
         }).compileComponents();
     }));
@@ -45,8 +47,8 @@ describe('EditionSvgSheetComponent', () => {
             // mock the inputs supplied by the parent component
             expectedSvgSheet = {
                 id: 'Aa:SkI/2',
-                svg: 'assets/img/edition/SkI_2n_small_cut_opt.svg',
-                image: 'assets/img/edition/SkI_2_small.jpg',
+                svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
+                image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
                 alt: 'Aa:SkI/2'
             };
             const type = EditionSvgOverlayTypes.measure;
