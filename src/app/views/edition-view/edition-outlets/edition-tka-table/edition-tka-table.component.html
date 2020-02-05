@@ -8,8 +8,8 @@
                 <th style="width:auto">Kommentar</th>
             </tr>
         </thead>
-        <tbody>
-            <tr *ngFor="let textcriticalComment of selectedTextcriticalComments">
+        <tbody *ngIf="textcriticalComments">
+            <tr *ngFor="let textcriticalComment of textcriticalComments">
                 <td>{{ textcriticalComment.measure }}</td>
                 <td>{{ textcriticalComment.system }}</td>
                 <td [innerHTML]="textcriticalComment.position"></td>

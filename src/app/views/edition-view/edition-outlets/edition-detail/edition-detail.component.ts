@@ -207,11 +207,11 @@ export class EditionDetailComponent implements OnInit {
     /**
      * Public method: onOverlaySelect.
      *
-     * It selects a given overlay and its corresponding textcritics.
+     * It selects a given overlay and its corresponding textcritical comments.
      *
      * @param {EditionSvgOverlay} overlay The given svg overlay.
      * @returns {void} Sets the selectedOverlay,
-     * selectedTextcritis and showTka variable.
+     * selectedTextcriticalComments and showTka variable.
      */
     onOverlaySelect(overlay: EditionSvgOverlay): void {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
@@ -219,10 +219,16 @@ export class EditionDetailComponent implements OnInit {
         }
 
         // shortcut
-        const textcritics = this.textcriticsData[this.selectedSvgSheet.id];
+        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(textcritic => {
+            return textcritic.id === this.selectedSvgSheet.id;
+        });
+        const textcriticalComments = this.textcriticsData.textcritics[textcriticsIndex].comments;
 
         this.selectedOverlay = overlay;
-        this.selectedTextcriticalComments = this.editionService.getTextcritics(textcritics, this.selectedOverlay);
+        this.selectedTextcriticalComments = this.editionService.getTextcriticalComments(
+            textcriticalComments,
+            this.selectedOverlay
+        );
         this.showTkA = this.selectedTextcriticalComments !== [];
     }
 

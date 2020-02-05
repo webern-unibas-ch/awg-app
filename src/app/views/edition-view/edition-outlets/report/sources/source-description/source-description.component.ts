@@ -76,9 +76,7 @@ export class SourceDescriptionComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {
-        console.log(this.firmSigns.op12.A[0].full);
-    }
+    ngOnInit() {}
 
     /**
      * Public method: openModal.

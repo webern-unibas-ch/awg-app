@@ -33,23 +33,23 @@ export class EditionService {
     private readonly editionWorkStream$ = this.editionWorkSubject.asObservable();
 
     /**
-     * Private static method: filterTextcritics.
+     * Private static method: filterTextcriticalComments.
      *
-     * It filters a textcritics object in regard of a selected overlay item.
+     * It filters a textcritical comments array in regard of a selected overlay item.
      *
-     * @param {TextcriticalComment[]} textcritics The given textcritical comments to be filtered.
-     * @param {{ type: string; id: string }} overlay The given selected overlay item defined by `type` and `ìd`.
+     * @param {TextcriticalComment} textcriticalComment The given textcritical comment to be filtered.
+     * @param { type: string; id: string } overlay The given selected overlay item defined by `type` and `ìd`.
      * @param {number} filterIndex The given index position of the filter.
      * @returns {boolean} A boolean value if the input contains the overlay type and id
      */
-    private static filterTextcritics(
-        textcritics: TextcriticalComment,
+    private static filterTextcriticalComments(
+        textcriticalComment: TextcriticalComment,
         overlay: { type: string; id: string },
         filterIndex: number
     ): boolean {
         // shortcuts & trimmed values
-        const measure = textcritics.measure.replace('[', '').replace(']', '');
-        const system = textcritics.system.replace('[', '').replace(']', '');
+        const measure = textcriticalComment.measure.replace('[', '').replace(']', '');
+        const system = textcriticalComment.system.replace('[', '').replace(']', '');
 
         // filter the comments by overlay type and id
         switch (overlay.type) {
@@ -96,19 +96,22 @@ export class EditionService {
     }
 
     /**
-     * Public method: getTextcritics.
+     * Public method: getTextcriticalComments.
      *
      * It provides the textcritical comments for a selected svg overlay.
      *
-     * @param {TextcriticalComment[]} textcritics The given textcritical comments.
+     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
      * @param {EditionSvgOverlay} overlay The given svg overlay.
      * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
      */
-    getTextcritics(textcritics: TextcriticalComment[], overlay: EditionSvgOverlay): TextcriticalComment[] {
+    getTextcriticalComments(
+        textcriticalComments: TextcriticalComment[],
+        overlay: EditionSvgOverlay
+    ): TextcriticalComment[] {
         // filter the textcritics input array
-        return textcritics.filter((textcritic, filterIndex) => {
+        return textcriticalComments.filter((textcriticalComment, filterIndex) => {
             // get filtered results from private method
-            return EditionService.filterTextcritics(textcritic, overlay, filterIndex);
+            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
         });
     }
 }

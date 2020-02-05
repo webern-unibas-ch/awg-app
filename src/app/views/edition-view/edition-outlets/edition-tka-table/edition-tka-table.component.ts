@@ -16,12 +16,12 @@ import { TextcriticalComment } from '../../models/index';
 })
 export class EditionTkaTableComponent implements OnInit {
     /**
-     * Input variable: selectedTextcriticalComments.
+     * Input variable: textcriticalComments.
      *
-     * It keeps the selected textcritical comments.
+     * It keeps the textcritical comments.
      */
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    textcriticalComments: TextcriticalComment[];
 
     /**
      * Output variable: openModalRequest.
