@@ -34,7 +34,7 @@ class EditionSvgSheetStubComponent {
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()
-    selectedTextcriticalComments: TextcriticalComment[];
+    textcriticalComments: TextcriticalComment[];
 
     // TODO: handle outputs
 }

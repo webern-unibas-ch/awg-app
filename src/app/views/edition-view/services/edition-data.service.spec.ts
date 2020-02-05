@@ -8,9 +8,10 @@ import {
     EditionWorks,
     EditionWork,
     SourceList,
-    TextcriticsList,
     SourceDescriptionList,
-    SourceEvaluationList
+    SourceEvaluationList,
+    TextcriticsList,
+    Source
 } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
@@ -145,39 +146,13 @@ describe('EditionDataService', () => {
 
         describe('response', () => {
             describe('success', () => {
-                it('... should return a forkJoined Observable(SourceList, SourceDescriptionList, TextcriticsList)', async(() => {
+                it('... should return a forkJoined Observable(SourceList, SourceDescriptionList, SourceEvaluationList,  TextcriticsList)', async(() => {
                     const expectedResult = [
                         new SourceList(),
                         new SourceDescriptionList(),
                         new SourceEvaluationList(),
                         new TextcriticsList()
                     ];
-                    expectedResult[0].sources = [];
-                    expectedResult[0].sources[0] = {
-                        siglum: 'A',
-                        type: 'Autograph',
-                        location: 'CH-Bps',
-                        linkTo: 'Textlink'
-                    };
-                    expectedResult[1].sources = [];
-                    expectedResult[1].sources[0] = {
-                        id: 'sourceA',
-                        siglum: 'A',
-                        location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        description: []
-                    };
-                    expectedResult[2].sources = [];
-                    expectedResult[2].sources[0] = {
-                        id: 'op12',
-                        content: ['Die Skizze A ist zum Testen da.']
-                    };
-                    expectedResult[3]['test'] = [];
-                    expectedResult[3]['test'][0] = {
-                        measure: '1',
-                        system: '1',
-                        position: '1. Note',
-                        comment: 'Fehler'
-                    };
 
                     // call service function (success)
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(res => {

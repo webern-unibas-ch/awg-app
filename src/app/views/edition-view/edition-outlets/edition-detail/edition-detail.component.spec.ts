@@ -44,7 +44,7 @@ class EditionAccoladeStubComponent {
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
-    selectedTextcritics: TextcriticalComment[];
+    selectedTextcriticalComments: TextcriticalComment[];
     @Input()
     selectedOverlay: EditionSvgOverlay;
     @Input()
@@ -67,15 +67,20 @@ describe('EditionDetailComponent', () => {
         // make the spies return a synchronous Observable with the test data
         getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
-        const expectedTextcritics = []; // TODO: provide real test data
+        const expectedTextcriticalComments = []; // TODO: provide real test data
         // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getTextcritics', 'getEditionWork']);
+        const mockEditionService = jasmine.createSpyObj('EditionService', [
+            'getTextcriticalComments',
+            'getEditionWork'
+        ]);
         // make the spies return a synchronous Observable with the test data
-        getTextcriticsListSpy = mockEditionService.getTextcritics.and.returnValue(expectedTextcritics);
+        getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
+            expectedTextcriticalComments
+        );
         getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
         /*
         mockEditionService = {
-            // getTextcritics: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
+            // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
 
         };
     */
