@@ -13,5 +13,14 @@ import { CoreService } from './core-service';
 import { DataStreamerService } from './data-streamer';
 import { LoadingService } from './loading-service';
 import { SideInfoService } from './side-info-service';
+import { StorageService } from './storage-service';
 
-export { ApiService, ConversionService, CoreService, DataStreamerService, LoadingService, SideInfoService };
+export {
+    ApiService,
+    ConversionService,
+    CoreService,
+    DataStreamerService,
+    LoadingService,
+    SideInfoService,
+    StorageService
+};
