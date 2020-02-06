@@ -98,9 +98,9 @@ export class StorageService {
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {boolean} The boolean value for the given storage type.
+     * @returns {Storage} The local reference to Storage for the given storage type.
      */
-    private storageIsSupported(storage: Storage): boolean {
+    private storageIsSupported(storage: Storage): Storage {
         return typeof storage !== 'undefined' && storage !== null && this.storageIsAvailable(storage);
     }
 
@@ -108,33 +108,24 @@ export class StorageService {
      * Private method: storageIsAvailable.
      *
      * It checks if a given storage type is available.
+     * cf. https://mathiasbynens.be/notes/localstorage-pattern
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {boolean} The boolean value for the given storage type.
+     * @returns {boolean} The local reference to Storage for the given storage type.
      */
-    private storageIsAvailable(storage: Storage): boolean {
+    private storageIsAvailable(storage: Storage): Storage {
         try {
-            const x = '__storage_test__';
-            storage.setItem(x, x);
-            storage.removeItem(x);
-            return true;
-        } catch (e) {
-            return (
-                e instanceof DOMException &&
-                // everything except Firefox
-                (e.code === 22 ||
-                    // Firefox
-                    e.code === 1014 ||
-                    // test name field too, because code might not be present
-                    // everything except Firefox
-                    e.name === 'QuotaExceededError' ||
-                    // Firefox
-                    e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                // acknowledge QuotaExceededError only if there's something already stored
-                storage &&
-                storage.length !== 0
-            );
-        }
+            // make uid from Date
+            const uid = JSON.stringify(new Date());
+
+            // set, get and remove item
+            storage.setItem(uid, uid);
+            const result = storage.getItem(uid) === uid;
+            storage.removeItem(uid);
+
+            // return local reference to Storage or undefined
+            return result && storage;
+        } catch (e) {}
     }
 }

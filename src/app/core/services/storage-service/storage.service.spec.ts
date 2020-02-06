@@ -244,40 +244,14 @@ describe('StorageService', () => {
 
             it(`- storage is not supported`, () => {
                 expectedMockStorage.setItem(expectedKey, expectedItem);
-                spyOn<any>(storageService, 'storageIsSupported').and.returnValue(false);
+                spyOn<any>(storageService, 'storageIsSupported').and.returnValue(undefined);
 
                 expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
             });
 
             it(`- storage is not available`, () => {
                 expectedMockStorage.setItem(expectedKey, expectedItem);
-                spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(false);
-
-                expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
-            });
-
-            it(`- storage is not available (DOMException)`, () => {
-                expectedMockStorage.setItem(expectedKey, expectedItem);
-
-                const expectedError = new DOMException('oh noes', 'QuotaExceededError');
-                console.log(expectedError.name, expectedError.code, expectedError instanceof DOMException);
-
-                spyOn<any>(storageService, 'storageIsAvailable').and.callFake((storage: Storage) => {
-                    console.log(storage);
-                    try {
-                        throw expectedError;
-                    } catch (e) {
-                        return (
-                            e instanceof DOMException &&
-                            (e.code === 22 ||
-                                e.code === 1014 ||
-                                e.name === 'QuotaExceededError' ||
-                                e.name === 'NS_ERROR_DOM_QUOTA_REACHED') &&
-                            storage &&
-                            storage.length !== 0
-                        );
-                    }
-                });
+                spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(undefined);
 
                 expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
             });
