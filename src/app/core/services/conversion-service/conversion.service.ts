@@ -6,7 +6,6 @@ import { Observable } from 'rxjs';
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
 import { ApiService } from '@awg-core/services/api-service';
-import { StorageService, StorageType } from '@awg-core/services/storage-service';
 
 import { GeoNames } from '@awg-core/core-models';
 import {
@@ -24,7 +23,6 @@ import {
     SelectionJson,
     SubjectItemJson
 } from '@awg-shared/api-objects';
-import { PropertyJsonValue } from '@awg-shared/api-objects/resource-response-formats/src/property-json';
 import {
     IResourceDataResponse,
     ResourceDetail,
@@ -80,9 +78,8 @@ export class ConversionService extends ApiService {
      * and a private {@link StorageService} instance.
      *
      * @param {HttpClient} http Instance of the HttpClient.
-     * @param {StorageService} storageService Instance of the StorageService.
      */
-    constructor(public http: HttpClient, private storageService: StorageService) {
+    constructor(public http: HttpClient) {
         super(http);
     }
 

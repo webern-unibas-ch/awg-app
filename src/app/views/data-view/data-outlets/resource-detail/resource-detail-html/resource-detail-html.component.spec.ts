@@ -13,6 +13,7 @@ import {
     ResourceDetailImage,
     ResourceDetailProperty
 } from '@awg-views/data-view/models';
+import { GndEvent } from '@awg-core/services/gnd-service';
 
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 
@@ -21,6 +22,8 @@ import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 class ResourceDetailHtmlContentStubComponent {
     @Input()
     content: ResourceDetailContent;
+    @Output()
+    gndRequest: EventEmitter<GndEvent> = new EventEmitter();
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }

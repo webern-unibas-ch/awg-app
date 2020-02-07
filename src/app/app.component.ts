@@ -25,15 +25,6 @@ export class AppComponent {
     constructor(private readonly router: Router, private routerEventsService: RouterEventsService) {
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
-                /*
-                // set current route to sessionStorage
-                this.storageService.setStorageKey(
-                    StorageType.sessionStorage,
-                    AppConfig.AWG_APP_ROUTE_STORAGE_KEY,
-                    event.urlAfterRedirects
-                );
-                */
-
                 //  catch GoogleAnalytics pageview events,
                 // cf. https://codeburst.io/using-google-analytics-with-angular-25c93bffaa18
                 (window as any).ga('set', 'page', event.urlAfterRedirects);

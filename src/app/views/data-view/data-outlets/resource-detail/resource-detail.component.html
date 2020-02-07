@@ -33,6 +33,7 @@
                     <!-- html visualisation -->
                     <awg-resource-detail-html
                         [resourceDetailData]="resourceData.detail"
+                        (gndRequest)="exposeGnd($event)"
                         (resourceRequest)="navigateToResource($event)"
                     >
                     </awg-resource-detail-html>

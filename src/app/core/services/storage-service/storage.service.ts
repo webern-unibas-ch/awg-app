@@ -132,16 +132,17 @@ export class StorageService {
      *
      * @param {Storage} storage The given storage type.
      *
-     * @returns {boolean} The local reference to Storage for the given storage type.
+     * @returns {Storage} The local reference to Storage for the given storage type.
      */
     private storageIsAvailable(storage: Storage): Storage {
         try {
             // make uid from Date
-            const uid = JSON.stringify(new Date());
+            const uid = new Date().toDateString();
 
             // set, get and remove item
             storage.setItem(uid, uid);
             const result = storage.getItem(uid) === uid;
+
             storage.removeItem(uid);
 
             // return local reference to Storage or undefined

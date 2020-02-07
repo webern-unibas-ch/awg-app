@@ -1,7 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
 
-import { GndService } from '@awg-core/services';
+import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import { ResourceDetailProperty } from '@awg-views/data-view/models';
+import { PropertyJson } from '@awg-shared/api-objects';
 
 /**
  * The ResourceDetailHtmlContentProps component.
@@ -25,6 +26,14 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     props: ResourceDetailProperty[];
 
     /**
+     * Output variable: gndRequest.
+     *
+     * It keeps an event emitter for the exposition of a GND value.
+     */
+    @Output()
+    gndRequest: EventEmitter<GndEvent> = new EventEmitter();
+
+    /**
      * Output variable: resourceRequest.
      *
      * It keeps an event emitter for the selected id of a resource.
@@ -39,8 +48,6 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
      * between the resource detail properties.
      */
     metaBreakLine = 'Versionsdatum';
-
-    constructor(private gndService: GndService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -68,19 +75,56 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
         this.resourceRequest.emit(id);
     }
 
-    setLabel(prop) {
-        if (!prop) {
+    /**
+     * Public method: exposeGnd.
+     *
+     * It emits a given gnd event (type, value)
+     * to the {@link gndRequest}.
+     *
+     * @param {GndEvent} gndEvent The given GND event.
+     *
+     * @returns {void} Emits the GND event.
+     */
+    exposeGnd(gndEvent: GndEvent): void {
+        if (!gndEvent) {
             return;
         }
+        this.gndRequest.emit(gndEvent);
+    }
+
+    /**
+     * Public method: setLabel.
+     *
+     * It sets the label of a given property object
+     * while checking for a gnd value to expose.
+     *
+     * @param {PropertyJson} prop The given property object.
+     *
+     * @returns {string} The property label.
+     */
+    setLabel(prop: PropertyJson): string {
+        if (!prop) {
+            return null;
+        }
         // if we have a gnd (prop.pid=856), write it to sessionStorage
-        if (prop.pid === '856' && prop.values && prop.values[0]) {
-            prop.values.map(value => this.gndService.writeGndToSessionStorage(value));
+        if (prop.pid === '856' && prop.values && prop.values.length > 0) {
+            prop.values.map((value: string) => {
+                const gndEvent = new GndEvent(GndEventType.set, value);
+                this.exposeGnd(gndEvent);
+            });
         }
         return prop.label;
     }
 
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
     ngOnDestroy() {
         // if we leave the component, remove gnd from storage
-        this.gndService.removeGndFromSessionStorage();
+        const gndEvent = new GndEvent(GndEventType.remove, null);
+        this.exposeGnd(gndEvent);
     }
 }
