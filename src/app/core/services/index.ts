@@ -10,7 +10,8 @@
 import { ApiService } from './api-service';
 import { ConversionService } from './conversion-service';
 import { CoreService } from './core-service';
-import { DataStreamerService } from './data-streamer';
+import { DataStreamerService } from './data-streamer-service';
+import { GndService } from './gnd-service';
 import { LoadingService } from './loading-service';
 import { RouterEventsService } from './router-events-service';
 import { SideInfoService } from './side-info-service';
@@ -21,6 +22,7 @@ export {
     ConversionService,
     CoreService,
     DataStreamerService,
+    GndService,
     LoadingService,
     RouterEventsService,
     SideInfoService,

@@ -28,7 +28,7 @@ export class RouterEventsService {
     private readonly previousRoutePath$ = this.previousRoutePathSubject.asObservable();
 
     /**
-     * Constructor of the StorageService.
+     * Constructor of the RouterEventsService.
      *
      * It declares private instances of the Angular router and the Location.
      * It filters the router events fo recognized routes
@@ -52,7 +52,6 @@ export class RouterEventsService {
             )
             .subscribe((event: any[]) => {
                 this.previousRoutePathSubject.next(event[0].urlAfterRedirects);
-                console.log('event', this.previousRoutePathSubject.value);
             });
     }
 

@@ -511,10 +511,6 @@ export class ConversionService extends ApiService {
 
                 case '14': // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        // if we have a gnd (prop.pid=856), write it to localstorage
-                        if (prop.pid === '856' && prop.values[i]) {
-                            this.writeGndToSessionStorage(prop.values[i]);
-                        }
                         // convert richtext standoff
                         prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
@@ -966,36 +962,5 @@ export class ConversionService extends ApiService {
             restypeLabel: label,
             links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label)
         }));
-    }
-
-    /**
-     * Private method: writeGndToSessionStorage.
-     *
-     * It writes the GND number to the sessionStorage
-     * for further processing.
-     *
-     * @param {} value The given incoming property value.
-     *
-     * @returns {void} Writes the GND number to the sessionStorage.
-     */
-    private writeGndToSessionStorage(value: PropertyJsonValue): void {
-        if (!value) {
-            return;
-        }
-        const dnbReg = 'http://d-nb.info/gnd/';
-        const gndKey = 'gnd';
-        let gndItem: string;
-
-        const valueHasGnd = (checkValue: PropertyJsonValue) => {
-            return !(!checkValue || !checkValue.utf8str || !checkValue.utf8str.includes(dnbReg));
-        };
-
-        if (valueHasGnd(value)) {
-            // split utf8str with gnd value into array and take last argument (pop)
-            gndItem = value.utf8str.split(dnbReg).pop();
-            this.storageService.setStorageKey(StorageType.sessionStorage, gndKey, gndItem);
-        } else {
-            this.storageService.removeStorageKey(StorageType.sessionStorage, gndKey);
-        }
     }
 }
