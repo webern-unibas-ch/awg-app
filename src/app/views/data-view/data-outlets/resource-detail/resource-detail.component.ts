@@ -6,7 +6,8 @@ import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { DataStreamerService, LoadingService } from '@awg-core/services';
+import { DataStreamerService, GndService, LoadingService } from '@awg-core/services';
+import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ResourceData } from '@awg-views/data-view/models';
@@ -96,13 +97,14 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      *
      * It declares private instances of the Angular ActivatedRoute,
      * the Angular Router, the DataApiService, the DataStreamerService,
-     * the LoadingService, and a configuration object for the
+     * the GndService, the LoadingService, and a configuration object for the
      * ng-bootstrap tabset.
      *
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular Router.
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
+     * @param {GndService} gndService Instance of the GndService.
      * @param {LoadingService} loadingService Instance of the LoadingService.
      * @param {NgbTabsetConfig} config Instance of the NgbTabsetConfig.
      */
@@ -111,6 +113,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         private router: Router,
         private dataApiService: DataApiService,
         private dataStreamerService: DataStreamerService,
+        private gndService: GndService,
         private loadingService: LoadingService,
         config: NgbTabsetConfig
     ) {
@@ -201,6 +204,38 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
 
         // navigate to new resource
         this.router.navigate(['/data/resource', +nextId]);
+    }
+
+    /**
+     * Public method: exposeGnd.
+     *
+     * It delegates a given gnd event type ('set', 'get', 'remove')
+     * with a given value to the {@link GndService}.
+     * The gnd event is emitted from the {@link ResourceDetailHtmlContentPropsComponent}.
+     *
+     * @param {{type: string, value: string}} gndEvent The given event.
+     *
+     * @returns {void} Delegates the event to the GndService.
+     */
+    exposeGnd(gndEvent: GndEvent): void {
+        if (!gndEvent) {
+            return;
+        }
+        switch (gndEvent.type) {
+            case GndEventType.set: {
+                // statements
+                this.gndService.setGndToSessionStorage(gndEvent.value);
+                break;
+            }
+            case GndEventType.remove: {
+                // statements
+                this.gndService.removeGndFromSessionStorage();
+                break;
+            }
+            default: {
+                console.log('got an uncatched GND event', gndEvent);
+            }
+        }
     }
 
     /**

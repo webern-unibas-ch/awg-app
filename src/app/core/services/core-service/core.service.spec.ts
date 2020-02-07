@@ -15,7 +15,7 @@ describe('CoreService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [CoreService]
         });
-        // inject services and http client handler
+        // inject service
         coreService = TestBed.get(CoreService);
 
         // test data

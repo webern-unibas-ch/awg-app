@@ -37,7 +37,7 @@ export class ApiService {
     /**
      * Constructor of the ApiService.
      *
-     * It declares a private {@link HttpClient} instance
+     * It declares a public {@link HttpClient} instance
      * to handle http requests.
      *
      * @param {HttpClient} http Instance of the HttpClient.

@@ -14,7 +14,7 @@ import { ResourceDetailProperty } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentPropsComponent } from './props.component';
 
-describe('ResourceDetailHtmlContentPropsComponent (DONE)', () => {
+describe('ResourceDetailHtmlContentPropsComponent', () => {
     let component: ResourceDetailHtmlContentPropsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentPropsComponent>;
     let compDe: DebugElement;

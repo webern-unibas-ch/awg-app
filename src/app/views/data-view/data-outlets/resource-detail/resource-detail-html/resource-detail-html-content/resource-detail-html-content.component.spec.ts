@@ -12,6 +12,7 @@ import {
 } from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
 
+import { GndEvent } from '@awg-core/services/gnd-service';
 import { ContextJson } from '@awg-shared/api-objects';
 import {
     ResourceDetailContent,
@@ -27,6 +28,8 @@ import { ResourceDetailHtmlContentComponent } from './resource-detail-html-conte
 class ResourceDetailHtmlContentPropsStubComponent {
     @Input()
     props: ResourceDetailProperty[];
+    @Output()
+    gndRequest: EventEmitter<GndEvent> = new EventEmitter();
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }
