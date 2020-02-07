@@ -44,8 +44,6 @@ export class StorageService {
         }
         const storage = window[type];
         if (this.storageIsSupported(storage)) {
-            const prevItem = this.getStorageKey(type, key);
-            storage.setItem(key + '_prev', prevItem);
             storage.setItem(key, item);
         } else {
             return;
@@ -86,13 +84,13 @@ export class StorageService {
      */
     removeStorageKey(type: StorageType, key: string): void {
         if (!type || !key) {
-            return null;
+            return;
         }
         const storage = window[type];
         if (this.storageHasKey(storage, key)) {
-            return storage.removeItem(key);
+            storage.removeItem(key);
         } else {
-            return null;
+            return;
         }
     }
 

@@ -1,10 +1,13 @@
 import { Injectable } from '@angular/core';
+import { HttpClient } from '@angular/common/http';
 
 import { Observable } from 'rxjs';
 
 import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 
 import { ApiService } from '@awg-core/services/api-service';
+import { StorageService, StorageType } from '@awg-core/services/storage-service';
+
 import { GeoNames } from '@awg-core/core-models';
 import {
     ContextJson,
@@ -68,6 +71,20 @@ export class ConversionService extends ApiService {
      * It keeps the number of filtered duplicates of a search response list.
      */
     filteredOut: number;
+
+    /**
+     * Constructor of the ConversionService.
+     *
+     * It declares a public {@link HttpClient} instance
+     * with a super reference to base class (ApiService)
+     * and a private {@link StorageService} instance.
+     *
+     * @param {HttpClient} http Instance of the HttpClient.
+     * @param {StorageService} storageService Instance of the StorageService.
+     */
+    constructor(public http: HttpClient, private storageService: StorageService) {
+        super(http);
+    }
 
     /**
      * Public method: convertFullTextSearchResults.
@@ -496,7 +513,7 @@ export class ConversionService extends ApiService {
                     for (let i = 0; i < prop.values.length; i++) {
                         // if we have a gnd (prop.pid=856), write it to localstorage
                         if (prop.pid === '856' && prop.values[i]) {
-                            this.writeGndToLocalStorage(prop.values[i]);
+                            this.writeGndToSessionStorage(prop.values[i]);
                         }
                         // convert richtext standoff
                         prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
@@ -952,16 +969,19 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: writeGndToLocalStorage.
+     * Private method: writeGndToSessionStorage.
      *
-     * It writes the GND number to the localStorage
+     * It writes the GND number to the sessionStorage
      * for further processing.
      *
      * @param {} value The given incoming property value.
      *
-     * @returns {void} Writes the GND number to the localStorage.
+     * @returns {void} Writes the GND number to the sessionStorage.
      */
-    private writeGndToLocalStorage(value: PropertyJsonValue): void {
+    private writeGndToSessionStorage(value: PropertyJsonValue): void {
+        if (!value) {
+            return;
+        }
         const dnbReg = 'http://d-nb.info/gnd/';
         const gndKey = 'gnd';
         let gndItem: string;
@@ -973,9 +993,9 @@ export class ConversionService extends ApiService {
         if (valueHasGnd(value)) {
             // split utf8str with gnd value into array and take last argument (pop)
             gndItem = value.utf8str.split(dnbReg).pop();
-            localStorage.setItem(gndKey, gndItem);
+            this.storageService.setStorageKey(StorageType.sessionStorage, gndKey, gndItem);
         } else {
-            localStorage.removeItem(gndKey);
+            this.storageService.removeStorageKey(StorageType.sessionStorage, gndKey);
         }
     }
 }
