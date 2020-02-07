@@ -5,8 +5,11 @@ import { NavigationEnd, Router } from '@angular/router';
 
 import { of as observableOf } from 'rxjs';
 
+import Spy = jasmine.Spy;
+
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
+import { RouterEventsService } from '@awg-core/services';
 import { AppComponent } from './app.component';
 
 // analytics global
@@ -22,7 +25,7 @@ class ViewContainerStubComponent {}
 @Component({ selector: 'awg-footer', template: '' })
 class FooterStubComponent {}
 
-class MockServices {
+class MockRouter {
     // Router
     events = observableOf(new NavigationEnd(0, 'testUrl', 'testUrl'), [0, 0], 'testString');
 }
@@ -35,10 +38,20 @@ describe('AppComponent (DONE)', () => {
 
     let router: Router;
 
+    let getPreviousRouteSpy: Spy;
+
     beforeEach(async(() => {
+        // create a fake RouterEventsService object with a `getPreviousRoute` spy
+        const mockRouterEventsService = jasmine.createSpyObj('RouterEventsService', ['getPreviousRoute']);
+        // make the spies return a synchronous Observable with the test data
+        getPreviousRouteSpy = mockRouterEventsService.getPreviousRoute.and.returnValue(observableOf(''));
+
         TestBed.configureTestingModule({
             declarations: [AppComponent, FooterStubComponent, NavbarStubComponent, ViewContainerStubComponent],
-            providers: [{ provide: Router, useClass: MockServices }]
+            providers: [
+                { provide: Router, useClass: MockRouter },
+                { provide: RouterEventsService, useValue: mockRouterEventsService }
+            ]
         }).compileComponents();
     }));
 
