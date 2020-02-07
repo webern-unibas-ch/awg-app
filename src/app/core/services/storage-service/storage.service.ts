@@ -75,6 +75,28 @@ export class StorageService {
     }
 
     /**
+     * Public method: removeStorageKey.
+     *
+     * It removes a key from a given storage type.
+     *
+     * @param {string} type The given storage type.
+     * @param {string} key The given key.
+     *
+     * @returns {void} Removes a key pair from the storage.
+     */
+    removeStorageKey(type: StorageType, key: string): void {
+        if (!type || !key) {
+            return null;
+        }
+        const storage = window[type];
+        if (this.storageHasKey(storage, key)) {
+            return storage.removeItem(key);
+        } else {
+            return null;
+        }
+    }
+
+    /**
      * Private method: storageHasKey.
      *
      * It checks if a given storage type has a given key.

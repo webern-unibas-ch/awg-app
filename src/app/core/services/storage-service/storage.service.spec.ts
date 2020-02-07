@@ -17,8 +17,6 @@ describe('StorageService', () => {
     const expectedLocalStorage: Storage = window[localType];
     const expectedSessionStorage: Storage = window[sessionType];
 
-    let setItemSpy: Spy;
-
     const expectedKey = 'key';
     const expectedItem = 'expectedItem';
     const otherItem = 'otherItem';
@@ -52,7 +50,7 @@ describe('StorageService', () => {
 
         // spies replace storage calls with fake mockStorage calls
         spyOn(localStorage, 'getItem').and.callFake(mockStorage.getItem);
-        setItemSpy = spyOn(localStorage, 'setItem').and.callFake(mockStorage.setItem);
+        spyOn(localStorage, 'setItem').and.callFake(mockStorage.setItem);
         spyOn(localStorage, 'removeItem').and.callFake(mockStorage.removeItem);
         spyOn(localStorage, 'clear').and.callFake(mockStorage.clear);
     });
@@ -86,7 +84,7 @@ describe('StorageService', () => {
             expect(expectedMockStorage.getItem('foo')).toBeNull(); // null
         });
 
-        it('... should set, get items and clear mockSesscionStorage', () => {
+        it('... should set, get items and clear mockSessionStorage', () => {
             expectedMockStorage = expectedSessionStorage;
 
             expect(expectedMockStorage.setItem('foo', 'bar'));
@@ -207,7 +205,7 @@ describe('StorageService', () => {
         });
 
         it('... should return null for non existing items', () => {
-            expect(expectedMockStorage.getItem('key')).toBeNull(); // null
+            expect(expectedMockStorage.getItem(expectedKey)).toBeNull(); // null
             expect(storageService.getStorageKey(sessionType, 'key')).toBeNull();
         });
 
@@ -254,6 +252,80 @@ describe('StorageService', () => {
                 spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(undefined);
 
                 expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
+            });
+        });
+    });
+
+    describe('#removeStorageKey', () => {
+        it(`... should remove an item by key from a given storage type`, () => {
+            storageService.setStorageKey(sessionType, expectedKey, expectedItem);
+            expect(expectedMockStorage.getItem(expectedKey)).toBe(expectedItem, `should be ${expectedItem}`);
+
+            storageService.removeStorageKey(sessionType, expectedKey);
+            expect(expectedMockStorage.getItem(expectedKey)).toBeNull();
+        });
+
+        it('... should return null for non existing items', () => {
+            expect(storageService.removeStorageKey(sessionType, expectedKey)).toBeNull();
+        });
+
+        it(`... should remove item from the correct storage type`, () => {
+            const otherStorage = expectedLocalStorage;
+            expectedMockStorage.setItem(expectedKey, expectedItem);
+            otherStorage.setItem(expectedKey, otherItem);
+
+            storageService.removeStorageKey(sessionType, expectedKey);
+
+            expect(expectedMockStorage.getItem(expectedKey)).toBeNull();
+            expect(otherStorage.getItem(expectedKey)).toEqual(otherItem, `should be ${otherItem}`);
+
+            storageService.removeStorageKey(localType, expectedKey);
+
+            expect(otherStorage.getItem(expectedKey)).toBeNull();
+        });
+
+        describe(`... should do nothing if:`, () => {
+            it(`- storage type is undefined `, () => {
+                expectedMockStorage.setItem(expectedKey, expectedItem);
+
+                storageService.removeStorageKey(undefined, expectedKey);
+
+                expect(expectedMockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+            });
+
+            it(`- storage type is null`, () => {
+                expectedMockStorage.setItem(expectedKey, expectedItem);
+
+                storageService.removeStorageKey(null, expectedKey);
+
+                expect(expectedMockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+            });
+
+            it(`- storage has not the given key`, () => {
+                expectedMockStorage.setItem(expectedKey, expectedItem);
+                spyOn<any>(storageService, 'storageHasKey').and.returnValue(false);
+
+                storageService.removeStorageKey(sessionType, expectedKey);
+
+                expect(expectedMockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+            });
+
+            it(`- storage is not supported`, () => {
+                expectedMockStorage.setItem(expectedKey, expectedItem);
+                spyOn<any>(storageService, 'storageIsSupported').and.returnValue(undefined);
+
+                storageService.removeStorageKey(sessionType, expectedKey);
+
+                expect(expectedMockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
+            });
+
+            it(`- storage is not available`, () => {
+                expectedMockStorage.setItem(expectedKey, expectedItem);
+                spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(undefined);
+
+                storageService.removeStorageKey(sessionType, expectedKey);
+
+                expect(expectedMockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
             });
         });
     });
