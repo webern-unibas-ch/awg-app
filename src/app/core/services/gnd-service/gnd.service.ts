@@ -54,7 +54,7 @@ export class GndEvent {
 @Injectable({
     providedIn: 'root'
 })
-export class GndService {
+export class GndService extends StorageService {
     /**
      * Readonly variable: gndKey.
      *
@@ -76,8 +76,6 @@ export class GndService {
      */
     linkRegArr: RegExpExecArray;
 
-    constructor(private storageService: StorageService) {}
-
     /**
      * Public method: setGndToSessionStorage.
      *
@@ -93,7 +91,12 @@ export class GndService {
             let gndItem: string;
             // take last argument (pop) of linkRegArray
             gndItem = this.linkRegArr.pop().toString();
-            this.storageService.setStorageKey(StorageType.sessionStorage, this.gndKey, gndItem);
+
+            // set to storage
+            this.setStorageKey(StorageType.sessionStorage, this.gndKey, gndItem);
+
+            // postMessage to communicate with Inseri
+            window.parent.window.postMessage({ for: 'user', key: gndItem }, 'http://localhost:4200');
         } else {
             this.removeGndFromSessionStorage();
         }
@@ -108,7 +111,7 @@ export class GndService {
      * @returns {void} It removes the key/value pair from the storage.
      */
     removeGndFromSessionStorage(): void {
-        this.storageService.removeStorageKey(StorageType.sessionStorage, this.gndKey);
+        this.removeStorageKey(StorageType.sessionStorage, this.gndKey);
     }
 
     /**
