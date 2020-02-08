@@ -90,15 +90,15 @@ export class TextcriticsComponent implements OnInit {
     }
 
     /**
-     * Public method: hasComments.
+     * Public method: isNotEmptyArray.
      *
-     * It checks if a given textcritical comment array
+     * It checks if a given array of the textcritical comment input
      * is not empty.
      *
-     * @param {string} comments The given TextCriticalComment array.
+     * @param {TextcriticalComment[] | string[]} part The given array input.
      * @returns {boolean} The boolean result of the check.
      */
-    hasComments(comments: TextcriticalComment[]): boolean {
-        return comments && comments.constructor === Array && comments.length > 0;
+    isNotEmptyArray(checkArray: TextcriticalComment[] | string[]): boolean {
+        return checkArray && checkArray.constructor === Array && checkArray.length > 0;
     }
 }

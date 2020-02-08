@@ -8,7 +8,6 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     EditionWork,
-    EditionWorks,
     FolioConvoluteList,
     TextcriticalComment,
     TextcriticsList
@@ -136,7 +135,7 @@ export class EditionDetailComponent implements OnInit {
             // get current editionWork from editionService
             .getEditionWork()
             .pipe(
-                switchMap(work => {
+                switchMap((work: EditionWork) => {
                     // set current editionWork
                     this.editionWork = work;
                     // return EditionDetailData from editionDataService
