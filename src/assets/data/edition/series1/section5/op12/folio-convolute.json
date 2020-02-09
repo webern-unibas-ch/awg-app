@@ -14,6 +14,8 @@
                         {
                             "sigle": "Aa:SkI/1a",
                             "measure": "1–2, [3–6]",
+                            "selectable": false,
+                            "linkTo": "op12_sourceNotA",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -24,6 +26,8 @@
                         },
                         {
                             "sigle": "Aa:SkI/1a",
+                            "selectable": false,
+                            "linkTo": "op12_sourceNotA",
                             "measure": "[7–12]",
                             "sectionPartition": 1,
                             "sections": [
@@ -36,6 +40,8 @@
                         },
                         {
                             "sigle": "Aa:SkI/1a",
+                            "selectable": false,
+                            "linkTo": "op12_sourceNotA",
                             "measure": "[13–17]",
                             "sectionPartition": 1,
                             "sections": [
@@ -116,6 +122,8 @@
                     "content": [
                         {
                             "sigle": "Aa:SkI/1b",
+                            "selectable": false,
+                            "linkTo": "op12_sourceNotA",
                             "measure": "[18–22]",
                             "sections": [
                                 {
@@ -126,6 +134,8 @@
                         },
                         {
                             "sigle": "Aa:SkI/1b",
+                            "selectable": false,
+                            "linkTo": "op12_sourceNotA",
                             "measure": "[23–24]",
                             "sectionPartition": 1,
                             "sections": [

@@ -10,7 +10,100 @@
                         "height": 270,
                         "width": 335
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "sigle": "A:SkI/2",
+                            "measure": "",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/1",
+                            "measure": "1–2",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1",
+                            "measure": "1–4",
+                            "selectable": false,
+                            "linkTo": "op25_sourceNotA",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 1,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1.1",
+                            "measure": "1–2",
+                            "selectable": false,
+                            "linkTo": "op25_sourceNotA",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1.2",
+                            "measure": "3",
+                            "selectable": false,
+                            "linkTo": "op25_sourceNotA",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 2,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1.2.1",
+                            "measure": "3",
+                            "selectable": false,
+                            "linkTo": "op25_sourceNotA",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 4,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/3",
+                            "measure": "1–5",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 3
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "39r",
