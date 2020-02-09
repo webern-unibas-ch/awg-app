@@ -9,7 +9,7 @@ import {
     SourceEvaluationComponent,
     SourceListComponent
 } from './sources';
-import { TextcriticsComponent } from './textcritics';
+import { CriticsListComponent, TextcriticsComponent } from './textcritics';
 
 /**
  * The report module.
@@ -24,6 +24,7 @@ import { TextcriticsComponent } from './textcritics';
         SourceDescriptionComponent,
         SourceEvaluationComponent,
         SourceListComponent,
+        CriticsListComponent,
         TextcriticsComponent
     ],
     exports: [
@@ -31,6 +32,7 @@ import { TextcriticsComponent } from './textcritics';
         SourceDescriptionComponent,
         SourceEvaluationComponent,
         SourceListComponent,
+        CriticsListComponent,
         TextcriticsComponent
     ]
 })
