@@ -1,5 +1,13 @@
 <div>
     <!-- embedded svg: Aa:SkI/2 -->
+    <div class="svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.sheet1)">
+        <p class="small text-muted">
+            [Der edierte Notentext von <strong>Aa:SKI/1</strong> erscheint im Zusammenhang der vollständigen Edition der
+            <em>Vier Lieder</em> op. 12 in <strong>AWG I/5</strong>.]
+        </p>
+    </div>
+
+    <!-- embedded svg: Aa:SkI/2 -->
     <div class="svg edition-svg" *ngIf="isSelectedSvgSheet(svgSheetLabels.sheet2)">
         <svg
             version="1.1"

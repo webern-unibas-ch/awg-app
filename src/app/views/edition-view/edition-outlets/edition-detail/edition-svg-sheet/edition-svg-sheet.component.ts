@@ -9,6 +9,7 @@ import { EditionSvgSheet, EditionSvgOverlay } from '@awg-views/edition-view/mode
  * It stores the possible sheet labels.
  */
 export enum SvgSheetLabels {
+    sheet1 = 'Aa:SkI/1',
     sheet2 = 'Aa:SkI/2',
     sheet3 = 'Aa:SkI/3',
     sheet4 = 'Aa:SkI/4',
@@ -67,6 +68,7 @@ export class EditionSvgSheetComponent implements OnInit {
      * It keeps the labels of the svg sheets.
      */
     svgSheetLabels = {
+        sheet1: SvgSheetLabels.sheet1,
         sheet2: SvgSheetLabels.sheet2,
         sheet3: SvgSheetLabels.sheet3,
         sheet4: SvgSheetLabels.sheet4,

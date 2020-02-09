@@ -165,45 +165,6 @@ export class EditionDetailComponent implements OnInit {
     }
 
     /**
-     * Private method: getSketchParams.
-     *
-     * It checks the route params for a sketch query
-     * and returns the id of the selected sheet.
-     *
-     * @default first entry of this.svgSheetsData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected sheet.
-     */
-    private getSketchParams(queryParams?: ParamMap): string {
-        // if there is no id in query params
-        // take first entry of svg sheets data as default
-        if (!queryParams.get('sketch')) {
-            this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
-            return;
-        }
-        return queryParams.get('sketch') ? queryParams.get('sketch') : this.svgSheetsData.sheets[0].id;
-    }
-
-    /**
-     * Private method: setSelectedSvgSheet.
-     *
-     * It sets the selectedSvg from a given id.
-     *
-     * @param {string} id The given id input.
-     * @returns {EditionSvgSheet} The selected sheet.
-     */
-    private setSelectedSvgSheet(id: string): EditionSvgSheet {
-        if (!id) {
-            return;
-        }
-        // find index of given id in svgSheetsData.sheets array
-        const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
-        // return the sheet with the given id
-        return this.svgSheetsData.sheets[sheetIndex];
-    }
-
-    /**
      * Public method: onOverlaySelect.
      *
      * It selects a given overlay and its corresponding textcritical comments.
@@ -254,5 +215,44 @@ export class EditionDetailComponent implements OnInit {
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
+    }
+
+    /**
+     * Private method: getSketchParams.
+     *
+     * It checks the route params for a sketch query
+     * and returns the id of the selected sheet.
+     *
+     * @default first entry of this.svgSheetsData
+     *
+     * @param {ParamMap} queryParams The query paramMap of the activated route.
+     * @returns {string} The id of the selected sheet.
+     */
+    private getSketchParams(queryParams?: ParamMap): string {
+        // if there is no id in query params
+        // take first entry of svg sheets data as default
+        if (!queryParams.get('sketch')) {
+            this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
+            return;
+        }
+        return queryParams.get('sketch') ? queryParams.get('sketch') : this.svgSheetsData.sheets[0].id;
+    }
+
+    /**
+     * Private method: setSelectedSvgSheet.
+     *
+     * It sets the selectedSvg from a given id.
+     *
+     * @param {string} id The given id input.
+     * @returns {EditionSvgSheet} The selected sheet.
+     */
+    private setSelectedSvgSheet(id: string): EditionSvgSheet {
+        if (!id) {
+            return;
+        }
+        // find index of given id in svgSheetsData.sheets array
+        const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
+        // return the sheet with the given id
+        return this.svgSheetsData.sheets[sheetIndex];
     }
 }
