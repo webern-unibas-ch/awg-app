@@ -168,6 +168,14 @@ export class EditionDetailComponent implements OnInit {
                 (queryParams: ParamMap) => {
                     const sheetId: string = this.getSketchParams(queryParams);
                     this.selectedSvgSheet = this.findSvgSheet(sheetId);
+                    if (
+                        !this.selectedConvolute &&
+                        this.folioConvoluteData.convolutes &&
+                        this.folioConvoluteData.convolutes.constructor === Array &&
+                        this.folioConvoluteData.convolutes.length > 0
+                    ) {
+                        this.selectedConvolute = this.folioConvoluteData.convolutes[0];
+                    }
                 },
                 error => {
                     this.errorMessage = error as any;

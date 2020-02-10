@@ -117,15 +117,7 @@ export class EditionConvoluteComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {
-        if (
-            this.folioConvoluteData.convolutes &&
-            this.folioConvoluteData.convolutes.constructor === Array &&
-            this.folioConvoluteData.convolutes.length > 0
-        ) {
-            this.selectedConvolute = this.folioConvoluteData.convolutes[0];
-        }
-    }
+    ngOnInit() {}
 
     /**
      * Public method: openModal.
