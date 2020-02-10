@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
 import { Observable, throwError } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -15,7 +15,8 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 @Component({
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
-    styleUrls: ['./edition-graph.component.css']
+    styleUrls: ['./edition-graph.component.css'],
+    changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionGraphComponent implements OnInit {
     /**

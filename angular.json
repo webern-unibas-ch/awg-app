@@ -28,6 +28,7 @@
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
+                            "node_modules/rdfstore/dist/rdfstore_min.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
                         ]
