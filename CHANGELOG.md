@@ -8,15 +8,14 @@ All notable changes to this project will be documented in this file. See [standa
 
 -   **core:** add RouterEventsService to store previous route ([23e3656](https://github.com/webern-unibas-ch/awg-app/commit/23e365690b35b6ec9f7169401f1d9fbe35883db9))
 -   **core:** add StorageService ([bde1f1e](https://github.com/webern-unibas-ch/awg-app/commit/bde1f1eff3b49341d1ebf621cc5f535b4e9ec1e4)), closes [#5](https://github.com/webern-unibas-ch/awg-app/issues/5)
--   **core:** expose GND via postMessage to communicate with inseri ([80648c5](https://github.com/webern-unibas-ch/awg-app/commit/80648c5204a7bc0a46455491bff5de23497978f1)), closes [nie-ine/inseri#388](https://github.com/nie-ine/inseri/issues/388)
+-   **core:** expose GND via postMessage to communicate with inseri ([80648c5](https://github.com/webern-unibas-ch/awg-app/commit/80648c5204a7bc0a46455491bff5de23497978f1)), relates to [nie-ine/inseri#388](https://github.com/nie-ine/inseri/issues/388)
 -   **edition:** add almost complete TkA for op25 (Sk4 incomplete) ([3dabd8a](https://github.com/webern-unibas-ch/awg-app/commit/3dabd8af6b438088b7a87c65b2134b9e39f58dbe))
 -   **edition:** make tka list toggleable per sketch ([01ec0fd](https://github.com/webern-unibas-ch/awg-app/commit/01ec0fd45db4f92e6e01e8364045c6a6df4bacce))
 -   **edition:** prepare embedding of op25 sheets ([1f25f63](https://github.com/webern-unibas-ch/awg-app/commit/1f25f63148e61f00461496d25081a448a6310091))
 
 ### Bug Fixes
 
--   **app:** move GND exposition to PropsComp and GndService ([e44b332](https://github.com/webern-unibas-ch/awg-app/commit/e44b3324d092d2b799242c9a7b0d0a3cfce371a6))
--   **app:** move GND exposition to PropsComp and GndService ([98bd896](https://github.com/webern-unibas-ch/awg-app/commit/98bd896d6151c09d806fef1c82734e899a55d43d))
+-   **app:** move GND exposition to PropsComp and GndService ([e44b332](https://github.com/webern-unibas-ch/awg-app/commit/e44b3324d092d2b799242c9a7b0d0a3cfce371a6), [98bd896](https://github.com/webern-unibas-ch/awg-app/commit/98bd896d6151c09d806fef1c82734e899a55d43d))
 -   **core:** add removeItem method to StorageService ([19a6f8d](https://github.com/webern-unibas-ch/awg-app/commit/19a6f8d85548782397e836cd8fd802fb1d840628))
 -   **core:** fix check for detecting Storage ([b5c4c08](https://github.com/webern-unibas-ch/awg-app/commit/b5c4c08bf370e9bb6048fa9775ab30ea8690ce45))
 -   **core:** use StorageService to expose GND ([e591885](https://github.com/webern-unibas-ch/awg-app/commit/e591885d64977ae9ef87ab6bdc58193f323adefd))
@@ -26,8 +25,7 @@ All notable changes to this project will be documented in this file. See [standa
 -   **edition:** get selectability of convolute item from data ([9fcb2dd](https://github.com/webern-unibas-ch/awg-app/commit/9fcb2ddff22f49a019c41c71fcf2d488dcd3fd75))
 -   **edition:** handle placeholder for op. 12 Aa:SkI/1 ([ecbb32b](https://github.com/webern-unibas-ch/awg-app/commit/ecbb32b228438a19768ba8b83ef85ad07d7c90d0))
 -   **edition:** improve folio handling and rendering ([8c871cc](https://github.com/webern-unibas-ch/awg-app/commit/8c871cc7f435910daea3789a0c2b111982904a29))
--   **edition:** move convolute init to parent component (edition detail) ([7a9c5ed](https://github.com/webern-unibas-ch/awg-app/commit/7a9c5edaca439fe54a887de7afd75a42496e4dc6))
--   **edition:** move convolute logic to parent component (edition detail) ([fb77f72](https://github.com/webern-unibas-ch/awg-app/commit/fb77f72aa9c817c8e0d09e2e9d204dfbf8508683))
+-   **edition:** move convolute logic to parent component (edition detail) ([7a9c5ed](https://github.com/webern-unibas-ch/awg-app/commit/7a9c5edaca439fe54a887de7afd75a42496e4dc6), [fb77f72](https://github.com/webern-unibas-ch/awg-app/commit/fb77f72aa9c817c8e0d09e2e9d204dfbf8508683))
 -   **home:** adjust title of op. 25 ([9f1c9fc](https://github.com/webern-unibas-ch/awg-app/commit/9f1c9fc07960335d2e4c5c8bec0f7ace44054a9f))
 
 ## [0.7.0](https://github.com/webern-unibas-ch/awg-app/compare/v0.6.1...v0.7.0) (2020-02-05)
