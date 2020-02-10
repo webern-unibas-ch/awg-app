@@ -5,9 +5,9 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
 /**
  * The TextcriticalComment component.
  *
- * It contains the textcritical comments section
+ * It contains the panel for the textcritical comments section
  * of the critical report of the edition view of the app
- * with an {@link EditionTkaTableComponent}.
+ * with a {@link TextcriticsList}.
  */
 @Component({
     selector: 'awg-textcritics',

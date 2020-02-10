@@ -2,6 +2,13 @@ import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
 
+/**
+ * The CriticsList component.
+ *
+ * It contains the list of textcritical comments
+ * of the critical report of the edition view of the app
+ * with an {@link EditionTkaTableComponent}.
+ */
 @Component({
     selector: 'awg-critics-list',
     templateUrl: './critics-list.component.html',

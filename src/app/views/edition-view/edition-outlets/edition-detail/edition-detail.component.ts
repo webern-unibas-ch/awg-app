@@ -31,6 +31,11 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     styleUrls: ['./edition-detail.component.css']
 })
 export class EditionDetailComponent implements OnInit {
+    /**
+     * ViewChild variable: modal.
+     *
+     * It keeps the reference to the awg-modal.
+     */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
 
     /**

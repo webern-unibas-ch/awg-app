@@ -138,6 +138,12 @@ export class EditionSvgSheetComponent implements OnInit {
         }
     };
 
+    /**
+     * Public variable: sheetsArray.
+     *
+     * It keeps the array of of the svg sheets' labels.
+     * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
+     */
     sheetsArray: string[];
 
     /* TODO: mute for now since not working yet
