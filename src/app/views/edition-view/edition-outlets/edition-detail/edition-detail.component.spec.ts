@@ -16,7 +16,8 @@ import {
     EditionSvgSheetList,
     FolioConvoluteList,
     EditionWork,
-    EditionWorks
+    EditionWorks,
+    FolioConvolute
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -31,6 +32,8 @@ class EditionDetailNotificationStubComponent {}
 class EditionConvoluteStubComponent {
     @Input()
     folioConvoluteData: FolioConvoluteList;
+    @Input()
+    selectedConvolute: FolioConvolute;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
 

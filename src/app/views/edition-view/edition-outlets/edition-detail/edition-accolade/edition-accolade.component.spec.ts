@@ -3,7 +3,12 @@ import { Component, DebugElement, Input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { EditionSvgSheet, EditionSvgOverlay, TextcriticalComment } from '@awg-views/edition-view/models';
+import {
+    EditionSvgOverlay,
+    EditionSvgSheet,
+    EditionSvgSheetList,
+    TextcriticalComment
+} from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
@@ -23,6 +28,8 @@ class EditionSvgSheetNavStubComponent {
 
 @Component({ selector: 'awg-edition-svg-sheet', template: '' })
 class EditionSvgSheetStubComponent {
+    @Input()
+    svgSheetsData: EditionSvgSheetList;
     @Input()
     selectedSvgSheet: EditionSvgSheet;
     @Input()
