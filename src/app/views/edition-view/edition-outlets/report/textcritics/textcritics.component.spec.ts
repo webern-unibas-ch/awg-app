@@ -2,20 +2,17 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 
-import { RouterLinkStubDirective } from '@testing/router-stubs';
-
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalComment } from '@awg-views/edition-view/models';
-
+import { TextcriticsList } from '@awg-views/edition-view/models';
+import { CriticsListComponent } from './critics-list/critics-list.component';
 import { TextcriticsComponent } from './textcritics.component';
 
-// mock heading component
-@Component({ selector: 'awg-edition-tka-table', template: '' })
-class EditionTkaTableStubComponent {
+// mock critics list component
+@Component({ selector: 'awg-critics-list', template: '' })
+class CriticsListStubComponent {
     @Input()
-    textcriticalComments: TextcriticalComment[];
+    textcriticsData: TextcriticsList;
 
     // TODO: handle outputs
 }
@@ -27,12 +24,7 @@ describe('TextcriticsComponent', () => {
     beforeEach(async(() => {
         TestBed.configureTestingModule({
             imports: [NgbAccordionModule],
-            declarations: [
-                TextcriticsComponent,
-                EditionTkaTableStubComponent,
-                CompileHtmlComponent,
-                RouterLinkStubDirective
-            ]
+            declarations: [TextcriticsComponent, CriticsListStubComponent]
         }).compileComponents();
     }));
 

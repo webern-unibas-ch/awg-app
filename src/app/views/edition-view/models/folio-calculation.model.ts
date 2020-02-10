@@ -227,14 +227,24 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
-     * The optional label for the sigle of the content item (string).
+     * The label for the sigle of the content item (string).
      */
-    sigle?: string;
+    sigle: string;
 
     /**
-     * The optional label for the measure of the content item (string).
+     * The label for the measure of the content item (string).
      */
-    measure?: string;
+    measure: string;
+
+    /**
+     * The boolean flag if the content item can be selected..
+     */
+    selectable: boolean;
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo: string;
 }
 
 /**
@@ -582,6 +592,12 @@ export class FolioCalculation {
 
                     calculatedContentItem.sigle = content.sigle;
                     calculatedContentItem.measure = content.measure;
+                    calculatedContentItem.selectable = true;
+                    calculatedContentItem.linkTo = '';
+                    if (content['selectable'] === false && content['linkTo']) {
+                        calculatedContentItem.selectable = content.selectable;
+                        calculatedContentItem.linkTo = content.linkTo;
+                    }
 
                     calculatedContentItems.push(calculatedContentItem);
                 });

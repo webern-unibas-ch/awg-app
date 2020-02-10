@@ -7,6 +7,7 @@
  *
  */
 
+import { CriticsListComponent } from './critics-list';
 import { TextcriticsComponent } from './textcritics.component';
 
-export { TextcriticsComponent };
+export { CriticsListComponent, TextcriticsComponent };

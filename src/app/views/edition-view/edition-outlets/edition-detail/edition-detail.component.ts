@@ -1,14 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
 import { switchMap } from 'rxjs/operators';
 
+import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
     EditionWork,
-    EditionWorks,
+    FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
     TextcriticsList
@@ -30,6 +31,13 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     styleUrls: ['./edition-detail.component.css']
 })
 export class EditionDetailComponent implements OnInit {
+    /**
+     * ViewChild variable: modal.
+     *
+     * It keeps the reference to the awg-modal.
+     */
+    @ViewChild('modal', { static: true }) modal: ModalComponent;
+
     /**
      * Public variable: editionWork.
      *
@@ -59,6 +67,20 @@ export class EditionDetailComponent implements OnInit {
     textcriticsData: TextcriticsList;
 
     /**
+     * Public variable: selectedConvolute.
+     *
+     * It keeps the selected convolute.
+     */
+    selectedConvolute: FolioConvolute;
+
+    /**
+     * Public variable: selectedOverlay.
+     *
+     * It keeps the selected svg overlay.
+     */
+    selectedOverlay: EditionSvgOverlay;
+
+    /**
      * Public variable: selectedSvgSheet.
      *
      * It keeps the selected svg sheet.
@@ -71,13 +93,6 @@ export class EditionDetailComponent implements OnInit {
      * It keeps the selected textcritical comments.
      */
     selectedTextcriticalComments: TextcriticalComment[];
-
-    /**
-     * Public variable: selectedOverlay.
-     *
-     * It keeps the selected svg overlay.
-     */
-    selectedOverlay: EditionSvgOverlay;
 
     /**
      * Public variable: errorMessage.
@@ -136,7 +151,7 @@ export class EditionDetailComponent implements OnInit {
             // get current editionWork from editionService
             .getEditionWork()
             .pipe(
-                switchMap(work => {
+                switchMap((work: EditionWork) => {
                     // set current editionWork
                     this.editionWork = work;
                     // return EditionDetailData from editionDataService
@@ -157,12 +172,92 @@ export class EditionDetailComponent implements OnInit {
             .subscribe(
                 (queryParams: ParamMap) => {
                     const sheetId: string = this.getSketchParams(queryParams);
-                    this.selectedSvgSheet = this.setSelectedSvgSheet(sheetId);
+                    this.selectedSvgSheet = this.findSvgSheet(sheetId);
+                    if (
+                        !this.selectedConvolute &&
+                        this.folioConvoluteData.convolutes &&
+                        this.folioConvoluteData.convolutes.constructor === Array &&
+                        this.folioConvoluteData.convolutes.length > 0
+                    ) {
+                        this.selectedConvolute = this.folioConvoluteData.convolutes[0];
+                    }
                 },
                 error => {
                     this.errorMessage = error as any;
                 }
             );
+    }
+
+    /**
+     * Public method: onConvoluteSelect.
+     *
+     * It selects a convolute by its id.
+     *
+     * @param {string} id The given id.
+     * @returns {void} Sets the selectedConvolute variable.
+     */
+    onConvoluteSelect(id: string): void {
+        if (!id) {
+            return;
+        }
+        const convolute: FolioConvolute = this.findConvolute(id);
+
+        if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
+            // if no folio data provided, open modal
+            if (convolute.linkTo) {
+                this.modal.open(convolute.linkTo);
+            }
+            return;
+        }
+        this.selectedConvolute = convolute;
+    }
+
+    /**
+     * Public method: onOverlaySelect.
+     *
+     * It selects a given overlay and its corresponding textcritical comments.
+     *
+     * @param {EditionSvgOverlay} overlay The given svg overlay.
+     * @returns {void} Sets the selectedOverlay,
+     * selectedTextcriticalComments and showTka variable.
+     */
+    onOverlaySelect(overlay: EditionSvgOverlay): void {
+        if (!this.textcriticsData && !this.selectedSvgSheet) {
+            return;
+        }
+        const textcriticalComments: TextcriticalComment[] = this.findTextCriticalComments();
+
+        this.selectedOverlay = overlay;
+        this.selectedTextcriticalComments = this.editionService.getTextcriticalComments(
+            textcriticalComments,
+            this.selectedOverlay
+        );
+        this.showTkA = this.selectedTextcriticalComments !== [];
+    }
+
+    /**
+     * Public method: onSvgSheetSelect.
+     *
+     * It selects a svg sheet by its id and
+     * navigates to the edition detail route
+     * with this given id.
+     *
+     * @param {string} id The given svg sheet id.
+     * @returns {void} Navigates to the edition detail.
+     */
+    onSvgSheetSelect(id: string): void {
+        if (!id) {
+            id = '';
+        }
+        this.selectedSvgSheet = this.findSvgSheet(id);
+        this.showTkA = false;
+
+        const navigationExtras: NavigationExtras = {
+            queryParams: { sketch: id },
+            queryParamsHandling: ''
+        };
+
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
     }
 
     /**
@@ -187,14 +282,32 @@ export class EditionDetailComponent implements OnInit {
     }
 
     /**
-     * Private method: setSelectedSvgSheet.
+     * Private method: findConvolute.
      *
-     * It sets the selectedSvg from a given id.
+     * It finds a convolute with a given id.
      *
      * @param {string} id The given id input.
-     * @returns {EditionSvgSheet} The selected sheet.
+     * @returns {FolioConvolute} The convolute that was found.
      */
-    private setSelectedSvgSheet(id: string): EditionSvgSheet {
+    private findConvolute(id: string): FolioConvolute {
+        if (!id) {
+            return;
+        }
+        // find index of given id in folioConvoluteData.convolutes array
+        const convoluteIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
+        // return the convolute with the given id
+        return this.folioConvoluteData.convolutes[convoluteIndex];
+    }
+
+    /**
+     * Private method: findSvgSheet.
+     *
+     * It finds a svg sheet with a given id.
+     *
+     * @param {string} id The given id input.
+     * @returns {EditionSvgSheet} The sheet that was found.
+     */
+    private findSvgSheet(id: string): EditionSvgSheet {
         if (!id) {
             return;
         }
@@ -205,55 +318,21 @@ export class EditionDetailComponent implements OnInit {
     }
 
     /**
-     * Public method: onOverlaySelect.
+     * Private method: findTextCriticalComments.
      *
-     * It selects a given overlay and its corresponding textcritical comments.
+     * It finds the textcritical comments for an svg overlay.
      *
-     * @param {EditionSvgOverlay} overlay The given svg overlay.
-     * @returns {void} Sets the selectedOverlay,
-     * selectedTextcriticalComments and showTka variable.
+     * @returns {TextcriticalComment[]} The textcritical comments that were found.
      */
-    onOverlaySelect(overlay: EditionSvgOverlay): void {
+    private findTextCriticalComments(): TextcriticalComment[] {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return;
         }
-
-        // shortcut
-        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(textcritic => {
-            return textcritic.id === this.selectedSvgSheet.id;
-        });
-        const textcriticalComments = this.textcriticsData.textcritics[textcriticsIndex].comments;
-
-        this.selectedOverlay = overlay;
-        this.selectedTextcriticalComments = this.editionService.getTextcriticalComments(
-            textcriticalComments,
-            this.selectedOverlay
+        // find index of teh selected svg sheet id in textcriticsData.textcritics array
+        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
+            textcritic => textcritic.id === this.selectedSvgSheet.id
         );
-        this.showTkA = this.selectedTextcriticalComments !== [];
-    }
-
-    /**
-     * Public method: onSvgSheetSelect.
-     *
-     * It selects a svg sheet by its id and
-     * navigates to the edition detail route
-     * with this given id.
-     *
-     * @param {string} id The given svg sheet id.
-     * @returns {void} Navigates to the edition detail.
-     */
-    onSvgSheetSelect(id: string): void {
-        if (!id) {
-            id = '';
-        }
-        this.selectedSvgSheet = this.setSelectedSvgSheet(id);
-        this.showTkA = false;
-
-        const navigationExtras: NavigationExtras = {
-            queryParams: { sketch: id },
-            queryParamsHandling: ''
-        };
-
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
+        // return the comments with the given id
+        return this.textcriticsData.textcritics[textcriticsIndex].comments;
     }
 }

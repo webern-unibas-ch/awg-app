@@ -103,6 +103,16 @@ export class FolioContent {
     measure: string;
 
     /**
+     * Boolean flag if the content item can be selected..
+     */
+    selectable?: boolean;
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo?: string;
+
+    /**
      * The folio content's optional sectionPartition (number).
      */
     sectionPartition?: number;

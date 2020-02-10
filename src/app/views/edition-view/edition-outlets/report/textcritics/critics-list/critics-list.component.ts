@@ -1,21 +1,20 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { TextcriticsList } from '@awg-views/edition-view/models';
+import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
- * The TextcriticalComment component.
+ * The CriticsList component.
  *
- * It contains the panel for the textcritical comments section
+ * It contains the list of textcritical comments
  * of the critical report of the edition view of the app
- * with a {@link TextcriticsList}.
+ * with an {@link EditionTkaTableComponent}.
  */
 @Component({
-    selector: 'awg-textcritics',
-    templateUrl: './textcritics.component.html',
-    styleUrls: ['./textcritics.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    selector: 'awg-critics-list',
+    templateUrl: './critics-list.component.html',
+    styleUrls: ['./critics-list.component.css']
 })
-export class TextcriticsComponent implements OnInit {
+export class CriticsListComponent implements OnInit {
     /**
      * Input variable: textcriticsData.
      *
@@ -40,6 +39,20 @@ export class TextcriticsComponent implements OnInit {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
+
+    /**
+     * Self-referring variable needed for CompileHtml library.
+     */
+    ref: CriticsListComponent;
+
+    /**
+     * Constructor of the TextcriticsComponent.
+     *
+     * It initializes the self-referring ref variable needed for CompileHtml library.
+     */
+    constructor() {
+        this.ref = this;
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -73,5 +86,18 @@ export class TextcriticsComponent implements OnInit {
      */
     selectSvgSheet(id: string): void {
         this.selectSvgSheetRequest.emit(id);
+    }
+
+    /**
+     * Public method: isNotEmptyArray.
+     *
+     * It checks if a given array of the textcritical comment input
+     * is not empty.
+     *
+     * @param {TextcriticalComment[] | string[]} part The given array input.
+     * @returns {boolean} The boolean result of the check.
+     */
+    isNotEmptyArray(checkArray: TextcriticalComment[] | string[]): boolean {
+        return checkArray && checkArray.constructor === Array && checkArray.length > 0;
     }
 }

@@ -43,7 +43,7 @@ export class Textcritics {
     /**
      * The description of the textcritics.
      */
-    description: string;
+    description: string[];
 
     /**
      * The array of textcritical comments from a textcritics list.

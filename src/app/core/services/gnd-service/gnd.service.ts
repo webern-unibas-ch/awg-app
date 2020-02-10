@@ -125,7 +125,7 @@ export class GndService extends StorageService {
      * @return {boolean} The boolean result of the check.
      */
     private valueHasGnd(checkValue: string): boolean {
-        if (this.dnbReg.exec(checkValue)) {
+        if (this.dnbReg.test(checkValue)) {
             this.linkRegArr = this.dnbReg.exec(checkValue);
         } else {
             this.linkRegArr = null;
