@@ -138,7 +138,72 @@
                         "height": 270,
                         "width": 335
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "sigle": "A:SkI/4b",
+                            "measure": "3B–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4c",
+                            "measure": "7–12",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4d",
+                            "measure": "7–12",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4.2",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sourceNotA",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4.3",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sourceNotA",
+                            "sectionPartition": 7,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },

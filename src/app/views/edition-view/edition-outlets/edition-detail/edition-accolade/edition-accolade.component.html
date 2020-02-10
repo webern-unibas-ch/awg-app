@@ -15,7 +15,8 @@
 
             <!-- svg panel -->
             <awg-edition-svg-sheet
-                *ngIf="selectedSvgSheet"
+                *ngIf="svgSheetsData && selectedSvgSheet"
+                [svgSheetsData]="svgSheetsData"
                 [selectedSvgSheet]="selectedSvgSheet"
                 [selectedOverlay]="selectedOverlay"
                 (selectSvgSheetRequest)="selectSvgSheet($event)"
@@ -25,9 +26,9 @@
 
             <!-- table for TkA -->
             <div class="panel-footer" *ngIf="showTkA && selectedTextcriticalComments">
-                <h4 class="mt-4">
+                <h5 class="mt-4">
                     Textkritischer Kommentar ({{ selectedOverlay.typeLabel }} {{ selectedOverlay.id }}):
-                </h4>
+                </h5>
                 <awg-edition-tka-table
                     [textcriticalComments]="selectedTextcriticalComments"
                     (openModalRequest)="openModal($event)"
