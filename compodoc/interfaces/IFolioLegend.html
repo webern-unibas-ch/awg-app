@@ -226,6 +226,14 @@ export class EditionConvoluteComponent implements OnInit {
     folioConvoluteData: FolioConvoluteList;
 
     /**
+     * Public variable: selectedConvolute.
+     *
+     * It keeps the selected convolute.
+     */
+    @Input()
+    selectedConvolute: FolioConvolute;
+
+    /**
      * Public variable: selectedSvgSheet.
      *
      * It keeps the selected svg sheet.
@@ -243,6 +251,14 @@ export class EditionConvoluteComponent implements OnInit {
     openModalRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
 
     /**
+     * Output variable: selectConvoluteRequest.
+     *
+     * It keeps an event emitter for the selected convolute.
+     */
+    @Output()
+    selectConvoluteRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
+
+    /**
      * Output variable: selectSvgSheetRequest.
      *
      * It keeps an event emitter for the selected id of an svg sheet.
@@ -256,13 +272,6 @@ export class EditionConvoluteComponent implements OnInit {
      * It instantiates fontawesome&#x27;s faSquare icon.
      */
     faSquare &#x3D; faSquare;
-
-    /**
-     * Public variable: selectedConvolute.
-     *
-     * It keeps the selected convolute.
-     */
-    selectedConvolute: FolioConvolute;
 
     /**
      * Public variable: folioLegends.
@@ -290,15 +299,7 @@ export class EditionConvoluteComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {
-        if (
-            this.folioConvoluteData.convolutes &amp;&amp;
-            this.folioConvoluteData.convolutes.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp;
-            this.folioConvoluteData.convolutes.length &gt; 0
-        ) {
-            this.selectedConvolute &#x3D; this.folioConvoluteData.convolutes[0];
-        }
-    }
+    ngOnInit() {}
 
     /**
      * Public method: openModal.
@@ -310,6 +311,9 @@ export class EditionConvoluteComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -326,16 +330,7 @@ export class EditionConvoluteComponent implements OnInit {
         if (!id) {
             return;
         }
-        const convoluteIndex &#x3D; this.folioConvoluteData.convolutes.findIndex(c &#x3D;&gt; c.convoluteId &#x3D;&#x3D;&#x3D; id);
-        const convolute: FolioConvolute &#x3D; this.folioConvoluteData.convolutes[convoluteIndex];
-        if (convolute.folios &amp;&amp; convolute.folios.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp; convolute.folios.length &#x3D;&#x3D;&#x3D; 0) {
-            // if no folio data provided, open modal
-            if (convolute.linkTo) {
-                this.openModal(convolute.linkTo);
-            }
-            return;
-        }
-        this.selectedConvolute &#x3D; convolute;
+        this.selectConvoluteRequest.emit(id);
     }
 
     /**
@@ -348,6 +343,9 @@ export class EditionConvoluteComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }

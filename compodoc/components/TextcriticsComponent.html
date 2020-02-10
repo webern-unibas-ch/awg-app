@@ -70,9 +70,9 @@
     </p>
     <p class="comment">
         <p>The TextcriticalComment component.</p>
-<p>It contains the textcritical comments section
+<p>It contains the panel for the textcritical comments section
 of the critical report of the edition view of the app
-with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableComponent</a>.</p>
+with a <a href="../classes/TextcriticsList.html">TextcriticsList</a>.</p>
 
     </p>
 
@@ -136,20 +136,6 @@ with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ref">ref</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -159,9 +145,6 @@ with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
                 <tr>
                     <td class="col-md-4">
                         <ul class="index-list">
-                            <li>
-                                <a href="#hasComments">hasComments</a>
-                            </li>
                             <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
@@ -214,31 +197,6 @@ with an <a href="../components/EditionTkaTableComponent.html">EditionTkaTableCom
     </table>
 </section>
 
-    <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:47</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the TextcriticsComponent.</p>
-<p>It initializes the self-referring ref variable needed for CompileHtml library.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
     <section>
     <h3 id="inputs">Inputs</h3>
@@ -342,86 +300,6 @@ with the selected modal text snippet.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="hasComments"></a>
-                    <span class="name">
-                        <b>
-                            hasComments
-                        </b>
-                        <a href="#hasComments"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>hasComments(comments: <a href="../classes/TextcriticalComment.html">TextcriticalComment[]</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:101</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: hasComments.</p>
-<p>It checks if a given textcritical comment array
-is not empty.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>comments</td>
-                                    <td>
-                                                <code><a href="../classes/TextcriticalComment.html" target="_self" >TextcriticalComment[]</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given TextCriticalComment array.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The boolean result of the check.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
                         <b>
@@ -440,8 +318,8 @@ is not empty.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="64"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:64</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:50</a></div>
                 </td>
             </tr>
 
@@ -483,8 +361,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="75"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:75</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:61</a></div>
                 </td>
             </tr>
 
@@ -563,8 +441,8 @@ to the <a href="openModalRequest">openModalRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="74"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:74</a></div>
                 </td>
             </tr>
 
@@ -622,45 +500,6 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
         </tbody>
     </table>
 </section>
-    <section>
-    
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ref"></a>
-                        <span class="name">
-                            <b>
-                            ref</b>
-                            <a href="#ref"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Textcritics.html" target="_self" >TextcriticsComponent</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/report/textcritics/textcritics.component.ts:47</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Self-referring variable needed for CompileHtml library.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-</section>
 
 </div>
 
@@ -668,14 +507,14 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from &#x27;@angular/core&#x27;;
 
-import { TextcriticalComment, TextcriticsList } from &#x27;@awg-views/edition-view/models&#x27;;
+import { TextcriticsList } from &#x27;@awg-views/edition-view/models&#x27;;
 
 /**
  * The TextcriticalComment component.
  *
- * It contains the textcritical comments section
+ * It contains the panel for the textcritical comments section
  * of the critical report of the edition view of the app
- * with an {@link EditionTkaTableComponent}.
+ * with a {@link TextcriticsList}.
  */
 @Component({
     selector: &#x27;awg-textcritics&#x27;,
@@ -710,20 +549,6 @@ export class TextcriticsComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: TextcriticsComponent;
-
-    /**
-     * Constructor of the TextcriticsComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref &#x3D; this;
-    }
-
-    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -756,19 +581,6 @@ export class TextcriticsComponent implements OnInit {
     selectSvgSheet(id: string): void {
         this.selectSvgSheetRequest.emit(id);
     }
-
-    /**
-     * Public method: hasComments.
-     *
-     * It checks if a given textcritical comment array
-     * is not empty.
-     *
-     * @param {string} comments The given TextCriticalComment array.
-     * @returns {boolean} The boolean result of the check.
-     */
-    hasComments(comments: TextcriticalComment[]): boolean {
-        return comments &amp;&amp; comments.constructor &#x3D;&#x3D;&#x3D; Array &amp;&amp; comments.length &gt; 0;
-    }
 }
 </code></pre>
     </div>
@@ -777,28 +589,12 @@ export class TextcriticsComponent implements OnInit {
         <pre class="line-numbers"><code class="language-html">&lt;ngb-accordion id&#x3D;&quot;tkaAcc&quot; activeIds&#x3D;&quot;tkaPanel&quot;&gt;
     &lt;ngb-panel id&#x3D;&quot;tkaPanel&quot; title&#x3D;&quot;II. Textkritischer Kommentar&quot;&gt;
         &lt;ng-template ngbPanelContent&gt;
-            &lt;div *ngIf&#x3D;&quot;textcriticsData&quot;&gt;
-                &lt;div class&#x3D;&quot;para&quot; *ngFor&#x3D;&quot;let textcritic of textcriticsData.textcritics&quot;&gt;
-                    &lt;h6 class&#x3D;&quot;bold&quot;&gt;
-                        &lt;a (click)&#x3D;&quot;selectSvgSheet(textcritic.id)&quot;&gt;{{ textcritic.id }}&lt;/a&gt;
-                    &lt;/h6&gt;
-                    &lt;div *ngIf&#x3D;&quot;textcritic.description&quot;&gt;
-                        &lt;p
-                            *ngFor&#x3D;&quot;let description of textcritic.description&quot;
-                            [compile-html]&#x3D;&quot;description&quot;
-                            [compile-html-ref]&#x3D;&quot;ref&quot;
-                        &gt;&lt;/p&gt;
-                    &lt;/div&gt;
-
-                    &lt;awg-edition-tka-table
-                        *ngIf&#x3D;&quot;hasComments(textcritic.comments)&quot;
-                        [textcriticalComments]&#x3D;&quot;textcritic.comments&quot;
-                        (openModalRequest)&#x3D;&quot;openModal($event)&quot;
-                        (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;
-                    &gt;
-                    &lt;/awg-edition-tka-table&gt;
-                &lt;/div&gt;
-            &lt;/div&gt;
+            &lt;awg-critics-list
+                *ngIf&#x3D;&quot;textcriticsData&quot;
+                [textcriticsData]&#x3D;&quot;textcriticsData&quot;
+                (openModalRequest)&#x3D;&quot;openModal($event)&quot;
+                (selectSvgSheetRequest)&#x3D;&quot;selectSvgSheet($event)&quot;
+            &gt;&lt;/awg-critics-list&gt;
         &lt;/ng-template&gt;
     &lt;/ngb-panel&gt;
 &lt;/ngb-accordion&gt;
@@ -837,8 +633,8 @@ export class TextcriticsComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><ngb-accordion id="tkaAcc" activeIds="tkaPanel">    <ngb-panel id="tkaPanel" title="II. Textkritischer Kommentar">        <ng-template ngbPanelContent>            <div *ngIf="textcriticsData">                <div class="para" *ngFor="let textcritic of textcriticsData.textcritics">                    <h6 class="bold">                        <a (click)="selectSvgSheet(textcritic.id)">{{ textcritic.id }}</a>                    </h6>                    <div *ngIf="textcritic.description">                        <p                            *ngFor="let description of textcritic.description"                            [compile-html]="description"                            [compile-html-ref]="ref"                        ></p>                    </div>                    <awg-edition-tka-table                        *ngIf="hasComments(textcritic.comments)"                        [textcriticalComments]="textcritic.comments"                        (openModalRequest)="openModal($event)"                        (selectSvgSheetRequest)="selectSvgSheet($event)"                    >                    </awg-edition-tka-table>                </div>            </div>        </ng-template>    </ngb-panel></ngb-accordion></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><ngb-accordion id="tkaAcc" activeIds="tkaPanel">    <ngb-panel id="tkaPanel" title="II. Textkritischer Kommentar">        <ng-template ngbPanelContent>            <awg-critics-list                *ngIf="textcriticsData"                [textcriticsData]="textcriticsData"                (openModalRequest)="openModal($event)"                (selectSvgSheetRequest)="selectSvgSheet($event)"            ></awg-critics-list>        </ng-template>    </ngb-panel></ngb-accordion></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'TextcriticsComponent'};
 </script>

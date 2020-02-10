@@ -123,7 +123,7 @@ to store and expose the svg data for a folio.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:185</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -194,7 +194,7 @@ to store and expose the svg data for a folio.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:185</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="198" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:198</a></div>
                             </td>
                         </tr>
 
@@ -229,7 +229,7 @@ to draw the svg of the content items of a folio.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="169" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:169</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="182" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:182</a></div>
                             </td>
                         </tr>
 
@@ -264,7 +264,7 @@ to draw the svg of the sheet of a folio.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="177" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:177</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/app/views/edition-view/models/folio-svg-data.model.ts:190</a></div>
                             </td>
                         </tr>
 
@@ -402,6 +402,16 @@ class FolioSvgContentItem {
     measure: string;
 
     /**
+     * The optional boolean flag if the content item can be selected..
+     */
+    selectable: boolean;
+
+    /**
+     * The optional link to a convolute description in the critical report.
+     */
+    linkTo: string;
+
+    /**
      * The upper left corner of a content item (FolioCalculationPoint).
      *
      * It contains the calculated upper left corner point (in px)
@@ -437,6 +447,9 @@ class FolioSvgContentItem {
     constructor(calculatedContentItem: FolioCalculationContentItem) {
         this.sigle &#x3D; calculatedContentItem.sigle;
         this.measure &#x3D; calculatedContentItem.measure;
+        this.selectable &#x3D; calculatedContentItem.selectable;
+        this.linkTo &#x3D; calculatedContentItem.linkTo;
+
         this.upperLeftCorner &#x3D; calculatedContentItem.current.cornerPoints.upperLeftCorner;
         this.width &#x3D; calculatedContentItem.width;
         this.height &#x3D; calculatedContentItem.height;

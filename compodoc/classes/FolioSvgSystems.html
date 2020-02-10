@@ -364,6 +364,16 @@ class FolioSvgContentItem {
     measure: string;
 
     /**
+     * The optional boolean flag if the content item can be selected..
+     */
+    selectable: boolean;
+
+    /**
+     * The optional link to a convolute description in the critical report.
+     */
+    linkTo: string;
+
+    /**
      * The upper left corner of a content item (FolioCalculationPoint).
      *
      * It contains the calculated upper left corner point (in px)
@@ -399,6 +409,9 @@ class FolioSvgContentItem {
     constructor(calculatedContentItem: FolioCalculationContentItem) {
         this.sigle &#x3D; calculatedContentItem.sigle;
         this.measure &#x3D; calculatedContentItem.measure;
+        this.selectable &#x3D; calculatedContentItem.selectable;
+        this.linkTo &#x3D; calculatedContentItem.linkTo;
+
         this.upperLeftCorner &#x3D; calculatedContentItem.current.cornerPoints.upperLeftCorner;
         this.width &#x3D; calculatedContentItem.width;
         this.height &#x3D; calculatedContentItem.height;

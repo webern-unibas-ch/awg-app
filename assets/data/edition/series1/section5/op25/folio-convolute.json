@@ -10,7 +10,126 @@
                         "height": 270,
                         "width": 335
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "sigle": "A:SkI/2",
+                            "measure": "",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/1",
+                            "measure": "",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 4,
+                                    "startSystem": 1,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1.1",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 1,
+                                    "endSystem": 1
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1.2",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 5,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 2,
+                                    "endSystem": 2
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/2.1.2.1",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 8,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 4,
+                                    "endSystem": 4
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/3",
+                            "measure": "",
+                            "sectionPartition": 2,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 3,
+                                    "endSystem": 3
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4a",
+                            "measure": "{1A}–3A",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 9,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4.1",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 3,
+                            "sections": [
+                                {
+                                    "position": 3,
+                                    "startSystem": 13,
+                                    "endSystem": 15
+                                }
+                            ]
+                        }
+                    ]
                 },
                 {
                     "folioId": "39r",
@@ -19,7 +138,72 @@
                         "height": 270,
                         "width": 335
                     },
-                    "content": []
+                    "content": [
+                        {
+                            "sigle": "A:SkI/4b",
+                            "measure": "3B–6",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 1,
+                                    "endSystem": 6
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4c",
+                            "measure": "7–12",
+                            "sectionPartition": 1,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 8,
+                                    "endSystem": 12
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4d",
+                            "measure": "7–12",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 1,
+                                    "startSystem": 13,
+                                    "endSystem": 16
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4.2",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 4,
+                            "sections": [
+                                {
+                                    "position": 2,
+                                    "startSystem": 13,
+                                    "endSystem": 13
+                                }
+                            ]
+                        },
+                        {
+                            "sigle": "A:SkI/4.3",
+                            "measure": "",
+                            "selectable": false,
+                            "linkTo": "op25_sheetComingSoon",
+                            "sectionPartition": 7,
+                            "sections": [
+                                {
+                                    "position": 5,
+                                    "startSystem": 15,
+                                    "endSystem": 16
+                                }
+                            ]
+                        }
+                    ]
                 }
             ]
         },
@@ -28,7 +212,7 @@
             "folios": [
                 {
                     "folioId": "38v",
-                    "systems": "16",
+                    "systems": "18",
                     "format": {
                         "height": 270,
                         "width": 335
@@ -37,7 +221,7 @@
                 },
                 {
                     "folioId": "39r",
-                    "systems": "16",
+                    "systems": "18",
                     "format": {
                         "height": 270,
                         "width": 335

@@ -1225,27 +1225,31 @@ export class FolioService {
             // init
             const centeredXPosition &#x3D; contentItem.upperLeftCorner.x + contentItem.width / 2;
             const centeredYPosition &#x3D; contentItem.upperLeftCorner.y + contentItem.height / 2;
-            const itemLabelArray: string[] &#x3D; [contentItem.sigle, &#x27; T. &#x27; + contentItem.measure];
+            const itemLabelArray: string[] &#x3D; contentItem.measure
+                ? [contentItem.sigle, &#x27; T. &#x27; + contentItem.measure]
+                : [contentItem.sigle];
 
             const snapItemLabel: any &#x3D; snapCanvas.text(0, 0, itemLabelArray);
             snapItemLabel.attr({
                 class: &#x27;item-label&#x27;,
-                fontSize: &#x27;18px&#x27;
+                style: &#x27;font: 12px Source Sans Pro, source-sans-pro, sans-serif&#x27;,
+                dominantBaseline: &#x27;middle&#x27;
             });
             // attributes for tspan elements of itemLabel array
+            const textAnchor &#x3D; &#x27;middle&#x27;;
             snapItemLabel.select(&#x27;tspan:first-of-type&#x27;).attr({
                 x: centeredXPosition,
                 y: centeredYPosition,
-                alignmentBaseline: &#x27;middle&#x27;,
-                textAnchor: &#x27;middle&#x27;
+                textAnchor
             });
-            snapItemLabel.select(&#x27;tspan:last-of-type&#x27;).attr({
-                x: centeredXPosition,
-                y: centeredYPosition,
-                alignmentBaseline: &#x27;middle&#x27;,
-                textAnchor: &#x27;middle&#x27;,
-                dy: &#x27;1.2em&#x27;
-            });
+            if (itemLabelArray.length &gt; 1) {
+                snapItemLabel.select(&#x27;tspan:last-of-type&#x27;).attr({
+                    x: centeredXPosition,
+                    y: centeredYPosition,
+                    textAnchor,
+                    dy: &#x27;1.2em&#x27;
+                });
+            }
 
             // item shape
             const snapItemShape &#x3D; snapCanvas.group();
@@ -1289,8 +1293,8 @@ export class FolioService {
 
             // add click event handler
             // exclude and mute sketch Aa:SkI for now
-            if (contentItem.sigle &#x3D;&#x3D;&#x3D; &#x27;Aa:SkI/1a&#x27; || contentItem.sigle &#x3D;&#x3D;&#x3D; &#x27;Aa:SkI/1b&#x27;) {
-                snapItemGroup.click(() &#x3D;&gt; this.ref.openModal(&#x27;op12_sourceNotA&#x27;));
+            if (contentItem.selectable &#x3D;&#x3D;&#x3D; false) {
+                snapItemGroup.click(() &#x3D;&gt; this.ref.openModal(contentItem.linkTo));
                 snapItemGroup.attr({
                     stroke: &#x27;grey&#x27;,
                     fill: &#x27;grey&#x27;

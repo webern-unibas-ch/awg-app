@@ -139,7 +139,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="132" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:132</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="142" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:142</a></div>
                             </td>
                         </tr>
 
@@ -173,7 +173,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="147" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:147</a></div>
                             </td>
                         </tr>
 
@@ -206,7 +206,7 @@ from a folio json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/views/edition-view/models/folio.model.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -327,6 +327,16 @@ export class FolioContent {
      * The folio content&#x27;s measure (string).
      */
     measure: string;
+
+    /**
+     * Boolean flag if the content item can be selected..
+     */
+    selectable?: boolean;
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo?: string;
 
     /**
      * The folio content&#x27;s optional sectionPartition (number).

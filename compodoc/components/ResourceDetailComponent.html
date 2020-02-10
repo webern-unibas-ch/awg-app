@@ -187,6 +187,9 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                <a href="#exposeGnd">exposeGnd</a>
+                            </li>
+                            <li>
                                 <a href="#getResourceData">getResourceData</a>
                             </li>
                             <li>
@@ -239,12 +242,12 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, dataApiService: <a href="../injectables/DataApiService.html">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html">DataStreamerService</a>, loadingService: <a href="../injectables/LoadingService.html">LoadingService</a>, config: NgbTabsetConfig)</code>
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, dataApiService: <a href="../injectables/DataApiService.html">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html">DataStreamerService</a>, gndService: <a href="../injectables/GndService.html">GndService</a>, loadingService: <a href="../injectables/LoadingService.html">LoadingService</a>, config: NgbTabsetConfig)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:92</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="93" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:93</a></div>
                             </td>
                         </tr>
 
@@ -253,7 +256,7 @@ and the <a href="../components/ResourceDetailJsonRawComponent.html">ResourceDeta
                             <div class="io-description"><p>Constructor of the ResourceDetailComponent.</p>
 <p>It declares private instances of the Angular ActivatedRoute,
 the Angular Router, the DataApiService, the DataStreamerService,
-the LoadingService, and a configuration object for the
+the GndService, the LoadingService, and a configuration object for the
 ng-bootstrap tabset.</p>
 </div>
                             <div>
@@ -333,6 +336,22 @@ ng-bootstrap tabset.</p>
                                                         </td>
                                                 </tr>
                                                 <tr>
+                                                        <td>gndService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GndService.html" target="_self" >GndService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the GndService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
                                                         <td>loadingService</td>
                                                   
                                                         <td>
@@ -386,6 +405,87 @@ ng-bootstrap tabset.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="exposeGnd"></a>
+                    <span class="name">
+                        <b>
+                            exposeGnd
+                        </b>
+                        <a href="#exposeGnd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>exposeGnd(gndEvent: <a href="../classes/GndEvent.html">GndEvent</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="220"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:220</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: exposeGnd.</p>
+<p>It delegates a given gnd event type (&#39;set&#39;, &#39;get&#39;, &#39;remove&#39;)
+with a given value to the <a href="../injectables/GndService.html">GndService</a>.
+The gnd event is emitted from the <a href="../components/ResourceDetailHtmlContentPropsComponent.html">ResourceDetailHtmlContentPropsComponent</a>.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>gndEvent</td>
+                                    <td>
+                                                <code><a href="../classes/GndEvent.html" target="_self" >GndEvent</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given event.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Delegates the event to the GndService.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getResourceData"></a>
                     <span class="name">
                         <b>
@@ -404,8 +504,8 @@ ng-bootstrap tabset.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="140"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:140</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:143</a></div>
                 </td>
             </tr>
 
@@ -454,8 +554,8 @@ from the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="196"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:196</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:199</a></div>
                 </td>
             </tr>
 
@@ -537,8 +637,8 @@ not exists (first call), use resourceId.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="226"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:226</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="261"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:261</a></div>
                 </td>
             </tr>
 
@@ -580,8 +680,8 @@ when destroying the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="126"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:126</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:129</a></div>
                 </td>
             </tr>
 
@@ -623,8 +723,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="213"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:213</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:248</a></div>
                 </td>
             </tr>
 
@@ -671,8 +771,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="175"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:175</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="178"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:178</a></div>
                 </td>
             </tr>
 
@@ -760,7 +860,7 @@ and the streamer service.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:39</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:40</a></div>
                             </td>
                         </tr>
 
@@ -799,7 +899,7 @@ and the streamer service.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="46" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:46</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:47</a></div>
                             </td>
                         </tr>
 
@@ -833,7 +933,7 @@ and the streamer service.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -867,7 +967,7 @@ and the streamer service.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:61</a></div>
                             </td>
                         </tr>
 
@@ -901,7 +1001,7 @@ and the streamer service.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="67" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:67</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:68</a></div>
                             </td>
                         </tr>
 
@@ -944,7 +1044,7 @@ and the streamer service.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:74</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -980,7 +1080,7 @@ and the streamer service.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:83</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="84" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:84</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1013,7 +1113,7 @@ and the streamer service.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail.component.ts:91</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1043,7 +1143,8 @@ import { switchMap, takeUntil } from &#x27;rxjs/operators&#x27;;
 
 import { NgbTabsetConfig } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 
-import { DataStreamerService, LoadingService } from &#x27;@awg-core/services&#x27;;
+import { DataStreamerService, GndService, LoadingService } from &#x27;@awg-core/services&#x27;;
+import { GndEvent, GndEventType } from &#x27;@awg-core/services/gnd-service&#x27;;
 import { DataApiService } from &#x27;@awg-views/data-view/services&#x27;;
 
 import { ResourceData } from &#x27;@awg-views/data-view/models&#x27;;
@@ -1133,13 +1234,14 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      *
      * It declares private instances of the Angular ActivatedRoute,
      * the Angular Router, the DataApiService, the DataStreamerService,
-     * the LoadingService, and a configuration object for the
+     * the GndService, the LoadingService, and a configuration object for the
      * ng-bootstrap tabset.
      *
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular Router.
      * @param {DataApiService} dataApiService Instance of the DataApiService.
      * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
+     * @param {GndService} gndService Instance of the GndService.
      * @param {LoadingService} loadingService Instance of the LoadingService.
      * @param {NgbTabsetConfig} config Instance of the NgbTabsetConfig.
      */
@@ -1148,6 +1250,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         private router: Router,
         private dataApiService: DataApiService,
         private dataStreamerService: DataStreamerService,
+        private gndService: GndService,
         private loadingService: LoadingService,
         config: NgbTabsetConfig
     ) {
@@ -1241,6 +1344,38 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
+     * Public method: exposeGnd.
+     *
+     * It delegates a given gnd event type (&#x27;set&#x27;, &#x27;get&#x27;, &#x27;remove&#x27;)
+     * with a given value to the {@link GndService}.
+     * The gnd event is emitted from the {@link ResourceDetailHtmlContentPropsComponent}.
+     *
+     * @param {{type: string, value: string}} gndEvent The given event.
+     *
+     * @returns {void} Delegates the event to the GndService.
+     */
+    exposeGnd(gndEvent: GndEvent): void {
+        if (!gndEvent) {
+            return;
+        }
+        switch (gndEvent.type) {
+            case GndEventType.set: {
+                // statements
+                this.gndService.setGndToSessionStorage(gndEvent.value);
+                break;
+            }
+            case GndEventType.remove: {
+                // statements
+                this.gndService.removeGndFromSessionStorage();
+                break;
+            }
+            default: {
+                console.log(&#x27;got an uncatched GND event&#x27;, gndEvent);
+            }
+        }
+    }
+
+    /**
      * Public method: routeToSidenav.
      *
      * It activates the secondary outlet with the resource-info.
@@ -1307,6 +1442,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                     &lt;!-- html visualisation --&gt;
                     &lt;awg-resource-detail-html
                         [resourceDetailData]&#x3D;&quot;resourceData.detail&quot;
+                        (gndRequest)&#x3D;&quot;exposeGnd($event)&quot;
                         (resourceRequest)&#x3D;&quot;navigateToResource($event)&quot;
                     &gt;
                     &lt;/awg-resource-detail-html&gt;
@@ -1417,8 +1553,8 @@ ngb-tabset ::ng-deep .tab-pane.active {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- resource detail box --><!-- loading spinner --><div *ngIf="isLoading$ | async; else notLoading">    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></div><ng-template #notLoading>    <!-- error message -->    <div class="errorMessage" *ngIf="errorMessage">        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>    </div>    <!-- async data -->    <div class="awg-resource-detail-tabs" *ngIf="resourceData">        <!-- resourceDetailData header -->        <awg-resource-detail-header            *ngIf="resourceData.detail.header"            [header]="resourceData.detail.header"            [resourceUrl]="httpGetUrl"            (resourceRequest)="navigateToResource($event)"        ></awg-resource-detail-header>        <ngb-tabset>            <!-- html -->            <ngb-tab id="html" class="awg-resource-detail-long-tab">                <ng-template ngbTabTitle>                    {{ tabTitles?.html }}                </ng-template>                <ng-template ngbTabContent>                    <!-- html visualisation -->                    <awg-resource-detail-html                        [resourceDetailData]="resourceData.detail"                        (resourceRequest)="navigateToResource($event)"                    >                    </awg-resource-detail-html>                </ng-template>            </ngb-tab>            <!-- JSON converted -->            <ngb-tab id="converted" title="{{ tabTitles?.converted }}" class="awg-resource-detail-short-tab">                <ng-template ngbTabContent>                    <!-- converted json visualisation -->                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">                    </awg-resource-detail-json-converted>                </ng-template>            </ngb-tab>            <!-- JSON raw -->            <ngb-tab id="raw" title="{{ tabTitles?.raw }}" class="awg-resource-detail-short-tab">                <ng-template ngbTabContent>                    <!-- raw json visualisation -->                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">                    </awg-resource-detail-json-raw>                </ng-template>            </ngb-tab>        </ngb-tabset>    </div>    <!--    TODO: remove    <ul class="nav nav-tabs nav-justified" role="tablist">        <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>        <li class="dropdown awg-resource-detail-short-tab">            <a href="#" data-toggle="dropdown" class="dropdown-toggle">                {{ \'{\' }} JSON {{ \'}\' }} <b class="caret"></b>            </a>            <ul class="dropdown-menu dropdown-menu-right">                <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>                <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>            </ul>        </li>    </ul>    --></ng-template></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!-- resource detail box --><!-- loading spinner --><div *ngIf="isLoading$ | async; else notLoading">    <awg-twelve-tone-spinner></awg-twelve-tone-spinner></div><ng-template #notLoading>    <!-- error message -->    <div class="errorMessage" *ngIf="errorMessage">        <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>        <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>    </div>    <!-- async data -->    <div class="awg-resource-detail-tabs" *ngIf="resourceData">        <!-- resourceDetailData header -->        <awg-resource-detail-header            *ngIf="resourceData.detail.header"            [header]="resourceData.detail.header"            [resourceUrl]="httpGetUrl"            (resourceRequest)="navigateToResource($event)"        ></awg-resource-detail-header>        <ngb-tabset>            <!-- html -->            <ngb-tab id="html" class="awg-resource-detail-long-tab">                <ng-template ngbTabTitle>                    {{ tabTitles?.html }}                </ng-template>                <ng-template ngbTabContent>                    <!-- html visualisation -->                    <awg-resource-detail-html                        [resourceDetailData]="resourceData.detail"                        (gndRequest)="exposeGnd($event)"                        (resourceRequest)="navigateToResource($event)"                    >                    </awg-resource-detail-html>                </ng-template>            </ngb-tab>            <!-- JSON converted -->            <ngb-tab id="converted" title="{{ tabTitles?.converted }}" class="awg-resource-detail-short-tab">                <ng-template ngbTabContent>                    <!-- converted json visualisation -->                    <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">                    </awg-resource-detail-json-converted>                </ng-template>            </ngb-tab>            <!-- JSON raw -->            <ngb-tab id="raw" title="{{ tabTitles?.raw }}" class="awg-resource-detail-short-tab">                <ng-template ngbTabContent>                    <!-- raw json visualisation -->                    <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">                    </awg-resource-detail-json-raw>                </ng-template>            </ngb-tab>        </ngb-tabset>    </div>    <!--    TODO: remove    <ul class="nav nav-tabs nav-justified" role="tablist">        <li class="active awg-resource-detail-long-tab"><a data-toggle="tab" href="#html">{{ tabTitles?.html }}</a></li>        <li class="dropdown awg-resource-detail-short-tab">            <a href="#" data-toggle="dropdown" class="dropdown-toggle">                {{ \'{\' }} JSON {{ \'}\' }} <b class="caret"></b>            </a>            <ul class="dropdown-menu dropdown-menu-right">                <li><a data-toggle="tab" href="#converted">{{ tabTitles?.converted }}</a></li>                <li><a data-toggle="tab" href="#raw">{{ tabTitles?.raw }}</a></li>            </ul>        </li>    </ul>    --></ng-template></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceDetailComponent'};
 </script>

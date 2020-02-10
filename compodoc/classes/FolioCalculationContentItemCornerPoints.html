@@ -551,14 +551,24 @@ export class FolioCalculationContentItem {
     previous: FolioCalculationContentItemCache;
 
     /**
-     * The optional label for the sigle of the content item (string).
+     * The label for the sigle of the content item (string).
      */
-    sigle?: string;
+    sigle: string;
 
     /**
-     * The optional label for the measure of the content item (string).
+     * The label for the measure of the content item (string).
      */
-    measure?: string;
+    measure: string;
+
+    /**
+     * The boolean flag if the content item can be selected..
+     */
+    selectable: boolean;
+
+    /**
+     * The link to a convolute description in the critical report.
+     */
+    linkTo: string;
 }
 
 /**
@@ -906,6 +916,12 @@ export class FolioCalculation {
 
                     calculatedContentItem.sigle &#x3D; content.sigle;
                     calculatedContentItem.measure &#x3D; content.measure;
+                    calculatedContentItem.selectable &#x3D; true;
+                    calculatedContentItem.linkTo &#x3D; &#x27;&#x27;;
+                    if (content[&#x27;selectable&#x27;] &#x3D;&#x3D;&#x3D; false &amp;&amp; content[&#x27;linkTo&#x27;]) {
+                        calculatedContentItem.selectable &#x3D; content.selectable;
+                        calculatedContentItem.linkTo &#x3D; content.linkTo;
+                    }
 
                     calculatedContentItems.push(calculatedContentItem);
                 });
