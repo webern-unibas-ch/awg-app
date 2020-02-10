@@ -17,6 +17,15 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the AWG route storage key.
+     *
+     * @returns {string}
+     */
+    public static get AWG_APP_ROUTE_STORAGE_KEY(): string {
+        return 'awg-app-route';
+    }
+
+    /**
      * Getter for the url of the AWG edition website (awg-app).
      *
      * @returns {string}

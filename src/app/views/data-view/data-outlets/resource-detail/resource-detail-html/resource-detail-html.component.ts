@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { ResourceDetail } from '@awg-views/data-view/models';
+import { GndEvent } from '@awg-core/services/gnd-service';
 
 /**
  * The ResourceDetailHtml component.
@@ -25,6 +26,14 @@ export class ResourceDetailHtmlComponent implements OnInit {
     resourceDetailData: ResourceDetail;
 
     /**
+     * Output variable: gndRequest.
+     *
+     * It keeps an event emitter for the exposition of a GND value.
+     */
+    @Output()
+    gndRequest: EventEmitter<GndEvent> = new EventEmitter();
+
+    /**
      * Output variable: resourceRequest.
      *
      * It keeps an event emitter for the selected id of a resource.
@@ -39,6 +48,23 @@ export class ResourceDetailHtmlComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {}
+
+    /**
+     * Public method: exposeGnd.
+     *
+     * It emits a given gnd event (type, value)
+     * to the {@link gndRequest}.
+     *
+     * @param {{type: string, value: string}} gndEvent The given event.
+     *
+     * @returns {void} Emits the event.
+     */
+    exposeGnd(gndEvent: GndEvent): void {
+        if (!gndEvent) {
+            return;
+        }
+        this.gndRequest.emit(gndEvent);
+    }
 
     /**
      * Public method: navigateToResource.

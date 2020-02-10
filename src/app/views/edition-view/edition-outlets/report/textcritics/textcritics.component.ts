@@ -1,13 +1,13 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
+import { TextcriticsList } from '@awg-views/edition-view/models';
 
 /**
  * The TextcriticalComment component.
  *
- * It contains the textcritical comments section
+ * It contains the panel for the textcritical comments section
  * of the critical report of the edition view of the app
- * with an {@link EditionTkaTableComponent}.
+ * with a {@link TextcriticsList}.
  */
 @Component({
     selector: 'awg-textcritics',
@@ -42,20 +42,6 @@ export class TextcriticsComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Self-referring variable needed for CompileHtml library.
-     */
-    ref: TextcriticsComponent;
-
-    /**
-     * Constructor of the TextcriticsComponent.
-     *
-     * It initializes the self-referring ref variable needed for CompileHtml library.
-     */
-    constructor() {
-        this.ref = this;
-    }
-
-    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -87,18 +73,5 @@ export class TextcriticsComponent implements OnInit {
      */
     selectSvgSheet(id: string): void {
         this.selectSvgSheetRequest.emit(id);
-    }
-
-    /**
-     * Public method: hasComments.
-     *
-     * It checks if a given textcritical comment array
-     * is not empty.
-     *
-     * @param {string} comments The given TextCriticalComment array.
-     * @returns {boolean} The boolean result of the check.
-     */
-    hasComments(comments: TextcriticalComment[]): boolean {
-        return comments && comments.constructor === Array && comments.length > 0;
     }
 }

@@ -11,6 +11,7 @@ import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
 import { DataStreamerService, LoadingService } from '@awg-core/services';
+import { GndEvent } from '@awg-core/services/gnd-service';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
@@ -33,6 +34,8 @@ class ResourceDetailHeaderStubComponent {
 class ResourceDetailHtmlStubComponent {
     @Input()
     resourceDetailData: ResourceDetail;
+    @Output()
+    gndRequest: EventEmitter<GndEvent> = new EventEmitter();
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
 }

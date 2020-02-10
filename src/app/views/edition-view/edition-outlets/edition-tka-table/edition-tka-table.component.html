@@ -2,16 +2,16 @@
     <table class="table table-hover table-condensed">
         <thead>
             <tr>
-                <th style="width:7%">Takt</th>
-                <th style="width:10%">System</th>
+                <th style="width:10%; white-space: nowrap">Takt</th>
+                <th style="width:8%">System</th>
                 <th style="width:15%; white-space: nowrap;">Ort im Takt</th>
                 <th style="width:auto">Kommentar</th>
             </tr>
         </thead>
         <tbody *ngIf="textcriticalComments">
             <tr *ngFor="let textcriticalComment of textcriticalComments">
-                <td>{{ textcriticalComment.measure }}</td>
-                <td>{{ textcriticalComment.system }}</td>
+                <td><span [compile-html]="textcriticalComment.measure" [compile-html-ref]="ref"></span></td>
+                <td [innerHTML]="textcriticalComment.system"></td>
                 <td [innerHTML]="textcriticalComment.position"></td>
                 <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
             </tr>

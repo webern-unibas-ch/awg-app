@@ -56,6 +56,7 @@ describe('EditionSvgSheetComponent', () => {
             expectedOverlay = new EditionSvgOverlay(type, id);
 
             // simulate the parent setting the input properties
+            component.svgSheetsData = { sheets: [expectedSvgSheet] };
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedOverlay = expectedOverlay;
 

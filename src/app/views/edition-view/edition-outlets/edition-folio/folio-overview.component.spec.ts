@@ -1,24 +1,24 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { FolioComponent } from './folio.component';
+import { FolioOverviewComponent } from './folio-overview.component';
 import { FolioService } from './folio.service';
 import { Folio, FolioSvgData, EditionSvgSheet, FolioCalculation, FolioSettings } from '@awg-views/edition-view/models';
 
 describe('FolioComponent', () => {
-    let component: FolioComponent;
-    let fixture: ComponentFixture<FolioComponent>;
+    let component: FolioOverviewComponent;
+    let fixture: ComponentFixture<FolioOverviewComponent>;
     let expectedFolios: Folio[];
     let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [FolioComponent],
+            declarations: [FolioOverviewComponent],
             providers: [FolioService]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(FolioComponent);
+        fixture = TestBed.createComponent(FolioOverviewComponent);
         component = fixture.componentInstance;
     });
 

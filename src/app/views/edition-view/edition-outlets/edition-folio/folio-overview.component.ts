@@ -1,12 +1,12 @@
 import {
     AfterViewChecked,
-    AfterViewInit,
     ChangeDetectionStrategy,
     Component,
     EventEmitter,
     Input,
-    OnInit,
-    Output
+    OnChanges,
+    Output,
+    SimpleChanges
 } from '@angular/core';
 
 import { Folio, FolioSettings, FolioSvgData, EditionSvgSheet, ViewBox } from '@awg-views/edition-view/models';
@@ -28,11 +28,11 @@ declare var Snap: any;
  */
 @Component({
     selector: 'awg-edition-folio',
-    templateUrl: './folio.component.html',
-    styleUrls: ['./folio.component.css'],
+    templateUrl: './folio-overview.component.html',
+    styleUrls: ['./folio-overview.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
+export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
      * Input variable: folios.
      *
@@ -134,7 +134,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     /**
      * Self-referring variable needed for CompileHtml library.
      */
-    ref: FolioComponent;
+    ref: FolioOverviewComponent;
 
     /**
      * Constructor of the FolioComponent.
@@ -150,24 +150,14 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
     }
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Angular life cycle hook: ngOnChanges.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
      */
-    ngOnInit() {
+    ngOnChanges(changes: SimpleChanges) {
         this.prepareFolioSvgOutput();
-    }
-
-    /**
-     * Angular life cycle hook: ngAfterViewInit.
-     *
-     * It calls the containing methods
-     * after the view was initialized.
-     */
-    ngAfterViewInit() {
-        // start to render svg only after view, inputs and calculation are available
-        this.renderSnapSvg();
     }
 
     /**
@@ -177,6 +167,8 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
      * after the view was built and checked.
      */
     ngAfterViewChecked() {
+        // start to render svg only after view, inputs and calculation are available
+        this.renderSnapSvg();
         // toggle active classes after view was checked
         this.toggleActiveClass();
     }
@@ -248,7 +240,7 @@ export class FolioComponent implements OnInit, AfterViewInit, AfterViewChecked {
         this.canvasArray = [];
 
         /* apply data from folioSvgDataArray to render the svg image with snapsvg */
-        this.folioSvgDataArray.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
+        this.folioSvgDataArray.map((folioSvg: FolioSvgData, folioIndex: number) => {
             // init canvas
             const snapId: string = '#folio-' + folioSvg.sheet.folioId;
             const snapCanvas: any = Snap(snapId);

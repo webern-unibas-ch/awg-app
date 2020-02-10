@@ -267,27 +267,31 @@ export class FolioService {
             // init
             const centeredXPosition = contentItem.upperLeftCorner.x + contentItem.width / 2;
             const centeredYPosition = contentItem.upperLeftCorner.y + contentItem.height / 2;
-            const itemLabelArray: string[] = [contentItem.sigle, ' T. ' + contentItem.measure];
+            const itemLabelArray: string[] = contentItem.measure
+                ? [contentItem.sigle, ' T. ' + contentItem.measure]
+                : [contentItem.sigle];
 
             const snapItemLabel: any = snapCanvas.text(0, 0, itemLabelArray);
             snapItemLabel.attr({
                 class: 'item-label',
-                fontSize: '18px'
+                style: 'font: 12px Source Sans Pro, source-sans-pro, sans-serif',
+                dominantBaseline: 'middle'
             });
             // attributes for tspan elements of itemLabel array
+            const textAnchor = 'middle';
             snapItemLabel.select('tspan:first-of-type').attr({
                 x: centeredXPosition,
                 y: centeredYPosition,
-                alignmentBaseline: 'middle',
-                textAnchor: 'middle'
+                textAnchor
             });
-            snapItemLabel.select('tspan:last-of-type').attr({
-                x: centeredXPosition,
-                y: centeredYPosition,
-                alignmentBaseline: 'middle',
-                textAnchor: 'middle',
-                dy: '1.2em'
-            });
+            if (itemLabelArray.length > 1) {
+                snapItemLabel.select('tspan:last-of-type').attr({
+                    x: centeredXPosition,
+                    y: centeredYPosition,
+                    textAnchor,
+                    dy: '1.2em'
+                });
+            }
 
             // item shape
             const snapItemShape = snapCanvas.group();
@@ -331,8 +335,8 @@ export class FolioService {
 
             // add click event handler
             // exclude and mute sketch Aa:SkI for now
-            if (contentItem.sigle === 'Aa:SkI/1a' || contentItem.sigle === 'Aa:SkI/1b') {
-                snapItemGroup.click(() => this.ref.openModal('op12_sourceNotA'));
+            if (contentItem.selectable === false) {
+                snapItemGroup.click(() => this.ref.openModal(contentItem.linkTo));
                 snapItemGroup.attr({
                     stroke: 'grey',
                     fill: 'grey'
