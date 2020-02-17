@@ -26,12 +26,11 @@ export interface TripleComponent {
 
 @Injectable()
 export class EditionGraphService {
-    private store;
-    private prefixesPromise;
+    private store; // rdfstore
 
     constructor() {}
 
-    appendPrefixesToQuery(query, triples) {
+    appendPrefixesToQuery(query: string, triples: string): string {
         // Get prefixes from triples
         const prefixes = this.extractPrefixesFromTTL(triples);
 
@@ -54,23 +53,18 @@ export class EditionGraphService {
         return query;
     }
 
-    doQuery(query, triples, mimeType?) {
+    doQuery(queryType, query, triples, mimeType?) {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
 
         console.log('performing query with', triples, query);
-
-        // Get query type
-        const queryType = this.getQuerytype(query);
-
         console.log('QUERYTYPE', queryType);
 
         return this.createStore()
             .then(store => {
                 console.log('STORE', store);
                 this.store = store;
-                this.prefixesPromise = this.getPrefixes(triples);
 
                 return this.loadTriplesInStore(store, triples, mimeType);
             })
@@ -93,7 +87,7 @@ export class EditionGraphService {
                  */
 
                 // Get prefixes
-                return this.prefixesPromise.then(prefixes => {
+                return this.getPrefixes(triples).then(prefixes => {
                     // Process result
 
                     return data.triples.map((triple: Triple) => {
@@ -211,6 +205,8 @@ export class EditionGraphService {
             .split(' ')
             .filter(el => el !== '');
 
+        console.log(arr);
+
         // Get index of all occurences of @prefix
         const prefixIndexArray = arr.reduce((a, e, i) => {
             if (e === '@prefix') {
@@ -219,12 +215,12 @@ export class EditionGraphService {
             return a;
         }, []);
 
+        console.log(prefixIndexArray);
+
         const obj = {};
         prefixIndexArray.forEach(prefixIndex => {
             obj[arr[prefixIndex + 1]] = arr[prefixIndex + 2];
         });
-
-        console.log('graphService # extractPrefixecFromTTL: ', obj);
 
         return obj;
     }
@@ -262,13 +258,20 @@ export class EditionGraphService {
         });
     }
 
-    private nameSpacesInQuery = str => {
+    public nameSpacesInQuery = queryString => {
+        let regex: RegExp;
         const array = [];
 
-        const regex = /[a-zA-Z]+\:/g;
+        regex = /[a-zA-Z]+:/g;
 
-        while (regex.exec(str) !== null) {
-            const m = regex.exec(str);
+        const mtest = regex.exec(queryString);
+        console.log('got regexString IF, ', queryString);
+        console.log('got regexresult IF', mtest);
+
+        while (regex.exec(queryString) !== null) {
+            const m = regex.exec(queryString);
+            console.log('got regexString, ', queryString);
+            console.log('got regexresult, ', m);
 
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index === regex.lastIndex) {
@@ -277,12 +280,14 @@ export class EditionGraphService {
 
             // The result can be accessed through the `m`-variable.
             m.forEach(match => {
+                console.log('got match, ', match);
                 match = match.slice(0, -1);
                 if (array.indexOf(match) === -1) {
                     array.push(match);
                 }
             });
         }
+        console.log('got nameSpacesInQuery IF', array);
         return array;
     };
 

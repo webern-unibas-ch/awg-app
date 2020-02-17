@@ -1,20 +1,20 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
-
-import { defer, Observable } from 'rxjs';
-
-import { Graph } from '@awg-views/edition-view/models';
-import {
-    EditionGraphService,
-    Triple
-} from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
-import 'codemirror/mode/turtle/turtle';
-import 'codemirror/mode/go/go';
-import 'codemirror/mode/sparql/sparql';
-
 /*
  * This component is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+
+import { defer, Observable } from 'rxjs';
+
+import { GraphRDFData } from '@awg-views/edition-view/models/graph.model';
+import {
+    EditionGraphService,
+    Triple
+} from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
+
+import 'codemirror/mode/turtle/turtle';
+import 'codemirror/mode/go/go';
+import 'codemirror/mode/sparql/sparql';
 
 @Component({
     selector: 'awg-graph-visualizer',
@@ -24,80 +24,81 @@ import 'codemirror/mode/sparql/sparql';
 })
 export class GraphVisualizerComponent implements OnInit {
     /**
-     * Input variable: resourceDetailData.
+     * Input variable: graphRDFInputData.
      *
-     * It keeps the header for the resource detail.
+     * It keeps the data for the RDF graph.
      */
     @Input()
-    graph: Graph;
+    graphRDFInputData: GraphRDFData;
 
+    queryType: string;
+    queryTime: number;
     queryResult: Observable<Triple[]>;
     resultFieldExpanded = false;
 
-    data: Graph;
-    queryType: string;
-    queryTime: number;
+    triples;
+    query;
 
-    // Codemirror
+    // Codemirror config
     cmTriplesConfig = {
         lineNumbers: true,
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
-        mode: 'text/turtle'
+        mode: 'turtle'
     };
     cmSparqlConfig = {
         lineNumbers: true,
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
-        mode: 'application/sparql-query'
+        mode: 'sparql'
     };
 
-    constructor(
-        private editionGraphService: EditionGraphService // private sparqlService: SPARQLService, // private route: ActivatedRoute
-    ) {}
+    constructor(private editionGraphService: EditionGraphService) {}
 
     ngOnInit() {
+        // set initial values
+        this.setInitialTriples();
+        this.setInitialQuery();
+
+        // perform initial query
         this.doQuery();
     }
 
     doQuery() {
-        if (!this.graph.triples) {
-            return;
-        }
-        this.data = this.graph;
-        const triples = this.data.triples;
-        let query = this.data.query;
-
         // If no prefix is defined in the query, get it from the turtle file
-        if (query.toLowerCase().indexOf('prefix') === -1) {
-            query = this.editionGraphService.appendPrefixesToQuery(query, triples);
-            this.data.query = query;
+        if (this.query.toLowerCase().indexOf('prefix') === -1) {
+            this.query = this.editionGraphService.appendPrefixesToQuery(this.query, this.triples);
         }
 
         // Get the query type
-        this.queryType = this.editionGraphService.getQuerytype(query);
+        this.queryType = this.editionGraphService.getQuerytype(this.query);
 
         // use only local store for now
-        this.queryResult = defer(() => this.queryLocalstore(query, triples));
+        this.queryResult = defer(() => this.queryLocalstore(this.queryType, this.query, this.triples));
     }
 
-    async queryLocalstore(query, triples) {
+    private queryLocalstore(queryType, query, triples) {
         // Capture start time of query
         const t1 = Date.now();
 
         // Perform query with client based rdfstore
         try {
             this.resultFieldExpanded = true;
+
             // Capture query time
             this.queryTime = Date.now() - t1;
-            return await this.editionGraphService.doQuery(query, triples);
+
+            return this.editionGraphService.doQuery(queryType, query, triples);
         } catch (err) {
             console.log('#queryLocalstore got error:', err);
+
             // Capture query time
             this.queryTime = Date.now() - t1;
+
             console.log('QUERYTIME:', this.queryTime);
+
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
                     this.showErrorMessage('The query did not return any results', 10000);
@@ -112,12 +113,19 @@ export class GraphVisualizerComponent implements OnInit {
         console.log('AppComponent# graphClick URI', URI);
     }
 
-    resetTriples() {
-        this.data.triples = this.graph.triples;
+    setInitialTriples() {
+        if (!this.graphRDFInputData.triples) {
+            return;
+        }
+        this.triples = this.graphRDFInputData.triples;
     }
 
-    resetQuery() {
-        this.data.query = this.graph.query;
+    setInitialQuery() {
+        if (!this.graphRDFInputData.query) {
+            return;
+        }
+        // If no prefix is defined in the query, get it from the turtle file
+        this.query = this.graphRDFInputData.query;
     }
 
     showErrorMessage(message, durationValue?) {
@@ -134,7 +142,7 @@ export class GraphVisualizerComponent implements OnInit {
 
     tableClick(URI) {
         const query = `SELECT * WHERE {\n\tBIND(<${URI}> AS ?el)\n\t?el ?key ?value\n}`;
-        this.data.query = query;
+        this.query = query;
         this.doQuery();
     }
 }
