@@ -1,7 +1,15 @@
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
+import { defer, Observable } from 'rxjs';
+
 import { Graph } from '@awg-views/edition-view/models';
-import { EditionGraphService } from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
+import {
+    EditionGraphService,
+    Triple
+} from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
+import 'codemirror/mode/turtle/turtle';
+import 'codemirror/mode/go/go';
+import 'codemirror/mode/sparql/sparql';
 
 /*
  * This component is adapted from Mads Holten's Sparql Visualizer
@@ -23,19 +31,27 @@ export class GraphVisualizerComponent implements OnInit {
     @Input()
     graph: Graph;
 
-    private queryResult;
-    private resultFieldExpanded = false;
+    queryResult: Observable<Triple[]>;
+    resultFieldExpanded = false;
 
-    public data: Graph;
-    public queryType: string;
+    data: Graph;
+    queryType: string;
+    queryTime: number;
 
     // Codemirror
-    cmConfig = {
+    cmTriplesConfig = {
         lineNumbers: true,
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
         mode: 'text/turtle'
+    };
+    cmSparqlConfig = {
+        lineNumbers: true,
+        firstLineNumber: 1,
+        lineWrapping: true,
+        matchBrackets: true,
+        mode: 'application/sparql-query'
     };
 
     constructor(
@@ -63,34 +79,45 @@ export class GraphVisualizerComponent implements OnInit {
         // Get the query type
         this.queryType = this.editionGraphService.getQuerytype(query);
 
-        // If in localstore mode
-        /*
-        if (this.localStore) {
-
-        } else {
-            this.queryTriplestore(query);
-        }
-        */
         // use only local store for now
-        this.queryLocalstore(query, triples);
+        this.queryResult = defer(() => this.queryLocalstore(query, triples));
     }
 
     async queryLocalstore(query, triples) {
+        // Capture start time of query
+        const t1 = Date.now();
+
         // Perform query with client based rdfstore
         try {
-            this.queryResult = await this.editionGraphService.doQuery(query, triples);
             this.resultFieldExpanded = true;
-            console.log('queryresult:', this.queryResult);
+            // Capture query time
+            this.queryTime = Date.now() - t1;
+            return await this.editionGraphService.doQuery(query, triples);
         } catch (err) {
             console.log('#queryLocalstore got error:', err);
-            this.queryResult = '';
+            // Capture query time
+            this.queryTime = Date.now() - t1;
+            console.log('QUERYTIME:', this.queryTime);
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
                     this.showErrorMessage('The query did not return any results', 10000);
                 }
                 this.showErrorMessage(err.name + ': ' + err.message, 10000);
             }
+            return [];
         }
+    }
+
+    graphClick(URI) {
+        console.log('AppComponent# graphClick URI', URI);
+    }
+
+    resetTriples() {
+        this.data.triples = this.graph.triples;
+    }
+
+    resetQuery() {
+        this.data.query = this.graph.query;
     }
 
     showErrorMessage(message, durationValue?) {
@@ -103,5 +130,11 @@ export class GraphVisualizerComponent implements OnInit {
             duration: durationValue
         });
         */
+    }
+
+    tableClick(URI) {
+        const query = `SELECT * WHERE {\n\tBIND(<${URI}> AS ?el)\n\t?el ?key ?value\n}`;
+        this.data.query = query;
+        this.doQuery();
     }
 }

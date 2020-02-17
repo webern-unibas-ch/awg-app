@@ -1,3 +1,97 @@
 <h4>graph-visualizer works!</h4>
 
-{{ graph | json }}
+<!-- Right tabs (triples, query, result) -->
+<!-- <div fxFlex="grow"></div> -->
+<div fxFlex="100%" fxFlex.md="55%" fxFlex.lg="55%" fxFlex.xl="55%">
+    <div *ngIf="data">
+        <!-- Data -->
+        <!-- awg-graph-triples-input -->
+        <ngb-accordion #triplesAcc activeIds="awg-graph-visualizer-triples">
+            <ngb-panel id="awg-graph-visualizer-triples" title="Triples">
+                <ng-template ngbPanelContent>
+                    <div>
+                        <ngx-codemirror [(ngModel)]="data.triples" [options]="cmTriplesConfig"> </ngx-codemirror>
+
+                        <div class="full-width" fxLayout="row">
+                            <button class="btn btn-info" (click)="doQuery()">
+                                Update
+                            </button>
+
+                            <button class="btn btn-outline-info" (click)="resetTriples()">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+
+        <!-- Query -->
+        <ngb-accordion #sparqlAcc activeIds="awg-graph-visualizer-query">
+            <ngb-panel id="awg-graph-visualizer-query" title="SPARQL Query">
+                <ng-template ngbPanelContent>
+                    <ngx-codemirror [(ngModel)]="data.query" [options]="cmSparqlConfig">
+                        <!-- (change)="data.query = $event" -->
+                    </ngx-codemirror>
+
+                    <div class="full-width" fxLayout="row">
+                        <div fxLayout="row">
+                            <button class="btn btn-info" color="primary" (click)="doQuery()">
+                                Query
+                            </button>
+
+                            <button class="btn btn-outline-info" (click)="resetQuery()">
+                                Reset
+                            </button>
+                        </div>
+                    </div>
+                </ng-template>
+            </ngb-panel>
+        </ngb-accordion>
+
+        <!-- Results -->
+        <div>
+            <!-- CONSTRUCT -->
+            <!-- awg-graph-construct-result -->
+            <ngb-accordion
+                #queryConstructResultAcc
+                activeIds="awg-graph-construct-result"
+                *ngIf="queryType === 'construct'"
+            >
+                <ngb-panel id="awg-graph-construct-result" title="Result">
+                    <ng-template ngbPanelContent>
+                        <!-- SPARQL graph visualization -->
+                        <awg-sparql-graph
+                            class="full-width"
+                            *ngIf="queryResult | async as queryResult"
+                            [queryResultTriples]="queryResult"
+                            [height]="500"
+                            (clickedURI)="graphClick($event)"
+                        >
+                        </awg-sparql-graph>
+                        <span *ngIf="!queryResult">No result to show</span>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+
+            <!-- awg-graph-construct-result -->
+            <ngb-accordion #querySelectResultAcc activeIds="awg-graph-select-result" *ngIf="queryType === 'select'">
+                <ngb-panel id="awg-graph-select-result" title="Result">
+                    <ng-template ngbPanelContent>
+                        <!-- SPARQL table visualization -->
+                        <!--
+                           <awg-sparql-table
+                               maxHeight="500px"
+                               [queryResult]="queryResult"
+                               [queryTime]="queryTime"
+                               (clickedURI)="tableClick($event)"
+                           >
+                           </awg-sparql-table>
+                           -->
+                        <span *ngIf="!queryResult">No result to show</span>
+                    </ng-template>
+                </ngb-panel>
+            </ngb-accordion>
+        </div>
+    </div>
+</div>

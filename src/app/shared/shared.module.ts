@@ -6,6 +6,7 @@ import { RouterModule } from '@angular/router';
 //
 // shared modules
 import { CompileHtmlModule } from './compile-html';
+import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import {
     NgbAccordionModule,
@@ -46,6 +47,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         ReactiveFormsModule,
         RouterModule,
         CompileHtmlModule,
+        CodemirrorModule,
         FontAwesomeModule,
         NgbAccordionModule,
         NgbButtonsModule,
@@ -70,6 +72,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
     ],
     exports: [
         CommonModule,
+        CodemirrorModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,

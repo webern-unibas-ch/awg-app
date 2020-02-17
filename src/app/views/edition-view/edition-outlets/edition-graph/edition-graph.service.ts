@@ -1,9 +1,6 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
 
 import * as N3 from 'n3';
-// import * as rdfstore from 'rdfstore';
-
 declare var rdfstore;
 
 /*
@@ -32,7 +29,7 @@ export class EditionGraphService {
     private store;
     private prefixesPromise;
 
-    constructor(public http: HttpClient) {}
+    constructor() {}
 
     appendPrefixesToQuery(query, triples) {
         // Get prefixes from triples
@@ -99,10 +96,10 @@ export class EditionGraphService {
                 return this.prefixesPromise.then(prefixes => {
                     // Process result
 
-                    return data.triples.map(x => {
-                        let s = x.subject.nominalValue;
-                        let p = x.predicate.nominalValue;
-                        let o = x.object.nominalValue;
+                    return data.triples.map((triple: Triple) => {
+                        let s = triple.subject.nominalValue;
+                        let p = triple.predicate.nominalValue;
+                        let o = triple.object.nominalValue;
 
                         // Abbreviate turtle format
                         if (mimeType === 'text/turtle') {

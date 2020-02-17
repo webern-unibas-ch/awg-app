@@ -79,3 +79,11 @@ window.Buffer = window.Buffer || require('buffer').Buffer;
     env: { DEBUG: undefined },
     version: ''
 };
+
+// workaround for typescript version 3.7.2 used with angular8
+// cf. https://github.com/angular/angular-cli/issues/16071
+// TODO: remove when upgrading to Angular 9
+// @ts-ignore
+window.__importDefault = mod => {
+    return mod && mod.__esModule ? mod : { default: mod };
+};

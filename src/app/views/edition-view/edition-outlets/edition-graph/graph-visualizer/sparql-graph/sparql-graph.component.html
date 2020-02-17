@@ -1,0 +1,24 @@
+<div id="svg-body" class="panel-body" [ngStyle]="{ height: height }" #graph>
+    <div class="icon-bar" fxLayout="row" [ngStyle]="{ top: '0px' }">
+        <!-- Limit -->
+        <span *ngIf="queryResultTriples && queryResultTriples.length > 100">
+            <div class="form-group" *ngIf="queryResultTriples.length > 100">
+                <label for="limitSelection">Select list:</label>
+                <select class="form-control" id="limitSelection" [(ngModel)]="limit" (change)="redraw()">
+                    <option value="100">100</option>
+                    <option *ngIf="queryResultTriples.length > 200" value="200">200</option>
+                    <option *ngIf="queryResultTriples.length > 500" value="200">500</option>
+                    <option *ngIf="queryResultTriples.length > 1000" value="200">1000</option>
+                </select>
+            </div>
+        </span>
+
+        <!-- <span *ngIf="message" class="message">{{message}}</span> -->
+
+        <!-- Spacer -->
+        <span fxFlex="grow"></span>
+
+        <!-- Spacer -->
+        <span fxFlex="5px"></span>
+    </div>
+</div>

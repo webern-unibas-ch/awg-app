@@ -24,11 +24,17 @@
                             "src/index.style.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
                             "node_modules/font-awesome/scss/font-awesome.scss",
+                            "node_modules/codemirror/lib/codemirror.css",
                             "src/styles.css"
                         ],
                         "scripts": [
                             "node_modules/snapsvg/dist/snap.svg-min.js",
                             "node_modules/rdfstore/dist/rdfstore_min.js",
+                            "node_modules/codemirror/lib/codemirror.js",
+                            "node_modules/d3/d3.min.js",
+                            "node_modules/codemirror/mode/turtle/turtle.js",
+                            "node_modules/codemirror/mode/sparql/sparql.js",
+                            "node_modules/codemirror/mode/go/go.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
                         ]
