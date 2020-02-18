@@ -31,6 +31,9 @@ export class EditionGraphService {
     constructor() {}
 
     appendPrefixesToQuery(query: string, triples: string): string {
+        if (!query || !triples) {
+            return;
+        }
         // Get prefixes from triples
         const prefixes = this.extractPrefixesFromTTL(triples);
 
@@ -41,7 +44,7 @@ export class EditionGraphService {
         const keys = Object.keys(prefixes);
         let pfxString = '';
         keys.forEach(key => {
-            if (namespaces.indexOf(key.slice(0, -1)) !== -1) {
+            if (namespaces.indexOf(key) !== -1) {
                 pfxString += `PREFIX ${key} ${prefixes[key]}\n`;
             }
         });
@@ -58,18 +61,22 @@ export class EditionGraphService {
             mimeType = 'text/turtle';
         }
 
-        console.log('performing query with', triples, query);
+        console.log('----------');
+        console.log('PERFORMING query with: ');
+        console.log(query);
+        console.log(triples);
         console.log('QUERYTYPE', queryType);
+        console.log('----------');
 
         return this.createStore()
             .then(store => {
-                console.log('STORE', store);
+                // console.log('STORE', store);
                 this.store = store;
 
                 return this.loadTriplesInStore(store, triples, mimeType);
             })
             .then(storeSize => {
-                console.log('STORESIZE', storeSize);
+                // console.log('STORESIZE', storeSize);
                 return this.executeQuery(this.store, query);
             })
             .then(res => {
@@ -184,7 +191,7 @@ export class EditionGraphService {
     }
 
     private executeQuery(store, query) {
-        console.log('executeQuery# QUERY', query);
+        // console.log('executeQuery# QUERY', query);
         return new Promise((resolve, reject) => {
             store.execute(query, (err, res) => {
                 if (err) {
@@ -205,8 +212,6 @@ export class EditionGraphService {
             .split(' ')
             .filter(el => el !== '');
 
-        console.log(arr);
-
         // Get index of all occurences of @prefix
         const prefixIndexArray = arr.reduce((a, e, i) => {
             if (e === '@prefix') {
@@ -214,8 +219,6 @@ export class EditionGraphService {
             }
             return a;
         }, []);
-
-        console.log(prefixIndexArray);
 
         const obj = {};
         prefixIndexArray.forEach(prefixIndex => {
@@ -252,27 +255,20 @@ export class EditionGraphService {
                     console.log('loadTriplesInStore# got error', err);
                     reject(err);
                 }
-                console.log('loadTriplesInStore# resolved', size);
+                // console.log('loadTriplesInStore# resolved', size);
                 resolve(size);
             });
         });
     }
 
-    public nameSpacesInQuery = queryString => {
-        let regex: RegExp;
+    private nameSpacesInQuery(queryString) {
         const array = [];
 
-        regex = /[a-zA-Z]+:/g;
+        const regex = /[a-zA-Z]+:/g;
+        let m;
 
-        const mtest = regex.exec(queryString);
-        console.log('got regexString IF, ', queryString);
-        console.log('got regexresult IF', mtest);
-
-        while (regex.exec(queryString) !== null) {
-            const m = regex.exec(queryString);
-            console.log('got regexString, ', queryString);
-            console.log('got regexresult, ', m);
-
+        // tslint:disable-next-line:no-conditional-assignment
+        while ((m = regex.exec(queryString)) !== null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index === regex.lastIndex) {
                 regex.lastIndex++;
@@ -280,16 +276,13 @@ export class EditionGraphService {
 
             // The result can be accessed through the `m`-variable.
             m.forEach(match => {
-                console.log('got match, ', match);
-                match = match.slice(0, -1);
                 if (array.indexOf(match) === -1) {
                     array.push(match);
                 }
             });
         }
-        console.log('got nameSpacesInQuery IF', array);
         return array;
-    };
+    }
 
     private renameKeys(obj, newKeys) {
         const keyValues = Object.keys(obj).map(key => {

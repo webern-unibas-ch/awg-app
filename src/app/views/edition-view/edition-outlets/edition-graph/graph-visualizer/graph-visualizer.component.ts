@@ -4,7 +4,7 @@
  */
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { defer, Observable } from 'rxjs';
+import { from, Observable } from 'rxjs';
 
 import { GraphRDFData } from '@awg-views/edition-view/models/graph.model';
 import {
@@ -76,7 +76,7 @@ export class GraphVisualizerComponent implements OnInit {
         this.queryType = this.editionGraphService.getQuerytype(this.query);
 
         // use only local store for now
-        this.queryResult = defer(() => this.queryLocalstore(this.queryType, this.query, this.triples));
+        this.queryResult = this.queryLocalstore(this.queryType, this.query, this.triples);
     }
 
     private queryLocalstore(queryType, query, triples) {
@@ -87,17 +87,14 @@ export class GraphVisualizerComponent implements OnInit {
         try {
             this.resultFieldExpanded = true;
 
+            const result = this.editionGraphService.doQuery(queryType, query, triples);
+
             // Capture query time
             this.queryTime = Date.now() - t1;
 
-            return this.editionGraphService.doQuery(queryType, query, triples);
+            return from(result);
         } catch (err) {
             console.log('#queryLocalstore got error:', err);
-
-            // Capture query time
-            this.queryTime = Date.now() - t1;
-
-            console.log('QUERYTIME:', this.queryTime);
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
@@ -105,7 +102,12 @@ export class GraphVisualizerComponent implements OnInit {
                 }
                 this.showErrorMessage(err.name + ': ' + err.message, 10000);
             }
-            return [];
+
+            // Capture query time
+            this.queryTime = Date.now() - t1;
+            console.log('QUERYTIME:', this.queryTime);
+
+            return from([]);
         }
     }
 

@@ -38,6 +38,25 @@ export interface INode {
     // instSpaceType?: boolean; //MB
 }
 
+export interface IEdge {
+    source: Node;
+    target: Node;
+    predicate: string;
+    weight: number;
+}
+
+export interface INodeTriple {
+    nodeSubject: Node;
+    nodePredicate: Node;
+    nodeObject: Node;
+}
+
+export interface ID3Graph {
+    nodes: Node[];
+    edges: Edge[];
+    nodeTriples: NodeTriple[];
+}
+
 export class Node implements INode {
     id: string;
     label: string;
@@ -54,20 +73,20 @@ export class Node implements INode {
     }
 }
 
-export interface Edge {
+export class Edge implements IEdge {
     source: Node;
     target: Node;
     predicate: string;
     weight: number;
 }
 
-export interface NodeTriple {
+export class NodeTriple implements INodeTriple {
     nodeSubject: Node;
     nodePredicate: Node;
     nodeObject: Node;
 }
 
-export interface D3Graph {
+export class D3GraphData implements ID3Graph {
     nodes: Node[];
     edges: Edge[];
     nodeTriples: NodeTriple[];
@@ -85,7 +104,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
     @ViewChild('graph', { static: true }) private graphContainer: ElementRef;
 
-    d3graph: D3Graph;
+    d3GraphData: D3GraphData;
     private svg;
     private force;
 
@@ -167,18 +186,11 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.attachData();
     }
 
-    /*
-    saveSVG() {
-        const config = {
-            filename: 'sparql-viz-graph'
-        };
-        d3_save_svg.save(d3.select('svg').node(), config);
-    }
-*/
-
     attachData() {
         // set size of force
         this.force = d3.layout.force().size([this.divWidth, this.divHeight]);
+
+        console.log('force', this.force);
 
         // Limit result length
         const limit: number = parseInt(this.limit, 10);
@@ -188,12 +200,14 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // the triples must be parsed to objects instead
         if (typeof triples === 'string') {
             this.parseTriples(triples).then(d => {
-                this.updateChart();
                 const abrTriples = this.abbreviateTriples(d);
-                this.d3graph = this.triplesToGraph(abrTriples);
+                this.d3GraphData = this.triplesToD3GraphData(abrTriples);
+                this.updateChart();
             });
         } else {
-            this.d3graph = this.triplesToGraph(triples);
+            console.log('GOT array triples', triples);
+            this.d3GraphData = this.triplesToD3GraphData(triples);
+            console.log('d3GraphData', this.d3GraphData);
             this.updateChart();
         }
     }
@@ -255,7 +269,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // ==================== Add Edges ====================
         const edges = this.svg
             .selectAll('.link')
-            .data(this.d3graph.nodeTriples)
+            .data(this.d3GraphData.nodeTriples)
             .enter()
             .append('path')
             .attr('marker-end', 'url(#end)')
@@ -264,7 +278,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // ==================== Add Edge Names =====================
         const edgeTexts = this.svg
             .selectAll('.link-text')
-            .data(this.d3graph.nodeTriples)
+            .data(this.d3GraphData.nodeTriples)
             .enter()
             .append('text')
             .attr('class', 'link-text')
@@ -273,7 +287,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // ==================== Add Node Names =====================
         const nodeTexts = this.svg
             .selectAll('.node-text')
-            .data(this.filterNodesByType(this.d3graph.nodes, NodeType.node))
+            .data(this.filterNodesByType(this.d3GraphData.nodes, NodeType.node))
             .enter()
             .append('text')
             .attr('class', 'node-text')
@@ -282,7 +296,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // ==================== Add Node =====================
         const nodes = this.svg
             .selectAll('.node')
-            .data(this.filterNodesByType(this.d3graph.nodes, NodeType.node))
+            .data(this.filterNodesByType(this.d3GraphData.nodes, NodeType.node))
             .enter()
             .append('circle')
             // .attr("class", "node")
@@ -349,8 +363,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
         // ==================== Run ====================
         this.force
-            .nodes(this.d3graph.nodes)
-            .links(this.d3graph.edges)
+            .nodes(this.d3GraphData.nodes)
+            .links(this.d3GraphData.edges)
             .charge(-500)
             .linkDistance(50)
             .start();
@@ -375,13 +389,13 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         }
     }
 
-    private triplesToGraph(triples) {
+    private triplesToD3GraphData(triples) {
         if (!triples) {
             return;
         }
 
         // Graph
-        const graph: D3Graph = { nodes: [], edges: [], nodeTriples: [] };
+        const graph: D3GraphData = { nodes: [], edges: [], nodeTriples: [] };
 
         // Initial Graph from triples
         triples.map(triple => {
