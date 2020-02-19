@@ -23,7 +23,7 @@ import * as d3 from 'd3';
 import * as N3 from 'n3';
 
 export enum NodeType {
-    edge = 'edge',
+    link = 'link',
     node = 'node'
 }
 
@@ -38,23 +38,23 @@ export interface INode {
     // instSpaceType?: boolean; //MB
 }
 
-export interface IEdge {
-    source: Node;
-    target: Node;
+export interface ILink {
+    source: INode;
+    target: INode;
     predicate: string;
     weight: number;
 }
 
 export interface INodeTriple {
-    nodeSubject: Node;
-    nodePredicate: Node;
-    nodeObject: Node;
+    nodeSubject: INode;
+    nodePredicate: INode;
+    nodeObject: INode;
 }
 
 export interface ID3Graph {
-    nodes: Node[];
-    edges: Edge[];
-    nodeTriples: NodeTriple[];
+    nodes: INode[];
+    links: ILink[];
+    nodeTriples: INodeTriple[];
 }
 
 export class Node implements INode {
@@ -73,7 +73,7 @@ export class Node implements INode {
     }
 }
 
-export class Edge implements IEdge {
+export class Link implements ILink {
     source: Node;
     target: Node;
     predicate: string;
@@ -88,7 +88,7 @@ export class NodeTriple implements INodeTriple {
 
 export class D3GraphData implements ID3Graph {
     nodes: Node[];
-    edges: Edge[];
+    links: Link[];
     nodeTriples: NodeTriple[];
 }
 
@@ -266,8 +266,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             .append('svg:polyline')
             .attr('points', '0,-5 10,0 0,5');
 
-        // ==================== Add Edges ====================
-        const edges = this.svg
+        // ==================== Add Links ====================
+        const links = this.svg
             .selectAll('.link')
             .data(this.d3GraphData.nodeTriples)
             .enter()
@@ -275,8 +275,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             .attr('marker-end', 'url(#end)')
             .attr('class', 'link');
 
-        // ==================== Add Edge Names =====================
-        const edgeTexts = this.svg
+        // ==================== Add Link Names =====================
+        const linkTexts = this.svg
             .selectAll('.link-text')
             .data(this.d3GraphData.nodeTriples)
             .enter()
@@ -319,13 +319,13 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             .attr('r', d => {
                 // MB if(d.instance || d.instSpace || d.instSpaceType){
                 if (d.label.indexOf('_:') !== -1) {
-                    return 7;
-                } else if (d.instance || d.label.indexOf('inst:') !== -1) {
-                    return 10;
-                } else if (d.owlClass || d.label.indexOf('inst:') !== -1) {
-                    return 9;
-                } else {
                     return 8;
+                } else if (d.instance || d.label.indexOf('inst:') !== -1) {
+                    return 11;
+                } else if (d.owlClass || d.label.indexOf('inst:') !== -1) {
+                    return 10;
+                } else {
+                    return 9;
                 }
             })
             .on('click', d => {
@@ -337,7 +337,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.force.on('tick', () => {
             nodes.attr('cx', d => d.x).attr('cy', d => d.y);
 
-            edges.attr(
+            links.attr(
                 'd',
                 d =>
                     'M' +
@@ -356,7 +356,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
             nodeTexts.attr('x', d => d.x + 12).attr('y', d => d.y + 3);
 
-            edgeTexts
+            linkTexts
                 .attr('x', d => 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
                 .attr('y', d => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
         });
@@ -364,7 +364,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // ==================== Run ====================
         this.force
             .nodes(this.d3GraphData.nodes)
-            .links(this.d3GraphData.edges)
+            .links(this.d3GraphData.links)
             .charge(-500)
             .linkDistance(50)
             .start();
@@ -395,7 +395,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         }
 
         // Graph
-        const graph: D3GraphData = { nodes: [], edges: [], nodeTriples: [] };
+        const graph: D3GraphData = { nodes: [], links: [], nodeTriples: [] };
 
         // Initial Graph from triples
         triples.map(triple => {
@@ -408,7 +408,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
                 objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
             }
 
-            const predNode: Node = new Node(predId, 1, NodeType.edge);
+            const predNode: Node = new Node(predId, 1, NodeType.link);
             graph.nodes.push(predNode);
 
             let subjNode: Node = this.filterNodesById(graph.nodes, subjId)[0];
@@ -439,8 +439,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
             const blankLabel = '';
 
-            graph.edges.push({ source: subjNode, target: predNode, predicate: blankLabel, weight: 1 });
-            graph.edges.push({ source: predNode, target: objNode, predicate: blankLabel, weight: 1 });
+            graph.links.push({ source: subjNode, target: predNode, predicate: blankLabel, weight: 1 });
+            graph.links.push({ source: predNode, target: objNode, predicate: blankLabel, weight: 1 });
 
             graph.nodeTriples.push({ nodeSubject: subjNode, nodePredicate: predNode, nodeObject: objNode });
         });

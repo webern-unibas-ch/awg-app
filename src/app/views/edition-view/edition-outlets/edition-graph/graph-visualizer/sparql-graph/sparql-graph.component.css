@@ -1,0 +1,74 @@
+/* Nodes */
+:host ::ng-deep .node {
+    stroke: #fff;
+    fill: #ddd;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .blank {
+    stroke: #fff;
+    fill: #000 !important;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .blank.instance {
+    stroke: #fff;
+    fill: #000;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .class {
+    stroke: #fff;
+    fill: rgb(158, 0, 0);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance {
+    stroke: #fff;
+    fill: rgb(32, 178, 170);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance-space {
+    stroke: #fff;
+    fill: rgb(0, 191, 255);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance-spaceType {
+    stroke: #fff;
+    fill: rgb(0, 0, 139);
+    stroke-width: 1.5px;
+}
+
+:host ::ng-deep .link {
+    fill: none;
+    stroke: #999;
+    stroke-opacity: 0.6;
+    stroke-width: 1px;
+}
+
+:host ::ng-deep marker {
+    stroke: #999;
+    fill: rgba(124, 240, 10, 0);
+}
+
+:host ::ng-deep .node-text {
+    font: 15px Roboto;
+    fill: black;
+}
+
+:host ::ng-deep .link-text {
+    font: 13px Roboto;
+    fill: grey;
+}
+
+:host ::ng-deep #svg-body {
+    position: relative;
+    width: 100%;
+}
+
+:host ::ng-deep #svg-body > .icon-bar {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.panel-body {
+    position: inherit;
+    height: 100%;
+}
