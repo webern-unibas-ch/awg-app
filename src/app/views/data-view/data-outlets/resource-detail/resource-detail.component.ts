@@ -221,21 +221,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         if (!gndEvent) {
             return;
         }
-        switch (gndEvent.type) {
-            case GndEventType.set: {
-                // statements
-                this.gndService.setGndToSessionStorage(gndEvent.value);
-                break;
-            }
-            case GndEventType.remove: {
-                // statements
-                this.gndService.removeGndFromSessionStorage();
-                break;
-            }
-            default: {
-                console.log('got an uncatched GND event', gndEvent);
-            }
-        }
+        this.gndService.exposeGnd(gndEvent);
     }
 
     /**

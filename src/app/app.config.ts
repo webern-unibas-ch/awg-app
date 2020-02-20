@@ -17,6 +17,26 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the URL of the Inseri Test Instance
+     * ({@link http://test-nieos.nie-ine.ch}).
+     *
+     * @returns {string}
+     */
+    public static get INSERI_TEST_URL(): string {
+        return 'http://test-nieos.nie-ine.ch';
+    }
+
+    /**
+     * Getter for the URL of the localhost
+     * ({@link 'http://localhost:4200'}).
+     *
+     * @returns {string}
+     */
+    public static get LOCALHOST_URL(): string {
+        return 'http://localhost:4200';
+    }
+
+    /**
      * Getter for the AWG route storage key.
      *
      * @returns {string}
@@ -26,7 +46,27 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the name of the AWG.
+     *
+     * @returns {string}
+     */
+    public static get AWG_PROJECT_NAME(): string {
+        return 'Anton Webern Gesamtausgabe';
+    }
+
+    /**
+     * Getter for the URL of the AWG project website
+     * ({@link https://anton-webern.ch}).
+     *
+     * @returns {string}
+     */
+    public static get AWG_PROJECT_URL(): string {
+        return 'https://www.anton-webern.ch/';
+    }
+
+    /**
      * Getter for the url of the AWG edition website (awg-app).
+     * {@link https://edition.anton-webern.ch/}
      *
      * @returns {string}
      */
@@ -72,25 +112,6 @@ export class AppConfig {
      */
     public static get AWG_APP_VERSION_RELEASE_DATE(): string {
         return appVersionReleaseDate;
-    }
-
-    /**
-     * Getter for the name of the AWG.
-     *
-     * @returns {string}
-     */
-    public static get AWG_PROJECT_NAME(): string {
-        return 'Anton Webern Gesamtausgabe';
-    }
-
-    /**
-     * Getter for the URL of the AWG project website
-     * ({@link https://anton-webern.ch}).
-     *
-     * @returns {string}
-     */
-    public static get AWG_PROJECT_URL(): string {
-        return 'https://www.anton-webern.ch/';
     }
 
     /**
