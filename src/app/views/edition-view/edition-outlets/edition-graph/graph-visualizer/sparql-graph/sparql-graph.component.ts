@@ -32,10 +32,8 @@ export interface INode {
     label: string;
     weight: number;
     type: NodeType;
-    owlClass?: boolean;
-    instance?: boolean;
-    // instSpace?: boolean; //MB
-    // instSpaceType?: boolean; //MB
+    owlClass: boolean;
+    instance: boolean;
 }
 
 export interface ILink {
@@ -62,14 +60,17 @@ export class Node implements INode {
     label: string;
     weight: number;
     type: NodeType;
-    owlClass?: boolean;
-    instance?: boolean;
+    owlClass: boolean;
+    instance: boolean;
 
+    // set default values
     constructor(id: string, weight: number, type: NodeType) {
         this.id = id;
         this.label = id;
         this.weight = weight;
         this.type = type;
+        this.owlClass = false;
+        this.instance = false;
     }
 }
 
@@ -104,7 +105,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
     @ViewChild('graph', { static: true }) private graphContainer: ElementRef;
 
-    d3GraphData: D3GraphData;
+    private d3GraphData: D3GraphData;
     private svg;
     private force;
 
@@ -137,7 +138,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
             // Redraw
             d3.selectAll('svg').remove();
-            this.createChart();
+            this.createGraph();
         }
     }
 
@@ -161,7 +162,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             } else {
                 this.divHeight = this.getContainerHeight() ? this.getContainerHeight() : 500;
             }
-            this.createChart();
+            this.createGraph();
         }
 
         this.getContainerHeight();
@@ -188,7 +189,11 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
     attachData() {
         // set size of force
-        this.force = d3.layout.force().size([this.divWidth, this.divHeight]);
+        this.force = d3.layout
+            .force()
+            .charge(-500)
+            .linkDistance(50)
+            .size([this.divWidth, this.divHeight]);
 
         console.log('force', this.force);
 
@@ -220,7 +225,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.clickedURI.emit(d);
     }
 
-    createChart(): void {
+    createGraph(): void {
         if (!this.graphContainer) {
             return;
         }
@@ -365,16 +370,14 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.force
             .nodes(this.d3GraphData.nodes)
             .links(this.d3GraphData.links)
-            .charge(-500)
-            .linkDistance(50)
             .start();
     }
 
-    private filterNodesById(nodes: Node[], id: string) {
-        return nodes.filter(node => node.id === id);
+    private filterNodesById(nodes: Node[], id: string): Node {
+        return nodes.filter(node => node.id === id)[0];
     }
 
-    private filterNodesByType(nodes: Node[], type: NodeType) {
+    private filterNodesByType(nodes: Node[], type: NodeType): Node[] {
         return nodes.filter(node => node.type === type);
     }
 
@@ -414,30 +417,33 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             const predNode: Node = new Node(predId, 1, NodeType.link);
             graph.nodes.push(predNode);
 
-            let subjNode: Node = this.filterNodesById(graph.nodes, subjId)[0];
-            let objNode: Node = this.filterNodesById(graph.nodes, objId)[0];
+            let subjNode: Node = this.filterNodesById(graph.nodes, subjId);
+            let objNode: Node = this.filterNodesById(graph.nodes, objId);
+
+            this.log('filtered known subjNode', subjNode);
+            this.log('filtered known objNode', objNode);
 
             if (subjNode == null) {
                 subjNode = new Node(subjId, 1, NodeType.node);
-                // MB: here I made some mistake. The objNode.label cannot be found as it is only introduced in the next if
-                // if(objNode.label == "bot:Space"){subjNode.instSpace = true} //MB
-                // else if(objNode.label == "prop:SpaceType"){subjNode.instSpaceType = true} //MB
-                // else{} //MB
+
                 graph.nodes.push(subjNode);
             }
 
             if (objNode == null) {
                 objNode = new Node(objId, 1, NodeType.node);
-                // If the predicate is rdf:type, the node is an OWL Class
-                // Then the domain is an instance
-                if (
-                    predNode.label === 'rdf:type' ||
-                    predNode.label === 'http://www.w3.org/1999/02/22-rdf-syntax-ns#type'
-                ) {
-                    objNode.owlClass = true;
-                    subjNode.instance = true;
-                }
+
                 graph.nodes.push(objNode);
+            }
+
+            // check if predicate is "rdf:type" or owl:class
+            // then subjNode is an instance and objNode is a Class
+            if (subjNode.instance === false) {
+                subjNode.instance = this.checkForRdfType(predNode);
+                this.log('checked subj for rdf:type', subjNode.instance);
+            }
+            if (objNode.owlClass === false) {
+                objNode.owlClass = this.checkForRdfType(predNode);
+                this.log('checked obj for rdf:type', objNode.owlClass);
             }
 
             const blankLabel = '';
@@ -446,11 +452,27 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             graph.links.push({ source: predNode, target: objNode, predicate: blankLabel, weight: 1 });
 
             graph.nodeTriples.push({ nodeSubject: subjNode, nodePredicate: predNode, nodeObject: objNode });
+
+            console.log('------ / END ------ ');
         });
 
         console.log(graph.nodes);
 
         return graph;
+    }
+
+    private checkForRdfType(predNode: Node): boolean {
+        console.warn(this.prefixPipe.transform(PrefixForm.long, 'rdf:type'));
+
+        return (
+            // rdf:type
+            predNode.label === 'a' ||
+            predNode.label === 'rdf:type' ||
+            predNode.label === this.prefixPipe.transform(PrefixForm.long, 'rdf:type') ||
+            // owl:class
+            predNode.label === 'owl:class' ||
+            predNode.label === '"http://www.w3.org/2002/07/owl#class'
+        );
     }
 
     private parseTriples(triples) {
@@ -508,5 +530,10 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         });
         console.log(triples);
         return triples;
+    }
+
+    log(messageString: string, messageValue: any) {
+        const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
+        console.log(messageString, value);
     }
 }
