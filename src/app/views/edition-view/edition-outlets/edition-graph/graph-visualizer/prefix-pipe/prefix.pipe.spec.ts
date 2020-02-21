@@ -1,8 +1,8 @@
-import { SimplePrefixPipe } from './prefix-simple.pipe';
+import { PrefixPipe } from './prefix.pipe';
 
 describe('PrefixSimplePipe', () => {
     it('create an instance', () => {
-        const pipe = new SimplePrefixPipe();
+        const pipe = new PrefixPipe();
         expect(pipe).toBeTruthy();
     });
 });

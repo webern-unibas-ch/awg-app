@@ -16,7 +16,7 @@ import {
     ViewChild
 } from '@angular/core';
 
-import { SimplePrefixPipe } from '../prefix-simple-pipe/prefix-simple.pipe';
+import { PrefixForm, PrefixPipe } from '../prefix-pipe/prefix.pipe';
 import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
 
 import * as d3 from 'd3';
@@ -151,7 +151,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         }
     }
 
-    constructor(private prefixSimplePipe: SimplePrefixPipe) {}
+    constructor(private prefixPipe: PrefixPipe) {}
 
     ngOnInit() {
         if (this.queryResultTriples) {
@@ -399,9 +399,12 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
         // Initial Graph from triples
         triples.map(triple => {
-            const subjId = this.prefixSimplePipe.transform(triple.subject);
-            const predId = this.prefixSimplePipe.transform(triple.predicate);
-            let objId = this.prefixSimplePipe.transform(triple.object);
+            console.warn('------ TRIPLE ------ ');
+            this.log('triple', triple);
+
+            const subjId = this.prefixPipe.transform(PrefixForm.short, triple.subject);
+            const predId = this.prefixPipe.transform(PrefixForm.short, triple.predicate);
+            let objId = this.prefixPipe.transform(PrefixForm.short, triple.object);
 
             // check if object is number & round decimal numbers to 2 decimals
             if (!isNaN(objId)) {
