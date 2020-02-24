@@ -943,11 +943,11 @@ export class FolioCalculation {
     /**
      * Private helper method for folio calculation model: round.
      *
-     * It rounds a number to a set number of decimal places.
+     * It rounds a given number to a given number of decimal places.
      * JS in-built round-method is sometimes not correct,
      * see: {@link http://www.jacklmoore.com/notes/rounding-in-javascript/}.
      *
-     * @param {number} value The input value to be rounded.
+     * @param {number} value The given input value to be rounded.
      * @param {number} decimals The number of decimal places to round to.
      * @returns {number} The rounded number.
      */

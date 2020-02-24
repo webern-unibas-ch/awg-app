@@ -7,8 +7,20 @@
 <div class="para">
     <h5>AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)</h5>
 
-    <h3><i>Vier Lieder</i> op. 12 (Skizzen)</h3>
-    <h3><i>Drei Lieder nach Gedichten von Hildegard Jone</i> op. 25 (Graph)</h3>
+    <h3>
+        <i>{{ editionInfoHeaderOp12?.title }}</i
+        >&nbsp;{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }} (<a
+            [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]"
+            >{{ editionInfoHeaderOp12?.part }}</a
+        >)
+    </h3>
+    <h3>
+        <i>{{ editionInfoHeaderOp25?.title }}</i
+        >&nbsp;{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }} (<a
+            [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]"
+            >{{ editionInfoHeaderOp25?.part }}</a
+        >)
+    </h3>
 </div>
 
 <!-- description -->
