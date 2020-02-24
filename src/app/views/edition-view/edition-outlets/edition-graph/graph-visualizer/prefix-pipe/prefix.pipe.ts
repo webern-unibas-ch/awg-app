@@ -46,7 +46,7 @@ export class PrefixPipe implements PipeTransform {
         let newValue;
 
         // Loop over prefixes
-        this.prefixes.map(p => {
+        this.prefixes.map((p: Prefix) => {
             switch (prefixForm) {
                 case PrefixForm.short: {
                     if (oldValue.indexOf(p.prefixIri) !== -1) {

@@ -19,7 +19,10 @@ import {
 import { PrefixForm, PrefixPipe } from '../prefix-pipe/prefix.pipe';
 import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
 
-import * as d3 from 'd3';
+import * as d3_drag from 'd3-drag';
+import * as d3_force from 'd3-force';
+import * as d3_selection from 'd3-selection';
+import * as d3_zoom from 'd3-zoom';
 import * as N3 from 'n3';
 
 export enum NodeType {
@@ -27,41 +30,22 @@ export enum NodeType {
     node = 'node'
 }
 
-export interface INode {
+export class D3SimulationNode implements d3_force.SimulationNodeDatum {
     id: string;
     label: string;
     weight: number;
     type: NodeType;
     owlClass: boolean;
     instance: boolean;
-}
 
-export interface ILink {
-    source: INode;
-    target: INode;
-    predicate: string;
-    weight: number;
-}
-
-export interface INodeTriple {
-    nodeSubject: INode;
-    nodePredicate: INode;
-    nodeObject: INode;
-}
-
-export interface ID3Graph {
-    nodes: INode[];
-    links: ILink[];
-    nodeTriples: INodeTriple[];
-}
-
-export class Node implements INode {
-    id: string;
-    label: string;
-    weight: number;
-    type: NodeType;
-    owlClass: boolean;
-    instance: boolean;
+    // optional properties from d3_force.SimulationNodeDatum
+    index?: number;
+    x?: number;
+    y?: number;
+    vx?: number;
+    vy?: number;
+    fx?: number | null;
+    fy?: number | null;
 
     // set default values
     constructor(id: string, weight: number, type: NodeType) {
@@ -74,24 +58,58 @@ export class Node implements INode {
     }
 }
 
-export class Link implements ILink {
-    source: Node;
-    target: Node;
+export class D3SimulationLink implements d3_force.SimulationLinkDatum<D3SimulationNode> {
+    source: D3SimulationNode | string | number;
+    target: D3SimulationNode | string | number;
+
     predicate: string;
     weight: number;
+
+    // optional properties from d3.SimulationLinkDatum
+    index?: number;
+
+    // set default values
+    //  source: predNode, target: objNode, predicate: blankLabel, weight: 1
+    constructor(
+        source: D3SimulationNode | string | number,
+        target: D3SimulationNode | string | number,
+        predicate: string,
+        weight: number
+    ) {
+        this.source = source;
+        this.target = target;
+        this.predicate = predicate;
+        this.weight = weight;
+    }
 }
 
-export class NodeTriple implements INodeTriple {
-    nodeSubject: Node;
-    nodePredicate: Node;
-    nodeObject: Node;
+export class D3SimulationNodeTriple {
+    nodeSubject: D3SimulationNode;
+    nodePredicate: D3SimulationNode;
+    nodeObject: D3SimulationNode;
+
+    constructor(nodeSubject: D3SimulationNode, nodePredicate: D3SimulationNode, nodeObject: D3SimulationNode) {
+        this.nodeSubject = nodeSubject;
+        this.nodePredicate = nodePredicate;
+        this.nodeObject = nodeObject;
+    }
 }
 
-export class D3GraphData implements ID3Graph {
-    nodes: Node[];
-    links: Link[];
-    nodeTriples: NodeTriple[];
+export class D3SimulationData {
+    nodes: D3SimulationNode[];
+    links: D3SimulationLink[];
+    nodeTriples: D3SimulationNodeTriple[];
+
+    constructor() {
+        this.nodes = [];
+        this.links = [];
+        this.nodeTriples = [];
+    }
 }
+
+export interface D3Simulation extends d3_force.Simulation<D3SimulationNode, D3SimulationLink> {}
+
+export interface D3Selection extends d3_selection.Selection<any, any, any, any> {}
 
 @Component({
     selector: 'awg-sparql-graph',
@@ -101,13 +119,14 @@ export class D3GraphData implements ID3Graph {
 export class SparqlGraphComponent implements OnInit, OnChanges {
     @Input() queryResultTriples: Triple[];
     @Input() height: number;
-    @Output() clickedURI = new EventEmitter<string>();
+    @Output() clickedURI = new EventEmitter<D3SimulationNode>();
 
     @ViewChild('graph', { static: true }) private graphContainer: ElementRef;
 
-    private d3GraphData: D3GraphData;
-    private svg;
-    private force;
+    private svg: D3Selection;
+    private zoomGroup: D3Selection;
+    private forceSimulation: D3Simulation;
+    private simulationData: D3SimulationData;
 
     private divWidth: number;
     private divHeight: number;
@@ -137,8 +156,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             this.divHeight = this.fullScreen ? graphContainerElement.clientHeight : this.height;
 
             // Redraw
-            d3.selectAll('svg').remove();
-            this.createGraph();
+            d3_selection.selectAll('svg').remove();
+            this.redraw();
         }
     }
 
@@ -162,7 +181,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             } else {
                 this.divHeight = this.getContainerHeight() ? this.getContainerHeight() : 500;
             }
-            this.createGraph();
+            this.createSVG();
+            this.redraw();
         }
 
         this.getContainerHeight();
@@ -182,21 +202,12 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         return this.graphContainer.nativeElement.clientHeight;
     }
 
-    redraw() {
-        this.cleanGraph();
+    redraw(): void {
+        this.cleanSVG();
         this.attachData();
     }
 
-    attachData() {
-        // set size of force
-        this.force = d3.layout
-            .force()
-            .charge(-500)
-            .linkDistance(50)
-            .size([this.divWidth, this.divHeight]);
-
-        console.log('force', this.force);
-
+    attachData(): void {
         // Limit result length
         const limit: number = parseInt(this.limit, 10);
         const triples: Triple[] = this.limitTriples(this.queryResultTriples, limit);
@@ -206,26 +217,28 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         if (typeof triples === 'string') {
             this.parseTriples(triples).then(d => {
                 const abrTriples = this.abbreviateTriples(d);
-                this.d3GraphData = this.triplesToD3GraphData(abrTriples);
+                this.simulationData = this.triplesToD3GraphData(abrTriples);
+
+                this.setupForceSimulation();
                 this.updateChart();
             });
         } else {
+            this.simulationData = this.triplesToD3GraphData(triples);
+
             console.log('GOT array triples', triples);
-            this.d3GraphData = this.triplesToD3GraphData(triples);
-            console.log('d3GraphData', this.d3GraphData);
+            console.log('simulationData', this.simulationData);
+
+            this.setupForceSimulation();
             this.updateChart();
         }
     }
 
-    clickedOnNode(d) {
-        if (d3.event.defaultPrevented) {
-            return;
-        } // dragged
-
-        this.clickedURI.emit(d);
+    cleanSVG(): void {
+        // Remove everything below the SVG element
+        d3_selection.selectAll('svg > *').remove();
     }
 
-    createGraph(): void {
+    createSVG(): void {
         if (!this.graphContainer) {
             return;
         }
@@ -235,27 +248,62 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.divWidth = this.divWidth || graphContainerElement.clientWidth;
         this.divHeight = this.divHeight || graphContainerElement.clientHeight;
 
-        this.svg = d3
+        this.svg = d3_selection
             .select(graphContainerElement)
             .append('svg')
             .attr('width', this.divWidth)
             .attr('height', this.divHeight);
-
-        this.attachData();
     }
 
-    cleanGraph() {
-        // Remove everything below the SVG element
-        d3.selectAll('svg > *').remove();
+    setupForceSimulation() {
+        // set up the simulation
+        this.forceSimulation = d3_force.forceSimulation();
+
+        // Create forces
+        const chargeForce = d3_force.forceManyBody().strength((d: D3SimulationNode) => this.nodeRadius(d) * -5);
+
+        const centerForce = d3_force.forceCenter(this.divWidth / 2, this.divHeight / 2);
+
+        const collideForce = d3_force
+            .forceCollide()
+            .strength(1)
+            .radius(+5)
+            .iterations(2);
+
+        // create a custom link force with id accessor to use named sources and targets
+        const linkForce = d3_force
+            .forceLink()
+            .links(this.simulationData.links)
+            .id((d: D3SimulationLink) => d.predicate)
+            .distance(50);
+
+        // add forces
+        // add a charge to each node, a centering and collision force
+        this.forceSimulation
+            .force('charge_force', chargeForce)
+            .force('center_force', centerForce)
+            .force('collide_force', collideForce);
+
+        // add nodes to the simulation
+        this.forceSimulation.nodes(this.simulationData.nodes);
+
+        // add links to the simulation
+        this.forceSimulation.force('links', linkForce);
+
+        // restart simulation
+        // this.forceSimulation.restart();
     }
 
-    updateChart() {
+    updateChart(): void {
         if (!this.svg) {
             return;
         }
 
+        // ==================== Add Encompassing Group for Zoom =====================
+        this.zoomGroup = this.svg.append('g').attr('class', 'zoom-container');
+
         // ==================== Add Marker ====================
-        this.svg
+        this.zoomGroup
             .append('svg:defs')
             .selectAll('marker')
             .data(['end'])
@@ -272,40 +320,40 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             .attr('points', '0,-5 10,0 0,5');
 
         // ==================== Add Links ====================
-        const links = this.svg
+        const links: D3Selection = this.zoomGroup
             .selectAll('.link')
-            .data(this.d3GraphData.nodeTriples)
+            .data(this.simulationData.nodeTriples)
             .enter()
             .append('path')
             .attr('marker-end', 'url(#end)')
             .attr('class', 'link');
 
         // ==================== Add Link Names =====================
-        const linkTexts = this.svg
+        const linkTexts: D3Selection = this.zoomGroup
             .selectAll('.link-text')
-            .data(this.d3GraphData.nodeTriples)
+            .data(this.simulationData.nodeTriples)
             .enter()
             .append('text')
             .attr('class', 'link-text')
-            .text(d => d.nodePredicate.label);
+            .text((d: D3SimulationNodeTriple) => d.nodePredicate.label);
 
         // ==================== Add Node Names =====================
-        const nodeTexts = this.svg
+        const nodeTexts: D3Selection = this.zoomGroup
             .selectAll('.node-text')
-            .data(this.filterNodesByType(this.d3GraphData.nodes, NodeType.node))
+            .data(this.filterNodesByType(this.simulationData.nodes, NodeType.node))
             .enter()
             .append('text')
             .attr('class', 'node-text')
-            .text(d => d.label);
+            .text((d: D3SimulationNode) => d.label);
 
         // ==================== Add Node =====================
-        const nodes = this.svg
+        const nodes: D3Selection = this.zoomGroup
             .selectAll('.node')
-            .data(this.filterNodesByType(this.d3GraphData.nodes, NodeType.node))
+            .data(this.filterNodesByType(this.simulationData.nodes, NodeType.node))
             .enter()
             .append('circle')
             // .attr("class", "node")
-            .attr('class', d => {
+            .attr('class', (d: D3SimulationNode) => {
                 if (d.owlClass) {
                     return 'class';
                     // }else if(d.instSpace){ //MB
@@ -320,8 +368,8 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
                     return 'node';
                 }
             })
-            .attr('id', d => d.label)
-            .attr('r', d => {
+            .attr('id', (d: D3SimulationNode) => d.label)
+            .attr('r', (d: D3SimulationNode) => {
                 // MB if(d.instance || d.instSpace || d.instSpaceType){
                 if (d.label.indexOf('_:') !== -1) {
                     return 8;
@@ -333,55 +381,155 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
                     return 9;
                 }
             })
-            .on('click', d => {
+            .on('click', (d: D3SimulationNode) => {
                 this.clickedOnNode(d);
-            })
-            .call(this.force.drag); // nodes
+            });
 
         // ==================== When dragging ====================
-        this.force.on('tick', () => {
-            nodes.attr('cx', d => d.x).attr('cy', d => d.y);
-
-            links.attr(
-                'd',
-                d =>
-                    'M' +
-                    d.nodeSubject.x +
-                    ',' +
-                    d.nodeSubject.y +
-                    'S' +
-                    d.nodePredicate.x +
-                    ',' +
-                    d.nodePredicate.y +
-                    ' ' +
-                    d.nodeObject.x +
-                    ',' +
-                    d.nodeObject.y
-            );
-
-            nodeTexts.attr('x', d => d.x + 12).attr('y', d => d.y + 3);
-
-            linkTexts
-                .attr('x', d => 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
-                .attr('y', d => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
+        this.forceSimulation.on('tick', () => {
+            // update node and link positions each tick of the simulation
+            this.updateNodePositions(nodes);
+            this.updateNodeTextPositions(nodeTexts);
+            this.updateLinkPositions(links);
+            this.updateLinkTextPositions(linkTexts);
         });
 
-        // ==================== Run ====================
-        this.force
-            .nodes(this.d3GraphData.nodes)
-            .links(this.d3GraphData.links)
-            .start();
+        // ==================== DRAG ====================
+        this.dragHandler(nodes, this.forceSimulation);
+
+        // ==================== ZOOM ====================
+        this.zoomHandler(this.zoomGroup, this.svg);
     }
 
-    private filterNodesById(nodes: Node[], id: string): Node {
+    clickedOnNode(d: D3SimulationNode): void {
+        if (d3_selection.event.defaultPrevented) {
+            return;
+        } // dragged
+
+        this.clickedURI.emit(d);
+    }
+
+    private dragHandler(dragObject: D3Selection, simulation: D3Simulation) {
+        // Drag functions
+        // d is the node
+        const dragStart = (d: D3SimulationNode) => {
+            /** Preventing propagation of dragstart to parent elements */
+            d3_selection.event.sourceEvent.stopPropagation();
+
+            if (!d3_selection.event.active) {
+                simulation.alphaTarget(0.3).restart();
+            }
+            d.fx = d.x;
+            d.fy = d.y;
+        };
+
+        // make sure you can't drag the circle outside the box
+        const dragActions = (d: D3SimulationNode) => {
+            d.fx = d3_selection.event.x;
+            d.fy = d3_selection.event.y;
+        };
+
+        const dragEnd = (d: D3SimulationNode) => {
+            if (!d3_selection.event.active) {
+                simulation.alphaTarget(0);
+            }
+            d.fx = null;
+            d.fy = null;
+        };
+
+        // apply drag handler
+        dragObject.call(
+            d3_drag
+                .drag()
+                .on('start', dragStart)
+                .on('drag', dragActions)
+                .on('end', dragEnd)
+        );
+    }
+
+    private zoomHandler(zoomArea: any, svg: any) {
+        // zoom actions is a function that performs the zooming.
+        const zoomActions = () => {
+            zoomArea.attr('transform', d3_selection.event.transform);
+        };
+
+        // apply zoom handler
+        svg.call(d3_zoom.zoom().on('zoom', zoomActions));
+    }
+
+    private updateNodePositions(nodes: D3Selection): void {
+        // constrains the nodes to be within a box
+        nodes
+            .attr(
+                'cx',
+                (d: D3SimulationNode) =>
+                    (d.x = Math.max(this.nodeRadius(d), Math.min(this.divWidth - this.nodeRadius(d), d.x)))
+            )
+            .attr(
+                'cy',
+                (d: D3SimulationNode) =>
+                    (d.y = Math.max(this.nodeRadius(d), Math.min(this.divHeight - this.nodeRadius(d), d.y)))
+            );
+    }
+
+    private updateNodeTextPositions(nodeTexts: D3Selection): void {
+        // constrains the nodes to be within a box
+        nodeTexts.attr('x', (d: D3SimulationNode) => d.x + 12).attr('y', (d: D3SimulationNode) => d.y + 3);
+    }
+
+    private updateLinkPositions(links: D3Selection): void {
+        links.attr(
+            'd',
+            (d: D3SimulationNodeTriple) =>
+                'M' +
+                d.nodeSubject.x +
+                ',' +
+                d.nodeSubject.y +
+                'S' +
+                d.nodePredicate.x +
+                ',' +
+                d.nodePredicate.y +
+                ' ' +
+                d.nodeObject.x +
+                ',' +
+                d.nodeObject.y
+        );
+    }
+
+    private updateLinkTextPositions(linkTexts: D3Selection): void {
+        linkTexts
+            .attr('x', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
+            .attr('y', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
+    }
+
+    private nodeRadius(d: D3SimulationNode): number {
+        if (!d) {
+            return null;
+        }
+
+        let defaultRadius = 8;
+
+        // MB if(d.instance || d.instSpace || d.instSpaceType){
+        if (d.label.indexOf('_:') !== -1) {
+            return defaultRadius--;
+        } else if (d.instance || d.label.indexOf('inst:') !== -1) {
+            return defaultRadius + 2;
+        } else if (d.owlClass || d.label.indexOf('inst:') !== -1) {
+            return defaultRadius++;
+        } else {
+            return defaultRadius;
+        }
+    }
+
+    private filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
         return nodes.filter(node => node.id === id)[0];
     }
 
-    private filterNodesByType(nodes: Node[], type: NodeType): Node[] {
+    private filterNodesByType(nodes: D3SimulationNode[], type: NodeType): D3SimulationNode[] {
         return nodes.filter(node => node.type === type);
     }
 
-    private limitTriples(triples: Triple[], limit) {
+    private limitTriples(triples: Triple[], limit: number): Triple[] {
         if (!triples) {
             return [];
         }
@@ -392,16 +540,16 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         }
     }
 
-    private triplesToD3GraphData(triples) {
+    private triplesToD3GraphData(triples: Triple[]): D3SimulationData {
         if (!triples) {
             return;
         }
 
         // Graph
-        const graph: D3GraphData = { nodes: [], links: [], nodeTriples: [] };
+        const graphData: D3SimulationData = new D3SimulationData();
 
         // Initial Graph from triples
-        triples.map(triple => {
+        triples.map((triple: Triple) => {
             console.warn('------ TRIPLE ------ ');
             this.log('triple', triple);
 
@@ -414,28 +562,28 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
                 objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
             }
 
-            const predNode: Node = new Node(predId, 1, NodeType.link);
-            graph.nodes.push(predNode);
+            const predNode: D3SimulationNode = new D3SimulationNode(predId, 1, NodeType.link);
+            graphData.nodes.push(predNode);
 
-            let subjNode: Node = this.filterNodesById(graph.nodes, subjId);
-            let objNode: Node = this.filterNodesById(graph.nodes, objId);
+            let subjNode: D3SimulationNode = this.filterNodesById(graphData.nodes, subjId);
+            let objNode: D3SimulationNode = this.filterNodesById(graphData.nodes, objId);
 
             this.log('filtered known subjNode', subjNode);
             this.log('filtered known objNode', objNode);
 
             if (subjNode == null) {
-                subjNode = new Node(subjId, 1, NodeType.node);
+                subjNode = new D3SimulationNode(subjId, 1, NodeType.node);
 
-                graph.nodes.push(subjNode);
+                graphData.nodes.push(subjNode);
             }
 
             if (objNode == null) {
-                objNode = new Node(objId, 1, NodeType.node);
+                objNode = new D3SimulationNode(objId, 1, NodeType.node);
 
-                graph.nodes.push(objNode);
+                graphData.nodes.push(objNode);
             }
 
-            // check if predicate is "rdf:type" or owl:class
+            // check if predicate is "rdf:type"
             // then subjNode is an instance and objNode is a Class
             if (subjNode.instance === false) {
                 subjNode.instance = this.checkForRdfType(predNode);
@@ -448,34 +596,31 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
             const blankLabel = '';
 
-            graph.links.push({ source: subjNode, target: predNode, predicate: blankLabel, weight: 1 });
-            graph.links.push({ source: predNode, target: objNode, predicate: blankLabel, weight: 1 });
+            graphData.links.push(new D3SimulationLink(subjNode, predNode, blankLabel, 1));
+            graphData.links.push(new D3SimulationLink(predNode, objNode, blankLabel, 1));
 
-            graph.nodeTriples.push({ nodeSubject: subjNode, nodePredicate: predNode, nodeObject: objNode });
+            graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
 
             console.log('------ / END ------ ');
         });
 
-        console.log(graph.nodes);
+        console.log(graphData.nodes);
 
-        return graph;
+        return graphData;
     }
 
-    private checkForRdfType(predNode: Node): boolean {
+    private checkForRdfType(predNode: D3SimulationNode): boolean {
         console.warn(this.prefixPipe.transform(PrefixForm.long, 'rdf:type'));
 
         return (
             // rdf:type
             predNode.label === 'a' ||
             predNode.label === 'rdf:type' ||
-            predNode.label === this.prefixPipe.transform(PrefixForm.long, 'rdf:type') ||
-            // owl:class
-            predNode.label === 'owl:class' ||
-            predNode.label === '"http://www.w3.org/2002/07/owl#class'
+            predNode.label === this.prefixPipe.transform(PrefixForm.long, 'rdf:type')
         );
     }
 
-    private parseTriples(triples) {
+    private parseTriples(triples: Triple[]): Promise<{ triples; prefixes }> {
         // ParseTriples
         const parser = N3.Parser();
         const jsonTriples = [];
@@ -493,7 +638,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         });
     }
 
-    private abbreviateTriples(data) {
+    private abbreviateTriples(data): Triple[] {
         const prefixes = data.prefixes;
         const triples = [];
 
@@ -512,7 +657,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             return newVal;
         }
 
-        data.triples.forEach(triple => {
+        data.triples.forEach((triple: Triple) => {
             let s = triple.subject;
             let p = triple.predicate;
             let o = triple.object;
@@ -532,7 +677,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         return triples;
     }
 
-    log(messageString: string, messageValue: any) {
+    log(messageString: string, messageValue: any): void {
         const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
         console.log(messageString, value);
     }
