@@ -60,13 +60,14 @@ export class EditionGraphService {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
-
+        /*
         console.log('----------');
         console.log('PERFORMING query with: ');
         console.log(query);
         console.log(triples);
         console.log('QUERYTYPE', queryType);
         console.log('----------');
+*/
 
         return this.createStore()
             .then(store => {
@@ -80,7 +81,7 @@ export class EditionGraphService {
                 return this.executeQuery(this.store, query);
             })
             .then(res => {
-                console.log('RES', res);
+                // console.log('RES', res);
                 const data: Qres = res;
 
                 // Reformat data if select query
@@ -195,10 +196,10 @@ export class EditionGraphService {
         return new Promise((resolve, reject) => {
             store.execute(query, (err, res) => {
                 if (err) {
-                    console.log('executeQuery# got ERROR', err);
+                    console.error('executeQuery# got ERROR', err);
                     reject(err);
                 }
-                console.log('executeQuery# RESOLVED', res);
+                // console.log('executeQuery# RESOLVED', res);
                 resolve(res);
             });
         });
@@ -232,7 +233,7 @@ export class EditionGraphService {
         // ParseTriples
         const parser = new N3.Parser();
 
-        console.log('PARSER', parser);
+        // console.log('PARSER', parser);
         return new Promise((resolve, reject) => {
             parser.parse(triples, (err, triple, prefixes) => {
                 if (!triple) {
@@ -252,7 +253,7 @@ export class EditionGraphService {
         return new Promise((resolve, reject) => {
             store.load(mimeType, triples, (err, size) => {
                 if (err) {
-                    console.log('loadTriplesInStore# got error', err);
+                    console.error('loadTriplesInStore# got error', err);
                     reject(err);
                 }
                 // console.log('loadTriplesInStore# resolved', size);

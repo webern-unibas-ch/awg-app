@@ -35,6 +35,7 @@ export class GraphVisualizerComponent implements OnInit {
     queryTime: number;
     queryResult: Observable<Triple[]>;
     resultFieldExpanded = false;
+    fitGraphIntoContainer = false;
 
     triples;
     query;
@@ -94,7 +95,7 @@ export class GraphVisualizerComponent implements OnInit {
 
             return from(result);
         } catch (err) {
-            console.log('#queryLocalstore got error:', err);
+            console.error('#queryLocalstore got error:', err);
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
@@ -109,6 +110,10 @@ export class GraphVisualizerComponent implements OnInit {
 
             return from([]);
         }
+    }
+
+    fitGraphToContainer(): void {
+        this.fitGraphIntoContainer = !this.fitGraphIntoContainer;
     }
 
     graphClick(URI) {
@@ -143,8 +148,7 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     tableClick(URI) {
-        const query = `SELECT * WHERE {\n\tBIND(<${URI}> AS ?el)\n\t?el ?key ?value\n}`;
-        this.query = query;
+        this.query = `SELECT * WHERE {\n\tBIND(<${URI}> AS ?el)\n\t?el ?key ?value\n}`;
         this.doQuery();
     }
 }

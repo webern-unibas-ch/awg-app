@@ -67,11 +67,14 @@
                         class="full-width"
                         *ngIf="queryResult | async as queryResult"
                         [queryResultTriples]="queryResult"
-                        [height]="500"
+                        [fitGraphIntoContainer]="fitGraphIntoContainer"
                         (clickedURI)="graphClick($event)"
                     >
                     </awg-sparql-graph>
                     <span *ngIf="!queryResult">No result to show</span>
+                    <button class="btn btn-info" color="primary" (click)="fitGraphToContainer()">
+                        Fit Graph Into Container
+                    </button>
                 </ng-template>
             </ngb-panel>
         </ngb-accordion>

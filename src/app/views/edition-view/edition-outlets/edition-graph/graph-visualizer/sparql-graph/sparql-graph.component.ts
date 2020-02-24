@@ -118,7 +118,7 @@ export interface D3Selection extends d3_selection.Selection<any, any, any, any> 
 })
 export class SparqlGraphComponent implements OnInit, OnChanges {
     @Input() queryResultTriples: Triple[];
-    @Input() height: number;
+    @Input() fitGraphIntoContainer: boolean;
     @Output() clickedURI = new EventEmitter<D3SimulationNode>();
 
     @ViewChild('graph', { static: true }) private graphContainer: ElementRef;
@@ -150,24 +150,14 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
                 this.divWidth = this.widthBeforeResize;
                 this.widthBeforeResize = null;
             } else {
-                this.divWidth = graphContainerElement.clientWidth;
+                this.divWidth = this.getContainerWidth(graphContainerElement);
             }
 
-            this.divHeight = this.fullScreen ? graphContainerElement.clientHeight : this.height;
+            this.divHeight = this.getContainerHeight(graphContainerElement);
 
             // Redraw
             d3_selection.selectAll('svg').remove();
-            this.redraw();
-        }
-    }
-
-    // Resize on scroll
-    @HostListener('mousewheel', ['$event']) onScroll(ev) {
-        const delta = Math.max(-1, Math.min(1, ev.wheelDelta || -ev.detail));
-        if (delta > 0) {
-            console.log('zoom in');
-        } else if (delta < 0) {
-            console.log('zoom out');
+            this.draw('DRAW ON WINDOW:RESIZE');
         }
     }
 
@@ -175,35 +165,31 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         if (this.queryResultTriples) {
-            // set initial height
-            if (this.height) {
-                this.divHeight = this.height;
-            } else {
-                this.divHeight = this.getContainerHeight() ? this.getContainerHeight() : 500;
-            }
-            this.createSVG();
-            this.redraw();
+            this.draw('DRAW ON INIT');
         }
-
-        this.getContainerHeight();
     }
 
     ngOnChanges(changes: SimpleChanges) {
-        if (changes.queryResultTriples.currentValue && !changes.queryResultTriples.isFirstChange()) {
+        if (
+            changes.queryResultTriples &&
+            changes.queryResultTriples.currentValue &&
+            !changes.queryResultTriples.isFirstChange()
+        ) {
             this.queryResultTriples = changes.queryResultTriples.currentValue;
-            this.redraw();
+            this.redraw('REDRAW ON CHANGES');
         }
     }
 
-    getContainerHeight(): number {
-        if (!this.graphContainer || !this.graphContainer.nativeElement) {
-            return null;
-        }
-        return this.graphContainer.nativeElement.clientHeight;
+    draw(message: string): void {
+        console.log(message);
+        this.createSVG();
+        this.attachData();
     }
 
-    redraw(): void {
+    redraw(message: string): void {
+        console.log(message);
         this.cleanSVG();
+        // this.createSVG();
         this.attachData();
     }
 
@@ -215,12 +201,12 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         // If type of triples is text/turtle (not array)
         // the triples must be parsed to objects instead
         if (typeof triples === 'string') {
-            this.parseTriples(triples).then(d => {
+            this.parseTriples(triples).then((d: { triples; prefixes }) => {
                 const abrTriples = this.abbreviateTriples(d);
                 this.simulationData = this.triplesToD3GraphData(abrTriples);
 
                 this.setupForceSimulation();
-                this.updateChart();
+                this.updateSVG();
             });
         } else {
             this.simulationData = this.triplesToD3GraphData(triples);
@@ -229,7 +215,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             console.log('simulationData', this.simulationData);
 
             this.setupForceSimulation();
-            this.updateChart();
+            this.updateSVG();
         }
     }
 
@@ -242,11 +228,23 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         if (!this.graphContainer) {
             return;
         }
+        // Get graph container
         const graphContainerElement = this.graphContainer.nativeElement;
 
         // Get container width & height
-        this.divWidth = this.divWidth || graphContainerElement.clientWidth;
-        this.divHeight = this.divHeight || graphContainerElement.clientHeight;
+        this.divWidth = this.divWidth
+            ? this.divWidth
+            : this.getContainerWidth(graphContainerElement)
+            ? this.getContainerWidth(graphContainerElement)
+            : 400;
+        this.divHeight = this.divHeight
+            ? this.divHeight
+            : this.getContainerHeight(graphContainerElement)
+            ? this.getContainerHeight(graphContainerElement)
+            : 500;
+
+        console.log('width', this.divWidth);
+        console.log('height', this.divHeight);
 
         this.svg = d3_selection
             .select(graphContainerElement)
@@ -255,7 +253,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             .attr('height', this.divHeight);
     }
 
-    setupForceSimulation() {
+    setupForceSimulation(): void {
         // set up the simulation
         this.forceSimulation = d3_force.forceSimulation();
 
@@ -291,10 +289,10 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.forceSimulation.force('links', linkForce);
 
         // restart simulation
-        // this.forceSimulation.restart();
+        this.forceSimulation.restart();
     }
 
-    updateChart(): void {
+    updateSVG(): void {
         if (!this.svg) {
             return;
         }
@@ -401,7 +399,56 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         this.zoomHandler(this.zoomGroup, this.svg);
     }
 
-    clickedOnNode(d: D3SimulationNode): void {
+    private abbreviateTriples(data: { triples; prefixes }): Triple[] {
+        const prefixes = data.prefixes;
+        const triples = [];
+
+        function abbreviate(foi) {
+            let newVal = null;
+            // If FoI has 'http' in its name, continue
+            if (foi.indexOf('http') !== -1 || foi.indexOf('https') !== -1) {
+                // Loop over prefixes
+                Object.entries(prefixes).forEach(([key, value], index) => {
+                    // If the FoI has the prefixed namespace in its name, return it
+                    if (foi.indexOf(value) !== -1) {
+                        newVal = foi.replace(value, key + ':');
+                    }
+                });
+            }
+            return newVal;
+        }
+
+        data.triples.forEach((triple: Triple) => {
+            let s = triple.subject;
+            let p = triple.predicate;
+            let o = triple.object;
+
+            if (abbreviate(s) != null) {
+                s = abbreviate(s);
+            }
+            if (abbreviate(p) != null) {
+                p = abbreviate(p);
+            }
+            if (abbreviate(o) != null) {
+                o = abbreviate(o);
+            }
+            triples.push({ subject: s, predicate: p, object: o });
+        });
+        return triples;
+    }
+
+    private checkForRdfType(predNode: D3SimulationNode): boolean {
+        console.warn(this.prefixPipe.transform(PrefixForm.long, 'rdf:type'));
+
+        return (
+            // rdf:type
+            predNode.label === 'a' ||
+            predNode.label === 'rdf:type' ||
+            predNode.label === this.prefixPipe.transform(PrefixForm.long, 'rdf:type')
+        );
+    }
+
+    private clickedOnNode(d: D3SimulationNode): void {
         if (d3_selection.event.defaultPrevented) {
             return;
         } // dragged
@@ -447,18 +494,143 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         );
     }
 
-    private zoomHandler(zoomArea: any, svg: any) {
-        // zoom actions is a function that performs the zooming.
-        const zoomActions = () => {
-            zoomArea.attr('transform', d3_selection.event.transform);
-        };
+    private filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
+        return nodes.filter(node => node.id === id)[0];
+    }
 
-        // apply zoom handler
-        svg.call(d3_zoom.zoom().on('zoom', zoomActions));
+    private filterNodesByType(nodes: D3SimulationNode[], type: NodeType): D3SimulationNode[] {
+        return nodes.filter(node => node.type === type);
+    }
+
+    private getContainerWidth(container): number {
+        if (!container) {
+            return null;
+        }
+        return container.clientWidth;
+    }
+
+    private getContainerHeight(container): number {
+        if (!container) {
+            return null;
+        }
+        return container.clientHeight;
+    }
+
+    private limitTriples(triples: Triple[], limit: number): Triple[] {
+        if (!triples) {
+            return [];
+        }
+        if (triples.length > limit) {
+            return triples.slice(0, limit);
+        } else {
+            return triples;
+        }
+    }
+
+    private nodeRadius(d: D3SimulationNode): number {
+        if (!d) {
+            return null;
+        }
+
+        let defaultRadius = 8;
+
+        // MB if(d.instance || d.instSpace || d.instSpaceType){
+        if (d.label.indexOf('_:') !== -1) {
+            return defaultRadius--;
+        } else if (d.instance || d.label.indexOf('inst:') !== -1) {
+            return defaultRadius + 2;
+        } else if (d.owlClass || d.label.indexOf('inst:') !== -1) {
+            return defaultRadius++;
+        } else {
+            return defaultRadius;
+        }
+    }
+
+    private parseTriples(triples: Triple[]): Promise<{ triples; prefixes }> {
+        // ParseTriples
+        const parser = N3.Parser();
+        const jsonTriples = [];
+        return new Promise((resolve, reject) => {
+            parser.parse(triples, (err, triple, prefixValues) => {
+                if (triple) {
+                    jsonTriples.push(triple);
+                } else {
+                    resolve({ triples: jsonTriples, prefixes: prefixValues });
+                }
+                if (err) {
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    private triplesToD3GraphData(triples: Triple[]): D3SimulationData {
+        if (!triples) {
+            return;
+        }
+
+        // Graph
+        const graphData: D3SimulationData = new D3SimulationData();
+
+        // Initial Graph from triples
+        triples.map((triple: Triple) => {
+            const subjId = this.prefixPipe.transform(PrefixForm.short, triple.subject);
+            const predId = this.prefixPipe.transform(PrefixForm.short, triple.predicate);
+            let objId = this.prefixPipe.transform(PrefixForm.short, triple.object);
+
+            // check if object is number & round decimal numbers to 2 decimals
+            if (!isNaN(objId)) {
+                objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
+            }
+
+            const predNode: D3SimulationNode = new D3SimulationNode(predId, 1, NodeType.link);
+            graphData.nodes.push(predNode);
+
+            let subjNode: D3SimulationNode = this.filterNodesById(graphData.nodes, subjId);
+            let objNode: D3SimulationNode = this.filterNodesById(graphData.nodes, objId);
+
+            if (subjNode == null) {
+                subjNode = new D3SimulationNode(subjId, 1, NodeType.node);
+
+                graphData.nodes.push(subjNode);
+            }
+
+            if (objNode == null) {
+                objNode = new D3SimulationNode(objId, 1, NodeType.node);
+
+                graphData.nodes.push(objNode);
+            }
+
+            // check if predicate is "rdf:type"
+            // then subjNode is an instance and objNode is a Class
+            if (subjNode.instance === false) {
+                subjNode.instance = this.checkForRdfType(predNode);
+            }
+            if (objNode.owlClass === false) {
+                objNode.owlClass = this.checkForRdfType(predNode);
+            }
+
+            const blankLabel = '';
+
+            graphData.links.push(new D3SimulationLink(subjNode, predNode, blankLabel, 1));
+            graphData.links.push(new D3SimulationLink(predNode, objNode, blankLabel, 1));
+
+            graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
+        });
+
+        return graphData;
     }
 
     private updateNodePositions(nodes: D3Selection): void {
-        // constrains the nodes to be within a box
+        if (this.fitGraphIntoContainer === true) {
+            console.warn('fix graph into container', this.fitGraphIntoContainer);
+        } else {
+            console.warn('fix graph into container', this.fitGraphIntoContainer);
+        }
+
+        nodes.attr('cx', (d: D3SimulationNode) => d.x).attr('cy', (d: D3SimulationNode) => d.y);
+
+        /*// constrains the nodes to be within a box
         nodes
             .attr(
                 'cx',
@@ -469,11 +641,10 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
                 'cy',
                 (d: D3SimulationNode) =>
                     (d.y = Math.max(this.nodeRadius(d), Math.min(this.divHeight - this.nodeRadius(d), d.y)))
-            );
+            );*/
     }
 
     private updateNodeTextPositions(nodeTexts: D3Selection): void {
-        // constrains the nodes to be within a box
         nodeTexts.attr('x', (d: D3SimulationNode) => d.x + 12).attr('y', (d: D3SimulationNode) => d.y + 3);
     }
 
@@ -502,179 +673,14 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
             .attr('y', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
     }
 
-    private nodeRadius(d: D3SimulationNode): number {
-        if (!d) {
-            return null;
-        }
+    private zoomHandler(zoomArea: any, svg: any) {
+        // perform the zooming
+        const zoomActions = () => {
+            zoomArea.attr('transform', d3_selection.event.transform);
+        };
 
-        let defaultRadius = 8;
-
-        // MB if(d.instance || d.instSpace || d.instSpaceType){
-        if (d.label.indexOf('_:') !== -1) {
-            return defaultRadius--;
-        } else if (d.instance || d.label.indexOf('inst:') !== -1) {
-            return defaultRadius + 2;
-        } else if (d.owlClass || d.label.indexOf('inst:') !== -1) {
-            return defaultRadius++;
-        } else {
-            return defaultRadius;
-        }
-    }
-
-    private filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
-        return nodes.filter(node => node.id === id)[0];
-    }
-
-    private filterNodesByType(nodes: D3SimulationNode[], type: NodeType): D3SimulationNode[] {
-        return nodes.filter(node => node.type === type);
-    }
-
-    private limitTriples(triples: Triple[], limit: number): Triple[] {
-        if (!triples) {
-            return [];
-        }
-        if (triples.length > limit) {
-            return triples.slice(0, limit);
-        } else {
-            return triples;
-        }
-    }
-
-    private triplesToD3GraphData(triples: Triple[]): D3SimulationData {
-        if (!triples) {
-            return;
-        }
-
-        // Graph
-        const graphData: D3SimulationData = new D3SimulationData();
-
-        // Initial Graph from triples
-        triples.map((triple: Triple) => {
-            console.warn('------ TRIPLE ------ ');
-            this.log('triple', triple);
-
-            const subjId = this.prefixPipe.transform(PrefixForm.short, triple.subject);
-            const predId = this.prefixPipe.transform(PrefixForm.short, triple.predicate);
-            let objId = this.prefixPipe.transform(PrefixForm.short, triple.object);
-
-            // check if object is number & round decimal numbers to 2 decimals
-            if (!isNaN(objId)) {
-                objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
-            }
-
-            const predNode: D3SimulationNode = new D3SimulationNode(predId, 1, NodeType.link);
-            graphData.nodes.push(predNode);
-
-            let subjNode: D3SimulationNode = this.filterNodesById(graphData.nodes, subjId);
-            let objNode: D3SimulationNode = this.filterNodesById(graphData.nodes, objId);
-
-            this.log('filtered known subjNode', subjNode);
-            this.log('filtered known objNode', objNode);
-
-            if (subjNode == null) {
-                subjNode = new D3SimulationNode(subjId, 1, NodeType.node);
-
-                graphData.nodes.push(subjNode);
-            }
-
-            if (objNode == null) {
-                objNode = new D3SimulationNode(objId, 1, NodeType.node);
-
-                graphData.nodes.push(objNode);
-            }
-
-            // check if predicate is "rdf:type"
-            // then subjNode is an instance and objNode is a Class
-            if (subjNode.instance === false) {
-                subjNode.instance = this.checkForRdfType(predNode);
-                this.log('checked subj for rdf:type', subjNode.instance);
-            }
-            if (objNode.owlClass === false) {
-                objNode.owlClass = this.checkForRdfType(predNode);
-                this.log('checked obj for rdf:type', objNode.owlClass);
-            }
-
-            const blankLabel = '';
-
-            graphData.links.push(new D3SimulationLink(subjNode, predNode, blankLabel, 1));
-            graphData.links.push(new D3SimulationLink(predNode, objNode, blankLabel, 1));
-
-            graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
-
-            console.log('------ / END ------ ');
-        });
-
-        console.log(graphData.nodes);
-
-        return graphData;
-    }
-
-    private checkForRdfType(predNode: D3SimulationNode): boolean {
-        console.warn(this.prefixPipe.transform(PrefixForm.long, 'rdf:type'));
-
-        return (
-            // rdf:type
-            predNode.label === 'a' ||
-            predNode.label === 'rdf:type' ||
-            predNode.label === this.prefixPipe.transform(PrefixForm.long, 'rdf:type')
-        );
-    }
-
-    private parseTriples(triples: Triple[]): Promise<{ triples; prefixes }> {
-        // ParseTriples
-        const parser = N3.Parser();
-        const jsonTriples = [];
-        return new Promise((resolve, reject) => {
-            parser.parse(triples, (err, triple, prefixValues) => {
-                if (triple) {
-                    jsonTriples.push(triple);
-                } else {
-                    resolve({ triples: jsonTriples, prefixes: prefixValues });
-                }
-                if (err) {
-                    reject(err);
-                }
-            });
-        });
-    }
-
-    private abbreviateTriples(data): Triple[] {
-        const prefixes = data.prefixes;
-        const triples = [];
-
-        function abbreviate(foi) {
-            let newVal = null;
-            // If FoI has 'http' in its name, continue
-            if (foi.indexOf('http') !== -1) {
-                // Loop over prefixes
-                Object.entries(prefixes).forEach(([key, value], index) => {
-                    // If the FoI has the prefixed namespace in its name, return it
-                    if (foi.indexOf(value) !== -1) {
-                        newVal = foi.replace(value, key + ':');
-                    }
-                });
-            }
-            return newVal;
-        }
-
-        data.triples.forEach((triple: Triple) => {
-            let s = triple.subject;
-            let p = triple.predicate;
-            let o = triple.object;
-
-            if (abbreviate(s) != null) {
-                s = abbreviate(s);
-            }
-            if (abbreviate(p) != null) {
-                p = abbreviate(p);
-            }
-            if (abbreviate(o) != null) {
-                o = abbreviate(o);
-            }
-            triples.push({ subject: s, predicate: p, object: o });
-        });
-        console.log(triples);
-        return triples;
+        // apply zoom handler
+        svg.call(d3_zoom.zoom().on('zoom', zoomActions));
     }
 
     log(messageString: string, messageValue: any): void {
