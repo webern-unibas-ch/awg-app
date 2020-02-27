@@ -157,7 +157,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
             // Redraw
             d3_selection.selectAll('svg').remove();
-            this.draw('DRAW ON WINDOW:RESIZE');
+            this.redraw('DRAW ON WINDOW:RESIZE');
         }
     }
 
@@ -165,7 +165,7 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
 
     ngOnInit() {
         if (this.queryResultTriples) {
-            this.draw('DRAW ON INIT');
+            this.redraw('DRAW ON INIT');
         }
     }
 
@@ -180,16 +180,10 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         }
     }
 
-    draw(message: string): void {
-        console.log(message);
-        this.createSVG();
-        this.attachData();
-    }
-
     redraw(message: string): void {
         console.log(message);
         this.cleanSVG();
-        // this.createSVG();
+        this.createSVG();
         this.attachData();
     }
 
@@ -246,11 +240,10 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
         console.log('width', this.divWidth);
         console.log('height', this.divHeight);
 
-        this.svg = d3_selection
-            .select(graphContainerElement)
-            .append('svg')
-            .attr('width', this.divWidth)
-            .attr('height', this.divHeight);
+        if (!this.svg) {
+            this.svg = d3_selection.select(graphContainerElement).append('svg');
+        }
+        this.svg.attr('width', this.divWidth).attr('height', this.divHeight);
     }
 
     setupForceSimulation(): void {
@@ -438,8 +431,6 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
     }
 
     private checkForRdfType(predNode: D3SimulationNode): boolean {
-        console.warn(this.prefixPipe.transform(PrefixForm.long, 'rdf:type'));
-
         return (
             // rdf:type
             predNode.label === 'a' ||
@@ -622,12 +613,6 @@ export class SparqlGraphComponent implements OnInit, OnChanges {
     }
 
     private updateNodePositions(nodes: D3Selection): void {
-        if (this.fitGraphIntoContainer === true) {
-            console.warn('fix graph into container', this.fitGraphIntoContainer);
-        } else {
-            console.warn('fix graph into container', this.fitGraphIntoContainer);
-        }
-
         nodes.attr('cx', (d: D3SimulationNode) => d.x).attr('cy', (d: D3SimulationNode) => d.y);
 
         /*// constrains the nodes to be within a box

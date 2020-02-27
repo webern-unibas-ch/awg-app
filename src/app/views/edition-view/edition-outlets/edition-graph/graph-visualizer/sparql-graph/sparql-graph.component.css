@@ -57,12 +57,12 @@
     fill: grey;
 }
 
-:host ::ng-deep #svg-body {
+#svg-body {
     position: relative;
     width: 100%;
 }
 
-:host ::ng-deep #svg-body > .icon-bar {
+#svg-body > .icon-bar {
     position: absolute;
     width: 100%;
     z-index: 10;

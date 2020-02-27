@@ -62,19 +62,26 @@
         >
             <ngb-panel id="awg-graph-construct-result" title="Result">
                 <ng-template ngbPanelContent>
-                    <!-- SPARQL graph visualization -->
-                    <awg-sparql-graph
-                        class="full-width"
-                        *ngIf="queryResult | async as queryResult"
-                        [queryResultTriples]="queryResult"
-                        [fitGraphIntoContainer]="fitGraphIntoContainer"
-                        (clickedURI)="graphClick($event)"
-                    >
-                    </awg-sparql-graph>
-                    <span *ngIf="!queryResult">No result to show</span>
-                    <button class="btn btn-info" color="primary" (click)="fitGraphToContainer()">
-                        Fit Graph Into Container
-                    </button>
+                    <div *ngIf="queryResult | async as queryResult; else loading">
+                        <!-- SPARQL graph visualization -->
+                        <awg-sparql-graph
+                            class="full-width"
+                            *ngIf="queryResult.length > 0; else noResult"
+                            [queryResultTriples]="queryResult"
+                            [fitGraphIntoContainer]="fitGraphIntoContainer"
+                            (clickedURI)="graphClick($event)"
+                        >
+                        </awg-sparql-graph>
+                        <button class="btn btn-info" color="primary" (click)="fitGraphToContainer()">
+                            Fit Graph Into Container
+                        </button>
+                        <ng-template #noResult>
+                            <span>No result to show</span>
+                        </ng-template>
+                    </div>
+                    <ng-template #loading>
+                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+                    </ng-template>
                 </ng-template>
             </ngb-panel>
         </ngb-accordion>
