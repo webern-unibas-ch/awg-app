@@ -1,19 +1,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SparqlGraphComponent } from './sparql-graph.component';
+import { ForceGraphComponent } from './force-graph.component';
 
 describe('SparqlGraphComponent', () => {
-    let component: SparqlGraphComponent;
-    let fixture: ComponentFixture<SparqlGraphComponent>;
+    let component: ForceGraphComponent;
+    let fixture: ComponentFixture<ForceGraphComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [SparqlGraphComponent]
+            declarations: [ForceGraphComponent]
         }).compileComponents();
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SparqlGraphComponent);
+        fixture = TestBed.createComponent(ForceGraphComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
     });

@@ -112,11 +112,11 @@ export interface D3Simulation extends d3_force.Simulation<D3SimulationNode, D3Si
 export interface D3Selection extends d3_selection.Selection<any, any, any, any> {}
 
 @Component({
-    selector: 'awg-sparql-graph',
-    templateUrl: './sparql-graph.component.html',
-    styleUrls: ['./sparql-graph.component.css']
+    selector: 'awg-force-graph',
+    templateUrl: './force-graph.component.html',
+    styleUrls: ['./force-graph.component.css']
 })
-export class SparqlGraphComponent implements OnInit, OnChanges {
+export class ForceGraphComponent implements OnInit, OnChanges {
     @Input() queryResultTriples: Triple[];
     @Input() fitGraphIntoContainer: boolean;
     @Output() clickedURI = new EventEmitter<D3SimulationNode>();
