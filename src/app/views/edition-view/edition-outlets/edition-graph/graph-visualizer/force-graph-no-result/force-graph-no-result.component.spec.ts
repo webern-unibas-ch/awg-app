@@ -18,6 +18,7 @@ describe('ForceGraphNoResultComponent', () => {
     let mockCoreService: Partial<CoreService>;
 
     let expectedLogos: Logos;
+    let expectedHeight: number;
 
     beforeEach(async(() => {
         // stub service for test purposes
@@ -39,6 +40,7 @@ describe('ForceGraphNoResultComponent', () => {
 
         // test data
         expectedLogos = LOGOSDATA;
+        expectedHeight = 500;
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -69,6 +71,10 @@ describe('ForceGraphNoResultComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
+        it('... should not have height', () => {
+            expect(component.height).toBeUndefined('should be undefined');
+        });
+
         describe('#provideMetaData', () => {
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
@@ -140,11 +146,19 @@ describe('ForceGraphNoResultComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
+            // simulate the parent setting the input properties
+            component.height = expectedHeight;
+
             // mock the call to the meta service in #provideMetaData
             component.logos = mockCoreService.getLogos();
 
             // trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should have height', () => {
+            expect(component.height).toBeDefined();
+            expect(component.height).toBe(expectedHeight);
         });
 
         describe('#provideMetaData', () => {
@@ -159,6 +173,12 @@ describe('ForceGraphNoResultComponent', () => {
         });
 
         describe('VIEW', () => {
+            it('... should set correct height to div.text-center', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
+
+                expect(divDes[0].styles.height).toBe(expectedHeight + 'px', `should be ${expectedHeight + 'px'}`);
+            });
+
             it('... should contain correct link in 3rd and 4th paragraph', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
@@ -169,10 +189,13 @@ describe('ForceGraphNoResultComponent', () => {
                 const p4aEl = p4aDes[0].nativeElement;
 
                 expect(p3aEl.href).toBeDefined();
-                expect(p3aEl.href).toBeTruthy('should be empty'); // JASMINE: empty string ==> not truthy
+                expect(p3aEl.href).toBeTruthy('should not be empty');
+                expect(p3aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
 
                 expect(p4aEl.href).toBeDefined();
-                expect(p4aEl.href).toBeTruthy('should be empty string');
+                expect(p4aEl.href).toBeTruthy('should not be empty');
+                expect(p4aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
+
                 expect(p4aEl.textContent).toBeDefined();
                 expect(p4aEl.textContent).toContain(
                     expectedLogos.sparql.href,

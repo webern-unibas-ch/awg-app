@@ -1,5 +1,6 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
-import { Logos, MetaSectionTypes } from '@awg-core/core-models';
+import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+
+import { Logos } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
 
 /**
@@ -16,6 +17,13 @@ import { CoreService } from '@awg-core/services';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ForceGraphNoResultComponent implements OnInit {
+    /**
+     * Input variable: height.
+     *
+     * It keeps the default height of the component.
+     */
+    @Input() height: number;
+
     /**
      * Public variable: logos.
      *

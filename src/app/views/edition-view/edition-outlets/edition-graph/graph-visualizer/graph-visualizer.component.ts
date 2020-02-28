@@ -37,6 +37,8 @@ export class GraphVisualizerComponent implements OnInit {
     resultFieldExpanded = false;
     fitGraphIntoContainer = false;
 
+    defaultForceGraphHeight = 500;
+
     triples;
     query;
 

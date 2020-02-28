@@ -118,6 +118,14 @@ export interface D3Selection extends d3_selection.Selection<any, any, any, any> 
 })
 export class ForceGraphComponent implements OnInit, OnChanges {
     @Input() queryResultTriples: Triple[];
+
+    /**
+     * Input variable: height.
+     *
+     * It keeps the default height of the component.
+     */
+    @Input() height: number;
+
     @Input() fitGraphIntoContainer: boolean;
     @Output() clickedURI = new EventEmitter<D3SimulationNode>();
 
@@ -231,8 +239,8 @@ export class ForceGraphComponent implements OnInit, OnChanges {
             : this.getContainerWidth(graphContainerElement)
             ? this.getContainerWidth(graphContainerElement)
             : 400;
-        this.divHeight = this.divHeight
-            ? this.divHeight
+        this.divHeight = this.height
+            ? this.height
             : this.getContainerHeight(graphContainerElement)
             ? this.getContainerHeight(graphContainerElement)
             : 500;

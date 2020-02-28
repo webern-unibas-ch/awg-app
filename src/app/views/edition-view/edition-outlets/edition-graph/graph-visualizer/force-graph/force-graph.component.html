@@ -1,4 +1,4 @@
-<div id="svg-body" class="panel-body" [ngStyle]="{ height: height }" #graph>
+<div id="svg-body" class="panel-body" [ngStyle]="{ 'height.px': height }" #graph>
     <div class="icon-bar" fxLayout="row" [ngStyle]="{ top: '0px' }">
         <!-- Limit -->
         <span *ngIf="queryResultTriples && queryResultTriples.length > 100">
