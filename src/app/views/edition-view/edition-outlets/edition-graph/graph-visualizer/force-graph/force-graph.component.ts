@@ -16,6 +16,9 @@ import {
     ViewChild
 } from '@angular/core';
 
+import { D3SimulationLink, D3SimulationNode, D3SimulationNodeType } from './d3/models';
+import { D3Simulation } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/models/d3-force-simulation.model';
+
 import { PrefixForm, PrefixPipe } from '../prefix-pipe/prefix.pipe';
 import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
 
@@ -24,64 +27,6 @@ import * as d3_force from 'd3-force';
 import * as d3_selection from 'd3-selection';
 import * as d3_zoom from 'd3-zoom';
 import * as N3 from 'n3';
-
-export enum NodeType {
-    link = 'link',
-    node = 'node'
-}
-
-export class D3SimulationNode implements d3_force.SimulationNodeDatum {
-    id: string;
-    label: string;
-    weight: number;
-    type: NodeType;
-    owlClass: boolean;
-    instance: boolean;
-
-    // optional properties from d3_force.SimulationNodeDatum
-    index?: number;
-    x?: number;
-    y?: number;
-    vx?: number;
-    vy?: number;
-    fx?: number | null;
-    fy?: number | null;
-
-    // set default values
-    constructor(id: string, weight: number, type: NodeType) {
-        this.id = id;
-        this.label = id;
-        this.weight = weight;
-        this.type = type;
-        this.owlClass = false;
-        this.instance = false;
-    }
-}
-
-export class D3SimulationLink implements d3_force.SimulationLinkDatum<D3SimulationNode> {
-    source: D3SimulationNode | string | number;
-    target: D3SimulationNode | string | number;
-
-    predicate: string;
-    weight: number;
-
-    // optional properties from d3.SimulationLinkDatum
-    index?: number;
-
-    // set default values
-    //  source: predNode, target: objNode, predicate: blankLabel, weight: 1
-    constructor(
-        source: D3SimulationNode | string | number,
-        target: D3SimulationNode | string | number,
-        predicate: string,
-        weight: number
-    ) {
-        this.source = source;
-        this.target = target;
-        this.predicate = predicate;
-        this.weight = weight;
-    }
-}
 
 export class D3SimulationNodeTriple {
     nodeSubject: D3SimulationNode;
@@ -106,8 +51,6 @@ export class D3SimulationData {
         this.nodeTriples = [];
     }
 }
-
-export interface D3Simulation extends d3_force.Simulation<D3SimulationNode, D3SimulationLink> {}
 
 export interface D3Selection extends d3_selection.Selection<any, any, any, any> {}
 
@@ -274,7 +217,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
             .forceLink()
             .links(this.simulationData.links)
             .id((d: D3SimulationLink) => d.predicate)
-            .distance(50);
+            .distance(1 / 50);
 
         // add forces
         // add a charge to each node, a centering and collision force
@@ -339,7 +282,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
         // ==================== Add Node Names =====================
         const nodeTexts: D3Selection = this.zoomGroup
             .selectAll('.node-text')
-            .data(this.filterNodesByType(this.simulationData.nodes, NodeType.node))
+            .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
             .enter()
             .append('text')
             .attr('class', 'node-text')
@@ -348,7 +291,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
         // ==================== Add Node =====================
         const nodes: D3Selection = this.zoomGroup
             .selectAll('.node')
-            .data(this.filterNodesByType(this.simulationData.nodes, NodeType.node))
+            .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
             .enter()
             .append('circle')
             // .attr("class", "node")
@@ -497,7 +440,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
         return nodes.filter(node => node.id === id)[0];
     }
 
-    private filterNodesByType(nodes: D3SimulationNode[], type: NodeType): D3SimulationNode[] {
+    private filterNodesByType(nodes: D3SimulationNode[], type: D3SimulationNodeType): D3SimulationNode[] {
         return nodes.filter(node => node.type === type);
     }
 
@@ -582,20 +525,20 @@ export class ForceGraphComponent implements OnInit, OnChanges {
                 objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
             }
 
-            const predNode: D3SimulationNode = new D3SimulationNode(predId, 1, NodeType.link);
+            const predNode: D3SimulationNode = new D3SimulationNode(predId, 1, D3SimulationNodeType.link);
             graphData.nodes.push(predNode);
 
             let subjNode: D3SimulationNode = this.filterNodesById(graphData.nodes, subjId);
             let objNode: D3SimulationNode = this.filterNodesById(graphData.nodes, objId);
 
             if (subjNode == null) {
-                subjNode = new D3SimulationNode(subjId, 1, NodeType.node);
+                subjNode = new D3SimulationNode(subjId, 1, D3SimulationNodeType.node);
 
                 graphData.nodes.push(subjNode);
             }
 
             if (objNode == null) {
-                objNode = new D3SimulationNode(objId, 1, NodeType.node);
+                objNode = new D3SimulationNode(objId, 1, D3SimulationNodeType.node);
 
                 graphData.nodes.push(objNode);
             }
@@ -666,7 +609,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
             .attr('y', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
     }
 
-    private zoomHandler(zoomArea: any, svg: any) {
+    private zoomHandler(zoomArea: D3Selection, svg: D3Selection) {
         // perform the zooming
         const zoomActions = () => {
             zoomArea.attr('transform', d3_selection.event.transform);

@@ -11,7 +11,7 @@ import { ForceGraphNoResultComponent } from './graph-visualizer/force-graph-no-r
 
 @NgModule({
     imports: [SharedModule],
-    declarations: [GraphVisualizerComponent, ForceGraphComponent, PrefixPipe, ForceGraphNoResultComponent],
+    declarations: [GraphVisualizerComponent, ForceGraphComponent, ForceGraphNoResultComponent, PrefixPipe],
     exports: [GraphVisualizerComponent],
     providers: [EditionGraphService, PrefixPipe]
 })
