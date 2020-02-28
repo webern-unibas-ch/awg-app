@@ -63,20 +63,21 @@
             <ngb-panel id="awg-graph-construct-result" title="Result">
                 <ng-template ngbPanelContent>
                     <div *ngIf="queryResult | async as queryResult; else loading">
-                        <!-- SPARQL graph visualization -->
-                        <awg-sparql-graph
-                            class="full-width"
-                            *ngIf="queryResult.length > 0; else noResult"
-                            [queryResultTriples]="queryResult"
-                            [fitGraphIntoContainer]="fitGraphIntoContainer"
-                            (clickedURI)="graphClick($event)"
-                        >
-                        </awg-sparql-graph>
-                        <button class="btn btn-info" color="primary" (click)="fitGraphToContainer()">
-                            Fit Graph Into Container
-                        </button>
+                        <div *ngIf="queryResult.length > 0; else noResult">
+                            <!-- SPARQL graph visualization -->
+                            <awg-force-graph
+                                class="full-width"
+                                [queryResultTriples]="queryResult"
+                                [fitGraphIntoContainer]="fitGraphIntoContainer"
+                                (clickedURI)="graphClick($event)"
+                            >
+                            </awg-force-graph>
+                            <button class="btn btn-info" color="primary" (click)="fitGraphToContainer()">
+                                Fit Graph Into Container
+                            </button>
+                        </div>
                         <ng-template #noResult>
-                            <span>No result to show</span>
+                            <awg-force-graph-no-result></awg-force-graph-no-result>
                         </ng-template>
                     </div>
                     <ng-template #loading>

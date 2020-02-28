@@ -7,10 +7,11 @@ import { ForceGraphComponent } from './graph-visualizer/force-graph/force-graph.
 import { PrefixPipe } from './graph-visualizer/prefix-pipe/prefix.pipe';
 
 import { EditionGraphService } from './edition-graph.service';
+import { ForceGraphNoResultComponent } from './graph-visualizer/force-graph-no-result/force-graph-no-result.component';
 
 @NgModule({
     imports: [SharedModule],
-    declarations: [GraphVisualizerComponent, ForceGraphComponent, PrefixPipe],
+    declarations: [GraphVisualizerComponent, ForceGraphComponent, PrefixPipe, ForceGraphNoResultComponent],
     exports: [GraphVisualizerComponent],
     providers: [EditionGraphService, PrefixPipe]
 })
