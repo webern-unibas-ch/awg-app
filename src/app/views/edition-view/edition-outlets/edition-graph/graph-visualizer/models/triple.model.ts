@@ -29,5 +29,5 @@ export interface TripleComponent {
     /**
      * The nominal value of an RDF triple component.
      */
-    nominalValue;
+    nominalValue: any;
 }

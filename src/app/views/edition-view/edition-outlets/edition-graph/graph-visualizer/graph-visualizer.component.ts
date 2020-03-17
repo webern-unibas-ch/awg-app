@@ -7,10 +7,8 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { from, Observable } from 'rxjs';
 
 import { GraphRDFData } from '@awg-views/edition-view/models/graph.model';
-import {
-    GraphVisualizerService,
-    Triple
-} from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service';
+import { GraphVisualizerService } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service';
+import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 import 'codemirror/mode/turtle/turtle';
 import 'codemirror/mode/go/go';
@@ -72,7 +70,7 @@ export class GraphVisualizerComponent implements OnInit {
     doQuery() {
         // If no prefix is defined in the query, get it from the turtle file
         if (this.query.toLowerCase().indexOf('prefix') === -1) {
-            this.query = this.editionGraphService.appendPrefixesToQuery(this.query, this.triples);
+            this.query = this.editionGraphService.appendNamespacesToQuery(this.query, this.triples);
         }
 
         // Get the query type
@@ -82,7 +80,7 @@ export class GraphVisualizerComponent implements OnInit {
         this.queryResult = this.queryLocalstore(this.queryType, this.query, this.triples);
     }
 
-    private queryLocalstore(queryType, query, triples) {
+    private queryLocalstore(queryType: string, query, triples) {
         // Capture start time of query
         const t1 = Date.now();
 

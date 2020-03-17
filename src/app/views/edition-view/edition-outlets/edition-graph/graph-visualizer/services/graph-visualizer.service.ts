@@ -5,15 +5,10 @@
 
 import { Injectable } from '@angular/core';
 
-import * as N3 from 'n3';
-import { QueryResult, QueryTypeIndex, Triple } from '../models';
+import { Namespace, QueryResult, QueryTypeIndex, Triple, TripleComponent } from '../models';
 
-/**
- * Declared variable: rdfstore.
- *
- * It provides access to the rdfstore library.
- */
-declare var rdfstore;
+import * as N3 from 'n3';
+import * as rdfstore from 'rdfstore';
 
 /**
  * The GraphVisualizer service.
@@ -32,36 +27,36 @@ export class GraphVisualizerService {
     private store: any;
 
     /**
-     * Constructor of the EditionGraphService.
+     * Constructor of the GraphVisualizerService.
      */
     constructor() {}
 
     /**
-     * Public method: appendPrefixesToQuery.
+     * Public method: appendNamespacesToQuery.
      *
-     * It appends prefixes used in triples to the query.
+     * It appends namespaces for prefixes used in a SPARQL query.
      *
      * @param {string} query The given query.
-     * @param {string} triples The given triples with possible prefixes.
+     * @param {string} ttlString The given turtle string with possible prefixes.
      *
-     * @returns {string} The query with appended prefixes.
+     * @returns {string} The query with appended namespaces.
      */
-    appendPrefixesToQuery(query: string, triples: string): string {
-        if (!query || !triples) {
+    appendNamespacesToQuery(query: string, ttlString: string): string {
+        if (!query || !ttlString) {
             return;
         }
-        // Get prefixes from triples
-        const prefixes = this.extractPrefixesFromTTL(triples);
+        // get namespaces from triples
+        const namespaces: Namespace = this.extractNamespacesFromTTL(ttlString);
 
-        // Get prefixes in query
-        const namespaces = this.nameSpacesInQuery(query);
+        // get prefixes from query
+        const prefixes: string[] = this.extractPrefixesFromQuery(query);
 
         // Append the used namespaces to the query
-        const keys = Object.keys(prefixes);
+        const keys = Object.keys(namespaces);
         let pfxString = '';
         keys.forEach(key => {
-            if (namespaces.indexOf(key) !== -1) {
-                pfxString += `PREFIX ${key} ${prefixes[key]}\n`;
+            if (prefixes.indexOf(key) !== -1) {
+                pfxString += `PREFIX ${key} ${namespaces[key]}\n`;
             }
         });
 
@@ -72,31 +67,35 @@ export class GraphVisualizerService {
         return query;
     }
 
-    doQuery(queryType: string, query, triples, mimeType?: string) {
+    /**
+     * Public method: doQuery.
+     *
+     * It performs a query against the rdfstore.
+     *
+     * @param {string} queryType The given query type.
+     * @param {string} query The given query.
+     * @param {string} ttlString The given turtle string.
+     * @param {string} [mimeType] The optional given mimetype.
+     *
+     * @returns {Promise<Triple[]>} A promise of the query result triples.
+     */
+    doQuery(queryType: string, query: string, ttlString: string, mimeType?: string): Promise<Triple[]> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
-        /*
-        console.log('----------');
-        console.log('PERFORMING query with: ');
-        console.log(query);
-        console.log(triples);
-        console.log('QUERYTYPE', queryType);
-        console.log('----------');
-*/
 
         return this.createStore()
             .then(store => {
                 // console.log('STORE', store);
                 this.store = store;
 
-                return this.loadTriplesInStore(store, triples, mimeType);
+                return this.loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then(storeSize => {
+            .then((storeSize: number) => {
                 // console.log('STORESIZE', storeSize);
                 return this.executeQuery(this.store, query);
             })
-            .then(res => {
+            .then((res: QueryResult) => {
                 // console.log('RES', res);
                 const data: QueryResult = res;
 
@@ -111,24 +110,26 @@ export class GraphVisualizerService {
                  */
 
                 // Get prefixes
-                return this.getPrefixes(triples).then(prefixes => {
+                return this.getNamespaces(ttlString).then((namespaces: Namespace) => {
                     // Process result
 
+                    console.log(namespaces);
+
                     return data.triples.map((triple: Triple) => {
-                        let s = triple.subject.nominalValue;
-                        let p = triple.predicate.nominalValue;
-                        let o = triple.object.nominalValue;
+                        let s: TripleComponent = triple.subject.nominalValue;
+                        let p: TripleComponent = triple.predicate.nominalValue;
+                        let o: TripleComponent = triple.object.nominalValue;
 
                         // Abbreviate turtle format
                         if (mimeType === 'text/turtle') {
-                            if (this.abbreviate(s, prefixes) != null) {
-                                s = this.abbreviate(s, prefixes);
+                            if (this.abbreviate(s, namespaces) != null) {
+                                s = this.abbreviate(s, namespaces);
                             }
-                            if (this.abbreviate(p, prefixes) != null) {
-                                p = this.abbreviate(p, prefixes);
+                            if (this.abbreviate(p, namespaces) != null) {
+                                p = this.abbreviate(p, namespaces);
                             }
-                            if (this.abbreviate(o, prefixes) != null) {
-                                o = this.abbreviate(o, prefixes);
+                            if (this.abbreviate(o, namespaces) != null) {
+                                o = this.abbreviate(o, namespaces);
                             }
                         }
                         return { subject: s, predicate: p, object: o };
@@ -192,22 +193,39 @@ export class GraphVisualizerService {
         return type;
     }
 
-    private abbreviate(foi, prefixes) {
-        let newVal = null;
+    /**
+     * Private method: abbreviate.
+     *
+     * It abbreviates the namespaces of a given iri.
+     *
+     * @param {*} iri The given iri.
+     * @param {Namespace} namespaces The given namespaces.
+     *
+     * @returns {TripleComponent} The abbreviated triple component.
+     */
+    private abbreviate(iri: any, namespaces: Namespace): TripleComponent {
+        let newVal: TripleComponent = null;
         // If FoI has 'http' in its name, continue
-        if (foi.indexOf('http') !== -1) {
+        if (iri.indexOf('http') !== -1) {
             // Loop over prefixes
-            Object.entries(prefixes).forEach(([key, value], index) => {
+            Object.entries(namespaces).forEach(([key, value], index) => {
                 // If the FoI has the prefixed namespace in its name, return it
-                if (foi.indexOf(value) !== -1) {
-                    newVal = foi.replace(value, key + ':');
+                if (iri.indexOf(value) !== -1) {
+                    newVal = iri.replace(value, key + ':');
                 }
             });
         }
         return newVal;
     }
 
-    private createStore() {
+    /**
+     * Private method: createStore.
+     *
+     * It creates an instance of the triple store.
+     *
+     * @returns {Promise<any>} A promise of the triple store instance.
+     */
+    private createStore(): Promise<any> {
         return new Promise((resolve, reject) => {
             rdfstore.create((err, store) => {
                 if (err) {
@@ -218,10 +236,20 @@ export class GraphVisualizerService {
         });
     }
 
-    private executeQuery(store, query) {
+    /**
+     * Private method: executeQuery.
+     *
+     * It executes a given query against a given triple store.
+     *
+     * @param {any} store The given triplestore.
+     * @param {string} query The given query string.
+     *
+     * @returns {Promise<QueryResult>} A promise of the query result.
+     */
+    private executeQuery(store: any, query: string): Promise<QueryResult> {
         // console.log('executeQuery# QUERY', query);
         return new Promise((resolve, reject) => {
-            store.execute(query, (err, res) => {
+            store.execute(query, (err, res: QueryResult) => {
                 if (err) {
                     console.error('executeQuery# got ERROR', err);
                     reject(err);
@@ -232,7 +260,16 @@ export class GraphVisualizerService {
         });
     }
 
-    private extractPrefixesFromTTL(triples) {
+    /**
+     * Private method: extractNamespacesFromTTL.
+     *
+     * It extracts the namespaces from a given triple string.
+     *
+     * @param {string} triples The given triple string.
+     *
+     * @returns {Promise<Namespace>} A promise of the namespaces.
+     */
+    private extractNamespacesFromTTL(triples: string) {
         // Replace all whitespace characters with a single space and split by space
         // remove empty values
         const arr = triples
@@ -253,11 +290,54 @@ export class GraphVisualizerService {
             obj[arr[prefixIndex + 1]] = arr[prefixIndex + 2];
         });
 
+        console.log(obj);
+
         return obj;
     }
 
-    private getPrefixes(triples) {
-        // ParseTriples
+    /**
+     * Private method: extractPrefixesFromQuery.
+     *
+     * It identifies the prefixes that are used in a SPARQL query.
+     *
+     * @param {string} query The given query.
+     *
+     * @returns {string[]} A string array of the used namespaces.
+     */
+    private extractPrefixesFromQuery(query: string): string[] {
+        const nameSpaces: string[] = [];
+
+        const regex = /[a-zA-Z]+:/g;
+        let m;
+
+        // tslint:disable-next-line:no-conditional-assignment
+        while ((m = regex.exec(query)) !== null) {
+            // This is necessary to avoid infinite loops with zero-width matches
+            if (m.index === regex.lastIndex) {
+                regex.lastIndex++;
+            }
+
+            // The result can be accessed through the `m`-variable.
+            m.forEach(match => {
+                if (nameSpaces.indexOf(match) === -1) {
+                    nameSpaces.push(match);
+                }
+            });
+        }
+        return nameSpaces;
+    }
+
+    /**
+     * Private method: getNamespaces.
+     *
+     * It extracts the namespaces from a given triple string.
+     *
+     * @param {string} triples The given triple string.
+     *
+     * @returns {Promise<Namespace>} A promise of the namespaces.
+     */
+    private getNamespaces(triples: string): Promise<Namespace> {
+        // parse triples
         const parser = new N3.Parser();
 
         // console.log('PARSER', parser);
@@ -273,10 +353,22 @@ export class GraphVisualizerService {
         });
     }
 
-    private loadTriplesInStore(store, triples, mimeType?: string) {
+    /**
+     * Private method: loadTriplesInStore.
+     *
+     * It loads the given triple string into the given triplestore.
+     *
+     * @param {any} store The given triplestore.
+     * @param {string} triples The given triple string.
+     * @param {string} [mimeType] The optional given mimetype.
+     *
+     * @returns {Promise<number>} A promise of the size of the triples loaded into the store.
+     */
+    private loadTriplesInStore(store: any, triples: string, mimeType?: string): Promise<number> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
+
         return new Promise((resolve, reject) => {
             store.load(mimeType, triples, (err, size) => {
                 if (err) {
@@ -287,29 +379,6 @@ export class GraphVisualizerService {
                 resolve(size);
             });
         });
-    }
-
-    private nameSpacesInQuery(queryString) {
-        const array = [];
-
-        const regex = /[a-zA-Z]+:/g;
-        let m;
-
-        // tslint:disable-next-line:no-conditional-assignment
-        while ((m = regex.exec(queryString)) !== null) {
-            // This is necessary to avoid infinite loops with zero-width matches
-            if (m.index === regex.lastIndex) {
-                regex.lastIndex++;
-            }
-
-            // The result can be accessed through the `m`-variable.
-            m.forEach(match => {
-                if (array.indexOf(match) === -1) {
-                    array.push(match);
-                }
-            });
-        }
-        return array;
     }
 
     /*

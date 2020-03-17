@@ -13,6 +13,7 @@ import { D3SimulationData } from './d3-simulation-data';
 import { D3SimulationLink } from './d3-simulation-link.model';
 import { D3SimulationNode, D3SimulationNodeType } from './d3-simulation-node.model';
 import { D3SimulationNodeTriple } from './d3-simulation-node-triple.model';
+import { Namespace } from './namespace.model';
 import { PrefixForm, Prefix } from './prefix.model';
 import { QueryResult } from './query-result.model';
 import { QueryTypeIndex } from './query-type-index.model';
@@ -28,6 +29,7 @@ export {
     D3SimulationNode,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
+    Namespace,
     PrefixForm,
     Prefix,
     QueryResult,
