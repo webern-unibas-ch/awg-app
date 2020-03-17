@@ -2,17 +2,16 @@ import { Injectable } from '@angular/core';
 
 import {
     D3ForceSimulation,
+    D3Selection,
     D3Simulation,
     D3ForceSimulationOptions,
     D3SimulationLink,
     D3SimulationNode
-} from './models';
+} from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 import * as d3_drag from 'd3-drag';
 import * as d3_selection from 'd3-selection';
 import * as d3_zoom from 'd3-zoom';
-
-import { D3Selection } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component';
 
 /**
  * The D3 service.

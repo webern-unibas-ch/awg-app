@@ -16,43 +16,25 @@ import {
     ViewChild
 } from '@angular/core';
 
-import { D3SimulationLink, D3SimulationNode, D3SimulationNodeType } from './d3/models';
-import { D3Simulation } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/models/d3-force-simulation.model';
-
-import { PrefixForm, PrefixPipe } from '../prefix-pipe/prefix.pipe';
-import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
+import {
+    D3Selection,
+    D3Simulation,
+    D3SimulationData,
+    D3SimulationLink,
+    D3SimulationNode,
+    D3SimulationNodeTriple,
+    D3SimulationNodeType,
+    PrefixForm,
+    Triple
+} from '../models';
+import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 
 import * as d3_drag from 'd3-drag';
 import * as d3_force from 'd3-force';
 import * as d3_selection from 'd3-selection';
 import * as d3_zoom from 'd3-zoom';
+
 import * as N3 from 'n3';
-
-export class D3SimulationNodeTriple {
-    nodeSubject: D3SimulationNode;
-    nodePredicate: D3SimulationNode;
-    nodeObject: D3SimulationNode;
-
-    constructor(nodeSubject: D3SimulationNode, nodePredicate: D3SimulationNode, nodeObject: D3SimulationNode) {
-        this.nodeSubject = nodeSubject;
-        this.nodePredicate = nodePredicate;
-        this.nodeObject = nodeObject;
-    }
-}
-
-export class D3SimulationData {
-    nodes: D3SimulationNode[];
-    links: D3SimulationLink[];
-    nodeTriples: D3SimulationNodeTriple[];
-
-    constructor() {
-        this.nodes = [];
-        this.links = [];
-        this.nodeTriples = [];
-    }
-}
-
-export interface D3Selection extends d3_selection.Selection<any, any, any, any> {}
 
 @Component({
     selector: 'awg-force-graph',
@@ -525,20 +507,20 @@ export class ForceGraphComponent implements OnInit, OnChanges {
                 objId = Number(objId) % 1 === 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
             }
 
-            const predNode: D3SimulationNode = new D3SimulationNode(predId, 1, D3SimulationNodeType.link);
+            const predNode: D3SimulationNode = new D3SimulationNode(predId, D3SimulationNodeType.link);
             graphData.nodes.push(predNode);
 
             let subjNode: D3SimulationNode = this.filterNodesById(graphData.nodes, subjId);
             let objNode: D3SimulationNode = this.filterNodesById(graphData.nodes, objId);
 
             if (subjNode == null) {
-                subjNode = new D3SimulationNode(subjId, 1, D3SimulationNodeType.node);
+                subjNode = new D3SimulationNode(subjId, D3SimulationNodeType.node);
 
                 graphData.nodes.push(subjNode);
             }
 
             if (objNode == null) {
-                objNode = new D3SimulationNode(objId, 1, D3SimulationNodeType.node);
+                objNode = new D3SimulationNode(objId, D3SimulationNodeType.node);
 
                 graphData.nodes.push(objNode);
             }
@@ -552,10 +534,8 @@ export class ForceGraphComponent implements OnInit, OnChanges {
                 objNode.owlClass = this.checkForRdfType(predNode);
             }
 
-            const blankLabel = '';
-
-            graphData.links.push(new D3SimulationLink(subjNode, predNode, blankLabel, 1));
-            graphData.links.push(new D3SimulationLink(predNode, objNode, blankLabel, 1));
+            graphData.links.push(new D3SimulationLink(subjNode, predNode));
+            graphData.links.push(new D3SimulationLink(predNode, objNode));
 
             graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
         });

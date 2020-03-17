@@ -1,24 +1,6 @@
 import { Pipe, PipeTransform } from '@angular/core';
 
-export enum PrefixForm {
-    short = 'short',
-    long = 'long'
-}
-
-export interface IPrefix {
-    prefixName: string;
-    prefixIri: string;
-}
-
-export class Prefix implements IPrefix {
-    prefixName: string;
-    prefixIri: string;
-
-    constructor(prefixName: string, prefixIri: string) {
-        this.prefixName = prefixName;
-        this.prefixIri = prefixIri;
-    }
-}
+import { Prefix, PrefixForm } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 @Pipe({ name: 'prefix', pure: false })
 export class PrefixPipe implements PipeTransform {
