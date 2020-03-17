@@ -1,35 +1,51 @@
-import { Injectable } from '@angular/core';
-
-import * as N3 from 'n3';
-declare var rdfstore;
-
 /*
  * This service is adapted from Mads Holten's Sparql Visualizer
  * cf. https://github.com/MadsHolten/sparql-visualizer
  */
 
-export interface Qres {
-    actions?;
-    duplicates?: object[];
-    triples?: Triple[];
-}
+import { Injectable } from '@angular/core';
 
-export interface Triple {
-    subject: TripleComponent;
-    predicate: TripleComponent;
-    object: TripleComponent;
-}
+import * as N3 from 'n3';
+import { QueryResult, QueryTypeIndex, Triple } from '../models';
 
-export interface TripleComponent {
-    nominalValue;
-}
+/**
+ * Declared variable: rdfstore.
+ *
+ * It provides access to the rdfstore library.
+ */
+declare var rdfstore;
 
+/**
+ * The GraphVisualizer service.
+ *
+ * It handles the query requests of the graph visualizer.
+ *
+ * Provided in: `graph-visualizer.module`.
+ */
 @Injectable()
-export class EditionGraphService {
-    private store; // rdfstore
+export class GraphVisualizerService {
+    /**
+     * Private variable: store.
+     *
+     * It keeps the rdfstore instance.
+     */
+    private store: any;
 
+    /**
+     * Constructor of the EditionGraphService.
+     */
     constructor() {}
 
+    /**
+     * Public method: appendPrefixesToQuery.
+     *
+     * It appends prefixes used in triples to the query.
+     *
+     * @param {string} query The given query.
+     * @param {string} triples The given triples with possible prefixes.
+     *
+     * @returns {string} The query with appended prefixes.
+     */
     appendPrefixesToQuery(query: string, triples: string): string {
         if (!query || !triples) {
             return;
@@ -56,7 +72,7 @@ export class EditionGraphService {
         return query;
     }
 
-    doQuery(queryType, query, triples, mimeType?) {
+    doQuery(queryType: string, query, triples, mimeType?: string) {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
@@ -82,7 +98,7 @@ export class EditionGraphService {
             })
             .then(res => {
                 // console.log('RES', res);
-                const data: Qres = res;
+                const data: QueryResult = res;
 
                 // Reformat data if select query
                 if (queryType === 'select') {
@@ -121,22 +137,33 @@ export class EditionGraphService {
             });
     }
 
-    getQuerytype(query) {
-        let keyWords = [
-            { text: 'select', index: -1 },
-            { text: 'construct', index: -1 },
-            { text: 'count', index: -1 },
-            { text: 'describe', index: -1 },
-            { text: 'insert', index: -1 },
-            { text: 'delete', index: -1 }
+    /**
+     * Public method: getQuerytype.
+     *
+     * It gets the query type from a given query.
+     *
+     * @param {string} query The given query.
+     *
+     * @returns {string} The query type.
+     */
+    getQuerytype(query: string): string {
+        let keyWords: QueryTypeIndex[] = [
+            { queryType: 'select', index: -1 },
+            { queryType: 'construct', index: -1 },
+            { queryType: 'count', index: -1 },
+            { queryType: 'describe', index: -1 },
+            { queryType: 'insert', index: -1 },
+            { queryType: 'delete', index: -1 }
         ];
 
         // Get indexes and set a variable if at least one matches + store lowest index
         let match = false; // Set to true if some keyword match is found
         let low = Infinity;
+        let lowest: QueryTypeIndex;
+        let type: string;
 
         keyWords = keyWords.map(item => {
-            item.index = query.toLowerCase().indexOf(item.text);
+            item.index = query.toLowerCase().indexOf(item.queryType);
             if (item.index !== -1) {
                 match = true;
                 if (item.index < low) {
@@ -152,11 +179,11 @@ export class EditionGraphService {
         }
 
         // If more exist, take the lowest
-        const lowest = keyWords.find(item => item.index === low);
+        lowest = keyWords.find(item => item.index === low);
         if (!lowest) {
             return null;
         }
-        const type = lowest.text;
+        type = lowest.queryType;
 
         if (type === 'insert' || type === 'delete') {
             return 'update';
@@ -246,7 +273,7 @@ export class EditionGraphService {
         });
     }
 
-    private loadTriplesInStore(store, triples, mimeType?) {
+    private loadTriplesInStore(store, triples, mimeType?: string) {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
@@ -285,6 +312,9 @@ export class EditionGraphService {
         return array;
     }
 
+    /*
+    TODO: needed only for SELECT request
+
     private renameKeys(obj, newKeys) {
         const keyValues = Object.keys(obj).map(key => {
             const newKey = newKeys[key] || key;
@@ -293,8 +323,7 @@ export class EditionGraphService {
         return Object.assign({}, ...keyValues);
     }
 
-    /*
-    TODO: needed only for SELECT request
+
     private sparqlJSON(data) {
         if (!data) {
             return;

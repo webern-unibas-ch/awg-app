@@ -1,18 +1,15 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
+import { GraphVisualizerModule, GraphVisualizerComponent } from './graph-visualizer';
 
-import { GraphVisualizerComponent } from './graph-visualizer/graph-visualizer.component';
-import { ForceGraphComponent } from './graph-visualizer/force-graph/force-graph.component';
-import { PrefixPipe } from './graph-visualizer/prefix-pipe/prefix.pipe';
-
-import { EditionGraphService } from './edition-graph.service';
-import { ForceGraphNoResultComponent } from './graph-visualizer/force-graph-no-result/force-graph-no-result.component';
-
+/**
+ * The editionGraph module.
+ *
+ * It embeds the edition graph components, pipes and services.
+ */
 @NgModule({
-    imports: [SharedModule],
-    declarations: [GraphVisualizerComponent, ForceGraphComponent, ForceGraphNoResultComponent, PrefixPipe],
-    exports: [GraphVisualizerComponent],
-    providers: [EditionGraphService, PrefixPipe]
+    imports: [SharedModule, GraphVisualizerModule],
+    exports: [GraphVisualizerComponent]
 })
 export class EditionGraphModule {}

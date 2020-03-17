@@ -1,12 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 
-import { EditionGraphService } from './edition-graph.service';
+import { GraphVisualizerService } from './graph-visualizer.service';
 
 describe('GraphServiceService', () => {
     beforeEach(() => TestBed.configureTestingModule({}));
 
     it('should be created', () => {
-        const service: EditionGraphService = TestBed.get(EditionGraphService);
+        const service: GraphVisualizerService = TestBed.get(GraphVisualizerService);
         expect(service).toBeTruthy();
     });
 });

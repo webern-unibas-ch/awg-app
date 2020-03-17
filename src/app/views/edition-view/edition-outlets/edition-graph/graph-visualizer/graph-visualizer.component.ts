@@ -8,9 +8,9 @@ import { from, Observable } from 'rxjs';
 
 import { GraphRDFData } from '@awg-views/edition-view/models/graph.model';
 import {
-    EditionGraphService,
+    GraphVisualizerService,
     Triple
-} from '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.service';
+} from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service';
 
 import 'codemirror/mode/turtle/turtle';
 import 'codemirror/mode/go/go';
@@ -58,7 +58,7 @@ export class GraphVisualizerComponent implements OnInit {
         mode: 'sparql'
     };
 
-    constructor(private editionGraphService: EditionGraphService) {}
+    constructor(private editionGraphService: GraphVisualizerService) {}
 
     ngOnInit() {
         // set initial values
