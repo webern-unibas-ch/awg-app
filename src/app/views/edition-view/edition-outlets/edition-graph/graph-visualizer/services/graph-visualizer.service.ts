@@ -32,6 +32,42 @@ export class GraphVisualizerService {
     constructor() {}
 
     /**
+     * Public method: abbreviateTriples.
+     *
+     * It abbreviates the given triples according to the given namespaces.
+     *
+     * @param {Triple[]} triples The given triples.
+     * @param {string} namespaces The given namespaces.
+     * @param {string} [mimeType] The given optional mimeType.
+     *
+     * @returns {Triple[]} The array of abbreviated triples.
+     */
+    abbreviateTriples(triples: Triple[], namespaces: Namespace, mimeType?: string): Triple[] {
+        if (!mimeType) {
+            mimeType = 'text/turtle';
+        }
+        return triples.map((triple: Triple) => {
+            let s: TripleComponent = triple.subject.nominalValue;
+            let p: TripleComponent = triple.predicate.nominalValue;
+            let o: TripleComponent = triple.object.nominalValue;
+
+            // Abbreviate turtle format
+            if (mimeType === 'text/turtle') {
+                if (this.abbreviate(s, namespaces) != null) {
+                    s = this.abbreviate(s, namespaces);
+                }
+                if (this.abbreviate(p, namespaces) != null) {
+                    p = this.abbreviate(p, namespaces);
+                }
+                if (this.abbreviate(o, namespaces) != null) {
+                    o = this.abbreviate(o, namespaces);
+                }
+            }
+            return { subject: s, predicate: p, object: o };
+        });
+    }
+
+    /**
      * Public method: appendNamespacesToQuery.
      *
      * It appends namespaces for prefixes used in a SPARQL query.
@@ -109,31 +145,10 @@ export class GraphVisualizerService {
                  * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
                  */
 
-                // Get prefixes
+                // get namespaces
                 return this.getNamespaces(ttlString).then((namespaces: Namespace) => {
                     // Process result
-
-                    console.log(namespaces);
-
-                    return data.triples.map((triple: Triple) => {
-                        let s: TripleComponent = triple.subject.nominalValue;
-                        let p: TripleComponent = triple.predicate.nominalValue;
-                        let o: TripleComponent = triple.object.nominalValue;
-
-                        // Abbreviate turtle format
-                        if (mimeType === 'text/turtle') {
-                            if (this.abbreviate(s, namespaces) != null) {
-                                s = this.abbreviate(s, namespaces);
-                            }
-                            if (this.abbreviate(p, namespaces) != null) {
-                                p = this.abbreviate(p, namespaces);
-                            }
-                            if (this.abbreviate(o, namespaces) != null) {
-                                o = this.abbreviate(o, namespaces);
-                            }
-                        }
-                        return { subject: s, predicate: p, object: o };
-                    });
+                    return this.abbreviateTriples(data.triples, namespaces, mimeType);
                 });
             });
     }
