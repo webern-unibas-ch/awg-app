@@ -1,14 +1,20 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { FormsModule } from '@angular/forms';
+
+import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
+import { GraphVisualizerService } from '../services/graph-visualizer.service';
 
 import { ForceGraphComponent } from './force-graph.component';
 
-describe('SparqlGraphComponent', () => {
+describe('ForceGraphComponent', () => {
     let component: ForceGraphComponent;
     let fixture: ComponentFixture<ForceGraphComponent>;
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            declarations: [ForceGraphComponent]
+            imports: [FormsModule],
+            declarations: [ForceGraphComponent, PrefixPipe],
+            providers: [GraphVisualizerService, PrefixPipe]
         }).compileComponents();
     }));
 

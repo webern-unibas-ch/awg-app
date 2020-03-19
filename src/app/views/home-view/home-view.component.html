@@ -5,20 +5,22 @@
 
 <!-- header -->
 <div class="para">
-    <h5>AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)</h5>
+    <h5 class="awg-breadcrumb">AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)</h5>
 
-    <h3>
-        <i>{{ editionInfoHeaderOp12?.title }}</i
-        >&nbsp;{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }} (<a
-            [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]"
-            >{{ editionInfoHeaderOp12?.part }}</a
+    <h3 class="awg-edition-info-header">
+        <i class="awg-edition-info-header-title">{{ editionInfoHeaderOp12?.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue"
+            >{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}</span
+        >
+        (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]">{{ editionInfoHeaderOp12?.part }}</a
         >)
     </h3>
-    <h3>
-        <i>{{ editionInfoHeaderOp25?.title }}</i
-        >&nbsp;{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }} (<a
-            [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]"
-            >{{ editionInfoHeaderOp25?.part }}</a
+    <h3 class="awg-edition-info-header">
+        <i class="awg-edition-info-header-title">{{ editionInfoHeaderOp25?.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue"
+            >{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}</span
+        >
+        (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]">{{ editionInfoHeaderOp25?.part }}</a
         >)
     </h3>
 </div>

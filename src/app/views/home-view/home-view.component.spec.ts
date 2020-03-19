@@ -15,6 +15,7 @@ import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { HomeViewComponent } from './home-view.component';
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -36,6 +37,22 @@ describe('HomeViewComponent (DONE)', () => {
     let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
+    let expectedEditionInfoHeaderOp12: {
+        section: string;
+        title: string;
+        catalogueType: string;
+        catalogueNumber: string;
+        part: string;
+    };
+    let expectedEditionInfoHeaderOp25: {
+        section: string;
+        title: string;
+        catalogueType: string;
+        catalogueNumber: string;
+        part: string;
+    };
+    let expectedEditionWorkOp12: EditionWork;
+    let expectedEditionWorkOp25: EditionWork;
     let expectedEditionMetaData: MetaEdition;
 
     beforeEach(async(() => {
@@ -61,6 +78,22 @@ describe('HomeViewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // test data
+        expectedEditionInfoHeaderOp12 = {
+            section: 'AWG I/5',
+            title: 'Vier Lieder',
+            catalogueType: 'op.',
+            catalogueNumber: '12',
+            part: 'Skizzen'
+        };
+        expectedEditionInfoHeaderOp25 = {
+            section: 'AWG I/5',
+            title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+            catalogueType: 'op.',
+            catalogueNumber: '25',
+            part: 'Graph'
+        };
+        expectedEditionWorkOp12 = EditionWorks.op12;
+        expectedEditionWorkOp25 = EditionWorks.op25;
         expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
 
         // spies on component functions
@@ -105,6 +138,28 @@ describe('HomeViewComponent (DONE)', () => {
             });
         });
 
+        it('should have editionInfoHeaders', () => {
+            expect(component.editionInfoHeaderOp12).toBeDefined('should be defined');
+            expect(component.editionInfoHeaderOp25).toBeDefined('should be defined');
+
+            expect(component.editionInfoHeaderOp12).toEqual(
+                expectedEditionInfoHeaderOp12,
+                `should be ${expectedEditionInfoHeaderOp12}`
+            );
+            expect(component.editionInfoHeaderOp25).toEqual(
+                expectedEditionInfoHeaderOp25,
+                `should be ${expectedEditionInfoHeaderOp25}`
+            );
+        });
+
+        it('should have editionWorks', () => {
+            expect(component.editionWorkOp12).toBeDefined('should be defined');
+            expect(component.editionWorkOp25).toBeDefined('should be defined');
+
+            expect(component.editionWorkOp12).toEqual(expectedEditionWorkOp12, `should be ${expectedEditionWorkOp12}`);
+            expect(component.editionWorkOp25).toEqual(expectedEditionWorkOp25, `should be ${expectedEditionWorkOp25}`);
+        });
+
         it('should not have metadata', () => {
             expect(component.editionMetaData).toBeUndefined('should be undefined');
         });
@@ -115,13 +170,80 @@ describe('HomeViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.declamation', 1, 1);
             });
 
+            it('... should have one h5 and two h3 in first div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 2, 2);
+                getAndExpectDebugElementByCss(divDes[0], 'h5.awg-breadcrumb', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'h3.awg-edition-info-header', 2, 2);
+            });
+
+            it('... should render bread crumb header in first div.para', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 2, 2);
+                const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h5.awg-breadcrumb', 1, 1);
+                const headerEl = headerDes[0].nativeElement;
+
+                expect(headerEl).toBeDefined();
+                expect(headerEl.textContent).toBe(
+                    'AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)',
+                    'should be: AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)'
+                );
+            });
+
+            it('... should not render title of edition info headers in first div.para yet', () => {
+                const titleDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'h3.awg-edition-info-header i.awg-edition-info-header-title',
+                    2,
+                    2
+                );
+
+                const title1El = titleDes[0].nativeElement;
+                const title2El = titleDes[1].nativeElement;
+
+                expect(title1El).toBeDefined();
+                expect(title2El).toBeDefined();
+
+                expect(title1El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(title2El.textContent).not.toBeTruthy(`should be empty string`);
+            });
+
+            it('... should not render catalogue of edition info headers in first div.para yet', () => {
+                const catalogueDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    '.awg-edition-info-header .awg-edition-info-header-catalogue',
+                    2,
+                    2
+                );
+
+                const catalogue1El = catalogueDes[0].nativeElement;
+                const catalogue2El = catalogueDes[1].nativeElement;
+
+                expect(catalogue1El).toBeDefined();
+                expect(catalogue2El).toBeDefined();
+
+                expect(catalogue1El.innerHTML).not.toBeTruthy(`should be empty string`);
+                expect(catalogue2El.innerHTML).not.toBeTruthy(`should be empty string`);
+            });
+
+            it('... should not render part links in first div.para yet', () => {
+                const aDes = getAndExpectDebugElementByCss(compDe, '.awg-edition-info-header a', 2, 2);
+
+                const a1El = aDes[0].nativeElement;
+                const a2El = aDes[1].nativeElement;
+
+                expect(a1El).toBeDefined();
+                expect(a2El).toBeDefined();
+
+                expect(a1El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(a2El.textContent).not.toBeTruthy(`should be empty string`);
+            });
+
             it('... should not render `editors` yet', () => {
                 const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors a', 1, 1);
                 const editorsEl = editorsDes[0].nativeElement;
 
                 expect(editorsEl).toBeDefined();
-                expect(editorsEl.href).toBe('', 'should be empty string');
-                expect(editorsEl.textContent).toBe('', 'should be empty string');
+                expect(editorsEl.href).not.toBeTruthy(`should be empty string`);
+                expect(editorsEl.textContent).not.toBeTruthy(`should be empty string`);
             });
 
             it('... should not render `lastmodified` yet', () => {
@@ -129,7 +251,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const versionEl = versionDes[0].nativeElement;
 
                 expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toBe('', 'be contain empty string');
+                expect(versionEl.textContent).not.toBeTruthy(`should be empty string`);
             });
         });
     });
@@ -200,8 +322,79 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should render `editors` in declamation', () => {
-                const editorsDes = getAndExpectDebugElementByCss(compDe, '.declamation .editors a', 1, 1);
+            it('... should render title of edition info headers in first div.para', () => {
+                const titleDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'h3.awg-edition-info-header i.awg-edition-info-header-title',
+                    2,
+                    2
+                );
+
+                const title1El = titleDes[0].nativeElement;
+                const title2El = titleDes[1].nativeElement;
+
+                expect(title1El).toBeDefined();
+                expect(title2El).toBeDefined();
+
+                expect(title1El.textContent).toBe(
+                    expectedEditionInfoHeaderOp12.title,
+                    `should be ${expectedEditionInfoHeaderOp12.title}`
+                );
+                expect(title2El.textContent).toBe(
+                    expectedEditionInfoHeaderOp25.title,
+                    `should be ${expectedEditionInfoHeaderOp25.title}`
+                );
+            });
+
+            it('... should render catalogue of edition info headers in first div.para', () => {
+                const catalogueDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    '.awg-edition-info-header .awg-edition-info-header-catalogue',
+                    2,
+                    2
+                );
+
+                const catalogue1El = catalogueDes[0].nativeElement;
+                const catalogue2El = catalogueDes[1].nativeElement;
+
+                expect(catalogue1El).toBeDefined();
+                expect(catalogue2El).toBeDefined();
+
+                expect(catalogue1El.innerHTML).toBe(
+                    expectedEditionInfoHeaderOp12.catalogueType +
+                        '&nbsp;' +
+                        expectedEditionInfoHeaderOp12.catalogueNumber,
+                    `should be ${expectedEditionInfoHeaderOp12.catalogueType} ${expectedEditionInfoHeaderOp12.catalogueNumber}`
+                );
+                expect(catalogue2El.innerHTML).toBe(
+                    expectedEditionInfoHeaderOp25.catalogueType +
+                        '&nbsp;' +
+                        expectedEditionInfoHeaderOp25.catalogueNumber,
+                    `should be ${expectedEditionInfoHeaderOp25.catalogueType} ${expectedEditionInfoHeaderOp25.catalogueNumber}`
+                );
+            });
+
+            it('... should render part links in first div.para', () => {
+                const aDes = getAndExpectDebugElementByCss(compDe, '.awg-edition-info-header a', 2, 2);
+
+                const a1El = aDes[0].nativeElement;
+                const a2El = aDes[1].nativeElement;
+
+                expect(a1El).toBeDefined();
+                expect(a2El).toBeDefined();
+
+                expect(a1El.textContent).toBe(
+                    expectedEditionInfoHeaderOp12.part,
+                    `should be ${expectedEditionInfoHeaderOp12.part}`
+                );
+                expect(a2El.textContent).toBe(
+                    expectedEditionInfoHeaderOp25.part,
+                    `should be ${expectedEditionInfoHeaderOp25.part}`
+                );
+            });
+
+            it('... should render `editors` in div.declamation', () => {
+                const editorsDes = getAndExpectDebugElementByCss(compDe, 'div.declamation .editors a', 1, 1);
                 const editorsEl = editorsDes[0].nativeElement;
 
                 expect(editorsEl).toBeDefined();
@@ -215,8 +408,8 @@ describe('HomeViewComponent (DONE)', () => {
                 );
             });
 
-            it('... should render `lastmodified` in declamation', () => {
-                const versionDes = getAndExpectDebugElementByCss(compDe, '.declamation .version', 1, 1);
+            it('... should render `lastmodified` in div.declamation', () => {
+                const versionDes = getAndExpectDebugElementByCss(compDe, 'div.declamation .version', 1, 1);
                 const versionEl = versionDes[0].nativeElement;
 
                 expect(versionEl).toBeDefined();
@@ -230,20 +423,60 @@ describe('HomeViewComponent (DONE)', () => {
         describe('[routerLink]', () => {
             beforeEach(() => {
                 // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
+                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 3, 3);
 
                 // get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
             it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(1, 'should have 1 routerLink');
-                expect(routerLinks[0].linkParams).toBe('/structure');
+                expect(routerLinks.length).toBe(3, 'should have 3 routerLink');
+                expect(routerLinks[0].linkParams).toEqual([
+                    expectedEditionWorkOp12.baseRoute,
+                    expectedEditionWorkOp12.introRoute
+                ]);
+                expect(routerLinks[1].linkParams).toEqual([
+                    expectedEditionWorkOp25.baseRoute,
+                    expectedEditionWorkOp25.graphRoute
+                ]);
+                expect(routerLinks[2].linkParams).toBe('/structure');
+            });
+
+            it('... can click `intro` link in template', () => {
+                const introLinkDe = linkDes[0]; // contact link DebugElement
+                const introLink = routerLinks[0]; // contact link directive
+
+                expect(introLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                introLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(introLink.navigatedTo).toEqual([
+                    expectedEditionWorkOp12.baseRoute,
+                    expectedEditionWorkOp12.introRoute
+                ]);
+            });
+
+            it('... can click `graph` link in template', () => {
+                const graphLinkDe = linkDes[1]; // contact link DebugElement
+                const graphLink = routerLinks[1]; // contact link directive
+
+                expect(graphLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                graphLinkDe.triggerEventHandler('click', null);
+
+                fixture.detectChanges();
+
+                expect(graphLink.navigatedTo).toEqual([
+                    expectedEditionWorkOp25.baseRoute,
+                    expectedEditionWorkOp25.graphRoute
+                ]);
             });
 
             it('... can click `structure` link in template', () => {
-                const structureLinkDe = linkDes[0]; // contact link DebugElement
-                const structureLink = routerLinks[0]; // contact link directive
+                const structureLinkDe = linkDes[2]; // contact link DebugElement
+                const structureLink = routerLinks[2]; // contact link directive
 
                 expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
 

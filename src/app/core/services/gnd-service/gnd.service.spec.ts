@@ -8,7 +8,7 @@ import { StorageType } from '@awg-core/services/storage-service';
 import { GndEvent, GndEventType, GndService } from './gnd.service';
 import { AppConfig } from '@awg-app/app.config';
 
-fdescribe('GndService', () => {
+describe('GndService', () => {
     let gndService: GndService;
 
     const sessionType = StorageType.sessionStorage;
