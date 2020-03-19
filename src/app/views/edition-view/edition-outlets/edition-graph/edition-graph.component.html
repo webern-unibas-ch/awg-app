@@ -6,10 +6,12 @@
             <!-- graph description -->
             <p *ngFor="let description of graph?.description" [compile-html]="description" [compile-html-ref]="ref"></p>
 
+            <!-- dynamic graph -->
+            <h4>Dynamischer Graph</h4>
             <awg-graph-visualizer [graphRDFInputData]="graph?.rdfData"></awg-graph-visualizer>
 
-            <h4>Static Graph</h4>
             <!-- static image -->
+            <h4>Statischer Graph</h4>
             <div
                 *ngIf="graph?.staticImage && graph?.staticImage !== ''"
                 [compile-html]="graph?.staticImage"

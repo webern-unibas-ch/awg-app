@@ -1,12 +1,10 @@
-<h4>graph-visualizer works!</h4>
-
 <!-- Data: Triples, query, result -->
 
 <div *ngIf="graphRDFInputData" class="row">
     <!-- awg-graph-triples-input -->
     <div class="col-lg-6 pr-lg-0">
         <ngb-accordion #triplesAcc activeIds="awg-graph-visualizer-triples">
-            <ngb-panel id="awg-graph-visualizer-triples" title="Triples">
+            <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
                 <ng-template ngbPanelContent>
                     <!-- CodeMirror editor instance -->
                     <ngx-codemirror [(ngModel)]="triples" [options]="cmTriplesConfig"> </ngx-codemirror>
