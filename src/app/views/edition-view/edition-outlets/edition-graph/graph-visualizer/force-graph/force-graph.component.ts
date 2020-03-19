@@ -148,19 +148,18 @@ export class ForceGraphComponent implements OnInit, OnChanges {
         if (!this.graphContainer) {
             return;
         }
-        const graphContainerElement: any = this.graphContainer.nativeElement;
 
         // guard against resize before view is rendered
-        if (graphContainerElement) {
+        if (this.graphContainer) {
             // When changing from fullscreen the recorded width before resize is used
             if (!this.fullScreen && this.widthBeforeResize) {
                 this.divWidth = this.widthBeforeResize;
                 this.widthBeforeResize = null;
             } else {
-                this.divWidth = this.getContainerWidth(graphContainerElement);
+                this.divWidth = this.getContainerWidth(this.graphContainer);
             }
 
-            this.divHeight = this.getContainerHeight(graphContainerElement);
+            this.divHeight = this.getContainerHeight(this.graphContainer);
 
             // Redraw
             d3_selection.selectAll('svg').remove();
@@ -577,7 +576,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
      * @returns {number} The container width.
      */
     private getContainerWidth(container: ElementRef): number {
-        if (!container) {
+        if (!container || !container.nativeElement) {
             return null;
         }
         return container.nativeElement.clientWidth;
@@ -593,7 +592,7 @@ export class ForceGraphComponent implements OnInit, OnChanges {
      * @returns {number} The container height.
      */
     private getContainerHeight(container: ElementRef): number {
-        if (!container) {
+        if (!container || !container.nativeElement) {
             return null;
         }
         return container.nativeElement.clientHeight;
