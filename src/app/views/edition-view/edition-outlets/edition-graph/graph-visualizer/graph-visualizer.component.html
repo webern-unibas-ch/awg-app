@@ -3,7 +3,7 @@
 <div *ngIf="graphRDFInputData" class="row">
     <!-- awg-graph-triples-input -->
     <div class="col-lg-6 pr-lg-0">
-        <ngb-accordion #triplesAcc activeIds="awg-graph-visualizer-triples">
+        <ngb-accordion #triplesAcc activeIds="">
             <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
                 <ng-template ngbPanelContent>
                     <!-- CodeMirror editor instance -->
@@ -25,7 +25,7 @@
 
     <!-- awg-graph-query-input -->
     <div class="col-lg-6 pl-lg-0">
-        <ngb-accordion #sparqlAcc activeIds="awg-graph-visualizer-query">
+        <ngb-accordion #sparqlAcc activeIds="">
             <ngb-panel id="awg-graph-visualizer-query" title="SPARQL Query">
                 <ng-template ngbPanelContent>
                     <!-- CodeMirror editor instance -->
