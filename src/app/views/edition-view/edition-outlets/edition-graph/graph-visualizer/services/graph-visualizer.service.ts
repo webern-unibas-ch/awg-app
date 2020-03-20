@@ -8,7 +8,13 @@ import { Injectable } from '@angular/core';
 import { Namespace, QueryResult, QueryTypeIndex, Triple, TripleComponent } from '../models';
 
 import * as N3 from 'n3';
-import * as rdfstore from 'rdfstore';
+
+/**
+ * Declared variable: rdfstore.
+ *
+ * It provides access to the rdfstore library.
+ */
+declare var rdfstore;
 
 /**
  * The GraphVisualizer service.
