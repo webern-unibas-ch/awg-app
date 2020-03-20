@@ -42,6 +42,19 @@ import * as d3_zoom from 'd3-zoom';
 import * as N3 from 'n3';
 
 /**
+ * Object constant with a set of forces.
+ *
+ * It provides the default values for the D3 simulation's forces.
+ *
+ * Available force values: `LINK_DISTANCE`, `COLLISION_STRENGTH`, `CHARGE_STRENGTH`.
+ */
+const FORCES = {
+    LINK_DISTANCE: 50,
+    COLLISION_STRENGTH: 1,
+    CHARGE_STRENGTH: -3
+};
+
+/**
  * The ForceGraphComponent component.
  *
  * It visualizes an RDF graph using a D3 force simulation.
@@ -327,14 +340,16 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this.forceSimulation = d3_force.forceSimulation();
 
         // Create forces
-        const chargeForce = d3_force.forceManyBody().strength((d: D3SimulationNode) => this.nodeRadius(d) * -5);
+        const chargeForce = d3_force
+            .forceManyBody()
+            .strength((d: D3SimulationNode) => this.nodeRadius(d) * FORCES.CHARGE_STRENGTH);
 
         const centerForce = d3_force.forceCenter(this.divWidth / 2, this.divHeight / 2);
 
         const collideForce = d3_force
             .forceCollide()
-            .strength(1)
-            .radius(+5)
+            .strength(FORCES.COLLISION_STRENGTH)
+            .radius(d => d['r'] + 5)
             .iterations(2);
 
         // create a custom link force with id accessor to use named sources and targets
@@ -342,7 +357,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .forceLink()
             .links(this.simulationData.links)
             .id((d: D3SimulationLink) => d.predicate)
-            .distance(1 / 50);
+            .distance(FORCES.LINK_DISTANCE);
 
         // add forces
         // add a charge to each node, a centering and collision force
