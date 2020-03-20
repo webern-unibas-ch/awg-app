@@ -67,13 +67,9 @@
                                 class="full-width"
                                 [queryResultTriples]="queryResult"
                                 [height]="defaultForceGraphHeight"
-                                [fitGraphIntoContainer]="fitGraphIntoContainer"
-                                (clickedURI)="graphClick($event)"
+                                (clickedNodeRequest)="onGraphClick($event)"
                             >
                             </awg-force-graph>
-                            <button class="btn btn-info" color="primary" (click)="fitGraphToContainer()">
-                                Fit Graph Into Container
-                            </button>
                         </div>
                         <ng-template #noResult>
                             <awg-force-graph-no-result [height]="defaultForceGraphHeight"></awg-force-graph-no-result>
@@ -97,7 +93,7 @@
                            maxHeight="500px"
                            [queryResult]="queryResult"
                            [queryTime]="queryTime"
-                           (clickedURI)="tableClick($event)"
+                           (clickedNodeRequest)="onTableClick($event)"
                        >
                        </awg-sparql-table>
                        -->
