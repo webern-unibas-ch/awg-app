@@ -17,4 +17,4 @@ Please read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](C
 
 The software code of this project is released under [MIT](https://opensource.org/licenses/MIT) license, see [LICENSE.md](https://github.com/webern-unibas-ch/awg-app/blob/master/LICENSE.md).
 
-The contents of the webpage are released under [Creative Commons Attribution-NonCommercial-NoDerivatives 4.0 International License (CC BY-NC-ND 4.0)](https://creativecommons.org/licenses/by-nc-nd/4.0/), see [Disclaimer](http://edition.anton-webern.ch/contact#awg-disclaimer).
+The contents of the webpage are released under [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/), see [Disclaimer](http://edition.anton-webern.ch/contact#awg-disclaimer).

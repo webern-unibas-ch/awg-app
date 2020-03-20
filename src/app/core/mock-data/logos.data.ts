@@ -32,6 +32,12 @@ export const LOGOSDATA: Logos = {
         alt: 'Logo SNF',
         href: 'http://www.snf.ch'
     },
+    sparql: {
+        id: 'sparqllogo',
+        src: 'assets/img/logos/sparql.svg',
+        alt: 'Logo SPARQL',
+        href: 'https://www.w3.org/TR/sparql11-query/'
+    },
     unibas: {
         id: 'unibaslogo',
         src: 'assets/img/logos/uni.svg',

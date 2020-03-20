@@ -60,3 +60,30 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
 /***************************************************************************************************
  * APPLICATION IMPORTS
  */
+
+// Add global to window, assigning the value of window itself.
+(window as any).global = window;
+
+// workaround for Uncaught ReferenceError: setImmediate is not defined
+// cf. https://stackoverflow.com/a/58088954
+(window as any).setImmediate = window.setTimeout;
+
+// workaround for Uncaught ReferenceError: Buffer is not defined
+// cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
+// @ts-ignore
+window.Buffer = window.Buffer || require('buffer').Buffer;
+
+// workaround for Uncaught ReferenceError: process is not defined
+// cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691
+(window as any).process = {
+    env: { DEBUG: undefined },
+    version: ''
+};
+
+// workaround for typescript version 3.7.2 used with angular8
+// cf. https://github.com/angular/angular-cli/issues/16071
+// TODO: remove when upgrading to Angular 9
+// @ts-ignore
+window.__importDefault = mod => {
+    return mod && mod.__esModule ? mod : { default: mod };
+};

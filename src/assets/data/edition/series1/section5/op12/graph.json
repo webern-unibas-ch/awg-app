@@ -6,8 +6,10 @@
             "description": [
                 "<small class=\"text-muted\">[Die Graph-Visualisierung der Skizzen zu <i>Vier Lieder</i> op. 12 erscheint im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]<small>"
             ],
-            "query": "",
-            "triples": ""
+            "rdfData": {
+                "query": "",
+                "triples": ""
+            }
         }
     ]
 }
