@@ -3,6 +3,7 @@ import { Router } from '@angular/router';
 
 import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
 import { CoreService } from '@awg-core/services';
+import { EditionWorks } from '@awg-views/edition-view/models';
 
 /**
  * The HomeView component.
@@ -17,6 +18,46 @@ import { CoreService } from '@awg-core/services';
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class HomeViewComponent implements OnInit {
+    /**
+     * Public variable: editionInfoHeaderOp12.
+     *
+     * It keeps the header information for the edition-info for Op12.
+     */
+    editionInfoHeaderOp12 = {
+        section: 'AWG I/5',
+        title: 'Vier Lieder',
+        catalogueType: 'op.',
+        catalogueNumber: '12',
+        part: 'Skizzen'
+    };
+
+    /**
+     * Public variable: editionInfoHeaderOp25.
+     *
+     * It keeps the header information for the edition-info for Op25.
+     */
+    editionInfoHeaderOp25 = {
+        section: 'AWG I/5',
+        title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+        catalogueType: 'op.',
+        catalogueNumber: '25',
+        part: 'Graph'
+    };
+
+    /**
+     * Readonly constant: editionWorkOp12.
+     *
+     * It keeps the current composition.
+     */
+    readonly editionWorkOp12 = EditionWorks.op12;
+
+    /**
+     * Readonly constant: editionWorkOp25.
+     *
+     * It keeps the current composition.
+     */
+    readonly editionWorkOp25 = EditionWorks.op25;
+
     /**
      * Public variable: editionMetaData.
      *

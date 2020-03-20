@@ -340,7 +340,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         // emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
+        // unsubscribe from the destroy subject itself
         this.destroy$.unsubscribe();
     }
 }

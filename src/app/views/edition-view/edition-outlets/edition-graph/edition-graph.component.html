@@ -4,13 +4,25 @@
     <div *ngIf="editionGraphData$ | async as editionGraphData; else error">
         <div *ngFor="let graph of editionGraphData.graph">
             <!-- graph description -->
-            <p *ngFor="let description of graph.description" [compile-html]="description" [compile-html-ref]="ref"></p>
+            <ng-container *ngIf="graph.description">
+                <p
+                    *ngFor="let description of graph.description"
+                    [compile-html]="description"
+                    [compile-html-ref]="ref"
+                ></p>
+            </ng-container>
+
+            <!-- dynamic graph -->
+            <ng-container *ngIf="graph.rdfData && graph.rdfData.triples && graph.rdfData.query">
+                <h4>Dynamischer Graph</h4>
+                <awg-graph-visualizer [graphRDFInputData]="graph.rdfData"></awg-graph-visualizer>
+            </ng-container>
+
             <!-- static image -->
-            <div
-                *ngIf="graph.staticImage && graph.staticImage !== ''"
-                [compile-html]="graph.staticImage"
-                [compile-html-ref]="ref"
-            ></div>
+            <ng-container *ngIf="graph.staticImage && graph.staticImage !== ''">
+                <h4>Statischer Graph</h4>
+                <div [compile-html]="graph.staticImage" [compile-html-ref]="ref"></div>
+            </ng-container>
         </div>
     </div>
 

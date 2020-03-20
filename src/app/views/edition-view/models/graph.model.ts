@@ -23,6 +23,25 @@ export class Graph {
     description: string[];
 
     /**
+     * The RDF data for a graph.
+     */
+    rdfData: GraphRDFData;
+
+    /**
+     * A staticImage of a graph.
+     */
+    staticImage: string;
+}
+
+/**
+ * The GraphRDFData class.
+ *
+ * It is used in the context of the edition view
+ * to store the RDF data for a single graph
+ * from a graph json file.
+ */
+export class GraphRDFData {
+    /**
      * The preset query for a graph.
      */
     query: string;
@@ -31,11 +50,6 @@ export class Graph {
      * The preset triples for a graph.
      */
     triples: string;
-
-    /**
-     * A staticImage of a graph.
-     */
-    staticImage: string;
 }
 
 /**

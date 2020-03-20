@@ -33,11 +33,11 @@ import { ResourceData } from '@awg-views/data-view/models';
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: destroy$.
+     * Private variable: destroy$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    destroy$: Subject<boolean> = new Subject<boolean>();
+    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Public variable: errorMessage.
@@ -221,21 +221,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         if (!gndEvent) {
             return;
         }
-        switch (gndEvent.type) {
-            case GndEventType.set: {
-                // statements
-                this.gndService.setGndToSessionStorage(gndEvent.value);
-                break;
-            }
-            case GndEventType.remove: {
-                // statements
-                this.gndService.removeGndFromSessionStorage();
-                break;
-            }
-            default: {
-                console.log('got an uncatched GND event', gndEvent);
-            }
-        }
+        this.gndService.exposeGnd(gndEvent);
     }
 
     /**

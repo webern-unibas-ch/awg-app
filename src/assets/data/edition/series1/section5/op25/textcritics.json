@@ -386,10 +386,316 @@
                     "comment": "<i>1</i> mit rotem Buntstift."
                 },
                 {
-                    "measure": "…",
-                    "system": "…",
-                    "position": "…",
-                    "comment": "<small class=\"text-muted\">[Die vollständige Liste der textkritischen Kommentare zu <strong>Sk4</strong> erscheint in Kürze (02/2020).]</small>"
+                    "measure": "3B",
+                    "system": "2",
+                    "position": "1/8",
+                    "comment": "<i>zart</i> gestrichen."
+                },
+                {
+                    "measure": "3B",
+                    "system": "3",
+                    "position": "3. Note",
+                    "comment": "Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "3B",
+                    "system": "4",
+                    "position": "2/8",
+                    "comment": "<i>3</i> mit rotem Buntstift."
+                },
+                {
+                    "measure": "3B",
+                    "system": "3–4",
+                    "position": "4.–6. Note",
+                    "comment": "Durch Einkreisung getilgt."
+                },
+                {
+                    "measure": "3B",
+                    "system": "6",
+                    "position": "1. Note",
+                    "comment": "<i>4</i> mit rotem Buntstift."
+                },
+                {
+                    "measure": "3B",
+                    "system": "2",
+                    "position": "5/8",
+                    "comment": "Durch Einkreisung getilgt. Siehe Variante in System 1."
+                },
+                {
+                    "measure": "4",
+                    "system": "2–4",
+                    "position": "Taktanfang",
+                    "comment": "Taktvorzeichnung 2/4 überschreibt 4/4."
+                },
+                {
+                    "measure": "5",
+                    "system": "2",
+                    "position": "1. Note",
+                    "comment": "Punktierte Viertelnote überschreibt Halbe Note.<br />Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "5",
+                    "system": "3–4",
+                    "position": "(1–2/4)",
+                    "comment": "Durch Einkreisung mit rotem Buntstift getilgt."
+                },
+                {
+                    "measure": "5",
+                    "system": "5–6",
+                    "position": "",
+                    "comment": "Durch Streichung getilgt."
+                },
+                {
+                    "measure": "5",
+                    "system": "3",
+                    "position": "1. Note",
+                    "comment": "<i>u. 1</i> und Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "5",
+                    "system": "5",
+                    "position": "1. Note",
+                    "comment": "Beide Winkel und <i>1</i> mit rotem Buntstift."
+                },
+                {
+                    "measure": "5",
+                    "system": "8",
+                    "position": "3. Note",
+                    "comment": "Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "5",
+                    "system": "7",
+                    "position": "1. Note",
+                    "comment": "<i>1</i> mit Bleistift und nachgezogen mit rotem Buntstift."
+                },
+                {
+                    "measure": "5",
+                    "system": "2",
+                    "position": "5/8",
+                    "comment": "<i>1</i> über dem System mit rotem Buntstift und radiert. <i>1</i> unter dem System mit rotem Buntstift. (Ziffern beziehen sich auf 6/8.)"
+                },
+                {
+                    "measure": "6",
+                    "system": "3–4",
+                    "position": "1. Pause bis <br /> 1. Note",
+                    "comment": "Durch Einkreisung getilgt."
+                },
+                {
+                    "measure": "6",
+                    "system": "5",
+                    "position": "1. Note",
+                    "comment": "fis<sup>1</sup> durch Einkreisung getilgt."
+                },
+                {
+                    "measure": "6",
+                    "system": "4",
+                    "position": "2. Note",
+                    "comment": "[f] mit rotem Buntstift."
+                },
+                {
+                    "measure": "6",
+                    "system": "5–6",
+                    "position": "2.–6. Note",
+                    "comment": "Durch Einkreisung getilgt."
+                },
+                {
+                    "measure": "6",
+                    "system": "3",
+                    "position": "2.–4. Note",
+                    "comment": "Triolenziffer mit rotem Buntstift nachgezogen."
+                },
+                {
+                    "measure": "6",
+                    "system": "3",
+                    "position": "letzte Note",
+                    "comment": "Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "6",
+                    "system": "4",
+                    "position": "8/8",
+                    "comment": "<i>3</i> mit schwarzem Buntstift nachgezogen."
+                },
+                {
+                    "measure": "7",
+                    "system": "10–11",
+                    "position": "Taktanfang",
+                    "comment": "<i>4/4</i> überschreibt <i>3/4</i>."
+                },
+                {
+                    "measure": "7",
+                    "system": "10",
+                    "position": "3/8",
+                    "comment": "<i>3</i> mit Bleistift und mit schwarzem Buntstift nachgezogen. (Ziffer bezieht sich auf 1. Note.)"
+                },
+                {
+                    "measure": "7",
+                    "system": "11",
+                    "position": "8/8",
+                    "comment": "Winkel mit Bleistift und mit schwarzem Buntstift nachgezogen."
+                },
+                {
+                    "measure": "8",
+                    "system": "11",
+                    "position": "1. Note",
+                    "comment": "<i>2</i> mit grünem Buntstift."
+                },
+                {
+                    "measure": "9",
+                    "system": "11",
+                    "position": "(2/4)",
+                    "comment": "Viertelpause über dem System durch Einkreisung getilgt?"
+                },
+                {
+                    "measure": "9",
+                    "system": "11",
+                    "position": "3. Note",
+                    "comment": "sic: &#9837; (zu es<sup>2</sup>). Vermutlich Verschreibung für &#9838; (zu e<sup>2</sup>: 11. Reihenton von K<sub>gis</sub>)."
+                },
+                {
+                    "measure": "9",
+                    "system": "12",
+                    "position": "2. Note",
+                    "comment": "8–┐ mit Bleistift und mit grünem Buntstift nachgezogen."
+                },
+                {
+                    "measure": "9",
+                    "system": "13",
+                    "position": "1. Note",
+                    "comment": "<i>2</i> mit Bleistift und mit grünem Buntstift nachgezogen."
+                },
+                {
+                    "measure": "9",
+                    "system": "11",
+                    "position": "4.–5. Note",
+                    "comment": "Durch Einkreisung getilgt."
+                },
+                {
+                    "measure": "9",
+                    "system": "9",
+                    "position": "letzte Note",
+                    "comment": "Winkel mit schwarzem Buntstift und radiert."
+                },
+                {
+                    "measure": "10",
+                    "system": "9",
+                    "position": "1. Note",
+                    "comment": "Winkel mit schwarzem Buntstift."
+                },
+                {
+                    "measure": "10",
+                    "system": "9",
+                    "position": "2. Note",
+                    "comment": "<i>1</i> mit rotem Buntstift."
+                },
+                {
+                    "measure": "10",
+                    "system": "11–12",
+                    "position": "1. Note",
+                    "comment": "Durch Einkreisung getilgt."
+                },
+                {
+                    "measure": "12",
+                    "system": "13–14",
+                    "position": "Taktanfang",
+                    "comment": "<i>3/4</i> mit Bleistift und nachgezogen mit rotem Buntstift."
+                },
+                {
+                    "measure": "12",
+                    "system": "8",
+                    "position": "(1. Note)",
+                    "comment": "<i>molto</i> [xx] radiert."
+                },
+                {
+                    "measure": "12",
+                    "system": "9",
+                    "position": "1/8",
+                    "comment": "Text: Kleinschreibung <i>wer</i>[-den] überschrieben zu Großschreibung <i>Wer</i>[-den]."
+                },
+                {
+                    "measure": "12",
+                    "system": "11",
+                    "position": "1. Note",
+                    "comment": "Winkel mit grünem Buntstift."
+                },
+                {
+                    "measure": "12",
+                    "system": "13",
+                    "position": "2. Note",
+                    "comment": "<i>4</i> mit Bleistift und nachgezogen mit rotem Buntstift."
+                },
+                {
+                    "measure": "13",
+                    "system": "16",
+                    "position": "1. Note",
+                    "comment": "<i>gilt</i> mit rotem Buntstift."
+                },
+                {
+                    "measure": "13",
+                    "system": "15, 16",
+                    "position": "1. Pause",
+                    "comment": "Viertelpause überschreibt Achtelpause."
+                },
+                {
+                    "measure": "13",
+                    "system": "14",
+                    "position": "2. Note",
+                    "comment": "Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "13",
+                    "system": "15",
+                    "position": "7/8",
+                    "comment": "Achtelpause gestrichen."
+                },
+                {
+                    "measure": "13",
+                    "system": "14",
+                    "position": "letzte Note",
+                    "comment": "<i>u. 4</i> gestrichen mit rotem Buntstift."
+                },
+                {
+                    "measure": "13",
+                    "system": "14–15",
+                    "position": "letzte Note",
+                    "comment": "Pfeil mit rotem Buntstift."
+                },
+                {
+                    "measure": "13",
+                    "system": "15",
+                    "position": "letzte Note",
+                    "comment": "Winkel gestrichen."
+                },
+                {
+                    "measure": "14",
+                    "system": "15, 16",
+                    "position": "1. Note",
+                    "comment": "Achtelnote überschreibt Viertelnote."
+                },
+                {
+                    "measure": "14",
+                    "system": "13",
+                    "position": "2. Note",
+                    "comment": "h (undeutlich, auch als c<sup>1</sup> zu entziffern) durch Einklammerung getilgt und ersetzt durch h<sup>2</sup>."
+                },
+                {
+                    "measure": "14",
+                    "system": "15–16",
+                    "position": "Taktanfang",
+                    "comment": "<i>3</i> mit schwarzem Buntstift."
+                },
+                {
+                    "measure": "14",
+                    "system": "16",
+                    "position": "1. Note",
+                    "comment": "<i>u.</i> von <i>u. 3</i> sowie Winkel mit rotem Buntstift."
+                },
+                {
+                    "measure": "14",
+                    "system": "16",
+                    "position": "letzte Note",
+                    "comment": "Durch Einkreisung getilgt. Siehe Korrektur in T. 15."
                 }
             ]
         },
