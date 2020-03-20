@@ -174,6 +174,37 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
+     * Public method: setInitialTriples.
+     *
+     * It (re-)sets the initial value of the triples variable
+     * from the RDF input data.
+     *
+     * @returns {void} (Re-)Sets the initial triples.
+     */
+    setInitialTriples(): void {
+        if (!this.graphRDFInputData.triples) {
+            return;
+        }
+        this.triples = this.graphRDFInputData.triples;
+    }
+
+    /**
+     * Public method: setInitialQuery.
+     *
+     * It (re-)sets the initial value of the query variable
+     * from the RDF input data.
+     *
+     * @returns {void} (Re-)Sets the initial query.
+     */
+    setInitialQuery(): void {
+        if (!this.graphRDFInputData.query) {
+            return;
+        }
+        // If no prefix is defined in the query, get it from the turtle file
+        this.query = this.graphRDFInputData.query;
+    }
+
+    /**
      * Public method: showErrorMessage.
      *
      * It shows a given error message for a given duration.
@@ -235,36 +266,5 @@ export class GraphVisualizerComponent implements OnInit {
 
             return from([]);
         }
-    }
-
-    /**
-     * Private method: setInitialTriples.
-     *
-     * It (re-)sets the initial value of the triples variable
-     * from the RDF input data.
-     *
-     * @returns {void} (Re-)Sets the initial triples.
-     */
-    private setInitialTriples(): void {
-        if (!this.graphRDFInputData.triples) {
-            return;
-        }
-        this.triples = this.graphRDFInputData.triples;
-    }
-
-    /**
-     * Private method: setInitialQuery.
-     *
-     * It (re-)sets the initial value of the query variable
-     * from the RDF input data.
-     *
-     * @returns {void} (Re-)Sets the initial query.
-     */
-    private setInitialQuery(): void {
-        if (!this.graphRDFInputData.query) {
-            return;
-        }
-        // If no prefix is defined in the query, get it from the turtle file
-        this.query = this.graphRDFInputData.query;
     }
 }

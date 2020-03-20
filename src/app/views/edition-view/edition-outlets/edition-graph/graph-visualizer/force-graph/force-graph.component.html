@@ -3,7 +3,7 @@
         <!-- Limit -->
         <div class="btn-group float-right" *ngIf="queryResultTriples">
             <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">
-                <span *ngIf="limit != queryResultTriples.length">{{ limit }} von </span
+                <span *ngIf="limit !== queryResultTriples.length">{{ limit }} von </span
                 >{{ queryResultTriples.length }} Triples
             </button>
             <div
@@ -27,7 +27,7 @@
                             <span>{{ limitValue }}</span>
                         </button>
                     </ng-container>
-                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length.toString())">
+                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">
                         <span>Kein Limit</span>
                     </button>
                 </div>
