@@ -1,17 +1,38 @@
 <div id="svg-body" class="panel-body" [ngStyle]="{ 'height.px': height }" #graph>
     <div class="icon-bar" fxLayout="row" [ngStyle]="{ top: '0px' }">
         <!-- Limit -->
-        <span *ngIf="queryResultTriples && queryResultTriples.length > 100">
-            <div class="form-group" *ngIf="queryResultTriples.length > 100">
-                <label for="limitSelection">Select list:</label>
-                <select class="form-control" id="limitSelection" [(ngModel)]="limit" (change)="redraw()">
-                    <option value="100">100</option>
-                    <option *ngIf="queryResultTriples.length > 200" value="200">200</option>
-                    <option *ngIf="queryResultTriples.length > 500" value="200">500</option>
-                    <option *ngIf="queryResultTriples.length > 1000" value="200">1000</option>
-                </select>
+        <div class="btn-group float-right" *ngIf="queryResultTriples">
+            <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">
+                <span *ngIf="limit != queryResultTriples.length">{{ limit }} von </span
+                >{{ queryResultTriples.length }} Triples
+            </button>
+            <div
+                class="btn-group"
+                ngbDropdown
+                role="group"
+                aria-label="Button group with nested dropdown for node limit"
+            >
+                <button
+                    class="btn btn-info dropdown-toggle-split"
+                    ngbDropdownToggle
+                    [disabled]="queryResultTriples.length === 0"
+                ></button>
+                <div class="dropdown-menu" ngbDropdownMenu>
+                    <ng-container *ngFor="let limitValue of limitValues">
+                        <button
+                            *ngIf="queryResultTriples.length > limitValue"
+                            class="dropdown-item"
+                            (click)="onLimitValueChange(limitValue)"
+                        >
+                            <span>{{ limitValue }}</span>
+                        </button>
+                    </ng-container>
+                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length.toString())">
+                        <span>Kein Limit</span>
+                    </button>
+                </div>
             </div>
-        </span>
+        </div>
 
         <!-- <span *ngIf="message" class="message">{{message}}</span> -->
 
