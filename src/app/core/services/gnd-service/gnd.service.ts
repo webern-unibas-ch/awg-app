@@ -158,7 +158,7 @@ export class GndService extends StorageService {
      *
      * @param {string} value The given value to post.
      *
-     * @return {void} Sends the postMessage to the parent window^.
+     * @return {void} Sends the postMessage to the parent window.
      */
     private exposeGndMessageToParent(value: string): void {
         const parentTargets = [AppConfig.LOCALHOST_URL, AppConfig.INSERI_TEST_URL];

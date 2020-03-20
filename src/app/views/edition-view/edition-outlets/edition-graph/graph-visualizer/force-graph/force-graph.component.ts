@@ -10,11 +10,15 @@ import {
     HostListener,
     Input,
     OnChanges,
+    OnDestroy,
     OnInit,
     Output,
     SimpleChanges,
     ViewChild
 } from '@angular/core';
+
+import { Subject } from 'rxjs';
+import { debounceTime, takeUntil } from 'rxjs/operators';
 
 import {
     D3Selection,
@@ -47,7 +51,7 @@ import * as N3 from 'n3';
     templateUrl: './force-graph.component.html',
     styleUrls: ['./force-graph.component.css']
 })
-export class ForceGraphComponent implements OnInit, OnChanges {
+export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Input variable:  queryResultTriples.
      *
@@ -133,25 +137,18 @@ export class ForceGraphComponent implements OnInit, OnChanges {
     private divHeight: number;
 
     /**
-     * Private variable: widthBeforeResize.
+     * Private variable: resize$.
      *
-     * It keeps the initial width of the container div before resize.
+     * It keeps a subject for a resize event.
      */
-    private widthBeforeResize: number;
+    private resize$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Private variable: limit.
+     * Private variable: destroy$.
      *
-     * It keeps the default limit value for the display of query results.
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private limit = '100';
-
-    /**
-     * Public variable: fullscreen.
-     *
-     * It keeps a boolean flag if the graph is in fullscreen or not.
-     */
-    fullScreen = false; // Fullscreen on?
+    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * HostListener: onResize.
@@ -159,26 +156,17 @@ export class ForceGraphComponent implements OnInit, OnChanges {
      * It redraws the graph when the window is resized.
      */
     @HostListener('window:resize') onResize() {
-        if (!this.graphContainer) {
+        // guard against resize before view is rendered
+        if (!this.graphContainer || !this.queryResultTriples) {
             return;
         }
 
-        // guard against resize before view is rendered
-        if (this.graphContainer) {
-            // When changing from fullscreen the recorded width before resize is used
-            if (!this.fullScreen && this.widthBeforeResize) {
-                this.divWidth = this.widthBeforeResize;
-                this.widthBeforeResize = null;
-            } else {
-                this.divWidth = this.getContainerWidth(this.graphContainer);
-            }
+        // calculate new width & height
+        this.divWidth = this.getContainerWidth(this.graphContainer);
+        this.divHeight = this.getContainerHeight(this.graphContainer);
 
-            this.divHeight = this.getContainerHeight(this.graphContainer);
-
-            // Redraw
-            d3_selection.selectAll('svg').remove();
-            this.redraw();
-        }
+        // fire resize event
+        this.resize$.next(true);
     }
 
     /**
@@ -199,9 +187,12 @@ export class ForceGraphComponent implements OnInit, OnChanges {
      * when initializing the component.
      */
     ngOnInit() {
-        if (this.queryResultTriples) {
+        // subscribe to resize subject to redraw on resize with delay until component gets destroyed
+        this.resize$.pipe(debounceTime(150), takeUntil(this.destroy$)).subscribe((event: any) => {
             this.redraw();
-        }
+        });
+
+        this.redraw();
     }
 
     /**
@@ -245,9 +236,11 @@ export class ForceGraphComponent implements OnInit, OnChanges {
      * @returns {void} Redraws the graph.
      */
     private redraw(): void {
-        this.cleanSVG();
-        this.createSVG();
-        this.attachData();
+        if (this.queryResultTriples) {
+            this.cleanSVG();
+            this.createSVG();
+            this.attachData();
+        }
     }
 
     /**
@@ -886,5 +879,19 @@ export class ForceGraphComponent implements OnInit, OnChanges {
     log(messageString: string, messageValue: any): void {
         const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
         console.log(messageString, value);
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
     }
 }

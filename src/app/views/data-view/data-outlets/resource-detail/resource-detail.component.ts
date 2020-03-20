@@ -33,11 +33,11 @@ import { ResourceData } from '@awg-views/data-view/models';
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: destroy$.
+     * Private variable: destroy$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    destroy$: Subject<boolean> = new Subject<boolean>();
+    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Public variable: errorMessage.
