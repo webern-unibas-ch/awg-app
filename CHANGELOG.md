@@ -7,13 +7,7 @@ All notable changes to this project will be documented in this file. See [standa
 ### Features
 
 -   **core:** expose gnd to inseri test-server ([9023915](https://github.com/webern-unibas-ch/awg-app/commit/9023915c6863d801e6198750e08af9daa4d5016e))
--   **edition:** add dynamic graph visualizer - ongoing ([c6ec94b](https://github.com/webern-unibas-ch/awg-app/commit/c6ec94b4234c2e8121e3e8550528817d39ddef01))
--   **edition:** add dynamic graph visualizer - ongoing ([89aa106](https://github.com/webern-unibas-ch/awg-app/commit/89aa106317c5a02be72dc89c53e748eca8e99ed1))
--   **edition:** add dynamic graph visualizer - ongoing ([c0166ef](https://github.com/webern-unibas-ch/awg-app/commit/c0166ef8e9c3ebb73f27117717a1bed1cd787788))
--   **edition:** add dynamic graph visualizer - ongoing ([b6f8935](https://github.com/webern-unibas-ch/awg-app/commit/b6f89355cafe2f2b0f8b0feeaf6529cb8ce922e1))
--   **edition:** add dynamic graph visualizer - ongoing ([9db4968](https://github.com/webern-unibas-ch/awg-app/commit/9db49682ed27704434d88ceabb5f08f5d297f7ab))
--   **edition:** add dynamic graph visualizer - ongoing ([6db5ba0](https://github.com/webern-unibas-ch/awg-app/commit/6db5ba02e794c202e2c6ef004095313f88be114d))
--   **edition:** add dynamic graph visualizer - ongoing ([caf77c7](https://github.com/webern-unibas-ch/awg-app/commit/caf77c79f87442c084af17211b8eaa6ac870ec8e))
+-   **edition:** add dynamic graph visualizer ([c6ec94b](https://github.com/webern-unibas-ch/awg-app/commit/c6ec94b4234c2e8121e3e8550528817d39ddef01)), ([89aa106](https://github.com/webern-unibas-ch/awg-app/commit/89aa106317c5a02be72dc89c53e748eca8e99ed1)), ([c0166ef](https://github.com/webern-unibas-ch/awg-app/commit/c0166ef8e9c3ebb73f27117717a1bed1cd787788)), ([b6f8935](https://github.com/webern-unibas-ch/awg-app/commit/b6f89355cafe2f2b0f8b0feeaf6529cb8ce922e1)), ([9db4968](https://github.com/webern-unibas-ch/awg-app/commit/9db49682ed27704434d88ceabb5f08f5d297f7ab)), ([6db5ba0](https://github.com/webern-unibas-ch/awg-app/commit/6db5ba02e794c202e2c6ef004095313f88be114d)), ([caf77c7](https://github.com/webern-unibas-ch/awg-app/commit/caf77c79f87442c084af17211b8eaa6ac870ec8e))
 -   **edition:** add generalized prefix pipe ([af5163b](https://github.com/webern-unibas-ch/awg-app/commit/af5163be2a3c0a59a293595f661d1e580cd29b2c))
 -   **edition:** add graph query service to handle rdfstore methods ([0f5e959](https://github.com/webern-unibas-ch/awg-app/commit/0f5e9593b3657bc0006cce18193e52f51c5f7ca1))
 -   **edition:** add limiter for graph nodes ([fccab25](https://github.com/webern-unibas-ch/awg-app/commit/fccab250b9489294c5b318e48fa88d47b512f149))
