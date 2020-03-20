@@ -98,14 +98,14 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the array of possible limit values.
      */
-    limitValues = ['5', '10', '25', '50', '100', '200', '500', '1000'];
+    limitValues = [5, 10, 25, 50, 100, 200, 500, 1000];
 
     /**
-     * Private variable: limit.
+     * Public variable: limit.
      *
      * It keeps the default limit value for the display of query results.
      */
-    private limit = '50';
+    limit = 50;
 
     /**
      * Private variable: svg.
@@ -236,7 +236,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Sets the new limit for the redraw.
      */
-    onLimitValueChange(limitValue: string): void {
+    onLimitValueChange(limitValue: number): void {
         this.limit = limitValue;
         this.redraw();
     }
@@ -265,8 +265,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private attachData(): void {
         // Limit result length
-        const limitValue: number = parseInt(this.limit, 10);
-        const triples: Triple[] = this.limitTriples(this.queryResultTriples, limitValue);
+        const triples: Triple[] = this.limitTriples(this.queryResultTriples, this.limit);
 
         // If type of triples is text/turtle (not array)
         // the triples must be parsed to objects instead
