@@ -2,6 +2,38 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.1...v0.7.2) (2020-03-20)
+
+### Features
+
+-   **core:** expose gnd to inseri test-server ([9023915](https://github.com/webern-unibas-ch/awg-app/commit/9023915c6863d801e6198750e08af9daa4d5016e))
+-   **edition:** add dynamic graph visualizer ([c6ec94b](https://github.com/webern-unibas-ch/awg-app/commit/c6ec94b4234c2e8121e3e8550528817d39ddef01)), ([89aa106](https://github.com/webern-unibas-ch/awg-app/commit/89aa106317c5a02be72dc89c53e748eca8e99ed1)), ([c0166ef](https://github.com/webern-unibas-ch/awg-app/commit/c0166ef8e9c3ebb73f27117717a1bed1cd787788)), ([b6f8935](https://github.com/webern-unibas-ch/awg-app/commit/b6f89355cafe2f2b0f8b0feeaf6529cb8ce922e1)), ([9db4968](https://github.com/webern-unibas-ch/awg-app/commit/9db49682ed27704434d88ceabb5f08f5d297f7ab)), ([6db5ba0](https://github.com/webern-unibas-ch/awg-app/commit/6db5ba02e794c202e2c6ef004095313f88be114d)), ([caf77c7](https://github.com/webern-unibas-ch/awg-app/commit/caf77c79f87442c084af17211b8eaa6ac870ec8e))
+-   **edition:** add generalized prefix pipe ([af5163b](https://github.com/webern-unibas-ch/awg-app/commit/af5163be2a3c0a59a293595f661d1e580cd29b2c))
+-   **edition:** add graph query service to handle rdfstore methods ([0f5e959](https://github.com/webern-unibas-ch/awg-app/commit/0f5e9593b3657bc0006cce18193e52f51c5f7ca1))
+-   **edition:** add limiter for graph nodes ([fccab25](https://github.com/webern-unibas-ch/awg-app/commit/fccab250b9489294c5b318e48fa88d47b512f149))
+-   **edition:** add no result component to force graph ([71d7eba](https://github.com/webern-unibas-ch/awg-app/commit/71d7eba616640b71a9e0b89391eb72b5f5700b1d))
+-   **edition:** add zoom & drag to force graph ([1b640ba](https://github.com/webern-unibas-ch/awg-app/commit/1b640baa99b98cbecd17d594510b6c1d8ea56b00))
+
+### Bug Fixes
+
+-   **app:** adjust license to CC BY-SA-4.0 ([93e35a8](https://github.com/webern-unibas-ch/awg-app/commit/93e35a8904385752343f333107e1e7e310780aae))
+-   **edition:** add missing textcritical comments for op. 25 Sk4 ([53313f7](https://github.com/webern-unibas-ch/awg-app/commit/53313f7002767b815443492f4ea7f8f504065036)), closes [#13](https://github.com/webern-unibas-ch/awg-app/issues/13)
+-   **edition:** adjust inputs and outputs of ForceGraphComponent ([602ebe7](https://github.com/webern-unibas-ch/awg-app/commit/602ebe79dcf1214a1b224501c10d710f62152f2a))
+-   **edition:** avoid loading of empty graph data ([d9e25cb](https://github.com/webern-unibas-ch/awg-app/commit/d9e25cbff46fa309e4130b905e6ed99447415fa0))
+-   **edition:** close visualizer's triple and query panel by default ([8da4768](https://github.com/webern-unibas-ch/awg-app/commit/8da4768f4ee0a0740e66ae3b3699bafdc31c7790))
+-   **edition:** fix import of rdfstore library ([1b01220](https://github.com/webern-unibas-ch/awg-app/commit/1b01220cb29573f95508daed70a6ef027a508d88))
+-   **edition:** improve graph forces ([7ac5add](https://github.com/webern-unibas-ch/awg-app/commit/7ac5add177d3e06976485c93a49bde3cbe587d94))
+-   **edition:** improve naming of graph visualizer service methods ([6bc12af](https://github.com/webern-unibas-ch/awg-app/commit/6bc12afd691a9bb19949733e8a90b51e2245acb0))
+-   **edition:** improve resize listener for graph visualization ([9e91335](https://github.com/webern-unibas-ch/awg-app/commit/9e913352079b06436071c84457f1cc2ad795db14))
+-   **edition:** make public variables public & type limits as number ([1bc539c](https://github.com/webern-unibas-ch/awg-app/commit/1bc539c8d38feaf85be0651211a4e9c83384255e))
+-   **edition:** move all graph visualizer parts into separate module ([61d2c12](https://github.com/webern-unibas-ch/awg-app/commit/61d2c123d061151d75ad0225580a11dc75219654))
+-   **edition:** move d3 calculations into separate service and models ([366c5a2](https://github.com/webern-unibas-ch/awg-app/commit/366c5a27b6f347a033f7bbeffe281e163615ae9d))
+-   **edition:** move graph models into separate files ([d8ff681](https://github.com/webern-unibas-ch/awg-app/commit/d8ff681dc0d5d399a503594364b0ba77834b2c8d))
+-   **edition:** pass down default height to force graph components ([dc0f1de](https://github.com/webern-unibas-ch/awg-app/commit/dc0f1def1ff31894f1a9665e0559fa83f3a6b21c))
+-   **edition:** update triple data for graph visualizer ([3243296](https://github.com/webern-unibas-ch/awg-app/commit/324329618e314d20a46d45aac35adbec7d75f9be))
+-   **edition:** use graphContainer for resize HostListener ([9865db9](https://github.com/webern-unibas-ch/awg-app/commit/9865db9ac22352c0b5b0ce2a2b1692c51abb1639))
+-   **home:** add links to header titles ([f711afb](https://github.com/webern-unibas-ch/awg-app/commit/f711afb7dc84d3a5a8896b88bcd279b97d315201))
+
 ### [0.7.1](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.0...v0.7.1) (2020-02-10)
 
 ### Features
