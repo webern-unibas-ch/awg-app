@@ -891,7 +891,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         // emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
-        // Now let's also unsubscribe from the subject itself:
+        // unsubscribe from the subject itself:
         this.destroy$.unsubscribe();
     }
 }
