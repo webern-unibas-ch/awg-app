@@ -132,7 +132,7 @@ from a graph json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:52</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:66</a></div>
                             </td>
                         </tr>
 
@@ -175,6 +175,25 @@ from a graph json file.</p>
     description: string[];
 
     /**
+     * The RDF data for a graph.
+     */
+    rdfData: GraphRDFData;
+
+    /**
+     * A staticImage of a graph.
+     */
+    staticImage: string;
+}
+
+/**
+ * The GraphRDFData class.
+ *
+ * It is used in the context of the edition view
+ * to store the RDF data for a single graph
+ * from a graph json file.
+ */
+export class GraphRDFData {
+    /**
      * The preset query for a graph.
      */
     query: string;
@@ -183,11 +202,6 @@ from a graph json file.</p>
      * The preset triples for a graph.
      */
     triples: string;
-
-    /**
-     * A staticImage of a graph.
-     */
-    staticImage: string;
 }
 
 /**

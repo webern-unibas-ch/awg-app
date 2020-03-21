@@ -1,0 +1,464 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content interface">
+                   <div class="content-data">
+
+
+
+
+
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Interfaces</li>
+  <li>D3ForceSimulationOptions</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The D3ForceSimulationOptions interface.</p>
+<p>It represents the options of a d3 force simulation.</p>
+
+            </p>
+
+
+        <section>
+            <h3 id="index">Index</h3>
+            <table class="table table-sm table-bordered index-table">
+                <tbody>
+                    <tr>
+                        <td class="col-md-4">
+                            <h6><b>Properties</b></h6>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <ul class="index-list">
+                                <li>
+                                        <a href="#height">height</a>
+                                </li>
+                                <li>
+                                        <a href="#width">width</a>
+                                </li>
+                            </ul>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+
+
+            <section>
+                <h3 id="inputs">Properties</h3>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="height"></a>
+                                        <span class="name"><b>height</b><a href="#height"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>height:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The height of the simulation options.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                    <table class="table table-sm table-bordered">
+                        <tbody>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <a name="width"></a>
+                                        <span class="name"><b>width</b><a href="#width"><span class="icon ion-ios-link"></span></a></span>
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td class="col-md-4">
+                                        <code>width:         <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+</code>
+                                    </td>
+                                </tr>
+
+
+                                    <tr>
+                                        <td class="col-md-4">
+                                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                                        </td>
+                                    </tr>
+
+
+
+
+
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-description"><p>The width of the simulation options.</p>
+</div>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+            </section>
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EventEmitter } from &#x27;@angular/core&#x27;;
+
+import { D3SimulationNode } from &#x27;./d3-simulation-node.model&#x27;;
+import { D3SimulationLink } from &#x27;./d3-simulation-link.model&#x27;;
+
+import * as d3_force from &#x27;d3-force&#x27;;
+
+/**
+ * Object constant for simulation forces.
+ *
+ * It provides constant values used for the d3 force simulation.
+ */
+const FORCES &#x3D; {
+    LINK_DISTANCE: 1 / 50,
+    COLLISION_STRENGTH: 1,
+    CHARGE_STRENGTH: -1
+};
+
+/**
+ * The D3Simulation interface.
+ *
+ * It represents a d3 force simulation.
+ */
+export interface D3Simulation extends d3_force.Simulation&lt;D3SimulationNode, D3SimulationLink&gt; {}
+
+/**
+ * The D3ForceSimulationOptions interface.
+ *
+ * It represents the options of a d3 force simulation.
+ */
+export interface D3ForceSimulationOptions {
+    /**
+     * The width of the simulation options.
+     */
+    width: number;
+
+    /**
+     * The height of the simulation options.
+     */
+    height: number;
+}
+
+/**
+ * The D3ForceSimulation class.
+ *
+ * It is used in the context of the graph visualizer
+ * to store the data of a d3 force simulation.
+ */
+export class D3ForceSimulation {
+    /**
+     * Public variable: ticker.
+     *
+     * It keeps an event emitter for the d3 simulation.
+     */
+    ticker: EventEmitter&lt;D3Simulation&gt; &#x3D; new EventEmitter();
+
+    /**
+     * Public variable: forceSimulation.
+     *
+     * It keeps the d3 simulation.
+     */
+    forceSimulation: D3Simulation;
+
+    /**
+     * Public variable: nodes.
+     *
+     * It keeps an array of nodes for the d3 simulation.
+     */
+    nodes: D3SimulationNode[] &#x3D; [];
+
+    /**
+     * Public variable: links.
+     *
+     * It keeps an array of links for the d3 simulation.
+     */
+    links: D3SimulationLink[] &#x3D; [];
+
+    /**
+     * Private variable: chargeForce.
+     *
+     * It keeps the charging force.
+     */
+    private chargeForce;
+
+    /**
+     * Private variable: centerForce.
+     *
+     * It keeps the centering force.
+     */
+    private centerForce;
+
+    /**
+     * Private variable: collideForce.
+     *
+     * It keeps the colliding force.
+     */
+    private collideForce;
+
+    /**
+     * Private variable: linkForce.
+     *
+     * It keeps the linking force.
+     */
+    private linkForce;
+
+    /**
+     * Constructor of the D3ForceSimulation class.
+     *
+     * It sets the default values of a force simulation.
+     *
+     * @param {D3SimulationNode[]} nodes The given nodes array.
+     * @param {D3SimulationLink[]} links The given links array.
+     * @param {D3ForceSimulationOptions} options The given simulation options.
+     */
+    constructor(nodes: D3SimulationNode[], links: D3SimulationLink[], options: D3ForceSimulationOptions) {
+        this.nodes &#x3D; nodes;
+        this.links &#x3D; links;
+
+        this.initSimulation(options);
+    }
+
+    /**
+     * Private method: createForces.
+     *
+     * It creates the simulation&#x27;s forces.
+     *
+     * @param {D3ForceSimulationOptions} options The given simulation options.
+     *
+     * @returns {void} It creates the simulation&#x27;s forces.
+     */
+    private createForces(options: D3ForceSimulationOptions): void {
+        // create forces
+        this.chargeForce &#x3D; d3_force.forceManyBody().strength((d: D3SimulationNode) &#x3D;&gt; d[&#x27;r&#x27;] * FORCES.CHARGE_STRENGTH);
+
+        this.centerForce &#x3D; d3_force.forceCenter(options.width / 2, options.height / 2);
+
+        this.collideForce &#x3D; d3_force
+            .forceCollide()
+            .strength(FORCES.COLLISION_STRENGTH)
+            .radius(d &#x3D;&gt; d[&#x27;r&#x27;] + 5)
+            .iterations(2);
+
+        // create a custom link force with id accessor to use named sources and targets
+        this.linkForce &#x3D; d3_force
+            .forceLink()
+            .links(this.links)
+            .id((d: D3SimulationLink) &#x3D;&gt; d.predicate)
+            .distance(FORCES.LINK_DISTANCE); // FORCES.LINKS
+    }
+
+    /**
+     * Private method: initLinks.
+     *
+     * It inits the link force of the simulation.
+     *
+     * @returns {void} It inits the link force of the simulation.
+     */
+    private initLinks(): void {
+        if (!this.forceSimulation) {
+            throw new Error(&#x27;Simulation was not initialized yet&#x27;);
+        }
+        // add links to the simulation
+        this.forceSimulation.force(&#x27;links&#x27;, this.linkForce);
+    }
+
+    /**
+     * Private method: initNodes.
+     *
+     * It inits the nodes of the simulation.
+     *
+     * @returns {void} It inits the nodes of the simulation.
+     */
+    private initNodes(): void {
+        if (!this.forceSimulation) {
+            throw new Error(&#x27;Simulation was not initialized yet&#x27;);
+        }
+        // add nodes to the simulation
+        this.forceSimulation.nodes(this.nodes);
+    }
+
+    /**
+     * Private method: initSimulation.
+     *
+     * It inits the simulation.
+     *
+     * @param {D3ForceSimulationOptions} options The given simulation options.
+     *
+     * @returns {void} It inits the simulation.
+     */
+    private initSimulation(options: D3ForceSimulationOptions): void {
+        if (!options || !options.width || !options.height) {
+            throw new Error(&#x27;Missing options when initializing simulation&#x27;);
+        }
+
+        // create the simulation
+        if (!this.forceSimulation) {
+            const ticker &#x3D; this.ticker;
+
+            // set up the simulation
+            this.forceSimulation &#x3D; d3_force.forceSimulation();
+
+            this.createForces(options);
+
+            // add forces to the simulation
+            this.forceSimulation.force(&#x27;charge_force&#x27;, this.chargeForce).force(&#x27;collide_force&#x27;, this.collideForce);
+
+            // connect the d3 ticker to an angular event emitter
+            this.forceSimulation.on(&#x27;tick&#x27;, function() {
+                ticker.emit(this);
+            });
+
+            // add nodes and links to the simulation
+            this.initNodes();
+            this.initLinks();
+        }
+
+        // update the center force of the simulation
+        this.forceSimulation.force(&#x27;center_force&#x27;, this.centerForce);
+
+        // restart the simulation&#x27;s internal timer
+        this.forceSimulation.restart();
+    }
+}
+</code></pre>
+    </div>
+</div>
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'interface';
+            var COMPODOC_CURRENT_PAGE_URL = 'D3ForceSimulationOptions.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

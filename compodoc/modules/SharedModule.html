@@ -434,6 +434,7 @@ import { RouterModule } from &#x27;@angular/router&#x27;;
 //
 // shared modules
 import { CompileHtmlModule } from &#x27;./compile-html&#x27;;
+import { CodemirrorModule } from &#x27;@ctrl/ngx-codemirror&#x27;;
 import { FontAwesomeModule } from &#x27;@fortawesome/angular-fontawesome&#x27;;
 import {
     NgbAccordionModule,
@@ -474,6 +475,7 @@ import { OrderByPipe } from &#x27;./order-by/order-by.pipe&#x27;;
         ReactiveFormsModule,
         RouterModule,
         CompileHtmlModule,
+        CodemirrorModule,
         FontAwesomeModule,
         NgbAccordionModule,
         NgbButtonsModule,
@@ -498,6 +500,7 @@ import { OrderByPipe } from &#x27;./order-by/order-by.pipe&#x27;;
     ],
     exports: [
         CommonModule,
+        CodemirrorModule,
         FormsModule,
         ReactiveFormsModule,
         RouterModule,

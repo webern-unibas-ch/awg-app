@@ -89,6 +89,12 @@
                             <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
+                            <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts"><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts"><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../d3-force-simulation.model.ts)</a>
+                        </li>
+                        <li>
                             <a href="#htmlConverter" title="src/app/core/services/conversion-service/conversion.service.ts"><b>htmlConverter</b>&nbsp;&nbsp;&nbsp;(src/.../conversion.service.ts)</a>
                         </li>
                         <li>
@@ -138,6 +144,9 @@
                         </li>
                         <li>
                             <a href="#random" title="src/app/shared/compile-html/compile-html.component.ts"><b>random</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
+                        </li>
+                        <li>
+                            <a href="#rdfstore" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts"><b>rdfstore</b>&nbsp;&nbsp;&nbsp;(src/.../graph-visualizer.service.ts)</a>
                         </li>
                         <li>
                             <a href="#reverse" title="src/app/shared/compile-html/compile-html.component.ts"><b>reverse</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
@@ -234,7 +243,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;0.7.1&#x27;</code>
+                            <i>Default value : </i><code>&#x27;0.7.2&#x27;</code>
                         </td>
                     </tr>
 
@@ -267,7 +276,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;10. Februar 2020&#x27;</code>
+                            <i>Default value : </i><code>&#x27;21. März 2020&#x27;</code>
                         </td>
                     </tr>
 
@@ -688,6 +697,89 @@
             </tbody>
         </table>
 </section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="FORCES"></a>
+                        <span class="name">
+                            <b>
+                            FORCES</b>
+                            <a href="#FORCES"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    LINK_DISTANCE: 50,
+    COLLISION_STRENGTH: 1,
+    CHARGE_STRENGTH: -3
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Object constant with a set of forces.</p>
+<p>It provides the default values for the D3 simulation&#39;s forces.</p>
+<p>Available force values: <code>LINK_DISTANCE</code>, <code>COLLISION_STRENGTH</code>, <code>CHARGE_STRENGTH</code>.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="FORCES"></a>
+                        <span class="name">
+                            <b>
+                            FORCES</b>
+                            <a href="#FORCES"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    LINK_DISTANCE: 1 / 50,
+    COLLISION_STRENGTH: 1,
+    CHARGE_STRENGTH: -1
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Object constant for simulation forces.</p>
+<p>It provides constant values used for the d3 force simulation.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
     <h3>src/app/core/interceptors/interceptor-providers.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -784,6 +876,12 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         src: &#x27;assets/img/logos/snf.png&#x27;,
         alt: &#x27;Logo SNF&#x27;,
         href: &#x27;http://www.snf.ch&#x27;
+    },
+    sparql: {
+        id: &#x27;sparqllogo&#x27;,
+        src: &#x27;assets/img/logos/sparql.svg&#x27;,
+        alt: &#x27;Logo SPARQL&#x27;,
+        href: &#x27;https://www.w3.org/TR/sparql11-query/&#x27;
     },
     unibas: {
         id: &#x27;unibaslogo&#x27;,
@@ -2190,6 +2288,32 @@ from the Salsah API.</p>
                         <div class="io-description"><p>Object constant with a set of modal texts.</p>
 <p>It provides the text snippets to be used in a modal.</p>
 <p>Available snippet keys: <code>op12_sourceNotA</code>, <code>op12_sheetComingSoon</code>, <code>op12_editionComingSoon</code>, <code>M198</code>.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="rdfstore"></a>
+                        <span class="name">
+                            <b>
+                            rdfstore</b>
+                            <a href="#rdfstore"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Declared variable: rdfstore.</p>
+<p>It provides access to the rdfstore library.</p>
 </div>
                     </td>
                 </tr>

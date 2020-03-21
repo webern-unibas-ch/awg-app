@@ -1,0 +1,4146 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content component">
+                   <div class="content-data">
+
+
+
+
+<ol class="breadcrumb">
+  <li>Components</li>
+  <li>ForceGraphComponent</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+        <li >
+            <a href="#templateData" role="tab" id="templateData-tab" data-toggle="tab" data-link="template">Template</a>
+        </li>
+        <li >
+            <a href="#styleData" role="tab" id="styleData-tab" data-toggle="tab" data-link="style">Styles</a>
+        </li>
+        <li >
+            <a href="#tree" role="tab" id="tree-tab" data-toggle="tab" data-link="dom-tree">DOM Tree</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info"><p class="comment">
+    <h3>File</h3>
+</p>
+<p class="comment">
+    <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts</code>
+</p>
+
+    <p class="comment">
+        <h3>Description</h3>
+    </p>
+    <p class="comment">
+        <p>The ForceGraphComponent component.</p>
+<p>It visualizes an RDF graph using a D3 force simulation.</p>
+
+    </p>
+
+
+    <p class="comment">
+        <h3>Implements</h3>
+    </p>
+    <p class="comment">
+                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
+                    <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
+    </p>
+
+
+<section>
+    <h3>Metadata</h3>
+    <table class="table table-sm table-hover">
+        <tbody>
+
+
+
+
+
+
+
+
+
+
+
+            <tr>
+                <td class="col-md-3">selector</td>
+                <td class="col-md-9"><code>awg-force-graph</code></td>
+            </tr>
+
+            <tr>
+                <td class="col-md-3">styleUrls</td>
+                <td class="col-md-9"><code>./force-graph.component.css</code></td>
+            </tr>
+
+
+
+            <tr>
+                <td class="col-md-3">templateUrl</td>
+                <td class="col-md-9"><code>./force-graph.component.html</code></td>
+            </tr>
+
+
+
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#destroy$">destroy$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#divHeight">divHeight</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#divWidth">divWidth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#forceSimulation">forceSimulation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#graphContainer">graphContainer</a>
+                            </li>
+                            <li>
+                                <a href="#limit">limit</a>
+                            </li>
+                            <li>
+                                <a href="#limitValues">limitValues</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#resize$">resize$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#simulationData">simulationData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#svg">svg</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#zoomGroup">zoomGroup</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#attachData">attachData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkForRdfType">checkForRdfType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#cleanSVG">cleanSVG</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#clickedOnNode">clickedOnNode</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createSVG">createSVG</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#dragHandler">dragHandler</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#filterNodesById">filterNodesById</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#filterNodesByType">filterNodesByType</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getContainerHeight">getContainerHeight</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#getContainerWidth">getContainerWidth</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#limitTriples">limitTriples</a>
+                            </li>
+                            <li>
+                                <a href="#log">log</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                            </li>
+                            <li>
+                                <a href="#ngOnInit">ngOnInit</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#nodeRadius">nodeRadius</a>
+                            </li>
+                            <li>
+                                <a href="#onLimitValueChange">onLimitValueChange</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#parseTriples">parseTriples</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#redraw">redraw</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#setupForceSimulation">setupForceSimulation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#triplesToD3GraphData">triplesToD3GraphData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateLinkPositions">updateLinkPositions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateLinkTextPositions">updateLinkTextPositions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateNodePositions">updateNodePositions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateNodeTextPositions">updateNodeTextPositions</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#updateSVG">updateSVG</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#zoomHandler">zoomHandler</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Inputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#height">height</a>
+                            </li>
+                            <li>
+                                <a href="#queryResultTriples">queryResultTriples</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Outputs</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#clickedNodeRequest">clickedNodeRequest</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>HostListeners</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                <a href="#window:resize">window:resize</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+        </tbody>
+    </table>
+</section>
+
+    <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor(graphVisualizerService: <a href="../injectables/GraphVisualizerService.html">GraphVisualizerService</a>, prefixPipe: <a href="../classes/Prefix.html">PrefixPipe</a>)</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="183" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:183</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the ForceGraphComponent.</p>
+<p>It declares private instances of the
+<a href="../injectables/GraphVisualizerService.html">GraphVisualizerService</a> and the <a href="../pipes/PrefixPipe.html">PrefixPipe</a>.</p>
+</div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>graphVisualizerService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../injectables/GraphVisualizerService.html" target="_self" >GraphVisualizerService</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the GraphVisualizerService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>prefixPipe</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Prefix.html" target="_self" >PrefixPipe</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the PrefixPipe.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3 id="inputs">Inputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="height"></a>
+                        <b>height</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:80</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: height.</p>
+<p>It keeps the default height of the component.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="queryResultTriples"></a>
+                        <b>queryResultTriples</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:73</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable:  queryResultTriples.</p>
+<p>It keeps the triples of the query result.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+    <section>
+    <h3 id="outputs">Outputs</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="clickedNodeRequest"></a>
+                        <b>clickedNodeRequest</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://angular.io/api/core/EventEmitter" target="_blank" >EventEmitter</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="87" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:87</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Output variable: clickedNodeRequest.</p>
+<p>It keeps an event emitter for the node IRI a user clicked on.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+    <section>
+    <h3>HostListeners</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="window:resize"></a>
+                    <span class="name">
+                        <b>
+                            window:resize
+                        </b>
+                        <a href="#window:resize"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>window:resize()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="171"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:171</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HostListener: onResize.</p>
+<p>It redraws the graph when the window is resized.</p>
+</div>
+
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="attachData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            attachData
+                        </b>
+                        <a href="#attachData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>attachData()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: attachData.</p>
+<p>It attaches the RDF data to the simulation which is then set up.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Attaches the data and sets up the simulation.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="checkForRdfType"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            checkForRdfType
+                        </b>
+                        <a href="#checkForRdfType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkForRdfType(predicateNode: <a href="../interfaces/D3Simulation.html">D3SimulationNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="503"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:503</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: checkForRdfType.</p>
+<p>It checks if a given predicate node
+contains a short or longform of &quot;rdf:type&quot;.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>predicateNode</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given node of the RDF predicate.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The result of the check.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="cleanSVG"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            cleanSVG
+                        </b>
+                        <a href="#cleanSVG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>cleanSVG()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="295"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:295</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: cleanSVG.</p>
+<p>It removes everything from the svg container.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Cleans the svg container.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="clickedOnNode"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            clickedOnNode
+                        </b>
+                        <a href="#clickedOnNode"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>clickedOnNode(node: <a href="../interfaces/D3Simulation.html">D3SimulationNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="521"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:521</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: clickedOnNode.</p>
+<p>It emits a node the user clicked on.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given node.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Emits the node.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createSVG"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            createSVG
+                        </b>
+                        <a href="#createSVG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createSVG()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="307"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:307</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: createSVG.</p>
+<p>It creates the svg container and detects its width and height.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Creates the svg container.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="dragHandler"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            dragHandler
+                        </b>
+                        <a href="#dragHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>dragHandler(dragContext: <a href="../interfaces/D3Selection.html">D3Selection</a>, simulation: <a href="../interfaces/D3Simulation.html">D3Simulation</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="539"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:539</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: dragHandler.</p>
+<p>It binds a draggable behaviour to a given dragContext (e.g. the nodes).</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>dragContext</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given context that shall be draggable.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>simulation</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3Simulation</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given force simulation.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the drag behaviour.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterNodesById"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            filterNodesById
+                        </b>
+                        <a href="#filterNodesById"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>filterNodesById(nodes: <a href="../interfaces/D3Simulation.html">D3SimulationNode[]</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="587"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:587</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: filterNodesById.</p>
+<p>It filters an array of simulations nodes by a given id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>nodes</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given nodes array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given node id.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The filtered node.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="filterNodesByType"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            filterNodesByType
+                        </b>
+                        <a href="#filterNodesByType"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>filterNodesByType(nodes: <a href="../interfaces/D3Simulation.html">D3SimulationNode[]</a>, type: <a href="../interfaces/D3Simulation.html">D3SimulationNodeType</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="601"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:601</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: filterNodesByType.</p>
+<p>It filters an array of simulations nodes by a given type.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>nodes</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given nodes array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNodeType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given node type.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The filtered node.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContainerHeight"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getContainerHeight
+                        </b>
+                        <a href="#getContainerHeight"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getContainerHeight(container: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="630"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:630</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: getContainerHeight.</p>
+<p>It returns the clientHeight of a given container.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>container</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given container element.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The container height.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getContainerWidth"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            getContainerWidth
+                        </b>
+                        <a href="#getContainerWidth"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>getContainerWidth(container: <a href="https://angular.io/api/core/ElementRef" target="_blank">ElementRef</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="614"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:614</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: getContainerWidth.</p>
+<p>It returns the clientWidth of a given container.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>container</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given container element.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The container width.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="limitTriples"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            limitTriples
+                        </b>
+                        <a href="#limitTriples"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>limitTriples(triples: <a href="../interfaces/Triple.html">Triple[]</a>, limit: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="647"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:647</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: limitTriples.</p>
+<p>It limits a given array of triples by a given limit.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>triples</td>
+                                    <td>
+                                                <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triples array.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>limit</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given limit.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The array of limited triples.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="log"></a>
+                    <span class="name">
+                        <b>
+                            log
+                        </b>
+                        <a href="#log"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>log(messageString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, messageValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="893"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:893</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: log.</p>
+<p>It logs a message to the console.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>messageString</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given message string.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>messageValue</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given message value.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Logs a message to the console.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <b>
+                            ngOnChanges
+                        </b>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="218"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:218</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnChanges.</p>
+<p>It checks for changes of the given input.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The changes of the input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnDestroy"></a>
+                    <span class="name">
+                        <b>
+                            ngOnDestroy
+                        </b>
+                        <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnDestroy()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="904"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:904</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnDestroy.</p>
+<p>It calls the containing methods
+when destroying the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="202"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:202</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="nodeRadius"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            nodeRadius
+                        </b>
+                        <a href="#nodeRadius"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>nodeRadius(node: <a href="../interfaces/D3Simulation.html">D3SimulationNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="667"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:667</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: nodeRadius.</p>
+<p>It returns the radius of a given node depending on the kind of node.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given node.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The radius of the node.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onLimitValueChange"></a>
+                    <span class="name">
+                        <b>
+                            onLimitValueChange
+                        </b>
+                        <a href="#onLimitValueChange"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onLimitValueChange(limitValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="239"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:239</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onLimitValueChange.</p>
+<p>It sets the current limit to a given limit value
+and redraws the simulation.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>limitValue</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given limit value.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the new limit for the redraw.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="parseTriples"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            parseTriples
+                        </b>
+                        <a href="#parseTriples"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>parseTriples(triples: <a href="../interfaces/Triple.html">Triple[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="695"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:695</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: parseTriples.</p>
+<p>It parses the triples from a given triple array.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>triples</td>
+                                    <td>
+                                                <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triple array.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;literal type&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A promise of the parsed triples.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="redraw"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            redraw
+                        </b>
+                        <a href="#redraw"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>redraw()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="251"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:251</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: redraw.</p>
+<p>It redraws the graph.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Redraws the graph.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="setupForceSimulation"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            setupForceSimulation
+                        </b>
+                        <a href="#setupForceSimulation"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>setupForceSimulation()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="337"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:337</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: setupForceSimulation.</p>
+<p>It sets up the force simulation.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets up the simulation.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="triplesToD3GraphData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            triplesToD3GraphData
+                        </b>
+                        <a href="#triplesToD3GraphData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>triplesToD3GraphData(triples: <a href="../interfaces/Triple.html">Triple[]</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="722"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:722</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: triplesToD3GraphData.</p>
+<p>It calculates the D3 simulation data from an array of triples.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>triples</td>
+                                    <td>
+                                                <code><a href="../interfaces/Triple.html" target="_self" >Triple[]</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triple array.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationData</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The D3 graph data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateLinkPositions"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            updateLinkPositions
+                        </b>
+                        <a href="#updateLinkPositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateLinkPositions(links: <a href="../interfaces/D3Selection.html">D3Selection</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="828"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:828</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: updateLinkPositions.</p>
+<p>It updates the positions of the links
+on a force simulation&#39;s tick.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>links</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given links selection.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Updates the position.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateLinkTextPositions"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            updateLinkTextPositions
+                        </b>
+                        <a href="#updateLinkTextPositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateLinkTextPositions(linkTexts: <a href="../interfaces/D3Selection.html">D3Selection</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="857"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:857</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: updateLinkTextPositions.</p>
+<p>It updates the positions of the link texts
+on a force simulation&#39;s tick.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>linkTexts</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given linkTexts selection.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Updates the position.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateNodePositions"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            updateNodePositions
+                        </b>
+                        <a href="#updateNodePositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateNodePositions(nodes: <a href="../interfaces/D3Selection.html">D3Selection</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="787"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:787</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: updateNodePositions.</p>
+<p>It updates the positions of the nodes
+on a force simulation&#39;s tick.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>nodes</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given nodes selection.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Updates the position.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateNodeTextPositions"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            updateNodeTextPositions
+                        </b>
+                        <a href="#updateNodeTextPositions"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateNodeTextPositions(nodeTexts: <a href="../interfaces/D3Selection.html">D3Selection</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="814"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:814</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: updateNodeTextPositions.</p>
+<p>It updates the positions of the nodeTexts
+on a force simulation&#39;s tick.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>nodeTexts</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given nodeTexts selection.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Updates the position.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="updateSVG"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            updateSVG
+                        </b>
+                        <a href="#updateSVG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>updateSVG()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="386"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:386</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: updateSVG.</p>
+<p>It populates the svg container with all subjects
+necessary for the force simulation.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Updates the svg container.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="zoomHandler"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            zoomHandler
+                        </b>
+                        <a href="#zoomHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>zoomHandler(zoomContext: <a href="../interfaces/D3Selection.html">D3Selection</a>, svg: <a href="../interfaces/D3Selection.html">D3Selection</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="873"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:873</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: zoomHandler.</p>
+<p>It binds a pan and zoom behaviour to an svg element.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>zoomContext</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given context that shall be zoomable.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>svg</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given svg container.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets the zoom behaviour.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+    <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="destroy$"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            destroy$</b>
+                            <a href="#destroy$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="164" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:164</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: destroy$.</p>
+<p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="divHeight"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            divHeight</b>
+                            <a href="#divHeight"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="150" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:150</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: divHeight.</p>
+<p>It keeps the height of the container div.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="divWidth"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            divWidth</b>
+                            <a href="#divWidth"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="143" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:143</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: divWidth.</p>
+<p>It keeps the width of the container div.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="forceSimulation"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            forceSimulation</b>
+                            <a href="#forceSimulation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/D3Simulation.html" target="_self" >D3Simulation</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="129" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:129</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: forceSimulation.</p>
+<p>It keeps the D3 force simulation.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="graphContainer"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            graphContainer</b>
+                            <a href="#graphContainer"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;graph&#x27;, {static: true})<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="94" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:94</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>ViewChild variable: graphContainer.</p>
+<p>It keeps the reference to the element containing the graph.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="limit"></a>
+                        <span class="name">
+                            <b>
+                            limit</b>
+                            <a href="#limit"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>50</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="108" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:108</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: limit.</p>
+<p>It keeps the default limit value for the display of query results.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="limitValues"></a>
+                        <span class="name">
+                            <b>
+                            limitValues</b>
+                            <a href="#limitValues"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>[]</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>[5, 10, 25, 50, 100, 200, 500, 1000]</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="101" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:101</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: limitValues.</p>
+<p>It keeps the array of possible limit values.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="resize$"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            resize$</b>
+                            <a href="#resize$"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:157</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: resize$.</p>
+<p>It keeps a subject for a resize event.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="simulationData"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            simulationData</b>
+                            <a href="#simulationData"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationData</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="136" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:136</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: simulationData.</p>
+<p>It keeps the data for the D3 force simulation.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="svg"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            svg</b>
+                            <a href="#svg"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:115</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: svg.</p>
+<p>It keeps the D3 svg selection.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="zoomGroup"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            zoomGroup</b>
+                            <a href="#zoomGroup"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../interfaces/D3Selection.html" target="_self" >D3Selection</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="122" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts:122</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: zoomGroup.</p>
+<p>It keeps the D3 zoomGroup selection.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+</div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    Component,
+    ElementRef,
+    EventEmitter,
+    HostListener,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+    SimpleChanges,
+    ViewChild
+} from &#x27;@angular/core&#x27;;
+
+import { Subject } from &#x27;rxjs&#x27;;
+import { debounceTime, takeUntil } from &#x27;rxjs/operators&#x27;;
+
+import {
+    D3Selection,
+    D3Simulation,
+    D3SimulationData,
+    D3SimulationLink,
+    D3SimulationNode,
+    D3SimulationNodeTriple,
+    D3SimulationNodeType,
+    PrefixForm,
+    Triple
+} from &#x27;../models&#x27;;
+import { PrefixPipe } from &#x27;../prefix-pipe/prefix.pipe&#x27;;
+import { GraphVisualizerService } from &#x27;../services/graph-visualizer.service&#x27;;
+
+import * as d3_drag from &#x27;d3-drag&#x27;;
+import * as d3_force from &#x27;d3-force&#x27;;
+import * as d3_selection from &#x27;d3-selection&#x27;;
+import * as d3_zoom from &#x27;d3-zoom&#x27;;
+
+import * as N3 from &#x27;n3&#x27;;
+
+/**
+ * Object constant with a set of forces.
+ *
+ * It provides the default values for the D3 simulation&#x27;s forces.
+ *
+ * Available force values: &#x60;LINK_DISTANCE&#x60;, &#x60;COLLISION_STRENGTH&#x60;, &#x60;CHARGE_STRENGTH&#x60;.
+ */
+const FORCES &#x3D; {
+    LINK_DISTANCE: 50,
+    COLLISION_STRENGTH: 1,
+    CHARGE_STRENGTH: -3
+};
+
+/**
+ * The ForceGraphComponent component.
+ *
+ * It visualizes an RDF graph using a D3 force simulation.
+ */
+@Component({
+    selector: &#x27;awg-force-graph&#x27;,
+    templateUrl: &#x27;./force-graph.component.html&#x27;,
+    styleUrls: [&#x27;./force-graph.component.css&#x27;]
+})
+export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
+    /**
+     * Input variable:  queryResultTriples.
+     *
+     * It keeps the triples of the query result.
+     */
+    @Input() queryResultTriples: Triple[];
+
+    /**
+     * Input variable: height.
+     *
+     * It keeps the default height of the component.
+     */
+    @Input() height: number;
+
+    /**
+     * Output variable: clickedNodeRequest.
+     *
+     * It keeps an event emitter for the node IRI a user clicked on.
+     */
+    @Output() clickedNodeRequest &#x3D; new EventEmitter&lt;D3SimulationNode&gt;();
+
+    /**
+     * ViewChild variable: graphContainer.
+     *
+     * It keeps the reference to the element containing the graph.
+     */
+    @ViewChild(&#x27;graph&#x27;, { static: true }) private graphContainer: ElementRef;
+
+    /**
+     * Public variable: limitValues.
+     *
+     * It keeps the array of possible limit values.
+     */
+    limitValues &#x3D; [5, 10, 25, 50, 100, 200, 500, 1000];
+
+    /**
+     * Public variable: limit.
+     *
+     * It keeps the default limit value for the display of query results.
+     */
+    limit &#x3D; 50;
+
+    /**
+     * Private variable: svg.
+     *
+     * It keeps the D3 svg selection.
+     */
+    private svg: D3Selection;
+
+    /**
+     * Private variable: zoomGroup.
+     *
+     * It keeps the D3 zoomGroup selection.
+     */
+    private zoomGroup: D3Selection;
+
+    /**
+     * Private variable: forceSimulation.
+     *
+     * It keeps the D3 force simulation.
+     */
+    private forceSimulation: D3Simulation;
+
+    /**
+     * Private variable: simulationData.
+     *
+     * It keeps the data for the D3 force simulation.
+     */
+    private simulationData: D3SimulationData;
+
+    /**
+     * Private variable: divWidth.
+     *
+     * It keeps the width of the container div.
+     */
+    private divWidth: number;
+
+    /**
+     * Private variable: divHeight.
+     *
+     * It keeps the height of the container div.
+     */
+    private divHeight: number;
+
+    /**
+     * Private variable: resize$.
+     *
+     * It keeps a subject for a resize event.
+     */
+    private resize$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * Private variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
+     * HostListener: onResize.
+     *
+     * It redraws the graph when the window is resized.
+     */
+    @HostListener(&#x27;window:resize&#x27;) onResize() {
+        // guard against resize before view is rendered
+        if (!this.graphContainer || !this.queryResultTriples) {
+            return;
+        }
+
+        // calculate new width &amp; height
+        this.divWidth &#x3D; this.getContainerWidth(this.graphContainer);
+        this.divHeight &#x3D; this.getContainerHeight(this.graphContainer);
+
+        // fire resize event
+        this.resize$.next(true);
+    }
+
+    /**
+     * Constructor of the ForceGraphComponent.
+     *
+     * It declares private instances of the
+     * {@link GraphVisualizerService} and the {@link PrefixPipe}.
+     *
+     * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
+     * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
+     */
+    constructor(private graphVisualizerService: GraphVisualizerService, private prefixPipe: PrefixPipe) {}
+
+    /**
+     * Angular life cycle hook: ngOnInit.
+     *
+     * It calls the containing methods
+     * when initializing the component.
+     */
+    ngOnInit() {
+        // subscribe to resize subject to redraw on resize with delay until component gets destroyed
+        this.resize$.pipe(debounceTime(150), takeUntil(this.destroy$)).subscribe((event: any) &#x3D;&gt; {
+            this.redraw();
+        });
+
+        this.redraw();
+    }
+
+    /**
+     * Angular life cycle hook: ngOnChanges.
+     *
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
+     */
+    ngOnChanges(changes: SimpleChanges) {
+        if (
+            changes.queryResultTriples &amp;&amp;
+            changes.queryResultTriples.currentValue &amp;&amp;
+            !changes.queryResultTriples.isFirstChange()
+        ) {
+            this.queryResultTriples &#x3D; changes.queryResultTriples.currentValue;
+            this.redraw();
+        }
+    }
+
+    /**
+     * Public method: onLimitValueChange.
+     *
+     * It sets the current limit to a given limit value
+     * and redraws the simulation.
+     *
+     * @param {string} limitValue The given limit value.
+     *
+     * @returns {void} Sets the new limit for the redraw.
+     */
+    onLimitValueChange(limitValue: number): void {
+        this.limit &#x3D; limitValue;
+        this.redraw();
+    }
+
+    /**
+     * Private method: redraw.
+     *
+     * It redraws the graph.
+     *
+     * @returns {void} Redraws the graph.
+     */
+    private redraw(): void {
+        if (this.queryResultTriples) {
+            this.cleanSVG();
+            this.createSVG();
+            this.attachData();
+        }
+    }
+
+    /**
+     * Private method: attachData.
+     *
+     * It attaches the RDF data to the simulation which is then set up.
+     *
+     * @returns {void} Attaches the data and sets up the simulation.
+     */
+    private attachData(): void {
+        // Limit result length
+        const triples: Triple[] &#x3D; this.limitTriples(this.queryResultTriples, this.limit);
+
+        // If type of triples is text/turtle (not array)
+        // the triples must be parsed to objects instead
+        if (typeof triples &#x3D;&#x3D;&#x3D; &#x27;string&#x27;) {
+            this.parseTriples(triples).then((data: { triples; namespaces }) &#x3D;&gt; {
+                const abrTriples &#x3D; this.graphVisualizerService.abbreviateTriples(data.triples, data.namespaces);
+                this.simulationData &#x3D; this.triplesToD3GraphData(abrTriples);
+
+                this.setupForceSimulation();
+                this.updateSVG();
+            });
+        } else {
+            this.simulationData &#x3D; this.triplesToD3GraphData(triples);
+
+            this.setupForceSimulation();
+            this.updateSVG();
+        }
+    }
+
+    /**
+     * Private method: cleanSVG.
+     *
+     * It removes everything from the svg container.
+     *
+     * @returns {void} Cleans the svg container.
+     */
+    private cleanSVG(): void {
+        // Remove everything below the SVG element
+        d3_selection.selectAll(&#x27;svg &gt; *&#x27;).remove();
+    }
+
+    /**
+     * Private method: createSVG.
+     *
+     * It creates the svg container and detects its width and height.
+     *
+     * @returns {void} Creates the svg container.
+     */
+    private createSVG(): void {
+        if (!this.graphContainer) {
+            return;
+        }
+
+        // Get container width &amp; height
+        this.divWidth &#x3D; this.divWidth
+            ? this.divWidth
+            : this.getContainerWidth(this.graphContainer)
+            ? this.getContainerWidth(this.graphContainer)
+            : 400;
+        this.divHeight &#x3D; this.height
+            ? this.height
+            : this.getContainerHeight(this.graphContainer)
+            ? this.getContainerHeight(this.graphContainer)
+            : 500;
+
+        if (!this.svg) {
+            this.svg &#x3D; d3_selection.select(this.graphContainer.nativeElement).append(&#x27;svg&#x27;);
+        }
+        this.svg.attr(&#x27;width&#x27;, this.divWidth).attr(&#x27;height&#x27;, this.divHeight);
+    }
+
+    /**
+     * Private method: setupForceSimulation.
+     *
+     * It sets up the force simulation.
+     *
+     * @returns {void} Sets up the simulation.
+     */
+    private setupForceSimulation(): void {
+        // set up the simulation
+        this.forceSimulation &#x3D; d3_force.forceSimulation();
+
+        // Create forces
+        const chargeForce &#x3D; d3_force
+            .forceManyBody()
+            .strength((d: D3SimulationNode) &#x3D;&gt; this.nodeRadius(d) * FORCES.CHARGE_STRENGTH);
+
+        const centerForce &#x3D; d3_force.forceCenter(this.divWidth / 2, this.divHeight / 2);
+
+        const collideForce &#x3D; d3_force
+            .forceCollide()
+            .strength(FORCES.COLLISION_STRENGTH)
+            .radius(d &#x3D;&gt; d[&#x27;r&#x27;] + 5)
+            .iterations(2);
+
+        // create a custom link force with id accessor to use named sources and targets
+        const linkForce &#x3D; d3_force
+            .forceLink()
+            .links(this.simulationData.links)
+            .id((d: D3SimulationLink) &#x3D;&gt; d.predicate)
+            .distance(FORCES.LINK_DISTANCE);
+
+        // add forces
+        // add a charge to each node, a centering and collision force
+        this.forceSimulation
+            .force(&#x27;charge_force&#x27;, chargeForce)
+            .force(&#x27;center_force&#x27;, centerForce)
+            .force(&#x27;collide_force&#x27;, collideForce);
+
+        // add nodes to the simulation
+        this.forceSimulation.nodes(this.simulationData.nodes);
+
+        // add links to the simulation
+        this.forceSimulation.force(&#x27;links&#x27;, linkForce);
+
+        // restart simulation
+        this.forceSimulation.restart();
+    }
+
+    /**
+     * Private method: updateSVG.
+     *
+     * It populates the svg container with all subjects
+     * necessary for the force simulation.
+     *
+     * @returns {void} Updates the svg container.
+     */
+    private updateSVG(): void {
+        if (!this.svg) {
+            return;
+        }
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Add Encompassing Group for Zoom &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        this.zoomGroup &#x3D; this.svg.append(&#x27;g&#x27;).attr(&#x27;class&#x27;, &#x27;zoom-container&#x27;);
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Add Marker &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        this.zoomGroup
+            .append(&#x27;svg:defs&#x27;)
+            .selectAll(&#x27;marker&#x27;)
+            .data([&#x27;end&#x27;])
+            .enter()
+            .append(&#x27;svg:marker&#x27;)
+            .attr(&#x27;id&#x27;, String)
+            .attr(&#x27;viewBox&#x27;, &#x27;0 -5 10 10&#x27;)
+            .attr(&#x27;refX&#x27;, 30)
+            .attr(&#x27;refY&#x27;, -0.5)
+            .attr(&#x27;markerWidth&#x27;, 6)
+            .attr(&#x27;markerHeight&#x27;, 6)
+            .attr(&#x27;orient&#x27;, &#x27;auto&#x27;)
+            .append(&#x27;svg:polyline&#x27;)
+            .attr(&#x27;points&#x27;, &#x27;0,-5 10,0 0,5&#x27;);
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Add Links &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        const links: D3Selection &#x3D; this.zoomGroup
+            .selectAll(&#x27;.link&#x27;)
+            .data(this.simulationData.nodeTriples)
+            .enter()
+            .append(&#x27;path&#x27;)
+            .attr(&#x27;marker-end&#x27;, &#x27;url(#end)&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;link&#x27;);
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Add Link Names &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        const linkTexts: D3Selection &#x3D; this.zoomGroup
+            .selectAll(&#x27;.link-text&#x27;)
+            .data(this.simulationData.nodeTriples)
+            .enter()
+            .append(&#x27;text&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;link-text&#x27;)
+            .text((d: D3SimulationNodeTriple) &#x3D;&gt; d.nodePredicate.label);
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Add Node Names &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        const nodeTexts: D3Selection &#x3D; this.zoomGroup
+            .selectAll(&#x27;.node-text&#x27;)
+            .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
+            .enter()
+            .append(&#x27;text&#x27;)
+            .attr(&#x27;class&#x27;, &#x27;node-text&#x27;)
+            .text((d: D3SimulationNode) &#x3D;&gt; d.label);
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; Add Node &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        const nodes: D3Selection &#x3D; this.zoomGroup
+            .selectAll(&#x27;.node&#x27;)
+            .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
+            .enter()
+            .append(&#x27;circle&#x27;)
+            // .attr(&quot;class&quot;, &quot;node&quot;)
+            .attr(&#x27;class&#x27;, (d: D3SimulationNode) &#x3D;&gt; {
+                if (d.owlClass) {
+                    return &#x27;class&#x27;;
+                    // }else if(d.instSpace){ //MB
+                    // return &quot;instance-space&quot; //MB
+                    // }else if(d.instSpaceType){ //MB
+                    // return &quot;instance-spaceType&quot;	//MB
+                } else if (d.label.indexOf(&#x27;_:&#x27;) !&#x3D;&#x3D; -1) {
+                    return &#x27;blank&#x27;;
+                } else if (d.instance || d.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+                    return &#x27;instance&#x27;;
+                } else {
+                    return &#x27;node&#x27;;
+                }
+            })
+            .attr(&#x27;id&#x27;, (d: D3SimulationNode) &#x3D;&gt; d.label)
+            .attr(&#x27;r&#x27;, (d: D3SimulationNode) &#x3D;&gt; {
+                // MB if(d.instance || d.instSpace || d.instSpaceType){
+                if (d.label.indexOf(&#x27;_:&#x27;) !&#x3D;&#x3D; -1) {
+                    return 8;
+                } else if (d.instance || d.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+                    return 11;
+                } else if (d.owlClass || d.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+                    return 10;
+                } else {
+                    return 9;
+                }
+            })
+            .on(&#x27;click&#x27;, (d: D3SimulationNode) &#x3D;&gt; {
+                this.clickedOnNode(d);
+            });
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; When dragging &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        this.forceSimulation.on(&#x27;tick&#x27;, () &#x3D;&gt; {
+            // update node and link positions each tick of the simulation
+            this.updateNodePositions(nodes);
+            this.updateNodeTextPositions(nodeTexts);
+            this.updateLinkPositions(links);
+            this.updateLinkTextPositions(linkTexts);
+        });
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; DRAG &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        this.dragHandler(nodes, this.forceSimulation);
+
+        // &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D; ZOOM &#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;&#x3D;
+        this.zoomHandler(this.zoomGroup, this.svg);
+    }
+
+    /**
+     * Private method: checkForRdfType.
+     *
+     * It checks if a given predicate node
+     * contains a short or longform of &quot;rdf:type&quot;.
+     *
+     * @param {D3SimulationNode} predicateNode The given node of the RDF predicate.
+     *
+     * @returns {boolean} The result of the check.
+     */
+    private checkForRdfType(predicateNode: D3SimulationNode): boolean {
+        return (
+            // rdf:type
+            predicateNode.label &#x3D;&#x3D;&#x3D; &#x27;a&#x27; ||
+            predicateNode.label &#x3D;&#x3D;&#x3D; &#x27;rdf:type&#x27; ||
+            predicateNode.label &#x3D;&#x3D;&#x3D; this.prefixPipe.transform(PrefixForm.long, &#x27;rdf:type&#x27;)
+        );
+    }
+
+    /**
+     * Private method: clickedOnNode.
+     *
+     * It emits a node the user clicked on.
+     *
+     * @param {D3SimulationNode} node The given node.
+     *
+     * @returns {void} Emits the node.
+     */
+    private clickedOnNode(node: D3SimulationNode): void {
+        if (d3_selection.event.defaultPrevented) {
+            return;
+        } // dragged
+
+        this.clickedNodeRequest.emit(node);
+    }
+
+    /**
+     * Private method: dragHandler.
+     *
+     * It binds a draggable behaviour to a given dragContext (e.g. the nodes).
+     *
+     * @param {D3Selection} dragContext The given context that shall be draggable.
+     * @param {D3Simulation} simulation The given force simulation.
+     *
+     * @returns {void} Sets the drag behaviour.
+     */
+    private dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
+        // Drag functions
+        // d is the node
+        const dragStart &#x3D; (node: D3SimulationNode) &#x3D;&gt; {
+            /** Preventing propagation of dragstart to parent elements */
+            d3_selection.event.sourceEvent.stopPropagation();
+
+            if (!d3_selection.event.active) {
+                simulation.alphaTarget(0.3).restart();
+            }
+            node.fx &#x3D; node.x;
+            node.fy &#x3D; node.y;
+        };
+
+        // make sure you can&#x27;t drag the circle outside the box
+        const dragActions &#x3D; (node: D3SimulationNode) &#x3D;&gt; {
+            node.fx &#x3D; d3_selection.event.x;
+            node.fy &#x3D; d3_selection.event.y;
+        };
+
+        const dragEnd &#x3D; (node: D3SimulationNode) &#x3D;&gt; {
+            if (!d3_selection.event.active) {
+                simulation.alphaTarget(0);
+            }
+            node.fx &#x3D; null;
+            node.fy &#x3D; null;
+        };
+
+        // apply drag handler
+        dragContext.call(
+            d3_drag
+                .drag()
+                .on(&#x27;start&#x27;, dragStart)
+                .on(&#x27;drag&#x27;, dragActions)
+                .on(&#x27;end&#x27;, dragEnd)
+        );
+    }
+
+    /**
+     * Private method: filterNodesById.
+     *
+     * It filters an array of simulations nodes by a given id.
+     *
+     * @param {D3SimulationNode[]} nodes The given nodes array.
+     * @param {string} id The given node id.
+     *
+     * @returns {D3SimulationNode} The filtered node.
+     */
+    private filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
+        return nodes.filter(node &#x3D;&gt; node.id &#x3D;&#x3D;&#x3D; id)[0];
+    }
+
+    /**
+     * Private method: filterNodesByType.
+     *
+     * It filters an array of simulations nodes by a given type.
+     *
+     * @param {D3SimulationNode[]} nodes The given nodes array.
+     * @param {D3SimulationNodeType} type The given node type.
+     *
+     * @returns {D3SimulationNode} The filtered node.
+     */
+    private filterNodesByType(nodes: D3SimulationNode[], type: D3SimulationNodeType): D3SimulationNode[] {
+        return nodes.filter(node &#x3D;&gt; node.type &#x3D;&#x3D;&#x3D; type);
+    }
+
+    /**
+     * Private method: getContainerWidth.
+     *
+     * It returns the clientWidth of a given container.
+     *
+     * @param {ElementRef} container The given container element.
+     *
+     * @returns {number} The container width.
+     */
+    private getContainerWidth(container: ElementRef): number {
+        if (!container || !container.nativeElement) {
+            return null;
+        }
+        return container.nativeElement.clientWidth;
+    }
+
+    /**
+     * Private method: getContainerHeight.
+     *
+     * It returns the clientHeight of a given container.
+     *
+     * @param {ElementRef} container The given container element.
+     *
+     * @returns {number} The container height.
+     */
+    private getContainerHeight(container: ElementRef): number {
+        if (!container || !container.nativeElement) {
+            return null;
+        }
+        return container.nativeElement.clientHeight;
+    }
+
+    /**
+     * Private method: limitTriples.
+     *
+     * It limits a given array of triples by a given limit.
+     *
+     * @param {Triple[]} triples The given triples array.
+     * @param {number} limit The given limit.
+     *
+     * @returns {Triple[]} The array of limited triples.
+     */
+    private limitTriples(triples: Triple[], limit: number): Triple[] {
+        if (!triples) {
+            return [];
+        }
+        if (triples.length &gt; limit) {
+            return triples.slice(0, limit);
+        } else {
+            return triples;
+        }
+    }
+
+    /**
+     * Private method: nodeRadius.
+     *
+     * It returns the radius of a given node depending on the kind of node.
+     *
+     * @param {D3SimulationNode} node The given node.
+     *
+     * @returns {number} The radius of the node.
+     */
+    private nodeRadius(node: D3SimulationNode): number {
+        if (!node) {
+            return null;
+        }
+
+        let defaultRadius &#x3D; 8;
+
+        // MB if(d.instance || d.instSpace || d.instSpaceType){
+        if (node.label.indexOf(&#x27;_:&#x27;) !&#x3D;&#x3D; -1) {
+            return defaultRadius--;
+        } else if (node.instance || node.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+            return defaultRadius + 2;
+        } else if (node.owlClass || node.label.indexOf(&#x27;inst:&#x27;) !&#x3D;&#x3D; -1) {
+            return defaultRadius++;
+        } else {
+            return defaultRadius;
+        }
+    }
+
+    /**
+     * Private method: parseTriples.
+     *
+     * It parses the triples from a given triple array.
+     *
+     * @param {Triple[]} triples The given triple array.
+     *
+     * @returns {Promise&lt;{triples; namespaces}&gt;} A promise of the parsed triples.
+     */
+    private parseTriples(triples: Triple[]): Promise&lt;{ triples; namespaces }&gt; {
+        const parser &#x3D; N3.Parser();
+        const jsonTriples &#x3D; [];
+
+        return new Promise((resolve, reject) &#x3D;&gt; {
+            parser.parse(triples, (err, triple, namespaceValues) &#x3D;&gt; {
+                if (triple) {
+                    jsonTriples.push(triple);
+                } else {
+                    resolve({ triples: jsonTriples, namespaces: namespaceValues });
+                }
+                if (err) {
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    /**
+     * Private method: triplesToD3GraphData.
+     *
+     * It calculates the D3 simulation data from an array of triples.
+     *
+     * @param {Triple[]} triples The given triple array.
+     *
+     * @returns {D3SimulationData} The D3 graph data.
+     */
+    private triplesToD3GraphData(triples: Triple[]): D3SimulationData {
+        if (!triples) {
+            return;
+        }
+
+        // Graph
+        const graphData: D3SimulationData &#x3D; new D3SimulationData();
+
+        // Initial Graph from triples
+        triples.map((triple: Triple) &#x3D;&gt; {
+            const subjId &#x3D; this.prefixPipe.transform(PrefixForm.short, triple.subject);
+            const predId &#x3D; this.prefixPipe.transform(PrefixForm.short, triple.predicate);
+            let objId &#x3D; this.prefixPipe.transform(PrefixForm.short, triple.object);
+
+            // check if object is number &amp; round decimal numbers to 2 decimals
+            if (!isNaN(objId)) {
+                objId &#x3D; Number(objId) % 1 &#x3D;&#x3D;&#x3D; 0 ? String(Number(objId)) : String(Number(objId).toFixed(2));
+            }
+
+            const predNode: D3SimulationNode &#x3D; new D3SimulationNode(predId, D3SimulationNodeType.link);
+            graphData.nodes.push(predNode);
+
+            let subjNode: D3SimulationNode &#x3D; this.filterNodesById(graphData.nodes, subjId);
+            let objNode: D3SimulationNode &#x3D; this.filterNodesById(graphData.nodes, objId);
+
+            if (subjNode &#x3D;&#x3D; null) {
+                subjNode &#x3D; new D3SimulationNode(subjId, D3SimulationNodeType.node);
+
+                graphData.nodes.push(subjNode);
+            }
+
+            if (objNode &#x3D;&#x3D; null) {
+                objNode &#x3D; new D3SimulationNode(objId, D3SimulationNodeType.node);
+
+                graphData.nodes.push(objNode);
+            }
+
+            // check if predicate is &quot;rdf:type&quot;
+            // then subjNode is an instance and objNode is a Class
+            if (subjNode.instance &#x3D;&#x3D;&#x3D; false) {
+                subjNode.instance &#x3D; this.checkForRdfType(predNode);
+            }
+            if (objNode.owlClass &#x3D;&#x3D;&#x3D; false) {
+                objNode.owlClass &#x3D; this.checkForRdfType(predNode);
+            }
+
+            graphData.links.push(new D3SimulationLink(subjNode, predNode));
+            graphData.links.push(new D3SimulationLink(predNode, objNode));
+
+            graphData.nodeTriples.push(new D3SimulationNodeTriple(subjNode, predNode, objNode));
+        });
+
+        return graphData;
+    }
+
+    /**
+     * Private method: updateNodePositions.
+     *
+     * It updates the positions of the nodes
+     * on a force simulation&#x27;s tick.
+     *
+     * @param {D3Selection} nodes The given nodes selection.
+     *
+     * @returns {void} Updates the position.
+     */
+    private updateNodePositions(nodes: D3Selection): void {
+        nodes.attr(&#x27;cx&#x27;, (d: D3SimulationNode) &#x3D;&gt; d.x).attr(&#x27;cy&#x27;, (d: D3SimulationNode) &#x3D;&gt; d.y);
+
+        /*// constrains the nodes to be within a box
+        nodes
+            .attr(
+                &#x27;cx&#x27;,
+                (d: D3SimulationNode) &#x3D;&gt;
+                    (d.x &#x3D; Math.max(this.nodeRadius(d), Math.min(this.divWidth - this.nodeRadius(d), d.x)))
+            )
+            .attr(
+                &#x27;cy&#x27;,
+                (d: D3SimulationNode) &#x3D;&gt;
+                    (d.y &#x3D; Math.max(this.nodeRadius(d), Math.min(this.divHeight - this.nodeRadius(d), d.y)))
+            );*/
+    }
+
+    /**
+     * Private method: updateNodeTextPositions.
+     *
+     * It updates the positions of the nodeTexts
+     * on a force simulation&#x27;s tick.
+     *
+     * @param {D3Selection} nodeTexts The given nodeTexts selection.
+     *
+     * @returns {void} Updates the position.
+     */
+    private updateNodeTextPositions(nodeTexts: D3Selection): void {
+        nodeTexts.attr(&#x27;x&#x27;, (d: D3SimulationNode) &#x3D;&gt; d.x + 12).attr(&#x27;y&#x27;, (d: D3SimulationNode) &#x3D;&gt; d.y + 3);
+    }
+
+    /**
+     * Private method: updateLinkPositions.
+     *
+     * It updates the positions of the links
+     * on a force simulation&#x27;s tick.
+     *
+     * @param {D3Selection} links The given links selection.
+     *
+     * @returns {void} Updates the position.
+     */
+    private updateLinkPositions(links: D3Selection): void {
+        links.attr(
+            &#x27;d&#x27;,
+            (d: D3SimulationNodeTriple) &#x3D;&gt;
+                &#x27;M&#x27; +
+                d.nodeSubject.x +
+                &#x27;,&#x27; +
+                d.nodeSubject.y +
+                &#x27;S&#x27; +
+                d.nodePredicate.x +
+                &#x27;,&#x27; +
+                d.nodePredicate.y +
+                &#x27; &#x27; +
+                d.nodeObject.x +
+                &#x27;,&#x27; +
+                d.nodeObject.y
+        );
+    }
+
+    /**
+     * Private method: updateLinkTextPositions.
+     *
+     * It updates the positions of the link texts
+     * on a force simulation&#x27;s tick.
+     *
+     * @param {D3Selection} linkTexts The given linkTexts selection.
+     *
+     * @returns {void} Updates the position.
+     */
+    private updateLinkTextPositions(linkTexts: D3Selection): void {
+        linkTexts
+            .attr(&#x27;x&#x27;, (d: D3SimulationNodeTriple) &#x3D;&gt; 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
+            .attr(&#x27;y&#x27;, (d: D3SimulationNodeTriple) &#x3D;&gt; 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
+    }
+
+    /**
+     * Private method: zoomHandler.
+     *
+     * It binds a pan and zoom behaviour to an svg element.
+     *
+     * @param {D3Selection} zoomContext The given context that shall be zoomable.
+     * @param {D3Selection} svg The given svg container.
+     *
+     * @returns {void} Sets the zoom behaviour.
+     */
+    private zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
+        // perform the zooming
+        const zoomActions &#x3D; () &#x3D;&gt; {
+            zoomContext.attr(&#x27;transform&#x27;, d3_selection.event.transform);
+        };
+
+        // apply zoom handler
+        svg.call(d3_zoom.zoom().on(&#x27;zoom&#x27;, zoomActions));
+    }
+
+    /**
+     * Public method: log.
+     *
+     * It logs a message to the console.
+     *
+     * @param {string} messageString The given message string.
+     * @param {string} messageValue The given message value.
+     *
+     * @returns {void} Logs a message to the console.
+     */
+    log(messageString: string, messageValue: any): void {
+        const value &#x3D; messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
+        console.log(messageString, value);
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
+    }
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-templateData">
+        <pre class="line-numbers"><code class="language-html">&lt;div id&#x3D;&quot;svg-body&quot; class&#x3D;&quot;panel-body&quot; [ngStyle]&#x3D;&quot;{ &#x27;height.px&#x27;: height }&quot; #graph&gt;
+    &lt;div class&#x3D;&quot;icon-bar&quot; fxLayout&#x3D;&quot;row&quot; [ngStyle]&#x3D;&quot;{ top: &#x27;0px&#x27; }&quot;&gt;
+        &lt;!-- Limit --&gt;
+        &lt;div class&#x3D;&quot;btn-group float-right&quot; *ngIf&#x3D;&quot;queryResultTriples&quot;&gt;
+            &lt;button type&#x3D;&quot;button&quot; class&#x3D;&quot;btn btn-outline-info&quot; disabled aria-disabled&#x3D;&quot;true&quot;&gt;
+                &lt;span *ngIf&#x3D;&quot;limit !&#x3D;&#x3D; queryResultTriples.length&quot;&gt;{{ limit }} von &lt;/span
+                &gt;{{ queryResultTriples.length }} Triples
+            &lt;/button&gt;
+            &lt;div
+                class&#x3D;&quot;btn-group&quot;
+                ngbDropdown
+                role&#x3D;&quot;group&quot;
+                aria-label&#x3D;&quot;Button group with nested dropdown for node limit&quot;
+            &gt;
+                &lt;button
+                    class&#x3D;&quot;btn btn-info dropdown-toggle-split&quot;
+                    ngbDropdownToggle
+                    [disabled]&#x3D;&quot;queryResultTriples.length &#x3D;&#x3D;&#x3D; 0&quot;
+                &gt;&lt;/button&gt;
+                &lt;div class&#x3D;&quot;dropdown-menu&quot; ngbDropdownMenu&gt;
+                    &lt;ng-container *ngFor&#x3D;&quot;let limitValue of limitValues&quot;&gt;
+                        &lt;button
+                            *ngIf&#x3D;&quot;queryResultTriples.length &gt; limitValue&quot;
+                            class&#x3D;&quot;dropdown-item&quot;
+                            (click)&#x3D;&quot;onLimitValueChange(limitValue)&quot;
+                        &gt;
+                            &lt;span&gt;{{ limitValue }}&lt;/span&gt;
+                        &lt;/button&gt;
+                    &lt;/ng-container&gt;
+                    &lt;button class&#x3D;&quot;dropdown-item&quot; (click)&#x3D;&quot;onLimitValueChange(queryResultTriples.length)&quot;&gt;
+                        &lt;span&gt;Kein Limit&lt;/span&gt;
+                    &lt;/button&gt;
+                &lt;/div&gt;
+            &lt;/div&gt;
+        &lt;/div&gt;
+
+        &lt;!-- &lt;span *ngIf&#x3D;&quot;message&quot; class&#x3D;&quot;message&quot;&gt;{{message}}&lt;/span&gt; --&gt;
+
+        &lt;!-- Spacer --&gt;
+        &lt;span fxFlex&#x3D;&quot;grow&quot;&gt;&lt;/span&gt;
+
+        &lt;!-- Spacer --&gt;
+        &lt;span fxFlex&#x3D;&quot;5px&quot;&gt;&lt;/span&gt;
+    &lt;/div&gt;
+&lt;/div&gt;
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-styleData">
+                <p class="comment">
+                    <code>./force-graph.component.css</code>
+                </p>
+                <pre class="line-numbers"><code class="language-scss">/* Nodes */
+:host ::ng-deep .node {
+    stroke: #fff;
+    fill: #ddd;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .blank {
+    stroke: #fff;
+    fill: #000 !important;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .blank.instance {
+    stroke: #fff;
+    fill: #000;
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .class {
+    stroke: #fff;
+    fill: rgb(158, 0, 0);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance {
+    stroke: #fff;
+    fill: rgb(32, 178, 170);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance-space {
+    stroke: #fff;
+    fill: rgb(0, 191, 255);
+    stroke-width: 1.5px;
+}
+:host ::ng-deep .instance-spaceType {
+    stroke: #fff;
+    fill: rgb(0, 0, 139);
+    stroke-width: 1.5px;
+}
+
+:host ::ng-deep .link {
+    fill: none;
+    stroke: #999;
+    stroke-opacity: 0.6;
+    stroke-width: 1px;
+}
+
+:host ::ng-deep marker {
+    stroke: #999;
+    fill: rgba(124, 240, 10, 0);
+}
+
+:host ::ng-deep .node-text {
+    font: 15px Roboto;
+    fill: black;
+}
+
+:host ::ng-deep .link-text {
+    font: 13px Roboto;
+    fill: grey;
+}
+
+#svg-body {
+    position: relative;
+    width: 100%;
+}
+
+#svg-body &gt; .icon-bar {
+    position: absolute;
+    width: 100%;
+    z-index: 10;
+}
+
+.panel-body {
+    position: inherit;
+    height: 100%;
+}
+</code></pre>
+    </div>
+
+    <div class="tab-pane fade " id="c-tree">
+        <div id="tree-container"></div>
+        <div class="tree-legend">
+            <div class="title">
+                <b>Legend</b>
+            </div>
+            <div>
+                <div class="color htmlelement"></div><span>Html element</span>
+            </div>
+            <div>
+                <div class="color component"></div><span>Component</span>
+            </div>
+            <div>
+                <div class="color directive"></div><span>Html element with directive</span>
+            </div>
+        </div>
+    </div>
+
+    
+</div>
+
+<script src="../js/libs/vis.min.js"></script>
+<script src="../js/libs/htmlparser.js"></script>
+<script src="../js/libs/deep-iterator.js"></script>
+<script>
+        var COMPONENT_TEMPLATE = '<div><div id="svg-body" class="panel-body" [ngStyle]="{ \'height.px\': height }" #graph>    <div class="icon-bar" fxLayout="row" [ngStyle]="{ top: \'0px\' }">        <!-- Limit -->        <div class="btn-group float-right" *ngIf="queryResultTriples">            <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">                <span *ngIf="limit !== queryResultTriples.length">{{ limit }} von </span                >{{ queryResultTriples.length }} Triples            </button>            <div                class="btn-group"                ngbDropdown                role="group"                aria-label="Button group with nested dropdown for node limit"            >                <button                    class="btn btn-info dropdown-toggle-split"                    ngbDropdownToggle                    [disabled]="queryResultTriples.length === 0"                ></button>                <div class="dropdown-menu" ngbDropdownMenu>                    <ng-container *ngFor="let limitValue of limitValues">                        <button                            *ngIf="queryResultTriples.length > limitValue"                            class="dropdown-item"                            (click)="onLimitValueChange(limitValue)"                        >                            <span>{{ limitValue }}</span>                        </button>                    </ng-container>                    <button class="dropdown-item" (click)="onLimitValueChange(queryResultTriples.length)">                        <span>Kein Limit</span>                    </button>                </div>            </div>        </div>        <!-- <span *ngIf="message" class="message">{{message}}</span> -->        <!-- Spacer -->        <span fxFlex="grow"></span>        <!-- Spacer -->        <span fxFlex="5px"></span>    </div></div></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionDetailNotificationComponent', 'selector': 'awg-edition-detail-notification'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ReportComponent', 'selector': 'awg-report'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var ACTUAL_COMPONENT = {'name': 'ForceGraphComponent'};
+</script>
+<script src="../js/tree.js"></script>
+
+
+
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'component';
+            var COMPODOC_CURRENT_PAGE_URL = 'ForceGraphComponent.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>
