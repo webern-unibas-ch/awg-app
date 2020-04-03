@@ -7,6 +7,7 @@ import { of as observableOf } from 'rxjs';
 
 import Spy = jasmine.Spy;
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { RouterEventsService } from '@awg-core/services';
@@ -69,6 +70,10 @@ describe('AppComponent (DONE)', () => {
 
     afterEach(() => {
         (window as any).ga = undefined;
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create the app', async(() => {
