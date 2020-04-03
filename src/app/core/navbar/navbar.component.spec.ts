@@ -228,51 +228,51 @@ describe('NavbarComponent (DONE)', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual([
                     expectedEditionWorks[0].baseRoute,
-                    expectedEditionWorks[0].introRoute
+                    expectedEditionWorks[0].introRoute.route
                 ]);
                 expect(routerLinks[2].linkParams).toEqual([
                     expectedEditionWorks[1].baseRoute,
-                    expectedEditionWorks[1].introRoute
+                    expectedEditionWorks[1].introRoute.route
                 ]);
                 expect(routerLinks[3].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.introRoute
+                    expectedSelectEditionWork.introRoute.route
                 ]);
                 expect(routerLinks[4].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute
+                    expectedSelectEditionWork.detailRoute.route
                 ]);
                 expect(routerLinks[5].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute
+                    expectedSelectEditionWork.detailRoute.route
                 ]);
                 expect(routerLinks[6].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute
+                    expectedSelectEditionWork.detailRoute.route
                 ]);
                 expect(routerLinks[7].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute
+                    expectedSelectEditionWork.detailRoute.route
                 ]);
                 expect(routerLinks[8].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute
+                    expectedSelectEditionWork.reportRoute.route
                 ]);
                 expect(routerLinks[9].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute
+                    expectedSelectEditionWork.reportRoute.route
                 ]);
                 expect(routerLinks[10].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute
+                    expectedSelectEditionWork.reportRoute.route
                 ]);
                 expect(routerLinks[11].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute
+                    expectedSelectEditionWork.reportRoute.route
                 ]);
                 expect(routerLinks[12].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute
+                    expectedSelectEditionWork.reportRoute.route
                 ]);
                 expect(routerLinks[13].linkParams).toEqual(['/structure']);
                 expect(routerLinks[14].linkParams).toEqual(['/data/search', 'fulltext']);
@@ -309,7 +309,7 @@ describe('NavbarComponent (DONE)', () => {
 
                 expect(editionLink.navigatedTo).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.introRoute
+                    expectedSelectEditionWork.introRoute.route
                 ]);
             });
 

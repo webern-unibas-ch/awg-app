@@ -8,9 +8,9 @@ import { EditionConstants, EditionRoute } from './edition-constants';
  */
 export class EditionWork {
     /**
-     * The edition route for edition.
+     * The edition route for the current work.
      */
-    edition: EditionRoute = EditionConstants.edition;
+    work: EditionRoute;
 
     /**
      * The edition route for series.
@@ -23,39 +23,39 @@ export class EditionWork {
     section: EditionRoute;
 
     /**
-     * The edition route for composition.
-     */
-    composition: EditionRoute = EditionConstants.composition;
-
-    /**
-     * The edition route for the current work.
-     */
-    work: EditionRoute;
-
-    /**
      * The edition route for the type of an edition.
      */
     type: EditionRoute;
 
     /**
+     * The edition route for edition.
+     */
+    edition: EditionRoute = EditionConstants.edition;
+
+    /**
+     * The edition route for composition.
+     */
+    composition: EditionRoute = EditionConstants.composition;
+
+    /**
      * The route to the graph section of an edition.
      */
-    graphRoute: string = EditionConstants.editionGraph.route;
+    graphRoute: EditionRoute = EditionConstants.editionGraph;
 
     /**
      * The route to the intro section of an edition.
      */
-    introRoute: string = EditionConstants.editionIntro.route;
+    introRoute: EditionRoute = EditionConstants.editionIntro;
 
     /**
      * The route to the detail section of an edition.
      */
-    detailRoute: string = EditionConstants.editionDetail.route;
+    detailRoute: EditionRoute = EditionConstants.editionDetail;
 
     /**
      * The route to the report section of an edition.
      */
-    reportRoute: string = EditionConstants.editionReport.route;
+    reportRoute: EditionRoute = EditionConstants.editionReport;
 
     /**
      * The base route of a work.

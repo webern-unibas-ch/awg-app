@@ -11,7 +11,7 @@
             <i>{{ editionInfoHeaderOp12?.title }}</i
             >&nbsp;{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}
             <br />
-            (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]">{{
+            (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]">{{
                 editionInfoHeaderOp12?.part
             }}</a
             >)
@@ -23,7 +23,7 @@
             <i>{{ editionInfoHeaderOp25?.title }}</i
             >&nbsp;{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}
             <br />
-            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]">{{
+            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
                 editionInfoHeaderOp25?.part
             }}</a
             >)

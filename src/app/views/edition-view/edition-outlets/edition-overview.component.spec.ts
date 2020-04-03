@@ -61,25 +61,25 @@ describe('EditionOverviewComponent (DONE)', () => {
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
-                expectedEditionWork.introRoute,
+                expectedEditionWork.introRoute.route,
                 EditionConstants.editionIntro.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
-                expectedEditionWork.detailRoute,
+                expectedEditionWork.detailRoute.route,
                 EditionConstants.editionDetail.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
-                expectedEditionWork.reportRoute,
+                expectedEditionWork.reportRoute.route,
                 EditionConstants.editionReport.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
-                expectedEditionWork.graphRoute,
+                expectedEditionWork.graphRoute.route,
                 EditionConstants.editionGraph.short,
                 false
             )
