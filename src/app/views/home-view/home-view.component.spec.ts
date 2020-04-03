@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { Router } from '@angular/router';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -13,9 +14,9 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
+import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { HomeViewComponent } from './home-view.component';
-import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -101,6 +102,10 @@ describe('HomeViewComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'routeToSidenav').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

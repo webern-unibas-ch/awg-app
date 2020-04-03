@@ -2,17 +2,19 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
+import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
+
 import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { NavbarComponent } from './navbar.component';
@@ -63,6 +65,10 @@ describe('NavbarComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'toggleNav').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

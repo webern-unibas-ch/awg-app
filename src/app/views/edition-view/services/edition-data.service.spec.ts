@@ -3,6 +3,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Data } from '@angular/router';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import {
     EditionConstants,
     EditionWorks,
@@ -10,8 +12,7 @@ import {
     SourceList,
     SourceDescriptionList,
     SourceEvaluationList,
-    TextcriticsList,
-    Source
+    TextcriticsList
 } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
@@ -50,6 +51,10 @@ describe('EditionDataService', () => {
     // after every test, assert that there are no more pending requests
     afterEach(() => {
         httpTestingController.verify();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

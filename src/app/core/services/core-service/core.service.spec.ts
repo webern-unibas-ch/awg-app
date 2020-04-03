@@ -1,4 +1,6 @@
-import { TestBed, inject, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA, LOGOSDATA } from '@awg-core/mock-data';
@@ -21,6 +23,10 @@ describe('CoreService (DONE)', () => {
         // test data
         expectedMetaData = METADATA;
         expectedLogosData = LOGOSDATA;
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should inject', () => {

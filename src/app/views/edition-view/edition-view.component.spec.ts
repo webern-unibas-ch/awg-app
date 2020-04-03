@@ -3,6 +3,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -54,6 +55,10 @@ describe('EditionViewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'routeToSidenav').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

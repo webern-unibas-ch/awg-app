@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
@@ -86,6 +87,10 @@ describe('ContactInfoComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'sanitizeUrls').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

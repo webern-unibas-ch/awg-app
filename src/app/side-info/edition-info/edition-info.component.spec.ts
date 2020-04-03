@@ -2,14 +2,14 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from 'testing/router-stubs';
-
 import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { EditionInfoComponent } from './edition-info.component';
-import { METADATA } from '@awg-core/mock-data';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 describe('EditionInfoComponent (DONE)', () => {
     let component: EditionInfoComponent;
@@ -65,6 +65,10 @@ describe('EditionInfoComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

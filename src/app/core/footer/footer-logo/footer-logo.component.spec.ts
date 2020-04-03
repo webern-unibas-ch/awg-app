@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { Logo } from '@awg-core/core-models';
-
 import { FooterLogoComponent } from './footer-logo.component';
 
 describe('FooterLogoComponent (DONE)', () => {
@@ -38,6 +38,10 @@ describe('FooterLogoComponent (DONE)', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     describe('BEFORE initial data binding', () => {

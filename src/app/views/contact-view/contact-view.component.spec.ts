@@ -4,6 +4,7 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
@@ -81,6 +82,10 @@ describe('ContactViewComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'routeToSidenav').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

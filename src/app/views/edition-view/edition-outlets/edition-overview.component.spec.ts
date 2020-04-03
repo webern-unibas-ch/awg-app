@@ -6,12 +6,14 @@ import { QueryParamsHandling } from '@angular/router';
 import { of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
 import { EditionService } from '@awg-views/edition-view/services';
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-view/models';
+
 import { EditionOverviewComponent } from './edition-overview.component';
 
 // mock components
@@ -87,6 +89,10 @@ describe('EditionOverviewComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         setButtonsSpy = spyOn(component, 'setButtons').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

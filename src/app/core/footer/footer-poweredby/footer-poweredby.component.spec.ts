@@ -1,10 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { Logo, Logos } from '@awg-core/core-models';
-
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
 @Component({ selector: 'awg-footer-logo', template: '' })
@@ -66,6 +66,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
                 href: 'https://www.unibas.ch'
             }
         };
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import {
@@ -15,8 +16,8 @@ import {
     MetaStructure
 } from '@awg-core/core-models';
 import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
-import { CoreService } from '@awg-core/services';
 
+import { CoreService } from '@awg-core/services';
 import { FooterComponent } from './footer.component';
 
 // mock components
@@ -88,6 +89,10 @@ describe('FooterComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

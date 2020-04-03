@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import { SearchInfoComponent } from './search-info.component';
 
 describe('SearchInfoComponent', () => {
@@ -16,6 +18,10 @@ describe('SearchInfoComponent', () => {
         fixture = TestBed.createComponent(SearchInfoComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

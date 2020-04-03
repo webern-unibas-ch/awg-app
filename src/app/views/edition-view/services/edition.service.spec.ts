@@ -1,5 +1,7 @@
 /* tslint:disable:no-unused-variable */
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { EditionService } from './edition.service';
 
@@ -11,6 +13,10 @@ describe('EditionService', () => {
             providers: [EditionService]
         });
         editionService = TestBed.get(EditionService);
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should inject', () => {

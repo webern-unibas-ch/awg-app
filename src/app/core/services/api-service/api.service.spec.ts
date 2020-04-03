@@ -6,6 +6,9 @@ import { Data } from '@angular/router';
 
 import { throwError as observableThrowError } from 'rxjs';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+import { expectSpyCall } from '@testing/expect-helper';
+
 import { AppConfig } from '@awg-app/app.config';
 import { ApiRequest } from '@awg-core/services/api-service/api-request.model';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
@@ -13,7 +16,6 @@ import { ApiServiceResult } from '@awg-core/services/api-service/api-service-res
 import { UserDataJson } from '@awg-shared/api-objects';
 
 import { ApiService } from './api.service';
-import { expectSpyCall } from '@testing/expect-helper';
 
 // for http service testing see https://medium.com/spektrakel-blog/angular-testing-snippets-httpclient-d1dc2f035eb8
 
@@ -71,6 +73,10 @@ describe('ApiService', () => {
     // after every test, assert that there are no more pending requests
     afterEach(() => {
         httpTestingController.verify();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should inject', () => {
