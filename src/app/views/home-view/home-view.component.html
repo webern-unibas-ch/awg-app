@@ -19,9 +19,12 @@
 
     <h3 class="awg-edition-info-header">
         <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i
-        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span
-    >
+        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span>
         (
+        <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]">{{
+            editionWorkOp25.type.full
+        }}</a>
+        &
         <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
             editionWorkOp25.graphRoute.short
         }}</a
