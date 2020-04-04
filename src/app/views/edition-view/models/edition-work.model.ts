@@ -1,12 +1,40 @@
 import { EditionConstants, EditionRoute } from './edition-constants';
 
 /**
+ * The EditionTitleStatement class.
+ *
+ * It is used in the context of the edition view
+ * to store information about the title statement of a work.
+ */
+export class EditionTitleStatement {
+    /**
+     * The title of a title statement.
+     */
+    title: string;
+
+    /**
+     * The catalogue type of a title statement.
+     */
+    catalogueType: EditionRoute;
+
+    /**
+     * The catalogue number of a title statement.
+     */
+    catalogueNumber: string;
+}
+
+/**
  * The EditionWork class.
  *
  * It is used in the context of the edition view
- * to store information about the url path of an edition.
+ * to store information about a work of an edition.
  */
 export class EditionWork {
+    /**
+     * The title statement of the current work.
+     */
+    titleStatement: EditionTitleStatement;
+
     /**
      * The edition route for the current work.
      */
@@ -70,12 +98,14 @@ export class EditionWork {
      *
      * It initializes the class with a composition Object from the EditionConstants.
      *
+     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the composition.
      * @param {EditionRoute} workRoute The given EditionRoute for the composition.
      * @param {EditionRoute} seriesRoute The given EditionRoute for the series.
      * @param {EditionRoute} sectionRoute The given EditionRoute for the section.
      * @param {EditionRoute} typeRoute The given EditionRoute for the edition type.
      */
     constructor(
+        titleStatement: EditionTitleStatement,
         workRoute: EditionRoute,
         seriesRoute?: EditionRoute,
         sectionRoute?: EditionRoute,
@@ -85,13 +115,22 @@ export class EditionWork {
             return;
         }
 
-        // set dynamic routes
+        // helper constants
         const delimiter = '/';
-        this.series = seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.series1.path;
-        this.section = sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.section1.path;
-        this.work = workRoute ? workRoute : new EditionRoute();
-        this.type = typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.textEdition.path;
+        const spacer = ' ';
 
+        // set dynamic routes
+        this.titleStatement = titleStatement ? titleStatement : new EditionTitleStatement();
+
+        this.work = workRoute ? workRoute : new EditionRoute();
+        this.work.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.work.full = this.titleStatement.title + spacer + this.work.short;
+
+        this.series = seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.series1;
+        this.section = sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.section5;
+        this.type = typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.sketchEdition;
+
+        // set base route
         let rootPath = this.edition.route; // '/edition'
         // rootPath += this.series.route;     // '/series'
         // rootPath += this.section.route;    // '/section'

@@ -12,7 +12,7 @@ import { EditionConstants } from './edition-constants';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { EditionWork } from './edition-work.model';
+import { EditionWork, EditionTitleStatement } from './edition-work.model';
 import { EditionWorks } from './edition-works';
 
 import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
@@ -32,6 +32,7 @@ import { ViewBox } from './view-box.model';
 
 export {
     EditionConstants,
+    EditionTitleStatement,
     EditionWork,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,

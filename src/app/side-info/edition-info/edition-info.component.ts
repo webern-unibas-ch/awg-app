@@ -17,32 +17,12 @@ import { EditionWorks } from '@awg-views/edition-view/models';
 })
 export class EditionInfoComponent implements OnInit {
     /**
-     * Public variable: editionInfoHeaderOp12.
+     * Public variable: editionInfoViewTitle.
      *
-     * It keeps the header information for the edition-info for Op12.
+     * It keeps the title for the heading
+     * of the edition info view section.
      */
-    editionInfoHeaderOp12 = {
-        section: 'AWG I/5',
-        title: 'Vier Lieder',
-        catalogueType: 'op.',
-        catalogueNumber: '12',
-        part: 'Skizzen',
-        description: '[Beispieledition ausgewählter Skizzen]'
-    };
-
-    /**
-     * Public variable: editionInfoHeaderOp25.
-     *
-     * It keeps the header information for the edition-info for Op25.
-     */
-    editionInfoHeaderOp25 = {
-        section: 'AWG I/5',
-        title: 'Drei Lieder nach Gedichten von Hildegard Jone',
-        catalogueType: 'op.',
-        catalogueNumber: '25',
-        part: 'Graph',
-        description: '[Beispieledition ausgewählter Skizzen]'
-    };
+    editionInfoViewTitle = 'Beispieleditionen ausgewählter Skizzen';
 
     /**
      * Readonly constant: editionWorkOp12.

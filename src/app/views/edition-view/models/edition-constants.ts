@@ -47,6 +47,24 @@ export class EditionConstants {
     };
 
     /**
+     * The opus route for the edition.
+     */
+    static readonly opus: EditionRoute = {
+        route: '/opus',
+        short: 'op.',
+        full: 'Opus'
+    };
+
+    /**
+     * The Moldenhauer route for the edition.
+     */
+    static readonly mnr: EditionRoute = {
+        route: '/mnr',
+        short: 'M',
+        full: 'Moldenhauer-Nr.'
+    };
+
+    /**
      * The edition route for series I.
      */
     static readonly series1: EditionRoute = {

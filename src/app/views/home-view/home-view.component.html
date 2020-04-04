@@ -1,26 +1,30 @@
 <!-- content: home -->
 
 <!-- heading -->
-<awg-heading [title]="'Beispieledition ausgewählter Skizzen'" [id]="'awg-home-view'"></awg-heading>
+<awg-heading [title]="homeViewTitle" [id]="homeViewId"></awg-heading>
 
 <!-- header -->
 <div class="para">
-    <h5 class="awg-breadcrumb">AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)</h5>
+    <h6 class="awg-breadcrumb">
+        {{ editionWorkOp12.edition.short }} / {{ editionWorkOp12.series.full }} / {{ editionWorkOp12.section.full }}
+    </h6>
 
     <h3 class="awg-edition-info-header">
-        <i class="awg-edition-info-header-title">{{ editionInfoHeaderOp12?.title }}</i
-        >&nbsp;<span class="awg-edition-info-header-catalogue"
-            >{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}</span
-        >
-        (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]">{{ editionInfoHeaderOp12?.part }}</a
+        <i class="awg-edition-info-header-title">{{ editionWorkOp12.titleStatement.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp12.work.short }}</span> (<a
+            [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]"
+            >{{ editionWorkOp12.type.full }}</a
         >)
     </h3>
+
     <h3 class="awg-edition-info-header">
-        <i class="awg-edition-info-header-title">{{ editionInfoHeaderOp25?.title }}</i
-        >&nbsp;<span class="awg-edition-info-header-catalogue"
-            >{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}</span
-        >
-        (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]">{{ editionInfoHeaderOp25?.part }}</a
+        <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span
+    >
+        (
+        <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
+            editionWorkOp25.graphRoute.short
+        }}</a
         >)
     </h3>
 </div>

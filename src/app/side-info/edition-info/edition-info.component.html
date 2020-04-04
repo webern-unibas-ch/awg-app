@@ -2,29 +2,41 @@
 <div class="card">
     <div class="card-body bg-light">
         <p>
-            {{ editionInfoHeaderOp12?.description }}
+            {{ editionInfoViewTitle }}
         </p>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
-            {{ editionInfoHeaderOp12?.section }}
+            <span class="awg-breadcrumb"
+                >{{ editionWorkOp12.edition.short }} {{ editionWorkOp12.series.short }}/{{
+                    editionWorkOp12.section.short
+                }}</span
+            >
             <br />
-            <i>{{ editionInfoHeaderOp12?.title }}</i
-            >&nbsp;{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}
+            <i class="awg-edition-info-header-title">{{ editionWorkOp12.titleStatement.title }}</i
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp12.work.short }}</span>
             <br />
             (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]">{{
-                editionInfoHeaderOp12?.part
+                editionWorkOp12.type.full
             }}</a
             >)
         </h6>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
-            {{ editionInfoHeaderOp25?.section }}
+            <span class="awg-breadcrumb"
+                >{{ editionWorkOp25.edition.short }} {{ editionWorkOp25.series.short }}/{{
+                    editionWorkOp25.section.short
+                }}</span
+            >
             <br />
-            <i>{{ editionInfoHeaderOp25?.title }}</i
-            >&nbsp;{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}
+            <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span>
             <br />
-            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
-                editionInfoHeaderOp25?.part
+            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]">{{
+                editionWorkOp25.type.full
+            }}</a>
+            &
+            <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
+                editionWorkOp25.graphRoute.short
             }}</a
             >)
         </h6>

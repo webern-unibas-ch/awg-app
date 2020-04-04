@@ -19,30 +19,20 @@ import { EditionWorks } from '@awg-views/edition-view/models';
 })
 export class HomeViewComponent implements OnInit {
     /**
-     * Public variable: editionInfoHeaderOp12.
+     * Public variable: homeViewTitle.
      *
-     * It keeps the header information for the edition-info for Op12.
+     * It keeps the title for the heading component
+     * of the home view section.
      */
-    editionInfoHeaderOp12 = {
-        section: 'AWG I/5',
-        title: 'Vier Lieder',
-        catalogueType: 'op.',
-        catalogueNumber: '12',
-        part: 'Skizzen'
-    };
+    homeViewTitle = 'Beispieleditionen ausgewählter Skizzen';
 
     /**
-     * Public variable: editionInfoHeaderOp25.
+     * Public variable: homeId.
      *
-     * It keeps the header information for the edition-info for Op25.
+     * It keeps the id for the heading component
+     * of the home view section.
      */
-    editionInfoHeaderOp25 = {
-        section: 'AWG I/5',
-        title: 'Drei Lieder nach Gedichten von Hildegard Jone',
-        catalogueType: 'op.',
-        catalogueNumber: '25',
-        part: 'Graph'
-    };
+    homeViewId = 'awg-home-view';
 
     /**
      * Readonly constant: editionWorkOp12.
