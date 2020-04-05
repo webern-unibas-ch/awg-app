@@ -156,7 +156,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).not.toBeTruthy(`should be empty string`);
+                expect(headerEl.textContent).toBe(' ', `should be empty string`);
             });
 
             it('... should not render title of edition info headers in first div.para yet', () => {
@@ -227,6 +227,14 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).not.toBeTruthy(`should be empty string`);
             });
+
+            it('... should not pass down `title` and `id` to heading component', () => {
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expect(headingCmp.title).toBeUndefined();
+                expect(headingCmp.id).toBeUndefined();
+            });
         });
     });
 
@@ -296,12 +304,23 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
+            it('... should pass down `title` and `id` to heading component', () => {
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expect(headingCmp.title).toBeTruthy();
+                expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);
+
+                expect(headingCmp.id).toBeTruthy();
+                expect(headingCmp.id).toBe(expectedId, `should have id: ${expectedId}`);
+            });
+
             it('... should render bread crumb header in first div.para', () => {
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.para', 2, 2);
                 const headerDes = getAndExpectDebugElementByCss(divDes[0], 'h6.awg-breadcrumb', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                const expectedBreadCrumb = `${expectedEditionWorkOp12.edition.short} / ${expectedEditionWorkOp12.series.full} / ${expectedEditionWorkOp12.section.full}`;
+                const expectedBreadCrumb = ` ${expectedEditionWorkOp12.edition.short} / ${expectedEditionWorkOp12.series.full} / ${expectedEditionWorkOp12.section.full} `;
 
                 expect(headerEl).toBeDefined();
                 expect(headerEl.textContent).toBe(expectedBreadCrumb, `should be ${expectedBreadCrumb}`);
