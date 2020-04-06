@@ -6,7 +6,14 @@ import { ModalDismissReasons, NgbModal } from '@ng-bootstrap/ng-bootstrap';
  *
  * It provides the text snippets to be used in a modal.
  *
- * Available snippet keys: `op12_sourceNotA`, `op12_sheetComingSoon`, `op12_editionComingSoon`, `M198`.
+ * Available snippet keys:
+ *          `op12_sourceNotA`,
+ *          `op12_sheetComingSoon`,
+ *          `op12_editionComingSoon`,
+ *          `op25_sheetComingSoon`,
+ *          `op25_sourceNotA`,
+ *          `M198`,
+ *          `hintEditionDetail`.
  */
 const MODALCONTENTSNIPPETS = {
     op12_sourceNotA:
@@ -20,7 +27,15 @@ const MODALCONTENTSNIPPETS = {
     op25_sourceNotA:
         '<p>Die Beschreibung der Quellen <strong>B</strong> sowie <strong>D–E</strong> einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der <i>Drei Lieder nach Gedichten von Hildegard Jone</i> op. 25 in AWG I/5.</p>',
     M198:
-        '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>'
+        '<p>Das Fragment „<em>Schien mir’s als ich sah die Sonne</em>“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.</p>',
+    hintEditionDetail:
+        '<p>\n' +
+        '        <span class="bold">Hinweise zur Nutzung:</span> <br />\n' +
+        '        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter <i>Edierter Notentext</i> aufrufen.<br />\n' +
+        '        Einen Takt oder eine markierte Stelle innerhalb einer Skizzentranskription anklicken, um die entsprechenden textkritischen Anmerkungen anzuzeigen.<br />\n' +
+        '        Die größeren Boxen im Notentext markieren die jeweiligen Anschlüsse unmittelbar benachbarter Skizzen und sind ebenfalls verknüpft.<br />\n' +
+        '        <span class="text-danger">Diese Funktionalität ist noch nicht für alle Skizzenbestandteile vorhanden, wird aber sukzessive ergänzt.</span>\n' +
+        '    </p>'
 };
 
 /**

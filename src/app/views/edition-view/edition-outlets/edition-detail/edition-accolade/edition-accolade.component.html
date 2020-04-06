@@ -1,5 +1,13 @@
 <ngb-accordion activeIds="awg-accolade-view">
-    <ngb-panel id="awg-accolade-view" title="Edierter Notentext">
+    <ngb-panel id="awg-accolade-view">
+        <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+                <button ngbPanelToggle class="btn btn-link text-left">Edierter Notentext</button>
+                <button type="button" class="btn btn-sm btn-outline-info ml-2" (click)="openModal('hintEditionDetail')">
+                    Hinweise zur Nutzung
+                </button>
+            </div>
+        </ng-template>
         <ng-template ngbPanelContent>
             <!-- accolade control -->
             <awg-edition-svg-sheet-nav
