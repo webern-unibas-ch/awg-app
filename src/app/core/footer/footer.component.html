@@ -1,14 +1,15 @@
 <footer class="container-fluid text-center">
     <!-- main top footer -->
-    <div class="row awg-footer-top">
-        <div class="col-md-8">
+    <div class="row awg-footer-top mb-3">
+        <div class="col-md-6">
             <awg-footer-declaration [pageMetaData]="pageMetaData"></awg-footer-declaration>
         </div>
 
-        <div class="col-6 col-md-2 order-md-first mb-4 mt-md-4">
-            <awg-footer-logo [logo]="logos?.unibas"></awg-footer-logo>
+        <div class="col-6 col-md-2 order-md-first m-auto">
+            <awg-footer-logo [logo]="logos?.sagw"></awg-footer-logo>
         </div>
-        <div class="col-6 col-md-2 mb-4 mt-md-4">
+        <div class="col-6 col-md-2 m-auto">
+            <awg-footer-logo [logo]="logos?.unibas"></awg-footer-logo>
             <awg-footer-logo [logo]="logos?.snf"></awg-footer-logo>
         </div>
     </div>

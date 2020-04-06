@@ -127,21 +127,21 @@ describe('FooterComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain 1 main top footer and 1 secondary bottom footer', () => {
-                getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
-                getAndExpectDebugElementByCss(compDe, '.awg-footer-bottom', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-top', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'footer div.awg-footer-bottom', 1, 1);
             });
 
             describe('main top footer', () => {
-                it('... should contain 1 footer text component (stubbed)', () => {
+                it('... should contain 1 footer declaration component (stubbed)', () => {
                     const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
 
                     getAndExpectDebugElementByDirective(footerTopDes[0], FooterDeclarationStubComponent, 1, 1);
                 });
 
-                it('... should contain 2 footer logo components (stubbed)', () => {
+                it('... should contain 3 footer logo components (stubbed)', () => {
                     const footerTopDes = getAndExpectDebugElementByCss(compDe, '.awg-footer-top', 1, 1);
 
-                    getAndExpectDebugElementByDirective(footerTopDes[0], FooterLogoStubComponent, 2, 2);
+                    getAndExpectDebugElementByDirective(footerTopDes[0], FooterLogoStubComponent, 3, 3);
                 });
             });
 
@@ -204,18 +204,21 @@ describe('FooterComponent (DONE)', () => {
                 });
 
                 it('... should pass down logos to footer logo components', () => {
-                    const footerLogoDes = getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 2, 2);
+                    const footerLogoDes = getAndExpectDebugElementByDirective(compDe, FooterLogoStubComponent, 3, 3);
                     const footerLogoCmps = footerLogoDes.map(
                         de => de.injector.get(FooterLogoStubComponent) as FooterLogoStubComponent
                     );
 
-                    expect(footerLogoCmps.length).toBe(2, 'should have 2 logo components');
+                    expect(footerLogoCmps.length).toBe(3, 'should have 3 logo components');
 
                     expect(footerLogoCmps[0].logo).toBeTruthy();
-                    expect(footerLogoCmps[0].logo).toEqual(expectedLogos.unibas, 'should have unibas logo');
+                    expect(footerLogoCmps[0].logo).toEqual(expectedLogos.sagw, 'should have sagw logo');
 
                     expect(footerLogoCmps[1].logo).toBeTruthy();
-                    expect(footerLogoCmps[1].logo).toEqual(expectedLogos.snf, 'should have snf logo');
+                    expect(footerLogoCmps[1].logo).toEqual(expectedLogos.unibas, 'should have unibas logo');
+
+                    expect(footerLogoCmps[2].logo).toBeTruthy();
+                    expect(footerLogoCmps[2].logo).toEqual(expectedLogos.snf, 'should have snf logo');
                 });
             });
 
