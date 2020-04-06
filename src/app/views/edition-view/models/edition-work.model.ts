@@ -1,3 +1,4 @@
+import { MetaPerson } from '@awg-core/core-models/meta.model';
 import { EditionConstants, EditionRoute } from './edition-constants';
 
 /**
@@ -24,6 +25,24 @@ export class EditionTitleStatement {
 }
 
 /**
+ * The EditionResponsibilityStatement class.
+ *
+ * It is used in the context of the edition view
+ * to store information about the responsibility statement of a work.
+ */
+export class EditionResponsibilityStatement {
+    /**
+     * The editors of an edition.
+     */
+    editors: MetaPerson[];
+
+    /**
+     * The last modification date of an edition.
+     */
+    lastModified: string;
+}
+
+/**
  * The EditionWork class.
  *
  * It is used in the context of the edition view
@@ -34,6 +53,11 @@ export class EditionWork {
      * The title statement of the current work.
      */
     titleStatement: EditionTitleStatement;
+
+    /**
+     * The responsibility statement of the current work.
+     */
+    responsibilityStatement: EditionResponsibilityStatement;
 
     /**
      * The edition route for the current work.
@@ -99,6 +123,7 @@ export class EditionWork {
      * It initializes the class with a composition Object from the EditionConstants.
      *
      * @param {EditionTitleStatement} titleStatement The given TitleStatement for the composition.
+     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the composition.
      * @param {EditionRoute} workRoute The given EditionRoute for the composition.
      * @param {EditionRoute} seriesRoute The given EditionRoute for the series.
      * @param {EditionRoute} sectionRoute The given EditionRoute for the section.
@@ -106,6 +131,7 @@ export class EditionWork {
      */
     constructor(
         titleStatement: EditionTitleStatement,
+        responsibilityStatement: EditionResponsibilityStatement,
         workRoute: EditionRoute,
         seriesRoute?: EditionRoute,
         sectionRoute?: EditionRoute,
@@ -121,6 +147,9 @@ export class EditionWork {
 
         // set dynamic routes
         this.titleStatement = titleStatement ? titleStatement : new EditionTitleStatement();
+        this.responsibilityStatement = responsibilityStatement
+            ? responsibilityStatement
+            : new EditionResponsibilityStatement();
 
         this.work = workRoute ? workRoute : new EditionRoute();
         this.work.short = this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;

@@ -1,3 +1,4 @@
+import { AppConfig } from '@awg-app/app.config';
 import { EditionConstants } from './edition-constants';
 import { EditionWork } from './edition-work.model';
 
@@ -18,6 +19,15 @@ export class EditionWorks {
             catalogueNumber: '12'
         },
         {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+                }
+            ],
+            lastModified: '29. Januar 2020'
+        },
+        {
             route: '/op12',
             short: '',
             full: ''
@@ -35,6 +45,15 @@ export class EditionWorks {
             title: 'Drei Lieder nach Gedichten von Hildegard Jone',
             catalogueType: EditionConstants.opus,
             catalogueNumber: '25'
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+                }
+            ],
+            lastModified: '29. Januar 2020'
         },
         {
             route: '/op25',
