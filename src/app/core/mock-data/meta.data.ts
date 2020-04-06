@@ -27,7 +27,7 @@ const METASTRUCTURE: MetaStructure = {
     authors: [
         {
             name: 'Stefan Münnich',
-            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+            homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
         }
     ],
     lastModified: '29. Januar 2016'

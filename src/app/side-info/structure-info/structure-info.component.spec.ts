@@ -168,7 +168,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 const authorEl = authorDes[0].nativeElement;
 
                 expect(authorEl).toBeDefined();
-                expect(authorEl.href).toBe(expectedAuthor.contactUrl, `should be ${expectedAuthor.contactUrl}`);
+                expect(authorEl.href).toBe(expectedAuthor.homepage, `should be ${expectedAuthor.homepage}`);
                 expect(authorEl.innerHTML).toBe(expectedAuthor.name, `should be ${expectedAuthor.name}`);
             });
 

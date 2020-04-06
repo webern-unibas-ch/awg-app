@@ -16,14 +16,14 @@ export enum MetaSectionTypes {
  */
 export class MetaPerson {
     /**
-     * The name of the person.
+     * The (FOAF) name of the person.
      */
     name: string;
 
     /**
-     * The contact (webadress) of a person.
+     * The (FOAF) homepage of a person.
      */
-    contactUrl: string;
+    homepage: string;
 }
 
 /**
