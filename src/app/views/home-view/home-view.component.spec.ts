@@ -329,14 +329,14 @@ describe('HomeViewComponent (DONE)', () => {
             describe('[routerLink]', () => {
                 beforeEach(() => {
                     // find DebugElements with an attached RouterLinkStubDirective
-                    linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 7, 7);
+                    linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 8, 8);
 
                     // get attached link directive instances using each DebugElement's injector
                     routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
                 });
 
                 it('... can get routerLink from template', () => {
-                    expect(routerLinks.length).toBe(7, 'should have 7 routerLinks');
+                    expect(routerLinks.length).toBe(8, 'should have 8 routerLinks');
                     expect(routerLinks[0].linkParams).toEqual([
                         expectedEditionWorkOp12.baseRoute,
                         expectedEditionWorkOp12.introRoute.route
@@ -359,6 +359,7 @@ describe('HomeViewComponent (DONE)', () => {
                         expectedEditionWorkOp25.detailRoute.route
                     ]);
                     expect(routerLinks[6].linkParams).toEqual(['/data/search', 'fulltext']);
+                    expect(routerLinks[7].linkParams).toEqual(['/contact']);
                 });
 
                 it('... can click `intro` link in template', () => {
@@ -433,6 +434,19 @@ describe('HomeViewComponent (DONE)', () => {
                     fixture.detectChanges();
 
                     expect(searchLink.navigatedTo).toEqual(['/data/search', 'fulltext']);
+                });
+
+                it('... can click `contact` link in template', () => {
+                    const searchLinkDe = linkDes[7]; // contact link DebugElement
+                    const searchLink = routerLinks[7]; // contact link directive
+
+                    expect(searchLink.navigatedTo).toBeNull('should not have navigated yet');
+
+                    searchLinkDe.triggerEventHandler('click', null);
+
+                    fixture.detectChanges();
+
+                    expect(searchLink.navigatedTo).toEqual(['/contact']);
                 });
             });
         });

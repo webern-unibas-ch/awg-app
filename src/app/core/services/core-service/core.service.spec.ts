@@ -51,16 +51,6 @@ describe('CoreService (DONE)', () => {
             );
         });
 
-        it(`... should return edition METADATA if parameter is given`, () => {
-            const metaSection = MetaSectionTypes.edition;
-
-            // call service function
-            expect(coreService.getMetaDataSection(metaSection)).toBe(
-                expectedMetaData[metaSection],
-                `should be ${expectedMetaData[metaSection]}`
-            );
-        });
-
         it(`... should return structure METADATA if parameter is given`, () => {
             const metaSection = MetaSectionTypes.structure;
 
