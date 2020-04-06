@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaEdition, MetaContact } from '@awg-core/core-models';
+import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaContact } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -64,7 +64,6 @@ describe('StructureInfoComponent (DONE)', () => {
         const coreService = TestBed.get(CoreService);
         const CHANGEDMETA: Meta = {
             page: new MetaPage(),
-            edition: new MetaEdition(),
             structure: new MetaStructure(),
             contact: new MetaContact()
         };

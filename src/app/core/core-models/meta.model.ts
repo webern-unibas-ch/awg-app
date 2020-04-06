@@ -5,7 +5,6 @@
  */
 export enum MetaSectionTypes {
     page = 'page',
-    edition = 'edition',
     structure = 'structure',
     contact = 'contact'
 }
@@ -78,24 +77,6 @@ export class MetaPage {
      * The release date of the latest version of the AWG edition website (awg-app).
      */
     versionReleaseDate: string;
-}
-
-/**
- * The MetaEdition class.
- *
- * It is used in the context of the edition view
- * to store the meta data about the edition.
- */
-export class MetaEdition {
-    /**
-     * The editors of an edition.
-     */
-    editors: MetaPerson[];
-
-    /**
-     * The last modification date of an edition.
-     */
-    lastModified: string;
 }
 
 /**
@@ -204,11 +185,6 @@ export class Meta {
      * The meta data for the main app framework.
      */
     page: MetaPage;
-
-    /**
-     * The meta data for the edition view.
-     */
-    edition: MetaEdition;
 
     /**
      * The meta data for the structure view.
