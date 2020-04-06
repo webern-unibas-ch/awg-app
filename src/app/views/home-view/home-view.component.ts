@@ -1,8 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 
-import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
 import { EditionWorks } from '@awg-views/edition-view/models';
 
 /**
@@ -49,22 +47,13 @@ export class HomeViewComponent implements OnInit {
     readonly editionWorkOp25 = EditionWorks.op25;
 
     /**
-     * Public variable: editionMetaData.
-     *
-     * It keeps the edition meta data for the home view.
-     */
-    editionMetaData: MetaEdition;
-
-    /**
      * Constructor of the HomeViewComponent.
      *
-     * It declares a private CoreService instance
-     * to get the meta data and a private Router instance.
+     * It declares a private Router instance.
      *
-     * @param {CoreService} coreService Instance of the CoreService.
      * @param {Router} router Instance of the Angular router.
      */
-    constructor(private coreService: CoreService, private router: Router) {}
+    constructor(private router: Router) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -74,19 +63,6 @@ export class HomeViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
-        this.provideMetaData();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the meta data for the home view.
-     *
-     * @returns {void} Sets the editionMetaData variable.
-     */
-    provideMetaData(): void {
-        this.editionMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.edition);
     }
 
     /**

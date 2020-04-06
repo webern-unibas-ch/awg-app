@@ -1,7 +1,5 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { MetaEdition, MetaSectionTypes } from '@awg-core/core-models';
-import { CoreService } from '@awg-core/services';
 import { EditionWorks } from '@awg-views/edition-view/models';
 
 /**
@@ -39,21 +37,9 @@ export class EditionInfoComponent implements OnInit {
     readonly editionWorkOp25 = EditionWorks.op25;
 
     /**
-     * Public variable: editionMetaData.
-     *
-     * It keeps the meta data for the edition info.
-     */
-    editionMetaData: MetaEdition;
-
-    /**
      * Constructor of the EditionInfoComponent.
-     *
-     * It declares a private CoreService instance
-     * to get the meta data.
-     *
-     * @param {CoreService} coreService Instance of the CoreService.
      */
-    constructor(private coreService: CoreService) {}
+    constructor() {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -61,19 +47,5 @@ export class EditionInfoComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {
-        this.provideMetaData();
-    }
-
-    /**
-     * Public method: provideMetaData.
-     *
-     * It calls the CoreService to provide
-     * the meta data for the edition info.
-     *
-     * @returns {void} Sets the editionMetaData variable.
-     */
-    provideMetaData(): void {
-        this.editionMetaData = this.coreService.getMetaDataSection(MetaSectionTypes.edition);
-    }
+    ngOnInit() {}
 }

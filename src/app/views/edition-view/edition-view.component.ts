@@ -60,6 +60,17 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
+        this.getEditionWorkFromRoute();
+    }
+
+    /**
+     * Private method: getEditionWorkFromRoute.
+     *
+     * It subscribes to the route params to get the compositionId of the current work and load it from the edition service.
+     *
+     * @returns {void} Gets the current work from the edition service.
+     */
+    private getEditionWorkFromRoute(): void {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('compositionId') ? params.get('compositionId') : '';
             this.editionService.updateEditionWork(EditionWorks[id]);
@@ -68,13 +79,13 @@ export class EditionViewComponent implements OnInit {
     }
 
     /**
-     * Public method: routeToSidenav.
+     * Private method: routeToSidenav.
      *
      * It activates the secondary outlet with the edition-info.
      *
      * @returns {void} Activates the edition-info side outlet.
      */
-    routeToSidenav(): void {
+    private routeToSidenav(): void {
         // opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
             preserveFragment: true,

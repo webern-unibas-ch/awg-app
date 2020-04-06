@@ -11,9 +11,6 @@ import {
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
-import { METADATA } from '@awg-core/mock-data';
-import { CoreService } from '@awg-core/services';
 import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { HomeViewComponent } from './home-view.component';
@@ -35,7 +32,6 @@ describe('HomeViewComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let mockCoreService: Partial<CoreService>;
     let mockRouter;
 
     const expectedTitle = 'Beispieleditionen ausgewählter Skizzen';
@@ -43,21 +39,14 @@ describe('HomeViewComponent (DONE)', () => {
 
     let expectedEditionWorkOp12: EditionWork;
     let expectedEditionWorkOp25: EditionWork;
-    let expectedEditionMetaData: MetaEdition;
 
     beforeEach(async(() => {
-        // stub service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
-
         // router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
         TestBed.configureTestingModule({
             declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
-            providers: [
-                { provide: CoreService, useValue: mockCoreService },
-                { provide: Router, useValue: mockRouter }
-            ]
+            providers: [{ provide: Router, useValue: mockRouter }]
         }).compileComponents();
     }));
 
@@ -70,12 +59,10 @@ describe('HomeViewComponent (DONE)', () => {
         // test data
         expectedEditionWorkOp12 = EditionWorks.op12;
         expectedEditionWorkOp25 = EditionWorks.op25;
-        expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
         spyOn(component, 'routeToSidenav').and.callThrough();
     });
 
@@ -85,24 +72,6 @@ describe('HomeViewComponent (DONE)', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('stub service and injected coreService should not be the same', () => {
-        const coreService = TestBed.get(CoreService);
-        expect(mockCoreService === coreService).toBe(false);
-    });
-
-    it('changing the stub service has no effect on the injected service', () => {
-        const coreService = TestBed.get(CoreService);
-        const CHANGEDMETA: Meta = {
-            page: new MetaPage(),
-            edition: new MetaEdition(),
-            structure: new MetaStructure(),
-            contact: new MetaContact()
-        };
-        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
-
-        expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -122,26 +91,23 @@ describe('HomeViewComponent (DONE)', () => {
             expect(component.editionWorkOp25).toEqual(expectedEditionWorkOp25, `should be ${expectedEditionWorkOp25}`);
         });
 
-        it('should not have metadata', () => {
-            expect(component.editionMetaData).toBeUndefined('should be undefined');
-        });
-
         describe('#routeToSidenav', () => {
             it('... should not have been called', () => {
                 expect(component.routeToSidenav).not.toHaveBeenCalled();
             });
         });
 
-        describe('#provideMetaData', () => {
-            it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-        });
-
         describe('VIEW', () => {
-            it('... should contain two `div.para` & one `div.declamation` elements', () => {
+            it('... should not pass down `title` and `id` to heading component', () => {
+                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+                expect(headingCmp.title).toBeUndefined();
+                expect(headingCmp.id).toBeUndefined();
+            });
+
+            it('... should contain two `div.para` elements', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.para', 2, 2);
-                getAndExpectDebugElementByCss(compDe, 'div.declamation', 1, 1);
             });
 
             it('... should have one h6 and two h3 in first div.para', () => {
@@ -210,39 +176,11 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(a2El.textContent).not.toBeTruthy(`should be empty string`);
                 expect(a3El.textContent).not.toBeTruthy(`should be empty string`);
             });
-
-            it('... should not render `editors` yet', () => {
-                const editorsDes = getAndExpectDebugElementByCss(compDe, '.editors a', 1, 1);
-                const editorsEl = editorsDes[0].nativeElement;
-
-                expect(editorsEl).toBeDefined();
-                expect(editorsEl.href).not.toBeTruthy(`should be empty string`);
-                expect(editorsEl.textContent).not.toBeTruthy(`should be empty string`);
-            });
-
-            it('... should not render `lastmodified` yet', () => {
-                const versionDes = getAndExpectDebugElementByCss(compDe, '.version', 1, 1);
-                const versionEl = versionDes[0].nativeElement;
-
-                expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).not.toBeTruthy(`should be empty string`);
-            });
-
-            it('... should not pass down `title` and `id` to heading component', () => {
-                const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-                const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
-
-                expect(headingCmp.title).toBeUndefined();
-                expect(headingCmp.id).toBeUndefined();
-            });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the call to the meta service in #provideMetaData
-            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.edition);
-
             // trigger initial data binding
             fixture.detectChanges();
         });
@@ -289,17 +227,6 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(navExtras.preserveFragment).toBe(true, 'should be `preserveFragment:true`');
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
-            });
-        });
-
-        describe('#provideMetaData', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return metadata', () => {
-                expect(component.editionMetaData).toBeDefined();
-                expect(component.editionMetaData).toBe(expectedEditionMetaData);
             });
         });
 
@@ -399,118 +326,114 @@ describe('HomeViewComponent (DONE)', () => {
                 );
             });
 
-            it('... should render `editors` in div.declamation', () => {
-                const editorsDes = getAndExpectDebugElementByCss(compDe, 'div.declamation .editors a', 1, 1);
-                const editorsEl = editorsDes[0].nativeElement;
+            describe('[routerLink]', () => {
+                beforeEach(() => {
+                    // find DebugElements with an attached RouterLinkStubDirective
+                    linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 7, 7);
 
-                expect(editorsEl).toBeDefined();
-                expect(editorsEl.href).toBe(
-                    expectedEditionMetaData.editors[0].contactUrl,
-                    `should be ${expectedEditionMetaData.editors[0].contactUrl}`
-                );
-                expect(editorsEl.innerHTML).toBe(
-                    expectedEditionMetaData.editors[0].name,
-                    `should be ${expectedEditionMetaData.editors[0].name}`
-                );
-            });
+                    // get attached link directive instances using each DebugElement's injector
+                    routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
+                });
 
-            it('... should render `lastmodified` in div.declamation', () => {
-                const versionDes = getAndExpectDebugElementByCss(compDe, 'div.declamation .version', 1, 1);
-                const versionEl = versionDes[0].nativeElement;
+                it('... can get routerLink from template', () => {
+                    expect(routerLinks.length).toBe(7, 'should have 7 routerLinks');
+                    expect(routerLinks[0].linkParams).toEqual([
+                        expectedEditionWorkOp12.baseRoute,
+                        expectedEditionWorkOp12.introRoute.route
+                    ]);
+                    expect(routerLinks[1].linkParams).toEqual([
+                        expectedEditionWorkOp25.baseRoute,
+                        expectedEditionWorkOp25.detailRoute.route
+                    ]);
+                    expect(routerLinks[2].linkParams).toEqual([
+                        expectedEditionWorkOp25.baseRoute,
+                        expectedEditionWorkOp25.graphRoute.route
+                    ]);
+                    expect(routerLinks[3].linkParams).toEqual(['/structure']);
+                    expect(routerLinks[4].linkParams).toEqual([
+                        expectedEditionWorkOp12.baseRoute,
+                        expectedEditionWorkOp12.detailRoute.route
+                    ]);
+                    expect(routerLinks[5].linkParams).toEqual([
+                        expectedEditionWorkOp25.baseRoute,
+                        expectedEditionWorkOp25.detailRoute.route
+                    ]);
+                    expect(routerLinks[6].linkParams).toEqual(['/data/search', 'fulltext']);
+                });
 
-                expect(versionEl).toBeDefined();
-                expect(versionEl.textContent).toBe(
-                    expectedEditionMetaData.lastModified,
-                    `should be ${expectedEditionMetaData.lastModified}`
-                );
-            });
-        });
+                it('... can click `intro` link in template', () => {
+                    const introLinkDe = linkDes[0]; // contact link DebugElement
+                    const introLink = routerLinks[0]; // contact link directive
 
-        describe('[routerLink]', () => {
-            beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
-                linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 4, 4);
+                    expect(introLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                // get attached link directive instances using each DebugElement's injector
-                routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
-            });
+                    introLinkDe.triggerEventHandler('click', null);
 
-            it('... can get routerLink from template', () => {
-                expect(routerLinks.length).toBe(4, 'should have 4 routerLinks');
-                expect(routerLinks[0].linkParams).toEqual([
-                    expectedEditionWorkOp12.baseRoute,
-                    expectedEditionWorkOp12.introRoute.route
-                ]);
-                expect(routerLinks[1].linkParams).toEqual([
-                    expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.detailRoute.route
-                ]);
-                expect(routerLinks[2].linkParams).toEqual([
-                    expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.graphRoute.route
-                ]);
-                expect(routerLinks[3].linkParams).toBe('/structure');
-            });
+                    fixture.detectChanges();
 
-            it('... can click `intro` link in template', () => {
-                const introLinkDe = linkDes[0]; // contact link DebugElement
-                const introLink = routerLinks[0]; // contact link directive
+                    expect(introLink.navigatedTo).toEqual([
+                        expectedEditionWorkOp12.baseRoute,
+                        expectedEditionWorkOp12.introRoute.route
+                    ]);
+                });
 
-                expect(introLink.navigatedTo).toBeNull('should not have navigated yet');
+                it('... can click `detail` link in template', () => {
+                    const detailLinkDe = linkDes[1]; // contact link DebugElement
+                    const detailLink = routerLinks[1]; // contact link directive
 
-                introLinkDe.triggerEventHandler('click', null);
+                    expect(detailLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                fixture.detectChanges();
+                    detailLinkDe.triggerEventHandler('click', null);
 
-                expect(introLink.navigatedTo).toEqual([
-                    expectedEditionWorkOp12.baseRoute,
-                    expectedEditionWorkOp12.introRoute.route
-                ]);
-            });
+                    fixture.detectChanges();
 
-            it('... can click `detail` link in template', () => {
-                const detailLinkDe = linkDes[1]; // contact link DebugElement
-                const detailLink = routerLinks[1]; // contact link directive
+                    expect(detailLink.navigatedTo).toEqual([
+                        expectedEditionWorkOp25.baseRoute,
+                        expectedEditionWorkOp25.detailRoute.route
+                    ]);
+                });
 
-                expect(detailLink.navigatedTo).toBeNull('should not have navigated yet');
+                it('... can click `graph` link in template', () => {
+                    const graphLinkDe = linkDes[2]; // contact link DebugElement
+                    const graphLink = routerLinks[2]; // contact link directive
 
-                detailLinkDe.triggerEventHandler('click', null);
+                    expect(graphLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                fixture.detectChanges();
+                    graphLinkDe.triggerEventHandler('click', null);
 
-                expect(detailLink.navigatedTo).toEqual([
-                    expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.detailRoute.route
-                ]);
-            });
+                    fixture.detectChanges();
 
-            it('... can click `graph` link in template', () => {
-                const graphLinkDe = linkDes[2]; // contact link DebugElement
-                const graphLink = routerLinks[2]; // contact link directive
+                    expect(graphLink.navigatedTo).toEqual([
+                        expectedEditionWorkOp25.baseRoute,
+                        expectedEditionWorkOp25.graphRoute.route
+                    ]);
+                });
 
-                expect(graphLink.navigatedTo).toBeNull('should not have navigated yet');
+                it('... can click `structure` link in template', () => {
+                    const structureLinkDe = linkDes[3]; // contact link DebugElement
+                    const structureLink = routerLinks[3]; // contact link directive
 
-                graphLinkDe.triggerEventHandler('click', null);
+                    expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                fixture.detectChanges();
+                    structureLinkDe.triggerEventHandler('click', null);
 
-                expect(graphLink.navigatedTo).toEqual([
-                    expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.graphRoute.route
-                ]);
-            });
+                    fixture.detectChanges();
 
-            it('... can click `structure` link in template', () => {
-                const structureLinkDe = linkDes[3]; // contact link DebugElement
-                const structureLink = routerLinks[3]; // contact link directive
+                    expect(structureLink.navigatedTo).toEqual(['/structure']);
+                });
 
-                expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
+                it('... can click `search` link in template', () => {
+                    const searchLinkDe = linkDes[6]; // contact link DebugElement
+                    const searchLink = routerLinks[6]; // contact link directive
 
-                structureLinkDe.triggerEventHandler('click', null);
+                    expect(searchLink.navigatedTo).toBeNull('should not have navigated yet');
 
-                fixture.detectChanges();
+                    searchLinkDe.triggerEventHandler('click', null);
 
-                expect(structureLink.navigatedTo).toBe('/structure');
+                    fixture.detectChanges();
+
+                    expect(searchLink.navigatedTo).toEqual(['/data/search', 'fulltext']);
+                });
             });
         });
     });

@@ -5,9 +5,7 @@ import { DebugElement } from '@angular/core';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from 'testing/router-stubs';
-import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
-import { METADATA } from '@awg-core/mock-data';
-import { CoreService } from '@awg-core/services';
+
 import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { EditionInfoComponent } from './edition-info.component';
@@ -20,22 +18,13 @@ describe('EditionInfoComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let mockCoreService: Partial<CoreService>;
-
     const expectedTitle = 'Beispieleditionen ausgewählter Skizzen';
     let expectedEditionWorkOp12: EditionWork;
     let expectedEditionWorkOp25: EditionWork;
-    let expectedEditionMetaData: MetaEdition;
 
     beforeEach(async(() => {
-        // stub service for test purposes
-        mockCoreService = {
-            getMetaDataSection: sectionType => METADATA[sectionType]
-        };
-
         TestBed.configureTestingModule({
-            declarations: [EditionInfoComponent, RouterLinkStubDirective],
-            providers: [{ provide: CoreService, useValue: mockCoreService }]
+            declarations: [EditionInfoComponent, RouterLinkStubDirective]
         }).compileComponents();
     }));
 
@@ -48,12 +37,6 @@ describe('EditionInfoComponent (DONE)', () => {
         // test data
         expectedEditionWorkOp12 = EditionWorks.op12;
         expectedEditionWorkOp25 = EditionWorks.op25;
-        expectedEditionMetaData = METADATA[MetaSectionTypes.edition];
-
-        // spies on component functions
-        // `.and.callThrough` will track the spy down the nested describes, see
-        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
     });
 
     afterAll(() => {
@@ -62,24 +45,6 @@ describe('EditionInfoComponent (DONE)', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
-    });
-
-    it('stub service and injected coreService should not be the same', () => {
-        const coreService = TestBed.get(CoreService);
-        expect(mockCoreService === coreService).toBe(false);
-    });
-
-    it('changing the stub service has no effect on the injected service', () => {
-        const coreService = TestBed.get(CoreService);
-        const CHANGEDMETA: Meta = {
-            page: new MetaPage(),
-            edition: new MetaEdition(),
-            structure: new MetaStructure(),
-            contact: new MetaContact()
-        };
-        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
-
-        expect(coreService.getMetaDataSection(MetaSectionTypes.edition)).toBe(expectedEditionMetaData);
     });
 
     describe('BEFORE initial data binding', () => {
@@ -96,25 +61,15 @@ describe('EditionInfoComponent (DONE)', () => {
             expect(component.editionWorkOp25).toEqual(expectedEditionWorkOp25, `should be ${expectedEditionWorkOp25}`);
         });
 
-        it('... should not have editionMetaData', () => {
-            expect(component.editionMetaData).toBeUndefined('should be undefined');
-        });
-
-        describe('#provideMetaData', () => {
-            it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
-            });
-        });
-
         describe('VIEW', () => {
             it('... should contain 1 div.card with div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card div.card-body', 1, 1);
             });
 
-            it('... should contain two `h6` header and 5 `p` elements in div.card-body', () => {
+            it('... should contain two `h6` header and 4 `p` elements in div.card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card-body h6.awg-edition-info-header', 2, 2);
-                getAndExpectDebugElementByCss(compDe, 'div.card-body p', 5, 5);
+                getAndExpectDebugElementByCss(compDe, 'div.card-body p', 4, 4);
             });
 
             it('... should not render series of edition info headers yet', () => {
@@ -186,44 +141,13 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(a2El.textContent).not.toBeTruthy(`should be empty string`);
                 expect(a3El.textContent).not.toBeTruthy(`should be empty string`);
             });
-
-            it('... should not render editor information yet', () => {
-                const editorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-edition-info-editors a', 1, 1);
-                const editorEl = editorDes[0].nativeElement;
-
-                expect(editorEl).toBeDefined();
-                expect(editorEl.href).toBe('', 'should be empty string');
-                expect(editorEl.innerHTML).toBe('', 'should be empty string');
-            });
-
-            it('... should not render last modification date yet', () => {
-                const dateDes = getAndExpectDebugElementByCss(compDe, 'span#awg-edition-info-lastmodified', 1, 1);
-                const dateEl = dateDes[0].nativeElement;
-
-                expect(dateEl.textContent).toBeDefined();
-                expect(dateEl.textContent).toBe('', 'should be empty string');
-            });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the call to the meta service in #provideMetaData
-            component.editionMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.edition);
-
             // trigger initial data binding
             fixture.detectChanges();
-        });
-
-        describe('#provideMetaData', () => {
-            it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
-            });
-
-            it('... should return editionMetaData', () => {
-                expect(component.editionMetaData).toBeDefined();
-                expect(component.editionMetaData).toBe(expectedEditionMetaData);
-            });
         });
 
         describe('VIEW', () => {
@@ -319,27 +243,6 @@ describe('EditionInfoComponent (DONE)', () => {
                     expectedEditionWorkOp25.graphRoute.short,
                     `should be ${expectedEditionWorkOp25.graphRoute.short}`
                 );
-            });
-
-            it('... should render editor information', () => {
-                const expectedEditor = expectedEditionMetaData.editors[0];
-
-                const editorDes = getAndExpectDebugElementByCss(compDe, 'span.awg-edition-info-editors a', 1, 1);
-                const editorEl = editorDes[0].nativeElement;
-
-                expect(editorEl).toBeDefined();
-                expect(editorEl.href).toBe(expectedEditor.contactUrl, `should be ${expectedEditor.contactUrl}`);
-                expect(editorEl.innerHTML).toBe(expectedEditor.name, `should be ${expectedEditor.name}`);
-            });
-
-            it('... should render last modification date', () => {
-                const expectedLastModified = expectedEditionMetaData.lastModified;
-
-                const lastmodDes = getAndExpectDebugElementByCss(compDe, 'span#awg-edition-info-lastmodified', 1, 1);
-                const lastmodEl = lastmodDes[0].nativeElement;
-
-                expect(lastmodEl.textContent).toBeDefined();
-                expect(lastmodEl.textContent).toContain(expectedLastModified, `should contain ${expectedLastModified}`);
             });
         });
 
