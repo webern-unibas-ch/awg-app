@@ -13,9 +13,6 @@ import {
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
 // mock components
-@Component({ selector: 'awg-edition-detail-notification', template: '' })
-class EditionDetailNotificationStubComponent {}
-
 @Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
 class EditionSvgSheetNavStubComponent {
     @Input()
@@ -57,7 +54,6 @@ describe('EditionAccoladeComponent', () => {
             imports: [NgbAccordionModule],
             declarations: [
                 EditionAccoladeComponent,
-                EditionDetailNotificationStubComponent,
                 EditionSvgSheetStubComponent,
                 EditionSvgSheetNavStubComponent,
                 EditionTkaTableStubComponent
