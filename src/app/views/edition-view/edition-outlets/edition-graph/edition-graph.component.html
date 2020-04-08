@@ -1,5 +1,8 @@
 <!-- content: edition graph -->
 <div>
+    <!-- modal -->
+    <awg-modal #modal></awg-modal>
+
     <!-- graph -->
     <div *ngIf="editionGraphData$ | async as editionGraphData; else error">
         <div *ngFor="let graph of editionGraphData.graph">
@@ -25,7 +28,16 @@
 
             <!-- dynamic graph -->
             <ng-container *ngIf="graph.rdfData && graph.rdfData.triples && graph.rdfData.query">
-                <h4>Dynamischer Graph</h4>
+                <h4>
+                    Dynamischer Graph
+                    <button
+                        type="button"
+                        class="btn btn-sm btn-outline-info ml-2"
+                        (click)="modal.open('hintEditionGraph')"
+                    >
+                        Hinweise zur Nutzung
+                    </button>
+                </h4>
                 <p>
                     Diese interaktive Visualisierung basiert auf Mads Holten's
                     <a href="https://github.com/MadsHolten/sparql-visualizer" target="_blank" rel="noreferrer noopener"
