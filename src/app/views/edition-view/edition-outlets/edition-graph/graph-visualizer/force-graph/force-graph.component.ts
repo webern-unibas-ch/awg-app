@@ -294,7 +294,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private cleanSVG(): void {
         // Remove everything below the SVG element
-        d3_selection.selectAll('svg > *').remove();
+        d3_selection.selectAll('svg.force-graph > *').remove();
     }
 
     /**
@@ -322,7 +322,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             : 500;
 
         if (!this.svg) {
-            this.svg = d3_selection.select(this.graphContainer.nativeElement).append('svg');
+            this.svg = d3_selection
+                .select(this.graphContainer.nativeElement)
+                .append('svg')
+                .attr('class', 'force-graph');
         }
         this.svg.attr('width', this.divWidth).attr('height', this.divHeight);
     }
