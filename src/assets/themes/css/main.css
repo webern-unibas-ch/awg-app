@@ -36,6 +36,7 @@ a.list-group-item:hover,
 }
 
 a.dropdown-item:hover,
+button.dropdown-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:active {

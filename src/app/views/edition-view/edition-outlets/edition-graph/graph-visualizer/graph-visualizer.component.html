@@ -26,10 +26,42 @@
     <!-- awg-graph-query-input -->
     <div class="col-lg-6 pl-lg-0">
         <ngb-accordion #sparqlAcc activeIds="">
-            <ngb-panel id="awg-graph-visualizer-query" title="SPARQL Query">
+            <ngb-panel id="awg-graph-visualizer-query">
+                <ng-template ngbPanelHeader>
+                    <div class="d-flex align-items-center justify-content-between">
+                        <button ngbPanelToggle class="btn btn-link text-left">SPARQL Abfrage</button>
+                        <!-- Limit -->
+                        <div class="btn-group float-right mr-2" *ngIf="query && query.queryLabel && query.queryString">
+                            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
+                                Beispielabfragen
+                            </button>
+                            <div
+                                class="btn-group"
+                                ngbDropdown
+                                container="body"
+                                placement="bottom-right"
+                                role="group"
+                                aria-label="Button group with nested dropdown for sample queries"
+                            >
+                                <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
+                                <div class="dropdown-menu" ngbDropdownMenu>
+                                    <ng-container *ngFor="let q of queryList">
+                                        <button
+                                            class="dropdown-item"
+                                            [class.active]="q === query"
+                                            (click)="onQueryChange(q)"
+                                        >
+                                            <span>{{ q.queryLabel }}</span>
+                                        </button>
+                                    </ng-container>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </ng-template>
                 <ng-template ngbPanelContent>
                     <!-- CodeMirror editor instance -->
-                    <ngx-codemirror [(ngModel)]="query" [options]="cmSparqlConfig">
+                    <ngx-codemirror [(ngModel)]="query.queryString" [options]="cmSparqlConfig">
                         <!-- (change)="data.query = $event" -->
                     </ngx-codemirror>
 
@@ -58,7 +90,7 @@
             activeIds="awg-graph-construct-result"
             *ngIf="queryType === 'construct'"
         >
-            <ngb-panel id="awg-graph-construct-result" title="Result">
+            <ngb-panel id="awg-graph-construct-result" title="Resultat">
                 <ng-template ngbPanelContent>
                     <div *ngIf="queryResult | async as queryResult; else loading">
                         <div *ngIf="queryResult.length > 0; else noResult">

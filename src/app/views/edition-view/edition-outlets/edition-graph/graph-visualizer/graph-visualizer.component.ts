@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 
 import { from, Observable } from 'rxjs';
 
-import { GraphRDFData } from '@awg-views/edition-view/models';
+import { GraphQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 import { GraphVisualizerService } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service';
@@ -37,48 +37,6 @@ export class GraphVisualizerComponent implements OnInit {
     graphRDFInputData: GraphRDFData;
 
     /**
-     * Public variable: queryType.
-     *
-     * It keeps the type of the query.
-     */
-    queryType: string;
-
-    /**
-     * Public variable: queryTime.
-     *
-     * It keeps the duration time of the query.
-     */
-    queryTime: number;
-
-    /**
-     * Public variable: queryResult.
-     *
-     * It keeps the result of the query as an observable of triples.
-     */
-    queryResult: Observable<Triple[]>;
-
-    /**
-     * Public variable: defaultForceGraphHeight.
-     *
-     * It keeps the default height for the force graph.
-     */
-    defaultForceGraphHeight = 500;
-
-    /**
-     * Public variable: query.
-     *
-     * It keeps the input query string of the graph visualization.
-     */
-    query: string;
-
-    /**
-     * Public variable: triples.
-     *
-     * It keeps the input triple string of the graph visualization.
-     */
-    triples: string;
-
-    /**
      * Public variable: cmTriplesConfig.
      *
      * It keeps the Codemirror configuration for the triples panel.
@@ -103,6 +61,55 @@ export class GraphVisualizerComponent implements OnInit {
         matchBrackets: true,
         mode: 'sparql'
     };
+
+    /**
+     * Public variable: defaultForceGraphHeight.
+     *
+     * It keeps the default height for the force graph.
+     */
+    defaultForceGraphHeight = 500;
+
+    /**
+     * Public variable: query.
+     *
+     * It keeps the input query string of the graph visualization.
+     */
+    query: GraphQuery;
+
+    /**
+     * Public variable: queryList.
+     *
+     * It keeps the input query list of the graph visualization.
+     */
+    queryList: GraphQuery[];
+
+    /**
+     * Public variable: queryResult.
+     *
+     * It keeps the result of the query as an observable of triples.
+     */
+    queryResult: Observable<Triple[]>;
+
+    /**
+     * Public variable: queryTime.
+     *
+     * It keeps the duration time of the query.
+     */
+    queryTime: number;
+
+    /**
+     * Public variable: queryType.
+     *
+     * It keeps the type of the query.
+     */
+    queryType: string;
+
+    /**
+     * Public variable: triples.
+     *
+     * It keeps the input triple string of the graph visualization.
+     */
+    triples: string;
 
     /**
      * Constructor of the GraphVisualizerComponent.
@@ -137,15 +144,18 @@ export class GraphVisualizerComponent implements OnInit {
      */
     doQuery(): void {
         // If no namesace is defined in the query, get it from the turtle file
-        if (this.query.toLowerCase().indexOf('prefix') === -1) {
-            this.query = this.graphVisualizerService.appendNamespacesToQuery(this.query, this.triples);
+        if (this.query.queryString.toLowerCase().indexOf('prefix') === -1) {
+            this.query.queryString = this.graphVisualizerService.appendNamespacesToQuery(
+                this.query.queryString,
+                this.triples
+            );
         }
 
         // get the query type
-        this.queryType = this.graphVisualizerService.getQuerytype(this.query);
+        this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
         // use only local store for now
-        this.queryResult = this.queryLocalstore(this.queryType, this.query, this.triples);
+        this.queryResult = this.queryLocalstore(this.queryType, this.query.queryString, this.triples);
     }
 
     /**
@@ -159,6 +169,15 @@ export class GraphVisualizerComponent implements OnInit {
         console.log('AppComponent# graphClick URI', URI);
     }
 
+    onQueryChange(query: GraphQuery): void {
+        if (!query && !this.queryList) {
+            return;
+        }
+        // find the given query in the queryList or take its first item
+        this.query = this.queryList.find(q => query === q) || this.queryList[0];
+        this.doQuery();
+    }
+
     /**
      * Public method: tableClick.
      *
@@ -169,7 +188,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query with the given URI.
      */
     onTableClick(IRI: string): void {
-        this.query = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
+        this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
         this.doQuery();
     }
 
@@ -197,11 +216,11 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} (Re-)Sets the initial query.
      */
     setInitialQuery(): void {
-        if (!this.graphRDFInputData.query) {
+        if (!this.graphRDFInputData.queryList) {
             return;
         }
-        // If no prefix is defined in the query, get it from the turtle file
-        this.query = this.graphRDFInputData.query;
+        this.queryList = this.graphRDFInputData.queryList;
+        this.query = this.queryList[0];
     }
 
     /**
