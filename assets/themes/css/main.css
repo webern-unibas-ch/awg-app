@@ -24,7 +24,7 @@ a.dropdown-item,
     color: rgba(51, 51, 51, 1); /* rgba converted HEX #333 */
 }
 
-a:hover {
+a:not(.awg-logo-link):hover {
     border-bottom: 1px solid rgba(20, 155, 158, 1); /* rgba converted HEX #149b9e */
 }
 a.dropdown-item:hover,
@@ -35,7 +35,14 @@ a.list-group-item:hover,
     text-decoration: none;
 }
 
+button.dropdown-item.disabled {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1); /* rgba converted HEX #fff */
+    background-color: rgba(0, 123, 255, 1); /* rgba converted HEX #007bff */
+}
+
 a.dropdown-item:hover,
+button.dropdown-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
 .navbar-nav > li > a:focus,
 .navbar-nav > li > a:active {

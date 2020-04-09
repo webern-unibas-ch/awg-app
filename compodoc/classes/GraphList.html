@@ -132,7 +132,7 @@ from a graph json file.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/models/graph.model.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -194,14 +194,33 @@ from a graph json file.</p>
  */
 export class GraphRDFData {
     /**
-     * The preset query for a graph.
+     * The predefined query list for a graph.
      */
-    query: string;
+    queryList: GraphQuery[];
 
     /**
-     * The preset triples for a graph.
+     * The predefined triples for a graph.
      */
     triples: string;
+}
+
+/**
+ * The GraphQuery class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a graph query
+ * from a graph json file.
+ */
+export class GraphQuery {
+    /**
+     * The label of a query.
+     */
+    queryLabel: string;
+
+    /**
+     * The string of the query itself.
+     */
+    queryString: string;
 }
 
 /**

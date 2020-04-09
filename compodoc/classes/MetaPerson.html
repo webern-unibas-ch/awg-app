@@ -89,7 +89,7 @@
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#contactUrl">contactUrl</a>
+                                <a href="#homepage">homepage</a>
                             </li>
                             <li>
                                 <a href="#name">name</a>
@@ -117,11 +117,11 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="contactUrl"></a>
+                        <a name="homepage"></a>
                         <span class="name">
                             <b>
-                            contactUrl</b>
-                            <a href="#contactUrl"><span class="icon ion-ios-link"></span></a>
+                            homepage</b>
+                            <a href="#homepage"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -133,13 +133,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/core/core-models/meta.model.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/core-models/meta.model.ts:26</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The contact (webadress) of a person.</p>
+                        <div class="io-description"><p>The (FOAF) homepage of a person.</p>
 </div>
                     </td>
                 </tr>
@@ -166,13 +166,13 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/core/core-models/meta.model.ts:22</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/core/core-models/meta.model.ts:21</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The name of the person.</p>
+                        <div class="io-description"><p>The (FOAF) name of the person.</p>
 </div>
                     </td>
                 </tr>
@@ -193,7 +193,6 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum MetaSectionTypes {
     page &#x3D; &#x27;page&#x27;,
-    edition &#x3D; &#x27;edition&#x27;,
     structure &#x3D; &#x27;structure&#x27;,
     contact &#x3D; &#x27;contact&#x27;
 }
@@ -205,14 +204,14 @@
  */
 export class MetaPerson {
     /**
-     * The name of the person.
+     * The (FOAF) name of the person.
      */
     name: string;
 
     /**
-     * The contact (webadress) of a person.
+     * The (FOAF) homepage of a person.
      */
-    contactUrl: string;
+    homepage: string;
 }
 
 /**
@@ -266,24 +265,6 @@ export class MetaPage {
      * The release date of the latest version of the AWG edition website (awg-app).
      */
     versionReleaseDate: string;
-}
-
-/**
- * The MetaEdition class.
- *
- * It is used in the context of the edition view
- * to store the meta data about the edition.
- */
-export class MetaEdition {
-    /**
-     * The editors of an edition.
-     */
-    editors: MetaPerson[];
-
-    /**
-     * The last modification date of an edition.
-     */
-    lastModified: string;
 }
 
 /**
@@ -392,11 +373,6 @@ export class Meta {
      * The meta data for the main app framework.
      */
     page: MetaPage;
-
-    /**
-     * The meta data for the edition view.
-     */
-    edition: MetaEdition;
 
     /**
      * The meta data for the structure view.

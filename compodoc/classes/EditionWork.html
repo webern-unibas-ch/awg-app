@@ -70,7 +70,7 @@
             <p class="comment">
                 <p>The EditionWork class.</p>
 <p>It is used in the context of the edition view
-to store information about the url path of an edition.</p>
+to store information about a work of an edition.</p>
 
             </p>
 
@@ -111,10 +111,16 @@ to store information about the url path of an edition.</p>
                                 <a href="#reportRoute">reportRoute</a>
                             </li>
                             <li>
+                                <a href="#responsibilityStatement">responsibilityStatement</a>
+                            </li>
+                            <li>
                                 <a href="#section">section</a>
                             </li>
                             <li>
                                 <a href="#series">series</a>
+                            </li>
+                            <li>
+                                <a href="#titleStatement">titleStatement</a>
                             </li>
                             <li>
                                 <a href="#type">type</a>
@@ -141,12 +147,12 @@ to store information about the url path of an edition.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(workRoute: <a href="../classes/EditionRoute.html">EditionRoute</a>, seriesRoute?: <a href="../classes/EditionRoute.html">EditionRoute</a>, sectionRoute?: <a href="../classes/EditionRoute.html">EditionRoute</a>, typeRoute?: <a href="../classes/EditionRoute.html">EditionRoute</a>)</code>
+<code>constructor(titleStatement: <a href="../classes/EditionTitleStatement.html">EditionTitleStatement</a>, responsibilityStatement: <a href="../classes/EditionResponsibilityStatement.html">EditionResponsibilityStatement</a>, workRoute: <a href="../classes/EditionRoute.html">EditionRoute</a>, seriesRoute?: <a href="../classes/EditionRoute.html">EditionRoute</a>, sectionRoute?: <a href="../classes/EditionRoute.html">EditionRoute</a>, typeRoute?: <a href="../classes/EditionRoute.html">EditionRoute</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:66</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -167,6 +173,38 @@ to store information about the url path of an edition.</p>
                                             </tr>
                                         </thead>
                                         <tbody>
+                                                <tr>
+                                                        <td>titleStatement</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/EditionTitleStatement.html" target="_self" >EditionTitleStatement</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>The given TitleStatement for the composition.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>responsibilityStatement</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/EditionResponsibilityStatement.html" target="_self" >EditionResponsibilityStatement</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>The given ResponsibilityStatement for the composition.</p>
+</code>
+                                                        </td>
+                                                </tr>
                                                 <tr>
                                                         <td>workRoute</td>
                                                   
@@ -265,7 +303,7 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:66</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:118</a></div>
                             </td>
                         </tr>
 
@@ -303,7 +341,7 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -330,18 +368,18 @@ to store information about the url path of an edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="../classes/EditionRoute.html" target="_self" >EditionRoute</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionDetail.route</code>
+                            <i>Default value : </i><code>EditionConstants.editionDetail</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="53" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:53</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:105</a></div>
                             </td>
                         </tr>
 
@@ -379,7 +417,7 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="13" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:13</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -406,18 +444,18 @@ to store information about the url path of an edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="../classes/EditionRoute.html" target="_self" >EditionRoute</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionGraph.route</code>
+                            <i>Default value : </i><code>EditionConstants.editionGraph</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:43</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="95" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:95</a></div>
                             </td>
                         </tr>
 
@@ -444,18 +482,18 @@ to store information about the url path of an edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="../classes/EditionRoute.html" target="_self" >EditionRoute</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionIntro.route</code>
+                            <i>Default value : </i><code>EditionConstants.editionIntro</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:48</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="100" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:100</a></div>
                             </td>
                         </tr>
 
@@ -482,24 +520,57 @@ to store information about the url path of an edition.</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                            <i>Type : </i>        <code><a href="../classes/EditionRoute.html" target="_self" >EditionRoute</a></code>
 
                         </td>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionReport.route</code>
+                            <i>Default value : </i><code>EditionConstants.editionReport</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="58" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:58</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="110" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:110</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>The route to the report section of an edition.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="responsibilityStatement"></a>
+                        <span class="name">
+                            <b>
+                            responsibilityStatement</b>
+                            <a href="#responsibilityStatement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/EditionResponsibilityStatement.html" target="_self" >EditionResponsibilityStatement</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:60</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The responsibility statement of the current work.</p>
 </div>
                     </td>
                 </tr>
@@ -526,7 +597,7 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:75</a></div>
                             </td>
                         </tr>
 
@@ -559,13 +630,46 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="18" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:18</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:70</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>The edition route for series.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="titleStatement"></a>
+                        <span class="name">
+                            <b>
+                            titleStatement</b>
+                            <a href="#titleStatement"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/EditionTitleStatement.html" target="_self" >EditionTitleStatement</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:55</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>The title statement of the current work.</p>
 </div>
                     </td>
                 </tr>
@@ -592,7 +696,7 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:38</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:80</a></div>
                             </td>
                         </tr>
 
@@ -625,7 +729,7 @@ to store information about the url path of an edition.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/views/edition-view/models/edition-work.model.ts:65</a></div>
                             </td>
                         </tr>
 
@@ -650,19 +754,71 @@ to store information about the url path of an edition.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionConstants, EditionRoute } from &#x27;./edition-constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { MetaPerson } from &#x27;@awg-core/core-models/meta.model&#x27;;
+import { EditionConstants, EditionRoute } from &#x27;./edition-constants&#x27;;
+
+/**
+ * The EditionTitleStatement class.
+ *
+ * It is used in the context of the edition view
+ * to store information about the title statement of a work.
+ */
+export class EditionTitleStatement {
+    /**
+     * The title of a title statement.
+     */
+    title: string;
+
+    /**
+     * The catalogue type of a title statement.
+     */
+    catalogueType: EditionRoute;
+
+    /**
+     * The catalogue number of a title statement.
+     */
+    catalogueNumber: string;
+}
+
+/**
+ * The EditionResponsibilityStatement class.
+ *
+ * It is used in the context of the edition view
+ * to store information about the responsibility statement of a work.
+ */
+export class EditionResponsibilityStatement {
+    /**
+     * The editors of an edition.
+     */
+    editors: MetaPerson[];
+
+    /**
+     * The last modification date of an edition.
+     */
+    lastModified: string;
+}
 
 /**
  * The EditionWork class.
  *
  * It is used in the context of the edition view
- * to store information about the url path of an edition.
+ * to store information about a work of an edition.
  */
 export class EditionWork {
     /**
-     * The edition route for edition.
+     * The title statement of the current work.
      */
-    edition: EditionRoute &#x3D; EditionConstants.edition;
+    titleStatement: EditionTitleStatement;
+
+    /**
+     * The responsibility statement of the current work.
+     */
+    responsibilityStatement: EditionResponsibilityStatement;
+
+    /**
+     * The edition route for the current work.
+     */
+    work: EditionRoute;
 
     /**
      * The edition route for series.
@@ -675,39 +831,39 @@ export class EditionWork {
     section: EditionRoute;
 
     /**
-     * The edition route for composition.
-     */
-    composition: EditionRoute &#x3D; EditionConstants.composition;
-
-    /**
-     * The edition route for the current work.
-     */
-    work: EditionRoute;
-
-    /**
      * The edition route for the type of an edition.
      */
     type: EditionRoute;
 
     /**
+     * The edition route for edition.
+     */
+    edition: EditionRoute &#x3D; EditionConstants.edition;
+
+    /**
+     * The edition route for composition.
+     */
+    composition: EditionRoute &#x3D; EditionConstants.composition;
+
+    /**
      * The route to the graph section of an edition.
      */
-    graphRoute: string &#x3D; EditionConstants.editionGraph.route;
+    graphRoute: EditionRoute &#x3D; EditionConstants.editionGraph;
 
     /**
      * The route to the intro section of an edition.
      */
-    introRoute: string &#x3D; EditionConstants.editionIntro.route;
+    introRoute: EditionRoute &#x3D; EditionConstants.editionIntro;
 
     /**
      * The route to the detail section of an edition.
      */
-    detailRoute: string &#x3D; EditionConstants.editionDetail.route;
+    detailRoute: EditionRoute &#x3D; EditionConstants.editionDetail;
 
     /**
      * The route to the report section of an edition.
      */
-    reportRoute: string &#x3D; EditionConstants.editionReport.route;
+    reportRoute: EditionRoute &#x3D; EditionConstants.editionReport;
 
     /**
      * The base route of a work.
@@ -722,12 +878,16 @@ export class EditionWork {
      *
      * It initializes the class with a composition Object from the EditionConstants.
      *
+     * @param {EditionTitleStatement} titleStatement The given TitleStatement for the composition.
+     * @param {EditionResponsibilityStatement} responsibilityStatement The given ResponsibilityStatement for the composition.
      * @param {EditionRoute} workRoute The given EditionRoute for the composition.
      * @param {EditionRoute} seriesRoute The given EditionRoute for the series.
      * @param {EditionRoute} sectionRoute The given EditionRoute for the section.
      * @param {EditionRoute} typeRoute The given EditionRoute for the edition type.
      */
     constructor(
+        titleStatement: EditionTitleStatement,
+        responsibilityStatement: EditionResponsibilityStatement,
         workRoute: EditionRoute,
         seriesRoute?: EditionRoute,
         sectionRoute?: EditionRoute,
@@ -737,13 +897,25 @@ export class EditionWork {
             return;
         }
 
-        // set dynamic routes
+        // helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
-        this.series &#x3D; seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.series1.path;
-        this.section &#x3D; sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.section1.path;
-        this.work &#x3D; workRoute ? workRoute : new EditionRoute();
-        this.type &#x3D; typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.textEdition.path;
+        const spacer &#x3D; &#x27; &#x27;;
 
+        // set dynamic routes
+        this.titleStatement &#x3D; titleStatement ? titleStatement : new EditionTitleStatement();
+        this.responsibilityStatement &#x3D; responsibilityStatement
+            ? responsibilityStatement
+            : new EditionResponsibilityStatement();
+
+        this.work &#x3D; workRoute ? workRoute : new EditionRoute();
+        this.work.short &#x3D; this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
+        this.work.full &#x3D; this.titleStatement.title + spacer + this.work.short;
+
+        this.series &#x3D; seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.series1;
+        this.section &#x3D; sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.section5;
+        this.type &#x3D; typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.sketchEdition;
+
+        // set base route
         let rootPath &#x3D; this.edition.route; // &#x27;/edition&#x27;
         // rootPath +&#x3D; this.series.route;     // &#x27;/series&#x27;
         // rootPath +&#x3D; this.section.route;    // &#x27;/section&#x27;

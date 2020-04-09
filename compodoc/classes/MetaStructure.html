@@ -134,7 +134,7 @@ to store the meta data about the structure overview.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="111" class="link-to-prism">src/app/core/core-models/meta.model.ts:111</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/core/core-models/meta.model.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -167,7 +167,7 @@ to store the meta data about the structure overview.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/core/core-models/meta.model.ts:116</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/core/core-models/meta.model.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -194,7 +194,6 @@ to store the meta data about the structure overview.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum MetaSectionTypes {
     page &#x3D; &#x27;page&#x27;,
-    edition &#x3D; &#x27;edition&#x27;,
     structure &#x3D; &#x27;structure&#x27;,
     contact &#x3D; &#x27;contact&#x27;
 }
@@ -206,14 +205,14 @@ to store the meta data about the structure overview.</p>
  */
 export class MetaPerson {
     /**
-     * The name of the person.
+     * The (FOAF) name of the person.
      */
     name: string;
 
     /**
-     * The contact (webadress) of a person.
+     * The (FOAF) homepage of a person.
      */
-    contactUrl: string;
+    homepage: string;
 }
 
 /**
@@ -267,24 +266,6 @@ export class MetaPage {
      * The release date of the latest version of the AWG edition website (awg-app).
      */
     versionReleaseDate: string;
-}
-
-/**
- * The MetaEdition class.
- *
- * It is used in the context of the edition view
- * to store the meta data about the edition.
- */
-export class MetaEdition {
-    /**
-     * The editors of an edition.
-     */
-    editors: MetaPerson[];
-
-    /**
-     * The last modification date of an edition.
-     */
-    lastModified: string;
 }
 
 /**
@@ -393,11 +374,6 @@ export class Meta {
      * The meta data for the main app framework.
      */
     page: MetaPage;
-
-    /**
-     * The meta data for the edition view.
-     */
-    edition: MetaEdition;
 
     /**
      * The meta data for the structure view.

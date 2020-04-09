@@ -89,10 +89,10 @@
                             <a href="#environment" title="src/environments/environment.prod.ts"><b>environment</b>&nbsp;&nbsp;&nbsp;(src/.../environment.prod.ts)</a>
                         </li>
                         <li>
-                            <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts"><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph.component.ts)</a>
+                            <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts"><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../d3-force-simulation.model.ts)</a>
                         </li>
                         <li>
-                            <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts"><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../d3-force-simulation.model.ts)</a>
+                            <a href="#FORCES" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts"><b>FORCES</b>&nbsp;&nbsp;&nbsp;(src/.../force-graph.component.ts)</a>
                         </li>
                         <li>
                             <a href="#htmlConverter" title="src/app/core/services/conversion-service/conversion.service.ts"><b>htmlConverter</b>&nbsp;&nbsp;&nbsp;(src/.../conversion.service.ts)</a>
@@ -108,9 +108,6 @@
                         </li>
                         <li>
                             <a href="#METADATA" title="src/app/core/mock-data/meta.data.ts"><b>METADATA</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#METAEDITION" title="src/app/core/mock-data/meta.data.ts"><b>METAEDITION</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
                         </li>
                         <li>
                             <a href="#METAPAGE" title="src/app/core/mock-data/meta.data.ts"><b>METAPAGE</b>&nbsp;&nbsp;&nbsp;(src/.../meta.data.ts)</a>
@@ -243,7 +240,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;0.7.2&#x27;</code>
+                            <i>Default value : </i><code>&#x27;0.7.3&#x27;</code>
                         </td>
                     </tr>
 
@@ -276,7 +273,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;21. März 2020&#x27;</code>
+                            <i>Default value : </i><code>&#x27;09. April 2020&#x27;</code>
                         </td>
                     </tr>
 
@@ -697,6 +694,47 @@
             </tbody>
         </table>
 </section>
+    <h3>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts</h3>
+    <section>
+    <h3></h3>        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="FORCES"></a>
+                        <span class="name">
+                            <b>
+                            FORCES</b>
+                            <a href="#FORCES"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+    LINK_DISTANCE: 1 / 50,
+    COLLISION_STRENGTH: 1,
+    CHARGE_STRENGTH: -1
+}</code>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Object constant for simulation forces.</p>
+<p>It provides constant values used for the d3 force simulation.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
     <h3>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/force-graph.component.ts</h3>
     <section>
     <h3></h3>        <table class="table table-sm table-bordered">
@@ -732,47 +770,6 @@
                         <div class="io-description"><p>Object constant with a set of forces.</p>
 <p>It provides the default values for the D3 simulation&#39;s forces.</p>
 <p>Available force values: <code>LINK_DISTANCE</code>, <code>COLLISION_STRENGTH</code>, <code>CHARGE_STRENGTH</code>.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-force-simulation.model.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="FORCES"></a>
-                        <span class="name">
-                            <b>
-                            FORCES</b>
-                            <a href="#FORCES"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-    LINK_DISTANCE: 1 / 50,
-    COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -1
-}</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Object constant for simulation forces.</p>
-<p>It provides constant values used for the d3 force simulation.</p>
 </div>
                     </td>
                 </tr>
@@ -870,6 +867,12 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         src: &#x27;assets/img/logos/github.svg&#x27;,
         alt: &#x27;Logo GitHub&#x27;,
         href: &#x27;https://github.com/webern-unibas-ch/awg-app&#x27;
+    },
+    sagw: {
+        id: &#x27;sagwlogo&#x27;,
+        src: &#x27;assets/img/logos/sagw.jpg&#x27;,
+        alt: &#x27;Logo SAGW&#x27;,
+        href: &#x27;https://sagw.ch/sagw/&#x27;
     },
     snf: {
         id: &#x27;snflogo&#x27;,
@@ -980,7 +983,6 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
     page: METAPAGE,
-    edition: METAEDITION,
     structure: METASTRUCTURE,
     contact: METACONTACT
 }</code>
@@ -992,48 +994,6 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                         <div class="io-description"><p>Object constant for metadata.</p>
 <p>It provides metadata used throughout different parts of the app.</p>
 <p>Available main sections: <code>page</code>, <code>edition</code>, <code>structure</code>, <code>contact</code>.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="METAEDITION"></a>
-                        <span class="name">
-                            <b>
-                            METAEDITION</b>
-                            <a href="#METAEDITION"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/MetaEdition.html" target="_self" >MetaEdition</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-    editors: [
-        {
-            name: &#x27;Thomas Ahrend&#x27;,
-            contactUrl: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
-        }
-    ],
-    lastModified: &#x27;29. Januar 2020&#x27;
-}</code>
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Object constant for edition metadata.</p>
-<p>It provides metadata used for the edition view.</p>
 </div>
                     </td>
                 </tr>
@@ -1108,7 +1068,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     authors: [
         {
             name: &#x27;Stefan Münnich&#x27;,
-            contactUrl: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
+            homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
         }
     ],
     lastModified: &#x27;29. Januar 2016&#x27;
@@ -2278,7 +2238,23 @@ from the Salsah API.</p>
     op25_sourceNotA:
         &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;B&lt;/strong&gt; sowie &lt;strong&gt;D–E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;i&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/i&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
     M198:
-        &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;
+        &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;,
+    hintEditionDetail:
+        &#x27;&lt;p&gt;\n&#x27; +
+        &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
+        &#x27;        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter &lt;i&gt;Edierter Notentext&lt;/i&gt; aufrufen.&lt;br /&gt;\n&#x27; +
+        &#x27;        Einen Takt oder eine markierte Stelle innerhalb einer Skizzentranskription anklicken, um die entsprechenden textkritischen Anmerkungen anzuzeigen.&lt;br /&gt;\n&#x27; +
+        &#x27;        Die größeren Boxen im Notentext markieren die jeweiligen Anschlüsse unmittelbar benachbarter Skizzen und sind ebenfalls verknüpft.&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;span class&#x3D;&quot;text-danger&quot;&gt;Diese Funktionalität ist noch nicht für alle Skizzenbestandteile vorhanden, wird aber sukzessive ergänzt.&lt;/span&gt;\n&#x27; +
+        &#x27;    &lt;/p&gt;&#x27;,
+    hintEditionGraph:
+        &#x27;&lt;p&gt;\n&#x27; +
+        &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;i&gt;RDF Triples&lt;/i&gt;: Das Resource Description Framework (&lt;i&gt;RDF&lt;/i&gt;) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form &lt;i&gt;&amp;lt;SUBJEKT&amp;gt; &amp;lt;PRÄDIKAT&amp;gt; &amp;lt;OBJEKT&amp;gt;&lt;/i&gt;, die auch als &lt;i&gt;Triple&lt;/i&gt; bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt &lt;i&gt;RDF Triples&lt;/i&gt; sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;https://www.w3.org/RDF/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;i&gt;SPARQL Abfrage&lt;/i&gt;: Die SPARQL Protocol And RDF Query Language (&lt;i&gt;SPARQL&lt;/i&gt;) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des &lt;i&gt;graph pattern matching&lt;/i&gt; der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt &lt;i&gt;SPARQL Abfrage&lt;/i&gt; lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;https://www.w3.org/TR/sparql11-query/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
+        &#x27;\n&#x27; +
+        &#x27;        &lt;i&gt;Resultat&lt;/i&gt;: Der durch die &lt;i&gt;SPARQL Abfrage&lt;/i&gt; über die &lt;i&gt;RDF Triples&lt;/i&gt; zurückgelieferte Datensatz wird unter dem Punkt &lt;i&gt;Resultat&lt;/i&gt; als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek &lt;a href&#x3D;&quot;https://d3js.org/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;d3.js&lt;/a&gt; visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch &quot;Ziehen&quot; mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.&lt;br /&gt;\n&#x27; +
+        &#x27;    &lt;/p&gt;&#x27;
 }</code>
                         </td>
                     </tr>
@@ -2287,7 +2263,14 @@ from the Salsah API.</p>
                     <td class="col-md-4">
                         <div class="io-description"><p>Object constant with a set of modal texts.</p>
 <p>It provides the text snippets to be used in a modal.</p>
-<p>Available snippet keys: <code>op12_sourceNotA</code>, <code>op12_sheetComingSoon</code>, <code>op12_editionComingSoon</code>, <code>M198</code>.</p>
+<p>Available snippet keys:
+          <code>op12_sourceNotA</code>,
+          <code>op12_sheetComingSoon</code>,
+          <code>op12_editionComingSoon</code>,
+          <code>op25_sheetComingSoon</code>,
+          <code>op25_sourceNotA</code>,
+          <code>M198</code>,
+          <code>hintEditionDetail</code>.</p>
 </div>
                     </td>
                 </tr>

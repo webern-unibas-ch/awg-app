@@ -245,13 +245,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/EditionDetailModule.html" data-type="entity-link">EditionDetailModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-EditionDetailModule-165d0e992a902d1c7701a9cc747a73ec"' : 'data-target="#xs-components-links-module-EditionDetailModule-165d0e992a902d1c7701a9cc747a73ec"' }>
+                                            'data-target="#components-links-module-EditionDetailModule-472be87d24550254ae312bb0d2d5c160"' : 'data-target="#xs-components-links-module-EditionDetailModule-472be87d24550254ae312bb0d2d5c160"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionDetailModule-165d0e992a902d1c7701a9cc747a73ec"' :
-                                            'id="xs-components-links-module-EditionDetailModule-165d0e992a902d1c7701a9cc747a73ec"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionDetailModule-472be87d24550254ae312bb0d2d5c160"' :
+                                            'id="xs-components-links-module-EditionDetailModule-472be87d24550254ae312bb0d2d5c160"' }>
                                             <li class="link">
                                                 <a href="components/EditionAccoladeComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionAccoladeComponent</a>
@@ -259,10 +259,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                             <li class="link">
                                                 <a href="components/EditionConvoluteComponent.html"
                                                     data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionConvoluteComponent</a>
-                                            </li>
-                                            <li class="link">
-                                                <a href="components/EditionDetailNotificationComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionDetailNotificationComponent</a>
                                             </li>
                                             <li class="link">
                                                 <a href="components/EditionSvgSheetComponent.html"
@@ -766,9 +762,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="components/EditionConvoluteComponent.html" data-type="entity-link">EditionConvoluteComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionDetailNotificationComponent.html" data-type="entity-link">EditionDetailNotificationComponent</a>
-                            </li>
-                            <li class="link">
                                 <a href="components/EditionSvgSheetComponent.html" data-type="entity-link">EditionSvgSheetComponent</a>
                             </li>
                             <li class="link">
@@ -842,6 +835,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/EditionConstants.html" data-type="entity-link">EditionConstants</a>
                             </li>
                             <li class="link">
+                                <a href="classes/EditionResponsibilityStatement.html" data-type="entity-link">EditionResponsibilityStatement</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/EditionRoute.html" data-type="entity-link">EditionRoute</a>
                             </li>
                             <li class="link">
@@ -852,6 +848,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/EditionSvgSheetList.html" data-type="entity-link">EditionSvgSheetList</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/EditionTitleStatement.html" data-type="entity-link">EditionTitleStatement</a>
                             </li>
                             <li class="link">
                                 <a href="classes/EditionWork.html" data-type="entity-link">EditionWork</a>
@@ -938,6 +937,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="classes/GraphList.html" data-type="entity-link">GraphList</a>
                             </li>
                             <li class="link">
+                                <a href="classes/GraphQuery.html" data-type="entity-link">GraphQuery</a>
+                            </li>
+                            <li class="link">
                                 <a href="classes/GraphRDFData.html" data-type="entity-link">GraphRDFData</a>
                             </li>
                             <li class="link">
@@ -972,9 +974,6 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </li>
                             <li class="link">
                                 <a href="classes/MetaContact.html" data-type="entity-link">MetaContact</a>
-                            </li>
-                            <li class="link">
-                                <a href="classes/MetaEdition.html" data-type="entity-link">MetaEdition</a>
                             </li>
                             <li class="link">
                                 <a href="classes/MetaPage.html" data-type="entity-link">MetaPage</a>

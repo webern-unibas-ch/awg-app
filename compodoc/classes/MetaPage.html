@@ -155,7 +155,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/core/core-models/meta.model.ts:60</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/core/core-models/meta.model.ts:59</a></div>
                             </td>
                         </tr>
 
@@ -188,7 +188,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="65" class="link-to-prism">src/app/core/core-models/meta.model.ts:65</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/core/core-models/meta.model.ts:64</a></div>
                             </td>
                         </tr>
 
@@ -221,7 +221,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="70" class="link-to-prism">src/app/core/core-models/meta.model.ts:70</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/core/core-models/meta.model.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -254,7 +254,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/core/core-models/meta.model.ts:55</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/core/core-models/meta.model.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -287,7 +287,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/core/core-models/meta.model.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/core/core-models/meta.model.ts:49</a></div>
                             </td>
                         </tr>
 
@@ -320,7 +320,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/core/core-models/meta.model.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="74" class="link-to-prism">src/app/core/core-models/meta.model.ts:74</a></div>
                             </td>
                         </tr>
 
@@ -353,7 +353,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/core/core-models/meta.model.ts:80</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/core/core-models/meta.model.ts:79</a></div>
                             </td>
                         </tr>
 
@@ -386,7 +386,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="45" class="link-to-prism">src/app/core/core-models/meta.model.ts:45</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/core/core-models/meta.model.ts:44</a></div>
                             </td>
                         </tr>
 
@@ -419,7 +419,7 @@ to store the meta data for the main framework.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/core/core-models/meta.model.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="39" class="link-to-prism">src/app/core/core-models/meta.model.ts:39</a></div>
                             </td>
                         </tr>
 
@@ -446,7 +446,6 @@ to store the meta data for the main framework.</p>
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum MetaSectionTypes {
     page &#x3D; &#x27;page&#x27;,
-    edition &#x3D; &#x27;edition&#x27;,
     structure &#x3D; &#x27;structure&#x27;,
     contact &#x3D; &#x27;contact&#x27;
 }
@@ -458,14 +457,14 @@ to store the meta data for the main framework.</p>
  */
 export class MetaPerson {
     /**
-     * The name of the person.
+     * The (FOAF) name of the person.
      */
     name: string;
 
     /**
-     * The contact (webadress) of a person.
+     * The (FOAF) homepage of a person.
      */
-    contactUrl: string;
+    homepage: string;
 }
 
 /**
@@ -519,24 +518,6 @@ export class MetaPage {
      * The release date of the latest version of the AWG edition website (awg-app).
      */
     versionReleaseDate: string;
-}
-
-/**
- * The MetaEdition class.
- *
- * It is used in the context of the edition view
- * to store the meta data about the edition.
- */
-export class MetaEdition {
-    /**
-     * The editors of an edition.
-     */
-    editors: MetaPerson[];
-
-    /**
-     * The last modification date of an edition.
-     */
-    lastModified: string;
 }
 
 /**
@@ -645,11 +626,6 @@ export class Meta {
      * The meta data for the main app framework.
      */
     page: MetaPage;
-
-    /**
-     * The meta data for the edition view.
-     */
-    edition: MetaEdition;
 
     /**
      * The meta data for the structure view.

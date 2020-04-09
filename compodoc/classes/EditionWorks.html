@@ -142,24 +142,39 @@ to store work information of the editions.</p>
                         <td class="col-md-4">
                             <i>Default value : </i><code>new EditionWork(
         {
+            title: &#x27;Vier Lieder&#x27;,
+            catalogueType: EditionConstants.opus,
+            catalogueNumber: &#x27;12&#x27;
+        },
+        {
+            editors: [
+                {
+                    name: &#x27;Thomas Ahrend&#x27;,
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
+                }
+            ],
+            lastModified: &#x27;29. Januar 2020&#x27;
+        },
+        {
             route: &#x27;/op12&#x27;,
-            short: &#x27;op. 12&#x27;,
-            full: &#x27;Vier Lieder op. 12&#x27;
+            short: &#x27;&#x27;,
+            full: &#x27;&#x27;
         },
         EditionConstants.series1,
-        EditionConstants.section5
+        EditionConstants.section5,
+        EditionConstants.sketchEdition
     )</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="14" class="link-to-prism">src/app/views/edition-view/models/edition-works.ts:14</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="15" class="link-to-prism">src/app/views/edition-view/models/edition-works.ts:15</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>An EditionWork object for a composition: op. 12.</p>
+                        <div class="io-description"><p>An EditionWork object for Opus 12.</p>
 </div>
                     </td>
                 </tr>
@@ -190,24 +205,39 @@ to store work information of the editions.</p>
                         <td class="col-md-4">
                             <i>Default value : </i><code>new EditionWork(
         {
+            title: &#x27;Drei Lieder nach Gedichten von Hildegard Jone&#x27;,
+            catalogueType: EditionConstants.opus,
+            catalogueNumber: &#x27;25&#x27;
+        },
+        {
+            editors: [
+                {
+                    name: &#x27;Thomas Ahrend&#x27;,
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
+                }
+            ],
+            lastModified: &#x27;29. Januar 2020&#x27;
+        },
+        {
             route: &#x27;/op25&#x27;,
-            short: &#x27;op. 25&#x27;,
-            full: &#x27;Drei Lieder nach Gedichten von Hildegard Jone op. 25&#x27;
+            short: &#x27;&#x27;,
+            full: &#x27;&#x27;
         },
         EditionConstants.series1,
-        EditionConstants.section5
+        EditionConstants.section5,
+        EditionConstants.sketchEdition
     )</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/views/edition-view/models/edition-works.ts:27</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="43" class="link-to-prism">src/app/views/edition-view/models/edition-works.ts:43</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>An EditionWork object for a composition: op. 25.</p>
+                        <div class="io-description"><p>An EditionWork object for Opus 25.</p>
 </div>
                     </td>
                 </tr>
@@ -226,7 +256,8 @@ to store work information of the editions.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { EditionConstants } from &#x27;./edition-constants&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
+import { EditionConstants } from &#x27;./edition-constants&#x27;;
 import { EditionWork } from &#x27;./edition-work.model&#x27;;
 
 /**
@@ -237,29 +268,59 @@ import { EditionWork } from &#x27;./edition-work.model&#x27;;
  */
 export class EditionWorks {
     /**
-     * An EditionWork object for a composition: op. 12.
+     * An EditionWork object for Opus 12.
      */
     static readonly op12: EditionWork &#x3D; new EditionWork(
         {
+            title: &#x27;Vier Lieder&#x27;,
+            catalogueType: EditionConstants.opus,
+            catalogueNumber: &#x27;12&#x27;
+        },
+        {
+            editors: [
+                {
+                    name: &#x27;Thomas Ahrend&#x27;,
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
+                }
+            ],
+            lastModified: &#x27;29. Januar 2020&#x27;
+        },
+        {
             route: &#x27;/op12&#x27;,
-            short: &#x27;op. 12&#x27;,
-            full: &#x27;Vier Lieder op. 12&#x27;
+            short: &#x27;&#x27;,
+            full: &#x27;&#x27;
         },
         EditionConstants.series1,
-        EditionConstants.section5
+        EditionConstants.section5,
+        EditionConstants.sketchEdition
     );
 
     /**
-     * An EditionWork object for a composition: op. 25.
+     * An EditionWork object for Opus 25.
      */
     static readonly op25: EditionWork &#x3D; new EditionWork(
         {
+            title: &#x27;Drei Lieder nach Gedichten von Hildegard Jone&#x27;,
+            catalogueType: EditionConstants.opus,
+            catalogueNumber: &#x27;25&#x27;
+        },
+        {
+            editors: [
+                {
+                    name: &#x27;Thomas Ahrend&#x27;,
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
+                }
+            ],
+            lastModified: &#x27;29. Januar 2020&#x27;
+        },
+        {
             route: &#x27;/op25&#x27;,
-            short: &#x27;op. 25&#x27;,
-            full: &#x27;Drei Lieder nach Gedichten von Hildegard Jone op. 25&#x27;
+            short: &#x27;&#x27;,
+            full: &#x27;&#x27;
         },
         EditionConstants.series1,
-        EditionConstants.section5
+        EditionConstants.section5,
+        EditionConstants.sketchEdition
     );
 }
 </code></pre>

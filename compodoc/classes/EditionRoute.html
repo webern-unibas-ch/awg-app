@@ -271,11 +271,29 @@ export class EditionConstants {
     };
 
     /**
+     * The opus route for the edition.
+     */
+    static readonly opus: EditionRoute &#x3D; {
+        route: &#x27;/opus&#x27;,
+        short: &#x27;op.&#x27;,
+        full: &#x27;Opus&#x27;
+    };
+
+    /**
+     * The Moldenhauer route for the edition.
+     */
+    static readonly mnr: EditionRoute &#x3D; {
+        route: &#x27;/mnr&#x27;,
+        short: &#x27;M&#x27;,
+        full: &#x27;Moldenhauer-Nr.&#x27;
+    };
+
+    /**
      * The edition route for series I.
      */
     static readonly series1: EditionRoute &#x3D; {
         route: &#x27;/series1&#x27;,
-        short: &#x27;Serie I&#x27;,
+        short: &#x27;I&#x27;,
         full: &#x27;Serie I (Werke mit Opuszahlen)&#x27;
     };
 
@@ -284,7 +302,7 @@ export class EditionConstants {
      */
     static readonly series2: EditionRoute &#x3D; {
         route: &#x27;/series2&#x27;,
-        short: &#x27;Serie II&#x27;,
+        short: &#x27;II&#x27;,
         full: &#x27;Serie II (Nachgelassene Kompositionen und Fragmente)&#x27;
     };
 
@@ -293,7 +311,7 @@ export class EditionConstants {
      */
     static readonly series3: EditionRoute &#x3D; {
         route: &#x27;/series3&#x27;,
-        short: &#x27;Serie III&#x27;,
+        short: &#x27;III&#x27;,
         full: &#x27;Serie III (Bearbeitungen von Werken anderer Komponisten)&#x27;
     };
 
@@ -302,7 +320,7 @@ export class EditionConstants {
      */
     static readonly section1: EditionRoute &#x3D; {
         route: &#x27;/section1&#x27;,
-        short: &#x27;Abteilung 1&#x27;,
+        short: &#x27;1&#x27;,
         full: &#x27;Abteilung 1 (Orchestermusik)&#x27;
     };
 
@@ -311,7 +329,7 @@ export class EditionConstants {
      */
     static readonly section2: EditionRoute &#x3D; {
         route: &#x27;/section2&#x27;,
-        short: &#x27;Abteilung 2&#x27;,
+        short: &#x27;2&#x27;,
         full: &#x27;Abteilung 2 (Kammer- und Klaviermusik)&#x27;
     };
 
@@ -320,7 +338,7 @@ export class EditionConstants {
      */
     static readonly section3: EditionRoute &#x3D; {
         route: &#x27;/section3&#x27;,
-        short: &#x27;Abteilung 3&#x27;,
+        short: &#x27;3&#x27;,
         full: &#x27;Abteilung 3 (Chormusik)&#x27;
     };
 
@@ -329,7 +347,7 @@ export class EditionConstants {
      */
     static readonly section4: EditionRoute &#x3D; {
         route: &#x27;/section4&#x27;,
-        short: &#x27;Abteilung 4&#x27;,
+        short: &#x27;4&#x27;,
         full: &#x27;Abteilung 4 (Vokalmusik mit Ensemblebegleitung)&#x27;
     };
 
@@ -338,7 +356,7 @@ export class EditionConstants {
      */
     static readonly section5 &#x3D; {
         route: &#x27;/section5&#x27;,
-        short: &#x27;Abteilung 5&#x27;,
+        short: &#x27;5&#x27;,
         full: &#x27;Abteilung 5 (Klavierlieder)&#x27;
     };
 
@@ -440,8 +458,8 @@ export class EditionConstants {
      */
     static readonly graphImageOp25: EditionRoute &#x3D; {
         route: &#x27;assets/img/edition/series1/section5/op25/graph_op25_1.png&#x27;,
-        short: &#x27;Graph op. 25/I&#x27;,
-        full: &#x27;Graph der Skizzen von Opus 25/I.&#x27;
+        short: &#x27;Statischer Graph op. 25/I&#x27;,
+        full: &#x27;Statischer Graph der Skizzen von Opus 25/I.&#x27;
     };
 }
 </code></pre>
