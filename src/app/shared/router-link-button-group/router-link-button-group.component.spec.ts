@@ -4,6 +4,7 @@ import { QueryParamsHandling } from '@angular/router';
 
 import Spy = jasmine.Spy;
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
@@ -13,6 +14,7 @@ import {
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
+
 import { RouterLinkButtonGroupComponent } from './router-link-button-group.component';
 
 describe('RouterLinkButtonGroupComponent (DONE)', () => {
@@ -54,6 +56,10 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         selectButtonSpy = spyOn(component, 'selectButton').and.callThrough();
         emitSpy = spyOn(component.selectButtonRequest, 'emit').and.callThrough();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

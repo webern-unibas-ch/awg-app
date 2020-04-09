@@ -1,5 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner.component';
 
 describe('TwelveToneSpinnerComponent', () => {
@@ -16,6 +18,10 @@ describe('TwelveToneSpinnerComponent', () => {
         fixture = TestBed.createComponent(TwelveToneSpinnerComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

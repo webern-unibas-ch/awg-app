@@ -4,13 +4,14 @@ import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
 
-import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -83,6 +84,10 @@ describe('ContactViewComponent (DONE)', () => {
         spyOn(component, 'routeToSidenav').and.callThrough();
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -96,7 +101,6 @@ describe('ContactViewComponent (DONE)', () => {
         const coreService = TestBed.get(CoreService);
         const CHANGEDMETA: Meta = {
             page: new MetaPage(),
-            edition: new MetaEdition(),
             structure: new MetaStructure(),
             contact: new MetaContact()
         };

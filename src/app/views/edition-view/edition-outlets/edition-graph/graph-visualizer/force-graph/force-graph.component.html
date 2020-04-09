@@ -1,19 +1,20 @@
-<div id="svg-body" class="panel-body" [ngStyle]="{ 'height.px': height }" #graph>
+<div id="svg-wrapper" class="svg-panel-wrapper" [ngStyle]="{ 'height.px': height }" #graph>
     <div class="icon-bar" fxLayout="row" [ngStyle]="{ top: '0px' }">
         <!-- Limit -->
         <div class="btn-group float-right" *ngIf="queryResultTriples">
-            <button type="button" class="btn btn-outline-info" disabled aria-disabled="true">
-                <span *ngIf="limit !== queryResultTriples.length">{{ limit }} von </span
+            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
+                <span *ngIf="limit < queryResultTriples.length">{{ limit }} von </span
                 >{{ queryResultTriples.length }} Triples
             </button>
             <div
                 class="btn-group"
                 ngbDropdown
+                container="body"
                 role="group"
                 aria-label="Button group with nested dropdown for node limit"
             >
                 <button
-                    class="btn btn-info dropdown-toggle-split"
+                    class="btn btn-sm btn-info dropdown-toggle-split"
                     ngbDropdownToggle
                     [disabled]="queryResultTriples.length === 0"
                 ></button>

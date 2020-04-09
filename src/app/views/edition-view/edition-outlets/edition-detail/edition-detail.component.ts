@@ -257,7 +257,7 @@ export class EditionDetailComponent implements OnInit {
             queryParamsHandling: ''
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
     }
 
     /**

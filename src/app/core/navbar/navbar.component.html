@@ -5,7 +5,7 @@
         class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline mr-0 my-auto"
         href="{{ pageMetaData?.awgProjectUrl }}"
         target="_blank"
-        ref="noopener noreferrer"
+        rel="noopener noreferrer"
     >
         <span class="webernlogo">
             ANTON WEBERN <br />
@@ -32,7 +32,7 @@
             <li class="nav-item">
                 <a class="nav-link d-flex" [routerLink]="['/home']" routerLinkActive="active">
                     <!-- do not show text on sm devices, change order from md devices up -->
-                    <span class="d-sm-none d-md-inline order-md-2">Home</span>
+                    <span class="d-sm-none d-md-inline order-md-2">awg-app</span>
                     <fa-icon [icon]="faHome"></fa-icon>
                     <span class="sr-only">(current)</span>
                 </a>
@@ -48,14 +48,14 @@
                     <a
                         *ngFor="let editionWork of editionWorks"
                         class="dropdown-item"
-                        [routerLink]="[editionWork.baseRoute, editionWork.introRoute]"
+                        [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"
                         routerLinkActive="active"
                         >{{ editionWork.work.full }}</a
                     >
                     <div class="dropdown-divider"></div>
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.introRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.introRoute.route]"
                         routerLinkActive="active"
                         >Einleitung</a
                     >
@@ -63,28 +63,28 @@
                     <h6 class="dropdown-header">Edierter Notentext</h6>
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute.route]"
                         [queryParams]="{ sketch: 'Aa:SkI/2' }"
                         routerLinkActive="active"
                         >Aa:SkI/2</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute.route]"
                         [queryParams]="{ sketch: 'Aa:SkI/3' }"
                         routerLinkActive="active"
                         >Aa:SkI/3</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute.route]"
                         [queryParams]="{ sketch: 'Aa:SkI/4' }"
                         routerLinkActive="active"
                         >Aa:SkI/4</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.detailRoute.route]"
                         [queryParams]="{ sketch: 'Aa:SkI/5' }"
                         routerLinkActive="active"
                         >Aa:SkI/5</a
@@ -93,30 +93,30 @@
                     <h6 class="dropdown-header">Kritischer Bericht</h6>
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
                         >I. Quellen</a
                     >
                     <a
                         class="dropdown-item awg-subitem"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
                         fragment="sourceList"
                         >1. Quellenübersicht</a
                     >
                     <a
                         class="dropdown-item awg-subitem"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
                         fragment="sourceDesc"
                         >2. Quellenbeschreibung</a
                     >
                     <a
                         class="dropdown-item awg-subitem"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
                         fragment="sourceEvaluation"
                         >3. Quellenbewertung</a
                     >
                     <a
                         class="dropdown-item"
-                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute]"
+                        [routerLink]="[selectedEditionWork.baseRoute, selectedEditionWork.reportRoute.route]"
                         fragment="tkaPanel"
                         >II. Textkritischer Kommentar</a
                     >
@@ -136,7 +136,7 @@
             class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none mr-0 my-auto"
             href="{{ pageMetaData?.awgProjectUrl }}"
             target="_blank"
-            ref="noopener noreferrer"
+            rel="noopener noreferrer"
         >
             <span class="webernlogo">
                 ANTON WEBERN <br />

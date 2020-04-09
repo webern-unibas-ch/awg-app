@@ -1,9 +1,10 @@
 /* tslint:disable:no-unused-variable */
-import { TestBed, async, inject } from '@angular/core/testing';
+import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import { AppModule } from '@awg-app/app.module';
-import { AppRoutingModule } from '@awg-app/app-routing.module';
 
 import { ConversionService } from './conversion.service';
 
@@ -18,6 +19,10 @@ describe('ConversionService', () => {
             providers: [ConversionService]
         });
         conversionService = TestBed.get(ConversionService);
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', inject([ConversionService], (service: ConversionService) => {

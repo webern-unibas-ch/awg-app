@@ -2,9 +2,10 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Meta, MetaContact, MetaEdition, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -88,6 +89,10 @@ describe('ContactInfoComponent (DONE)', () => {
         spyOn(component, 'sanitizeUrls').and.callThrough();
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('should be created', () => {
         expect(component).toBeTruthy();
     });
@@ -101,7 +106,6 @@ describe('ContactInfoComponent (DONE)', () => {
         const coreService = TestBed.get(CoreService);
         const CHANGEDMETA: Meta = {
             page: new MetaPage(),
-            edition: new MetaEdition(),
             structure: new MetaStructure(),
             contact: new MetaContact()
         };

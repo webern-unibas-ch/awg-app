@@ -2,10 +2,12 @@ import { TestBed } from '@angular/core/testing';
 
 import Spy = jasmine.Spy;
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 
 import { StorageType } from '@awg-core/services/storage-service';
 import { GndEvent, GndEventType, GndService } from './gnd.service';
+
 import { AppConfig } from '@awg-app/app.config';
 
 describe('GndService', () => {
@@ -101,6 +103,10 @@ describe('GndService', () => {
         expectedSessionStorage.clear();
         expectedLocalStorage.clear();
         mockConsole.clear();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

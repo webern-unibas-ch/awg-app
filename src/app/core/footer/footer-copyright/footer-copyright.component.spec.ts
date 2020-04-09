@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { Meta, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 
 import { FooterCopyrightComponent } from './footer-copyright.component';
@@ -30,6 +31,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
         // test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

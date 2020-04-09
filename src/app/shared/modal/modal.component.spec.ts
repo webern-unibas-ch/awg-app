@@ -1,6 +1,8 @@
 /* tslint:disable:no-unused-variable */
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -22,6 +24,10 @@ describe('ModalComponent', () => {
         fixture = TestBed.createComponent(ModalComponent);
         component = fixture.componentInstance;
         fixture.detectChanges();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

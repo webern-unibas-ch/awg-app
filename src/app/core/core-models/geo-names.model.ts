@@ -77,7 +77,7 @@ export class GeoNames {
             this.gnid +
             '" title="' +
             this.longLabel +
-            '" target="_blank" ref="noopener noreferrer">' +
+            '" target="_blank" rel="noopener noreferrer">' +
             geoIcon +
             '</a>';
         let wikiLink = '';
@@ -88,7 +88,7 @@ export class GeoNames {
                 this.wiki +
                 '" title="' +
                 this.wiki +
-                '" target="_blank" ref="noopener noreferrer">' +
+                '" target="_blank" rel="noopener noreferrer">' +
                 wikiIcon +
                 '</a>';
         }

@@ -42,14 +42,33 @@ export class Graph {
  */
 export class GraphRDFData {
     /**
-     * The preset query for a graph.
+     * The predefined query list for a graph.
      */
-    query: string;
+    queryList: GraphQuery[];
 
     /**
-     * The preset triples for a graph.
+     * The predefined triples for a graph.
      */
     triples: string;
+}
+
+/**
+ * The GraphQuery class.
+ *
+ * It is used in the context of the edition view
+ * to store the data for a graph query
+ * from a graph json file.
+ */
+export class GraphQuery {
+    /**
+     * The label of a query.
+     */
+    queryLabel: string;
+
+    /**
+     * The string of the query itself.
+     */
+    queryString: string;
 }
 
 /**

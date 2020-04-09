@@ -2,6 +2,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { HeadingComponent } from './heading.component';
@@ -30,6 +31,10 @@ describe('HeadingComponent (DONE)', () => {
         // test data
         expectedTitle = 'Test Title';
         expectedId = '23';
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

@@ -1,9 +1,10 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaEdition, MetaContact } from '@awg-core/core-models';
+import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaContact } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -46,6 +47,10 @@ describe('StructureInfoComponent (DONE)', () => {
         spyOn(component, 'provideMetaData').and.callThrough();
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('should create', () => {
         expect(component).toBeTruthy();
     });
@@ -59,7 +64,6 @@ describe('StructureInfoComponent (DONE)', () => {
         const coreService = TestBed.get(CoreService);
         const CHANGEDMETA: Meta = {
             page: new MetaPage(),
-            edition: new MetaEdition(),
             structure: new MetaStructure(),
             contact: new MetaContact()
         };
@@ -164,7 +168,7 @@ describe('StructureInfoComponent (DONE)', () => {
                 const authorEl = authorDes[0].nativeElement;
 
                 expect(authorEl).toBeDefined();
-                expect(authorEl.href).toBe(expectedAuthor.contactUrl, `should be ${expectedAuthor.contactUrl}`);
+                expect(authorEl.href).toBe(expectedAuthor.homepage, `should be ${expectedAuthor.homepage}`);
                 expect(authorEl.innerHTML).toBe(expectedAuthor.name, `should be ${expectedAuthor.name}`);
             });
 

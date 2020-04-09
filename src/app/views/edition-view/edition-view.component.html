@@ -3,10 +3,25 @@
 <!-- heading -->
 <awg-heading [title]="editionViewTitle" [id]="editionViewId"></awg-heading>
 
-<div *ngIf="editionWork$ | async as editionWork">
+<div class="awg-edition-work" *ngIf="editionWork$ | async as editionWork">
     <!-- TODO: refactor this as selectable breadcrumb -->
     <h6>{{ editionWork.edition.short }} / {{ editionWork.series.full }} / {{ editionWork.section.full }}</h6>
-    <h3>{{ editionWork.work.full }}</h3>
+    <h3 class="awg-edition-info-header">
+        <i class="awg-edition-info-header-title">{{ editionWork.titleStatement.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWork.work.short }}</span>
+    </h3>
+    <!-- declamation -->
+    <div class="awg-edition-responsibility mt-3">
+        <p>
+            Ediert von
+            <span class="editor" *ngFor="let editor of editionWork.responsibilityStatement.editors; last as isLast">
+                <a href="{{ editor.homepage }}" target="_blank" rel="noopener noreferrer">{{ editor.name }}</a
+                ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
+            </span>
+            <br />
+            Versionsdatum: <span class="version">{{ editionWork.responsibilityStatement.lastModified }}</span>
+        </p>
+    </div>
 </div>
 
 <!-- edition routes -->

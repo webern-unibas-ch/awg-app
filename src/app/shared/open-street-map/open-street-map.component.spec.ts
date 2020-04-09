@@ -2,6 +2,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement, SecurityContext } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { OpenStreetMapComponent } from './open-street-map.component';
@@ -53,6 +54,10 @@ describe('OpenStreetMapComponent (DONE)', () => {
         // bypass the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
         expectedOsmLinkUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmLinkUrl);
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {
