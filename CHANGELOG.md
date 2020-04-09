@@ -2,6 +2,29 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.3](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.2...v0.7.3) (2020-04-09)
+
+### Bug Fixes
+
+-   **app:** move editor info from home to edition view ([f0434cc](https://github.com/webern-unibas-ch/awg-app/commit/f0434cce4962f5ff7c06e8bfe1033e4b2c91c69a))
+-   **app:** use rel attribute for target links instead of wrong ref attr ([04578ee](https://github.com/webern-unibas-ch/awg-app/commit/04578ee1bfa811613beb72bf0faa2084bbd88a2c))
+-   **core:** add sagw logo to footer ([b41d013](https://github.com/webern-unibas-ch/awg-app/commit/b41d013deec3e30fca6ae03e1398676199b48a82))
+-   **core:** remove MetaEdition from MetaModel ([010d02f](https://github.com/webern-unibas-ch/awg-app/commit/010d02f07173d93a152ec9fe0f48c81da4baa5fe))
+-   **edition:** add dropdown for sample queries in graph view ([c995ada](https://github.com/webern-unibas-ch/awg-app/commit/c995ada1d10101b2e8fb3f0930b798f7b309d220))
+-   **edition:** add modal hint on how to use graph ([626d024](https://github.com/webern-unibas-ch/awg-app/commit/626d0240f7e75ba9a6ad1d44ded459217ff8d579))
+-   **edition:** add resp statement to work model ([d9eefae](https://github.com/webern-unibas-ch/awg-app/commit/d9eefae9f4f5ae15f55ce687d749cdf481b20941))
+-   **edition:** do not remove all svg when redrawing force graph ([e6cfdac](https://github.com/webern-unibas-ch/awg-app/commit/e6cfdac716aadb11211834be0d6be8bb9266910d))
+-   **edition:** improve general remarks for graph view ([b1b1c24](https://github.com/webern-unibas-ch/awg-app/commit/b1b1c2499080728b5f0ca144a512331094187a87))
+-   **edition:** improve handling of triples dropdown button in force-graph ([c41925b](https://github.com/webern-unibas-ch/awg-app/commit/c41925b796815a1670fbc415bfb96541e89f30cc))
+-   **edition:** improve query reset in graph view ([09e309c](https://github.com/webern-unibas-ch/awg-app/commit/09e309ca8dcfa0e6290e32cdbb1535a965d725dc))
+-   **edition:** refactor EditionWork to provide all needed info ([0319790](https://github.com/webern-unibas-ch/awg-app/commit/03197908d689c59a0235a1a9616b362edf6eeeff))
+-   **edition:** remove unused EditionDetailNotification ([4e1f151](https://github.com/webern-unibas-ch/awg-app/commit/4e1f15100fa6de68346c991d284825edf0318315))
+-   **edition:** shorten short forms of some EditionConstants ([61a297d](https://github.com/webern-unibas-ch/awg-app/commit/61a297d8c5af924dc69ef096b67015143970982d))
+-   **edition:** use full EditionRoute for EditionWork routes ([2c98f5d](https://github.com/webern-unibas-ch/awg-app/commit/2c98f5d39b28a4cf961cc9812dd8e160eeb054aa))
+-   **edition:** use modal for edition detail hint & improve hint message ([0383470](https://github.com/webern-unibas-ch/awg-app/commit/0383470e67715b76898562329f3f90b1b34d1707))
+-   **edition:** use queryList in graph data to allow multiple queries ([ca988f2](https://github.com/webern-unibas-ch/awg-app/commit/ca988f208a699045063679245effa200089afd69))
+-   **home:** add sketch edition link to Opus 25 header ([aaeaa80](https://github.com/webern-unibas-ch/awg-app/commit/aaeaa801669f4d8a3a32823e0e8872d39f7f14ea))
+
 ### [0.7.2](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.1...v0.7.2) (2020-03-20)
 
 ### Features
