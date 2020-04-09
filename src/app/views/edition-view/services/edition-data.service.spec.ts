@@ -3,6 +3,8 @@ import { HttpClientTestingModule, HttpTestingController } from '@angular/common/
 import { HttpClient, HttpClientModule, HttpErrorResponse, HttpRequest } from '@angular/common/http';
 import { Data } from '@angular/router';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import {
     EditionConstants,
     EditionWorks,
@@ -10,8 +12,7 @@ import {
     SourceList,
     SourceDescriptionList,
     SourceEvaluationList,
-    TextcriticsList,
-    Source
+    TextcriticsList
 } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
@@ -24,14 +25,14 @@ describe('EditionDataService', () => {
 
     let expectedEditionWork: EditionWork;
 
-    const expectedBASE = `${EditionConstants.editionAssets.baseRoute}/series1/section5/op12`; // TODO: generate from EditionWorks
-    const regexBase = new RegExp(expectedBASE);
-    const expectedFolioConvoluteFilePath = `${expectedBASE}/${EditionConstants.editionAssets.folioConvoluteFile}`;
-    const expectedSheetsFilePath = `${expectedBASE}/${EditionConstants.editionAssets.svgSheetsFile}`;
-    const expectedSourceListFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourceListFile}`;
-    const expectedSourceDescriptionFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourceDescriptionListFile}`;
-    const expectedSourceEvaluationFilePath = `${expectedBASE}/${EditionConstants.editionAssets.sourceEvaluationListFile}`;
-    const expectedTextcriticsFilePath = `${expectedBASE}/${EditionConstants.editionAssets.textcriticsFile}`;
+    const expectedAssetWorkPath = `${EditionConstants.editionAssets.baseRoute}/series1/section5/op12`; // TODO: generate from EditionWorks
+    const regexBase = new RegExp(expectedAssetWorkPath);
+    const expectedFolioConvoluteFilePath = `${expectedAssetWorkPath}/${EditionConstants.editionAssets.folioConvoluteFile}`;
+    const expectedSheetsFilePath = `${expectedAssetWorkPath}/${EditionConstants.editionAssets.svgSheetsFile}`;
+    const expectedSourceListFilePath = `${expectedAssetWorkPath}/${EditionConstants.editionAssets.sourceListFile}`;
+    const expectedSourceDescriptionFilePath = `${expectedAssetWorkPath}/${EditionConstants.editionAssets.sourceDescriptionListFile}`;
+    const expectedSourceEvaluationFilePath = `${expectedAssetWorkPath}/${EditionConstants.editionAssets.sourceEvaluationListFile}`;
+    const expectedTextcriticsFilePath = `${expectedAssetWorkPath}/${EditionConstants.editionAssets.textcriticsFile}`;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -50,6 +51,10 @@ describe('EditionDataService', () => {
     // after every test, assert that there are no more pending requests
     afterEach(() => {
         httpTestingController.verify();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

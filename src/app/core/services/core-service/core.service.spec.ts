@@ -1,4 +1,6 @@
-import { TestBed, inject, async } from '@angular/core/testing';
+import { TestBed } from '@angular/core/testing';
+
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { Logos, Meta, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA, LOGOSDATA } from '@awg-core/mock-data';
@@ -23,6 +25,10 @@ describe('CoreService (DONE)', () => {
         expectedLogosData = LOGOSDATA;
     });
 
+    afterAll(() => {
+        cleanStylesFromDOM();
+    });
+
     it('should inject', () => {
         expect(coreService).toBeTruthy();
     });
@@ -37,16 +43,6 @@ describe('CoreService (DONE)', () => {
     describe('#getMetaDataSection', () => {
         it(`... should return page METADATA if parameter is given`, () => {
             const metaSection = MetaSectionTypes.page;
-
-            // call service function
-            expect(coreService.getMetaDataSection(metaSection)).toBe(
-                expectedMetaData[metaSection],
-                `should be ${expectedMetaData[metaSection]}`
-            );
-        });
-
-        it(`... should return edition METADATA if parameter is given`, () => {
-            const metaSection = MetaSectionTypes.edition;
 
             // call service function
             expect(coreService.getMetaDataSection(metaSection)).toBe(

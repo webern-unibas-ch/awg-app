@@ -1,5 +1,5 @@
 import { AppConfig } from '@awg-app/app.config';
-import { Meta, MetaContact, MetaEdition, MetaPage, MetaStructure } from '@awg-core/core-models';
+import { Meta, MetaContact, MetaPage, MetaStructure } from '@awg-core/core-models';
 
 /**
  * Object constant for page metadata.
@@ -21,28 +21,13 @@ const METAPAGE: MetaPage = {
 /**
  * Object constant for edition metadata.
  *
- * It provides metadata used for the edition view.
- */
-const METAEDITION: MetaEdition = {
-    editors: [
-        {
-            name: 'Thomas Ahrend',
-            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
-        }
-    ],
-    lastModified: '29. Januar 2020'
-};
-
-/**
- * Object constant for edition metadata.
- *
  * It provides metadata used for the structure view.
  */
 const METASTRUCTURE: MetaStructure = {
     authors: [
         {
             name: 'Stefan Münnich',
-            contactUrl: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+            homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
         }
     ],
     lastModified: '29. Januar 2016'
@@ -81,7 +66,6 @@ const METACONTACT: MetaContact = {
  */
 export const METADATA: Meta = {
     page: METAPAGE,
-    edition: METAEDITION,
     structure: METASTRUCTURE,
     contact: METACONTACT
 };

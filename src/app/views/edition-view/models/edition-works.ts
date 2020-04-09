@@ -1,3 +1,4 @@
+import { AppConfig } from '@awg-app/app.config';
 import { EditionConstants } from './edition-constants';
 import { EditionWork } from './edition-work.model';
 
@@ -9,28 +10,58 @@ import { EditionWork } from './edition-work.model';
  */
 export class EditionWorks {
     /**
-     * An EditionWork object for a composition: op. 12.
+     * An EditionWork object for Opus 12.
      */
     static readonly op12: EditionWork = new EditionWork(
         {
+            title: 'Vier Lieder',
+            catalogueType: EditionConstants.opus,
+            catalogueNumber: '12'
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+                }
+            ],
+            lastModified: '29. Januar 2020'
+        },
+        {
             route: '/op12',
-            short: 'op. 12',
-            full: 'Vier Lieder op. 12'
+            short: '',
+            full: ''
         },
         EditionConstants.series1,
-        EditionConstants.section5
+        EditionConstants.section5,
+        EditionConstants.sketchEdition
     );
 
     /**
-     * An EditionWork object for a composition: op. 25.
+     * An EditionWork object for Opus 25.
      */
     static readonly op25: EditionWork = new EditionWork(
         {
+            title: 'Drei Lieder nach Gedichten von Hildegard Jone',
+            catalogueType: EditionConstants.opus,
+            catalogueNumber: '25'
+        },
+        {
+            editors: [
+                {
+                    name: 'Thomas Ahrend',
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
+                }
+            ],
+            lastModified: '29. Januar 2020'
+        },
+        {
             route: '/op25',
-            short: 'op. 25',
-            full: 'Drei Lieder nach Gedichten von Hildegard Jone op. 25'
+            short: '',
+            full: ''
         },
         EditionConstants.series1,
-        EditionConstants.section5
+        EditionConstants.section5,
+        EditionConstants.sketchEdition
     );
 }

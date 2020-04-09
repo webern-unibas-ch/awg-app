@@ -1,16 +1,15 @@
+import { Component, Input } from '@angular/core';
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
+import { ModalComponent } from '@awg-shared/modal/modal.component';
 import { EditionWorks, GraphRDFData } from '@awg-views/edition-view/models';
 
-import { EditionGraphComponent } from './edition-graph.component';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
-import { Component, EventEmitter, Input, Output } from '@angular/core';
-import { ResourceDetailProperty } from '@awg-views/data-view/models';
-import { GndEvent } from '@awg-core/services/gnd-service';
+import { EditionGraphComponent } from './edition-graph.component';
 
 // mock components
 @Component({ selector: 'awg-graph-visualizer', template: '' })
@@ -38,7 +37,7 @@ describe('EditionGraphComponent', () => {
         getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
 
         TestBed.configureTestingModule({
-            declarations: [EditionGraphComponent, GraphVisualizerStubComponent, CompileHtmlComponent],
+            declarations: [EditionGraphComponent, GraphVisualizerStubComponent, CompileHtmlComponent, ModalComponent],
             providers: [
                 { provide: EditionDataService, useValue: mockEditionDataService },
                 { provide: EditionService, useValue: mockEditionService }

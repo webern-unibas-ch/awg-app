@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -32,6 +33,10 @@ describe('AddressComponent (DONE)', () => {
         // test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedContactMetaData = METADATA[MetaSectionTypes.contact];
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

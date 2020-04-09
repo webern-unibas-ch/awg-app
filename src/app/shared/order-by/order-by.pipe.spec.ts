@@ -1,3 +1,4 @@
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { OrderByPipe } from './order-by.pipe';
 
 describe('OrderByPipe (DONE)', () => {
@@ -20,6 +21,10 @@ describe('OrderByPipe (DONE)', () => {
         expectedUnchangedArray = [{ obj_id: 4 }, { obj_id: 7 }, { obj_id: 3 }, { obj_id: 1 }];
         expectedAscArray = [{ obj_id: 1 }, { obj_id: 3 }, { obj_id: 4 }, { obj_id: 7 }];
         expectedDescArray = [{ obj_id: 7 }, { obj_id: 4 }, { obj_id: 3 }, { obj_id: 1 }];
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create an instance', () => {

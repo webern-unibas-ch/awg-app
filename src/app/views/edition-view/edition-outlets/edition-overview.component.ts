@@ -85,25 +85,25 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
         this.editionRouterLinkButtons = [
             new RouterLinkButton(
                 this.editionWork.baseRoute,
-                this.editionWork.introRoute,
+                this.editionWork.introRoute.route,
                 EditionConstants.editionIntro.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionWork.baseRoute,
-                this.editionWork.detailRoute,
+                this.editionWork.detailRoute.route,
                 EditionConstants.editionDetail.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionWork.baseRoute,
-                this.editionWork.reportRoute,
+                this.editionWork.reportRoute.route,
                 EditionConstants.editionReport.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionWork.baseRoute,
-                this.editionWork.graphRoute,
+                this.editionWork.graphRoute.route,
                 EditionConstants.editionGraph.short,
                 false
             )

@@ -1,5 +1,7 @@
 import { TestBed } from '@angular/core/testing';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import { StorageService, StorageType } from './storage.service';
 
 describe('StorageService', () => {
@@ -54,6 +56,10 @@ describe('StorageService', () => {
         // clear storages after each test
         expectedSessionStorage.clear();
         expectedLocalStorage.clear();
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should be created', () => {

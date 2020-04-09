@@ -12,7 +12,7 @@ import { EditionConstants } from './edition-constants';
 import { EditionSvgOverlay, EditionSvgOverlayTypes } from './edition-svg-overlay.model';
 import { EditionSvgSheet, EditionSvgSheetList } from './edition-svg-sheet.model';
 
-import { EditionWork } from './edition-work.model';
+import { EditionWork, EditionTitleStatement } from './edition-work.model';
 import { EditionWorks } from './edition-works';
 
 import { FolioConvoluteList, FolioConvolute, Folio, FolioFormat, FolioContent, FolioSection } from './folio.model';
@@ -20,7 +20,7 @@ import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from '.
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 
-import { Graph, GraphList, GraphRDFData } from './graph.model';
+import { Graph, GraphList, GraphQuery, GraphRDFData } from './graph.model';
 import { Intro, IntroList } from './intro.model';
 
 import { Source, SourceList } from './source-list.model';
@@ -32,6 +32,7 @@ import { ViewBox } from './view-box.model';
 
 export {
     EditionConstants,
+    EditionTitleStatement,
     EditionWork,
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
@@ -51,6 +52,7 @@ export {
     FolioSvgData,
     Graph,
     GraphList,
+    GraphQuery,
     GraphRDFData,
     Intro,
     IntroList,

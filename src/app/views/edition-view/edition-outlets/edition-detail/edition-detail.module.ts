@@ -6,7 +6,6 @@ import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.mo
 
 import { EditionAccoladeComponent } from './edition-accolade/edition-accolade.component';
 import { EditionConvoluteComponent } from './edition-convolute';
-import { EditionDetailNotificationComponent } from './edition-detail-notification';
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
 import { EditionSvgSheetComponent } from './edition-svg-sheet';
 
@@ -23,14 +22,12 @@ import { EditionSvgSheetComponent } from './edition-svg-sheet';
     declarations: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
-        EditionDetailNotificationComponent,
         EditionSvgSheetNavComponent,
         EditionSvgSheetComponent
     ],
     exports: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
-        EditionDetailNotificationComponent,
         EditionSvgSheetNavComponent,
         EditionSvgSheetComponent
     ]

@@ -1,82 +1,96 @@
 <!-- content: home -->
 
 <!-- heading -->
-<awg-heading [title]="'Beispieledition ausgewählter Skizzen'" [id]="'awg-home-view'"></awg-heading>
+<awg-heading [title]="homeViewTitle" [id]="homeViewId"></awg-heading>
 
 <!-- header -->
 <div class="para">
-    <h5 class="awg-breadcrumb">AWG / Serie I (Werke mit Opuszahlen) / Abteilung 5 (Klavierlieder)</h5>
+    <h6 class="awg-breadcrumb">
+        {{ editionWorkOp12.edition.short }} / {{ editionWorkOp12.series.full }} / {{ editionWorkOp12.section.full }}
+    </h6>
 
     <h3 class="awg-edition-info-header">
-        <i class="awg-edition-info-header-title">{{ editionInfoHeaderOp12?.title }}</i
-        >&nbsp;<span class="awg-edition-info-header-catalogue"
-            >{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}</span
-        >
-        (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]">{{ editionInfoHeaderOp12?.part }}</a
+        <i class="awg-edition-info-header-title">{{ editionWorkOp12.titleStatement.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp12.work.short }}</span> (<a
+            [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]"
+            >{{ editionWorkOp12.type.full }}</a
         >)
     </h3>
+
     <h3 class="awg-edition-info-header">
-        <i class="awg-edition-info-header-title">{{ editionInfoHeaderOp25?.title }}</i
-        >&nbsp;<span class="awg-edition-info-header-catalogue"
-            >{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}</span
+        <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i
+        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span> (<a
+            [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]"
+            >{{ editionWorkOp25.type.full }}</a
         >
-        (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]">{{ editionInfoHeaderOp25?.part }}</a
+        &
+        <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
+            editionWorkOp25.graphRoute.short
+        }}</a
         >)
     </h3>
 </div>
 
 <!-- description -->
-<div class="para text-danger">
+<div class="para">
     <p>
-        Prototyp einer AWG-Online-Edition (Weiterentwicklung einer
-        <a href="https://www.anton-webern.ch/assets/editions/BeispieleditionAWG_3_Skizzen_op12_Online_klein.pdf"
-            >prospektiven Simulation [PDF]</a
-        >
-        vom 31. März 2015 sowie vom 29. Januar 2016):
+        Willkommen bei der AWG-APP, dem Prototyp einer Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).
     </p>
     <p>
-        Die Bestandteile der AWG-Online-Editionen werden mithilfe der
-        <a href="https://www.salsah.org" target="_blank" ref="noopener noreferrer"
-            >virtuellen Forschungsumgebung SALSAH</a
+        Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über diese
+        Webapplikation präsentiert und über das Software-Framework
+        <a href="https://www.knora.org" target="_blank" rel="noopener noreferrer">Knora</a>/<a
+            href="https://www.salsah.org"
+            target="_blank"
+            rel="noopener noreferrer"
+            >SALSAH</a
         >
         des
-        <a href="https://dhlab.philhist.unibas.ch" target="_blank" ref="noopener noreferrer">Digital Humanities Lab</a>
-        der Universität Basel organisiert und aufbereitet. SALSAH ermöglicht es, digitalisierte Quellenbestände und
-        andere digitale ‚Objekte‘ mit Informationen (Annotationen) zu versehen und untereinander zu verknüpfen. Dabei
-        kann auch räumlich voneinander getrennt zeitgleich mit der Datenbank gearbeitet bzw. deren Inhalte erweitert
-        werden.
+        <a href="https://dhlab.philhist.unibas.ch" target="_blank" rel="noopener noreferrer">Digital Humanities Lab</a>
+        der Universität Basel aufbereitet. Zudem werden die Datenbestände durch das
+        <a href="https://dasch.swiss" target="_blank" rel="noopener noreferrer"
+            >Data and Service Center for Humanities (DaSCH)</a
+        >
+        zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit der Daten gemäss
+        FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren Metadaten und den langfristigen
+        Betrieb der technischen Infrastruktur (vgl.
+        <a href="https://dasch.swiss/mission" target="_blank" rel="noopener noreferrer">https://dasch.swiss/mission/</a
+        >).
     </p>
     <p>
         Der Protoyp simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von
-        SALSAH. Die für reale Abfragen im Bereich Online-Edition notwendige
-        <a routerLink="/structure">Datenstruktur</a> wird zur Zeit in der Webern-SALSAH-Datenbank implementiert.
+        SALSAH (zukünftig Knora). Die für reale Abfragen im Bereich Online-Edition notwendige
+        <a [routerLink]="['/structure']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.
     </p>
     <p>
-        Über den Menüpunkt <em>Beispieledition</em> sind ausgewählte Skizzen zu op. 12 sowie op. 25 zugänglich.
+        Über den Menüpunkt <em>Beispieledition</em> sind ausgewählte Skizzeneditionen zu
+        <a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.detailRoute.route]">op. 12</a> sowie
+        <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]">op. 25</a> zugänglich.
         Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte, kritische Berichte sowie
         Graphvisualisierungen.
     </p>
     <p>
-        Zusätzlich wird eine einfache Volltextsuche in der Datenbank angeboten, über die die dort hinterlegten
-        Kontextmaterialien (Werklisten [nach Opuszahl bzw. Moldenhauer-Nummer], Personeninformationen, Briefe &amp;
-        Supplements, Chronologie) abgefragt werden können.
+        Zusätzlich wird eine einfache <a [routerLink]="['/data/search', 'fulltext']">Volltextsuche</a> in der Datenbank
+        angeboten, über die die dort hinterlegten Kontextmaterialien (Werklisten [nach Opuszahl bzw.
+        Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden können.
+    </p>
+    <p>
+        Bei diesem Prototyp handelt es sich um eine Weiterentwicklung einer
+        <a
+            href="https://www.anton-webern.ch/assets/editions/BeispieleditionAWG_3_Skizzen_op12_Online_klein.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            >prospektiven Simulation [PDF]</a
+        >
+        vom 31. März 2015 sowie vom 29. Januar 2016. Der Programmcode ist als Open Access-Projekt frei zugänglich auf
+        <a href="https://github.com/webern-unibas-ch/awg-app" target="_blank" rel="noopener noreferrer">GitHub</a>
+        abgelegt und vollumfänglich
+        <a href="https://edition.anton-webern.ch/compodoc/index.html" target="_blank" rel="noopener noreferrer"
+            >dokumentiert</a
+        >
+        (vgl. <a [routerLink]="['/contact']" fragment="awg-documentation">Dokumentation</a>).
     </p>
     <p>
         Der Prototyp und die Suche werden in ihrer Funktionalität sukzessiv erweitert.
-    </p>
-</div>
-
-<!-- declamation -->
-<div class="declamation">
-    <p>
-        Ediert von
-        <span class="editors"
-            ><a href="{{ (editionMetaData?.editors)[0].contactUrl }}" target="_blank" rel="noopener noreferrer">{{
-                (editionMetaData?.editors)[0].name
-            }}</a></span
-        >
-    </p>
-    <p>
-        Versionsdatum: <span class="version">{{ editionMetaData?.lastModified }}</span>
     </p>
 </div>

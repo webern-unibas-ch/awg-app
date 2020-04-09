@@ -60,6 +60,17 @@ export class EditionViewComponent implements OnInit {
      */
     ngOnInit() {
         this.routeToSidenav();
+        this.getEditionWorkFromRoute();
+    }
+
+    /**
+     * Public method: getEditionWorkFromRoute.
+     *
+     * It subscribes to the route params to get the compositionId of the current work and load it from the edition service.
+     *
+     * @returns {void} Gets the current work from the edition service.
+     */
+    getEditionWorkFromRoute(): void {
         this.route.paramMap.subscribe(params => {
             const id: string = params.get('compositionId') ? params.get('compositionId') : '';
             this.editionService.updateEditionWork(EditionWorks[id]);

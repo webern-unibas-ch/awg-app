@@ -1,6 +1,7 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
@@ -34,6 +35,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         // test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

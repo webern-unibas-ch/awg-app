@@ -2,42 +2,44 @@
 <div class="card">
     <div class="card-body bg-light">
         <p>
-            {{ editionInfoHeaderOp12?.description }}
+            {{ editionInfoViewTitle }}
         </p>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
-            {{ editionInfoHeaderOp12?.section }}
-            <br />
-            <i>{{ editionInfoHeaderOp12?.title }}</i
-            >&nbsp;{{ editionInfoHeaderOp12?.catalogueType }}&nbsp;{{ editionInfoHeaderOp12?.catalogueNumber }}
-            <br />
-            (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute]">{{
-                editionInfoHeaderOp12?.part
-            }}</a
-            >)
-        </h6>
-        <p>&#9671;</p>
-        <h6 class="awg-edition-info-header">
-            {{ editionInfoHeaderOp25?.section }}
-            <br />
-            <i>{{ editionInfoHeaderOp25?.title }}</i
-            >&nbsp;{{ editionInfoHeaderOp25?.catalogueType }}&nbsp;{{ editionInfoHeaderOp25?.catalogueNumber }}
-            <br />
-            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute]">{{
-                editionInfoHeaderOp25?.part
-            }}</a
-            >)
-        </h6>
-        <p>&#9671;</p>
-        <p>
-            Ediert von
-            <span class="awg-edition-info-editors"
-                ><a href="{{ (editionMetaData?.editors)[0].contactUrl }}" target="_blank" rel="noopener noreferrer">{{
-                    (editionMetaData?.editors)[0].name
-                }}</a></span
+            <span class="awg-breadcrumb"
+                >{{ editionWorkOp12.edition.short }} {{ editionWorkOp12.series.short }}/{{
+                    editionWorkOp12.section.short
+                }}</span
             >
             <br />
-            Versionsdatum: <span id="awg-edition-info-lastmodified">{{ editionMetaData?.lastModified }}</span>
-        </p>
+            <i class="awg-edition-info-header-title">{{ editionWorkOp12.titleStatement.title }}</i
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp12.work.short }}</span>
+            <br />
+            (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]">{{
+                editionWorkOp12.type.full
+            }}</a
+            >)
+        </h6>
+        <p>&#9671;</p>
+        <h6 class="awg-edition-info-header">
+            <span class="awg-breadcrumb"
+                >{{ editionWorkOp25.edition.short }} {{ editionWorkOp25.series.short }}/{{
+                    editionWorkOp25.section.short
+                }}</span
+            >
+            <br />
+            <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i
+            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span>
+            <br />
+            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]">{{
+                editionWorkOp25.type.full
+            }}</a>
+            &
+            <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
+                editionWorkOp25.graphRoute.short
+            }}</a
+            >)
+        </h6>
+        <p>&#9671;</p>
     </div>
 </div>

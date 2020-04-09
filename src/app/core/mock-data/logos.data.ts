@@ -26,6 +26,12 @@ export const LOGOSDATA: Logos = {
         alt: 'Logo GitHub',
         href: 'https://github.com/webern-unibas-ch/awg-app'
     },
+    sagw: {
+        id: 'sagwlogo',
+        src: 'assets/img/logos/sagw.jpg',
+        alt: 'Logo SAGW',
+        href: 'https://sagw.ch/sagw/'
+    },
     snf: {
         id: 'snflogo',
         src: 'assets/img/logos/snf.png',

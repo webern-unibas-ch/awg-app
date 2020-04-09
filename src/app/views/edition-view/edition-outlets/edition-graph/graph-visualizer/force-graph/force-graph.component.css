@@ -57,18 +57,18 @@
     fill: grey;
 }
 
-#svg-body {
+#svg-wrapper {
     position: relative;
     width: 100%;
 }
 
-#svg-body > .icon-bar {
+#svg-wrapper > .icon-bar {
     position: absolute;
     width: 100%;
     z-index: 10;
 }
 
-.panel-body {
+.svg-panel-wrapper {
     position: inherit;
     height: 100%;
 }

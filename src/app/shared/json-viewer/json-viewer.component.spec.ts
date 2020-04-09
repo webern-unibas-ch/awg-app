@@ -5,6 +5,7 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import { customJasmineMatchers } from '@testing/custom-matchers';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -88,6 +89,10 @@ describe('JsonViewerComponent (DONE)', () => {
         expectedHeader = 'Converted JSON response from Salsah-API';
         expectedData = new ResourceFullResponseJson();
         expectedData.status = 1;
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should create', () => {

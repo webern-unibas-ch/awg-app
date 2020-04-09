@@ -127,7 +127,7 @@ export class EditionIntroComponent implements OnInit {
         const navigationExtras: NavigationExtras = {
             fragment: fragmentId
         };
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
     }
 
     /**
@@ -161,6 +161,6 @@ export class EditionIntroComponent implements OnInit {
             queryParamsHandling: ''
         };
 
-        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute], navigationExtras);
+        this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
     }
 }
