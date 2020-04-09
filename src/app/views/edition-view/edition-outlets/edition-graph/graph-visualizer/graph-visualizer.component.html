@@ -48,7 +48,7 @@
                                     <ng-container *ngFor="let q of queryList">
                                         <button
                                             class="dropdown-item"
-                                            [class.active]="q === query"
+                                            [class.disabled]="q === query"
                                             (click)="onQueryChange(q)"
                                         >
                                             <span>{{ q.queryLabel }}</span>

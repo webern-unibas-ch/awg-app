@@ -35,6 +35,12 @@ a.list-group-item:hover,
     text-decoration: none;
 }
 
+button.dropdown-item.disabled {
+    text-decoration: none;
+    color: rgba(255, 255, 255, 1); /* rgba converted HEX #fff */
+    background-color: rgba(0, 123, 255, 1); /* rgba converted HEX #007bff */
+}
+
 a.dropdown-item:hover,
 button.dropdown-item:hover,
 .navbar-light .navbar-nav .nav-link.active,
