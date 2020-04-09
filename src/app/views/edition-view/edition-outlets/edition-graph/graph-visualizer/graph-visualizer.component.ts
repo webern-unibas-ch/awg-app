@@ -159,7 +159,7 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Public method: graphClick.
+     * Public method: onGraphClick.
      *
      * It is called when a node in the graph is clicked.
      *
@@ -169,6 +169,15 @@ export class GraphVisualizerComponent implements OnInit {
         console.log('AppComponent# graphClick URI', URI);
     }
 
+    /**
+     * Public method: onQueryChange.
+     *
+     * It is called when another sample query is requested.
+     *
+     * @param {GraphQuery} query The given sample query.
+     *
+     * @returns {void} Performs the given query.
+     */
     onQueryChange(query: GraphQuery): void {
         if (!query && !this.queryList) {
             return;
@@ -179,7 +188,26 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Public method: tableClick.
+     * Public method: resetQuery.
+     *
+     * It resets the initial value of a given query
+     * if it is known from the RDF input data.
+     *
+     * @param {GraphQuery} query The given sample query.
+     *
+     * @returns {void} Resets the initial query.
+     */
+    resetQuery(query: GraphQuery): void {
+        if (!this.graphRDFInputData.queryList) {
+            return;
+        }
+        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
+        this.query = this.queryList.find(q => query.queryLabel === q.queryLabel) || query;
+        this.doQuery();
+    }
+
+    /**
+     * Public method: onTableClick.
      *
      * It performs a query for a given IRI from the result table.
      *
@@ -210,16 +238,16 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public method: setInitialQuery.
      *
-     * It (re-)sets the initial value of the query variable
+     * It sets the initial value of the query variable
      * from the RDF input data.
      *
-     * @returns {void} (Re-)Sets the initial query.
+     * @returns {void} Sets the initial query.
      */
     setInitialQuery(): void {
         if (!this.graphRDFInputData.queryList) {
             return;
         }
-        this.queryList = this.graphRDFInputData.queryList;
+        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
         this.query = this.queryList[0];
     }
 
