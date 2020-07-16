@@ -1,6 +1,6 @@
 {
     "name": "awg-app",
-    "version": "0.7.3",
+    "version": "0.7.4",
     "license": "MIT",
     "author": {
         "name": "Stefan Münnich",
@@ -148,7 +148,7 @@
         "pretty-quick": "^2.0.1",
         "protractor": "~5.4.0",
         "source-map-explorer": "^2.2.1",
-        "standard-version": "^7.0.1",
+        "standard-version": "^8.0.1",
         "ts-node": "~7.0.0",
         "tslint": "~5.15.0",
         "tslint-config-prettier": "^1.18.0",
