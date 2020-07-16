@@ -19,7 +19,7 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "aot": false,
+                        "aot": true,
                         "styles": [
                             "src/index.style.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -51,7 +51,6 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": false,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": false,

@@ -142,7 +142,7 @@ export class CompileHtmlComponent implements OnChanges {
      * It keeps the custom imports for the dynamic component.
      */
     @Input('compile-html-imports')
-    imports: Array<Type<any> | ModuleWithProviders | any[]>;
+    imports: Array<Type<any> | ModuleWithProviders<any> | any[]>;
 
     /**
      * Public variable: dynamicComponent.
