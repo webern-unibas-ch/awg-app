@@ -66,7 +66,7 @@ describe('ContactInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        domSanitizer = TestBed.get(DomSanitizer);
+        domSanitizer = TestBed.inject(DomSanitizer);
 
         // test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
@@ -98,12 +98,12 @@ describe('ContactInfoComponent (DONE)', () => {
     });
 
     it('stub service and injected coreService should not be the same', () => {
-        const coreService = TestBed.get(CoreService);
+        const coreService = TestBed.inject(CoreService);
         expect(mockCoreService === coreService).toBe(false);
     });
 
     it('changing the stub service has no effect on the injected service', () => {
-        const coreService = TestBed.get(CoreService);
+        const coreService = TestBed.inject(CoreService);
         const CHANGEDMETA: Meta = {
             page: new MetaPage(),
             structure: new MetaStructure(),

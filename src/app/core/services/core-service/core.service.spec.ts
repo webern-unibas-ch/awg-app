@@ -18,7 +18,7 @@ describe('CoreService (DONE)', () => {
             providers: [CoreService]
         });
         // inject service
-        coreService = TestBed.get(CoreService);
+        coreService = TestBed.inject(CoreService);
 
         // test data
         expectedMetaData = METADATA;

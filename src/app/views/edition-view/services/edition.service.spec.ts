@@ -12,7 +12,7 @@ describe('EditionService', () => {
         TestBed.configureTestingModule({
             providers: [EditionService]
         });
-        editionService = TestBed.get(EditionService);
+        editionService = TestBed.inject(EditionService);
     });
 
     afterAll(() => {

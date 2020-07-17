@@ -15,7 +15,7 @@ describe('RouterEventsService', () => {
         });
 
         // inject service
-        routerEventsService = TestBed.get(RouterEventsService);
+        routerEventsService = TestBed.inject(RouterEventsService);
     });
 
     afterAll(() => {

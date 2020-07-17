@@ -93,12 +93,12 @@ describe('EditionViewComponent', () => {
     });
 
     it('stub service and injected editionService should not be the same', () => {
-        const editionService = TestBed.get(EditionService);
+        const editionService = TestBed.inject(EditionService);
         expect(mockEditionService === editionService).toBe(false);
     });
 
     it('changing the stub service has no effect on the injected service', () => {
-        const editionService = TestBed.get(EditionService);
+        const editionService = TestBed.inject(EditionService);
         const changedEditionWork: EditionWork = EditionWorks.op25;
         mockEditionService.updateEditionWork(changedEditionWork);
 

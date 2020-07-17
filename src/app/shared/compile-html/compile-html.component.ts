@@ -233,7 +233,6 @@ export class CompileHtmlComponent implements OnChanges {
         } else {
             module.declarations.push(componentType);
         }
-        module.entryComponents = [componentType];
         @NgModule(module)
         class RuntimeComponentModule {}
         return RuntimeComponentModule;

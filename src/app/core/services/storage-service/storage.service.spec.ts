@@ -23,7 +23,7 @@ describe('StorageService', () => {
             providers: [StorageService]
         });
         // inject service
-        storageService = TestBed.get(StorageService);
+        storageService = TestBed.inject(StorageService);
 
         // default to sessionStorage
         expectedMockStorage = expectedSessionStorage;

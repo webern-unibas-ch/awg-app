@@ -40,9 +40,9 @@ describe('EditionDataService', () => {
             providers: [EditionDataService]
         });
         // inject services and http client handler
-        editionDataService = TestBed.get(EditionDataService);
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
+        editionDataService = TestBed.inject(EditionDataService);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
 
         // data
         expectedEditionWork = EditionWorks.op12;
