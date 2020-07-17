@@ -105,14 +105,9 @@ describe('DataApiService', () => {
         expect(dataApiService).toBeTruthy();
     });
 
-    it('stub service and injected conversionService should not be the same', () => {
+    it('injected service should use provided mockValue', () => {
         const conversionService = TestBed.inject(ConversionService);
-        expect(mockConversionService === conversionService).toBe(false);
-
-        // changing the stub service has no effect on the injected service
-        mockConversionService.convertFullTextSearchResults = () => new SearchResponseJson();
-
-        expect(conversionService.convertFullTextSearchResults()).toBe(expectedSearchResponseConverted);
+        expect(mockConversionService === conversionService).toBe(true);
     });
 
     describe('default values', () => {

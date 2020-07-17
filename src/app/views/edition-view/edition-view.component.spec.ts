@@ -92,22 +92,9 @@ describe('EditionViewComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('stub service and injected editionService should not be the same', () => {
+    it('injected service should use provided mockValue', () => {
         const editionService = TestBed.inject(EditionService);
-        expect(mockEditionService === editionService).toBe(false);
-    });
-
-    it('changing the stub service has no effect on the injected service', () => {
-        const editionService = TestBed.inject(EditionService);
-        const changedEditionWork: EditionWork = EditionWorks.op25;
-        mockEditionService.updateEditionWork(changedEditionWork);
-
-        mockEditionService.getEditionWork().subscribe((result: EditionWork) => {
-            expect(result).toBe(changedEditionWork);
-        });
-        editionService.getEditionWork().subscribe((result: EditionWork) => {
-            expect(result).toBe(expectedWork);
-        });
+        expect(mockEditionService === editionService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {

@@ -251,12 +251,11 @@ describe('FooterLogoComponent (DONE)', () => {
 
                 // find native elements
                 const imageEl = imageDes[0].nativeElement;
-                const imageClasses = imageDes[0].classes;
 
                 expect(imageEl.classList).toContain(cssClassFloatRight, `should contain ${cssClassFloatRight}`);
-                expect(imageClasses[cssClassFloatRight]).toBeTruthy(`should not be empty`);
+                expect(imageDes[0].classes[cssClassFloatRight]).toBeTruthy(`should not be empty`);
                 expect(imageEl.classList).toContain(cssClassMarginY2, `should contain ${cssClassMarginY2}`);
-                expect(imageClasses[cssClassMarginY2]).toBeTruthy(`should not be empty`);
+                expect(imageDes[0].classes[cssClassMarginY2]).toBeTruthy(`should not be empty`);
             });
 
             it('... should have CSS class `float-right` applied only to right main footer logos', async () => {
@@ -268,26 +267,25 @@ describe('FooterLogoComponent (DONE)', () => {
 
                 // find native elements
                 const imageEl = imageDes[0].nativeElement;
-                const imageClasses = imageDes[0].classes;
 
                 expect(imageEl.classList).toContain(cssClassFloatRight, `should contain ${cssClassFloatRight}`);
-                expect(imageClasses[cssClassFloatRight]).toBeTruthy(`should not be empty`);
+                expect(imageDes[0].classes[cssClassFloatRight]).toBeTruthy(`should not be empty`);
 
                 // main footer logo
                 // trigger changes in data binding
                 component.logo = LOGOSDATA.sagw;
                 await detectChangesOnPush(fixture); // fixture.detectChanges with onPush strategy
 
-                expect(imageEl.classList).not.toContain(cssClassFloatRight, `should contain ${cssClassFloatRight}`);
-                expect(imageClasses[cssClassFloatRight]).not.toBeTruthy(`should not be empty`);
+                expect(imageEl.classList).not.toContain(cssClassFloatRight, `should not contain ${cssClassFloatRight}`);
+                expect(imageDes[0].classes[cssClassFloatRight]).not.toBeTruthy(`should be empty`);
 
                 // not main footer logo
                 // trigger changes in data binding
                 component.logo = LOGOSDATA.angular;
                 await detectChangesOnPush(fixture); // fixture.detectChanges with onPush
 
-                expect(imageEl.classList).not.toContain(cssClassFloatRight, `should contain ${cssClassFloatRight}`);
-                expect(imageClasses[cssClassFloatRight]).not.toBeTruthy(`should be empty`);
+                expect(imageEl.classList).not.toContain(cssClassFloatRight, `should not contain ${cssClassFloatRight}`);
+                expect(imageDes[0].classes[cssClassFloatRight]).not.toBeTruthy(`should be empty`);
             });
 
             it('... should have CSS class `my-2` applied only to main footer logos', async () => {
@@ -297,10 +295,9 @@ describe('FooterLogoComponent (DONE)', () => {
 
                 // find native elements
                 const imageEl = imageDes[0].nativeElement;
-                const imageClasses = imageDes[0].classes;
 
                 expect(imageEl.classList).toContain(cssClassMarginY2, `should contain ${cssClassMarginY2}`);
-                expect(imageClasses[cssClassMarginY2]).toBeTruthy(`should not be empty`);
+                expect(imageDes[0].classes[cssClassMarginY2]).toBeTruthy(`should not be empty`);
 
                 // main footer logo
                 // trigger changes in data binding
@@ -308,7 +305,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture); // fixture.detectChanges with onPush strategy
 
                 expect(imageEl.classList).toContain(cssClassMarginY2, `should contain ${cssClassMarginY2}`);
-                expect(imageClasses[cssClassMarginY2]).toBeTruthy(`should not be empty`);
+                expect(imageDes[0].classes[cssClassMarginY2]).toBeTruthy(`should not be empty`);
 
                 // not main footer logo
                 // trigger changes in data binding
@@ -316,20 +313,19 @@ describe('FooterLogoComponent (DONE)', () => {
                 await detectChangesOnPush(fixture); // fixture.detectChanges with onPush
 
                 expect(imageEl.classList).not.toContain(cssClassMarginY2, `should not contain ${cssClassMarginY2}`);
-                expect(imageClasses[cssClassMarginY2]).not.toBeTruthy(`should be empty`);
+                expect(imageDes[0].classes[cssClassMarginY2]).not.toBeTruthy(`should be empty`);
             });
 
             it('... should have [ngClass] resolve to correct classes', async () => {
                 // right main footer logo
                 // find debug elements
                 const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
-                const imageAttributes = imageDes[0].attributes;
 
                 // find native elements
                 const imageEl = imageDes[0].nativeElement;
                 const imageElAttributes = imageEl.attributes;
 
-                expect(imageAttributes['ng-reflect-ng-class']).toBe(
+                expect(imageDes[0].attributes['ng-reflect-ng-class']).toBe(
                     cssClassMarginY2 + ' ' + cssClassFloatRight,
                     `should be ${cssClassMarginY2} ${cssClassFloatRight}`
                 );
@@ -343,7 +339,10 @@ describe('FooterLogoComponent (DONE)', () => {
                 component.logo = LOGOSDATA.sagw;
                 await detectChangesOnPush(fixture); // fixture.detectChanges with onPush strategy
 
-                expect(imageAttributes['ng-reflect-ng-class']).toBe(cssClassMarginY2, `should be ${cssClassMarginY2}`);
+                expect(imageDes[0].attributes['ng-reflect-ng-class']).toBe(
+                    cssClassMarginY2,
+                    `should be ${cssClassMarginY2}`
+                );
                 expect(imageElAttributes['ng-reflect-ng-class'].value).toBe(
                     cssClassMarginY2,
                     `should be ${cssClassMarginY2}`
@@ -354,7 +353,7 @@ describe('FooterLogoComponent (DONE)', () => {
                 component.logo = LOGOSDATA.angular;
                 await detectChangesOnPush(fixture); // fixture.detectChanges with onPush strategy
 
-                expect(imageAttributes['ng-reflect-ng-class']).not.toBeTruthy(`should be empty string`);
+                expect(imageDes[0].attributes['ng-reflect-ng-class']).not.toBeTruthy(`should be empty string`);
                 expect(imageElAttributes['ng-reflect-ng-class'].value).not.toBeTruthy(`should be empty string`);
             });
         });

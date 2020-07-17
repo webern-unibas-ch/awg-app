@@ -23,7 +23,6 @@ import { CompileHtmlComponent } from './compile-html.component';
 @NgModule({
     imports: [CommonModule],
     declarations: [CompileHtmlComponent],
-    exports: [CompileHtmlComponent],
-    entryComponents: []
+    exports: [CompileHtmlComponent]
 })
 export class CompileHtmlModule {}

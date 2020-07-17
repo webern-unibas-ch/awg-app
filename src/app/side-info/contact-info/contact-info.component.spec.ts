@@ -97,21 +97,9 @@ describe('ContactInfoComponent (DONE)', () => {
         expect(component).toBeTruthy();
     });
 
-    it('stub service and injected coreService should not be the same', () => {
+    it('injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(false);
-    });
-
-    it('changing the stub service has no effect on the injected service', () => {
-        const coreService = TestBed.inject(CoreService);
-        const CHANGEDMETA: Meta = {
-            page: new MetaPage(),
-            structure: new MetaStructure(),
-            contact: new MetaContact()
-        };
-        mockCoreService = { getMetaDataSection: sectionType => CHANGEDMETA[sectionType] };
-
-        expect(coreService.getMetaDataSection(MetaSectionTypes.page)).toBe(expectedPageMetaData);
+        expect(mockCoreService === coreService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {

@@ -52,22 +52,9 @@ describe('ForceGraphNoResultComponent', () => {
         expect(component).toBeTruthy();
     });
 
-    it('stub service and injected coreService should not be the same', () => {
+    it('injected service should use provided mockValue', () => {
         const coreService = TestBed.inject(CoreService);
-        expect(mockCoreService === coreService).toBe(false);
-    });
-
-    it('changing the stub service has no effect on the injected service', () => {
-        const coreService = TestBed.inject(CoreService);
-        const CHANGEDLOGOS: Logos = {
-            angular: new Logo()
-        };
-        mockCoreService = {
-            getLogos: () => CHANGEDLOGOS
-        };
-
-        expect(coreService.getLogos()).toEqual(expectedLogos);
-        expect(mockCoreService.getLogos()).toEqual(CHANGEDLOGOS);
+        expect(mockCoreService === coreService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
