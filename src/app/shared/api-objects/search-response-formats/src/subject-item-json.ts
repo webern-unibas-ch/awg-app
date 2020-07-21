@@ -19,7 +19,7 @@ import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-com
  * Represents a search result item
  * @used by SearchResponseJson
  */
-@JsonObject
+@JsonObject('SubjectItemJson')
 export class SubjectItemJson {
     /**
      * Description of the resource's class

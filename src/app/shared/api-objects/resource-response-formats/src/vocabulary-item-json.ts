@@ -19,7 +19,7 @@ import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
  * Represents a vocabulary
  * @used by VocabularyResponseJson
  */
-@JsonObject
+@JsonObject('VocabularyItemJson')
 export class VocabularyItemJson {
     /**
      * Indicates if this is the vocabulary the user's project belongs to

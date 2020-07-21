@@ -22,7 +22,7 @@ import { BasicResponseJson, ProjectItemJson } from '@awg-shared/api-objects/basi
  *
  */
 
-@JsonObject
+@JsonObject('ProjectListJson')
 export class ProjectListJson extends BasicResponseJson {
     /**
      * List of search project items

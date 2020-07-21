@@ -21,7 +21,7 @@ import { RestypeJson } from './restype-json';
  *
  * HTTP GET to http://host/v1/resourcetypes/resourceClassIRI
  */
-@JsonObject
+@JsonObject('ResourceTypeResponseJson')
 export class ResourceTypeResponseJson extends BasicResponseJson {
     /**
      * Represents information about the requested resource class

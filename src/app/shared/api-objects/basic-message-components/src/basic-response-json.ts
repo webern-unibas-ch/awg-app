@@ -19,7 +19,7 @@ import { KnoraStatusCode } from './basic-type-aliases';
 /**
  * Basic members of the Knora API V1 response format.
  */
-@JsonObject
+@JsonObject('BasicResponseJson')
 export class BasicResponseJson {
     /**
      * Knora status code

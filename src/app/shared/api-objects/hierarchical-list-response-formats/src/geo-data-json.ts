@@ -20,7 +20,7 @@ import { NodeItemJson } from './node-item-json';
  * Represents a geodata item
  * @used by GeoDataJson
  */
-@JsonObject
+@JsonObject('GeoDataItemJson')
 export class GeoDataItemJson extends NodeItemJson {
     /**
      * The geodata latitude
@@ -48,7 +48,7 @@ export class GeoDataItemJson extends NodeItemJson {
  * Represents a Geodata response
  * @used by ---
  */
-@JsonObject
+@JsonObject('GeoDataJson')
 export class GeoDataJson extends BasicResponseJson {
     /**
      * The geodata array

@@ -22,7 +22,7 @@ import { PropJson } from './prop-json';
  *
  * HTTP GET to http://host/v1/properties/resourceIRI
  */
-@JsonObject
+@JsonObject('ResourcePropertiesResponseJson')
 export class ResourcePropertiesResponseJson extends BasicResponseJson {
     /**
      * A map of property type IRIs to property instances

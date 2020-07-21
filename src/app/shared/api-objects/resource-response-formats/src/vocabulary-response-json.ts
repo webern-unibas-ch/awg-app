@@ -21,7 +21,7 @@ import { VocabularyItemJson } from './vocabulary-item-json';
  *
  * HTTP GET to http://host/v1/vocabularies
  */
-@JsonObject
+@JsonObject('VocabularyResponseJson')
 export class VocabularyResponseJson extends BasicResponseJson {
     /**
      * ...

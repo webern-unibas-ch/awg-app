@@ -20,7 +20,7 @@ import { RegionJson } from './region-json';
  * Represents information about a resource and its class.
  * @used by ContextJson, IncomingItemJson, ResourceFullResponseJson, ResourceInfoResponseJson
  */
-@JsonObject
+@JsonObject('ResinfoJson')
 export class ResinfoJson {
     /**
      * The resource's label

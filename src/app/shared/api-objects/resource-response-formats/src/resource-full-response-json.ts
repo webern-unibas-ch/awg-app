@@ -24,7 +24,7 @@ import { ResinfoJson } from './resinfo-json';
  *
  * HTTP GET to http://host/v1/resources/resourceIRI
  */
-@JsonObject
+@JsonObject('ResourceFullResponseJson')
 export class ResourceFullResponseJson extends BasicResponseJson {
     /**
      * The given user's permissions on the resource (obsolete)

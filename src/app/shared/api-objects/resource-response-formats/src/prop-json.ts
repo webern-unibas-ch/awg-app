@@ -20,7 +20,7 @@ import { PropvalJson } from './propval-json';
  * Represents a property (no parallel arrays)
  * @used by RegionJson, ResourcePropertiesResponseJson
  */
-@JsonObject
+@JsonObject('PropJson')
 export class PropJson {
     /**
      * HTML attributes for the GUI element

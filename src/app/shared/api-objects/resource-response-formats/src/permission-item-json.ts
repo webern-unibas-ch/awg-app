@@ -18,7 +18,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * Represents a permission assertion for the current user.
  * @used by ... ??
  */
-@JsonObject
+@JsonObject('PermissionItemJson')
 export class PermissionItemJson {
     /**
      * User group that the permission level is granted to

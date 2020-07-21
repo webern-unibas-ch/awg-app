@@ -20,7 +20,7 @@ import { NodeItemJson } from './node-item-json';
  * Represents a selection item
  * @used by SelectionJson
  */
-@JsonObject
+@JsonObject('SelectionItemJson')
 export class SelectionItemJson extends NodeItemJson {
     /**
      * The label_ok value
@@ -41,7 +41,7 @@ export class SelectionItemJson extends NodeItemJson {
  * Represents a selection response
  * @used by ---
  */
-@JsonObject
+@JsonObject('SelectionJson')
 export class SelectionJson extends BasicResponseJson {
     /**
      * The selection array
