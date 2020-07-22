@@ -4,10 +4,8 @@ import { ActivatedRoute, ParamMap, Router } from '@angular/router';
 import { Observable, Subject } from 'rxjs';
 import { switchMap, takeUntil } from 'rxjs/operators';
 
-import { NgbTabsetConfig } from '@ng-bootstrap/ng-bootstrap';
-
 import { DataStreamerService, GndService, LoadingService } from '@awg-core/services';
-import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
+import { GndEvent } from '@awg-core/services/gnd-service';
 import { DataApiService } from '@awg-views/data-view/services';
 
 import { ResourceData } from '@awg-views/data-view/models';
@@ -18,7 +16,7 @@ import { ResourceData } from '@awg-views/data-view/models';
  * It contains the resource detail section
  * of the data (search) view of the app
  * with a {@link TwelveToneSpinnerComponent}
- * and an ng-bootstrap tabset that contains
+ * and an ng-bootstrap navbar that contains
  * the {@link ResourceDetailHeaderComponent},
  * {@link ResourceDetailHtmlComponent},
  * {@link ResourceDetailJsonConvertedComponent}
@@ -28,7 +26,6 @@ import { ResourceData } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail',
     templateUrl: './resource-detail.component.html',
     styleUrls: ['./resource-detail.component.css'],
-    providers: [NgbTabsetConfig],
     changeDetection: ChangeDetectionStrategy.Default
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
@@ -97,8 +94,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      *
      * It declares private instances of the Angular ActivatedRoute,
      * the Angular Router, the DataApiService, the DataStreamerService,
-     * the GndService, the LoadingService, and a configuration object for the
-     * ng-bootstrap tabset.
+     * the GndService, and the LoadingService.
      *
      * @param {ActivatedRoute} route Instance of the Angular ActivatedRoute.
      * @param {Router} router Instance of the Angular Router.
@@ -106,7 +102,6 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * @param {DataStreamerService} dataStreamerService Instance of the DataStreamerService.
      * @param {GndService} gndService Instance of the GndService.
      * @param {LoadingService} loadingService Instance of the LoadingService.
-     * @param {NgbTabsetConfig} config Instance of the NgbTabsetConfig.
      */
     constructor(
         private route: ActivatedRoute,
@@ -114,11 +109,8 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         private dataApiService: DataApiService,
         private dataStreamerService: DataStreamerService,
         private gndService: GndService,
-        private loadingService: LoadingService,
-        config: NgbTabsetConfig
-    ) {
-        config.justify = 'justified';
-    }
+        private loadingService: LoadingService
+    ) {}
 
     /**
      * Angular life cycle hook: ngOnInit.

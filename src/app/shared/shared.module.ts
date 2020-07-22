@@ -14,8 +14,8 @@ import {
     NgbCollapseModule,
     NgbDropdownModule,
     NgbModalModule,
+    NgbNavModule,
     NgbPaginationModule,
-    NgbTabsetModule,
     NgbTooltipModule
 } from '@ng-bootstrap/ng-bootstrap';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
@@ -54,8 +54,8 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbNavModule,
         NgbPaginationModule,
-        NgbTabsetModule,
         NgbTooltipModule,
         NgxGalleryModule,
         NgxJsonViewerModule
@@ -83,8 +83,8 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         NgbCollapseModule,
         NgbDropdownModule,
         NgbModalModule,
+        NgbNavModule,
         NgbPaginationModule,
-        NgbTabsetModule,
         NgbTooltipModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
