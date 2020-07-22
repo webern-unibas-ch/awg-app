@@ -3,16 +3,18 @@
 
     <h5 id="awg-page-not-found-subtitle">{{ pageNotFoundSubTitle }}</h5>
 
-    <div class="my-4">
-        <img [src]="pageNotFoundImgPath" width="100%" />
+    <div class="awg-page-not-found-body text-center">
+        <div class="awg-page-not-found-image my-4">
+            <img [src]="pageNotFoundImgPath" width="70%" />
+        </div>
+
+        <p id="awg-page-not-found-contact">
+            Kontaktieren sie uns gerne unter:
+            <a [href]="awgContactUrl" target="_blank" rel="noopener noreferrer">anton-webern.ch</a>
+        </p>
+
+        <p id="awg-page-not-found-back" class="mt-4">
+            Zurück zur Startseite: <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
+        </p>
     </div>
-
-    <h5 id="awg-page-not-found-contact">
-        Kontaktieren sie uns gerne unter:
-        <a [href]="awgContactUrl" target="_blank" rel="noopener noreferrer">anton-webern.ch</a>
-    </h5>
-
-    <h5 id="awg-page-not-found-back" class="mt-4">
-        Zurück zur Startseite: <a [routerLink]="['/home']" routerLinkActive="active">Home</a>
-    </h5>
 </div>
