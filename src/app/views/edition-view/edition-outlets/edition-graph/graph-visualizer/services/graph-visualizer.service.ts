@@ -38,6 +38,54 @@ export class GraphVisualizerService {
     constructor() {}
 
     /**
+     * Public method: parseTriples.
+     *
+     * It parses the triples from a given triple array.
+     *
+     * @param {Triple[]} triples The given triple array.
+     *
+     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
+     */
+    parseTriples(triples: Triple[]): Promise<{ triples; namespaces }> {
+        const parser = N3.Parser();
+        const jsonTriples = [];
+
+        return new Promise((resolve, reject) => {
+            parser.parse(triples, (err, triple, namespaceValues) => {
+                if (triple) {
+                    jsonTriples.push(triple);
+                } else {
+                    resolve({ triples: jsonTriples, namespaces: namespaceValues });
+                }
+                if (err) {
+                    reject(err);
+                }
+            });
+        });
+    }
+
+    /**
+     * Public method: limitTriples.
+     *
+     * It limits a given array of triples by a given limit.
+     *
+     * @param {Triple[]} triples The given triples array.
+     * @param {number} limit The given limit.
+     *
+     * @returns {Triple[]} The array of limited triples.
+     */
+    limitTriples(triples: Triple[], limit: number): Triple[] {
+        if (!triples) {
+            return [];
+        }
+        if (triples.length > limit) {
+            return triples.slice(0, limit);
+        } else {
+            return triples;
+        }
+    }
+
+    /**
      * Public method: abbreviateTriples.
      *
      * It abbreviates the given triples according to the given namespaces.
@@ -226,11 +274,11 @@ export class GraphVisualizerService {
      */
     private abbreviate(iri: any, namespaces: Namespace): TripleComponent {
         let newVal: TripleComponent = null;
-        // If FoI has 'http' in its name, continue
+        // If IRI has 'http' in its name, continue
         if (iri.indexOf('http') !== -1) {
-            // Loop over prefixes
+            // Loop over namespaces
             Object.entries(namespaces).forEach(([key, value], index) => {
-                // If the FoI has the prefixed namespace in its name, return it
+                // If the IRI has the prefixed namespace in its name, return it
                 if (iri.indexOf(value) !== -1) {
                     newVal = iri.replace(value, key + ':');
                 }
