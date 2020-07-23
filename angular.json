@@ -23,6 +23,7 @@
                         "allowedCommonJsDependencies": [
                             "@ctrl/ngx-codemirror",
                             "lodash",
+                            "n3",
                             "codemirror/mode/sparql/sparql",
                             "codemirror/mode/go/go",
                             "codemirror/mode/turtle/turtle",
