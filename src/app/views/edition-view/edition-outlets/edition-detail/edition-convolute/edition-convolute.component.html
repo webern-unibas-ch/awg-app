@@ -9,9 +9,9 @@
                 <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
                     <a
                         class="dropdown-item"
-                        *ngFor="let conv of folioConvoluteData.convolutes"
-                        (click)="selectConvolute(conv.convoluteId)"
-                        >{{ conv.convoluteId }}</a
+                        *ngFor="let convolute of folioConvoluteData.convolutes"
+                        (click)="selectConvolute(convolute.convoluteId)"
+                        >{{ convolute.convoluteId }}</a
                     >
                 </div>
             </div>
