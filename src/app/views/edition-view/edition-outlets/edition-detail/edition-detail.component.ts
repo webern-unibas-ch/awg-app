@@ -1,7 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, NavigationExtras, ParamMap, Router } from '@angular/router';
 
-import { switchMap } from 'rxjs/operators';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
@@ -15,6 +15,7 @@ import {
     TextcriticsList
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { Subject } from 'rxjs';
 
 /**
  * The EditionDetail component.
@@ -30,13 +31,20 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     templateUrl: './edition-detail.component.html',
     styleUrls: ['./edition-detail.component.css']
 })
-export class EditionDetailComponent implements OnInit {
+export class EditionDetailComponent implements OnInit, OnDestroy {
     /**
      * ViewChild variable: modal.
      *
      * It keeps the reference to the awg-modal.
      */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
+
+    /**
+     * Private variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Public variable: editionWork.
@@ -156,7 +164,8 @@ export class EditionDetailComponent implements OnInit {
                     this.editionWork = work;
                     // return EditionDetailData from editionDataService
                     return this.editionDataService.getEditionDetailData(this.editionWork);
-                })
+                }),
+                takeUntil(this.destroy$)
             )
             .pipe(
                 switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
@@ -167,7 +176,8 @@ export class EditionDetailComponent implements OnInit {
                         // return queryParams if available
                         return this.route.queryParamMap;
                     }
-                })
+                }),
+                takeUntil(this.destroy$)
             )
             .subscribe(
                 (queryParams: ParamMap) => {
@@ -250,7 +260,7 @@ export class EditionDetailComponent implements OnInit {
             id = '';
         }
         this.selectedSvgSheet = this.findSvgSheet(id);
-        this.showTkA = false;
+        this.clearOverlaySelection();
 
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
@@ -258,6 +268,18 @@ export class EditionDetailComponent implements OnInit {
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
+    }
+
+    /**
+     * Private method: clearOverlaySelection.
+     *
+     * It clears the selected overlay and TkA.
+     *
+     * @returns {void} Clears the selection.
+     */
+    private clearOverlaySelection(): void {
+        this.selectedOverlay = null;
+        this.showTkA = false;
     }
 
     /**
@@ -334,5 +356,13 @@ export class EditionDetailComponent implements OnInit {
         );
         // return the comments with the given id
         return this.textcriticsData.textcritics[textcriticsIndex].comments;
+    }
+
+    ngOnDestroy() {
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
     }
 }

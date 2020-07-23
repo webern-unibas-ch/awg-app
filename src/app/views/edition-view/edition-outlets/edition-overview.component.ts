@@ -1,9 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { Subject, Subscription } from 'rxjs';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
+import { takeUntil } from 'rxjs/operators';
 
 /**
  * The EditionOverview component.
@@ -19,6 +20,13 @@ import { EditionService } from '@awg-views/edition-view/services';
     styleUrls: ['./edition-overview.component.css']
 })
 export class EditionOverviewComponent implements OnInit, OnDestroy {
+    /**
+     * Private variable: destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private destroy$: Subject<boolean> = new Subject<boolean>();
+
     /**
      * Public variable: editionRouterLinkButtons.
      *
@@ -68,10 +76,13 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      * @returns {void} Gets the current edition work.
      */
     getEditionWork(): void {
-        this.subscription = this.editionService.getEditionWork().subscribe(work => {
-            this.editionWork = work;
-            this.setButtons();
-        });
+        this.editionService
+            .getEditionWork()
+            .pipe(takeUntil(this.destroy$))
+            .subscribe((work: EditionWork) => {
+                this.editionWork = work;
+                this.setButtons();
+            });
     }
 
     /**
@@ -119,8 +130,10 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        if (this.subscription) {
-            this.subscription.unsubscribe();
-        }
+        // emit truthy value to end all subscriptions
+        this.destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this.destroy$.unsubscribe();
     }
 }
