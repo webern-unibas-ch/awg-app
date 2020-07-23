@@ -172,7 +172,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                     this.folioConvoluteData = data[0];
                     this.svgSheetsData = data[1];
                     this.textcriticsData = data[2];
-                    if (this.svgSheetsData) {
+                    if (this.route.queryParamMap) {
                         // return queryParams if available
                         return this.route.queryParamMap;
                     }
@@ -183,6 +183,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                 (queryParams: ParamMap) => {
                     const sheetId: string = this.getSketchParams(queryParams);
                     this.selectedSvgSheet = this.findSvgSheet(sheetId);
+                    this.selectedConvolute = this.findConvolute('');
                     if (
                         !this.selectedConvolute &&
                         this.folioConvoluteData.convolutes &&
@@ -257,7 +258,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      */
     onSvgSheetSelect(id: string): void {
         if (!id) {
-            id = '';
+            id = this.svgSheetsData.sheets[0].id || '';
         }
         this.selectedSvgSheet = this.findSvgSheet(id);
         this.clearOverlaySelection();
