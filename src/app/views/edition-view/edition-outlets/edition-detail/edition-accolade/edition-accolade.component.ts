@@ -13,8 +13,7 @@ import {
  * It contains the edition accolade section
  * of the edition view of the app
  * with the {@link EditionSvgSheetNavComponent},
- * the {@link EditionSvgSheetComponent},
- * the {@link EditionDetailNotificationComponent}
+ * the {@link EditionSvgSheetComponent}
  * and the {@link EditionTkaTableComponent}.
  */
 @Component({

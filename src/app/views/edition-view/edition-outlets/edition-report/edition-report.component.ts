@@ -4,7 +4,6 @@ import { NavigationExtras, Router } from '@angular/router';
 import { Observable, throwError } from 'rxjs';
 
 import {
-    EditionConstants,
     EditionWork,
     SourceDescriptionList,
     SourceEvaluationList,
@@ -15,19 +14,19 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 import { catchError, switchMap } from 'rxjs/operators';
 
 /**
- * The Report component.
+ * The EditionReport component.
  *
  * It contains the report section of the edition view of the app
  * with a {@link HeadingComponent}, a {@link ModalComponent},
  * the {@link SourcesComponent} and the {@link TextcriticsComponent}.
  */
 @Component({
-    selector: 'awg-report',
-    templateUrl: './report.component.html',
-    styleUrls: ['./report.component.css'],
+    selector: 'awg-edition-report',
+    templateUrl: './edition-report.component.html',
+    styleUrls: ['./edition-report.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ReportComponent implements OnInit {
+export class EditionReportComponent implements OnInit {
     /**
      * Public variable: editionWork.
      *
@@ -50,7 +49,7 @@ export class ReportComponent implements OnInit {
     errorObject = null;
 
     /**
-     * Constructor of the ReportComponent.
+     * Constructor of the EditionReportComponent.
      *
      * It declares a private EditionDataService instance
      * to get the report data and a private Router instance.

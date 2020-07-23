@@ -19,7 +19,7 @@ import {
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
-import { ReportComponent } from './report.component';
+import { EditionReportComponent } from './edition-report.component';
 
 // mock components
 @Component({ selector: 'awg-heading', template: '' })
@@ -50,9 +50,9 @@ class TextcritisStubComponent {
     // TODO: handle output
 }
 
-describe('ReportComponent', () => {
-    let component: ReportComponent;
-    let fixture: ComponentFixture<ReportComponent>;
+describe('EditionReportComponent', () => {
+    let component: EditionReportComponent;
+    let fixture: ComponentFixture<EditionReportComponent>;
 
     let getEditionReportDataSpy: Spy;
     let getEditionWorkSpy: Spy;
@@ -72,7 +72,7 @@ describe('ReportComponent', () => {
             imports: [NgbModalModule, RouterTestingModule],
             declarations: [
                 CompileHtmlComponent,
-                ReportComponent,
+                EditionReportComponent,
                 HeadingStubComponent,
                 SourcesStubComponent,
                 TextcritisStubComponent,
@@ -86,7 +86,7 @@ describe('ReportComponent', () => {
     }));
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ReportComponent);
+        fixture = TestBed.createComponent(EditionReportComponent);
         component = fixture.componentInstance;
     });
 
