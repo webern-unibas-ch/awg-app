@@ -24,13 +24,11 @@ const editionViewRoutes: Routes = [
                         path: '',
                         component: EditionOverviewComponent,
                         children: [
-                            /* {
-                                path: EditionConstants.editionGraph.route,
-                                loadChildren: () =>
-                                    import(
-                                        '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.module'
-                                    ).then(m => m.EditionGraphModule)
-                            },*/
+                            {
+                                path: '',
+                                redirectTo: '/' + EditionConstants.editionIntro.route,
+                                pathMatch: 'full'
+                            },
                             {
                                 path: EditionConstants.editionIntro.route,
                                 loadChildren: () =>
@@ -53,9 +51,11 @@ const editionViewRoutes: Routes = [
                                     )
                             },
                             {
-                                path: '',
-                                redirectTo: '/' + EditionConstants.editionIntro.route,
-                                pathMatch: 'full'
+                                path: EditionConstants.editionGraph.route,
+                                loadChildren: () =>
+                                    import(
+                                        '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.module'
+                                    ).then(m => m.EditionGraphModule)
                             }
                         ]
                     }
