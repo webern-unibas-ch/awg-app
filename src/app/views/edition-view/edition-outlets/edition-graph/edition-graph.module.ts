@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
+
 import { GraphVisualizerModule } from './graph-visualizer';
 import { EditionGraphRoutingModule, routedEditionGraphComponents } from './edition-graph-routing.module';
 

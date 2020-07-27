@@ -7,9 +7,9 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { from, Observable } from 'rxjs';
 
 import { GraphQuery, GraphRDFData } from '@awg-views/edition-view/models';
-import { Triple } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
+import { Triple } from './models';
 
-import { GraphVisualizerService } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service';
+import { GraphVisualizerService } from './services/graph-visualizer.service';
 
 import 'codemirror/mode/turtle/turtle';
 import 'codemirror/mode/go/go';
@@ -155,7 +155,7 @@ export class GraphVisualizerComponent implements OnInit {
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
         // use only local store for now
-        this.queryResult = this.queryLocalstore(this.queryType, this.query.queryString, this.triples);
+        this.queryResult = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
     }
 
     /**
@@ -275,7 +275,7 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Private method: queryLocalstore
+     * Private method: queryLocalStore
      *
      * It performs a query against the local rdfstore.
      *
@@ -285,7 +285,7 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {Observable<Triple[]>} The result of the query as an observable of triples.
      */
-    private queryLocalstore(queryType: string, query: string, triples: string): Observable<Triple[]> {
+    private queryLocalStore(queryType: string, query: string, triples: string): Observable<Triple[]> {
         // Capture start time of query
         const t1 = Date.now();
 
