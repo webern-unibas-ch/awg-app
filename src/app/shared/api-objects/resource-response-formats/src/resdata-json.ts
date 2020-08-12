@@ -19,7 +19,7 @@ import { KnoraIRI, KnoraRights } from '@awg-shared/api-objects/basic-message-com
  * Represents information about a resource.
  * @used by ResourceFullResponseJson
  */
-@JsonObject
+@JsonObject('ResdataJson')
 export class ResdataJson {
     /**
      * Icon of the resource's class

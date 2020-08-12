@@ -28,6 +28,6 @@
     }
 }
 
-ngb-tabset ::ng-deep .tab-pane.active {
+::ng-deep .tab-content .tab-pane.active {
     margin: 2rem 0;
 }

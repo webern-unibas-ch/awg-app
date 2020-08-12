@@ -26,7 +26,7 @@ import { ResourceLabelSearchItemJson } from './resource-label-search-item-json';
  * HTTP GET to http://host/v1/resources?searchstr=searchValue
  * [&restype_id=resourceClassIRI][&numprops=Integer][&limit=Integer]
  */
-@JsonObject
+@JsonObject('ResourceLabelSearchResponseJson')
 export class ResourceLabelSearchResponseJson extends BasicResponseJson {
     /**
      * ...

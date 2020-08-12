@@ -18,7 +18,7 @@ describe('ConversionService', () => {
             imports: [AppModule, RouterTestingModule],
             providers: [ConversionService]
         });
-        conversionService = TestBed.get(ConversionService);
+        conversionService = TestBed.inject(ConversionService);
     });
 
     afterAll(() => {

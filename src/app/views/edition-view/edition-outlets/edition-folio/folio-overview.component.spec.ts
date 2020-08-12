@@ -2,12 +2,12 @@ import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 
 import { FolioOverviewComponent } from './folio-overview.component';
 import { FolioService } from './folio.service';
-import { Folio, FolioSvgData, EditionSvgSheet, FolioCalculation, FolioSettings } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvolute, FolioSettings } from '@awg-views/edition-view/models';
 
 describe('FolioComponent', () => {
     let component: FolioOverviewComponent;
     let fixture: ComponentFixture<FolioOverviewComponent>;
-    let expectedFolios: Folio[];
+    let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
 
     beforeEach(async(() => {
@@ -28,7 +28,7 @@ describe('FolioComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('should not get folios input', () => {
-            expect(component.folioData).toBeUndefined('should be undefined');
+            expect(component.selectedConvolute).toBeUndefined('should be undefined');
         });
 
         it('should not get svg file input', () => {
@@ -53,32 +53,35 @@ describe('FolioComponent', () => {
                 initialOffsetY: 5,
                 numberOfFolios: 0
             };
-            expectedFolios = [
-                {
-                    folioId: '1r',
-                    systems: '16',
-                    format: {
-                        height: 175,
-                        width: 270
-                    },
-                    content: [
-                        {
-                            sigle: 'Aa:SkI/1a',
-                            measure: '1–2, [3–6]',
-                            sectionPartition: 1,
-                            sections: [
-                                {
-                                    startSystem: 2,
-                                    endSystem: 4
-                                }
-                            ]
-                        }
-                    ]
-                }
-            ];
+            expectedConvolute = {
+                convoluteId: 'A Skizzen (Basel, Paul Sacher Stiftung)',
+                folios: [
+                    {
+                        folioId: '1r',
+                        systems: '16',
+                        format: {
+                            height: 175,
+                            width: 270
+                        },
+                        content: [
+                            {
+                                sigle: 'Aa:SkI/1a',
+                                measure: '1–2, [3–6]',
+                                sectionPartition: 1,
+                                sections: [
+                                    {
+                                        startSystem: 2,
+                                        endSystem: 4
+                                    }
+                                ]
+                            }
+                        ]
+                    }
+                ]
+            };
 
             // simulate the parent setting the input properties
-            component.folioData = expectedFolios;
+            component.selectedConvolute = expectedConvolute;
             component.selectedSvgSheet = expectedSvgSheet;
 
             // trigger initial data binding
@@ -90,7 +93,7 @@ describe('FolioComponent', () => {
         });
 
         it('should get folios input', () => {
-            expect(component.folioData).toBe(expectedFolios);
+            expect(component.selectedConvolute).toBe(expectedConvolute);
         });
     });
 });

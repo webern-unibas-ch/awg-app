@@ -57,11 +57,18 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
             });
 
+            it('... should display `jsonViewerHeader`', () => {
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
+                const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
+
+                expect(viewerCmp.jsonViewerHeader).toBeDefined();
+                expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have header: ${expectedHeader}`);
+            });
+
             it('... should not pass down `resourceJsonRawData` to json viewer component', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
 
-                expect(viewerCmp.jsonViewerHeader).toBeUndefined();
                 expect(viewerCmp.jsonViewerData).toBeUndefined();
             });
         });
@@ -80,9 +87,6 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
             it('... should pass down `resourceJsonRawData` to json viewer component', () => {
                 const viewerDes = getAndExpectDebugElementByDirective(compDe, JsonViewerStubComponent, 1, 1);
                 const viewerCmp = viewerDes[0].injector.get(JsonViewerStubComponent) as JsonViewerStubComponent;
-
-                expect(viewerCmp.jsonViewerHeader).toBeDefined();
-                expect(viewerCmp.jsonViewerHeader).toBe(expectedHeader, `should have header: ${expectedHeader}`);
 
                 expect(viewerCmp.jsonViewerData).toBeDefined();
                 expect(viewerCmp.jsonViewerData).toBe(expectedData, `should have data: ${expectedData}`);

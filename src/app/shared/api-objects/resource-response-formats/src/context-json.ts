@@ -20,7 +20,7 @@ import { ResinfoJson } from './resinfo-json';
  * Represents the context of a resource
  * @used by ResourceContextResponseJson
  */
-@JsonObject
+@JsonObject('ContextJson')
 export class ContextJson {
     /**
      * The IRI of the resource

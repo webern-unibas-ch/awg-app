@@ -18,7 +18,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * Represents a property type attached to a resource class.
  * @used by ResTypeItemJson
  */
-@JsonObject
+@JsonObject('PropItemForResTypeJson')
 export class PropItemForResTypeJson {
     /**
      * ...

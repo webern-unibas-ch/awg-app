@@ -18,7 +18,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * Represents a node item
  * @used by GeoDataItemJson, HlistItemJson, SelectionItemJson
  */
-@JsonObject
+@JsonObject('NodeItemJson')
 export class NodeItemJson {
     /**
      * The selection id

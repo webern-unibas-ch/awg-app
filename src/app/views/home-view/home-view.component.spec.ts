@@ -122,7 +122,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).toBe(' ', `should be empty string`);
+                expect(headerEl.textContent).not.toBeTruthy(`should be empty string`);
             });
 
             it('... should not render title of edition info headers in first div.para yet', () => {

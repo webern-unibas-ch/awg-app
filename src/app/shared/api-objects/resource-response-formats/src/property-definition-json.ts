@@ -19,7 +19,7 @@ import { KnoraIRI } from '@awg-shared/api-objects/basic-message-components';
  * Represents information about a property type
  * @used by PropertyTypesInResourceClassJson, RestypeJson
  */
-@JsonObject
+@JsonObject('PropertyDefinitionJson')
 export class PropertyDefinitionJson {
     /**
      * GUI attributes (HTML) of the property type

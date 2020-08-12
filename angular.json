@@ -19,7 +19,16 @@
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "aot": false,
+                        "aot": true,
+                        "allowedCommonJsDependencies": [
+                            "@ctrl/ngx-codemirror",
+                            "lodash",
+                            "codemirror/mode/sparql/sparql",
+                            "codemirror/mode/go/go",
+                            "codemirror/mode/turtle/turtle",
+                            "json2typescript",
+                            "readable-stream"
+                        ],
                         "styles": [
                             "src/index.style.css",
                             "node_modules/bootstrap/dist/css/bootstrap.min.css",
@@ -51,7 +60,6 @@
                             "sourceMap": false,
                             "extractCss": true,
                             "namedChunks": false,
-                            "aot": false,
                             "extractLicenses": true,
                             "vendorChunk": false,
                             "buildOptimizer": false,

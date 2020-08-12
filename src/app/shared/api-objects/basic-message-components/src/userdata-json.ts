@@ -18,7 +18,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * Represents the current user's data
  * @used by BasicResponseJson
  */
-@JsonObject
+@JsonObject('UserDataJson')
 export class UserDataJson {
     /**
      * Email of a user

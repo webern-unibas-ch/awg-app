@@ -23,7 +23,7 @@ import { PropJson } from './prop-json';
  * @param indexable: [index:string]: prop | str
  * @used by ResinfoJson
  */
-@JsonObject
+@JsonObject('RegionJson')
 export class RegionJson {
     /**
      * ...

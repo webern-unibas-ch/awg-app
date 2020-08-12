@@ -22,7 +22,7 @@ import { ResTypeItemJson } from './res-type-item-json';
  *
  * HTTP GET to http://host/v1/resourcetypes?vocabulary=vocabularyIRI
  */
-@JsonObject
+@JsonObject('ResourceTypesInVocabularyResponseJson')
 export class ResourceTypesInVocabularyResponseJson extends BasicResponseJson {
     /**
      * Lists the resource classes that are defined

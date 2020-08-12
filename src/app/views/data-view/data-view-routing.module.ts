@@ -19,12 +19,14 @@ const dataViewRoutes: Routes = [
                 children: [
                     { path: 'fulltext', component: SearchPanelComponent },
                     { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
+                    /* muted for now
                     { path: 'timeline', component: TimelineComponent },
                     {
                         path: 'bibliography',
                         loadChildren: () =>
                             import('./data-outlets/bibliography/bibliography.module').then(m => m.BibliographyModule)
                     },
+                    */
                     { path: '', pathMatch: 'full', redirectTo: 'fulltext' }
                 ]
             }
@@ -43,8 +45,8 @@ export const routedDataViewComponents = [
     DataViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
-    ResourceDetailComponent,
-    TimelineComponent
+    ResourceDetailComponent
+    // TimelineComponent
 ];
 
 /**

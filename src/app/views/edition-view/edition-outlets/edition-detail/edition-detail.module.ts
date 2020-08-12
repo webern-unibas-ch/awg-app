@@ -4,32 +4,29 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { FolioModule } from '../edition-folio/folio.module';
 import { EditionTkaTableModule } from '../edition-tka-table/edition-tka-table.module';
 
-import { EditionAccoladeComponent } from './edition-accolade/edition-accolade.component';
+import { EditionAccoladeComponent } from './edition-accolade';
 import { EditionConvoluteComponent } from './edition-convolute';
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav';
 import { EditionSvgSheetComponent } from './edition-svg-sheet';
+import { EditionDetailRoutingModule, routedEditionDetailComponents } from './edition-detail-routing.module';
 
 /**
  * The edition detail module.
  *
- * It embeds the {@link EditionAccoladeComponent}, {@link EditionConvoluteComponent},
- * {@link EditionDetailNotificationComponent}, {@link EditionSvgSheetNavComponent},
- * {@link EditionSvgSheetComponent} as well as the {@link EditionTkaTableModule},
- * {@link FolioModule} and {@link SharedModule}.
+ * It embeds the edition detail components and their
+ * [routing definition]{@link EditionDetailRoutingModule} as well as the
+ * {@link EditionAccoladeComponent}, {@link EditionConvoluteComponent},
+ * {@link EditionSvgSheetNavComponent}, {@link EditionSvgSheetComponent},
+ * {@link EditionTkaTableModule}, {@link FolioModule} and {@link SharedModule}.
  */
 @NgModule({
-    imports: [SharedModule, FolioModule, EditionTkaTableModule],
+    imports: [SharedModule, FolioModule, EditionTkaTableModule, EditionDetailRoutingModule],
     declarations: [
         EditionAccoladeComponent,
         EditionConvoluteComponent,
         EditionSvgSheetNavComponent,
-        EditionSvgSheetComponent
-    ],
-    exports: [
-        EditionAccoladeComponent,
-        EditionConvoluteComponent,
-        EditionSvgSheetNavComponent,
-        EditionSvgSheetComponent
+        EditionSvgSheetComponent,
+        routedEditionDetailComponents
     ]
 })
 export class EditionDetailModule {}

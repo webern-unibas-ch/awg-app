@@ -142,7 +142,7 @@ export class CompileHtmlComponent implements OnChanges {
      * It keeps the custom imports for the dynamic component.
      */
     @Input('compile-html-imports')
-    imports: Array<Type<any> | ModuleWithProviders | any[]>;
+    imports: Array<Type<any> | ModuleWithProviders<any> | any[]>;
 
     /**
      * Public variable: dynamicComponent.
@@ -218,7 +218,7 @@ export class CompileHtmlComponent implements OnChanges {
      * @returns The RuntimeComponentModule.
      */
     private createComponentModule(componentType: any) {
-        let module: NgModule = {};
+        let module: NgModule = { imports: [], declarations: [] };
 
         if (this.module !== undefined) {
             module = cloneDeep(this.module);
@@ -228,13 +228,9 @@ export class CompileHtmlComponent implements OnChanges {
         if (this.imports !== undefined) {
             module.imports = module.imports.concat(this.imports);
         }
-        if (module.declarations === undefined) {
-            module.declarations = [componentType];
-        } else {
-            module.declarations.push(componentType);
-        }
-        module.entryComponents = [componentType];
-        @NgModule(module)
+        module.declarations.push(componentType);
+
+        @NgModule({ imports: module.imports, declarations: module.declarations })
         class RuntimeComponentModule {}
         return RuntimeComponentModule;
     }

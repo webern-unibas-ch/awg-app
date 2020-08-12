@@ -63,7 +63,7 @@ export class ModalComponent {
      *
      * It keeps the reference to the HTML template.
      */
-    @ViewChild('modalTemplate', { static: false })
+    @ViewChild('modalTemplate')
     modalTemplate;
 
     /**

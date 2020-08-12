@@ -61,9 +61,9 @@ describe('ApiService', () => {
             providers: [ApiService]
         });
         // inject services and http client handler
-        apiService = TestBed.get(ApiService);
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
+        apiService = TestBed.inject(ApiService);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
 
         // test data
         queryHttpParams = new HttpParams().set('searchtype', expectedSearchType).set('show_nrows', expectedNRows);

@@ -25,9 +25,6 @@ import { ModalComponent } from '@awg-shared/modal/modal.component';
 
 import { EditionDetailComponent } from './edition-detail.component';
 
-@Component({ selector: 'awg-edition-detail-notification', template: '' })
-class EditionDetailNotificationStubComponent {}
-
 @Component({ selector: 'awg-edition-convolute', template: '' })
 class EditionConvoluteStubComponent {
     @Input()
@@ -93,7 +90,6 @@ describe('EditionDetailComponent', () => {
             declarations: [
                 CompileHtmlComponent,
                 EditionDetailComponent,
-                EditionDetailNotificationStubComponent,
                 EditionConvoluteStubComponent,
                 EditionAccoladeStubComponent,
                 ModalComponent

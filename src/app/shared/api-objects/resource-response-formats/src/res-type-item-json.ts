@@ -20,7 +20,7 @@ import { PropItemForResTypeJson } from './prop-item-for-res-type-json';
  * Represents a resource class.
  * @used by ResourceTypesInVocabularyResponseJson
  */
-@JsonObject
+@JsonObject('ResTypeItemJson')
 export class ResTypeItemJson {
     /**
      * IRI of the resource class

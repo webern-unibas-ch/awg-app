@@ -1,3 +1,7 @@
+/***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -61,29 +65,23 @@ import 'zone.js/dist/zone'; // Included with Angular CLI.
  * APPLICATION IMPORTS
  */
 
+const w = window as any;
+
 // Add global to window, assigning the value of window itself.
-(window as any).global = window;
+w.global = w;
 
 // workaround for Uncaught ReferenceError: setImmediate is not defined
 // cf. https://stackoverflow.com/a/58088954
-(window as any).setImmediate = window.setTimeout;
+w.setImmediate = w.setTimeout;
 
 // workaround for Uncaught ReferenceError: Buffer is not defined
 // cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
 // @ts-ignore
-window.Buffer = window.Buffer || require('buffer').Buffer;
+w.Buffer = []; // w.Buffer || require('buffer').Buffer;
 
 // workaround for Uncaught ReferenceError: process is not defined
 // cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691
-(window as any).process = {
+w.process = {
     env: { DEBUG: undefined },
-    version: ''
-};
-
-// workaround for typescript version 3.7.2 used with angular8
-// cf. https://github.com/angular/angular-cli/issues/16071
-// TODO: remove when upgrading to Angular 9
-// @ts-ignore
-window.__importDefault = mod => {
-    return mod && mod.__esModule ? mod : { default: mod };
+    version: []
 };
