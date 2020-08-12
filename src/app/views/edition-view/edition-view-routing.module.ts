@@ -7,7 +7,7 @@ import { EditionSectionComponent } from './edition-outlets/edition-section';
 import { EditionSeriesComponent } from './edition-outlets/edition-series';
 import { EditionTypeComponent } from './edition-outlets/edition-type';
 
-import { EditionConstants } from './models/edition-constants';
+import { EditionConstants } from './models';
 
 /* routes of the EditionViewModule */
 const editionViewRoutes: Routes = [
@@ -24,11 +24,6 @@ const editionViewRoutes: Routes = [
                         path: '',
                         component: EditionOverviewComponent,
                         children: [
-                            {
-                                path: '',
-                                redirectTo: '/' + EditionConstants.editionIntro.route,
-                                pathMatch: 'full'
-                            },
                             {
                                 path: EditionConstants.editionIntro.route,
                                 loadChildren: () =>
@@ -53,9 +48,14 @@ const editionViewRoutes: Routes = [
                             {
                                 path: EditionConstants.editionGraph.route,
                                 loadChildren: () =>
-                                    import(
-                                        '@awg-views/edition-view/edition-outlets/edition-graph/edition-graph.module'
-                                    ).then(m => m.EditionGraphModule)
+                                    import('./edition-outlets/edition-graph/edition-graph.module').then(
+                                        m => m.EditionGraphModule
+                                    )
+                            },
+                            {
+                                path: '',
+                                redirectTo: '/' + EditionConstants.editionIntro.route,
+                                pathMatch: 'full'
                             }
                         ]
                     }

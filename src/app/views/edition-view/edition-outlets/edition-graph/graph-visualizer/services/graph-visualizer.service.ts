@@ -14,16 +14,18 @@ import * as N3 from 'n3';
  *
  * It provides access to the rdfstore library.
  */
-declare var rdfstore;
+declare var rdfstore: any;
 
 /**
  * The GraphVisualizer service.
  *
  * It handles the query requests of the graph visualizer.
  *
- * Provided in: `graph-visualizer.module`.
+ * Provided in: `root`.
  */
-@Injectable()
+@Injectable({
+    providedIn: 'root'
+})
 export class GraphVisualizerService {
     /**
      * Private variable: store.
@@ -47,7 +49,7 @@ export class GraphVisualizerService {
      * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
      */
     parseTriples(triples: Triple[]): Promise<{ triples; namespaces }> {
-        const parser = N3.Parser();
+        const parser = new N3.Parser();
         const jsonTriples = [];
 
         return new Promise((resolve, reject) => {
