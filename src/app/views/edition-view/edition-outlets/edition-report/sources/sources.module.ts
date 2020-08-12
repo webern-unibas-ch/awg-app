@@ -16,6 +16,6 @@ import { SourceListComponent } from './source-list';
 @NgModule({
     imports: [SharedModule],
     declarations: [SourcesComponent, SourceDescriptionComponent, SourceEvaluationComponent, SourceListComponent],
-    exports: [SourcesComponent, SourceDescriptionComponent, SourceEvaluationComponent, SourceListComponent]
+    exports: [SourcesComponent]
 })
 export class SourcesModule {}
