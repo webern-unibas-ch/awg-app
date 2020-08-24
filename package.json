@@ -29,7 +29,7 @@
         "test": "ng test",
         "test:cov": "ng test --code-coverage true",
         "serve:test:cov": "npx http-server -c-1 -o -p 9875 ./coverage",
-        "test:ci": "yarn test:cov --watch=false --browsers=ChromeHeadlessNoSandbox",
+        "test:ci": "yarn test:cov -- --configuration=ci",
         "lint": "ng lint awg-app",
         "lint-staged": "lint-staged",
         "tslint-check": "tslint-config-prettier-check ./tslint.json",
