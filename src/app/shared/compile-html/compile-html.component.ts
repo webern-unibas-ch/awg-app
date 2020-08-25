@@ -35,11 +35,7 @@ import { cloneDeep } from 'lodash';
  * @param {string} str
  * @returns {string}
  */
-const reverse = (str: string): string =>
-    str
-        .split('')
-        .reverse()
-        .join('');
+const reverse = (str: string): string => str.split('').reverse().join('');
 
 /**
  * compileHtml.random()
