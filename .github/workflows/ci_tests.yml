@@ -1,4 +1,4 @@
-name: CI Testing
+name: CI Tests
 
 on:
     push:
@@ -49,4 +49,4 @@ jobs:
 
             - name: Test build for Github Pages
               run: |
-                  yarn run build:gh
+                  yarn run build:prod

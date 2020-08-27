@@ -1,7 +1,11 @@
 # AWG App
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
+![deployment](https://github.com/webern-unibas-ch/awg-app/workflows/Deployment/badge.svg)
+![CI tests](https://github.com/webern-unibas-ch/awg-app/workflows/CI%20Tests/badge.svg)
+
 [![Build Status](https://travis-ci.org/webern-unibas-ch/awg-app.svg?branch=master)](https://travis-ci.org/webern-unibas-ch/awg-app)
+
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/branch/master/graph/badge.svg)](https://codecov.io/gh/webern-unibas-ch/awg-app)
 [![compodoc](https://edition.anton-webern.ch/compodoc/images/coverage-badge-documentation.svg)](https://edition.anton-webern.ch/compodoc/index.html)
 [![code style: prettier](https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat-square)](https://github.com/prettier/prettier)
