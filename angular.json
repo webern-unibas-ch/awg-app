@@ -13,13 +13,13 @@
                 "build": {
                     "builder": "@angular-devkit/build-angular:browser",
                     "options": {
-                        "outputPath": "dist",
+                        "outputPath": "dist/awg-app",
                         "index": "src/index.html",
                         "main": "src/main.ts",
                         "polyfills": "src/polyfills.ts",
                         "tsConfig": "tsconfig.app.json",
                         "assets": ["src/favicon.ico", "src/assets"],
-                        "aot": true,
+                        "aot": false,
                         "allowedCommonJsDependencies": [
                             "@ctrl/ngx-codemirror",
                             "lodash",
@@ -146,6 +146,15 @@
                         "production": {
                             "devServerTarget": "awg-app:serve:production"
                         }
+                    }
+                },
+                "deploy": {
+                    "builder": "angular-cli-ghpages:deploy",
+                    "options": {
+                        "name": "github-actions",
+                        "email": "github-actions@users.noreply.github.com",
+                        "repo": "https://github.com/webern-unibas-ch/awg-app.git",
+                        "cname": "edition.anton-webern.ch"
                     }
                 }
             }
