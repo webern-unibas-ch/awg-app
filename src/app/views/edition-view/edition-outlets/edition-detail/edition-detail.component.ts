@@ -359,6 +359,12 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         return this.textcriticsData.textcritics[textcriticsIndex].comments;
     }
 
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
     ngOnDestroy() {
         // emit truthy value to end all subscriptions
         this.destroy$.next(true);
