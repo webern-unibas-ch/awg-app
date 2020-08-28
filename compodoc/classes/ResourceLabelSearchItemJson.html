@@ -358,7 +358,7 @@ import { KnoraIRI, KnoraRights } from &#x27;@awg-shared/api-objects/basic-messag
  * Represents a retrieved resource when doing a label search
  * @used by ResourceLabelSearchResponseJson
  */
-@JsonObject
+@JsonObject(&#x27;ResourceLabelSearchItemJson&#x27;)
 export class ResourceLabelSearchItemJson {
     /**
      * The IRI of the retrieved resource

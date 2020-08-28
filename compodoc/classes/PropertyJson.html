@@ -1586,7 +1586,7 @@ import {
  * Represents a property value
  * @used by PropertyJson
  */
-@JsonObject
+@JsonObject(&#x27;PropertyJsonValue&#x27;)
 export class PropertyJsonValue {
     /**
      * UTF-8 string of the property value
@@ -1614,7 +1614,7 @@ export class PropertyJsonValue {
  * Represents a property (parallel arrays)
  * @used by ResourceFullResponseJson
  */
-@JsonObject
+@JsonObject(&#x27;PropertyJson&#x27;)
 export class PropertyJson {
     /**
      * HTML attributes for the GUI element used to render this property

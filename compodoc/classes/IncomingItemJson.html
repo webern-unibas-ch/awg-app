@@ -360,7 +360,7 @@ import { ResinfoJson } from &#x27;./resinfo-json&#x27;;
  * @param ext_res_id: Object&lt;id: KnoraIRI, pid: KnoraIRI&gt;
  * @used by IncomingItemJson
  */
-@JsonObject
+@JsonObject(&#x27;ExtResIdJson&#x27;)
 export class ExtResIdJson {
     /**
      * The IRI of the referring resource
@@ -381,7 +381,7 @@ export class ExtResIdJson {
  * Represents a resource referring to the requested resource.
  * @used by ResourceFullResponseJson
  */
-@JsonObject
+@JsonObject(&#x27;IncomingItemJson&#x27;)
 export class IncomingItemJson {
     /**
      * Representation of the referring resource

@@ -617,7 +617,7 @@ import { ThumbMaxJson } from &#x27;./thumb-max-json&#x27;;
  * [&amp;filter_by_restype&#x3D;resourceClassIRI][&amp;filter_by_project&#x3D;projectIRI][&amp;filter_by_owner&#x3D;userIRI]
  * (&amp;property_id&#x3D;propertyTypeIRI&amp;compop&#x3D;comparisonOperator&amp;searchval&#x3D;searchValue)+[&amp;show_nrows&#x3D;Integer]{[&amp;start_at&#x3D;Integer]
  */
-@JsonObject
+@JsonObject(&#x27;SearchResponseJson&#x27;)
 export class SearchResponseJson extends BasicResponseJson {
     /**
      * Total number of hits

@@ -379,7 +379,7 @@ import { PropertyDefinitionJson } from &#x27;./property-definition-json&#x27;;
  *
  * HTTP GET to http://host/v1/propertylists?restype&#x3D;resourceClassIRI
  */
-@JsonObject
+@JsonObject(&#x27;PropertyTypesInResourceClassResponseJson&#x27;)
 export class PropertyTypesInResourceClassResponseJson extends BasicResponseJson {
     /**
      * Lists the property types the indicated resource class

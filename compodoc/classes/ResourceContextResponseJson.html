@@ -378,7 +378,7 @@ import { ContextJson } from &#x27;./context-json&#x27;;
  *
  * HTTP GET to http://host/v1/resources/resourceIRI?reqtype&#x3D;context[&amp;resinfo&#x3D;true]
  */
-@JsonObject
+@JsonObject(&#x27;ResourceContextResponseJson&#x27;)
 export class ResourceContextResponseJson extends BasicResponseJson {
     /**
      * Context of the requested resource

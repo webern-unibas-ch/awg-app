@@ -109,7 +109,7 @@ import { PropJson } from &#x27;./prop-json&#x27;;
  *
  * HTTP GET to http://host/v1/properties/resourceIRI
  */
-@JsonObject
+@JsonObject(&#x27;ResourcePropertiesResponseJson&#x27;)
 export class ResourcePropertiesResponseJson extends BasicResponseJson {
     /**
      * A map of property type IRIs to property instances

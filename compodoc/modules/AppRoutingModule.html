@@ -59,6 +59,14 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>Main app module routing.</p>
+<p>It activates the appRoutes, esp. lazy-loaded View Modules.</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -77,20 +85,20 @@ import { PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x
 /* routes of the AppModule */
 const appRoutes: Routes &#x3D; [
     // lazy loaded
-    { path: &#x27;home&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/home-view/home-view.module&#x27;).then(m &#x3D;&gt; m.HomeViewModule)&quot; },
+    { path: &#x27;home&#x27;, loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/home-view/home-view.module&#x27;).then(m &#x3D;&gt; m.HomeViewModule) },
     {
         path: &#x27;contact&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)&quot;
+        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)
     },
-    { path: &#x27;data&#x27;, loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule)&quot; },
+    { path: &#x27;data&#x27;, loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule) },
     {
         path: &#x27;edition&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule)&quot;
+        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule)
     },
     { path: &#x27;editions&#x27;, redirectTo: &#x27;edition&#x27;, pathMatch: &#x27;full&#x27; },
     {
         path: &#x27;structure&#x27;,
-        loadChildren: () &#x3D;&gt; &quot;import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)&quot;
+        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)
     },
 
     // default routes
@@ -98,7 +106,7 @@ const appRoutes: Routes &#x3D; [
     {
         path: &#x27;404&#x27;,
         loadChildren: () &#x3D;&gt;
-            &quot;import(&#x27;@awg-views/page-not-found-view/page-not-found-view.module&#x27;).then(m &#x3D;&gt; m.PageNotFoundViewModule)&quot;
+            import(&#x27;@awg-views/page-not-found-view/page-not-found-view.module&#x27;).then(m &#x3D;&gt; m.PageNotFoundViewModule)
     },
     { path: &#x27;**&#x27;, redirectTo: &#x27;404&#x27;, pathMatch: &#x27;full&#x27; }
 ];

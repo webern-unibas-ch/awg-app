@@ -462,7 +462,7 @@ import { NodeItemJson } from &#x27;./node-item-json&#x27;;
  * Represents a selection item
  * @used by SelectionJson
  */
-@JsonObject
+@JsonObject(&#x27;HlistItemJson&#x27;)
 export class HlistItemJson extends NodeItemJson {
     /**
      * The hlist level
@@ -476,7 +476,7 @@ export class HlistItemJson extends NodeItemJson {
  * Represents a Hlist response
  * @used by ---
  */
-@JsonObject
+@JsonObject(&#x27;HlistJson&#x27;)
 export class HlistJson extends BasicResponseJson {
     /**
      * The selection array

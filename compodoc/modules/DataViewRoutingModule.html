@@ -59,6 +59,14 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>DataView module routing.</p>
+<p>It activates the dataViewRoutes, also the lazy-loaded bibliography module.</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -92,12 +100,14 @@ const dataViewRoutes: Routes &#x3D; [
                 children: [
                     { path: &#x27;fulltext&#x27;, component: SearchPanelComponent },
                     { path: &#x27;detail/:id&#x27;, redirectTo: &#x27;resource/:id&#x27; }, // absolute redirect (replacement of route) to resource/:id,
+                    /* muted for now
                     { path: &#x27;timeline&#x27;, component: TimelineComponent },
                     {
                         path: &#x27;bibliography&#x27;,
                         loadChildren: () &#x3D;&gt;
-                            &quot;import(&#x27;./data-outlets/bibliography/bibliography.module&#x27;).then(m &#x3D;&gt; m.BibliographyModule)&quot;
+                            import(&#x27;./data-outlets/bibliography/bibliography.module&#x27;).then(m &#x3D;&gt; m.BibliographyModule)
                     },
+                    */
                     { path: &#x27;&#x27;, pathMatch: &#x27;full&#x27;, redirectTo: &#x27;fulltext&#x27; }
                 ]
             }
@@ -116,8 +126,8 @@ export const routedDataViewComponents &#x3D; [
     DataViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
-    ResourceDetailComponent,
-    TimelineComponent
+    ResourceDetailComponent
+    // TimelineComponent
 ];
 
 /**

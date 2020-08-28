@@ -59,6 +59,14 @@
         </p>
 
 
+        <p class="comment">
+            <h3>Description</h3>
+        </p>
+        <p class="comment">
+            <p>EditionView module routing.</p>
+<p>It activates the editionViewRoutes.</p>
+
+        </p>
 
 
         <div class="container-fluid module">
@@ -75,16 +83,12 @@
 import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
 import { EditionViewComponent } from &#x27;./edition-view.component&#x27;;
-import { EditionDetailComponent } from &#x27;./edition-outlets/edition-detail&#x27;;
-import { EditionGraphComponent } from &#x27;./edition-outlets/edition-graph&#x27;;
-import { EditionIntroComponent } from &#x27;./edition-outlets/edition-intro&#x27;;
 import { EditionOverviewComponent } from &#x27;./edition-outlets/edition-overview.component&#x27;;
 import { EditionSectionComponent } from &#x27;./edition-outlets/edition-section&#x27;;
 import { EditionSeriesComponent } from &#x27;./edition-outlets/edition-series&#x27;;
 import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
-import { ReportComponent } from &#x27;./edition-outlets/report&#x27;;
 
-import { EditionConstants } from &#x27;./models/edition-constants&#x27;;
+import { EditionConstants } from &#x27;./models&#x27;;
 
 /* routes of the EditionViewModule */
 const editionViewRoutes: Routes &#x3D; [
@@ -102,23 +106,36 @@ const editionViewRoutes: Routes &#x3D; [
                         component: EditionOverviewComponent,
                         children: [
                             {
-                                // value.of() needed for not string routes due to a bug in compodoc (or deeper dependencies)
-                                // cf. https://github.com/compodoc/compodoc/issues/525#issuecomment-488822477
-                                path: &quot;EditionConstants.editionGraph.route.valueOf()&quot;,
-                                component: EditionGraphComponent
+                                path: EditionConstants.editionIntro.route,
+                                loadChildren: () &#x3D;&gt;
+                                    import(&#x27;./edition-outlets/edition-intro/edition-intro.module&#x27;).then(
+                                        m &#x3D;&gt; m.EditionIntroModule
+                                    )
                             },
                             {
-                                path: &quot;EditionConstants.editionIntro.route.valueOf()&quot;,
-                                component: EditionIntroComponent
+                                path: EditionConstants.editionDetail.route,
+                                loadChildren: () &#x3D;&gt;
+                                    import(&#x27;./edition-outlets/edition-detail/edition-detail.module&#x27;).then(
+                                        m &#x3D;&gt; m.EditionDetailModule
+                                    )
                             },
                             {
-                                path: &quot;EditionConstants.editionDetail.route.valueOf()&quot;,
-                                component: EditionDetailComponent
+                                path: EditionConstants.editionReport.route,
+                                loadChildren: () &#x3D;&gt;
+                                    import(&#x27;./edition-outlets/edition-report/edition-report.module&#x27;).then(
+                                        m &#x3D;&gt; m.EditionReportModule
+                                    )
                             },
-                            { path: &quot;EditionConstants.editionReport.route.valueOf()&quot;, component: ReportComponent },
+                            {
+                                path: EditionConstants.editionGraph.route,
+                                loadChildren: () &#x3D;&gt;
+                                    import(&#x27;./edition-outlets/edition-graph/edition-graph.module&#x27;).then(
+                                        m &#x3D;&gt; m.EditionGraphModule
+                                    )
+                            },
                             {
                                 path: &#x27;&#x27;,
-                                redirectTo: &#x27;/&#x27; + &quot;EditionConstants.editionIntro.route.valueOf()&quot;,
+                                redirectTo: &#x27;/&#x27; + EditionConstants.editionIntro.route,
                                 pathMatch: &#x27;full&#x27;
                             }
                         ]
@@ -131,19 +148,16 @@ const editionViewRoutes: Routes &#x3D; [
 
 /**
  * Routed components of the {@link EditionViewModule}:
- * {@link EditionIntroComponent}, {@link EditionDetailComponent},
- * {@link ReportComponent}.
+ * {@link EditionViewComponent}, {@link EditionOverviewComponent},
+ * {@link EditionSectionComponent}, {@link EditionSeriesComponent}
+ * and {@link EditionTypeComponent}.
  */
 export const routedEditionViewComponents &#x3D; [
     EditionViewComponent,
-    EditionDetailComponent,
-    EditionGraphComponent,
-    EditionIntroComponent,
     EditionOverviewComponent,
     EditionSectionComponent,
     EditionSeriesComponent,
-    EditionTypeComponent,
-    ReportComponent
+    EditionTypeComponent
 ];
 
 /**

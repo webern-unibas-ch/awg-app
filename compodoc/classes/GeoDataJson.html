@@ -379,7 +379,7 @@ import { NodeItemJson } from &#x27;./node-item-json&#x27;;
  * Represents a geodata item
  * @used by GeoDataJson
  */
-@JsonObject
+@JsonObject(&#x27;GeoDataItemJson&#x27;)
 export class GeoDataItemJson extends NodeItemJson {
     /**
      * The geodata latitude
@@ -407,7 +407,7 @@ export class GeoDataItemJson extends NodeItemJson {
  * Represents a Geodata response
  * @used by ---
  */
-@JsonObject
+@JsonObject(&#x27;GeoDataJson&#x27;)
 export class GeoDataJson extends BasicResponseJson {
     /**
      * The geodata array

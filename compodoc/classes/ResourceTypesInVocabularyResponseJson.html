@@ -379,7 +379,7 @@ import { ResTypeItemJson } from &#x27;./res-type-item-json&#x27;;
  *
  * HTTP GET to http://host/v1/resourcetypes?vocabulary&#x3D;vocabularyIRI
  */
-@JsonObject
+@JsonObject(&#x27;ResourceTypesInVocabularyResponseJson&#x27;)
 export class ResourceTypesInVocabularyResponseJson extends BasicResponseJson {
     /**
      * Lists the resource classes that are defined

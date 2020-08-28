@@ -377,7 +377,7 @@ import { BasicResponseJson } from &#x27;@awg-shared/api-objects/basic-message-co
  *
  * HTTP GET to http://host/v1/resources/resourceIRI?reqtype&#x3D;rights
  */
-@JsonObject
+@JsonObject(&#x27;ResourceRightsResponseJson&#x27;)
 export class ResourceRightsResponseJson extends BasicResponseJson {
     /**
      * The current user&#x27;s permissions on the resource
