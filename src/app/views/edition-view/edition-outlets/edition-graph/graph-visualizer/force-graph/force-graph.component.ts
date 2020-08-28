@@ -373,7 +373,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this.forceSimulation.force('links', linkForce);
 
         // restart simulation
-        this.forceSimulation.restart();
+        this.forceSimulation.alpha(1).restart();
     }
 
     /**
@@ -539,7 +539,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
         // Drag functions
-        // d is the node
         const dragStart = (node: D3SimulationNode) => {
             /** Preventing propagation of dragstart to parent elements */
             d3_selection.event.sourceEvent.stopPropagation();
