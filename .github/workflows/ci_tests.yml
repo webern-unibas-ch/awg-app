@@ -7,11 +7,7 @@ on:
         tags-ignore:
             - '*'
         paths-ignore:
-            - 'CHANGELOG.md'
-            - 'CODE_OF_CONDUCT.md'
-            - 'CONTRIBUTING.md'
-            - 'LICENSE.md'
-            - 'README.md'
+            - '**.md'
 
 jobs:
     test:
