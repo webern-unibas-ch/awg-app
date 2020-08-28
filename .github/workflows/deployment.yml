@@ -1,0 +1,46 @@
+name: Deployment
+
+on:
+    push:
+        branches:
+            - master # generally, only deploy if we are on 'master'
+
+jobs:
+    build:
+        name: Deploy app (Node v${{ matrix.node-version }}, ${{ matrix.os }})
+        runs-on: ${{ matrix.os }}
+        strategy:
+            matrix:
+                os: [ubuntu-latest]
+                node-version: [12.18]
+
+        steps:
+            - name: Checkout repo
+              uses: actions/checkout@v2
+
+            - name: Set up node ${{ matrix.node-version}}
+              uses: actions/setup-node@v1
+              with:
+                  node-version: ${{ matrix.node-version }}
+
+            - name: Cache node modules
+              uses: actions/cache@v2
+              with:
+                  path: ~/.yarn
+                  key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
+                  restore-keys: |
+                      ${{ runner.os }}-node-
+
+            - name: yarn install dependencies
+              run: |
+                  yarn install
+
+            - name: Build app for GH Pages
+              run: |
+                  yarn build:gh
+
+            - name: Deploy to GH Pages
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+              run: |
+                  yarn run deploy:ci

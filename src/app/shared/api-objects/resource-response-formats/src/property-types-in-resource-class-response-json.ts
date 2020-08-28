@@ -22,7 +22,7 @@ import { PropertyDefinitionJson } from './property-definition-json';
  *
  * HTTP GET to http://host/v1/propertylists?restype=resourceClassIRI
  */
-@JsonObject
+@JsonObject('PropertyTypesInResourceClassResponseJson')
 export class PropertyTypesInResourceClassResponseJson extends BasicResponseJson {
     /**
      * Lists the property types the indicated resource class

@@ -19,7 +19,7 @@ import { ProtocolOptions, StringOrNumber } from './basic-type-aliases';
  * Binary representation of a resource (location)
  * @used by ContextJson, PropertyJson, ResinfoJson
  */
-@JsonObject
+@JsonObject('LocationItemJson')
 export class LocationItemJson {
     /**
      * Duration of a movie or an audio file

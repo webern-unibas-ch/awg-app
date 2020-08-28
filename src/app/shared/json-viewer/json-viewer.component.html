@@ -3,17 +3,20 @@
         <h4>{{ jsonViewerHeader }}</h4>
     </div>
     <div class="card-body">
-        <ngb-tabset>
-            <ngb-tab title="Formatted">
-                <ng-template ngbTabContent>
+        <nav ngbNav #jsonViewerNav="ngbNav" class="nav-tabs nav-justified">
+            <ng-container ngbNavItem>
+                <a ngbNavLink>Formatted</a>
+                <ng-template ngbNavContent>
                     <ngx-json-viewer [json]="jsonViewerData ? jsonViewerData : {}"></ngx-json-viewer>
                 </ng-template>
-            </ngb-tab>
-            <ngb-tab title="Plain">
-                <ng-template ngbTabContent>
+            </ng-container>
+            <ng-container ngbNavItem>
+                <a ngbNavLink>Plain</a>
+                <ng-template ngbNavContent>
                     <pre>{{ jsonViewerData | json }}</pre>
                 </ng-template>
-            </ngb-tab>
-        </ngb-tabset>
+            </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="jsonViewerNav"></div>
     </div>
 </div>

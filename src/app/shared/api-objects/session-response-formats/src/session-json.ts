@@ -22,7 +22,7 @@ import { BasicResponseJson } from '@awg-shared/api-objects/basic-message-compone
  *
  */
 
-@JsonObject
+@JsonObject('SessionJson')
 export class SessionJson extends BasicResponseJson {
     /**
      * Message

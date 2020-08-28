@@ -10,52 +10,51 @@ import { click } from '@testing/click-helper';
 import { customJasmineMatchers } from '@testing/custom-matchers';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import { NgxJsonViewerComponent } from 'ngx-json-viewer';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 import { JsonViewerComponent } from './json-viewer.component';
 
-// helper functions for tabs
-// see https://github.com/ng-bootstrap/ng-bootstrap/blob/master/src/tabset/tabset.spec.ts
-function getTabTitles(nativeEl: HTMLElement) {
-    return nativeEl.querySelectorAll('.nav-link');
+// helper functions for nav items
+function getNavLinks(nativeEl: HTMLElement) {
+    return nativeEl.querySelectorAll('.nav-link.nav-item');
 }
 
-function getTabContent(nativeEl: HTMLElement) {
+function getNavContent(nativeEl: HTMLElement) {
     return nativeEl.querySelectorAll('.tab-content .tab-pane');
 }
 
-function expectTabs(nativeEl: HTMLElement, active: boolean[], disabled?: boolean[]) {
-    const tabTitles = getTabTitles(nativeEl);
-    const tabContent = getTabContent(nativeEl);
-    const anyTabsActive = active.reduce((prev, curr) => prev || curr, false);
+function expectNavPanel(nativeEl: HTMLElement, active: boolean[], disabled?: boolean[]) {
+    const navLinks = getNavLinks(nativeEl);
+    const navContent = getNavContent(nativeEl);
+    const anyNavsActive = active.reduce((prev, curr) => prev || curr, false);
 
-    expect(tabTitles.length).toBe(active.length);
-    expect(tabContent.length).toBe(anyTabsActive ? 1 : 0); // only 1 tab content in DOM at a time
+    expect(navLinks.length).toBe(active.length);
+    expect(navContent.length).toBe(anyNavsActive ? 1 : 0); // only 1 nav content in DOM at a time
 
     if (disabled) {
         expect(disabled.length).toBe(active.length);
     } else {
-        disabled = new Array(active.length); // tabs are not disabled by default
+        disabled = new Array(active.length); // navItems are not disabled by default
     }
 
     for (let i = 0; i < active.length; i++) {
         if (active[i]) {
-            expect(tabTitles[i]).toHaveCssClass('active');
+            expect(navLinks[i]).toHaveCssClass('active');
         } else {
-            expect(tabTitles[i]).not.toHaveCssClass('active');
+            expect(navLinks[i]).not.toHaveCssClass('active');
         }
 
         if (disabled[i]) {
-            expect(tabTitles[i]).toHaveCssClass('disabled');
-            expect(tabTitles[i].getAttribute('aria-disabled')).toBe('true');
-            expect(tabTitles[i].getAttribute('tabindex')).toBe('-1');
+            expect(navLinks[i]).toHaveCssClass('disabled');
+            expect(navLinks[i].getAttribute('aria-disabled')).toBe('true');
+            expect(navLinks[i].getAttribute('tabindex')).toBe('-1');
         } else {
-            expect(tabTitles[i]).not.toHaveCssClass('disabled');
-            expect(tabTitles[i].getAttribute('aria-disabled')).toBe('false');
-            expect(tabTitles[i].getAttribute('tabindex')).toBeNull();
+            expect(navLinks[i]).not.toHaveCssClass('disabled');
+            expect(navLinks[i].getAttribute('aria-disabled')).toBe('false');
+            expect(navLinks[i].getAttribute('tabindex')).toBeNull();
         }
     }
 }
@@ -71,7 +70,7 @@ describe('JsonViewerComponent (DONE)', () => {
 
     beforeEach(async(() => {
         TestBed.configureTestingModule({
-            imports: [NgbTabsetModule],
+            imports: [NgbNavModule],
             declarations: [JsonViewerComponent, NgxJsonViewerComponent]
         }).compileComponents();
     }));
@@ -106,14 +105,21 @@ describe('JsonViewerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one card with header and body', () => {
+            it('... should contain one div.card with card-header and card-body', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 1, 1);
                 getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
             });
 
-            it('... should contain one tabset inside card-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'ngb-tabset', 1, 1);
+            it('... should contain one ngbNav in card-body with no nav links yet', () => {
+                const bodyDe = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
+
+                getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
+
+                const navLinkDes = getNavLinks(compEl);
+
+                expect(navLinkDes).toBeTruthy();
+                expect(navLinkDes.length).toBe(0, 'should not have any navLinks yet');
             });
 
             it('... should not contain ngx-json-viewer component (stubbed)', () => {
@@ -133,48 +139,50 @@ describe('JsonViewerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one tabset with two tabs inside card-body', () => {
-                getAndExpectDebugElementByCss(compDe, 'ngb-tabset', 1, 1);
-                const tabDes = getTabTitles(compEl);
+            it('... should contain one ngbNav with two ngbNavItems inside card-body', () => {
+                const bodyDe = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
 
-                expect(tabDes).toBeTruthy();
-                expect(tabDes.length).toBe(2, 'should have 2 tabs');
+                getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
+                const navLinkDes = getNavLinks(compEl);
+
+                expect(navLinkDes).toBeTruthy();
+                expect(navLinkDes.length).toBe(2, 'should have 2 navLinks');
             });
 
-            it('... should have one Formatted and one Plain tab and display titles', () => {
-                const tabTitles = getTabTitles(compEl);
+            it('... should have one Formatted and one Plain navItem and display titles', () => {
+                const navLinks = getNavLinks(compEl);
 
-                expect(tabTitles[0].textContent).toBeDefined();
-                expect(tabTitles[0].textContent).toMatch(/Formatted/);
+                expect(navLinks[0].textContent).toBeDefined();
+                expect(navLinks[0].textContent).toMatch(/Formatted/);
 
-                expect(tabTitles[1].textContent).toBeDefined();
-                expect(tabTitles[1].textContent).toMatch(/Plain/);
+                expect(navLinks[1].textContent).toBeDefined();
+                expect(navLinks[1].textContent).toMatch(/Plain/);
             });
 
-            it('... should render tabs and select first tab (Formatted) by default', () => {
-                const tabContent = getTabContent(compEl);
+            it('... should render navItem content and select first navItem (Formatted) by default', () => {
+                const navContent = getNavContent(compEl);
 
-                expect(tabContent.length).toBe(1);
-                expectTabs(compEl, [true, false]);
+                expect(navContent.length).toBe(1);
+                expectNavPanel(compEl, [true, false]);
             });
 
-            it('... should change active tab on tab title click', () => {
-                const tabTitles = getTabTitles(compEl);
+            it('... should change active navItem on click', () => {
+                const navLinks = getNavLinks(compEl);
 
-                click(tabTitles[1] as HTMLElement);
+                click(navLinks[1] as HTMLElement);
                 fixture.detectChanges();
-                expectTabs(compEl, [false, true]);
+                expectNavPanel(compEl, [false, true]);
 
-                click(tabTitles[0] as HTMLElement);
+                click(navLinks[0] as HTMLElement);
                 fixture.detectChanges();
-                expectTabs(compEl, [true, false]);
+                expectNavPanel(compEl, [true, false]);
             });
 
             it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', () => {
-                const tabTitles = getTabTitles(compEl);
+                const navLinks = getNavLinks(compEl);
                 getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
 
-                click(tabTitles[1] as HTMLElement);
+                click(navLinks[1] as HTMLElement);
                 fixture.detectChanges();
 
                 getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
@@ -189,18 +197,18 @@ describe('JsonViewerComponent (DONE)', () => {
             });
 
             it('... should render `jsonViewerData` in Plain view', () => {
-                const tabTitles = getTabTitles(compEl);
+                const navLinks = getNavLinks(compEl);
 
-                // change tab to plain view
-                click(tabTitles[1] as HTMLElement);
+                // change navLink to plain view
+                click(navLinks[1] as HTMLElement);
                 fixture.detectChanges();
 
-                const tabContent = getTabContent(compEl);
+                const navContent = getNavContent(compEl);
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
-                expect(tabContent[0].textContent).toBeDefined();
-                expect(tabContent[0].textContent).toContain(pipedData, `should contain ${pipedData}`);
+                expect(navContent[0].textContent).toBeDefined();
+                expect(navContent[0].textContent).toContain(pipedData, `should contain ${pipedData}`);
             });
         });
     });

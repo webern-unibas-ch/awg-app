@@ -23,13 +23,11 @@
             (resourceRequest)="navigateToResource($event)"
         ></awg-resource-detail-header>
 
-        <ngb-tabset>
-            <!-- html -->
-            <ngb-tab id="html" class="awg-resource-detail-long-tab">
-                <ng-template ngbTabTitle>
-                    {{ tabTitles?.html }}
-                </ng-template>
-                <ng-template ngbTabContent>
+        <!-- resourceDetailData body -->
+        <nav ngbNav #resourceDetailNav="ngbNav" class="nav-tabs">
+            <ng-container ngbNavItem>
+                <a ngbNavLink class="awg-resource-detail-long-tab">{{ tabTitles?.html }}</a>
+                <ng-template ngbNavContent>
                     <!-- html visualisation -->
                     <awg-resource-detail-html
                         [resourceDetailData]="resourceData.detail"
@@ -38,26 +36,25 @@
                     >
                     </awg-resource-detail-html>
                 </ng-template>
-            </ngb-tab>
-
-            <!-- JSON converted -->
-            <ngb-tab id="converted" title="{{ tabTitles?.converted }}" class="awg-resource-detail-short-tab">
-                <ng-template ngbTabContent>
+            </ng-container>
+            <ng-container ngbNavItem>
+                <a ngbNavLink class="ml-auto">{{ tabTitles?.converted }}</a>
+                <ng-template ngbNavContent>
                     <!-- converted json visualisation -->
                     <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">
                     </awg-resource-detail-json-converted>
                 </ng-template>
-            </ngb-tab>
-
-            <!-- JSON raw -->
-            <ngb-tab id="raw" title="{{ tabTitles?.raw }}" class="awg-resource-detail-short-tab">
-                <ng-template ngbTabContent>
+            </ng-container>
+            <ng-container ngbNavItem>
+                <a ngbNavLink>{{ tabTitles?.raw }}</a>
+                <ng-template ngbNavContent>
                     <!-- raw json visualisation -->
                     <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">
                     </awg-resource-detail-json-raw>
                 </ng-template>
-            </ngb-tab>
-        </ngb-tabset>
+            </ng-container>
+        </nav>
+        <div [ngbNavOutlet]="resourceDetailNav"></div>
     </div>
 
     <!--

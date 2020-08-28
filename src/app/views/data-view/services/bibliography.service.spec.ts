@@ -44,9 +44,9 @@ describe('BibliographyService (DONE)', () => {
             providers: [BibliographyService]
         });
         // inject services and http client handler
-        bibliographyService = TestBed.get(BibliographyService);
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
+        bibliographyService = TestBed.inject(BibliographyService);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
 
         // convert json objects
         jsonConvert = new JsonConvert();

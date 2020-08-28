@@ -19,7 +19,7 @@ import { KnoraIRI, KnoraValue } from '@awg-shared/api-objects/basic-message-comp
  * Represents a property value (no parallel arrays)
  * @used by PropJson
  */
-@JsonObject
+@JsonObject('PropvalJson')
 export class PropvalJson {
     /**
      * Comment on the value

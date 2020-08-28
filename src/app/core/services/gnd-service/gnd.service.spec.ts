@@ -46,7 +46,7 @@ describe('GndService', () => {
             providers: [GndService]
         });
         // inject service
-        gndService = TestBed.get(GndService);
+        gndService = TestBed.inject(GndService);
 
         // default to sessionStorage
         expectedMockStorage = expectedSessionStorage;

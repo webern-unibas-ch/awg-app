@@ -35,7 +35,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        domSanitizer = TestBed.get(DomSanitizer);
+        domSanitizer = TestBed.inject(DomSanitizer);
 
         // test data
         expectedOsmLinkLabel = 'Größere Karte anzeigen';

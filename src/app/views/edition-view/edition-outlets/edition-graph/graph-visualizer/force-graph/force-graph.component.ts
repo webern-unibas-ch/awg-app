@@ -39,8 +39,6 @@ import * as d3_force from 'd3-force';
 import * as d3_selection from 'd3-selection';
 import * as d3_zoom from 'd3-zoom';
 
-import * as N3 from 'n3';
-
 /**
  * Object constant with a set of forces.
  *
@@ -265,12 +263,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private attachData(): void {
         // Limit result length
-        const triples: Triple[] = this.limitTriples(this.queryResultTriples, this.limit);
+        const triples: Triple[] = this.graphVisualizerService.limitTriples(this.queryResultTriples, this.limit);
 
         // If type of triples is text/turtle (not array)
         // the triples must be parsed to objects instead
         if (typeof triples === 'string') {
-            this.parseTriples(triples).then((data: { triples; namespaces }) => {
+            this.graphVisualizerService.parseTriples(triples).then((data: { triples; namespaces }) => {
                 const abrTriples = this.graphVisualizerService.abbreviateTriples(data.triples, data.namespaces);
                 this.simulationData = this.triplesToD3GraphData(abrTriples);
 
@@ -375,7 +373,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this.forceSimulation.force('links', linkForce);
 
         // restart simulation
-        this.forceSimulation.restart();
+        this.forceSimulation.alpha(1).restart();
     }
 
     /**
@@ -541,7 +539,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
         // Drag functions
-        // d is the node
         const dragStart = (node: D3SimulationNode) => {
             /** Preventing propagation of dragstart to parent elements */
             d3_selection.event.sourceEvent.stopPropagation();
@@ -568,13 +565,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // apply drag handler
-        dragContext.call(
-            d3_drag
-                .drag()
-                .on('start', dragStart)
-                .on('drag', dragActions)
-                .on('end', dragEnd)
-        );
+        dragContext.call(d3_drag.drag().on('start', dragStart).on('drag', dragActions).on('end', dragEnd));
     }
 
     /**
@@ -638,27 +629,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: limitTriples.
-     *
-     * It limits a given array of triples by a given limit.
-     *
-     * @param {Triple[]} triples The given triples array.
-     * @param {number} limit The given limit.
-     *
-     * @returns {Triple[]} The array of limited triples.
-     */
-    private limitTriples(triples: Triple[], limit: number): Triple[] {
-        if (!triples) {
-            return [];
-        }
-        if (triples.length > limit) {
-            return triples.slice(0, limit);
-        } else {
-            return triples;
-        }
-    }
-
-    /**
      * Private method: nodeRadius.
      *
      * It returns the radius of a given node depending on the kind of node.
@@ -684,33 +654,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             return defaultRadius;
         }
-    }
-
-    /**
-     * Private method: parseTriples.
-     *
-     * It parses the triples from a given triple array.
-     *
-     * @param {Triple[]} triples The given triple array.
-     *
-     * @returns {Promise<{triples; namespaces}>} A promise of the parsed triples.
-     */
-    private parseTriples(triples: Triple[]): Promise<{ triples; namespaces }> {
-        const parser = N3.Parser();
-        const jsonTriples = [];
-
-        return new Promise((resolve, reject) => {
-            parser.parse(triples, (err, triple, namespaceValues) => {
-                if (triple) {
-                    jsonTriples.push(triple);
-                } else {
-                    resolve({ triples: jsonTriples, namespaces: namespaceValues });
-                }
-                if (err) {
-                    reject(err);
-                }
-            });
-        });
     }
 
     /**

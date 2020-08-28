@@ -22,7 +22,7 @@ import { ResinfoJson } from './resinfo-json';
  *
  * HTTP GET to http://host/v1/resources/resourceIRI?reqtype=info
  */
-@JsonObject
+@JsonObject('ResourceInfoResponseJson')
 export class ResourceInfoResponseJson extends BasicResponseJson {
     /**
      * Description of the resource and its class

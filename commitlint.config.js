@@ -23,7 +23,8 @@ module.exports = {
                 'README',
                 'CHANGELOG',
                 'LICENSE',
-                'travis'
+                'travis',
+                'gh-actions'
             ]
         ]
     }

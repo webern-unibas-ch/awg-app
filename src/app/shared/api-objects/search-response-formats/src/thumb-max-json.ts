@@ -18,7 +18,7 @@ import { JsonObject, JsonProperty } from 'json2typescript';
  * Represents maximal dimensions of preview representations
  * @used by SearchResponseJson
  */
-@JsonObject
+@JsonObject('ThumbMaxJson')
 export class ThumbMaxJson {
     /**
      * X dimension of an image representation

@@ -7,7 +7,7 @@ import { mockResourceDetail, mockResourceFullResponseJson } from '@testing/mock-
 
 import { of as observableOf } from 'rxjs';
 import { JsonConvert } from 'json2typescript';
-import { NgbTabsetModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
 import { DataStreamerService, LoadingService } from '@awg-core/services';
@@ -86,7 +86,7 @@ describe('ResourceDetailComponent', () => {
         mockActivatedRoute = new ActivatedRouteStub();
 
         TestBed.configureTestingModule({
-            imports: [NgbTabsetModule],
+            imports: [NgbNavModule],
             declarations: [
                 ResourceDetailComponent,
                 ResourceDetailHeaderStubComponent,

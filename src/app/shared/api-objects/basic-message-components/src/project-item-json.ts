@@ -19,7 +19,7 @@ import { KnoraIRI, KnoraRights } from './basic-type-aliases';
  * Represents a Knora project
  * @used by UserdataJson
  */
-@JsonObject
+@JsonObject('ProjectItemJson')
 export class ProjectItemJson {
     /**
      * Path to the project's file

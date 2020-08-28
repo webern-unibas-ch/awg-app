@@ -2,6 +2,25 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.4...v0.7.5) (2020-08-28)
+
+### Features
+
+-   **edition:** lazy load edition view feature modules ([88db959](https://github.com/webern-unibas-ch/awg-app/commit/88db959a4b0957bbe1e9b6b82cedc858e9979505))
+
+### Bug Fixes
+
+-   **app:** remove BrowserAnimationsModule ([3b7ef7c](https://github.com/webern-unibas-ch/awg-app/commit/3b7ef7ca32951aa8df2bb7dcf5db1b8238d2da88))
+-   **edition:** add alpha value to forceSimulation restart ([7b2216f](https://github.com/webern-unibas-ch/awg-app/commit/7b2216fc7b1ec38601633f9337a7f111ee7658eb))
+-   **edition:** end all subscriptions on destroy ([58306a4](https://github.com/webern-unibas-ch/awg-app/commit/58306a484087964e65383219c24d2fd2c649f9a5))
+-   **edition:** fix convolute navigation error ([4c38f5a](https://github.com/webern-unibas-ch/awg-app/commit/4c38f5a06f975a0caabb492bdcd94ec023e37194)), closes [#15](https://github.com/webern-unibas-ch/awg-app/issues/15)
+-   **edition:** fix ReferenceError of EditonGraphModule caused by N3 ([73d64c0](https://github.com/webern-unibas-ch/awg-app/commit/73d64c01c8466f87f4833accea4e8dd5bd39e7bf)), closes [#21](https://github.com/webern-unibas-ch/awg-app/issues/21)
+-   **edition:** move N3 graph methods into service ([94cce2d](https://github.com/webern-unibas-ch/awg-app/commit/94cce2d1adb50a782d77831ab1efd410cdfb4c0e))
+-   **edition:** remove service from GraphVisualizerModule ([3882525](https://github.com/webern-unibas-ch/awg-app/commit/3882525a968c9d7a9486366a24691ac43f34e4eb))
+-   **page-not-found:** fix image width for 404 ([f5d5199](https://github.com/webern-unibas-ch/awg-app/commit/f5d5199ab80ec6095bcb59b6fbdb950d8e944cde))
+-   **shared:** fix creation of dynamic module in compile-html ([f50f49a](https://github.com/webern-unibas-ch/awg-app/commit/f50f49a21fe58e1dd3793e9b42734621b2f6b1fc))
+-   **shared:** fix json2typescript decorators after breaking change ([b826ecf](https://github.com/webern-unibas-ch/awg-app/commit/b826ecf62bbdeead39a9b0c098bef6e1f710ab9d))
+
 ### [0.7.4](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.3...v0.7.4) (2020-07-16)
 
 ### Build System

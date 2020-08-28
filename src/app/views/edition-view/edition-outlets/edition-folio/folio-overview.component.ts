@@ -9,7 +9,14 @@ import {
     SimpleChanges
 } from '@angular/core';
 
-import { Folio, FolioSettings, FolioSvgData, EditionSvgSheet, ViewBox } from '@awg-views/edition-view/models';
+import {
+    Folio,
+    FolioSettings,
+    FolioSvgData,
+    EditionSvgSheet,
+    ViewBox,
+    FolioConvolute
+} from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
 /**
@@ -34,12 +41,12 @@ declare var Snap: any;
 })
 export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
-     * Input variable: folios.
+     * Input variable: selectedConvolute.
      *
-     * It keeps the folio data.
+     * It keeps the selected convolute.
      */
     @Input()
-    folioData: Folio[];
+    selectedConvolute: FolioConvolute;
 
     /**
      * Public variable: selectedSvgSheet.
@@ -205,10 +212,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Sets the vbArray and folioSvgDataArray variable.
      */
     prepareFolioSvgOutput(): void {
-        for (let folioIndex = 0; folioIndex < this.folioData.length; folioIndex++) {
-            // current folio
-            const folio = this.folioData[folioIndex];
-
+        this.selectedConvolute.folios.map((folio: Folio, folioIndex: number) => {
             // update folio settings
             this.folioSettings = {
                 factor: this.folioSettings.factor,
@@ -216,7 +220,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
                 formatY: +folio.format.height,
                 initialOffsetX: this.folioSettings.initialOffsetX,
                 initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.folioData.length
+                numberOfFolios: +this.selectedConvolute.folios.length
             };
 
             // prepare viewbox settings
@@ -224,7 +228,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
 
             // calculate svg data
             this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
-        }
+        });
     }
 
     /**

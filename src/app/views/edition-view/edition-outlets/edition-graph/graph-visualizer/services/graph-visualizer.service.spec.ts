@@ -9,7 +9,7 @@ describe('GraphVisualizerService', () => {
         TestBed.configureTestingModule({
             providers: [GraphVisualizerService]
         });
-        graphVisualizerService = TestBed.get(GraphVisualizerService);
+        graphVisualizerService = TestBed.inject(GraphVisualizerService);
     });
 
     it('should be created', () => {

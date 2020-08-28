@@ -6,18 +6,18 @@ import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { ForceGraphNoResultComponent } from './force-graph-no-result/force-graph-no-result.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
-import { GraphVisualizerService } from './services/graph-visualizer.service';
 import { PrefixPipe } from './prefix-pipe/prefix.pipe';
 
 /**
  * The GraphVisualizer module.
  *
- * It embeds the graph visualizer components and pipes.
+ * It embeds the graph visualizer components and pipes
+ * as well as the {@link SharedModule}.
  */
 @NgModule({
     imports: [SharedModule],
     declarations: [GraphVisualizerComponent, ForceGraphComponent, ForceGraphNoResultComponent, PrefixPipe],
     exports: [GraphVisualizerComponent],
-    providers: [GraphVisualizerService, PrefixPipe]
+    providers: [PrefixPipe]
 })
 export class GraphVisualizerModule {}

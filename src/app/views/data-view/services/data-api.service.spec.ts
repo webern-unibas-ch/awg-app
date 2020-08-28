@@ -69,9 +69,9 @@ describe('DataApiService', () => {
         });
 
         // inject services and http client handler
-        dataApiService = TestBed.get(DataApiService);
-        httpClient = TestBed.get(HttpClient);
-        httpTestingController = TestBed.get(HttpTestingController);
+        dataApiService = TestBed.inject(DataApiService);
+        httpClient = TestBed.inject(HttpClient);
+        httpTestingController = TestBed.inject(HttpTestingController);
 
         // convert json objects
         jsonConvert = new JsonConvert();
@@ -105,14 +105,9 @@ describe('DataApiService', () => {
         expect(dataApiService).toBeTruthy();
     });
 
-    it('stub service and injected conversionService should not be the same', () => {
-        const conversionService = TestBed.get(ConversionService);
-        expect(mockConversionService === conversionService).toBe(false);
-
-        // changing the stub service has no effect on the injected service
-        mockConversionService.convertFullTextSearchResults = () => new SearchResponseJson();
-
-        expect(conversionService.convertFullTextSearchResults()).toBe(expectedSearchResponseConverted);
+    it('injected service should use provided mockValue', () => {
+        const conversionService = TestBed.inject(ConversionService);
+        expect(mockConversionService === conversionService).toBe(true);
     });
 
     describe('default values', () => {

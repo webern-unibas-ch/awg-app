@@ -3,7 +3,7 @@ sudo: false
 
 language: node_js
 node_js:
-    - '10'
+    - '12'
 
 addons:
     chrome: stable
@@ -26,8 +26,8 @@ stages:
     - name: test
       if: tag IS blank # exclude tags from being tested
     # deploy stage
-    - name: deploy # generally, only deploy if we are on 'master'
-      if: branch = master
+    #- name: deploy # generally, only deploy if we are on 'master'
+    #  if: branch = master
 
 jobs:
     include:
@@ -39,8 +39,8 @@ jobs:
           after_success:
               # run code coverage only after successful tests
               - bash <(curl -s https://codecov.io/bash)
-        - stage: deploy
-          name: 'Deploy to gh-pages'
-          script:
-              # run deploy script (only on master, see stages)
-              - yarn run deploy:ci
+        #- stage: deploy
+        #  name: 'Deploy to gh-pages'
+        #  script:
+        #      # run deploy script (only on master, see stages)
+        #      - yarn run deploy:ci

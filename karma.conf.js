@@ -32,9 +32,9 @@ module.exports = function(config) {
         reporters: ['progress', 'kjhtml'],
         customLaunchers: {
             // cf. https://medium.com/faun/configuring-travis-ci-for-angular-application-34afee1715f
-            ChromeHeadlessNoSandbox: {
+            ChromeHeadlessCI: {
                 base: 'ChromeHeadless',
-                flags: ['--no-sandbox']
+                flags: ['--no-sandbox', '--disable-gpu']
             }
         },
         port: 9876,
