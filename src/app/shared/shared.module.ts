@@ -32,6 +32,10 @@ import { RouterLinkButtonGroupComponent } from './router-link-button-group/route
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
 //
+// shared directives
+import { ExternalLinkDirective } from './external-link/external-link.directive';
+
+//
 // shared pipes
 import { OrderByPipe } from './order-by/order-by.pipe';
 
@@ -68,6 +72,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
         TwelveToneSpinnerComponent,
+        ExternalLinkDirective,
         OrderByPipe
     ],
     exports: [
@@ -96,6 +101,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
         TwelveToneSpinnerComponent,
+        ExternalLinkDirective,
         OrderByPipe
     ]
 })
