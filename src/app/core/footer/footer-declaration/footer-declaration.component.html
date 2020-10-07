@@ -1,24 +1,14 @@
-<p class="awg-version-title">
-    Prototyp AWG-Online-Edition
-</p>
+<p class="awg-version-title">Prototyp AWG-Online-Edition</p>
 <p class="awg-version-desc">
-    <a
-        href="https://github.com/webern-unibas-ch/awg-app/blob/v{{ pageMetaData?.version }}/CHANGELOG.md"
-        target="_blank"
-        rel="noopener noreferrer"
-    >
+    <a href="https://github.com/webern-unibas-ch/awg-app/blob/v{{ pageMetaData?.version }}/CHANGELOG.md">
         Version <span id="awg-version">{{ pageMetaData?.version }}</span> &#9671;
         <span id="awg-version-date">{{ pageMetaData?.versionReleaseDate }}</span>
     </a>
 </p>
 <p id="awg-contact-link">
     <small>
-        <a id="awg-imp" [routerLink]="['/contact']" fragment="awg-imprint">
-            Impressum
-        </a>
+        <a id="awg-imp" [routerLink]="['/contact']" fragment="awg-imprint"> Impressum </a>
         |
-        <a id="awg-doc" [routerLink]="['/contact']" fragment="awg-documentation">
-            Dokumentation
-        </a>
+        <a id="awg-doc" [routerLink]="['/contact']" fragment="awg-documentation"> Dokumentation </a>
     </small>
 </p>

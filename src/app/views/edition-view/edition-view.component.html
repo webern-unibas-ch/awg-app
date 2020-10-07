@@ -15,7 +15,7 @@
         <p>
             Ediert von
             <span class="editor" *ngFor="let editor of editionWork.responsibilityStatement.editors; last as isLast">
-                <a href="{{ editor.homepage }}" target="_blank" rel="noopener noreferrer">{{ editor.name }}</a
+                <a href="{{ editor.homepage }}">{{ editor.name }}</a
                 ><span *ngIf="!isLast">&nbsp;&&nbsp;</span>
             </span>
             <br />

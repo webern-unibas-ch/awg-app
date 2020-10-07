@@ -73,24 +73,11 @@ export class GeoNames {
         const geoIcon =
             '<img src="assets/img/logos/geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
         const geoLink =
-            '<a href="https://www.geonames.org/' +
-            this.gnid +
-            '" title="' +
-            this.longLabel +
-            '" target="_blank" rel="noopener noreferrer">' +
-            geoIcon +
-            '</a>';
+            '<a href="https://www.geonames.org/' + this.gnid + '" title="' + this.longLabel + '>' + geoIcon + '</a>';
         let wikiLink = '';
         if (this.wiki) {
             const wikiIcon = '<img src="assets/img/logos/wiki.svg" height="25" width="25" alt="' + this.wiki + '" />';
-            wikiLink =
-                '<a href="https://' +
-                this.wiki +
-                '" title="' +
-                this.wiki +
-                '" target="_blank" rel="noopener noreferrer">' +
-                wikiIcon +
-                '</a>';
+            wikiLink = '<a href="https://' + this.wiki + '" title="' + this.wiki + '>' + wikiIcon + '</a>';
         }
         this.html = this.shortLabel + ' ' + geoLink + wikiLink;
     }
