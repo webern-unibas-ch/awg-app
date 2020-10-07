@@ -10,13 +10,9 @@
                     <ngx-codemirror [(ngModel)]="triples" [options]="cmTriplesConfig"> </ngx-codemirror>
 
                     <div>
-                        <button class="btn btn-info" (click)="doQuery()">
-                            Update
-                        </button>
+                        <button class="btn btn-info" (click)="doQuery()">Update</button>
 
-                        <button class="btn btn-outline-info" (click)="setInitialTriples()">
-                            Reset
-                        </button>
+                        <button class="btn btn-outline-info" (click)="setInitialTriples()">Reset</button>
                     </div>
                 </ng-template>
             </ngb-panel>
@@ -67,13 +63,9 @@
 
                     <div>
                         <div fxLayout="row">
-                            <button class="btn btn-info" color="primary" (click)="doQuery()">
-                                Query
-                            </button>
+                            <button class="btn btn-info" color="primary" (click)="doQuery()">Query</button>
 
-                            <button class="btn btn-outline-info" (click)="resetQuery(query)">
-                                Reset
-                            </button>
+                            <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
                         </div>
                     </div>
                 </ng-template>
