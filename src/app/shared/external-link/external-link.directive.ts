@@ -20,7 +20,6 @@ export class ExternalLinkDirective implements OnChanges {
             this.targetAttr = '_blank';
             this.relAttr = 'noopener noreferrer';
         }
-        console.log(this.hrefAttr);
     }
 
     private isExternalLink() {
