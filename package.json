@@ -33,8 +33,9 @@
         "lint": "ng lint awg-app",
         "lint-staged": "lint-staged",
         "tslint-check": "tslint-config-prettier-check ./tslint.json",
-        "format:check": "prettier --check \"src/**/*.ts\"",
-        "format:fix": "pretty-quick --staged",
+        "format:check": "prettier --check \"src/**/*.{ts,js,css,html}\"",
+        "format:write": "prettier --write \"src/**/*.{ts,js,css,html}\"",
+        "format:fix-staged": "pretty-quick --staged",
         "doc": "yarn compodoc --tsconfig tsconfig.base.json --theme Readthedocs --output dist/awg-app/compodoc --disableRoutesGraph",
         "serve:doc": "yarn doc --serve --watch",
         "build:doc": "yarn doc",
@@ -66,20 +67,20 @@
     },
     "husky": {
         "hooks": {
-            "pre-commit": "run-s -l format:fix lint-staged",
+            "pre-commit": "run-s -l format:fix-staged lint-staged",
             "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
         }
     },
     "prettier": {
-        "printWidth": 120,
-        "tabWidth": 4,
-        "useTabs": false,
-        "semi": true,
-        "singleQuote": true,
-        "trailingComma": "none",
+        "arrowParens": "avoid",
         "bracketSpacing": true,
         "jsxBracketSameLine": true,
-        "arrowParens": "avoid"
+        "printWidth": 120,
+        "semi": true,
+        "singleQuote": true,
+        "tabWidth": 4,
+        "trailingComma": "none",
+        "useTabs": false
     },
     "dependencies": {
         "@angular/animations": "~10.0.4",

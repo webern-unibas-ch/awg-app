@@ -1,4 +1,4 @@
-(function(angular) {
+(function (angular) {
     /*
        JavaScript functions for the Fourmilab Calendar Converter
 
@@ -241,7 +241,7 @@
      * - <i>name</i>.calendar ("GREGORIAN", "JULIAN", "JEWISH", "FRENCH")
      */
 
-    return (dateConverter = function(dateobj) {
+    return (dateConverter = function (dateobj) {
         var $that = this;
         var d1 = jdc_to_date(dateobj.dateval1, dateobj.calendar);
         var d2 = jdc_to_date(dateobj.dateval2, dateobj.calendar);

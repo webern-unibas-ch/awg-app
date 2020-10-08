@@ -341,9 +341,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     getSearchResponseWithQueryData(): void {
         // cold request to streamer service
-        const searchResponseWithQuery$: Observable<
-            SearchResponseWithQuery
-        > = this.dataStreamerService.getSearchResponseWithQuery().pipe(takeUntil(this.destroy$));
+        const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
+            .getSearchResponseWithQuery()
+            .pipe(takeUntil(this.destroy$));
 
         // subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(

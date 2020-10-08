@@ -21,7 +21,7 @@ export class PageNotFoundViewComponent {
      * It keeps the title of
      * the page not found section.
      */
-    pageNotFoundTitle = 'Entschuldigung, diese Seite gibt es hier nicht…';
+    pageNotFoundTitle = 'Entschuldigung, diese Seite gibt es hier nicht…    ';
 
     /**
      * Public variable: pageNotFoundSubTitle.

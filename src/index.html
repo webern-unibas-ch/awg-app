@@ -20,9 +20,7 @@
             <!-- twelve tone spinner replaced after startup -->
             <div class="app-loading">
                 <div class="twelveTone-preText">
-                    <p>
-                        AWG prototype is…
-                    </p>
+                    <p>AWG prototype is…</p>
                 </div>
                 <div class="twelveTone-spinner">
                     <div class="twelveTone-loadText twelveTone-child">
@@ -51,11 +49,11 @@
              * TODO: https://jaxenter.de/google-analytics-angular-57919
              */
             if (document.location.hostname == 'edition.anton-webern.ch') {
-                (function(i, s, o, g, r, a, m) {
+                (function (i, s, o, g, r, a, m) {
                     i['GoogleAnalyticsObject'] = r;
                     (i[r] =
                         i[r] ||
-                        function() {
+                        function () {
                             (i[r].q = i[r].q || []).push(arguments);
                         }),
                         (i[r].l = 1 * new Date());
@@ -68,7 +66,7 @@
                 // exclude non-production page calls
                 // cf. https://stackoverflow.com/questions/1251922/is-there-a-way-to-stop-google-analytics-counting-development-work-as-hits#8178283
                 console.log('Running non-production google analytics replacement now');
-                ga = function(arg) {
+                ga = function (arg) {
                     // console.info('ga:', arguments);
                 };
             }
