@@ -125,7 +125,7 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the unsanitized OSM emebed link.
+     * Getter for the unsanitized OSM embed link.
      *
      * @returns {string}
      */

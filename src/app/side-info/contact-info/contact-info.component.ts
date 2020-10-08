@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit, SecurityContext } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -40,46 +40,18 @@ export class ContactInfoComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Private variable: _osmEmbedUrl.
+     * Public variable: osmEmbedUrl.
      *
      * It keeps the sanitized link to embed the OSM map.
      */
-    private _osmEmbedUrl: SafeResourceUrl;
+    osmEmbedUrl: SafeResourceUrl;
 
     /**
-     * Private variable: _osmLinkUrl.
+     * Public variable: osmLinkUrl.
      *
      * It keeps the sanitized link to the OSM page.
      */
-    private _osmLinkUrl: SafeResourceUrl;
-
-    /**
-     * Getter for the sanitized OSM embed link.
-     */
-    get osmEmbedUrl() {
-        return this._osmEmbedUrl;
-    }
-
-    /**
-     * Setter for the sanitized OSM embed link.
-     */
-    set osmEmbedUrl(url: SafeResourceUrl) {
-        this._osmEmbedUrl = url;
-    }
-
-    /**
-     * Getter for the sanitized OSM external link.
-     */
-    get osmLinkUrl() {
-        return this._osmLinkUrl;
-    }
-
-    /**
-     * Setter for the sanitized OSM external link.
-     */
-    set osmLinkUrl(url: SafeResourceUrl) {
-        this._osmLinkUrl = url;
-    }
+    osmLinkUrl: string;
 
     /**
      * Constructor of the ContactInfoComponent.
@@ -117,16 +89,15 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Public method: sanitizeUrls.
+     * Private method: sanitizeUrls.
      *
-     * It sanitizes the URLs and links
-     * for the OpenStreetMap
+     * It sanitizes the URLs and links for the OpenStreetMap
      * using the Angular DomSanitizer.
      *
      * @returns {void} Sanitizes the URLs.
      */
-    sanitizeUrls(): void {
+    private sanitizeUrls(): void {
         this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
-        this.osmLinkUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_LINK_URL);
+        this.osmLinkUrl = this.sanitizer.sanitize(SecurityContext.URL, AppConfig.UNSAFE_OSM_LINK_URL);
     }
 }
