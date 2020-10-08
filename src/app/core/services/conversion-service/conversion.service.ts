@@ -838,10 +838,10 @@ export class ConversionService extends ApiService {
         if (regExLink.exec(splitArr[1])) {
             // ... link with <a> tag
             linkRegArr = regExLink.exec(splitArr[1]);
-            outStr = '<a target="_blank" rel="noopener noreferrer" ' + linkRegArr[1] + '>' + labelStr + '</a>';
+            outStr = '<a ' + linkRegArr[1] + '>' + labelStr + '</a>';
         } else if (labelStr !== 'DOI') {
             // ... <a> tag is missing, add it
-            outStr = '<a target="_blank" rel="noopener noreferrer" href="' + splitArr[1] + '">' + labelStr + '</a>';
+            outStr = '<a href="' + splitArr[1] + '">' + labelStr + '</a>';
         } else {
             // no links, pure string
             outStr = labelStr + ': ' + splitArr[1];
