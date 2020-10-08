@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
-import { RouterEventsService } from '@awg-core/services';
+import { AnalyticsService, RouterEventsService } from '@awg-core/services';
 
 /**
  * The main component of the AWG App.
@@ -20,15 +20,17 @@ export class AppComponent {
      * It declares private instances of the Angular router and the RouterEventsService.
      *
      * @param {Router} router Instance of the Angular router.
+     * @param {AnalyticsService} analyticsService Instance of the AnalyticsService.
      * @param {RouterEventsService} routerEventsService Instance of the RouterEventsService.
      */
-    constructor(private readonly router: Router, private routerEventsService: RouterEventsService) {
+    constructor(
+        private readonly router: Router,
+        private analyticsService: AnalyticsService,
+        private routerEventsService: RouterEventsService
+    ) {
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
-                //  catch GoogleAnalytics pageview events,
-                // cf. https://codeburst.io/using-google-analytics-with-angular-25c93bffaa18
-                (window as any).ga('set', 'page', event.urlAfterRedirects);
-                (window as any).ga('send', 'pageview');
+                this.analyticsService.trackPageView(event.urlAfterRedirects);
             }
         });
     }
