@@ -8,18 +8,9 @@ import { RouterModule } from '@angular/router';
 import { CompileHtmlModule } from './compile-html';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
-import {
-    NgbAccordionModule,
-    NgbButtonsModule,
-    NgbCollapseModule,
-    NgbDropdownModule,
-    NgbModalModule,
-    NgbNavModule,
-    NgbPaginationModule,
-    NgbTooltipModule
-} from '@ng-bootstrap/ng-bootstrap';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 
 //
 // shared components
@@ -53,16 +44,9 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         CompileHtmlModule,
         CodemirrorModule,
         FontAwesomeModule,
-        NgbAccordionModule,
-        NgbButtonsModule,
-        NgbCollapseModule,
-        NgbDropdownModule,
-        NgbModalModule,
-        NgbNavModule,
-        NgbPaginationModule,
-        NgbTooltipModule,
         NgxGalleryModule,
-        NgxJsonViewerModule
+        NgxJsonViewerModule,
+        SharedNgbootstrapModule
     ],
     declarations: [
         AddressComponent,
@@ -83,16 +67,9 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         RouterModule,
         CompileHtmlModule,
         FontAwesomeModule,
-        NgbAccordionModule,
-        NgbButtonsModule,
-        NgbCollapseModule,
-        NgbDropdownModule,
-        NgbModalModule,
-        NgbNavModule,
-        NgbPaginationModule,
-        NgbTooltipModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
+        SharedNgbootstrapModule,
 
         AddressComponent,
         HeadingComponent,
