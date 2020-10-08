@@ -6,6 +6,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { OpenStreetMapComponent } from './open-street-map.component';
+import { AppConfig } from '@awg-app/app.config';
 
 describe('OpenStreetMapComponent (DONE)', () => {
     let component: OpenStreetMapComponent;
@@ -18,7 +19,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let expectedUnsafeOsmEmbedUrl: string;
     let expectedUnsafeOsmLinkUrl: string;
     let expectedOsmEmbedUrl: SafeResourceUrl;
-    let expectedOsmLinkUrl: SafeResourceUrl;
+    let expectedOsmLinkUrl: string;
     let expectedOsmLinkLabel: string;
     let expectedOsmIFrameSettings: { width; height; scrolling };
 
@@ -46,14 +47,12 @@ describe('OpenStreetMapComponent (DONE)', () => {
         };
 
         // unsafe link values for open streets map
-        expectedUnsafeOsmEmbedUrl =
-            'https://www.openstreetmap.org/export/embed.html?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
-        expectedUnsafeOsmLinkUrl =
-            'https://www.openstreetmap.org/?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
+        expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
+        expectedUnsafeOsmLinkUrl = AppConfig.UNSAFE_OSM_LINK_URL;
 
         // bypass the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
-        expectedOsmLinkUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmLinkUrl);
+        expectedOsmLinkUrl = domSanitizer.sanitize(SecurityContext.URL, expectedUnsafeOsmLinkUrl);
     });
 
     afterAll(() => {
@@ -142,7 +141,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const linkEl = linkDes[0].nativeElement;
 
                 // sanitize the bypassed value
-                const sanitizedLinkUrl = domSanitizer.sanitize(SecurityContext.RESOURCE_URL, expectedOsmLinkUrl);
+                const sanitizedLinkUrl = expectedOsmLinkUrl;
                 // check for the href attribute to contain the sanitized SafeResourceUrl
                 expect(linkEl.href).toBeDefined();
                 expect(linkEl.href).toBe(sanitizedLinkUrl, `should be ${sanitizedLinkUrl}`);

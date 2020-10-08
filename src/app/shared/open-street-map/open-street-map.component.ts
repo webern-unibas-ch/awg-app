@@ -28,7 +28,7 @@ export class OpenStreetMapComponent {
      * It keeps the sanitized link to the OSM page.
      */
     @Input()
-    osmLinkUrl: SafeResourceUrl;
+    osmLinkUrl: string;
 
     /**
      * Public variable: osmLinkLabel.

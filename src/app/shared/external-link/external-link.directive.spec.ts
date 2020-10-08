@@ -2,6 +2,8 @@ import { Component, DebugElement } from '@angular/core';
 import { By } from '@angular/platform-browser';
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { cleanStylesFromDOM } from '@testing/clean-up-helper';
+
 import { ExternalLinkDirective } from './external-link.directive';
 
 @Component({
@@ -51,6 +53,10 @@ describe('ExternalLinkDirective', () => {
         component = fixture.componentInstance;
 
         fixture.detectChanges(); // initial binding
+    });
+
+    afterAll(() => {
+        cleanStylesFromDOM();
     });
 
     it('should have 4 anchor elements with href attributes', () => {

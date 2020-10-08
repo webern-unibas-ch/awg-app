@@ -7,6 +7,7 @@
  *
  */
 
+import { AnalyticsService } from './analytics-sercvice';
 import { ApiService } from './api-service';
 import { ConversionService } from './conversion-service';
 import { CoreService } from './core-service';
@@ -18,6 +19,7 @@ import { SideInfoService } from './side-info-service';
 import { StorageService } from './storage-service';
 
 export {
+    AnalyticsService,
     ApiService,
     ConversionService,
     CoreService,
