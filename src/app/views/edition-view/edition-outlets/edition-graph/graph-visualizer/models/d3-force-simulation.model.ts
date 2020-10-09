@@ -205,7 +205,7 @@ export class D3ForceSimulation {
             this.forceSimulation.force('charge_force', this.chargeForce).force('collide_force', this.collideForce);
 
             // connect the d3 ticker to an angular event emitter
-            this.forceSimulation.on('tick', function() {
+            this.forceSimulation.on('tick', function () {
                 ticker.emit(this);
             });
 

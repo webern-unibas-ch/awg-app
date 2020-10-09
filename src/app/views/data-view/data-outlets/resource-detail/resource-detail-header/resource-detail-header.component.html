@@ -13,7 +13,7 @@
             <div class="resource-link">
                 <small>
                     API-Request:
-                    <a target="_blank" rel="noopener noreferrer" href="{{ resourceUrl }}">{{ resourceUrl }}</a>
+                    <a href="{{ resourceUrl }}">{{ resourceUrl }}</a>
                     <!-- TODO: (resource-detail-html-header): change then to stable URL for resource -->
                 </small>
             </div>
@@ -29,7 +29,7 @@
                         <th>Kategorie</th>
                         <td>
                             <span class="resource-type">{{ header?.type }}</span
-                            >&nbsp;<span class="resource-icon"><img [src]="header?.icon" alt="icon"/></span>
+                            >&nbsp;<span class="resource-icon"><img [src]="header?.icon" alt="icon" /></span>
                         </td>
                     </tr>
                     <tr>

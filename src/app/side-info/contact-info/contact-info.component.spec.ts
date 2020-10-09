@@ -1,14 +1,21 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, Input, SecurityContext } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
+import Spy = jasmine.Spy;
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective
+} from '@testing/expect-helper';
 
-import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { AppConfig } from '@awg-app/app.config';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
-import { CoreService } from '@awg-core/services';
 
+import { CoreService } from '@awg-core/services';
 import { ContactInfoComponent } from './contact-info.component';
 
 // mock address component
@@ -26,7 +33,7 @@ class OpenStreetMapStubComponent {
     @Input()
     osmEmbedUrl: SafeResourceUrl;
     @Input()
-    osmLinkUrl: SafeResourceUrl;
+    osmLinkUrl: string;
 }
 
 describe('ContactInfoComponent (DONE)', () => {
@@ -34,6 +41,9 @@ describe('ContactInfoComponent (DONE)', () => {
     let fixture: ComponentFixture<ContactInfoComponent>;
     let compDe: DebugElement;
     let compEl;
+
+    let provideMetaDataSpy: Spy;
+    let sanitizeSpy: Spy;
 
     let domSanitizer: DomSanitizer;
 
@@ -45,7 +55,7 @@ describe('ContactInfoComponent (DONE)', () => {
     let expectedUnsafeOsmEmbedUrl: string;
     let expectedUnsafeOsmLinkUrl: string;
     let expectedOsmEmbedUrl: SafeResourceUrl;
-    let expectedOsmLinkUrl: SafeResourceUrl;
+    let expectedOsmLinkUrl: string;
 
     const expectedContactInfoHeader = 'Kontakt';
 
@@ -73,20 +83,18 @@ describe('ContactInfoComponent (DONE)', () => {
         expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
         // unsafe link values for open streets map
-        expectedUnsafeOsmEmbedUrl =
-            'https://www.openstreetmap.org/export/embed.html?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
-        expectedUnsafeOsmLinkUrl =
-            'https://www.openstreetmap.org/?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
+        expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
+        expectedUnsafeOsmLinkUrl = AppConfig.UNSAFE_OSM_LINK_URL;
 
         // bypass the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
-        expectedOsmLinkUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmLinkUrl);
+        expectedOsmLinkUrl = domSanitizer.sanitize(SecurityContext.URL, expectedUnsafeOsmLinkUrl);
 
         // spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        spyOn(component, 'provideMetaData').and.callThrough();
-        spyOn(component, 'sanitizeUrls').and.callThrough();
+        provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
+        sanitizeSpy = spyOn<any>(component, 'sanitizeUrls').and.callThrough();
     });
 
     afterAll(() => {
@@ -117,13 +125,13 @@ describe('ContactInfoComponent (DONE)', () => {
 
         describe('#provideMetaData', () => {
             it('... should not have been called', () => {
-                expect(component.provideMetaData).not.toHaveBeenCalled();
+                expectSpyCall(provideMetaDataSpy, 0);
             });
         });
 
         describe('#sanitizeUrls', () => {
             it('... should not have been called', () => {
-                expect(component.sanitizeUrls).not.toHaveBeenCalled();
+                expectSpyCall(sanitizeSpy, 0);
             });
         });
 
@@ -188,7 +196,7 @@ describe('ContactInfoComponent (DONE)', () => {
 
         describe('#provideMetaData', () => {
             it('... should have been called', () => {
-                expect(component.provideMetaData).toHaveBeenCalled();
+                expectSpyCall(provideMetaDataSpy, 1);
             });
 
             it('... should return pageMetaData', () => {
@@ -204,7 +212,7 @@ describe('ContactInfoComponent (DONE)', () => {
 
         describe('#sanitizeUrls', () => {
             it('... should have been called', () => {
-                expect(component.sanitizeUrls).toHaveBeenCalled();
+                expectSpyCall(sanitizeSpy, 1);
             });
 
             it('... should return osmEmbedUrl', () => {

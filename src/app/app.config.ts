@@ -17,6 +17,26 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the URL of the Analytics endpoint
+     * ({@link https://www.google-analytics.com/}).
+     *
+     * @returns {string}
+     */
+    public static get ANALYTICS_ENDPOINT(): string {
+        return 'https://www.google-analytics.com/';
+    }
+
+    /**
+     * Getter for the Analytics id
+     * ({@link 'UA-XXXXXXX-Y'}).
+     *
+     * @returns {string}
+     */
+    public static get ANALYTICS_ID(): string {
+        return 'UA-64657372-2';
+    }
+
+    /**
      * Getter for the URL of the Inseri Test Instance
      * ({@link http://test-nieos.nie-ine.ch}).
      *
@@ -115,7 +135,7 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the unsanitized OSM emebed link.
+     * Getter for the unsanitized OSM embed link.
      *
      * @returns {string}
      */

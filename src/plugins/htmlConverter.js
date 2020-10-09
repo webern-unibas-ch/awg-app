@@ -1,4 +1,4 @@
-(function(angular) {
+(function (angular) {
     /*
                     jQuery-plugin template for SALSAH
                         converts the linear standoff
@@ -16,7 +16,7 @@
      * @param txt The text (sequence of characters)
      * @return {String} A string which can be converted to HTML
      */
-    return (htmlConverter = function(assigned_props, txt) {
+    return (htmlConverter = function (assigned_props, txt) {
         var html = '';
         var proparr;
         var stack;
@@ -92,7 +92,7 @@
         //
         var propnames = Object.keys(assigned_props);
 
-        propnames.sort(function(a, b) {
+        propnames.sort(function (a, b) {
             return tagPrecedence[matching_inv[a]] - tagPrecedence[matching_inv[b]];
         });
 

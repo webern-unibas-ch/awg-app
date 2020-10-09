@@ -69,13 +69,7 @@ export class D3Service {
             d.fy = null;
         };
 
-        dragElement.call(
-            d3_drag
-                .drag()
-                .on('start', dragStart)
-                .on('drag', dragActions)
-                .on('end', dragEnd)
-        );
+        dragElement.call(d3_drag.drag().on('start', dragStart).on('drag', dragActions).on('end', dragEnd));
     }
 
     /**

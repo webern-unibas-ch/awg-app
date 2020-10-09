@@ -11,9 +11,8 @@
     <p class="italic">Website:</p>
     <p class="awg-citation-text">
         {{ pageMetaData.awgProjectName }}. Projekt-Website:
-        <a target="_blank" rel="noopener noreferrer" href="{{ pageMetaData?.awgProjectUrl }}">
-            {{ pageMetaData?.awgProjectUrl }} </a
-        >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        <a href="{{ pageMetaData?.awgProjectUrl }}"> {{ pageMetaData?.awgProjectUrl }} </a>, abgerufen am
+        <span class="awg-citation-date">{{ today | date: dateFormat }}</span
         >.
     </p>
 
@@ -22,10 +21,8 @@
         {{ pageMetaData.awgProjectName }}. Online-Edition (Version
         <span class="awg-citation-version">{{ pageMetaData?.version }}</span> vom
         <span class="awg-citation-version-release">{{ pageMetaData?.versionReleaseDate }}</span
-        >):
-        <a target="_blank" rel="noopener noreferrer" href="{{ pageMetaData?.awgAppUrl }}">
-            {{ pageMetaData?.awgAppUrl }} </a
-        >, abgerufen am <span class="awg-citation-date">{{ today | date: dateFormat }}</span
+        >): <a href="{{ pageMetaData?.awgAppUrl }}"> {{ pageMetaData?.awgAppUrl }} </a>, abgerufen am
+        <span class="awg-citation-date">{{ today | date: dateFormat }}</span
         >.
     </p>
 </div>
@@ -39,7 +36,7 @@
     <p class="awg-documentation-text">
         <span class="caps">GitHub:</span><br />
         Repository unter:
-        <a target="_blank" rel="noopener noreferrer" href="{{ pageMetaData?.githubUrl }}">
+        <a href="{{ pageMetaData?.githubUrl }}">
             {{ pageMetaData?.githubUrl }}
         </a>
     </p>
@@ -47,9 +44,7 @@
     <p class="awg-documentation-text">
         <span class="caps">Compodoc:</span><br />
         Dokumentation von Struktur und Funktionalitäten der Angular App:
-        <a id="awg-compodoc" href="{{ pageMetaData?.compodocUrl }} " target="_blank" rel="noopener noreferrer">
-            awg-app documentation
-        </a>
+        <a id="awg-compodoc" href="{{ pageMetaData?.compodocUrl }}"> awg-app documentation </a>
     </p>
 </div>
 
@@ -102,11 +97,7 @@
         Anton Webern Gesamtausgabe aus auf der wissenschaftlichen Plattform KNORA/SALSAH (Projektbereich der Anton
         Webern Gesamtausgabe) für den Nutzer zugänglich sind, sind urheberrechtlich geschützt und werden – sofern nicht
         anders deklariert – zu den Bedingungen der Creative Commons-Lizenz „Namensnennung – Weitergabe unter gleichen
-        Bedingungen 4.0 International" (<a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://creativecommons.org/licenses/by-sa/4.0/deed.de"
-            >CC BY-SA-4.0</a
+        Bedingungen 4.0 International" (<a href="https://creativecommons.org/licenses/by-sa/4.0/deed.de">CC BY-SA-4.0</a
         >) zur Verfügung gestellt. Jede davon abweichende Verwertung bedarf der vorherigen schriftlichen Zustimmung
         durch den jeweiligen Rechteinhaber. Allfällige Bewilligungsgesuche sind an die
         {{ pageMetaData.awgProjectName }} zu richten (Kontakt). Alle Rechte an zugänglich gemachten externen
@@ -116,9 +107,8 @@
 
     <p>
         Der Software-Code dieses Prototyps wird auf
-        <a target="_blank" rel="noopener norefferer" href="https://github.com/webern-unibas-ch/awg-app">GitHub</a> unter
-        einer <a target="_blank" rel="noopener norefferer" href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur
-        Verfügung gestellt.
+        <a href="{{ pageMetaData?.githubUrl }}">GitHub</a> unter einer
+        <a href="https://opensource.org/licenses/MIT">MIT</a>-Lizenz zur Verfügung gestellt.
     </p>
 
     <p class="italic">Externe Links:</p>
@@ -148,17 +138,15 @@
     <p>
         Die {{ pageMetaData.awgProjectName }} setzt auf Grundlage ihrer berechtigten Interessen (d.h. Interesse an der
         Analyse und Optimierung unseres Onlineangebotes im Sinne des Art.
-        <a target="_blank" rel="noopener noreferrer" href="https://dejure.org/gesetze/DSGVO/6.html">6</a> Abs. 1 lit. f.
-        DSGVO) Google Analytics, einen Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die
-        durch das Cookie erzeugten Informationen über Benutzung des Onlineangebotes durch die Nutzer werden in der Regel
-        an einen Server von Google in den USA übertragen und dort gespeichert.
+        <a href="https://dejure.org/gesetze/DSGVO/6.html">6</a> Abs. 1 lit. f. DSGVO) Google Analytics, einen
+        Webanalysedienst der Google LLC („Google“) ein. Google verwendet Cookies. Die durch das Cookie erzeugten
+        Informationen über Benutzung des Onlineangebotes durch die Nutzer werden in der Regel an einen Server von Google
+        in den USA übertragen und dort gespeichert.
     </p>
 
     <p>
         Google ist unter dem Privacy-Shield-Abkommen zertifiziert und bietet hierdurch eine Garantie, das europäische
         Datenschutzrecht einzuhalten (<a
-            target="_blank"
-            rel="noopener noreferrer"
             href="https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active"
             >https://www.privacyshield.gov/participant?id=a2zt000000001L5AAI&status=Active</a
         >).
@@ -185,21 +173,14 @@
         verhindern; die Nutzer können darüber hinaus die Erfassung der durch das Cookie erzeugten und auf ihre Nutzung
         des Onlineangebotes bezogenen Daten an Google sowie die Verarbeitung dieser Daten durch Google verhindern, indem
         sie das unter folgendem Link verfügbare Browser-Plugin herunterladen und installieren:
-        <a target="_blank" rel="noopener noreferrer" href="https://tools.google.com/dlpage/gaoptout?hl=de"
-            >https://tools.google.com/dlpage/gaoptout?hl=de</a
-        >.
+        <a href="https://tools.google.com/dlpage/gaoptout?hl=de">https://tools.google.com/dlpage/gaoptout?hl=de</a>.
     </p>
 
     <p>
         Weitere Informationen zur Datennutzung durch Google, Einstellungs- und Widerspruchsmöglichkeiten, erfahren Sie
-        in der Datenschutzerklärung von Google (<a
-            target="_blank"
-            rel="noopener noreferrer"
-            href="https://policies.google.com/technologies/ads"
+        in der Datenschutzerklärung von Google (<a href="https://policies.google.com/technologies/ads"
             >https://policies.google.com/technologies/ads</a
         >) sowie in den Einstellungen für die Darstellung von Werbeeinblendungen durch Google (<a
-            target="_blank"
-            rel="noopener noreferrer"
             href="https://adssettings.google.com/authenticated"
             >https://adssettings.google.com/authenticated</a
         >).
@@ -208,8 +189,7 @@
     <p>Die personenbezogenen Daten der Nutzer werden nach 14 Monaten gelöscht.</p>
 
     <p>
-        [<a target="_blank" rel="noopener noreferrer" href="https://datenschutz-generator.de/"
-            >Erstellt mit Datenschutz-Generator.de von RA Dr. Thomas Schwenke</a
+        [<a href="https://datenschutz-generator.de/">Erstellt mit Datenschutz-Generator.de von RA Dr. Thomas Schwenke</a
         >; vom Websiteinhaber angepasst]
     </p>
 </div>

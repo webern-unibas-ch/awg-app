@@ -2,6 +2,20 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.6](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.5...v0.7.6) (2020-10-09)
+
+### Features
+
+-   **shared:** add directive for external links ([6a56a04](https://github.com/webern-unibas-ch/awg-app/commit/6a56a04538bb7a015406b08994b3ea5df9b79848))
+
+### Bug Fixes
+
+-   **app:** move target blank from links to directive ([af4223f](https://github.com/webern-unibas-ch/awg-app/commit/af4223fba57ecdd08dbc8db34304896eef2533ab))
+-   **core:** move analytics config also into service ([6599fba](https://github.com/webern-unibas-ch/awg-app/commit/6599fba83af1af04cfac34796d70ecdf45b51ccd))
+-   **core:** move analytics handling into service ([a6faaf3](https://github.com/webern-unibas-ch/awg-app/commit/a6faaf3c61c6d8c1adcc9452b29d93c7113eb88d))
+-   **core:** move analytics id to app config ([57020b8](https://github.com/webern-unibas-ch/awg-app/commit/57020b894fa9c17cf54c07e462548b01305af55b))
+-   **shared:** fix errors with osm and external link directive ([769fc1a](https://github.com/webern-unibas-ch/awg-app/commit/769fc1a9d3140969ace45dd6a3461c7dc582639a))
+
 ### [0.7.5](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.4...v0.7.5) (2020-08-28)
 
 ### Features
