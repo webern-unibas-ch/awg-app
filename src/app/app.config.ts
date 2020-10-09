@@ -27,6 +27,16 @@ export class AppConfig {
     }
 
     /**
+     * Getter for the Analytics id
+     * ({@link 'UA-XXXXXXX-Y'}).
+     *
+     * @returns {string}
+     */
+    public static get ANALYTICS_ID(): string {
+        return 'UA-64657372-2';
+    }
+
+    /**
      * Getter for the URL of the Inseri Test Instance
      * ({@link http://test-nieos.nie-ine.ch}).
      *

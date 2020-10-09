@@ -41,7 +41,7 @@ export class AnalyticsService {
      *
      * It stores the analytics object.
      */
-    private analyticsConfig: AnalyticsConfig = { trackingId: 'UA-64657372-2' };
+    private analyticsConfig: AnalyticsConfig = { trackingId: AppConfig.ANALYTICS_ID };
 
     /**
      * Private variable: isInitialized.
@@ -163,7 +163,7 @@ export class AnalyticsService {
         // cf. https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging#testing_your_implementation_without_sending_hits
         /* istanbul ignore else  */
         if (!(document.location.hostname === 'edition.anton-webern.ch')) {
-            console.log('Running non-production google analytics replacement now');
+            console.log('Running non-production analytics replacement now');
             (window as any).ga('set', 'sendHitTask', null);
         }
 
