@@ -2,6 +2,12 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.7](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.6...v0.7.7) (2020-10-09)
+
+### Bug Fixes
+
+-   **core:** fix broken link templates ([dc79bb7](https://github.com/webern-unibas-ch/awg-app/commit/dc79bb7b3c39e9b3235242f1dc8829e41ac8b25c))
+
 ### [0.7.6](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.5...v0.7.6) (2020-10-09)
 
 ### Features
