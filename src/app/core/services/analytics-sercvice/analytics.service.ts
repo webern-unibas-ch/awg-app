@@ -77,17 +77,18 @@ export class AnalyticsService {
         }
 
         // set the page to be tracked
-        (window as any).ga('set', 'page', page);
+        this.runAnalytics('set', 'page', page);
 
         // Send a pageview hit from that page
-        (window as any).ga('send', 'pageview');
+        this.runAnalytics('send', 'pageview');
     }
 
     /**
      * Private method: initializeAnalytics.
      *
-     * It initializes the Analytics setup by setting the analytics object
-     * and a boolean flag for successful initialization.
+     * It initializes the Analytics environment by setting
+     * the global analytics object and
+     * a boolean flag for successful initialization.
      *
      * @param {AnalyticsConfig} config The given config object.
      *
@@ -100,6 +101,46 @@ export class AnalyticsService {
             return;
         }
 
+        this.createAnalytics(config);
+
+        // enable debug mode if needed
+        if (config.debug) {
+            (window as any).ga_debug = { trace: true };
+        }
+
+        // create tracker
+        if (config.cookieDomain) {
+            // create a tracker with custom cookie domain configuration
+            this.runAnalytics('create', config.trackingId, {
+                cookieDomain: config.cookieDomain
+            });
+        } else {
+            // create a default tracker with automatic cookie domain configuration
+            this.runAnalytics('create', config.trackingId, 'auto');
+        }
+
+        // ignore non-production page calls
+        // cf. https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging#testing_your_implementation_without_sending_hits
+        /* istanbul ignore else  */
+        if (!(document.location.hostname === 'edition.anton-webern.ch')) {
+            console.log('Running non-production analytics replacement now');
+            this.runAnalytics('set', 'sendHitTask', null);
+        }
+
+        // flag for successful initialization
+        this.isInitialized = true;
+    }
+
+    /**
+     * Private method: createAnalytics.
+     *
+     * It creates a global Analytics object and loads the necessary JS file.
+     *
+     * @param {AnalyticsConfig} config The given config object.
+     *
+     * @returns {void} Creates the global analytics object.
+     */
+    private createAnalytics(config: AnalyticsConfig): void {
         // set debug or default version of analytics.js
         const analyticsJS = config.debug ? 'analytics_debug.js' : 'analytics.js';
         const analyticsURL = AppConfig.ANALYTICS_ENDPOINT + analyticsJS;
@@ -142,32 +183,24 @@ export class AnalyticsService {
             a.src = g;
             m.parentNode.insertBefore(a, m);
         })(window, document, 'script', analyticsURL, 'ga');
+    }
 
-        // enable debug mode if needed
-        if (config.debug) {
-            (window as any).ga_debug = { trace: true };
-        }
-
-        // create tracker
-        if (config.cookieDomain) {
-            // create a tracker with custom cookie domain configuration
-            (window as any).ga('create', config.trackingId, {
-                cookieDomain: config.cookieDomain
-            });
+    /**
+     * Private method: runAnalytics.
+     *
+     * It runs a given task on the global Analytics object.
+     *
+     * @param {string} task The given task method.
+     * @param {string} field The given field.
+     * @param {string} [option] The given option.
+     *
+     * @returns {void} Runs a task on the global analytics object.
+     */
+    private runAnalytics(task: string, field: string, option?: any): void {
+        if (option || option === null) {
+            (window as any).ga(task, field, option);
         } else {
-            // create a default tracker with automatic cookie domain configuration
-            (window as any).ga('create', config.trackingId, 'auto');
+            (window as any).ga(task, field);
         }
-
-        // ignore non-production page calls
-        // cf. https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging#testing_your_implementation_without_sending_hits
-        /* istanbul ignore else  */
-        if (!(document.location.hostname === 'edition.anton-webern.ch')) {
-            console.log('Running non-production analytics replacement now');
-            (window as any).ga('set', 'sendHitTask', null);
-        }
-
-        // flag for successful initialization
-        this.isInitialized = true;
     }
 }
