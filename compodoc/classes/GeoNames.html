@@ -506,11 +506,11 @@ export class GeoNames {
         const geoIcon &#x3D;
             &#x27;&lt;img src&#x3D;&quot;assets/img/logos/geonames.png&quot; height&#x3D;&quot;25&quot; width&#x3D;&quot;25&quot; alt&#x3D;&quot;&#x27; + this.shortLabel + &#x27;&quot; /&gt;&#x27;;
         const geoLink &#x3D;
-            &#x27;&lt;a href&#x3D;&quot;https://www.geonames.org/&#x27; + this.gnid + &#x27;&quot; title&#x3D;&quot;&#x27; + this.longLabel + &#x27;&gt;&#x27; + geoIcon + &#x27;&lt;/a&gt;&#x27;;
+            &#x27;&lt;a href&#x3D;&quot;https://www.geonames.org/&#x27; + this.gnid + &#x27;&quot; title&#x3D;&quot;&#x27; + this.longLabel + &#x27;&quot;&gt;&#x27; + geoIcon + &#x27;&lt;/a&gt;&#x27;;
         let wikiLink &#x3D; &#x27;&#x27;;
         if (this.wiki) {
             const wikiIcon &#x3D; &#x27;&lt;img src&#x3D;&quot;assets/img/logos/wiki.svg&quot; height&#x3D;&quot;25&quot; width&#x3D;&quot;25&quot; alt&#x3D;&quot;&#x27; + this.wiki + &#x27;&quot; /&gt;&#x27;;
-            wikiLink &#x3D; &#x27;&lt;a href&#x3D;&quot;https://&#x27; + this.wiki + &#x27;&quot; title&#x3D;&quot;&#x27; + this.wiki + &#x27;&gt;&#x27; + wikiIcon + &#x27;&lt;/a&gt;&#x27;;
+            wikiLink &#x3D; &#x27;&lt;a href&#x3D;&quot;https://&#x27; + this.wiki + &#x27;&quot; title&#x3D;&quot;&#x27; + this.wiki + &#x27;&quot;&gt;&#x27; + wikiIcon + &#x27;&lt;/a&gt;&#x27;;
         }
         this.html &#x3D; this.shortLabel + &#x27; &#x27; + geoLink + wikiLink;
     }
