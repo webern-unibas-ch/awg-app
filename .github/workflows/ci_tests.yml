@@ -4,10 +4,11 @@ on:
     push:
         branches:
             - '**'
+            - '!master' # do not run on master
         tags-ignore:
             - '*'
         paths-ignore:
-            - '**.md'
+            - '**.md' # ignore changes to markdown files
 
 jobs:
     test:
