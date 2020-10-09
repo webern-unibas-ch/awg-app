@@ -214,7 +214,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="https://angular.io/api/platform-browser/SafeResourceUrl" target="_blank" >SafeResourceUrl</a></code>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
 
                     </td>
                 </tr>
@@ -360,7 +360,7 @@ export class OpenStreetMapComponent {
      * It keeps the sanitized link to the OSM page.
      */
     @Input()
-    osmLinkUrl: SafeResourceUrl;
+    osmLinkUrl: string;
 
     /**
      * Public variable: osmLinkLabel.
@@ -395,7 +395,7 @@ export class OpenStreetMapComponent {
 
 &lt;div id&#x3D;&quot;awg-osm-link&quot;&gt;
     &lt;small&gt;
-        &lt;a [href]&#x3D;&quot;osmLinkUrl&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;{{ osmLinkLabel }}&lt;/a&gt;
+        &lt;a href&#x3D;&quot;{{ osmLinkUrl }}&quot;&gt;{{ osmLinkLabel }}&lt;/a&gt;
     &lt;/small&gt;
 &lt;/div&gt;
 </code></pre>
@@ -433,9 +433,9 @@ export class OpenStreetMapComponent {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><iframe    id="awg-osm-embed-map"    width="{{ osmIFrameSettings.width }}"    height="{{ osmIFrameSettings.height }}"    scrolling="{{ osmIFrameSettings.scrolling }}"    [src]="osmEmbedUrl"></iframe><div id="awg-osm-link">    <small>        <a [href]="osmLinkUrl" target="_blank" rel="noopener noreferrer">{{ osmLinkLabel }}</a>    </small></div></div>'
+        var COMPONENT_TEMPLATE = '<div><iframe    id="awg-osm-embed-map"    width="{{ osmIFrameSettings.width }}"    height="{{ osmIFrameSettings.height }}"    scrolling="{{ osmIFrameSettings.scrolling }}"    [src]="osmEmbedUrl"></iframe><div id="awg-osm-link">    <small>        <a href="{{ osmLinkUrl }}">{{ osmLinkLabel }}</a>    </small></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
-    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'OpenStreetMapComponent'};
 </script>
 <script src="../js/tree.js"></script>

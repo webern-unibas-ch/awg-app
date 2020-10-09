@@ -254,8 +254,8 @@ while maintaining the d3 simulations physics.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="84"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:84</a></div>
                 </td>
             </tr>
 
@@ -349,8 +349,8 @@ while maintaining the d3 simulations physics.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="115"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:115</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="109"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts:109</a></div>
                 </td>
             </tr>
 
@@ -503,13 +503,7 @@ export class D3Service {
             d.fy &#x3D; null;
         };
 
-        dragElement.call(
-            d3_drag
-                .drag()
-                .on(&#x27;start&#x27;, dragStart)
-                .on(&#x27;drag&#x27;, dragActions)
-                .on(&#x27;end&#x27;, dragEnd)
-        );
+        dragElement.call(d3_drag.drag().on(&#x27;start&#x27;, dragStart).on(&#x27;drag&#x27;, dragActions).on(&#x27;end&#x27;, dragEnd));
     }
 
     /**

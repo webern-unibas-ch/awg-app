@@ -1,0 +1,875 @@
+<!doctype html>
+<html class="no-js" lang="">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="x-ua-compatible" content="ie=edge">
+        <title>awg-app documentation</title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+
+        <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
+	      <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/Readthedocs.css">
+    </head>
+    <body>
+
+        <div class="navbar navbar-default navbar-fixed-top visible-xs">
+            <a href="../" class="navbar-brand">awg-app documentation</a>
+            <button type="button" class="btn btn-default btn-menu ion-ios-menu" id="btn-menu"></button>
+        </div>
+
+        <div class="xs-menu menu" id="mobile-menu">
+                <div id="book-search-input" role="search"><input type="text" placeholder="Type to search"></div>            <compodoc-menu></compodoc-menu>
+        </div>
+
+        <div class="container-fluid main">
+           <div class="row main">
+               <div class="hidden-xs menu">
+                   <compodoc-menu mode="normal"></compodoc-menu>
+               </div>
+               <!-- START CONTENT -->
+               <div class="content injectable">
+                   <div class="content-data">
+
+
+
+
+
+
+
+<ol class="breadcrumb">
+  <li>Injectables</li>
+  <li>AnalyticsService</li>
+</ol>
+
+<ul class="nav nav-tabs" role="tablist">
+        <li class="active">
+            <a href="#info" role="tab" id="info-tab" data-toggle="tab" data-link="info">Info</a>
+        </li>
+        <li >
+            <a href="#source" role="tab" id="source-tab" data-toggle="tab" data-link="source">Source</a>
+        </li>
+</ul>
+
+<div class="tab-content">
+    <div class="tab-pane fade active in" id="c-info">
+        <p class="comment">
+            <h3>File</h3>
+        </p>
+        <p class="comment">
+            <code>src/app/core/services/analytics-sercvice/analytics.service.ts</code>
+        </p>
+
+            <p class="comment">
+                <h3>Description</h3>
+            </p>
+            <p class="comment">
+                <p>The Analytics service.</p>
+<p>It handles the configuration for the GoogleAnalytics setup.
+Inspired by <a href="https://jaxenter.de/google-analytics-angular-57919">https://jaxenter.de/google-analytics-angular-57919</a></p>
+<p>Provided in: <code>root</code>.</p>
+
+            </p>
+
+
+
+            <section>
+    <h3 id="index">Index</h3>
+    <table class="table table-sm table-bordered index-table">
+        <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Properties</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#analyticsConfig">analyticsConfig</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#isInitialized">isInitialized</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <h6><b>Methods</b></h6>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <ul class="index-list">
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#createAnalytics">createAnalytics</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#initializeAnalytics">initializeAnalytics</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#runAnalytics">runAnalytics</a>
+                            </li>
+                            <li>
+                                <a href="#trackPageView">trackPageView</a>
+                            </li>
+                        </ul>
+                    </td>
+                </tr>
+
+
+
+
+
+        </tbody>
+    </table>
+</section>
+
+            <section>
+    <h3 id="constructor">Constructor</h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+<code>constructor()</code>
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                            <div class="io-description"><p>Constructor of the AnalyticsService.</p>
+<p>It calls the initialization method.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+</section>
+
+            <section>
+    
+    <h3 id="methods">
+        Methods
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="createAnalytics"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            createAnalytics
+                        </b>
+                        <a href="#createAnalytics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>createAnalytics(config: <a href="../classes/AnalyticsConfig.html">AnalyticsConfig</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:143</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: createAnalytics.</p>
+<p>It creates a global Analytics object and loads the necessary JS file.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
+                                    <td>
+                                                <code><a href="../classes/AnalyticsConfig.html" target="_self" >AnalyticsConfig</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given config object.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Creates the global analytics object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="initializeAnalytics"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            initializeAnalytics
+                        </b>
+                        <a href="#initializeAnalytics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>initializeAnalytics(config: <a href="../classes/AnalyticsConfig.html">AnalyticsConfig</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:97</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: initializeAnalytics.</p>
+<p>It initializes the Analytics environment by setting
+the global analytics object and
+a boolean flag for successful initialization.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>config</td>
+                                    <td>
+                                                <code><a href="../classes/AnalyticsConfig.html" target="_self" >AnalyticsConfig</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given config object.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets analytics object and init flag.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="runAnalytics"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            runAnalytics
+                        </b>
+                        <a href="#runAnalytics"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>runAnalytics(task: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, field: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, option?: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="199"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:199</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: runAnalytics.</p>
+<p>It runs a given task on the global Analytics object.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>task</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given task method.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>field</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given field.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>option</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given option.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Runs a task on the global analytics object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="trackPageView"></a>
+                    <span class="name">
+                        <b>
+                            trackPageView
+                        </b>
+                        <a href="#trackPageView"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>trackPageView(page: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="72"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:72</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: trackPageView.</p>
+<p>It tracks a page view for Analytics
+if initialization was successful.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>page</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sets and sends the page view to GA.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>
+            <section>
+    
+        <h3 id="inputs">
+            Properties
+        </h3>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="analyticsConfig"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            analyticsConfig</b>
+                            <a href="#analyticsConfig"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="../classes/AnalyticsConfig.html" target="_self" >AnalyticsConfig</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{ trackingId: AppConfig.ANALYTICS_ID }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:44</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: analyticsConfig.</p>
+<p>It stores the analytics object.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isInitialized"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            isInitialized</b>
+                            <a href="#isInitialized"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>false</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="51" class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:51</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: isInitialized.</p>
+<p>It stores a boolean flag for successful initialization.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+</section>
+
+    </div>
+
+
+    <div class="tab-pane fade  tab-source-code" id="c-source">
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
+import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
+
+/**
+ * The AnalyticsConfig class.
+ *
+ * It is used to configure the Analytics setup.
+ *
+ */
+export class AnalyticsConfig {
+    /**
+     * The tracking id for Analytics.
+     */
+    trackingId: string;
+
+    /**
+     * The cookieDomain for Analytics.
+     */
+    cookieDomain?: string;
+
+    /**
+     * The debug flag for Analytics.
+     */
+    debug?: boolean;
+}
+
+/**
+ * The Analytics service.
+ *
+ * It handles the configuration for the GoogleAnalytics setup.
+ * Inspired by https://jaxenter.de/google-analytics-angular-57919
+ *
+ * Provided in: &#x60;root&#x60;.
+ */
+@Injectable({
+    providedIn: &#x27;root&#x27;
+})
+export class AnalyticsService {
+    /**
+     * Private variable: analyticsConfig.
+     *
+     * It stores the analytics object.
+     */
+    private analyticsConfig: AnalyticsConfig &#x3D; { trackingId: AppConfig.ANALYTICS_ID };
+
+    /**
+     * Private variable: isInitialized.
+     *
+     * It stores a boolean flag for successful initialization.
+     */
+    private isInitialized &#x3D; false;
+
+    /**
+     * Constructor of the AnalyticsService.
+     *
+     * It calls the initialization method.
+     */
+    constructor() {
+        this.initializeAnalytics(this.analyticsConfig);
+    }
+
+    /**
+     * Public method: trackPageView.
+     *
+     * It tracks a page view for Analytics
+     * if initialization was successful.
+     *
+     * @params {string} page The given page string.
+     *
+     * @returns {void} Sets and sends the page view to GA.
+     */
+    trackPageView(page: string): void {
+        // check if Analytics object was initialized
+        if (!this.isInitialized) {
+            console.log(&#x27;Analytics not initialized&#x27;);
+            return;
+        }
+
+        // set the page to be tracked
+        this.runAnalytics(&#x27;set&#x27;, &#x27;page&#x27;, page);
+
+        // Send a pageview hit from that page
+        this.runAnalytics(&#x27;send&#x27;, &#x27;pageview&#x27;);
+    }
+
+    /**
+     * Private method: initializeAnalytics.
+     *
+     * It initializes the Analytics environment by setting
+     * the global analytics object and
+     * a boolean flag for successful initialization.
+     *
+     * @param {AnalyticsConfig} config The given config object.
+     *
+     * @returns {void} Sets analytics object and init flag.
+     */
+    private initializeAnalytics(config: AnalyticsConfig): void {
+        if (!config || !config.trackingId) {
+            this.isInitialized &#x3D; false;
+            console.log(&#x27;No analytics config found&#x27;);
+            return;
+        }
+
+        this.createAnalytics(config);
+
+        // enable debug mode if needed
+        if (config.debug) {
+            (window as any).ga_debug &#x3D; { trace: true };
+        }
+
+        // create tracker
+        if (config.cookieDomain) {
+            // create a tracker with custom cookie domain configuration
+            this.runAnalytics(&#x27;create&#x27;, config.trackingId, {
+                cookieDomain: config.cookieDomain
+            });
+        } else {
+            // create a default tracker with automatic cookie domain configuration
+            this.runAnalytics(&#x27;create&#x27;, config.trackingId, &#x27;auto&#x27;);
+        }
+
+        // ignore non-production page calls
+        // cf. https://developers.google.com/analytics/devguides/collection/analyticsjs/debugging#testing_your_implementation_without_sending_hits
+        /* istanbul ignore else  */
+        if (!(document.location.hostname &#x3D;&#x3D;&#x3D; &#x27;edition.anton-webern.ch&#x27;)) {
+            console.log(&#x27;Running non-production analytics replacement now&#x27;);
+            this.runAnalytics(&#x27;set&#x27;, &#x27;sendHitTask&#x27;, null);
+        }
+
+        // flag for successful initialization
+        this.isInitialized &#x3D; true;
+    }
+
+    /**
+     * Private method: createAnalytics.
+     *
+     * It creates a global Analytics object and loads the necessary JS file.
+     *
+     * @param {AnalyticsConfig} config The given config object.
+     *
+     * @returns {void} Creates the global analytics object.
+     */
+    private createAnalytics(config: AnalyticsConfig): void {
+        // set debug or default version of analytics.js
+        const analyticsJS &#x3D; config.debug ? &#x27;analytics_debug.js&#x27; : &#x27;analytics.js&#x27;;
+        const analyticsURL &#x3D; AppConfig.ANALYTICS_ENDPOINT + analyticsJS;
+
+        /**
+         * Creates a temporary global ga object and loads analytics.js.
+         * Parameters o, a, and m are all used internally. They could have been
+         * declared using &#x27;var&#x27;, instead they are declared as parameters to save
+         * 4 bytes (&#x27;var &#x27;).
+         *
+         * @param {Window}        i The global context object.
+         * @param {HTMLDocument}  s The DOM document object.
+         * @param {string}        o Must be &#x27;script&#x27;.
+         * @param {string}        g Protocol relative URL of the analytics.js script.
+         * @param {string}        r Global name of analytics object. Defaults to &#x27;ga&#x27;.
+         * @param {HTMLElement}   a Async script tag.
+         * @param {HTMLElement}   m First script tag in document.
+         */
+        /* istanbul ignore next */
+        ((i, s, o, g, r, a, m) &#x3D;&gt; {
+            // Acts as a pointer to support renaming.
+            i[&#x27;GoogleAnalyticsObject&#x27;] &#x3D; r;
+
+            // Creates an initial ga() function.
+            // The queued commands will be executed once analytics.js loads.
+            (i[r] &#x3D;
+                i[r] ||
+                (() &#x3D;&gt; {
+                    (i[r].q &#x3D; i[r].q || []).push(arguments);
+                })),
+                // Sets the time (as an integer) this tag was executed.
+                // Used for timing hits.
+                (i[r].l &#x3D; 1 * (new Date() as any));
+
+            // Insert the script tag asynchronously.
+            // Inserts above current tag to prevent blocking in addition to using the
+            // async attribute.
+            (a &#x3D; s.createElement(o)), (m &#x3D; s.getElementsByTagName(o)[0]);
+            a.async &#x3D; 1;
+            a.src &#x3D; g;
+            m.parentNode.insertBefore(a, m);
+        })(window, document, &#x27;script&#x27;, analyticsURL, &#x27;ga&#x27;);
+    }
+
+    /**
+     * Private method: runAnalytics.
+     *
+     * It runs a given task on the global Analytics object.
+     *
+     * @param {string} task The given task method.
+     * @param {string} field The given field.
+     * @param {string} [option] The given option.
+     *
+     * @returns {void} Runs a task on the global analytics object.
+     */
+    private runAnalytics(task: string, field: string, option?: any): void {
+        if (option || option &#x3D;&#x3D;&#x3D; null) {
+            (window as any).ga(task, field, option);
+        } else {
+            (window as any).ga(task, field);
+        }
+    }
+}
+</code></pre>
+    </div>
+
+</div>
+
+
+
+
+
+
+
+                   
+
+
+
+
+                   </div><div class="search-results">
+    <div class="has-results">
+        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <ul class="search-results-list"></ul>
+    </div>
+    <div class="no-results">
+        <h1 class="search-results-title">No results matching "<span class='search-query'></span>"</h1>
+    </div>
+</div>
+</div>
+               <!-- END CONTENT -->
+           </div>
+       </div>
+
+       <script>
+            var COMPODOC_CURRENT_PAGE_DEPTH = 1;
+            var COMPODOC_CURRENT_PAGE_CONTEXT = 'injectable';
+            var COMPODOC_CURRENT_PAGE_URL = 'AnalyticsService.html';
+            var MAX_SEARCH_RESULTS = 15;
+       </script>
+
+       <script src="../js/libs/custom-elements.min.js"></script>
+       <script src="../js/libs/lit-html.js"></script>
+       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
+       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
+       <script src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/libs/bootstrap-native.js"></script>
+
+       <script src="../js/libs/es6-shim.min.js"></script>
+       <script src="../js/libs/EventDispatcher.js"></script>
+       <script src="../js/libs/promise.min.js"></script>
+       <script src="../js/libs/zepto.min.js"></script>
+
+       <script src="../js/compodoc.js"></script>
+
+       <script src="../js/tabs.js"></script>
+       <script src="../js/menu.js"></script>
+       <script src="../js/libs/clipboard.min.js"></script>
+       <script src="../js/libs/prism.js"></script>
+       <script src="../js/sourceCode.js"></script>
+          <script src="../js/search/search.js"></script>
+          <script src="../js/search/lunr.min.js"></script>
+          <script src="../js/search/search-lunr.js"></script>
+          <script src="../js/search/search_index.js"></script>
+       <script src="../js/lazy-load-graphs.js"></script>
+
+
+    </body>
+</html>

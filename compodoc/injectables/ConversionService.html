@@ -3888,10 +3888,10 @@ export class ConversionService extends ApiService {
         if (regExLink.exec(splitArr[1])) {
             // ... link with &lt;a&gt; tag
             linkRegArr &#x3D; regExLink.exec(splitArr[1]);
-            outStr &#x3D; &#x27;&lt;a target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; &#x27; + linkRegArr[1] + &#x27;&gt;&#x27; + labelStr + &#x27;&lt;/a&gt;&#x27;;
+            outStr &#x3D; &#x27;&lt;a &#x27; + linkRegArr[1] + &#x27;&gt;&#x27; + labelStr + &#x27;&lt;/a&gt;&#x27;;
         } else if (labelStr !&#x3D;&#x3D; &#x27;DOI&#x27;) {
             // ... &lt;a&gt; tag is missing, add it
-            outStr &#x3D; &#x27;&lt;a target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot; href&#x3D;&quot;&#x27; + splitArr[1] + &#x27;&quot;&gt;&#x27; + labelStr + &#x27;&lt;/a&gt;&#x27;;
+            outStr &#x3D; &#x27;&lt;a href&#x3D;&quot;&#x27; + splitArr[1] + &#x27;&quot;&gt;&#x27; + labelStr + &#x27;&lt;/a&gt;&#x27;;
         } else {
             // no links, pure string
             outStr &#x3D; labelStr + &#x27;: &#x27; + splitArr[1];

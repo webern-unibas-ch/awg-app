@@ -144,18 +144,16 @@ showing contact information and an Open Street Map (OSM).</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_osmEmbedUrl">_osmEmbedUrl</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_osmLinkUrl">_osmLinkUrl</a>
-                            </li>
-                            <li>
                                 <a href="#contactInfoHeader">contactInfoHeader</a>
                             </li>
                             <li>
                                 <a href="#contactMetaData">contactMetaData</a>
+                            </li>
+                            <li>
+                                <a href="#osmEmbedUrl">osmEmbedUrl</a>
+                            </li>
+                            <li>
+                                <a href="#osmLinkUrl">osmLinkUrl</a>
                             </li>
                             <li>
                                 <a href="#pageMetaData">pageMetaData</a>
@@ -179,6 +177,7 @@ showing contact information and an Open Street Map (OSM).</p>
                                 <a href="#provideMetaData">provideMetaData</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#sanitizeUrls">sanitizeUrls</a>
                             </li>
                         </ul>
@@ -189,23 +188,6 @@ showing contact information and an Open Street Map (OSM).</p>
 
 
 
-                    <tr>
-                        <td class="col-md-4">
-                            <h6><b>Accessors</b></h6>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <ul class="index-list">
-                                <li>
-                                    <a href="#osmEmbedUrl">osmEmbedUrl</a>
-                                </li>
-                                <li>
-                                    <a href="#osmLinkUrl">osmLinkUrl</a>
-                                </li>
-                            </ul>
-                        </td>
-                    </tr>
         </tbody>
     </table>
 </section>
@@ -221,7 +203,7 @@ showing contact information and an Open Street Map (OSM).</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:54</a></div>
                             </td>
                         </tr>
 
@@ -315,8 +297,8 @@ to get the meta data and a private DomSanitizer instance.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="73"
+                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:73</a></div>
                 </td>
             </tr>
 
@@ -358,8 +340,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="114"
-                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:114</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:86</a></div>
                 </td>
             </tr>
 
@@ -392,6 +374,7 @@ the meta data for the contact-info.</p>
                     <a name="sanitizeUrls"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Private</span>
                             sanitizeUrls
                         </b>
                         <a href="#sanitizeUrls"><span class="icon ion-ios-link"></span></a>
@@ -400,24 +383,24 @@ the meta data for the contact-info.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>sanitizeUrls()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>sanitizeUrls()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="128"
-                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:128</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:99</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: sanitizeUrls.</p>
-<p>It sanitizes the URLs and links
-for the OpenStreetMap
+                    <div class="io-description"><p>Private method: sanitizeUrls.</p>
+<p>It sanitizes the URLs and links for the OpenStreetMap
 using the Angular DomSanitizer.</p>
 </div>
 
@@ -441,76 +424,6 @@ using the Angular DomSanitizer.</p>
         <h3 id="inputs">
             Properties
         </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="_osmEmbedUrl"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            _osmEmbedUrl</b>
-                            <a href="#_osmEmbedUrl"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://angular.io/api/platform-browser/SafeResourceUrl" target="_blank" >SafeResourceUrl</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:47</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: _osmEmbedUrl.</p>
-<p>It keeps the sanitized link to embed the OSM map.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="_osmLinkUrl"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            _osmLinkUrl</b>
-                            <a href="#_osmLinkUrl"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://angular.io/api/platform-browser/SafeResourceUrl" target="_blank" >SafeResourceUrl</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:54</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: _osmLinkUrl.</p>
-<p>It keeps the sanitized link to the OSM page.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
         <table class="table table-sm table-bordered">
             <tbody>
                 <tr>
@@ -588,6 +501,74 @@ using the Angular DomSanitizer.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="osmEmbedUrl"></a>
+                        <span class="name">
+                            <b>
+                            osmEmbedUrl</b>
+                            <a href="#osmEmbedUrl"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/platform-browser/SafeResourceUrl" target="_blank" >SafeResourceUrl</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:47</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: osmEmbedUrl.</p>
+<p>It keeps the sanitized link to embed the OSM map.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="osmLinkUrl"></a>
+                        <span class="name">
+                            <b>
+                            osmLinkUrl</b>
+                            <a href="#osmLinkUrl"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:54</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Public variable: osmLinkUrl.</p>
+<p>It keeps the sanitized link to the OSM page.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="pageMetaData"></a>
                         <span class="name">
                             <b>
@@ -620,164 +601,11 @@ using the Angular DomSanitizer.</p>
         </table>
 </section>
 
-    <section>
-    <h3 id="accessors">
-        Accessors
-    </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="osmEmbedUrl"></a>
-                        <span class="name"><b>osmEmbedUrl</b><a href="#osmEmbedUrl"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>osmEmbedUrl()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="59" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:59</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Getter for the sanitized OSM embed link.</p>
-</div>
-
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>osmEmbedUrl(url)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="66" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:66</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Setter for the sanitized OSM embed link.</p>
-</div>
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                            <td>url</td>
-                                                    
-                                                    
-                                                        <td>
-                                                                No
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="osmLinkUrl"></a>
-                        <span class="name"><b>osmLinkUrl</b><a href="#osmLinkUrl"><span class="icon ion-ios-link"></span></a></span>
-                    </td>
-                </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>get</b><code>osmLinkUrl()</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:73</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Getter for the sanitized OSM external link.</p>
-</div>
-
-                        </td>
-                    </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <span class="accessor"><b>set</b><code>osmLinkUrl(url)</code></span>
-                    </td>
-                </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:80</a></div>
-                                </td>
-                            </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-description"><p>Setter for the sanitized OSM external link.</p>
-</div>
-
-                                <div class="io-description">
-                                        <b>Parameters :</b>
-                                        <table class="params">
-                                            <thead>
-                                                <tr>
-                                                    <td>Name</td>
-                                                    <td>Optional</td>
-                                                </tr>
-                                            </thead>
-                                            <tbody>
-                                                    <tr>
-                                                            <td>url</td>
-                                                    
-                                                    
-                                                        <td>
-                                                                No
-                                                        </td>
-                                                        
-                                                    </tr>
-                                            </tbody>
-                                        </table>
-                                </div>
-                                <div>
-                                </div>
-                                <div class="io-description">
-                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                                </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-</section>
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit, SecurityContext } from &#x27;@angular/core&#x27;;
 import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 
 import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
@@ -819,46 +647,18 @@ export class ContactInfoComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Private variable: _osmEmbedUrl.
+     * Public variable: osmEmbedUrl.
      *
      * It keeps the sanitized link to embed the OSM map.
      */
-    private _osmEmbedUrl: SafeResourceUrl;
+    osmEmbedUrl: SafeResourceUrl;
 
     /**
-     * Private variable: _osmLinkUrl.
+     * Public variable: osmLinkUrl.
      *
      * It keeps the sanitized link to the OSM page.
      */
-    private _osmLinkUrl: SafeResourceUrl;
-
-    /**
-     * Getter for the sanitized OSM embed link.
-     */
-    get osmEmbedUrl() {
-        return this._osmEmbedUrl;
-    }
-
-    /**
-     * Setter for the sanitized OSM embed link.
-     */
-    set osmEmbedUrl(url: SafeResourceUrl) {
-        this._osmEmbedUrl &#x3D; url;
-    }
-
-    /**
-     * Getter for the sanitized OSM external link.
-     */
-    get osmLinkUrl() {
-        return this._osmLinkUrl;
-    }
-
-    /**
-     * Setter for the sanitized OSM external link.
-     */
-    set osmLinkUrl(url: SafeResourceUrl) {
-        this._osmLinkUrl &#x3D; url;
-    }
+    osmLinkUrl: string;
 
     /**
      * Constructor of the ContactInfoComponent.
@@ -896,17 +696,16 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Public method: sanitizeUrls.
+     * Private method: sanitizeUrls.
      *
-     * It sanitizes the URLs and links
-     * for the OpenStreetMap
+     * It sanitizes the URLs and links for the OpenStreetMap
      * using the Angular DomSanitizer.
      *
      * @returns {void} Sanitizes the URLs.
      */
-    sanitizeUrls(): void {
+    private sanitizeUrls(): void {
         this.osmEmbedUrl &#x3D; this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
-        this.osmLinkUrl &#x3D; this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_LINK_URL);
+        this.osmLinkUrl &#x3D; this.sanitizer.sanitize(SecurityContext.URL, AppConfig.UNSAFE_OSM_LINK_URL);
     }
 }
 </code></pre>
@@ -958,7 +757,7 @@ export class ContactInfoComponent implements OnInit {
 <script>
         var COMPONENT_TEMPLATE = '<div><!-- sideinfo: contact --><div class="card">    <div class="card-body bg-light">        <h5 id="awg-contact-info-header" class="mb-3">{{ contactInfoHeader }}</h5>        <awg-address [pageMetaData]="pageMetaData" [contactMetaData]="contactMetaData"></awg-address>        <awg-open-street-map [osmEmbedUrl]="osmEmbedUrl" [osmLinkUrl]="osmLinkUrl"></awg-open-street-map>    </div></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
-    var DIRECTIVES = [{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
+    var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ContactInfoComponent'};
 </script>
 <script src="../js/tree.js"></script>

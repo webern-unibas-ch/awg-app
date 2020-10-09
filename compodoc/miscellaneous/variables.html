@@ -71,9 +71,6 @@
                             <a href="#BUTTON_CLICK_EVENTS" title="src/testing/click-helper.ts"><b>BUTTON_CLICK_EVENTS</b>&nbsp;&nbsp;&nbsp;(src/.../click-helper.ts)</a>
                         </li>
                         <li>
-                            <a href="#context" title="src/test.ts"><b>context</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
-                        </li>
-                        <li>
                             <a href="#currentId" title="src/app/shared/compile-html/compile-html.component.ts"><b>currentId</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
                         </li>
                         <li>
@@ -147,9 +144,6 @@
                         </li>
                         <li>
                             <a href="#rdfstore" title="src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts"><b>rdfstore</b>&nbsp;&nbsp;&nbsp;(src/.../graph-visualizer.service.ts)</a>
-                        </li>
-                        <li>
-                            <a href="#require" title="src/test.ts"><b>require</b>&nbsp;&nbsp;&nbsp;(src/.../test.ts)</a>
                         </li>
                         <li>
                             <a href="#reverse" title="src/app/shared/compile-html/compile-html.component.ts"><b>reverse</b>&nbsp;&nbsp;&nbsp;(src/.../compile-html.component.ts)</a>
@@ -261,7 +255,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;0.7.5&#x27;</code>
+                            <i>Default value : </i><code>&#x27;0.7.6&#x27;</code>
                         </td>
                     </tr>
 
@@ -294,7 +288,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;28. August 2020&#x27;</code>
+                            <i>Default value : </i><code>&#x27;09. Oktober 2020&#x27;</code>
                         </td>
                     </tr>
 
@@ -345,52 +339,6 @@
 </div>
                     </td>
                 </tr>
-
-            </tbody>
-        </table>
-</section>
-    <h3>src/test.ts</h3>
-    <section>
-    <h3></h3>        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="context"></a>
-                        <span class="name">
-                            <b>
-                            context</b>
-                            <a href="#context"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>require.context(&#x27;./&#x27;, true, /\.spec\.ts$/)</code>
-                        </td>
-                    </tr>
-
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="require"></a>
-                        <span class="name">
-                            <b>
-                            require</b>
-                            <a href="#require"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
-                        </td>
-                    </tr>
-
 
             </tbody>
         </table>
@@ -2313,10 +2261,10 @@ from the Salsah API.</p>
     hintEditionGraph:
         &#x27;&lt;p&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
-        &#x27;        &lt;i&gt;RDF Triples&lt;/i&gt;: Das Resource Description Framework (&lt;i&gt;RDF&lt;/i&gt;) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form &lt;i&gt;&amp;lt;SUBJEKT&amp;gt; &amp;lt;PRÄDIKAT&amp;gt; &amp;lt;OBJEKT&amp;gt;&lt;/i&gt;, die auch als &lt;i&gt;Triple&lt;/i&gt; bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt &lt;i&gt;RDF Triples&lt;/i&gt; sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;https://www.w3.org/RDF/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
-        &#x27;        &lt;i&gt;SPARQL Abfrage&lt;/i&gt;: Die SPARQL Protocol And RDF Query Language (&lt;i&gt;SPARQL&lt;/i&gt;) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des &lt;i&gt;graph pattern matching&lt;/i&gt; der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt &lt;i&gt;SPARQL Abfrage&lt;/i&gt; lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;https://www.w3.org/TR/sparql11-query/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;i&gt;RDF Triples&lt;/i&gt;: Das Resource Description Framework (&lt;i&gt;RDF&lt;/i&gt;) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form &lt;i&gt;&amp;lt;SUBJEKT&amp;gt; &amp;lt;PRÄDIKAT&amp;gt; &amp;lt;OBJEKT&amp;gt;&lt;/i&gt;, die auch als &lt;i&gt;Triple&lt;/i&gt; bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt &lt;i&gt;RDF Triples&lt;/i&gt; sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot;&gt;https://www.w3.org/RDF/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;i&gt;SPARQL Abfrage&lt;/i&gt;: Die SPARQL Protocol And RDF Query Language (&lt;i&gt;SPARQL&lt;/i&gt;) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des &lt;i&gt;graph pattern matching&lt;/i&gt; der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt &lt;i&gt;SPARQL Abfrage&lt;/i&gt; lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot;&gt;https://www.w3.org/TR/sparql11-query/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
         &#x27;\n&#x27; +
-        &#x27;        &lt;i&gt;Resultat&lt;/i&gt;: Der durch die &lt;i&gt;SPARQL Abfrage&lt;/i&gt; über die &lt;i&gt;RDF Triples&lt;/i&gt; zurückgelieferte Datensatz wird unter dem Punkt &lt;i&gt;Resultat&lt;/i&gt; als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek &lt;a href&#x3D;&quot;https://d3js.org/&quot; target&#x3D;&quot;_blank&quot; rel&#x3D;&quot;noopener noreferrer&quot;&gt;d3.js&lt;/a&gt; visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch &quot;Ziehen&quot; mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;i&gt;Resultat&lt;/i&gt;: Der durch die &lt;i&gt;SPARQL Abfrage&lt;/i&gt; über die &lt;i&gt;RDF Triples&lt;/i&gt; zurückgelieferte Datensatz wird unter dem Punkt &lt;i&gt;Resultat&lt;/i&gt; als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek &lt;a href&#x3D;&quot;https://d3js.org/&quot;&gt;d3.js&lt;/a&gt; visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch &quot;Ziehen&quot; mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.&lt;br /&gt;\n&#x27; +
         &#x27;    &lt;/p&gt;&#x27;
 }</code>
                         </td>
