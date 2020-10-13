@@ -1,14 +1,16 @@
 name: CI Tests
 
 on:
-    push:
+    workflow_run:
+        workflows: ['CodeQL']
         branches:
             - '**'
-            - '!master' # do not run on master
         tags-ignore:
             - '*'
         paths-ignore:
-            - '**.md' # ignore changes to markdown files
+            - '**.md'
+        types:
+            - completed
 
 jobs:
     test:
