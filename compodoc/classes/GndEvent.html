@@ -426,10 +426,27 @@ export class GndService extends StorageService {
      * @return {void} Sends the postMessage to the parent window.
      */
     private exposeGndMessageToParent(value: string): void {
-        const parentTargets &#x3D; [AppConfig.LOCALHOST_URL, AppConfig.INSERI_TEST_URL];
+        const localTarget &#x3D; AppConfig.LOCALHOST_URL;
+        const nieTarget &#x3D; AppConfig.INSERI_TEST_URL;
+        const parentTargets &#x3D; [localTarget, nieTarget];
+        const LOCAL_DOMAINS &#x3D; [&#x27;localhost&#x27;, &#x27;127.0.0.1&#x27;, &#x27;&#x27;];
 
-        for (const target of parentTargets) {
-            window.parent.window.postMessage({ gnd: value }, target);
+        if (window.location !&#x3D;&#x3D; window.parent.location || window.self !&#x3D;&#x3D; window.top) {
+            /*
+             * the page is running in an iFrame,
+             * posting will be only allowed to localhost (develop) or NIE-INE (production)
+             */
+            for (const target of parentTargets) {
+                window.parent.window.postMessage({ gnd: value }, target);
+            }
+        } else {
+            /*
+             * the page is not running in an iFrame,
+             * posting will be only allowed from and to localhost
+             */
+            if (LOCAL_DOMAINS.includes(window.location.hostname)) {
+                window.postMessage({ gnd: value }, localTarget);
+            }
         }
     }
 
