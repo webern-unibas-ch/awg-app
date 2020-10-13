@@ -5,6 +5,10 @@ on:
         workflows: ['CodeQL']
         branches:
             - '**'
+        tags-ignore:
+            - '*'
+        paths-ignore:
+            - '**.md' # ignore changes to markdown files
         types:
             - completed
 
