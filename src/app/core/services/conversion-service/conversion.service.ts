@@ -863,8 +863,11 @@ export class ConversionService extends ApiService {
         if (!str) {
             return;
         }
-        const regNum = /\d{4,8}/; // regexp for object id (4-8 DIGITS)
-        const regLink = /<a href="(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})" class="salsah-link">(.*?)<\/a>/i; // regexp for salsah links
+        const regNum = /\d{3,}/; // regexp for object id (3 or more DIGITS)
+        const regLink = new RegExp(
+            '<a href="((http:\\/\\/www.|https:\\/\\/www.|http:\\/\\/|https:\\/\\/)?salsah.org/api/resources/\\d{3,})" class="salsah-link">(.*?)</a>',
+            'i'
+        ); // regexp for salsah links
         let regArr: RegExpExecArray;
 
         // check for salsah links in str
@@ -876,12 +879,12 @@ export class ConversionService extends ApiService {
             const resId = regNum.exec(regArr[1])[0];
 
             // replace href attribute with click-directive
-            // linktext is stored in second regexp-result regArr[2]
+            // linktext is stored in last regexp-result regArr[regArr.length-1]
             const replaceValue =
                 '<a (click)="ref.navigateToResource(\'' +
                 resId +
                 '\'); $event.stopPropagation()">' +
-                regArr[2] +
+                regArr[regArr.length - 1] +
                 '</a>';
             str = str.replace(regArr[0], replaceValue);
         } // END while
