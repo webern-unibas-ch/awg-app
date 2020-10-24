@@ -23,7 +23,7 @@ export class AppConfig {
      * @returns {string}
      */
     public static get ANALYTICS_ENDPOINT(): string {
-        return 'https://www.google-analytics.com/';
+        return 'https://www.googletagmanager.com/gtag/js';
     }
 
     /**

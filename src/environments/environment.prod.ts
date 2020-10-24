@@ -6,5 +6,6 @@
  * The list of file replacements can be found in `angular.json`.
  */
 export const environment = {
-    production: true
+    production: true,
+    GA_SEND_PAGE_VIEW: true
 };
