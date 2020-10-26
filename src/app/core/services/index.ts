@@ -14,7 +14,6 @@ import { CoreService } from './core-service';
 import { DataStreamerService } from './data-streamer-service';
 import { GndService } from './gnd-service';
 import { LoadingService } from './loading-service';
-import { RouterEventsService } from './router-events-service';
 import { SideInfoService } from './side-info-service';
 import { StorageService } from './storage-service';
 
@@ -26,7 +25,6 @@ export {
     DataStreamerService,
     GndService,
     LoadingService,
-    RouterEventsService,
     SideInfoService,
     StorageService
 };

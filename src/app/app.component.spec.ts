@@ -1,20 +1,20 @@
 /* tslint:disable:no-unused-variable */
-import { TestBed, async, ComponentFixture } from '@angular/core/testing';
-import { Component, DebugElement } from '@angular/core';
-import { NavigationEnd, Router } from '@angular/router';
+import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { Component, DebugElement, NgZone } from '@angular/core';
+import { NavigationEnd, Router, Routes } from '@angular/router';
 
 import { of as observableOf } from 'rxjs';
 
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { expectSpyCall, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+import { RouterStub } from '@testing/router-stubs';
 
-import { RouterEventsService } from '@awg-core/services';
+import { AnalyticsService } from '@awg-core/services';
 import { AppComponent } from './app.component';
-
-// analytics global
-(window as any).ga = () => {};
+import { Test } from 'tslint';
+import { RouterTestingModule } from '@angular/router/testing';
 
 // mock components
 @Component({ selector: 'awg-navbar', template: '' })
@@ -26,12 +26,23 @@ class ViewContainerStubComponent {}
 @Component({ selector: 'awg-footer', template: '' })
 class FooterStubComponent {}
 
-class MockRouter {
-    // Router
-    events = observableOf(new NavigationEnd(0, 'testUrl', 'testUrl'), [0, 0], 'testString');
-}
+@Component({
+    template: `test`
+})
+export class Test2MockComponent {}
 
-describe('AppComponent (DONE)', () => {
+@Component({
+    template: `test2`
+})
+export class TestMockComponent {}
+
+export const routes: Routes = [
+    { path: '', redirectTo: 'test', pathMatch: 'full' },
+    { path: 'test', component: TestMockComponent },
+    { path: 'test2', component: Test2MockComponent }
+];
+
+fdescribe('AppComponent (DONE)', () => {
     let component: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
     let compDe: DebugElement;
@@ -39,37 +50,50 @@ describe('AppComponent (DONE)', () => {
 
     let router: Router;
 
-    let getPreviousRouteSpy: Spy;
+    let initialzeAnalyticsSpy: Spy;
+    let trackpageViewSpy: Spy;
 
     beforeEach(async(() => {
-        // create a fake RouterEventsService object with a `getPreviousRoute` spy
-        const mockRouterEventsService = jasmine.createSpyObj('RouterEventsService', ['getPreviousRoute']);
-        // make the spies return a synchronous Observable with the test data
-        getPreviousRouteSpy = mockRouterEventsService.getPreviousRoute.and.returnValue(observableOf(''));
+        // create a fake AnalyticsService  with a `initializeAnalytics` and `trackPageView` spy
+        const mockAnalyticsService = jasmine.createSpyObj('AnalyticsService', ['initializeAnalytics', 'trackPageView']);
 
         TestBed.configureTestingModule({
-            declarations: [AppComponent, FooterStubComponent, NavbarStubComponent, ViewContainerStubComponent],
+            imports: [RouterTestingModule.withRoutes(routes)],
+            declarations: [
+                AppComponent,
+                FooterStubComponent,
+                NavbarStubComponent,
+                ViewContainerStubComponent,
+                TestMockComponent,
+                Test2MockComponent
+            ],
             providers: [
-                { provide: Router, useClass: MockRouter },
-                { provide: RouterEventsService, useValue: mockRouterEventsService }
+                // { provide: Router, useValue: RouterStub },
+                { provide: AnalyticsService, useValue: mockAnalyticsService }
             ]
         }).compileComponents();
+
+        // spies for service methods
+        initialzeAnalyticsSpy = mockAnalyticsService.initializeAnalytics.and.callThrough();
+        trackpageViewSpy = mockAnalyticsService.trackPageView.and.callThrough();
     }));
 
     beforeEach(() => {
-        // window spy object (GoogleAnalytics)
-        (window as any).ga = jasmine.createSpy('ga');
+        // window spy object (Analytics)
+        (window as any).gtag = jasmine.createSpy('gtag');
 
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        router = compDe.injector.get(Router);
+        router = TestBed.inject(Router);
+        router.initialNavigation();
     });
 
     afterEach(() => {
-        (window as any).ga = undefined;
+        // remove global function
+        (window as any).gtag = undefined;
     });
 
     afterAll(() => {
@@ -81,6 +105,32 @@ describe('AppComponent (DONE)', () => {
     }));
 
     describe('BEFORE initial data binding', () => {
+        describe('Analytics', () => {
+            it('... should call AnalyticsService to initialize Analytics', () => {
+                expectSpyCall(initialzeAnalyticsSpy, 1);
+            });
+
+            it('... should not call AnalyticsService to track page view without navigation', fakeAsync(() => {
+                expectSpyCall(trackpageViewSpy, 0);
+            }));
+
+            it('... should call AnalyticsService to track page view after navigation', fakeAsync(() => {
+                router.navigate(['']);
+                tick();
+                expectSpyCall(trackpageViewSpy, 1, '/test');
+            }));
+
+            it('... should call AnalyticsService to track page view after changed navigation', fakeAsync(() => {
+                router.navigate(['']);
+                tick();
+                expectSpyCall(trackpageViewSpy, 1, '/test');
+
+                router.navigate(['test2']);
+                tick();
+                expectSpyCall(trackpageViewSpy, 2, '/test2');
+            }));
+        });
+
         describe('VIEW', () => {
             it('... should contain one header component (stubbed)', () => {
                 getAndExpectDebugElementByDirective(compDe, NavbarStubComponent, 1, 1);
