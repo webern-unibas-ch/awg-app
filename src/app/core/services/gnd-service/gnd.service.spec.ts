@@ -21,6 +21,12 @@ describe('GndService', () => {
     let exposeGndMessageToParentSpy: Spy;
     let consoleSpy: Spy;
 
+    let mockStorage: {
+        getItem: (key: string) => string;
+        setItem: (key: string, value: string) => void;
+        removeItem: (key: string) => void;
+        clear: () => void;
+    };
     let mockConsole: { log: (message: string) => void; get: (index: number) => string; clear: () => void };
 
     const expectedGndKey = 'gnd';
@@ -53,7 +59,7 @@ describe('GndService', () => {
 
         // mock Storage
         let store = {};
-        const mockStorage = {
+        mockStorage = {
             getItem: (key: string): string => {
                 return key in store ? store[key] : null;
             },
@@ -83,7 +89,7 @@ describe('GndService', () => {
             }
         };
 
-        // spies replace storage calls with fake mockStorage calls
+        // replace storage calls with fake mockStorage calls
         spyOn(localStorage, 'getItem').and.callFake(mockStorage.getItem);
         spyOn(localStorage, 'setItem').and.callFake(mockStorage.setItem);
         spyOn(localStorage, 'removeItem').and.callFake(mockStorage.removeItem);
@@ -102,6 +108,7 @@ describe('GndService', () => {
         // clear storages after each test
         expectedSessionStorage.clear();
         expectedLocalStorage.clear();
+        mockStorage.clear();
         mockConsole.clear();
     });
 
@@ -111,6 +118,62 @@ describe('GndService', () => {
 
     it('should be created', () => {
         expect(gndService).toBeTruthy();
+    });
+
+    describe('... mock test objects (self-test)', () => {
+        it('... should use mock console', () => {
+            console.log('Test');
+
+            expect(mockConsole.get(0)).toBe('Test');
+        });
+
+        it('... should clear mock console after each run', () => {
+            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+        });
+
+        it('... should use mock storage', () => {
+            localStorage.setItem('testkey', 'testvalue');
+
+            expect(mockStorage.getItem('testkey')).toEqual('testvalue', `should be 'testvalue'`);
+        });
+
+        it('... should set and get an item', () => {
+            mockStorage.setItem('testkey', 'testvalue');
+
+            expect(mockStorage.getItem('testkey')).toEqual('testvalue', `should be 'testvalue'`);
+        });
+
+        it('... should remove an item', () => {
+            mockStorage.setItem('testkey', 'testvalue');
+
+            expect(mockStorage.getItem('testkey')).toEqual('testvalue', `should be 'testvalue'`);
+
+            mockStorage.removeItem('testkey');
+
+            expect(mockStorage.getItem('testkey')).toBeNull(`should be null`);
+        });
+
+        it('... should remove the correct item', () => {
+            mockStorage.setItem('testkey', 'testvalue');
+            mockStorage.setItem('testkey2', 'testvalue2');
+
+            expect(mockStorage.getItem('testkey')).toEqual('testvalue', `should be 'testvalue'`);
+            expect(mockStorage.getItem('testkey2')).toEqual('testvalue2', `should be 'testvalue2'`);
+
+            mockStorage.removeItem('testkey');
+
+            expect(mockStorage.getItem('testkey')).toBeNull(`should be null`);
+            expect(mockStorage.getItem('testkey2')).toEqual('testvalue2', `should be 'testvalue2'`);
+
+            mockStorage.removeItem('testkey2');
+
+            expect(mockStorage.getItem('testkey')).toBeNull(`should be null`);
+            expect(mockStorage.getItem('testkey2')).toBeNull(`should be null`);
+        });
+
+        it('... should clear mock storage after each run', () => {
+            expect(mockStorage.getItem('testkey')).toBeNull(`should be undefined`);
+        });
     });
 
     it('should have gndKey', () => {
