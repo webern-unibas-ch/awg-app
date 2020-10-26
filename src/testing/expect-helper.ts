@@ -132,19 +132,21 @@ function expectDebugElement(
  * @returns {void} Throws the expectation statements.
  */
 export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecentValue?: any): void {
-    // spy has been called or not
+    // spy was called or not
     expectedTimes > 0 ? expect(spy).toHaveBeenCalled() : expect(spy).not.toHaveBeenCalled();
 
-    // spy has been called expected times
+    // spy was called expected times
     expect(spy).toHaveBeenCalledTimes(expectedTimes);
 
-    // spy has been called with value x
-    if (expectedMostRecentValue && Array.isArray(expectedMostRecentValue)) {
-        expectedMostRecentValue.forEach((value, index) => {
-            expectRecentSpyCall(spy, value, index);
-        });
-    } else if (expectedMostRecentValue) {
-        expectRecentSpyCall(spy, expectedMostRecentValue, 0);
+    // if spy was called, check if it was called with value x
+    if (expectedTimes > 0) {
+        if (expectedMostRecentValue && Array.isArray(expectedMostRecentValue)) {
+            expectedMostRecentValue.forEach((value, index) => {
+                expectRecentSpyCall(spy, value, index);
+            });
+        } else if (expectedMostRecentValue) {
+            expectRecentSpyCall(spy, expectedMostRecentValue, 0);
+        }
     }
 }
 

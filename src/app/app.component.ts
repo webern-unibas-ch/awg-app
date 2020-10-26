@@ -28,7 +28,7 @@ export class AppComponent {
         private analyticsService: AnalyticsService,
         private routerEventsService: RouterEventsService
     ) {
-        this.analyticsService.initAnalytics();
+        this.analyticsService.initializeAnalytics();
 
         this.router.events.subscribe(event => {
             if (event instanceof NavigationEnd) {
