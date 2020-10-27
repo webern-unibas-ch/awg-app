@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { TestBed, async, ComponentFixture, fakeAsync, tick } from '@angular/core/testing';
+import { TestBed, async, ComponentFixture } from '@angular/core/testing';
 import { Component, DebugElement, NgZone } from '@angular/core';
 import { Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
