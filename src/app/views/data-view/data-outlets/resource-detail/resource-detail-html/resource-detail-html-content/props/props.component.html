@@ -8,7 +8,7 @@
         <li class="awg-prop" *ngIf="(prop?.values)[0]">
             <!-- value label -->
             <strong class="awg-prop-label" *ngIf="prop?.label">
-                {{ setLabel(prop) }}
+                {{ prop?.label }}
             </strong>
             <!-- value content -->
             <ul *ngFor="let value of prop?.values">
