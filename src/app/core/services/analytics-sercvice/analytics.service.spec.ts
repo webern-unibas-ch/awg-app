@@ -143,7 +143,7 @@ describe('AnalyticsService', () => {
             expect((analyticsService as any).isInitialized).toBeFalse();
         });
 
-        it(`... should successfully initialize the analytics tracker with given endpoint and id`, () => {
+        it(`... should initialize the analytics tracker with given endpoint and id`, () => {
             (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
             (analyticsService as any).analyticsId = expectedAnalyticsId;
 
@@ -151,6 +151,46 @@ describe('AnalyticsService', () => {
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expect(analyticsService['isInitialized']).toBeTruthy();
+        });
+
+        it(`... should log a replacement message in develop mode`, () => {
+            expectSpyCall(consoleSpy, 0);
+            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+
+            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
+            (analyticsService as any).analyticsId = expectedAnalyticsId;
+            (analyticsService as any).sendPageView = false;
+
+            analyticsService.initializeAnalytics();
+
+            expectSpyCall(consoleSpy, 1, expectedLogMessage);
+            expect(mockConsole.get(0)).toBe(expectedLogMessage, `should be ${expectedLogMessage}`);
+        });
+
+        it(`... should not log a replacement message in production mode`, () => {
+            expectSpyCall(consoleSpy, 0);
+            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+
+            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
+            (analyticsService as any).analyticsId = expectedAnalyticsId;
+            (analyticsService as any).sendPageView = true;
+
+            analyticsService.initializeAnalytics();
+
+            expectSpyCall(consoleSpy, 0);
+            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+        });
+
+        it(`... should prepend analytics script in production mode`, () => {
+            const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript');
+
+            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
+            (analyticsService as any).analyticsId = expectedAnalyticsId;
+            (analyticsService as any).sendPageView = true;
+
+            analyticsService.initializeAnalytics();
+
+            expectSpyCall(scriptSpy, 1);
         });
     });
 
@@ -255,38 +295,6 @@ describe('AnalyticsService', () => {
 
             expect(mockAnalytics.getGtag(0)).toEqual(expectedAnalyticsEvent, `should be ${expectedAnalyticsEvent}`);
             expect(mockAnalytics.getGtag(1)).toEqual(otherAnalyticsEvent, `should be ${otherAnalyticsEvent}`);
-        });
-
-        it(`... should log a replacement message in develop mode`, () => {
-            expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
-
-            // init analytics
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            (analyticsService as any).sendPageView = false;
-            analyticsService.initializeAnalytics();
-
-            analyticsService.trackPageView(expectedPage);
-
-            expectSpyCall(consoleSpy, 1, expectedLogMessage);
-            expect(mockConsole.get(0)).toBe(expectedLogMessage, `should be ${expectedLogMessage}`);
-        });
-
-        it(`... should not log a replacement message in production mode`, () => {
-            expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
-
-            // init analytics
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            (analyticsService as any).sendPageView = true;
-            analyticsService.initializeAnalytics();
-
-            analyticsService.trackPageView(expectedPage);
-
-            expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
         });
     });
 });

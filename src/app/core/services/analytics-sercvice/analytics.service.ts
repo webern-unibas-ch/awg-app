@@ -69,7 +69,11 @@ export class AnalyticsService {
         if (!this.analyticsEndpoint || !this.analyticsId) {
             return;
         }
-        this.prependAnalyticsScript();
+        if (this.sendPageView === false) {
+            console.log('Running non-production analytics replacement now');
+        } else {
+            this.prependAnalyticsScript();
+        }
         this.isInitialized = true;
     }
 
@@ -85,10 +89,6 @@ export class AnalyticsService {
     trackPageView(page: string): void {
         if (!page || this.isInitialized !== true) {
             return;
-        }
-
-        if (this.sendPageView === false) {
-            console.log('Running non-production analytics replacement now');
         }
 
         gtag('config', this.analyticsId, {
