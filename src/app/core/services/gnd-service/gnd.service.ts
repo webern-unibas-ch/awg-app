@@ -71,6 +71,19 @@ export class GndService extends StorageService {
     readonly dnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i; // regexp for d-nb links
 
     /**
+     * Readonly variable: currentLocation.
+     *
+     * Helper function to spy on and set origin in tests.
+     * It returns the origin of the current location.
+     */
+    readonly currentLocation = {
+        getOrigin: (location: Location) => {
+            // console.info('got location', location);
+            return location.origin;
+        }
+    };
+
+    /**
      * Public variable: linkRegArr.
      *
      * It holds the result array of a regex check execution .
@@ -161,26 +174,15 @@ export class GndService extends StorageService {
      * @return {void} Sends the postMessage to the parent window.
      */
     private exposeGndMessageToParent(value: string): void {
+        const awgTarget = AppConfig.AWG_APP_URL;
+        const inseriTarget = AppConfig.INSERI_TEST_URL;
         const localTarget = AppConfig.LOCALHOST_URL;
-        const nieTarget = AppConfig.INSERI_TEST_URL;
-        const parentTargets = [localTarget, nieTarget];
-        const LOCAL_DOMAINS = ['localhost', '127.0.0.1', ''];
+        const targets = [awgTarget, inseriTarget, localTarget];
 
-        if (window.location !== window.parent.location || window.self !== window.top) {
-            /*
-             * the page is running in an iFrame,
-             * posting will be only allowed to localhost (develop) or NIE-INE (production)
-             */
-            for (const target of parentTargets) {
+        for (const target of targets) {
+            // check if parent location meets target
+            if (this.currentLocation.getOrigin(window.parent.location) === target) {
                 window.parent.window.postMessage({ gnd: value }, target);
-            }
-        } else {
-            /*
-             * the page is not running in an iFrame,
-             * posting will be only allowed from and to localhost
-             */
-            if (LOCAL_DOMAINS.includes(window.location.hostname)) {
-                window.postMessage({ gnd: value }, localTarget);
             }
         }
     }
