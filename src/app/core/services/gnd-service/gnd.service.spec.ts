@@ -5,10 +5,9 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 
+import { AppConfig } from '@awg-app/app.config';
 import { StorageType } from '@awg-core/services/storage-service';
 import { GndEvent, GndEventType, GndService } from './gnd.service';
-
-import { AppConfig } from '@awg-app/app.config';
 
 describe('GndService', () => {
     let gndService: GndService;
@@ -304,7 +303,6 @@ describe('GndService', () => {
                 gndService.exposeGnd(expectedSetEvent);
 
                 expectSpyCall(setGndToSessionStorageSpy, 1);
-                expectSpyCall(removeGndFromSessionStorageSpy, 0);
 
                 expect(expectedMockStorage.getItem(expectedGndKey)).toEqual(expectedItem, `should be ${expectedItem}`);
             });
@@ -313,26 +311,6 @@ describe('GndService', () => {
                 gndService.exposeGnd(expectedSetEvent);
 
                 expectSpyCall(exposeGndMessageToParentSpy, 1, expectedItem);
-            });
-
-            it('... should expose gnd to parent window if target meets parent location (awg)', () => {
-                // set current target to awg
-                const target = AppConfig.AWG_APP_URL;
-                const origin = target;
-
-                // spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
-                // spy on postMessage call
-                const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
-
-                gndService.exposeGnd(expectedSetEvent);
-
-                expectSpyCall(exposeGndMessageToParentSpy, 1, expectedItem);
-                expectSpyCall(postMessageSpy, 1, [{ gnd: expectedItem }, target]);
-                expect(mockWindow.get(0)).toEqual(
-                    [{ gnd: expectedItem }, target],
-                    `should be [{ gnd: ${expectedItem}, ${target}]]`
-                );
             });
 
             it('... should expose gnd to parent window if target meets parent location (inseri)', () => {
@@ -496,10 +474,10 @@ describe('GndService', () => {
 
         describe('... `remove`', () => {
             it('... should call removeGndFromSessionStorage method if given gndEvent type is `remove`', () => {
-                gndService.exposeGnd(expectedSetEvent);
+                gndService.exposeGnd(expectedRemoveEvent);
 
-                expectSpyCall(setGndToSessionStorageSpy, 1);
-                expectSpyCall(removeGndFromSessionStorageSpy, 0);
+                expectSpyCall(setGndToSessionStorageSpy, 0);
+                expectSpyCall(removeGndFromSessionStorageSpy, 1);
             });
 
             it('... should remove an item by key from the storage if given gndEvent type is `remove`', () => {
@@ -519,28 +497,8 @@ describe('GndService', () => {
                 expectSpyCall(exposeGndMessageToParentSpy, 1, null);
             });
 
-            it('... should expose null value to parent window if target meets parent location (awg)', () => {
-                // set current target to awg
-                const target = AppConfig.AWG_APP_URL;
-                const origin = target;
-
-                // spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
-                // spy on postMessage call
-                const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
-
-                gndService.exposeGnd(expectedRemoveEvent);
-
-                expectSpyCall(exposeGndMessageToParentSpy, 1, null);
-                expectSpyCall(postMessageSpy, 1, [{ gnd: null }, target]);
-                expect(mockWindow.get(0)).toEqual(
-                    [{ gnd: null }, target],
-                    `should be [{ gnd: ${expectedItem}, ${target}]]`
-                );
-            });
-
             it('... should expose null value to parent window if target meets parent location (inseri)', () => {
-                // set current target to awg
+                // set current target to inseri
                 const target = AppConfig.INSERI_TEST_URL;
                 const origin = target;
 
@@ -560,7 +518,7 @@ describe('GndService', () => {
             });
 
             it('... should expose null value to parent window if target meets parent location (localhost)', () => {
-                // set current target to awg
+                // set current target to localhost
                 const target = AppConfig.LOCALHOST_URL;
                 const origin = target;
 
