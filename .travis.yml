@@ -26,8 +26,8 @@ stages:
     - name: test
       if: tag IS blank # exclude tags from being tested
     # deploy stage
-    #- name: deploy # generally, only deploy if we are on 'master'
-    #  if: branch = master
+    #- name: deploy # generally, only deploy if we are on 'main'
+    #  if: branch = main
 
 jobs:
     include:
@@ -42,5 +42,5 @@ jobs:
         #- stage: deploy
         #  name: 'Deploy to gh-pages'
         #  script:
-        #      # run deploy script (only on master, see stages)
+        #      # run deploy script (only on main, see stages)
         #      - yarn run deploy:ci
