@@ -27,11 +27,11 @@ Please note that this project is released with a [Code of Conduct](CODE_OF_CONDU
 
 This project uses the [Gitflow Workflow](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow) which defines a strict branching model designed around the project releases. Therefore the following branch structure is used
 
--   `master` (stores the official release history; all commits are tagged with a version number)
+-   `main` (stores the official release history; all commits are tagged with a version number)
 -   `develop` (serves as an integration branch for features; gets released into `release/xxx`)
--   `feature/XXX` (main branch for developing new features; gets branched from and merged into `develop`, never interacts with `master`)
--   `release/xxx` (used to prepare a release with latest features from `develop`; gets merged into `master`)
--   `hotfix/xxx` (used to quickly patch production releases; forked from and merged directly into `master`)
+-   `feature/XXX` (main branch for developing new features; gets branched from and merged into `develop`, never interacts with `main`)
+-   `release/xxx` (used to prepare a release with latest features from `develop`; gets merged into `main`)
+-   `hotfix/xxx` (used to quickly patch production releases; forked from and merged directly into `main`)
 
 To initialize the GitFlow workflow execute `git flow init` inside your local copy of the repository.
 
@@ -43,7 +43,7 @@ For more information about pull requests go check out the GitHub Help [About pul
 
 This project follows the [Conventional Commits Specification](https://conventionalcommits.org) using [commitlint](https://conventional-changelog.github.io/commitlint/#/) based on the [Angular configuration](https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular) (further explanation can be found in the [Angular commit-message-guidelines](https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines)).
 
-Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/master/LICENSE.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version) (see "Release Versioning Convention" section below).
+Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version) (see "Release Versioning Convention" section below).
 
 When writing commit messages, we stick to this schema:
 
@@ -90,7 +90,7 @@ feat(edition): add route for resource creation
 
 ### Release Versioning Convention
 
-We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/master/CHANGELOG.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version).
+We use the git commit messages to autogenerate the [CHANGELOG](https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md) and automate versions by means of [standard-version](https://github.com/conventional-changelog/standard-version).
 
 ## Angular quick start guide
 

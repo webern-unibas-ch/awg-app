@@ -5,14 +5,14 @@ on:
         workflows: ['CI Tests']
         types:
             - completed
-        branches: [master] # generally, only deploy on 'master'
+        branches: [main] # generally, only deploy on 'main'
 
 jobs:
     deploy:
         name: Deploy app (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
-        # run only on master
-        if: github.ref == 'refs/heads/master'
+        # run only on main
+        if: github.ref == 'refs/heads/main'
 
         strategy:
             matrix:
