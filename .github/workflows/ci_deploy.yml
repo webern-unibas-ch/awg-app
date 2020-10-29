@@ -1,16 +1,19 @@
-name: Deployment
+name: CI Deployment
 
 on:
     workflow_run:
         workflows: ['CI Tests']
-        branches: [master] # generally, only deploy on 'master'
         types:
             - completed
+        branches: [master] # generally, only deploy on 'master'
 
 jobs:
-    build:
+    deploy:
         name: Deploy app (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
+        # run only on master
+        if: github.ref == 'refs/heads/master'
+
         strategy:
             matrix:
                 os: [ubuntu-latest]
