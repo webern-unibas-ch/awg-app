@@ -865,7 +865,7 @@ export class ConversionService extends ApiService {
         }
         const regNum = /\d{3,}/; // regexp for object id (3 or more DIGITS)
         const regLink = new RegExp(
-            '<a href="((http:\\/\\/www.|https:\\/\\/www.|http:\\/\\/|https:\\/\\/)?salsah\\.org/api/resources/\\d{3,})" class="salsah-link">(.*?)</a>',
+            '<a href="((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/\\d{3,})" class="salsah-link">(.*?)</a>',
             'i'
         ); // regexp for salsah links
         let regArr: RegExpExecArray;
