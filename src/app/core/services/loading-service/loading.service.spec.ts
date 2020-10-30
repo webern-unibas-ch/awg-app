@@ -33,30 +33,35 @@ describe('LoadingService', () => {
 
         it(`... should return updated value`, done => {
             // init status
-            let loading = false;
+            let loadingStatus = false;
 
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loading);
+                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
 
             // update status
-            loading = true;
-            loadingService.updateLoadingStatus(loading);
+            loadingStatus = true;
+            loadingService.updateLoadingStatus(loadingStatus);
         });
     });
     describe('#updateLoadingStatus', () => {
-        it(`... should emit loading status to isLoadingSubject`, done => {
+        it(`... should emit updated loading status`, done => {
             // init status
-            let loading = false;
+            let loadingStatus = false;
 
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loading);
+                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
+
             // update status
-            loading = true;
-            loadingService.updateLoadingStatus(loading);
+            loadingStatus = true;
+            loadingService.updateLoadingStatus(loadingStatus);
+
+            // update status
+            loadingStatus = false;
+            loadingService.updateLoadingStatus(loadingStatus);
         });
     });
 });
