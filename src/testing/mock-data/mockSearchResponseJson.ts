@@ -9,7 +9,14 @@
 export const mockSearchResponseJson = {
     status: 0,
     userdata: {
-        lang: 'en'
+        lang: 'en',
+        email: undefined,
+        givenName: undefined,
+        familyName: undefined,
+        password: undefined,
+        status: undefined,
+        token: undefined,
+        user_id: undefined
     },
     nhits: '5',
     paging: [
@@ -27,6 +34,9 @@ export const mockSearchResponseJson = {
             obj_id: '2516682',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            preview_nx: undefined,
+            preview_ny: undefined,
+            rights: undefined,
             value: ['Auer 2017'],
             valuelabel: ['Kurztitel'],
             valuetype_id: ['1']
@@ -38,6 +48,9 @@ export const mockSearchResponseJson = {
             obj_id: '2233403',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            preview_nx: undefined,
+            preview_ny: undefined,
+            rights: undefined,
             value: ['Nelson 1974'],
             valuelabel: ['Kurztitel'],
             valuetype_id: ['1']
@@ -49,6 +62,9 @@ export const mockSearchResponseJson = {
             obj_id: '2430568',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            preview_nx: undefined,
+            preview_ny: undefined,
+            rights: undefined,
             value: ['BrownJ 2014'],
             valuelabel: ['Kurztitel'],
             valuetype_id: ['1']
@@ -60,6 +76,9 @@ export const mockSearchResponseJson = {
             obj_id: '2225189',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            preview_nx: undefined,
+            preview_ny: undefined,
+            rights: undefined,
             value: ['Oliveira Sampaio 2000'],
             valuelabel: ['Kurztitel'],
             valuetype_id: ['1']
@@ -71,6 +90,9 @@ export const mockSearchResponseJson = {
             obj_id: '2225189',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            preview_nx: undefined,
+            preview_ny: undefined,
+            rights: undefined,
             value: ['Oliveira Sampaio 2000'],
             valuelabel: ['Kurztitel'],
             valuetype_id: ['1']
