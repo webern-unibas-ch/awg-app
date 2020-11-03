@@ -5,7 +5,7 @@ import { mockLocalStorage, mockSessionStorage } from '@testing/mock-helper';
 
 import { StorageService, StorageType } from './storage.service';
 
-describe('StorageService', () => {
+describe('StorageService (DONE)', () => {
     let storageService: StorageService;
 
     const sessionType = StorageType.sessionStorage;

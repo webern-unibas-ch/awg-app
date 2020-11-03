@@ -8,7 +8,7 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { DataStreamerService } from './data-streamer.service';
 
-describe('DataStreamerService', () => {
+describe('DataStreamerService (DONE)', () => {
     let dataStreamerService: DataStreamerService;
 
     beforeEach(() => {

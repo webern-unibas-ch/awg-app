@@ -5,7 +5,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { SideInfoService } from './side-info.service';
 import { SearchInfo } from '@awg-side-info/side-info-models';
 
-describe('SideInfoService', () => {
+describe('SideInfoService (DONE)', () => {
     let sideInfoService: SideInfoService;
 
     beforeEach(() => {

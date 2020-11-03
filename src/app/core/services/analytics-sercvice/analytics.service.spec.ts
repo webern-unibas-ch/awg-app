@@ -8,7 +8,7 @@ import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
 import { AnalyticsService } from './analytics.service';
 
-describe('AnalyticsService', () => {
+describe('AnalyticsService (DONE)', () => {
     let analyticsService: AnalyticsService;
 
     let gtagSpy: Spy;

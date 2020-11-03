@@ -4,7 +4,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { LoadingService } from './loading.service';
 
-describe('LoadingService', () => {
+describe('LoadingService (DONE)', () => {
     let loadingService: LoadingService;
 
     beforeEach(() => {

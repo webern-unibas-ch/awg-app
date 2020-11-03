@@ -11,24 +11,24 @@ import { AppConfig } from '@awg-app/app.config';
 import { StorageType } from '@awg-core/services/storage-service';
 import { GndEvent, GndEventType, GndService } from './gnd.service';
 
-fdescribe('GndService (DONE)', () => {
+describe('GndService (DONE)', () => {
     let gndService: GndService;
-
-    const sessionType = StorageType.sessionStorage;
-    const localType = StorageType.localStorage;
 
     let setGndToSessionStorageSpy: Spy;
     let removeGndFromSessionStorageSpy: Spy;
     let exposeGndMessageToParentSpy: Spy;
     let consoleSpy: Spy;
 
-    const expectedGndKey = 'gnd';
-    const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i;
+    const sessionType = StorageType.sessionStorage;
+    const localType = StorageType.localStorage;
 
     let mockStorage;
     let expectedStorage: Storage;
     const expectedLocalStorage: Storage = window[localType];
     const expectedSessionStorage: Storage = window[sessionType];
+
+    const expectedGndKey = 'gnd';
+    const expectedDnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i;
 
     const expectedGndEventValue = '<a href="http://d-nb.info/gnd/12345678-X">http://d-nb.info/gnd/12345678-X</a>';
     const expectedItem = '12345678-X';
