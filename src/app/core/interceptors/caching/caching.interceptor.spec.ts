@@ -20,7 +20,7 @@ import { getInterceptorInstance } from '@testing/interceptor-helper';
 import { mockCache, mockConsole } from '@testing/mock-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { HttpCacheService } from '@awg-views/data-view/services';
+import { HttpCacheService } from '@awg-core/services';
 
 import { CachingInterceptor } from './caching.interceptor';
 
