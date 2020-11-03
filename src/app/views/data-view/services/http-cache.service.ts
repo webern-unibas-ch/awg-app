@@ -43,7 +43,7 @@ export class HttpCacheService implements HttpCache {
      * It keeps the cachedResponses as `Map`s of a `string`
      * (i.e. an `HttpRequest.urlWithParams`) and an `HttpResponse`.
      */
-    private cachedResponses = new Map<string, HttpResponse<any>>();
+    private cachedResponses: Map<string, HttpResponse<any>> = new Map<string, HttpResponse<any>>();
 
     /**
      * Getter for a cached response.

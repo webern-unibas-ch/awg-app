@@ -156,7 +156,12 @@ describe('LoadingInterceptor (DONE)', () => {
         it(`... should call loadingService to update status for multiple HTTP requests and decrease pending requests`, done => {
             // spy on HTTP handler to handle another response
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
-            const expectedHttpResponse = new HttpResponse({ body: 'anotherResponse', url: expectedUrl });
+            const expectedHttpResponse = new HttpResponse({
+                status: 201,
+                statusText: 'Created',
+                body: 'anotherResponse',
+                url: expectedUrl
+            });
             httpHandlerSpy.handle.and.returnValue(observableOf(expectedHttpResponse));
 
             // expect an HTTP request

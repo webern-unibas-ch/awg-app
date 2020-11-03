@@ -4,6 +4,7 @@ import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
+import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
 import { AnalyticsService } from './analytics.service';
 
@@ -23,54 +24,12 @@ describe('AnalyticsService', () => {
 
     const expectedLogMessage = 'Running non-production analytics replacement now';
 
-    let mockConsole: { log: (message: string) => void; get: (index: number) => string; clear: () => void };
-    let mockAnalytics: {
-        gtag: (event: string, eventName: string, eventOptions: { [key: string]: string | boolean }) => void;
-        getGtag: (index: number) => [string, string, { [key: string]: string | boolean }];
-        clear: () => void;
-    };
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [AnalyticsService]
         });
         // inject service
         analyticsService = TestBed.inject(AnalyticsService);
-
-        // mock analytics object (to catch analytics events)
-        let analyticsStore = [];
-        mockAnalytics = {
-            gtag: (
-                event: string,
-                eventName: string,
-                eventOptions: { page_path: string; anonymize_ip: boolean; send_page_view: boolean }
-            ): void => {
-                analyticsStore.push([event, eventName, eventOptions]);
-            },
-            getGtag: (
-                index: number
-            ): [string, string, { page_path: string; anonymize_ip: boolean; send_page_view: boolean }] => {
-                return analyticsStore[index] || null;
-            },
-            clear: () => {
-                analyticsStore = [];
-            }
-        };
-
-        // mock Console (to catch console output)
-        let consoleArray = [];
-        mockConsole = {
-            log: (message: string) => {
-                consoleArray.push(message);
-            },
-            get: (index: number): string => {
-                return consoleArray[index];
-            },
-
-            clear: () => {
-                consoleArray = [];
-            }
-        };
 
         // set global gtag function
         (window as any).gtag = () => {};
@@ -98,7 +57,7 @@ describe('AnalyticsService', () => {
         expect(analyticsService).toBeTruthy();
     });
 
-    describe('... mock test objects (self-test)', () => {
+    describe('mock test objects (self-test)', () => {
         it('... should use mock console', () => {
             console.log('Test');
 

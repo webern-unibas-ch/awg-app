@@ -17,6 +17,7 @@ import Spy = jasmine.Spy;
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
 import { getInterceptorInstance } from '@testing/interceptor-helper';
+import { mockCache, mockConsole } from '@testing/mock-helper';
 
 import { AppConfig } from '@awg-app/app.config';
 import { HttpCacheService } from '@awg-views/data-view/services';
@@ -37,13 +38,6 @@ describe('CachingInterceptor (DONE)', () => {
 
     const apiUrl = AppConfig.API_ENDPOINT;
     const searchRoute = 'search/';
-
-    let mockCache: {
-        put: (req: HttpRequest<any>, resp: HttpResponse<any>) => void;
-        get: (req: HttpRequest<any>) => HttpResponse<any> | null;
-        clear: () => void;
-    };
-    let mockConsole: { log: (message: string) => void; get: (index: number) => string; clear: () => void };
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -68,35 +62,6 @@ describe('CachingInterceptor (DONE)', () => {
             TestBed.inject(HTTP_INTERCEPTORS),
             CachingInterceptor
         );
-
-        // mock cache (to catch cached responses)
-        let cachedResponses = new Map<string, HttpResponse<any>>();
-        mockCache = {
-            put(req: HttpRequest<any>, resp: HttpResponse<any>): void {
-                cachedResponses[req.urlWithParams] = resp.clone();
-            },
-            get(req: HttpRequest<any>): HttpResponse<any> {
-                return cachedResponses ? cachedResponses[req.urlWithParams] : null;
-            },
-            clear: () => {
-                cachedResponses = new Map<string, HttpResponse<any>>();
-            }
-        };
-
-        // mock Console (to catch console output)
-        let consoleArray = [];
-        mockConsole = {
-            log: (message: string) => {
-                consoleArray.push(message);
-            },
-            get: (index: number): string => {
-                return consoleArray[index];
-            },
-
-            clear: () => {
-                consoleArray = [];
-            }
-        };
 
         // spies on service functions
         interceptSpy = spyOn(cachingInterceptor, 'intercept').and.callThrough();
