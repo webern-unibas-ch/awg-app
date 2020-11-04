@@ -25,12 +25,14 @@ let cachedResponses: Map<string, HttpResponse<any>> = new Map<string, HttpRespon
  */
 export const mockCache: IMockCache = {
     put(req: HttpRequest<any>, resp: HttpResponse<any>): void {
-        cachedResponses[req.urlWithParams] = resp.clone();
+        cachedResponses.set(req.urlWithParams, resp.clone());
     },
-    get(req: HttpRequest<any>): HttpResponse<any> {
-        return cachedResponses ? cachedResponses[req.urlWithParams] : null;
+    get(req: HttpRequest<any>): HttpResponse<any> | null {
+        return cachedResponses && cachedResponses.has(req.urlWithParams)
+            ? cachedResponses.get(req.urlWithParams)
+            : null;
     },
-    clear: () => {
+    clear(): void {
         cachedResponses = new Map<string, HttpResponse<any>>();
     }
 };
