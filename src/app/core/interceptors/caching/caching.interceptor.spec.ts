@@ -75,6 +75,7 @@ describe('CachingInterceptor (DONE)', () => {
         httpTestingController.verify();
 
         // clear mock stores after each test
+        (httpCacheService as any).cachedResponses = new Map<string, HttpResponse<any>>();
         mockCache.clear();
         mockConsole.clear();
     });
@@ -135,17 +136,15 @@ describe('CachingInterceptor (DONE)', () => {
                     `should equal ${expectedResponse}`
                 );
                 // real service does not have created response
-                expect((httpCacheService as any).cachedResponses[expectedRequest.urlWithParams]).toBeUndefined(
-                    `should be undefined`
-                );
+                expect((httpCacheService as any).cachedResponses.has(expectedRequest.urlWithParams)).toBeFalse();
             })
         );
 
         it(
             '... should clear mock cache after each run',
             waitForAsync(() => {
-                expect(mockCache.get(expectedRequest)).toBeUndefined(`should be undefined`);
-                expect(httpCacheService.get(expectedRequest)).toBeUndefined(`should be undefined`);
+                expect(mockCache.get(expectedRequest)).toBeNull(`should be null`);
+                expect(httpCacheService.get(expectedRequest)).toBeNull(`should be null`);
             })
         );
 
@@ -243,7 +242,7 @@ describe('CachingInterceptor (DONE)', () => {
                     const expectedRequest = new HttpRequest('GET', expectedUrl);
 
                     // mock cache is empty
-                    expect(mockCache.get(expectedRequest)).toBeUndefined(`should be undefined`);
+                    expect(mockCache.get(expectedRequest)).toBeNull(`should be null`);
 
                     // subscribe to GET Http Request
                     const sub = httpClient.get<Data>(expectedUrl).subscribe(data => {
@@ -306,8 +305,8 @@ describe('CachingInterceptor (DONE)', () => {
                 waitForAsync(() => {
                     const expectedRequest = new HttpRequest('GET', expectedUrl);
 
-                    // return no cached response from cache
-                    expect(mockCache.get(expectedRequest)).toBeUndefined('should be undefined');
+                    // no cached response in cache
+                    expect(mockCache.get(expectedRequest)).toBeNull('should be null');
 
                     // subscribe to GET Http Request
                     httpClient.get<Data>(expectedUrl).subscribe(data => {
@@ -329,8 +328,8 @@ describe('CachingInterceptor (DONE)', () => {
 
                     // expect new cached response
                     expect(call.request).toEqual(expectedRequest);
-                    expect(httpCacheService.get(expectedRequest)).toBeDefined('should be defined');
-                    expect(httpCacheService.get(expectedRequest)).toEqual(
+                    expect(mockCache.get(expectedRequest)).toBeTruthy('should be truthy');
+                    expect(mockCache.get(expectedRequest)).toEqual(
                         expectedResponse,
                         `should equal ${expectedResponse}`
                     );
@@ -365,7 +364,7 @@ describe('CachingInterceptor (DONE)', () => {
                         url: expectedUrl
                     });
 
-                    // expectg spy calls
+                    // expecting spy calls
                     expectSpyCall(interceptSpy, 1, call.request);
                     expectSpyCall(cacheGetSpy, 1, call.request);
 
