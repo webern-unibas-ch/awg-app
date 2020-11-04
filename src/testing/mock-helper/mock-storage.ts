@@ -4,9 +4,24 @@
  * It represents a mocked storage object.
  */
 interface IMockStorage {
+    /**
+     * The getItem function of the mocked storage.
+     */
     getItem: (key: string) => string;
+
+    /**
+     * The setItem function of the mocked storage.
+     */
     setItem: (key: string, value: string) => void;
+
+    /**
+     * The removeItem function of the mocked storage.
+     */
     removeItem: (key: string) => void;
+
+    /**
+     * The clear function of the mocked storage.
+     */
     clear: () => void;
 }
 

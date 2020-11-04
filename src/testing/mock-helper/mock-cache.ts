@@ -6,8 +6,19 @@ import { HttpRequest, HttpResponse } from '@angular/common/http';
  * It represents a mocked cache.
  */
 interface IMockCache {
+    /**
+     * The put function of the mocked cache.
+     */
     put: (req: HttpRequest<any>, resp: HttpResponse<any>) => void;
+
+    /**
+     * The get function of the mocked cache.
+     */
     get: (req: HttpRequest<any>) => HttpResponse<any> | null;
+
+    /**
+     * The clear function of the mocked cache.
+     */
     clear: () => void;
 }
 

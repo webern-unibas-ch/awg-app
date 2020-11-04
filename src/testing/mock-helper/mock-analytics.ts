@@ -9,8 +9,19 @@ type analyticsType = [string, string, { page_path?: string; anonymize_ip?: boole
  * It represents a mocked analytics object.
  */
 interface IMockAnalytics {
+    /**
+     * The gtag function of the mocked analytics object.
+     */
     gtag: (event: string, eventName: string, eventOptions: { [key: string]: string | boolean }) => void;
+
+    /**
+     * The getGtag function of the mocked analytics object.
+     */
     getGtag: (index: number) => analyticsType;
+
+    /**
+     * The clear function of the mocked analytics object.
+     */
     clear: () => void;
 }
 

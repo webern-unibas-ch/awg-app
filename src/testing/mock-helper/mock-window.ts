@@ -9,8 +9,19 @@ type postMessageType = [{ gnd: string }, string];
  * It represents a mocked window object.
  */
 interface IMockWindow {
+    /**
+     * The postMessage function of the mocked window.
+     */
     postMessage: (value: { gnd: string }, messageTarget: string) => void;
+
+    /**
+     * The get function of the mocked window.
+     */
     get: (index: number) => postMessageType;
+
+    /**
+     * The clear function of the mocked window.
+     */
     clear: () => void;
 }
 

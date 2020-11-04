@@ -4,8 +4,19 @@
  * It represents a mocked console.
  */
 interface IMockConsole {
+    /**
+     * The log function of the mocked console.
+     */
     log: (message: string) => void;
+
+    /**
+     * The get function of the mocked console.
+     */
     get: (index: number) => string;
+
+    /**
+     * The clear function of the mocked console.
+     */
     clear: () => void;
 }
 
