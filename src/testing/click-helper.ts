@@ -47,6 +47,11 @@ export function click(el: DebugElement | HTMLElement, eventObj: any = BUTTON_CLI
  * @returns {void} Triggers the click event and applies the changes to the component fixture.
  */
 export function clickAndAwaitChanges(clickDe: DebugElement, fixture: ComponentFixture<any>): void {
+    // do nothing if element is disabled
+    if (clickDe.nativeElement.disabled) {
+        return;
+    }
+
     // trigger click with click helper
     click(clickDe);
 

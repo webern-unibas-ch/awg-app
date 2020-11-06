@@ -31,7 +31,7 @@ export const mockSearchResponseJson = {
             iconlabel: 'Bibliografie',
             iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
-            obj_id: '2516682',
+            obj_id: '1230',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
@@ -45,7 +45,7 @@ export const mockSearchResponseJson = {
             iconlabel: 'Bibliografie',
             iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
-            obj_id: '2233403',
+            obj_id: '1231',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
@@ -59,7 +59,21 @@ export const mockSearchResponseJson = {
             iconlabel: 'Bibliografie',
             iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
-            obj_id: '2430568',
+            obj_id: '1232',
+            preview_path:
+                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            preview_nx: undefined,
+            preview_ny: undefined,
+            rights: undefined,
+            value: ['Test'],
+            valuelabel: ['Kurztitel'],
+            valuetype_id: ['1']
+        },
+        {
+            iconlabel: 'Bibliografie',
+            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            icontitle: 'Bibliografie',
+            obj_id: '1233',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
@@ -73,21 +87,7 @@ export const mockSearchResponseJson = {
             iconlabel: 'Bibliografie',
             iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
-            obj_id: '2225189',
-            preview_path:
-                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
-            preview_nx: undefined,
-            preview_ny: undefined,
-            rights: undefined,
-            value: ['Oliveira Sampaio 2000'],
-            valuelabel: ['Kurztitel'],
-            valuetype_id: ['1']
-        },
-        {
-            iconlabel: 'Bibliografie',
-            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
-            icontitle: 'Bibliografie',
-            obj_id: '2225189',
+            obj_id: '1234',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
