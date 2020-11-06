@@ -88,7 +88,9 @@ import { BehaviorSubject, ReplaySubject } from 'rxjs';
 /**
  * An ActivatedRoute test double (stub) with a `paramMap` observable.
  *
- * Use the `setParamMap()` method to add the next `paramMap` value.
+ * Use the `testParamMap()` method to add the next `paramMap` value.
+ *
+ * Inspired by https://remypenchenat.blogspot.com/2018/02/angular-testing-activatedroute.html
  */
 @Injectable()
 export class ActivatedRouteStub {
@@ -126,40 +128,89 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Getter for the ActivatedRoute.snapshot.params.
-     * @returns Snapshot of the test route parameters.
+     * Constructor for the ActivatedRouteStub (stub).
+     *
+     * @param {Params} [initialParams] The optional initial route parameters.
      */
-    get snapshot() {
-        return { params: this.testParams };
+    constructor(initialParams?: Params) {
+        if (initialParams) {
+            this.testParamMap = initialParams;
+        } else {
+            this.testParamMap = {};
+        }
     }
 
     /**
      * Private ReplaySubject to handle route paramMaps.
      */
-    private paramMapSubject = new ReplaySubject<ParamMap>();
+    private paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
 
     /**
-     * Constructor for the ActivatedRoute.paramMap test double (stub).
-     *
-     * @param {Params} [initialParams] The optional initial route parameters.
-     */
-    constructor(initialParams?: Params) {
-        this.setParamMap(initialParams);
-    }
-
-    /**
-     * An ActivatedRoute.paramMap test double (stub)
-     * as observable (`ReplaySubject`).
+     * Observable that contains a map of the test parameters
      */
     readonly paramMap = this.paramMapSubject.asObservable();
 
     /**
-     * Set the paramMap observable's next value.
-     *
-     * @param {Params} [params] The optional route parameters to be set.
+     * Private variable: _testParamMap
      */
-    setParamMap(params?: Params) {
-        this.paramMapSubject.next(convertToParamMap(params));
+    private _testParamMap: ParamMap;
+    /**
+     * Getter for the test route paramMap.
+     *
+     * @returns The latest test route paramMap.
+     */
+    get testParamMap() {
+        return this._testParamMap;
+    }
+    /**
+     * Setter for the test route paramMap
+     *
+     * @param {} params The route parameters to be set.
+     */
+    set testParamMap(params: {}) {
+        this._testParamMap = convertToParamMap(params);
+        this.paramMapSubject.next(this._testParamMap);
+    }
+
+    /**
+     * Private BehaviourSubject to handle query parameters.
+     */
+    private queryParamMapSubject = new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
+
+    /**
+     * Observable that contains a map of the query parameters
+     */
+    readonly queryParamMap = this.queryParamMapSubject.asObservable();
+
+    /**
+     * Private variable: _testQueryParamMap
+     */
+    private _testQueryParamMap: ParamMap;
+    /**
+     * Getter for the test route queryÜaramMap.
+     *
+     * @returns The latest test route queryParamMap.
+     */
+    get testQueryParamMap() {
+        return this._testQueryParamMap;
+    }
+    /**
+     * Setter for the test route queryParamMap
+     *
+     * @param {Params} params The route queryParameters to be set.
+     */
+    set testQueryParamMap(params: {}) {
+        this._testQueryParamMap = convertToParamMap(params);
+        this.queryParamMapSubject.next(this._testQueryParamMap);
+    }
+
+    /**
+     * Getter for the ActivatedRoute.snapshot.params/paramMap/queryParamMap.
+     *
+     * @returns Snapshot of the test route parameters.
+     */
+    get snapshot() {
+        return { params: this.testParams, paramMap: this.testParamMap, queryParamMap: this.testQueryParamMap };
     }
 }
 // #enddocregion activated-route-stub
