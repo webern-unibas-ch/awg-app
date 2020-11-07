@@ -1,8 +1,9 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
+import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -33,10 +34,9 @@ describe('EditionViewComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let editionService: EditionService;
-
     let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
+    let mockEditionService: Partial<EditionService>;
 
     let getEditionWorkFromRouteSpy: Spy;
     let routeToSidenavSpy: Spy;
@@ -58,10 +58,19 @@ describe('EditionViewComponent (DONE)', () => {
             // mock activated route with stub class
             mockActivatedRoute = new ActivatedRouteStub();
 
+            // mock edition service
+            mockEditionService = {
+                getEditionWork: (): Observable<EditionWork> => {
+                    // return op. 12 by default
+                    return observableOf(EditionWorks[expectedWorkId]);
+                },
+                updateEditionWork: (editionWork: EditionWork): void => {}
+            };
+
             TestBed.configureTestingModule({
                 declarations: [EditionViewComponent, HeadingStubComponent, RouterOutletStubComponent],
                 providers: [
-                    EditionService,
+                    { provide: EditionService, useValue: mockEditionService },
                     {
                         provide: ActivatedRoute,
                         useValue: mockActivatedRoute
@@ -78,7 +87,7 @@ describe('EditionViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        editionService = TestBed.inject(EditionService);
+        mockEditionService = TestBed.inject(EditionService);
 
         // test data
         expectedWork = EditionWorks[expectedWorkId]; // op. 12
@@ -90,8 +99,8 @@ describe('EditionViewComponent (DONE)', () => {
         routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
 
         // spies for service methods
-        editionServiceUpdateWorkSpy = spyOn(editionService, 'updateEditionWork').and.callThrough();
-        editionServiceGetWorkSpy = spyOn(editionService, 'getEditionWork').and.callThrough();
+        editionServiceUpdateWorkSpy = spyOn(mockEditionService, 'updateEditionWork').and.callThrough();
+        editionServiceGetWorkSpy = spyOn(mockEditionService, 'getEditionWork').and.callThrough();
     });
 
     afterAll(() => {
@@ -163,6 +172,17 @@ describe('EditionViewComponent (DONE)', () => {
 
             // trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('... should pass down `title` and `id` to heading component', () => {
+            const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
+            const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
+
+            expect(headingCmp.title).toBeTruthy();
+            expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);
+
+            expect(headingCmp.id).toBeTruthy();
+            expect(headingCmp.id).toBe(expectedId, `should have id: ${expectedId}`);
         });
 
         describe('#getEditionWorkFromRoute', () => {
@@ -249,10 +269,12 @@ describe('EditionViewComponent (DONE)', () => {
 
                 // subscribe to editionWork observable (changed values will be reflected here)
                 expect(component.editionWork$).toBeDefined();
-                component.editionWork$.subscribe(work => {
+                let sub = component.editionWork$.subscribe(work => {
                     expect(work).toEqual(EditionWorks[expectedWorkId], `should equal ${EditionWorks[expectedWorkId]}`);
                     done();
                 });
+
+                sub.unsubscribe();
 
                 // ----------------
                 // change to op. 25
@@ -266,6 +288,14 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(editionServiceUpdateWorkSpy, 2, EditionWorks[expectedWorkId]);
                 expectSpyCall(editionServiceGetWorkSpy, 2);
 
+                expect(component.editionWork$).toBeDefined();
+                sub = component.editionWork$.subscribe(work => {
+                    expect(work).toEqual(EditionWorks['op25'], `should equal ${EditionWorks['op25']}`);
+                    done();
+                });
+
+                sub.unsubscribe();
+
                 // ----------------
                 // change to ''
                 expectedWorkId = '';
@@ -277,6 +307,14 @@ describe('EditionViewComponent (DONE)', () => {
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
                 expectSpyCall(editionServiceUpdateWorkSpy, 3, EditionWorks[expectedWorkId]);
                 expectSpyCall(editionServiceGetWorkSpy, 3);
+
+                expect(component.editionWork$).toBeDefined();
+                sub = component.editionWork$.subscribe(work => {
+                    expect(work).toEqual(EditionWorks[''], `should equal ${EditionWorks['']}`);
+                    done();
+                });
+
+                sub.unsubscribe();
             });
         });
 
@@ -323,17 +361,6 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(navigationSpy).toHaveBeenCalledWith(navArgs[0], navArgs[1]);
             });
-        });
-
-        it('... should pass down `title` and `id` to heading component', () => {
-            const headingDes = getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
-            const headingCmp = headingDes[0].injector.get(HeadingStubComponent) as HeadingStubComponent;
-
-            expect(headingCmp.title).toBeTruthy();
-            expect(headingCmp.title).toBe(expectedTitle, `should have title: ${expectedTitle}`);
-
-            expect(headingCmp.id).toBeTruthy();
-            expect(headingCmp.id).toBe(expectedId, `should have id: ${expectedId}`);
         });
 
         describe('VIEW', () => {
@@ -427,9 +454,16 @@ describe('EditionViewComponent (DONE)', () => {
                         pDes[0],
                         'span.editor > a',
                         expectedEditors.length,
-                        expectedEditors.length
+                        expectedEditors.length,
+                        'in responsibility div'
                     );
-                    const versionDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
+                    const versionDes = getAndExpectDebugElementByCss(
+                        pDes[0],
+                        'span.version',
+                        1,
+                        1,
+                        'in responsibility div'
+                    );
 
                     const editorEls = editorDes.map(editor => editor.nativeElement);
                     const versionEl = versionDes[0].nativeElement;
