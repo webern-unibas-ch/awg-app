@@ -6,7 +6,7 @@ import { Router } from '@angular/router';
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
 import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
-import { of as observableOf, throwError as observableThrowError } from 'rxjs';
+import { Observable, of as observableOf, throwError as observableThrowError } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -16,7 +16,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 import { mockSearchResponseJson } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { DataStreamerService } from '@awg-core/services';
+import { CoreService, DataStreamerService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-models';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';
@@ -32,8 +32,9 @@ describe('ResourceInfoComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let mockRouter: Router;
-    let dataStreamerService: DataStreamerService;
+    let mockRouter: Partial<Router>;
+    let mockDataStreamerService: Partial<DataStreamerService>;
+    let dataStreamerService: Partial<DataStreamerService>;
     let formBuilder: FormBuilder;
 
     let buildFormSpy: Spy;
@@ -59,9 +60,23 @@ describe('ResourceInfoComponent (DONE)', () => {
             // router spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
+            // mocked dataStreamerService
+            mockDataStreamerService = {
+                getResourceId: (): Observable<string> => {
+                    return observableOf('test');
+                },
+                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => {
+                    return observableOf();
+                }
+            };
+
             TestBed.configureTestingModule({
                 imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-                providers: [DataStreamerService, FormBuilder, { provide: Router, useValue: mockRouter }],
+                providers: [
+                    { provide: Router, useValue: mockRouter },
+                    { provide: DataStreamerService, useValue: mockDataStreamerService },
+                    FormBuilder
+                ],
                 declarations: [ResourceInfoComponent, CompileHtmlComponent]
             }).compileComponents();
         })
@@ -115,6 +130,10 @@ describe('ResourceInfoComponent (DONE)', () => {
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('injected service should use provided mockValue', () => {
+        expect(dataStreamerService === mockDataStreamerService).toBe(true);
     });
 
     describe('BEFORE initial data binding', () => {
