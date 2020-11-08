@@ -2,7 +2,12 @@ import { Injectable } from '@angular/core';
 
 import { Observable, ReplaySubject } from 'rxjs';
 
-import { EditionWork, EditionSvgOverlay, TextcriticalComment } from '@awg-views/edition-view/models';
+import {
+    EditionSvgOverlay,
+    EditionSvgOverlayTypes,
+    EditionWork,
+    TextcriticalComment
+} from '@awg-views/edition-view/models';
 
 /**
  * The Edition service.
@@ -44,7 +49,7 @@ export class EditionService {
      */
     private static filterTextcriticalComments(
         textcriticalComment: TextcriticalComment,
-        overlay: { type: string; id: string },
+        overlay: EditionSvgOverlay,
         filterIndex: number
     ): boolean {
         // shortcuts & trimmed values
@@ -53,13 +58,37 @@ export class EditionService {
 
         // filter the comments by overlay type and id
         switch (overlay.type) {
-            case 'measure':
+            case EditionSvgOverlayTypes.measure:
                 return measure === overlay.id;
-            case 'system':
+            case EditionSvgOverlayTypes.system:
                 return system === overlay.id;
-            case 'item':
+            case EditionSvgOverlayTypes.item:
                 return filterIndex === +overlay.id;
         }
+    }
+
+    /**
+     * Public method: getTextcriticalComments.
+     *
+     * It provides the textcritical comments for a selected svg overlay.
+     *
+     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
+     * @param {EditionSvgOverlay} overlay The given svg overlay.
+     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
+     */
+    getTextcriticalComments(
+        textcriticalComments: TextcriticalComment[],
+        overlay: EditionSvgOverlay
+    ): TextcriticalComment[] {
+        if (!textcriticalComments || !overlay) {
+            return;
+        }
+
+        // filter the textcritics input array
+        return textcriticalComments.filter((textcriticalComment, filterIndex) => {
+            // get filtered results from private method
+            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
+        });
     }
 
     /**
@@ -93,25 +122,5 @@ export class EditionService {
      */
     clearEditionWork(): void {
         this.editionWorkSubject.next(null);
-    }
-
-    /**
-     * Public method: getTextcriticalComments.
-     *
-     * It provides the textcritical comments for a selected svg overlay.
-     *
-     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
-     * @param {EditionSvgOverlay} overlay The given svg overlay.
-     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
-     */
-    getTextcriticalComments(
-        textcriticalComments: TextcriticalComment[],
-        overlay: EditionSvgOverlay
-    ): TextcriticalComment[] {
-        // filter the textcritics input array
-        return textcriticalComments.filter((textcriticalComment, filterIndex) => {
-            // get filtered results from private method
-            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
-        });
     }
 }
