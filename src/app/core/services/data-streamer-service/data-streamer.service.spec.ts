@@ -11,12 +11,17 @@ import { DataStreamerService } from './data-streamer.service';
 describe('DataStreamerService (DONE)', () => {
     let dataStreamerService: DataStreamerService;
 
+    let expectedSearchResponse: SearchResponseWithQuery;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [DataStreamerService]
         });
         // inject service
         dataStreamerService = TestBed.inject(DataStreamerService);
+
+        // test data (default)
+        expectedSearchResponse = new SearchResponseWithQuery(mockSearchResponseJson, 'Test');
     });
 
     afterAll(() => {
@@ -27,12 +32,30 @@ describe('DataStreamerService (DONE)', () => {
         expect(dataStreamerService).toBeTruthy();
     });
 
+    it('should have bufferSize = 1', () => {
+        expect((dataStreamerService as any).bufferSize).toBeTruthy();
+        expect((dataStreamerService as any).bufferSize).toBe(1, 'should be 1');
+    });
+
+    it('should have searchResponseWithQuerySubject', () => {
+        expect((dataStreamerService as any).searchResponseWithQuerySubject).toBeTruthy();
+    });
+
+    it('should have searchResponseWithQueryStream$', () => {
+        expect((dataStreamerService as any).searchResponseWithQueryStream$).toBeTruthy();
+    });
+
+    it('should have resourceIdSubject', () => {
+        expect((dataStreamerService as any).resourceIdSubject).toBeTruthy();
+    });
+
+    it('should have resourceIdStream$', () => {
+        expect((dataStreamerService as any).resourceIdStream$).toBeTruthy();
+    });
+
     describe('SearchResponseWithQuery', () => {
         describe('#getSearchResponseWithQuery', () => {
             it(`... should return given searchResponse`, done => {
-                // init searchResponse
-                const expectedSearchResponse = new SearchResponseWithQuery(mockSearchResponseJson, 'Test');
-
                 dataStreamerService
                     .getSearchResponseWithQuery()
                     .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -43,14 +66,11 @@ describe('DataStreamerService (DONE)', () => {
                         done();
                     });
 
-                // set searchResponse
+                // set searchResponse (with default value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
             });
 
             it(`... should return updated searchResponse`, done => {
-                // init searchResponse
-                let expectedSearchResponse = new SearchResponseWithQuery(mockSearchResponseJson, 'Test');
-
                 dataStreamerService
                     .getSearchResponseWithQuery()
                     .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -61,7 +81,7 @@ describe('DataStreamerService (DONE)', () => {
                         done();
                     });
 
-                // set searchResponse
+                // set searchResponse (with default value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
 
                 // update searchResponse
@@ -72,9 +92,6 @@ describe('DataStreamerService (DONE)', () => {
 
         describe('#updateSearchResponseWithQuery', () => {
             it(`... should emit updated searchResponse`, done => {
-                // init searchResponse
-                let expectedSearchResponse = new SearchResponseWithQuery(mockSearchResponseJson, 'Test');
-
                 dataStreamerService
                     .getSearchResponseWithQuery()
                     .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -85,7 +102,7 @@ describe('DataStreamerService (DONE)', () => {
                         done();
                     });
 
-                // set searchResponse
+                // set searchResponse (with default value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
 
                 // update searchResponse
@@ -96,8 +113,6 @@ describe('DataStreamerService (DONE)', () => {
 
         describe('#clearSearchResults', () => {
             it(`... should update search results with empty SearchResponseWithQuery`, done => {
-                const expectedSearchResponse = new SearchResponseWithQuery(new SearchResponseJson(), '');
-
                 dataStreamerService
                     .getSearchResponseWithQuery()
                     .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -109,12 +124,11 @@ describe('DataStreamerService (DONE)', () => {
                     });
 
                 // clear searchResponse
+                expectedSearchResponse = new SearchResponseWithQuery(new SearchResponseJson(), '');
                 dataStreamerService.clearSearchResults();
             });
 
             it(`... should overwrite existing search results`, done => {
-                let expectedSearchResponse = new SearchResponseWithQuery(new SearchResponseJson(), '');
-
                 dataStreamerService
                     .getSearchResponseWithQuery()
                     .subscribe((searchResponseWithQuery: SearchResponseWithQuery) => {
@@ -125,8 +139,7 @@ describe('DataStreamerService (DONE)', () => {
                         done();
                     });
 
-                // update searchResponse
-                expectedSearchResponse = new SearchResponseWithQuery(mockSearchResponseJson, 'Test');
+                // set searchResponse with default (value)
                 dataStreamerService.updateSearchResponseWithQuery(expectedSearchResponse);
 
                 // clear searchResponse

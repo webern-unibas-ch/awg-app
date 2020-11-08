@@ -7,20 +7,33 @@ import { LoadingService } from './loading.service';
 describe('LoadingService (DONE)', () => {
     let loadingService: LoadingService;
 
+    let loadingStatus: boolean;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [LoadingService]
         });
         // inject service
         loadingService = TestBed.inject(LoadingService);
+
+        // test data (default)
+        loadingStatus = false;
     });
 
     afterAll(() => {
         cleanStylesFromDOM();
     });
 
-    it('... should be created', () => {
+    it('should be created', () => {
         expect(loadingService).toBeTruthy();
+    });
+
+    it('should have isLoadingSubject', () => {
+        expect((loadingService as any).isLoadingSubject).toBeTruthy();
+    });
+
+    it('should have isLoadingStream$', () => {
+        expect((loadingService as any).isLoadingStream$).toBeTruthy();
     });
 
     describe('#getLoadingStatus', () => {
@@ -32,9 +45,6 @@ describe('LoadingService (DONE)', () => {
         });
 
         it(`... should return updated value`, done => {
-            // init status
-            let loadingStatus = false;
-
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
@@ -45,11 +55,9 @@ describe('LoadingService (DONE)', () => {
             loadingService.updateLoadingStatus(loadingStatus);
         });
     });
+
     describe('#updateLoadingStatus', () => {
         it(`... should emit updated loading status`, done => {
-            // init status
-            let loadingStatus = false;
-
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();

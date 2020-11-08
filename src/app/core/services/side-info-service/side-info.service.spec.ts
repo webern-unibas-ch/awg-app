@@ -8,12 +8,19 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
 describe('SideInfoService (DONE)', () => {
     let sideInfoService: SideInfoService;
 
+    let expectedSearchInfoData: SearchInfo;
+    let expectedSearchInfoTitle: string;
+
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [SideInfoService]
         });
         // inject service
         sideInfoService = TestBed.inject(SideInfoService);
+
+        // test data (default)
+        expectedSearchInfoData = new SearchInfo('---', '---');
+        expectedSearchInfoTitle = '';
     });
 
     afterAll(() => {
@@ -24,12 +31,25 @@ describe('SideInfoService (DONE)', () => {
         expect(sideInfoService).toBeTruthy();
     });
 
+    it('should have searchInfoDataSubject', () => {
+        expect((sideInfoService as any).searchInfoDataSubject).toBeTruthy();
+    });
+
+    it('should have searchInfoDataStream$', () => {
+        expect((sideInfoService as any).searchInfoDataStream$).toBeTruthy();
+    });
+
+    it('should have searchInfoTitleSubject', () => {
+        expect((sideInfoService as any).searchInfoTitleSubject).toBeTruthy();
+    });
+
+    it('should have searchInfoTitleStream$', () => {
+        expect((sideInfoService as any).searchInfoTitleStream$).toBeTruthy();
+    });
+
     describe('SearchInfoData', () => {
         describe('#getSearchInfoData', () => {
             it(`... should return default empty search info data`, done => {
-                // init search info data
-                const expectedSearchInfoData = new SearchInfo('---', '---');
-
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
@@ -37,9 +57,6 @@ describe('SideInfoService (DONE)', () => {
             });
 
             it(`... should return updated search info data`, done => {
-                // init search info data
-                let expectedSearchInfoData = new SearchInfo('---', '---');
-
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
@@ -53,9 +70,6 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#updateSearchInfoData', () => {
             it(`... should emit updated search info data`, done => {
-                // init search info data
-                let expectedSearchInfoData = new SearchInfo('---', '---');
-
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
@@ -73,8 +87,6 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#clearSearchInfoData', () => {
             it(`... should update search info data with empty SearchInfo`, done => {
-                const expectedSearchInfoData = new SearchInfo('---', '---');
-
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
@@ -85,8 +97,6 @@ describe('SideInfoService (DONE)', () => {
             });
 
             it(`... should overwrite existing search info data`, done => {
-                let expectedSearchInfoData = new SearchInfo('---', '---');
-
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
@@ -106,9 +116,6 @@ describe('SideInfoService (DONE)', () => {
     describe('SearchInfoTitle', () => {
         describe('#getSearchInfoTitle', () => {
             it(`... should return default empty search info title`, done => {
-                // init search info title
-                const expectedSearchInfoTitle = '';
-
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     expect(title).not.toBeTruthy('should be empty string');
@@ -117,9 +124,6 @@ describe('SideInfoService (DONE)', () => {
             });
 
             it(`... should return updated search info title`, done => {
-                // init search info title
-                let expectedSearchInfoTitle = '';
-
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     done();
@@ -133,9 +137,6 @@ describe('SideInfoService (DONE)', () => {
 
         describe('#updateSearchInfoTitle', () => {
             it(`... should emit updated search info title`, done => {
-                // init search info title
-                let expectedSearchInfoTitle = '';
-
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     done();
@@ -162,9 +163,6 @@ describe('SideInfoService (DONE)', () => {
             });
 
             it(`... should overwrite existing search info title`, done => {
-                // init search info title
-                let expectedSearchInfoTitle = '';
-
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     done();

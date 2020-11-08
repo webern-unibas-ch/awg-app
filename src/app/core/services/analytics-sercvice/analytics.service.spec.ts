@@ -69,7 +69,7 @@ describe('AnalyticsService (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it('... should be created', () => {
+    it('should be created', () => {
         expect(analyticsService).toBeTruthy();
     });
 
