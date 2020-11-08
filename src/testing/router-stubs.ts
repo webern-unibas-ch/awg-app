@@ -60,27 +60,6 @@ export class RouterLinkStubDirective {
 export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub
 
-// #docregion router-stub
-/**
- * A Router test double (stub) for components that use the Router.
- *
- * Use the `navigate()` method to set the next navigation target.
- */
-@Injectable()
-export class RouterStub {
-    /**
-     * A`router.navigate` test double (stub)
-     * to navigate to the next target.
-     *
-     * @params {any[]} commands - Array of navigation commands
-     * @params {NavigationExtras} [extras] - Optional NavigationExtras
-     *
-     * @returns {void}
-     */
-    navigate(commands: any[], extras?: NavigationExtras): void {}
-}
-// #enddocregion router-stub
-
 // #docregion activated-route-stub
 import { convertToParamMap, ParamMap, Params } from '@angular/router';
 import { BehaviorSubject, ReplaySubject } from 'rxjs';
