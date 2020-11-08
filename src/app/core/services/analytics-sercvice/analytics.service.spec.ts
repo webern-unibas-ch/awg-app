@@ -1,4 +1,5 @@
 import { TestBed } from '@angular/core/testing';
+import { DOCUMENT } from '@angular/common';
 
 import Spy = jasmine.Spy;
 
@@ -21,6 +22,7 @@ function setupAnalytics(service: AnalyticsService, endpoint: string, id: string,
 
 describe('AnalyticsService (DONE)', () => {
     let analyticsService: AnalyticsService;
+    let doc: any;
 
     let gtagSpy: Spy;
     let initializeAnalyticsSpy: Spy;
@@ -42,12 +44,14 @@ describe('AnalyticsService (DONE)', () => {
 
         // inject service
         analyticsService = TestBed.inject(AnalyticsService);
+        doc = TestBed.inject(DOCUMENT);
 
         // set global gtag function
         (window as any).gtag = () => {};
 
         // spy on service methods
         initializeAnalyticsSpy = spyOn(analyticsService, 'initializeAnalytics').and.callThrough();
+
         gtagSpy = spyOn(window as any, 'gtag').and.callFake(mockAnalytics.gtag);
         consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
     });
@@ -129,6 +133,8 @@ describe('AnalyticsService (DONE)', () => {
             expectSpyCall(consoleSpy, 0);
             expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
 
+            // prevent setting of real gtag script to document head
+            spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
@@ -137,12 +143,18 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it(`... should prepend analytics script in production mode`, () => {
-            const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript');
+            const expectedScript: HTMLScriptElement = doc.createElement('script');
+            expectedScript.async = true;
+            expectedScript.src = `${expectedAnalyticsEndpoint}?id=${expectedAnalyticsId}`;
 
+            // prevent setting of real gtag script to document head
+            const prependSpy = spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
+            const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript').and.callThrough();
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
             expectSpyCall(scriptSpy, 1);
+            expectSpyCall(prependSpy, 1, expectedScript);
         });
     });
 
