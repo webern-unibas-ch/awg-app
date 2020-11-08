@@ -76,6 +76,7 @@ describe('ResourceInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
+        // inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);
         formBuilder = TestBed.inject(FormBuilder);
 
@@ -776,10 +777,10 @@ describe('ResourceInfoComponent (DONE)', () => {
         });
 
         describe('#navigateToResource', () => {
-            let navigationSpy;
+            let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // create SpyObj of mockrouter
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
@@ -816,7 +817,7 @@ describe('ResourceInfoComponent (DONE)', () => {
         });
 
         describe('#navigateToResourceByIndex', () => {
-            let navigationSpy;
+            let navigationSpy: Spy;
 
             beforeEach(() => {
                 // create spy of mockrouter SpyObj
@@ -900,7 +901,7 @@ describe('ResourceInfoComponent (DONE)', () => {
         });
 
         describe('#navigateToSearchPanel', () => {
-            let navigationSpy;
+            let navigationSpy: Spy;
 
             beforeEach(() => {
                 // create spy of mockrouter SpyObj

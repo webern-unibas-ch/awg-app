@@ -1,7 +1,9 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
+import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
@@ -28,20 +30,22 @@ describe('DataViewComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let mockRouter;
+    let mockRouter: Partial<Router>;
 
     const expectedTitle = 'Suche';
     const expectedId = 'search';
 
-    beforeEach(async(() => {
-        // router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(
+        waitForAsync(() => {
+            // router spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-        TestBed.configureTestingModule({
-            declarations: [DataViewComponent, HeadingStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: Router, useValue: mockRouter }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [DataViewComponent, HeadingStubComponent, RouterOutletStubComponent],
+                providers: [{ provide: Router, useValue: mockRouter }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(DataViewComponent);
@@ -108,7 +112,7 @@ describe('DataViewComponent (DONE)', () => {
         });
 
         describe('#routeToSideNav', () => {
-            let navigationSpy;
+            let navigationSpy: Spy;
 
             beforeEach(() => {
                 // create spy of mockrouter SpyObj

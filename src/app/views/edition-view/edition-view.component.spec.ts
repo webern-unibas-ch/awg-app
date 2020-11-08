@@ -454,16 +454,9 @@ describe('EditionViewComponent (DONE)', () => {
                         pDes[0],
                         'span.editor > a',
                         expectedEditors.length,
-                        expectedEditors.length,
-                        'in responsibility div'
+                        expectedEditors.length
                     );
-                    const versionDes = getAndExpectDebugElementByCss(
-                        pDes[0],
-                        'span.version',
-                        1,
-                        1,
-                        'in responsibility div'
-                    );
+                    const versionDes = getAndExpectDebugElementByCss(pDes[0], 'span.version', 1, 1);
 
                     const editorEls = editorDes.map(editor => editor.nativeElement);
                     const versionEl = versionDes[0].nativeElement;

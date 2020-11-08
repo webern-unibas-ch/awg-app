@@ -1,7 +1,9 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { Router } from '@angular/router';
+
+import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
@@ -32,7 +34,7 @@ describe('HomeViewComponent (DONE)', () => {
     let linkDes: DebugElement[];
     let routerLinks;
 
-    let mockRouter;
+    let mockRouter: Partial<Router>;
 
     const expectedTitle = 'Beispieleditionen ausgewählter Skizzen';
     const expectedId = 'awg-home-view';
@@ -40,15 +42,17 @@ describe('HomeViewComponent (DONE)', () => {
     let expectedEditionWorkOp12: EditionWork;
     let expectedEditionWorkOp25: EditionWork;
 
-    beforeEach(async(() => {
-        // router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(
+        waitForAsync(() => {
+            // router spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-        TestBed.configureTestingModule({
-            declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
-            providers: [{ provide: Router, useValue: mockRouter }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
+                providers: [{ provide: Router, useValue: mockRouter }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HomeViewComponent);
@@ -186,7 +190,7 @@ describe('HomeViewComponent (DONE)', () => {
         });
 
         describe('#routeToSideNav', () => {
-            let navigationSpy;
+            let navigationSpy: Spy;
 
             beforeEach(() => {
                 // create spy of mockrouter SpyObj
