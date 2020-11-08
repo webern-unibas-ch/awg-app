@@ -1,7 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 // import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
-import { EditionSvgSheet, EditionSvgOverlay, EditionSvgSheetList } from '@awg-views/edition-view/models';
+import {
+    EditionSvgSheet,
+    EditionSvgOverlay,
+    EditionSvgSheetList,
+    EditionSvgOverlayTypes
+} from '@awg-views/edition-view/models';
 
 /**
  * The SvgSheetLabelsOp12 enumeration.
@@ -146,6 +151,13 @@ export class EditionSvgSheetComponent implements OnInit {
      */
     sheetsArray: string[];
 
+    /**
+     * Public variable: overlayTypes.
+     *
+     * It keeps the EditionSvgOverlayTypes to be accessed from template.
+     */
+    overlayTypes = EditionSvgOverlayTypes;
+
     /* TODO: mute for now since not working yet
     galleryOptions: NgxGalleryOptions[];
     galleryImages: NgxGalleryImage[];
@@ -222,11 +234,14 @@ export class EditionSvgSheetComponent implements OnInit {
      * It compares a given svg overlay with
      * the latest selected svg overlay.
      *
-     * @param {string} type The given type of the svg overlay.
+     * @param {EditionSvgOverlayTypes} type The given type of the svg overlay.
      * @param {string} id The given id of the svg overlay.
      * @returns {boolean} The boolean value of the comparison result.
      */
-    isSelectedOverlay(type: any, id: string): boolean {
+    isSelectedOverlay(type: EditionSvgOverlayTypes, id: string): boolean {
+        if (!type || !id) {
+            return;
+        }
         const overlay = new EditionSvgOverlay(type, id);
         return JSON.stringify(overlay) === JSON.stringify(this.selectedOverlay);
     }
@@ -237,11 +252,14 @@ export class EditionSvgSheetComponent implements OnInit {
      * It emits a given svg overlay
      * to the {@link selectOverlayRequest}.
      *
-     * @param {string} type The given type of the svg overlay.
+     * @param {EditionSvgOverlayTypes} type The given type of the svg overlay.
      * @param {string} id The given id of the svg overlay.
      * @returns {void} Emits the svg overlay.
      */
-    selectOverlay(type: any, id: string): void {
+    selectOverlay(type: EditionSvgOverlayTypes, id: string): void {
+        if (!type || !id) {
+            return;
+        }
         const overlay = new EditionSvgOverlay(type, id);
         this.selectOverlayRequest.emit(overlay);
     }

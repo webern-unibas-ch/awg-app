@@ -71,5 +71,8 @@ describe('EditionSvgSheetComponent', () => {
         it('should get overlay input', () => {
             expect(component.selectedOverlay).toBe(expectedOverlay);
         });
+
+        // TODO: test crrect implementation of EditionSVGOverlayEnum
+        // cf. https://stackoverflow.com/a/62376649
     });
 });
