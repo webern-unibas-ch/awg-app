@@ -29,7 +29,7 @@ export class EditionSvgOverlay {
     /**
      * The key string of an svg overlay type (EditionSvgOverlayTypes).
      */
-    typeKey?: string;
+    typeKey: string;
 
     /**
      * Constructor of the EditionSvgOverlay class.
@@ -42,9 +42,7 @@ export class EditionSvgOverlay {
     constructor(typeValue: EditionSvgOverlayTypes, id: string) {
         this.type = typeValue;
         this.id = id;
-        if (!this.typeKey) {
-            this.typeKey = this.getEnumKeyFromValue(typeValue);
-        }
+        this.typeKey = this.getEnumKeyFromValue(typeValue);
     }
 
     /**
@@ -60,10 +58,8 @@ export class EditionSvgOverlay {
      */
     private getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
         const enumKey: string = Object.keys(EditionSvgOverlayTypes)
-            // filter key according to value
-            .filter(key => EditionSvgOverlayTypes[key] === enumValue)
-            // reduce resulting array to single key value
-            .reduce(returnKey => returnKey);
+            // find key of enumValue
+            .find((key: string) => EditionSvgOverlayTypes[key] === enumValue);
 
         return enumKey;
     }
