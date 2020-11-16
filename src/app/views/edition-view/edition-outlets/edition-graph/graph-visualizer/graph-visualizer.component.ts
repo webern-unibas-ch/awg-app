@@ -166,7 +166,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Logs the click event.
      */
     onGraphClick(URI) {
-        console.log('AppComponent# graphClick URI', URI);
+        console.log('GraphVisualizerComponent# graphClick URI', URI);
     }
 
     /**

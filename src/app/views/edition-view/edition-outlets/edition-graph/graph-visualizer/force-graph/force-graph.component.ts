@@ -471,8 +471,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                     return 9;
                 }
             })
-            .on('click', (d: D3SimulationNode) => {
-                this.clickedOnNode(d);
+            .on('click', (event: any, d): void => {
+                this.clickedOnNode(event, d);
             });
 
         // ==================== When dragging ====================
@@ -515,16 +515,17 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It emits a node the user clicked on.
      *
-     * @param {D3SimulationNode} node The given node.
+     * @param {any} event The given D3 event listener.
+     * @param {D3SimulationNode} d The given node.
      *
      * @returns {void} Emits the node.
      */
-    private clickedOnNode(node: D3SimulationNode): void {
-        if (d3_selection.event.defaultPrevented) {
+    private clickedOnNode(event: any, d): void {
+        if (event.defaultPrevented) {
             return;
         } // dragged
 
-        this.clickedNodeRequest.emit(node);
+        this.clickedNodeRequest.emit(d);
     }
 
     /**
@@ -539,33 +540,53 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
         // Drag functions
-        const dragStart = (node: D3SimulationNode) => {
+        const dragStart = (event: any, d): void => {
             /** Preventing propagation of dragstart to parent elements */
-            d3_selection.event.sourceEvent.stopPropagation();
+            event.sourceEvent.stopPropagation();
 
-            if (!d3_selection.event.active) {
+            if (!event.active) {
                 simulation.alphaTarget(0.3).restart();
             }
-            node.fx = node.x;
-            node.fy = node.y;
+            d.fx = d.x;
+            d.fy = d.y;
         };
 
         // make sure you can't drag the circle outside the box
-        const dragActions = (node: D3SimulationNode) => {
-            node.fx = d3_selection.event.x;
-            node.fy = d3_selection.event.y;
+        const dragActions = (event: any, d): void => {
+            d.fx = event.x;
+            d.fy = event.y;
         };
 
-        const dragEnd = (node: D3SimulationNode) => {
-            if (!d3_selection.event.active) {
+        const dragEnd = (event: any, d): void => {
+            if (!event.active) {
                 simulation.alphaTarget(0);
             }
-            node.fx = null;
-            node.fy = null;
+            d.fx = null;
+            d.fy = null;
         };
 
         // apply drag handler
         dragContext.call(d3_drag.drag().on('start', dragStart).on('drag', dragActions).on('end', dragEnd));
+    }
+
+    /**
+     * Private method: zoomHandler.
+     *
+     * It binds a pan and zoom behaviour to an svg element.
+     *
+     * @param {D3Selection} zoomContext The given context that shall be zoomable.
+     * @param {D3Selection} svg The given svg container.
+     *
+     * @returns {void} Sets the zoom behaviour.
+     */
+    private zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
+        // perform the zooming
+        const zoomActions = (event: any): void => {
+            zoomContext.attr('transform', event.transform);
+        };
+
+        // apply zoom handler
+        svg.call(d3_zoom.zoom().on('zoom', zoomActions));
     }
 
     /**
@@ -804,26 +825,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         linkTexts
             .attr('x', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
             .attr('y', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
-    }
-
-    /**
-     * Private method: zoomHandler.
-     *
-     * It binds a pan and zoom behaviour to an svg element.
-     *
-     * @param {D3Selection} zoomContext The given context that shall be zoomable.
-     * @param {D3Selection} svg The given svg container.
-     *
-     * @returns {void} Sets the zoom behaviour.
-     */
-    private zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
-        // perform the zooming
-        const zoomActions = () => {
-            zoomContext.attr('transform', d3_selection.event.transform);
-        };
-
-        // apply zoom handler
-        svg.call(d3_zoom.zoom().on('zoom', zoomActions));
     }
 
     /**
