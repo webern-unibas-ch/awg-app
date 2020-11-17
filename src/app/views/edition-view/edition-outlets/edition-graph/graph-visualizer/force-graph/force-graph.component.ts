@@ -20,7 +20,10 @@ import {
 import { Subject } from 'rxjs';
 import { debounceTime, takeUntil } from 'rxjs/operators';
 
+import { faCompressArrowsAlt } from '@fortawesome/free-solid-svg-icons';
+
 import {
+    D3DragBehaviour,
     D3Selection,
     D3Simulation,
     D3SimulationData,
@@ -28,6 +31,7 @@ import {
     D3SimulationNode,
     D3SimulationNodeTriple,
     D3SimulationNodeType,
+    D3ZoomBehaviour,
     PrefixForm,
     Triple
 } from '../models';
@@ -92,11 +96,32 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     @ViewChild('graph', { static: true }) private graphContainer: ElementRef;
 
     /**
+     * ViewChild variable: sliderInput.
+     *
+     * It keeps the reference to the input range slider.
+     */
+    @ViewChild('sliderInput', { static: true }) private sliderInput: ElementRef;
+
+    /**
+     * ViewChild variable: sliderInputLabel.
+     *
+     * It keeps the reference to the input sliderInputLabel.
+     */
+    @ViewChild('sliderInputLabel', { static: true }) private sliderInputLabel: ElementRef;
+
+    /**
+     * Public variable: faCompressArrowsAlt.
+     *
+     * It instantiates fontawesome's faCompressArrowsAlt icon.
+     */
+    faCompressArrowsAlt = faCompressArrowsAlt;
+
+    /**
      * Public variable: limitValues.
      *
      * It keeps the array of possible limit values.
      */
-    limitValues = [5, 10, 25, 50, 100, 200, 500, 1000];
+    limitValues = [5, 10, 25, 50, 100, 250, 500, 1000];
 
     /**
      * Public variable: limit.
@@ -104,6 +129,19 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * It keeps the default limit value for the display of query results.
      */
     limit = 50;
+
+    /**
+     * Public variable: sliderConfig.
+     *
+     * It keeps the default values for the zoom slider input.
+     */
+    sliderConfig = {
+        initial: 1,
+        min: 0.1,
+        max: 3,
+        step: 1 / 100,
+        value: 1
+    };
 
     /**
      * Private variable: svg.
@@ -118,6 +156,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * It keeps the D3 zoomGroup selection.
      */
     private zoomGroup: D3Selection;
+
+    /**
+     * Private variable: zoomBehaviour.
+     *
+     * It keeps the D3 zoom behaviour.
+     */
+    private zoomBehaviour: D3ZoomBehaviour;
 
     /**
      * Private variable: forceSimulation.
@@ -240,6 +285,34 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
+     * Public method: onReCenter.
+     *
+     * It sets the slider zoom back to its initial state,
+     * removing scale factor and transitions.
+     *
+     * @returns {void} Sets the initial translation and scale factor.
+     */
+    onReCenter(): void {
+        if (!this.svg || !(this.divWidth && this.divHeight)) return;
+        this.onZoomChange(this.sliderConfig.initial);
+        this.zoomBehaviour.translateTo(this.svg, this.divWidth / 2, this.divHeight / 2);
+    }
+
+    /**
+     * Public method: onZoomChange.
+     *
+     * It sets the slider value to a given scalestep .
+     *
+     * @param {number} newSliderValue The new slider value.
+     *
+     * @returns {void} Sets the new slider value and calls for rescale.
+     */
+    onZoomChange(newSliderValue: number): void {
+        this.sliderConfig.value = newSliderValue;
+        this.reScaleZoom();
+    }
+
+    /**
      * Private method: redraw.
      *
      * It redraws the graph.
@@ -251,35 +324,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             this.cleanSVG();
             this.createSVG();
             this.attachData();
-        }
-    }
-
-    /**
-     * Private method: attachData.
-     *
-     * It attaches the RDF data to the simulation which is then set up.
-     *
-     * @returns {void} Attaches the data and sets up the simulation.
-     */
-    private attachData(): void {
-        // Limit result length
-        const triples: Triple[] = this.graphVisualizerService.limitTriples(this.queryResultTriples, this.limit);
-
-        // If type of triples is text/turtle (not array)
-        // the triples must be parsed to objects instead
-        if (typeof triples === 'string') {
-            this.graphVisualizerService.parseTriples(triples).then((data: { triples; namespaces }) => {
-                const abrTriples = this.graphVisualizerService.abbreviateTriples(data.triples, data.namespaces);
-                this.simulationData = this.triplesToD3GraphData(abrTriples);
-
-                this.setupForceSimulation();
-                this.updateSVG();
-            });
-        } else {
-            this.simulationData = this.triplesToD3GraphData(triples);
-
-            this.setupForceSimulation();
-            this.updateSVG();
+            this.reScaleZoom();
         }
     }
 
@@ -318,7 +363,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             : this.getContainerHeight(this.graphContainer)
             ? this.getContainerHeight(this.graphContainer)
             : 500;
+        // leave some space for icon bar at the top
+        this.divHeight = this.divHeight - 20;
 
+        // ==================== Add SVG =====================
         if (!this.svg) {
             this.svg = d3_selection
                 .select(this.graphContainer.nativeElement)
@@ -326,6 +374,37 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 .attr('class', 'force-graph');
         }
         this.svg.attr('width', this.divWidth).attr('height', this.divHeight);
+
+        // ==================== Add Encompassing Group for Zoom =====================
+        this.zoomGroup = this.svg.append('g').attr('class', 'zoom-container');
+    }
+    /**
+     * Private method: attachData.
+     *
+     * It attaches the RDF data to the simulation which is then set up.
+     *
+     * @returns {void} Attaches the data and sets up the simulation.
+     */
+    private attachData(): void {
+        // Limit result length
+        const triples: Triple[] = this.graphVisualizerService.limitTriples(this.queryResultTriples, this.limit);
+
+        // If type of triples is text/turtle (not array)
+        // the triples must be parsed to objects instead
+        if (typeof triples === 'string') {
+            this.graphVisualizerService.parseTriples(triples).then((data: { triples; namespaces }) => {
+                const abrTriples = this.graphVisualizerService.abbreviateTriples(data.triples, data.namespaces);
+                this.simulationData = this.triplesToD3GraphData(abrTriples);
+
+                this.setupForceSimulation();
+                this.updateSVG();
+            });
+        } else {
+            this.simulationData = this.triplesToD3GraphData(triples);
+
+            this.setupForceSimulation();
+            this.updateSVG();
+        }
     }
 
     /**
@@ -389,9 +468,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             return;
         }
 
-        // ==================== Add Encompassing Group for Zoom =====================
-        this.zoomGroup = this.svg.append('g').attr('class', 'zoom-container');
-
         // ==================== Add Marker ====================
         this.zoomGroup
             .append('svg:defs')
@@ -411,6 +487,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== Add Links ====================
         const links: D3Selection = this.zoomGroup
+            .append('g')
+            .attr('class', 'links')
             .selectAll('.link')
             .data(this.simulationData.nodeTriples)
             .enter()
@@ -420,6 +498,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== Add Link Names =====================
         const linkTexts: D3Selection = this.zoomGroup
+            .append('g')
+            .attr('class', 'link-texts')
             .selectAll('.link-text')
             .data(this.simulationData.nodeTriples)
             .enter()
@@ -429,6 +509,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== Add Node Names =====================
         const nodeTexts: D3Selection = this.zoomGroup
+            .append('g')
+            .attr('class', 'node-texts')
             .selectAll('.node-text')
             .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
             .enter()
@@ -436,8 +518,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .attr('class', 'node-text')
             .text((d: D3SimulationNode) => d.label);
 
-        // ==================== Add Node =====================
+        // ==================== Add Nodes =====================
         const nodes: D3Selection = this.zoomGroup
+            .append('g')
+            .attr('class', 'nodes')
             .selectAll('.node')
             .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
             .enter()
@@ -475,7 +559,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 this.clickedOnNode(event, d);
             });
 
-        // ==================== When dragging ====================
+        // ==================== FORCES ====================
         this.forceSimulation.on('tick', () => {
             // update node and link positions each tick of the simulation
             this.updateNodePositions(nodes);
@@ -489,6 +573,18 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // ==================== ZOOM ====================
         this.zoomHandler(this.zoomGroup, this.svg);
+    }
+
+    /**
+     * Private method: reScaleZoom.
+     *
+     * It rescales the current zoom with a given slider value.
+     *
+     * @returns {void} Sets the zoom for the rescale.
+     */
+    private reScaleZoom(): void {
+        if (!this.svg || !this.sliderConfig.value) return;
+        this.zoomBehaviour.scaleTo(this.svg, this.sliderConfig.value);
     }
 
     /**
@@ -552,7 +648,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         };
 
         // make sure you can't drag the circle outside the box
-        const dragActions = (event: any, d): void => {
+        const dragged = (event: any, d): void => {
             d.fx = event.x;
             d.fy = event.y;
         };
@@ -565,8 +661,15 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             d.fy = null;
         };
 
-        // apply drag handler
-        dragContext.call(d3_drag.drag().on('start', dragStart).on('drag', dragActions).on('end', dragEnd));
+        // create drag behaviour
+        const dragBehaviour: D3DragBehaviour = d3_drag
+            .drag()
+            .on('start', dragStart)
+            .on('drag', dragged)
+            .on('end', dragEnd);
+
+        // apply drag behaviour
+        dragContext.call(dragBehaviour);
     }
 
     /**
@@ -582,11 +685,27 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
         // perform the zooming
         const zoomActions = (event: any): void => {
-            zoomContext.attr('transform', event.transform);
+            const currentTransform = event.transform;
+            const roundedTransformValue = this.roundToNearestScaleStep(currentTransform.k);
+
+            // update d3 zoom context
+            zoomContext.attr('transform', currentTransform);
+
+            // update view
+            this.sliderInput.nativeElement.value = roundedTransformValue;
+            // needed because d3 listener does not update ngModel
+            this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
+            this.sliderConfig.value = roundedTransformValue;
         };
 
-        // apply zoom handler
-        svg.call(d3_zoom.zoom().on('zoom', zoomActions));
+        // create zoom behaviour
+        this.zoomBehaviour = d3_zoom
+            .zoom()
+            .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
+            .on('zoom', zoomActions);
+
+        // apply zoom behaviour
+        svg.call(this.zoomBehaviour);
     }
 
     /**
@@ -675,6 +794,41 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         } else {
             return defaultRadius;
         }
+    }
+
+    /**
+     * Private method: roundToNearestScaleStep.
+     *
+     * It rounds a given value to the nearest value on an input range scale.
+     * Cf. https://stackoverflow.com/a/13635455
+     *
+     * @param {number} value The given value to round.
+     * @param {number} min The given minimum of the scale.
+     * @param {number} max The given maximum of the scale.
+     * @param {number} steps The given scale steps.
+     *
+     * @returns {number} The rounded value.
+     */
+    private roundToNearestScaleStep(value: number): number {
+        const steps = this.sliderConfig.step;
+
+        // count decimals of a given value
+        // cf. https://stackoverflow.com/a/17369245
+        const countDecimals = (countValue: number): number => {
+            // return zero if value cannot be rounded
+            if (Math.floor(countValue) === countValue) return 0;
+            // convert the number to a string, split at the . and return the last part of the array, or 0 if the last part of the array is undefined (which will occur if there was no decimal point)
+            return countValue.toString().split('.')[1].length || 0;
+        };
+
+        // avoid Math.round error
+        // cf. https://www.jacklmoore.com/notes/rounding-in-javascript/
+        const round = (roundValue: number, decimalPlaces: number): number => {
+            const rounded = Number(Math.round(Number(roundValue + 'e' + decimalPlaces)) + 'e-' + decimalPlaces);
+            return rounded;
+        };
+
+        return round(value, countDecimals(steps));
     }
 
     /**
