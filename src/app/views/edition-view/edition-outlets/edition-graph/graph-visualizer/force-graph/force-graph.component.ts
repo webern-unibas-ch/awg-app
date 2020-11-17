@@ -684,7 +684,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
         // perform the zooming
-        const zoomActions = (event: any): void => {
+        const zoomed = (event: any): void => {
             const currentTransform = event.transform;
             const roundedTransformValue = this.roundToNearestScaleStep(currentTransform.k);
 
@@ -702,7 +702,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         this.zoomBehaviour = d3_zoom
             .zoom()
             .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
-            .on('zoom', zoomActions);
+            .on('zoom', zoomed);
 
         // apply zoom behaviour
         svg.call(this.zoomBehaviour);
