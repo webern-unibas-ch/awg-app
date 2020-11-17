@@ -6,7 +6,8 @@ import {
     D3Simulation,
     D3ForceSimulationOptions,
     D3SimulationLink,
-    D3SimulationNode
+    D3SimulationNode,
+    D3DragBehaviour
 } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 import * as d3_drag from 'd3-drag';
@@ -35,19 +36,19 @@ export class D3Service {
      *
      * It binds a draggable behaviour to an svg element.
      *
-     *  @param {any} element The given element that shall be dragged.
+     *  @param {D3Selection} dragContext The given context element that shall be dragged.
      *  @param {D3Simulation} simulation The given force simulation.
      *
      *  @returns {void} Sets the drag behaviour.
      */
-    applyDragBehaviour(element: any, simulation: D3Simulation): void {
-        const dragElement: D3Selection = d3_selection.select(element);
+    applyDragBehaviour(dragContext: D3Selection, simulation: D3Simulation): void {
+        // const dragElement: D3Selection = d3_selection.select(element);
 
-        const dragStart = (d: D3SimulationNode) => {
+        const dragStart = (event: any, d: D3SimulationNode) => {
             // prevent propagation of dragstart to parent elements
-            d3_selection.event.sourceEvent.stopPropagation();
+            event.sourceEvent.stopPropagation();
 
-            if (!d3_selection.event.active) {
+            if (!event.active) {
                 simulation.alphaTarget(0.3).restart();
             }
 
@@ -55,13 +56,13 @@ export class D3Service {
             d.fy = d.y;
         };
 
-        const dragActions = (d: D3SimulationNode) => {
-            d.fx = d3_selection.event.x;
-            d.fy = d3_selection.event.y;
+        const dragged = (event: any, d: D3SimulationNode) => {
+            d.fx = event.x;
+            d.fy = event.y;
         };
 
-        const dragEnd = (d: D3SimulationNode) => {
-            if (!d3_selection.event.active) {
+        const dragEnd = (event: any, d: D3SimulationNode) => {
+            if (!event.active) {
                 simulation.alphaTarget(0);
             }
 
@@ -69,7 +70,15 @@ export class D3Service {
             d.fy = null;
         };
 
-        dragElement.call(d3_drag.drag().on('start', dragStart).on('drag', dragActions).on('end', dragEnd));
+        // create drag behaviour
+        const dragBehaviour: D3DragBehaviour = d3_drag
+            .drag()
+            .on('start', dragStart)
+            .on('drag', dragged)
+            .on('end', dragEnd);
+
+        // apply drag behaviour
+        dragContext.call(dragBehaviour);
     }
 
     /**
@@ -81,21 +90,23 @@ export class D3Service {
      *  @param {any} zoomContainerElement The given zoom container.
      *  @returns {void} Sets the zoom behaviour.
      */
-    applyZoomBehaviour(svgElement: any, zoomContainerElement: any): void {
+    applyZoomBehaviour(zoomContainerElement: any, svgElement: any): void {
         // select the elements
         const svg: D3Selection = d3_selection.select(svgElement);
         const zoomContainer: D3Selection = d3_selection.select(zoomContainerElement);
 
         // perform the zooming
-        const zoomActions = () => {
-            zoomContainer.attr('transform', d3_selection.event.transform);
+        const zoomed = (event: any) => {
+            const currentTransform = event.transform;
+            // update d3 zoom context
+            zoomContainer.attr('transform', currentTransform);
         };
 
-        // create zoomHandler that calls the zoomActions on zoom
-        const zoomHandler = d3_zoom.zoom().on('zoom', zoomActions);
+        // create zoom behaviour that calls the zoomActions on zoom
+        const zoomBehaviour = d3_zoom.zoom().on('zoom', zoomed);
 
-        // apply zoom handler
-        svg.call(zoomHandler);
+        // apply zoom behaviour
+        svg.call(zoomBehaviour);
     }
 
     /**
