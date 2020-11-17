@@ -1,22 +1,9 @@
 <!-- Data: Triples, query, result -->
 
 <div *ngIf="graphRDFInputData" class="row">
-    <!-- awg-graph-triples-input -->
+    <!-- awg-graph-triples-editor -->
     <div class="col-lg-6 pr-lg-0">
-        <ngb-accordion #triplesAcc activeIds="">
-            <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
-                <ng-template ngbPanelContent>
-                    <!-- CodeMirror editor instance -->
-                    <ngx-codemirror [(ngModel)]="triples" [options]="cmTriplesConfig"> </ngx-codemirror>
-
-                    <div>
-                        <button class="btn btn-info" (click)="doQuery()">Update</button>
-
-                        <button class="btn btn-outline-info" (click)="setInitialTriples()">Reset</button>
-                    </div>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+        <awg-triples-editor [triples]="triples" (updateTriplesRequest)="triples = $event" (resetTriplesRequest)="setInitialTriples()" (queryRequest)="doQuery()"></awg-triples-editor>
     </div>
 
     <!-- awg-graph-query-input -->

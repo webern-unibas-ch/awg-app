@@ -36,18 +36,6 @@ export class GraphVisualizerComponent implements OnInit {
     @Input()
     graphRDFInputData: GraphRDFData;
 
-    /**
-     * Public variable: cmTriplesConfig.
-     *
-     * It keeps the Codemirror configuration for the triples panel.
-     */
-    cmTriplesConfig = {
-        lineNumbers: true,
-        firstLineNumber: 1,
-        lineWrapping: true,
-        matchBrackets: true,
-        mode: 'turtle'
-    };
 
     /**
      * Public variable: cmSparqlConfig.
