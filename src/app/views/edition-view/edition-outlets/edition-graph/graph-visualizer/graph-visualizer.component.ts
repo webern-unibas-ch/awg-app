@@ -6,7 +6,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 
 import { from, Observable } from 'rxjs';
 
-import { GraphQuery, GraphRDFData } from '@awg-views/edition-view/models';
+import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
@@ -62,14 +62,14 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It keeps the input query string of the graph visualization.
      */
-    query: GraphQuery;
+    query: GraphSparqlQuery;
 
     /**
      * Public variable: queryList.
      *
      * It keeps the input query list of the graph visualization.
      */
-    queryList: GraphQuery[];
+    queryList: GraphSparqlQuery[];
 
     /**
      * Public variable: queryResult.
@@ -181,11 +181,11 @@ export class GraphVisualizerComponent implements OnInit {
      * It resets the initial value of a given query
      * if it is known from the RDF input data.
      *
-     * @param {GraphQuery} query The given sample query.
+     * @param {GraphSparqlQuery} query The given sample query.
      *
      * @returns {void} Resets the initial query.
      */
-    resetQuery(query: GraphQuery): void {
+    resetQuery(query: GraphSparqlQuery): void {
         if (!this.graphRDFInputData.queryList) {
             return;
         }
