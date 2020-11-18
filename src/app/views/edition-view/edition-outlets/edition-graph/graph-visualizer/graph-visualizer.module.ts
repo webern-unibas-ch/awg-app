@@ -7,6 +7,7 @@ import { ForceGraphNoResultComponent } from './force-graph-no-result/force-graph
 import { SparqlEditorComponent } from './sparql-editor/sparql-editor.component';
 import { SelectResultsComponent } from './select-results/select-results.component';
 import { TriplesEditorComponent } from './triples-editor/triples-editor.component';
+import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
 import { PrefixPipe } from './prefix-pipe/prefix.pipe';
@@ -27,6 +28,7 @@ import { PrefixPipe } from './prefix-pipe/prefix.pipe';
         TriplesEditorComponent,
         SelectResultsComponent,
         SparqlEditorComponent,
+        UnsupportedTypeResultsComponent
     ],
     exports: [GraphVisualizerComponent],
     providers: [PrefixPipe]

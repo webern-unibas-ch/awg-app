@@ -1,0 +1,10 @@
+<ngb-accordion activeIds="awg-graph-unsupported-query-type-result">
+    <ngb-panel id="awg-graph-unsupported-query-type-result" title="Resultat">
+        <ng-template ngbPanelContent>
+            <p style="text-align: center">
+                Sorry, but the requested SPARQL query type {{ queryType | uppercase }} is not supported yet.
+            </p>
+            <p style="text-align: center">Please try a CONSTRUCT or SELECT query instead.</p>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>
