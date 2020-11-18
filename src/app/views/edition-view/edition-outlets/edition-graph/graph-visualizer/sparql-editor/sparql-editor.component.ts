@@ -79,6 +79,17 @@ export class SparqlEditorComponent implements OnInit {
     ngOnInit(): void {}
 
     /**
+     * Public method: isExampleQueriesEnabled.
+     *
+     * It checks if query and queryList values are given.
+     *
+     * @returns {boolean} The boolean value of the check result.
+     */
+    isExampleQueriesEnabled(): boolean {
+        return !!(this.query && this.query.queryLabel && this.query.queryString && this.queryList);
+    }
+
+    /**
      * Public method: onEditorInputChange.
      *
      * It emits the given query string
@@ -89,6 +100,7 @@ export class SparqlEditorComponent implements OnInit {
      * @returns {void} Emits the query.
      */
     onEditorInputChange(queryString: string): void {
+        if (!queryString) return;
         this.updateQueryStringRequest.emit(queryString);
     }
 
@@ -102,7 +114,7 @@ export class SparqlEditorComponent implements OnInit {
      * @returns {void} Performs the given query.
      */
     onQueryListChange(query: GraphSparqlQuery): void {
-        if (!query && !this.queryList) {
+        if (!(query && this.queryList)) {
             return;
         }
         // find the given query in the queryList or take its first item
@@ -133,6 +145,7 @@ export class SparqlEditorComponent implements OnInit {
      * @returns {void} Triggers the request.
      */
     resetQuery(query: GraphSparqlQuery): void {
+        if (!query) return;
         this.resetQueryRequest.emit(query);
     }
 }
