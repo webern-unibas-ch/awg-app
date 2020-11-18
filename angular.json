@@ -24,7 +24,6 @@
                             "@ctrl/ngx-codemirror",
                             "lodash",
                             "codemirror/mode/sparql/sparql",
-                            "codemirror/mode/go/go",
                             "codemirror/mode/turtle/turtle",
                             "json2typescript",
                             "readable-stream"
@@ -42,7 +41,6 @@
                             "node_modules/codemirror/lib/codemirror.js",
                             "node_modules/codemirror/mode/turtle/turtle.js",
                             "node_modules/codemirror/mode/sparql/sparql.js",
-                            "node_modules/codemirror/mode/go/go.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
                         ]
@@ -116,7 +114,6 @@
                             "node_modules/codemirror/lib/codemirror.js",
                             "node_modules/codemirror/mode/turtle/turtle.js",
                             "node_modules/codemirror/mode/sparql/sparql.js",
-                            "node_modules/codemirror/mode/go/go.js",
                             "src/plugins/dateConverter.js",
                             "src/plugins/htmlConverter.js"
                         ],

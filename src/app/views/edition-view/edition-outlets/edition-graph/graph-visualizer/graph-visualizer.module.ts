@@ -22,7 +22,7 @@ import { PrefixPipe } from './prefix-pipe/prefix.pipe';
 @NgModule({
     imports: [SharedModule],
     declarations: [
-        ConstructResultsComponent,ng
+        ConstructResultsComponent,
         GraphVisualizerComponent,
         ForceGraphComponent,
         ForceGraphNoResultComponent,

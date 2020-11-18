@@ -11,10 +11,6 @@ import { D3SimulationNode, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
-import 'codemirror/mode/turtle/turtle';
-import 'codemirror/mode/go/go';
-import 'codemirror/mode/sparql/sparql';
-
 /**
  * The GraphVisualizer component.
  *
