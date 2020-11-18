@@ -1,4 +1,4 @@
-<!-- Data: Triples, query, result -->
+<!-- Data: Triples, SPARQL query, result -->
 
 <div *ngIf="graphRDFInputData" class="row">
     <!-- awg-graph-triples-editor -->
@@ -6,19 +6,19 @@
         <awg-triples-editor
             [triples]="triples"
             (updateTriplesRequest)="triples = $event"
-            (resetTriplesRequest)="setInitialTriples()"
-            (queryRequest)="doQuery()"
+            (resetTriplesRequest)="resetTriples()"
+            (performQueryRequest)="performQuery()"
         ></awg-triples-editor>
     </div>
 
-    <!-- awg-graph-query-editor -->
+    <!-- awg-graph-sparql-editor -->
     <div class="col-lg-6 pl-lg-0">
         <awg-sparql-editor
             [queryList]="queryList"
             [query]="query"
-            (updateQueryRequest)="query.queryString = $event"
+            (updateQueryStringRequest)="query.queryString = $event"
             (resetQueryRequest)="resetQuery($event)"
-            (queryRequest)="doQuery()"
+            (performQueryRequest)="performQuery()"
         ></awg-sparql-editor>
     </div>
 
@@ -26,34 +26,13 @@
     <div class="col-12">
         <!-- CONSTRUCT -->
         <!-- awg-graph-construct-result -->
-        <ngb-accordion
+        <awg-construct-results
             #queryConstructResultAcc
-            activeIds="awg-graph-construct-result"
-            *ngIf="queryType === 'construct'"
-        >
-            <ngb-panel id="awg-graph-construct-result" title="Resultat">
-                <ng-template ngbPanelContent>
-                    <div *ngIf="queryResult | async as queryResult; else loading">
-                        <div *ngIf="queryResult.length > 0; else noResult">
-                            <!-- SPARQL graph visualization -->
-                            <awg-force-graph
-                                class="full-width"
-                                [queryResultTriples]="queryResult"
-                                [height]="defaultForceGraphHeight"
-                                (clickedNodeRequest)="onGraphClick($event)"
-                            >
-                            </awg-force-graph>
-                        </div>
-                        <ng-template #noResult>
-                            <awg-force-graph-no-result [height]="defaultForceGraphHeight"></awg-force-graph-no-result>
-                        </ng-template>
-                    </div>
-                    <ng-template #loading>
-                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-                    </ng-template>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+            *ngIf="queryType === 'construct'; else querySelectResultAcc"
+            [queryResult]="queryResult"
+            [defaultForceGraphHeight]="defaultForceGraphHeight"
+            (clickedNodeRequest)="onGraphNodeClick($event)"
+        ></awg-construct-results>
 
         <!-- SELECT -->
         <!-- awg-graph-select-result -->

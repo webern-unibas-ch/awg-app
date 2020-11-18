@@ -7,7 +7,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
 import { from, Observable } from 'rxjs';
 
 import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
-import { Triple } from './models';
+import { D3SimulationNode, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
@@ -25,7 +25,7 @@ import 'codemirror/mode/sparql/sparql';
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.Default
 })
 export class GraphVisualizerComponent implements OnInit {
     /**
@@ -114,7 +114,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query.
      */
     performQuery(): void {
-        // If no namesace is defined in the query, get it from the turtle file
+        // If no namespace is defined in the query, get it from the turtle file
         if (this.query.queryString.toLowerCase().indexOf('prefix') === -1) {
             this.query.queryString = this.graphVisualizerService.appendNamespacesToQuery(
                 this.query.queryString,
@@ -125,8 +125,14 @@ export class GraphVisualizerComponent implements OnInit {
         // get the query type
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
-        // query local store
-        this.queryResult = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+        // perform only construct queries for now
+        if (this.queryType === 'construct') {
+            // query local store
+            this.queryResult = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+        } else {
+            this.queryResult = from([]);
+            return;
+        }
     }
 
     /**
@@ -136,8 +142,8 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Logs the click event.
      */
-    onGraphClick(URI) {
-        console.log('GraphVisualizerComponent# graphClick URI', URI);
+    onGraphNodeClick(node: D3SimulationNode) {
+        console.log('GraphVisualizerComponent# graphClick on node', node);
     }
 
     /**

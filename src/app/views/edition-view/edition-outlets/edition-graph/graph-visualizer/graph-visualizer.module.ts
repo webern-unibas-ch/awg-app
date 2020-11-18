@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 
 import { SharedModule } from '@awg-shared/shared.module';
 
+import { ConstructResultsComponent } from './construct-results/construct-results.component';
 import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { ForceGraphNoResultComponent } from './force-graph-no-result/force-graph-no-result.component';
 import { SparqlEditorComponent } from './sparql-editor/sparql-editor.component';
@@ -21,6 +22,7 @@ import { PrefixPipe } from './prefix-pipe/prefix.pipe';
 @NgModule({
     imports: [SharedModule],
     declarations: [
+        ConstructResultsComponent,ng
         GraphVisualizerComponent,
         ForceGraphComponent,
         ForceGraphNoResultComponent,
