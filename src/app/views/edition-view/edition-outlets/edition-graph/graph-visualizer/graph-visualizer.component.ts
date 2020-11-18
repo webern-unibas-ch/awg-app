@@ -36,20 +36,6 @@ export class GraphVisualizerComponent implements OnInit {
     @Input()
     graphRDFInputData: GraphRDFData;
 
-
-    /**
-     * Public variable: cmSparqlConfig.
-     *
-     * It keeps the Codemirror configuration for the sparql panel.
-     */
-    cmSparqlConfig = {
-        lineNumbers: true,
-        firstLineNumber: 1,
-        lineWrapping: true,
-        matchBrackets: true,
-        mode: 'sparql'
-    };
-
     /**
      * Public variable: defaultForceGraphHeight.
      *
@@ -116,21 +102,18 @@ export class GraphVisualizerComponent implements OnInit {
      */
     ngOnInit() {
         // set initial values
-        this.setInitialTriples();
-        this.setInitialQuery();
-
-        // perform initial query
-        this.doQuery();
+        this.resetTriples();
+        this.resetQuery();
     }
 
     /**
-     * Public method: doQuery.
+     * Public method: performQuery.
      *
      * It performs a SPARQL query against the rdfstore.
      *
      * @returns {void} Performs the query.
      */
-    doQuery(): void {
+    performQuery(): void {
         // If no namesace is defined in the query, get it from the turtle file
         if (this.query.queryString.toLowerCase().indexOf('prefix') === -1) {
             this.query.queryString = this.graphVisualizerService.appendNamespacesToQuery(
@@ -142,7 +125,7 @@ export class GraphVisualizerComponent implements OnInit {
         // get the query type
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
-        // use only local store for now
+        // query local store
         this.queryResult = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
     }
 
@@ -158,21 +141,17 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Public method: onQueryChange.
+     * Public method: onTableClick.
      *
-     * It is called when another sample query is requested.
+     * It performs a query for a given IRI from the result table.
      *
-     * @param {GraphQuery} query The given sample query.
+     * @param {string} IRI The given IRI.
      *
-     * @returns {void} Performs the given query.
+     * @returns {void} Performs the query with the given URI.
      */
-    onQueryChange(query: GraphQuery): void {
-        if (!query && !this.queryList) {
-            return;
-        }
-        // find the given query in the queryList or take its first item
-        this.query = this.queryList.find(q => query === q) || this.queryList[0];
-        this.doQuery();
+    onTableClick(IRI: string): void {
+        this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
+        this.performQuery();
     }
 
     /**
@@ -185,58 +164,29 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Resets the initial query.
      */
-    resetQuery(query: GraphSparqlQuery): void {
+    resetQuery(query?: GraphSparqlQuery): void {
         if (!this.graphRDFInputData.queryList) {
             return;
         }
         this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
-        this.query = this.queryList.find(q => query.queryLabel === q.queryLabel) || query;
-        this.doQuery();
+        this.query = query ? this.queryList.find(q => query.queryLabel === q.queryLabel) || query : this.queryList[0];
+
+        this.performQuery();
     }
 
     /**
-     * Public method: onTableClick.
-     *
-     * It performs a query for a given IRI from the result table.
-     *
-     * @param {string} IRI The given IRI.
-     *
-     * @returns {void} Performs the query with the given URI.
-     */
-    onTableClick(IRI: string): void {
-        this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
-        this.doQuery();
-    }
-
-    /**
-     * Public method: setInitialTriples.
+     * Public method: resetTriples.
      *
      * It (re-)sets the initial value of the triples variable
      * from the RDF input data.
      *
      * @returns {void} (Re-)Sets the initial triples.
      */
-    setInitialTriples(): void {
+    resetTriples(): void {
         if (!this.graphRDFInputData.triples) {
             return;
         }
         this.triples = this.graphRDFInputData.triples;
-    }
-
-    /**
-     * Public method: setInitialQuery.
-     *
-     * It sets the initial value of the query variable
-     * from the RDF input data.
-     *
-     * @returns {void} Sets the initial query.
-     */
-    setInitialQuery(): void {
-        if (!this.graphRDFInputData.queryList) {
-            return;
-        }
-        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
-        this.query = this.queryList[0];
     }
 
     /**

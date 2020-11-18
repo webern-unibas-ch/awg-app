@@ -3,61 +3,23 @@
 <div *ngIf="graphRDFInputData" class="row">
     <!-- awg-graph-triples-editor -->
     <div class="col-lg-6 pr-lg-0">
-        <awg-triples-editor [triples]="triples" (updateTriplesRequest)="triples = $event" (resetTriplesRequest)="setInitialTriples()" (queryRequest)="doQuery()"></awg-triples-editor>
+        <awg-triples-editor
+            [triples]="triples"
+            (updateTriplesRequest)="triples = $event"
+            (resetTriplesRequest)="setInitialTriples()"
+            (queryRequest)="doQuery()"
+        ></awg-triples-editor>
     </div>
 
-    <!-- awg-graph-query-input -->
+    <!-- awg-graph-query-editor -->
     <div class="col-lg-6 pl-lg-0">
-        <ngb-accordion #sparqlAcc activeIds="">
-            <ngb-panel id="awg-graph-visualizer-query">
-                <ng-template ngbPanelHeader>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <button ngbPanelToggle class="btn btn-link text-left">SPARQL Abfrage</button>
-                        <!-- Limit -->
-                        <div class="btn-group float-right mr-2" *ngIf="query && query.queryLabel && query.queryString">
-                            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                                Beispielabfragen
-                            </button>
-                            <div
-                                class="btn-group"
-                                ngbDropdown
-                                container="body"
-                                placement="bottom-right"
-                                role="group"
-                                aria-label="Button group with nested dropdown for sample queries"
-                            >
-                                <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
-                                <div class="dropdown-menu" ngbDropdownMenu>
-                                    <ng-container *ngFor="let q of queryList">
-                                        <button
-                                            class="dropdown-item"
-                                            [class.disabled]="q === query"
-                                            (click)="onQueryChange(q)"
-                                        >
-                                            <span>{{ q.queryLabel }}</span>
-                                        </button>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                    <!-- CodeMirror editor instance -->
-                    <ngx-codemirror [(ngModel)]="query.queryString" [options]="cmSparqlConfig">
-                        <!-- (change)="data.query = $event" -->
-                    </ngx-codemirror>
-
-                    <div>
-                        <div fxLayout="row">
-                            <button class="btn btn-info" color="primary" (click)="doQuery()">Query</button>
-
-                            <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
-                        </div>
-                    </div>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+        <awg-sparql-editor
+            [queryList]="queryList"
+            [query]="query"
+            (updateQueryRequest)="query.queryString = $event"
+            (resetQueryRequest)="resetQuery($event)"
+            (queryRequest)="doQuery()"
+        ></awg-sparql-editor>
     </div>
 
     <!-- Results -->

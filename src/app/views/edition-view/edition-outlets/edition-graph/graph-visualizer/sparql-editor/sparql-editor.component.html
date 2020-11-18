@@ -1,0 +1,53 @@
+<ngb-accordion #sparqlAcc activeIds="">
+    <ngb-panel id="awg-graph-visualizer-query">
+        <ng-template ngbPanelHeader>
+            <div class="d-flex align-items-center justify-content-between">
+                <button ngbPanelToggle class="btn btn-link text-left">SPARQL Abfrage</button>
+
+                <!-- Example Query Handle -->
+                <div class="btn-group float-right mr-2" *ngIf="query && query.queryLabel && query.queryString">
+                    <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
+                        Beispielabfragen
+                    </button>
+                    <div
+                        class="btn-group"
+                        ngbDropdown
+                        container="body"
+                        placement="bottom-right"
+                        role="group"
+                        aria-label="Button group with nested dropdown for sample queries"
+                    >
+                        <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
+                        <div class="dropdown-menu" ngbDropdownMenu>
+                            <ng-container *ngFor="let q of queryList">
+                                <button
+                                    class="dropdown-item"
+                                    [class.disabled]="q === query"
+                                    (click)="onQueryListChange(q)"
+                                >
+                                    <span>{{ q.queryLabel }}</span>
+                                </button>
+                            </ng-container>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </ng-template>
+        <ng-template ngbPanelContent>
+            <!-- CodeMirror editor instance -->
+            <ngx-codemirror
+                [(ngModel)]="query.queryString"
+                (ngModelChange)="onEditorInputChange($event)"
+                [options]="cmSparqlConfig"
+            >
+                <!-- (change)="data.query = $event" -->
+            </ngx-codemirror>
+
+            <!-- Handle buttons -->
+            <div fxLayout="row">
+                <button class="btn btn-info" (click)="performQuery()">Query</button>
+                <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

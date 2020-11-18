@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
+import 'codemirror/mode/turtle/turtle';
+
 /**
  * The TriplesEditor component.
  *
- * It contains the editor for the RDF triples of the {@link GraphVisualizerComponent}.
+ * It contains the editor for the RDF triples
+ * of the {@link GraphVisualizerComponent}.
  */
 @Component({
     selector: 'awg-triples-editor',
@@ -21,12 +24,12 @@ export class TriplesEditorComponent implements OnInit {
     triples: string;
 
     /**
-     * Output variable: queryRequest.
+     * Output variable: performQueryRequest.
      *
      * It keeps an event emitter to perform a query.
      */
     @Output()
-    queryRequest: EventEmitter<void> = new EventEmitter();
+    performQueryRequest: EventEmitter<void> = new EventEmitter();
 
     /**
      * Output variable: resetTriplesRequest.
@@ -75,20 +78,20 @@ export class TriplesEditorComponent implements OnInit {
      *
      * @returns {void} Emits the triples.
      */
-    onEditorInputChange(triples: string) {
+    onEditorInputChange(triples: string): void {
         this.updateTriplesRequest.emit(triples);
     }
 
     /**
-     * Public method: doQuery.
+     * Public method: performQuery.
      *
      * It emits a trigger to
-     * the {@link queryRequest}.
+     * the {@link performQueryRequest}.
      *
      * @returns {void} Triggers the request.
      */
-    doQuery() {
-        this.queryRequest.emit();
+    performQuery(): void {
+        this.performQueryRequest.emit();
     }
 
     /**
