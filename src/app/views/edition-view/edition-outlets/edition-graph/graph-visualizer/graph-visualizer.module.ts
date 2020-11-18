@@ -5,6 +5,7 @@ import { SharedModule } from '@awg-shared/shared.module';
 import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { ForceGraphNoResultComponent } from './force-graph-no-result/force-graph-no-result.component';
 import { SparqlEditorComponent } from './sparql-editor/sparql-editor.component';
+import { SelectResultsComponent } from './select-results/select-results.component';
 import { TriplesEditorComponent } from './triples-editor/triples-editor.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
@@ -24,7 +25,8 @@ import { PrefixPipe } from './prefix-pipe/prefix.pipe';
         ForceGraphNoResultComponent,
         PrefixPipe,
         TriplesEditorComponent,
-        SparqlEditorComponent
+        SelectResultsComponent,
+        SparqlEditorComponent,
     ],
     exports: [GraphVisualizerComponent],
     providers: [PrefixPipe]

@@ -55,24 +55,13 @@
             </ngb-panel>
         </ngb-accordion>
 
+        <!-- SELECT -->
         <!-- awg-graph-select-result -->
-        <ngb-accordion #querySelectResultAcc activeIds="awg-graph-select-result" *ngIf="queryType === 'select'">
-            <ngb-panel id="awg-graph-select-result" title="Resultat">
-                <ng-template ngbPanelContent>
-                    <p>Got a SELECT request</p>
-                    <!-- SPARQL table visualization -->
-                    <!--
-                       <awg-sparql-table
-                           maxHeight="500px"
-                           [queryResult]="queryResult"
-                           [queryTime]="queryTime"
-                           (clickedNodeRequest)="onTableClick($event)"
-                       >
-                       </awg-sparql-table>
-                       -->
-                    <span *ngIf="!queryResult">No result to show</span>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+        <ng-template #querySelectResultAcc>
+            <awg-select-results
+                *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+                [queryResult]="queryResult"
+            ></awg-select-results>
+        </ng-template>
     </div>
 </div>
