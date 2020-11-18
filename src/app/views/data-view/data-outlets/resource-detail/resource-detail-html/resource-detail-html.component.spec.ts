@@ -206,9 +206,10 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
                     ResourceDetailHtmlContentStubComponent
                 ) as ResourceDetailHtmlContentStubComponent;
 
+                // id is undefined
                 htmlContentCmp.resourceRequest.emit(undefined);
 
-                // id is undefined
+                expectSpyCall(navigateToResourceSpy, 1, undefined);
                 expect(emitSpy).not.toHaveBeenCalled();
                 expect(emitSpy).toHaveBeenCalledTimes(0);
             }));
@@ -230,12 +231,14 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
                 id = 28;
                 htmlContentCmp.resourceRequest.emit(id);
 
+                expectSpyCall(navigateToResourceSpy, 1, id);
                 expectSpyCall(emitSpy, 1, id.toString());
 
                 // string
                 id = '28';
                 htmlContentCmp.resourceRequest.emit(id);
 
+                expectSpyCall(navigateToResourceSpy, 2, id);
                 expectSpyCall(emitSpy, 2, id);
             }));
         });

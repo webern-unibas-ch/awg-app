@@ -16,7 +16,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 import { mockSearchResponseJson } from '@testing/mock-data';
 import { mockConsole } from '@testing/mock-helper';
 
-import { CoreService, DataStreamerService } from '@awg-core/services';
+import { DataStreamerService } from '@awg-core/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-models';
 import { SearchResponseWithQuery } from '@awg-views/data-view/models';

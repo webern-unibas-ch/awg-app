@@ -16,7 +16,7 @@ import { GraphRDFData } from '@awg-views/edition-view/models';
 class ForceGraphStubComponent {
     @Input() queryResultTriples: Triple[];
     @Input() height: number;
-    @Output() clickedNodeRequest = new EventEmitter<D3SimulationNode>();
+    @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
 @Component({ selector: 'awg-force-graph-no-result', template: '' })
@@ -33,19 +33,13 @@ describe('GraphVisualizerComponent', () => {
 
     let expectedGraphRDFData: GraphRDFData;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
+    beforeEach(async () => {
+        await TestBed.configureTestingModule({
             imports: [FormsModule, NgbAccordionModule],
-            declarations: [
-                GraphVisualizerComponent,
-                ForceGraphStubComponent,
-                ForceGraphNoResultStubComponent,
-                TwelveToneSpinnerStubComponent,
-                CodemirrorComponent
-            ],
+            declarations: [GraphVisualizerComponent],
             providers: [GraphVisualizerService]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);

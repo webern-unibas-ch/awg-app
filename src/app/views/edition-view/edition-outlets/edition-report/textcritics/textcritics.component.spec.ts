@@ -5,7 +5,6 @@ import { Component, Input } from '@angular/core';
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { TextcriticsList } from '@awg-views/edition-view/models';
-import { CriticsListComponent } from './critics-list/critics-list.component';
 import { TextcriticsComponent } from './textcritics.component';
 
 // mock critics list component
