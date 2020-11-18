@@ -1,8 +1,8 @@
-<ngb-accordion activeIds="awg-graph-construct-result">
-    <ngb-panel id="awg-graph-construct-result" title="Resultat">
+<ngb-accordion activeIds="awg-graph-visualizer-construct-result">
+    <ngb-panel id="awg-graph-visualizer-construct-result" title="Resultat">
         <ng-template ngbPanelContent>
-            <div *ngIf="queryResult | async as queryResult; else loading">
-                <div *ngIf="queryResult.length > 0; else noResult">
+            <ng-container *ngIf="queryResult | async as queryResult; else loading">
+                <ng-container *ngIf="queryResult.length > 0; else noResult">
                     <!-- Force graph visualization -->
                     <awg-force-graph
                         class="full-width"
@@ -11,11 +11,11 @@
                         (clickedNodeRequest)="onGraphNodeClick($event)"
                     >
                     </awg-force-graph>
-                </div>
+                </ng-container>
                 <ng-template #noResult>
                     <awg-force-graph-no-result [height]="defaultForceGraphHeight"></awg-force-graph-no-result>
                 </ng-template>
-            </div>
+            </ng-container>
             <ng-template #loading>
                 <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
             </ng-template>
