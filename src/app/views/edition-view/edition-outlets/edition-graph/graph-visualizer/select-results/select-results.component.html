@@ -1,10 +1,13 @@
-<ngb-accordion activeIds="awg-graph-select-result">
-    <ngb-panel id="awg-graph-select-result" title="Resultat">
+<ngb-accordion activeIds="awg-graph-visualizer-select-result">
+    <ngb-panel id="awg-graph-visualizer-select-result" title="Resultat">
         <ng-template ngbPanelContent>
-            <p style="text-align: center">Got a SELECT request</p>
-            <div *ngIf="queryResult | async as queryResult; else noResult">
+            <p class="text-center">Got a SELECT request</p>
+            <ng-container *ngIf="queryResult | async as queryResult; else noResult">
                 <!-- change back to: else loading -->
-                {{ queryResult | json }}
+                <div>
+                    {{ queryResult | json }}
+                </div>
+
                 <!-- SPARQL table visualization -->
 
                 <!--
@@ -18,9 +21,9 @@
                        </awg-sparql-table>
                   </div>
                        -->
-            </div>
+            </ng-container>
             <ng-template #noResult>
-                <p style="text-align: center">No result to show</p>
+                <p class="text-center">No result to show</p>
             </ng-template>
             <ng-template #loading>
                 <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
