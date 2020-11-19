@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 
-import { Observable, throwError } from 'rxjs';
+import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
 import { EditionConstants, EditionWork, GraphList } from '@awg-views/edition-view/models';
@@ -31,7 +31,7 @@ export class EditionGraphComponent implements OnInit {
      *
      * It keeps the observable of the edition graph data.
      */
-    editionGraphData$: Observable<GraphList>;
+    editionGraphData$: Observable<GraphList | never>;
 
     /**
      * Readonly constant: graphImages.
@@ -100,8 +100,10 @@ export class EditionGraphComponent implements OnInit {
                 }),
                 // error handling
                 catchError(err => {
+                    // set error object
                     this.errorObject = err;
-                    return throwError(err);
+                    // return empty observable to complete observable without data
+                    return EMPTY;
                 })
             );
     }
