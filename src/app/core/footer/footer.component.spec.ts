@@ -220,7 +220,7 @@ describe('FooterComponent (DONE)', () => {
                     ) as FooterCopyrightStubComponent;
 
                     expect(footerCopyrightCmp.pageMetaData).toBeTruthy();
-                    expect(footerCopyrightCmp.pageMetaData).toEqual(expectedPageMetaData, 'should have pageMetaData');
+                    expect(footerCopyrightCmp.pageMetaData).toEqual(expectedPageMetaData, 'should equal pageMetaData');
                 });
 
                 it('... should pass down logos to footer poweredby component', () => {
