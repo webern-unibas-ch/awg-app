@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -55,32 +55,30 @@ describe('ResourceInfoComponent (DONE)', () => {
     let expectedGoToIndex: number;
     let expectedResultSize: number;
 
-    beforeEach(
-        waitForAsync(() => {
-            // router spy object
-            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(async () => {
+        // router spy object
+        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // mocked dataStreamerService
-            mockDataStreamerService = {
-                getResourceId: (): Observable<string> => {
-                    return observableOf('test');
-                },
-                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => {
-                    return observableOf();
-                }
-            };
+        // mocked dataStreamerService
+        mockDataStreamerService = {
+            getResourceId: (): Observable<string> => {
+                return observableOf('test');
+            },
+            getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => {
+                return observableOf();
+            }
+        };
 
-            TestBed.configureTestingModule({
-                imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-                providers: [
-                    { provide: Router, useValue: mockRouter },
-                    { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    FormBuilder
-                ],
-                declarations: [ResourceInfoComponent, CompileHtmlComponent]
-            }).compileComponents();
-        })
-    );
+        await TestBed.configureTestingModule({
+            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
+            providers: [
+                { provide: Router, useValue: mockRouter },
+                { provide: DataStreamerService, useValue: mockDataStreamerService },
+                FormBuilder
+            ],
+            declarations: [ResourceInfoComponent, CompileHtmlComponent]
+        }).compileComponents();
+    });
 
     beforeEach(() => {
         // add custom jasmine matchers (ToHaveCssClass)

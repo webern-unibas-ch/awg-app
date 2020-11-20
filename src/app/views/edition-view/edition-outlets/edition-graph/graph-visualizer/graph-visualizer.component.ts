@@ -4,7 +4,7 @@
  */
 import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
 
-import { from, Observable } from 'rxjs';
+import { EMPTY, from, Observable } from 'rxjs';
 
 import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { D3SimulationNode, Triple } from './models';
@@ -103,6 +103,41 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
+     * Public method: resetTriples.
+     *
+     * It (re-)sets the initial value of the triples variable
+     * from the RDF input data.
+     *
+     * @returns {void} (Re-)Sets the initial triples.
+     */
+    resetTriples(): void {
+        if (!this.graphRDFInputData.triples) {
+            return;
+        }
+        this.triples = this.graphRDFInputData.triples;
+    }
+
+    /**
+     * Public method: resetQuery.
+     *
+     * It resets the initial value of a given query
+     * if it is known from the RDF input data.
+     *
+     * @param {GraphSparqlQuery} query The given sample query.
+     *
+     * @returns {void} Resets the initial query.
+     */
+    resetQuery(query?: GraphSparqlQuery): void {
+        if (!this.graphRDFInputData.queryList) {
+            return;
+        }
+        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
+        this.query = query ? this.queryList.find(q => query.queryLabel === q.queryLabel) || query : this.queryList[0];
+
+        this.performQuery();
+    }
+
+    /**
      * Public method: performQuery.
      *
      * It performs a SPARQL query against the rdfstore.
@@ -124,9 +159,10 @@ export class GraphVisualizerComponent implements OnInit {
         // perform only construct queries for now
         if (this.queryType === 'construct') {
             // query local store
-            this.queryResult = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+            const result = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+            this.queryResult = from(result);
         } else {
-            this.queryResult = from([]);
+            this.queryResult = EMPTY;
             return;
         }
     }
@@ -152,43 +188,9 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query with the given URI.
      */
     onTableClick(IRI: string): void {
+        if (!IRI) return;
         this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
         this.performQuery();
-    }
-
-    /**
-     * Public method: resetQuery.
-     *
-     * It resets the initial value of a given query
-     * if it is known from the RDF input data.
-     *
-     * @param {GraphSparqlQuery} query The given sample query.
-     *
-     * @returns {void} Resets the initial query.
-     */
-    resetQuery(query?: GraphSparqlQuery): void {
-        if (!this.graphRDFInputData.queryList) {
-            return;
-        }
-        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
-        this.query = query ? this.queryList.find(q => query.queryLabel === q.queryLabel) || query : this.queryList[0];
-
-        this.performQuery();
-    }
-
-    /**
-     * Public method: resetTriples.
-     *
-     * It (re-)sets the initial value of the triples variable
-     * from the RDF input data.
-     *
-     * @returns {void} (Re-)Sets the initial triples.
-     */
-    resetTriples(): void {
-        if (!this.graphRDFInputData.triples) {
-            return;
-        }
-        this.triples = this.graphRDFInputData.triples;
     }
 
     /**
@@ -202,10 +204,13 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Shows the error message.
      */
     showErrorMessage(message: string, durationValue?: number): void {
+        if (!message) {
+            return;
+        }
         if (!durationValue) {
             durationValue = 10000;
         }
-        console.log(message);
+        console.log(message, durationValue);
         // TODO: use snackbar instead of console.log
         /*
         this.snackBar.open(message, 'close', {
@@ -220,23 +225,23 @@ export class GraphVisualizerComponent implements OnInit {
      * It performs a query against the local rdfstore.
      *
      * @param {string} queryType The given query type.
-     * @param {string} query The given query.
+     * @param {string} queryString The given queryString.
      * @param {string} triples THe given triples.
      *
-     * @returns {Observable<Triple[]>} The result of the query as an observable of triples.
+     * @returns {Promise<Triple[]>} The result of the query as an promise of triple array.
      */
-    private queryLocalStore(queryType: string, query: string, triples: string): Observable<Triple[]> {
+    private async queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
         // Capture start time of query
         const t1 = Date.now();
 
+        let result;
+
         // Perform query with client based rdfstore
         try {
-            const result = this.graphVisualizerService.doQuery(queryType, query, triples);
+            result = await this.graphVisualizerService.doQuery(queryType, queryString, triples);
 
             // Capture query time
             this.queryTime = Date.now() - t1;
-
-            return from(result);
         } catch (err) {
             console.error('#queryLocalstore got error:', err);
 
@@ -249,9 +254,10 @@ export class GraphVisualizerComponent implements OnInit {
 
             // Capture query time
             this.queryTime = Date.now() - t1;
-            console.log('QUERYTIME:', this.queryTime);
+            // console.log('QUERYTIME:', this.queryTime);
 
-            return from([]);
+            result = [];
         }
+        return result;
     }
 }

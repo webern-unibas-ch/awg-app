@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { Triple } from '../models';
@@ -23,6 +23,14 @@ export class SelectResultsComponent implements OnInit {
      */
     @Input()
     queryResult: Observable<Triple[]>;
+
+    /**
+     * Output variable: clickedTableRequest.
+     *
+     * It keeps an event emitter for a click on a table IRI.
+     */
+    @Output()
+    clickedTableRequest: EventEmitter<string> = new EventEmitter();
 
     /**
      * Angular life cycle hook: ngOnInit.
