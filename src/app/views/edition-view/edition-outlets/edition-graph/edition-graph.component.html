@@ -4,10 +4,10 @@
     <awg-modal #modal></awg-modal>
 
     <!-- graph -->
-    <div *ngIf="editionGraphData$ | async as editionGraphData; else error">
+    <div class="awg-graph-view" *ngIf="editionGraphData$ | async as editionGraphData; else error">
         <div *ngFor="let graph of editionGraphData.graph">
             <!-- graph description -->
-            <ng-container *ngIf="graph.description">
+            <div class="awg-graph-description">
                 <p>
                     So weit vorhanden, präsentiert die vorliegende Ansicht Graph-Visualisierungen des ausgewählten
                     Editionsbereichs: Der <i>statische Graph</i> vermittelt dabei einen von den jeweiligen Editoren
@@ -19,15 +19,17 @@
                         sukzessive ergänzt.</span
                     >
                 </p>
-                <p
-                    *ngFor="let description of graph.description"
-                    [compile-html]="description"
-                    [compile-html-ref]="ref"
-                ></p>
-            </ng-container>
+                <ng-container *ngIf="graph.description">
+                    <p
+                        *ngFor="let description of graph.description"
+                        [compile-html]="description"
+                        [compile-html-ref]="ref"
+                    ></p>
+                </ng-container>
+            </div>
 
             <!-- dynamic graph -->
-            <ng-container *ngIf="graph.rdfData && graph.rdfData.triples && graph.rdfData.queryList">
+            <div class="awg-graph-dynamic" *ngIf="graph.rdfData && graph.rdfData.triples && graph.rdfData.queryList">
                 <h4>
                     Dynamischer Graph
                     <button
@@ -49,13 +51,13 @@
                     vorhandenen Triples abgefragt.
                 </p>
                 <awg-graph-visualizer [graphRDFInputData]="graph.rdfData"></awg-graph-visualizer>
-            </ng-container>
+            </div>
 
             <!-- static image -->
-            <ng-container *ngIf="graph.staticImage && graph.staticImage !== ''">
+            <div class="awg-graph-static" *ngIf="graph.staticImage && graph.staticImage !== ''">
                 <h4>Statischer Graph</h4>
                 <div [compile-html]="graph.staticImage" [compile-html-ref]="ref"></div>
-            </ng-container>
+            </div>
         </div>
     </div>
 
@@ -64,7 +66,7 @@
         <div class="errorMessage" *ngIf="errorObject">
             <div class="col-12 text-center">
                 <div class="alert alert-danger">
-                    {{ errorObject }}
+                    {{ errorObject | json }}
                 </div>
             </div>
         </div>

@@ -23,12 +23,7 @@ export class LoadingService {
     /**
      * Private readonly isLoading stream as observable (`BehaviorSubject`).
      */
-    private readonly isLoading$ = this.isLoadingSubject.asObservable();
-
-    /**
-     * Constructor of the LoadingService.
-     */
-    constructor() {}
+    private readonly isLoadingStream$ = this.isLoadingSubject.asObservable();
 
     /**
      * Public method: getLoadingStatus.
@@ -38,7 +33,7 @@ export class LoadingService {
      * @returns {Observable<boolean>} The isLoading stream as observable.
      */
     getLoadingStatus(): Observable<boolean> {
-        return this.isLoading$;
+        return this.isLoadingStream$;
     }
 
     /**

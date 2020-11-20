@@ -70,7 +70,7 @@ describe('ResourceDetailComponent', () => {
 
     let expectedResourceData: ResourceData;
 
-    beforeEach(async(() => {
+    beforeEach(async () => {
         // stub services for test purposes
         // TODO: provide accurate types and service responses
         const mockDataApiService = {
@@ -85,7 +85,7 @@ describe('ResourceDetailComponent', () => {
         // mocked activated route
         mockActivatedRoute = new ActivatedRouteStub();
 
-        TestBed.configureTestingModule({
+        await TestBed.configureTestingModule({
             imports: [NgbNavModule],
             declarations: [
                 ResourceDetailComponent,
@@ -103,7 +103,7 @@ describe('ResourceDetailComponent', () => {
                 { provide: LoadingService, useValue: mockLoadingService }
             ]
         }).compileComponents();
-    }));
+    });
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailComponent);

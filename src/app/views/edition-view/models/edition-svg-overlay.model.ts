@@ -17,33 +17,50 @@ export enum EditionSvgOverlayTypes {
  */
 export class EditionSvgOverlay {
     /**
-     * The type of an svg overlay (EditionSvgOverlayTypes).
-     */
-    type: EditionSvgOverlayTypes;
-
-    /**
      * The id of an svg overlay.
      */
     id: string;
 
     /**
-     * The type label of an svg overlay.
+     * The type of an svg overlay (EditionSvgOverlayTypes).
      */
-    typeLabel?: string[];
+    type: EditionSvgOverlayTypes;
+
+    /**
+     * The key string of an svg overlay type (EditionSvgOverlayTypes).
+     */
+    typeKey: string;
 
     /**
      * Constructor of the EditionSvgOverlay class.
      *
      * It initializes the class with values from the EditionSvgOverlayTypes and an id.
      *
-     * @param {EditionSvgOverlayTypes} type The given overlay type.
+     * @param {EditionSvgOverlayTypes} typeValue The given overlay type value.
      * @param {string} id The given id of the overlay.
      */
-    constructor(type: EditionSvgOverlayTypes, id: string) {
-        this.type = type;
+    constructor(typeValue: EditionSvgOverlayTypes, id: string) {
+        this.type = typeValue;
         this.id = id;
-        if (!this.typeLabel) {
-            this.typeLabel = EditionSvgOverlayTypes[type];
-        }
+        this.typeKey = this.getEnumKeyFromValue(typeValue);
+    }
+
+    /**
+     * Private method: getEnumKeyFromValue.
+     *
+     * It gets the type of a string enum by its value.
+     *
+     * Cf. https://www.tutorialsteacher.com/typescript/typescript-enum
+     *
+     * @param {EditionSvgOverlayTypes} enumValue The given overlay enum value.
+     *
+     * @returns {string} Filtered key of the EditionSvgOverlayTypes.
+     */
+    private getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
+        const enumKey: string = Object.keys(EditionSvgOverlayTypes)
+            // find key of enumValue
+            .find((key: string) => EditionSvgOverlayTypes[key] === enumValue);
+
+        return enumKey;
     }
 }

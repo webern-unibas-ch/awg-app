@@ -20,7 +20,7 @@ import { FolioCalculation, FolioCalculationLine, FolioCalculationPoint } from '.
 import { FolioSettings } from './folio-settings.model';
 import { FolioSvgData } from './folio-svg-data.model';
 
-import { Graph, GraphList, GraphQuery, GraphRDFData } from './graph.model';
+import { Graph, GraphList, GraphSparqlQuery, GraphRDFData } from './graph.model';
 import { Intro, IntroList } from './intro.model';
 
 import { Source, SourceList } from './source-list.model';
@@ -52,7 +52,7 @@ export {
     FolioSvgData,
     Graph,
     GraphList,
-    GraphQuery,
+    GraphSparqlQuery,
     GraphRDFData,
     Intro,
     IntroList,

@@ -15,7 +15,7 @@ import Spy = jasmine.Spy;
  * @param {DebugElement} inDe The input DebugElement to be checked.
  * @param {string} selector The CSS selector to look for.
  * @param {number} expected The expected number of elements in the result array.
- * @param {number} expectedInFailMsg The expected number of elements in the result array in the fail message.
+ * @param {number} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
  *
  * @returns {DebugElement[]} An array of the found DebugElements.
@@ -24,7 +24,7 @@ export function getAndExpectDebugElementByCss(
     inDe: DebugElement,
     selector: string,
     expected: number,
-    expectedInFailMsg: number,
+    expectedFailMsg: number,
     suffixMsg?: string
 ): DebugElement[] {
     const outDe = inDe.queryAll(By.css(selector));
@@ -34,7 +34,7 @@ export function getAndExpectDebugElementByCss(
         suffixMsg = '';
     }
 
-    expectDebugElement(outDe, selector, expected, expectedInFailMsg, suffixMsg);
+    expectDebugElement(outDe, selector, expected, expectedFailMsg, suffixMsg);
 
     return outDe;
 }
@@ -49,8 +49,8 @@ export function getAndExpectDebugElementByCss(
  *
  * @param {DebugElement} inDe The input DebugElement to be checked.
  * @param {Type<any>} selectorType The selector type (directive) to look for.
- * @param {number | undefined} expected The expected number of elements in the result array.
- * @param {number | undefined} expectedInFailMsg The expected number of elements in the result array in the fail message.
+ * @param {number } expected The expected number of elements in the result array.
+ * @param {number | undefined} expectedFailMsg The expected number of elements in the result array in the fail message.
  * @param {string} [suffixMsg] An optional message to add at the end of the expectation statement.
  *
  * @returns {DebugElement[]} An array of the found DebugElements.
@@ -58,8 +58,8 @@ export function getAndExpectDebugElementByCss(
 export function getAndExpectDebugElementByDirective(
     inDe: DebugElement,
     selectorType: Type<any>,
-    expected: number | undefined,
-    expectedInFailMsg: number | undefined,
+    expected: number,
+    expectedFailMsg: number | undefined,
     suffixMsg?: string
 ): DebugElement[] {
     const outDe = inDe.queryAll(By.directive(selectorType));
@@ -69,7 +69,7 @@ export function getAndExpectDebugElementByDirective(
         suffixMsg = '';
     }
 
-    expectDebugElement(outDe, selectorType, expected, expectedInFailMsg, suffixMsg);
+    expectDebugElement(outDe, selectorType, expected, expectedFailMsg, suffixMsg);
 
     return outDe;
 }
@@ -86,8 +86,8 @@ export function getAndExpectDebugElementByDirective(
  *
  * @param {DebugElement[]} de The input DebugElement array to be checked.
  * @param {string | Type<any>} selector The selector (CSS or directive) to look for.
- * @param {number | undefined} expected The expected number of elements in the input array.
- * @param {number | undefined} expectedInFailMsg The expected number of elements in the input array in the fail message.
+ * @param {number } expected The expected number of elements in the input array.
+ * @param {number | undefined} expectedFailMsg The expected number of elements in the input array in the fail message.
  * @param {string} suffixMsg A message to add at the end of the expectation statement.
  *
  * @returns {void} Throws the expectation statements.
@@ -95,27 +95,20 @@ export function getAndExpectDebugElementByDirective(
 function expectDebugElement(
     de: DebugElement[],
     selector: string | Type<any>,
-    expected: number | undefined,
-    expectedInFailMsg: number | undefined,
+    expected: number,
+    expectedFailMsg: number | undefined,
     suffixMsg: string
 ): void {
-    let failMsg: string;
-
     if (selector instanceof Type) {
         selector = selector.name;
     }
-    if (expected === undefined) {
-        failMsg = suffixMsg ? `should be ${expectedInFailMsg} ${suffixMsg}` : `should be ${expectedInFailMsg}`;
 
-        expect(de).toBeUndefined(failMsg);
-    } else {
-        failMsg = suffixMsg
-            ? `should have ${expectedInFailMsg} ${selector} ${suffixMsg}`
-            : `should have ${expectedInFailMsg} ${selector}`;
+    const failMsg = suffixMsg
+        ? `should have ${expectedFailMsg} ${selector} ${suffixMsg}`
+        : `should have ${expectedFailMsg} ${selector}`;
 
-        expect(de).toBeDefined();
-        expect(de.length).toBe(expected, failMsg);
-    }
+    expect(de).toBeDefined();
+    expect(de.length).toBe(expected, failMsg);
 }
 
 /**
@@ -166,7 +159,7 @@ export function expectSpyCall(spy: Spy, expectedTimes: number, expectedMostRecen
 function expectRecentSpyCall(spy: Spy, expectedMostRecentValue: any, index: number): void {
     if (expectedMostRecentValue && expectedMostRecentValue instanceof Object) {
         expect(spy.calls.mostRecent().args[index]).toEqual(expectedMostRecentValue);
-    } else if (expectedMostRecentValue) {
+    } else {
         expect(spy.calls.mostRecent().args[index]).toBe(expectedMostRecentValue);
     }
 }

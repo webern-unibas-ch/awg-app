@@ -1,14 +1,28 @@
 import { TestBed } from '@angular/core/testing';
+import { DOCUMENT } from '@angular/common';
 
 import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { expectSpyCall } from '@testing/expect-helper';
+import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
 import { AnalyticsService } from './analytics.service';
 
-describe('AnalyticsService', () => {
+// helper functions for  Analytics setup
+function setupAnalytics(service: AnalyticsService, endpoint: string, id: string, pageView?: boolean) {
+    (service as any).analyticsEndpoint = endpoint;
+    (service as any).analyticsId = id;
+    if (pageView) {
+        (service as any).sendPageView = pageView;
+    }
+
+    return service.initializeAnalytics();
+}
+
+describe('AnalyticsService (DONE)', () => {
     let analyticsService: AnalyticsService;
+    let doc: any;
 
     let gtagSpy: Spy;
     let initializeAnalyticsSpy: Spy;
@@ -23,60 +37,21 @@ describe('AnalyticsService', () => {
 
     const expectedLogMessage = 'Running non-production analytics replacement now';
 
-    let mockConsole: { log: (message: string) => void; get: (index: number) => string; clear: () => void };
-    let mockAnalytics: {
-        gtag: (event: string, eventName: string, eventOptions: { [key: string]: string | boolean }) => void;
-        getGtag: (index: number) => [string, string, { [key: string]: string | boolean }];
-        clear: () => void;
-    };
-
     beforeEach(() => {
         TestBed.configureTestingModule({
             providers: [AnalyticsService]
         });
+
         // inject service
         analyticsService = TestBed.inject(AnalyticsService);
-
-        // mock analytics object (to catch analytics events)
-        let analyticsStore = [];
-        mockAnalytics = {
-            gtag: (
-                event: string,
-                eventName: string,
-                eventOptions: { page_path: string; anonymize_ip: boolean; send_page_view: boolean }
-            ): void => {
-                analyticsStore.push([event, eventName, eventOptions]);
-            },
-            getGtag: (
-                index: number
-            ): [string, string, { page_path: string; anonymize_ip: boolean; send_page_view: boolean }] => {
-                return analyticsStore[index] || null;
-            },
-            clear: () => {
-                analyticsStore = [];
-            }
-        };
-
-        // mock Console (to catch console output)
-        let consoleArray = [];
-        mockConsole = {
-            log: (message: string) => {
-                consoleArray.push(message);
-            },
-            get: (index: number): string => {
-                return consoleArray[index];
-            },
-
-            clear: () => {
-                consoleArray = [];
-            }
-        };
+        doc = TestBed.inject(DOCUMENT);
 
         // set global gtag function
         (window as any).gtag = () => {};
 
         // spy on service methods
         initializeAnalyticsSpy = spyOn(analyticsService, 'initializeAnalytics').and.callThrough();
+
         gtagSpy = spyOn(window as any, 'gtag').and.callFake(mockAnalytics.gtag);
         consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
     });
@@ -94,11 +69,11 @@ describe('AnalyticsService', () => {
         cleanStylesFromDOM();
     });
 
-    it('... should be created', () => {
+    it('should be created', () => {
         expect(analyticsService).toBeTruthy();
     });
 
-    describe('... mock test objects (self-test)', () => {
+    describe('mock test objects (self-test)', () => {
         it('... should use mock console', () => {
             console.log('Test');
 
@@ -123,10 +98,7 @@ describe('AnalyticsService', () => {
     describe('#initializeAnalytics', () => {
         it(`... should not initialize the analytics tracker without endpoint`, () => {
             // no endpoint provided
-            (analyticsService as any).analyticsEndpoint = null;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, null, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expect((analyticsService as any).isInitialized).toBeFalse();
@@ -134,34 +106,24 @@ describe('AnalyticsService', () => {
 
         it(`... should not initialize the analytics tracker without analyticsId`, () => {
             // no id provided
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = null;
-
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, null);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expect((analyticsService as any).isInitialized).toBeFalse();
         });
 
         it(`... should initialize the analytics tracker with given endpoint and id`, () => {
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expect(analyticsService['isInitialized']).toBeTruthy();
+            expect((analyticsService as any).isInitialized).toBeTrue();
         });
 
         it(`... should log a replacement message in develop mode`, () => {
             expectSpyCall(consoleSpy, 0);
             expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
 
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            (analyticsService as any).sendPageView = false;
-
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, false);
 
             expectSpyCall(consoleSpy, 1, expectedLogMessage);
             expect(mockConsole.get(0)).toBe(expectedLogMessage, `should be ${expectedLogMessage}`);
@@ -171,35 +133,35 @@ describe('AnalyticsService', () => {
             expectSpyCall(consoleSpy, 0);
             expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
 
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            (analyticsService as any).sendPageView = true;
+            // prevent setting of real gtag script to document head
+            spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
 
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
             expectSpyCall(consoleSpy, 0);
             expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
         });
 
         it(`... should prepend analytics script in production mode`, () => {
-            const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript');
+            const expectedScript: HTMLScriptElement = doc.createElement('script');
+            expectedScript.async = true;
+            expectedScript.src = `${expectedAnalyticsEndpoint}?id=${expectedAnalyticsId}`;
 
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            (analyticsService as any).sendPageView = true;
+            // prevent setting of real gtag script to document head
+            const prependSpy = spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
+            const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript').and.callThrough();
 
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
             expectSpyCall(scriptSpy, 1);
+            expectSpyCall(prependSpy, 1, expectedScript);
         });
     });
 
     describe('#trackPageView', () => {
         it(`... should do nothing if analytics is not initialized successfully`, () => {
             // init analytics
-            (analyticsService as any).analyticsEndpoint = null;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, null, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
 
@@ -218,9 +180,7 @@ describe('AnalyticsService', () => {
 
         it(`... should run if analytics is initialized successfully`, () => {
             // init analytics
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
 
@@ -237,9 +197,7 @@ describe('AnalyticsService', () => {
 
         it(`... should not track if no page is given`, () => {
             // init analytics
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(null);
 
@@ -255,9 +213,7 @@ describe('AnalyticsService', () => {
             ];
 
             // init analytics
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
 
@@ -278,9 +234,7 @@ describe('AnalyticsService', () => {
             ];
 
             // init analytics
-            (analyticsService as any).analyticsEndpoint = expectedAnalyticsEndpoint;
-            (analyticsService as any).analyticsId = expectedAnalyticsId;
-            analyticsService.initializeAnalytics();
+            setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
             analyticsService.trackPageView(otherPage);

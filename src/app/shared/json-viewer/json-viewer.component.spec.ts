@@ -180,12 +180,18 @@ describe('JsonViewerComponent (DONE)', () => {
 
             it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', () => {
                 const navLinks = getNavLinks(compEl);
-                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 1);
+                getAndExpectDebugElementByDirective(
+                    compDe,
+                    NgxJsonViewerComponent,
+                    1,
+                    1,
+                    'in default (formatted) view'
+                );
 
                 click(navLinks[1] as HTMLElement);
                 fixture.detectChanges();
 
-                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0, 'in plain view');
             });
 
             it('... should pass down `jsonViewerData` to ngx-json-viewer component in Formatted view', () => {

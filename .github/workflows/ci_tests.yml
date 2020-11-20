@@ -1,10 +1,7 @@
 name: CI Tests
 
 on:
-    workflow_run:
-        workflows: ['CodeQL']
-        types:
-            - completed
+    push:
         branches:
             - '**'
         tags-ignore:

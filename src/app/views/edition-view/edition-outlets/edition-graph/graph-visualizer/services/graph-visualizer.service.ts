@@ -222,6 +222,7 @@ export class GraphVisualizerService {
         let keyWords: QueryTypeIndex[] = [
             { queryType: 'select', index: -1 },
             { queryType: 'construct', index: -1 },
+            { queryType: 'ask', index: -1 },
             { queryType: 'count', index: -1 },
             { queryType: 'describe', index: -1 },
             { queryType: 'insert', index: -1 },

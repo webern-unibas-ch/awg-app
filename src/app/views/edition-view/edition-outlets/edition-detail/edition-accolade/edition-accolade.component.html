@@ -31,9 +31,7 @@
 
             <!-- table for TkA -->
             <div class="panel-footer" *ngIf="showTkA && selectedTextcriticalComments">
-                <h5 class="mt-4">
-                    Textkritischer Kommentar ({{ selectedOverlay.typeLabel }} {{ selectedOverlay.id }}):
-                </h5>
+                <h5 class="mt-4">Textkritischer Kommentar ({{ selectedOverlay.type }} {{ selectedOverlay.id }}):</h5>
                 <awg-edition-tka-table
                     [textcriticalComments]="selectedTextcriticalComments"
                     (openModalRequest)="openModal($event)"

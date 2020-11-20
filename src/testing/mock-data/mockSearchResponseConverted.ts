@@ -24,6 +24,17 @@ export const mockSearchResponseConverted = {
             iconlabel: 'Bibliografie',
             iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
+            obj_id: '1234',
+            preview_path:
+                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            value: ['Test'],
+            valuelabel: ['Kurztitel'],
+            valuetype_id: ['1']
+        },
+        {
+            iconlabel: 'Bibliografie',
+            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            icontitle: 'Bibliografie',
             obj_id: '2225189',
             preview_path:
                 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',

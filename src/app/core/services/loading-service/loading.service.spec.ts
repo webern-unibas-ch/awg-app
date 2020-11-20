@@ -4,8 +4,10 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
 import { LoadingService } from './loading.service';
 
-describe('LoadingService', () => {
+describe('LoadingService (DONE)', () => {
     let loadingService: LoadingService;
+
+    let loadingStatus: boolean;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -13,14 +15,25 @@ describe('LoadingService', () => {
         });
         // inject service
         loadingService = TestBed.inject(LoadingService);
+
+        // test data (default)
+        loadingStatus = false;
     });
 
     afterAll(() => {
         cleanStylesFromDOM();
     });
 
-    it('... should be created', () => {
+    it('should be created', () => {
         expect(loadingService).toBeTruthy();
+    });
+
+    it('should have isLoadingSubject', () => {
+        expect((loadingService as any).isLoadingSubject).toBeTruthy();
+    });
+
+    it('should have isLoadingStream$', () => {
+        expect((loadingService as any).isLoadingStream$).toBeTruthy();
     });
 
     describe('#getLoadingStatus', () => {
@@ -32,31 +45,31 @@ describe('LoadingService', () => {
         });
 
         it(`... should return updated value`, done => {
-            // init status
-            let loading = false;
-
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loading);
+                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
 
             // update status
-            loading = true;
-            loadingService.updateLoadingStatus(loading);
+            loadingStatus = true;
+            loadingService.updateLoadingStatus(loadingStatus);
         });
     });
-    describe('#updateLoadingStatus', () => {
-        it(`... should emit loading status to isLoadingSubject`, done => {
-            // init status
-            let loading = false;
 
+    describe('#updateLoadingStatus', () => {
+        it(`... should emit updated loading status`, done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
-                expect(isLoading).toBe(loading);
+                expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
+
             // update status
-            loading = true;
-            loadingService.updateLoadingStatus(loading);
+            loadingStatus = true;
+            loadingService.updateLoadingStatus(loadingStatus);
+
+            // update status
+            loadingStatus = false;
+            loadingService.updateLoadingStatus(loadingStatus);
         });
     });
 });

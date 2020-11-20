@@ -66,6 +66,7 @@ export class EditionDataService {
         editionWork: EditionWork
     ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
         this.setAssetWorkPath(editionWork);
+
         const folioData$: Observable<FolioConvoluteList> = this.getFolioConvoluteData();
         const svgSheetsData$: Observable<EditionSvgSheetList> = this.getSvgSheetsData();
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
@@ -324,11 +325,9 @@ export class EditionDataService {
      */
     private handleError<T>(operation: string, result?: T) {
         return (error: any): Observable<T> => {
-            // TODO: send the error to remote logging infrastructure
-            console.error(error); // log to console instead
-
             // TODO: better job of transforming error for user consumption
             this.log(`${operation} failed: ${error.message}`);
+            // console.error(error);
 
             // Let the app keep running by returning an empty result.
             return observableOf(result as T);

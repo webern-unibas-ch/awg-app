@@ -1,5 +1,7 @@
-import { Injectable } from '@angular/core';
+import { Inject, Injectable } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import { AppConfig } from '@awg-app/app.config';
+
 import { environment } from '../../../../environments/environment';
 
 /**
@@ -54,9 +56,11 @@ export class AnalyticsService {
     /**
      * Constructor of the AnalyticsService.
      *
-     * It calls the initialization method.
+     * It injects a private DOCUMENT instance.
+     *
+     * @param {DOCUMENT} doc Instance of the Angular DOCUMENT.
      */
-    constructor() {}
+    constructor(@Inject(DOCUMENT) private doc: any) {}
 
     /**
      * Public method: initializeAnalytics.
@@ -101,14 +105,14 @@ export class AnalyticsService {
     /**
      * Private method: prependAnalyticsScript.
      *
-     * It prepends the Analytics <script> tag to index.html.
+     * It prepends the Analytics <script> tag to index.html via DOCUMENT.
      *
      * @returns {void} Prepends Analytics script.
      */
     private prependAnalyticsScript(): void {
-        const gtagScript: HTMLScriptElement = document.createElement('script');
+        const gtagScript: HTMLScriptElement = this.doc.createElement('script');
         gtagScript.async = true;
         gtagScript.src = this.analyticsEndpoint + '?id=' + this.analyticsId;
-        document.head.prepend(gtagScript);
+        this.doc.head.prepend(gtagScript);
     }
 }
