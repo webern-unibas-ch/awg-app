@@ -1,0 +1,19 @@
+<ngb-accordion #triplesAcc activeIds="">
+    <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
+        <ng-template ngbPanelContent>
+            <!-- CodeMirror editor instance -->
+            <ngx-codemirror
+                [(ngModel)]="triples"
+                (ngModelChange)="onEditorInputChange($event)"
+                [options]="cmTriplesConfig"
+            >
+            </ngx-codemirror>
+
+            <!-- Handle buttons -->
+            <div fxLayout="row" class="mt-2">
+                <button class="btn btn-info" (click)="performQuery()">Query</button>
+                <button class="btn btn-outline-info" (click)="resetTriples()">Reset</button>
+            </div>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

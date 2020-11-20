@@ -24,11 +24,11 @@ import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-mod
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: resourceInfoDataSubscription.
+     * Private variable: resourceInfoDataSubscription.
      *
      * It keeps the subscription for the resource info data.
      */
-    resourceInfoDataSubscription: Subscription;
+    private resourceInfoDataSubscription: Subscription;
 
     /**
      * Public variable: faArrowLeft.
@@ -146,7 +146,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             .subscribe(
                 (res: SearchResponseWithQuery) => {
                     // deep clone search results from streamer service
-                    const response = { ...res };
+                    const response = JSON.parse(JSON.stringify(res));
 
                     // update resource Info
                     this.updateResourceInfo(this.resourceId, response);
@@ -161,13 +161,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: updateResourceInfo.
+     * Private method: updateResourceInfo.
      *
      * It updates the current resource info data.
      *
      * @returns {void} Sets the resourceInfoData.
      */
-    updateResourceInfo(id: string, response: SearchResponseWithQuery): void {
+    private updateResourceInfo(id: string, response: SearchResponseWithQuery): void {
         // find index position of resource with given id in search results
         const index = this.findIndexPositionInSearchResultsById(id, response);
 
@@ -177,9 +177,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
         // shortcuts for current subject and its neighbours
         const subjects = response.data.subjects;
-        const current = subjects[index];
-        const next = subjects[nextIndex];
-        const prev = subjects[prevIndex];
+        const current = subjects[index] ? new ResourceInfoResource(subjects[index], index) : undefined;
+        const next = subjects[nextIndex] ? new ResourceInfoResource(subjects[nextIndex], nextIndex) : undefined;
+        const previous = subjects[prevIndex] ? new ResourceInfoResource(subjects[prevIndex], prevIndex) : undefined;
 
         // set result length and goToIndex
         this.resultSize = subjects.length;
@@ -189,15 +189,15 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         this.resourceInfoData = {
             searchResults: response,
             resources: {
-                current: current ? new ResourceInfoResource(current, index) : undefined,
-                next: next ? new ResourceInfoResource(next, nextIndex) : undefined,
-                previous: prev ? new ResourceInfoResource(prev, prevIndex) : undefined
+                current,
+                next,
+                previous
             }
         };
     }
 
     /**
-     * Public method: buildForm.
+     * Private method: buildForm.
      *
      * It builds the form group to display the resource
      * depending on the given index position and result size.
@@ -208,17 +208,24 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * search result subjects array.
      * @returns {void} Sets the resourceInfoData.resources.
      */
-    buildForm(index: number, resultSize: number): void {
+    private buildForm(index: number, resultSize: number): void {
+        const regexPattern = /^[1-9]+\d*$/;
+
         this.resourceInfoFormGroup = this.fb.group({
             resourceInfoIndex: [
                 index || '',
-                Validators.compose([Validators.required, Validators.min(1), Validators.max(resultSize)])
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern(regexPattern),
+                    Validators.min(1),
+                    Validators.max(resultSize)
+                ])
             ]
         });
     }
 
     /**
-     * Public method: findIndexPositionInSearchResultsById.
+     * Private method: findIndexPositionInSearchResultsById.
      *
      * It looks for the index position of the given resource id
      * in the search response subjects array.
@@ -227,7 +234,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @param {SearchResponseWithQuery} response The given search response.
      * @returns {number} The array index position.
      */
-    findIndexPositionInSearchResultsById(id: string, response: SearchResponseWithQuery): number {
+    private findIndexPositionInSearchResultsById(id: string, response: SearchResponseWithQuery): number {
         // shortcut for search result subjects
         const subjects = response.data.subjects;
 
@@ -252,6 +259,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {void Triggers the navigation.
      */
     navigateToResourceByIndex(formIndex: number): void {
+        if (!formIndex || formIndex < 1) {
+            return;
+        }
         // find resource id of subject at array position formIndex - 1
         const subjects = this.resourceInfoData.searchResults.data.subjects;
         const id = subjects[formIndex - 1].obj_id;
@@ -267,9 +277,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * with the given id.
      *
      * @param {string} id The given resource id.
+     *
      * @returns {void} Navigates to the resource.
      */
     navigateToResource(id: string): void {
+        if (!id) {
+            return;
+        }
         this.router.navigate(['/data/resource', id]);
     }
 

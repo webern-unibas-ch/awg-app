@@ -1,7 +1,33 @@
-<div id="svg-wrapper" class="svg-panel-wrapper" [ngStyle]="{ 'height.px': height }" #graph>
-    <div class="icon-bar" fxLayout="row" [ngStyle]="{ top: '0px' }">
+<div id="awg-force-graph-container" class="awg-forc-graph-panel-container" [ngStyle]="{ 'height.px': height }" #graph>
+    <div class="awg-force-graph-icon-bar">
+        <!-- Slider -->
+        <div class="input-group input-group-sm awg-force-graph-zoom-slider-container float-left mb-3">
+            <div class="input-group-prepend">
+                <span #sliderInputLabel class="input-group-text" id="slider-label">{{ sliderConfig.value }}x</span>
+            </div>
+            <input
+                type="range"
+                #sliderInput
+                class="awg-force-graph-zoom-slider"
+                id="awg-force-graph-zoom-slider"
+                name="zoomSlider"
+                aria-label="Zoom slider"
+                aria-describedby="slider-label"
+                [min]="sliderConfig.min"
+                [max]="sliderConfig.max"
+                [step]="sliderConfig.step"
+                [(ngModel)]="sliderConfig.value"
+                (ngModelChange)="onZoomChange($event)"
+            />
+            <div class="input-group-append">
+                <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">
+                    <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
+                </button>
+            </div>
+        </div>
+
         <!-- Limit -->
-        <div class="btn-group float-right" *ngIf="queryResultTriples">
+        <div class="btn-group awg-force-graph-node-limit-container float-right my-auto" *ngIf="queryResultTriples">
             <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
                 <span *ngIf="limit < queryResultTriples.length">{{ limit }} von </span
                 >{{ queryResultTriples.length }} Triples
@@ -36,11 +62,5 @@
         </div>
 
         <!-- <span *ngIf="message" class="message">{{message}}</span> -->
-
-        <!-- Spacer -->
-        <span fxFlex="grow"></span>
-
-        <!-- Spacer -->
-        <span fxFlex="5px"></span>
     </div>
 </div>

@@ -5,7 +5,9 @@
 
 <div class="awg-edition-work" *ngIf="editionWork$ | async as editionWork">
     <!-- TODO: refactor this as selectable breadcrumb -->
-    <h6>{{ editionWork.edition.short }} / {{ editionWork.series.full }} / {{ editionWork.section.full }}</h6>
+    <h6 class="awg-edition-info-breadcrumb">
+        {{ editionWork.edition.short }} / {{ editionWork.series.full }} / {{ editionWork.section.full }}
+    </h6>
     <h3 class="awg-edition-info-header">
         <i class="awg-edition-info-header-title">{{ editionWork.titleStatement.title }}</i
         >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWork.work.short }}</span>

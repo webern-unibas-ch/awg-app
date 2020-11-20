@@ -1,0 +1,33 @@
+<ngb-accordion activeIds="awg-graph-visualizer-select-result">
+    <ngb-panel id="awg-graph-visualizer-select-result" title="Resultat">
+        <ng-template ngbPanelContent>
+            <p class="text-center">Got a SELECT request</p>
+            <ng-container *ngIf="queryResult | async as queryResult; else noResult">
+                <!-- change back to: else loading -->
+                <div>
+                    {{ queryResult | json }}
+                </div>
+
+                <!-- SPARQL table visualization -->
+
+                <!--
+                    <div *ngIf="queryResult.length > 0; else noResult">
+                       <awg-sparql-table
+                           maxHeight="500px"
+                           [queryResult]="queryResult | async as queryResult"
+                           [queryTime]="queryTime"
+                           (clickedNodeRequest)="onTableClick($event)"
+                       >
+                       </awg-sparql-table>
+                  </div>
+                       -->
+            </ng-container>
+            <ng-template #noResult>
+                <p class="text-center">No result to show</p>
+            </ng-template>
+            <ng-template #loading>
+                <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+            </ng-template>
+        </ng-template>
+    </ngb-panel>
+</ngb-accordion>

@@ -11,7 +11,7 @@ import {
 import { of as observableOf, Observable, throwError as observableThrowError } from 'rxjs';
 import { catchError, tap } from 'rxjs/operators';
 
-import { HttpCacheService } from '@awg-views/data-view/services';
+import { HttpCacheService } from '@awg-core/services';
 
 /**
  * The Caching interceptor.

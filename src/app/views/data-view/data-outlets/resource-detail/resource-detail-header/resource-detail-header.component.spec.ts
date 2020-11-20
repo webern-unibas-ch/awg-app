@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -27,11 +27,13 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
     let expectedHeader: ResourceDetailHeader;
     let expectedResourceUrl: string;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailHeaderComponent, CompileHtmlComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailHeaderComponent, CompileHtmlComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHeaderComponent);

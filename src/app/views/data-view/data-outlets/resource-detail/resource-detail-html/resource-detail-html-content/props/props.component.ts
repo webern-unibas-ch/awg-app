@@ -1,4 +1,14 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+    SimpleChange,
+    SimpleChanges
+} from '@angular/core';
 
 import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import { ResourceDetailProperty } from '@awg-views/data-view/models';
@@ -16,7 +26,7 @@ import { PropertyJson } from '@awg-shared/api-objects';
     styleUrls: ['./props.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestroy {
+export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDestroy {
     /**
      * Input variable: props.
      *
@@ -50,12 +60,15 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     metaBreakLine = 'Versionsdatum';
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Angular life cycle hook: ngOnChanges.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
      */
-    ngOnInit() {}
+    ngOnChanges(changes: SimpleChanges) {
+        this.checkForGND(changes.props);
+    }
 
     /**
      * Public method: navigateToResource.
@@ -76,7 +89,38 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     }
 
     /**
-     * Public method: exposeGnd.
+     * Private method: checkForGND.
+     *
+     * It checks the props input for a gnd value to expose,
+     * otherwise removes any GND values.
+     *
+     * @param {SimpleChange} props The given changes.props from ngOnChanges.
+     *
+     * @returns {void} Exposes or removes the GND event.
+     */
+    private checkForGND(props: SimpleChange): void {
+        // check if we have a gnd (prop.pid=856)
+        const propsWithGND: ResourceDetailProperty[] = props.currentValue.filter(
+            (prop: ResourceDetailProperty) => prop.pid === '856' && prop.values && prop.values.length > 0
+        );
+
+        if (propsWithGND.length > 0) {
+            // loop through prop.values[i]
+            propsWithGND.map((prop: ResourceDetailProperty) => {
+                prop.values.map((value: string) => {
+                    // expose gnd for every value
+                    const gndEvent = new GndEvent(GndEventType.set, value);
+                    this.exposeGnd(gndEvent);
+                });
+            });
+        } else {
+            // remove gnd
+            this.removeGnd();
+        }
+    }
+
+    /**
+     * Private method: exposeGnd.
      *
      * It emits a given gnd event (type, value)
      * to the {@link gndRequest}.
@@ -85,7 +129,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
      *
      * @returns {void} Emits the GND event.
      */
-    exposeGnd(gndEvent: GndEvent): void {
+    private exposeGnd(gndEvent: GndEvent): void {
         if (!gndEvent) {
             return;
         }
@@ -93,27 +137,16 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     }
 
     /**
-     * Public method: setLabel.
+     * Private method: removeGnd.
      *
-     * It sets the label of a given property object
-     * while checking for a gnd value to expose.
+     * It emits a given gnd event (type, value)
+     * to the {@link gndRequest}.
      *
-     * @param {PropertyJson} prop The given property object.
-     *
-     * @returns {string} The property label.
+     * @returns {void} Emits the GND remove event.
      */
-    setLabel(prop: PropertyJson): string {
-        if (!prop) {
-            return null;
-        }
-        // if we have a gnd (prop.pid=856), write it to sessionStorage
-        if (prop.pid === '856' && prop.values && prop.values.length > 0) {
-            prop.values.map((value: string) => {
-                const gndEvent = new GndEvent(GndEventType.set, value);
-                this.exposeGnd(gndEvent);
-            });
-        }
-        return prop.label;
+    private removeGnd(): void {
+        const gndEvent = new GndEvent(GndEventType.remove, null);
+        this.exposeGnd(gndEvent);
     }
 
     /**
@@ -124,7 +157,6 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
      */
     ngOnDestroy() {
         // if we leave the component, remove gnd from storage
-        const gndEvent = new GndEvent(GndEventType.remove, null);
-        this.exposeGnd(gndEvent);
+        this.removeGnd();
     }
 }

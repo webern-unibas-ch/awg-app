@@ -1,19 +1,16 @@
 name: CI Tests
 
 on:
-    workflow_run:
-        workflows: ['CodeQL']
+    push:
         branches:
             - '**'
         tags-ignore:
             - '*'
         paths-ignore:
-            - '**.md' # ignore changes to markdown files
-        types:
-            - completed
+            - '**.md' # ignore changes in markdown files
 
 jobs:
-    test:
+    tests:
         name: Run tests (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
         strategy:

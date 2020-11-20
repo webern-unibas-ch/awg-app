@@ -109,12 +109,12 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(headerDes[0], 'span#awg-incoming-size', 0, 0);
             });
 
-            it('... should contain one ngb-accordion without panels yet', () => {
+            it('... should contain one ngb-accordion without panels (div.card) yet', () => {
                 // ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > ngb-accordion', 1, 1);
 
                 // panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'ngb-panel', 0, 0, 'yet');
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
             });
         });
 

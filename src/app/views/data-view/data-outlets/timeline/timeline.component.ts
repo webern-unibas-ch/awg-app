@@ -50,17 +50,16 @@ export class TimelineComponent implements OnInit {
     /**
      * Public method: getTodaysEvents.
      *
-     * It calls the given (SALSAH) API
-     * to get the chronology events
+     * It calls the given (SALSAH) API to get the chronology events
      * of the current date.
      *
      * NOT USED.
      *
      * IMPLEMENTATION FOR FUTURE USE.
      *
-     * @returns {void} Prints a message to the console.
+     * @returns {void} TODO
      */
     getTodaysEvents(): void {
-        console.log('Timeline: called func getTodaysEvents');
+        // console.log('Timeline: called func getTodaysEvents');
     }
 }

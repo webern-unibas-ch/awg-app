@@ -1,8 +1,10 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { DatePipe } from '@angular/common';
 import { Router } from '@angular/router';
+
+import Spy = jasmine.Spy;
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
@@ -11,12 +13,11 @@ import {
     getAndExpectDebugElementByDirective
 } from '@testing/expect-helper';
 
-import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
-import Spy = jasmine.Spy;
 
 // mock heading component
 @Component({ selector: 'awg-heading', template: '' })
@@ -37,7 +38,7 @@ describe('ContactViewComponent (DONE)', () => {
     const datePipe = new DatePipe('en');
 
     let mockCoreService: Partial<CoreService>;
-    let mockRouter;
+    let mockRouter: Partial<Router>;
 
     let expectedToday;
     let expectedPageMetaData: MetaPage;
@@ -51,21 +52,23 @@ describe('ContactViewComponent (DONE)', () => {
     const expectedDocumentationId = 'awg-documentation';
     const expectedDateFormat = 'd. MMMM yyyy';
 
-    beforeEach(async(() => {
-        // mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+    beforeEach(
+        waitForAsync(() => {
+            // mock service for test purposes
+            mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-        // router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+            // router spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-        TestBed.configureTestingModule({
-            declarations: [ContactViewComponent, HeadingStubComponent],
-            providers: [
-                { provide: CoreService, useValue: mockCoreService },
-                { provide: Router, useValue: mockRouter }
-            ]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [ContactViewComponent, HeadingStubComponent],
+                providers: [
+                    { provide: CoreService, useValue: mockCoreService },
+                    { provide: Router, useValue: mockRouter }
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ContactViewComponent);
@@ -226,7 +229,7 @@ describe('ContactViewComponent (DONE)', () => {
         });
 
         describe('#routeToSideNav', () => {
-            let navigationSpy;
+            let navigationSpy: Spy;
 
             beforeEach(() => {
                 // create spy of mockrouter SpyObj

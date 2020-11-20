@@ -90,11 +90,13 @@
 
                 <!-- current resource -->
                 <li
-                    class="list-group-item list-group-item-info"
+                    class="list-group-item list-group-item-info awg-list-group-item"
                     *ngIf="resourceInfoData?.resources?.current; let current"
                 >
                     <strong class="text-muted small mb-1"
-                        >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</strong
+                        ><span class="awg-resource-info-text"
+                            >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</span
+                        ></strong
                     >
 
                     <form [formGroup]="resourceInfoFormGroup">
@@ -116,6 +118,7 @@
                                     Gehe zu
                                 </button>
                             </div>
+                            <!-- INPUT: required, min=1, max=resultSize and pattern are ensured by Formbuilder.Validators -->
                             <input
                                 type="number"
                                 class="form-control"
@@ -124,9 +127,7 @@
                                 aria-label="Index of search result"
                                 aria-describedby="awg-resource-info-input-group-text"
                                 size="4"
-                                min="1"
-                                [max]="resultSize"
-                                required
+                                step="1"
                             />
                         </div>
                     </form>
@@ -181,9 +182,8 @@
     </div>
     <!-- end card-body -->
     <div class="card-footer text-muted small">
-        Design and structure of this resource view adapted from <<a href="https://arachne.dainst.org/"
-            >iDAI.object arachne</a
-        >> (11/2017)
+        Design and structure of this resource view adapted from
+        <a href="https://arachne.dainst.org/">iDAI.object arachne</a> (11/2017)
     </div>
     <!-- end card-footer -->
 </div>

@@ -186,42 +186,55 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         });
 
         describe('#onButtonSelect', () => {
-            it('... should trigger on click', fakeAsync(() => {
+            it('... should trigger on click if enabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
+                expect(btnDes[0].nativeElement.disabled).toBeFalse();
                 expectSpyCall(selectButtonSpy, 1, expectedRouterLinkButtons[0]);
-
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[1], fixture);
-
-                expectSpyCall(selectButtonSpy, 2, expectedRouterLinkButtons[1]);
-
-                // trigger click with click helper & wait for changes
-                clickAndAwaitChanges(btnDes[2], fixture);
-
-                expectSpyCall(selectButtonSpy, 3, expectedRouterLinkButtons[2]);
             }));
 
-            it('... should emit selected button on click', fakeAsync(() => {
+            it('... should not trigger on click if disabled', fakeAsync(() => {
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
+
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(btnDes[1], fixture);
+
+                expect(btnDes[1].nativeElement.disabled).toBeTrue();
+                expectSpyCall(selectButtonSpy, 0);
+
+                // trigger click with click helper & wait for changes
+                clickAndAwaitChanges(btnDes[2], fixture);
+
+                expect(btnDes[2].nativeElement.disabled).toBeTrue();
+                expectSpyCall(selectButtonSpy, 0);
+            }));
+
+            it('... should emit selected button on click if enabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
+                expect(btnDes[0].nativeElement.disabled).toBeFalse();
                 expectSpyCall(emitSpy, 1, expectedRouterLinkButtons[0]);
+            }));
 
+            it('... should not emit selected button on click if disabled', fakeAsync(() => {
+                const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
-                expectSpyCall(emitSpy, 2, expectedRouterLinkButtons[1]);
+                expect(btnDes[1].nativeElement.disabled).toBeTrue();
+                expectSpyCall(emitSpy, 0);
 
                 // trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
-                expectSpyCall(emitSpy, 3, expectedRouterLinkButtons[2]);
+                expect(btnDes[2].nativeElement.disabled).toBeTrue();
+                expectSpyCall(emitSpy, 0);
             }));
         });
     });

@@ -70,8 +70,8 @@ describe('ApiService', () => {
         apiRequest = new ApiRequest(queryPath, queryHttpParams);
     });
 
-    // after every test, assert that there are no more pending requests
     afterEach(() => {
+        // after every test, assert that there are no more pending requests
         httpTestingController.verify();
     });
 
@@ -277,31 +277,6 @@ describe('ApiService', () => {
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
                 });
-
-                // test muted as long as console.error is commented out
-                xit(`... should log an error to the console on error`, async(() => {
-                    const expectedErrorMsg = 'should fail HTTP response with 500 error';
-                    expectedApiServiceError = createApiServiceError(500, 'Internal Server Error');
-
-                    const errorSpy = spyOn(console, 'error').and.callThrough();
-
-                    // call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectErrorResponse(error, expectedApiServiceError);
-                            expectSpyCall(errorSpy, 1, ['ApiService - getApiResponse - error: ', error]);
-                        }
-                    );
-
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne(
-                        (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
-                    );
-
-                    // respond with mock error
-                    call.flush(expectedErrorMsg, expectedApiServiceError);
-                }));
 
                 it(`... should return 'ApiServiceError' for 401 Unauthorized`, async(() => {
                     const expectedErrorMsg = 'should fail HTTP response with 401 error';

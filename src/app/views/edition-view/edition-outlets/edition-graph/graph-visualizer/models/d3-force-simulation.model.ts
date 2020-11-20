@@ -4,11 +4,15 @@ import { D3SimulationNode } from './d3-simulation-node.model';
 import { D3SimulationLink } from './d3-simulation-link.model';
 
 import * as d3_force from 'd3-force';
+import { D3Selection } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-selection.model';
+import { D3SimulationNodeTriple } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-simulation-node-triple.model';
 
 /**
- * Object constant for simulation forces.
+ * Object constant with a set of forces.
  *
- * It provides constant values used for the d3 force simulation.
+ * It provides the default values for the D3 simulation's forces.
+ *
+ * Available force values: `LINK_DISTANCE`, `COLLISION_STRENGTH`, `CHARGE_STRENGTH`.
  */
 const FORCES = {
     LINK_DISTANCE: 1 / 50,
@@ -120,6 +124,49 @@ export class D3ForceSimulation {
     }
 
     /**
+     * Private method: initSimulation.
+     *
+     * It inits the simulation.
+     *
+     * @param {D3ForceSimulationOptions} options The given simulation options.
+     *
+     * @returns {void} It inits the simulation.
+     */
+    private initSimulation(options: D3ForceSimulationOptions): void {
+        if (!options || !options.width || !options.height) {
+            throw new Error('Missing options when initializing simulation');
+        }
+
+        // create the simulation
+        if (!this.forceSimulation) {
+            const ticker = this.ticker;
+
+            // set up the simulation
+            this.forceSimulation = d3_force.forceSimulation();
+
+            this.createForces(options);
+
+            // add forces to the simulation
+            this.forceSimulation
+                .force('charge_force', this.chargeForce)
+                .force('collide_force', this.collideForce)
+                .force('center_force', this.centerForce);
+
+            // connect the d3 ticker to an angular event emitter
+            this.forceSimulation.on('tick', function () {
+                ticker.emit(this);
+            });
+
+            // add nodes and links to the simulation
+            this.initNodes();
+            this.initLinks();
+        }
+
+        // restart the simulation's internal timer
+        this.forceSimulation.alpha(1).restart();
+    }
+
+    /**
      * Private method: createForces.
      *
      * It creates the simulation's forces.
@@ -176,48 +223,5 @@ export class D3ForceSimulation {
         }
         // add nodes to the simulation
         this.forceSimulation.nodes(this.nodes);
-    }
-
-    /**
-     * Private method: initSimulation.
-     *
-     * It inits the simulation.
-     *
-     * @param {D3ForceSimulationOptions} options The given simulation options.
-     *
-     * @returns {void} It inits the simulation.
-     */
-    private initSimulation(options: D3ForceSimulationOptions): void {
-        if (!options || !options.width || !options.height) {
-            throw new Error('Missing options when initializing simulation');
-        }
-
-        // create the simulation
-        if (!this.forceSimulation) {
-            const ticker = this.ticker;
-
-            // set up the simulation
-            this.forceSimulation = d3_force.forceSimulation();
-
-            this.createForces(options);
-
-            // add forces to the simulation
-            this.forceSimulation.force('charge_force', this.chargeForce).force('collide_force', this.collideForce);
-
-            // connect the d3 ticker to an angular event emitter
-            this.forceSimulation.on('tick', function () {
-                ticker.emit(this);
-            });
-
-            // add nodes and links to the simulation
-            this.initNodes();
-            this.initLinks();
-        }
-
-        // update the center force of the simulation
-        this.forceSimulation.force('center_force', this.centerForce);
-
-        // restart the simulation's internal timer
-        this.forceSimulation.restart();
     }
 }

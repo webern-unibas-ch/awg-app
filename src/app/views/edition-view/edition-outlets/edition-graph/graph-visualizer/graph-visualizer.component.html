@@ -1,129 +1,53 @@
-<!-- Data: Triples, query, result -->
+<!-- Data: Triples, SPARQL query, result -->
 
 <div *ngIf="graphRDFInputData" class="row">
-    <!-- awg-graph-triples-input -->
+    <!-- awg-graph-triples-editor -->
     <div class="col-lg-6 pr-lg-0">
-        <ngb-accordion #triplesAcc activeIds="">
-            <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
-                <ng-template ngbPanelContent>
-                    <!-- CodeMirror editor instance -->
-                    <ngx-codemirror [(ngModel)]="triples" [options]="cmTriplesConfig"> </ngx-codemirror>
-
-                    <div>
-                        <button class="btn btn-info" (click)="doQuery()">Update</button>
-
-                        <button class="btn btn-outline-info" (click)="setInitialTriples()">Reset</button>
-                    </div>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+        <awg-triples-editor
+            [triples]="triples"
+            (updateTriplesRequest)="triples = $event"
+            (resetTriplesRequest)="resetTriples()"
+            (performQueryRequest)="performQuery()"
+        ></awg-triples-editor>
     </div>
 
-    <!-- awg-graph-query-input -->
+    <!-- awg-graph-sparql-editor -->
     <div class="col-lg-6 pl-lg-0">
-        <ngb-accordion #sparqlAcc activeIds="">
-            <ngb-panel id="awg-graph-visualizer-query">
-                <ng-template ngbPanelHeader>
-                    <div class="d-flex align-items-center justify-content-between">
-                        <button ngbPanelToggle class="btn btn-link text-left">SPARQL Abfrage</button>
-                        <!-- Limit -->
-                        <div class="btn-group float-right mr-2" *ngIf="query && query.queryLabel && query.queryString">
-                            <button type="button" class="btn btn-sm btn-outline-info" disabled aria-disabled="true">
-                                Beispielabfragen
-                            </button>
-                            <div
-                                class="btn-group"
-                                ngbDropdown
-                                container="body"
-                                placement="bottom-right"
-                                role="group"
-                                aria-label="Button group with nested dropdown for sample queries"
-                            >
-                                <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
-                                <div class="dropdown-menu" ngbDropdownMenu>
-                                    <ng-container *ngFor="let q of queryList">
-                                        <button
-                                            class="dropdown-item"
-                                            [class.disabled]="q === query"
-                                            (click)="onQueryChange(q)"
-                                        >
-                                            <span>{{ q.queryLabel }}</span>
-                                        </button>
-                                    </ng-container>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </ng-template>
-                <ng-template ngbPanelContent>
-                    <!-- CodeMirror editor instance -->
-                    <ngx-codemirror [(ngModel)]="query.queryString" [options]="cmSparqlConfig">
-                        <!-- (change)="data.query = $event" -->
-                    </ngx-codemirror>
-
-                    <div>
-                        <div fxLayout="row">
-                            <button class="btn btn-info" color="primary" (click)="doQuery()">Query</button>
-
-                            <button class="btn btn-outline-info" (click)="resetQuery(query)">Reset</button>
-                        </div>
-                    </div>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+        <awg-sparql-editor
+            [queryList]="queryList"
+            [query]="query"
+            (updateQueryStringRequest)="query.queryString = $event"
+            (resetQueryRequest)="resetQuery($event)"
+            (performQueryRequest)="performQuery()"
+        ></awg-sparql-editor>
     </div>
 
     <!-- Results -->
     <div class="col-12">
         <!-- CONSTRUCT -->
         <!-- awg-graph-construct-result -->
-        <ngb-accordion
+        <awg-construct-results
             #queryConstructResultAcc
-            activeIds="awg-graph-construct-result"
-            *ngIf="queryType === 'construct'"
-        >
-            <ngb-panel id="awg-graph-construct-result" title="Resultat">
-                <ng-template ngbPanelContent>
-                    <div *ngIf="queryResult | async as queryResult; else loading">
-                        <div *ngIf="queryResult.length > 0; else noResult">
-                            <!-- SPARQL graph visualization -->
-                            <awg-force-graph
-                                class="full-width"
-                                [queryResultTriples]="queryResult"
-                                [height]="defaultForceGraphHeight"
-                                (clickedNodeRequest)="onGraphClick($event)"
-                            >
-                            </awg-force-graph>
-                        </div>
-                        <ng-template #noResult>
-                            <awg-force-graph-no-result [height]="defaultForceGraphHeight"></awg-force-graph-no-result>
-                        </ng-template>
-                    </div>
-                    <ng-template #loading>
-                        <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
-                    </ng-template>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+            *ngIf="queryType === 'construct'; else querySelectResultAcc"
+            [queryResult]="queryResult"
+            [defaultForceGraphHeight]="defaultForceGraphHeight"
+            (clickedNodeRequest)="onGraphNodeClick($event)"
+        ></awg-construct-results>
 
+        <!-- SELECT -->
         <!-- awg-graph-select-result -->
-        <ngb-accordion #querySelectResultAcc activeIds="awg-graph-select-result" *ngIf="queryType === 'select'">
-            <ngb-panel id="awg-graph-select-result" title="Resultat">
-                <ng-template ngbPanelContent>
-                    <p>Got a SELECT request</p>
-                    <!-- SPARQL table visualization -->
-                    <!--
-                       <awg-sparql-table
-                           maxHeight="500px"
-                           [queryResult]="queryResult"
-                           [queryTime]="queryTime"
-                           (clickedNodeRequest)="onTableClick($event)"
-                       >
-                       </awg-sparql-table>
-                       -->
-                    <span *ngIf="!queryResult">No result to show</span>
-                </ng-template>
-            </ngb-panel>
-        </ngb-accordion>
+        <ng-template #querySelectResultAcc>
+            <awg-select-results
+                *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+                [queryResult]="queryResult"
+                (clickedTableRequest)="onTableClick($event)"
+            ></awg-select-results>
+        </ng-template>
+
+        <!-- OTHERS -->
+        <!-- awg-graph-unsupported-query-type-result -->
+        <ng-template #queryUnsupportedTypeAcc>
+            <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>
+        </ng-template>
     </div>
 </div>

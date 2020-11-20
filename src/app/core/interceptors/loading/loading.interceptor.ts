@@ -57,6 +57,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         console.log(req.urlWithParams);
         */
 
+        /* istanbul ignore else  */
         if (i >= 0) {
             // remove the request from the array
             this.pendingRequests.splice(i, 1);

@@ -23,7 +23,7 @@ export class AppConfig {
      * @returns {string}
      */
     public static get ANALYTICS_ENDPOINT(): string {
-        return 'https://www.google-analytics.com/';
+        return 'https://www.googletagmanager.com/gtag/js';
     }
 
     /**
@@ -54,15 +54,6 @@ export class AppConfig {
      */
     public static get LOCALHOST_URL(): string {
         return 'http://localhost:4200';
-    }
-
-    /**
-     * Getter for the AWG route storage key.
-     *
-     * @returns {string}
-     */
-    public static get AWG_APP_ROUTE_STORAGE_KEY(): string {
-        return 'awg-app-route';
     }
 
     /**
