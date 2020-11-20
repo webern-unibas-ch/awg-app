@@ -2,6 +2,93 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.9](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.8...v0.7.9) (2020-11-20)
+
+### Features
+
+-   **edition:** add zoom slider for graph ([6d1caa9](https://github.com/webern-unibas-ch/awg-app/commit/6d1caa92ac8364bd141cabb1b40ca3ca13022860))
+
+### Bug Fixes
+
+-   **app:** inject angular's DOCUMENT in AnalyticsService ([e4e2f71](https://github.com/webern-unibas-ch/awg-app/commit/e4e2f71ade4ee81760f5e4e8d71d29f820e33236))
+-   **core:** fix incorrect gnd exposition ([3d6d6fd](https://github.com/webern-unibas-ch/awg-app/commit/3d6d6fd9eec97892cd85a30dccb2cd0f033acf65))
+-   **core:** fix unescaped dot in salsah regex ([b22230e](https://github.com/webern-unibas-ch/awg-app/commit/b22230e7a346b16b1858f4b4555095a316f430c3))
+-   **core:** improve escape sequence for salsah-links ([ab0f925](https://github.com/webern-unibas-ch/awg-app/commit/ab0f925b44ff03b314c16bbbf1e93e09369e753e))
+-   **core:** improve logic for cache Map ([1e82e68](https://github.com/webern-unibas-ch/awg-app/commit/1e82e6819cd880b92a39805f1b2a68735e5c2407))
+-   **core:** improve regex for replacing salsah links ([504acd7](https://github.com/webern-unibas-ch/awg-app/commit/504acd79f80827c6105224cf972ea4423d8677e8))
+-   **core:** move analytics replacement message to init section ([7ac4fb1](https://github.com/webern-unibas-ch/awg-app/commit/7ac4fb1d925a75e51ddd49cf086a39664fe7abb3))
+-   **core:** simplify logic for gnd exposition ([3b4f643](https://github.com/webern-unibas-ch/awg-app/commit/3b4f643408ff2cfc430717fe6e0dd4d88a213059))
+-   **core:** switch from ga to gtag for analytics ([b12e2a9](https://github.com/webern-unibas-ch/awg-app/commit/b12e2a9f111d4da913b6dd6dc2ccf74a4c06c404))
+-   **edition:** fix d3 event handling in force graph after update to d3 v6 ([e96becb](https://github.com/webern-unibas-ch/awg-app/commit/e96becbd13a205ba3df69c8b1064348b165f6376)), closes [#8](https://github.com/webern-unibas-ch/awg-app/issues/8)
+-   **edition:** improve use of EditionSvgOverlayTypes in SvgSheetComponent ([62c1151](https://github.com/webern-unibas-ch/awg-app/commit/62c11517be53daec592426cddf024eb70f2382e3))
+-   **edition:** move CONSTRUCT results panel into separate component ([dd46c60](https://github.com/webern-unibas-ch/awg-app/commit/dd46c604919cb5e56eb100ead48616f0495f81e6))
+-   **edition:** move SELECT results panel into separate component ([0f2ed59](https://github.com/webern-unibas-ch/awg-app/commit/0f2ed59c7883fe7cb4deb861b57dd4a588c1ec36))
+-   **edition:** move sparql editor into separate component ([aaf5f9a](https://github.com/webern-unibas-ch/awg-app/commit/aaf5f9afe3b42e2b05e01eb2bb83782d90fd6280))
+-   **edition:** move triples editor into separate component ([28c5b1f](https://github.com/webern-unibas-ch/awg-app/commit/28c5b1fea7f66c52981b3f258bb5b4cd2838cf44))
+-   **edition:** move unsupported type results into separate component ([9f1067b](https://github.com/webern-unibas-ch/awg-app/commit/9f1067bf6b24a426891a7134aca80ab23f143b24))
+-   **edition:** remove unneeded go mode from code mirror ([4f9dced](https://github.com/webern-unibas-ch/awg-app/commit/4f9dced5291f537d9e85b0a074f6e4d1431190fa))
+-   **edition:** simplify logic for typeKey of EditionSvgOverlay ([c61ddad](https://github.com/webern-unibas-ch/awg-app/commit/c61ddad159bbc876cd93cd4d6bba1cdae532a2e4))
+-   **edition:** update d3Service to work with d3 v6 ([f6ae36b](https://github.com/webern-unibas-ch/awg-app/commit/f6ae36b8877aa5e0232c09af0df8043e8cdf4266))
+
+### Documentation
+
+-   **CHANGELOG:** rewrite changelog with new config ([7f1d041](https://github.com/webern-unibas-ch/awg-app/commit/7f1d0411a12d0b47494bd19f3c5516211f21b621))
+-   **testing:** add JSDocs for new mock helper ([96c84fe](https://github.com/webern-unibas-ch/awg-app/commit/96c84fe0a2212cfb596e473f5c97ded597df77f9))
+
+### Continuous Integration
+
+-   **gh-actions:** run deployment only from master ([f638b58](https://github.com/webern-unibas-ch/awg-app/commit/f638b58a762cecc04cd70d26f8a12b6850dbedf3))
+-   **gh-actions:** use push event for CI Tests workflow ([ada06f4](https://github.com/webern-unibas-ch/awg-app/commit/ada06f4ca57d9ce70532dbbda2b925e9985ec61d))
+-   **travis:** remove unneeded deploy step ([1f43c9d](https://github.com/webern-unibas-ch/awg-app/commit/1f43c9dddec732d92a023de2cc7fb42ae44a5f1b))
+
+### Build System
+
+-   **app:** rename default github branch to main ([3238272](https://github.com/webern-unibas-ch/awg-app/commit/323827268b8dd7fca5ff53bd5f72e44cd4e66fb8))
+-   **deps:** update d3 packages ([01bcfe2](https://github.com/webern-unibas-ch/awg-app/commit/01bcfe2330ae693a69bb17a56b02dd09622366d2))
+-   **deps:** update dependencies for Angular v10.2.0 ([5ad2056](https://github.com/webern-unibas-ch/awg-app/commit/5ad20563571aa5dad400976c6bad8d2f31bd7c18))
+
+### Tests
+
+-   **app:** clean up some tests ([75a31de](https://github.com/webern-unibas-ch/awg-app/commit/75a31de44c11fd687aaad2bc72427e940818fa1c))
+-   **app:** cleanup for some tests ([a2f79c4](https://github.com/webern-unibas-ch/awg-app/commit/a2f79c4ed86133364ac0de212e2492ffd2fb7ca4))
+-   **app:** improve routing logic in AppComponent tests ([fd402bb](https://github.com/webern-unibas-ch/awg-app/commit/fd402bb6423f1ef104910488c4758fbd75316ca2))
+-   **app:** remove unused logic from test helpers ([64dfebe](https://github.com/webern-unibas-ch/awg-app/commit/64dfebe3aeae93712198ec5af3d0272e70c1e0c0))
+-   **app:** update test.ts ([2dbab11](https://github.com/webern-unibas-ch/awg-app/commit/2dbab1156d4a07d31b3e25c9566b4c72dd3642c2))
+-   **core:** add more tests for app component ([a960336](https://github.com/webern-unibas-ch/awg-app/commit/a960336a36afe383ab6114e5d0bdea7aa960de7f))
+-   **core:** add self-tests for storages of gnd service ([eebee95](https://github.com/webern-unibas-ch/awg-app/commit/eebee9507b515191a3f18834cc50b2195fcdf271))
+-   **core:** add tests for analytics service ([dac95a5](https://github.com/webern-unibas-ch/awg-app/commit/dac95a52dd40c05b758385d9ca0d12f492cc81b4))
+-   **core:** add tests for CachingInterceptor ([ed00641](https://github.com/webern-unibas-ch/awg-app/commit/ed00641df4a4b021c7fe7f86393050661d81d26e))
+-   **core:** add tests for dataStreamerService ([ac6ea5c](https://github.com/webern-unibas-ch/awg-app/commit/ac6ea5c0f187fedfec32bad65431482a32152719))
+-   **core:** add tests for GND exposition to parent windows ([58660c5](https://github.com/webern-unibas-ch/awg-app/commit/58660c57b059ec3962b3557749f54647014413bd))
+-   **core:** add tests for HttpCacheService ([85e83a5](https://github.com/webern-unibas-ch/awg-app/commit/85e83a5db3ba24c4e13c1246df1df162f370051b))
+-   **core:** add tests for loading service ([a2558df](https://github.com/webern-unibas-ch/awg-app/commit/a2558dfc5cf37502dfee243f862ba95cf394a0e2))
+-   **core:** add tests for LoadingInterceptor ([8d8d941](https://github.com/webern-unibas-ch/awg-app/commit/8d8d9416975dba529d84dab8f3f1a519f570b09f))
+-   **core:** add tests for sideInfoService ([b50b97d](https://github.com/webern-unibas-ch/awg-app/commit/b50b97dab0a7ae1a90130c3680bbe5a180e8dfbe))
+-   **core:** adjust tests for gnd service after changes ([e83a80e](https://github.com/webern-unibas-ch/awg-app/commit/e83a80e33d3896062d0046e15b0df71120ae4962))
+-   **core:** fix NgZone issue in AppComponent tests ([885e16b](https://github.com/webern-unibas-ch/awg-app/commit/885e16b8778e04c9a718598d7490f42e593059fd))
+-   **core:** improve tests for LoadingService ([4bc3db3](https://github.com/webern-unibas-ch/awg-app/commit/4bc3db30fcd60691f9af16ec86fb6f1ee90e63d9))
+-   **core:** move mock helper into separate files ([b50f5e2](https://github.com/webern-unibas-ch/awg-app/commit/b50f5e239ec414af977884da44f97449c44e4fed))
+-   **core:** prevent setting of real gtag script in AnalyticsTest ([6b94170](https://github.com/webern-unibas-ch/awg-app/commit/6b9417017f998a6dda8370fe61a3d2cc40eac193))
+-   **core:** remove unnecessary test from ApiService ([1c3e0e7](https://github.com/webern-unibas-ch/awg-app/commit/1c3e0e764e895c333aa9db59892251ac79ef842d))
+-   **core:** set default values for services in beforeEach ([e945466](https://github.com/webern-unibas-ch/awg-app/commit/e9454669274c95941cde03cd2302f89a05e013e5))
+-   **core:** use helper function for analytics setup ([52d0cf3](https://github.com/webern-unibas-ch/awg-app/commit/52d0cf31dc91bbf955f33e28dfd9f6b3c27641b3))
+-   **core:** use mockStorage from external file in StorageService ([6e379ea](https://github.com/webern-unibas-ch/awg-app/commit/6e379ea9febc05cc9bd41d42175535530383c28f))
+-   **edition:** add missing FontModule in ForceGraphComponent tests ([0247d44](https://github.com/webern-unibas-ch/awg-app/commit/0247d447a2bfadbe93b1b6e020d121216eb307b7))
+-   **edition:** add tests for ConstructResultsComponent ([a2e465c](https://github.com/webern-unibas-ch/awg-app/commit/a2e465cdb76a9c4a4d20cf68601e12278ec7f760))
+-   **edition:** add tests for EditionGraphComponent ([63165be](https://github.com/webern-unibas-ch/awg-app/commit/63165be60ac74f3dd38ad7050b43de5b2051e835))
+-   **edition:** add tests for EditionService ([7e11656](https://github.com/webern-unibas-ch/awg-app/commit/7e11656713eba7b34860a84252fde6fac1821aa3))
+-   **edition:** add tests for GraphVisualizerComponent ([9388d2e](https://github.com/webern-unibas-ch/awg-app/commit/9388d2eb211b466a835d02e9631a174fba1ebe16))
+-   **edition:** add tests for SelectResultsComponent ([4954cc5](https://github.com/webern-unibas-ch/awg-app/commit/4954cc5712d5c435681f3da0f083a2971f623f62))
+-   **edition:** add tests for SparqlComponent ([855f036](https://github.com/webern-unibas-ch/awg-app/commit/855f036d974600dd888dac2b44882dcde03a7a25))
+-   **edition:** add tests for TriplesComponent ([f77150c](https://github.com/webern-unibas-ch/awg-app/commit/f77150c1324b56615702126e251325eb0127e0d8))
+-   **edition:** add tests for UnsupportedTypeResultsComponent ([63c928b](https://github.com/webern-unibas-ch/awg-app/commit/63c928b267a03039ff40802801425f2d3e83a56d))
+-   **edition:** finish tests for EditionDataService ([785bd33](https://github.com/webern-unibas-ch/awg-app/commit/785bd3367bcaa9508b03b39d642069479c68c142))
+-   **edition:** finish tests for EditionViewComponent ([177f432](https://github.com/webern-unibas-ch/awg-app/commit/177f4326a5bef39bbccb9e0cb0e356161069bd57))
+-   **edition:** use mockService for editionViewComponent ([7d23e0b](https://github.com/webern-unibas-ch/awg-app/commit/7d23e0b82e695bee71cfac8339b017b1c0a53845))
+-   **search:** move HttpCacheService to core services ([f0fff03](https://github.com/webern-unibas-ch/awg-app/commit/f0fff03787f0bebe701fdb4cff202e1a7c7457d4))
+-   **side-info:** add tests for ResourceInfoComponent ([b042014](https://github.com/webern-unibas-ch/awg-app/commit/b042014293cdab63041b5fb0d32fb4d25db669cf))
+-   **side-info:** use mocked DataStreamerService in ResourceInfoComponent ([7a3f518](https://github.com/webern-unibas-ch/awg-app/commit/7a3f5185ada57453d95a5f14889e74798ba783e6))
+
 ### [0.7.8](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.7...v0.7.8) (2020-10-13)
 
 ### Bug Fixes
