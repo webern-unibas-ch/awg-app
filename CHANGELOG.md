@@ -19,7 +19,7 @@ All notable changes to this project will be documented in this file. See [standa
 -   **core:** move analytics replacement message to init section ([7ac4fb1](https://github.com/webern-unibas-ch/awg-app/commit/7ac4fb1d925a75e51ddd49cf086a39664fe7abb3))
 -   **core:** simplify logic for gnd exposition ([3b4f643](https://github.com/webern-unibas-ch/awg-app/commit/3b4f643408ff2cfc430717fe6e0dd4d88a213059))
 -   **core:** switch from ga to gtag for analytics ([b12e2a9](https://github.com/webern-unibas-ch/awg-app/commit/b12e2a9f111d4da913b6dd6dc2ccf74a4c06c404))
--   **edition:** fix d3 event handling in force graph after update to d3 v6 ([e96becb](https://github.com/webern-unibas-ch/awg-app/commit/e96becbd13a205ba3df69c8b1064348b165f6376)), closes [#8](https://github.com/webern-unibas-ch/awg-app/issues/8)
+-   **edition:** fix d3 event handling in force graph after update to d3 v6 ([e96becb](https://github.com/webern-unibas-ch/awg-app/commit/e96becbd13a205ba3df69c8b1064348b165f6376)), closes [#23](https://github.com/webern-unibas-ch/awg-app/issues/23)
 -   **edition:** improve use of EditionSvgOverlayTypes in SvgSheetComponent ([62c1151](https://github.com/webern-unibas-ch/awg-app/commit/62c11517be53daec592426cddf024eb70f2382e3))
 -   **edition:** move CONSTRUCT results panel into separate component ([dd46c60](https://github.com/webern-unibas-ch/awg-app/commit/dd46c604919cb5e56eb100ead48616f0495f81e6))
 -   **edition:** move SELECT results panel into separate component ([0f2ed59](https://github.com/webern-unibas-ch/awg-app/commit/0f2ed59c7883fe7cb4deb861b57dd4a588c1ec36))
