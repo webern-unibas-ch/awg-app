@@ -91,6 +91,9 @@
                         <li>
                             <a href="#getAndExpectDebugElementByDirective" title="src/testing/expect-helper.ts"><b>getAndExpectDebugElementByDirective</b>&nbsp;&nbsp;&nbsp;(src/.../expect-helper.ts)</a>
                         </li>
+                        <li>
+                            <a href="#getInterceptorInstance" title="src/testing/interceptor-helper.ts"><b>getInterceptorInstance</b>&nbsp;&nbsp;&nbsp;(src/.../interceptor-helper.ts)</a>
+                        </li>
                     </ul>
                 </td>
             </tr>
@@ -544,7 +547,7 @@ Cf. <a href="https://github.com/angular/angular/issues/12313#issuecomment-528536
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>expectDebugElement(de, selector, expected, expectedInFailMsg, suffixMsg)</code>
+<code>expectDebugElement(de, selector, expected, expectedFailMsg, suffixMsg)</code>
                 </td>
             </tr>
 
@@ -612,7 +615,7 @@ and <a href="../miscellaneous/functions.html#getAndExpectDebugElementByDirective
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>expectedInFailMsg</td>
+                                    <td>expectedFailMsg</td>
 
                                     <td>
                                         No
@@ -877,7 +880,7 @@ and <a href="../miscellaneous/functions.html#getAndExpectDebugElementByDirective
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAndExpectDebugElementByCss(inDe, selector, expected, expectedInFailMsg, suffixMsg?)</code>
+<code>getAndExpectDebugElementByCss(inDe, selector, expected, expectedFailMsg, suffixMsg?)</code>
                 </td>
             </tr>
 
@@ -943,7 +946,7 @@ defined by a CSS selector in a <code>DebugElement</code>.</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>expectedInFailMsg</td>
+                                    <td>expectedFailMsg</td>
 
                                     <td>
                                         No
@@ -1000,7 +1003,7 @@ defined by a CSS selector in a <code>DebugElement</code>.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getAndExpectDebugElementByDirective(inDe, selectorType, expected, expectedInFailMsg, suffixMsg?)</code>
+<code>getAndExpectDebugElementByDirective(inDe, selectorType, expected, expectedFailMsg, suffixMsg?)</code>
                 </td>
             </tr>
 
@@ -1066,7 +1069,7 @@ defined by Directive in a <code>DebugElement</code>.</p>
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>expectedInFailMsg</td>
+                                    <td>expectedFailMsg</td>
 
                                     <td>
                                         No
@@ -1102,6 +1105,97 @@ defined by Directive in a <code>DebugElement</code>.</p>
                     </div>
                     <div class="io-description">
                         <p>An array of the found DebugElements.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</section>    <h3>src/testing/interceptor-helper.ts</h3>
+    <section>
+    <h3></h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="getInterceptorInstance"></a>
+                    <span class="name">
+                        <b>
+                            getInterceptorInstance
+                        </b>
+                        <a href="#getInterceptorInstance"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>getInterceptorInstance(interceptors, type: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                </td>
+            </tr>
+
+
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Test helper function: getInterceptorInstance.</p>
+<p>It gets the instance of an HTTP Interceptor of a given type from the HTTP_INTERCEPTORS array.</p>
+<p>Cf. <a href="https://www.moritz-benzenhoefer.com/2018/09/angular-6-get-http-interceptor-instance-in-test/">https://www.moritz-benzenhoefer.com/2018/09/angular-6-get-http-interceptor-instance-in-test/</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>interceptors</td>
+                                    <td>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given array of HTTP interceptors (e.g. TestBed.inject(HTTP_INTERCEPTORS))</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given type of the Interceptor.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://angular.io/api/common/http/HttpInterceptor" target="_blank" >HttpInterceptor</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>An instance of the searched Interceptor.</p>
 
                     </div>
                 </td>

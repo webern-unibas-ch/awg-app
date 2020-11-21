@@ -80,7 +80,7 @@ of the data view of the app.</p>
         <h3>Implements</h3>
     </p>
     <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
+                    <code><a href="https://angular.io/api/core/OnChanges" target="_blank" >OnChanges</a></code>
                     <code><a href="https://angular.io/api/core/OnDestroy" target="_blank" >OnDestroy</a></code>
     </p>
 
@@ -160,19 +160,25 @@ of the data view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#checkForGND">checkForGND</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#exposeGnd">exposeGnd</a>
                             </li>
                             <li>
                                 <a href="#navigateToResource">navigateToResource</a>
                             </li>
                             <li>
+                                <a href="#ngOnChanges">ngOnChanges</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnDestroy">ngOnDestroy</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
-                            </li>
-                            <li>
-                                <a href="#setLabel">setLabel</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#removeGnd">removeGnd</a>
                             </li>
                         </ul>
                     </td>
@@ -236,7 +242,7 @@ of the data view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:26</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:36</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -267,7 +273,7 @@ of the data view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:34</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="44" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:44</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -295,7 +301,7 @@ of the data view of the app.</p>
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:42</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="52" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:52</a></div>
                             </td>
                         </tr>
                 <tr>
@@ -319,9 +325,92 @@ of the data view of the app.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="checkForGND"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            checkForGND
+                        </b>
+                        <a href="#checkForGND"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>checkForGND(props: <a href="https://angular.io/api/core/SimpleChange" target="_blank">SimpleChange</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:101</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: checkForGND.</p>
+<p>It checks the props input for a gnd value to expose,
+otherwise removes any GND values.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>props</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChange" target="_blank" >SimpleChange</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given changes.props from ngOnChanges.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Exposes or removes the GND event.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="exposeGnd"></a>
                     <span class="name">
                         <b>
+                            <span class="modifier">Private</span>
                             exposeGnd
                         </b>
                         <a href="#exposeGnd"><span class="icon ion-ios-link"></span></a>
@@ -330,22 +419,23 @@ of the data view of the app.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>exposeGnd(gndEvent: <a href="../classes/GndEvent.html">GndEvent</a>)</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>exposeGnd(gndEvent: <a href="../classes/GndEvent.html">GndEvent</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="88"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:88</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:132</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: exposeGnd.</p>
+                    <div class="io-description"><p>Private method: exposeGnd.</p>
 <p>It emits a given gnd event (type, value)
 to the <a href="gndRequest">gndRequest</a>.</p>
 </div>
@@ -417,8 +507,8 @@ to the <a href="gndRequest">gndRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="70"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:70</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="83"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:83</a></div>
                 </td>
             </tr>
 
@@ -479,6 +569,84 @@ to the <a href="resourceRequest">resourceRequest</a>.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ngOnChanges"></a>
+                    <span class="name">
+                        <b>
+                            ngOnChanges
+                        </b>
+                        <a href="#ngOnChanges"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnChanges(changes: <a href="https://angular.io/api/core/SimpleChanges" target="_blank">SimpleChanges</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="69"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:69</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnChanges.</p>
+<p>It checks for changes of the given input.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>changes</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/core/SimpleChanges" target="_blank" >SimpleChanges</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The changes of the input.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="ngOnDestroy"></a>
                     <span class="name">
                         <b>
@@ -497,8 +665,8 @@ to the <a href="resourceRequest">resourceRequest</a>.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="158"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:158</a></div>
                 </td>
             </tr>
 
@@ -522,119 +690,47 @@ when destroying the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
+                    <a name="removeGnd"></a>
                     <span class="name">
                         <b>
-                            ngOnInit
+                            <span class="modifier">Private</span>
+                            removeGnd
                         </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                        <a href="#removeGnd"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>ngOnInit()</code>
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>removeGnd()</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="58"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:58</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="147"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:147</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
+                    <div class="io-description"><p>Private method: removeGnd.</p>
+<p>It emits a given gnd event (type, value)
+to the <a href="gndRequest">gndRequest</a>.</p>
 </div>
 
+                    <div>
+                    </div>
                     <div class="io-description">
                         <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
 
                     </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="setLabel"></a>
-                    <span class="name">
-                        <b>
-                            setLabel
-                        </b>
-                        <a href="#setLabel"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>setLabel(prop: <a href="../classes/PropertyJson.html">PropertyJson</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:105</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: setLabel.</p>
-<p>It sets the label of a given property object
-while checking for a gnd value to expose.</p>
-</div>
-
                     <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>prop</td>
-                                    <td>
-                                                <code><a href="../classes/PropertyJson.html" target="_self" >PropertyJson</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given property object.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The property label.</p>
+                        <p>Emits the GND remove event.</p>
 
                     </div>
                 </td>
@@ -672,7 +768,7 @@ while checking for a gnd value to expose.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:50</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="60" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-html/resource-detail-html-content/props/props.component.ts:60</a></div>
                             </td>
                         </tr>
 
@@ -693,7 +789,17 @@ between the resource detail properties.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnDestroy, OnInit, Output } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    Output,
+    SimpleChange,
+    SimpleChanges
+} from &#x27;@angular/core&#x27;;
 
 import { GndEvent, GndEventType } from &#x27;@awg-core/services/gnd-service&#x27;;
 import { ResourceDetailProperty } from &#x27;@awg-views/data-view/models&#x27;;
@@ -711,7 +817,7 @@ import { PropertyJson } from &#x27;@awg-shared/api-objects&#x27;;
     styleUrls: [&#x27;./props.component.css&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestroy {
+export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDestroy {
     /**
      * Input variable: props.
      *
@@ -745,12 +851,15 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     metaBreakLine &#x3D; &#x27;Versionsdatum&#x27;;
 
     /**
-     * Angular life cycle hook: ngOnInit.
+     * Angular life cycle hook: ngOnChanges.
      *
-     * It calls the containing methods
-     * when initializing the component.
+     * It checks for changes of the given input.
+     *
+     * @param {SimpleChanges} changes The changes of the input.
      */
-    ngOnInit() {}
+    ngOnChanges(changes: SimpleChanges) {
+        this.checkForGND(changes.props);
+    }
 
     /**
      * Public method: navigateToResource.
@@ -771,7 +880,38 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     }
 
     /**
-     * Public method: exposeGnd.
+     * Private method: checkForGND.
+     *
+     * It checks the props input for a gnd value to expose,
+     * otherwise removes any GND values.
+     *
+     * @param {SimpleChange} props The given changes.props from ngOnChanges.
+     *
+     * @returns {void} Exposes or removes the GND event.
+     */
+    private checkForGND(props: SimpleChange): void {
+        // check if we have a gnd (prop.pid&#x3D;856)
+        const propsWithGND: ResourceDetailProperty[] &#x3D; props.currentValue.filter(
+            (prop: ResourceDetailProperty) &#x3D;&gt; prop.pid &#x3D;&#x3D;&#x3D; &#x27;856&#x27; &amp;&amp; prop.values &amp;&amp; prop.values.length &gt; 0
+        );
+
+        if (propsWithGND.length &gt; 0) {
+            // loop through prop.values[i]
+            propsWithGND.map((prop: ResourceDetailProperty) &#x3D;&gt; {
+                prop.values.map((value: string) &#x3D;&gt; {
+                    // expose gnd for every value
+                    const gndEvent &#x3D; new GndEvent(GndEventType.set, value);
+                    this.exposeGnd(gndEvent);
+                });
+            });
+        } else {
+            // remove gnd
+            this.removeGnd();
+        }
+    }
+
+    /**
+     * Private method: exposeGnd.
      *
      * It emits a given gnd event (type, value)
      * to the {@link gndRequest}.
@@ -780,7 +920,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
      *
      * @returns {void} Emits the GND event.
      */
-    exposeGnd(gndEvent: GndEvent): void {
+    private exposeGnd(gndEvent: GndEvent): void {
         if (!gndEvent) {
             return;
         }
@@ -788,27 +928,16 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
     }
 
     /**
-     * Public method: setLabel.
+     * Private method: removeGnd.
      *
-     * It sets the label of a given property object
-     * while checking for a gnd value to expose.
+     * It emits a given gnd event (type, value)
+     * to the {@link gndRequest}.
      *
-     * @param {PropertyJson} prop The given property object.
-     *
-     * @returns {string} The property label.
+     * @returns {void} Emits the GND remove event.
      */
-    setLabel(prop: PropertyJson): string {
-        if (!prop) {
-            return null;
-        }
-        // if we have a gnd (prop.pid&#x3D;856), write it to sessionStorage
-        if (prop.pid &#x3D;&#x3D;&#x3D; &#x27;856&#x27; &amp;&amp; prop.values &amp;&amp; prop.values.length &gt; 0) {
-            prop.values.map((value: string) &#x3D;&gt; {
-                const gndEvent &#x3D; new GndEvent(GndEventType.set, value);
-                this.exposeGnd(gndEvent);
-            });
-        }
-        return prop.label;
+    private removeGnd(): void {
+        const gndEvent &#x3D; new GndEvent(GndEventType.remove, null);
+        this.exposeGnd(gndEvent);
     }
 
     /**
@@ -819,8 +948,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
      */
     ngOnDestroy() {
         // if we leave the component, remove gnd from storage
-        const gndEvent &#x3D; new GndEvent(GndEventType.remove, null);
-        this.exposeGnd(gndEvent);
+        this.removeGnd();
     }
 }
 </code></pre>
@@ -837,7 +965,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
         &lt;li class&#x3D;&quot;awg-prop&quot; *ngIf&#x3D;&quot;(prop?.values)[0]&quot;&gt;
             &lt;!-- value label --&gt;
             &lt;strong class&#x3D;&quot;awg-prop-label&quot; *ngIf&#x3D;&quot;prop?.label&quot;&gt;
-                {{ setLabel(prop) }}
+                {{ prop?.label }}
             &lt;/strong&gt;
             &lt;!-- value content --&gt;
             &lt;ul *ngFor&#x3D;&quot;let value of prop?.values&quot;&gt;
@@ -918,8 +1046,8 @@ export class ResourceDetailHtmlContentPropsComponent implements OnInit, OnDestro
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- resource detail data content: props --><section class="awg-props">    <h4 class="awg-props-title ml-0">Objektdaten</h4>    <ul *ngFor="let prop of props">        <li id="breakLine" *ngIf="prop?.label === metaBreakLine">            <hr />        </li>        <li class="awg-prop" *ngIf="(prop?.values)[0]">            <!-- value label -->            <strong class="awg-prop-label" *ngIf="prop?.label">                {{ setLabel(prop) }}            </strong>            <!-- value content -->            <ul *ngFor="let value of prop?.values">                <li class="awg-prop-value" *ngIf="value">                    <span [compile-html]="value" [compile-html-ref]="this"></span>                </li>            </ul>        </li>    </ul></section></div>'
-    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
+        var COMPONENT_TEMPLATE = '<div><!-- resource detail data content: props --><section class="awg-props">    <h4 class="awg-props-title ml-0">Objektdaten</h4>    <ul *ngFor="let prop of props">        <li id="breakLine" *ngIf="prop?.label === metaBreakLine">            <hr />        </li>        <li class="awg-prop" *ngIf="(prop?.values)[0]">            <!-- value label -->            <strong class="awg-prop-label" *ngIf="prop?.label">                {{ prop?.label }}            </strong>            <!-- value content -->            <ul *ngFor="let value of prop?.values">                <li class="awg-prop-value" *ngIf="value">                    <span [compile-html]="value" [compile-html-ref]="this"></span>                </li>            </ul>        </li>    </ul></section></div>'
+    var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceDetailHtmlContentPropsComponent'};
 </script>

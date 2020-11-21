@@ -93,6 +93,10 @@ to the session storage via the StorageService</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
+                                <a href="#currentLocation">currentLocation</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Readonly</span>
                                 <a href="#dnbReg">dnbReg</a>
                             </li>
                             <li>
@@ -194,8 +198,8 @@ to the session storage via the StorageService</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="90"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:90</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="103"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:103</a></div>
                 </td>
             </tr>
 
@@ -276,8 +280,8 @@ to/from the sessionStorage.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="163"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:163</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:173</a></div>
                 </td>
             </tr>
 
@@ -361,8 +365,8 @@ via the Web API postmessage method
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="143"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:143</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="153"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:153</a></div>
                 </td>
             </tr>
 
@@ -412,8 +416,8 @@ from the sessionStorage.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="119"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:119</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="132"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:132</a></div>
                 </td>
             </tr>
 
@@ -494,8 +498,8 @@ in the sessionStorage.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:198</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="196"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:196</a></div>
                 </td>
             </tr>
 
@@ -1159,6 +1163,52 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="currentLocation"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            currentLocation</b>
+                            <a href="#currentLocation"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>{
+        getOrigin: (location: Location) &#x3D;&gt; {
+            // console.info(&#x27;got location&#x27;, location);
+            return location.origin;
+        }
+    }</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Readonly variable: currentLocation.</p>
+<p>Helper function to spy on and set origin in tests.
+It returns the origin of the current location.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="dnbReg"></a>
                         <span class="name">
                             <b>
@@ -1249,7 +1299,7 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:78</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -1342,6 +1392,19 @@ export class GndService extends StorageService {
     readonly dnbReg &#x3D; /href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i; // regexp for d-nb links
 
     /**
+     * Readonly variable: currentLocation.
+     *
+     * Helper function to spy on and set origin in tests.
+     * It returns the origin of the current location.
+     */
+    readonly currentLocation &#x3D; {
+        getOrigin: (location: Location) &#x3D;&gt; {
+            // console.info(&#x27;got location&#x27;, location);
+            return location.origin;
+        }
+    };
+
+    /**
      * Public variable: linkRegArr.
      *
      * It holds the result array of a regex check execution .
@@ -1389,17 +1452,14 @@ export class GndService extends StorageService {
      */
     private setGndToSessionStorage(value: string): void {
         if (this.valueHasGnd(value)) {
-            let gndItem: string;
             // take last argument (pop) of linkRegArray
-            gndItem &#x3D; this.linkRegArr.pop().toString();
+            const gndItem &#x3D; this.linkRegArr.pop().toString();
 
             // set to storage
             this.setStorageKey(StorageType.sessionStorage, this.gndKey, gndItem);
 
-            // expose gndItem to parent window (for now: Inseri)
+            // expose gndItem to parent window
             this.exposeGndMessageToParent(gndItem);
-        } else {
-            this.removeGndFromSessionStorage();
         }
     }
 
@@ -1414,7 +1474,7 @@ export class GndService extends StorageService {
     private removeGndFromSessionStorage(): void {
         this.removeStorageKey(StorageType.sessionStorage, this.gndKey);
 
-        // expose removed gndItem to parent window (for now: Inseri)
+        // expose removed gndItem to parent window
         this.exposeGndMessageToParent(null);
     }
 
@@ -1432,26 +1492,14 @@ export class GndService extends StorageService {
      * @return {void} Sends the postMessage to the parent window.
      */
     private exposeGndMessageToParent(value: string): void {
+        const inseriTarget &#x3D; AppConfig.INSERI_TEST_URL;
         const localTarget &#x3D; AppConfig.LOCALHOST_URL;
-        const nieTarget &#x3D; AppConfig.INSERI_TEST_URL;
-        const parentTargets &#x3D; [localTarget, nieTarget];
-        const LOCAL_DOMAINS &#x3D; [&#x27;localhost&#x27;, &#x27;127.0.0.1&#x27;, &#x27;&#x27;];
+        const targets &#x3D; [inseriTarget, localTarget];
 
-        if (window.location !&#x3D;&#x3D; window.parent.location || window.self !&#x3D;&#x3D; window.top) {
-            /*
-             * the page is running in an iFrame,
-             * posting will be only allowed to localhost (develop) or NIE-INE (production)
-             */
-            for (const target of parentTargets) {
+        for (const target of targets) {
+            // check if parent location meets target
+            if (this.currentLocation.getOrigin(window.parent.location) &#x3D;&#x3D;&#x3D; target) {
                 window.parent.window.postMessage({ gnd: value }, target);
-            }
-        } else {
-            /*
-             * the page is not running in an iFrame,
-             * posting will be only allowed from and to localhost
-             */
-            if (LOCAL_DOMAINS.includes(window.location.hostname)) {
-                window.postMessage({ gnd: value }, localTarget);
             }
         }
     }

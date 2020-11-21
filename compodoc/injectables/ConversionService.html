@@ -1503,8 +1503,8 @@ to html using plugin &#39;htmlConverter&#39;.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="928"
-                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:928</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="931"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:931</a></div>
                 </td>
             </tr>
 
@@ -1770,8 +1770,8 @@ of a selections or hlists value.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="949"
-                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:949</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="952"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:952</a></div>
                 </td>
             </tr>
 
@@ -2390,8 +2390,8 @@ to be displayed via HTML.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="902"
-                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:902</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="905"
+                            class="link-to-prism">src/app/core/services/conversion-service/conversion.service.ts:905</a></div>
                 </td>
             </tr>
 
@@ -3913,25 +3913,28 @@ export class ConversionService extends ApiService {
         if (!str) {
             return;
         }
-        const regNum &#x3D; /\d{4,8}/; // regexp for object id (4-8 DIGITS)
-        const regLink &#x3D; /&lt;a href&#x3D;&quot;(http:\/\/www.salsah.org\/api\/resources\/\d{4,8})&quot; class&#x3D;&quot;salsah-link&quot;&gt;(.*?)&lt;\/a&gt;/i; // regexp for salsah links
+        const regNum &#x3D; /\d{3,}/; // regexp for object id (3 or more DIGITS)
+        const regLink &#x3D; new RegExp(
+            &#x27;&lt;a href&#x3D;&quot;((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/\\d{3,})&quot; class&#x3D;&quot;salsah-link&quot;&gt;(.*?)&lt;/a&gt;&#x27;,
+            &#x27;i&#x27;
+        ); // regexp for salsah links
         let regArr: RegExpExecArray;
 
         // check for salsah links in str
         while (regLink.exec(str)) {
-            // i.e.: as long as patLink is detected in str do...
+            // i.e.: as long as regLink is detected in str do...
             regArr &#x3D; regLink.exec(str);
 
             // identify resource id
             const resId &#x3D; regNum.exec(regArr[1])[0];
 
             // replace href attribute with click-directive
-            // linktext is stored in second regexp-result regArr[2]
+            // linktext is stored in last regexp-result regArr[regArr.length-1]
             const replaceValue &#x3D;
                 &#x27;&lt;a (click)&#x3D;&quot;ref.navigateToResource(\&#x27;&#x27; +
                 resId +
                 &#x27;\&#x27;); $event.stopPropagation()&quot;&gt;&#x27; +
-                regArr[2] +
+                regArr[regArr.length - 1] +
                 &#x27;&lt;/a&gt;&#x27;;
             str &#x3D; str.replace(regArr[0], replaceValue);
         } // END while

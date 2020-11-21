@@ -172,8 +172,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="94"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:94</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:123</a></div>
                 </td>
             </tr>
 
@@ -216,15 +216,15 @@ of the textcritical comments for a selected overlay item.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>filterTextcriticalComments(textcriticalComment: <a href="../classes/TextcriticalComment.html">TextcriticalComment</a>, overlay: literal type, filterIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
+                    <code>filterTextcriticalComments(textcriticalComment: <a href="../classes/TextcriticalComment.html">TextcriticalComment</a>, overlay: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlay</a>, filterIndex: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank">number</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="45"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:45</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="50"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:50</a></div>
                 </td>
             </tr>
 
@@ -266,7 +266,7 @@ of the textcritical comments for a selected overlay item.</p>
                                 <tr>
                                     <td>overlay</td>
                                     <td>
-                                            <code>literal type</code>
+                                                <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay</a></code>
                                     </td>
 
                                     <td>
@@ -332,8 +332,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="72"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:72</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="101"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:101</a></div>
                 </td>
             </tr>
 
@@ -380,8 +380,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:107</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -475,8 +475,8 @@ of the textcritical comments for a selected overlay item.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="83"
-                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:83</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -559,7 +559,7 @@ of the textcritical comments for a selected overlay item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:23</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:28</a></div>
                             </td>
                         </tr>
 
@@ -593,7 +593,7 @@ of the textcritical comments for a selected overlay item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="38" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:38</a></div>
                             </td>
                         </tr>
 
@@ -626,7 +626,7 @@ of the textcritical comments for a selected overlay item.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="28" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:28</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/services/edition.service.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -649,7 +649,12 @@ of the textcritical comments for a selected overlay item.</p>
 
 import { Observable, ReplaySubject } from &#x27;rxjs&#x27;;
 
-import { EditionWork, EditionSvgOverlay, TextcriticalComment } from &#x27;@awg-views/edition-view/models&#x27;;
+import {
+    EditionSvgOverlay,
+    EditionSvgOverlayTypes,
+    EditionWork,
+    TextcriticalComment
+} from &#x27;@awg-views/edition-view/models&#x27;;
 
 /**
  * The Edition service.
@@ -691,7 +696,7 @@ export class EditionService {
      */
     private static filterTextcriticalComments(
         textcriticalComment: TextcriticalComment,
-        overlay: { type: string; id: string },
+        overlay: EditionSvgOverlay,
         filterIndex: number
     ): boolean {
         // shortcuts &amp; trimmed values
@@ -700,13 +705,37 @@ export class EditionService {
 
         // filter the comments by overlay type and id
         switch (overlay.type) {
-            case &#x27;measure&#x27;:
+            case EditionSvgOverlayTypes.measure:
                 return measure &#x3D;&#x3D;&#x3D; overlay.id;
-            case &#x27;system&#x27;:
+            case EditionSvgOverlayTypes.system:
                 return system &#x3D;&#x3D;&#x3D; overlay.id;
-            case &#x27;item&#x27;:
+            case EditionSvgOverlayTypes.item:
                 return filterIndex &#x3D;&#x3D;&#x3D; +overlay.id;
         }
+    }
+
+    /**
+     * Public method: getTextcriticalComments.
+     *
+     * It provides the textcritical comments for a selected svg overlay.
+     *
+     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
+     * @param {EditionSvgOverlay} overlay The given svg overlay.
+     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
+     */
+    getTextcriticalComments(
+        textcriticalComments: TextcriticalComment[],
+        overlay: EditionSvgOverlay
+    ): TextcriticalComment[] {
+        if (!textcriticalComments || !overlay) {
+            return;
+        }
+
+        // filter the textcritics input array
+        return textcriticalComments.filter((textcriticalComment, filterIndex) &#x3D;&gt; {
+            // get filtered results from private method
+            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
+        });
     }
 
     /**
@@ -740,26 +769,6 @@ export class EditionService {
      */
     clearEditionWork(): void {
         this.editionWorkSubject.next(null);
-    }
-
-    /**
-     * Public method: getTextcriticalComments.
-     *
-     * It provides the textcritical comments for a selected svg overlay.
-     *
-     * @param {TextcriticalComment[]} textcriticalComments The given textcritical comments.
-     * @param {EditionSvgOverlay} overlay The given svg overlay.
-     * @returns {TextcriticalComment[]} Array with filtered textcritical comments.
-     */
-    getTextcriticalComments(
-        textcriticalComments: TextcriticalComment[],
-        overlay: EditionSvgOverlay
-    ): TextcriticalComment[] {
-        // filter the textcritics input array
-        return textcriticalComments.filter((textcriticalComment, filterIndex) &#x3D;&gt; {
-            // get filtered results from private method
-            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
-        });
     }
 }
 </code></pre>

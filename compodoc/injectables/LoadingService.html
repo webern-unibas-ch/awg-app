@@ -90,7 +90,7 @@ that can be subscribed by components.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#isLoading$">isLoading$</a>
+                                <a href="#isLoadingStream$">isLoadingStream$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -126,30 +126,6 @@ that can be subscribed by components.</p>
     </table>
 </section>
 
-            <section>
-    <h3 id="constructor">Constructor</h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-<code>constructor()</code>
-                    </td>
-                </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/services/loading-service/loading.service.ts:26</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                            <div class="io-description"><p>Constructor of the LoadingService.</p>
-</div>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
-</section>
 
             <section>
     
@@ -178,8 +154,8 @@ that can be subscribed by components.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="40"
-                            class="link-to-prism">src/app/core/services/loading-service/loading.service.ts:40</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="35"
+                            class="link-to-prism">src/app/core/services/loading-service/loading.service.ts:35</a></div>
                 </td>
             </tr>
 
@@ -226,8 +202,8 @@ that can be subscribed by components.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/core/services/loading-service/loading.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/core/services/loading-service/loading.service.ts:46</a></div>
                 </td>
             </tr>
 
@@ -288,13 +264,13 @@ that can be subscribed by components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isLoading$"></a>
+                        <a name="isLoadingStream$"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
                                 <span class="modifier">Readonly</span>
-                            isLoading$</b>
-                            <a href="#isLoading$"><span class="icon ion-ios-link"></span></a>
+                            isLoadingStream$</b>
+                            <a href="#isLoadingStream$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -382,12 +358,7 @@ export class LoadingService {
     /**
      * Private readonly isLoading stream as observable (&#x60;BehaviorSubject&#x60;).
      */
-    private readonly isLoading$ &#x3D; this.isLoadingSubject.asObservable();
-
-    /**
-     * Constructor of the LoadingService.
-     */
-    constructor() {}
+    private readonly isLoadingStream$ &#x3D; this.isLoadingSubject.asObservable();
 
     /**
      * Public method: getLoadingStatus.
@@ -397,7 +368,7 @@ export class LoadingService {
      * @returns {Observable&lt;boolean&gt;} The isLoading stream as observable.
      */
     getLoadingStatus(): Observable&lt;boolean&gt; {
-        return this.isLoading$;
+        return this.isLoadingStream$;
     }
 
     /**

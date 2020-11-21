@@ -341,7 +341,7 @@ export class GraphRDFData {
     /**
      * The predefined query list for a graph.
      */
-    queryList: GraphQuery[];
+    queryList: GraphSparqlQuery[];
 
     /**
      * The predefined triples for a graph.
@@ -350,13 +350,13 @@ export class GraphRDFData {
 }
 
 /**
- * The GraphQuery class.
+ * The GraphSparqlQuery class.
  *
  * It is used in the context of the edition view
  * to store the data for a graph query
  * from a graph json file.
  */
-export class GraphQuery {
+export class GraphSparqlQuery {
     /**
      * The label of a query.
      */

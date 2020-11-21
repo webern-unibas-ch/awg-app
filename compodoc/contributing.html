@@ -59,18 +59,18 @@ email, or any other method with the owners of this repository before making a ch
 <h3 id="branching--git-flow">Branching / Git flow</h3>
 <p>This project uses the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> which defines a strict branching model designed around the project releases. Therefore the following branch structure is used</p>
 <ul>
-<li><code>master</code> (stores the official release history; all commits are tagged with a version number)</li>
+<li><code>main</code> (stores the official release history; all commits are tagged with a version number)</li>
 <li><code>develop</code> (serves as an integration branch for features; gets released into <code>release/xxx</code>)</li>
-<li><code>feature/XXX</code> (main branch for developing new features; gets branched from and merged into <code>develop</code>, never interacts with <code>master</code>)</li>
-<li><code>release/xxx</code> (used to prepare a release with latest features from <code>develop</code>; gets merged into <code>master</code>)</li>
-<li><code>hotfix/xxx</code> (used to quickly patch production releases; forked from and merged directly into <code>master</code>)</li>
+<li><code>feature/XXX</code> (main branch for developing new features; gets branched from and merged into <code>develop</code>, never interacts with <code>main</code>)</li>
+<li><code>release/xxx</code> (used to prepare a release with latest features from <code>develop</code>; gets merged into <code>main</code>)</li>
+<li><code>hotfix/xxx</code> (used to quickly patch production releases; forked from and merged directly into <code>main</code>)</li>
 </ul>
 <p>To initialize the GitFlow workflow execute <code>git flow init</code> inside your local copy of the repository.</p>
 <p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
 <p>For more information about pull requests go check out the GitHub Help <a href="https://help.github.com/en/articles/about-pull-requests">About pull requests</a>.</p>
 <h3 id="commit-message-schema">Commit Message Schema</h3>
 <p>This project follows the <a href="https://conventionalcommits.org">Conventional Commits Specification</a> using <a href="https://conventional-changelog.github.io/commitlint/#/">commitlint</a> based on the <a href="https://github.com/conventional-changelog/commitlint/tree/master/@commitlint/config-angular">Angular configuration</a> (further explanation can be found in the <a href="https://github.com/angular/angular/blob/master/CONTRIBUTING.md#-commit-message-guidelines">Angular commit-message-guidelines</a>).</p>
-<p>Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/master/LICENSE.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> (see &quot;Release Versioning Convention&quot; section below).</p>
+<p>Using these conventions leads to more readable messages that are easy to follow when looking through the project history. But also, we use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a> (see &quot;Release Versioning Convention&quot; section below).</p>
 <p>When writing commit messages, we stick to this schema:</p>
 <div><pre class="line-numbers"><code class="language-none">&lt;type&gt;(&lt;scope&gt;): &lt;subject&gt;
 &lt;BLANK LINE&gt;
@@ -104,7 +104,7 @@ email, or any other method with the owners of this repository before making a ch
 
 - add path for multipart request
 - adapt handling of resources responder</code></pre></div><h3 id="release-versioning-convention">Release Versioning Convention</h3>
-<p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/master/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a>.</p>
+<p>We use the git commit messages to autogenerate the <a href="https://github.com/webern-unibas-ch/awg-app/blob/main/CHANGELOG.md">CHANGELOG</a> and automate versions by means of <a href="https://github.com/conventional-changelog/standard-version">standard-version</a>.</p>
 <h2 id="angular-quick-start-guide">Angular quick start guide</h2>
 <p>This project was generated with <a href="https://github.com/angular/angular-cli">Angular CLI</a> version 8.0.3. Check there for necessary prerequisites (which comprise <code>Node</code> and <code>npm</code>or <code>yarn</code>).</p>
 <h3 id="development-server">Development server</h3>

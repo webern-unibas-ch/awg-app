@@ -61,7 +61,7 @@
             <h3>File</h3>
         </p>
         <p class="comment">
-            <code>src/app/views/data-view/services/http-cache.service.ts</code>
+            <code>src/app/core/services/http-cache/http-cache.service.ts</code>
         </p>
 
             <p class="comment">
@@ -141,7 +141,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="17"
-                            class="link-to-prism">src/app/views/data-view/services/http-cache.service.ts:17</a></div>
+                            class="link-to-prism">src/app/core/services/http-cache/http-cache.service.ts:17</a></div>
                 </td>
             </tr>
 
@@ -221,7 +221,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-line">Defined in <a href="" data-line="27"
-                            class="link-to-prism">src/app/views/data-view/services/http-cache.service.ts:27</a></div>
+                            class="link-to-prism">src/app/core/services/http-cache/http-cache.service.ts:27</a></div>
                 </td>
             </tr>
 
@@ -347,7 +347,7 @@ export class HttpCacheService implements HttpCache {
      * It keeps the cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
      * (i.e. an &#x60;HttpRequest.urlWithParams&#x60;) and an &#x60;HttpResponse&#x60;.
      */
-    private cachedResponses &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
+    private cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
 
     /**
      * Getter for a cached response.
@@ -359,7 +359,9 @@ export class HttpCacheService implements HttpCache {
      * @returns {HttpResponse&lt;any&gt; | null} A cached response or null.
      */
     get(req: HttpRequest&lt;any&gt;): HttpResponse&lt;any&gt; | null {
-        return this.cachedResponses ? this.cachedResponses[req.urlWithParams] : null;
+        return this.cachedResponses &amp;&amp; this.cachedResponses.has(req.urlWithParams)
+            ? this.cachedResponses.get(req.urlWithParams)
+            : null;
     }
 
     /**
@@ -373,7 +375,7 @@ export class HttpCacheService implements HttpCache {
      * @returns {void} Caches the response.
      */
     put(req: HttpRequest&lt;any&gt;, resp: HttpResponse&lt;any&gt;): void {
-        this.cachedResponses[req.urlWithParams] &#x3D; resp.clone();
+        this.cachedResponses.set(req.urlWithParams, resp.clone());
     }
 }
 </code></pre>

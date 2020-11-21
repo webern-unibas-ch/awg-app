@@ -293,8 +293,8 @@ depending on the pending requests.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="86"
+                            class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:86</a></div>
                 </td>
             </tr>
 
@@ -478,6 +478,7 @@ export class LoadingInterceptor implements HttpInterceptor {
         console.log(req.urlWithParams);
         */
 
+        /* istanbul ignore else  */
         if (i &gt;&#x3D; 0) {
             // remove the request from the array
             this.pendingRequests.splice(i, 1);

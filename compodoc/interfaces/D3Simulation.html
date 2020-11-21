@@ -88,11 +88,15 @@ import { D3SimulationNode } from &#x27;./d3-simulation-node.model&#x27;;
 import { D3SimulationLink } from &#x27;./d3-simulation-link.model&#x27;;
 
 import * as d3_force from &#x27;d3-force&#x27;;
+import { D3Selection } from &#x27;@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-selection.model&#x27;;
+import { D3SimulationNodeTriple } from &#x27;@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-simulation-node-triple.model&#x27;;
 
 /**
- * Object constant for simulation forces.
+ * Object constant with a set of forces.
  *
- * It provides constant values used for the d3 force simulation.
+ * It provides the default values for the D3 simulation&#x27;s forces.
+ *
+ * Available force values: &#x60;LINK_DISTANCE&#x60;, &#x60;COLLISION_STRENGTH&#x60;, &#x60;CHARGE_STRENGTH&#x60;.
  */
 const FORCES &#x3D; {
     LINK_DISTANCE: 1 / 50,
@@ -204,6 +208,49 @@ export class D3ForceSimulation {
     }
 
     /**
+     * Private method: initSimulation.
+     *
+     * It inits the simulation.
+     *
+     * @param {D3ForceSimulationOptions} options The given simulation options.
+     *
+     * @returns {void} It inits the simulation.
+     */
+    private initSimulation(options: D3ForceSimulationOptions): void {
+        if (!options || !options.width || !options.height) {
+            throw new Error(&#x27;Missing options when initializing simulation&#x27;);
+        }
+
+        // create the simulation
+        if (!this.forceSimulation) {
+            const ticker &#x3D; this.ticker;
+
+            // set up the simulation
+            this.forceSimulation &#x3D; d3_force.forceSimulation();
+
+            this.createForces(options);
+
+            // add forces to the simulation
+            this.forceSimulation
+                .force(&#x27;charge_force&#x27;, this.chargeForce)
+                .force(&#x27;collide_force&#x27;, this.collideForce)
+                .force(&#x27;center_force&#x27;, this.centerForce);
+
+            // connect the d3 ticker to an angular event emitter
+            this.forceSimulation.on(&#x27;tick&#x27;, function () {
+                ticker.emit(this);
+            });
+
+            // add nodes and links to the simulation
+            this.initNodes();
+            this.initLinks();
+        }
+
+        // restart the simulation&#x27;s internal timer
+        this.forceSimulation.alpha(1).restart();
+    }
+
+    /**
      * Private method: createForces.
      *
      * It creates the simulation&#x27;s forces.
@@ -260,49 +307,6 @@ export class D3ForceSimulation {
         }
         // add nodes to the simulation
         this.forceSimulation.nodes(this.nodes);
-    }
-
-    /**
-     * Private method: initSimulation.
-     *
-     * It inits the simulation.
-     *
-     * @param {D3ForceSimulationOptions} options The given simulation options.
-     *
-     * @returns {void} It inits the simulation.
-     */
-    private initSimulation(options: D3ForceSimulationOptions): void {
-        if (!options || !options.width || !options.height) {
-            throw new Error(&#x27;Missing options when initializing simulation&#x27;);
-        }
-
-        // create the simulation
-        if (!this.forceSimulation) {
-            const ticker &#x3D; this.ticker;
-
-            // set up the simulation
-            this.forceSimulation &#x3D; d3_force.forceSimulation();
-
-            this.createForces(options);
-
-            // add forces to the simulation
-            this.forceSimulation.force(&#x27;charge_force&#x27;, this.chargeForce).force(&#x27;collide_force&#x27;, this.collideForce);
-
-            // connect the d3 ticker to an angular event emitter
-            this.forceSimulation.on(&#x27;tick&#x27;, function () {
-                ticker.emit(this);
-            });
-
-            // add nodes and links to the simulation
-            this.initNodes();
-            this.initLinks();
-        }
-
-        // update the center force of the simulation
-        this.forceSimulation.force(&#x27;center_force&#x27;, this.centerForce);
-
-        // restart the simulation&#x27;s internal timer
-        this.forceSimulation.restart();
     }
 }
 </code></pre>
