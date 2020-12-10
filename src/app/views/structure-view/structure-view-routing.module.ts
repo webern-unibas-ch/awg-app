@@ -7,7 +7,8 @@ import { StructureViewComponent } from '@awg-views/structure-view/structure-view
 const structureViewRoutes: Routes = [
     {
         path: '',
-        component: StructureViewComponent
+        component: StructureViewComponent,
+        data: { title: 'AWG Online Edition – Structure' }
     }
 ];
 

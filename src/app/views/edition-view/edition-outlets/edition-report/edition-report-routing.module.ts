@@ -7,7 +7,8 @@ import { EditionReportComponent } from './edition-report.component';
 const editionReportRoutes: Routes = [
     {
         path: '',
-        component: EditionReportComponent
+        component: EditionReportComponent,
+        data: { title: 'AWG Online Edition – Report' }
     }
 ];
 

@@ -7,7 +7,8 @@ import { PageNotFoundViewComponent } from '@awg-views/page-not-found-view/page-n
 const pageNotFoundViewRoutes: Routes = [
     {
         path: '',
-        component: PageNotFoundViewComponent
+        component: PageNotFoundViewComponent,
+        data: { title: 'AWG Online Edition – 404' }
     }
 ];
 

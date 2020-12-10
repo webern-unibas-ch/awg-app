@@ -17,7 +17,11 @@ const dataViewRoutes: Routes = [
                 path: 'search',
                 component: SearchOverviewComponent,
                 children: [
-                    { path: 'fulltext', component: SearchPanelComponent },
+                    {
+                        path: 'fulltext',
+                        component: SearchPanelComponent,
+                        data: { title: 'AWG Online Edition – Search' }
+                    },
                     { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
                     /* muted for now
                     { path: 'timeline', component: TimelineComponent },
@@ -32,7 +36,11 @@ const dataViewRoutes: Routes = [
             }
         ]
     },
-    { path: 'resource/:id', component: ResourceDetailComponent }
+    {
+        path: 'resource/:id',
+        component: ResourceDetailComponent,
+        data: { title: 'AWG Online Edition – Resource Detail' }
+    }
 ];
 
 /**
