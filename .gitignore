@@ -11,6 +11,14 @@
 /node_modules
 /bower_components
 
+# yarn
+.yarn/*
+!.yarn/releases
+!.yarn/plugins
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+
 # profiling files
 chrome-profiler-events*.json
 speed-measure-plugin*.json
