@@ -1,0 +1,15 @@
+version: 2
+updates:
+    # Maintain dependencies for GitHub Actions
+    - package-ecosystem: 'github-actions'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+      target_branch: 'develop'
+
+    # Maintain dependencies for yarn
+    - package-ecosystem: 'npm'
+      directory: '/'
+      schedule:
+          interval: 'daily'
+      target_branch: 'develop'
