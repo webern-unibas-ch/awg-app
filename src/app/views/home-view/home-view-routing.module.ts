@@ -7,7 +7,8 @@ import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
 const homeViewRoutes: Routes = [
     {
         path: '',
-        component: HomeViewComponent
+        component: HomeViewComponent,
+        data: { title: 'AWG Online Edition – Home' }
     }
 ];
 

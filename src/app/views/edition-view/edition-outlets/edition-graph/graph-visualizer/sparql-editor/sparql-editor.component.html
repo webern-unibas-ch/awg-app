@@ -1,4 +1,8 @@
-<ngb-accordion #sparqlAcc activeIds="">
+<ngb-accordion
+    #sparqlAcc="ngbAccordion"
+    [activeIds]="togglePanel()"
+    (panelChange)="preventPanelCollapseOnFullscreen($event)"
+>
     <ngb-panel id="awg-graph-visualizer-query">
         <ng-template ngbPanelHeader>
             <div class="d-flex align-items-center justify-content-between">

@@ -514,24 +514,27 @@ describe('EditionGraphComponent (DONE)', () => {
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > div.awg-graph-dynamic', 1, 1);
                     });
 
-                    it('... should contain a header with a button', () => {
+                    it('... should contain a header with two buttons (help and fullscreen)', () => {
                         const hDes = getAndExpectDebugElementByCss(compDe, 'div.awg-graph-dynamic > h4', 1, 1);
                         const hEl = hDes[0].nativeElement;
 
-                        const btnDes = getAndExpectDebugElementByCss(hDes[0], 'button.btn', 1, 1);
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnDes = getAndExpectDebugElementByCss(hDes[0], 'button.btn', 2, 2);
+                        const btnEl0 = btnDes[0].nativeElement;
+                        const btnEl1 = btnDes[1].nativeElement;
 
                         expect(hEl.textContent).toBeTruthy();
                         expect(hEl.textContent).toContain('Dynamischer Graph', 'should contain Dynamischer Graph');
 
-                        expect(btnEl.textContent).toBeTruthy();
-                        expect(btnEl.textContent).toContain(
+                        expect(btnEl0.textContent).toBeTruthy();
+                        expect(btnEl0.textContent).toContain(
                             'Hinweise zur Nutzung',
                             'should contain Hinweise zur Nutzung'
                         );
+                        expect(btnEl1.title).toBeTruthy();
+                        expect(btnEl1.title).toContain('Open fullscreen', 'should contain title Open fullscreen');
                     });
 
-                    it('... should trigger modal from click on header button', fakeAsync(() => {
+                    it('... should trigger modal from click on help button', fakeAsync(() => {
                         const modalDes = getAndExpectDebugElementByDirective(compDe, ModalStubComponent, 1, 1);
                         const modalCmp = modalDes[0].injector.get(ModalStubComponent) as ModalStubComponent;
                         // spy on modal
@@ -541,13 +544,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-graph-dynamic > h4 button.btn',
-                            1,
-                            1
+                            2,
+                            2
                         );
-                        const btnEl = btnDes[0].nativeElement;
+                        const btnEl0 = btnDes[0].nativeElement;
 
                         // click button
-                        click(btnEl as HTMLElement);
+                        click(btnEl0 as HTMLElement);
                         detectChangesOnPush(fixture);
 
                         expectSpyCall(modalOpenSpy, 1, 'hintEditionGraph');

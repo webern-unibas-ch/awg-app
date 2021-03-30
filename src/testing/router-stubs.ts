@@ -166,7 +166,7 @@ export class ActivatedRouteStub {
      */
     private _testQueryParamMap: ParamMap;
     /**
-     * Getter for the test route queryÜaramMap.
+     * Getter for the test route queryParamMap.
      *
      * @returns The latest test route queryParamMap.
      */
@@ -184,12 +184,49 @@ export class ActivatedRouteStub {
     }
 
     /**
+     * Private BehaviourSubject to handle children parameters.
+     */
+    private childrenSubject = new BehaviorSubject(this.testChildren);
+
+    /**
+     * Observable that contains a map of the children parameters
+     */
+    readonly children = this.childrenSubject.asObservable();
+
+    /**
+     * Private variable: _testChildren
+     */
+    private _testChildren: Params;
+    /**
+     * Getter for the test route queryÜaramMap.
+     *
+     * @returns The latest test route queryParamMap.
+     */
+    get testChildren() {
+        return this._testChildren;
+    }
+    /**
+     * Setter for the test route queryParamMap
+     *
+     * @param {Params} params The route queryParameters to be set.
+     */
+    set testChildren(params: {}) {
+        this._testChildren = params;
+        this.childrenSubject.next(this._testChildren);
+    }
+
+    /**
      * Getter for the ActivatedRoute.snapshot.params/paramMap/queryParamMap.
      *
      * @returns Snapshot of the test route parameters.
      */
     get snapshot() {
-        return { params: this.testParams, paramMap: this.testParamMap, queryParamMap: this.testQueryParamMap };
+        return {
+            params: this.testParams,
+            paramMap: this.testParamMap,
+            queryParamMap: this.testQueryParamMap,
+            children: this.testChildren
+        };
     }
 }
 // #enddocregion activated-route-stub

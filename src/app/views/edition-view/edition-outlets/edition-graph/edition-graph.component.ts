@@ -1,10 +1,23 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    ElementRef,
+    HostBinding,
+    HostListener,
+    Inject,
+    OnInit,
+    ViewChild
+} from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 
 import { EMPTY, Observable } from 'rxjs';
 import { catchError, switchMap } from 'rxjs/operators';
 
+import { faCompress, faExpand } from '@fortawesome/free-solid-svg-icons';
+
 import { EditionConstants, EditionWork, GraphList } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
+import { GraphVisualizerComponent } from './graph-visualizer';
 
 /**
  * The EditionGraph component.
@@ -19,6 +32,34 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class EditionGraphComponent implements OnInit {
+    /**
+     * ViewChild variable: child.
+     *
+     * It keeps the reference to the GraphVisualizerComponent child.
+     */
+    @ViewChild(GraphVisualizerComponent) child: GraphVisualizerComponent;
+
+    /**
+     * HostBinding: isFullscreen.
+     *
+     * It binds to the is-fullscreen CSS class.
+     */
+    @HostBinding('class.is-fullscreen') isFullscreen = false;
+
+    /**
+     * Public variable: faExpand.
+     *
+     * It instantiates fontawesome's faExpand icon.
+     */
+    faExpand = faExpand;
+
+    /**
+     * Public variable: faCompress.
+     *
+     * It instantiates fontawesome's faCompress icon.
+     */
+    faCompress = faCompress;
+
     /**
      * Public variable: editionWork.
      *
@@ -56,6 +97,21 @@ export class EditionGraphComponent implements OnInit {
     ref: EditionGraphComponent;
 
     /**
+     * HostListener: document:fullscreenchange.
+     *
+     * It listens for fullscreen exit with ESC key.
+     */
+    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        if (
+            !this.document.fullscreenElement && // alternative standard method
+            !this.document.mozFullScreenElement &&
+            !this.document.webkitFullscreenElement
+        ) {
+            this.isFullscreen = false;
+        }
+    }
+
+    /**
      * Constructor of the EditionGraphComponent.
      *
      * It declares a private instances of
@@ -63,8 +119,13 @@ export class EditionGraphComponent implements OnInit {
      *
      * @param {EditionDataService} editionDataService Instance of the EditionDataService.
      * @param {EditionService} editionService Instance of the EditionService.
+     * @param {DOCUMENT} document Instance of DOCUMENT:
      */
-    constructor(private editionDataService: EditionDataService, private editionService: EditionService) {
+    constructor(
+        private editionDataService: EditionDataService,
+        private editionService: EditionService,
+        @Inject(DOCUMENT) private document: any
+    ) {
         this.ref = this;
     }
 
@@ -106,5 +167,60 @@ export class EditionGraphComponent implements OnInit {
                     return EMPTY;
                 })
             );
+    }
+
+    /**
+     * Public method: openFullscreen.
+     *
+     * It activates fullscreen mode and sets isFullscreen flag to true.
+     *
+     * @returns {void} Sets isFullscreen flag to true.
+     */
+    openFullscreen(): void {
+        const el = this.child.fs.nativeElement;
+
+        this.isFullscreen = true;
+        if (
+            !this.document.fullscreenElement && // alternative standard method
+            !this.document.mozFullScreenElement &&
+            !this.document.webkitFullscreenElement
+        ) {
+            // current working methods
+            if (el.requestFullscreen) {
+                el.requestFullscreen();
+            } else if (el.mozRequestFullScreen) {
+                /* Firefox */
+                el.mozRequestFullScreen();
+            } else if (el.webkitRequestFullscreen) {
+                /* Chrome, Safari and Opera */
+                el.webkitRequestFullscreen();
+            } else if (el.msRequestFullscreen) {
+                /* IE/Edge */
+                el.msRequestFullscreen();
+            }
+        }
+    }
+
+    /**
+     * Public method: closeFullscreen.
+     *
+     * It closes fullscreen mode and sets isFullscreen flag to false.
+     *
+     * @returns {void} Sets isFullscreen flag to false.
+     */
+    closeFullscreen(): void {
+        if (this.document.exitFullscreen) {
+            this.document.exitFullscreen();
+        } else if (this.document.mozCancelFullScreen) {
+            /* Firefox */
+            this.document.mozCancelFullScreen();
+        } else if (this.document.webkitExitFullscreen) {
+            /* Chrome, Safari and Opera */
+            this.document.webkitExitFullscreen();
+        } else if (this.document.msExitFullscreen) {
+            /* IE/Edge */
+            this.document.msExitFullscreen();
+        }
+        this.isFullscreen = false;
     }
 }

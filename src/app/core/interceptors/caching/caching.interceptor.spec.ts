@@ -337,7 +337,7 @@ describe('CachingInterceptor (DONE)', () => {
             );
 
             it(
-                `... should throw an error if request fails and log to console`,
+                `... should throw an error and log to console if request fails with HttpErrorResponse`,
                 waitForAsync(() => {
                     // spy on HTTP handler to handle another response
                     const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
@@ -382,6 +382,51 @@ describe('CachingInterceptor (DONE)', () => {
                     expectSpyCall(cachePutSpy, 0);
                     expectSpyCall(consoleSpy, 1, expectedLogMessage);
                     expect(mockConsole.get(0)).toBe(expectedLogMessage, `should be ${expectedLogMessage}`);
+                })
+            );
+
+            it(
+                `... should throw an error, but not log to console if request fails with another error`,
+                waitForAsync(() => {
+                    // spy on HTTP handler to handle another response
+                    const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
+                    const expectedError = new Error('error');
+                    httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
+
+                    // set log message and spy on console
+                    const expectedLogMessage = 'CachingInterceptor: Processing http error';
+
+                    expectSpyCall(consoleSpy, 0);
+                    expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+
+                    // subscribe to GET Http Request
+                    httpClient.get<Data>(expectedUrl).subscribe(data => {
+                        expect(data).toEqual(testData);
+                    });
+
+                    // expect an HTTP request
+                    call = httpTestingController.expectOne({
+                        url: expectedUrl
+                    });
+
+                    // expecting spy calls
+                    expectSpyCall(interceptSpy, 1, call.request);
+                    expectSpyCall(cacheGetSpy, 1, call.request);
+
+                    // add another request to the stack
+                    cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
+                        response => fail('should not call next'),
+                        err => {
+                            expect(err).toEqual(expectedError);
+                        },
+                        () => {
+                            fail('should not complete');
+                        }
+                    );
+
+                    expectSpyCall(cachePutSpy, 0);
+                    expectSpyCall(consoleSpy, 0);
+                    expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
                 })
             );
         });

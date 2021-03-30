@@ -1,53 +1,106 @@
 <!-- Data: Triples, SPARQL query, result -->
 
-<div *ngIf="graphRDFInputData" class="row">
-    <!-- awg-graph-triples-editor -->
-    <div class="col-lg-6 pr-lg-0">
-        <awg-triples-editor
-            [triples]="triples"
-            (updateTriplesRequest)="triples = $event"
-            (resetTriplesRequest)="resetTriples()"
-            (performQueryRequest)="performQuery()"
-        ></awg-triples-editor>
-    </div>
+<div #fs class="row" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">
+    <ng-container *ngIf="!isFullscreen">
+        <!-- awg-graph-triples-editor -->
+        <div class="col-lg-6 pr-lg-0">
+            <awg-triples-editor
+                [triples]="triples"
+                (updateTriplesRequest)="triples = $event"
+                (resetTriplesRequest)="resetTriples()"
+                (performQueryRequest)="performQuery()"
+            ></awg-triples-editor>
+        </div>
 
-    <!-- awg-graph-sparql-editor -->
-    <div class="col-lg-6 pl-lg-0">
-        <awg-sparql-editor
-            [queryList]="queryList"
-            [query]="query"
-            (updateQueryStringRequest)="query.queryString = $event"
-            (resetQueryRequest)="resetQuery($event)"
-            (performQueryRequest)="performQuery()"
-        ></awg-sparql-editor>
-    </div>
+        <!-- awg-graph-sparql-editor -->
+        <div class="col-lg-6 pl-lg-0">
+            <awg-sparql-editor
+                [queryList]="queryList"
+                [query]="query"
+                (updateQueryStringRequest)="query.queryString = $event"
+                (resetQueryRequest)="resetQuery($event)"
+                (performQueryRequest)="performQuery()"
+            ></awg-sparql-editor>
+        </div>
 
-    <!-- Results -->
-    <div class="col-12">
-        <!-- CONSTRUCT -->
-        <!-- awg-graph-construct-result -->
-        <awg-construct-results
-            #queryConstructResultAcc
-            *ngIf="queryType === 'construct'; else querySelectResultAcc"
-            [queryResult]="queryResult"
-            [defaultForceGraphHeight]="defaultForceGraphHeight"
-            (clickedNodeRequest)="onGraphNodeClick($event)"
-        ></awg-construct-results>
-
-        <!-- SELECT -->
-        <!-- awg-graph-select-result -->
-        <ng-template #querySelectResultAcc>
-            <awg-select-results
-                *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+        <!-- Results -->
+        <div class="col-12">
+            <!-- CONSTRUCT -->
+            <!-- awg-graph-construct-result -->
+            <awg-construct-results
+                #queryConstructResultAcc
+                *ngIf="queryType === 'construct'; else querySelectResultAcc"
                 [queryResult]="queryResult"
-                (clickedTableRequest)="onTableClick($event)"
-            ></awg-select-results>
-        </ng-template>
+                [defaultForceGraphHeight]="defaultForceGraphHeight"
+                (clickedNodeRequest)="onGraphNodeClick($event)"
+            ></awg-construct-results>
 
-        <!-- OTHERS -->
-        <!-- awg-graph-unsupported-query-type-result -->
-        <ng-template #queryUnsupportedTypeAcc>
-            <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>
-        </ng-template>
-    </div>
+            <!-- SELECT -->
+            <!-- awg-graph-select-result -->
+            <ng-template #querySelectResultAcc>
+                <awg-select-results
+                    *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+                    [queryResult]="queryResult"
+                    (clickedTableRequest)="onTableClick($event)"
+                ></awg-select-results>
+            </ng-template>
+
+            <!-- OTHERS -->
+            <!-- awg-graph-unsupported-query-type-result -->
+            <ng-template #queryUnsupportedTypeAcc>
+                <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>
+            </ng-template>
+        </div>
+    </ng-container>
+    <ng-container *ngIf="isFullscreen">
+        <div class="col-md-4 col-lg-3 px-0 awg-fullscreen">
+            <!-- awg-graph-triples-editor -->
+            <awg-triples-editor
+                [triples]="triples"
+                [isFullscreen]="isFullscreen"
+                (updateTriplesRequest)="triples = $event"
+                (resetTriplesRequest)="resetTriples()"
+                (performQueryRequest)="performQuery()"
+            ></awg-triples-editor>
+
+            <!-- awg-graph-sparql-editor -->
+            <awg-sparql-editor
+                [queryList]="queryList"
+                [query]="query"
+                [isFullscreen]="isFullscreen"
+                (updateQueryStringRequest)="query.queryString = $event"
+                (resetQueryRequest)="resetQuery($event)"
+                (performQueryRequest)="performQuery()"
+            ></awg-sparql-editor>
+        </div>
+
+        <!-- Results -->
+        <div class="col-md-8 col-lg-9 px-0 awg-fullscreen">
+            <!-- CONSTRUCT -->
+            <!-- awg-graph-construct-result -->
+            <awg-construct-results
+                #queryConstructResultAcc
+                *ngIf="queryType === 'construct'; else querySelectResultAcc"
+                [queryResult]="queryResult"
+                [defaultForceGraphHeight]="1000"
+                (clickedNodeRequest)="onGraphNodeClick($event)"
+            ></awg-construct-results>
+
+            <!-- SELECT -->
+            <!-- awg-graph-select-result -->
+            <ng-template #querySelectResultAcc>
+                <awg-select-results
+                    *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+                    [queryResult]="queryResult"
+                    (clickedTableRequest)="onTableClick($event)"
+                ></awg-select-results>
+            </ng-template>
+
+            <!-- OTHERS -->
+            <!-- awg-graph-unsupported-query-type-result -->
+            <ng-template #queryUnsupportedTypeAcc>
+                <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>
+            </ng-template>
+        </div>
+    </ng-container>
 </div>

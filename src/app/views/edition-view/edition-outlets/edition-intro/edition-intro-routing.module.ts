@@ -7,7 +7,8 @@ import { EditionIntroComponent } from './edition-intro.component';
 const editionIntroRoutes: Routes = [
     {
         path: '',
-        component: EditionIntroComponent
+        component: EditionIntroComponent,
+        data: { title: 'AWG Online Edition – Intro' }
     }
 ];
 

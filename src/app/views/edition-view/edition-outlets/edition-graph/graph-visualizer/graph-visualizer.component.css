@@ -1,0 +1,11 @@
+.awg-fullscreen ::ng-deep .collapse.show {
+    height: 100vh;
+}
+
+.awg-fullscreen ::ng-deep #awg-graph-visualizer-triples.collapse.show {
+    height: 45vh;
+}
+
+.awg-fullscreen ::ng-deep #awg-graph-visualizer-query.collapse.show {
+    height: 50vh;
+}

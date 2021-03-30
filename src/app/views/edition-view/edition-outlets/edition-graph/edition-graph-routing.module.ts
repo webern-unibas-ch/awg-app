@@ -7,7 +7,8 @@ import { EditionGraphComponent } from './edition-graph.component';
 const editionGraphRoutes: Routes = [
     {
         path: '',
-        component: EditionGraphComponent
+        component: EditionGraphComponent,
+        data: { title: 'AWG Online Edition – Graph' }
     }
 ];
 

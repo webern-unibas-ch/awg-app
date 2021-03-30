@@ -7,7 +7,8 @@ import { ContactViewComponent } from '@awg-views/contact-view/contact-view.compo
 const contactViewRoutes: Routes = [
     {
         path: '',
-        component: ContactViewComponent
+        component: ContactViewComponent,
+        data: { title: 'AWG Online Edition – Contact' }
     }
 ];
 
