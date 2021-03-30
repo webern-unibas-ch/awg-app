@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -8,11 +8,13 @@ describe('EditionSectionComponent', () => {
     let component: EditionSectionComponent;
     let fixture: ComponentFixture<EditionSectionComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [EditionSectionComponent, RouterOutletStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [EditionSectionComponent, RouterOutletStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSectionComponent);

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 
 import { BibliographyDetailComponent } from './bibliography-detail.component';
@@ -22,29 +22,31 @@ describe('BibliographyDetailComponent', () => {
     let expectedBibItemDetailBody: ResourceFullResponseJson;
     let expectedConvertedBibItemDetail: BibEntry;
 
-    beforeEach(async(() => {
-        // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-        const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
-        // make the spies return a synchronous Observable with the test data
-        expectedBibItemDetailBody = new ResourceFullResponseJson();
-        getBibliographyListSpy = mockBibliographyService.getBibliographyItemDetail.and.returnValue(
-            observableOf(expectedBibItemDetailBody)
-        );
+    beforeEach(
+        waitForAsync(() => {
+            // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+            const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
+            // make the spies return a synchronous Observable with the test data
+            expectedBibItemDetailBody = new ResourceFullResponseJson();
+            getBibliographyListSpy = mockBibliographyService.getBibliographyItemDetail.and.returnValue(
+                observableOf(expectedBibItemDetailBody)
+            );
 
-        // stub conversionService to return convertedBibItemDetail
-        expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
-        mockConversionService = {
-            convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail
-        };
+            // stub conversionService to return convertedBibItemDetail
+            expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
+            mockConversionService = {
+                convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail
+            };
 
-        TestBed.configureTestingModule({
-            declarations: [BibliographyDetailComponent, BibliographyFormatPipe],
-            providers: [
-                { provide: BibliographyService, useValue: mockBibliographyService },
-                { provide: ConversionService, useValue: mockConversionService }
-            ]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [BibliographyDetailComponent, BibliographyFormatPipe],
+                providers: [
+                    { provide: BibliographyService, useValue: mockBibliographyService },
+                    { provide: ConversionService, useValue: mockConversionService }
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyDetailComponent);

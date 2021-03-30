@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -18,11 +18,13 @@ describe('BibliographyListComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [BibliographyListComponent, BibliographyDetailStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [BibliographyListComponent, BibliographyDetailStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyListComponent);

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -26,11 +26,13 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
     let expectedProps: ResourceDetailProperty[];
     let expectedMetaBreakLine: string;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentPropsComponent);

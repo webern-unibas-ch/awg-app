@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { Observable, of as observableOf } from 'rxjs';
@@ -30,25 +30,27 @@ describe('BibliographyComponent', () => {
     let getBibliographyListSpy: Observable<SearchResponseJson>;
     let expectedSearchResponseData: SearchResponseJson;
 
-    beforeEach(async(() => {
-        // create a fake bibliography service object with a `getBibliographyList()` spy
-        const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyList']);
-        // make the spies return a synchronous Observable with the test data
-        expectedSearchResponseData = {
-            nhits: undefined,
-            paging: undefined,
-            subjects: [],
-            thumb_max: undefined,
-            status: undefined,
-            userdata: undefined
-        };
-        getBibliographyListSpy = mockBibliographyService.getBibliographyList.and.returnValue(observableOf()); // TODO: add real test data (SearchResponseJson)
+    beforeEach(
+        waitForAsync(() => {
+            // create a fake bibliography service object with a `getBibliographyList()` spy
+            const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyList']);
+            // make the spies return a synchronous Observable with the test data
+            expectedSearchResponseData = {
+                nhits: undefined,
+                paging: undefined,
+                subjects: [],
+                thumb_max: undefined,
+                status: undefined,
+                userdata: undefined
+            };
+            getBibliographyListSpy = mockBibliographyService.getBibliographyList.and.returnValue(observableOf()); // TODO: add real test data (SearchResponseJson)
 
-        TestBed.configureTestingModule({
-            declarations: [BibliographyComponent, BibliographySearchStubComponent, BibliographyListStubComponent],
-            providers: [{ provide: BibliographyService, useValue: mockBibliographyService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [BibliographyComponent, BibliographySearchStubComponent, BibliographyListStubComponent],
+                providers: [{ provide: BibliographyService, useValue: mockBibliographyService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(BibliographyComponent);

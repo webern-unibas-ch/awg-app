@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FolioOverviewComponent } from './folio-overview.component';
 import { FolioService } from './folio.service';
@@ -10,12 +10,14 @@ describe('FolioComponent', () => {
     let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [FolioOverviewComponent],
-            providers: [FolioService]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [FolioOverviewComponent],
+                providers: [FolioService]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FolioOverviewComponent);

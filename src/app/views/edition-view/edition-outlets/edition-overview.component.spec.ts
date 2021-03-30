@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { QueryParamsHandling } from '@angular/router';
 
@@ -38,17 +38,19 @@ describe('EditionOverviewComponent (DONE)', () => {
     let setButtonsSpy: Spy;
     let getEditionWorkSpy: Spy;
 
-    beforeEach(async(() => {
-        // create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-        // make the spy return a synchronous Observable with the test data
-        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+    beforeEach(
+        waitForAsync(() => {
+            // create a fake service object with a `getData()` spy
+            const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
+            // make the spy return a synchronous Observable with the test data
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
 
-        TestBed.configureTestingModule({
-            declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: EditionService, useValue: mockEditionService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
+                providers: [{ provide: EditionService, useValue: mockEditionService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionOverviewComponent);

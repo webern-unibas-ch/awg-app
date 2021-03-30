@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -63,16 +63,18 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
     let expectedContent: ResourceDetailContent;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                ResourceDetailHtmlContentComponent,
-                ResourceDetailHtmlContentPropsStubComponent,
-                ResourceDetailHtmlContentImageobjectsStubComponent,
-                ResourceDetailHtmlContentLinkedobjectsStubComponent
-            ]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [
+                    ResourceDetailHtmlContentComponent,
+                    ResourceDetailHtmlContentPropsStubComponent,
+                    ResourceDetailHtmlContentImageobjectsStubComponent,
+                    ResourceDetailHtmlContentLinkedobjectsStubComponent
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentComponent);

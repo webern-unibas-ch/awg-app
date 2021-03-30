@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -45,18 +45,20 @@ describe('SourcesComponent', () => {
     let expectedSourceDescriptionListData: SourceDescriptionList;
     let expectedSourceEvaluationListData: SourceEvaluationList;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgbAccordionModule, RouterTestingModule],
-            declarations: [
-                SourcesComponent,
-                SourceListStubComponent,
-                SourceDescriptionStubComponent,
-                SourceEvaluationStubComponent,
-                RouterLinkStubDirective
-            ]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionModule, RouterTestingModule],
+                declarations: [
+                    SourcesComponent,
+                    SourceListStubComponent,
+                    SourceDescriptionStubComponent,
+                    SourceEvaluationStubComponent,
+                    RouterLinkStubDirective
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourcesComponent);

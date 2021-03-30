@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { QueryParamsHandling } from '@angular/router';
 
@@ -31,11 +31,13 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let selectButtonSpy: Spy;
     let emitSpy: Spy;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(RouterLinkButtonGroupComponent);

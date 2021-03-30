@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -57,33 +57,35 @@ describe('EditionReportComponent', () => {
     let getEditionReportDataSpy: Spy;
     let getEditionWorkSpy: Spy;
 
-    beforeEach(async(() => {
-        // create a fake service object with a `getEditionReportData()` spy
-        const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
-        // make the spy return a synchronous Observable with the test data
-        getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
+    beforeEach(
+        waitForAsync(() => {
+            // create a fake service object with a `getEditionReportData()` spy
+            const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
+            // make the spy return a synchronous Observable with the test data
+            getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
-        // create a fake service object with a `getEditionWork()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-        // make the spy return a synchronous Observable with the test data
-        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12)); // TODO: provide real test data
+            // create a fake service object with a `getEditionWork()` spy
+            const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
+            // make the spy return a synchronous Observable with the test data
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12)); // TODO: provide real test data
 
-        TestBed.configureTestingModule({
-            imports: [NgbModalModule, RouterTestingModule],
-            declarations: [
-                CompileHtmlComponent,
-                EditionReportComponent,
-                HeadingStubComponent,
-                SourcesStubComponent,
-                TextcritisStubComponent,
-                ModalComponent
-            ],
-            providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService }
-            ]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                imports: [NgbModalModule, RouterTestingModule],
+                declarations: [
+                    CompileHtmlComponent,
+                    EditionReportComponent,
+                    HeadingStubComponent,
+                    SourcesStubComponent,
+                    TextcritisStubComponent,
+                    ModalComponent
+                ],
+                providers: [
+                    { provide: EditionDataService, useValue: mockEditionDataService },
+                    { provide: EditionService, useValue: mockEditionService }
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionReportComponent);

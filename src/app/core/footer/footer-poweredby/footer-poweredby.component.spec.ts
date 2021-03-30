@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -21,11 +21,13 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
     let expectedLogos: Logos;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [FooterPoweredbyComponent, FooterLogoStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [FooterPoweredbyComponent, FooterLogoStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterPoweredbyComponent);

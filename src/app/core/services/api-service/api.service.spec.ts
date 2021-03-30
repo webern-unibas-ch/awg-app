@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { TestBed, async } from '@angular/core/testing';
+import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientModule, HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
 import { Data } from '@angular/router';
@@ -98,137 +98,155 @@ describe('ApiService', () => {
     });
 
     describe('httpTestingController', () => {
-        it(`... should issue a mocked http get request`, async(() => {
-            const testData: Data = { name: 'TestData' };
+        it(
+            `... should issue a mocked http get request`,
+            waitForAsync(() => {
+                const testData: Data = { name: 'TestData' };
 
-            httpClient.get<Data>('/foo/bar').subscribe(data => {
-                expect(data).toEqual(testData);
-            });
+                httpClient.get<Data>('/foo/bar').subscribe(data => {
+                    expect(data).toEqual(testData);
+                });
 
-            // match the request url
-            const call = httpTestingController.expectOne({
-                url: '/foo/bar'
-            });
+                // match the request url
+                const call = httpTestingController.expectOne({
+                    url: '/foo/bar'
+                });
 
-            // check for GET request
-            expect(call.request.method).toEqual('GET');
+                // check for GET request
+                expect(call.request.method).toEqual('GET');
 
-            // respond with mocked data
-            call.flush(testData);
-        }));
+                // respond with mocked data
+                call.flush(testData);
+            })
+        );
     });
 
     describe('#getApiResponse', () => {
         describe('request', () => {
-            it(`... should perform an HTTP GET request to the Knora API`, async(() => {
-                // call service function
-                apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe();
+            it(
+                `... should perform an HTTP GET request to the Knora API`,
+                waitForAsync(() => {
+                    // call service function
+                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe();
 
-                // expect one request to url with given settings
-                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
-                }, `GET to ${expectedUrl}`);
+                    // expect one request to url with given settings
+                    const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
+                        return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
+                    }, `GET to ${expectedUrl}`);
 
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
-            }));
+                    expect(call.request.method).toEqual('GET', 'should be GET');
+                    expect(call.request.responseType).toEqual('json', 'should be json');
+                    expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                })
+            );
 
-            it(`... should apply an empty param object for HTTP GET if none is provided`, async(() => {
-                // call service function
-                apiService.getApiResponse(UserDataJson, queryPath).subscribe();
+            it(
+                `... should apply an empty param object for HTTP GET if none is provided`,
+                waitForAsync(() => {
+                    // call service function
+                    apiService.getApiResponse(UserDataJson, queryPath).subscribe();
 
-                // expect one request to url with given settings
-                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    return (
-                        req.method === 'GET' &&
-                        req.responseType === 'json' &&
-                        req.url === expectedUrl &&
-                        req.params.keys().length === 0
+                    // expect one request to url with given settings
+                    const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
+                        return (
+                            req.method === 'GET' &&
+                            req.responseType === 'json' &&
+                            req.url === expectedUrl &&
+                            req.params.keys().length === 0
+                        );
+                    }, `GET to ${expectedUrl} without params`);
+
+                    expect(call.request.method).toEqual('GET', 'should be GET');
+                    expect(call.request.responseType).toEqual('json', 'should be json');
+                    expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                    expect(call.request.params).toBeDefined();
+                    expect(call.request.params.keys().length).toBe(0, 'should be 0');
+                })
+            );
+
+            it(
+                `... should apply provided params for HTTP GET`,
+                waitForAsync(() => {
+                    // call service function
+                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe();
+
+                    // expect one request to url with given settings
+                    const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
+                        return (
+                            req.method === 'GET' &&
+                            req.responseType === 'json' &&
+                            req.url === expectedUrl &&
+                            req.params.keys().length === 2 &&
+                            req.params.get('searchtype') === expectedSearchType &&
+                            req.params.get('show_nrows') === expectedNRows
+                        );
+                    }, `GET to ${expectedUrl} with 'searchtype=fulltext' and 'nrows=10'`);
+
+                    expect(call.request.method).toEqual('GET', 'should be GET');
+                    expect(call.request.responseType).toEqual('json', 'should be json');
+                    expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
+                    expect(call.request.params).toBeDefined();
+                    expect(call.request.params.keys().length).toBe(2, 'should be 2');
+                    expect(call.request.params.get('searchtype')).toBe(
+                        expectedSearchType,
+                        `should be ${expectedSearchType}`
                     );
-                }, `GET to ${expectedUrl} without params`);
-
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
-                expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).toBe(0, 'should be 0');
-            }));
-
-            it(`... should apply provided params for HTTP GET`, async(() => {
-                // call service function
-                apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe();
-
-                // expect one request to url with given settings
-                const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
-                    return (
-                        req.method === 'GET' &&
-                        req.responseType === 'json' &&
-                        req.url === expectedUrl &&
-                        req.params.keys().length === 2 &&
-                        req.params.get('searchtype') === expectedSearchType &&
-                        req.params.get('show_nrows') === expectedNRows
-                    );
-                }, `GET to ${expectedUrl} with 'searchtype=fulltext' and 'nrows=10'`);
-
-                expect(call.request.method).toEqual('GET', 'should be GET');
-                expect(call.request.responseType).toEqual('json', 'should be json');
-                expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
-                expect(call.request.params).toBeDefined();
-                expect(call.request.params.keys().length).toBe(2, 'should be 2');
-                expect(call.request.params.get('searchtype')).toBe(
-                    expectedSearchType,
-                    `should be ${expectedSearchType}`
-                );
-                expect(call.request.params.get('show_nrows')).toBe(expectedNRows, `should be ${expectedNRows}`);
-            }));
+                    expect(call.request.params.get('show_nrows')).toBe(expectedNRows, `should be ${expectedNRows}`);
+                })
+            );
         });
 
         describe('response', () => {
             describe('success', () => {
-                it(`... should return 'ApiServiceResult' for 200 Ok`, async(() => {
-                    const expectedApiServiceResult = new ApiServiceResult();
+                it(
+                    `... should return 'ApiServiceResult' for 200 Ok`,
+                    waitForAsync(() => {
+                        const expectedApiServiceResult = new ApiServiceResult();
 
-                    // call service function (success)
-                    apiService
-                        .getApiResponse(ApiServiceResult, queryPath, queryHttpParams)
-                        .subscribe((res: ApiServiceResult) => {
-                            expect(res).toBeTruthy();
-                            expect(res.status).toEqual(expectedApiServiceResult.status);
-                            expect(res.statusText).toEqual(expectedApiServiceResult.statusText);
-                            expect(res.url).toEqual(expectedApiServiceResult.url);
-                            expect(res.body).toBeUndefined();
-                        });
+                        // call service function (success)
+                        apiService
+                            .getApiResponse(ApiServiceResult, queryPath, queryHttpParams)
+                            .subscribe((res: ApiServiceResult) => {
+                                expect(res).toBeTruthy();
+                                expect(res.status).toEqual(expectedApiServiceResult.status);
+                                expect(res.statusText).toEqual(expectedApiServiceResult.statusText);
+                                expect(res.url).toEqual(expectedApiServiceResult.url);
+                                expect(res.body).toBeUndefined();
+                            });
 
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne(
-                        (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
-                    );
+                        // expect one request to url with given settings
+                        const call = httpTestingController.expectOne(
+                            (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
+                        );
 
-                    // respond with mock data
-                    call.flush(expectedApiServiceResult);
-                }));
+                        // respond with mock data
+                        call.flush(expectedApiServiceResult);
+                    })
+                );
 
-                it(`... should return a converted JSON object`, async(() => {
-                    const expectedJsonResponse: UserDataJson = new UserDataJson();
-                    expectedJsonResponse.lang = 'en';
+                it(
+                    `... should return a converted JSON object`,
+                    waitForAsync(() => {
+                        const expectedJsonResponse: UserDataJson = new UserDataJson();
+                        expectedJsonResponse.lang = 'en';
 
-                    // call service function (success)
-                    apiService
-                        .getApiResponse(UserDataJson, queryPath, queryHttpParams)
-                        .subscribe((res: UserDataJson) => {
-                            expect(res).toBeTruthy();
-                            expect(res).toEqual(expectedJsonResponse);
-                        });
+                        // call service function (success)
+                        apiService
+                            .getApiResponse(UserDataJson, queryPath, queryHttpParams)
+                            .subscribe((res: UserDataJson) => {
+                                expect(res).toBeTruthy();
+                                expect(res).toEqual(expectedJsonResponse);
+                            });
 
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne(
-                        (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
-                    );
+                        // expect one request to url with given settings
+                        const call = httpTestingController.expectOne(
+                            (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
+                        );
 
-                    // respond with mock data
-                    call.flush(expectedJsonResponse);
-                }));
+                        // respond with mock data
+                        call.flush(expectedJsonResponse);
+                    })
+                );
             });
 
             describe('fail', () => {
@@ -278,47 +296,53 @@ describe('ApiService', () => {
                     );
                 });
 
-                it(`... should return 'ApiServiceError' for 401 Unauthorized`, async(() => {
-                    const expectedErrorMsg = 'should fail HTTP response with 401 error';
-                    expectedApiServiceError = createApiServiceError(401, 'Unauthorized');
+                it(
+                    `... should return 'ApiServiceError' for 401 Unauthorized`,
+                    waitForAsync(() => {
+                        const expectedErrorMsg = 'should fail HTTP response with 401 error';
+                        expectedApiServiceError = createApiServiceError(401, 'Unauthorized');
 
-                    // call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectErrorResponse(error, expectedApiServiceError);
-                        }
-                    );
+                        // call service function (fail)
+                        apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
+                            res => fail(expectedErrorMsg),
+                            (error: ApiServiceError) => {
+                                expectErrorResponse(error, expectedApiServiceError);
+                            }
+                        );
 
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne(
-                        (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
-                    );
+                        // expect one request to url with given settings
+                        const call = httpTestingController.expectOne(
+                            (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
+                        );
 
-                    // respond with mock error
-                    call.flush(expectedErrorMsg, expectedApiServiceError);
-                }));
+                        // respond with mock error
+                        call.flush(expectedErrorMsg, expectedApiServiceError);
+                    })
+                );
 
-                it(`... should return 'ApiServiceError' for 404 Not found`, async(() => {
-                    const expectedErrorMsg = 'should fail HTTP response with 404 error';
-                    expectedApiServiceError = createApiServiceError(404, 'Not found');
+                it(
+                    `... should return 'ApiServiceError' for 404 Not found`,
+                    waitForAsync(() => {
+                        const expectedErrorMsg = 'should fail HTTP response with 404 error';
+                        expectedApiServiceError = createApiServiceError(404, 'Not found');
 
-                    // call service function (fail)
-                    apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
-                        res => fail(expectedErrorMsg),
-                        (error: ApiServiceError) => {
-                            expectErrorResponse(error, expectedApiServiceError);
-                        }
-                    );
+                        // call service function (fail)
+                        apiService.getApiResponse(UserDataJson, queryPath, queryHttpParams).subscribe(
+                            res => fail(expectedErrorMsg),
+                            (error: ApiServiceError) => {
+                                expectErrorResponse(error, expectedApiServiceError);
+                            }
+                        );
 
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne(
-                        (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
-                    );
+                        // expect one request to url with given settings
+                        const call = httpTestingController.expectOne(
+                            (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
+                        );
 
-                    // respond with mock error
-                    call.flush(expectedErrorMsg, expectedApiServiceError);
-                }));
+                        // respond with mock error
+                        call.flush(expectedErrorMsg, expectedApiServiceError);
+                    })
+                );
             });
         });
     });

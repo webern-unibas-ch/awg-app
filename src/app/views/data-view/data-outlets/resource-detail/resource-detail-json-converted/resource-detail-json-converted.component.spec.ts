@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -26,11 +26,13 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     const expectedHeader = 'Converted JSON response from Salsah-API';
     let expectedData: ResourceDetail;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailJsonConvertedComponent);

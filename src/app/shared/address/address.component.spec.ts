@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -18,11 +18,13 @@ describe('AddressComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedContactMetaData: MetaContact;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [AddressComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [AddressComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(AddressComponent);

@@ -1,7 +1,7 @@
 /* tslint:disable-next-line no-reference */
 ///<reference path="../../../testing/custom-matchers.d.ts"/>
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 
@@ -68,12 +68,14 @@ describe('JsonViewerComponent (DONE)', () => {
     let expectedHeader: string;
     let expectedData: ResourceFullResponseJson;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgbNavModule],
-            declarations: [JsonViewerComponent, NgxJsonViewerComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbNavModule],
+                declarations: [JsonViewerComponent, NgxJsonViewerComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         // add custom jasmine matchers (toHaveCssClass)

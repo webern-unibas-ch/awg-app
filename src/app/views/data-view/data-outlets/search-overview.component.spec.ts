@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, QueryParamsHandling } from '@angular/router';
 
@@ -39,45 +39,47 @@ describe('SearchOverviewComponent (DONE)', () => {
     let service_updateSearchInfoTitleSpy: Spy;
     let service_clearSearchInfoDataSpy: Spy;
 
-    beforeEach(async(() => {
-        // create a fake service object with a `updateSearchInfoTitle()` spy
-        const mockSideInfoService = jasmine.createSpyObj('SideInfoService', [
-            'updateSearchInfoTitle',
-            'clearSearchInfoData'
-        ]);
+    beforeEach(
+        waitForAsync(() => {
+            // create a fake service object with a `updateSearchInfoTitle()` spy
+            const mockSideInfoService = jasmine.createSpyObj('SideInfoService', [
+                'updateSearchInfoTitle',
+                'clearSearchInfoData'
+            ]);
 
-        // spies on service
-        service_updateSearchInfoTitleSpy = mockSideInfoService.updateSearchInfoTitle.and.callThrough();
-        service_clearSearchInfoDataSpy = mockSideInfoService.clearSearchInfoData.and.callThrough();
+            // spies on service
+            service_updateSearchInfoTitleSpy = mockSideInfoService.updateSearchInfoTitle.and.callThrough();
+            service_clearSearchInfoDataSpy = mockSideInfoService.clearSearchInfoData.and.callThrough();
 
-        // mocked activated route
-        // see https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
-        mockActivatedRoute = {
-            snapshot: {
-                children: [
+            // mocked activated route
+            // see https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
+            mockActivatedRoute = {
+                snapshot: {
+                    children: [
+                        {
+                            url: [
+                                {
+                                    path: 'fulltext'
+                                }
+                            ]
+                        }
+                    ]
+                }
+            };
+            mockActivatedRoutePath = mockActivatedRoute.snapshot.children[0].url[0].path;
+
+            TestBed.configureTestingModule({
+                declarations: [SearchOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
+                providers: [
+                    { provide: SideInfoService, useValue: mockSideInfoService },
                     {
-                        url: [
-                            {
-                                path: 'fulltext'
-                            }
-                        ]
+                        provide: ActivatedRoute,
+                        useValue: mockActivatedRoute
                     }
                 ]
-            }
-        };
-        mockActivatedRoutePath = mockActivatedRoute.snapshot.children[0].url[0].path;
-
-        TestBed.configureTestingModule({
-            declarations: [SearchOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [
-                { provide: SideInfoService, useValue: mockSideInfoService },
-                {
-                    provide: ActivatedRoute,
-                    useValue: mockActivatedRoute
-                }
-            ]
-        }).compileComponents();
-    }));
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchOverviewComponent);

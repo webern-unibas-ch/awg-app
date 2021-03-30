@@ -38,11 +38,12 @@ const appRoutes: Routes = [
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes, {
-            anchorScrolling: 'enabled', // use anchor scrolling
-            onSameUrlNavigation: 'reload', // reload when navigating to same url
-            scrollPositionRestoration: 'enabled', // restore scroll position
-            preloadingStrategy: PreloadAllModules // preload all lazy modules
+            anchorScrolling: 'enabled',
+            onSameUrlNavigation: 'reload',
+            scrollPositionRestoration: 'enabled',
+            preloadingStrategy: PreloadAllModules, // preload all lazy modules
             // enableTracing: true          // TODO: do not enable tracing for production
+            relativeLinkResolution: 'legacy'
         })
     ],
     exports: [RouterModule]

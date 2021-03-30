@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, SecurityContext } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -23,12 +23,14 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let expectedOsmLinkLabel: string;
     let expectedOsmIFrameSettings: { width; height; scrolling };
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [BrowserModule],
-            declarations: [OpenStreetMapComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [BrowserModule],
+                declarations: [OpenStreetMapComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OpenStreetMapComponent);

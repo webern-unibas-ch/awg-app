@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -21,15 +21,17 @@ describe('StructureInfoComponent (DONE)', () => {
     let expectedStructureMetaData: MetaStructure;
     const expectedStructureInfoHeader = 'Strukturmodell';
 
-    beforeEach(async(() => {
-        // stub service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+    beforeEach(
+        waitForAsync(() => {
+            // stub service for test purposes
+            mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-        TestBed.configureTestingModule({
-            declarations: [StructureInfoComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [StructureInfoComponent],
+                providers: [{ provide: CoreService, useValue: mockCoreService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(StructureInfoComponent);

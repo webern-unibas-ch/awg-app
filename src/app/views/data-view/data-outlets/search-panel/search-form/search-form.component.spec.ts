@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
@@ -19,13 +19,15 @@ describe('SearchFormComponent', () => {
     // https://stackoverflow.com/a/48671534
     const formBuilder: FormBuilder = new FormBuilder();
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [FontAwesomeModule, ReactiveFormsModule],
-            declarations: [SearchFormComponent],
-            providers: [{ provide: FormBuilder, useValue: formBuilder }]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [FontAwesomeModule, ReactiveFormsModule],
+                declarations: [SearchFormComponent],
+                providers: [{ provide: FormBuilder, useValue: formBuilder }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SearchFormComponent);
