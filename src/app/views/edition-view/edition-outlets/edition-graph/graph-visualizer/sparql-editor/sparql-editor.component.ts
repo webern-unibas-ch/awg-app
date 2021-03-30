@@ -1,4 +1,5 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
@@ -18,6 +19,13 @@ import 'codemirror/mode/sparql/sparql';
 })
 export class SparqlEditorComponent implements OnInit {
     /**
+     * ViewChild variable: sparqlAcc.
+     *
+     * It keeps the reference to the NgbAccordion.
+     */
+    @ViewChild('sparqlAcc') sparqlAcc: NgbAccordion;
+
+    /**
      * Input variable: queryList.
      *
      * It keeps the list of precomposed SPARQL queries.
@@ -32,6 +40,14 @@ export class SparqlEditorComponent implements OnInit {
      */
     @Input()
     query: GraphSparqlQuery;
+
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is set.
+     */
+    @Input()
+    isFullscreen: boolean;
 
     /**
      * Output variable: performQueryRequest.
@@ -147,5 +163,30 @@ export class SparqlEditorComponent implements OnInit {
     resetQuery(query: GraphSparqlQuery): void {
         if (!query) return;
         this.resetQueryRequest.emit(query);
+    }
+
+    /**
+     * Public method: preventPanelCollapseOnFullscreen.
+     *
+     * It prevents the given panel event from being collapsed in fullscreen mode.
+     *
+     * @returns {void} Prevents the panel collapse.
+     */
+    preventPanelCollapseOnFullscreen($event: NgbPanelChangeEvent): void {
+        if (this.isFullscreen && $event.nextState === false) {
+            $event.preventDefault();
+        }
+    }
+
+    /**
+     * Public method: togglePanel.
+     *
+     * It returns the id of the panel to be toggled if fullscreen mode is set,
+     * otherwise empty string.
+     *
+     * @returns {string} The id of the panel to be toggled.
+     */
+    togglePanel(): string {
+        return this.isFullscreen ? 'awg-graph-visualizer-query' : '';
     }
 }

@@ -1,4 +1,8 @@
-<ngb-accordion #triplesAcc activeIds="">
+<ngb-accordion
+    #triplesAcc="ngbAccordion"
+    [activeIds]="togglePanel()"
+    (panelChange)="preventPanelCollapseOnFullscreen($event)"
+>
     <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
         <ng-template ngbPanelContent>
             <!-- CodeMirror editor instance -->
