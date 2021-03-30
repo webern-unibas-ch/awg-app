@@ -23,6 +23,7 @@
     "bugs": "",
     "private": true,
     "scripts": {
+        "postinstall": "husky install",
         "ng": "ng",
         "start": "ng serve",
         "e2e": "ng e2e",
@@ -114,12 +115,6 @@
             "ng-lint-staged lint --fix --"
         ]
     },
-    "husky": {
-        "hooks": {
-            "pre-commit": "run-s -l format:fix-staged lint-staged",
-            "commit-msg": "commitlint -E HUSKY_GIT_PARAMS"
-        }
-    },
     "prettier": {
         "arrowParens": "avoid",
         "bracketSpacing": true,
@@ -181,7 +176,7 @@
         "conventional-recommended-bump": "^6.0.10",
         "cross-var": "^1.1.0",
         "gzipper": "^4.0.2",
-        "husky": "^4.3.0",
+        "husky": "^6.0.0",
         "jasmine-core": "~3.5.0",
         "jasmine-spec-reporter": "~5.0.0",
         "karma": "~5.0.0",

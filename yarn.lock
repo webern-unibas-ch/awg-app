@@ -3538,7 +3538,7 @@ __metadata:
     d3-zoom: ^2.0.0
     font-awesome: ^4.7.0
     gzipper: ^4.0.2
-    husky: ^4.3.0
+    husky: ^6.0.0
     jasmine-core: ~3.5.0
     jasmine-spec-reporter: ~5.0.0
     json2typescript: ^1.4.1
@@ -5381,13 +5381,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"ci-info@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "ci-info@npm:2.0.0"
-  checksum: 553fe83c085fce5e19e20f85b993f24a463e6f805803837a8868607bb68b1300567868694a5dff1beca6c54926a4c0be1cc9ef0c35f810653d590bf64183f6a0
-  languageName: node
-  linkType: hard
-
 "cipher-base@npm:^1.0.0, cipher-base@npm:^1.0.1, cipher-base@npm:^1.0.3":
   version: 1.0.4
   resolution: "cipher-base@npm:1.0.4"
@@ -5720,13 +5713,6 @@ colors@latest:
     array-ify: ^1.0.0
     dot-prop: ^5.1.0
   checksum: 825690b828f028acf270578cd4d9ea0751987b474095cd47093a29ac087a21e5de2db86b83cc0cecb935dfca952ba8bbcd7ead240fe6b3b7ecb1a66a8b109d28
-  languageName: node
-  linkType: hard
-
-"compare-versions@npm:^3.6.0":
-  version: 3.6.0
-  resolution: "compare-versions@npm:3.6.0"
-  checksum: 09525264502bda1f6667ad2429eaf5520b543d997e79e7a94b66a5896df8921cdc3a97140dfff75af6c9ba1859c872de1921c3cf8a6c48ed807bbf9f582cf093
   languageName: node
   linkType: hard
 
@@ -8536,15 +8522,6 @@ cors@latest:
   languageName: node
   linkType: hard
 
-"find-versions@npm:^3.2.0":
-  version: 3.2.0
-  resolution: "find-versions@npm:3.2.0"
-  dependencies:
-    semver-regex: ^2.0.0
-  checksum: 2ddc16b4265184e2b7ab68bfd9d84835178fef4193abd957ebe328e0de98e8ca3b31e2a19201c1c8308e24786faa295aab46c0bc21fa89440e2a1bc8174987f0
-  languageName: node
-  linkType: hard
-
 "findit2@npm:^2.2.3":
   version: 2.2.3
   resolution: "findit2@npm:2.2.3"
@@ -9765,24 +9742,12 @@ fsevents@~2.1.2:
   languageName: node
   linkType: hard
 
-"husky@npm:^4.3.0":
-  version: 4.3.0
-  resolution: "husky@npm:4.3.0"
-  dependencies:
-    chalk: ^4.0.0
-    ci-info: ^2.0.0
-    compare-versions: ^3.6.0
-    cosmiconfig: ^7.0.0
-    find-versions: ^3.2.0
-    opencollective-postinstall: ^2.0.2
-    pkg-dir: ^4.2.0
-    please-upgrade-node: ^3.2.0
-    slash: ^3.0.0
-    which-pm-runs: ^1.0.0
+"husky@npm:^6.0.0":
+  version: 6.0.0
+  resolution: "husky@npm:6.0.0"
   bin:
-    husky-run: bin/run.js
-    husky-upgrade: lib/upgrader/bin.js
-  checksum: c212d9732de84cbd7c25d907b874f7844503f85e28c0512518cddbac9854c54f1c569e81c5b70387f1e3c27d35c2b43256c811cf06fdad066565c5fc178f33f7
+    husky: lib/bin.js
+  checksum: 61e1f7f53f3c969d361c2a1d4ed8018b9447406ea6cd644a2526d18b76877d135001d8cbd48a1d201fc1614d96995e691ecd2b82a8d8513a6b4a313da1188ccd
   languageName: node
   linkType: hard
 
@@ -13799,7 +13764,7 @@ opn@latest:
   languageName: node
   linkType: hard
 
-"pkg-dir@npm:^4.1.0, pkg-dir@npm:^4.2.0":
+"pkg-dir@npm:^4.1.0":
   version: 4.2.0
   resolution: "pkg-dir@npm:4.2.0"
   dependencies:
@@ -15740,13 +15705,6 @@ resolve@^1.1.6:
   dependencies:
     semver: ^5.0.0
   checksum: 1593d3e4e170a1eacb1a6440d054a33a4b1149311d92dc9ba497e03804eb543983106cc313044f7548bc7e051f25819e16714ac16859d00df8cb5fd9edec9b28
-  languageName: node
-  linkType: hard
-
-"semver-regex@npm:^2.0.0":
-  version: 2.0.0
-  resolution: "semver-regex@npm:2.0.0"
-  checksum: 9b96cc8bd559c1d46968b334ccc88115a2d9d2f7a2125d6838471114ed0c52057e77aae760fbe4932aee06687584733b32aed6d2c9654b2db33e383bfb8f26ce
   languageName: node
   linkType: hard
 
@@ -17726,7 +17684,7 @@ typescript@^2.4.2:
 
 "typescript@patch:typescript@2.9.1#builtin<compat/typescript>":
   version: 2.9.1
-  resolution: "typescript@patch:typescript@npm%3A2.9.1#builtin<compat/typescript>::version=2.9.1&hash=cc6730"
+  resolution: "typescript@patch:typescript@npm%3A2.9.1#builtin<compat/typescript>::version=2.9.1&hash=a45b0e"
   bin:
     tsc: ./bin/tsc
     tsserver: ./bin/tsserver
@@ -17736,17 +17694,17 @@ typescript@^2.4.2:
 
 "typescript@patch:typescript@4.0.2#builtin<compat/typescript>":
   version: 4.0.2
-  resolution: "typescript@patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=cc6730"
+  resolution: "typescript@patch:typescript@npm%3A4.0.2#builtin<compat/typescript>::version=4.0.2&hash=a45b0e"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: 35322004ca878bceecac027e5580f4c16e2cb745a173ec7df66ec2f7b7ae9aa40a04d3a52a1c5c463dc3f5f5fd08786577aa0c3eb9ba2bf579840ccc16d98e1d
+  checksum: 8d06192b7d5075632f1044fde45041d54a4c7d5ac21837b8f8a4bb756316177fe3f29c153d41609063402282acb04427dba4d74a043874acd6e420c7ab349fc2
   languageName: node
   linkType: hard
 
 "typescript@patch:typescript@^2.4.2#builtin<compat/typescript>":
   version: 2.9.2
-  resolution: "typescript@patch:typescript@npm%3A2.9.2#builtin<compat/typescript>::version=2.9.2&hash=cc6730"
+  resolution: "typescript@patch:typescript@npm%3A2.9.2#builtin<compat/typescript>::version=2.9.2&hash=a45b0e"
   bin:
     tsc: ./bin/tsc
     tsserver: ./bin/tsserver
@@ -17756,11 +17714,11 @@ typescript@^2.4.2:
 
 "typescript@patch:typescript@~3.9.7#builtin<compat/typescript>":
   version: 3.9.7
-  resolution: "typescript@patch:typescript@npm%3A3.9.7#builtin<compat/typescript>::version=3.9.7&hash=cc6730"
+  resolution: "typescript@patch:typescript@npm%3A3.9.7#builtin<compat/typescript>::version=3.9.7&hash=a45b0e"
   bin:
     tsc: bin/tsc
     tsserver: bin/tsserver
-  checksum: f0d3d9c987860c7c458229ab6dd7e3d322405db36b70abccba610b5efd9f9451e4e67a3fc7983c0d3741033c1f1a8d7aa859a1510caa8f20fad762fc39648bfa
+  checksum: ee9b64dafd9997a7f659c402dc4500792e05724a39a9071a0b79fd513466d6f4497e7d4963e092804a387b77e9cb9d4bfe365433fcbf2ca9eea44476ba3df14d
   languageName: node
   linkType: hard
 
@@ -18517,13 +18475,6 @@ typescript@~3.9.7:
   version: 2.0.0
   resolution: "which-module@npm:2.0.0"
   checksum: 3d2107ab18c3c2a0ffa4f1a2a0a8862d0bb3fd5c72b10df9cbd75a15b496533bf4c4dc6fa65cefba6fdb8af7935ffb939ef4c8f2eb7835b03d1b93680e9101e9
-  languageName: node
-  linkType: hard
-
-"which-pm-runs@npm:^1.0.0":
-  version: 1.0.0
-  resolution: "which-pm-runs@npm:1.0.0"
-  checksum: 0bb79a782e98955afec8f35a3ae95c4711fdd3d0743772ee98211da67c2421fdd4c92c95c93532cc0b4dcc085d8e27f3ad2f8a9173cb632692379bd3d2818821
   languageName: node
   linkType: hard
 
