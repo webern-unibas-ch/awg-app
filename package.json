@@ -41,16 +41,16 @@
         "build:doc": "yarn doc",
         "build": "ng build",
         "build:prod": "yarn build --prod",
-        "build:gh": "yarn build:prod --base-href $npm_package_homepage",
+        "build:gh": "yarn build:prod --base-href \"https://edition.anton-webern.ch\" && yarn postbuild:gh",
         "postbuild:gh": "run-s gzip:dist build:doc",
         "gzip:dist": "gzipper compress ./dist/awg-app/",
         "prewpanalyzer": "yarn build:prod --statsJson",
-        "wpanalyzer": "webpack-bundle-analyzer dist/awg-app/stats-es2015.json",
+        "wpanalyzer": "yarn prewpanalyzer && webpack-bundle-analyzer dist/awg-app/stats.json",
         "presourcemap": "yarn build:prod --sourceMap",
-        "sourcemap": "source-map-explorer dist/awg-app/*.js",
+        "sourcemap": "yarn presourcemap && source-map-explorer dist/awg-app/*.js",
         "pre-release": "standard-version -a",
-        "update-appversion": "cross-var ./version.sh $npm_package_version $npm_package_homepage",
-        "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\""
+        "update-appversion": "cross-var ./version.sh 0.7.9 \"https://edition.anton-webern.ch\"",
+        "deploy:ci": "ng deploy --no-build --message=\"Release awg-app (v0.7.9) on gh-pages\""
     },
     "standard-version": {
         "scripts": {
