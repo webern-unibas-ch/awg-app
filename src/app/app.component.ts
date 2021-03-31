@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
 import { NavigationEnd, Router } from '@angular/router';
 
+import { NgbConfig } from '@ng-bootstrap/ng-bootstrap';
+
 import { AnalyticsService } from '@awg-core/services';
 
 /**
@@ -21,8 +23,11 @@ export class AppComponent {
      *
      * @param {Router} router Instance of the Angular router.
      * @param {AnalyticsService} analyticsService Instance of the AnalyticsService.
+     * @param {NgbConfig} ngbConfig Instance of the NGBootstrap NgbConfig.
      */
-    constructor(private readonly router: Router, private analyticsService: AnalyticsService) {
+    constructor(private readonly router: Router, private analyticsService: AnalyticsService, ngbConfig: NgbConfig) {
+        ngbConfig.animation = false;
+
         this.analyticsService.initializeAnalytics();
 
         this.router.events.subscribe(event => {
