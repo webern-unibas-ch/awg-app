@@ -1,4 +1,4 @@
-/* tslint:disable only-arrow-functions */
+/* eslint-disable  prefer-arrow/prefer-arrow-functions */
 
 import MatchersUtil = jasmine.MatchersUtil;
 import CustomMatcherFactories = jasmine.CustomMatcherFactories;

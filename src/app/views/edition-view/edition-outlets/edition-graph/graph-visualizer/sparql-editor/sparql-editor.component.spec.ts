@@ -17,7 +17,7 @@ import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
 import { SparqlEditorComponent } from './sparql-editor.component';
 
-// tslint:disable-next-line:component-selector
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({ selector: 'ngx-codemirror', template: '' })
 class CodeMirrorStubComponent {
     @Input() options: {

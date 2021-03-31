@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
 import Spy = jasmine.Spy;
@@ -14,7 +14,7 @@ import {
 
 import { TriplesEditorComponent } from './triples-editor.component';
 
-// tslint:disable-next-line:component-selector
+// eslint-disable-next-line @angular-eslint/component-selector
 @Component({ selector: 'ngx-codemirror', template: '' })
 class CodeMirrorStubComponent {
     @Input() options: {
@@ -39,15 +39,17 @@ describe('TriplesEditorComponent (DONE)', () => {
     let performQuerySpy: Spy;
     let resetTriplesSpy: Spy;
     let emitPerformQueryRequestSpy: Spy;
-    let emitResestTriplesRequestSpy: Spy;
+    let emitResetTriplesRequestSpy: Spy;
     let emitUpdateTriplesRequestSpy: Spy;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [TriplesEditorComponent, CodeMirrorStubComponent]
-        }).compileComponents();
-    });
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionModule],
+                declarations: [TriplesEditorComponent, CodeMirrorStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TriplesEditorComponent);
@@ -72,7 +74,7 @@ describe('TriplesEditorComponent (DONE)', () => {
         performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
         resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
         emitPerformQueryRequestSpy = spyOn(component.performQueryRequest, 'emit').and.callThrough();
-        emitResestTriplesRequestSpy = spyOn(component.resetTriplesRequest, 'emit').and.callThrough();
+        emitResetTriplesRequestSpy = spyOn(component.resetTriplesRequest, 'emit').and.callThrough();
         emitUpdateTriplesRequestSpy = spyOn(component.updateTriplesRequest, 'emit').and.callThrough();
     });
 
@@ -433,7 +435,7 @@ describe('TriplesEditorComponent (DONE)', () => {
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(resetTriplesSpy, 1);
-                expectSpyCall(emitResestTriplesRequestSpy, 1);
+                expectSpyCall(emitResetTriplesRequestSpy, 1);
             }));
         });
     });

@@ -8,7 +8,7 @@ import { isPlatformBrowser } from '@angular/common';
  * adds specific attributes if href has an external target.
  */
 @Directive({
-    // tslint:disable-next-line:directive-selector
+    // eslint-disable-next-line @angular-eslint/directive-selector
     selector: 'a[href]'
 })
 export class ExternalLinkDirective implements OnChanges {

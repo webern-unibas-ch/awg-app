@@ -382,7 +382,7 @@ export class GraphVisualizerService {
         const regex = /[a-zA-Z]+:/g;
         let m;
 
-        // tslint:disable-next-line:no-conditional-assignment
+        // eslint-disable-next-line no-cond-assign
         while ((m = regex.exec(query)) !== null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index === regex.lastIndex) {

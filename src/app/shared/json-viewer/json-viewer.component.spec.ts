@@ -1,4 +1,4 @@
-/* tslint:disable-next-line no-reference */
+/* eslint-disable-next-line  @typescript-eslint/triple-slash-reference */
 ///<reference path="../../../testing/custom-matchers.d.ts"/>
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';

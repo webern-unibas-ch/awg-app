@@ -1,5 +1,5 @@
-/* tslint:disable:no-input-rename */
-/* tslint:disable:directive-selector component-selector */
+/* eslint-disable @angular-eslint/no-input-rename */
+/* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
 import { NavigationExtras, QueryParamsHandling } from '@angular/router';
 

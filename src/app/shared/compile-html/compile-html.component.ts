@@ -1,5 +1,5 @@
-/* tslint:disable:no-input-rename */
-/* tslint:disable:component-selector */
+/* eslint-disable @angular-eslint/no-input-rename */
+/* eslint-disable @angular-eslint/component-selector */
 
 /************************************************
  *
