@@ -25,6 +25,7 @@
     "angularCompilerOptions": {
         "fullTemplateTypeCheck": true,
         "strictInjectionParameters": true,
-        "disableTypeScriptVersionCheck": true
+        "disableTypeScriptVersionCheck": true,
+        "enableI18nLegacyMessageIdFormat": false
     }
 }
