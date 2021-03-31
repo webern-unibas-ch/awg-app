@@ -31,7 +31,7 @@
         "test:cov": "ng test --code-coverage true",
         "serve:test:cov": "npx http-server -c-1 -o -p 9875 ./coverage",
         "test:ci": "yarn test:cov -- --configuration=ci",
-        "lint": "ng lint awg-app",
+        "lint": "eslint --color --fix -c .eslintrc.json --ext .ts ./src/app",
         "lint-staged": "lint-staged",
         "tslint-check": "tslint-config-prettier-check ./tslint.json",
         "format:check": "prettier --check \"src/**/*.{ts,js,css,html}\"",
@@ -116,15 +116,29 @@
         ]
     },
     "prettier": {
-        "arrowParens": "avoid",
-        "bracketSpacing": true,
-        "jsxBracketSameLine": true,
-        "printWidth": 120,
+        "tabWidth": 4,
+        "useTabs": false,
         "semi": true,
         "singleQuote": true,
-        "tabWidth": 4,
         "trailingComma": "none",
-        "useTabs": false
+        "bracketSpacing": true,
+        "arrowParens": "avoid",
+        "jsxBracketSameLine": true,
+        "printWidth": 120,
+        "overrides": [
+            {
+                "files": "*.component.html",
+                "options": {
+                    "parser": "angular"
+                }
+            },
+            {
+                "files": "*.html",
+                "options": {
+                    "parser": "html"
+                }
+            }
+        ]
     },
     "dependencies": {
         "@angular/animations": "~11.2.7",
@@ -162,6 +176,11 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.1102.6",
+        "@angular-eslint/builder": "2.0.2",
+        "@angular-eslint/eslint-plugin": "2.0.2",
+        "@angular-eslint/eslint-plugin-template": "2.0.2",
+        "@angular-eslint/schematics": "2.0.2",
+        "@angular-eslint/template-parser": "2.0.2",
         "@angular/cli": "~11.2.6",
         "@angular/compiler-cli": "~11.2.7",
         "@commitlint/cli": "^12.0.1",
@@ -171,10 +190,17 @@
         "@types/jasmine": "~3.6.0",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^12.11.1",
+        "@typescript-eslint/eslint-plugin": "4.16.1",
+        "@typescript-eslint/parser": "4.16.1",
         "angular-cli-ghpages": "^0.6.2",
-        "codelyzer": "^6.0.0",
         "conventional-recommended-bump": "^6.1.0",
         "cross-var": "^1.1.0",
+        "eslint": "^7.6.0",
+        "eslint-config-prettier": "^8.1.0",
+        "eslint-plugin-import": "2.22.1",
+        "eslint-plugin-jsdoc": "30.7.6",
+        "eslint-plugin-prefer-arrow": "1.2.2",
+        "eslint-plugin-prettier": "^3.3.1",
         "gzipper": "^4.4.0",
         "husky": "^6.0.0",
         "jasmine-core": "~3.6.0",
@@ -187,14 +213,12 @@
         "lint-staged": "^10.5.4",
         "ng-lint-staged": "^0.1.6",
         "npm-run-all": "^4.1.5",
-        "prettier": "~2.2.1",
+        "prettier": "^2.2.1",
         "pretty-quick": "^3.1.0",
         "protractor": "~7.0.0",
         "source-map-explorer": "^2.5.2",
         "standard-version": "^9.1.1",
         "ts-node": "~8.3.0",
-        "tslint": "~6.1.0",
-        "tslint-config-prettier": "^1.18.0",
         "typescript": "~4.1.5",
         "webpack-bundle-analyzer": "^4.4.0"
     },
