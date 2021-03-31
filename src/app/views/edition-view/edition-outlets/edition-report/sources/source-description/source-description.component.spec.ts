@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -10,11 +10,13 @@ describe('SourceDescriptionComponent', () => {
     let component: SourceDescriptionComponent;
     let fixture: ComponentFixture<SourceDescriptionComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [SourceDescriptionComponent, CompileHtmlComponent, RouterLinkStubDirective]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [SourceDescriptionComponent, CompileHtmlComponent, RouterLinkStubDirective]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceDescriptionComponent);

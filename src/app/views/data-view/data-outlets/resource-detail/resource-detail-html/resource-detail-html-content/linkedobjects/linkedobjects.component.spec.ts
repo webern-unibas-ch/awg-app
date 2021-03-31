@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -37,12 +37,14 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [ResourceDetailHtmlContentLinkedobjectsComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionModule],
+                declarations: [ResourceDetailHtmlContentLinkedobjectsComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentLinkedobjectsComponent);

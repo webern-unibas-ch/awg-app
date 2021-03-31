@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input, SecurityContext } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -59,16 +59,18 @@ describe('ContactInfoComponent (DONE)', () => {
 
     const expectedContactInfoHeader = 'Kontakt';
 
-    beforeEach(async(() => {
-        // mock service for test purposes
-        mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
+    beforeEach(
+        waitForAsync(() => {
+            // mock service for test purposes
+            mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-        TestBed.configureTestingModule({
-            imports: [BrowserModule],
-            declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                imports: [BrowserModule],
+                declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
+                providers: [{ provide: CoreService, useValue: mockCoreService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ContactInfoComponent);

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -61,45 +61,47 @@ describe('EditionDetailComponent', () => {
     let getTextcriticsListSpy;
     let getEditionWorkSpy;
 
-    beforeEach(async(() => {
-        // create a fake service object with a `getEditionDetailData()` spy
-        const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
-        // make the spies return a synchronous Observable with the test data
-        getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
+    beforeEach(
+        waitForAsync(() => {
+            // create a fake service object with a `getEditionDetailData()` spy
+            const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
+            // make the spies return a synchronous Observable with the test data
+            getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
-        const expectedTextcriticalComments = []; // TODO: provide real test data
-        // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', [
-            'getTextcriticalComments',
-            'getEditionWork'
-        ]);
-        // make the spies return a synchronous Observable with the test data
-        getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
-            expectedTextcriticalComments
-        );
-        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
-        /*
+            const expectedTextcriticalComments = []; // TODO: provide real test data
+            // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+            const mockEditionService = jasmine.createSpyObj('EditionService', [
+                'getTextcriticalComments',
+                'getEditionWork'
+            ]);
+            // make the spies return a synchronous Observable with the test data
+            getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
+                expectedTextcriticalComments
+            );
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+            /*
         mockEditionService = {
             // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
 
         };
     */
 
-        TestBed.configureTestingModule({
-            imports: [NgbModalModule, RouterTestingModule],
-            declarations: [
-                CompileHtmlComponent,
-                EditionDetailComponent,
-                EditionConvoluteStubComponent,
-                EditionAccoladeStubComponent,
-                ModalComponent
-            ],
-            providers: [
-                { provide: EditionDataService, useValue: mockEditionDataService },
-                { provide: EditionService, useValue: mockEditionService }
-            ]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                imports: [NgbModalModule, RouterTestingModule],
+                declarations: [
+                    CompileHtmlComponent,
+                    EditionDetailComponent,
+                    EditionConvoluteStubComponent,
+                    EditionAccoladeStubComponent,
+                    ModalComponent
+                ],
+                providers: [
+                    { provide: EditionDataService, useValue: mockEditionDataService },
+                    { provide: EditionService, useValue: mockEditionService }
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionDetailComponent);

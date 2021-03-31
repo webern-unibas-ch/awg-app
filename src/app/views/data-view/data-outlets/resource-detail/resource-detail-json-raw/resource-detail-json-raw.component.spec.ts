@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -26,11 +26,13 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     const expectedHeader = 'Raw JSON response from Salsah-API';
     let expectedData: ResourceFullResponseJson;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailJsonRawComponent);

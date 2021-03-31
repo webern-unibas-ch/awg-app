@@ -42,7 +42,7 @@ jobs:
 
             - name: Build app for GH Pages
               run: |
-                  yarn build:gh
+                  yarn run build:gh
 
             - name: Deploy to GH Pages
               env:

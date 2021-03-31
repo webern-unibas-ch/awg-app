@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -49,17 +49,19 @@ describe('EditionAccoladeComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [
-                EditionAccoladeComponent,
-                EditionSvgSheetStubComponent,
-                EditionSvgSheetNavStubComponent,
-                EditionTkaTableStubComponent
-            ]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionModule],
+                declarations: [
+                    EditionAccoladeComponent,
+                    EditionSvgSheetStubComponent,
+                    EditionSvgSheetNavStubComponent,
+                    EditionTkaTableStubComponent
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionAccoladeComponent);

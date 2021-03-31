@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
@@ -12,12 +12,14 @@ describe('EditionSvgSheetComponent', () => {
     let expectedSvgSheet: EditionSvgSheet;
     let expectedOverlay: EditionSvgOverlay;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgxGalleryModule],
-            declarations: [EditionSvgSheetComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgxGalleryModule],
+                declarations: [EditionSvgSheetComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionSvgSheetComponent);

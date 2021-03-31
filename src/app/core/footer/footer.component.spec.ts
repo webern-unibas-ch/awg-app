@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -47,24 +47,26 @@ describe('FooterComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedLogos: Logos;
 
-    beforeEach(async(() => {
-        // stub service for test purposes
-        mockCoreService = {
-            getMetaDataSection: sectionType => METADATA[sectionType],
-            getLogos: () => expectedLogos
-        };
+    beforeEach(
+        waitForAsync(() => {
+            // stub service for test purposes
+            mockCoreService = {
+                getMetaDataSection: sectionType => METADATA[sectionType],
+                getLogos: () => expectedLogos
+            };
 
-        TestBed.configureTestingModule({
-            declarations: [
-                FooterComponent,
-                FooterCopyrightStubComponent,
-                FooterDeclarationStubComponent,
-                FooterLogoStubComponent,
-                FooterPoweredbyStubComponent
-            ],
-            providers: [{ provide: CoreService, useValue: mockCoreService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [
+                    FooterComponent,
+                    FooterCopyrightStubComponent,
+                    FooterDeclarationStubComponent,
+                    FooterLogoStubComponent,
+                    FooterPoweredbyStubComponent
+                ],
+                providers: [{ provide: CoreService, useValue: mockCoreService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterComponent);

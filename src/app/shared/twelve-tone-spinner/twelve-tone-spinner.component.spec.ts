@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 
@@ -8,11 +8,13 @@ describe('TwelveToneSpinnerComponent', () => {
     let component: TwelveToneSpinnerComponent;
     let fixture: ComponentFixture<TwelveToneSpinnerComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [TwelveToneSpinnerComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [TwelveToneSpinnerComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TwelveToneSpinnerComponent);

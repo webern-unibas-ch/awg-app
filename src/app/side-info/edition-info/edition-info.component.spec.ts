@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -22,11 +22,13 @@ describe('EditionInfoComponent (DONE)', () => {
     let expectedEditionWorkOp12: EditionWork;
     let expectedEditionWorkOp25: EditionWork;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [EditionInfoComponent, RouterLinkStubDirective]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [EditionInfoComponent, RouterLinkStubDirective]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionInfoComponent);

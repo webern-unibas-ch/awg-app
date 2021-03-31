@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -20,17 +20,19 @@ describe('ForceGraphNoResultComponent', () => {
     let expectedLogos: Logos;
     let expectedHeight: number;
 
-    beforeEach(async(() => {
-        // stub service for test purposes
-        mockCoreService = {
-            getLogos: () => expectedLogos
-        };
+    beforeEach(
+        waitForAsync(() => {
+            // stub service for test purposes
+            mockCoreService = {
+                getLogos: () => expectedLogos
+            };
 
-        TestBed.configureTestingModule({
-            declarations: [ForceGraphNoResultComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [ForceGraphNoResultComponent],
+                providers: [{ provide: CoreService, useValue: mockCoreService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ForceGraphNoResultComponent);

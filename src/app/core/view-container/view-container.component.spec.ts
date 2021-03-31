@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -14,11 +14,13 @@ describe('ViewContainerComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         // add custom jasmine matchers (ToHaveCssClass)

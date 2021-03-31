@@ -1,6 +1,6 @@
 import { Component, Input } from '@angular/core';
 
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 
@@ -23,12 +23,14 @@ describe('CriticsListComponent', () => {
     let component: CriticsListComponent;
     let fixture: ComponentFixture<CriticsListComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [CriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionModule],
+                declarations: [CriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(CriticsListComponent);

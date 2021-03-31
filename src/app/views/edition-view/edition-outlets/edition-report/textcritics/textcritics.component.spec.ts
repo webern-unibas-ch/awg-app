@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 
 import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
@@ -20,12 +20,14 @@ describe('TextcriticsComponent', () => {
     let component: TextcriticsComponent;
     let fixture: ComponentFixture<TextcriticsComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [TextcriticsComponent, CriticsListStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionModule],
+                declarations: [TextcriticsComponent, CriticsListStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(TextcriticsComponent);

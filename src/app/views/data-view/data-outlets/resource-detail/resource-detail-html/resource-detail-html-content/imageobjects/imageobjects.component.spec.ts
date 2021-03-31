@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { JsonConvert } from 'json2typescript';
@@ -25,12 +25,14 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let expectedGalleryOptions: NgxGalleryOptions[];
     let expectedImages: NgxGalleryImage[];
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [NgxGalleryModule],
-            declarations: [ResourceDetailHtmlContentImageobjectsComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgxGalleryModule],
+                declarations: [ResourceDetailHtmlContentImageobjectsComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentImageobjectsComponent);

@@ -1,5 +1,5 @@
 /* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -22,11 +22,13 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     const expectedPageNotFoundImgPath = 'assets/img/page-not-found/Webern_Books.jpg';
     const expectedAwgContactUrl = 'https://www.anton-webern.ch/index.php?id=41';
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [PageNotFoundViewComponent, RouterLinkStubDirective]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [PageNotFoundViewComponent, RouterLinkStubDirective]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(PageNotFoundViewComponent);

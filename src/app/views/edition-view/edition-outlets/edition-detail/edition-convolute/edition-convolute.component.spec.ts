@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -21,12 +21,14 @@ describe('EditionConvoluteComponent', () => {
     let component: EditionConvoluteComponent;
     let fixture: ComponentFixture<EditionConvoluteComponent>;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [FontAwesomeModule, NgbAccordionModule],
-            declarations: [EditionConvoluteComponent, FolioStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [FontAwesomeModule, NgbAccordionModule],
+                declarations: [EditionConvoluteComponent, FolioStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionConvoluteComponent);
