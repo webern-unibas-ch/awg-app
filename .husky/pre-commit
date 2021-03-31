@@ -2,4 +2,4 @@
 . "$(dirname "$0")/_/husky.sh"
 
 # cf. https://typicode.github.io/husky/#/?id=package-scripts
-yarn run-s -l format:fix-staged lint-staged
+yarn run-s -l lint-staged format:fix-staged

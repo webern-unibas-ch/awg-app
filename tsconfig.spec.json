@@ -1,9 +1,9 @@
 {
-    "extends": "./tsconfig.base.json",
+    "extends": "./tsconfig.json",
     "compilerOptions": {
+        "baseUrl": "./src/",
         "outDir": "./out-tsc/spec",
         "types": ["jasmine", "node"],
-        "baseUrl": "./src/",
         "paths": {
             "@awg-app/*": ["app/*"],
             "@awg-core/*": ["app/core/*"],
