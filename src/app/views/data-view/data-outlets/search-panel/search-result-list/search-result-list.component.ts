@@ -71,20 +71,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
 
     /**
-     * Private variable: selectedResourceId.
-     *
-     * It keeps the id of the selected resource.
-     */
-    private selectedResourceId: string;
-
-    /**
-     * Variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    destroy$: Subject<boolean> = new Subject<boolean>();
-
-    /**
      * Public variable: errorMessage.
      *
      * It keeps an errorMessage for the searchResponseWithQuery subscription.
@@ -146,6 +132,20 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * It instantiates fontawesome's faTable icon.
      */
     faTable = faTable;
+
+    /**
+     * Private variable: _selectedResourceId.
+     *
+     * It keeps the id of the selected resource.
+     */
+    private _selectedResourceId: string;
+
+    /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the SearchResultListComponent.
@@ -224,14 +224,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * Public method: isActiveResource.
      *
      * It compares a given resource id
-     * with the current selectedResourceId.
+     * with the current _selectedResourceId.
      *
      * @param {string} id The given resource id.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
     isActiveResource(id: string): boolean {
-        return this.selectedResourceId === id;
+        return this._selectedResourceId === id;
     }
 
     /**
@@ -266,8 +266,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the resource.
      */
     navigateToResource(id: string): void {
-        this.selectedResourceId = id;
-        this.router.navigate(['/data/resource', this.selectedResourceId]);
+        this._selectedResourceId = id;
+        this.router.navigate(['/data/resource', this._selectedResourceId]);
     }
 
     /**
@@ -343,7 +343,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         // Cold request to streamer service
         const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
             .getSearchResponseWithQuery()
-            .pipe(takeUntil(this.destroy$));
+            .pipe(takeUntil(this._destroy$));
 
         // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
@@ -415,9 +415,9 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
         this.sideInfoService.clearSearchInfoData();
 
         // Emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        this._destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
     }
 }

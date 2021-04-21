@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { OrderByPipe } from './order-by.pipe';
 

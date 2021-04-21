@@ -33,23 +33,6 @@ export class ResourceDetailHeader {
     lastmod: string;
 
     /**
-     * Private static method: replaceParagraphTags.
-     *
-     * It replaces paragraph tags with break lines
-     * in a resource's rich text area (here: title).
-     */
-    private static replaceParagraphTags(str: string): string {
-        if (!str) {
-            return;
-        }
-        str = str
-            .replace(/<\/p><p>/g, '<br />')
-            .replace(/<p>|<\/p>/g, '')
-            .replace(str, '«$&»');
-        return str;
-    }
-
-    /**
      * Constructor of the ResourceDetailHeader class.
      *
      * It initializes the class with values from a
@@ -97,13 +80,16 @@ export class ResourceDetailHeader {
                     let htmlstr = props['webern:event_rt'].toHtml[0];
 
                     // Strip & replace <p>-tags for displaying title
-                    htmlstr = ResourceDetailHeader.replaceParagraphTags(htmlstr);
+                    htmlstr = ResourceDetailHeader._replaceParagraphTags(htmlstr);
 
                     this.title = htmlstr;
                     break;
 
                 // KORRESPONDENZ (same as SUPPLEMENT)
                 case '29':
+                    this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
+                    break;
+
                 // SUPPLEMENT
                 case '125':
                     this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
@@ -146,5 +132,22 @@ export class ResourceDetailHeader {
             this.type = 'restricted';
             this.title = 'Kein Zugriff auf dieses Objekt möglich';
         }
+    }
+
+    /**
+     * Private static method: _replaceParagraphTags.
+     *
+     * It replaces paragraph tags with break lines
+     * in a resource's rich text area (here: title).
+     */
+    private static _replaceParagraphTags(str: string): string {
+        if (!str) {
+            return;
+        }
+        str = str
+            .replace(/<\/p><p>/g, '<br />')
+            .replace(/<p>|<\/p>/g, '')
+            .replace(str, '«$&»');
+        return str;
     }
 }

@@ -44,7 +44,7 @@
                 <div ngbDropdownMenu aria-labelledby="dropdownNavEdition">
                     <h6 class="dropdown-header">Auswahl Skizzenkomplex</h6>
                     <a
-                        *ngFor="let editionWork of editionWorks"
+                        *ngFor="let editionWork of EDITION_WORKS"
                         class="dropdown-item"
                         [routerLink]="[editionWork.baseRoute, editionWork.introRoute.route]"
                         routerLinkActive="active"

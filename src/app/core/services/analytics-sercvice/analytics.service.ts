@@ -22,36 +22,36 @@ declare let gtag: Function;
 })
 export class AnalyticsService {
     /**
-     * Private variable: analyticsId.
+     * Private variable: _analyticsId.
      *
      * It stores the analytics id.
      *
      */
-    private analyticsId: string = AppConfig.ANALYTICS_ID;
+    private _analyticsId: string = AppConfig.ANALYTICS_ID;
 
     /**
-     * Private variable: analyticsEndpoint.
+     * Private variable: _analyticsEndpoint.
      *
      * It stores the analytics endpoint.
      */
-    private analyticsEndpoint: string = AppConfig.ANALYTICS_ENDPOINT;
+    private _analyticsEndpoint: string = AppConfig.ANALYTICS_ENDPOINT;
 
     /**
-     * Private variable: isInitialized.
+     * Private variable: _isInitialized.
      *
      * It stores a boolean flag for successful initialization.
      */
-    private isInitialized = false;
+    private _isInitialized = false;
 
     /**
-     * Private variable: sendPageView.
+     * Private variable: _sendPageView.
      *
      * It stores a boolean flag to send page views dependent from environment.
      *
      * DEVELOP: FALSE
      * PRODUCTION: TRUE
      */
-    private sendPageView = environment.GA_SEND_PAGE_VIEW;
+    private _sendPageView = environment.GA_SEND_PAGE_VIEW;
 
     /**
      * Constructor of the AnalyticsService.
@@ -70,15 +70,15 @@ export class AnalyticsService {
      * @returns {void} Inits Analytics.
      */
     initializeAnalytics(): void {
-        if (!this.analyticsEndpoint || !this.analyticsId) {
+        if (!this._analyticsEndpoint || !this._analyticsId) {
             return;
         }
-        if (this.sendPageView === false) {
+        if (this._sendPageView === false) {
             console.log('Running non-production analytics replacement now');
         } else {
-            this.prependAnalyticsScript();
+            this._prependAnalyticsScript();
         }
-        this.isInitialized = true;
+        this._isInitialized = true;
     }
 
     /**
@@ -91,28 +91,31 @@ export class AnalyticsService {
      * @returns {void} Configures and sends the page view to Analytics.
      */
     trackPageView(page: string): void {
-        if (!page || this.isInitialized !== true) {
+        if (!page || this._isInitialized !== true) {
             return;
         }
 
-        gtag('config', this.analyticsId, {
+        gtag('config', this._analyticsId, {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             page_path: page,
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             anonymize_ip: true,
-            send_page_view: this.sendPageView
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            send_page_view: this._sendPageView
         });
     }
 
     /**
-     * Private method: prependAnalyticsScript.
+     * Private method: _prependAnalyticsScript.
      *
      * It prepends the Analytics <script> tag to index.html via DOCUMENT.
      *
      * @returns {void} Prepends Analytics script.
      */
-    private prependAnalyticsScript(): void {
+    private _prependAnalyticsScript(): void {
         const gtagScript: HTMLScriptElement = this.doc.createElement('script');
         gtagScript.async = true;
-        gtagScript.src = this.analyticsEndpoint + '?id=' + this.analyticsId;
+        gtagScript.src = this._analyticsEndpoint + '?id=' + this._analyticsId;
         this.doc.head.prepend(gtagScript);
     }
 }

@@ -23,6 +23,7 @@ module.exports = {
         sourceType: 'module'
     },
     plugins: ['eslint-plugin-import', 'eslint-plugin-jsdoc', '@angular-eslint/eslint-plugin', '@typescript-eslint'],
+    extends: ['prettier'],
     rules: {
         '@angular-eslint/component-class-suffix': 'error',
         '@angular-eslint/directive-class-suffix': 'error',
@@ -42,9 +43,10 @@ module.exports = {
                 accessibility: 'explicit'
             }
         ],
-        '@typescript-eslint/indent': 'error',
+        '@typescript-eslint/indent': 'off', // Checked by prettier
         '@typescript-eslint/member-delimiter-style': [
-            'error',
+            // Checked by prettier
+            'off',
             {
                 multiline: {
                     delimiter: 'semi',
@@ -98,17 +100,18 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/quotes': [
-            'error',
+            // Checked by prettier
+            'off',
             'single',
             {
                 avoidEscape: true
             }
         ],
-        '@typescript-eslint/semi': ['error', 'always'],
-        '@typescript-eslint/type-annotation-spacing': 'error',
+        '@typescript-eslint/semi': 'off', // Checked by prettier
+        '@typescript-eslint/type-annotation-spacing': 'off', // Checked by prettier
         '@typescript-eslint/unified-signatures': 'error',
         'arrow-body-style': 'error',
-        'brace-style': ['error', '1tbs'],
+        'brace-style': 'off', // Checked by prettier
         'capitalized-comments': [
             'error',
             'always',
@@ -118,8 +121,8 @@ module.exports = {
         ],
         'constructor-super': 'error',
         curly: 'error',
-        'object-curly-spacing': ['error', 'always'],
-        'eol-last': 'error',
+        'object-curly-spacing': 'off', // Checked by prettier
+        'eol-last': 'off', // Checked by prettier
         eqeqeq: ['error', 'smart'],
         'guard-for-in': 'error',
         'id-blacklist': 'off',
@@ -127,7 +130,8 @@ module.exports = {
         'import/no-deprecated': 'warn',
         'jsdoc/no-types': 'off',
         'max-len': [
-            'error',
+            // Checked by prettier
+            'off',
             {
                 code: 200
             }
@@ -164,7 +168,7 @@ module.exports = {
         'no-new-wrappers': 'error',
         'no-restricted-imports': ['error', 'rxjs/Rx'],
         'no-throw-literal': 'error',
-        'no-trailing-spaces': 'error',
+        'no-trailing-spaces': 'off', // Checked by prettier
         'no-undef-init': 'error',
         'no-underscore-dangle': 'off',
         'no-unused-labels': 'error',

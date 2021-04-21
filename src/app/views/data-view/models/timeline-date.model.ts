@@ -28,12 +28,12 @@ export class TimelineDate {
     /**
      * The start year of the timeline date results.
      */
-    findStart: string; // awgFactory.extractYear(response.searchResults[0]);
+    findStart: string; // TODO: use extractYear(response.searchResults[0]);
 
     /**
      * The end year of the timeline date results.
      */
-    findEnd: string; // awgFactory.extractYear(response.searchResults[response.searchResults.length-1]);
+    findEnd: string; // TODO: use extractYear(response.searchResults[response.searchResults.length-1]);
 
     /**
      * Constructor of the TimelineDate class.

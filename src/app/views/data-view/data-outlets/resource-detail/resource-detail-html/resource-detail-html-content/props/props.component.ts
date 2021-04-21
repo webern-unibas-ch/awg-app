@@ -12,7 +12,6 @@ import {
 
 import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
 import { ResourceDetailProperty } from '@awg-views/data-view/models';
-import { PropertyJson } from '@awg-shared/api-objects';
 
 /**
  * The ResourceDetailHtmlContentProps component.
@@ -67,7 +66,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      * @param {SimpleChanges} changes The changes of the input.
      */
     ngOnChanges(changes: SimpleChanges) {
-        this.checkForGND(changes.props);
+        this._checkForGND(changes.props);
     }
 
     /**
@@ -89,7 +88,18 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
     }
 
     /**
-     * Private method: checkForGND.
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // If we leave the component, remove gnd from storage
+        this._removeGnd();
+    }
+
+    /**
+     * Private method: _checkForGND.
      *
      * It checks the props input for a gnd value to expose,
      * otherwise removes any GND values.
@@ -98,7 +108,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      *
      * @returns {void} Exposes or removes the GND event.
      */
-    private checkForGND(props: SimpleChange): void {
+    private _checkForGND(props: SimpleChange): void {
         // Check if we have a gnd (prop.pid=856)
         const propsWithGND: ResourceDetailProperty[] = props.currentValue.filter(
             (prop: ResourceDetailProperty) => prop.pid === '856' && prop.values && prop.values.length > 0
@@ -110,17 +120,17 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
                 prop.values.map((value: string) => {
                     // Expose gnd for every value
                     const gndEvent = new GndEvent(GndEventType.set, value);
-                    this.exposeGnd(gndEvent);
+                    this._exposeGnd(gndEvent);
                 });
             });
         } else {
             // Remove gnd
-            this.removeGnd();
+            this._removeGnd();
         }
     }
 
     /**
-     * Private method: exposeGnd.
+     * Private method: _exposeGnd.
      *
      * It emits a given gnd event (type, value)
      * to the {@link gndRequest}.
@@ -129,7 +139,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      *
      * @returns {void} Emits the GND event.
      */
-    private exposeGnd(gndEvent: GndEvent): void {
+    private _exposeGnd(gndEvent: GndEvent): void {
         if (!gndEvent) {
             return;
         }
@@ -137,26 +147,15 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
     }
 
     /**
-     * Private method: removeGnd.
+     * Private method: _removeGnd.
      *
      * It emits a given gnd event (type, value)
      * to the {@link gndRequest}.
      *
      * @returns {void} Emits the GND remove event.
      */
-    private removeGnd(): void {
+    private _removeGnd(): void {
         const gndEvent = new GndEvent(GndEventType.remove, null);
-        this.exposeGnd(gndEvent);
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     */
-    ngOnDestroy() {
-        // If we leave the component, remove gnd from storage
-        this.removeGnd();
+        this._exposeGnd(gndEvent);
     }
 }

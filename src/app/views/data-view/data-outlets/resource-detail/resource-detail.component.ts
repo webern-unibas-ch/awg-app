@@ -30,13 +30,6 @@ import { ResourceData } from '@awg-views/data-view/models';
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**
-     * Private variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private destroy$: Subject<boolean> = new Subject<boolean>();
-
-    /**
      * Public variable: errorMessage.
      *
      * It keeps an errorMessage for the resource data subscription.
@@ -88,6 +81,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     get isLoading$(): Observable<boolean> {
         return this.loadingService.getLoadingStatus();
     }
+
+    /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ResourceDetailComponent.
@@ -146,7 +146,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
                     // Fetch resource data depending on param id
                     return this.dataApiService.getResourceData(id);
                 }),
-                takeUntil(this.destroy$)
+                takeUntil(this._destroy$)
             )
             .subscribe(
                 (data: ResourceData) => {
@@ -238,9 +238,9 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        this._destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
     }
 }

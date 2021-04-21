@@ -62,7 +62,7 @@ export class ApiService {
             queryHttpParams = new HttpParams();
         }
 
-        return this.httpGet(queryPath, queryHttpParams).pipe(
+        return this._httpGet(queryPath, queryHttpParams).pipe(
             map((result: ApiServiceResult): Observable<any> => result.getBody(responseJsonType)),
             catchError(
                 (error: ApiServiceError): Observable<ApiServiceError> =>
@@ -73,7 +73,7 @@ export class ApiService {
     }
 
     /**
-     * Private method: httpGet.
+     * Private method: _httpGet.
      *
      * Performs an HTTP GET request to the given (Salsah) API.
      *
@@ -82,7 +82,7 @@ export class ApiService {
      *
      * @returns {Observable<ApiServiceResult | ApiServiceError>} The observable of the api service result or error.
      */
-    private httpGet(queryPath: string, queryHttpParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
+    private _httpGet(queryPath: string, queryHttpParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
         const apiRequest = new ApiRequest(queryPath, queryHttpParams);
 
         return this.http
@@ -109,12 +109,12 @@ export class ApiService {
                     }
                 ),
                 // Catch any errors
-                catchError((error: HttpErrorResponse): Observable<ApiServiceError> => this.handleRequestError(error))
+                catchError((error: HttpErrorResponse): Observable<ApiServiceError> => this._handleRequestError(error))
             );
     }
 
     /**
-     * Private method: handleRequestError.
+     * Private method: _handleRequestError.
      *
      * It handles request errors in case of server error.
      *
@@ -122,7 +122,7 @@ export class ApiService {
      *
      * @returns {Observable<ApiServiceError>} The observable of the api service error.
      */
-    private handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
+    private _handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
         // console.error(error);
         const apiServiceError = new ApiServiceError();
         apiServiceError.status = error.status ? error.status : apiServiceError.status;
