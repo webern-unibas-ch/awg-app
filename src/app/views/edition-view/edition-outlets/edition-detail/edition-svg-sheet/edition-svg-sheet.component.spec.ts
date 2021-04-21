@@ -42,10 +42,6 @@ describe('EditionSvgSheetComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // svgFileDe = fixture.debugElement.query(By.css('.svg.edition-svg));
-            // svgFileEl = svgFIleDe.nativeElement;
-            // Find the svgFile's DebugElement and element
-
             // Mock the inputs supplied by the parent component
             expectedSvgSheet = {
                 id: 'Aa:SkI/2',

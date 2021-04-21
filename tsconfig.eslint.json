@@ -1,0 +1,4 @@
+{
+    "extends": "./tsconfig.json",
+    "include": ["src/app/**/*.ts", "src/main.ts", "src/polyfills.ts", "src/**/*.d.ts"]
+}

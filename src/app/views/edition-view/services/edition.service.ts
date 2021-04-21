@@ -25,20 +25,20 @@ export class EditionService {
     /**
      * Private variable for the replay subject´s buffer size.
      */
-    private bufferSize = 1;
+    private _bufferSize = 1;
 
     /**
      * Private replay subject to handle edition work.
      */
-    private editionWorkSubject = new ReplaySubject<EditionWork>(this.bufferSize);
+    private _editionWorkSubject = new ReplaySubject<EditionWork>(this._bufferSize);
 
     /**
      * Private readonly edition work stream as observable (`ReplaySubject`).
      */
-    private readonly editionWorkStream$ = this.editionWorkSubject.asObservable();
+    private readonly _editionWorkStream$ = this._editionWorkSubject.asObservable();
 
     /**
-     * Private static method: filterTextcriticalComments.
+     * Private static method: _filterTextcriticalComments.
      *
      * It filters a textcritical comments array in regard of a selected overlay item.
      *
@@ -47,7 +47,7 @@ export class EditionService {
      * @param {number} filterIndex The given index position of the filter.
      * @returns {boolean} A boolean value if the input contains the overlay type and id
      */
-    private static filterTextcriticalComments(
+    private static _filterTextcriticalComments(
         textcriticalComment: TextcriticalComment,
         overlay: EditionSvgOverlay,
         filterIndex: number
@@ -87,7 +87,7 @@ export class EditionService {
         // Filter the textcritics input array
         return textcriticalComments.filter((textcriticalComment, filterIndex) =>
             // Get filtered results from private method
-            EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex)
+            EditionService._filterTextcriticalComments(textcriticalComment, overlay, filterIndex)
         );
     }
 
@@ -99,7 +99,7 @@ export class EditionService {
      * @returns {Observable<EditionWork>} The edition work stream as observable.
      */
     getEditionWork(): Observable<EditionWork> {
-        return this.editionWorkStream$;
+        return this._editionWorkStream$;
     }
 
     /**
@@ -110,7 +110,7 @@ export class EditionService {
      * @returns {void} Sets the next edition work to the stream.
      */
     updateEditionWork(editionWork: EditionWork): void {
-        this.editionWorkSubject.next(editionWork);
+        this._editionWorkSubject.next(editionWork);
     }
 
     /**
@@ -121,6 +121,6 @@ export class EditionService {
      * @returns {void} Clears the edition work stream.
      */
     clearEditionWork(): void {
-        this.editionWorkSubject.next(null);
+        this._editionWorkSubject.next(null);
     }
 }

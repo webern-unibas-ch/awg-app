@@ -349,7 +349,7 @@ export class ConversionService extends ApiService {
         const images: NgxGalleryImage[] = [];
 
         if (!resourceContextData.resource_context.res_id) {
-            // Console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+            // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
             return;
         } else {
             const context: ContextJson = { ...resourceContextData.resource_context };
@@ -524,7 +524,7 @@ export class ConversionService extends ApiService {
                     }
             } // END switch
         } else {
-            // Console.log('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
+            // console.log('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
         }
         return prop;
     }

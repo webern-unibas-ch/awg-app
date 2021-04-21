@@ -22,9 +22,9 @@ import { FolioService } from './folio.service';
 /**
  * Declared variable: Snap.
  *
- * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
+ * It provides access to the embedded SnapSvg library (see snapsvg.io).
  */
-declare var Snap: any;
+declare let Snap: any;
 
 /**
  * The Folio component.
@@ -111,18 +111,9 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     fgColor = 'orange';
 
     /**
-     * Private variable: _folioSettings.
-     *
-     * It keeps the format settings for the folio.
+     * Self-referring variable needed for CompileHtml library.
      */
-    private _folioSettings: FolioSettings = {
-        factor: 1.5,
-        formatX: 175,
-        formatY: 270,
-        initialOffsetX: 5,
-        initialOffsetY: 5,
-        numberOfFolios: 0
-    };
+    ref: FolioOverviewComponent;
 
     /**
      * Getter for folio format settings.
@@ -139,9 +130,18 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     }
 
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Private variable: _folioSettings.
+     *
+     * It keeps the format settings for the folio.
      */
-    ref: FolioOverviewComponent;
+    private _folioSettings: FolioSettings = {
+        factor: 1.5,
+        formatX: 175,
+        formatY: 270,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
+        numberOfFolios: 0
+    };
 
     /**
      * Constructor of the FolioComponent.

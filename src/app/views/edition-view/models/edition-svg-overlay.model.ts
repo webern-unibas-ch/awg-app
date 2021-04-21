@@ -42,11 +42,11 @@ export class EditionSvgOverlay {
     constructor(typeValue: EditionSvgOverlayTypes, id: string) {
         this.type = typeValue;
         this.id = id;
-        this.typeKey = this.getEnumKeyFromValue(typeValue);
+        this.typeKey = this._getEnumKeyFromValue(typeValue);
     }
 
     /**
-     * Private method: getEnumKeyFromValue.
+     * Private method: _getEnumKeyFromValue.
      *
      * It gets the type of a string enum by its value.
      *
@@ -56,7 +56,7 @@ export class EditionSvgOverlay {
      *
      * @returns {string} Filtered key of the EditionSvgOverlayTypes.
      */
-    private getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
+    private _getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
         const enumKey: string = Object.keys(EditionSvgOverlayTypes)
             // Find key of enumValue
             .find((key: string) => EditionSvgOverlayTypes[key] === enumValue);

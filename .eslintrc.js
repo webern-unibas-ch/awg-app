@@ -19,7 +19,7 @@ module.exports = {
     },
     parser: '@typescript-eslint/parser',
     parserOptions: {
-        project: ['tsconfig.json', 'e2e/tsconfig.json'],
+        project: ['./tsconfig.eslint.json'],
         sourceType: 'module'
     },
     plugins: ['eslint-plugin-import', 'eslint-plugin-jsdoc', '@angular-eslint/eslint-plugin', '@typescript-eslint'],
@@ -79,7 +79,7 @@ module.exports = {
             }
         ],
         '@typescript-eslint/no-empty-function': 'off',
-        '@typescript-eslint/no-empty-interface': 'error',
+        '@typescript-eslint/no-empty-interface': 'off',
         '@typescript-eslint/no-inferrable-types': [
             'error',
             {
@@ -109,7 +109,13 @@ module.exports = {
         '@typescript-eslint/unified-signatures': 'error',
         'arrow-body-style': 'error',
         'brace-style': ['error', '1tbs'],
-        'capitalized-comments': ['error', 'always'],
+        'capitalized-comments': [
+            'error',
+            'always',
+            {
+                ignorePattern: 'console'
+            }
+        ],
         'constructor-super': 'error',
         curly: 'error',
         'object-curly-spacing': ['error', 'always'],

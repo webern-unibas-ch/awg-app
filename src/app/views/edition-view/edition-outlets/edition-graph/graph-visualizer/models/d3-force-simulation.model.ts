@@ -80,32 +80,32 @@ export class D3ForceSimulation {
     links: D3SimulationLink[] = [];
 
     /**
-     * Private variable: chargeForce.
+     * Private variable: _chargeForce.
      *
      * It keeps the charging force.
      */
-    private chargeForce;
+    private _chargeForce;
 
     /**
-     * Private variable: centerForce.
+     * Private variable: _centerForce.
      *
      * It keeps the centering force.
      */
-    private centerForce;
+    private _centerForce;
 
     /**
-     * Private variable: collideForce.
+     * Private variable: _collideForce.
      *
      * It keeps the colliding force.
      */
-    private collideForce;
+    private _collideForce;
 
     /**
-     * Private variable: linkForce.
+     * Private variable: _linkForce.
      *
      * It keeps the linking force.
      */
-    private linkForce;
+    private _linkForce;
 
     /**
      * Constructor of the D3ForceSimulation class.
@@ -120,11 +120,11 @@ export class D3ForceSimulation {
         this.nodes = nodes;
         this.links = links;
 
-        this.initSimulation(options);
+        this._initSimulation(options);
     }
 
     /**
-     * Private method: initSimulation.
+     * Private method: _initSimulation.
      *
      * It inits the simulation.
      *
@@ -132,42 +132,42 @@ export class D3ForceSimulation {
      *
      * @returns {void} It inits the simulation.
      */
-    private initSimulation(options: D3ForceSimulationOptions): void {
+    private _initSimulation(options: D3ForceSimulationOptions): void {
         if (!options || !options.width || !options.height) {
             throw new Error('Missing options when initializing simulation');
         }
 
-        // create the simulation
+        // Create the simulation
         if (!this.forceSimulation) {
             const ticker = this.ticker;
 
-            // set up the simulation
+            // Set up the simulation
             this.forceSimulation = d3_force.forceSimulation();
 
-            this.createForces(options);
+            this._createForces(options);
 
-            // add forces to the simulation
+            // Add forces to the simulation
             this.forceSimulation
-                .force('charge_force', this.chargeForce)
-                .force('collide_force', this.collideForce)
-                .force('center_force', this.centerForce);
+                .force('charge_force', this._chargeForce)
+                .force('collide_force', this._collideForce)
+                .force('center_force', this._centerForce);
 
-            // connect the d3 ticker to an angular event emitter
+            // Connect the d3 ticker to an angular event emitter
             this.forceSimulation.on('tick', function () {
                 ticker.emit(this);
             });
 
-            // add nodes and links to the simulation
-            this.initNodes();
-            this.initLinks();
+            // Add nodes and links to the simulation
+            this._initNodes();
+            this._initLinks();
         }
 
-        // restart the simulation's internal timer
+        // Restart the simulation's internal timer
         this.forceSimulation.alpha(1).restart();
     }
 
     /**
-     * Private method: createForces.
+     * Private method: _createForces.
      *
      * It creates the simulation's forces.
      *
@@ -175,20 +175,20 @@ export class D3ForceSimulation {
      *
      * @returns {void} It creates the simulation's forces.
      */
-    private createForces(options: D3ForceSimulationOptions): void {
-        // create forces
-        this.chargeForce = d3_force.forceManyBody().strength((d: D3SimulationNode) => d['r'] * FORCES.CHARGE_STRENGTH);
+    private _createForces(options: D3ForceSimulationOptions): void {
+        // Create forces
+        this._chargeForce = d3_force.forceManyBody().strength((d: D3SimulationNode) => d['r'] * FORCES.CHARGE_STRENGTH);
 
-        this.centerForce = d3_force.forceCenter(options.width / 2, options.height / 2);
+        this._centerForce = d3_force.forceCenter(options.width / 2, options.height / 2);
 
-        this.collideForce = d3_force
+        this._collideForce = d3_force
             .forceCollide()
             .strength(FORCES.COLLISION_STRENGTH)
             .radius(d => d['r'] + 5)
             .iterations(2);
 
-        // create a custom link force with id accessor to use named sources and targets
-        this.linkForce = d3_force
+        // Create a custom link force with id accessor to use named sources and targets
+        this._linkForce = d3_force
             .forceLink()
             .links(this.links)
             .id((d: D3SimulationLink) => d.predicate)
@@ -196,32 +196,32 @@ export class D3ForceSimulation {
     }
 
     /**
-     * Private method: initLinks.
+     * Private method: _initLinks.
      *
      * It inits the link force of the simulation.
      *
      * @returns {void} It inits the link force of the simulation.
      */
-    private initLinks(): void {
+    private _initLinks(): void {
         if (!this.forceSimulation) {
             throw new Error('Simulation was not initialized yet');
         }
-        // add links to the simulation
-        this.forceSimulation.force('links', this.linkForce);
+        // Add links to the simulation
+        this.forceSimulation.force('links', this._linkForce);
     }
 
     /**
-     * Private method: initNodes.
+     * Private method: _initNodes.
      *
      * It inits the nodes of the simulation.
      *
      * @returns {void} It inits the nodes of the simulation.
      */
-    private initNodes(): void {
+    private _initNodes(): void {
         if (!this.forceSimulation) {
             throw new Error('Simulation was not initialized yet');
         }
-        // add nodes to the simulation
+        // Add nodes to the simulation
         this.forceSimulation.nodes(this.nodes);
     }
 }

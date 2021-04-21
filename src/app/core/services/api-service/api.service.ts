@@ -43,7 +43,7 @@ export class ApiService {
      * @param {HttpClient} http Instance of the HttpClient.
      */
     constructor(public http: HttpClient) {
-        // Console.log(`called ${this.serviceName} with httpClient`, http);
+        // console.log(`called ${this.serviceName} with httpClient`, http);
     }
 
     /**
@@ -66,7 +66,7 @@ export class ApiService {
             map((result: ApiServiceResult): Observable<any> => result.getBody(responseJsonType)),
             catchError(
                 (error: ApiServiceError): Observable<ApiServiceError> =>
-                    // Console.error('ApiService - getApiResponse - error: ', error);
+                    // console.error('ApiService - getApiResponse - error: ', error);
                     observableThrowError(error)
             )
         );
@@ -123,7 +123,7 @@ export class ApiService {
      * @returns {Observable<ApiServiceError>} The observable of the api service error.
      */
     private handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
-        // Console.error(error);
+        // console.error(error);
         const apiServiceError = new ApiServiceError();
         apiServiceError.status = error.status ? error.status : apiServiceError.status;
         apiServiceError.statusText = error.statusText ? error.statusText : apiServiceError.statusText;

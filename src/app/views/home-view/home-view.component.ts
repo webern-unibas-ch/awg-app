@@ -33,18 +33,18 @@ export class HomeViewComponent implements OnInit {
     homeViewId = 'awg-home-view';
 
     /**
-     * Readonly constant: editionWorkOp12.
+     * Readonly constant: EDITION_WORK_OP12.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp12 = EditionWorks.op12;
+    readonly EDITION_WORK_OP12 = EditionWorks.OP12;
 
     /**
-     * Readonly constant: editionWorkOp25.
+     * Readonly constant: EDITION_WORK_OP25.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp25 = EditionWorks.op25;
+    readonly EDITION_WORK_OP25 = EditionWorks.OP25;
 
     /**
      * Constructor of the HomeViewComponent.

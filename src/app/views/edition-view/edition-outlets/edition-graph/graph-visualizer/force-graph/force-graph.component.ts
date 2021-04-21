@@ -89,25 +89,25 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     @Output() clickedNodeRequest = new EventEmitter<D3SimulationNode>();
 
     /**
-     * ViewChild variable: graphContainer.
+     * ViewChild variable: _graphContainer.
      *
      * It keeps the reference to the element containing the graph.
      */
-    @ViewChild('graph', { static: true }) private graphContainer: ElementRef;
+    @ViewChild('graph', { static: true }) private _graphContainer: ElementRef;
 
     /**
-     * ViewChild variable: sliderInput.
+     * ViewChild variable: _sliderInput.
      *
      * It keeps the reference to the input range slider.
      */
-    @ViewChild('sliderInput', { static: true }) private sliderInput: ElementRef;
+    @ViewChild('sliderInput', { static: true }) private _sliderInput: ElementRef;
 
     /**
-     * ViewChild variable: sliderInputLabel.
+     * ViewChild variable: _sliderInputLabel.
      *
      * It keeps the reference to the input sliderInputLabel.
      */
-    @ViewChild('sliderInputLabel', { static: true }) private sliderInputLabel: ElementRef;
+    @ViewChild('sliderInputLabel', { static: true }) private _sliderInputLabel: ElementRef;
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -144,86 +144,67 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     };
 
     /**
-     * Private variable: svg.
+     * Private variable: _svg.
      *
      * It keeps the D3 svg selection.
      */
-    private svg: D3Selection;
+    private _svg: D3Selection;
 
     /**
-     * Private variable: zoomGroup.
+     * Private variable: _zoomGroup.
      *
      * It keeps the D3 zoomGroup selection.
      */
-    private zoomGroup: D3Selection;
+    private _zoomGroup: D3Selection;
 
     /**
-     * Private variable: zoomBehaviour.
+     * Private variable: _zoomBehaviour.
      *
      * It keeps the D3 zoom behaviour.
      */
-    private zoomBehaviour: D3ZoomBehaviour;
+    private _zoomBehaviour: D3ZoomBehaviour;
 
     /**
-     * Private variable: forceSimulation.
+     * Private variable: _forceSimulation.
      *
      * It keeps the D3 force simulation.
      */
-    private forceSimulation: D3Simulation;
+    private _forceSimulation: D3Simulation;
 
     /**
-     * Private variable: simulationData.
+     * Private variable: _simulationData.
      *
      * It keeps the data for the D3 force simulation.
      */
-    private simulationData: D3SimulationData;
+    private _simulationData: D3SimulationData;
 
     /**
-     * Private variable: divWidth.
+     * Private variable: _divWidth.
      *
      * It keeps the width of the container div.
      */
-    private divWidth: number;
+    private _divWidth: number;
 
     /**
-     * Private variable: divHeight.
+     * Private variable: _divHeight.
      *
      * It keeps the height of the container div.
      */
-    private divHeight: number;
+    private _divHeight: number;
 
     /**
-     * Private variable: resize$.
+     * Private variable: _resize$.
      *
      * It keeps a subject for a resize event.
      */
-    private resize$: Subject<boolean> = new Subject<boolean>();
+    private _resize$: Subject<boolean> = new Subject<boolean>();
 
     /**
-     * Private variable: destroy$.
+     * Private variable: _destroy$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
-    private destroy$: Subject<boolean> = new Subject<boolean>();
-
-    /**
-     * HostListener: onResize.
-     *
-     * It redraws the graph when the window is resized.
-     */
-    @HostListener('window:resize') onResize() {
-        // Guard against resize before view is rendered
-        if (!this.graphContainer || !this.queryResultTriples) {
-            return;
-        }
-
-        // Calculate new width & height
-        this.divWidth = this.getContainerWidth(this.graphContainer);
-        this.divHeight = this.getContainerHeight(this.graphContainer);
-
-        // Fire resize event
-        this.resize$.next(true);
-    }
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ForceGraphComponent.
@@ -237,18 +218,37 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     constructor(private graphVisualizerService: GraphVisualizerService, private prefixPipe: PrefixPipe) {}
 
     /**
+     * HostListener: onResize.
+     *
+     * It redraws the graph when the window is resized.
+     */
+    @HostListener('window:resize') onResize() {
+        // Guard against resize before view is rendered
+        if (!this._graphContainer || !this.queryResultTriples) {
+            return;
+        }
+
+        // Calculate new width & height
+        this._divWidth = this._getContainerWidth(this._graphContainer);
+        this._divHeight = this._getContainerHeight(this._graphContainer);
+
+        // Fire resize event
+        this._resize$.next(true);
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
      * when initializing the component.
      */
     ngOnInit() {
-        // Subscribe to resize subject to redraw on resize with delay until component gets destroyed
-        this.resize$.pipe(debounceTime(150), takeUntil(this.destroy$)).subscribe((event: any) => {
-            this.redraw();
+        // Subscribe to resize subject to _redraw on resize with delay until component gets destroyed
+        this._resize$.pipe(debounceTime(150), takeUntil(this._destroy$)).subscribe((event: any) => {
+            this._redraw();
         });
 
-        this.redraw();
+        this._redraw();
     }
 
     /**
@@ -265,7 +265,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             !changes.queryResultTriples.isFirstChange()
         ) {
             this.queryResultTriples = changes.queryResultTriples.currentValue;
-            this.redraw();
+            this._redraw();
         }
     }
 
@@ -277,11 +277,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @param {string} limitValue The given limit value.
      *
-     * @returns {void} Sets the new limit for the redraw.
+     * @returns {void} Sets the new limit for the _redraw.
      */
     onLimitValueChange(limitValue: number): void {
         this.limit = limitValue;
-        this.redraw();
+        this._redraw();
     }
 
     /**
@@ -293,11 +293,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      * @returns {void} Sets the initial translation and scale factor.
      */
     onReCenter(): void {
-        if (!this.svg || !(this.divWidth && this.divHeight)) {
+        if (!this._svg || !(this._divWidth && this._divHeight)) {
             return;
         }
         this.onZoomChange(this.sliderConfig.initial);
-        this.zoomBehaviour.translateTo(this.svg, this.divWidth / 2, this.divHeight / 2);
+        this._zoomBehaviour.translateTo(this._svg, this._divWidth / 2, this._divHeight / 2);
     }
 
     /**
@@ -311,83 +311,112 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     onZoomChange(newSliderValue: number): void {
         this.sliderConfig.value = newSliderValue;
-        this.reScaleZoom();
+        this._reScaleZoom();
     }
 
     /**
-     * Private method: redraw.
+     * Public method: log.
+     *
+     * It logs a message to the console.
+     *
+     * @param {string} messageString The given message string.
+     * @param {string} messageValue The given message value.
+     *
+     * @returns {void} Logs a message to the console.
+     */
+    log(messageString: string, messageValue: any): void {
+        const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
+        console.log(messageString, value);
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
+
+        // Unsubscribe from the subject itself:
+        this._destroy$.unsubscribe();
+    }
+
+    /**
+     * Private method: _redraw.
      *
      * It redraws the graph.
      *
      * @returns {void} Redraws the graph.
      */
-    private redraw(): void {
+    private _redraw(): void {
         if (this.queryResultTriples) {
-            this.cleanSVG();
-            this.createSVG();
-            this.attachData();
-            this.reScaleZoom();
+            this._cleanSVG();
+            this._createSVG();
+            this._attachData();
+            this._reScaleZoom();
         }
     }
 
     /**
-     * Private method: cleanSVG.
+     * Private method: _cleanSVG.
      *
      * It removes everything from the svg container.
      *
      * @returns {void} Cleans the svg container.
      */
-    private cleanSVG(): void {
+    private _cleanSVG(): void {
         // Remove everything below the SVG element
         d3_selection.selectAll('svg.force-graph > *').remove();
     }
 
     /**
-     * Private method: createSVG.
+     * Private method: _createSVG.
      *
      * It creates the svg container and detects its width and height.
      *
      * @returns {void} Creates the svg container.
      */
-    private createSVG(): void {
-        if (!this.graphContainer) {
+    private _createSVG(): void {
+        if (!this._graphContainer) {
             return;
         }
 
         // Get container width & height
-        this.divWidth = this.divWidth
-            ? this.divWidth
-            : this.getContainerWidth(this.graphContainer)
-            ? this.getContainerWidth(this.graphContainer)
+        this._divWidth = this._divWidth
+            ? this._divWidth
+            : this._getContainerWidth(this._graphContainer)
+            ? this._getContainerWidth(this._graphContainer)
             : 400;
-        this.divHeight = this.height
+        this._divHeight = this.height
             ? this.height
-            : this.getContainerHeight(this.graphContainer)
-            ? this.getContainerHeight(this.graphContainer)
+            : this._getContainerHeight(this._graphContainer)
+            ? this._getContainerHeight(this._graphContainer)
             : 500;
         // Leave some space for icon bar at the top
-        this.divHeight = this.divHeight - 20;
+        this._divHeight = this._divHeight - 20;
 
         // ==================== Add SVG =====================
-        if (!this.svg) {
-            this.svg = d3_selection
-                .select(this.graphContainer.nativeElement)
+        if (!this._svg) {
+            this._svg = d3_selection
+                .select(this._graphContainer.nativeElement)
                 .append('svg')
                 .attr('class', 'force-graph');
         }
-        this.svg.attr('width', this.divWidth).attr('height', this.divHeight);
+        this._svg.attr('width', this._divWidth).attr('height', this._divHeight);
 
         // ==================== Add Encompassing Group for Zoom =====================
-        this.zoomGroup = this.svg.append('g').attr('class', 'zoom-container');
+        this._zoomGroup = this._svg.append('g').attr('class', 'zoom-container');
     }
     /**
-     * Private method: attachData.
+     * Private method: _attachData.
      *
      * It attaches the RDF data to the simulation which is then set up.
      *
      * @returns {void} Attaches the data and sets up the simulation.
      */
-    private attachData(): void {
+    private _attachData(): void {
         // Limit result length
         const triples: Triple[] = this.graphVisualizerService.limitTriples(this.queryResultTriples, this.limit);
 
@@ -396,36 +425,36 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         if (typeof triples === 'string') {
             this.graphVisualizerService.parseTriples(triples).then((data: { triples; namespaces }) => {
                 const abrTriples = this.graphVisualizerService.abbreviateTriples(data.triples, data.namespaces);
-                this.simulationData = this.triplesToD3GraphData(abrTriples);
+                this._simulationData = this._triplesToD3GraphData(abrTriples);
 
-                this.setupForceSimulation();
-                this.updateSVG();
+                this._setupForceSimulation();
+                this._updateSVG();
             });
         } else {
-            this.simulationData = this.triplesToD3GraphData(triples);
+            this._simulationData = this._triplesToD3GraphData(triples);
 
-            this.setupForceSimulation();
-            this.updateSVG();
+            this._setupForceSimulation();
+            this._updateSVG();
         }
     }
 
     /**
-     * Private method: setupForceSimulation.
+     * Private method: _setupForceSimulation.
      *
      * It sets up the force simulation.
      *
      * @returns {void} Sets up the simulation.
      */
-    private setupForceSimulation(): void {
+    private _setupForceSimulation(): void {
         // Set up the simulation
-        this.forceSimulation = d3_force.forceSimulation();
+        this._forceSimulation = d3_force.forceSimulation();
 
         // Create forces
         const chargeForce = d3_force
             .forceManyBody()
-            .strength((d: D3SimulationNode) => this.nodeRadius(d) * FORCES.CHARGE_STRENGTH);
+            .strength((d: D3SimulationNode) => this._nodeRadius(d) * FORCES.CHARGE_STRENGTH);
 
-        const centerForce = d3_force.forceCenter(this.divWidth / 2, this.divHeight / 2);
+        const centerForce = d3_force.forceCenter(this._divWidth / 2, this._divHeight / 2);
 
         const collideForce = d3_force
             .forceCollide()
@@ -436,42 +465,42 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         // Create a custom link force with id accessor to use named sources and targets
         const linkForce = d3_force
             .forceLink()
-            .links(this.simulationData.links)
+            .links(this._simulationData.links)
             .id((d: D3SimulationLink) => d.predicate)
             .distance(FORCES.LINK_DISTANCE);
 
         // Add forces
         // Add a charge to each node, a centering and collision force
-        this.forceSimulation
+        this._forceSimulation
             .force('charge_force', chargeForce)
             .force('center_force', centerForce)
             .force('collide_force', collideForce);
 
         // Add nodes to the simulation
-        this.forceSimulation.nodes(this.simulationData.nodes);
+        this._forceSimulation.nodes(this._simulationData.nodes);
 
         // Add links to the simulation
-        this.forceSimulation.force('links', linkForce);
+        this._forceSimulation.force('links', linkForce);
 
         // Restart simulation
-        this.forceSimulation.alpha(1).restart();
+        this._forceSimulation.alpha(1).restart();
     }
 
     /**
-     * Private method: updateSVG.
+     * Private method: _updateSVG.
      *
      * It populates the svg container with all subjects
      * necessary for the force simulation.
      *
      * @returns {void} Updates the svg container.
      */
-    private updateSVG(): void {
-        if (!this.svg) {
+    private _updateSVG(): void {
+        if (!this._svg) {
             return;
         }
 
         // ==================== Add Marker ====================
-        this.zoomGroup
+        this._zoomGroup
             .append('svg:defs')
             .selectAll('marker')
             .data(['end'])
@@ -488,44 +517,44 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .attr('points', '0,-5 10,0 0,5');
 
         // ==================== Add Links ====================
-        const links: D3Selection = this.zoomGroup
+        const links: D3Selection = this._zoomGroup
             .append('g')
             .attr('class', 'links')
             .selectAll('.link')
-            .data(this.simulationData.nodeTriples)
+            .data(this._simulationData.nodeTriples)
             .enter()
             .append('path')
             .attr('marker-end', 'url(#end)')
             .attr('class', 'link');
 
         // ==================== Add Link Names =====================
-        const linkTexts: D3Selection = this.zoomGroup
+        const linkTexts: D3Selection = this._zoomGroup
             .append('g')
             .attr('class', 'link-texts')
             .selectAll('.link-text')
-            .data(this.simulationData.nodeTriples)
+            .data(this._simulationData.nodeTriples)
             .enter()
             .append('text')
             .attr('class', 'link-text')
             .text((d: D3SimulationNodeTriple) => d.nodePredicate.label);
 
         // ==================== Add Node Names =====================
-        const nodeTexts: D3Selection = this.zoomGroup
+        const nodeTexts: D3Selection = this._zoomGroup
             .append('g')
             .attr('class', 'node-texts')
             .selectAll('.node-text')
-            .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
+            .data(this._filterNodesByType(this._simulationData.nodes, D3SimulationNodeType.node))
             .enter()
             .append('text')
             .attr('class', 'node-text')
             .text((d: D3SimulationNode) => d.label);
 
         // ==================== Add Nodes =====================
-        const nodes: D3Selection = this.zoomGroup
+        const nodes: D3Selection = this._zoomGroup
             .append('g')
             .attr('class', 'nodes')
             .selectAll('.node')
-            .data(this.filterNodesByType(this.simulationData.nodes, D3SimulationNodeType.node))
+            .data(this._filterNodesByType(this._simulationData.nodes, D3SimulationNodeType.node))
             .enter()
             .append('circle')
             // .attr("class", "node")
@@ -558,41 +587,41 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 }
             })
             .on('click', (event: any, d): void => {
-                this.clickedOnNode(event, d);
+                this._clickedOnNode(event, d);
             });
 
         // ==================== FORCES ====================
-        this.forceSimulation.on('tick', () => {
+        this._forceSimulation.on('tick', () => {
             // Update node and link positions each tick of the simulation
-            this.updateNodePositions(nodes);
-            this.updateNodeTextPositions(nodeTexts);
-            this.updateLinkPositions(links);
-            this.updateLinkTextPositions(linkTexts);
+            this._updateNodePositions(nodes);
+            this._updateNodeTextPositions(nodeTexts);
+            this._updateLinkPositions(links);
+            this._updateLinkTextPositions(linkTexts);
         });
 
         // ==================== DRAG ====================
-        this.dragHandler(nodes, this.forceSimulation);
+        this._dragHandler(nodes, this._forceSimulation);
 
         // ==================== ZOOM ====================
-        this.zoomHandler(this.zoomGroup, this.svg);
+        this._zoomHandler(this._zoomGroup, this._svg);
     }
 
     /**
-     * Private method: reScaleZoom.
+     * Private method: _reScaleZoom.
      *
      * It rescales the current zoom with a given slider value.
      *
      * @returns {void} Sets the zoom for the rescale.
      */
-    private reScaleZoom(): void {
-        if (!this.svg || !this.sliderConfig.value) {
+    private _reScaleZoom(): void {
+        if (!this._svg || !this.sliderConfig.value) {
             return;
         }
-        this.zoomBehaviour.scaleTo(this.svg, this.sliderConfig.value);
+        this._zoomBehaviour.scaleTo(this._svg, this.sliderConfig.value);
     }
 
     /**
-     * Private method: checkForRdfType.
+     * Private method: _checkForRdfType.
      *
      * It checks if a given predicate node
      * contains a short or longform of "rdf:type".
@@ -601,7 +630,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {boolean} The result of the check.
      */
-    private checkForRdfType(predicateNode: D3SimulationNode): boolean {
+    private _checkForRdfType(predicateNode: D3SimulationNode): boolean {
         return (
             // Rdf:type
             predicateNode.label === 'a' ||
@@ -611,7 +640,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: clickedOnNode.
+     * Private method: _clickedOnNode.
      *
      * It emits a node the user clicked on.
      *
@@ -620,7 +649,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Emits the node.
      */
-    private clickedOnNode(event: any, d): void {
+    private _clickedOnNode(event: any, d): void {
         if (event.defaultPrevented) {
             return;
         } // Dragged
@@ -629,7 +658,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: dragHandler.
+     * Private method: _dragHandler.
      *
      * It binds a draggable behaviour to a given dragContext (e.g. the nodes).
      *
@@ -638,7 +667,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Sets the drag behaviour.
      */
-    private dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
+    private _dragHandler(dragContext: D3Selection, simulation: D3Simulation): void {
         // Drag functions
         const dragStart = (event: any, d): void => {
             /** Preventing propagation of dragstart to parent elements */
@@ -677,7 +706,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: zoomHandler.
+     * Private method: _zoomHandler.
      *
      * It binds a pan and zoom behaviour to an svg element.
      *
@@ -686,34 +715,34 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Sets the zoom behaviour.
      */
-    private zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
+    private _zoomHandler(zoomContext: D3Selection, svg: D3Selection): void {
         // Perform the zooming
         const zoomed = (event: any): void => {
             const currentTransform = event.transform;
-            const roundedTransformValue = this.roundToNearestScaleStep(currentTransform.k);
+            const roundedTransformValue = this._roundToNearestScaleStep(currentTransform.k);
 
             // Update d3 zoom context
             zoomContext.attr('transform', currentTransform);
 
             // Update view
-            this.sliderInput.nativeElement.value = roundedTransformValue;
+            this._sliderInput.nativeElement.value = roundedTransformValue;
             // Needed because d3 listener does not update ngModel
-            this.sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
+            this._sliderInputLabel.nativeElement.innerText = roundedTransformValue + 'x';
             this.sliderConfig.value = roundedTransformValue;
         };
 
         // Create zoom behaviour
-        this.zoomBehaviour = d3_zoom
+        this._zoomBehaviour = d3_zoom
             .zoom()
             .scaleExtent([this.sliderConfig.min, this.sliderConfig.max])
             .on('zoom', zoomed);
 
         // Apply zoom behaviour
-        svg.call(this.zoomBehaviour);
+        svg.call(this._zoomBehaviour);
     }
 
     /**
-     * Private method: filterNodesById.
+     * Private method: _filterNodesById.
      *
      * It filters an array of simulations nodes by a given id.
      *
@@ -722,12 +751,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {D3SimulationNode} The filtered node.
      */
-    private filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
+    private _filterNodesById(nodes: D3SimulationNode[], id: string): D3SimulationNode {
         return nodes.filter(node => node.id === id)[0];
     }
 
     /**
-     * Private method: filterNodesByType.
+     * Private method: _filterNodesByType.
      *
      * It filters an array of simulations nodes by a given type.
      *
@@ -736,12 +765,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {D3SimulationNode} The filtered node.
      */
-    private filterNodesByType(nodes: D3SimulationNode[], type: D3SimulationNodeType): D3SimulationNode[] {
+    private _filterNodesByType(nodes: D3SimulationNode[], type: D3SimulationNodeType): D3SimulationNode[] {
         return nodes.filter(node => node.type === type);
     }
 
     /**
-     * Private method: getContainerWidth.
+     * Private method: _getContainerWidth.
      *
      * It returns the clientWidth of a given container.
      *
@@ -749,7 +778,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {number} The container width.
      */
-    private getContainerWidth(container: ElementRef): number {
+    private _getContainerWidth(container: ElementRef): number {
         if (!container || !container.nativeElement) {
             return null;
         }
@@ -757,7 +786,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: getContainerHeight.
+     * Private method: _getContainerHeight.
      *
      * It returns the clientHeight of a given container.
      *
@@ -765,7 +794,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {number} The container height.
      */
-    private getContainerHeight(container: ElementRef): number {
+    private _getContainerHeight(container: ElementRef): number {
         if (!container || !container.nativeElement) {
             return null;
         }
@@ -773,7 +802,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: nodeRadius.
+     * Private method: _nodeRadius.
      *
      * It returns the radius of a given node depending on the kind of node.
      *
@@ -781,7 +810,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {number} The radius of the node.
      */
-    private nodeRadius(node: D3SimulationNode): number {
+    private _nodeRadius(node: D3SimulationNode): number {
         if (!node) {
             return null;
         }
@@ -801,19 +830,16 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: roundToNearestScaleStep.
+     * Private method: _roundToNearestScaleStep.
      *
      * It rounds a given value to the nearest value on an input range scale.
      * Cf. https://stackoverflow.com/a/13635455
      *
      * @param {number} value The given value to round.
-     * @param {number} min The given minimum of the scale.
-     * @param {number} max The given maximum of the scale.
-     * @param {number} steps The given scale steps.
      *
      * @returns {number} The rounded value.
      */
-    private roundToNearestScaleStep(value: number): number {
+    private _roundToNearestScaleStep(value: number): number {
         const steps = this.sliderConfig.step;
 
         // Count decimals of a given value
@@ -838,7 +864,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: triplesToD3GraphData.
+     * Private method: _triplesToD3GraphData.
      *
      * It calculates the D3 simulation data from an array of triples.
      *
@@ -846,7 +872,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {D3SimulationData} The D3 graph data.
      */
-    private triplesToD3GraphData(triples: Triple[]): D3SimulationData {
+    private _triplesToD3GraphData(triples: Triple[]): D3SimulationData {
         if (!triples) {
             return;
         }
@@ -868,8 +894,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             const predNode: D3SimulationNode = new D3SimulationNode(predId, D3SimulationNodeType.link);
             graphData.nodes.push(predNode);
 
-            let subjNode: D3SimulationNode = this.filterNodesById(graphData.nodes, subjId);
-            let objNode: D3SimulationNode = this.filterNodesById(graphData.nodes, objId);
+            let subjNode: D3SimulationNode = this._filterNodesById(graphData.nodes, subjId);
+            let objNode: D3SimulationNode = this._filterNodesById(graphData.nodes, objId);
 
             if (subjNode == null) {
                 subjNode = new D3SimulationNode(subjId, D3SimulationNodeType.node);
@@ -886,10 +912,10 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             // Check if predicate is "rdf:type"
             // Then subjNode is an instance and objNode is a Class
             if (subjNode.instance === false) {
-                subjNode.instance = this.checkForRdfType(predNode);
+                subjNode.instance = this._checkForRdfType(predNode);
             }
             if (objNode.owlClass === false) {
-                objNode.owlClass = this.checkForRdfType(predNode);
+                objNode.owlClass = this._checkForRdfType(predNode);
             }
 
             graphData.links.push(new D3SimulationLink(subjNode, predNode));
@@ -902,7 +928,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: updateNodePositions.
+     * Private method: _updateNodePositions.
      *
      * It updates the positions of the nodes
      * on a force simulation's tick.
@@ -911,7 +937,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Updates the position.
      */
-    private updateNodePositions(nodes: D3Selection): void {
+    private _updateNodePositions(nodes: D3Selection): void {
         nodes.attr('cx', (d: D3SimulationNode) => d.x).attr('cy', (d: D3SimulationNode) => d.y);
 
         /*/ / constrains the nodes to be within a box
@@ -919,17 +945,17 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .attr(
                 'cx',
                 (d: D3SimulationNode) =>
-                    (d.x = Math.max(this.nodeRadius(d), Math.min(this.divWidth - this.nodeRadius(d), d.x)))
+                    (d.x = Math.max(this._nodeRadius(d), Math.min(this._divWidth - this._nodeRadius(d), d.x)))
             )
             .attr(
                 'cy',
                 (d: D3SimulationNode) =>
-                    (d.y = Math.max(this.nodeRadius(d), Math.min(this.divHeight - this.nodeRadius(d), d.y)))
+                    (d.y = Math.max(this._nodeRadius(d), Math.min(this._divHeight - this._nodeRadius(d), d.y)))
             );*/
     }
 
     /**
-     * Private method: updateNodeTextPositions.
+     * Private method: _updateNodeTextPositions.
      *
      * It updates the positions of the nodeTexts
      * on a force simulation's tick.
@@ -938,12 +964,12 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Updates the position.
      */
-    private updateNodeTextPositions(nodeTexts: D3Selection): void {
+    private _updateNodeTextPositions(nodeTexts: D3Selection): void {
         nodeTexts.attr('x', (d: D3SimulationNode) => d.x + 12).attr('y', (d: D3SimulationNode) => d.y + 3);
     }
 
     /**
-     * Private method: updateLinkPositions.
+     * Private method: _updateLinkPositions.
      *
      * It updates the positions of the links
      * on a force simulation's tick.
@@ -952,7 +978,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Updates the position.
      */
-    private updateLinkPositions(links: D3Selection): void {
+    private _updateLinkPositions(links: D3Selection): void {
         links.attr(
             'd',
             (d: D3SimulationNodeTriple) =>
@@ -972,7 +998,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     }
 
     /**
-     * Private method: updateLinkTextPositions.
+     * Private method: _updateLinkTextPositions.
      *
      * It updates the positions of the link texts
      * on a force simulation's tick.
@@ -981,38 +1007,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * @returns {void} Updates the position.
      */
-    private updateLinkTextPositions(linkTexts: D3Selection): void {
+    private _updateLinkTextPositions(linkTexts: D3Selection): void {
         linkTexts
             .attr('x', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
             .attr('y', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
-    }
-
-    /**
-     * Public method: log.
-     *
-     * It logs a message to the console.
-     *
-     * @param {string} messageString The given message string.
-     * @param {string} messageValue The given message value.
-     *
-     * @returns {void} Logs a message to the console.
-     */
-    log(messageString: string, messageValue: any): void {
-        const value = messageValue ? JSON.parse(JSON.stringify(messageValue)) : messageValue;
-        console.log(messageString, value);
-    }
-
-    /**
-     * Angular life cycle hook: ngOnDestroy.
-     *
-     * It calls the containing methods
-     * when destroying the component.
-     */
-    ngOnDestroy() {
-        // Emit truthy value to end all subscriptions
-        this.destroy$.next(true);
-
-        // Unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
     }
 }

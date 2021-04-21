@@ -12,10 +12,10 @@ export class EditionWorks {
     /**
      * An EditionWork object for Opus 12.
      */
-    static readonly op12: EditionWork = new EditionWork(
+    static readonly OP12: EditionWork = new EditionWork(
         {
             title: 'Vier Lieder',
-            catalogueType: EditionConstants.opus,
+            catalogueType: EditionConstants.OPUS,
             catalogueNumber: '12'
         },
         {
@@ -32,18 +32,18 @@ export class EditionWorks {
             short: '',
             full: ''
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     );
 
     /**
      * An EditionWork object for Opus 25.
      */
-    static readonly op25: EditionWork = new EditionWork(
+    static readonly OP25: EditionWork = new EditionWork(
         {
             title: 'Drei Lieder nach Gedichten von Hildegard Jone',
-            catalogueType: EditionConstants.opus,
+            catalogueType: EditionConstants.OPUS,
             catalogueNumber: '25'
         },
         {
@@ -60,8 +60,8 @@ export class EditionWorks {
             short: '',
             full: ''
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     );
 }

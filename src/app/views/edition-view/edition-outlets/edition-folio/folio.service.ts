@@ -14,7 +14,7 @@ import {
  *
  * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
  */
-declare var Snap: any;
+declare let Snap: any;
 
 /**
  * The Folio service.
@@ -36,12 +36,12 @@ export class FolioService {
     ref: any;
 
     /**
-     * Private variable: itemsOffsetCorrection.
+     * Private variable: _itemsOffsetCorrection.
      *
      * It corrects the offset (in px) to avoid
      * border collision between rendered svg items.
      */
-    private itemsOffsetCorrection = 4;
+    private _itemsOffsetCorrection = 4;
 
     /**
      * Public method: getFolioSvgData.
@@ -55,7 +55,7 @@ export class FolioService {
      */
     getFolioSvgData(folioSettings: FolioSettings, folio: Folio): FolioSvgData {
         // Calculate values for svg
-        const calculation = new FolioCalculation(folioSettings, folio, this.itemsOffsetCorrection);
+        const calculation = new FolioCalculation(folioSettings, folio, this._itemsOffsetCorrection);
 
         // Get svg data from calculation
         return new FolioSvgData(calculation);
@@ -110,21 +110,21 @@ export class FolioService {
         /**
          * Draw sheet.
          */
-        this.addFolioSheetToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
+        this._addFolioSheetToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
 
         /**
          * Draw systems.
          */
-        this.addFolioSystemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
+        this._addFolioSystemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, bgColor);
 
         /**
          * Draw items.
          */
-        this.addFolioItemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, fgColor);
+        this._addFolioItemsToSnapSvgCanvas(snapCanvas, snapSheetGroup, folioSvg, fgColor);
     }
 
     /**
-     * Private method: addFolioSheetToSnapSvgCanvas.
+     * Private method: _addFolioSheetToSnapSvgCanvas.
      *
      * It adds the folio's sheet from the calculated
      * folio svg data to the folio svg object (SnapCanvas).
@@ -135,7 +135,7 @@ export class FolioService {
      * @param {string} bgColor The given background color.
      * @returns {void} Adds the sheet to the Snap canvas svg object.
      */
-    private addFolioSheetToSnapSvgCanvas(
+    private _addFolioSheetToSnapSvgCanvas(
         snapCanvas: any,
         snapSheetGroup: any,
         folioSvg: FolioSvgData,
@@ -173,7 +173,7 @@ export class FolioService {
     }
 
     /**
-     * Private method: addFolioSystemsToSnapSvgCanvas.
+     * Private method: _addFolioSystemsToSnapSvgCanvas.
      *
      * It adds the folio's systems from the calculated
      * folio svg data to the folio svg object (SnapCanvas).
@@ -184,7 +184,7 @@ export class FolioService {
      * @param {string} bgColor The given background color.
      * @returns {void} Adds the systems to the Snap canvas svg object.
      */
-    private addFolioSystemsToSnapSvgCanvas(
+    private _addFolioSystemsToSnapSvgCanvas(
         snapCanvas: any,
         snapSheetGroup: any,
         folioSvg: FolioSvgData,
@@ -241,7 +241,7 @@ export class FolioService {
     }
 
     /**
-     * Private method: addFolioItemsToSnapSvgCanvas.
+     * Private method: _addFolioItemsToSnapSvgCanvas.
      *
      * It adds the folio's items from the calculated
      * folio svg data to the folio svg object (SnapCanvas).
@@ -252,7 +252,7 @@ export class FolioService {
      * @param {string} fgColor The given foreground color.
      * @returns {void} Adds the items to the Snap canvas svg object.
      */
-    private addFolioItemsToSnapSvgCanvas(
+    private _addFolioItemsToSnapSvgCanvas(
         snapCanvas: any,
         snapSheetGroup: any,
         folioSvg: FolioSvgData,

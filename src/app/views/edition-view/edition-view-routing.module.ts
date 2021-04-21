@@ -25,28 +25,28 @@ const editionViewRoutes: Routes = [
                         component: EditionOverviewComponent,
                         children: [
                             {
-                                path: EditionConstants.editionIntro.route,
+                                path: EditionConstants.EDITION_INTRO.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-intro/edition-intro.module').then(
                                         m => m.EditionIntroModule
                                     )
                             },
                             {
-                                path: EditionConstants.editionDetail.route,
+                                path: EditionConstants.EDITION_DETAIL.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-detail/edition-detail.module').then(
                                         m => m.EditionDetailModule
                                     )
                             },
                             {
-                                path: EditionConstants.editionReport.route,
+                                path: EditionConstants.EDITION_REPORT.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-report/edition-report.module').then(
                                         m => m.EditionReportModule
                                     )
                             },
                             {
-                                path: EditionConstants.editionGraph.route,
+                                path: EditionConstants.EDITION_GRAPH.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-graph/edition-graph.module').then(
                                         m => m.EditionGraphModule
@@ -54,7 +54,7 @@ const editionViewRoutes: Routes = [
                             },
                             {
                                 path: '',
-                                redirectTo: '/' + EditionConstants.editionIntro.route,
+                                redirectTo: '/' + EditionConstants.EDITION_INTRO.route,
                                 pathMatch: 'full'
                             }
                         ]

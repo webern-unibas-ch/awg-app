@@ -174,7 +174,7 @@ export class GraphVisualizerComponent implements OnInit {
         // Perform only construct queries for now
         if (this.queryType === 'construct') {
             // Query local store
-            const result = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+            const result = this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
             this.queryResult = from(result);
         } else {
             this.queryResult = EMPTY;
@@ -237,7 +237,7 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Private method: queryLocalStore
+     * Private method: _queryLocalStore
      *
      * It performs a query against the local rdfstore.
      *
@@ -247,7 +247,7 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {Promise<Triple[]>} The result of the query as an promise of triple array.
      */
-    private async queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
+    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
         // Capture start time of query
         const t1 = Date.now();
 
@@ -271,7 +271,7 @@ export class GraphVisualizerComponent implements OnInit {
 
             // Capture query time
             this.queryTime = Date.now() - t1;
-            // Console.log('QUERYTIME:', this.queryTime);
+            // console.log('QUERYTIME:', this.queryTime);
 
             result = [];
         }

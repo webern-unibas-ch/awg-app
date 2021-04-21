@@ -59,30 +59,30 @@ describe('EditionOverviewComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // Test data
-        expectedEditionWork = EditionWorks.op12;
+        expectedEditionWork = EditionWorks.OP12;
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.introRoute.route,
-                EditionConstants.editionIntro.short,
+                EditionConstants.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.detailRoute.route,
-                EditionConstants.editionDetail.short,
+                EditionConstants.EDITION_DETAIL.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.reportRoute.route,
-                EditionConstants.editionReport.short,
+                EditionConstants.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.graphRoute.route,
-                EditionConstants.editionGraph.short,
+                EditionConstants.EDITION_GRAPH.short,
                 false
             )
         ];

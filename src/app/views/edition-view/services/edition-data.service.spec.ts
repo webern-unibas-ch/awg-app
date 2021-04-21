@@ -43,9 +43,9 @@ describe('EditionDataService (DONE)', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    const expectedEditionWork: EditionWork = EditionWorks.op12;
+    const expectedEditionWork: EditionWork = EditionWorks.OP12;
 
-    const assets = EditionConstants.editionAssets;
+    const assets = EditionConstants.EDITION_ASSETS;
     const expectedWorkRoute =
         expectedEditionWork.series.route + expectedEditionWork.section.route + expectedEditionWork.work.route;
     const expectedAssetWorkPathBaseRoute = assets.baseRoute;

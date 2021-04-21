@@ -435,11 +435,11 @@ export class FolioCalculation {
         this.numberOfSystems = folioData.systems ? parseInt(folioData.systems, 10) : 0;
         this.zoomFactor = folioSettings.factor;
 
-        this.calculateFolio(folioSettings, folioData);
+        this._calculateFolio(folioSettings, folioData);
     }
 
     /**
-     * Private method: calculateFolio.
+     * Private method: _calculateFolio.
      *
      * It calls the calculation methods for the sheet,
      * systems and contentItemsArray of a folio.
@@ -449,14 +449,14 @@ export class FolioCalculation {
      *
      * @returns {void} Sets the sheet, systems and contentItemsArray variables.
      */
-    private calculateFolio(folioSettings: FolioSettings, folioData: Folio): void {
-        this.sheet = this.calculateSheet(folioSettings, folioData.folioId);
-        this.systems = this.calculateSystems();
-        this.contentItemsArray = this.calculateContentArray(folioData.content);
+    private _calculateFolio(folioSettings: FolioSettings, folioData: Folio): void {
+        this.sheet = this._calculateSheet(folioSettings, folioData.folioId);
+        this.systems = this._calculateSystems();
+        this.contentItemsArray = this._calculateContentArray(folioData.content);
     }
 
     /**
-     * Private method: calculateSheet.
+     * Private method: _calculateSheet.
      *
      * It returns a FolioCalculationSheet class that provides
      * all the calculated values for the sheet of a folio.
@@ -466,19 +466,19 @@ export class FolioCalculation {
      *
      * @returns {FolioCalculationSheet} The calculated sheet.
      */
-    private calculateSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
+    private _calculateSheet(folioSettings: FolioSettings, folioId: string): FolioCalculationSheet {
         return new FolioCalculationSheet(folioSettings, folioId);
     }
 
     /**
-     * Private method: calculateSystems.
+     * Private method: _calculateSystems.
      *
      * It returns a FolioCalculationSystems class that provides
      * all the calculated values for the systems of a folio.
      *
      * @returns {FolioCalculationSystems} The calculated systems.
      */
-    private calculateSystems(): FolioCalculationSystems {
+    private _calculateSystems(): FolioCalculationSystems {
         // Init
         const calculatedSystems = new FolioCalculationSystems();
 
@@ -486,8 +486,8 @@ export class FolioCalculation {
         calculatedSystems.labelOffsetCorrection = 4 / this.zoomFactor; // OffsetCorrection for system line labels dependent from zoom factor
 
         // X-values
-        calculatedSystems.leftMargin = this.round(this.sheet.width / 6, 2); // Reserve 1/6 of sheetWidth for left margin
-        calculatedSystems.rightMargin = this.round(calculatedSystems.leftMargin * 0.5, 2); // Right margin is 1/2 leftMargin
+        calculatedSystems.leftMargin = this._round(this.sheet.width / 6, 2); // Reserve 1/6 of sheetWidth for left margin
+        calculatedSystems.rightMargin = this._round(calculatedSystems.leftMargin * 0.5, 2); // Right margin is 1/2 leftMargin
         calculatedSystems.margins = calculatedSystems.leftMargin + calculatedSystems.rightMargin; // Outer margins
 
         calculatedSystems.width = this.sheet.width - calculatedSystems.margins; // Sheet width minus outer margins
@@ -495,11 +495,11 @@ export class FolioCalculation {
         calculatedSystems.endX = calculatedSystems.startX + calculatedSystems.width; // Begin of system plus its width
 
         // Y-values
-        calculatedSystems.upperMargin = this.round(this.sheet.height / (this.numberOfSystems + 2), 2); // Reserve (1 / numberOfSystems plus two empty lines) of sheetHeight as offset
+        calculatedSystems.upperMargin = this._round(this.sheet.height / (this.numberOfSystems + 2), 2); // Reserve (1 / numberOfSystems plus two empty lines) of sheetHeight as offset
         calculatedSystems.startY = this.sheet.upperLeftCorner.y + calculatedSystems.upperMargin; // Begin of sheet plus upper margin
 
         // Get y values for systems
-        calculatedSystems.yArray = this.getSystemYArray(calculatedSystems.upperMargin, calculatedSystems.startY);
+        calculatedSystems.yArray = this._getSystemYArray(calculatedSystems.upperMargin, calculatedSystems.startY);
 
         // System lines
         calculatedSystems.lineArrays = calculatedSystems.yArray.map(lineArray =>
@@ -513,7 +513,7 @@ export class FolioCalculation {
         ); // Line is the y value
 
         // System numbers (labels)
-        calculatedSystems.labelStartX = this.round(
+        calculatedSystems.labelStartX = this._round(
             calculatedSystems.startX - (calculatedSystems.leftMargin * 3) / 4,
             2
         ); // Place numbers 3/4 of left margin in front of system
@@ -532,14 +532,14 @@ export class FolioCalculation {
     }
 
     /**
-     * Private method: calculateContentArray.
+     * Private method: _calculateContentArray.
      *
      * It provides all the calculated values for the content items of a folio.
      *
      * @param {FolioContent[]} contents The given folio contents.
      * @returns {FolioCalculationContentItem[]} The array of the calculated content items.
      */
-    private calculateContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
+    private _calculateContentArray(contents: FolioContent[]): FolioCalculationContentItem[] {
         // Init
         const calculatedContentItems: FolioCalculationContentItem[] = [];
 
@@ -572,10 +572,10 @@ export class FolioCalculation {
                 // Iterate over sections
                 content.sections.forEach((section: FolioSection, sectionIndex: number) => {
                     // Set section cache
-                    this.setContentItemSectionCache(calculatedContentItem, section);
+                    this._setContentItemSectionCache(calculatedContentItem, section);
 
                     // Set main values for item
-                    this.setContentItemMainValues(calculatedContentItem, section, sectionPartition, content);
+                    this._setContentItemMainValues(calculatedContentItem, section, sectionPartition, content);
 
                     // Set item corner points
                     calculatedContentItem.current.cornerPoints = new FolioCalculationContentItemCornerPoints(
@@ -583,7 +583,7 @@ export class FolioCalculation {
                     );
 
                     // Set item lines
-                    calculatedContentItem.lineArray = this.setContentItemLineArray(
+                    calculatedContentItem.lineArray = this._setContentItemLineArray(
                         calculatedContentItem,
                         sectionsLength,
                         sectionIndex,
@@ -610,7 +610,7 @@ export class FolioCalculation {
     }
 
     /**
-     * Private helper method for calculateContentArray: setContentItemMainValues.
+     * Private helper method for _calculateContentArray: _setContentItemMainValues.
      *
      * It calculates the main values for the content items of a folio.
      *
@@ -620,7 +620,7 @@ export class FolioCalculation {
      * @param {FolioContent} item The given folio content.
      * @returns {void} Calculates and sets the main values of the calculatedContentItem.
      */
-    private setContentItemMainValues(
+    private _setContentItemMainValues(
         calculatedContentItem: FolioCalculationContentItem,
         section: FolioSection,
         sectionPartition: number,
@@ -631,12 +631,12 @@ export class FolioCalculation {
         }
 
         // ItemsWidth
-        calculatedContentItem.widthWithOffset = this.round(this.systems.width / sectionPartition, 2);
+        calculatedContentItem.widthWithOffset = this._round(this.systems.width / sectionPartition, 2);
         calculatedContentItem.width = calculatedContentItem.widthWithOffset - this.itemsOffsetCorrection; // OffsetCorrection to avoid horizontal collision between items
 
         // ItemsHeight
         calculatedContentItem.systemRange = section.endSystem - section.startSystem + 1;
-        calculatedContentItem.height = this.round(
+        calculatedContentItem.height = this._round(
             this.systems.upperMargin * calculatedContentItem.systemRange - this.itemsOffsetCorrection,
             2
         ); // OffsetCorrection to avoid vertical collision between items
@@ -665,27 +665,27 @@ export class FolioCalculation {
         // ItemsStartX
         // WidthWithOffset * startXIndex
         // Add half the offsetCorrection to systemStartX to center items
-        calculatedContentItem.startX = this.getContentItemStart(
+        calculatedContentItem.startX = this._getContentItemStart(
             calculatedContentItem.widthWithOffset,
             calculatedContentItem.startXIndex,
             this.systems.startX,
             this.itemsOffsetCorrection / 2
         );
-        calculatedContentItem.endX = this.round(calculatedContentItem.startX + calculatedContentItem.width, 2);
+        calculatedContentItem.endX = this._round(calculatedContentItem.startX + calculatedContentItem.width, 2);
 
         // ItemsStartY
         // Subtract half the offsetCorrection from systemStartY to center items
-        calculatedContentItem.startY = this.getContentItemStart(
+        calculatedContentItem.startY = this._getContentItemStart(
             this.systems.upperMargin,
             calculatedContentItem.startYIndex,
             this.systems.startY,
             -this.itemsOffsetCorrection / 2
         );
-        calculatedContentItem.endY = this.round(calculatedContentItem.startY + calculatedContentItem.height, 2);
+        calculatedContentItem.endY = this._round(calculatedContentItem.startY + calculatedContentItem.height, 2);
     }
 
     /**
-     * Private helper method for calculateContentArray: setContentItemSectionCache.
+     * Private helper method for _calculateContentArray: _setContentItemSectionCache.
      *
      * It caches the current and previous section of a calculated content item.
      *
@@ -693,7 +693,7 @@ export class FolioCalculation {
      * @param {FolioSection} section The given section.
      * @returns {void} Caches the current and previous section of the calculatedContentItem.
      */
-    private setContentItemSectionCache(
+    private _setContentItemSectionCache(
         calculatedContentItem: FolioCalculationContentItem,
         section: FolioSection
     ): void {
@@ -709,7 +709,7 @@ export class FolioCalculation {
     }
 
     /**
-     * Private helper method for calculateContentArray: setContentItemLineArray.
+     * Private helper method for _calculateContentArray: _setContentItemLineArray.
      *
      * It calculates the line array for the content items of a folio.
      *
@@ -719,7 +719,7 @@ export class FolioCalculation {
      * @param {number} sectionPartition The given section partition.
      * @returns {FolioCalculationLine[]} The calculated line array.
      */
-    private setContentItemLineArray(
+    private _setContentItemLineArray(
         calculatedContentItem: FolioCalculationContentItem,
         sectionsLength: number,
         sectionIndex: number,
@@ -745,8 +745,8 @@ export class FolioCalculation {
                 // First item part
 
                 // Offset correction
-                this.setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
-                this.setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
 
                 // Add upper & lower horizontal & left vertical line to line array
                 lines.push('uH', 'lH', 'lV');
@@ -754,31 +754,31 @@ export class FolioCalculation {
                 // Last item part
 
                 // Offset correction
-                this.setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
-                this.setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
 
                 // Add upper & lower horizontal & right vertical line to line array
                 lines.push('uH', 'lH', 'rV');
 
                 // Check for connector
                 if (sectionIndex > 0) {
-                    this.checkForConnectorLine(calculatedContentItem, lineArray);
+                    this._checkForConnectorLine(calculatedContentItem, lineArray);
                 }
             } else if (sectionIndex > 0 && sectionIndex < sectionPartition - 1) {
                 // Middle item part
 
                 // Offset correction
-                this.setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
-                this.setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
-                this.setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
-                this.setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.upperRightCorner, correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.lowerRightCorner, correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.upperLeftCorner, -correctionValue);
+                this._setContentItemOffsetCorrection(cornerPoints.lowerLeftCorner, -correctionValue);
 
                 // Add upper and lower horizontal line to line array
                 lines.push('uH', 'lH');
 
                 // Check for connector
                 if (sectionIndex > 0) {
-                    this.checkForConnectorLine(calculatedContentItem, lineArray);
+                    this._checkForConnectorLine(calculatedContentItem, lineArray);
                 }
             }
         }
@@ -819,7 +819,7 @@ export class FolioCalculation {
     }
 
     /**
-     * Private helper method for calculateContentArray: checkForConnectorLine.
+     * Private helper method for _calculateContentArray: _checkForConnectorLine.
      *
      * It calculates the connector lines for the content items of a folio.
      *
@@ -827,7 +827,7 @@ export class FolioCalculation {
      * @param {number} lineArray The given calculated line array.
      * @returns {void} Sets the connector lines of the calculatedContentItem..
      */
-    private checkForConnectorLine(
+    private _checkForConnectorLine(
         calculatedContentItem: FolioCalculationContentItem,
         lineArray: FolioCalculationLine[]
     ): void {
@@ -864,7 +864,7 @@ export class FolioCalculation {
     }
 
     /**
-     * Private helper method for calculateContentArray: setContentItemOffsetCorrection.
+     * Private helper method for _calculateContentArray: _setContentItemOffsetCorrection.
      *
      * It sets the offsetCorrection for a calculated point of a content item of a folio.
      *
@@ -872,12 +872,12 @@ export class FolioCalculation {
      * @param {number} correctionX The given correction value for x (in px).
      * @returns {void} Sets the offsetCorrection for a calculatedContentItem.
      */
-    private setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
+    private _setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
         cornerPoint = cornerPoint.add(correctionX, 0);
     }
 
     /**
-     * Private helper method for calculateContentArray: getContentItemStart.
+     * Private helper method for _calculateContentArray: _getContentItemStart.
      *
      * It calculates the start position of a content item of a folio.
      *
@@ -888,16 +888,21 @@ export class FolioCalculation {
      * @param {number} [offsetCorrection] The optional given offset correction value (mostly needed to center items).
      * @returns {number} The start position for a calculatedContentItem.
      */
-    private getContentItemStart(offset: number, index: number, systemStart: number, offsetCorrection?: number): number {
+    private _getContentItemStart(
+        offset: number,
+        index: number,
+        systemStart: number,
+        offsetCorrection?: number
+    ): number {
         let itemValue = systemStart + offset * index;
         if (offsetCorrection) {
             itemValue += offsetCorrection;
         }
-        return this.round(parseFloat(itemValue.toString()), 2);
+        return this._round(parseFloat(itemValue.toString()), 2);
     }
 
     /**
-     * Private helper method for calculateSystems: getSystemYArray.
+     * Private helper method for _calculateSystems: _getSystemYArray.
      *
      * It calculates the array of start positions of the systems of a folio.
      *
@@ -906,26 +911,26 @@ export class FolioCalculation {
      * @param {number} [offsetCorrection] The optional given offset correction value (mostly needed to center items).
      * @returns {number[][]} The array of start position arrays (Y values) for the calculatedSystems.
      */
-    private getSystemYArray(offset: number, systemStartY: number, offsetCorrection?: number): number[][] {
+    private _getSystemYArray(offset: number, systemStartY: number, offsetCorrection?: number): number[][] {
         const arr = [];
         // Iterate over systems and get their start position
         for (let i = 0; i < this.numberOfSystems; i++) {
             // Use the same method as for items to populate the systems array
-            const yStartValue = this.getContentItemStart(offset, i, systemStartY, offsetCorrection);
-            arr[i] = this.getSystemLineArray(yStartValue);
+            const yStartValue = this._getContentItemStart(offset, i, systemStartY, offsetCorrection);
+            arr[i] = this._getSystemLineArray(yStartValue);
         }
         return arr;
     }
 
     /**
-     * Private helper method for calculateSystems: getSystemLineArray.
+     * Private helper method for _calculateSystems: _getSystemLineArray.
      *
      * It calculates the start position of the lines per system of a folio.
      *
      * @param {number} y The Y start value of the first line of a system.
      * @returns {number[]} The start position array (Y values) of a system.
      */
-    private getSystemLineArray(y: number): number[] {
+    private _getSystemLineArray(y: number): number[] {
         if (!y) {
             return;
         }
@@ -941,7 +946,7 @@ export class FolioCalculation {
     }
 
     /**
-     * Private helper method for folio calculation model: round.
+     * Private helper method for folio calculation model: _round.
      *
      * It rounds a given number to a given number of decimal places.
      * JS in-built round-method is sometimes not correct,
@@ -951,7 +956,7 @@ export class FolioCalculation {
      * @param {number} decimals The number of decimal places to round to.
      * @returns {number} The rounded number.
      */
-    private round(value: number, decimals: number): number {
+    private _round(value: number, decimals: number): number {
         if (Number.isNaN(value)) {
             return;
         }

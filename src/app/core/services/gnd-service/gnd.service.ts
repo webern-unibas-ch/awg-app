@@ -78,7 +78,7 @@ export class GndService extends StorageService {
      */
     readonly currentLocation = {
         getOrigin: (location: Location) =>
-            // Console.info('got location', location);
+            // console.info('got location', location);
             location.origin
     };
 

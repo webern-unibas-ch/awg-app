@@ -75,13 +75,13 @@ export class EditionGraphComponent implements OnInit {
     editionGraphData$: Observable<GraphList | never>;
 
     /**
-     * Readonly constant: graphImages.
+     * Readonly constant: GRAPH_IMAGES.
      *
      * It keeps the paths to static graph images.
      */
-    readonly graphImages = {
+    readonly GRAPH_IMAGES = {
         op12: '',
-        op25: EditionConstants.graphImageOp25.route
+        op25: EditionConstants.GRAPH_IMAGE_OP25.route
     };
 
     /**
@@ -95,21 +95,6 @@ export class EditionGraphComponent implements OnInit {
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionGraphComponent;
-
-    /**
-     * HostListener: document:fullscreenchange.
-     *
-     * It listens for fullscreen exit with ESC key.
-     */
-    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-        if (
-            !this.document.fullscreenElement && // Alternative standard method
-            !this.document.mozFullScreenElement &&
-            !this.document.webkitFullscreenElement
-        ) {
-            this.isFullscreen = false;
-        }
-    }
 
     /**
      * Constructor of the EditionGraphComponent.
@@ -127,6 +112,21 @@ export class EditionGraphComponent implements OnInit {
         @Inject(DOCUMENT) private document: any
     ) {
         this.ref = this;
+    }
+
+    /**
+     * HostListener: document:fullscreenchange.
+     *
+     * It listens for fullscreen exit with ESC key.
+     */
+    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        if (
+            !this.document.fullscreenElement && // Alternative standard method
+            !this.document.mozFullScreenElement &&
+            !this.document.webkitFullscreenElement
+        ) {
+            this.isFullscreen = false;
+        }
     }
 
     /**
