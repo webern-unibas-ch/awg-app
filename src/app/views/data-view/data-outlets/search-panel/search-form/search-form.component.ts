@@ -115,11 +115,11 @@ export class SearchFormComponent implements OnChanges {
     listenToUserInputChange(): void {
         this.searchValueControl.valueChanges
             .pipe(
-                // at least 3 characters
+                // At least 3 characters
                 filter(x => x.length >= 3),
-                // do not check changes before half a second
+                // Do not check changes before half a second
                 debounceTime(500),
-                // do not check unchanged values
+                // Do not check unchanged values
                 distinctUntilChanged()
             )
             .subscribe((query: string) => this.onSearch(query));

@@ -28,7 +28,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 
 import { EditionGraphComponent } from './edition-graph.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-graph-visualizer', template: '' })
 class GraphVisualizerStubComponent {
     @Input()
@@ -67,17 +67,13 @@ describe('EditionGraphComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // mocked editionDataService
+            // Mocked editionDataService
             mockEditionDataService = {
-                getEditionGraphData: (editionWork: EditionWork): Observable<GraphList> => {
-                    return observableOf();
-                }
+                getEditionGraphData: (editionWork: EditionWork): Observable<GraphList> => observableOf()
             };
-            // mocked editionService
+            // Mocked editionService
             mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> => {
-                    return observableOf();
-                }
+                getEditionWork: (): Observable<EditionWork> => observableOf()
             };
 
             TestBed.configureTestingModule({
@@ -101,11 +97,11 @@ describe('EditionGraphComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // inject service from root
+        // Inject service from root
         editionDataService = TestBed.inject(EditionDataService);
         editionService = TestBed.inject(EditionService);
 
-        // testData (default)
+        // TestData (default)
         expectedEditionWork = EditionWorks.op12;
 
         expectedEditionGraphDataOp12 = new GraphList();
@@ -120,7 +116,7 @@ describe('EditionGraphComponent (DONE)', () => {
         expectedEditionGraphDataOp25.graph[0].id = 'test-graph-id-op25';
         expectedEditionGraphDataOp25.graph[0].description = ['Description for test-graph-id-op25'];
 
-        // spies on component methods
+        // Spies on component methods
         compGetEditonGraphDataSpy = spyOn(component, 'getEditionGraphData').and.callThrough();
 
         editionServiceGetEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.callThrough();
@@ -162,22 +158,22 @@ describe('EditionGraphComponent (DONE)', () => {
             expect(component.graphImages).toBeTruthy();
 
             expect(component.graphImages.op12).toBeDefined();
-            expect(component.graphImages.op12).not.toBeTruthy(`should be empty string`);
+            expect(component.graphImages.op12).not.toBeTruthy('should be empty string');
 
             expect(component.graphImages.op25).toBeTruthy();
             expect(component.graphImages.op25).toBe(EditionConstants.graphImageOp25.route);
         });
 
         it('... should have `errorObject` = null', () => {
-            expect(component.errorObject).toBeNull(`should be null`);
+            expect(component.errorObject).toBeNull('should be null');
         });
 
         it('... should not have `editionWork`', () => {
-            expect(component.editionWork).toBeUndefined(`should be undefined`);
+            expect(component.editionWork).toBeUndefined('should be undefined');
         });
 
         it('... should not have `editionGraphData$`', () => {
-            expect(component.editionGraphData$).toBeUndefined(`should be undefined`);
+            expect(component.editionGraphData$).toBeUndefined('should be undefined');
         });
 
         it('... should not have called `getEditionGraphData()`', () => {
@@ -209,7 +205,7 @@ describe('EditionGraphComponent (DONE)', () => {
         beforeEach(() => {
             editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op12));
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -233,12 +229,12 @@ describe('EditionGraphComponent (DONE)', () => {
                 '... should update editionWork when editionService emits changed value',
                 waitForAsync(async () => {
                     // ----------------
-                    // change to op. 25
+                    // Change to op. 25
                     editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op25));
 
-                    // init new switchMap
+                    // Init new switchMap
                     component.getEditionGraphData();
-                    // apply changes
+                    // Apply changes
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(editionServiceGetEditionWorkSpy, 2);
@@ -260,13 +256,13 @@ describe('EditionGraphComponent (DONE)', () => {
                 '... should re-trigger editionDataService.getEditionGraph with updated editionWork',
                 waitForAsync(async () => {
                     // ----------------
-                    // change to op. 25
-                    // expectedEditionWork = EditionWorks.op25;
+                    // Change to op. 25
+                    // ExpectedEditionWork = EditionWorks.op25;
                     editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op25));
 
-                    // init new switchMap
+                    // Init new switchMap
                     component.getEditionGraphData();
-                    // apply changes
+                    // Apply changes
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(editionServiceGetEditionWorkSpy, 2);
@@ -295,13 +291,13 @@ describe('EditionGraphComponent (DONE)', () => {
                     expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 1, expectedEditionWork);
 
                     // ----------------
-                    // change to op. 25
-                    // expectedEditionWork = EditionWorks.op25;
+                    // Change to op. 25
+                    // ExpectedEditionWork = EditionWorks.op25;
                     editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op25));
 
-                    // init new switchMap
+                    // Init new switchMap
                     component.getEditionGraphData();
-                    // apply changes
+                    // Apply changes
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(editionServiceGetEditionWorkSpy, 2);
@@ -320,15 +316,15 @@ describe('EditionGraphComponent (DONE)', () => {
             );
 
             it(
-                `... should return empty GraphList and set errorObject if switchMap fails`,
+                '... should return empty GraphList and set errorObject if switchMap fails',
                 waitForAsync(async () => {
                     const expectedError = { status: 404, statusText: 'fail' };
-                    // spy on editionDataService to return an error
+                    // Spy on editionDataService to return an error
                     editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(expectedError));
 
-                    // init new switchMap
+                    // Init new switchMap
                     component.getEditionGraphData();
-                    // apply changes
+                    // Apply changes
                     await detectChangesOnPush(fixture);
 
                     component.editionGraphData$.subscribe(
@@ -357,12 +353,12 @@ describe('EditionGraphComponent (DONE)', () => {
                     const noGraphData = new GraphList();
                     noGraphData.graph = undefined;
 
-                    // provide data
+                    // Provide data
                     editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noGraphData));
 
-                    // init new switchMap
+                    // Init new switchMap
                     component.getEditionGraphData();
-                    // apply changes
+                    // Apply changes
                     await detectChangesOnPush(fixture);
 
                     getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div', 0, 0);
@@ -383,11 +379,11 @@ describe('EditionGraphComponent (DONE)', () => {
                         noDescriptionData.graph[0].id = 'test-graph-id-no-description';
                         expectedEditionGraphDataOp25.graph[0].description = undefined;
 
-                        // provide data
+                        // Provide data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noDescriptionData));
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
                         const divDes = getAndExpectDebugElementByCss(
                             compDe,
@@ -409,11 +405,11 @@ describe('EditionGraphComponent (DONE)', () => {
                         descriptionData.graph[0].id = 'test-graph-id-description';
                         descriptionData.graph[0].description = ['Description 1', 'Description 2', 'Description 3'];
 
-                        // provide data
+                        // Provide data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(descriptionData));
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         const divDes = getAndExpectDebugElementByCss(
@@ -431,13 +427,13 @@ describe('EditionGraphComponent (DONE)', () => {
                         const pEl3 = pDes[3].nativeElement;
 
                         expect(pEl1.textContent).toBeTruthy();
-                        expect(pEl1.textContent).toContain('Description 1', `should contain Description 1`);
+                        expect(pEl1.textContent).toContain('Description 1', 'should contain Description 1');
 
                         expect(pEl2.textContent).toBeTruthy();
-                        expect(pEl2.textContent).toContain('Description 2', `should contain Description 2`);
+                        expect(pEl2.textContent).toContain('Description 2', 'should contain Description 2');
 
                         expect(pEl3.textContent).toBeTruthy();
-                        expect(pEl3.textContent).toContain('Description 3', `should contain Description 3`);
+                        expect(pEl3.textContent).toContain('Description 3', 'should contain Description 3');
                     })
                 );
             });
@@ -448,42 +444,42 @@ describe('EditionGraphComponent (DONE)', () => {
                     waitForAsync(async () => {
                         const noRdfData = expectedEditionGraphDataOp12;
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noRdfData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-dynamic', 0, 0);
 
-                        // no queryList
+                        // No queryList
                         noRdfData.graph[0].rdfData = new GraphRDFData();
                         noRdfData.graph[0].rdfData.triples = 'example:test example:has example:Success';
                         noRdfData.graph[0].rdfData.queryList = undefined;
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noRdfData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-dynamic', 0, 0);
 
-                        // no triples
+                        // No triples
                         noRdfData.graph[0].rdfData = new GraphRDFData();
                         noRdfData.graph[0].rdfData.triples = undefined;
                         noRdfData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noRdfData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-dynamic', 0, 0);
@@ -500,12 +496,12 @@ describe('EditionGraphComponent (DONE)', () => {
                             graphData.graph[0].rdfData.triples = 'example:test example:has example:Success';
                             graphData.graph[0].rdfData.queryList = [new GraphSparqlQuery()];
 
-                            // return data
+                            // Return data
                             editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(graphData));
 
-                            // init new switchMap
+                            // Init new switchMap
                             component.getEditionGraphData();
-                            // apply changes
+                            // Apply changes
                             await detectChangesOnPush(fixture);
                         })
                     );
@@ -537,10 +533,10 @@ describe('EditionGraphComponent (DONE)', () => {
                     it('... should trigger modal from click on help button', fakeAsync(() => {
                         const modalDes = getAndExpectDebugElementByDirective(compDe, ModalStubComponent, 1, 1);
                         const modalCmp = modalDes[0].injector.get(ModalStubComponent) as ModalStubComponent;
-                        // spy on modal
+                        // Spy on modal
                         modalOpenSpy = spyOn(modalCmp, 'open').and.callThrough();
 
-                        // get button
+                        // Get button
                         const btnDes = getAndExpectDebugElementByCss(
                             compDe,
                             'div.awg-graph-dynamic > h4 button.btn',
@@ -549,7 +545,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         );
                         const btnEl0 = btnDes[0].nativeElement;
 
-                        // click button
+                        // Click button
                         click(btnEl0 as HTMLElement);
                         detectChangesOnPush(fixture);
 
@@ -598,25 +594,25 @@ describe('EditionGraphComponent (DONE)', () => {
                         noStaticImageData.graph[0].id = 'test-graph-id-no-static-image';
                         noStaticImageData.graph[0].staticImage = undefined;
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noStaticImageData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-static', 0, 0);
 
-                        // with empty string
+                        // With empty string
                         noStaticImageData.graph[0].staticImage = '';
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(noStaticImageData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > awg-graph-static', 0, 0);
@@ -632,12 +628,12 @@ describe('EditionGraphComponent (DONE)', () => {
                         staticImageData.graph[0].id = 'test-graph-id-static-image';
                         staticImageData.graph[0].staticImage = component.graphImages.op25;
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(staticImageData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         getAndExpectDebugElementByCss(compDe, 'div.awg-graph-view > div > div.awg-graph-static', 1, 1);
@@ -653,12 +649,12 @@ describe('EditionGraphComponent (DONE)', () => {
                         staticImageData.graph[0].id = 'test-graph-id-static-image';
                         staticImageData.graph[0].staticImage = component.graphImages.op25;
 
-                        // return data
+                        // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(staticImageData));
 
-                        // init new switchMap
+                        // Init new switchMap
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         await detectChangesOnPush(fixture);
 
                         const imgDes = getAndExpectDebugElementByCss(
@@ -690,12 +686,12 @@ describe('EditionGraphComponent (DONE)', () => {
 
                 beforeEach(
                     waitForAsync(() => {
-                        // spy on editionDataService to return an error
+                        // Spy on editionDataService to return an error
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableThrowError(expectedError));
 
-                        // trigger new switch map
+                        // Trigger new switch map
                         component.getEditionGraphData();
-                        // apply changes
+                        // Apply changes
                         detectChangesOnPush(fixture);
                     })
                 );

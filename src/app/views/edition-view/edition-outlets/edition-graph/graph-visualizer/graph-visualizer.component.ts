@@ -112,7 +112,7 @@ export class GraphVisualizerComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        // set initial values
+        // Set initial values
         this.resetTriples();
         this.resetQuery();
     }
@@ -168,12 +168,12 @@ export class GraphVisualizerComponent implements OnInit {
             );
         }
 
-        // get the query type
+        // Get the query type
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
-        // perform only construct queries for now
+        // Perform only construct queries for now
         if (this.queryType === 'construct') {
-            // query local store
+            // Query local store
             const result = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
             this.queryResult = from(result);
         } else {
@@ -203,7 +203,9 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query with the given URI.
      */
     onTableClick(IRI: string): void {
-        if (!IRI) return;
+        if (!IRI) {
+            return;
+        }
         this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
         this.performQuery();
     }
@@ -228,7 +230,7 @@ export class GraphVisualizerComponent implements OnInit {
         console.log(message, durationValue);
         // TODO: use snackbar instead of console.log
         /*
-        this.snackBar.open(message, 'close', {
+        This.snackBar.open(message, 'close', {
             duration: durationValue
         });
         */
@@ -269,7 +271,7 @@ export class GraphVisualizerComponent implements OnInit {
 
             // Capture query time
             this.queryTime = Date.now() - t1;
-            // console.log('QUERYTIME:', this.queryTime);
+            // Console.log('QUERYTIME:', this.queryTime);
 
             result = [];
         }

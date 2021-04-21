@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionGraphComponent } from './edition-graph.component';
 
-/* routes of the EditionGraphModule */
+/* Routes of the EditionGraphModule */
 const editionGraphRoutes: Routes = [
     {
         path: '',

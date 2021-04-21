@@ -3,7 +3,7 @@ import { NgModule } from '@angular/core';
 import { SharedModule } from '@awg-shared/shared.module';
 
 import { ResourceDetailModule } from './data-outlets/resource-detail/resource-detail.module';
-// bibliography module is lazy loaded, so not imported here
+// Bibliography module is lazy loaded, so not imported here
 
 import { SearchFormComponent } from './data-outlets/search-panel/search-form/search-form.component';
 import { SearchResultListComponent } from './data-outlets/search-panel/search-result-list/search-result-list.component';

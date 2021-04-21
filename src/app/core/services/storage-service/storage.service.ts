@@ -136,16 +136,16 @@ export class StorageService {
      */
     private storageIsAvailable(storage: Storage): Storage {
         try {
-            // make uid from Date
+            // Make uid from Date
             const uid = new Date().toDateString();
 
-            // set, get and remove item
+            // Set, get and remove item
             storage.setItem(uid, uid);
             const result = storage.getItem(uid) === uid;
 
             storage.removeItem(uid);
 
-            // return local reference to Storage or undefined
+            // Return local reference to Storage or undefined
             return result && storage;
         } catch (e) {}
     }

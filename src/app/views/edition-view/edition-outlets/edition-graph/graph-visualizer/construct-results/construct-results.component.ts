@@ -59,7 +59,9 @@ export class ConstructResultsComponent implements OnInit {
      * @returns {void} Triggers the request.
      */
     onGraphNodeClick(node: D3SimulationNode): void {
-        if (!node) return;
+        if (!node) {
+            return;
+        }
         this.clickedNodeRequest.emit(node);
     }
 }

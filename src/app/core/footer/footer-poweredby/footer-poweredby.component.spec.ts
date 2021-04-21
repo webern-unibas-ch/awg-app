@@ -35,7 +35,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedLogos = {
             angular: {
                 id: 'angularlogo',
@@ -96,10 +96,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.logos = expectedLogos;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

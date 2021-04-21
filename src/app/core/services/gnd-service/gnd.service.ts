@@ -68,7 +68,7 @@ export class GndService extends StorageService {
      *
      * It holds the regular expression for a d-nb link in a href.
      */
-    readonly dnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i; // regexp for d-nb links
+    readonly dnbReg = /href="(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))"/i; // Regexp for d-nb links
 
     /**
      * Readonly variable: currentLocation.
@@ -77,10 +77,9 @@ export class GndService extends StorageService {
      * It returns the origin of the current location.
      */
     readonly currentLocation = {
-        getOrigin: (location: Location) => {
-            // console.info('got location', location);
-            return location.origin;
-        }
+        getOrigin: (location: Location) =>
+            // Console.info('got location', location);
+            location.origin
     };
 
     /**
@@ -131,13 +130,13 @@ export class GndService extends StorageService {
      */
     private setGndToSessionStorage(value: string): void {
         if (this.valueHasGnd(value)) {
-            // take last argument (pop) of linkRegArray
+            // Take last argument (pop) of linkRegArray
             const gndItem = this.linkRegArr.pop().toString();
 
-            // set to storage
+            // Set to storage
             this.setStorageKey(StorageType.sessionStorage, this.gndKey, gndItem);
 
-            // expose gndItem to parent window
+            // Expose gndItem to parent window
             this.exposeGndMessageToParent(gndItem);
         }
     }
@@ -153,7 +152,7 @@ export class GndService extends StorageService {
     private removeGndFromSessionStorage(): void {
         this.removeStorageKey(StorageType.sessionStorage, this.gndKey);
 
-        // expose removed gndItem to parent window
+        // Expose removed gndItem to parent window
         this.exposeGndMessageToParent(null);
     }
 
@@ -176,7 +175,7 @@ export class GndService extends StorageService {
         const targets = [inseriTarget, localTarget];
 
         for (const target of targets) {
-            // check if parent location meets target
+            // Check if parent location meets target
             if (this.currentLocation.getOrigin(window.parent.location) === target) {
                 window.parent.window.postMessage({ gnd: value }, target);
             }

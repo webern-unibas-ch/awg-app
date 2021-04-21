@@ -72,9 +72,9 @@ export class EditionDataService {
         const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
 
         return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -94,9 +94,9 @@ export class EditionDataService {
         const graphData$: Observable<GraphList> = this.getGraphData();
 
         return graphData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new GraphList()),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -116,9 +116,9 @@ export class EditionDataService {
         const introData$: Observable<IntroList> = this.getIntroData();
 
         return introData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new IntroList()),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -153,14 +153,14 @@ export class EditionDataService {
             sourceEvaluationListData$,
             textciticsListData$
         ]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([
                 new SourceList(),
                 new SourceDescriptionList(),
                 new SourceEvaluationList(),
                 new TextcriticsList()
             ]),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -309,8 +309,8 @@ export class EditionDataService {
      */
     private getJsonData(path: string): Observable<any> {
         return this.http.get(path).pipe(
-            // tap(res => this.log(`fetched jsonData with url=${url}`)),
-            catchError(this.handleError(`getJsonData`, []))
+            // Tap(res => this.log(`fetched jsonData with url=${url}`)),
+            catchError(this.handleError('getJsonData', []))
         );
     }
 
@@ -327,7 +327,7 @@ export class EditionDataService {
         return (error: any): Observable<T> => {
             // TODO: better job of transforming error for user consumption
             this.log(`${operation} failed: ${error.message}`);
-            // console.error(error);
+            // Console.error(error);
 
             // Let the app keep running by returning an empty result.
             return observableOf(result as T);

@@ -9,14 +9,14 @@ import { EditionTypeComponent } from './edition-outlets/edition-type';
 
 import { EditionConstants } from './models';
 
-/* routes of the EditionViewModule */
+/* Routes of the EditionViewModule */
 const editionViewRoutes: Routes = [
     {
         path: '',
         component: EditionSectionComponent,
         children: [
             {
-                // compositionID (op12, M317, etc.
+                // CompositionID (op12, M317, etc.
                 path: 'composition/:compositionId',
                 component: EditionViewComponent,
                 children: [

@@ -42,11 +42,11 @@ describe('EditionSvgSheetComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // find the svgFile's DebugElement and element
             // svgFileDe = fixture.debugElement.query(By.css('.svg.edition-svg));
             // svgFileEl = svgFIleDe.nativeElement;
+            // Find the svgFile's DebugElement and element
 
-            // mock the inputs supplied by the parent component
+            // Mock the inputs supplied by the parent component
             expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
@@ -57,12 +57,12 @@ describe('EditionSvgSheetComponent', () => {
             const id = '10';
             expectedOverlay = new EditionSvgOverlay(type, id);
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.svgSheetsData = { sheets: [expectedSvgSheet] };
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedOverlay = expectedOverlay;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -75,6 +75,6 @@ describe('EditionSvgSheetComponent', () => {
         });
 
         // TODO: test crrect implementation of EditionSVGOverlayEnum
-        // cf. https://stackoverflow.com/a/62376649
+        // Cf. https://stackoverflow.com/a/62376649
     });
 });

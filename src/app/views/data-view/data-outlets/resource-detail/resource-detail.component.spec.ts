@@ -19,7 +19,7 @@ import { ResourceData, ResourceDetail, ResourceDetailHeader } from '@awg-views/d
 
 import { ResourceDetailComponent } from './resource-detail.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-resource-detail-header', template: '' })
 class ResourceDetailHeaderStubComponent {
     @Input()
@@ -64,14 +64,14 @@ describe('ResourceDetailComponent', () => {
     let mockRouter: Spy;
     let mockActivatedRoute: ActivatedRouteStub;
 
-    // json object
+    // Json object
     let jsonConvert: JsonConvert;
     let expectedResourceFullResponseJson: ResourceFullResponseJson;
 
     let expectedResourceData: ResourceData;
 
     beforeEach(async () => {
-        // stub services for test purposes
+        // Stub services for test purposes
         // TODO: provide accurate types and service responses
         const mockDataApiService = {
             httpGetUrl: '/testUrl',
@@ -80,9 +80,9 @@ describe('ResourceDetailComponent', () => {
         const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
         const mockDataStreamerService = { updateResourceId: () => {} };
 
-        // router spy object
+        // Router spy object
         mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-        // mocked activated route
+        // Mocked activated route
         mockActivatedRoute = new ActivatedRouteStub();
 
         await TestBed.configureTestingModule({
@@ -111,17 +111,17 @@ describe('ResourceDetailComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // mockActivatedRoute.setParamMap({ id: '1234' });
-        // mockActivatedRoute.paramMap.subscribe(value => console.log(value));
+        // MockActivatedRoute.setParamMap({ id: '1234' });
+        // MockActivatedRoute.paramMap.subscribe(value => console.log(value));
 
-        // convert json objects
+        // Convert json objects
         jsonConvert = new JsonConvert();
         expectedResourceFullResponseJson = jsonConvert.deserializeObject(
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );
 
-        // test data
+        // Test data
         expectedResourceData = new ResourceData(expectedResourceFullResponseJson, mockResourceDetail);
 
         fixture.detectChanges();

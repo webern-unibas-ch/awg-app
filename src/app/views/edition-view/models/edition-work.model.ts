@@ -141,11 +141,11 @@ export class EditionWork {
             return;
         }
 
-        // helper constants
+        // Helper constants
         const delimiter = '/';
         const spacer = ' ';
 
-        // set dynamic routes
+        // Set dynamic routes
         this.titleStatement = titleStatement ? titleStatement : new EditionTitleStatement();
         this.responsibilityStatement = responsibilityStatement
             ? responsibilityStatement
@@ -159,12 +159,12 @@ export class EditionWork {
         this.section = sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.section5;
         this.type = typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.sketchEdition;
 
-        // set base route
+        // Set base route
         let rootPath = this.edition.route; // '/edition'
-        // rootPath += this.series.route;     // '/series'
-        // rootPath += this.section.route;    // '/section'
+        // RootPath += this.series.route;     // '/series'
+        // RootPath += this.section.route;    // '/section'
         rootPath += this.composition.route; // '/composition'
-        // rootPath += this.type.route;       // '/sketches' or // '/texts'
+        // RootPath += this.type.route;       // '/sketches' or // '/texts'
 
         this.baseRoute = rootPath + this.work.route + delimiter;
     }

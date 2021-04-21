@@ -52,11 +52,11 @@ export class EditionService {
         overlay: EditionSvgOverlay,
         filterIndex: number
     ): boolean {
-        // shortcuts & trimmed values
+        // Shortcuts & trimmed values
         const measure = textcriticalComment.measure.replace('[', '').replace(']', '');
         const system = textcriticalComment.system.replace('[', '').replace(']', '');
 
-        // filter the comments by overlay type and id
+        // Filter the comments by overlay type and id
         switch (overlay.type) {
             case EditionSvgOverlayTypes.measure:
                 return measure === overlay.id;
@@ -84,11 +84,11 @@ export class EditionService {
             return;
         }
 
-        // filter the textcritics input array
-        return textcriticalComments.filter((textcriticalComment, filterIndex) => {
-            // get filtered results from private method
-            return EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex);
-        });
+        // Filter the textcritics input array
+        return textcriticalComments.filter((textcriticalComment, filterIndex) =>
+            // Get filtered results from private method
+            EditionService.filterTextcriticalComments(textcriticalComment, overlay, filterIndex)
+        );
     }
 
     /**

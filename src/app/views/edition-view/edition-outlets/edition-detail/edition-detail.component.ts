@@ -156,13 +156,13 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      */
     getEditionDetailData(): void {
         this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // return EditionDetailData from editionDataService
+                    // Return EditionDetailData from editionDataService
                     return this.editionDataService.getEditionDetailData(this.editionWork);
                 }),
                 takeUntil(this.destroy$)
@@ -173,7 +173,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                     this.svgSheetsData = data[1];
                     this.textcriticsData = data[2];
                     if (this.route.queryParamMap) {
-                        // return queryParams if available
+                        // Return queryParams if available
                         return this.route.queryParamMap;
                     }
                 }),
@@ -214,7 +214,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         const convolute: FolioConvolute = this.findConvolute(id);
 
         if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
-            // if no folio data provided, open modal
+            // If no folio data provided, open modal
             if (convolute.linkTo) {
                 this.modal.open(convolute.linkTo);
             }
@@ -295,8 +295,8 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * @returns {string} The id of the selected sheet.
      */
     private getSketchParams(queryParams?: ParamMap): string {
-        // if there is no id in query params
-        // take first entry of svg sheets data as default
+        // If there is no id in query params
+        // Take first entry of svg sheets data as default
         if (!queryParams.get('sketch')) {
             this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
             return;
@@ -316,9 +316,9 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!id) {
             return;
         }
-        // find index of given id in folioConvoluteData.convolutes array
+        // Find index of given id in folioConvoluteData.convolutes array
         const convoluteIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
-        // return the convolute with the given id
+        // Return the convolute with the given id
         return this.folioConvoluteData.convolutes[convoluteIndex];
     }
 
@@ -334,9 +334,9 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!id) {
             return;
         }
-        // find index of given id in svgSheetsData.sheets array
+        // Find index of given id in svgSheetsData.sheets array
         const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
-        // return the sheet with the given id
+        // Return the sheet with the given id
         return this.svgSheetsData.sheets[sheetIndex];
     }
 
@@ -351,11 +351,11 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return;
         }
-        // find index of teh selected svg sheet id in textcriticsData.textcritics array
+        // Find index of teh selected svg sheet id in textcriticsData.textcritics array
         const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
             textcritic => textcritic.id === this.selectedSvgSheet.id
         );
-        // return the comments with the given id
+        // Return the comments with the given id
         return this.textcriticsData.textcritics[textcriticsIndex].comments;
     }
 
@@ -366,7 +366,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
+        // Emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:

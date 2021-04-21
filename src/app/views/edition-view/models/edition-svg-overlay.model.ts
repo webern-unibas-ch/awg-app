@@ -58,7 +58,7 @@ export class EditionSvgOverlay {
      */
     private getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
         const enumKey: string = Object.keys(EditionSvgOverlayTypes)
-            // find key of enumValue
+            // Find key of enumValue
             .find((key: string) => EditionSvgOverlayTypes[key] === enumValue);
 
         return enumKey;

@@ -131,27 +131,27 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {void} Subscribes to StreamerService.
      */
     subscribeResourceInfoData(): void {
-        // subscribe to streamer service
+        // Subscribe to streamer service
         this.resourceInfoDataSubscription = this.streamerService
             .getResourceId()
             .pipe(
                 switchMap(id => {
-                    // update id from streamer service
+                    // Update id from streamer service
                     this.resourceId = id;
 
-                    // return search response with query from streamer service
+                    // Return search response with query from streamer service
                     return this.streamerService.getSearchResponseWithQuery();
                 })
             )
             .subscribe(
                 (res: SearchResponseWithQuery) => {
-                    // deep clone search results from streamer service
+                    // Deep clone search results from streamer service
                     const response = JSON.parse(JSON.stringify(res));
 
-                    // update resource Info
+                    // Update resource Info
                     this.updateResourceInfo(this.resourceId, response);
 
-                    // build the form
+                    // Build the form
                     this.buildForm(this.goToIndex, this.resultSize);
                 },
                 error => {
@@ -168,24 +168,24 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the resourceInfoData.
      */
     private updateResourceInfo(id: string, response: SearchResponseWithQuery): void {
-        // find index position of resource with given id in search results
+        // Find index position of resource with given id in search results
         const index = this.findIndexPositionInSearchResultsById(id, response);
 
-        // shortcuts for indices
+        // Shortcuts for indices
         const nextIndex = index + 1;
         const prevIndex = index - 1;
 
-        // shortcuts for current subject and its neighbours
+        // Shortcuts for current subject and its neighbours
         const subjects = response.data.subjects;
         const current = subjects[index] ? new ResourceInfoResource(subjects[index], index) : undefined;
         const next = subjects[nextIndex] ? new ResourceInfoResource(subjects[nextIndex], nextIndex) : undefined;
         const previous = subjects[prevIndex] ? new ResourceInfoResource(subjects[prevIndex], prevIndex) : undefined;
 
-        // set result length and goToIndex
+        // Set result length and goToIndex
         this.resultSize = subjects.length;
         this.goToIndex = index + 1;
 
-        // update resourceInfoData (immutable)
+        // Update resourceInfoData (immutable)
         this.resourceInfoData = {
             searchResults: response,
             resources: {
@@ -235,10 +235,10 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {number} The array index position.
      */
     private findIndexPositionInSearchResultsById(id: string, response: SearchResponseWithQuery): number {
-        // shortcut for search result subjects
+        // Shortcut for search result subjects
         const subjects = response.data.subjects;
 
-        // compare given id with obj_id of subjects in searchResults.subjects array
+        // Compare given id with obj_id of subjects in searchResults.subjects array
         return subjects.findIndex(subject => subject.obj_id === id);
     }
 
@@ -262,11 +262,11 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         if (!formIndex || formIndex < 1) {
             return;
         }
-        // find resource id of subject at array position formIndex - 1
+        // Find resource id of subject at array position formIndex - 1
         const subjects = this.resourceInfoData.searchResults.data.subjects;
         const id = subjects[formIndex - 1].obj_id;
 
-        // navigate to resource with resource id
+        // Navigate to resource with resource id
         this.navigateToResource(id);
     }
 
@@ -311,7 +311,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        // prevent memory leak when component destroyed
+        // Prevent memory leak when component destroyed
         if (this.resourceInfoDataSubscription) {
             this.resourceInfoDataSubscription.unsubscribe();
         }

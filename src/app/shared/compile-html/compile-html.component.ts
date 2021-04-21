@@ -42,9 +42,8 @@ const reverse = (str: string): string => str.split('').reverse().join('');
  *
  * @returns {string}
  */
-const random = (): string => {
-    return (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
-};
+const random = (): string =>
+    (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
 
 /**
  * compileHtml.currentIdTime

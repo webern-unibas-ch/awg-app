@@ -4,7 +4,7 @@ import { CachingInterceptor } from './caching/caching.interceptor';
 import { LoadingInterceptor } from './loading/loading.interceptor';
 
 /**
- * httpInterceptorProviders for the data (search) view.
+ * HttpInterceptorProviders for the data (search) view.
  *
  * They allow to intercept and cache the search requests
  * using the {@link CachingInterceptor} and to

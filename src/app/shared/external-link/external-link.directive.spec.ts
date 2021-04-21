@@ -52,7 +52,7 @@ describe('ExternalLinkDirective', () => {
         fixture = TestBed.createComponent(TestExernalLinkComponent);
         component = fixture.componentInstance;
 
-        fixture.detectChanges(); // initial binding
+        fixture.detectChanges(); // Initial binding
     });
 
     afterAll(() => {
@@ -60,7 +60,7 @@ describe('ExternalLinkDirective', () => {
     });
 
     it('should have 4 anchor elements with href attributes', () => {
-        // all elements with an attached ExternalLinkDirective (a[href])
+        // All elements with an attached ExternalLinkDirective (a[href])
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
 
         expect(aDes.length).toBe(4, 'should be 4');
@@ -146,7 +146,7 @@ describe('ExternalLinkDirective', () => {
     it('should reflect input change for [href] values', () => {
         component.dynamicExternalLink = expectedNewExternalLink;
 
-        // apply changes
+        // Apply changes
         fixture.detectChanges();
 
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));

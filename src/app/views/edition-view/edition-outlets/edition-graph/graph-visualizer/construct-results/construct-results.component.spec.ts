@@ -17,7 +17,7 @@ import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
 
 import { ConstructResultsComponent } from './construct-results.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-force-graph', template: '' })
 class ForceGraphStubComponent {
     @Input() queryResultTriples: Triple[];
@@ -64,7 +64,7 @@ describe('ConstructResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedHeight = 500;
         expectedTriples = [
             {
@@ -75,7 +75,7 @@ describe('ConstructResultsComponent (DONE)', () => {
         ];
         expectedQueryResult = observableOf(expectedTriples);
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         nodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
@@ -97,10 +97,10 @@ describe('ConstructResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one ngb-accordion without panel (div.card) yet', () => {
-                // ngb-accordion debug element
+                // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                // panel
+                // Panel
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
             });
         });
@@ -108,11 +108,11 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.queryResult = expectedQueryResult;
             component.defaultForceGraphHeight = expectedHeight;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -128,19 +128,19 @@ describe('ConstructResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one ngb-accordion with panel (div.card) header and body', () => {
-                // ngb-accordion debug element
+                // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                // panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // panel (div.card)
-                // header
+                // Panel (div.card)
+                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                // Header
                 getAndExpectDebugElementByCss(
                     panelDes[0],
                     'div#awg-graph-visualizer-construct-result-header.card-header',
                     1,
                     1
-                ); // panel (div.card)
-                // body
+                ); // Panel (div.card)
+                // Body
                 getAndExpectDebugElementByCss(
                     panelDes[0],
                     'div#awg-graph-visualizer-construct-result > div.card-body',
@@ -150,7 +150,7 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should display panel header button', () => {
-                // panel header button
+                // Panel header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-construct-result-header > button',
@@ -160,17 +160,17 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 const btnEl = btnDes[0].nativeElement;
 
-                // check button content
+                // Check button content
                 expect(btnEl.textContent).toBeTruthy();
-                expect(btnEl.textContent).toContain('Resultat', `should be Resultat`);
+                expect(btnEl.textContent).toContain('Resultat', 'should be Resultat');
             });
 
             it('... should contain panel body with TwelveToneSpinnerComponent (stubbed) while loading', () => {
-                // mock empty observable
+                // Mock empty observable
                 component.queryResult = EMPTY;
                 detectChangesOnPush(fixture);
 
-                // panel body
+                // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-construct-result > div.card-body',
@@ -182,7 +182,7 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should contain panel body with ForceGraphComponent (stubbed) if results are available', () => {
-                // panel body
+                // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-construct-result > div.card-body',
@@ -190,7 +190,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                     1
                 );
 
-                // forceGraph
+                // ForceGraph
                 getAndExpectDebugElementByDirective(bodyDes[0], ForceGraphStubComponent, 1, 1);
             });
 
@@ -206,11 +206,11 @@ describe('ConstructResultsComponent (DONE)', () => {
             });
 
             it('... should contain panel body with ForceGraphNoResultComponent (stubbed) if no results are available', () => {
-                // mock empty response
+                // Mock empty response
                 component.queryResult = observableOf([]);
                 detectChangesOnPush(fixture);
 
-                // panel body
+                // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-construct-result > div.card-body',
@@ -218,12 +218,12 @@ describe('ConstructResultsComponent (DONE)', () => {
                     1
                 );
 
-                // forceGraphNoResults
+                // ForceGraphNoResults
                 getAndExpectDebugElementByDirective(bodyDes[0], ForceGraphNoResultStubComponent, 1, 1);
             });
 
             it('... should pass down `defaultForceGraphHeight` to forceGraphNoResult component', () => {
-                // mock empty response
+                // Mock empty response
                 component.queryResult = observableOf([]);
                 detectChangesOnPush(fixture);
 
@@ -257,7 +257,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
-                // node is undefined
+                // Node is undefined
                 forceGraphCmp.clickedNodeRequest.emit(undefined);
 
                 expectSpyCall(nodeClickSpy, 1, undefined);

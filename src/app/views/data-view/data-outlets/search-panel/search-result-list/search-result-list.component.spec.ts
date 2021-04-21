@@ -35,14 +35,14 @@ describe('SearchResultListComponent', () => {
             expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), ''); // TODO: provide real test data
             expectedSearchResultText = ''; // TODO: provide real test data
 
-            // create a fake DataStreamerService object with a `getSearchResponseWithQuery()` spy
+            // Create a fake DataStreamerService object with a `getSearchResponseWithQuery()` spy
             const mockDataStreamerService = jasmine.createSpyObj('DataStreamerService', ['getSearchResponseWithQuery']);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             getSearchResponseWithQuerySpy = mockDataStreamerService.getSearchResponseWithQuery.and.returnValue(
                 observableOf()
             ); // TODO: provide real test data
 
-            // mock services
+            // Mock services
             mockConversionService = {
                 prepareFullTextSearchResultText: () => expectedSearchResultText
             };

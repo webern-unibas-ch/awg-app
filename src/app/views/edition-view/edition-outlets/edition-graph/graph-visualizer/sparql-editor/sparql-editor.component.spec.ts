@@ -56,7 +56,7 @@ describe('SparqlEditorComponent (DONE)', () => {
     });
 
     beforeEach(() => {
-        // add custom jasmine matchers (ToHaveCssClass)
+        // Add custom jasmine matchers (ToHaveCssClass)
         jasmine.addMatchers(customJasmineMatchers);
 
         fixture = TestBed.createComponent(SparqlEditorComponent);
@@ -64,7 +64,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedQuery1 = new GraphSparqlQuery();
         expectedQuery1.queryLabel = 'Test Query 1';
         expectedQuery1.queryString = 'SELECT * WHERE { ?test ?has ?success }';
@@ -83,7 +83,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             mode: 'sparql'
         };
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         onEditorInputChangeSpy = spyOn(component, 'onEditorInputChange').and.callThrough();
@@ -110,10 +110,10 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one ngb-accordion without panel (div.card) yet', () => {
-                // ngb-accordion debug element
+                // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                // panel
+                // Panel
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
             });
         });
@@ -121,11 +121,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.query = expectedQuery1;
             component.queryList = expectedQueryList;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -142,24 +142,24 @@ describe('SparqlEditorComponent (DONE)', () => {
         describe('VIEW', () => {
             describe('with closed panel', () => {
                 it('... should contain one ngb-accordion with panel (div.card) header and collapsed body', () => {
-                    // ngb-accordion debug element
+                    // Ngb-accordion debug element
                     const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                    // panel (div.card)
-                    const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // panel (div.card)
-                    // header
+                    // Panel (div.card)
+                    const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                    // Header
                     getAndExpectDebugElementByCss(
                         panelDes[0],
                         'div#awg-graph-visualizer-query-header.card-header',
                         1,
                         1
-                    ); // panel (div.card)
-                    // no body
+                    ); // Panel (div.card)
+                    // No body
                     getAndExpectDebugElementByCss(panelDes[0], 'div#awg-graph-visualizer-query > div.card-body', 0, 0);
                 });
 
                 it('... should display panel header button', () => {
-                    // panel header button
+                    // Panel header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header > div > button.btn-link.panel-btn',
@@ -169,13 +169,13 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     const btnEl = btnDes[0].nativeElement;
 
-                    // check button content
+                    // Check button content
                     expect(btnEl.textContent).toBeDefined();
-                    expect(btnEl.textContent).toContain('SPARQL Abfrage', `should be SPARQL Abfrage`);
+                    expect(btnEl.textContent).toContain('SPARQL Abfrage', 'should be SPARQL Abfrage');
                 });
 
                 it('... should toggle panel body on click', () => {
-                    // header debug elements
+                    // Header debug elements
                     const panelHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header.card-header',
@@ -183,12 +183,12 @@ describe('SparqlEditorComponent (DONE)', () => {
                         1
                     );
 
-                    // button debug elements
+                    // Button debug elements
                     const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.btn-link.panel-btn', 1, 1);
-                    // button native elements to click on
+                    // Button native elements to click on
                     const btnEl = btnDes[0].nativeElement;
 
-                    // panel body is closed
+                    // Panel body is closed
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query > div.card-body',
@@ -197,11 +197,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                         'collapsed'
                     );
 
-                    // click header button
+                    // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // panel is open
+                    // Panel is open
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query > div.card-body',
@@ -210,11 +210,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                         'open'
                     );
 
-                    // click header button
+                    // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // panel body is closed again
+                    // Panel body is closed again
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query > div.card-body',
@@ -225,7 +225,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
 
                 it('... should contain an example query btn-group in panel header if query is given', () => {
-                    // panel header div.btn-group
+                    // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header > div > div.btn-group',
@@ -238,7 +238,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     component.query = undefined;
                     detectChangesOnPush(fixture);
 
-                    // panel header div.btn-group
+                    // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header > div > div.btn-group',
@@ -251,7 +251,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     component.query.queryLabel = '';
                     detectChangesOnPush(fixture);
 
-                    // panel header div.btn-group
+                    // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header > div > div.btn-group',
@@ -264,7 +264,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     component.query.queryString = '';
                     detectChangesOnPush(fixture);
 
-                    // panel header div.btn-group
+                    // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header > div > div.btn-group',
@@ -277,7 +277,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     component.queryList = undefined;
                     detectChangesOnPush(fixture);
 
-                    // panel header div.btn-group
+                    // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header > div > div.btn-group',
@@ -400,11 +400,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     expect(itemEl1).not.toHaveCssClass('disabled');
 
-                    // click on second item (first disabled)
+                    // Click on second item (first disabled)
                     click(itemEl1 as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // spy call with second query
+                    // Spy call with second query
                     expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
 
                     component.query = expectedQuery2;
@@ -412,11 +412,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     expect(itemEl0).not.toHaveCssClass('disabled');
 
-                    // click on first item (second disabled)
+                    // Click on first item (second disabled)
                     click(itemEl0 as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // spy call with first query
+                    // Spy call with first query
                     expectSpyCall(onQueryListChangeSpy, 2, expectedQuery1);
                 });
             });
@@ -425,7 +425,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 let bodyDes: DebugElement[];
 
                 beforeEach(() => {
-                    // open panel by click on header button
+                    // Open panel by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query-header.card-header > div > button.btn-link.panel-btn',
@@ -434,11 +434,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                     const btnEl = btnDes[0].nativeElement;
 
-                    // click header button
+                    // Click header button
                     click(btnEl as HTMLElement);
                     detectChangesOnPush(fixture);
 
-                    // panel body
+                    // Panel body
                     bodyDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div#awg-graph-visualizer-query > div.card-body',
@@ -460,18 +460,18 @@ describe('SparqlEditorComponent (DONE)', () => {
                     const btnEl1 = btnDes[1].nativeElement;
 
                     expect(btnEl0.textContent).toBeTruthy();
-                    expect(btnEl0.textContent).toContain('Query', `should contain Query`);
+                    expect(btnEl0.textContent).toContain('Query', 'should contain Query');
 
                     expect(btnEl1.textContent).toBeTruthy();
-                    expect(btnEl1.textContent).toContain('Reset', `should contain Reset`);
+                    expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
                 });
 
                 it('... should trigger `performQuery()` by click on Query button', () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
                     const btnEl0 = btnDes[0].nativeElement;
-                    expect(btnEl0.textContent).toContain('Query', `should contain Query`);
+                    expect(btnEl0.textContent).toContain('Query', 'should contain Query');
 
-                    // click query button
+                    // Click query button
                     click(btnEl0 as HTMLElement);
                     detectChangesOnPush(fixture);
 
@@ -482,9 +482,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 it('... should trigger `resetQuery()` by click on Reset button', () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.card-body > div > button.btn', 2, 2);
                     const btnEl1 = btnDes[1].nativeElement;
-                    expect(btnEl1.textContent).toContain('Reset', `should contain Query`);
+                    expect(btnEl1.textContent).toContain('Reset', 'should contain Query');
 
-                    // click reset button
+                    // Click reset button
                     click(btnEl1 as HTMLElement);
                     detectChangesOnPush(fixture);
 
@@ -496,7 +496,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('#onEditorInputChange', () => {
             beforeEach(() => {
-                // open panel by click on header button
+                // Open panel by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query-header.card-header > div > button.btn-link.panel-btn',
@@ -505,7 +505,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl = btnDes[0].nativeElement;
 
-                // click header button
+                // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
             });
@@ -524,7 +524,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
                 const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
 
-                // query is undefined
+                // Query is undefined
                 codeMirrorCmp.ngModelChange.emit('');
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
@@ -554,11 +554,11 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const itemEl0 = itemDes[0].nativeElement;
                 const itemEl1 = itemDes[1].nativeElement;
 
-                // click on second item (first disabled)
+                // Click on second item (first disabled)
                 click(itemEl1 as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                // spy call with second query
+                // Spy call with second query
                 expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
 
                 component.query = expectedQuery2;
@@ -566,11 +566,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 expect(itemEl0).not.toHaveCssClass('disabled');
 
-                // click on first item (second disabled)
+                // Click on first item (second disabled)
                 click(itemEl0 as HTMLElement);
                 detectChangesOnPush(fixture);
 
-                // spy call with first query
+                // Spy call with first query
                 expectSpyCall(onQueryListChangeSpy, 2, expectedQuery1);
             }));
 
@@ -584,7 +584,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const itemEl0 = itemDes[0].nativeElement;
                 const itemEl1 = itemDes[1].nativeElement;
 
-                // click on second item (first disabled)
+                // Click on second item (first disabled)
                 click(itemEl1 as HTMLElement);
                 detectChangesOnPush(fixture);
 
@@ -610,21 +610,21 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
 
             it('... should find query in queryList and trigger resetQuery with correct query', () => {
-                // first query
+                // First query
                 component.onQueryListChange(expectedQuery1);
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 1, expectedQuery1);
                 expectSpyCall(resetQuerySpy, 1, expectedQuery1);
 
-                // second query
+                // Second query
                 component.onQueryListChange(expectedQuery2);
                 detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 2, expectedQuery2);
                 expectSpyCall(resetQuerySpy, 2, expectedQuery2);
 
-                // unknown query
+                // Unknown query
                 const otherQuery = new GraphSparqlQuery();
                 otherQuery.queryLabel = 'Other Test Query';
                 otherQuery.queryString = 'SELECT * WHERE { ?other rdfs:label ?query }';
@@ -639,7 +639,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('#performQuery', () => {
             beforeEach(() => {
-                // open panel by click on header button
+                // Open panel by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query-header.card-header > div > button.btn-link.panel-btn',
@@ -648,7 +648,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl = btnDes[0].nativeElement;
 
-                // click header button
+                // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
             });
@@ -661,9 +661,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     2
                 );
                 const btnEl0 = btnDes[0].nativeElement;
-                expect(btnEl0.textContent).toContain('Query', `should contain Query`);
+                expect(btnEl0.textContent).toContain('Query', 'should contain Query');
 
-                // click query button
+                // Click query button
                 click(btnEl0 as HTMLElement);
                 detectChangesOnPush(fixture);
 
@@ -678,9 +678,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     2
                 );
                 const btnEl0 = btnDes[0].nativeElement;
-                expect(btnEl0.textContent).toContain('Query', `should contain Query`);
+                expect(btnEl0.textContent).toContain('Query', 'should contain Query');
 
-                // click query button
+                // Click query button
                 click(btnEl0 as HTMLElement);
                 detectChangesOnPush(fixture);
 
@@ -691,7 +691,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         describe('#resetQuery', () => {
             beforeEach(() => {
-                // open panel by click on header button
+                // Open panel by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query-header.card-header > div > button.btn-link.panel-btn',
@@ -700,7 +700,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 );
                 const btnEl = btnDes[0].nativeElement;
 
-                // click header button
+                // Click header button
                 click(btnEl as HTMLElement);
                 detectChangesOnPush(fixture);
             });
@@ -713,9 +713,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     2
                 );
                 const btnEl1 = btnDes[1].nativeElement;
-                expect(btnEl1.textContent).toContain('Reset', `should contain Reset`);
+                expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
 
-                // click query button
+                // Click query button
                 click(btnEl1 as HTMLElement);
                 detectChangesOnPush(fixture);
 
@@ -723,7 +723,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             });
 
             it('... should not emit anything if no query is provided', fakeAsync(() => {
-                // query is undefined
+                // Query is undefined
                 component.resetQuery(undefined);
                 detectChangesOnPush(fixture);
 
@@ -739,9 +739,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     2
                 );
                 const btnEl1 = btnDes[1].nativeElement;
-                expect(btnEl1.textContent).toContain('Reset', `should contain Reset`);
+                expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
 
-                // click reset button
+                // Click reset button
                 click(btnEl1 as HTMLElement);
                 detectChangesOnPush(fixture);
 

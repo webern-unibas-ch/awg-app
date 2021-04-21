@@ -19,7 +19,7 @@ import { CoreService } from '@awg-core/services';
 
 import { ContactViewComponent } from './contact-view.component';
 
-// mock heading component
+// Mock heading component
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -54,10 +54,10 @@ describe('ContactViewComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // mock service for test purposes
+            // Mock service for test purposes
             mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
-            // router spy object
+            // Router spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
             TestBed.configureTestingModule({
@@ -76,11 +76,11 @@ describe('ContactViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
@@ -188,18 +188,18 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should not render `version`, `versionReleaseDate` and `today` yet', () => {
-                // debug elements
+                // Debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version', 1, 1);
                 const releaseDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version-release', 1, 1);
                 const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
-                // native elements
+                // Native elements
                 const versionEl = versionDes[0].nativeElement;
                 const releaseEl = releaseDes[0].nativeElement;
                 const dateEl0 = dateDes[0].nativeElement;
                 const dateEl1 = dateDes[1].nativeElement;
 
-                // check output
+                // Check output
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'should be empty string');
 
@@ -216,15 +216,15 @@ describe('ContactViewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the call to the meta service in #provideMetaData
+            // Mock the call to the meta service in #provideMetaData
             component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
             component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.contact);
 
-            // spy on Date.now() returning a mocked (fixed) date
+            // Spy on Date.now() returning a mocked (fixed) date
             expectedToday = Date.now();
             dateSpy = spyOn(Date, 'now').and.callFake(() => expectedToday);
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -232,12 +232,12 @@ describe('ContactViewComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // Create spy of mockrouter SpyObj
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
             it('... should have been called', () => {
-                // router navigation triggerd by onInit
+                // Router navigation triggerd by onInit
                 expect(component.routeToSidenav).toHaveBeenCalled();
             });
 
@@ -250,7 +250,7 @@ describe('ContactViewComponent (DONE)', () => {
             it('... should tell ROUTER to navigate to `contactInfo` outlet', () => {
                 const expectedRoute = 'contactInfo';
 
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
@@ -262,7 +262,7 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
@@ -321,21 +321,21 @@ describe('ContactViewComponent (DONE)', () => {
             });
 
             it('... should render `version`, `versionReleaseDate` and `today`', () => {
-                // debug elements
+                // Debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version', 1, 1);
                 const releaseDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-version-release', 1, 1);
                 const dateDes = getAndExpectDebugElementByCss(compDe, '.awg-citation-date', 2, 2);
 
-                // native elements
+                // Native elements
                 const versionEl = versionDes[0].nativeElement;
                 const releaseEl = releaseDes[0].nativeElement;
                 const dateEl0 = dateDes[0].nativeElement;
                 const dateEl1 = dateDes[1].nativeElement;
 
-                // pipe
+                // Pipe
                 const pipedToday = datePipe.transform(expectedToday, expectedDateFormat);
 
-                // check output
+                // Check output
                 expect(versionEl).toBeDefined();
                 expect(versionEl.textContent).toContain(
                     expectedPageMetaData.version,

@@ -30,7 +30,7 @@ describe('HeadingComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedTitle = 'Test Title';
         expectedId = '23';
     });
@@ -59,11 +59,11 @@ describe('HeadingComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.title = expectedTitle;
             component.id = expectedId;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

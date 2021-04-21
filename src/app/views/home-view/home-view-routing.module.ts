@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
 
-/* routes of the PageNotFoundViewModule */
+/* Routes of the PageNotFoundViewModule */
 const homeViewRoutes: Routes = [
     {
         path: '',

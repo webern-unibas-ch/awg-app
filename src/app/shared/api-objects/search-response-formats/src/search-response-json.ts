@@ -54,7 +54,7 @@ export class SearchResponseJson extends BasicResponseJson {
     public subjects: SubjectItemJson[] = undefined;
 
     /**
-     * maximal dimensions of preview representations
+     * Maximal dimensions of preview representations
      * @param thumb_max: object
      */
     @JsonProperty('thumb_max', ThumbMaxJson)

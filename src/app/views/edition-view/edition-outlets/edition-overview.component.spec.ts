@@ -16,7 +16,7 @@ import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-
 
 import { EditionOverviewComponent } from './edition-overview.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-router-link-button-group', template: '' })
 class RouterLinkButtonGroupStubComponent {
     @Input()
@@ -40,9 +40,9 @@ describe('EditionOverviewComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake service object with a `getData()` spy
+            // Create a fake service object with a `getData()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-            // make the spy return a synchronous Observable with the test data
+            // Make the spy return a synchronous Observable with the test data
             getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
 
             TestBed.configureTestingModule({
@@ -58,7 +58,7 @@ describe('EditionOverviewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedEditionWork = EditionWorks.op12;
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
@@ -87,7 +87,7 @@ describe('EditionOverviewComponent (DONE)', () => {
             )
         ];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         setButtonsSpy = spyOn(component, 'setButtons').and.callThrough();
@@ -135,7 +135,7 @@ describe('EditionOverviewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

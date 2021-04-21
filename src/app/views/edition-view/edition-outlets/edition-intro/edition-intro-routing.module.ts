@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionIntroComponent } from './edition-intro.component';
 
-/* routes of the EditionIntroModule */
+/* Routes of the EditionIntroModule */
 const editionIntroRoutes: Routes = [
     {
         path: '',

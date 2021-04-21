@@ -17,7 +17,7 @@ import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { HomeViewComponent } from './home-view.component';
 
-// mock heading component
+// Mock heading component
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -44,7 +44,7 @@ describe('HomeViewComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // router spy object
+            // Router spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
             TestBed.configureTestingModule({
@@ -60,11 +60,11 @@ describe('HomeViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedEditionWorkOp12 = EditionWorks.op12;
         expectedEditionWorkOp25 = EditionWorks.op25;
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'routeToSidenav').and.callThrough();
@@ -126,7 +126,7 @@ describe('HomeViewComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl).toBeDefined();
-                expect(headerEl.textContent).not.toBeTruthy(`should be empty string`);
+                expect(headerEl.textContent).not.toBeTruthy('should be empty string');
             });
 
             it('... should not render title of edition info headers in first div.para yet', () => {
@@ -143,8 +143,8 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(title1El).toBeDefined();
                 expect(title2El).toBeDefined();
 
-                expect(title1El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(title2El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(title1El.textContent).not.toBeTruthy('should be empty string');
+                expect(title2El.textContent).not.toBeTruthy('should be empty string');
             });
 
             it('... should not render catalogue of edition info headers in first div.para yet', () => {
@@ -161,8 +161,8 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(catalogue1El).toBeDefined();
                 expect(catalogue2El).toBeDefined();
 
-                expect(catalogue1El.innerHTML).not.toBeTruthy(`should be empty string`);
-                expect(catalogue2El.innerHTML).not.toBeTruthy(`should be empty string`);
+                expect(catalogue1El.innerHTML).not.toBeTruthy('should be empty string');
+                expect(catalogue2El.innerHTML).not.toBeTruthy('should be empty string');
             });
 
             it('... should not render links of edition info headers in first div.para yet', () => {
@@ -176,16 +176,16 @@ describe('HomeViewComponent (DONE)', () => {
                 expect(a2El).toBeDefined();
                 expect(a3El).toBeDefined();
 
-                expect(a1El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(a2El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(a3El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(a1El.textContent).not.toBeTruthy('should be empty string');
+                expect(a2El.textContent).not.toBeTruthy('should be empty string');
+                expect(a3El.textContent).not.toBeTruthy('should be empty string');
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -193,12 +193,12 @@ describe('HomeViewComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // Create spy of mockrouter SpyObj
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
             it('... should have been called', () => {
-                // router navigation triggerd by onInit
+                // Router navigation triggerd by onInit
                 expect(component.routeToSidenav).toHaveBeenCalled();
             });
 
@@ -209,7 +209,7 @@ describe('HomeViewComponent (DONE)', () => {
             it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
                 const expectedRoute = 'editionInfo';
 
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
@@ -222,7 +222,7 @@ describe('HomeViewComponent (DONE)', () => {
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
@@ -332,10 +332,10 @@ describe('HomeViewComponent (DONE)', () => {
 
             describe('[routerLink]', () => {
                 beforeEach(() => {
-                    // find DebugElements with an attached RouterLinkStubDirective
+                    // Find DebugElements with an attached RouterLinkStubDirective
                     linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 8, 8);
 
-                    // get attached link directive instances using each DebugElement's injector
+                    // Get attached link directive instances using each DebugElement's injector
                     routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
                 });
 
@@ -367,8 +367,8 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... can click `intro` link in template', () => {
-                    const introLinkDe = linkDes[0]; // contact link DebugElement
-                    const introLink = routerLinks[0]; // contact link directive
+                    const introLinkDe = linkDes[0]; // Contact link DebugElement
+                    const introLink = routerLinks[0]; // Contact link directive
 
                     expect(introLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -383,8 +383,8 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... can click `detail` link in template', () => {
-                    const detailLinkDe = linkDes[1]; // contact link DebugElement
-                    const detailLink = routerLinks[1]; // contact link directive
+                    const detailLinkDe = linkDes[1]; // Contact link DebugElement
+                    const detailLink = routerLinks[1]; // Contact link directive
 
                     expect(detailLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -399,8 +399,8 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... can click `graph` link in template', () => {
-                    const graphLinkDe = linkDes[2]; // contact link DebugElement
-                    const graphLink = routerLinks[2]; // contact link directive
+                    const graphLinkDe = linkDes[2]; // Contact link DebugElement
+                    const graphLink = routerLinks[2]; // Contact link directive
 
                     expect(graphLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -415,8 +415,8 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... can click `structure` link in template', () => {
-                    const structureLinkDe = linkDes[3]; // contact link DebugElement
-                    const structureLink = routerLinks[3]; // contact link directive
+                    const structureLinkDe = linkDes[3]; // Contact link DebugElement
+                    const structureLink = routerLinks[3]; // Contact link directive
 
                     expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -428,8 +428,8 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... can click `search` link in template', () => {
-                    const searchLinkDe = linkDes[6]; // contact link DebugElement
-                    const searchLink = routerLinks[6]; // contact link directive
+                    const searchLinkDe = linkDes[6]; // Contact link DebugElement
+                    const searchLink = routerLinks[6]; // Contact link directive
 
                     expect(searchLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -441,8 +441,8 @@ describe('HomeViewComponent (DONE)', () => {
                 });
 
                 it('... can click `contact` link in template', () => {
-                    const searchLinkDe = linkDes[7]; // contact link DebugElement
-                    const searchLink = routerLinks[7]; // contact link directive
+                    const searchLinkDe = linkDes[7]; // Contact link DebugElement
+                    const searchLink = routerLinks[7]; // Contact link directive
 
                     expect(searchLink.navigatedTo).toBeNull('should not have navigated yet');
 

@@ -48,7 +48,7 @@ export class TimelineDate {
     }
 
     /*
-     * not used at the moment
+     * Not used at the moment
      * obj = response.searchResults (SearchResponseJson)
      *
     extractYear(obj) {

@@ -37,7 +37,7 @@ describe('NavbarComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // stub service for test purposes
+            // Stub service for test purposes
             mockCoreService = {
                 getMetaDataSection: sectionType => METADATA[sectionType]
             };
@@ -56,13 +56,13 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedIsCollapsed = true;
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedEditionWorks = [EditionWorks.op12, EditionWorks.op25];
         expectedSelectEditionWork = EditionWorks.op12;
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
@@ -111,14 +111,14 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should be called when button clicked (click helper)', () => {
-                // find button elements
+                // Find button elements
                 const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
                 const buttonEl = buttonDes[0].nativeElement;
 
-                // should have not been called yet
+                // Should have not been called yet
                 expect(component.toggleNav).not.toHaveBeenCalled();
 
-                // click button
+                // Click button
                 click(buttonDes[0]);
                 click(buttonEl);
 
@@ -165,7 +165,7 @@ describe('NavbarComponent (DONE)', () => {
         beforeEach(() => {
             component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -202,10 +202,10 @@ describe('NavbarComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
+                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 16, 16);
 
-                // get attached link directive instances using each DebugElement's injector
+                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
@@ -276,8 +276,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Home link in template', () => {
-                const homeLinkDe = linkDes[0]; // contact link DebugElement
-                const homeLink = routerLinks[0]; // contact link directive
+                const homeLinkDe = linkDes[0]; // Contact link DebugElement
+                const homeLink = routerLinks[0]; // Contact link directive
 
                 expect(homeLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -288,8 +288,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Edition link in template', () => {
-                const editionLinkDe = linkDes[1]; // contact link DebugElement
-                const editionLink = routerLinks[1]; // contact link directive
+                const editionLinkDe = linkDes[1]; // Contact link DebugElement
+                const editionLink = routerLinks[1]; // Contact link directive
 
                 expect(editionLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -303,8 +303,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Structure link in template', () => {
-                const structureLinkDe = linkDes[13]; // contact link DebugElement
-                const structureLink = routerLinks[13]; // contact link directive
+                const structureLinkDe = linkDes[13]; // Contact link DebugElement
+                const structureLink = routerLinks[13]; // Contact link directive
 
                 expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -315,8 +315,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Data link in template', () => {
-                const dataLinkDe = linkDes[14]; // contact link DebugElement
-                const dataLink = routerLinks[14]; // contact link directive
+                const dataLinkDe = linkDes[14]; // Contact link DebugElement
+                const dataLink = routerLinks[14]; // Contact link directive
 
                 expect(dataLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -327,8 +327,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[15]; // contact link DebugElement
-                const contactLink = routerLinks[15]; // contact link directive
+                const contactLinkDe = linkDes[15]; // Contact link DebugElement
+                const contactLink = routerLinks[15]; // Contact link directive
 
                 expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
 

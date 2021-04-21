@@ -17,10 +17,10 @@ describe('CoreService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [CoreService]
         });
-        // inject service
+        // Inject service
         coreService = TestBed.inject(CoreService);
 
-        // test data
+        // Test data
         expectedMetaData = METADATA;
         expectedLogosData = LOGOSDATA;
     });
@@ -34,37 +34,37 @@ describe('CoreService (DONE)', () => {
     });
 
     describe('#getMetaData', () => {
-        it(`... should return METADATA`, () => {
-            // call service function
+        it('... should return METADATA', () => {
+            // Call service function
             expect(coreService.getMetaData()).toBe(expectedMetaData, `should be ${expectedMetaData}`);
         });
     });
 
     describe('#getMetaDataSection', () => {
-        it(`... should return page METADATA if parameter is given`, () => {
+        it('... should return page METADATA if parameter is given', () => {
             const metaSection = MetaSectionTypes.page;
 
-            // call service function
+            // Call service function
             expect(coreService.getMetaDataSection(metaSection)).toBe(
                 expectedMetaData[metaSection],
                 `should be ${expectedMetaData[metaSection]}`
             );
         });
 
-        it(`... should return structure METADATA if parameter is given`, () => {
+        it('... should return structure METADATA if parameter is given', () => {
             const metaSection = MetaSectionTypes.structure;
 
-            // call service function
+            // Call service function
             expect(coreService.getMetaDataSection(metaSection)).toBe(
                 expectedMetaData[metaSection],
                 `should be ${expectedMetaData[metaSection]}`
             );
         });
 
-        it(`... should return contact METADATA if parameter is given`, () => {
+        it('... should return contact METADATA if parameter is given', () => {
             const metaSection = MetaSectionTypes.contact;
 
-            // call service function
+            // Call service function
             expect(coreService.getMetaDataSection(metaSection)).toBe(
                 expectedMetaData[metaSection],
                 `should be ${expectedMetaData[metaSection]}`
@@ -73,8 +73,8 @@ describe('CoreService (DONE)', () => {
     });
 
     describe('#getLogos', () => {
-        it(`... should return LOGOS`, () => {
-            // call service function
+        it('... should return LOGOS', () => {
+            // Call service function
             expect(coreService.getLogos()).toBe(expectedLogosData, `should be ${expectedLogosData}`);
         });
     });

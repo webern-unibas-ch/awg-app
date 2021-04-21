@@ -140,12 +140,12 @@ export class ModalComponent {
      * @returns {void} Opens the modal.
      */
     open(modalContentSnippetKey: string): void {
-        // get modal text
+        // Get modal text
         this.modalContent = MODALCONTENTSNIPPETS[modalContentSnippetKey]
             ? MODALCONTENTSNIPPETS[modalContentSnippetKey]
             : '';
 
-        // open modalTemplate via modalService
+        // Open modalTemplate via modalService
         this.modalService.open(this.modalTemplate, { ariaLabelledBy: 'awg-modal' }).result.then(
             result => {
                 this.closeResult = `Closed with: ${result}`;

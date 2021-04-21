@@ -48,19 +48,19 @@ describe('SearchPanelComponent', () => {
     let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
 
-    // stub services for test purposes
+    // Stub services for test purposes
     const mocConversionService = { convertFullTextSearchResults: () => {} };
     const mockDataApiService = { httpGetUrl: '/testUrl', getFulltextSearchData: () => observableOf({}) };
     const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
     const mockDataStreamerService = { updateSearchResponseWithQuery: () => {} };
 
-    // router spy object
+    // Router spy object
     mockRouter = {
         url: '/test-url',
         events: observableOf(new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')),
         navigate: jasmine.createSpy('navigate')
     };
-    // mocked activated route
+    // Mocked activated route
     mockActivatedRoute = new ActivatedRouteStub();
 
     beforeEach(

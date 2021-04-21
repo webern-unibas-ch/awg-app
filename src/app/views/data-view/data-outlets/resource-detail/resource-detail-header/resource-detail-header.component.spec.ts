@@ -41,17 +41,18 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         const objID = '1234';
         const icon = '/assets/img/logos/angular.png';
         const type = 'test-type';
-        const title = `<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource('28')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])`;
+        const title =
+            '<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])';
         const lastmod = 'today';
 
         expectedHeader = { objID, icon, type, title, lastmod };
         expectedResourceUrl = 'https://example.com/123';
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
@@ -95,11 +96,11 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             it('... should contain span in div.title with compile html component', () => {
                 const titleDe = getAndExpectDebugElementByCss(compDe, 'h2.resource-title > div.title', 1, 1);
 
-                // find DebugElements with an attached CompileHtmlComponent
+                // Find DebugElements with an attached CompileHtmlComponent
                 const htmlDes = getAndExpectDebugElementByDirective(titleDe[0], CompileHtmlComponent, 1, 1);
                 expect(htmlDes[0].name).toBe('span');
 
-                // find anchor links of CompileHtmlComponent
+                // Find anchor links of CompileHtmlComponent
                 const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 0, 0);
 
                 expect(anchorDes).toEqual([], 'should be empty (no inner html yet)');
@@ -124,11 +125,11 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.header = expectedHeader;
             component.resourceUrl = expectedResourceUrl;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -144,7 +145,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             it('... should render header title in compile html component span', () => {
                 const expectedTitle = 'Op. 28: Skizzen zu einem "1. Satz" (später 2. Satz [M 330])';
 
-                // find DebugElements with an attached CompileHtmlComponent
+                // Find DebugElements with an attached CompileHtmlComponent
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const htmlEl = htmlDes[0].nativeElement;
 
@@ -156,27 +157,27 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
             });
 
             it('... should have 3 anchor links in compile html component span', () => {
-                // find DebugElements with an attached CompileHtmlComponent
+                // Find DebugElements with an attached CompileHtmlComponent
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
-                // find anchor links of CompileHtmlComponent
+                // Find anchor links of CompileHtmlComponent
                 getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
             });
 
             it('... should render other header values in table', () => {
-                // find debug elements
+                // Find debug elements
                 const rhTableDes = getAndExpectDebugElementByCss(compDe, 'table.resource-header-table', 1, 1);
                 const tdDes = getAndExpectDebugElementByCss(rhTableDes[0], 'td', 3, 3);
                 const typeDes = getAndExpectDebugElementByCss(tdDes[1], 'span.resource-type', 1, 1);
                 const imgDes = getAndExpectDebugElementByCss(tdDes[1], 'span.resource-icon > img', 1, 1);
                 const lastModDes = getAndExpectDebugElementByCss(tdDes[2], 'span.resource-lastmod', 1, 1);
 
-                // find native elements
+                // Find native elements
                 const tdEl = tdDes[0].nativeElement;
                 const typeEl = typeDes[0].nativeElement;
                 const imgEl = imgDes[0].nativeElement;
                 const lastModEl = lastModDes[0].nativeElement;
 
-                // check output
+                // Check output
                 expect(tdEl.textContent).toBeDefined();
                 expect(tdEl.textContent).toContain(expectedHeader.objID, `should contain ${expectedHeader.objID}`);
 
@@ -210,20 +211,20 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                // no id
+                // No id
                 expectSpyCall(navigateToResourceSpy, 1, undefined);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
-                // number
+                // Number
                 expectSpyCall(navigateToResourceSpy, 2, '28');
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
-                // string
+                // String
                 expectSpyCall(navigateToResourceSpy, 3, 330);
             }));
 
@@ -231,9 +232,9 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
 
-                // first anchor has no id
+                // First anchor has no id
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expect(emitSpy).not.toHaveBeenCalled();
@@ -244,16 +245,16 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
                 const htmlDes = getAndExpectDebugElementByDirective(compDe, CompileHtmlComponent, 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(htmlDes[0], 'a', 3, 3);
 
-                // first anchor has no id, see above
+                // First anchor has no id, see above
 
-                // second anchor has @id: number
-                // trigger click with click helper & wait for changes
+                // Second anchor has @id: number
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(emitSpy, 1, '28');
 
-                // third anchor has @id: string
-                // trigger click with click helper & wait for changes
+                // Third anchor has @id: string
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(emitSpy, 2, '330');

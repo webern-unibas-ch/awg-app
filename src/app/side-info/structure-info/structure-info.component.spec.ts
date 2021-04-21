@@ -23,7 +23,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // stub service for test purposes
+            // Stub service for test purposes
             mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
             TestBed.configureTestingModule({
@@ -40,10 +40,10 @@ describe('StructureInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedStructureMetaData = METADATA[MetaSectionTypes.structure];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
@@ -121,10 +121,10 @@ describe('StructureInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the call to the meta service in #provideMetaData
+            // Mock the call to the meta service in #provideMetaData
             component.structureMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.structure);
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

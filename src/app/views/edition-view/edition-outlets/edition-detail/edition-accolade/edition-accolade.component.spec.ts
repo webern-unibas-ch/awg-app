@@ -12,7 +12,7 @@ import {
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
 class EditionSvgSheetNavStubComponent {
     @Input()

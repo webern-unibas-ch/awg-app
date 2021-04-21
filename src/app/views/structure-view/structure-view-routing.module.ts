@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { StructureViewComponent } from '@awg-views/structure-view/structure-view.component';
 
-/* routes of the StructureViewModule */
+/* Routes of the StructureViewModule */
 const structureViewRoutes: Routes = [
     {
         path: '',

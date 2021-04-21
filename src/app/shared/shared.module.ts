@@ -4,7 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 
 //
-// shared modules
+// Shared modules
 import { CompileHtmlModule } from './compile-html';
 import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
@@ -13,7 +13,7 @@ import { NgxJsonViewerModule } from 'ngx-json-viewer';
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 
 //
-// shared components
+// Shared components
 import { AddressComponent } from './address/address.component';
 import { HeadingComponent } from './heading/heading.component';
 import { JsonViewerComponent } from './json-viewer/json-viewer.component';
@@ -23,11 +23,11 @@ import { RouterLinkButtonGroupComponent } from './router-link-button-group/route
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
 //
-// shared directives
+// Shared directives
 import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
-// shared pipes
+// Shared pipes
 import { OrderByPipe } from './order-by/order-by.pipe';
 
 /**

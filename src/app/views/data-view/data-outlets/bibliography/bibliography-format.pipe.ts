@@ -139,7 +139,7 @@ export class BibliographyFormatPipe implements PipeTransform {
             case 'Verlagsort':
                 value = this.formatBibPubPlace(entry[key]);
                 break;
-            /* done in pubplace
+            /* Done in pubplace
              case 'publisher':
              value = this.formatBibPublisher(bibItem[key]);
              break;
@@ -188,20 +188,20 @@ export class BibliographyFormatPipe implements PipeTransform {
 
         let formattedAuthor = '';
         if (typeof authors === 'object') {
-            // get first author name
+            // Get first author name
             formattedAuthor += this.splitName(authors[0], '');
-            // get further author names
+            // Get further author names
             const l: number = Object.keys(authors).length;
             for (let i = 1; i < l; i++) {
-                // last name seperated by "und", others by comma
+                // Last name seperated by "und", others by comma
                 const divider = i === l - 1 ? ' und ' : ', ';
                 formattedAuthor += this.splitName(authors[i], divider);
             }
         } else if (typeof authors === 'string') {
-            // get author name
+            // Get author name
             formattedAuthor += this.splitName(authors, '');
         }
-        formattedAuthor += ': '; // ending author string with ":"
+        formattedAuthor += ': '; // Ending author string with ":"
         return formattedAuthor;
     }
 
@@ -247,20 +247,20 @@ export class BibliographyFormatPipe implements PipeTransform {
 
         let formattedEditor = 'hg. von ';
         if (typeof editors === 'object') {
-            // get first editor name
+            // Get first editor name
             formattedEditor += this.splitName(editors[0], '');
-            // get further editor names
+            // Get further editor names
             const l: number = Object.keys(editors).length;
             for (let i = 1; i < l; i++) {
-                // last name separated by "und", others by comma
+                // Last name separated by "und", others by comma
                 const divider = i === l - 1 ? ' und ' : ', ';
                 formattedEditor += this.splitName(editors[i], divider);
             }
         } else if (typeof editors === 'string') {
-            // get editor name
+            // Get editor name
             formattedEditor += this.splitName(editors, '');
         }
-        formattedEditor += ', '; // ending editor string with ","
+        formattedEditor += ', '; // Ending editor string with ","
         return formattedEditor;
     }
 
@@ -289,24 +289,24 @@ export class BibliographyFormatPipe implements PipeTransform {
     private formatBibPubPlace(pubPlace: string | object): string {
         const pub = this.entry['Verlag'] ? this.entry['Verlag'] : null;
         if (!pubPlace) {
-            // no place but publisher
+            // No place but publisher
             if (pub) {
                 console.log('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
             }
-            // no place nor publisher ("zeitschriftenartikel")
+            // No place nor publisher ("zeitschriftenartikel")
             return '';
         }
 
         let out = '';
-        // pubPlace == object
+        // PubPlace == object
         if (typeof pubPlace === 'object') {
             const locl = Object.keys(pubPlace).length;
             if (pub) {
                 if (typeof pub === 'object') {
                     const publ = Object.keys(pub).length;
                     if (publ === locl) {
-                        // publisher == object
-                        // case: "Kassel: Bärenreiter, und Stuttgart: Metzler,"
+                        // Publisher == object
+                        // Case: "Kassel: Bärenreiter, und Stuttgart: Metzler,"
                         for (let i = 0; i < locl; i++) {
                             if (i === locl - 1) {
                                 out += 'und ';
@@ -315,8 +315,8 @@ export class BibliographyFormatPipe implements PipeTransform {
                         }
                     }
                 } else {
-                    // publisher == String
-                    // case: "Kassel, New York: Bärenreiter,"
+                    // Publisher == String
+                    // Case: "Kassel, New York: Bärenreiter,"
                     for (let i = 0; i < locl; i++) {
                         if (i === locl - 1) {
                             out += pubPlace[i] + ': ' + pub + ', ';
@@ -326,8 +326,8 @@ export class BibliographyFormatPipe implements PipeTransform {
                     }
                 }
             } else {
-                // no publisher
-                // case: "Wien, Stuttgart,"
+                // No publisher
+                // Case: "Wien, Stuttgart,"
                 for (let i = 0; i < locl; i++) {
                     out += pubPlace[i] + ', ';
                 }
@@ -338,21 +338,21 @@ export class BibliographyFormatPipe implements PipeTransform {
         } else {
             if (pub) {
                 out += pubPlace + ': ';
-                // publisher == object
-                // case: "Wien: Böhlau, Lafite, "
+                // Publisher == object
+                // Case: "Wien: Böhlau, Lafite, "
                 if (typeof pub === 'object') {
                     const publ = Object.keys(pub).length;
                     for (let i = 0; i < publ; i++) {
                         out += pub[i] + ', ';
                     }
                 } else {
-                    // publisher == String
-                    // case: "Wien: Böhlau,"
+                    // Publisher == String
+                    // Case: "Wien: Böhlau,"
                     out += pub + ', ';
                 }
             } else {
-                // place without publisher (e.g. "Hochschulschriften")
-                // case: "Wien, "
+                // Place without publisher (e.g. "Hochschulschriften")
+                // Case: "Wien, "
                 if (!this.entry['unpubliziert']) {
                     console.log('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
                 }
@@ -445,8 +445,8 @@ export class BibliographyFormatPipe implements PipeTransform {
         let tmp = [];
         if (name.match(',')) {
             tmp = name.split(', ');
-            // changes positions of first and last name
-            // look here: http://stackoverflow.com/a/5306832
+            // Changes positions of first and last name
+            // Look here: http://stackoverflow.com/a/5306832
             tmp.splice(1, 0, tmp.splice(0, 1)[0]);
             return pre_delimiter + tmp[0] + ' ' + tmp[1];
         } else {

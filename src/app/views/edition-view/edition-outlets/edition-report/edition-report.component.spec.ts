@@ -21,7 +21,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
 
 import { EditionReportComponent } from './edition-report.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -59,14 +59,14 @@ describe('EditionReportComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake service object with a `getEditionReportData()` spy
+            // Create a fake service object with a `getEditionReportData()` spy
             const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
-            // make the spy return a synchronous Observable with the test data
+            // Make the spy return a synchronous Observable with the test data
             getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
-            // create a fake service object with a `getEditionWork()` spy
+            // Create a fake service object with a `getEditionWork()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-            // make the spy return a synchronous Observable with the test data
+            // Make the spy return a synchronous Observable with the test data
             getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12)); // TODO: provide real test data
 
             TestBed.configureTestingModule({
@@ -98,7 +98,7 @@ describe('EditionReportComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

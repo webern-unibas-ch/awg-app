@@ -100,33 +100,33 @@ export class ConversionService extends ApiService {
 
         // TODO: refactor with reduce??
         searchResults.subjects.forEach(subject => {
-            // clean value labels
+            // Clean value labels
             subject.valuelabel[0] = subject.valuelabel[0].replace(' (Richtext)', '');
             subject.obj_id = subject.obj_id.replace('_-_local', '');
 
             // =>Chronologie: salsah standoff needs to be converted before displaying
-            // valuetype_id 14 = valuelabel 'Ereignis'
+            // Valuetype_id 14 = valuelabel 'Ereignis'
             if (subject.valuetype_id[0] === '14' && subject.value[0]) {
                 let htmlstr = '';
                 const utf8str: string = subject.value[0].utf8str;
                 const textattr: string = subject.value[0].textattr;
 
-                // check if there is standoff, otherwise leave res.value[0] alone
-                // because when retrieved from cache the standoff is already converted
+                // Check if there is standoff, otherwise leave res.value[0] alone
+                // Because when retrieved from cache the standoff is already converted
                 if (utf8str && textattr) {
                     htmlstr = this.convertStandoffToHTML(utf8str, textattr);
 
-                    // replace salsah links
+                    // Replace salsah links
                     htmlstr = this.replaceSalsahLink(htmlstr);
 
-                    // strip & replace <p>-tags for displaying
+                    // Strip & replace <p>-tags for displaying
                     htmlstr = this.replaceParagraphTags(htmlstr);
 
                     subject.value[0] = htmlstr;
                 }
             }
         });
-        // remove duplicates from response
+        // Remove duplicates from response
         searchResults.subjects = this.distinctSubjects(searchResults.subjects);
         return searchResults;
     }
@@ -150,13 +150,13 @@ export class ConversionService extends ApiService {
 
         if (searchResults.subjects) {
             const length = searchResults.subjects.length;
-            const resString: string = length === 1 ? `Resultat` : `Resultate`;
-            // resText = `${length}/${searchData.nhits} `;
+            const resString: string = length === 1 ? 'Resultat' : 'Resultate';
+            // ResText = `${length}/${searchData.nhits} `;
             resText = `${searchResults.nhits} `;
             resText += `${resString} für "${searchValue}"`;
 
             if (this.filteredOut > 0) {
-                const duplString: string = this.filteredOut === 1 ? `Duplikat` : `Duplikate`;
+                const duplString: string = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
                 resText += ` (${this.filteredOut} ${duplString} entfernt)`;
             }
         } else {
@@ -178,16 +178,16 @@ export class ConversionService extends ApiService {
      */
     convertObjectProperties(resourceFullResponseData: ResourceFullResponseJson): BibEntry {
         const convObj = {};
-        // add lastmod state
+        // Add lastmod state
         convObj['lastmod'] = resourceFullResponseData.resinfo.lastmod;
 
         Object.keys(resourceFullResponseData.props).forEach((key: string) => {
             const prop = resourceFullResponseData.props[key];
-            let propValue = []; // empty text value array
+            let propValue = []; // Empty text value array
 
-            // check if values property is defined
+            // Check if values property is defined
             if (prop.hasOwnProperty('values') && prop.values !== undefined) {
-                // check for gui-elements
+                // Check for gui-elements
                 switch (prop.valuetype_id) {
                     case '4':
                         // DATE: salsah object needs to be converted (using plugin "dateConverter")
@@ -207,27 +207,27 @@ export class ConversionService extends ApiService {
                     case '14':
                         // RICHTEXT: salsah standoff needs to be converted
 
-                        // check for multiple && not empty values
+                        // Check for multiple && not empty values
                         if (prop.values.length > 0 && prop.values[0].utf8str !== '') {
-                            // clean value labels
+                            // Clean value labels
                             prop.label = prop.label.replace(' (Richtext)', '');
 
                             for (let i = 0; i < prop.values.length; i++) {
-                                // init
+                                // Init
 
                                 let htmlstr = '';
 
-                                // convert linear salsah standoff to html (using plugin "htmlConverter")
+                                // Convert linear salsah standoff to html (using plugin "htmlConverter")
                                 htmlstr = this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
 
-                                // replace salsah links & <p>-tags
+                                // Replace salsah links & <p>-tags
                                 htmlstr = this.replaceSalsahLink(htmlstr);
                                 htmlstr = htmlstr.replace('<p>', '').replace('</p>', '');
 
-                                // trim string
+                                // Trim string
                                 propValue[i] = htmlstr.trim();
 
-                                // replace bibliography links
+                                // Replace bibliography links
                                 if (prop.label === 'Online-Zugang') {
                                     propValue[i] = this.adjustBiblioLink(propValue[i]);
                                 }
@@ -250,7 +250,7 @@ export class ConversionService extends ApiService {
                 }
             } // END if value
 
-            // extract publication year from publication date
+            // Extract publication year from publication date
             /*
              TODO#add:
              let splitDate;
@@ -318,10 +318,10 @@ export class ConversionService extends ApiService {
         const resourceFullResponseData = resourceData[0];
         const resourceContextData = resourceData[1];
 
-        // convert properties to be displayed via HTML
+        // Convert properties to be displayed via HTML
         resourceFullResponseData.props = this.convertGUISpecificProps(resourceFullResponseData.props);
 
-        // prepare parts of resourceDetail
+        // Prepare parts of resourceDetail
         const header: ResourceDetailHeader = new ResourceDetailHeader(resourceFullResponseData, resourceId);
         const props: ResourceDetailProperty[] = this.prepareResourceDetailProperties(resourceFullResponseData.props);
         const images: NgxGalleryImage[] = this.prepareResourceDetailImage(resourceContextData);
@@ -344,12 +344,12 @@ export class ConversionService extends ApiService {
      * @returns {NgxGalleryImage[]} The image array of the resource detail.
      */
     private prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
-        // id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
-        // result is an array of NgxGalleryImage
+        // Id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
+        // Result is an array of NgxGalleryImage
         const images: NgxGalleryImage[] = [];
 
         if (!resourceContextData.resource_context.res_id) {
-            // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+            // Console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
             return;
         } else {
             const context: ContextJson = { ...resourceContextData.resource_context };
@@ -362,7 +362,7 @@ export class ConversionService extends ApiService {
                     context.res_id.length === context.locations.length
                 ) {
                     for (let i = 0; i < context.res_id.length; i++) {
-                        // build new ResourceDetailImage-Object from context and index
+                        // Build new ResourceDetailImage-Object from context and index
                         const image = new ResourceDetailImage(context, i);
 
                         const gImage = new NgxGalleryImage({
@@ -411,12 +411,12 @@ export class ConversionService extends ApiService {
             return;
         }
 
-        // map incoming array items into new array (immutable)
+        // Map incoming array items into new array (immutable)
         const incomingLinks: ResourceDetailIncomingLink[] = incomingArray.map(
             incoming => new ResourceDetailIncomingLink({ ...incoming })
         );
 
-        // return links grouped by restype
+        // Return links grouped by restype
         return this.groupByRestype(incomingLinks);
     }
 
@@ -435,10 +435,10 @@ export class ConversionService extends ApiService {
             return;
         }
 
-        // helper method to clean value labels
+        // Helper method to clean value labels
         const replaceLabel = (str: string): string => str.replace(' (Richtext)', '');
 
-        // map default values into ResourceDetailProperties array
+        // Map default values into ResourceDetailProperties array
         return Object.entries(props).map(
             prop =>
                 new ResourceDetailProperty(
@@ -463,7 +463,7 @@ export class ConversionService extends ApiService {
      * @returns {*} The converted resource data.
      */
     private convertGUISpecificProps(props: PropertyJson[]): any {
-        // loop through all properties and add toHtml values
+        // Loop through all properties and add toHtml values
         Object.keys(props).forEach((key: string) => {
             props[key] = this.addHtmlValues(props[key]);
         });
@@ -508,7 +508,7 @@ export class ConversionService extends ApiService {
 
                 case '14': // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        // convert richtext standoff
+                        // Convert richtext standoff
                         prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
                     break; // END richtext
@@ -524,7 +524,7 @@ export class ConversionService extends ApiService {
                     }
             } // END switch
         } else {
-            // console.log('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
+            // Console.log('empty prop.values for', prop.guielement.toUpperCase(), 'in property "', prop.label, '" :::: ');
         }
         return prop;
     }
@@ -559,18 +559,18 @@ export class ConversionService extends ApiService {
      * @returns {string[]} The converted geo names array.
      */
     private convertGeoValues(values: string[]): string[] {
-        // values give reference id to api + "/geonames/{{:id}}?reqtype=node"
-        // result is an array nodelist (properties: id, label, name) with nodes from 0 to n
+        // Values give reference id to api + "/geonames/{{:id}}?reqtype=node"
+        // Result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
         const output = [];
 
-        // identify geonames gui-id from values
-        // e.g. ["4136"] or ["4136", "4132"]
+        // Identify geonames gui-id from values
+        // E.g. ["4136"] or ["4136", "4132"]
         values.forEach((valueId, index) => {
-            // get geonames data
+            // Get geonames data
             this.getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe((geoNamesData: GeoDataJson) => {
-                // check for existing nodelist in geonames response
-                // else return empty prop if necessary
+                // Check for existing nodelist in geonames response
+                // Else return empty prop if necessary
                 if (!geoNamesData.nodelist) {
                     console.log(
                         'ConversionService# convertGeoValues: got no nodelist from geonames response: ',
@@ -578,13 +578,13 @@ export class ConversionService extends ApiService {
                     );
                     return (output[index] = '');
                 }
-                // snapshot of nodelist array
+                // Snapshot of nodelist array
                 const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
 
-                // build new GeoNames-Object from geoData array
+                // Build new GeoNames-Object from geoData array
                 const geo: GeoNames = new GeoNames(geoDataArray);
 
-                // construct and return html value
+                // Construct and return html value
                 output[index] = geo.html;
                 return output;
             });
@@ -604,28 +604,28 @@ export class ConversionService extends ApiService {
      * @returns {string[]} The converted hlist array.
      */
     private convertHlistValues(values: string[], attributes: string): string[] {
-        // prop.values give reference id to
-        // api + /hlists/{{:id}}
-        // result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
+        // Prop.values give reference id to
+        // Api + /hlists/{{:id}}
+        // Result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
 
         const output = [];
 
-        // identify id of hlist from prop.attributes
-        // e.g. "hlist=17"
+        // Identify id of hlist from prop.attributes
+        // E.g. "hlist=17"
         const nodeId: string = this.getNodeIdFromAttributes(attributes);
 
-        // get hlist data
+        // Get hlist data
         this.getAdditionalInfoFromApi(HlistJson, nodeId).subscribe(
             (hlistData: HlistJson) => {
-                // check for existing hlist in response
-                // esle return empty prop if necessary
+                // Check for existing hlist in response
+                // Esle return empty prop if necessary
                 if (!hlistData.hlist) {
                     console.log('ConversionService# convertHListValue: got no hlist from response: ', hlistData);
                     return output;
                 }
-                // snapshot of hlist array
+                // Snapshot of hlist array
                 const hlistArray: HlistItemJson[] = [...hlistData.hlist];
-                // localize id in hlist array and identify the label
+                // Localize id in hlist array and identify the label
                 values.forEach((valueId, index) => {
                     const filteredHlist: HlistItemJson[] = hlistArray.filter(hlistItem => hlistItem.id === valueId);
                     output[index] = filteredHlist[0].label;
@@ -649,7 +649,7 @@ export class ConversionService extends ApiService {
      * @returns {string} The converted link value.
      */
     private convertLinkValue(prop: any, index: number): string {
-        // add <a>-tag with click-directive; linktext is stored in "$&"
+        // Add <a>-tag with click-directive; linktext is stored in "$&"
         const firstValue = prop.value_firstprops[index];
         const replaceValue =
             '<a (click)="ref.navigateToResource(\'' +
@@ -672,10 +672,10 @@ export class ConversionService extends ApiService {
      * @returns {string} The converted rich text value.
      */
     private convertRichtextValue(str: string, attr: string): string {
-        // convert salsah standoff to html (using plugin "htmlConverter")
+        // Convert salsah standoff to html (using plugin "htmlConverter")
         const rtValue: string = this.convertStandoffToHTML(str, attr);
 
-        // replace salsah links
+        // Replace salsah links
         return this.replaceSalsahLink(rtValue);
     }
 
@@ -693,20 +693,20 @@ export class ConversionService extends ApiService {
      * @todo check if it is possible to unify with hlist conversion?
      */
     private convertSelectionValues(values: string[], attributes: string): string[] {
-        // values give reference id to api + "/selections/{{:id}}"
-        // result is an array of selection labels
+        // Values give reference id to api + "/selections/{{:id}}"
+        // Result is an array of selection labels
 
         const output = [];
 
-        // identify id of selection-list from attributes
-        // e.g. "selection=66"
+        // Identify id of selection-list from attributes
+        // E.g. "selection=66"
         const nodeId: string = this.getNodeIdFromAttributes(attributes);
 
-        // get selection-list data
+        // Get selection-list data
         this.getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe(
             (selectionData: SelectionJson) => {
-                // check for existing selection in response
-                // else return empty prop if necessary
+                // Check for existing selection in response
+                // Else return empty prop if necessary
                 if (!selectionData.selection) {
                     console.log(
                         'ConversionService# convertSelectionValues: got no selection from response: ',
@@ -714,9 +714,9 @@ export class ConversionService extends ApiService {
                     );
                     return output;
                 }
-                // snapshot of selection array
+                // Snapshot of selection array
                 const selectionArray: SelectionItemJson[] = [...selectionData.selection];
-                // localize id in selection-list array and identify the label
+                // Localize id in selection-list array and identify the label
                 values.forEach((valueId, index) => {
                     const filteredSelection: SelectionItemJson[] = selectionArray.filter(
                         selectionItem => selectionItem.id === valueId
@@ -796,8 +796,8 @@ export class ConversionService extends ApiService {
      * @returns {string} id The node id.
      */
     private getNodeIdFromAttributes(attributes: string): string {
-        // identify node id from prop.attributes
-        // e.g. "hlist=17" or "selection=77"
+        // Identify node id from prop.attributes
+        // E.g. "hlist=17" or "selection=77"
         return attributes.split('=')[1].toString();
     }
 
@@ -823,18 +823,18 @@ export class ConversionService extends ApiService {
         let labelStr: string;
         let splitArr: string[];
         let linkRegArr: RegExpExecArray;
-        const regExLink = /<a (.*?)>(.*?)<\/a>/i; // regexp for links
+        const regExLink = /<a (.*?)>(.*?)<\/a>/i; // Regexp for links
 
-        // check for double spaces
+        // Check for double spaces
         str = str.replace('  ', ' ');
 
-        // split "str" behind closing parentheses
+        // Split "str" behind closing parentheses
         splitArr = str.split(') ');
 
-        // get label of link from 1st part of splitArr (without opening parentheses)
+        // Get label of link from 1st part of splitArr (without opening parentheses)
         labelStr = splitArr[0].replace('(', '');
 
-        // check for link in 2nd part of splitArr
+        // Check for link in 2nd part of splitArr
         if (regExLink.exec(splitArr[1])) {
             // ... link with <a> tag
             linkRegArr = regExLink.exec(splitArr[1]);
@@ -843,7 +843,7 @@ export class ConversionService extends ApiService {
             // ... <a> tag is missing, add it
             outStr = '<a href="' + splitArr[1] + '">' + labelStr + '</a>';
         } else {
-            // no links, pure string
+            // No links, pure string
             outStr = labelStr + ': ' + splitArr[1];
         }
         return outStr;
@@ -863,23 +863,23 @@ export class ConversionService extends ApiService {
         if (!str) {
             return;
         }
-        const regNum = /\d{3,}/; // regexp for object id (3 or more DIGITS)
+        const regNum = /\d{3,}/; // Regexp for object id (3 or more DIGITS)
         const regLink = new RegExp(
             '<a href="((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/\\d{3,})" class="salsah-link">(.*?)</a>',
             'i'
-        ); // regexp for salsah links
+        ); // Regexp for salsah links
         let regArr: RegExpExecArray;
 
-        // check for salsah links in str
+        // Check for salsah links in str
         while (regLink.exec(str)) {
-            // i.e.: as long as regLink is detected in str do...
+            // I.e.: as long as regLink is detected in str do...
             regArr = regLink.exec(str);
 
-            // identify resource id
+            // Identify resource id
             const resId = regNum.exec(regArr[1])[0];
 
-            // replace href attribute with click-directive
-            // linktext is stored in last regexp-result regArr[regArr.length-1]
+            // Replace href attribute with click-directive
+            // Linktext is stored in last regexp-result regArr[regArr.length-1]
             const replaceValue =
                 '<a (click)="ref.navigateToResource(\'' +
                 resId +
@@ -954,10 +954,10 @@ export class ConversionService extends ApiService {
             return;
         }
 
-        // find out and alphabetically sort all the unique restype labels
+        // Find out and alphabetically sort all the unique restype labels
         const restypeLabels = new Set(incomingLinks.map(incomingLink => incomingLink.restype.label).sort());
 
-        // produce a list of restypes with its incoming links
+        // Produce a list of restypes with its incoming links
         return Array.from(restypeLabels).map(label => ({
             restypeLabel: label,
             links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label)

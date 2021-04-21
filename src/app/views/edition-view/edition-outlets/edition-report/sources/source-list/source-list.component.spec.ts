@@ -39,7 +39,7 @@ describe('SourceListComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
+            // Mock the input values supplied by the parent component
             expectedSourceListData = {
                 sources: [
                     {
@@ -63,10 +63,10 @@ describe('SourceListComponent', () => {
                 ]
             };
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.sourceListData = expectedSourceListData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

@@ -14,7 +14,7 @@ import { AnalyticsService } from '@awg-core/services';
 
 import { AppComponent } from './app.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-navbar', template: '' })
 class NavbarStubComponent {}
 
@@ -24,10 +24,10 @@ class ViewContainerStubComponent {}
 @Component({ selector: 'awg-footer', template: '' })
 class FooterStubComponent {}
 
-@Component({ selector: 'awg-test', template: `test` })
+@Component({ selector: 'awg-test', template: 'test' })
 export class RoutedTestMockComponent {}
 
-@Component({ selector: 'awg-test2', template: `test2` })
+@Component({ selector: 'awg-test2', template: 'test2' })
 export class RoutedTest2MockComponent {}
 
 export const mockRoutes: Routes = [
@@ -52,7 +52,7 @@ describe('AppComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
+            // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
             mockAnalyticsService = {
                 initializeAnalytics: (): void => {},
                 trackPageView: (page: string): void => {}
@@ -69,19 +69,19 @@ describe('AppComponent (DONE)', () => {
                     RoutedTest2MockComponent
                 ],
                 providers: [
-                    //  mocked router provided wth RouterTestingModule
+                    //  Mocked router provided wth RouterTestingModule
                     { provide: AnalyticsService, useValue: mockAnalyticsService }
                 ]
             }).compileComponents();
 
-            // spies for service methods
+            // Spies for service methods
             initialzeAnalyticsSpy = spyOn(mockAnalyticsService, 'initializeAnalytics').and.callThrough();
             trackpageViewSpy = spyOn(mockAnalyticsService, 'trackPageView').and.callThrough();
         })
     );
 
     beforeEach(() => {
-        // window spy object (Analytics)
+        // Window spy object (Analytics)
         (window as any).gtag = jasmine.createSpy('gtag');
 
         fixture = TestBed.createComponent(AppComponent);
@@ -92,18 +92,18 @@ describe('AppComponent (DONE)', () => {
         router = TestBed.inject(Router);
         location = TestBed.inject(Location);
 
-        // workaround for ngZone issue;
-        // cf. https://github.com/angular/angular/issues/25837
-        // cf. https://github.com/ngneat/spectator/pull/334/files
+        // Workaround for ngZone issue;
+        // Cf. https://github.com/angular/angular/issues/25837
+        // Cf. https://github.com/ngneat/spectator/pull/334/files
         ngZone = TestBed.inject(NgZone);
         fixture.ngZone.run(() => {
-            // initial navigation
+            // Initial navigation
             router.initialNavigation();
         });
     });
 
     afterEach(() => {
-        // remove global spy object
+        // Remove global spy object
         (window as any).gtag = undefined;
     });
 
@@ -125,15 +125,15 @@ describe('AppComponent (DONE)', () => {
 
     describe('router setup (self-test)', () => {
         it(
-            `... initial navigation should have detected empty route ''`,
+            "... initial navigation should have detected empty route ''",
             waitForAsync(() => {
-                expect(location.path()).toBe('', `should be ''`);
-                expect(location.path()).toBe('', `should be ''`);
+                expect(location.path()).toBe('', "should be ''");
+                expect(location.path()).toBe('', "should be ''");
             })
         );
 
         it(
-            `... should redirect to /test from '' redirect`,
+            "... should redirect to /test from '' redirect",
             waitForAsync(() => {
                 fixture.ngZone.run(() => {
                     router.navigate(['']).then(() => {
@@ -144,7 +144,7 @@ describe('AppComponent (DONE)', () => {
         );
 
         it(
-            `... should navigate to 'test' from /test`,
+            "... should navigate to 'test' from /test",
             waitForAsync(() => {
                 fixture.ngZone.run(() => {
                     router.navigate(['/test']).then(() => {
@@ -155,7 +155,7 @@ describe('AppComponent (DONE)', () => {
         );
 
         it(
-            `... should navigate to 'test2' from /test2`,
+            "... should navigate to 'test2' from /test2",
             waitForAsync(() => {
                 fixture.ngZone.run(() => {
                     router.navigate(['/test2']).then(() => {

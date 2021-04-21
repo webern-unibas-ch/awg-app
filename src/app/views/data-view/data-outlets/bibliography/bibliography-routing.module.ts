@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { BibliographyComponent } from './bibliography.component';
 import { BibliographyDetailComponent } from './bibliography-detail/bibliography-detail.component';
 
-/* routes of the BibliographyModule */
+/* Routes of the BibliographyModule */
 const bibliographyRoutes: Routes = [
     {
         path: '',

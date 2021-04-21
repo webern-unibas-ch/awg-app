@@ -73,15 +73,13 @@ export class SearchOverviewComponent implements OnInit {
      * @returns {void} Updates the search info title.
      */
     updateSearchInfoTitleFromPath(): void {
-        // get snapshot from current url path
+        // Get snapshot from current url path
         const path = this.route.snapshot.children[0].url[0].path;
 
-        // filter searchButtonArray
-        const selectedButton = this.searchRouterLinkButtons.filter(button => {
-            return button.link === path;
-        });
+        // Filter searchButtonArray
+        const selectedButton = this.searchRouterLinkButtons.filter(button => button.link === path);
 
-        // update side info title if path is in array
+        // Update side info title if path is in array
         if (selectedButton.length === 1) {
             this.sideInfoService.updateSearchInfoTitle(selectedButton[0].label);
         }

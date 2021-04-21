@@ -7,7 +7,7 @@ import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
 import { TextcriticsList } from '@awg-views/edition-view/models';
 import { TextcriticsComponent } from './textcritics.component';
 
-// mock critics list component
+// Mock critics list component
 @Component({ selector: 'awg-critics-list', template: '' })
 class CriticsListStubComponent {
     @Input()

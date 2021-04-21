@@ -42,10 +42,10 @@ export class D3Service {
      *  @returns {void} Sets the drag behaviour.
      */
     applyDragBehaviour(dragContext: D3Selection, simulation: D3Simulation): void {
-        // const dragElement: D3Selection = d3_selection.select(element);
+        // Const dragElement: D3Selection = d3_selection.select(element);
 
         const dragStart = (event: any, d: D3SimulationNode) => {
-            // prevent propagation of dragstart to parent elements
+            // Prevent propagation of dragstart to parent elements
             event.sourceEvent.stopPropagation();
 
             if (!event.active) {
@@ -70,14 +70,14 @@ export class D3Service {
             d.fy = null;
         };
 
-        // create drag behaviour
+        // Create drag behaviour
         const dragBehaviour: D3DragBehaviour = d3_drag
             .drag()
             .on('start', dragStart)
             .on('drag', dragged)
             .on('end', dragEnd);
 
-        // apply drag behaviour
+        // Apply drag behaviour
         dragContext.call(dragBehaviour);
     }
 
@@ -91,21 +91,21 @@ export class D3Service {
      *  @returns {void} Sets the zoom behaviour.
      */
     applyZoomBehaviour(zoomContainerElement: any, svgElement: any): void {
-        // select the elements
+        // Select the elements
         const svg: D3Selection = d3_selection.select(svgElement);
         const zoomContainer: D3Selection = d3_selection.select(zoomContainerElement);
 
-        // perform the zooming
+        // Perform the zooming
         const zoomed = (event: any) => {
             const currentTransform = event.transform;
-            // update d3 zoom context
+            // Update d3 zoom context
             zoomContainer.attr('transform', currentTransform);
         };
 
-        // create zoom behaviour that calls the zoomActions on zoom
+        // Create zoom behaviour that calls the zoomActions on zoom
         const zoomBehaviour = d3_zoom.zoom().on('zoom', zoomed);
 
-        // apply zoom behaviour
+        // Apply zoom behaviour
         svg.call(zoomBehaviour);
     }
 

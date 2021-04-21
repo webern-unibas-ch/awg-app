@@ -66,10 +66,8 @@ export class BibliographyDetailComponent implements OnInit {
      * @returns {void} Sets the bibEntry observable.
      */
     getBibEntry(id: string): void {
-        this.bibEntry$ = this.bibliographyService.getBibliographyItemDetail(id).pipe(
-            map((data: ResourceFullResponseJson) => {
-                return this.conversionService.convertObjectProperties(data);
-            })
-        );
+        this.bibEntry$ = this.bibliographyService
+            .getBibliographyItemDetail(id)
+            .pipe(map((data: ResourceFullResponseJson) => this.conversionService.convertObjectProperties(data)));
     }
 }

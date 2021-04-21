@@ -58,18 +58,18 @@ export class GeoNames {
             const geoItem: GeoDataItemJson = geoDataArray[j];
             this.longLabel += ', ' + geoItem.label;
             if (j === geoDataArray.length - 1) {
-                // get geonames-id gnid from last array item
+                // Get geonames-id gnid from last array item
                 this.gnid = geoItem.name.replace('gnid:', '');
-                // short label
+                // Short label
                 this.shortLabel = geoItem.label;
-                // latitude + longitude
+                // Latitude + longitude
                 this.latitude = geoItem.lat;
                 this.longitude = geoItem.lng;
-                // wiki
+                // Wiki
                 this.wiki = geoItem.wikipedia;
             }
         }
-        // prepare icon & link for geonames
+        // Prepare icon & link for geonames
         const geoIcon =
             '<img src="assets/img/logos/geonames.png" height="25" width="25" alt="' + this.shortLabel + '" />';
         const geoLink =

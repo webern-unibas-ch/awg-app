@@ -40,7 +40,7 @@ describe('FolioComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the inputs supplied by the parent component
+            // Mock the inputs supplied by the parent component
             expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
@@ -82,11 +82,11 @@ describe('FolioComponent', () => {
                 ]
             };
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.selectedConvolute = expectedConvolute;
             component.selectedSvgSheet = expectedSvgSheet;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

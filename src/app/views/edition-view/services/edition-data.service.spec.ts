@@ -67,18 +67,18 @@ describe('EditionDataService (DONE)', () => {
             providers: [EditionDataService]
         });
 
-        // inject services and http client handler
+        // Inject services and http client handler
         editionDataService = TestBed.inject(EditionDataService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
 
-        // spies on console logs
+        // Spies on console logs
         consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
     });
 
-    // after every test, assert that there are no more pending requests
+    // After every test, assert that there are no more pending requests
     afterEach(() => {
-        // clear mock stores after each test
+        // Clear mock stores after each test
         mockConsole.clear();
     });
 
@@ -96,7 +96,7 @@ describe('EditionDataService (DONE)', () => {
 
     describe('httpTestingController', () => {
         it(
-            `... should issue a mocked http get request`,
+            '... should issue a mocked http get request',
             waitForAsync(() => {
                 const testData: Data = { name: 'TestData' };
 
@@ -104,15 +104,15 @@ describe('EditionDataService (DONE)', () => {
                     expect(data).toEqual(testData);
                 });
 
-                // match the request url
+                // Match the request url
                 const call = httpTestingController.expectOne({
                     url: '/foo/bar'
                 });
 
-                // check for GET request
+                // Check for GET request
                 expect(call.request.method).toBe('GET');
 
-                // respond with mocked data
+                // Respond with mocked data
                 call.flush(testData);
             })
         );
@@ -123,7 +123,7 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should set assetWorkPath',
                 waitForAsync(() => {
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -144,7 +144,7 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should call #getFolioConvoluteData, #getSvgSheetsData, #getTextcriticsListData',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getFolioConvoluteDataSpy: Spy = spyOn(
                         editionDataService as any,
                         'getFolioConvoluteData'
@@ -158,7 +158,7 @@ describe('EditionDataService (DONE)', () => {
                         'getTextcriticsListData'
                     ).and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -177,10 +177,10 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should trigger #getJsonData with correct urls',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -207,12 +207,12 @@ describe('EditionDataService (DONE)', () => {
             );
 
             it(
-                `... should perform an HTTP GET request to convolute, sheets & textcritics file`,
+                '... should perform an HTTP GET request to convolute, sheets & textcritics file',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -222,10 +222,11 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    // expect one request to every file with given settings
-                    const call = httpTestingController.match((req: HttpRequest<any>) => {
-                        return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                    });
+                    // Expect one request to every file with given settings
+                    const call = httpTestingController.match(
+                        (req: HttpRequest<any>) =>
+                            req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                    );
 
                     expectSpyCall(getJsonDataSpy, 3);
 
@@ -248,7 +249,7 @@ describe('EditionDataService (DONE)', () => {
                         `should be ${expectedTextcriticsFilePath}`
                     );
 
-                    // assert that there are no more pending requests
+                    // Assert that there are no more pending requests
                     httpTestingController.verify();
                 })
             );
@@ -276,7 +277,7 @@ describe('EditionDataService (DONE)', () => {
 
                         const expectedResult = [fcl, esl, tcl];
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getFolioConvoluteDataSpy: Spy = spyOn(
                             editionDataService as any,
                             'getFolioConvoluteData'
@@ -290,7 +291,7 @@ describe('EditionDataService (DONE)', () => {
                             'getTextcriticsListData'
                         ).and.returnValue(observableOf(tcl));
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
@@ -315,12 +316,12 @@ describe('EditionDataService (DONE)', () => {
 
                                 expect(res[0].convolutes[0].convoluteId).toBe(
                                     'test-convolute-id',
-                                    `should be test-convolute-id`
+                                    'should be test-convolute-id'
                                 );
-                                expect(res[1].sheets[0].id).toBe('test-svg-sheets-id', `should be test-svg-sheet-id`);
+                                expect(res[1].sheets[0].id).toBe('test-svg-sheets-id', 'should be test-svg-sheet-id');
                                 expect(res[2].textcritics[0].id).toBe(
                                     'test-textcritics-id',
-                                    `should be test-textcritics-id`
+                                    'should be test-textcritics-id'
                                 );
                             },
                             () => {
@@ -343,7 +344,7 @@ describe('EditionDataService (DONE)', () => {
                             new TextcriticsList()
                         ];
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getFolioConvoluteDataSpy: Spy = spyOn(
                             editionDataService as any,
                             'getFolioConvoluteData'
@@ -357,7 +358,7 @@ describe('EditionDataService (DONE)', () => {
                             'getTextcriticsListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
@@ -394,30 +395,31 @@ describe('EditionDataService (DONE)', () => {
 
             describe('fail', () => {
                 it(
-                    `... should log an error for every failed request`,
+                    '... should log an error for every failed request',
                     waitForAsync(() => {
                         const expectedResult = [[], [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
+                                expect(res[1]).toEqual([], 'should equal empty array');
+                                expect(res[2]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -429,7 +431,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
@@ -454,36 +456,37 @@ describe('EditionDataService (DONE)', () => {
                             `getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_TEXTCRITICSLIST`
                         );
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], [], []] if all requests failed`,
+                    '... should return [[], [], []] if all requests failed',
                     waitForAsync(() => {
                         const expectedResult = [[], [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
+                                expect(res[1]).toEqual([], 'should equal empty array');
+                                expect(res[2]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -495,7 +498,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
@@ -509,20 +512,20 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 3);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [folioConvoluteList, [], []] if all but folioConvoluteList request failed`,
+                    '... should return [folioConvoluteList, [], []] if all but folioConvoluteList request failed',
                     waitForAsync(() => {
                         const expectedResult = [new FolioConvoluteList(), [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
@@ -530,18 +533,19 @@ describe('EditionDataService (DONE)', () => {
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
                                 expect(res[0]).toEqual(expectedResult[0], `should equal ${expectedResult[0]}`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
+                                expect(res[1]).toEqual([], 'should equal empty array');
+                                expect(res[2]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -553,7 +557,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].flush(expectedResult[0]);
                         call[1].error(
                             null,
@@ -564,39 +568,40 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 2);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], editionSvgSheetList, []] if all but editionSvgSheetList request failed`,
+                    '... should return [[], editionSvgSheetList, []] if all but editionSvgSheetList request failed',
                     waitForAsync(() => {
                         const expectedResult = [[], new EditionSvgSheetList(), []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
                                 expect(res[1]).toEqual(expectedResult[1], `should equal ${expectedResult[1]}`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
+                                expect(res[2]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -608,7 +613,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
@@ -619,28 +624,28 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 2);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], [], textcriticsList] if all but textcriticsList request failed`,
+                    '... should return [[], [], textcriticsList] if all but textcriticsList request failed',
                     waitForAsync(() => {
                         const expectedResult = [[], [], new TextcriticsList()];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
+                                expect(res[1]).toEqual([], 'should equal empty array');
                                 expect(res[2]).toEqual(expectedResult[2], `should equal ${expectedResult[2]}`);
                             },
                             () => {
@@ -648,10 +653,11 @@ describe('EditionDataService (DONE)', () => {
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -663,7 +669,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
@@ -674,20 +680,20 @@ describe('EditionDataService (DONE)', () => {
                         );
                         call[2].flush(expectedResult[2]);
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 2);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [folioConvoluteList, editionSvgSheetList, []] if textcriticsList request failed`,
+                    '... should return [folioConvoluteList, editionSvgSheetList, []] if textcriticsList request failed',
                     waitForAsync(() => {
                         const expectedResult = [new FolioConvoluteList(), new EditionSvgSheetList(), []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
@@ -696,17 +702,18 @@ describe('EditionDataService (DONE)', () => {
 
                                 expect(res[0]).toEqual(expectedResult[0], `should equal ${expectedResult[0]}`);
                                 expect(res[1]).toEqual(expectedResult[1], `should equal ${expectedResult[1]}`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
+                                expect(res[2]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -718,7 +725,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].flush(expectedResult[0]);
                         call[1].flush(expectedResult[1]);
                         call[2].error(
@@ -726,20 +733,20 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICSLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [folioConvoluteList, [], textcriticsList] if middle request failed`,
+                    '... should return [folioConvoluteList, [], textcriticsList] if middle request failed',
                     waitForAsync(() => {
                         const expectedResult = [new FolioConvoluteList(), [], new TextcriticsList()];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
@@ -747,7 +754,7 @@ describe('EditionDataService (DONE)', () => {
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
                                 expect(res[0]).toEqual(expectedResult[0], `should equal ${expectedResult[0]}`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
+                                expect(res[1]).toEqual([], 'should equal empty array');
                                 expect(res[2]).toEqual(expectedResult[2], `should equal ${expectedResult[2]}`);
                             },
                             () => {
@@ -755,10 +762,11 @@ describe('EditionDataService (DONE)', () => {
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -770,7 +778,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].flush(expectedResult[0]);
                         call[1].error(
                             null,
@@ -778,27 +786,27 @@ describe('EditionDataService (DONE)', () => {
                         );
                         call[2].flush(expectedResult[2]);
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], editionSvgSheetList, textcriticsList] if folioConvoluteList request failed`,
+                    '... should return [[], editionSvgSheetList, textcriticsList] if folioConvoluteList request failed',
                     waitForAsync(() => {
                         const expectedResult = [[], new EditionSvgSheetList(), new TextcriticsList()];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
                                 expect(res[1]).toEqual(expectedResult[1], `should equal ${expectedResult[1]}`);
                                 expect(res[2]).toEqual(expectedResult[2], `should equal ${expectedResult[2]}`);
                             },
@@ -807,10 +815,11 @@ describe('EditionDataService (DONE)', () => {
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedFolioConvoluteFilePath,
@@ -822,7 +831,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_FOLIOCONVOLUTELIST' })
@@ -830,10 +839,10 @@ describe('EditionDataService (DONE)', () => {
                         call[1].flush(expectedResult[1]);
                         call[2].flush(expectedResult[2]);
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
@@ -846,7 +855,7 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should set assetWorkPath',
                 waitForAsync(() => {
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -867,7 +876,7 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should call #getSourceListData, #getSourceDescriptionListData, #getSourceEvaluationListData, #getTextcriticsListData',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getSourceListDataSpy: Spy = spyOn(
                         editionDataService as any,
                         'getSourceListData'
@@ -885,7 +894,7 @@ describe('EditionDataService (DONE)', () => {
                         'getTextcriticsListData'
                     ).and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -905,10 +914,10 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should trigger #getJsonData with correct urls',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -939,12 +948,12 @@ describe('EditionDataService (DONE)', () => {
             );
 
             it(
-                `... should perform an HTTP GET request to sourceList, sourceDescription, sourceEvaluation & textcritics file`,
+                '... should perform an HTTP GET request to sourceList, sourceDescription, sourceEvaluation & textcritics file',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -954,10 +963,11 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    // expect one request to to every file with given settings
-                    const call = httpTestingController.match((req: HttpRequest<any>) => {
-                        return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                    });
+                    // Expect one request to to every file with given settings
+                    const call = httpTestingController.match(
+                        (req: HttpRequest<any>) =>
+                            req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                    );
 
                     expectSpyCall(getJsonDataSpy, 4);
 
@@ -987,7 +997,7 @@ describe('EditionDataService (DONE)', () => {
                         `should be ${expectedTextcriticsFilePath}`
                     );
 
-                    // assert that there are no more pending requests
+                    // Assert that there are no more pending requests
                     httpTestingController.verify();
                 })
             );
@@ -1020,7 +1030,7 @@ describe('EditionDataService (DONE)', () => {
 
                         const expectedResult = [sl, sdl, sel, tcl];
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getSourceListDataSpy: Spy = spyOn(
                             editionDataService as any,
                             'getSourceListData'
@@ -1038,7 +1048,7 @@ describe('EditionDataService (DONE)', () => {
                             'getTextcriticsListData'
                         ).and.returnValue(observableOf(tcl));
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
@@ -1065,18 +1075,18 @@ describe('EditionDataService (DONE)', () => {
                                     `should equal ${expectedResult[3]}`
                                 );
 
-                                expect(res[0].sources[0].siglum).toBe('test-sources-id', `should be test-sources-id`);
+                                expect(res[0].sources[0].siglum).toBe('test-sources-id', 'should be test-sources-id');
                                 expect(res[1].sources[0].id).toBe(
                                     'test-source-description-id',
-                                    `should be test-source-description-id`
+                                    'should be test-source-description-id'
                                 );
                                 expect(res[2].sources[0].id).toBe(
                                     'test-source-evaluation-id',
-                                    `should be test-source-evaluation-id`
+                                    'should be test-source-evaluation-id'
                                 );
                                 expect(res[3].textcritics[0].id).toBe(
                                     'test-textcritics-id',
-                                    `should be test-textcritics-id`
+                                    'should be test-textcritics-id'
                                 );
                             },
                             () => {
@@ -1101,7 +1111,7 @@ describe('EditionDataService (DONE)', () => {
                             new TextcriticsList()
                         ];
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getSourceListDataSpy: Spy = spyOn(
                             editionDataService as any,
                             'getSourceListData'
@@ -1119,7 +1129,7 @@ describe('EditionDataService (DONE)', () => {
                             'getTextcriticsListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
@@ -1144,31 +1154,32 @@ describe('EditionDataService (DONE)', () => {
 
             describe('fail', () => {
                 it(
-                    `... should log an error for every failed request`,
+                    '... should log an error for every failed request',
                     waitForAsync(() => {
                         const expectedResult = [[], [], [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
-                                expect(res[3]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
+                                expect(res[1]).toEqual([], 'should equal empty array');
+                                expect(res[2]).toEqual([], 'should equal empty array');
+                                expect(res[3]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1187,7 +1198,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' })
@@ -1205,7 +1216,7 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 4);
                         expect(consoleSpy.calls.allArgs()[0][0]).toBe(
                             `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_SOURCELIST`
@@ -1220,37 +1231,38 @@ describe('EditionDataService (DONE)', () => {
                             `getJsonData failed: Http failure response for ${call[3].request.url}: 400 ERROR_LOADING_TEXTCRITICS`
                         );
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], [], [], []] if all requests failed`,
+                    '... should return [[], [], [], []] if all requests failed',
                     waitForAsync(() => {
                         const expectedResult = [[], [], [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
-                                expect(res[3]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
+                                expect(res[1]).toEqual([], 'should equal empty array');
+                                expect(res[2]).toEqual([], 'should equal empty array');
+                                expect(res[3]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1269,7 +1281,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' })
@@ -1287,20 +1299,20 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 4);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [sourceList, [], [], []] if all but sourceList request failed`,
+                    '... should return [sourceList, [], [], []] if all but sourceList request failed',
                     waitForAsync(() => {
                         const expectedResult = [new SourceList(), [], [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
@@ -1308,19 +1320,20 @@ describe('EditionDataService (DONE)', () => {
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
                                 expect(res[0]).toEqual(expectedResult[0], `should equal ${expectedResult[0]}`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
-                                expect(res[3]).toEqual([], `should equal empty array`);
+                                expect(res[1]).toEqual([], 'should equal empty array');
+                                expect(res[2]).toEqual([], 'should equal empty array');
+                                expect(res[3]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1339,7 +1352,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].flush(expectedResult[0]);
                         call[1].error(
                             null,
@@ -1354,40 +1367,41 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 3);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], sourceDescriptionList, [], []] if all but sourceDescriptionList request failed`,
+                    '... should return [[], sourceDescriptionList, [], []] if all but sourceDescriptionList request failed',
                     waitForAsync(() => {
                         const expectedResult = [[], new SourceDescriptionList(), [], []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
                                 expect(res[1]).toEqual(expectedResult[1], `should equal ${expectedResult[1]}`);
-                                expect(res[2]).toEqual([], `should equal empty array`);
-                                expect(res[3]).toEqual([], `should equal empty array`);
+                                expect(res[2]).toEqual([], 'should equal empty array');
+                                expect(res[3]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1406,7 +1420,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' })
@@ -1421,40 +1435,41 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 3);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], [], sourceEvaluationList, []] if all but sourceEvaluationList request failed`,
+                    '... should return [[], [], sourceEvaluationList, []] if all but sourceEvaluationList request failed',
                     waitForAsync(() => {
                         const expectedResult = [[], [], new SourceEvaluationList(), []];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
                                 expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res[0]).toEqual([], `should equal empty array`);
-                                expect(res[1]).toEqual([], `should equal empty array`);
+                                expect(res[0]).toEqual([], 'should equal empty array');
+                                expect(res[1]).toEqual([], 'should equal empty array');
                                 expect(res[2]).toEqual(expectedResult[2], `should equal ${expectedResult[2]}`);
-                                expect(res[3]).toEqual([], `should equal empty array`);
+                                expect(res[3]).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1473,7 +1488,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' })
@@ -1488,35 +1503,36 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 3);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], [], [], textcritics] if all but textcritics request failed`,
+                    '... should return [[], [], [], textcritics] if all but textcritics request failed',
                     waitForAsync(() => {
                         const expectedResult = [[], [], [], new TextcriticsList()];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe((res: any) => {
                             expect(res).toBeTruthy();
                             expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
                             expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                            expect(res[0]).toEqual([], `should equal empty array`);
-                            expect(res[1]).toEqual([], `should equal empty array`);
-                            expect(res[2]).toEqual([], `should equal empty array`);
+                            expect(res[0]).toEqual([], 'should equal empty array');
+                            expect(res[1]).toEqual([], 'should equal empty array');
+                            expect(res[2]).toEqual([], 'should equal empty array');
                             expect(res[3]).toEqual(expectedResult[3], `should equal ${expectedResult[3]}`);
                         });
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1535,7 +1551,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' })
@@ -1550,16 +1566,16 @@ describe('EditionDataService (DONE)', () => {
                         );
                         call[3].flush(expectedResult[3]);
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 3);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [sourcelist, SourceDescriptionList, SourceEvaluationList, []] if textcritics request failed`,
+                    '... should return [sourcelist, SourceDescriptionList, SourceEvaluationList, []] if textcritics request failed',
                     waitForAsync(() => {
                         const expectedResult = [
                             new SourceList(),
@@ -1568,20 +1584,21 @@ describe('EditionDataService (DONE)', () => {
                             []
                         ];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe((res: any) => {
                             expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
 
                             expect(res[0]).toEqual(expectedResult[0], `should equal ${expectedResult[0]}`);
                             expect(res[1]).toEqual(expectedResult[1], `should equal ${expectedResult[1]}`);
                             expect(res[2]).toEqual(expectedResult[2], `should equal ${expectedResult[2]}`);
-                            expect(res[3]).toEqual([], `should equal empty array`);
+                            expect(res[3]).toEqual([], 'should equal empty array');
                         });
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1600,7 +1617,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].flush(expectedResult[0]);
                         call[1].flush(expectedResult[1]);
                         call[2].flush(expectedResult[2]);
@@ -1609,33 +1626,34 @@ describe('EditionDataService (DONE)', () => {
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_TEXTCRITICS' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [sourceList, [], [], textcritics] if middle requests failed`,
+                    '... should return [sourceList, [], [], textcritics] if middle requests failed',
                     waitForAsync(() => {
                         const expectedResult = [new SourceList(), [], [], new TextcriticsList()];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe((res: any) => {
                             expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
 
                             expect(res[0]).toEqual(expectedResult[0], `should equal ${expectedResult[0]}`);
-                            expect(res[1]).toEqual([], `should equal empty array`);
-                            expect(res[2]).toEqual([], `should equal empty array`);
+                            expect(res[1]).toEqual([], 'should equal empty array');
+                            expect(res[2]).toEqual([], 'should equal empty array');
                             expect(res[3]).toEqual(expectedResult[3], `should equal ${expectedResult[3]}`);
                         });
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1654,7 +1672,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].flush(expectedResult[0]);
                         call[1].error(
                             null,
@@ -1666,16 +1684,16 @@ describe('EditionDataService (DONE)', () => {
                         );
                         call[3].flush(expectedResult[3]);
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 2);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [[], descriptionList, evaluationList, textcritics] if sourcelist request failed`,
+                    '... should return [[], descriptionList, evaluationList, textcritics] if sourcelist request failed',
                     waitForAsync(() => {
                         const expectedResult = [
                             [],
@@ -1684,20 +1702,21 @@ describe('EditionDataService (DONE)', () => {
                             new TextcriticsList()
                         ];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionReportData(expectedEditionWork).subscribe((res: any) => {
                             expect(res.length).toBe(expectedResult.length, `should be ${expectedResult.length}`);
 
-                            expect(res[0]).toEqual([], `should equal empty array`);
+                            expect(res[0]).toEqual([], 'should equal empty array');
                             expect(res[1]).toEqual(expectedResult[1], `should equal ${expectedResult[1]}`);
                             expect(res[2]).toEqual(expectedResult[2], `should equal ${expectedResult[2]}`);
                             expect(res[3]).toEqual(expectedResult[3], `should equal ${expectedResult[3]}`);
                         });
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(
                             expectedSourceListFilePath,
@@ -1716,7 +1735,7 @@ describe('EditionDataService (DONE)', () => {
                             `should be ${expectedTextcriticsFilePath}`
                         );
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_SOURCELIST' })
@@ -1725,10 +1744,10 @@ describe('EditionDataService (DONE)', () => {
                         call[2].flush(expectedResult[2]);
                         call[3].flush(expectedResult[3]);
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
@@ -1741,7 +1760,7 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should set assetWorkPath',
                 waitForAsync(() => {
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -1762,10 +1781,10 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should call #getGraphData',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -1782,11 +1801,11 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should trigger #getJsonData with correct url',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.callThrough();
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -1802,12 +1821,12 @@ describe('EditionDataService (DONE)', () => {
             );
 
             it(
-                `... should perform an HTTP GET request to graph file`,
+                '... should perform an HTTP GET request to graph file',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -1817,10 +1836,11 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    // expect one request to every file with given settings
-                    const call = httpTestingController.match((req: HttpRequest<any>) => {
-                        return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                    });
+                    // Expect one request to every file with given settings
+                    const call = httpTestingController.match(
+                        (req: HttpRequest<any>) =>
+                            req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                    );
 
                     expectSpyCall(getJsonDataSpy, 1, expectedGraphFilePath);
 
@@ -1829,7 +1849,7 @@ describe('EditionDataService (DONE)', () => {
                     expect(call[0].request.responseType).toBe('json', 'should be json');
                     expect(call[0].request.url).toBe(expectedGraphFilePath, `should be ${expectedGraphFilePath}`);
 
-                    // assert that there are no more pending requests
+                    // Assert that there are no more pending requests
                     httpTestingController.verify();
                 })
             );
@@ -1847,18 +1867,18 @@ describe('EditionDataService (DONE)', () => {
 
                         const expectedResult = gl;
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.returnValue(
                             observableOf(expectedResult)
                         );
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res.graph[0].id).toBe('test-graph-id', `should be test-graph-id`);
+                                expect(res.graph[0].id).toBe('test-graph-id', 'should be test-graph-id');
                             },
                             () => {
                                 fail('should not call error');
@@ -1874,12 +1894,12 @@ describe('EditionDataService (DONE)', () => {
                     waitForAsync(() => {
                         const expectedResult = new GraphList();
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.returnValue(
                             EMPTY.pipe(defaultIfEmpty(expectedResult))
                         );
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
@@ -1897,11 +1917,11 @@ describe('EditionDataService (DONE)', () => {
 
             describe('fail', () => {
                 it(
-                    `... should log an error for every failed request`,
+                    '... should log an error for every failed request',
                     waitForAsync(() => {
                         const expectedResult = [];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
@@ -1912,64 +1932,66 @@ describe('EditionDataService (DONE)', () => {
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(expectedGraphFilePath, `should be ${expectedGraphFilePath}`);
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(
                             consoleSpy,
                             1,
                             `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_GRAPHLIST`
                         );
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [] if request failed`,
+                    '... should return [] if request failed',
                     waitForAsync(() => {
                         const expectedResult = [];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
-                                expect(res).toEqual([], `should equal empty array`);
+                                expect(res).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(expectedGraphFilePath, `should be ${expectedGraphFilePath}`);
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_GRAPHLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
@@ -1982,7 +2004,7 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should set assetWorkPath',
                 waitForAsync(() => {
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -2003,10 +2025,10 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should call #getIntroData',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -2023,11 +2045,11 @@ describe('EditionDataService (DONE)', () => {
             it(
                 '... should trigger #getJsonData with correct url',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.callThrough();
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -2043,12 +2065,12 @@ describe('EditionDataService (DONE)', () => {
             );
 
             it(
-                `... should perform an HTTP GET request to graph file`,
+                '... should perform an HTTP GET request to graph file',
                 waitForAsync(() => {
-                    // set spy on private method
+                    // Set spy on private method
                     const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
 
-                    // call service function
+                    // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                         res => {
                             expect(res).toBeTruthy();
@@ -2058,10 +2080,11 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    // expect one request to every file with given settings
-                    const call = httpTestingController.match((req: HttpRequest<any>) => {
-                        return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                    });
+                    // Expect one request to every file with given settings
+                    const call = httpTestingController.match(
+                        (req: HttpRequest<any>) =>
+                            req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                    );
 
                     expectSpyCall(getJsonDataSpy, 1, expectedIntroFilePath);
 
@@ -2070,7 +2093,7 @@ describe('EditionDataService (DONE)', () => {
                     expect(call[0].request.responseType).toBe('json', 'should be json');
                     expect(call[0].request.url).toBe(expectedIntroFilePath, `should be ${expectedIntroFilePath}`);
 
-                    // assert that there are no more pending requests
+                    // Assert that there are no more pending requests
                     httpTestingController.verify();
                 })
             );
@@ -2088,18 +2111,18 @@ describe('EditionDataService (DONE)', () => {
 
                         const expectedResult = il;
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.returnValue(
                             observableOf(expectedResult)
                         );
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
                                 expect(res).toEqual(expectedResult, `should equal ${expectedResult}`);
 
-                                expect(res.intro[0].id).toBe('test-intro-id', `should be test-intro-id`);
+                                expect(res.intro[0].id).toBe('test-intro-id', 'should be test-intro-id');
                             },
                             () => {
                                 fail('should not call error');
@@ -2115,12 +2138,12 @@ describe('EditionDataService (DONE)', () => {
                     waitForAsync(() => {
                         const expectedResult = new IntroList();
 
-                        // set spy on private method
+                        // Set spy on private method
                         const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.returnValue(
                             EMPTY.pipe(defaultIfEmpty(expectedResult))
                         );
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                             res => {
                                 expect(res).toBeTruthy();
@@ -2138,11 +2161,11 @@ describe('EditionDataService (DONE)', () => {
 
             describe('fail', () => {
                 it(
-                    `... should log an error for every failed request`,
+                    '... should log an error for every failed request',
                     waitForAsync(() => {
                         const expectedResult = [];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
@@ -2153,64 +2176,66 @@ describe('EditionDataService (DONE)', () => {
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(expectedIntroFilePath, `should be ${expectedIntroFilePath}`);
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(
                             consoleSpy,
                             1,
                             `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_INTROLIST`
                         );
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );
 
                 it(
-                    `... should return [] if request failed`,
+                    '... should return [] if request failed',
                     waitForAsync(() => {
                         const expectedResult = [];
 
-                        // call service function (success)
+                        // Call service function (success)
                         editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
                             (res: any) => {
                                 expect(res).toBeTruthy();
-                                expect(res).toEqual([], `should equal empty array`);
+                                expect(res).toEqual([], 'should equal empty array');
                             },
                             () => {
                                 fail('should not call error');
                             }
                         );
 
-                        // expect one request to to every file with given settings
-                        const call = httpTestingController.match((req: HttpRequest<any>) => {
-                            return req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url);
-                        });
+                        // Expect one request to to every file with given settings
+                        const call = httpTestingController.match(
+                            (req: HttpRequest<any>) =>
+                                req.method === 'GET' && req.responseType === 'json' && regexBase.test(req.url)
+                        );
 
                         expect(call[0].request.url).toBe(expectedIntroFilePath, `should be ${expectedIntroFilePath}`);
 
-                        // resolve request with mocked error
+                        // Resolve request with mocked error
                         call[0].error(
                             null,
                             new HttpErrorResponse({ status: 400, statusText: 'ERROR_LOADING_INTROLIST' })
                         );
 
-                        // check for console output
+                        // Check for console output
                         expectSpyCall(consoleSpy, 1);
 
-                        // assert that there are no more pending requests
+                        // Assert that there are no more pending requests
                         httpTestingController.verify();
                     })
                 );

@@ -63,24 +63,24 @@ describe('EditionDetailComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake service object with a `getEditionDetailData()` spy
+            // Create a fake service object with a `getEditionDetailData()` spy
             const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
             const expectedTextcriticalComments = []; // TODO: provide real test data
-            // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+            // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', [
                 'getTextcriticalComments',
                 'getEditionWork'
             ]);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
                 expectedTextcriticalComments
             );
             getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
             /*
-        mockEditionService = {
+        MockEditionService = {
             // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
 
         };

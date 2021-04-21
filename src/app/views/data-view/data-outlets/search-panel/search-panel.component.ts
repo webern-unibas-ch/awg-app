@@ -126,26 +126,26 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     getFulltextSearchData(): void {
         this.router.events.pipe(takeUntil(this.destroy$)).subscribe(
             (e: any) => {
-                // check for end of navigation
+                // Check for end of navigation
                 if (e instanceof NavigationEnd) {
-                    // snapshot of current route query params
+                    // Snapshot of current route query params
                     const qp = this.route.snapshot.queryParamMap;
 
                     if (qp !== this.currentQueryParams) {
                         this.currentQueryParams = qp;
 
                         if (qp.keys.length < 4) {
-                            // update search params
+                            // Update search params
                             this.updateSearchParamsFromRoute(qp, true);
                         } else {
-                            // update search params from route if available
+                            // Update search params from route if available
                             this.updateSearchParamsFromRoute(qp, false);
 
                             if (this.searchParams.query && !this.viewChanged) {
-                                // fetch search data
+                                // Fetch search data
                                 return this.dataApiService.getFulltextSearchData(this.searchParams).subscribe(
                                     (searchResponse: SearchResponseJson) => {
-                                        // share search data via streamer service
+                                        // Share search data via streamer service
                                         const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(
                                             searchResponse,
                                             this.searchParams.query
@@ -157,11 +157,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                                     }
                                 );
                             } else {
-                                // console.log('No search query!');
+                                // Console.log('No search query!');
                             }
                         }
                     } else {
-                        // console.log('Routed on same page with same query params');
+                        // Console.log('Routed on same page with same query params');
                     }
                 }
             },
@@ -184,7 +184,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onPageChange(requestedStartAt: string): void {
         if (requestedStartAt !== this.searchParams.startAt) {
-            // view has not changed
+            // View has not changed
             this.viewChanged = false;
 
             this.searchParams = {
@@ -193,7 +193,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 startAt: requestedStartAt,
                 view: this.searchParams.view
             };
-            // route to new params
+            // Route to new params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -211,7 +211,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onRowNumberChange(requestedRows: string): void {
         if (requestedRows !== this.searchParams.nRows) {
-            // view has not changed
+            // View has not changed
             this.viewChanged = false;
 
             this.searchParams = {
@@ -221,7 +221,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 view: this.searchParams.view
             };
 
-            // route to new params
+            // Route to new params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -239,7 +239,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onViewChange(requestedView: string): void {
         if (requestedView !== this.searchParams.view) {
-            // view has changed
+            // View has changed
             this.viewChanged = true;
 
             this.searchParams = {
@@ -249,7 +249,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 view: SearchParamsViewTypes[requestedView]
             };
 
-            // route to new params
+            // Route to new params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -267,7 +267,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onSearch(requestedQuery: string): void {
         if (requestedQuery !== this.searchParams.query) {
-            // view has not changed
+            // View has not changed
             this.viewChanged = false;
 
             this.searchParams = {
@@ -277,7 +277,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 view: this.searchParams.view
             };
 
-            // route to new search params
+            // Route to new search params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -317,7 +317,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // update search params (immutable)
+        // Update search params (immutable)
         this.searchParams = {
             query: params.get('query') || this.searchParams.query,
             nRows: params.get('nrows') || this.searchParams.nRows,
@@ -337,10 +337,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
+        // Emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
-        // unsubscribe from the destroy subject itself
+        // Unsubscribe from the destroy subject itself
         this.destroy$.unsubscribe();
     }
 }

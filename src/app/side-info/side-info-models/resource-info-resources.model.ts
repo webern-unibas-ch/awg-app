@@ -7,7 +7,7 @@ import { SubjectItemJson } from '@awg-shared/api-objects';
  * to store the data of a resource.
  */
 export class ResourceInfoResource {
-    // resource: SubjectItemJson;
+    // Resource: SubjectItemJson;
 
     /**
      * The array index position of a resource
@@ -46,7 +46,7 @@ export class ResourceInfoResource {
      * @param {number} index The given index position.
      */
     constructor(resource: SubjectItemJson, index: number) {
-        // this.resource = resource;
+        // This.resource = resource;
         this.id = resource.obj_id;
         this.title = resource.value[0];
         this.subtitle = resource.icontitle;

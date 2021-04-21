@@ -78,7 +78,7 @@ export class BibliographyService extends ApiService {
      * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
      */
     getBibliographyList(): Observable<SearchResponseJson> {
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string = this.searchRoute;
         const queryHttpParams = new HttpParams()
             .set('searchtype', 'extended')
@@ -87,7 +87,7 @@ export class BibliographyService extends ApiService {
             .set('filter_by_project', this.projectId)
             .set('filter_by_restype', this.resTypeId);
 
-        // request to API
+        // Request to API
         return this.getApiResponse(SearchResponseJson, queryPath, queryHttpParams);
     }
 
@@ -104,11 +104,11 @@ export class BibliographyService extends ApiService {
      * @todo Replace with {@link DataApiService#getResourceDetailData}.
      */
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string = this.resourcesRoute + resourceId;
         const queryHttpParams = new HttpParams();
 
-        // request to API
+        // Request to API
         return this.getApiResponse(ResourceFullResponseJson, queryPath, queryHttpParams);
     }
 }

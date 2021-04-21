@@ -93,7 +93,7 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        // default values
+        // Default values
         const sp: SearchParams = {
             query: searchParams.query,
             nRows: searchParams.nRows || '-1',
@@ -101,7 +101,7 @@ export class DataApiService extends ApiService {
             view: searchParams.view || SearchParamsViewTypes.table
         };
 
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string = this.routes.search + sp.query;
         const queryHttpParams = new HttpParams()
             .set('searchtype', 'fulltext')
@@ -109,22 +109,22 @@ export class DataApiService extends ApiService {
             .set('show_nrows', sp.nRows)
             .set('start_at', sp.startAt);
 
-        // cold request to API
+        // Cold request to API
         const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
             SearchResponseJson,
             queryPath,
             queryHttpParams
         );
 
-        // return converted search response
+        // Return converted search response
         return searchData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new SearchResponseJson()),
 
-            // map the response to a converted search response object for HTML display
-            map((searchResponse: SearchResponseJson) => {
-                return this.conversionService.convertFullTextSearchResults(searchResponse);
-            })
+            // Map the response to a converted search response object for HTML display
+            map((searchResponse: SearchResponseJson) =>
+                this.conversionService.convertFullTextSearchResults(searchResponse)
+            )
         );
     }
 
@@ -143,19 +143,19 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        // cold request to API
+        // Cold request to API
         const fullResponseData$: Observable<ResourceFullResponseJson> = this.getResourceFullResponseData(resourceId);
         const contextData$: Observable<ResourceContextResponseJson> = this.getResourceContextData(resourceId);
 
-        // return converted search response
+        // Return converted search response
         return observableForkJoin([fullResponseData$, contextData$]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([new ResourceFullResponseJson(), new ResourceContextResponseJson()]),
 
-            // map the forkJoined response to a ResourceData object
-            map((resourceDataResponse: IResourceDataResponse) => {
-                return this.prepareResourceData(resourceDataResponse, resourceId);
-            })
+            // Map the forkJoined response to a ResourceData object
+            map((resourceDataResponse: IResourceDataResponse) =>
+                this.prepareResourceData(resourceDataResponse, resourceId)
+            )
         );
     }
 
@@ -175,13 +175,13 @@ export class DataApiService extends ApiService {
             return new ResourceData(new ResourceFullResponseJson(), undefined);
         }
 
-        // convert data for displaying resource detail
+        // Convert data for displaying resource detail
         const resourceDetail: ResourceDetail = this.conversionService.convertResourceData(
             resourceDataResponse,
             resourceId
         );
 
-        // return new resource data
+        // Return new resource data
         return new ResourceData(resourceDataResponse[0], resourceDetail);
     }
 
@@ -280,11 +280,11 @@ export class DataApiService extends ApiService {
      * @returns {Observable<any>} The observable of the HTTP response.
      */
     private getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable<any> {
-        // init query path and params
+        // Init query path and params
         let queryPath: string;
         let queryHttpParams: HttpParams = new HttpParams();
 
-        // set path and params of query depending on responseJsonType
+        // Set path and params of query depending on responseJsonType
         switch (responseJsonType) {
             case GeoDataJson:
                 queryPath = this.routes.geonames + id;
@@ -305,7 +305,7 @@ export class DataApiService extends ApiService {
                 break;
         }
 
-        // trigger call to API
+        // Trigger call to API
         return this.getApiResponse(responseJsonType, queryPath, queryHttpParams);
     }
 
@@ -324,8 +324,8 @@ export class DataApiService extends ApiService {
      * @returns {string} id The node id.
      */
     private getNodeIdFromAttributes(attributes: string): string {
-        // identify node id from prop.attributes
-        // e.g. "hlist=17" or "selection=77"
+        // Identify node id from prop.attributes
+        // E.g. "hlist=17" or "selection=77"
         return attributes.split('=')[1].toString();
     }
 }

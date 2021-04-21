@@ -78,7 +78,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     private selectedResourceId: string;
 
     /**
-     * variable: destroy$.
+     * Variable: destroy$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
      */
@@ -340,15 +340,15 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the search response with query data.
      */
     getSearchResponseWithQueryData(): void {
-        // cold request to streamer service
+        // Cold request to streamer service
         const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
             .getSearchResponseWithQuery()
             .pipe(takeUntil(this.destroy$));
 
-        // subscribe to response to handle changes
+        // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) => {
-                // update current search params (url, text, sideinfo) via streamer service
+                // Update current search params (url, text, sideinfo) via streamer service
                 this.updateSearchParams(searchResponseWithQuery);
 
                 this.setPagination();
@@ -390,16 +390,16 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // store search response and query
+        // Store search response and query
         this.searchResponseWithQuery = { ...searchResponseWithQuery };
 
-        // update info message about the search results
+        // Update info message about the search results
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
             searchResponseWithQuery,
             this.searchUrl
         );
 
-        // update data for searchInfo via SideInfoService
+        // Update data for searchInfo via SideInfoService
         const searchInfo: SearchInfo = new SearchInfo(this.searchResponseWithQuery.query, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
@@ -411,10 +411,10 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // clear search info
+        // Clear search info
         this.sideInfoService.clearSearchInfoData();
 
-        // emit truthy value to end all subscriptions
+        // Emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:

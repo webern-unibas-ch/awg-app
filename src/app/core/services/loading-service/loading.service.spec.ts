@@ -13,10 +13,10 @@ describe('LoadingService (DONE)', () => {
         TestBed.configureTestingModule({
             providers: [LoadingService]
         });
-        // inject service
+        // Inject service
         loadingService = TestBed.inject(LoadingService);
 
-        // test data (default)
+        // Test data (default)
         loadingStatus = false;
     });
 
@@ -37,37 +37,37 @@ describe('LoadingService (DONE)', () => {
     });
 
     describe('#getLoadingStatus', () => {
-        it(`... should return default false value`, done => {
+        it('... should return default false value', done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBeFalse();
                 done();
             });
         });
 
-        it(`... should return updated value`, done => {
+        it('... should return updated value', done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
 
-            // update status
+            // Update status
             loadingStatus = true;
             loadingService.updateLoadingStatus(loadingStatus);
         });
     });
 
     describe('#updateLoadingStatus', () => {
-        it(`... should emit updated loading status`, done => {
+        it('... should emit updated loading status', done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
 
-            // update status
+            // Update status
             loadingStatus = true;
             loadingService.updateLoadingStatus(loadingStatus);
 
-            // update status
+            // Update status
             loadingStatus = false;
             loadingService.updateLoadingStatus(loadingStatus);
         });

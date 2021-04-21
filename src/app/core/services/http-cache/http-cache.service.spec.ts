@@ -8,7 +8,7 @@ import { HttpCacheService } from './http-cache.service';
 describe('HttpCacheService (DONE)', () => {
     let httpCacheService: HttpCacheService;
 
-    // prepare HTTP call
+    // Prepare HTTP call
     const apiUrl = AppConfig.API_ENDPOINT;
     const searchRoute = 'search/';
     const expectedUrl = apiUrl + searchRoute + 'Test';
@@ -28,7 +28,7 @@ describe('HttpCacheService (DONE)', () => {
             providers: [HttpCacheService]
         });
 
-        // inject services and http client handler
+        // Inject services and http client handler
         httpCacheService = TestBed.inject(HttpCacheService);
     });
 
@@ -38,11 +38,11 @@ describe('HttpCacheService (DONE)', () => {
 
     it('should have empty cachedResponses before any call is made', () => {
         expect((httpCacheService as any).cachedResponses).toBeTruthy();
-        expect((httpCacheService as any).cachedResponses.size).toBe(0, `should be 0`);
+        expect((httpCacheService as any).cachedResponses.size).toBe(0, 'should be 0');
     });
 
     describe('#put', () => {
-        it(`... should add an HTTP request to cache`, () => {
+        it('... should add an HTTP request to cache', () => {
             httpCacheService.put(expectedRequest, expectedResponse);
 
             const expectedCachedResponse = (httpCacheService as any).cachedResponses.get(expectedRequest.urlWithParams);
@@ -53,15 +53,15 @@ describe('HttpCacheService (DONE)', () => {
     });
 
     describe('#get', () => {
-        it(`... should return null if an HTTP request is not available from cache`, () => {
+        it('... should return null if an HTTP request is not available from cache', () => {
             const expectedCachedResponse = (httpCacheService as any).cachedResponses.get(expectedRequest.urlWithParams);
-            expect(expectedCachedResponse).toBeUndefined(`should be undefined`);
+            expect(expectedCachedResponse).toBeUndefined('should be undefined');
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
-            expect(expectedGetCache).toBeNull(`should be null`);
+            expect(expectedGetCache).toBeNull('should be null');
         });
 
-        it(`... should return an HTTP response from cache if available`, () => {
+        it('... should return an HTTP response from cache if available', () => {
             httpCacheService.put(expectedRequest, expectedResponse);
 
             const expectedCachedResponse = (httpCacheService as any).cachedResponses.get(expectedRequest.urlWithParams);
@@ -69,7 +69,7 @@ describe('HttpCacheService (DONE)', () => {
             expect(expectedCachedResponse).toEqual(expectedResponse, `should be ${expectedResponse}`);
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
-            expect(expectedGetCache).toBeTruthy(`should be truthy`);
+            expect(expectedGetCache).toBeTruthy('should be truthy');
             expect(expectedGetCache).toEqual(expectedResponse, `should equal ${expectedResponse}`);
         });
     });

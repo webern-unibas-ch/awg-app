@@ -32,7 +32,7 @@ export class CachingInterceptor implements HttpInterceptor {
      */
     constructor(private cache: HttpCacheService) {}
 
-    // private cache = {};
+    // Private cache = {};
 
     /**
      * Public method: intercept.
@@ -47,8 +47,8 @@ export class CachingInterceptor implements HttpInterceptor {
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
         // TODO: rm
-        // console.log('------------> CachingInterceptor');
-        // console.log('CI# RequestUrl: ', req.urlWithParams);
+        // Console.log('------------> CachingInterceptor');
+        // Console.log('CI# RequestUrl: ', req.urlWithParams);
 
         const started = Date.now();
 
@@ -56,18 +56,18 @@ export class CachingInterceptor implements HttpInterceptor {
             return next.handle(req);
         }
 
-        // check the cache for existing responses
+        // Check the cache for existing responses
         const cachedResponse = this.cache.get(req);
         if (cachedResponse) {
             // TODO: rm
-            // console.log('CI# cachedResponse: ', cachedResponse);
-            // console.log('<------------ END CachingInterceptor');
+            // Console.log('CI# cachedResponse: ', cachedResponse);
+            // Console.log('<------------ END CachingInterceptor');
 
-            // serve existing cached response
+            // Serve existing cached response
             return observableOf(cachedResponse.clone());
         }
 
-        // cache the new response
+        // Cache the new response
         return next.handle(req).pipe(
             tap(event => {
                 // Remember, there may be other events besides just the response.
@@ -75,14 +75,14 @@ export class CachingInterceptor implements HttpInterceptor {
                     const elapsed = Date.now() - started;
 
                     // TODO: rm
-                    // console.log('CI# caching new response ---> req, event:', req, event);
-                    // console.log(`Request took ${elapsed} ms.`);
+                    // Console.log('CI# caching new response ---> req, event:', req, event);
+                    // Console.log(`Request took ${elapsed} ms.`);
 
                     // Update the cache.
                     this.cache.put(req, event.clone());
 
                     // TODO: rm
-                    // console.log('<------------ END CachingInterceptor ');
+                    // Console.log('<------------ END CachingInterceptor ');
                 }
             }),
             catchError(response => {

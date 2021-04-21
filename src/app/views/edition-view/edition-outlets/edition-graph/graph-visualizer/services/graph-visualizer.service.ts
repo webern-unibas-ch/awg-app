@@ -14,7 +14,7 @@ import * as N3 from 'n3';
  *
  * It provides access to the rdfstore library.
  */
-declare var rdfstore: any;
+declare let rdfstore: any;
 
 /**
  * The GraphVisualizer service.
@@ -137,10 +137,10 @@ export class GraphVisualizerService {
         if (!query || !ttlString) {
             return;
         }
-        // get namespaces from triples
+        // Get namespaces from triples
         const namespaces: Namespace = this.extractNamespacesFromTTL(ttlString);
 
-        // get prefixes from query
+        // Get prefixes from query
         const prefixes: string[] = this.extractPrefixesFromQuery(query);
 
         // Append the used namespaces to the query
@@ -178,34 +178,34 @@ export class GraphVisualizerService {
 
         return this.createStore()
             .then(store => {
-                // console.log('STORE', store);
+                // Console.log('STORE', store);
                 this.store = store;
 
                 return this.loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((storeSize: number) => {
-                // console.log('STORESIZE', storeSize);
-                return this.executeQuery(this.store, query);
-            })
+            .then((storeSize: number) =>
+                // Console.log('STORESIZE', storeSize);
+                this.executeQuery(this.store, query)
+            )
             .then((res: QueryResult) => {
-                // console.log('RES', res);
+                // Console.log('RES', res);
                 const data: QueryResult = res;
 
                 // Reformat data if select query
                 if (queryType === 'select') {
                     console.log('got SELECT request');
-                    // return this.sparqlJSON(data).data;
+                    // Return this.sparqlJSON(data).data;
                 }
 
                 /**
                  * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
                  */
 
-                // get namespaces
-                return this.getNamespaces(ttlString).then((namespaces: Namespace) => {
+                // Get namespaces
+                return this.getNamespaces(ttlString).then((namespaces: Namespace) =>
                     // Process result
-                    return this.abbreviateTriples(data.triples, namespaces, mimeType);
-                });
+                    this.abbreviateTriples(data.triples, namespaces, mimeType)
+                );
             });
     }
 
@@ -319,14 +319,14 @@ export class GraphVisualizerService {
      * @returns {Promise<QueryResult>} A promise of the query result.
      */
     private executeQuery(store: any, query: string): Promise<QueryResult> {
-        // console.log('executeQuery# QUERY', query);
+        // Console.log('executeQuery# QUERY', query);
         return new Promise((resolve, reject) => {
             store.execute(query, (err, res: QueryResult) => {
                 if (err) {
                     console.error('executeQuery# got ERROR', err);
                     reject(err);
                 }
-                // console.log('executeQuery# RESOLVED', res);
+                // Console.log('executeQuery# RESOLVED', res);
                 resolve(res);
             });
         });
@@ -343,7 +343,7 @@ export class GraphVisualizerService {
      */
     private extractNamespacesFromTTL(triples: string) {
         // Replace all whitespace characters with a single space and split by space
-        // remove empty values
+        // Remove empty values
         const arr = triples
             .replace(/\s/g, ' ')
             .split(' ')
@@ -409,10 +409,10 @@ export class GraphVisualizerService {
      * @returns {Promise<Namespace>} A promise of the namespaces.
      */
     private getNamespaces(triples: string): Promise<Namespace> {
-        // parse triples
+        // Parse triples
         const parser = new N3.Parser();
 
-        // console.log('PARSER', parser);
+        // Console.log('PARSER', parser);
         return new Promise((resolve, reject) => {
             parser.parse(triples, (err, triple, prefixes) => {
                 if (!triple) {
@@ -447,7 +447,7 @@ export class GraphVisualizerService {
                     console.error('loadTriplesInStore# got error', err);
                     reject(err);
                 }
-                // console.log('loadTriplesInStore# resolved', size);
+                // Console.log('loadTriplesInStore# resolved', size);
                 resolve(size);
             });
         });

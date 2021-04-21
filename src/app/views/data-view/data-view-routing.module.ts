@@ -7,7 +7,7 @@ import { SearchOverviewComponent } from './data-outlets/search-overview.componen
 import { SearchPanelComponent } from './data-outlets/search-panel/search-panel.component';
 import { TimelineComponent } from './data-outlets/timeline/timeline.component';
 
-/* routes of the DataViewModule */
+/* Routes of the DataViewModule */
 const dataViewRoutes: Routes = [
     {
         path: '',
@@ -22,8 +22,8 @@ const dataViewRoutes: Routes = [
                         component: SearchPanelComponent,
                         data: { title: 'AWG Online Edition – Search' }
                     },
-                    { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
-                    /* muted for now
+                    { path: 'detail/:id', redirectTo: 'resource/:id' }, // Absolute redirect (replacement of route) to resource/:id,
+                    /* Muted for now
                     { path: 'timeline', component: TimelineComponent },
                     {
                         path: 'bibliography',

@@ -72,11 +72,11 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
             return;
         }
 
-        // callback for reduce function
-        // adds curValue to the previous result of the calculation (prevRes))
+        // Callback for reduce function
+        // Adds curValue to the previous result of the calculation (prevRes))
         const reducer = (prevRes: number, curValue: number): number => prevRes + curValue;
 
-        // map the length of every nested link array into the reducer function; default initial value: 0
+        // Map the length of every nested link array into the reducer function; default initial value: 0
         return groupedLinksArr.map(groupedLink => groupedLink.links.length).reduce(reducer, 0);
     }
 }

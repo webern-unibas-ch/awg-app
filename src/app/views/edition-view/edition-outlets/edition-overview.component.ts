@@ -130,7 +130,7 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
+        // Emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:

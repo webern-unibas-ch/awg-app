@@ -13,8 +13,8 @@ describe('SearchFormComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    // create new instance of FormBuilder
-    // see 'Karma formGroup expects a FormGroup instance. Please pass one in',
+    // Create new instance of FormBuilder
+    // See 'Karma formGroup expects a FormGroup instance. Please pass one in',
     // https://medium.com/@charlesprobaker/karma-testing-a-formgroup-instance-a0a90de831d4
     // https://stackoverflow.com/a/48671534
     const formBuilder: FormBuilder = new FormBuilder();
@@ -35,7 +35,7 @@ describe('SearchFormComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // pass in the form dynamically
+        // Pass in the form dynamically
         component.searchForm = formBuilder.group({
             searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
         });

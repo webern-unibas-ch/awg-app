@@ -95,16 +95,16 @@ export class EditionIntroComponent implements OnInit {
      */
     getEditionIntroData(): void {
         this.editionIntroData$ = this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // get intro data from editionDataService
+                    // Get intro data from editionDataService
                     return this.editionDataService.getEditionIntroData(this.editionWork);
                 }),
-                // error handling
+                // Error handling
                 catchError(err => {
                     this.errorObject = err;
                     return throwError(err);

@@ -36,7 +36,7 @@ describe('EditionInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedEditionWorkOp12 = EditionWorks.op12;
         expectedEditionWorkOp25 = EditionWorks.op25;
     });
@@ -88,8 +88,8 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(series1El).toBeDefined();
                 expect(series2El).toBeDefined();
 
-                expect(series1El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(series2El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(series1El.textContent).not.toBeTruthy('should be empty string');
+                expect(series2El.textContent).not.toBeTruthy('should be empty string');
             });
 
             it('... should not render title of edition info headers yet', () => {
@@ -106,8 +106,8 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(title1El).toBeDefined();
                 expect(title2El).toBeDefined();
 
-                expect(title1El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(title2El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(title1El.textContent).not.toBeTruthy('should be empty string');
+                expect(title2El.textContent).not.toBeTruthy('should be empty string');
             });
 
             it('... should not render catalogue of edition info headers yet', () => {
@@ -124,8 +124,8 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(catalogue1El).toBeDefined();
                 expect(catalogue2El).toBeDefined();
 
-                expect(catalogue1El.innerHTML).not.toBeTruthy(`should be empty string`);
-                expect(catalogue2El.innerHTML).not.toBeTruthy(`should be empty string`);
+                expect(catalogue1El.innerHTML).not.toBeTruthy('should be empty string');
+                expect(catalogue2El.innerHTML).not.toBeTruthy('should be empty string');
             });
 
             it('... should not render links in edition info headers yet', () => {
@@ -139,16 +139,16 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(a2El).toBeDefined();
                 expect(a3El).toBeDefined();
 
-                expect(a1El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(a2El.textContent).not.toBeTruthy(`should be empty string`);
-                expect(a3El.textContent).not.toBeTruthy(`should be empty string`);
+                expect(a1El.textContent).not.toBeTruthy('should be empty string');
+                expect(a2El.textContent).not.toBeTruthy('should be empty string');
+                expect(a3El.textContent).not.toBeTruthy('should be empty string');
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -250,10 +250,10 @@ describe('EditionInfoComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
+                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 3, 3);
 
-                // get attached link directive instances using each DebugElement's injector
+                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
@@ -274,8 +274,8 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... can click `intro` link in template', () => {
-                const introLinkDe = linkDes[0]; // contact link DebugElement
-                const introLink = routerLinks[0]; // contact link directive
+                const introLinkDe = linkDes[0]; // Contact link DebugElement
+                const introLink = routerLinks[0]; // Contact link directive
 
                 expect(introLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -290,8 +290,8 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... can click `detail` link in template', () => {
-                const detailLinkDe = linkDes[1]; // contact link DebugElement
-                const detailLink = routerLinks[1]; // contact link directive
+                const detailLinkDe = linkDes[1]; // Contact link DebugElement
+                const detailLink = routerLinks[1]; // Contact link directive
 
                 expect(detailLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -306,8 +306,8 @@ describe('EditionInfoComponent (DONE)', () => {
             });
 
             it('... can click `graph` link in template', () => {
-                const graphLinkDe = linkDes[2]; // contact link DebugElement
-                const graphLink = routerLinks[2]; // contact link directive
+                const graphLinkDe = linkDes[2]; // Contact link DebugElement
+                const graphLink = routerLinks[2]; // Contact link directive
 
                 expect(graphLink.navigatedTo).toBeNull('should not have navigated yet');
 

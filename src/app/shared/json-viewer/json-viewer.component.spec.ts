@@ -1,5 +1,5 @@
 /* eslint-disable-next-line  @typescript-eslint/triple-slash-reference */
-///<reference path="../../../testing/custom-matchers.d.ts"/>
+/// <reference path="../../../testing/custom-matchers.d.ts"/>
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
@@ -17,7 +17,7 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 import { JsonViewerComponent } from './json-viewer.component';
 
-// helper functions for nav items
+// Helper functions for nav items
 function getNavLinks(nativeEl: HTMLElement) {
     return nativeEl.querySelectorAll('.nav-link.nav-item');
 }
@@ -32,12 +32,12 @@ function expectNavPanel(nativeEl: HTMLElement, active: boolean[], disabled?: boo
     const anyNavsActive = active.reduce((prev, curr) => prev || curr, false);
 
     expect(navLinks.length).toBe(active.length);
-    expect(navContent.length).toBe(anyNavsActive ? 1 : 0); // only 1 nav content in DOM at a time
+    expect(navContent.length).toBe(anyNavsActive ? 1 : 0); // Only 1 nav content in DOM at a time
 
     if (disabled) {
         expect(disabled.length).toBe(active.length);
     } else {
-        disabled = new Array(active.length); // navItems are not disabled by default
+        disabled = new Array(active.length); // NavItems are not disabled by default
     }
 
     for (let i = 0; i < active.length; i++) {
@@ -78,7 +78,7 @@ describe('JsonViewerComponent (DONE)', () => {
     );
 
     beforeEach(() => {
-        // add custom jasmine matchers (toHaveCssClass)
+        // Add custom jasmine matchers (toHaveCssClass)
         jasmine.addMatchers(customJasmineMatchers);
 
         fixture = TestBed.createComponent(JsonViewerComponent);
@@ -86,7 +86,7 @@ describe('JsonViewerComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedHeader = 'Converted JSON response from Salsah-API';
         expectedData = new ResourceFullResponseJson();
         expectedData.status = 1;
@@ -132,11 +132,11 @@ describe('JsonViewerComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.jsonViewerHeader = expectedHeader;
             component.jsonViewerData = expectedData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -207,7 +207,7 @@ describe('JsonViewerComponent (DONE)', () => {
             it('... should render `jsonViewerData` in Plain view', () => {
                 const navLinks = getNavLinks(compEl);
 
-                // change navLink to plain view
+                // Change navLink to plain view
                 click(navLinks[1] as HTMLElement);
                 fixture.detectChanges();
 

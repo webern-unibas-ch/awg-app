@@ -3,7 +3,7 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ContactViewComponent } from '@awg-views/contact-view/contact-view.component';
 
-/* routes of the ContactViewModule */
+/* Routes of the ContactViewModule */
 const contactViewRoutes: Routes = [
     {
         path: '',

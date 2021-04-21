@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionDetailComponent } from './edition-detail.component';
 
-/* routes of the EditionDetailModule */
+/* Routes of the EditionDetailModule */
 const editionDetailRoutes: Routes = [
     {
         path: '',

@@ -12,7 +12,7 @@ import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-vi
 
 import { SourcesComponent } from './sources.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-source-list', template: '' })
 class SourceListStubComponent {
     @Input()
@@ -99,7 +99,7 @@ describe('SourcesComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
+            // Mock the input values supplied by the parent component
             expectedSourceListData = {
                 sources: [
                     {
@@ -141,12 +141,12 @@ describe('SourcesComponent', () => {
                 ]
             };
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.sourceListData = expectedSourceListData;
             component.sourceDescriptionListData = expectedSourceDescriptionListData;
             component.sourceEvaluationListData = expectedSourceEvaluationListData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

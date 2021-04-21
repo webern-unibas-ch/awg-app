@@ -103,7 +103,7 @@ export class EditionGraphComponent implements OnInit {
      */
     @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
         if (
-            !this.document.fullscreenElement && // alternative standard method
+            !this.document.fullscreenElement && // Alternative standard method
             !this.document.mozFullScreenElement &&
             !this.document.webkitFullscreenElement
         ) {
@@ -150,20 +150,20 @@ export class EditionGraphComponent implements OnInit {
      */
     getEditionGraphData(): void {
         this.editionGraphData$ = this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // get graph data from editionDataService
+                    // Get graph data from editionDataService
                     return this.editionDataService.getEditionGraphData(this.editionWork);
                 }),
-                // error handling
+                // Error handling
                 catchError(err => {
-                    // set error object
+                    // Set error object
                     this.errorObject = err;
-                    // return empty observable to complete observable without data
+                    // Return empty observable to complete observable without data
                     return EMPTY;
                 })
             );
@@ -181,11 +181,11 @@ export class EditionGraphComponent implements OnInit {
 
         this.isFullscreen = true;
         if (
-            !this.document.fullscreenElement && // alternative standard method
+            !this.document.fullscreenElement && // Alternative standard method
             !this.document.mozFullScreenElement &&
             !this.document.webkitFullscreenElement
         ) {
-            // current working methods
+            // Current working methods
             if (el.requestFullscreen) {
                 el.requestFullscreen();
             } else if (el.mozRequestFullScreen) {

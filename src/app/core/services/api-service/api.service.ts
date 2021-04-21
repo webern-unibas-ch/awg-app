@@ -43,7 +43,7 @@ export class ApiService {
      * @param {HttpClient} http Instance of the HttpClient.
      */
     constructor(public http: HttpClient) {
-        // console.log(`called ${this.serviceName} with httpClient`, http);
+        // Console.log(`called ${this.serviceName} with httpClient`, http);
     }
 
     /**
@@ -63,16 +63,11 @@ export class ApiService {
         }
 
         return this.httpGet(queryPath, queryHttpParams).pipe(
-            map(
-                (result: ApiServiceResult): Observable<any> => {
-                    return result.getBody(responseJsonType);
-                }
-            ),
+            map((result: ApiServiceResult): Observable<any> => result.getBody(responseJsonType)),
             catchError(
-                (error: ApiServiceError): Observable<ApiServiceError> => {
-                    // console.error('ApiService - getApiResponse - error: ', error);
-                    return observableThrowError(error);
-                }
+                (error: ApiServiceError): Observable<ApiServiceError> =>
+                    // Console.error('ApiService - getApiResponse - error: ', error);
+                    observableThrowError(error)
             )
         );
     }
@@ -97,11 +92,11 @@ export class ApiService {
                 headers: apiRequest.headers
             })
             .pipe(
-                // store the actual url
+                // Store the actual url
                 tap((response: HttpResponse<ApiServiceResult>) => {
                     this.httpGetUrl = response.url;
                 }),
-                // map the response into ApiServiceResult class
+                // Map the response into ApiServiceResult class
                 map(
                     (response: HttpResponse<any>): ApiServiceResult => {
                         const apiServiceResult = new ApiServiceResult();
@@ -113,12 +108,8 @@ export class ApiService {
                         return apiServiceResult;
                     }
                 ),
-                // catch any errors
-                catchError(
-                    (error: HttpErrorResponse): Observable<ApiServiceError> => {
-                        return this.handleRequestError(error);
-                    }
-                )
+                // Catch any errors
+                catchError((error: HttpErrorResponse): Observable<ApiServiceError> => this.handleRequestError(error))
             );
     }
 
@@ -132,7 +123,7 @@ export class ApiService {
      * @returns {Observable<ApiServiceError>} The observable of the api service error.
      */
     private handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
-        // console.error(error);
+        // Console.error(error);
         const apiServiceError = new ApiServiceError();
         apiServiceError.status = error.status ? error.status : apiServiceError.status;
         apiServiceError.statusText = error.statusText ? error.statusText : apiServiceError.statusText;

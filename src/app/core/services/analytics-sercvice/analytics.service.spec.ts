@@ -9,7 +9,7 @@ import { mockAnalytics, mockConsole } from '@testing/mock-helper';
 
 import { AnalyticsService } from './analytics.service';
 
-// helper functions for  Analytics setup
+// Helper functions for  Analytics setup
 function setupAnalytics(service: AnalyticsService, endpoint: string, id: string, pageView?: boolean) {
     (service as any).analyticsEndpoint = endpoint;
     (service as any).analyticsId = id;
@@ -42,14 +42,14 @@ describe('AnalyticsService (DONE)', () => {
             providers: [AnalyticsService]
         });
 
-        // inject service
+        // Inject service
         analyticsService = TestBed.inject(AnalyticsService);
         doc = TestBed.inject(DOCUMENT);
 
-        // set global gtag function
+        // Set global gtag function
         (window as any).gtag = () => {};
 
-        // spy on service methods
+        // Spy on service methods
         initializeAnalyticsSpy = spyOn(analyticsService, 'initializeAnalytics').and.callThrough();
 
         gtagSpy = spyOn(window as any, 'gtag').and.callFake(mockAnalytics.gtag);
@@ -57,11 +57,11 @@ describe('AnalyticsService (DONE)', () => {
     });
 
     afterEach(() => {
-        // clear mock stores after each test
+        // Clear mock stores after each test
         mockAnalytics.clear();
         mockConsole.clear();
 
-        // remove global function
+        // Remove global function
         (window as any).gtag = undefined;
     });
 
@@ -81,47 +81,47 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it('... should clear mock console after each run', () => {
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
         });
 
         it('... should use mock analytics', () => {
             (window as any).gtag('test', 'analytics', {});
 
-            expect(mockAnalytics.getGtag(0)).toEqual(['test', 'analytics', {}], `should be '[test', 'analytics', {}]`);
+            expect(mockAnalytics.getGtag(0)).toEqual(['test', 'analytics', {}], "should be '[test', 'analytics', {}]");
         });
 
         it('... should clear mock analytics store after each run', () => {
-            expect(mockAnalytics.getGtag(0)).toBeNull(`should be null`);
+            expect(mockAnalytics.getGtag(0)).toBeNull('should be null');
         });
     });
 
     describe('#initializeAnalytics', () => {
-        it(`... should not initialize the analytics tracker without endpoint`, () => {
-            // no endpoint provided
+        it('... should not initialize the analytics tracker without endpoint', () => {
+            // No endpoint provided
             setupAnalytics(analyticsService, null, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expect((analyticsService as any).isInitialized).toBeFalse();
         });
 
-        it(`... should not initialize the analytics tracker without analyticsId`, () => {
-            // no id provided
+        it('... should not initialize the analytics tracker without analyticsId', () => {
+            // No id provided
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, null);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expect((analyticsService as any).isInitialized).toBeFalse();
         });
 
-        it(`... should initialize the analytics tracker with given endpoint and id`, () => {
+        it('... should initialize the analytics tracker with given endpoint and id', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
             expect((analyticsService as any).isInitialized).toBeTrue();
         });
 
-        it(`... should log a replacement message in develop mode`, () => {
+        it('... should log a replacement message in develop mode', () => {
             expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, false);
 
@@ -129,25 +129,25 @@ describe('AnalyticsService (DONE)', () => {
             expect(mockConsole.get(0)).toBe(expectedLogMessage, `should be ${expectedLogMessage}`);
         });
 
-        it(`... should not log a replacement message in production mode`, () => {
+        it('... should not log a replacement message in production mode', () => {
             expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 
-            // prevent setting of real gtag script to document head
+            // Prevent setting of real gtag script to document head
             spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
             expectSpyCall(consoleSpy, 0);
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
         });
 
-        it(`... should prepend analytics script in production mode`, () => {
+        it('... should prepend analytics script in production mode', () => {
             const expectedScript: HTMLScriptElement = doc.createElement('script');
             expectedScript.async = true;
             expectedScript.src = `${expectedAnalyticsEndpoint}?id=${expectedAnalyticsId}`;
 
-            // prevent setting of real gtag script to document head
+            // Prevent setting of real gtag script to document head
             const prependSpy = spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
             const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript').and.callThrough();
 
@@ -159,8 +159,8 @@ describe('AnalyticsService (DONE)', () => {
     });
 
     describe('#trackPageView', () => {
-        it(`... should do nothing if analytics is not initialized successfully`, () => {
-            // init analytics
+        it('... should do nothing if analytics is not initialized successfully', () => {
+            // Init analytics
             setupAnalytics(analyticsService, null, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
@@ -169,7 +169,7 @@ describe('AnalyticsService (DONE)', () => {
             expect(gtagSpy.calls.any()).toBeFalse();
         });
 
-        it(`... should do nothing if isInitialized is set to false`, () => {
+        it('... should do nothing if isInitialized is set to false', () => {
             (analyticsService as any).isInitialized = false;
 
             analyticsService.trackPageView(expectedPage);
@@ -178,8 +178,8 @@ describe('AnalyticsService (DONE)', () => {
             expect(gtagSpy.calls.any()).toBeFalse();
         });
 
-        it(`... should run if analytics is initialized successfully`, () => {
-            // init analytics
+        it('... should run if analytics is initialized successfully', () => {
+            // Init analytics
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
@@ -187,7 +187,7 @@ describe('AnalyticsService (DONE)', () => {
             expectSpyCall(gtagSpy, 1);
         });
 
-        it(`... should run if isInitialized is set to true`, () => {
+        it('... should run if isInitialized is set to true', () => {
             (analyticsService as any).isInitialized = true;
 
             analyticsService.trackPageView(expectedPage);
@@ -195,8 +195,8 @@ describe('AnalyticsService (DONE)', () => {
             expectSpyCall(gtagSpy, 1);
         });
 
-        it(`... should not track if no page is given`, () => {
-            // init analytics
+        it('... should not track if no page is given', () => {
+            // Init analytics
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(null);
@@ -205,14 +205,14 @@ describe('AnalyticsService (DONE)', () => {
             expect(gtagSpy.calls.any()).toBeFalse();
         });
 
-        it(`... should track the given page`, () => {
+        it('... should track the given page', () => {
             const expectedAnalyticsEvent = [
                 'config',
                 expectedAnalyticsId,
                 { page_path: expectedPage, anonymize_ip: true, send_page_view: expectecdSendPageView }
             ];
 
-            // init analytics
+            // Init analytics
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);
@@ -221,7 +221,7 @@ describe('AnalyticsService (DONE)', () => {
             expect(mockAnalytics.getGtag(0)).toEqual(expectedAnalyticsEvent, `should be ${expectedAnalyticsEvent}`);
         });
 
-        it(`... should track page changes`, () => {
+        it('... should track page changes', () => {
             const expectedAnalyticsEvent = [
                 'config',
                 expectedAnalyticsId,
@@ -233,7 +233,7 @@ describe('AnalyticsService (DONE)', () => {
                 { page_path: otherPage, anonymize_ip: true, send_page_view: expectecdSendPageView }
             ];
 
-            // init analytics
+            // Init analytics
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             analyticsService.trackPageView(expectedPage);

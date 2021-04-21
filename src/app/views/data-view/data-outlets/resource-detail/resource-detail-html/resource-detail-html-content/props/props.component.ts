@@ -99,22 +99,22 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      * @returns {void} Exposes or removes the GND event.
      */
     private checkForGND(props: SimpleChange): void {
-        // check if we have a gnd (prop.pid=856)
+        // Check if we have a gnd (prop.pid=856)
         const propsWithGND: ResourceDetailProperty[] = props.currentValue.filter(
             (prop: ResourceDetailProperty) => prop.pid === '856' && prop.values && prop.values.length > 0
         );
 
         if (propsWithGND.length > 0) {
-            // loop through prop.values[i]
+            // Loop through prop.values[i]
             propsWithGND.map((prop: ResourceDetailProperty) => {
                 prop.values.map((value: string) => {
-                    // expose gnd for every value
+                    // Expose gnd for every value
                     const gndEvent = new GndEvent(GndEventType.set, value);
                     this.exposeGnd(gndEvent);
                 });
             });
         } else {
-            // remove gnd
+            // Remove gnd
             this.removeGnd();
         }
     }
@@ -156,7 +156,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      * when destroying the component.
      */
     ngOnDestroy() {
-        // if we leave the component, remove gnd from storage
+        // If we leave the component, remove gnd from storage
         this.removeGnd();
     }
 }

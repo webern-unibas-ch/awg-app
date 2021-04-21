@@ -46,7 +46,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it(`should have pageNotFoundTitle and pageNotFoundSubtitle`, () => {
+        it('should have pageNotFoundTitle and pageNotFoundSubtitle', () => {
             expect(component.pageNotFoundTitle).toBe(expectedPageNotFoundTitle);
             expect(component.pageNotFoundSubTitle).toBe(expectedPageNotFoundSubTitle);
         });
@@ -127,7 +127,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -173,10 +173,10 @@ describe('PageNotFoundViewComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
+                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 1, 1);
 
-                // get attached link directive instances using each DebugElement's injector
+                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
@@ -186,8 +186,8 @@ describe('PageNotFoundViewComponent (DONE)', () => {
             });
 
             it('... can click home link in template', () => {
-                const homeLinkDe = linkDes[0]; // home link DebugElement
-                const homeLink = routerLinks[0]; // home link directive
+                const homeLinkDe = linkDes[0]; // Home link DebugElement
+                const homeLink = routerLinks[0]; // Home link directive
 
                 expect(homeLink.navigatedTo).toBeNull('should not have navigated yet');
 

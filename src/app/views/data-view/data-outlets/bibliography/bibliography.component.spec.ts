@@ -9,7 +9,7 @@ import { BibliographyService } from '@awg-views/data-view/services';
 
 import { BibliographyComponent } from './bibliography.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-bibliography-search', template: '' })
 class BibliographySearchStubComponent {}
 
@@ -32,9 +32,9 @@ describe('BibliographyComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake bibliography service object with a `getBibliographyList()` spy
+            // Create a fake bibliography service object with a `getBibliographyList()` spy
             const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyList']);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             expectedSearchResponseData = {
                 nhits: undefined,
                 paging: undefined,

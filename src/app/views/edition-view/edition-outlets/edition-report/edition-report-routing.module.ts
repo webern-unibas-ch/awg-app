@@ -3,7 +3,7 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionReportComponent } from './edition-report.component';
 
-/* routes of the EditionReportModule */
+/* Routes of the EditionReportModule */
 const editionReportRoutes: Routes = [
     {
         path: '',

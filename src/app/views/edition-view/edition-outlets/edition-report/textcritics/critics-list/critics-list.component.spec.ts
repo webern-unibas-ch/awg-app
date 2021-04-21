@@ -10,7 +10,7 @@ import { TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { CriticsListComponent } from './critics-list.component';
 
-// mock tka table component
+// Mock tka table component
 @Component({ selector: 'awg-edition-tka-table', template: '' })
 class EditionTkaTableStubComponent {
     @Input()

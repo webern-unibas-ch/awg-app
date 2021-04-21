@@ -52,7 +52,7 @@ export class ApiServiceResult {
      * @throws
      */
     getBody(classObject?: new () => any): any {
-        // console.log(this.body);
+        // Console.log(this.body);
         return ApiServiceResult.jsonConvert.deserialize(this.body, classObject);
     }
 }
