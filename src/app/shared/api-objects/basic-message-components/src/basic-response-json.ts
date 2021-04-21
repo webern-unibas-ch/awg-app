@@ -26,7 +26,7 @@ export class BasicResponseJson {
      * @param status: KnoraStatusCode
      */
     @JsonProperty('status', Number)
-    public status: Number = undefined;
+    public status: number = undefined;
 
     /**
      * The current user's data
