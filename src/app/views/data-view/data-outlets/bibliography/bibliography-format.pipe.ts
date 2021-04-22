@@ -291,7 +291,7 @@ export class BibliographyFormatPipe implements PipeTransform {
         if (!pubPlace) {
             // No place but publisher
             if (pub) {
-                console.log('Ort fehlt: "' + pub + '" (' + this._entry['Kurztitel'] + ')');
+                console.warn('Ort fehlt: "' + pub + '" (' + this._entry['Kurztitel'] + ')');
             }
             // No place nor publisher ("zeitschriftenartikel")
             return '';
@@ -332,7 +332,7 @@ export class BibliographyFormatPipe implements PipeTransform {
                     out += pubPlace[i] + ', ';
                 }
                 if (!this._entry['unpubliziert']) {
-                    console.log('Verlag fehlt: "' + out + '" (' + this._entry['Kurztitel'] + ')');
+                    console.warn('Verlag fehlt: "' + out + '" (' + this._entry['Kurztitel'] + ')');
                 }
             }
         } else {
@@ -354,7 +354,7 @@ export class BibliographyFormatPipe implements PipeTransform {
                 // Place without publisher (e.g. "Hochschulschriften")
                 // Case: "Wien, "
                 if (!this._entry['unpubliziert']) {
-                    console.log('Verlag fehlt: "' + out + '" (' + this._entry['Kurztitel'] + ')');
+                    console.warn('Verlag fehlt: "' + out + '" (' + this._entry['Kurztitel'] + ')');
                 }
                 out += pubPlace + ', ';
             }

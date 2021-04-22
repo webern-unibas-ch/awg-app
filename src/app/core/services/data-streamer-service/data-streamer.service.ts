@@ -20,27 +20,27 @@ export class DataStreamerService {
     /**
      * Private variable for the replay subject´s buffer size.
      */
-    private bufferSize = 1;
+    private _bufferSize = 1;
 
     /**
      * Private replay subject to handle search response with query.
      */
-    private searchResponseWithQuerySubject = new ReplaySubject<SearchResponseWithQuery>(this.bufferSize);
+    private _searchResponseWithQuerySubject = new ReplaySubject<SearchResponseWithQuery>(this._bufferSize);
 
     /**
      * Private readonly search response with query stream as observable (`ReplaySubject`).
      */
-    private readonly searchResponseWithQueryStream$ = this.searchResponseWithQuerySubject.asObservable();
+    private readonly _searchResponseWithQueryStream$ = this._searchResponseWithQuerySubject.asObservable();
 
     /**
      * Private replay subject to handle resource id.
      */
-    private resourceIdSubject = new ReplaySubject<string>(this.bufferSize);
+    private _resourceIdSubject = new ReplaySubject<string>(this._bufferSize);
 
     /**
      * Private readonly resource id stream as observable (`ReplaySubject`).
      */
-    private readonly resourceIdStream$ = this.resourceIdSubject.asObservable();
+    private readonly _resourceIdStream$ = this._resourceIdSubject.asObservable();
 
     /**
      * Public method: getSearchResponseWithQuery.
@@ -52,7 +52,7 @@ export class DataStreamerService {
      * The search response with query stream as observable.
      */
     getSearchResponseWithQuery(): Observable<SearchResponseWithQuery> {
-        return this.searchResponseWithQueryStream$;
+        return this._searchResponseWithQueryStream$;
     }
 
     /**
@@ -63,7 +63,7 @@ export class DataStreamerService {
      * @returns {Observable<string>} The resource id stream as observable.
      */
     getResourceId(): Observable<string> {
-        return this.resourceIdStream$;
+        return this._resourceIdStream$;
     }
 
     /**
@@ -75,7 +75,7 @@ export class DataStreamerService {
      * @returns {void} Sets the next search response with query to the stream.
      */
     updateSearchResponseWithQuery(searchResponseWithQuery: SearchResponseWithQuery): void {
-        this.searchResponseWithQuerySubject.next(searchResponseWithQuery);
+        this._searchResponseWithQuerySubject.next(searchResponseWithQuery);
     }
 
     /**
@@ -86,7 +86,7 @@ export class DataStreamerService {
      * @returns {void} Sets the next resource id to the stream.
      */
     updateResourceId(id: string): void {
-        this.resourceIdSubject.next(id);
+        this._resourceIdSubject.next(id);
     }
 
     /**
@@ -97,7 +97,7 @@ export class DataStreamerService {
      * @returns {void} Clears the search results with query stream.
      */
     clearSearchResults(): void {
-        this.searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), ''));
+        this._searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), ''));
     }
 
     /**
@@ -108,6 +108,6 @@ export class DataStreamerService {
      * @returns {void} Clears the resource id stream.
      */
     clearResourceId(): void {
-        this.resourceIdSubject.next('');
+        this._resourceIdSubject.next('');
     }
 }

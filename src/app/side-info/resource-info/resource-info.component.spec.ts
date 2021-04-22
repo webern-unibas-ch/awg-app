@@ -103,7 +103,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             'findIndexPositionInSearchResultsById'
         ).and.callThrough();
         updateResourceInfoSpy = spyOn(component as any, 'updateResourceInfo').and.callThrough();
-        subscribeResourceInfoDataSpy = spyOn(component, 'subscribeResourceInfoData').and.callThrough();
+        subscribeResourceInfoDataSpy = spyOn(component, 'getResourceInfoData').and.callThrough();
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
         navigateToResourceByIndexSpy = spyOn(component, 'navigateToResourceByIndex').and.callThrough();
         navigateToSearchPanelSpy = spyOn(component, 'navigateToSearchPanel').and.callThrough();
@@ -170,7 +170,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#subscribeResourceInfoData', () => {
+        describe('#getResourceInfoData', () => {
             it('... should not have been called', () => {
                 expectSpyCall(subscribeResourceInfoDataSpy, 0);
             });
@@ -213,7 +213,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        describe('#subscribeResourceInfoData', () => {
+        describe('#getResourceInfoData', () => {
             it('... should have been called and created subscription', () => {
                 expectSpyCall(subscribeResourceInfoDataSpy, 1);
                 expect((component as any).resourceInfoDataSubscription).toBeDefined();
@@ -274,7 +274,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedLogMessage = 'RESOURCE-INFO: Got no sideInfoData from Subscription!';
 
                 // Init new subscription with error
-                component.subscribeResourceInfoData();
+                component.getResourceInfoData();
 
                 // Apply changes
                 fixture.detectChanges();
@@ -496,7 +496,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableOf(otherResponseClone));
 
-                component.subscribeResourceInfoData();
+                component.getResourceInfoData();
 
                 // Apply changes
                 fixture.detectChanges();

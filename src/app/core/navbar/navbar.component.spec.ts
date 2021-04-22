@@ -32,8 +32,8 @@ describe('NavbarComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedIsCollapsed: boolean;
 
-    let expectedEditionWorks: EditionWork[] = [EditionWorks.op12, EditionWorks.op25];
-    let expectedSelectEditionWork: EditionWork = EditionWorks.op12;
+    let expectedEditionWorks: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
+    let expectedSelectEditionWork: EditionWork = EditionWorks.OP12;
 
     beforeEach(
         waitForAsync(() => {
@@ -59,8 +59,8 @@ describe('NavbarComponent (DONE)', () => {
         // Test data
         expectedIsCollapsed = true;
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedEditionWorks = [EditionWorks.op12, EditionWorks.op25];
-        expectedSelectEditionWork = EditionWorks.op12;
+        expectedEditionWorks = [EditionWorks.OP12, EditionWorks.OP25];
+        expectedSelectEditionWork = EditionWorks.OP12;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

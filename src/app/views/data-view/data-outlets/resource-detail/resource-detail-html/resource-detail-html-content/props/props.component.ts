@@ -119,7 +119,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
             propsWithGND.map((prop: ResourceDetailProperty) => {
                 prop.values.map((value: string) => {
                     // Expose gnd for every value
-                    const gndEvent = new GndEvent(GndEventType.set, value);
+                    const gndEvent = new GndEvent(GndEventType.SET, value);
                     this._exposeGnd(gndEvent);
                 });
             });
@@ -155,7 +155,7 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
      * @returns {void} Emits the GND remove event.
      */
     private _removeGnd(): void {
-        const gndEvent = new GndEvent(GndEventType.remove, null);
+        const gndEvent = new GndEvent(GndEventType.REMOVE, null);
         this._exposeGnd(gndEvent);
     }
 }

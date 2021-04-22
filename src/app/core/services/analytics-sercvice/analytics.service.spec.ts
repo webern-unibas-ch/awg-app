@@ -30,7 +30,7 @@ describe('AnalyticsService (DONE)', () => {
 
     const expectedAnalyticsEndpoint = 'https://example.com/endpoint/';
     const expectedAnalyticsId = 'UA-XXXXX-Y';
-    const expectecdSendPageView = false;
+    const expectedSendPageView = false;
 
     const expectedPage = '/test';
     const otherPage = '/test2';
@@ -53,7 +53,7 @@ describe('AnalyticsService (DONE)', () => {
         initializeAnalyticsSpy = spyOn(analyticsService, 'initializeAnalytics').and.callThrough();
 
         gtagSpy = spyOn(window as any, 'gtag').and.callFake(mockAnalytics.gtag);
-        consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
     });
 
     afterEach(() => {
@@ -75,7 +75,7 @@ describe('AnalyticsService (DONE)', () => {
 
     describe('mock test objects (self-test)', () => {
         it('... should use mock console', () => {
-            console.log('Test');
+            console.info('Test');
 
             expect(mockConsole.get(0)).toBe('Test');
         });
@@ -210,7 +210,7 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectecdSendPageView }
+                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView }
             ];
 
             // Init analytics
@@ -227,13 +227,13 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectecdSendPageView }
+                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView }
             ];
             const otherAnalyticsEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: otherPage, anonymize_ip: true, send_page_view: expectecdSendPageView }
+                { page_path: otherPage, anonymize_ip: true, send_page_view: expectedSendPageView }
             ];
 
             // Init analytics

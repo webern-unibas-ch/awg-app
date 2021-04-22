@@ -1,43 +1,41 @@
 <!-- sideinfo: edition -->
 <div class="card">
     <div class="card-body bg-light">
-        <p>
-            {{ editionInfoViewTitle }}
-        </p>
+        <p>{{ editionInfoViewTitle }}</p>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ editionWorkOp12.edition.short }} {{ editionWorkOp12.series.short }}/{{
-                    editionWorkOp12.section.short
-                }}</span
+                >{{ EDITION_WORK_OP12.edition.short }} {{ EDITION_WORK_OP12.series.short }}/{{
+                EDITION_WORK_OP12.section.short }}</span
             >
             <br />
-            <i class="awg-edition-info-header-title">{{ editionWorkOp12.titleStatement.title }}</i
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp12.work.short }}</span>
+            <i class="awg-edition-info-header-title">{{ EDITION_WORK_OP12.titleStatement.title }}</i>&nbsp;<span
+                class="awg-edition-info-header-catalogue"
+                >{{ EDITION_WORK_OP12.work.short }}</span
+            >
             <br />
-            (<a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]">{{
-                editionWorkOp12.type.full
-            }}</a
+            (<a [routerLink]="[EDITION_WORK_OP12.baseRoute, EDITION_WORK_OP12.introRoute.route]"
+                >{{ EDITION_WORK_OP12.type.full }}</a
             >)
         </h6>
         <p>&#9671;</p>
         <h6 class="awg-edition-info-header">
             <span class="awg-breadcrumb"
-                >{{ editionWorkOp25.edition.short }} {{ editionWorkOp25.series.short }}/{{
-                    editionWorkOp25.section.short
-                }}</span
+                >{{ EDITION_WORK_OP25.edition.short }} {{ EDITION_WORK_OP25.series.short }}/{{
+                EDITION_WORK_OP25.section.short }}</span
             >
             <br />
-            <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i
-            >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span>
+            <i class="awg-edition-info-header-title">{{ EDITION_WORK_OP25.titleStatement.title }}</i>&nbsp;<span
+                class="awg-edition-info-header-catalogue"
+                >{{ EDITION_WORK_OP25.work.short }}</span
+            >
             <br />
-            (<a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]">{{
-                editionWorkOp25.type.full
-            }}</a>
+            (<a [routerLink]="[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.detailRoute.route]"
+                >{{ EDITION_WORK_OP25.type.full }}</a
+            >
             &
-            <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{
-                editionWorkOp25.graphRoute.short
-            }}</a
+            <a [routerLink]="[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.graphRoute.route]"
+                >{{ EDITION_WORK_OP25.graphRoute.short }}</a
             >)
         </h6>
         <p>&#9671;</p>

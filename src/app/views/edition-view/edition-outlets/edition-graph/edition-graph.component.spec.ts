@@ -102,7 +102,7 @@ describe('EditionGraphComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // TestData (default)
-        expectedEditionWork = EditionWorks.op12;
+        expectedEditionWork = EditionWorks.OP12;
 
         expectedEditionGraphDataOp12 = new GraphList();
         expectedEditionGraphDataOp12.graph = [];
@@ -123,10 +123,10 @@ describe('EditionGraphComponent (DONE)', () => {
         editionDataServiceGetEditionGraphDataSpy = spyOn(editionDataService, 'getEditionGraphData').and.callFake(
             (editionWork: EditionWork) => {
                 switch (editionWork) {
-                    case EditionWorks.op12: {
+                    case EditionWorks.OP12: {
                         return observableOf(expectedEditionGraphDataOp12);
                     }
-                    case EditionWorks.op25: {
+                    case EditionWorks.OP25: {
                         return observableOf(expectedEditionGraphDataOp25);
                     }
                     default: {
@@ -203,7 +203,7 @@ describe('EditionGraphComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op12));
+            editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.OP12));
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -230,7 +230,7 @@ describe('EditionGraphComponent (DONE)', () => {
                 waitForAsync(async () => {
                     // ----------------
                     // Change to op. 25
-                    editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op25));
+                    editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.OP25));
 
                     // Init new switchMap
                     component.getEditionGraphData();
@@ -240,7 +240,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     expectSpyCall(editionServiceGetEditionWorkSpy, 2);
 
                     expect(component.editionWork).toBeTruthy();
-                    expect(component.editionWork).toEqual(EditionWorks.op25, `should be ${expectedEditionWork}`);
+                    expect(component.editionWork).toEqual(EditionWorks.OP25, `should be ${expectedEditionWork}`);
                 })
             );
 
@@ -258,7 +258,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // ----------------
                     // Change to op. 25
                     // ExpectedEditionWork = EditionWorks.op25;
-                    editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op25));
+                    editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.OP25));
 
                     // Init new switchMap
                     component.getEditionGraphData();
@@ -266,7 +266,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(editionServiceGetEditionWorkSpy, 2);
-                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EditionWorks.op25);
+                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EditionWorks.OP25);
                 })
             );
 
@@ -293,7 +293,7 @@ describe('EditionGraphComponent (DONE)', () => {
                     // ----------------
                     // Change to op. 25
                     // ExpectedEditionWork = EditionWorks.op25;
-                    editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.op25));
+                    editionServiceGetEditionWorkSpy.and.returnValue(observableOf(EditionWorks.OP25));
 
                     // Init new switchMap
                     component.getEditionGraphData();
@@ -301,12 +301,12 @@ describe('EditionGraphComponent (DONE)', () => {
                     await detectChangesOnPush(fixture);
 
                     expectSpyCall(editionServiceGetEditionWorkSpy, 2);
-                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EditionWorks.op25);
+                    expectSpyCall(editionDataServiceGetEditionGraphDataSpy, 2, EditionWorks.OP25);
 
                     expect(component.editionGraphData$).toBeTruthy();
 
                     component.editionGraphData$.subscribe((data: GraphList) => {
-                        expect(component.editionWork).toBe(EditionWorks.op25);
+                        expect(component.editionWork).toBe(EditionWorks.OP25);
                         expect(data).toEqual(
                             expectedEditionGraphDataOp25,
                             `should equal ${expectedEditionGraphDataOp25}`
@@ -418,8 +418,6 @@ describe('EditionGraphComponent (DONE)', () => {
                             1,
                             1
                         );
-
-                        console.log(divDes);
 
                         const pDes = getAndExpectDebugElementByCss(divDes[0], 'p', 1 + 3, 1 + 3);
                         const pEl1 = pDes[1].nativeElement;
@@ -549,8 +547,8 @@ describe('EditionGraphComponent (DONE)', () => {
                         click(btnEl0 as HTMLElement);
                         detectChangesOnPush(fixture);
 
-                        expectSpyCall(modalOpenSpy, 1, 'hintEditionGraph');
-                        expect(modalCmp.modalContent).toBe('hintEditionGraph');
+                        expectSpyCall(modalOpenSpy, 1, 'HINT_EDITION_GRAPH');
+                        expect(modalCmp.modalContent).toBe('HINT_EDITION_GRAPH');
                     }));
 
                     it('... should contain a paragraph', () => {

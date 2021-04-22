@@ -67,7 +67,7 @@ describe('EditionReportComponent', () => {
             // Create a fake service object with a `getEditionWork()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
             // Make the spy return a synchronous Observable with the test data
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12)); // TODO: provide real test data
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12)); // TODO: provide real test data
 
             TestBed.configureTestingModule({
                 imports: [NgbModalModule, RouterTestingModule],

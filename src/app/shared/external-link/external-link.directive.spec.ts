@@ -27,7 +27,7 @@ class TestExernalLinkComponent {
     dynamicExternalLink = 'https://coryrylan.com/blog/managing-external-links-safely-in-angular';
 
     doSomething() {
-        console.log('Clicked on link without href');
+        console.info('Clicked on link without href');
     }
 }
 

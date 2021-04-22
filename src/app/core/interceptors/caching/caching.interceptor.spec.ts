@@ -67,7 +67,7 @@ describe('CachingInterceptor (DONE)', () => {
         interceptSpy = spyOn(cachingInterceptor, 'intercept').and.callThrough();
         cacheGetSpy = spyOn(httpCacheService, 'get').and.callFake(mockCache.get);
         cachePutSpy = spyOn(httpCacheService, 'put').and.callFake(mockCache.put);
-        consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
     });
 
     afterEach(() => {
@@ -149,7 +149,7 @@ describe('CachingInterceptor (DONE)', () => {
         );
 
         it('... should use mock console', () => {
-            console.log('Test');
+            console.error('Test');
 
             expect(mockConsole.get(0)).toBe('Test');
         });

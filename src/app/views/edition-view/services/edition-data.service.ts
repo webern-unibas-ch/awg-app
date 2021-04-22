@@ -309,7 +309,7 @@ export class EditionDataService {
      */
     private _getJsonData(path: string): Observable<any> {
         return this.http.get(path).pipe(
-            // Tap(res => this._log(`fetched jsonData with url=${url}`)),
+            // Tap(res => this._logError(`fetched jsonData with url=${url}`)),
             catchError(this._handleError('_getJsonData', []))
         );
     }
@@ -326,8 +326,7 @@ export class EditionDataService {
     private _handleError<T>(operation: string, result?: T) {
         return (error: any): Observable<T> => {
             // TODO: better job of transforming error for user consumption
-            this._log(`${operation} failed: ${error.message}`);
-            // Console.error(error);
+            this._logError(`${operation} failed: ${error.message}`);
 
             // Let the app keep running by returning an empty result.
             return observableOf(result as T);
@@ -335,14 +334,15 @@ export class EditionDataService {
     }
 
     /**
-     * Private method: _log.
+     * Private method: _logError.
      *
-     * It logs a message to the console.
+     * It logs an error message to the console.
      *
-     * @param {string} message The given message to be logged.
-     * @returns {void} Logs the message to the console.
+     * @param {string} message The given error message to be logged.
+     *
+     * @returns {void} Logs the error message to the console.
      */
-    private _log(message: string): void {
-        console.log(message);
+    private _logError(message: string): void {
+        console.error(message);
     }
 }

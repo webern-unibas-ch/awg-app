@@ -32,8 +32,6 @@ export class CachingInterceptor implements HttpInterceptor {
      */
     constructor(private cache: HttpCacheService) {}
 
-    // Private cache = {};
-
     /**
      * Public method: intercept.
      *
@@ -46,10 +44,6 @@ export class CachingInterceptor implements HttpInterceptor {
      * @returns {Observable<HttpEvent<any>>} An HttpEvent observable.
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // TODO: rm
-        // console.log('------------> CachingInterceptor');
-        // console.log('CI# RequestUrl: ', req.urlWithParams);
-
         const started = Date.now();
 
         if (req.method !== 'GET') {
@@ -59,10 +53,6 @@ export class CachingInterceptor implements HttpInterceptor {
         // Check the cache for existing responses
         const cachedResponse = this.cache.get(req);
         if (cachedResponse) {
-            // TODO: rm
-            // console.log('CI# cachedResponse: ', cachedResponse);
-            // console.log('<------------ END CachingInterceptor');
-
             // Serve existing cached response
             return observableOf(cachedResponse.clone());
         }
@@ -74,20 +64,13 @@ export class CachingInterceptor implements HttpInterceptor {
                 if (event instanceof HttpResponse) {
                     const elapsed = Date.now() - started;
 
-                    // TODO: rm
-                    // Console.log('CI# caching new response ---> req, event:', req, event);
-                    // Console.log(`Request took ${elapsed} ms.`);
-
                     // Update the cache.
                     this.cache.put(req, event.clone());
-
-                    // TODO: rm
-                    // Console.log('<------------ END CachingInterceptor ');
                 }
             }),
             catchError(response => {
                 if (response instanceof HttpErrorResponse) {
-                    console.log('CachingInterceptor: Processing http error', response);
+                    console.error('CachingInterceptor: Processing http error', response);
                 }
 
                 return observableThrowError(response);

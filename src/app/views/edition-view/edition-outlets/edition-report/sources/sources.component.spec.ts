@@ -112,13 +112,13 @@ describe('SourcesComponent', () => {
                         siglum: 'B',
                         type: 'Autograph von Nr. I.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'op12_sourceNotA'
+                        linkTo: 'OP12_SOURCE_NOT_A'
                     },
                     {
                         siglum: 'C',
                         type: 'Autograph von Nr. I–IV.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'op12_sourceNotA'
+                        linkTo: 'OP12_SOURCE_NOT_A'
                     }
                 ]
             };

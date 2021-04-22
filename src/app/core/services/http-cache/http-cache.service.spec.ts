@@ -36,16 +36,18 @@ describe('HttpCacheService (DONE)', () => {
         expect(httpCacheService).toBeTruthy();
     });
 
-    it('should have empty cachedResponses before any call is made', () => {
-        expect((httpCacheService as any).cachedResponses).toBeTruthy();
-        expect((httpCacheService as any).cachedResponses.size).toBe(0, 'should be 0');
+    it('should have empty _cachedResponses before any call is made', () => {
+        expect((httpCacheService as any)._cachedResponses).toBeTruthy();
+        expect((httpCacheService as any)._cachedResponses.size).toBe(0, 'should be 0');
     });
 
     describe('#put', () => {
         it('... should add an HTTP request to cache', () => {
             httpCacheService.put(expectedRequest, expectedResponse);
 
-            const expectedCachedResponse = (httpCacheService as any).cachedResponses.get(expectedRequest.urlWithParams);
+            const expectedCachedResponse = (httpCacheService as any)._cachedResponses.get(
+                expectedRequest.urlWithParams
+            );
 
             expect(expectedCachedResponse).toBeTruthy();
             expect(expectedCachedResponse).toEqual(expectedResponse, `should be ${expectedResponse}`);
@@ -54,7 +56,9 @@ describe('HttpCacheService (DONE)', () => {
 
     describe('#get', () => {
         it('... should return null if an HTTP request is not available from cache', () => {
-            const expectedCachedResponse = (httpCacheService as any).cachedResponses.get(expectedRequest.urlWithParams);
+            const expectedCachedResponse = (httpCacheService as any)._cachedResponses.get(
+                expectedRequest.urlWithParams
+            );
             expect(expectedCachedResponse).toBeUndefined('should be undefined');
 
             const expectedGetCache = httpCacheService.get(expectedRequest);
@@ -64,7 +68,9 @@ describe('HttpCacheService (DONE)', () => {
         it('... should return an HTTP response from cache if available', () => {
             httpCacheService.put(expectedRequest, expectedResponse);
 
-            const expectedCachedResponse = (httpCacheService as any).cachedResponses.get(expectedRequest.urlWithParams);
+            const expectedCachedResponse = (httpCacheService as any)._cachedResponses.get(
+                expectedRequest.urlWithParams
+            );
             expect(expectedCachedResponse).toBeTruthy();
             expect(expectedCachedResponse).toEqual(expectedResponse, `should be ${expectedResponse}`);
 

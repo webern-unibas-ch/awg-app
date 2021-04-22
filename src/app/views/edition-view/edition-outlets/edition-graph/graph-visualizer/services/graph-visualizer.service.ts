@@ -178,22 +178,17 @@ export class GraphVisualizerService {
 
         return this._createStore()
             .then(store => {
-                // Console.log('STORE', _store);
                 this._store = store;
 
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((storeSize: number) =>
-                // Console.log('STORESIZE', storeSize);
-                this._executeQuery(this._store, query)
-            )
+            .then((storeSize: number) => this._executeQuery(this._store, query))
             .then((res: QueryResult) => {
-                // Console.log('RES', res);
                 const data: QueryResult = res;
 
                 // Reformat data if select query
                 if (queryType === 'select') {
-                    console.log('got SELECT request');
+                    console.info('got SELECT request');
                     // Return this.sparqlJSON(data).data;
                 }
 
@@ -317,14 +312,12 @@ export class GraphVisualizerService {
      * @returns {Promise<QueryResult>} A promise of the query result.
      */
     private _executeQuery(store: any, query: string): Promise<QueryResult> {
-        // Console.log('_executeQuery# QUERY', query);
         return new Promise((resolve, reject) => {
             store.execute(query, (err, res: QueryResult) => {
                 if (err) {
                     console.error('_executeQuery# got ERROR', err);
                     reject(err);
                 }
-                // Console.log('_executeQuery# RESOLVED', res);
                 resolve(res);
             });
         });
@@ -359,8 +352,6 @@ export class GraphVisualizerService {
         prefixIndexArray.forEach(prefixIndex => {
             obj[arr[prefixIndex + 1]] = arr[prefixIndex + 2];
         });
-
-        console.log(obj);
 
         return obj;
     }
@@ -410,7 +401,6 @@ export class GraphVisualizerService {
         // Parse triples
         const parser = new N3.Parser();
 
-        // Console.log('PARSER', parser);
         return new Promise((resolve, reject) => {
             parser.parse(triples, (err, triple, prefixes) => {
                 if (!triple) {
@@ -445,7 +435,6 @@ export class GraphVisualizerService {
                     console.error('_loadTriplesInStore# got error', err);
                     reject(err);
                 }
-                // Console.log('_loadTriplesInStore# resolved', size);
                 resolve(size);
             });
         });

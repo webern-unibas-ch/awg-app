@@ -37,8 +37,8 @@ describe('EditionInfoComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // Test data
-        expectedEditionWorkOp12 = EditionWorks.op12;
-        expectedEditionWorkOp25 = EditionWorks.op25;
+        expectedEditionWorkOp12 = EditionWorks.OP12;
+        expectedEditionWorkOp25 = EditionWorks.OP25;
     });
 
     afterAll(() => {
@@ -56,11 +56,17 @@ describe('EditionInfoComponent (DONE)', () => {
         });
 
         it('should have editionWorks', () => {
-            expect(component.editionWorkOp12).toBeDefined('should be defined');
-            expect(component.editionWorkOp25).toBeDefined('should be defined');
+            expect(component.EDITION_WORK_OP12).toBeDefined('should be defined');
+            expect(component.EDITION_WORK_OP25).toBeDefined('should be defined');
 
-            expect(component.editionWorkOp12).toEqual(expectedEditionWorkOp12, `should be ${expectedEditionWorkOp12}`);
-            expect(component.editionWorkOp25).toEqual(expectedEditionWorkOp25, `should be ${expectedEditionWorkOp25}`);
+            expect(component.EDITION_WORK_OP12).toEqual(
+                expectedEditionWorkOp12,
+                `should be ${expectedEditionWorkOp12}`
+            );
+            expect(component.EDITION_WORK_OP25).toEqual(
+                expectedEditionWorkOp25,
+                `should be ${expectedEditionWorkOp25}`
+            );
         });
 
         describe('VIEW', () => {

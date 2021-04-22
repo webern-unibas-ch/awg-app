@@ -72,7 +72,7 @@ export class ContactInfoComponent implements OnInit {
      */
     ngOnInit() {
         this.provideMetaData();
-        this.sanitizeUrls();
+        this._sanitizeUrls();
     }
 
     /**
@@ -89,14 +89,14 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Private method: sanitizeUrls.
+     * Private method: _sanitizeUrls.
      *
      * It sanitizes the URLs and links for the OpenStreetMap
      * using the Angular DomSanitizer.
      *
      * @returns {void} Sanitizes the URLs.
      */
-    private sanitizeUrls(): void {
+    private _sanitizeUrls(): void {
         this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
         this.osmLinkUrl = this.sanitizer.sanitize(SecurityContext.URL, AppConfig.UNSAFE_OSM_LINK_URL);
     }

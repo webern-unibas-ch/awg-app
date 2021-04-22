@@ -45,8 +45,7 @@ module.exports = {
         ],
         '@typescript-eslint/indent': 'off', // Checked by prettier
         '@typescript-eslint/member-delimiter-style': [
-            // Checked by prettier
-            'off',
+            'off', // Checked by prettier
             {
                 multiline: {
                     delimiter: 'semi',
@@ -100,8 +99,7 @@ module.exports = {
         '@typescript-eslint/no-use-before-define': 'error',
         '@typescript-eslint/prefer-function-type': 'error',
         '@typescript-eslint/quotes': [
-            // Checked by prettier
-            'off',
+            'off', // Checked by prettier
             'single',
             {
                 avoidEscape: true
@@ -142,6 +140,9 @@ module.exports = {
             'warn',
             {
                 allow: [
+                    'info',
+                    'warn',
+                    'error',
                     'dir',
                     'timeLog',
                     'assert',

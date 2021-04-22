@@ -73,7 +73,7 @@ describe('EditionDataService (DONE)', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Spies on console logs
-        consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
     });
 
     // After every test, assert that there are no more pending requests

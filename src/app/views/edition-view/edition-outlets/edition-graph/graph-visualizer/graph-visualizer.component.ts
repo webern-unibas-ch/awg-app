@@ -190,7 +190,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Logs the click event.
      */
     onGraphNodeClick(node: D3SimulationNode) {
-        console.log('GraphVisualizerComponent# graphClick on node', node);
+        console.info('GraphVisualizerComponent# graphClick on node', node);
     }
 
     /**
@@ -227,8 +227,8 @@ export class GraphVisualizerComponent implements OnInit {
         if (!durationValue) {
             durationValue = 10000;
         }
-        console.log(message, durationValue);
-        // TODO: use snackbar instead of console.log
+        console.error(message, durationValue);
+        // TODO: use snackbar instead of console
         /*
         This.snackBar.open(message, 'close', {
             duration: durationValue
@@ -271,7 +271,6 @@ export class GraphVisualizerComponent implements OnInit {
 
             // Capture query time
             this.queryTime = Date.now() - t1;
-            // console.log('QUERYTIME:', this.queryTime);
 
             result = [];
         }

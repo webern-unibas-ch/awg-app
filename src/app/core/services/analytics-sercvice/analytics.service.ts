@@ -5,7 +5,7 @@ import { AppConfig } from '@awg-app/app.config';
 import { environment } from '../../../../environments/environment';
 
 /**
- * gtag function for Analytics.
+ * The global gtag variable for Analytics.
  */
 declare let gtag: Function;
 
@@ -74,7 +74,7 @@ export class AnalyticsService {
             return;
         }
         if (this._sendPageView === false) {
-            console.log('Running non-production analytics replacement now');
+            console.info('Running non-production analytics replacement now');
         } else {
             this._prependAnalyticsScript();
         }

@@ -35,7 +35,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      * Getter for the total number of incoming links.
      */
     get totalNumber() {
-        return this.getNestedArraysTotalItems(this.incomingGroups) || 0;
+        return this._getNestedArraysTotalItems(this.incomingGroups) || 0;
     }
 
     /**
@@ -57,7 +57,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
     }
 
     /**
-     * Private method: getNestedArraysTotalItems.
+     * Private method: _getNestedArraysTotalItems.
      *
      * It sums up the total items (length) of all arrays
      * nested in an ResourceDetailGroupedIncomingLinks
@@ -67,7 +67,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      *
      * @returns {number} The number of total items (length) of the nested array.
      */
-    private getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
+    private _getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
         if (!groupedLinksArr) {
             return;
         }

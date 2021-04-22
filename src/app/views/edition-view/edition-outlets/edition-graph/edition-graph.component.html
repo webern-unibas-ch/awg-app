@@ -35,7 +35,7 @@
                     <button
                         type="button"
                         class="btn btn-sm btn-outline-info ml-2"
-                        (click)="modal.open('hintEditionGraph')"
+                        (click)="modal.open('HINT_EDITION_GRAPH')"
                     >
                         Hinweise zur Nutzung
                     </button>
@@ -86,9 +86,7 @@
     <ng-template #error>
         <div class="errorMessage" *ngIf="errorObject">
             <div class="col-12 text-center">
-                <div class="alert alert-danger">
-                    {{ errorObject | json }}
-                </div>
+                <div class="alert alert-danger">{{ errorObject | json }}</div>
             </div>
         </div>
     </ng-template>

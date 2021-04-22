@@ -19,22 +19,22 @@ export class SideInfoService {
     /**
      * Private subject to handle search info data.
      */
-    private searchInfoDataSubject: Subject<SearchInfo> = new BehaviorSubject<SearchInfo>(new SearchInfo('---', '---'));
+    private _searchInfoDataSubject: Subject<SearchInfo> = new BehaviorSubject<SearchInfo>(new SearchInfo('---', '---'));
 
     /**
      * Readonly search info data stream as observable (`Subject`).
      */
-    readonly searchInfoDataStream$ = this.searchInfoDataSubject.asObservable();
+    private readonly _searchInfoDataStream$ = this._searchInfoDataSubject.asObservable();
 
     /**
      * Private behavior subject to handle search info title.
      */
-    private searchInfoTitleSubject: Subject<string> = new BehaviorSubject<string>('');
+    private _searchInfoTitleSubject: Subject<string> = new BehaviorSubject<string>('');
 
     /**
      * Readonly search info title stream as observable (`BehaviorSubject`).
      */
-    readonly searchInfoTitleStream$ = this.searchInfoTitleSubject.asObservable();
+    private readonly _searchInfoTitleStream$ = this._searchInfoTitleSubject.asObservable();
 
     /**
      * Public method: getSearchInfoData.
@@ -44,7 +44,7 @@ export class SideInfoService {
      * @returns {Observable<SearchInfo>} The search info data stream as observable.
      */
     getSearchInfoData(): Observable<SearchInfo> {
-        return this.searchInfoDataStream$;
+        return this._searchInfoDataStream$;
     }
 
     /**
@@ -55,7 +55,7 @@ export class SideInfoService {
      * @returns {Observable<string>} The search info title stream as observable.
      */
     getSearchInfoTitle(): Observable<string> {
-        return this.searchInfoTitleStream$;
+        return this._searchInfoTitleStream$;
     }
 
     /**
@@ -66,7 +66,7 @@ export class SideInfoService {
      * @returns {void} Sets the next searchInfo to the side info data stream.
      */
     updateSearchInfoData(searchInfo: SearchInfo): void {
-        this.searchInfoDataSubject.next(searchInfo);
+        this._searchInfoDataSubject.next(searchInfo);
     }
 
     /**
@@ -77,7 +77,7 @@ export class SideInfoService {
      * @returns {void} Sets the next title to the search info title stream.
      */
     updateSearchInfoTitle(title: string): void {
-        this.searchInfoTitleSubject.next(title);
+        this._searchInfoTitleSubject.next(title);
     }
 
     /**
@@ -88,7 +88,7 @@ export class SideInfoService {
      * @returns {void} Clears the search info data stream.
      */
     clearSearchInfoData(): void {
-        this.searchInfoDataSubject.next(new SearchInfo('---', '---'));
+        this._searchInfoDataSubject.next(new SearchInfo('---', '---'));
     }
 
     /**
@@ -99,6 +99,6 @@ export class SideInfoService {
      * @returns {void} Clears the search info title stream.
      */
     clearSearchInfoTitle(): void {
-        this.searchInfoTitleSubject.next('');
+        this._searchInfoTitleSubject.next('');
     }
 }

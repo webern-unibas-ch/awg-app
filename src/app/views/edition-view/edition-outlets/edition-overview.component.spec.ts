@@ -43,7 +43,7 @@ describe('EditionOverviewComponent (DONE)', () => {
             // Create a fake service object with a `getData()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
             // Make the spy return a synchronous Observable with the test data
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
 
             TestBed.configureTestingModule({
                 declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],

@@ -28,12 +28,12 @@ describe('LoadingService (DONE)', () => {
         expect(loadingService).toBeTruthy();
     });
 
-    it('should have isLoadingSubject', () => {
-        expect((loadingService as any).isLoadingSubject).toBeTruthy();
+    it('should have _isLoadingSubject', () => {
+        expect((loadingService as any)._isLoadingSubject).toBeTruthy();
     });
 
-    it('should have isLoadingStream$', () => {
-        expect((loadingService as any).isLoadingStream$).toBeTruthy();
+    it('should have _isLoadingStream$', () => {
+        expect((loadingService as any)._isLoadingStream$).toBeTruthy();
     });
 
     describe('#getLoadingStatus', () => {

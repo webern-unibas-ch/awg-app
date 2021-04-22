@@ -41,14 +41,14 @@ import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliog
  *
  * It provides access to the embedded htmlConverter plugin (see `/src/plugins/htmlConverter`).
  */
-declare var htmlConverter: any;
+declare let htmlConverter: any;
 
 /**
  * Declared variable: dateConverter.
  *
  * It provides access to the embedded dateConverter plugin (see `/src/plugins/dateConverter`).
  */
-declare var dateConverter: any;
+declare let dateConverter: any;
 
 /**
  * The Conversion service.
@@ -114,20 +114,20 @@ export class ConversionService extends ApiService {
                 // Check if there is standoff, otherwise leave res.value[0] alone
                 // Because when retrieved from cache the standoff is already converted
                 if (utf8str && textattr) {
-                    htmlstr = this.convertStandoffToHTML(utf8str, textattr);
+                    htmlstr = this._convertStandoffToHTML(utf8str, textattr);
 
                     // Replace salsah links
-                    htmlstr = this.replaceSalsahLink(htmlstr);
+                    htmlstr = this._replaceSalsahLink(htmlstr);
 
                     // Strip & replace <p>-tags for displaying
-                    htmlstr = this.replaceParagraphTags(htmlstr);
+                    htmlstr = this._replaceParagraphTags(htmlstr);
 
                     subject.value[0] = htmlstr;
                 }
             }
         });
         // Remove duplicates from response
-        searchResults.subjects = this.distinctSubjects(searchResults.subjects);
+        searchResults.subjects = this._distinctSubjects(searchResults.subjects);
         return searchResults;
     }
 
@@ -192,7 +192,7 @@ export class ConversionService extends ApiService {
                     case '4':
                         // DATE: salsah object needs to be converted (using plugin "dateConverter")
                         if (prop.values[0] !== '') {
-                            propValue[0] = this.convertDateValue(prop.values[0]);
+                            propValue[0] = this._convertDateValue(prop.values[0]);
                         }
                         break; // END date
 
@@ -200,7 +200,7 @@ export class ConversionService extends ApiService {
                         // SELECTION PULLDOWN: selection nodes have to be read seperately
                         // TODO
                         if (prop.values !== []) {
-                            propValue = this.convertSelectionValues(prop.values, prop.attributes);
+                            propValue = this._convertSelectionValues(prop.values, prop.attributes);
                         }
                         break; // END selection
 
@@ -218,10 +218,10 @@ export class ConversionService extends ApiService {
                                 let htmlstr = '';
 
                                 // Convert linear salsah standoff to html (using plugin "htmlConverter")
-                                htmlstr = this.convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
+                                htmlstr = this._convertStandoffToHTML(prop.values[i].utf8str, prop.values[i].textattr);
 
                                 // Replace salsah links & <p>-tags
-                                htmlstr = this.replaceSalsahLink(htmlstr);
+                                htmlstr = this._replaceSalsahLink(htmlstr);
                                 htmlstr = htmlstr.replace('<p>', '').replace('</p>', '');
 
                                 // Trim string
@@ -229,7 +229,7 @@ export class ConversionService extends ApiService {
 
                                 // Replace bibliography links
                                 if (prop.label === 'Online-Zugang') {
-                                    propValue[i] = this.adjustBiblioLink(propValue[i]);
+                                    propValue[i] = this._adjustBiblioLink(propValue[i]);
                                 }
                             }
                         }
@@ -279,14 +279,14 @@ export class ConversionService extends ApiService {
      */
     convertResourceData(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
         if (resourceData[0].access === 'OK') {
-            return this.prepareAccessibleResource(resourceData, resourceId);
+            return this._prepareAccessibleResource(resourceData, resourceId);
         } else {
-            return this.prepareRestrictedResource(resourceData, resourceId);
+            return this._prepareRestrictedResource(resourceData, resourceId);
         }
     }
 
     /**
-     * Private method: prepareRestrictedResource.
+     * Private method: _prepareRestrictedResource.
      *
      * It prepares header and content of a restricted resource
      * to be displayed via HTML.
@@ -296,7 +296,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {ResourceDetail} The resource detail object.
      */
-    private prepareRestrictedResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+    private _prepareRestrictedResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
         const header: ResourceDetailHeader = new ResourceDetailHeader(resourceData[0], resourceId);
         const content = undefined;
 
@@ -304,7 +304,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: prepareAccessibleResource.
+     * Private method: _prepareAccessibleResource.
      *
      * It prepares header and content of an accessible resource
      * to be displayed via HTML.
@@ -314,18 +314,18 @@ export class ConversionService extends ApiService {
      *
      * @returns {ResourceDetail} The resource detail object.
      */
-    private prepareAccessibleResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
+    private _prepareAccessibleResource(resourceData: IResourceDataResponse, resourceId: string): ResourceDetail {
         const resourceFullResponseData = resourceData[0];
         const resourceContextData = resourceData[1];
 
         // Convert properties to be displayed via HTML
-        resourceFullResponseData.props = this.convertGUISpecificProps(resourceFullResponseData.props);
+        resourceFullResponseData.props = this._convertGUISpecificProps(resourceFullResponseData.props);
 
         // Prepare parts of resourceDetail
         const header: ResourceDetailHeader = new ResourceDetailHeader(resourceFullResponseData, resourceId);
-        const props: ResourceDetailProperty[] = this.prepareResourceDetailProperties(resourceFullResponseData.props);
-        const images: NgxGalleryImage[] = this.prepareResourceDetailImage(resourceContextData);
-        const incoming: ResourceDetailGroupedIncomingLinks[] = this.prepareResourceDetailIncomingLinks(
+        const props: ResourceDetailProperty[] = this._prepareResourceDetailProperties(resourceFullResponseData.props);
+        const images: NgxGalleryImage[] = this._prepareResourceDetailImage(resourceContextData);
+        const incoming: ResourceDetailGroupedIncomingLinks[] = this._prepareResourceDetailIncomingLinks(
             resourceFullResponseData.incoming
         );
         const content = new ResourceDetailContent(props, images, incoming);
@@ -334,7 +334,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: prepareResourceDetailImage.
+     * Private method: _prepareResourceDetailImage.
      *
      * It prepares the images content of an accessible resource
      * to be displayed via HTML.
@@ -343,13 +343,13 @@ export class ConversionService extends ApiService {
      *
      * @returns {NgxGalleryImage[]} The image array of the resource detail.
      */
-    private prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
+    private _prepareResourceDetailImage(resourceContextData: ResourceContextResponseJson): NgxGalleryImage[] {
         // Id of image context for api + "/resources/{{:id}}_-_local?reqtype=context"
         // Result is an array of NgxGalleryImage
         const images: NgxGalleryImage[] = [];
 
         if (!resourceContextData.resource_context.res_id) {
-            // console.log('ConversionService# prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
+            // console.log('ConversionService# _prepareResourceDetailImage: got no resource_context id\'s from context response: ', contextData);
             return;
         } else {
             const context: ContextJson = { ...resourceContextData.resource_context };
@@ -386,7 +386,7 @@ export class ConversionService extends ApiService {
                 }
                 // STANDARD OBJECT (context == 0 || 1)
             } else if (context.context < 2) {
-                console.log('ConversionService - got no image context', context);
+                console.warn('ConversionService - got no image context', context);
                 return;
             }
         }
@@ -395,7 +395,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: prepareResourceDetailIncomingLinks.
+     * Private method: _prepareResourceDetailIncomingLinks.
      *
      * It prepares and groups the incoming links content
      * of an accessible resource to be displayed via HTML.
@@ -404,7 +404,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {ResourceDetailGroupedIncomingLinks[]} The grouped incoming links array of the resource detail.
      */
-    private prepareResourceDetailIncomingLinks(
+    private _prepareResourceDetailIncomingLinks(
         incomingArray: IncomingItemJson[]
     ): ResourceDetailGroupedIncomingLinks[] {
         if (!incomingArray) {
@@ -417,11 +417,11 @@ export class ConversionService extends ApiService {
         );
 
         // Return links grouped by restype
-        return this.groupByRestype(incomingLinks);
+        return this._groupByRestype(incomingLinks);
     }
 
     /**
-     * Private method: prepareResourceDetailProperties.
+     * Private method: _prepareResourceDetailProperties.
      *
      * It prepares the properties content of an accessible resource
      * to be displayed via HTML.
@@ -430,7 +430,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {ResourceDetailProperty[]} The properties array of the resource detail.
      */
-    private prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
+    private _prepareResourceDetailProperties(props: PropertyJson[]): ResourceDetailProperty[] {
         if (!props) {
             return;
         }
@@ -451,7 +451,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: convertGUISpecificProps.
+     * Private method: _convertGUISpecificProps.
      *
      * It converts properties of an accessible resource
      * to be displayed via HTML.
@@ -462,16 +462,16 @@ export class ConversionService extends ApiService {
      *
      * @returns {*} The converted resource data.
      */
-    private convertGUISpecificProps(props: PropertyJson[]): any {
+    private _convertGUISpecificProps(props: PropertyJson[]): any {
         // Loop through all properties and add toHtml values
         Object.keys(props).forEach((key: string) => {
-            props[key] = this.addHtmlValues(props[key]);
+            props[key] = this._addHtmlValues(props[key]);
         });
         return props;
     }
 
     /**
-     * Private method: convertGUISpecificProps.
+     * Private method: _addHtmlValues.
      *
      * It adds an 'toHtml' property to the props array
      * of an accessible resource to be displayed via HTML.
@@ -481,40 +481,40 @@ export class ConversionService extends ApiService {
      *
      * @returns {string[]} The converted property.
      */
-    private addHtmlValues(prop: any, url?: string): [string] {
+    private _addHtmlValues(prop: any, url?: string): [string] {
         prop.toHtml = [];
 
         if (prop.values) {
             switch (prop.valuetype_id) {
                 case '4': // DATE: salsah object needs to be converted (using plugin "dateConverter")
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop.toHtml[i] = this.convertDateValue(prop.values[i]);
+                        prop.toHtml[i] = this._convertDateValue(prop.values[i]);
                     }
                     break; // END date
 
                 case '6': // LINKVALUE (searchbox): links to another salsah object need to be converted
                     for (let i = 0; i < prop.values.length; i++) {
-                        prop.toHtml[i] = this.convertLinkValue(prop, i);
+                        prop.toHtml[i] = this._convertLinkValue(prop, i);
                     }
                     break; // END linkvalue
 
                 case '7': // SELECTION (pulldown): selection nodes have to be called separately
-                    prop.toHtml = this.convertSelectionValues(prop.values, prop.attributes);
+                    prop.toHtml = this._convertSelectionValues(prop.values, prop.attributes);
                     break; // END selection
 
                 case '12': // HLIST: hlist nodes have to be called separately
-                    prop.toHtml = this.convertHlistValues(prop.values, prop.attributes);
+                    prop.toHtml = this._convertHlistValues(prop.values, prop.attributes);
                     break; // END hlist
 
                 case '14': // RICHTEXT: salsah standoff needs to be converted
                     for (let i = 0; i < prop.values.length; i++) {
                         // Convert richtext standoff
-                        prop.toHtml[i] = this.convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
+                        prop.toHtml[i] = this._convertRichtextValue(prop.values[i].utf8str, prop.values[i].textattr);
                     }
                     break; // END richtext
 
                 case '15': // GeoNAMES: GeoName nodes have to be called separately
-                    prop.toHtml = this.convertGeoValues(prop.values);
+                    prop.toHtml = this._convertGeoValues(prop.values);
                     break; // END geonames
 
                 // '1' => TEXT: properties come as they are
@@ -530,7 +530,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: convertDateValue.
+     * Private method: _convertDateValue.
      *
      * It converts date values of an accessible resource
      * to be displayed via HTML.
@@ -542,14 +542,14 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} The converted date string.
      */
-    private convertDateValue(dateObj: any): string {
+    private _convertDateValue(dateObj: any): string {
         let date = dateConverter(dateObj);
         date = date.replace(' (G)', '');
         return date;
     }
 
     /**
-     * Private method: convertGeoValues.
+     * Private method: _convertGeoValues.
      *
      * It converts geonames values of an accessible resource
      * to be displayed via HTML.
@@ -558,7 +558,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {string[]} The converted geo names array.
      */
-    private convertGeoValues(values: string[]): string[] {
+    private _convertGeoValues(values: string[]): string[] {
         // Values give reference id to api + "/geonames/{{:id}}?reqtype=node"
         // Result is an array nodelist (properties: id, label, name) with nodes from 0 to n
 
@@ -568,12 +568,12 @@ export class ConversionService extends ApiService {
         // E.g. ["4136"] or ["4136", "4132"]
         values.forEach((valueId, index) => {
             // Get geonames data
-            this.getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe((geoNamesData: GeoDataJson) => {
+            this._getAdditionalInfoFromApi(GeoDataJson, valueId).subscribe((geoNamesData: GeoDataJson) => {
                 // Check for existing nodelist in geonames response
                 // Else return empty prop if necessary
                 if (!geoNamesData.nodelist) {
-                    console.log(
-                        'ConversionService# convertGeoValues: got no nodelist from geonames response: ',
+                    console.warn(
+                        'ConversionService# _convertGeoValues: got no nodelist from geonames response: ',
                         geoNamesData
                     );
                     return (output[index] = '');
@@ -593,7 +593,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: convertHlistValues.
+     * Private method: _convertHlistValues.
      *
      * It converts hierarchy list values of an accessible resource
      * to be displayed via HTML.
@@ -603,7 +603,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {string[]} The converted hlist array.
      */
-    private convertHlistValues(values: string[], attributes: string): string[] {
+    private _convertHlistValues(values: string[], attributes: string): string[] {
         // Prop.values give reference id to
         // Api + /hlists/{{:id}}
         // Result is an array hlist (properties: id, label, name, level) with nodes from 0 to n
@@ -612,15 +612,15 @@ export class ConversionService extends ApiService {
 
         // Identify id of hlist from prop.attributes
         // E.g. "hlist=17"
-        const nodeId: string = this.getNodeIdFromAttributes(attributes);
+        const nodeId: string = this._getNodeIdFromAttributes(attributes);
 
         // Get hlist data
-        this.getAdditionalInfoFromApi(HlistJson, nodeId).subscribe(
+        this._getAdditionalInfoFromApi(HlistJson, nodeId).subscribe(
             (hlistData: HlistJson) => {
                 // Check for existing hlist in response
                 // Esle return empty prop if necessary
                 if (!hlistData.hlist) {
-                    console.log('ConversionService# convertHListValue: got no hlist from response: ', hlistData);
+                    console.warn('ConversionService# convertHListValue: got no hlist from response: ', hlistData);
                     return output;
                 }
                 // Snapshot of hlist array
@@ -638,7 +638,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: convertLinkValue.
+     * Private method: _convertLinkValue.
      *
      * It converts a link value of an accessible resource
      * to be displayed via HTML.
@@ -648,7 +648,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} The converted link value.
      */
-    private convertLinkValue(prop: any, index: number): string {
+    private _convertLinkValue(prop: any, index: number): string {
         // Add <a>-tag with click-directive; linktext is stored in "$&"
         const firstValue = prop.value_firstprops[index];
         const replaceValue =
@@ -661,7 +661,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: convertRichtextValue.
+     * Private method: _convertRichtextValue.
      *
      * It converts a rich text value of an accessible resource
      * to be displayed via HTML.
@@ -671,16 +671,16 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} The converted rich text value.
      */
-    private convertRichtextValue(str: string, attr: string): string {
+    private _convertRichtextValue(str: string, attr: string): string {
         // Convert salsah standoff to html (using plugin "htmlConverter")
-        const rtValue: string = this.convertStandoffToHTML(str, attr);
+        const rtValue: string = this._convertStandoffToHTML(str, attr);
 
         // Replace salsah links
-        return this.replaceSalsahLink(rtValue);
+        return this._replaceSalsahLink(rtValue);
     }
 
     /**
-     * Private method: convertSelectionValues.
+     * Private method: _convertSelectionValues.
      *
      * It converts selection values of an accessible resource
      * to be displayed via HTML.
@@ -690,9 +690,9 @@ export class ConversionService extends ApiService {
      *
      * @returns {string[]} The converted selection array.
      *
-     * @todo check if it is possible to unify with hlist conversion?
+     * TODO: check if it is possible to unify with hlist conversion?
      */
-    private convertSelectionValues(values: string[], attributes: string): string[] {
+    private _convertSelectionValues(values: string[], attributes: string): string[] {
         // Values give reference id to api + "/selections/{{:id}}"
         // Result is an array of selection labels
 
@@ -700,16 +700,16 @@ export class ConversionService extends ApiService {
 
         // Identify id of selection-list from attributes
         // E.g. "selection=66"
-        const nodeId: string = this.getNodeIdFromAttributes(attributes);
+        const nodeId: string = this._getNodeIdFromAttributes(attributes);
 
         // Get selection-list data
-        this.getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe(
+        this._getAdditionalInfoFromApi(SelectionJson, nodeId).subscribe(
             (selectionData: SelectionJson) => {
                 // Check for existing selection in response
                 // Else return empty prop if necessary
                 if (!selectionData.selection) {
-                    console.log(
-                        'ConversionService# convertSelectionValues: got no selection from response: ',
+                    console.warn(
+                        'ConversionService# _convertSelectionValues: got no selection from response: ',
                         selectionData
                     );
                     return output;
@@ -731,7 +731,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: convertStandoffToHTML.
+     * Private method: _convertStandoffToHTML.
      *
      * It converts linear SALSAH standoff
      * (utf8 string with standoff attributes)
@@ -744,7 +744,7 @@ export class ConversionService extends ApiService {
      *
      * @todo check if it is possible to unify with hlist conversion?
      */
-    private convertStandoffToHTML(str: string, attr: string): string {
+    private _convertStandoffToHTML(str: string, attr: string): string {
         if (!str) {
             return;
         }
@@ -755,7 +755,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: getAdditionalInfoFromApi.
+     * Private method: _getAdditionalInfoFromApi.
      *
      * It makes additional calls to the given (SALSAH) API
      * to get additional resource infos in case of geoames,
@@ -766,7 +766,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {Observable<any>} The observable of the HTTP response.
      */
-    private getAdditionalInfoFromApi(responseJsonType: any, id: string): Observable<any> {
+    private _getAdditionalInfoFromApi(responseJsonType: any, id: string): Observable<any> {
         let queryPath: string;
         switch (responseJsonType) {
             case GeoDataJson:
@@ -786,7 +786,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: getNodeIdFromAttributes.
+     * Private method: _getNodeIdFromAttributes.
      *
      * It gets a node id from the prop.attributes
      * of a selections or hlists value.
@@ -795,14 +795,14 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} id The node id.
      */
-    private getNodeIdFromAttributes(attributes: string): string {
+    private _getNodeIdFromAttributes(attributes: string): string {
         // Identify node id from prop.attributes
         // E.g. "hlist=17" or "selection=77"
         return attributes.split('=')[1].toString();
     }
 
     /**
-     * Private method: adjustBiblioLink.
+     * Private method: _adjustBiblioLink.
      *
      * It finds internal links in the online-access property
      * of a bibliography link and adjusts the values
@@ -814,25 +814,25 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} The adjusted bibliography link.
      */
-    private adjustBiblioLink(str: string): string {
+    private _adjustBiblioLink(str: string): string {
         if (!str) {
             return;
         }
 
         let outStr: string;
-        let labelStr: string;
-        let splitArr: string[];
         let linkRegArr: RegExpExecArray;
-        const regExLink = /<a (.*?)>(.*?)<\/a>/i; // Regexp for links
 
         // Check for double spaces
         str = str.replace('  ', ' ');
 
         // Split "str" behind closing parentheses
-        splitArr = str.split(') ');
+        const splitArr: string[] = str.split(') ');
 
         // Get label of link from 1st part of splitArr (without opening parentheses)
-        labelStr = splitArr[0].replace('(', '');
+        const labelStr: string = splitArr[0].replace('(', '');
+
+        // Regexp for links
+        const regExLink = /<a (.*?)>(.*?)<\/a>/i;
 
         // Check for link in 2nd part of splitArr
         if (regExLink.exec(splitArr[1])) {
@@ -850,7 +850,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: replaceSalsahLink.
+     * Private method: _replaceSalsahLink.
      *
      * It finds internal salsah links in richtext values
      * and replaces them with Angular click-directives.
@@ -859,7 +859,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} The adjusted richtext value.
      */
-    private replaceSalsahLink(str: string): string {
+    private _replaceSalsahLink(str: string): string {
         if (!str) {
             return;
         }
@@ -893,7 +893,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: replaceParagraphTags.
+     * Private method: _replaceParagraphTags.
      *
      * It removes paragraph tags in richtext values
      * and replaces line breaks instead for multiple lines.
@@ -902,7 +902,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {string} The adjusted richtext value.
      */
-    private replaceParagraphTags(str: string): string {
+    private _replaceParagraphTags(str: string): string {
         if (!str) {
             return;
         }
@@ -914,7 +914,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: distinctSubjects.
+     * Private method: _distinctSubjects.
      *
      * It removes duplicates from an array (SubjectItemJson[]).
      * It checks for every array position (reduce) if the obj_id
@@ -928,7 +928,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {SubjectItemJson[]} The distinct subjects.
      */
-    private distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
+    private _distinctSubjects(subjects: SubjectItemJson[]): SubjectItemJson[] {
         if (!subjects) {
             return;
         }
@@ -940,7 +940,7 @@ export class ConversionService extends ApiService {
     }
 
     /**
-     * Private method: groupByRestype.
+     * Private method: _groupByRestype.
      *
      * It groups an array of incoming links
      * by their resource type.
@@ -949,7 +949,7 @@ export class ConversionService extends ApiService {
      *
      * @returns {ResourceDetailGroupedIncomingLinks} The grouped incoming links.
      */
-    private groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {
+    private _groupByRestype(incomingLinks: ResourceDetailIncomingLink[]): ResourceDetailGroupedIncomingLinks[] {
         if (!incomingLinks) {
             return;
         }

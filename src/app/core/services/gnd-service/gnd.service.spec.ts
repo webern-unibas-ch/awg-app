@@ -36,10 +36,10 @@ describe('GndService (DONE)', () => {
     const otherItem = '87654321-A';
     const noLinkGndEventValue = '<a href="http://no-gnd.info/gnd/12345678-X">http://d-nb.info/gnd/12345678-X</a>';
 
-    const expectedSetEvent = new GndEvent(GndEventType.set, expectedGndEventValue);
-    const noLinkGndSetEvent = new GndEvent(GndEventType.set, noLinkGndEventValue);
-    const otherSetEvent = new GndEvent(GndEventType.set, otherGndEventValue);
-    const expectedRemoveEvent = new GndEvent(GndEventType.remove, null);
+    const expectedSetEvent = new GndEvent(GndEventType.SET, expectedGndEventValue);
+    const noLinkGndSetEvent = new GndEvent(GndEventType.SET, noLinkGndEventValue);
+    const otherSetEvent = new GndEvent(GndEventType.SET, otherGndEventValue);
+    const expectedRemoveEvent = new GndEvent(GndEventType.REMOVE, null);
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -64,12 +64,12 @@ describe('GndService (DONE)', () => {
         spyOn(expectedLocalStorage, 'clear').and.callFake(mockLocalStorage.clear);
 
         // Spy on console
-        consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'warn').and.callFake(mockConsole.log);
 
         // Spies for private service methods
-        setGndToSessionStorageSpy = spyOn<any>(gndService, 'setGndToSessionStorage').and.callThrough();
-        removeGndFromSessionStorageSpy = spyOn<any>(gndService, 'removeGndFromSessionStorage').and.callThrough();
-        exposeGndMessageToParentSpy = spyOn<any>(gndService, 'exposeGndMessageToParent').and.callThrough();
+        setGndToSessionStorageSpy = spyOn<any>(gndService, '_setGndToSessionStorage').and.callThrough();
+        removeGndFromSessionStorageSpy = spyOn<any>(gndService, '_removeGndFromSessionStorage').and.callThrough();
+        exposeGndMessageToParentSpy = spyOn<any>(gndService, '_exposeGndMessageToParent').and.callThrough();
     });
 
     afterEach(() => {
@@ -90,7 +90,7 @@ describe('GndService (DONE)', () => {
 
     describe('mock test objects (self-test)', () => {
         it('... should use mock console', () => {
-            console.log('Test');
+            console.warn('Test');
 
             expect(mockConsole.get(0)).toBe('Test');
         });
@@ -181,14 +181,14 @@ describe('GndService (DONE)', () => {
         });
     });
 
-    it('should have gndKey', () => {
-        expect(gndService.gndKey).toBeTruthy();
-        expect(gndService.gndKey).toEqual(expectedGndKey);
+    it('should have GND_KEY', () => {
+        expect(gndService.GND_KEY).toBeTruthy();
+        expect(gndService.GND_KEY).toEqual(expectedGndKey);
     });
 
-    it('should have dnbReg', () => {
-        expect(gndService.dnbReg).toBeTruthy();
-        expect<RegExp>(gndService.dnbReg).toEqual(expectedDnbReg);
+    it('should have DNB_REG', () => {
+        expect(gndService.DNB_REG).toBeTruthy();
+        expect<RegExp>(gndService.DNB_REG).toEqual(expectedDnbReg);
     });
 
     it('should not have linkRegArr before exposeGnd call', () => {
@@ -284,7 +284,7 @@ describe('GndService (DONE)', () => {
                 const origin = target;
 
                 // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
+                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -304,7 +304,7 @@ describe('GndService (DONE)', () => {
                 const origin = target;
 
                 // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
+                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -324,7 +324,7 @@ describe('GndService (DONE)', () => {
                 const origin = 'http://www.example.com';
 
                 // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
+                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -388,7 +388,7 @@ describe('GndService (DONE)', () => {
                     expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
                     const valueHasGndSpy = spyOn<any>(gndService, 'valueHasGnd').and.callFake(checkValue => {
-                        gndService.linkRegArr = gndService.dnbReg.exec(checkValue);
+                        gndService.linkRegArr = gndService.DNB_REG.exec(checkValue);
                     });
                     gndService.exposeGnd(expectedSetEvent);
 
@@ -468,7 +468,7 @@ describe('GndService (DONE)', () => {
                 const origin = target;
 
                 // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
+                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -488,7 +488,7 @@ describe('GndService (DONE)', () => {
                 const origin = target;
 
                 // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.currentLocation, 'getOrigin').and.returnValue(origin);
+                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 

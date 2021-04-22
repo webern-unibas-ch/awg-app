@@ -1,7 +1,8 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/component-selector */
 
-/************************************************
+/**
+ * **********************************************
  *
  *               CREDITS
  *
@@ -30,7 +31,7 @@ import { CommonModule } from '@angular/common';
 import { cloneDeep } from 'lodash';
 
 /**
- * compileHtml.reverse(str)
+ * Function: compileHtml.reverse(str)
  *
  * @param {string} str
  * @returns {string}
@@ -38,7 +39,7 @@ import { cloneDeep } from 'lodash';
 const reverse = (str: string): string => str.split('').reverse().join('');
 
 /**
- * compileHtml.random()
+ * Function: compileHtml.random()
  *
  * @returns {string}
  */
@@ -46,17 +47,17 @@ const random = (): string =>
     (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
 
 /**
- * compileHtml.currentIdTime
+ * Variable: compileHtml.currentIdTime
  */
 let currentIdTime: number;
 
 /**
- * compileHtml.currentId
+ * Variable: compileHtml.currentId
  */
 let currentId = 0;
 
 /**
- * compileHtml.nextId()
+ * Function: compileHtml.nextId()
  *
  * @returns {string} A randomly generated id for the dynamic component's selector.
  */
@@ -186,14 +187,13 @@ export class CompileHtmlComponent implements OnChanges {
     update(): void {
         try {
             if (this.html === undefined || this.html === null || this.html.trim() === '') {
-                //            this.container.clear();
                 this.dynamicComponent = undefined;
                 this.dynamicModule = undefined;
                 return;
             }
 
-            this.dynamicComponent = this.createNewComponent(this.html, this.ref);
-            this.dynamicModule = this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
+            this.dynamicComponent = this._createNewComponent(this.html, this.ref);
+            this.dynamicModule = this.compiler.compileModuleSync(this._createComponentModule(this.dynamicComponent));
         } catch (e) {
             if (this.errorHandler === undefined) {
                 throw e;
@@ -204,7 +204,7 @@ export class CompileHtmlComponent implements OnChanges {
     }
 
     /**
-     * Private method: createComponentModule.
+     * Private method: _createComponentModule.
      *
      * It creates the module for the dynamic component.
      *
@@ -212,7 +212,7 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * @returns The RuntimeComponentModule.
      */
-    private createComponentModule(componentType: any) {
+    private _createComponentModule(componentType: any) {
         let module: NgModule = { imports: [], declarations: [] };
 
         if (this.module !== undefined) {
@@ -231,7 +231,7 @@ export class CompileHtmlComponent implements OnChanges {
     }
 
     /**
-     * Private method: createNewComponent.
+     * Private method: _createNewComponent.
      *
      * It creates the the dynamic component.
      *
@@ -240,7 +240,7 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * @returns The DynamicComponent.
      */
-    private createNewComponent(html: string, ref: any) {
+    private _createNewComponent(html: string, ref: any) {
         @Component({
             selector: nextId(),
             template: html

@@ -39,6 +39,7 @@ describe('BibliographyComponent', () => {
                 nhits: undefined,
                 paging: undefined,
                 subjects: [],
+                // eslint-disable-next-line @typescript-eslint/naming-convention
                 thumb_max: undefined,
                 status: undefined,
                 userdata: undefined

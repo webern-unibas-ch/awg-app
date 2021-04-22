@@ -183,7 +183,7 @@ describe('StorageService (DONE)', () => {
 
             it('- storage is not available', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
-                spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(false);
+                spyOn<any>(storageService, '_storageIsAvailable').and.returnValue(false);
                 storageService.setStorageKey(sessionType, expectedKey, expectedItem);
 
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
@@ -191,7 +191,7 @@ describe('StorageService (DONE)', () => {
 
             it('- storage is not supported', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
-                spyOn<any>(storageService, 'storageIsSupported').and.returnValue(false);
+                spyOn<any>(storageService, '_storageIsSupported').and.returnValue(false);
                 storageService.setStorageKey(sessionType, expectedKey, expectedItem);
 
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
@@ -277,7 +277,7 @@ describe('StorageService (DONE)', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                spyOn<any>(storageService, 'storageHasKey').and.returnValue(false);
+                spyOn<any>(storageService, '_storageHasKey').and.returnValue(false);
 
                 expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
             });
@@ -286,7 +286,7 @@ describe('StorageService (DONE)', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                spyOn<any>(storageService, 'storageIsSupported').and.returnValue(undefined);
+                spyOn<any>(storageService, '_storageIsSupported').and.returnValue(undefined);
 
                 expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
             });
@@ -295,7 +295,7 @@ describe('StorageService (DONE)', () => {
                 expect(mockStorage.getItem(expectedKey)).toBeNull();
                 expectedStorage.setItem(expectedKey, expectedItem);
 
-                spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(undefined);
+                spyOn<any>(storageService, '_storageIsAvailable').and.returnValue(undefined);
 
                 expect(storageService.getStorageKey(sessionType, expectedKey)).toBeNull();
             });
@@ -368,7 +368,7 @@ describe('StorageService (DONE)', () => {
 
                 expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
 
-                spyOn<any>(storageService, 'storageHasKey').and.returnValue(false);
+                spyOn<any>(storageService, '_storageHasKey').and.returnValue(false);
                 storageService.removeStorageKey(sessionType, expectedKey);
 
                 expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
@@ -380,7 +380,7 @@ describe('StorageService (DONE)', () => {
 
                 expect(expectedStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
 
-                spyOn<any>(storageService, 'storageIsSupported').and.returnValue(undefined);
+                spyOn<any>(storageService, '_storageIsSupported').and.returnValue(undefined);
                 storageService.removeStorageKey(sessionType, expectedKey);
 
                 expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
@@ -392,7 +392,7 @@ describe('StorageService (DONE)', () => {
 
                 expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);
 
-                spyOn<any>(storageService, 'storageIsAvailable').and.returnValue(undefined);
+                spyOn<any>(storageService, '_storageIsAvailable').and.returnValue(undefined);
                 storageService.removeStorageKey(sessionType, expectedKey);
 
                 expect(mockStorage.getItem(expectedKey)).toEqual(expectedItem, `should be ${expectedItem}`);

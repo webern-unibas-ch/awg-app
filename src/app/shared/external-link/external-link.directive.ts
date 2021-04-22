@@ -57,21 +57,21 @@ export class ExternalLinkDirective implements OnChanges {
     ngOnChanges() {
         this.hrefAttr = this.href;
 
-        if (this.isExternalLink()) {
+        if (this._isExternalLink()) {
             this.targetAttr = '_blank';
             this.relAttr = 'noopener noreferrer';
         }
     }
 
     /**
-     * Private method: isExternalLink.
+     * Private method: _isExternalLink.
      *
      * It detects if the app is running in the browser
      * and if value of href attribute is included in location.hostname.
      *
-     * @returns {boolean} Sets the isExternalLink flag.
+     * @returns {boolean} Sets the _isExternalLink flag.
      */
-    private isExternalLink(): boolean {
+    private _isExternalLink(): boolean {
         return isPlatformBrowser(this.platformId) && !this.href.includes(location.hostname);
     }
 }
