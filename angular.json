@@ -156,5 +156,8 @@
             }
         }
     },
-    "defaultProject": "awg-app"
+    "defaultProject": "awg-app",
+    "cli": {
+        "defaultCollection": "@angular-eslint/schematics"
+    }
 }

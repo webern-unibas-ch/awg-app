@@ -2,6 +2,7 @@
 .github/
 .idea/
 .vscode/
+.yarn/
 node_modules/
 dist/
 tmp/

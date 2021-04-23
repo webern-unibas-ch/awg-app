@@ -31,8 +31,8 @@
         "test:cov": "ng test --code-coverage true",
         "serve:test:cov": "npx http-server -c-1 -o -p 9875 ./coverage",
         "test:ci": "yarn test:cov -- --configuration=ci",
-        "lint": "eslint --color -c .eslintrc.js --ext .ts ./src/app",
-        "lint:fix": "eslint --color --fix -c .eslintrc.js --ext .ts ./src/app",
+        "lint": "eslint --color -c .eslintrc.json --ext .ts,.html ./src/app",
+        "lint:fix": "eslint --color --fix -c .eslintrc.json --ext .ts,.html ./src/app",
         "lint-staged": "lint-staged",
         "tslint-check": "tslint-config-prettier-check ./tslint.json",
         "format:check": "prettier --check \"src/**/*.{ts,js,css,html}\"",
@@ -116,31 +116,6 @@
             "ng-lint-staged lint --fix --"
         ]
     },
-    "prettier": {
-        "tabWidth": 4,
-        "useTabs": false,
-        "semi": true,
-        "singleQuote": true,
-        "trailingComma": "none",
-        "bracketSpacing": true,
-        "arrowParens": "avoid",
-        "jsxBracketSameLine": true,
-        "printWidth": 120,
-        "overrides": [
-            {
-                "files": "*.component.html",
-                "options": {
-                    "parser": "angular"
-                }
-            },
-            {
-                "files": "*.html",
-                "options": {
-                    "parser": "html"
-                }
-            }
-        ]
-    },
     "dependencies": {
         "@angular/animations": "~11.2.7",
         "@angular/common": "~11.2.7",
@@ -177,11 +152,11 @@
     },
     "devDependencies": {
         "@angular-devkit/build-angular": "~0.1102.6",
-        "@angular-eslint/builder": "2.0.2",
-        "@angular-eslint/eslint-plugin": "2.0.2",
-        "@angular-eslint/eslint-plugin-template": "2.0.2",
-        "@angular-eslint/schematics": "2.0.2",
-        "@angular-eslint/template-parser": "2.0.2",
+        "@angular-eslint/builder": "4.0.0",
+        "@angular-eslint/eslint-plugin": "4.0.0",
+        "@angular-eslint/eslint-plugin-template": "4.0.0",
+        "@angular-eslint/schematics": "4.0.0",
+        "@angular-eslint/template-parser": "4.0.0",
         "@angular/cli": "~11.2.6",
         "@angular/compiler-cli": "~11.2.7",
         "@commitlint/cli": "^12.0.1",
@@ -191,9 +166,8 @@
         "@types/jasmine": "~3.6.0",
         "@types/jasminewd2": "~2.0.3",
         "@types/node": "^12.11.1",
-        "@typescript-eslint/eslint-plugin": "^4.15.2",
-        "@typescript-eslint/eslint-plugin-tslint": "^4.15.2",
-        "@typescript-eslint/parser": "^4.15.2",
+        "@typescript-eslint/eslint-plugin": "^4.16.1",
+        "@typescript-eslint/parser": "^4.16.1",
         "angular-cli-ghpages": "^0.6.2",
         "conventional-recommended-bump": "^6.1.0",
         "cross-var": "^1.1.0",
@@ -202,7 +176,7 @@
         "eslint-plugin-angular": "^4.0.1",
         "eslint-plugin-import": "^2.22.1",
         "eslint-plugin-jsdoc": "^32.2.0",
-        "eslint-plugin-prettier": "^3.3.1",
+        "eslint-plugin-prettier": "^3.4.0",
         "gzipper": "^4.4.0",
         "husky": "^6.0.0",
         "jasmine-core": "~3.6.0",
