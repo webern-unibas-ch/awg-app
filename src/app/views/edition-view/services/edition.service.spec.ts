@@ -36,7 +36,7 @@ describe('EditionService (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // Test data (default)
-        expectedEditionWork = EditionWorks['op12'];
+        expectedEditionWork = EditionWorks.OP12;
         // Textcritial comments
         expectedTka = [
             {
@@ -74,7 +74,7 @@ describe('EditionService (DONE)', () => {
         expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '9');
 
         // Spy on private static method
-        filterTextcriticalCommentsSpy = spyOn(EditionService as any, 'filterTextcriticalComments').and.callThrough();
+        filterTextcriticalCommentsSpy = spyOn(EditionService as any, '_filterTextcriticalComments').and.callThrough();
     });
 
     afterAll(() => {
@@ -86,16 +86,16 @@ describe('EditionService (DONE)', () => {
     });
 
     it('should have bufferSize = 1', () => {
-        expect((editionService as any).bufferSize).toBeTruthy();
-        expect((editionService as any).bufferSize).toBe(1, 'should be 1');
+        expect((editionService as any)._bufferSize).toBeTruthy();
+        expect((editionService as any)._bufferSize).toBe(1, 'should be 1');
     });
 
     it('should have editionWorkSubject', () => {
-        expect((editionService as any).editionWorkSubject).toBeTruthy();
+        expect((editionService as any)._editionWorkSubject).toBeTruthy();
     });
 
     it('should have editionWorkStream$', () => {
-        expect((editionService as any).editionWorkStream$).toBeTruthy();
+        expect((editionService as any)._editionWorkStream$).toBeTruthy();
     });
 
     describe('EditionWork', () => {
@@ -122,7 +122,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateEditionWork(expectedEditionWork);
 
                 // Update editionWork
-                expectedEditionWork = EditionWorks['op25'];
+                expectedEditionWork = EditionWorks.OP25;
                 editionService.updateEditionWork(expectedEditionWork);
             });
         });
@@ -139,7 +139,7 @@ describe('EditionService (DONE)', () => {
                 editionService.updateEditionWork(expectedEditionWork);
 
                 // Update editionWork
-                expectedEditionWork = EditionWorks['op25'];
+                expectedEditionWork = EditionWorks.OP25;
                 editionService.updateEditionWork(expectedEditionWork);
             });
         });

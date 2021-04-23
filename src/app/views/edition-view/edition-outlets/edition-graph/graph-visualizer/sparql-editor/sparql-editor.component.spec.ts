@@ -1,7 +1,7 @@
-import { ComponentFixture, fakeAsync, TestBed, tick } from '@angular/core/testing';
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 import Spy = jasmine.Spy;
 
 import { click } from '@testing/click-helper';
@@ -48,12 +48,23 @@ describe('SparqlEditorComponent (DONE)', () => {
     let emitResestQueryRequestSpy: Spy;
     let emitUpdateQueryStringRequestSpy: Spy;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [SparqlEditorComponent, CodeMirrorStubComponent]
-        }).compileComponents();
-    });
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionWithConfigModule],
+                declarations: [SparqlEditorComponent, CodeMirrorStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         // Add custom jasmine matchers (ToHaveCssClass)
@@ -174,7 +185,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expect(btnEl.textContent).toContain('SPARQL Abfrage', 'should be SPARQL Abfrage');
                 });
 
-                it('... should toggle panel body on click', () => {
+                it('... should toggle panel body on click', async () => {
                     // Header debug elements
                     const panelHeaderDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -199,7 +210,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel is open
                     getAndExpectDebugElementByCss(
@@ -212,7 +223,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel body is closed again
                     getAndExpectDebugElementByCss(
@@ -234,9 +245,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                 });
 
-                it('... should not contain an example query btn-group in panel header if query is undefined', () => {
+                it('... should not contain an example query btn-group in panel header if query is undefined', async () => {
                     component.query = undefined;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
@@ -247,9 +258,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                 });
 
-                it('... should not contain an example query btn-group in panel header if querylabel is empty', () => {
+                it('... should not contain an example query btn-group in panel header if querylabel is empty', async () => {
                     component.query.queryLabel = '';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
@@ -260,9 +271,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                 });
 
-                it('... should not contain an example query btn-group in panel header if querylabel is empty', () => {
+                it('... should not contain an example query btn-group in panel header if querylabel is empty', async () => {
                     component.query.queryString = '';
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
@@ -273,9 +284,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                 });
 
-                it('... should not contain an example query btn-group in panel header if queryList is undefined', () => {
+                it('... should not contain an example query btn-group in panel header if queryList is undefined', async () => {
                     component.queryList = undefined;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel header div.btn-group
                     getAndExpectDebugElementByCss(
@@ -362,7 +373,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     );
                 });
 
-                it('... should disable current query in dropdown items', () => {
+                it('... should disable current query in dropdown items', async () => {
                     const itemDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > button.dropdown-item',
@@ -379,13 +390,13 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expect(itemEl1).not.toHaveCssClass('disabled');
 
                     component.query = expectedQuery2;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expect(itemEl0).not.toHaveCssClass('disabled');
                     expect(itemEl1).toHaveCssClass('disabled');
                 });
 
-                it('... should trigger `onQueryListChange()` by click on dropdown item', () => {
+                it('... should trigger `onQueryListChange()` by click on dropdown item', async () => {
                     const itemDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.dropdown-menu > button.dropdown-item',
@@ -402,19 +413,19 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Click on second item (first disabled)
                     click(itemEl1 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Spy call with second query
                     expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
 
                     component.query = expectedQuery2;
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expect(itemEl0).not.toHaveCssClass('disabled');
 
                     // Click on first item (second disabled)
                     click(itemEl0 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Spy call with first query
                     expectSpyCall(onQueryListChangeSpy, 2, expectedQuery1);
@@ -424,7 +435,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             describe('with open panel', () => {
                 let bodyDes: DebugElement[];
 
-                beforeEach(() => {
+                beforeEach(async () => {
                     // Open panel by click on header button
                     const btnDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -436,7 +447,7 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                     // Click header button
                     click(btnEl as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     // Panel body
                     bodyDes = getAndExpectDebugElementByCss(
@@ -466,27 +477,27 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
                 });
 
-                it('... should trigger `performQuery()` by click on Query button', () => {
+                it('... should trigger `performQuery()` by click on Query button', async () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
                     const btnEl0 = btnDes[0].nativeElement;
                     expect(btnEl0.textContent).toContain('Query', 'should contain Query');
 
                     // Click query button
                     click(btnEl0 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 1);
                     expectSpyCall(resetQuerySpy, 0);
                 });
 
-                it('... should trigger `resetQuery()` by click on Reset button', () => {
+                it('... should trigger `resetQuery()` by click on Reset button', async () => {
                     const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.card-body > div > button.btn', 2, 2);
                     const btnEl1 = btnDes[1].nativeElement;
                     expect(btnEl1.textContent).toContain('Reset', 'should contain Query');
 
                     // Click reset button
                     click(btnEl1 as HTMLElement);
-                    detectChangesOnPush(fixture);
+                    await detectChangesOnPush(fixture);
 
                     expectSpyCall(performQuerySpy, 0);
                     expectSpyCall(resetQuerySpy, 1);
@@ -495,7 +506,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#onEditorInputChange', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Open panel by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -507,10 +518,10 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
             });
 
-            it('... should trigger on event from CodeMirrorComponent', fakeAsync(() => {
+            it('... should trigger on event from CodeMirrorComponent', () => {
                 const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
                 const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
 
@@ -518,9 +529,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 codeMirrorCmp.ngModelChange.emit(changedQueryString);
 
                 expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
-            }));
+            });
 
-            it('... should not emit anything if no query string is provided', fakeAsync(() => {
+            it('... should not emit anything if no query string is provided', () => {
                 const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
                 const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
 
@@ -529,9 +540,9 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 expectSpyCall(onEditorInputChangeSpy, 1, '');
                 expectSpyCall(emitUpdateQueryStringRequestSpy, 0);
-            }));
+            });
 
-            it('... should emit provided query string on editor change', fakeAsync(() => {
+            it('... should emit provided query string on editor change', () => {
                 const codeMirrorDes = getAndExpectDebugElementByDirective(compDe, CodeMirrorStubComponent, 1, 1);
                 const codeMirrorCmp = codeMirrorDes[0].injector.get(CodeMirrorStubComponent) as CodeMirrorStubComponent;
 
@@ -540,11 +551,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 expectSpyCall(onEditorInputChangeSpy, 1, changedQueryString);
                 expectSpyCall(emitUpdateQueryStringRequestSpy, 1, changedQueryString);
-            }));
+            });
         });
 
         describe('#onQueryListChange', () => {
-            it('... should trigger from click on dropdown item', fakeAsync(() => {
+            it('... should trigger from click on dropdown item', async () => {
                 const itemDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.dropdown-menu > button.dropdown-item',
@@ -556,25 +567,25 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click on second item (first disabled)
                 click(itemEl1 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Spy call with second query
                 expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
 
                 component.query = expectedQuery2;
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expect(itemEl0).not.toHaveCssClass('disabled');
 
                 // Click on first item (second disabled)
                 click(itemEl0 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 // Spy call with first query
                 expectSpyCall(onQueryListChangeSpy, 2, expectedQuery1);
-            }));
+            });
 
-            it('... should trigger resetQuery on queryList change', fakeAsync(() => {
+            it('... should trigger resetQuery on queryList change', async () => {
                 const itemDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.dropdown-menu > button.dropdown-item',
@@ -586,40 +597,40 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click on second item (first disabled)
                 click(itemEl1 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
                 expectSpyCall(resetQuerySpy, 1, expectedQuery2);
-            }));
+            });
 
-            it('... should not trigger resetQuery if no query is provided', () => {
+            it('... should not trigger resetQuery if no query is provided', async () => {
                 component.onQueryListChange(undefined);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 1, undefined);
                 expectSpyCall(resetQuerySpy, 0, 0);
             });
 
-            it('... should not trigger resetQuery if no queryList is provided', () => {
+            it('... should not trigger resetQuery if no queryList is provided', async () => {
                 component.queryList = undefined;
                 component.onQueryListChange(expectedQuery2);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
                 expectSpyCall(resetQuerySpy, 0, 0);
             });
 
-            it('... should find query in queryList and trigger resetQuery with correct query', () => {
+            it('... should find query in queryList and trigger resetQuery with correct query', async () => {
                 // First query
                 component.onQueryListChange(expectedQuery1);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 1, expectedQuery1);
                 expectSpyCall(resetQuerySpy, 1, expectedQuery1);
 
                 // Second query
                 component.onQueryListChange(expectedQuery2);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 2, expectedQuery2);
                 expectSpyCall(resetQuerySpy, 2, expectedQuery2);
@@ -630,7 +641,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                 otherQuery.queryString = 'SELECT * WHERE { ?other rdfs:label ?query }';
 
                 component.onQueryListChange(otherQuery);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(onQueryListChangeSpy, 3, otherQuery);
                 expectSpyCall(resetQuerySpy, 3, expectedQuery1);
@@ -638,7 +649,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#performQuery', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Open panel by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -650,10 +661,10 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
             });
 
-            it('... should trigger from click on Query button', () => {
+            it('... should trigger from click on Query button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query > div.card-body > div > button.btn',
@@ -665,12 +676,12 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click query button
                 click(btnEl0 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 1);
             });
 
-            it('... should emit request on click', fakeAsync(() => {
+            it('... should emit request on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query > div.card-body > div > button.btn',
@@ -682,15 +693,15 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click query button
                 click(btnEl0 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(performQuerySpy, 1);
                 expectSpyCall(emitPerformQueryRequestSpy, 1);
-            }));
+            });
         });
 
         describe('#resetQuery', () => {
-            beforeEach(() => {
+            beforeEach(async () => {
                 // Open panel by click on header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -702,10 +713,10 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click header button
                 click(btnEl as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
             });
 
-            it('... should trigger from click on Reset button', () => {
+            it('... should trigger from click on Reset button', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query > div.card-body > div > button.btn',
@@ -717,21 +728,21 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click query button
                 click(btnEl1 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 1);
             });
 
-            it('... should not emit anything if no query is provided', fakeAsync(() => {
+            it('... should not emit anything if no query is provided', async () => {
                 // Query is undefined
                 component.resetQuery(undefined);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 1, undefined);
                 expectSpyCall(emitResestQueryRequestSpy, 0);
-            }));
+            });
 
-            it('... should emit request on click', fakeAsync(() => {
+            it('... should emit request on click', async () => {
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-query > div.card-body > div > button.btn',
@@ -743,11 +754,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
                 // Click reset button
                 click(btnEl1 as HTMLElement);
-                detectChangesOnPush(fixture);
+                await detectChangesOnPush(fixture);
 
                 expectSpyCall(resetQuerySpy, 1);
                 expectSpyCall(emitResestQueryRequestSpy, 1);
-            }));
+            });
         });
     });
 });

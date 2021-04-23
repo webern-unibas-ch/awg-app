@@ -2,61 +2,75 @@
 /// <reference path="../../../testing/custom-matchers.d.ts"/>
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { By } from '@angular/platform-browser';
+import { Component, DebugElement, Input, NgModule } from '@angular/core';
 import { JsonPipe } from '@angular/common';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
 import { customJasmineMatchers } from '@testing/custom-matchers';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { NgbNavModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxJsonViewerComponent } from 'ngx-json-viewer';
+import { NgbConfig, NgbNavLink, NgbNavModule, NgbNavOutlet } from '@ng-bootstrap/ng-bootstrap';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
 import { JsonViewerComponent } from './json-viewer.component';
 
 // Helper functions for nav items
-function getNavLinks(nativeEl: HTMLElement) {
-    return nativeEl.querySelectorAll('.nav-link.nav-item');
+function getNavContents(fixture: ComponentFixture<any>): HTMLElement[] {
+    const outletEl = fixture.debugElement.query(By.directive(NgbNavOutlet)).nativeElement;
+    return Array.from(outletEl.children) as HTMLElement[];
 }
 
-function getNavContent(nativeEl: HTMLElement) {
-    return nativeEl.querySelectorAll('.tab-content .tab-pane');
+function getNavLinks(fixture: ComponentFixture<any>): HTMLElement[] {
+    return fixture.debugElement.queryAll(By.directive(NgbNavLink)).map(debugElement => debugElement.nativeElement);
 }
 
-function expectNavPanel(nativeEl: HTMLElement, active: boolean[], disabled?: boolean[]) {
-    const navLinks = getNavLinks(nativeEl);
-    const navContent = getNavContent(nativeEl);
-    const anyNavsActive = active.reduce((prev, curr) => prev || curr, false);
+function expectNavLinks(fixture: ComponentFixture<any>, expected: boolean[], shouldHaveNavItemClass = false) {
+    const links = getNavLinks(fixture);
 
-    expect(navLinks.length).toBe(active.length);
-    expect(navContent.length).toBe(anyNavsActive ? 1 : 0); // Only 1 nav content in DOM at a time
+    expect(links.length).toBe(expected.length, `expected to find ${expected.length} links, but found ${links.length}`);
 
-    if (disabled) {
-        expect(disabled.length).toBe(active.length);
-    } else {
-        disabled = new Array(active.length); // NavItems are not disabled by default
+    links.forEach(({ classList }, i) => {
+        expect(classList.contains('nav-link')).toBe(true, `link should have 'nav-link' class`);
+        expect(classList.contains('active')).toBe(
+            expected[i],
+            `link should ${expected[i] ? '' : 'not'} have 'active' class`
+        );
+        expect(classList.contains('nav-item')).toBe(
+            shouldHaveNavItemClass,
+            `link should ${shouldHaveNavItemClass ? '' : 'not'} have 'nav-item' class`
+        );
+    });
+}
+
+function expectNavContents(fixture: ComponentFixture<any>, expected: string[], activeIndex = 0) {
+    const contents = getNavContents(fixture);
+    expect(contents.length).toBe(
+        expected.length,
+        `expected to find ${expected.length} contents, but found ${contents.length}`
+    );
+
+    for (let i = 0; i < expected.length; ++i) {
+        expect(contents[i].classList.contains('active')).toBe(
+            i === activeIndex,
+            `content should ${i === activeIndex ? '' : 'not'} have 'active' class`
+        );
     }
+}
 
-    for (let i = 0; i < active.length; i++) {
-        if (active[i]) {
-            expect(navLinks[i]).toHaveCssClass('active');
-        } else {
-            expect(navLinks[i]).not.toHaveCssClass('active');
-        }
+function expectNavPanel(fixture: ComponentFixture<any>, expectedLinks: boolean[], expectedContents: string[]) {
+    expectNavLinks(fixture, expectedLinks, true);
+    expectNavContents(fixture, expectedContents);
+}
 
-        if (disabled[i]) {
-            expect(navLinks[i]).toHaveCssClass('disabled');
-            expect(navLinks[i].getAttribute('aria-disabled')).toBe('true');
-            expect(navLinks[i].getAttribute('tabindex')).toBe('-1');
-        } else {
-            expect(navLinks[i]).not.toHaveCssClass('disabled');
-            expect(navLinks[i].getAttribute('aria-disabled')).toBe('false');
-            expect(navLinks[i].getAttribute('tabindex')).toBeNull();
-        }
-    }
+// Mock ngx-json-viewer component
+@Component({ selector: 'ngx-json-viewer', template: '' })
+class NgxJsonViewerStubComponent {
+    @Input()
+    json: ResourceFullResponseJson | {};
 }
 
 describe('JsonViewerComponent (DONE)', () => {
@@ -68,11 +82,20 @@ describe('JsonViewerComponent (DONE)', () => {
     let expectedHeader: string;
     let expectedData: ResourceFullResponseJson;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbNavModule], exports: [NgbNavModule] })
+    class NgbNavWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbNavModule],
-                declarations: [JsonViewerComponent, NgxJsonViewerComponent]
+                imports: [NgbNavWithConfigModule],
+                declarations: [JsonViewerComponent, NgxJsonViewerStubComponent]
             }).compileComponents();
         })
     );
@@ -113,19 +136,34 @@ describe('JsonViewerComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
             });
 
-            it('... should contain one ngbNav in card-body with no nav links yet', () => {
+            it('... should contain one ngbNav with two ngbNavItems inside card-body', () => {
                 const bodyDe = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
 
                 getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
-
-                const navLinkDes = getNavLinks(compEl);
+                const navLinkDes = getNavLinks(fixture);
 
                 expect(navLinkDes).toBeTruthy();
-                expect(navLinkDes.length).toBe(0, 'should not have any navLinks yet');
+                expect(navLinkDes.length).toBe(2, 'should have 2 navLinks');
+            });
+
+            it('... should have one Formatted and one Plain navItem and display titles', () => {
+                const navLinks = getNavLinks(fixture);
+
+                expect(navLinks[0].textContent).toBeDefined();
+                expect(navLinks[0].textContent).toMatch(/Formatted/);
+
+                expect(navLinks[1].textContent).toBeDefined();
+                expect(navLinks[1].textContent).toMatch(/Plain/);
+            });
+
+            it('... should not render navItem content yet', () => {
+                const navContent = getNavContents(fixture);
+
+                expect(navContent.length).toBe(0);
             });
 
             it('... should not contain ngx-json-viewer component (stubbed)', () => {
-                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0);
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 0, 0);
             });
         });
     });
@@ -141,80 +179,66 @@ describe('JsonViewerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngbNav with two ngbNavItems inside card-body', () => {
-                const bodyDe = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-body', 1, 1);
-
-                getAndExpectDebugElementByCss(bodyDe[0], 'nav[ngbNav]', 1, 1);
-                const navLinkDes = getNavLinks(compEl);
-
-                expect(navLinkDes).toBeTruthy();
-                expect(navLinkDes.length).toBe(2, 'should have 2 navLinks');
-            });
-
-            it('... should have one Formatted and one Plain navItem and display titles', () => {
-                const navLinks = getNavLinks(compEl);
-
-                expect(navLinks[0].textContent).toBeDefined();
-                expect(navLinks[0].textContent).toMatch(/Formatted/);
-
-                expect(navLinks[1].textContent).toBeDefined();
-                expect(navLinks[1].textContent).toMatch(/Plain/);
-            });
-
             it('... should render navItem content and select first navItem (Formatted) by default', () => {
-                const navContent = getNavContent(compEl);
+                const navContent = getNavContents(fixture);
 
                 expect(navContent.length).toBe(1);
-                expectNavPanel(compEl, [true, false]);
+                expectNavPanel(fixture, [true, false], ['content1']);
             });
 
-            it('... should change active navItem on click', () => {
-                const navLinks = getNavLinks(compEl);
+            it('... should change active navItem on click', async () => {
+                const navLinks = getNavLinks(fixture);
+
+                expectNavPanel(fixture, [true, false], ['content1']);
 
                 click(navLinks[1] as HTMLElement);
-                fixture.detectChanges();
-                expectNavPanel(compEl, [false, true]);
+                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
+
+                expectNavPanel(fixture, [false, true], ['content2']);
 
                 click(navLinks[0] as HTMLElement);
-                fixture.detectChanges();
-                expectNavPanel(compEl, [true, false]);
+                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
+
+                expectNavPanel(fixture, [true, false], ['content1']);
             });
 
-            it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', () => {
-                const navLinks = getNavLinks(compEl);
+            it('... should contain one ngx-json-viewer component (stubbed) only in Formatted view', async () => {
+                const navLinks = getNavLinks(fixture);
                 getAndExpectDebugElementByDirective(
                     compDe,
-                    NgxJsonViewerComponent,
+                    NgxJsonViewerStubComponent,
                     1,
                     1,
                     'in default (formatted) view'
                 );
 
                 click(navLinks[1] as HTMLElement);
-                fixture.detectChanges();
+                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
-                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 0, 0, 'in plain view');
+                getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 0, 0, 'in plain view');
             });
 
             it('... should pass down `jsonViewerData` to ngx-json-viewer component in Formatted view', () => {
-                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerComponent, 1, 0);
-                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerComponent) as NgxJsonViewerComponent;
+                const viewerDes = getAndExpectDebugElementByDirective(compDe, NgxJsonViewerStubComponent, 1, 0);
+                const viewerCmp = viewerDes[0].injector.get(NgxJsonViewerStubComponent) as NgxJsonViewerStubComponent;
 
                 expect(viewerCmp.json).toBeDefined();
-                expect(viewerCmp.json).toBe(expectedData, `should have data: ${expectedData}`);
+                expect(viewerCmp.json).toEqual(expectedData, `should equal: ${expectedData}`);
             });
 
-            it('... should render `jsonViewerData` in Plain view', () => {
-                const navLinks = getNavLinks(compEl);
+            it('... should render `jsonViewerData` in Plain view', async () => {
+                const navLinks = getNavLinks(fixture);
 
                 // Change navLink to plain view
                 click(navLinks[1] as HTMLElement);
-                fixture.detectChanges();
+                await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
-                const navContent = getNavContent(compEl);
+                const navContent = getNavContents(fixture);
+
                 const jsonPipe = new JsonPipe();
                 const pipedData = jsonPipe.transform(expectedData);
 
+                expect(navContent.length).toBe(1, 'should be 1');
                 expect(navContent[0].textContent).toBeDefined();
                 expect(navContent[0].textContent).toContain(pipedData, `should contain ${pipedData}`);
             });

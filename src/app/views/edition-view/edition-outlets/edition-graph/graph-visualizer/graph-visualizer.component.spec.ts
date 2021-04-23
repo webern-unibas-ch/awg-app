@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
@@ -85,30 +85,32 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let resetQuerySpy: Spy;
     let resetTriplesSpy: Spy;
 
-    beforeEach(async () => {
-        // Mocked dataStreamerService
-        mockGraphVisualizerService = {
-            appendNamespacesToQuery: (queryString: string, triples: string): string => queryString,
-            getQuerytype: (queryString: string): string => 'construct',
-            doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
-                new Promise((resolve, reject) => {
-                    resolve(expectedResult);
-                    reject({ name: 'Error1', message: 'failed' });
-                })
-        };
+    beforeEach(
+        waitForAsync(() => {
+            // Mocked dataStreamerService
+            mockGraphVisualizerService = {
+                appendNamespacesToQuery: (queryString: string, triples: string): string => queryString,
+                getQuerytype: (queryString: string): string => 'construct',
+                doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
+                    new Promise((resolve, reject) => {
+                        resolve(expectedResult);
+                        reject({ name: 'Error1', message: 'failed' });
+                    })
+            };
 
-        await TestBed.configureTestingModule({
-            declarations: [
-                GraphVisualizerComponent,
-                TriplesEditorStubComponent,
-                SparqlEditorStubComponent,
-                ConstructResultsStubComponent,
-                SelectResultsStubComponent,
-                UnsupportedTypeResultsStubComponent
-            ],
-            providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }]
-        }).compileComponents();
-    });
+            TestBed.configureTestingModule({
+                declarations: [
+                    GraphVisualizerComponent,
+                    TriplesEditorStubComponent,
+                    SparqlEditorStubComponent,
+                    ConstructResultsStubComponent,
+                    SelectResultsStubComponent,
+                    UnsupportedTypeResultsStubComponent
+                ],
+                providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);
@@ -144,7 +146,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        queryLocalStoreSpy = spyOn<any>(component, 'queryLocalStore').and.callThrough();
+        queryLocalStoreSpy = spyOn<any>(component, '_queryLocalStore').and.callThrough();
         performQuerySpy = spyOn(component, 'performQuery').and.callThrough();
         resetQuerySpy = spyOn(component, 'resetQuery').and.callThrough();
         resetTriplesSpy = spyOn(component, 'resetTriples').and.callThrough();
@@ -515,7 +517,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expect(component.queryType).toEqual('construct', 'should equal construct');
             });
 
-            it('... should trigger `queryLocalStore` for construct queries', () => {
+            it('... should trigger `_queryLocalStore` for construct queries', () => {
                 expectSpyCall(queryLocalStoreSpy, 1, [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
@@ -590,7 +592,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             );
         });
 
-        describe('#queryLocalStore', () => {
+        describe('#_queryLocalStore', () => {
             let showErrorMessageSpy: Spy;
 
             beforeEach(() => {
@@ -652,7 +654,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
-                consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
                 const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
@@ -683,7 +684,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
-                consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
                 const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
@@ -706,7 +706,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { name: 'Error', message: 'error message' };
 
-                consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
                 const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
@@ -729,7 +728,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { name: 'Error', message: 'error message undefined' };
 
-                consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
                 const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
@@ -760,29 +758,29 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
-                consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+                consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
             });
 
-            it('... should log the provided message and durationValue to console', fakeAsync(() => {
+            it('... should log the provided message and durationValue to console', () => {
                 component.showErrorMessage('Error1', 500);
 
                 expectSpyCall(showErrorMessageSpy, 1, ['Error1', 500]);
                 expectSpyCall(consoleSpy, 1, ['Error1', 500]);
-            }));
+            });
 
-            it('... should not do anything if no message is provided', fakeAsync(() => {
+            it('... should not do anything if no message is provided', () => {
                 component.showErrorMessage('', 500);
 
                 expectSpyCall(showErrorMessageSpy, 1, ['', 500]);
                 expectSpyCall(consoleSpy, 0);
-            }));
+            });
 
-            it('... should set durationvValue = 10000 if not given', fakeAsync(() => {
+            it('... should set durationvValue = 10000 if not given', () => {
                 component.showErrorMessage('Error');
 
                 expectSpyCall(showErrorMessageSpy, 1, ['Error']);
                 expectSpyCall(consoleSpy, 1, ['Error', 10000]);
-            }));
+            });
         });
 
         describe('#onGraphNodeClick', () => {
@@ -794,10 +792,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 fixture.detectChanges();
 
                 onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
-                consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+                consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
             });
 
-            it('... should trigger on event from ConstructResultsComponent', fakeAsync(() => {
+            it('... should trigger on event from ConstructResultsComponent', () => {
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(
                     ConstructResultsStubComponent
@@ -807,9 +805,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 resultsCmp.clickedNodeRequest.emit(expectedNode);
 
                 expectSpyCall(onGraphNodeClickSpy, 1, expectedNode);
-            }));
+            });
 
-            it('... should log the provided node to console', fakeAsync(() => {
+            it('... should log the provided node to console', () => {
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(
                     ConstructResultsStubComponent
@@ -819,7 +817,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 resultsCmp.clickedNodeRequest.emit(expectedNode);
 
                 expectSpyCall(consoleSpy, 1, ['GraphVisualizerComponent# graphClick on node', expectedNode]);
-            }));
+            });
         });
 
         describe('#onTableClick', () => {
@@ -834,7 +832,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 onTableClickSpy = spyOn(component, 'onTableClick').and.callThrough();
             });
 
-            it('... should trigger on event from SelectResultsComponent', fakeAsync(() => {
+            it('... should trigger on event from SelectResultsComponent', () => {
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
                 const resultsCmp = resultsDes[0].injector.get(SelectResultsStubComponent) as SelectResultsStubComponent;
 
@@ -842,9 +840,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 resultsCmp.clickedTableRequest.emit(expectedIRI);
 
                 expectSpyCall(onTableClickSpy, 1, expectedIRI);
-            }));
+            });
 
-            it('... should not do anything if no IRI is provided', fakeAsync(() => {
+            it('... should not do anything if no IRI is provided', () => {
                 // Check initial state
                 expectSpyCall(performQuerySpy, 1, undefined);
                 expect(component.query.queryString).toEqual(component.graphRDFInputData.queryList[0].queryString);
@@ -858,9 +856,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(onTableClickSpy, 1, '');
                 expect(component.query.queryString).toEqual(component.graphRDFInputData.queryList[0].queryString);
                 expectSpyCall(performQuerySpy, 1, undefined);
-            }));
+            });
 
-            it('... should set provided IRI on table click', fakeAsync(() => {
+            it('... should set provided IRI on table click', () => {
                 expect(component.query.queryString).toEqual(component.graphRDFInputData.queryList[0].queryString);
                 expectSpyCall(performQuerySpy, 1, undefined);
 
@@ -874,9 +872,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expect(component.query.queryString).toEqual(
                     `SELECT * WHERE {\n\tBIND(<${expectedIRI}> AS ?el)\n\t?el ?key ?value\n}`
                 );
-            }));
+            });
 
-            it('... should trigger `performQuery()` on table click', fakeAsync(() => {
+            it('... should trigger `performQuery()` on table click', () => {
                 expectSpyCall(performQuerySpy, 1);
 
                 const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
@@ -887,7 +885,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(onTableClickSpy, 1, expectedIRI);
                 expectSpyCall(performQuerySpy, 2);
-            }));
+            });
         });
 
         describe('VIEW', () => {
@@ -1080,7 +1078,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 });
 
                 it('... should re-trigger `onGraphNodeClick()` with clickedTableRequest event', () => {
-                    consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+                    consoleSpy = spyOn(console, 'info').and.callFake(mockConsole.log);
                     const onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
 
                     const resultsDes = getAndExpectDebugElementByDirective(compDe, ConstructResultsStubComponent, 1, 1);

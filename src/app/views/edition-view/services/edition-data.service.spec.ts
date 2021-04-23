@@ -91,7 +91,7 @@ describe('EditionDataService (DONE)', () => {
     });
 
     it('should have empty assetWorkPath', () => {
-        expect((editionDataService as any).assetWorkPath).not.toBeTruthy('should be empty string');
+        expect((editionDataService as any)._assetWorkPath).not.toBeTruthy('should be empty string');
     });
 
     describe('httpTestingController', () => {
@@ -133,8 +133,8 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    expect((editionDataService as any).assetWorkPath).toBeTruthy('should be empty string');
-                    expect((editionDataService as any).assetWorkPath).toBe(
+                    expect((editionDataService as any)._assetWorkPath).toBeTruthy('should be empty string');
+                    expect((editionDataService as any)._assetWorkPath).toBe(
                         expectedAssetWorkPath,
                         `should be ${expectedAssetWorkPath}`
                     );
@@ -147,15 +147,15 @@ describe('EditionDataService (DONE)', () => {
                     // Set spy on private method
                     const getFolioConvoluteDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getFolioConvoluteData'
+                        '_getFolioConvoluteData'
                     ).and.callThrough();
                     const getSvgSheetsDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getSvgSheetsData'
+                        '_getSvgSheetsData'
                     ).and.callThrough();
                     const getTextcriticsListDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getTextcriticsListData'
+                        '_getTextcriticsListData'
                     ).and.callThrough();
 
                     // Call service function
@@ -178,7 +178,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should trigger #getJsonData with correct urls',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
@@ -210,7 +210,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should perform an HTTP GET request to convolute, sheets & textcritics file',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionDetailData(expectedEditionWork).subscribe(
@@ -280,15 +280,15 @@ describe('EditionDataService (DONE)', () => {
                         // Set spy on private method
                         const getFolioConvoluteDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getFolioConvoluteData'
+                            '_getFolioConvoluteData'
                         ).and.returnValue(observableOf(fcl));
                         const getSvgSheetsDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSvgSheetsData'
+                            '_getSvgSheetsData'
                         ).and.returnValue(observableOf(esl));
                         const getTextcriticsListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getTextcriticsListData'
+                            '_getTextcriticsListData'
                         ).and.returnValue(observableOf(tcl));
 
                         // Call service function (success)
@@ -347,15 +347,15 @@ describe('EditionDataService (DONE)', () => {
                         // Set spy on private method
                         const getFolioConvoluteDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getFolioConvoluteData'
+                            '_getFolioConvoluteData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new FolioConvoluteList())));
                         const getSvgSheetsDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSvgSheetsData'
+                            '_getSvgSheetsData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new EditionSvgSheetList())));
                         const getTextcriticsListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getTextcriticsListData'
+                            '_getTextcriticsListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
                         // Call service function (success)
@@ -447,13 +447,13 @@ describe('EditionDataService (DONE)', () => {
 
                         expectSpyCall(consoleSpy, 3);
                         expect(consoleSpy.calls.allArgs()[0][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_FOLIOCONVOLUTELIST`
+                            `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_FOLIOCONVOLUTELIST`
                         );
                         expect(consoleSpy.calls.allArgs()[1][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[1].request.url}: 400 ERROR_LOADING_EDITIONSVGSHEETLIST`
+                            `_getJsonData failed: Http failure response for ${call[1].request.url}: 400 ERROR_LOADING_EDITIONSVGSHEETLIST`
                         );
                         expect(consoleSpy.calls.allArgs()[2][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_TEXTCRITICSLIST`
+                            `_getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_TEXTCRITICSLIST`
                         );
 
                         // Assert that there are no more pending requests
@@ -865,8 +865,8 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    expect((editionDataService as any).assetWorkPath).toBeTruthy('should be empty string');
-                    expect((editionDataService as any).assetWorkPath).toBe(
+                    expect((editionDataService as any)._assetWorkPath).toBeTruthy('should be empty string');
+                    expect((editionDataService as any)._assetWorkPath).toBe(
                         expectedAssetWorkPath,
                         `should be ${expectedAssetWorkPath}`
                     );
@@ -879,19 +879,19 @@ describe('EditionDataService (DONE)', () => {
                     // Set spy on private method
                     const getSourceListDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getSourceListData'
+                        '_getSourceListData'
                     ).and.callThrough();
                     const getSourceDescriptionListDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getSourceDescriptionListData'
+                        '_getSourceDescriptionListData'
                     ).and.callThrough();
                     const getSourceEvaluationListDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getSourceEvaluationListData'
+                        '_getSourceEvaluationListData'
                     ).and.callThrough();
                     const getTextcriticsListDataSpy: Spy = spyOn(
                         editionDataService as any,
-                        'getTextcriticsListData'
+                        '_getTextcriticsListData'
                     ).and.callThrough();
 
                     // Call service function
@@ -915,7 +915,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should trigger #getJsonData with correct urls',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(
@@ -951,7 +951,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should perform an HTTP GET request to sourceList, sourceDescription, sourceEvaluation & textcritics file',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionReportData(expectedEditionWork).subscribe(
@@ -1033,19 +1033,19 @@ describe('EditionDataService (DONE)', () => {
                         // Set spy on private method
                         const getSourceListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSourceListData'
+                            '_getSourceListData'
                         ).and.returnValue(observableOf(sl));
                         const getSourceDescriptionListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSourceDescriptionListData'
+                            '_getSourceDescriptionListData'
                         ).and.returnValue(observableOf(sdl));
                         const getSourceEvaluationListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSourceEvaluationListData'
+                            '_getSourceEvaluationListData'
                         ).and.returnValue(observableOf(sel));
                         const getTextcriticsListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getTextcriticsListData'
+                            '_getTextcriticsListData'
                         ).and.returnValue(observableOf(tcl));
 
                         // Call service function (success)
@@ -1114,19 +1114,19 @@ describe('EditionDataService (DONE)', () => {
                         // Set spy on private method
                         const getSourceListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSourceListData'
+                            '_getSourceListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new SourceList())));
                         const getSourceDescriptionListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSourceDescriptionListData'
+                            '_getSourceDescriptionListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new SourceDescriptionList())));
                         const getSourceEvaluationListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getSourceEvaluationListData'
+                            '_getSourceEvaluationListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new SourceEvaluationList())));
                         const getTextcriticsListDataSpy: Spy = spyOn(
                             editionDataService as any,
-                            'getTextcriticsListData'
+                            '_getTextcriticsListData'
                         ).and.returnValue(EMPTY.pipe(defaultIfEmpty(new TextcriticsList())));
 
                         // Call service function (success)
@@ -1219,16 +1219,16 @@ describe('EditionDataService (DONE)', () => {
                         // Check for console output
                         expectSpyCall(consoleSpy, 4);
                         expect(consoleSpy.calls.allArgs()[0][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_SOURCELIST`
+                            `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_SOURCELIST`
                         );
                         expect(consoleSpy.calls.allArgs()[1][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[1].request.url}: 400 ERROR_LOADING_SOURCELISTDESCRIPTION`
+                            `_getJsonData failed: Http failure response for ${call[1].request.url}: 400 ERROR_LOADING_SOURCELISTDESCRIPTION`
                         );
                         expect(consoleSpy.calls.allArgs()[2][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_SOURCELISTEVALUATION`
+                            `_getJsonData failed: Http failure response for ${call[2].request.url}: 400 ERROR_LOADING_SOURCELISTEVALUATION`
                         );
                         expect(consoleSpy.calls.allArgs()[3][0]).toBe(
-                            `getJsonData failed: Http failure response for ${call[3].request.url}: 400 ERROR_LOADING_TEXTCRITICS`
+                            `_getJsonData failed: Http failure response for ${call[3].request.url}: 400 ERROR_LOADING_TEXTCRITICS`
                         );
 
                         // Assert that there are no more pending requests
@@ -1770,8 +1770,8 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    expect((editionDataService as any).assetWorkPath).toBeTruthy('should be empty string');
-                    expect((editionDataService as any).assetWorkPath).toBe(
+                    expect((editionDataService as any)._assetWorkPath).toBeTruthy('should be empty string');
+                    expect((editionDataService as any)._assetWorkPath).toBe(
                         expectedAssetWorkPath,
                         `should be ${expectedAssetWorkPath}`
                     );
@@ -1782,7 +1782,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should call #getGraphData',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.callThrough();
+                    const getGraphDataSpy: Spy = spyOn(editionDataService as any, '_getGraphData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
@@ -1802,8 +1802,8 @@ describe('EditionDataService (DONE)', () => {
                 '... should trigger #getJsonData with correct url',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.callThrough();
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getGraphDataSpy: Spy = spyOn(editionDataService as any, '_getGraphData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
@@ -1824,7 +1824,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should perform an HTTP GET request to graph file',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionGraphData(expectedEditionWork).subscribe(
@@ -1868,7 +1868,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = gl;
 
                         // Set spy on private method
-                        const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.returnValue(
+                        const getGraphDataSpy: Spy = spyOn(editionDataService as any, '_getGraphData').and.returnValue(
                             observableOf(expectedResult)
                         );
 
@@ -1895,7 +1895,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = new GraphList();
 
                         // Set spy on private method
-                        const getGraphDataSpy: Spy = spyOn(editionDataService as any, 'getGraphData').and.returnValue(
+                        const getGraphDataSpy: Spy = spyOn(editionDataService as any, '_getGraphData').and.returnValue(
                             EMPTY.pipe(defaultIfEmpty(expectedResult))
                         );
 
@@ -1950,7 +1950,7 @@ describe('EditionDataService (DONE)', () => {
                         expectSpyCall(
                             consoleSpy,
                             1,
-                            `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_GRAPHLIST`
+                            `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_GRAPHLIST`
                         );
 
                         // Assert that there are no more pending requests
@@ -2014,8 +2014,8 @@ describe('EditionDataService (DONE)', () => {
                         }
                     );
 
-                    expect((editionDataService as any).assetWorkPath).toBeTruthy('should be empty string');
-                    expect((editionDataService as any).assetWorkPath).toBe(
+                    expect((editionDataService as any)._assetWorkPath).toBeTruthy('should be empty string');
+                    expect((editionDataService as any)._assetWorkPath).toBe(
                         expectedAssetWorkPath,
                         `should be ${expectedAssetWorkPath}`
                     );
@@ -2026,7 +2026,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should call #getIntroData',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.callThrough();
+                    const getIntroDataSpy: Spy = spyOn(editionDataService as any, '_getIntroData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
@@ -2046,8 +2046,8 @@ describe('EditionDataService (DONE)', () => {
                 '... should trigger #getJsonData with correct url',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.callThrough();
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getIntroDataSpy: Spy = spyOn(editionDataService as any, '_getIntroData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
@@ -2068,7 +2068,7 @@ describe('EditionDataService (DONE)', () => {
                 '... should perform an HTTP GET request to graph file',
                 waitForAsync(() => {
                     // Set spy on private method
-                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, 'getJsonData').and.callThrough();
+                    const getJsonDataSpy: Spy = spyOn(editionDataService as any, '_getJsonData').and.callThrough();
 
                     // Call service function
                     editionDataService.getEditionIntroData(expectedEditionWork).subscribe(
@@ -2112,7 +2112,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = il;
 
                         // Set spy on private method
-                        const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.returnValue(
+                        const getIntroDataSpy: Spy = spyOn(editionDataService as any, '_getIntroData').and.returnValue(
                             observableOf(expectedResult)
                         );
 
@@ -2139,7 +2139,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = new IntroList();
 
                         // Set spy on private method
-                        const getIntroDataSpy: Spy = spyOn(editionDataService as any, 'getIntroData').and.returnValue(
+                        const getIntroDataSpy: Spy = spyOn(editionDataService as any, '_getIntroData').and.returnValue(
                             EMPTY.pipe(defaultIfEmpty(expectedResult))
                         );
 
@@ -2194,7 +2194,7 @@ describe('EditionDataService (DONE)', () => {
                         expectSpyCall(
                             consoleSpy,
                             1,
-                            `getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_INTROLIST`
+                            `_getJsonData failed: Http failure response for ${call[0].request.url}: 400 ERROR_LOADING_INTROLIST`
                         );
 
                         // Assert that there are no more pending requests

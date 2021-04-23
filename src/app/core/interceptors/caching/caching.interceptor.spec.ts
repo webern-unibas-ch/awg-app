@@ -136,7 +136,7 @@ describe('CachingInterceptor (DONE)', () => {
                     `should equal ${expectedResponse}`
                 );
                 // Real service does not have created response
-                expect((httpCacheService as any).cachedResponses.has(expectedRequest.urlWithParams)).toBeFalse();
+                expect((httpCacheService as any)._cachedResponses.has(expectedRequest.urlWithParams)).toBeFalse();
             })
         );
 

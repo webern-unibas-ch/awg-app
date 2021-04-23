@@ -1,9 +1,9 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { JsonPipe } from '@angular/common';
-import { Component, DebugElement } from '@angular/core';
+import { Component, DebugElement, NgModule } from '@angular/core';
 
 import { EMPTY, Observable, of as observableOf } from 'rxjs';
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -28,12 +28,23 @@ describe('SelectResultsComponent', () => {
     let expectedTriples: Triple[];
     let expectedQueryResult: Observable<Triple[]>;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [SelectResultsComponent, TwelveToneSpinnerStubComponent]
-        }).compileComponents();
-    });
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionWithConfigModule],
+                declarations: [SelectResultsComponent, TwelveToneSpinnerStubComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         // Add custom jasmine matchers (ToHaveCssClass)

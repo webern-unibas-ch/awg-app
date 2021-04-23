@@ -27,13 +27,18 @@ import {
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionGraphComponent } from './edition-graph.component';
+import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 // Mock components
 @Component({ selector: 'awg-graph-visualizer', template: '' })
 class GraphVisualizerStubComponent {
     @Input()
     graphRDFInputData: GraphRDFData;
+
+    @Input()
+    isFullscreen: boolean;
 }
+
 @Component({ selector: 'awg-modal', template: '' })
 class ModalStubComponent {
     modalContent: string;
@@ -77,6 +82,7 @@ describe('EditionGraphComponent (DONE)', () => {
             };
 
             TestBed.configureTestingModule({
+                imports: [FontAwesomeModule],
                 declarations: [
                     EditionGraphComponent,
                     GraphVisualizerStubComponent,

@@ -96,7 +96,7 @@ describe('ContactInfoComponent (DONE)', () => {
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
-        sanitizeSpy = spyOn<any>(component, 'sanitizeUrls').and.callThrough();
+        sanitizeSpy = spyOn<any>(component, '_sanitizeUrls').and.callThrough();
     });
 
     afterAll(() => {
@@ -131,7 +131,7 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#sanitizeUrls', () => {
+        describe('#_sanitizeUrls', () => {
             it('... should not have been called', () => {
                 expectSpyCall(sanitizeSpy, 0);
             });
@@ -183,7 +183,7 @@ describe('ContactInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Mock the call to the DomSanitizer in #sanitizeUrls
+            // Mock the call to the DomSanitizer in #_sanitizeUrls
             // It sets the bypassed links (SafeResourceUrl)
             component.osmEmbedUrl = expectedOsmEmbedUrl;
             component.osmLinkUrl = expectedOsmLinkUrl;
@@ -212,7 +212,7 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#sanitizeUrls', () => {
+        describe('#_sanitizeUrls', () => {
             it('... should have been called', () => {
                 expectSpyCall(sanitizeSpy, 1);
             });

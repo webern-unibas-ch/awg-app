@@ -33,24 +33,24 @@ describe('DataStreamerService (DONE)', () => {
     });
 
     it('should have bufferSize = 1', () => {
-        expect((dataStreamerService as any).bufferSize).toBeTruthy();
-        expect((dataStreamerService as any).bufferSize).toBe(1, 'should be 1');
+        expect((dataStreamerService as any)._bufferSize).toBeTruthy();
+        expect((dataStreamerService as any)._bufferSize).toBe(1, 'should be 1');
     });
 
     it('should have searchResponseWithQuerySubject', () => {
-        expect((dataStreamerService as any).searchResponseWithQuerySubject).toBeTruthy();
+        expect((dataStreamerService as any)._searchResponseWithQuerySubject).toBeTruthy();
     });
 
     it('should have searchResponseWithQueryStream$', () => {
-        expect((dataStreamerService as any).searchResponseWithQueryStream$).toBeTruthy();
+        expect((dataStreamerService as any)._searchResponseWithQueryStream$).toBeTruthy();
     });
 
     it('should have resourceIdSubject', () => {
-        expect((dataStreamerService as any).resourceIdSubject).toBeTruthy();
+        expect((dataStreamerService as any)._resourceIdSubject).toBeTruthy();
     });
 
     it('should have resourceIdStream$', () => {
-        expect((dataStreamerService as any).resourceIdStream$).toBeTruthy();
+        expect((dataStreamerService as any)._resourceIdStream$).toBeTruthy();
     });
 
     describe('SearchResponseWithQuery', () => {

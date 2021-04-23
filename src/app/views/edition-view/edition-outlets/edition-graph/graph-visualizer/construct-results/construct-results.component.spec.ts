@@ -1,10 +1,10 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import { EMPTY, from as observableFrom, Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
@@ -46,17 +46,28 @@ describe('ConstructResultsComponent (DONE)', () => {
     let nodeClickSpy: Spy;
     let emitSpy: Spy;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [
-                ConstructResultsComponent,
-                ForceGraphStubComponent,
-                ForceGraphNoResultStubComponent,
-                TwelveToneSpinnerStubComponent
-            ]
-        }).compileComponents();
-    });
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionWithConfigModule],
+                declarations: [
+                    ConstructResultsComponent,
+                    ForceGraphStubComponent,
+                    ForceGraphNoResultStubComponent,
+                    TwelveToneSpinnerStubComponent
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ConstructResultsComponent);
@@ -243,7 +254,7 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         describe('#onGraphNodeClick', () => {
-            it('... should trigger on event from ForceGraphCompnent', fakeAsync(() => {
+            it('... should trigger on event from ForceGraphCompnent', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
@@ -251,9 +262,9 @@ describe('ConstructResultsComponent (DONE)', () => {
                 forceGraphCmp.clickedNodeRequest.emit(node);
 
                 expectSpyCall(nodeClickSpy, 1, node);
-            }));
+            });
 
-            it('... should not emit anything if no node is provided', fakeAsync(() => {
+            it('... should not emit anything if no node is provided', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
@@ -262,9 +273,9 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 expectSpyCall(nodeClickSpy, 1, undefined);
                 expectSpyCall(emitSpy, 0);
-            }));
+            });
 
-            it('... should emit provided node on click', fakeAsync(() => {
+            it('... should emit provided node on click', () => {
                 const forceGraphDes = getAndExpectDebugElementByDirective(compDe, ForceGraphStubComponent, 1, 1);
                 const forceGraphCmp = forceGraphDes[0].injector.get(ForceGraphStubComponent) as ForceGraphStubComponent;
 
@@ -273,7 +284,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 expectSpyCall(nodeClickSpy, 1, node);
                 expectSpyCall(emitSpy, 1, node);
-            }));
+            });
         });
     });
 });

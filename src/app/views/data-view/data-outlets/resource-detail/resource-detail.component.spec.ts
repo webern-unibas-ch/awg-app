@@ -70,40 +70,42 @@ describe('ResourceDetailComponent', () => {
 
     let expectedResourceData: ResourceData;
 
-    beforeEach(async () => {
-        // Stub services for test purposes
-        // TODO: provide accurate types and service responses
-        const mockDataApiService = {
-            httpGetUrl: '/testUrl',
-            getResourceData: () => observableOf(expectedResourceData)
-        };
-        const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-        const mockDataStreamerService = { updateResourceId: () => {} };
+    beforeEach(
+        waitForAsync(() => {
+            // Stub services for test purposes
+            // TODO: provide accurate types and service responses
+            const mockDataApiService = {
+                httpGetUrl: '/testUrl',
+                getResourceData: () => observableOf(expectedResourceData)
+            };
+            const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
+            const mockDataStreamerService = { updateResourceId: () => {} };
 
-        // Router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-        // Mocked activated route
-        mockActivatedRoute = new ActivatedRouteStub();
+            // Router spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+            // Mocked activated route
+            mockActivatedRoute = new ActivatedRouteStub();
 
-        await TestBed.configureTestingModule({
-            imports: [NgbNavModule],
-            declarations: [
-                ResourceDetailComponent,
-                ResourceDetailHeaderStubComponent,
-                ResourceDetailHtmlStubComponent,
-                ResourceDetailJsonConvertedStubComponent,
-                ResourceDetailJsonRawStubComponent,
-                TwelveToneSpinnerStubComponent
-            ],
-            providers: [
-                { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: Router, useValue: mockRouter },
-                { provide: DataApiService, useValue: mockDataApiService },
-                { provide: DataStreamerService, useValue: mockDataStreamerService },
-                { provide: LoadingService, useValue: mockLoadingService }
-            ]
-        }).compileComponents();
-    });
+            TestBed.configureTestingModule({
+                imports: [NgbNavModule],
+                declarations: [
+                    ResourceDetailComponent,
+                    ResourceDetailHeaderStubComponent,
+                    ResourceDetailHtmlStubComponent,
+                    ResourceDetailJsonConvertedStubComponent,
+                    ResourceDetailJsonRawStubComponent,
+                    TwelveToneSpinnerStubComponent
+                ],
+                providers: [
+                    { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                    { provide: Router, useValue: mockRouter },
+                    { provide: DataApiService, useValue: mockDataApiService },
+                    { provide: DataStreamerService, useValue: mockDataStreamerService },
+                    { provide: LoadingService, useValue: mockLoadingService }
+                ]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailComponent);

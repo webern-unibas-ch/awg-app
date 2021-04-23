@@ -1,11 +1,12 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NgModule } from '@angular/core';
 import Spy = jasmine.Spy;
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { ResourceDetailGroupedIncomingLinks, ResourceDetailIncomingLink } from '@awg-views/data-view/models';
 
@@ -37,10 +38,19 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbAccordionModule],
+                imports: [NgbAccordionWithConfigModule],
                 declarations: [ResourceDetailHtmlContentLinkedobjectsComponent]
             }).compileComponents();
         })
@@ -281,7 +291,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 );
             });
 
-            it('... should toggle panels alternately on click', () => {
+            it('... should open and close panels on click', fakeAsync(() => {
                 // Header debug elements
                 const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
 
@@ -301,61 +311,76 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     'in second panel'
                 );
 
-                // Button native elements to click on
-                const button0El = button0Des[0].nativeElement;
-                const button1El = button1Des[0].nativeElement;
+                // Both panels closed first by default
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+
+                // Click first panel
+                clickAndAwaitChanges(button0Des[0], fixture);
+
+                expectOpenPanelBody(compDe, 0, 'opened (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+
+                // Click first panel again
+                clickAndAwaitChanges(button0Des[0], fixture);
+
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+
+                // Click second panel
+                clickAndAwaitChanges(button1Des[0], fixture);
+
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectOpenPanelBody(compDe, 1, 'opened (second panel)');
+
+                // Click second panel again
+                clickAndAwaitChanges(button1Des[0], fixture);
+
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+            }));
+
+            it('... should toggle panels alternately on click', fakeAsync(() => {
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
+
+                // Button debug elements
+                const button0Des = getAndExpectDebugElementByCss(
+                    panelHeaderDes[0],
+                    'button.btn-link',
+                    1,
+                    1,
+                    'in first panel'
+                );
+                const button1Des = getAndExpectDebugElementByCss(
+                    panelHeaderDes[1],
+                    'button.btn-link',
+                    1,
+                    1,
+                    'in second panel'
+                );
 
                 // Both panels closed first by default
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // Click first panel
-                click(button0El as HTMLElement);
-                fixture.detectChanges();
-
-                expectOpenPanelBody(compDe, 0, 'opened (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
-
-                // Click first panel again
-                click(button0El as HTMLElement);
-                fixture.detectChanges();
-
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
-
-                // Click second panel
-                click(button1El as HTMLElement);
-                fixture.detectChanges();
-
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectOpenPanelBody(compDe, 1, 'opened (second panel)');
-
-                // Click second panel again
-                click(button1El as HTMLElement);
-                fixture.detectChanges();
-
-                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
-                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
-
-                // Click first panel
-                click(button0El as HTMLElement);
-                fixture.detectChanges();
+                clickAndAwaitChanges(button0Des[0], fixture);
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
                 // Click second panel
-                click(button1El as HTMLElement);
-                fixture.detectChanges();
+                clickAndAwaitChanges(button1Des[0], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectOpenPanelBody(compDe, 1, 'opened (second panel)');
-            });
+            }));
 
             describe('... should render panel content (div.card-body)', () => {
                 let tableDes: DebugElement[];
 
-                beforeEach(() => {
+                beforeEach(async () => {
                     /**
                      * Click button to open first panel and get inner table
                      */
@@ -373,7 +398,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
                     // Open first panel
                     click(button0El as HTMLElement);
-                    fixture.detectChanges();
+                    await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
                     expectOpenPanelBody(compDe, 0, 'should have first panel opened');
 

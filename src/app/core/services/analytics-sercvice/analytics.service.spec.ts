@@ -11,10 +11,10 @@ import { AnalyticsService } from './analytics.service';
 
 // Helper functions for  Analytics setup
 function setupAnalytics(service: AnalyticsService, endpoint: string, id: string, pageView?: boolean) {
-    (service as any).analyticsEndpoint = endpoint;
-    (service as any).analyticsId = id;
+    (service as any)._analyticsEndpoint = endpoint;
+    (service as any)._analyticsId = id;
     if (pageView) {
-        (service as any).sendPageView = pageView;
+        (service as any)._sendPageView = pageView;
     }
 
     return service.initializeAnalytics();
@@ -101,7 +101,7 @@ describe('AnalyticsService (DONE)', () => {
             setupAnalytics(analyticsService, null, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expect((analyticsService as any).isInitialized).toBeFalse();
+            expect((analyticsService as any)._isInitialized).toBeFalse();
         });
 
         it('... should not initialize the analytics tracker without analyticsId', () => {
@@ -109,14 +109,14 @@ describe('AnalyticsService (DONE)', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, null);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expect((analyticsService as any).isInitialized).toBeFalse();
+            expect((analyticsService as any)._isInitialized).toBeFalse();
         });
 
         it('... should initialize the analytics tracker with given endpoint and id', () => {
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId);
 
             expectSpyCall(initializeAnalyticsSpy, 1);
-            expect((analyticsService as any).isInitialized).toBeTrue();
+            expect((analyticsService as any)._isInitialized).toBeTrue();
         });
 
         it('... should log a replacement message in develop mode', () => {
@@ -149,7 +149,7 @@ describe('AnalyticsService (DONE)', () => {
 
             // Prevent setting of real gtag script to document head
             const prependSpy = spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
-            const scriptSpy = spyOn<any>(analyticsService, 'prependAnalyticsScript').and.callThrough();
+            const scriptSpy = spyOn<any>(analyticsService, '_prependAnalyticsScript').and.callThrough();
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
@@ -188,7 +188,7 @@ describe('AnalyticsService (DONE)', () => {
         });
 
         it('... should run if isInitialized is set to true', () => {
-            (analyticsService as any).isInitialized = true;
+            (analyticsService as any)._isInitialized = true;
 
             analyticsService.trackPageView(expectedPage);
 

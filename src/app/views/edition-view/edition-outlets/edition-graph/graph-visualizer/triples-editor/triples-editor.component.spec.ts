@@ -1,8 +1,8 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import Spy = jasmine.Spy;
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { click } from '@testing/click-helper';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -42,10 +42,19 @@ describe('TriplesEditorComponent (DONE)', () => {
     let emitResetTriplesRequestSpy: Spy;
     let emitUpdateTriplesRequestSpy: Spy;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbAccordionModule],
+                imports: [NgbAccordionWithConfigModule],
                 declarations: [TriplesEditorComponent, CodeMirrorStubComponent]
             }).compileComponents();
         })
@@ -188,12 +197,13 @@ describe('TriplesEditorComponent (DONE)', () => {
                         'open'
                     );
 
-                    // click header button
+                    // Click header button
                     click(btnEl as HTMLElement);
+                    // Fixture.detectChanges();
                     detectChangesOnPush(fixture);
 
-                    // panel body is closed again
                     getAndExpectDebugElementByCss(
+                        // Panel body is closed again
                         compDe,
                         'div#awg-graph-visualizer-triples > div.card-body',
                         0,

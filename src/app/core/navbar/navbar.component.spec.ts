@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NgModule } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
@@ -9,9 +9,9 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -35,6 +35,15 @@ describe('NavbarComponent (DONE)', () => {
     let expectedEditionWorks: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
     let expectedSelectEditionWork: EditionWork = EditionWorks.OP12;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
+    class NgbWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             // Stub service for test purposes
@@ -43,7 +52,7 @@ describe('NavbarComponent (DONE)', () => {
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, NgbCollapseModule, NgbDropdownModule],
+                imports: [FontAwesomeModule, NgbWithConfigModule],
                 declarations: [NavbarComponent, RouterLinkStubDirective],
                 providers: [{ provide: CoreService, useValue: mockCoreService }]
             }).compileComponents();

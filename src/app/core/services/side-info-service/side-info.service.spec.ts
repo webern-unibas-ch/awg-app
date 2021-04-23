@@ -32,19 +32,19 @@ describe('SideInfoService (DONE)', () => {
     });
 
     it('should have searchInfoDataSubject', () => {
-        expect((sideInfoService as any).searchInfoDataSubject).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoDataSubject).toBeTruthy();
     });
 
     it('should have searchInfoDataStream$', () => {
-        expect((sideInfoService as any).searchInfoDataStream$).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoDataStream$).toBeTruthy();
     });
 
     it('should have searchInfoTitleSubject', () => {
-        expect((sideInfoService as any).searchInfoTitleSubject).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoTitleSubject).toBeTruthy();
     });
 
     it('should have searchInfoTitleStream$', () => {
-        expect((sideInfoService as any).searchInfoTitleStream$).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoTitleStream$).toBeTruthy();
     });
 
     describe('SearchInfoData', () => {

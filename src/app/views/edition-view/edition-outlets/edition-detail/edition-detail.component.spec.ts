@@ -78,7 +78,7 @@ describe('EditionDetailComponent', () => {
             getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
                 expectedTextcriticalComments
             );
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
             /*
         MockEditionService = {
             // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,

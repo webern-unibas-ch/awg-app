@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, NgModule } from '@angular/core';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -17,12 +17,23 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     let expectedQueryType: string;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [UnsupportedTypeResultsComponent]
-        }).compileComponents();
-    });
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionWithConfigModule],
+                declarations: [UnsupportedTypeResultsComponent]
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         // Add custom jasmine matchers (ToHaveCssClass)

@@ -64,7 +64,7 @@ export function getAndExpectDebugElementByDirective(
 ): DebugElement[] {
     const outDe = inDe.queryAll(By.directive(selectorType));
 
-    // empty string if no suffix message provided
+    // Empty string if no suffix message provided
     if (!suffixMsg) {
         suffixMsg = '';
     }

@@ -44,7 +44,7 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetWorkSpy: Spy;
     let editionServiceUpdateWorkSpy: Spy;
 
-    let expectedWorkId = 'op12';
+    let expectedWorkId = 'OP12';
     let expectedWork: EditionWork;
 
     const expectedTitle = 'Beispieledition ausgewählter Skizzen';
@@ -166,7 +166,7 @@ describe('EditionViewComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Set route params via ActivatedRoute mock
-            expectedWorkId = 'op12';
+            expectedWorkId = 'OP12';
             mockActivatedRoute.testParamMap = { compositionId: expectedWorkId }; // Op. 12
 
             // Trigger initial data binding
@@ -198,17 +198,17 @@ describe('EditionViewComponent (DONE)', () => {
             it('... should get correct id from router', () => {
                 // Call with op. 12 (default)
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateWorkSpy, 1, EditionWorks['op12']);
+                expectSpyCall(editionServiceUpdateWorkSpy, 1, EditionWorks.OP12);
 
                 // ----------------
                 // Change to op. 25
-                mockActivatedRoute.testParamMap = { compositionId: 'op25' };
+                mockActivatedRoute.testParamMap = { compositionId: 'OP25' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateWorkSpy, 2, EditionWorks['op25']);
+                expectSpyCall(editionServiceUpdateWorkSpy, 2, EditionWorks.OP25);
 
                 // ------------------
                 // Change to non-existing id
@@ -232,7 +232,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 // ----------------------
                 // Change to another key
-                mockActivatedRoute.testParamMap = { anotherId: 'op12' };
+                mockActivatedRoute.testParamMap = { anotherId: 'OP12' };
 
                 // Trigger initial data binding
                 fixture.detectChanges();
@@ -277,7 +277,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 // ----------------
                 // Change to op. 25
-                expectedWorkId = 'op25';
+                expectedWorkId = 'OP25';
                 mockActivatedRoute.testParamMap = { compositionId: expectedWorkId };
 
                 // Apply changes
@@ -289,7 +289,7 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.editionWork$).toBeDefined();
                 sub = component.editionWork$.subscribe(work => {
-                    expect(work).toEqual(EditionWorks['op25'], `should equal ${EditionWorks['op25']}`);
+                    expect(work).toEqual(EditionWorks.OP25, `should equal ${EditionWorks.OP25}`);
                     done();
                 });
 

@@ -224,7 +224,7 @@ describe('GndService (DONE)', () => {
             });
 
             it('- gndEvent has undefined values', () => {
-                const expectedDefaultMessage = 'got an uncatched GND event';
+                const expectedDefaultMessage = 'Got an uncatched GND event';
 
                 expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
@@ -239,7 +239,7 @@ describe('GndService (DONE)', () => {
             });
 
             it('- gndEvent has null values', () => {
-                const expectedDefaultMessage = 'got an uncatched GND event';
+                const expectedDefaultMessage = 'Got an uncatched GND event';
 
                 expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
@@ -376,18 +376,18 @@ describe('GndService (DONE)', () => {
             it('... should call helper function with input value to check if value has gnd link', () => {
                 expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
-                const valueHasGndSpy = spyOn<any>(gndService, 'valueHasGnd').and.callThrough();
+                const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                 gndService.exposeGnd(expectedSetEvent);
 
                 expectSpyCall(valueHasGndSpy, 1, expectedGndEventValue);
             });
 
-            describe('#valueHasGnd', () => {
+            describe('#_valueHasGnd', () => {
                 it('... should execute regex check and populate linkRegArr if value has gnd link', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
                     expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
-                    const valueHasGndSpy = spyOn<any>(gndService, 'valueHasGnd').and.callFake(checkValue => {
+                    const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callFake(checkValue => {
                         gndService.linkRegArr = gndService.DNB_REG.exec(checkValue);
                     });
                     gndService.exposeGnd(expectedSetEvent);
@@ -403,7 +403,7 @@ describe('GndService (DONE)', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
                     expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
-                    const valueHasGndSpy = spyOn<any>(gndService, 'valueHasGnd').and.callThrough();
+                    const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                     gndService.exposeGnd(noLinkGndSetEvent);
 
                     expectSpyCall(valueHasGndSpy, 1, noLinkGndEventValue);
@@ -416,7 +416,7 @@ describe('GndService (DONE)', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
                     expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
-                    const valueHasGndSpy = spyOn<any>(gndService, 'valueHasGnd').and.callThrough();
+                    const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                     gndService.exposeGnd(expectedSetEvent);
 
                     expectSpyCall(valueHasGndSpy, 1, expectedGndEventValue);
@@ -427,7 +427,7 @@ describe('GndService (DONE)', () => {
                     expect(gndService.linkRegArr).toBeUndefined();
                     expect(mockStorage.getItem(expectedGndKey)).toBeNull();
 
-                    const valueHasGndSpy = spyOn<any>(gndService, 'valueHasGnd').and.callThrough();
+                    const valueHasGndSpy = spyOn<any>(gndService, '_valueHasGnd').and.callThrough();
                     gndService.exposeGnd(noLinkGndSetEvent);
 
                     expectSpyCall(valueHasGndSpy, 1, noLinkGndEventValue);

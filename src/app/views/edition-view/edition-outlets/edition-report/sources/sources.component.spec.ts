@@ -1,12 +1,12 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, Input, NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
@@ -45,10 +45,19 @@ describe('SourcesComponent', () => {
     let expectedSourceDescriptionListData: SourceDescriptionList;
     let expectedSourceEvaluationListData: SourceEvaluationList;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbAccordionModule, RouterTestingModule],
+                imports: [NgbAccordionWithConfigModule, RouterTestingModule],
                 declarations: [
                     SourcesComponent,
                     SourceListStubComponent,
