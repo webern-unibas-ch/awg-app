@@ -38,7 +38,6 @@ module.exports = function (config) {
         },
         reporters: ['progress', 'kjhtml'],
         customLaunchers: {
-            // cf. https://medium.com/faun/configuring-travis-ci-for-angular-application-34afee1715f
             ChromeHeadlessCI: {
                 base: 'ChromeHeadless',
                 flags: ['--no-sandbox', '--disable-gpu']
