@@ -26,7 +26,7 @@ import { EditionDetailRoutingModule, routedEditionDetailComponents } from './edi
         EditionConvoluteComponent,
         EditionSvgSheetNavComponent,
         EditionSvgSheetComponent,
-        routedEditionDetailComponents
-    ]
+        routedEditionDetailComponents,
+    ],
 })
 export class EditionDetailModule {}

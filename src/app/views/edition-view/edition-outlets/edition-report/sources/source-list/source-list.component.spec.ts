@@ -1,5 +1,5 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -13,12 +13,14 @@ describe('SourceListComponent', () => {
     let fixture: ComponentFixture<SourceListComponent>;
     let expectedSourceListData: SourceList;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [RouterTestingModule],
-            declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [RouterTestingModule],
+                declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(SourceListComponent);
@@ -37,34 +39,34 @@ describe('SourceListComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
+            // Mock the input values supplied by the parent component
             expectedSourceListData = {
                 sources: [
                     {
                         siglum: 'A',
                         type: 'Skizzen',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'sourceA'
+                        linkTo: 'sourceA',
                     },
                     {
                         siglum: 'B',
                         type: 'Autograph von Nr. I.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'op12_sourceNotA'
+                        linkTo: 'OP12_SOURCE_NOT_A',
                     },
                     {
                         siglum: 'C',
                         type: 'Autograph von Nr. I–IV.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'op12_sourceNotA'
-                    }
-                ]
+                        linkTo: 'OP12_SOURCE_NOT_A',
+                    },
+                ],
             };
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.sourceListData = expectedSourceListData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

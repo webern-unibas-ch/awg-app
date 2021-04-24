@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { QueryParamsHandling } from '@angular/router';
 
@@ -9,7 +9,7 @@ import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -31,11 +31,13 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let selectButtonSpy: Spy;
     let emitSpy: Spy;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(RouterLinkButtonGroupComponent);
@@ -43,15 +45,15 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
         ];
         expectedQueryParamsHandling = 'preserve';
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         selectButtonSpy = spyOn(component, 'selectButton').and.callThrough();
@@ -94,11 +96,11 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.routerLinkButtons = expectedRouterLinkButtons;
             component.queryParamsHandling = expectedQueryParamsHandling;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -155,10 +157,10 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
+                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 3, 3);
 
-                // get attached link directive instances using each DebugElement's injector
+                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
@@ -173,8 +175,8 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             });
 
             it('... can click fulltext link in template', () => {
-                const fulltextLinkDe = linkDes[0]; // fulltext link DebugElement
-                const fulltextLink = routerLinks[0]; // fulltext link directive
+                const fulltextLinkDe = linkDes[0]; // Fulltext link DebugElement
+                const fulltextLink = routerLinks[0]; // Fulltext link directive
 
                 expect(fulltextLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -189,7 +191,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             it('... should trigger on click if enabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
                 expect(btnDes[0].nativeElement.disabled).toBeFalse();
@@ -199,13 +201,13 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             it('... should not trigger on click if disabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
                 expect(btnDes[1].nativeElement.disabled).toBeTrue();
                 expectSpyCall(selectButtonSpy, 0);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
                 expect(btnDes[2].nativeElement.disabled).toBeTrue();
@@ -215,7 +217,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
             it('... should emit selected button on click if enabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[0], fixture);
 
                 expect(btnDes[0].nativeElement.disabled).toBeFalse();
@@ -224,13 +226,13 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
 
             it('... should not emit selected button on click if disabled', fakeAsync(() => {
                 const btnDes = getAndExpectDebugElementByCss(compDe, 'button.btn', 3, 3);
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[1], fixture);
 
                 expect(btnDes[1].nativeElement.disabled).toBeTrue();
                 expectSpyCall(emitSpy, 0);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(btnDes[2], fixture);
 
                 expect(btnDes[2].nativeElement.disabled).toBeTrue();

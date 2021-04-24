@@ -17,16 +17,9 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
     selector: 'awg-edition-overview',
     templateUrl: './edition-overview.component.html',
-    styleUrls: ['./edition-overview.component.css']
+    styleUrls: ['./edition-overview.component.css'],
 })
 export class EditionOverviewComponent implements OnInit, OnDestroy {
-    /**
-     * Private variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private destroy$: Subject<boolean> = new Subject<boolean>();
-
     /**
      * Public variable: editionRouterLinkButtons.
      *
@@ -42,11 +35,18 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     editionWork: EditionWork;
 
     /**
-     * Private variable: subscription.
+     * Private variable: _subscription.
      *
      * It keeps the subscriptions of the component.
      */
-    private subscription: Subscription;
+    private _subscription: Subscription;
+
+    /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the EditionOverviewComponent.
@@ -78,7 +78,7 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
     getEditionWork(): void {
         this.editionService
             .getEditionWork()
-            .pipe(takeUntil(this.destroy$))
+            .pipe(takeUntil(this._destroy$))
             .subscribe((work: EditionWork) => {
                 this.editionWork = work;
                 this.setButtons();
@@ -97,27 +97,27 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
             new RouterLinkButton(
                 this.editionWork.baseRoute,
                 this.editionWork.introRoute.route,
-                EditionConstants.editionIntro.short,
+                EditionConstants.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionWork.baseRoute,
                 this.editionWork.detailRoute.route,
-                EditionConstants.editionDetail.short,
+                EditionConstants.EDITION_DETAIL.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionWork.baseRoute,
                 this.editionWork.reportRoute.route,
-                EditionConstants.editionReport.short,
+                EditionConstants.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 this.editionWork.baseRoute,
                 this.editionWork.graphRoute.route,
-                EditionConstants.editionGraph.short,
+                EditionConstants.EDITION_GRAPH.short,
                 false
-            )
+            ),
         ];
     }
 
@@ -130,10 +130,10 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
     }
 }

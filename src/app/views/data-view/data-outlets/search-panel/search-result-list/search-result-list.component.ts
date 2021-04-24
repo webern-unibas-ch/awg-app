@@ -24,7 +24,7 @@ import { ConversionService, DataStreamerService, SideInfoService } from '@awg-co
     selector: 'awg-search-result-list',
     templateUrl: './search-result-list.component.html',
     styleUrls: ['./search-result-list.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
     /**
@@ -69,20 +69,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     @Output()
     viewChangeRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Private variable: selectedResourceId.
-     *
-     * It keeps the id of the selected resource.
-     */
-    private selectedResourceId: string;
-
-    /**
-     * variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Public variable: errorMessage.
@@ -148,6 +134,20 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     faTable = faTable;
 
     /**
+     * Private variable: _selectedResourceId.
+     *
+     * It keeps the id of the selected resource.
+     */
+    private _selectedResourceId: string;
+
+    /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
+
+    /**
      * Constructor of the SearchResultListComponent.
      *
      * It declares private instances of the Angular FormBuilder,
@@ -199,7 +199,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     createFormGroup(view: SearchParamsViewTypes): void {
         this.searchResultControlForm = this.formBuilder.group({
-            searchResultViewControl: SearchParamsViewTypes[view]
+            searchResultViewControl: SearchParamsViewTypes[view],
         });
 
         this.listenToUserInputChange();
@@ -224,14 +224,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * Public method: isActiveResource.
      *
      * It compares a given resource id
-     * with the current selectedResourceId.
+     * with the current _selectedResourceId.
      *
      * @param {string} id The given resource id.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
     isActiveResource(id: string): boolean {
-        return this.selectedResourceId === id;
+        return this._selectedResourceId === id;
     }
 
     /**
@@ -266,8 +266,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the resource.
      */
     navigateToResource(id: string): void {
-        this.selectedResourceId = id;
-        this.router.navigate(['/data/resource', this.selectedResourceId]);
+        this._selectedResourceId = id;
+        this.router.navigate(['/data/resource', this._selectedResourceId]);
     }
 
     /**
@@ -340,22 +340,22 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the search response with query data.
      */
     getSearchResponseWithQueryData(): void {
-        // cold request to streamer service
+        // Cold request to streamer service
         const searchResponseWithQuery$: Observable<SearchResponseWithQuery> = this.dataStreamerService
             .getSearchResponseWithQuery()
-            .pipe(takeUntil(this.destroy$));
+            .pipe(takeUntil(this._destroy$));
 
-        // subscribe to response to handle changes
+        // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) => {
-                // update current search params (url, text, sideinfo) via streamer service
+                // Update current search params (url, text, sideinfo) via streamer service
                 this.updateSearchParams(searchResponseWithQuery);
 
                 this.setPagination();
             },
             error => {
                 this.errorMessage = error as any;
-                console.log('SearchResultList# searchResultData subscription error: ', this.errorMessage);
+                console.error('SearchResultList# searchResultData subscription error: ', this.errorMessage);
             }
         );
     }
@@ -390,16 +390,16 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // store search response and query
+        // Store search response and query
         this.searchResponseWithQuery = { ...searchResponseWithQuery };
 
-        // update info message about the search results
+        // Update info message about the search results
         this.searchResultText = this.conversionService.prepareFullTextSearchResultText(
             searchResponseWithQuery,
             this.searchUrl
         );
 
-        // update data for searchInfo via SideInfoService
+        // Update data for searchInfo via SideInfoService
         const searchInfo: SearchInfo = new SearchInfo(this.searchResponseWithQuery.query, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
@@ -411,13 +411,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // clear search info
+        // Clear search info
         this.sideInfoService.clearSearchInfoData();
 
-        // emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
     }
 }

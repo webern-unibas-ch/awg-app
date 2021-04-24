@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
  */
 export enum StorageType {
     localStorage = 'localStorage',
-    sessionStorage = 'sessionStorage'
+    sessionStorage = 'sessionStorage',
 }
 
 /**
@@ -19,7 +19,7 @@ export enum StorageType {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class StorageService {
     /**
@@ -43,7 +43,7 @@ export class StorageService {
             return;
         }
         const storage = window[type];
-        if (this.storageIsSupported(storage)) {
+        if (this._storageIsSupported(storage)) {
             storage.setItem(key, item);
         } else {
             return;
@@ -65,7 +65,7 @@ export class StorageService {
             return null;
         }
         const storage = window[type];
-        if (this.storageHasKey(storage, key)) {
+        if (this._storageHasKey(storage, key)) {
             return storage.getItem(key);
         } else {
             return null;
@@ -87,7 +87,7 @@ export class StorageService {
             return;
         }
         const storage = window[type];
-        if (this.storageHasKey(storage, key)) {
+        if (this._storageHasKey(storage, key)) {
             storage.removeItem(key);
         } else {
             return;
@@ -95,7 +95,7 @@ export class StorageService {
     }
 
     /**
-     * Private method: storageHasKey.
+     * Private method: _storageHasKey.
      *
      * It checks if a given storage type has a given key.
      *
@@ -104,15 +104,15 @@ export class StorageService {
      *
      * @returns {boolean} The boolean value for the given key in the given storage type.
      */
-    private storageHasKey(storage: Storage, key: string): boolean {
-        if (this.storageIsSupported(storage)) {
+    private _storageHasKey(storage: Storage, key: string): boolean {
+        if (this._storageIsSupported(storage)) {
             return !!storage.getItem(key);
         }
         return false;
     }
 
     /**
-     * Private method: storageIsSupported.
+     * Private method: _storageIsSupported.
      *
      * It checks if a given storage type is supported.
      *
@@ -120,12 +120,12 @@ export class StorageService {
      *
      * @returns {Storage} The local reference to Storage for the given storage type.
      */
-    private storageIsSupported(storage: Storage): Storage {
-        return typeof storage !== 'undefined' && storage !== null && this.storageIsAvailable(storage);
+    private _storageIsSupported(storage: Storage): Storage {
+        return typeof storage !== 'undefined' && storage !== null && this._storageIsAvailable(storage);
     }
 
     /**
-     * Private method: storageIsAvailable.
+     * Private method: _storageIsAvailable.
      *
      * It checks if a given storage type is available.
      * cf. https://mathiasbynens.be/notes/localstorage-pattern
@@ -134,18 +134,18 @@ export class StorageService {
      *
      * @returns {Storage} The local reference to Storage for the given storage type.
      */
-    private storageIsAvailable(storage: Storage): Storage {
+    private _storageIsAvailable(storage: Storage): Storage {
         try {
-            // make uid from Date
+            // Make uid from Date
             const uid = new Date().toDateString();
 
-            // set, get and remove item
+            // Set, get and remove item
             storage.setItem(uid, uid);
             const result = storage.getItem(uid) === uid;
 
             storage.removeItem(uid);
 
-            // return local reference to Storage or undefined
+            // Return local reference to Storage or undefined
             return result && storage;
         } catch (e) {}
     }

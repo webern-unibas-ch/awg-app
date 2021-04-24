@@ -13,7 +13,7 @@ import { SourceEvaluationList } from '@awg-views/edition-view/models';
     selector: 'awg-source-evaluation',
     templateUrl: './source-evaluation.component.html',
     styleUrls: ['./source-evaluation.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceEvaluationComponent implements OnInit {
     /**

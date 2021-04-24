@@ -5,7 +5,7 @@ import { registerLocaleData } from '@angular/common';
 import localeDeDE from '@angular/common/locales/de';
 
 //
-// main app modules
+// Main app modules
 import { AppComponent } from './app.component';
 import { CoreModule } from '@awg-core/core.module';
 import { SharedModule } from '@awg-shared/shared.module';
@@ -14,7 +14,7 @@ import { SideInfoModule } from '@awg-side-info/side-info.module';
 /* Routing Module */
 import { AppRoutingModule } from './app-routing.module';
 
-/* load and register the used locale file */
+/* Load and register the used locale file */
 registerLocaleData(localeDeDE);
 
 /**
@@ -26,7 +26,7 @@ registerLocaleData(localeDeDE);
 @NgModule({
     imports: [BrowserModule, HttpClientModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
     declarations: [AppComponent],
-    providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }], // change global LOCALE-ID
-    bootstrap: [AppComponent]
+    providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }], // Change global LOCALE-ID
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

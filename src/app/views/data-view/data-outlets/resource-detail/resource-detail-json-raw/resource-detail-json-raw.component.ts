@@ -13,7 +13,7 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
     selector: 'awg-resource-detail-json-raw',
     templateUrl: './resource-detail-json-raw.component.html',
     styleUrls: ['./resource-detail-json-raw.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailJsonRawComponent implements OnInit {
     /**

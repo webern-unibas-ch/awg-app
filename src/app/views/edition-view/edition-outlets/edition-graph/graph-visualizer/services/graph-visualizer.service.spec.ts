@@ -7,7 +7,7 @@ describe('GraphVisualizerService', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [GraphVisualizerService]
+            providers: [GraphVisualizerService],
         });
         graphVisualizerService = TestBed.inject(GraphVisualizerService);
     });

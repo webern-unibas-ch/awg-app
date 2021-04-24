@@ -8,7 +8,7 @@ import {
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { catchError, switchMap } from 'rxjs/operators';
@@ -24,7 +24,7 @@ import { catchError, switchMap } from 'rxjs/operators';
     selector: 'awg-edition-report',
     templateUrl: './edition-report.component.html',
     styleUrls: ['./edition-report.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionReportComponent implements OnInit {
     /**
@@ -84,16 +84,16 @@ export class EditionReportComponent implements OnInit {
      */
     getEditionReportData(): void {
         this.editionReportData$ = this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // get intro data from editionDataService
+                    // Get intro data from editionDataService
                     return this.editionDataService.getEditionReportData(this.editionWork);
                 }),
-                // error handling
+                // Error handling
                 catchError(err => {
                     this.errorObject = err;
                     return throwError(err);
@@ -114,7 +114,7 @@ export class EditionReportComponent implements OnInit {
             fragmentId = '';
         }
         const navigationExtras: NavigationExtras = {
-            fragment: fragmentId
+            fragment: fragmentId,
         };
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
     }
@@ -134,7 +134,7 @@ export class EditionReportComponent implements OnInit {
         }
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: ''
+            queryParamsHandling: '',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);

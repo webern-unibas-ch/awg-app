@@ -11,7 +11,7 @@ import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class CoreService {
     /**

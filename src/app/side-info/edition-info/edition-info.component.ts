@@ -11,7 +11,7 @@ import { EditionWorks } from '@awg-views/edition-view/models';
     selector: 'awg-edition-info',
     templateUrl: './edition-info.component.html',
     styleUrls: ['./edition-info.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionInfoComponent implements OnInit {
     /**
@@ -23,18 +23,18 @@ export class EditionInfoComponent implements OnInit {
     editionInfoViewTitle = 'Beispieleditionen ausgewählter Skizzen';
 
     /**
-     * Readonly constant: editionWorkOp12.
+     * Readonly constant: EDITION_WORK_OP12.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp12 = EditionWorks.op12;
+    readonly EDITION_WORK_OP12 = EditionWorks.OP12;
 
     /**
-     * Readonly constant: editionWorkOp25.
+     * Readonly constant: EDITION_WORK_OP25.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp25 = EditionWorks.op25;
+    readonly EDITION_WORK_OP25 = EditionWorks.OP25;
 
     /**
      * Constructor of the EditionInfoComponent.

@@ -1,4 +1,5 @@
-/************************************************
+/**
+ ***********************************************
  *
  *               CREDITS
  *
@@ -23,7 +24,7 @@ import { Pipe, PipeTransform } from '@angular/core';
  *   `*ngFor="let subject of searchResponse?.subjects | orderBy: {property: 'obj_id', direction: 1}"`
  */
 @Pipe({
-    name: 'orderBy'
+    name: 'orderBy',
 })
 export class OrderByPipe implements PipeTransform {
     /**

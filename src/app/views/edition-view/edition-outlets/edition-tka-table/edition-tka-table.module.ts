@@ -12,6 +12,6 @@ import { EditionTkaTableComponent } from './edition-tka-table.component';
 @NgModule({
     imports: [SharedModule],
     declarations: [EditionTkaTableComponent],
-    exports: [EditionTkaTableComponent]
+    exports: [EditionTkaTableComponent],
 })
 export class EditionTkaTableModule {}

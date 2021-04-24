@@ -1,11 +1,10 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-// import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 import {
     EditionSvgSheet,
     EditionSvgOverlay,
     EditionSvgSheetList,
-    EditionSvgOverlayTypes
+    EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -15,11 +14,11 @@ import {
  * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
  */
 export enum SvgSheetLabelsOp12 {
-    sheet1 = 'Aa:SkI/1',
-    sheet2 = 'Aa:SkI/2',
-    sheet3 = 'Aa:SkI/3',
-    sheet4 = 'Aa:SkI/4',
-    sheet5 = 'Aa:SkI/5'
+    SHEET_1 = 'Aa:SkI/1',
+    SHEET_2 = 'Aa:SkI/2',
+    SHEET_3 = 'Aa:SkI/3',
+    SHEET_4 = 'Aa:SkI/4',
+    SHEET_5 = 'Aa:SkI/5',
 }
 
 /**
@@ -29,26 +28,26 @@ export enum SvgSheetLabelsOp12 {
  * TODO: Refactor temporary solution. Will be removed and created dynamically from data.
  */
 export enum SvgSheetLabelsOp25 {
-    sheet1 = 'A:SkI/1',
-    sheet2 = 'A:SkI/2',
-    sheet2_1 = 'A:SkI/2.1',
-    sheet2_1_1 = 'A:SkI/2.1.1',
-    sheet2_1_2 = 'A:SkI/2.1.2',
-    sheet2_1_2_1 = 'A:SkI/2.1.2.1',
-    sheet2_1_3 = 'A:SkI/2.1.3',
-    sheet3 = 'A:SkI/3',
-    sheet3_1 = 'A:SkI/3.1',
-    sheet3_1_1 = 'A:SkI/3.1.1',
-    sheet3_1_2 = 'A:SkI/3.1.2',
-    sheet3_1_3 = 'A:SkI/3.1.3',
-    sheet3_1_3_1 = 'A:SkI/3.1.3.1',
-    sheet4a = 'A:SkI/4a',
-    sheet4b = 'A:SkI/4b',
-    sheet4c = 'A:SkI/4c',
-    sheet4d = 'A:SkI/4d',
-    sheet4_1 = 'A:SkI/4.1',
-    sheet4_2 = 'A:SkI/4.2',
-    sheet4_3 = 'A:SkI/4.3'
+    SHEET_1 = 'A:SkI/1',
+    SHEET_2 = 'A:SkI/2',
+    SHEET_2_1 = 'A:SkI/2.1',
+    SHEET_2_1_1 = 'A:SkI/2.1.1',
+    SHEET_2_1_2 = 'A:SkI/2.1.2',
+    SHEET_2_1_2_1 = 'A:SkI/2.1.2.1',
+    SHEET_2_1_3 = 'A:SkI/2.1.3',
+    SHEET_3 = 'A:SkI/3',
+    SHEET_3_1 = 'A:SkI/3.1',
+    SHEET_3_1_1 = 'A:SkI/3.1.1',
+    SHEET_3_1_2 = 'A:SkI/3.1.2',
+    SHEET_3_1_3 = 'A:SkI/3.1.3',
+    SHEET_3_1_3_1 = 'A:SkI/3.1.3.1',
+    SHEET_4_A = 'A:SkI/4a',
+    SHEET_4_B = 'A:SkI/4b',
+    SHEET_4_C = 'A:SkI/4c',
+    SHEET_4_D = 'A:SkI/4d',
+    SHEET_4_1 = 'A:SkI/4.1',
+    SHEET_4_2 = 'A:SkI/4.2',
+    SHEET_4_3 = 'A:SkI/4.3',
 }
 
 /**
@@ -62,7 +61,7 @@ export enum SvgSheetLabelsOp25 {
     selector: 'awg-edition-svg-sheet',
     templateUrl: './edition-svg-sheet.component.html',
     styleUrls: ['./edition-svg-sheet.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetComponent implements OnInit {
     /**
@@ -113,34 +112,34 @@ export class EditionSvgSheetComponent implements OnInit {
      */
     svgSheetLabels = {
         op12: {
-            sheet1: SvgSheetLabelsOp12.sheet1,
-            sheet2: SvgSheetLabelsOp12.sheet2,
-            sheet3: SvgSheetLabelsOp12.sheet3,
-            sheet4: SvgSheetLabelsOp12.sheet4,
-            sheet5: SvgSheetLabelsOp12.sheet5
+            SHEET_1: SvgSheetLabelsOp12.SHEET_1,
+            SHEET_2: SvgSheetLabelsOp12.SHEET_2,
+            SHEET_3: SvgSheetLabelsOp12.SHEET_3,
+            SHEET_4: SvgSheetLabelsOp12.SHEET_4,
+            SHEET_5: SvgSheetLabelsOp12.SHEET_5,
         },
         op25: {
-            sheet1: SvgSheetLabelsOp25.sheet1,
-            sheet2: SvgSheetLabelsOp25.sheet2,
-            sheet2_1: SvgSheetLabelsOp25.sheet2_1,
-            sheet2_1_1: SvgSheetLabelsOp25.sheet2_1_1,
-            sheet2_1_2: SvgSheetLabelsOp25.sheet2_1_2,
-            sheet2_1_2_1: SvgSheetLabelsOp25.sheet2_1_2_1,
-            sheet2_1_3: SvgSheetLabelsOp25.sheet2_1_3,
-            sheet3: SvgSheetLabelsOp25.sheet3,
-            sheet3_1: SvgSheetLabelsOp25.sheet3_1,
-            sheet3_1_1: SvgSheetLabelsOp25.sheet3_1_1,
-            sheet3_1_2: SvgSheetLabelsOp25.sheet3_1_2,
-            sheet3_1_3: SvgSheetLabelsOp25.sheet3_1_3,
-            sheet3_1_3_1: SvgSheetLabelsOp25.sheet3_1_3_1,
-            sheet4a: SvgSheetLabelsOp25.sheet4a,
-            sheet4b: SvgSheetLabelsOp25.sheet4b,
-            sheet4c: SvgSheetLabelsOp25.sheet4c,
-            sheet4d: SvgSheetLabelsOp25.sheet4d,
-            sheet4_1: SvgSheetLabelsOp25.sheet4_1,
-            sheet4_2: SvgSheetLabelsOp25.sheet4_2,
-            sheet4_3: SvgSheetLabelsOp25.sheet4_3
-        }
+            SHEET_1: SvgSheetLabelsOp25.SHEET_1,
+            SHEET_2: SvgSheetLabelsOp25.SHEET_2,
+            SHEET_2_1: SvgSheetLabelsOp25.SHEET_2_1,
+            SHEET_2_1_1: SvgSheetLabelsOp25.SHEET_2_1_1,
+            SHEET_2_1_2: SvgSheetLabelsOp25.SHEET_2_1_2,
+            SHEET_2_1_2_1: SvgSheetLabelsOp25.SHEET_2_1_2_1,
+            SHEET_2_1_3: SvgSheetLabelsOp25.SHEET_2_1_3,
+            SHEET_3: SvgSheetLabelsOp25.SHEET_3,
+            SHEET_3_1: SvgSheetLabelsOp25.SHEET_3_1,
+            SHEET_3_1_1: SvgSheetLabelsOp25.SHEET_3_1_1,
+            SHEET_3_1_2: SvgSheetLabelsOp25.SHEET_3_1_2,
+            SHEET_3_1_3: SvgSheetLabelsOp25.SHEET_3_1_3,
+            SHEET_3_1_3_1: SvgSheetLabelsOp25.SHEET_3_1_3_1,
+            SHEET_4_A: SvgSheetLabelsOp25.SHEET_4_A,
+            SHEET_4_B: SvgSheetLabelsOp25.SHEET_4_B,
+            SHEET_4_C: SvgSheetLabelsOp25.SHEET_4_C,
+            SHEET_4_D: SvgSheetLabelsOp25.SHEET_4_D,
+            SHEET_4_1: SvgSheetLabelsOp25.SHEET_4_1,
+            SHEET_4_2: SvgSheetLabelsOp25.SHEET_4_2,
+            SHEET_4_3: SvgSheetLabelsOp25.SHEET_4_3,
+        },
     };
 
     /**
@@ -171,48 +170,6 @@ export class EditionSvgSheetComponent implements OnInit {
      */
     ngOnInit() {
         this.sheetsArray = this.svgSheetsData.sheets.map(sheet => sheet.id);
-
-        /*
-        TODO: mute for now since not working yet
-        this.galleryOptions = [
-            {
-                width: '100%',
-                height: '600px',
-                imageSize: 'contain',
-                thumbnailsColumns: 4,
-                previewCloseOnClick: true,
-                previewCloseOnEsc: true,
-                previewZoom: true,
-                previewRotate: true,
-                linkTarget: '_blank'
-            },
-            // max-width 800
-            {
-                breakpoint: 800,
-                width: '100%',
-                height: '600px',
-                imagePercent: 80,
-                thumbnailsPercent: 20,
-                thumbnailsMargin: 20,
-                thumbnailMargin: 20
-            },
-            // max-width 400
-            {
-                breakpoint: 400,
-                preview: false
-            }
-        ];
-
-        this.galleryImages = [2, 3, 4, 5].map(fileNumber => {
-            const fileName = `assets/img/edition/series1/section5/op12/SkI_${fileNumber}n_small_cut_opt.svg`;
-            return {
-                small: fileName,
-                medium: fileName,
-                big: fileName,
-                url: fileName
-            };
-        });
-        */
     }
 
     /**

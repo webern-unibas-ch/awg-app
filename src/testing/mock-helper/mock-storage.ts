@@ -45,9 +45,7 @@ let localStore: { [key: string]: string } = {};
  * It mocks the session storage object to catch storage events.
  */
 export const mockSessionStorage: IMockStorage = {
-    getItem: (key: string): string => {
-        return key in sessionStore ? sessionStore[key] : null;
-    },
+    getItem: (key: string): string => (key in sessionStore ? sessionStore[key] : null),
     setItem: (key: string, value: string) => {
         sessionStore[key] = `${value}`;
     },
@@ -56,7 +54,7 @@ export const mockSessionStorage: IMockStorage = {
     },
     clear: () => {
         sessionStore = {};
-    }
+    },
 };
 
 /**
@@ -65,9 +63,7 @@ export const mockSessionStorage: IMockStorage = {
  * It mocks the local storage object to catch storage events.
  */
 export const mockLocalStorage: IMockStorage = {
-    getItem: (key: string): string => {
-        return key in localStore ? localStore[key] : null;
-    },
+    getItem: (key: string): string => (key in localStore ? localStore[key] : null),
     setItem: (key: string, value: string) => {
         localStore[key] = `${value}`;
     },
@@ -76,5 +72,5 @@ export const mockLocalStorage: IMockStorage = {
     },
     clear: () => {
         localStore = {};
-    }
+    },
 };

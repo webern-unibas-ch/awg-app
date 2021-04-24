@@ -1,24 +1,40 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" prefix="og: https://ogp.me/ns#">
     <head>
         <meta charset="utf-8" />
-        <title>Prototyp AWG Online-Edition</title>
 
-        <meta name="Autor" content="Stefan Münnich" />
+        <meta property="og:image" content="https://www.anton-webern.ch/assets/images/AWG_Prototyp_Graph_Example.png" />
+        <meta property="og:title" content="Anton Webern Gesamtausgabe Online Edition" />
+        <meta
+            property="og:description"
+            content="A prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Department of the University of Basel)"
+        />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://edition.anton-webern.ch" />
+        <meta property="og:site_name" content="AWG Online Edition" />
+
+        <meta name="author" content="Stefan Münnich" />
         <meta
             name="description"
-            content="Prototypische Web-Applikation für die Online-Edition der Anton Webern Gesamtausgabe (Musikwissenschaftliches Seminar der Universität Basel)"
+            content="A prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Department of the University of Basel)"
+        />
+        <meta
+            name="keywords"
+            content="Angular, Edition, Anton Webern Gesamtausgabe, Digital Humanities, Digital Musicology, Digital Music Edition"
         />
 
-        <base href="/" />
+        <title>AWG Online Edition</title>
 
         <meta name="viewport" content="width=device-width, initial-scale=1" />
+        <base href="/" />
         <link rel="icon" type="image/x-icon" href="favicon.ico" />
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag() {
+                dataLayer.push(arguments);
+            }
             gtag('js', new Date());
         </script>
     </head>

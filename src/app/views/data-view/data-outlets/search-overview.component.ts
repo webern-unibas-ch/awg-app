@@ -15,7 +15,7 @@ import { SideInfoService } from '@awg-core/services';
 @Component({
     selector: 'awg-search-overview',
     templateUrl: './search-overview.component.html',
-    styleUrls: ['./search-overview.component.css']
+    styleUrls: ['./search-overview.component.css'],
 })
 export class SearchOverviewComponent implements OnInit {
     /**
@@ -59,7 +59,7 @@ export class SearchOverviewComponent implements OnInit {
         this.searchRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
         ];
     }
 
@@ -73,15 +73,13 @@ export class SearchOverviewComponent implements OnInit {
      * @returns {void} Updates the search info title.
      */
     updateSearchInfoTitleFromPath(): void {
-        // get snapshot from current url path
+        // Get snapshot from current url path
         const path = this.route.snapshot.children[0].url[0].path;
 
-        // filter searchButtonArray
-        const selectedButton = this.searchRouterLinkButtons.filter(button => {
-            return button.link === path;
-        });
+        // Filter searchButtonArray
+        const selectedButton = this.searchRouterLinkButtons.filter(button => button.link === path);
 
-        // update side info title if path is in array
+        // Update side info title if path is in array
         if (selectedButton.length === 1) {
             this.sideInfoService.updateSearchInfoTitle(selectedButton[0].label);
         }

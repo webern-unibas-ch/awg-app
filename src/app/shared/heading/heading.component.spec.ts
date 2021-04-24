@@ -1,5 +1,5 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -16,11 +16,13 @@ describe('HeadingComponent (DONE)', () => {
     let expectedTitle: string;
     let expectedId: string;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [HeadingComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [HeadingComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(HeadingComponent);
@@ -28,7 +30,7 @@ describe('HeadingComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedTitle = 'Test Title';
         expectedId = '23';
     });
@@ -57,11 +59,11 @@ describe('HeadingComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.title = expectedTitle;
             component.id = expectedId;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement, SecurityContext } from '@angular/core';
 import { BrowserModule, DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
@@ -23,12 +23,14 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let expectedOsmLinkLabel: string;
     let expectedOsmIFrameSettings: { width; height; scrolling };
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            imports: [BrowserModule],
-            declarations: [OpenStreetMapComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [BrowserModule],
+                declarations: [OpenStreetMapComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(OpenStreetMapComponent);
@@ -38,19 +40,19 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
         domSanitizer = TestBed.inject(DomSanitizer);
 
-        // test data
+        // Test data
         expectedOsmLinkLabel = 'Größere Karte anzeigen';
         expectedOsmIFrameSettings = {
             width: '100%',
             height: '350',
-            scrolling: 'no'
+            scrolling: 'no',
         };
 
-        // unsafe link values for open streets map
+        // Unsafe link values for open streets map
         expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
         expectedUnsafeOsmLinkUrl = AppConfig.UNSAFE_OSM_LINK_URL;
 
-        // bypass the unsafe values
+        // Bypass the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
         expectedOsmLinkUrl = domSanitizer.sanitize(SecurityContext.URL, expectedUnsafeOsmLinkUrl);
     });
@@ -99,7 +101,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const mapEl = mapDes[0].nativeElement;
 
                 expect(mapEl.src).toBeDefined();
-                expect(mapEl.src).toBe('', `should be empty string`);
+                expect(mapEl.src).toBe('', 'should be empty string');
             });
 
             it('... should not render the link to OSM homepage yet', () => {
@@ -107,19 +109,19 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const linkEl = linkDes[0].nativeElement;
 
                 expect(linkEl.href).toBeDefined();
-                expect(linkEl.href).toBe('', `should be empty string`);
+                expect(linkEl.href).toBe('', 'should be empty string');
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
-            // it gets the bypassed links (SafeResourceUrl)
+            // Simulate the parent setting the input properties
+            // It gets the bypassed links (SafeResourceUrl)
             component.osmEmbedUrl = expectedOsmEmbedUrl;
             component.osmLinkUrl = expectedOsmLinkUrl;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -128,9 +130,9 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const mapDes = getAndExpectDebugElementByCss(compDe, 'iframe#awg-osm-embed-map', 1, 1);
                 const mapEl = mapDes[0].nativeElement;
 
-                // sanitize the bypassed value
+                // Sanitize the bypassed value
                 const sanitizedEmbedUrl = domSanitizer.sanitize(SecurityContext.RESOURCE_URL, expectedOsmEmbedUrl);
-                // check for the src attribute to contain the sanitized SafeResourceUrl
+                // Check for the src attribute to contain the sanitized SafeResourceUrl
                 expect(mapEl.src).toBeDefined();
                 expect(mapEl.src).toBe(sanitizedEmbedUrl, `should be ${sanitizedEmbedUrl}`);
                 expect(mapEl.src).toBe(expectedUnsafeOsmEmbedUrl, `should be ${expectedUnsafeOsmEmbedUrl}`);
@@ -140,9 +142,9 @@ describe('OpenStreetMapComponent (DONE)', () => {
                 const linkDes = getAndExpectDebugElementByCss(compDe, 'div#awg-osm-link a', 1, 1);
                 const linkEl = linkDes[0].nativeElement;
 
-                // sanitize the bypassed value
+                // Sanitize the bypassed value
                 const sanitizedLinkUrl = expectedOsmLinkUrl;
-                // check for the href attribute to contain the sanitized SafeResourceUrl
+                // Check for the href attribute to contain the sanitized SafeResourceUrl
                 expect(linkEl.href).toBeDefined();
                 expect(linkEl.href).toBe(sanitizedLinkUrl, `should be ${sanitizedLinkUrl}`);
                 expect(linkEl.href).toBe(expectedUnsafeOsmLinkUrl, `should be ${expectedUnsafeOsmLinkUrl}`);

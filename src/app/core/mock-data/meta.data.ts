@@ -15,7 +15,7 @@ const METAPAGE: MetaPage = {
     version: AppConfig.AWG_APP_VERSION,
     versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
-    awgProjectName: AppConfig.AWG_PROJECT_NAME
+    awgProjectName: AppConfig.AWG_PROJECT_NAME,
 };
 
 /**
@@ -27,10 +27,10 @@ const METASTRUCTURE: MetaStructure = {
     authors: [
         {
             name: 'Stefan Münnich',
-            homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
-        }
+            homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+        },
     ],
-    lastModified: '29. Januar 2016'
+    lastModified: '29. Januar 2016',
 };
 
 /**
@@ -44,17 +44,17 @@ const METACONTACT: MetaContact = {
         street: 'Petersgraben 27/29',
         postalCode: 'CH-4051',
         city: 'Basel',
-        country: 'Schweiz'
+        country: 'Schweiz',
     },
     phone: {
         label: 'Telefon:',
-        number: '+41 (0)61 207 28 21'
+        number: '+41 (0)61 207 28 21',
     },
     email: {
         label: 'E-Mail:',
         mailto: 'mailto:info-awg@unibas.ch',
-        safeString: 'info-awg [at] unibas [dot] ch'
-    }
+        safeString: 'info-awg [at] unibas [dot] ch',
+    },
 };
 
 /**
@@ -67,5 +67,5 @@ const METACONTACT: MetaContact = {
 export const METADATA: Meta = {
     page: METAPAGE,
     structure: METASTRUCTURE,
-    contact: METACONTACT
+    contact: METACONTACT,
 };

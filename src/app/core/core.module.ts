@@ -1,4 +1,5 @@
 import { NgModule, SkipSelf, Optional } from '@angular/core';
+import { Title } from '@angular/platform-browser';
 
 import { SharedModule } from '@awg-shared/shared.module';
 import { FooterModule } from './footer/footer.module';
@@ -12,7 +13,7 @@ import { httpInterceptorProviders } from './interceptors';
     imports: [SharedModule, FooterModule],
     declarations: [NavbarComponent, ViewContainerComponent],
     exports: [NavbarComponent, ViewContainerComponent, FooterModule],
-    providers: [httpInterceptorProviders]
+    providers: [httpInterceptorProviders, Title],
 })
 export class CoreModule {
     constructor(

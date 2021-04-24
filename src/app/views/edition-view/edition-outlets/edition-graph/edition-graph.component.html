@@ -35,9 +35,27 @@
                     <button
                         type="button"
                         class="btn btn-sm btn-outline-info ml-2"
-                        (click)="modal.open('hintEditionGraph')"
+                        (click)="modal.open('HINT_EDITION_GRAPH')"
                     >
                         Hinweise zur Nutzung
+                    </button>
+                    <button
+                        type="button"
+                        title="Open fullscreen"
+                        class="btn btn-sm btn-outline-info ml-2"
+                        (click)="openFullscreen()"
+                        *ngIf="!isFullscreen"
+                    >
+                        <fa-icon [icon]="faExpand"></fa-icon>
+                    </button>
+                    <button
+                        type="button"
+                        title="Close fullscreen"
+                        class="btn btn-sm btn-info ml-2"
+                        (click)="closeFullscreen()"
+                        *ngIf="isFullscreen"
+                    >
+                        <fa-icon [icon]="faCompress"></fa-icon>
                     </button>
                 </h4>
                 <p>
@@ -50,11 +68,14 @@
                     unter dem Punkt <i>SPARQL Abfrage</i> vorgenommen werden; in der Voreinstellung werden hierbei alle
                     vorhandenen Triples abgefragt.
                 </p>
-                <awg-graph-visualizer [graphRDFInputData]="graph.rdfData"></awg-graph-visualizer>
+                <awg-graph-visualizer
+                    [graphRDFInputData]="graph.rdfData"
+                    [isFullscreen]="isFullscreen"
+                ></awg-graph-visualizer>
             </div>
 
             <!-- static image -->
-            <div class="awg-graph-static" *ngIf="graph.staticImage && graph.staticImage !== ''">
+            <div class="awg-graph-static mt-3" *ngIf="graph.staticImage && graph.staticImage !== ''">
                 <h4>Statischer Graph</h4>
                 <div [compile-html]="graph.staticImage" [compile-html-ref]="ref"></div>
             </div>
@@ -65,9 +86,7 @@
     <ng-template #error>
         <div class="errorMessage" *ngIf="errorObject">
             <div class="col-12 text-center">
-                <div class="alert alert-danger">
-                    {{ errorObject | json }}
-                </div>
+                <div class="alert alert-danger">{{ errorObject | json }}</div>
             </div>
         </div>
     </ng-template>

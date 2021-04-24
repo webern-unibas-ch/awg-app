@@ -23,53 +23,53 @@
  */
 
 //
-// addValueFormats
-// export * from './add-value-formats';
+// AddValueFormats
+// Export * from './add-value-formats';
 //
 
 //
-// basicMessageComponents
+// BasicMessageComponents
 export * from './basic-message-components';
 //
 
 //
-// changeValueFormats
-// export * from './change-value-formats';
+// ChangeValueFormats
+// Export * from './change-value-formats';
 //
 
 //
-// createResourceFormats
-// export * from './create-resource-formats';
+// CreateResourceFormats
+// Export * from './create-resource-formats';
 //
 
 //
-// deleteResponseFormats
-// export * from './delete-response-formats';
+// DeleteResponseFormats
+// Export * from './delete-response-formats';
 //
 
 //
-// graphDataResponseFormats
-// export * from './graph-data-response-formats';
+// GraphDataResponseFormats
+// Export * from './graph-data-response-formats';
 //
 
 //
-// hierarchicalListResponseFormats
+// HierarchicalListResponseFormats
 export * from './hierarchical-list-response-formats';
 //
 
 //
-// resourceResponseFormats
+// ResourceResponseFormats
 export * from './resource-response-formats';
 //
 
 //
-// searchResponseFormats
+// SearchResponseFormats
 export * from './search-response-formats';
 //
 
 //
-// valueResponseFormats
-// export * from './value-response-formats';
+// ValueResponseFormats
+// Export * from './value-response-formats';
 //
 
 //
@@ -77,11 +77,11 @@ export * from './search-response-formats';
 //
 
 //
-// projectResponseFormats
+// ProjectResponseFormats
 export * from './project-response-formats';
 //
 
 //
-// sessionResponseFormats
+// SessionResponseFormats
 export * from './session-response-formats';
 //

@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { HomeViewComponent } from '@awg-views/home-view/home-view.component';
 
-/* routes of the PageNotFoundViewModule */
+/* Routes of the PageNotFoundViewModule */
 const homeViewRoutes: Routes = [
     {
         path: '',
-        component: HomeViewComponent
-    }
+        component: HomeViewComponent,
+        data: { title: 'AWG Online Edition – Home' },
+    },
 ];
 
 /**
@@ -24,6 +25,6 @@ export const routedHomeViewComponents = [HomeViewComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(homeViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class HomeViewRoutingModule {}

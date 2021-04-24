@@ -54,13 +54,13 @@ export class ResourceData {
      * @param {ResourceDetail} detail The given resource detail.
      */
     constructor(resourceFullResponse: ResourceFullResponseJson, detail: ResourceDetail) {
-        // snapshot of raw json response
+        // Snapshot of raw json response
         this.jsonRaw = JSON.parse(JSON.stringify(resourceFullResponse));
 
-        // converted html data
+        // Converted html data
         this.detail = detail;
 
-        // snapshot of json response from converted html data
+        // Snapshot of json response from converted html data
         this.jsonConverted = JSON.parse(JSON.stringify(detail));
     }
 }

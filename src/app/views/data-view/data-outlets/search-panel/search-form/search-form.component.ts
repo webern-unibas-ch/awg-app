@@ -16,7 +16,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
     selector: 'awg-search-form',
     templateUrl: './search-form.component.html',
     styleUrls: ['./search-form.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnChanges {
     /**
@@ -57,7 +57,7 @@ export class SearchFormComponent implements OnChanges {
     searchFormStrings = {
         label: 'Search Input',
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
-        errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!'
+        errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
     };
 
     /**
@@ -99,7 +99,7 @@ export class SearchFormComponent implements OnChanges {
      */
     createFormGroup(): void {
         this.searchForm = this.formBuilder.group({
-            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
     }
 
@@ -115,11 +115,11 @@ export class SearchFormComponent implements OnChanges {
     listenToUserInputChange(): void {
         this.searchValueControl.valueChanges
             .pipe(
-                // at least 3 characters
+                // At least 3 characters
                 filter(x => x.length >= 3),
-                // do not check changes before half a second
+                // Do not check changes before half a second
                 debounceTime(500),
-                // do not check unchanged values
+                // Do not check unchanged values
                 distinctUntilChanged()
             )
             .subscribe((query: string) => this.onSearch(query));

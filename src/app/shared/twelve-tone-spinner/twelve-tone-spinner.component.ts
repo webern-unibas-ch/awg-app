@@ -11,7 +11,7 @@ import { ChangeDetectionStrategy, Component } from '@angular/core';
     selector: 'awg-twelve-tone-spinner',
     templateUrl: './twelve-tone-spinner.component.html',
     styleUrls: ['./twelve-tone-spinner.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TwelveToneSpinnerComponent {
     /**

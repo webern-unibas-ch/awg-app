@@ -1,5 +1,5 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -11,13 +11,13 @@ import {
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailHeader,
     ResourceDetailImage,
-    ResourceDetailProperty
+    ResourceDetailProperty,
 } from '@awg-views/data-view/models';
 import { GndEvent } from '@awg-core/services/gnd-service';
 
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
 
-// mock component
+// Mock component
 @Component({ selector: 'awg-resource-detail-html-content', template: '' })
 class ResourceDetailHtmlContentStubComponent {
     @Input()
@@ -39,11 +39,13 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailHtmlComponent, ResourceDetailHtmlContentStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailHtmlComponent, ResourceDetailHtmlContentStubComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlComponent);
@@ -51,18 +53,18 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         const header: ResourceDetailHeader = { objID: '1234', icon: '', type: '', title: 'Test', lastmod: '' };
         const images: ResourceDetailImage[] = [];
         const incoming = [new ResourceDetailGroupedIncomingLinks()];
         const props: ResourceDetailProperty[] = [
-            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
+            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2']),
         ];
         const content: ResourceDetailContent = { props, images, incoming };
 
         expectedResourceDetailData = new ResourceDetail(header, content);
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
@@ -94,10 +96,10 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.resourceDetailData = expectedResourceDetailData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -124,15 +126,15 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
                     1
                 );
 
-                // provide data without content property
+                // Provide data without content property
                 expectedResourceDetailData = new ResourceDetail(undefined, undefined);
 
-                // simulate the host parent setting the new input properties
+                // Simulate the host parent setting the new input properties
                 component.resourceDetailData = expectedResourceDetailData;
                 fixture.detectChanges();
 
                 // TODO: should be 0
-                //  check angular defect with testing under ChangeDetectionStrategy.OnPush : https://github.com/angular/angular/issues/12313
+                //  Check angular defect with testing under ChangeDetectionStrategy.OnPush : https://github.com/angular/angular/issues/12313
 
                 const newContentDes = getAndExpectDebugElementByDirective(
                     compDe,
@@ -176,19 +178,19 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
                 let id;
 
-                // undefined
+                // Undefined
                 id = undefined;
                 htmlContentCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 1, id);
 
-                // number
+                // Number
                 id = 28;
                 htmlContentCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 2, id);
 
-                // string
+                // String
                 id = '330';
                 htmlContentCmp.resourceRequest.emit(id);
 
@@ -206,7 +208,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
                     ResourceDetailHtmlContentStubComponent
                 ) as ResourceDetailHtmlContentStubComponent;
 
-                // id is undefined
+                // Id is undefined
                 htmlContentCmp.resourceRequest.emit(undefined);
 
                 expectSpyCall(navigateToResourceSpy, 1, undefined);
@@ -227,14 +229,14 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
                 let id;
 
-                // number
+                // Number
                 id = 28;
                 htmlContentCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 1, id);
                 expectSpyCall(emitSpy, 1, id.toString());
 
-                // string
+                // String
                 id = '28';
                 htmlContentCmp.resourceRequest.emit(id);
 

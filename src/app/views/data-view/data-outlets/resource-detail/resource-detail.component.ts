@@ -26,16 +26,9 @@ import { ResourceData } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail',
     templateUrl: './resource-detail.component.html',
     styleUrls: ['./resource-detail.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
-    /**
-     * Private variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private destroy$: Subject<boolean> = new Subject<boolean>();
-
     /**
      * Public variable: errorMessage.
      *
@@ -72,7 +65,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     tabTitles = {
         html: 'Detail',
         raw: 'JSON (raw)',
-        converted: 'JSON (converted)'
+        converted: 'JSON (converted)',
     };
 
     /**
@@ -88,6 +81,13 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     get isLoading$(): Observable<boolean> {
         return this.loadingService.getLoadingStatus();
     }
+
+    /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the ResourceDetailComponent.
@@ -133,24 +133,24 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the resource data.
      */
     getResourceData(): void {
-        // observe route params
+        // Observe route params
         this.route.paramMap
             .pipe(
                 switchMap((params: ParamMap) => {
-                    // short cut for id param
+                    // Short cut for id param
                     const id = params.get('id');
 
-                    // update current resource id via streamer service
+                    // Update current resource id via streamer service
                     this.updateResourceId(id);
 
-                    // fetch resource data depending on param id
+                    // Fetch resource data depending on param id
                     return this.dataApiService.getResourceData(id);
                 }),
-                takeUntil(this.destroy$)
+                takeUntil(this._destroy$)
             )
             .subscribe(
                 (data: ResourceData) => {
-                    // subscribe to resource data to trigger loading service
+                    // Subscribe to resource data to trigger loading service
                     this.resourceData = data;
                 },
                 err => (this.errorMessage = err)
@@ -168,10 +168,10 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the resource id.
      */
     updateResourceId(id: string): void {
-        // store current resource id
+        // Store current resource id
         this.resourceId = id;
 
-        // share current id via streamer service
+        // Share current id via streamer service
         this.dataStreamerService.updateResourceId(id);
     }
 
@@ -191,10 +191,10 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     navigateToResource(id?: string): void {
         const nextId = id ? id : this.oldId ? this.oldId : this.resourceId;
 
-        // save resourceId as oldId
+        // Save resourceId as oldId
         this.oldId = this.resourceId;
 
-        // navigate to new resource
+        // Navigate to new resource
         this.router.navigate(['/data/resource', +nextId]);
     }
 
@@ -226,7 +226,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 
@@ -237,10 +237,10 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
     }
 }

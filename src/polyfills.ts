@@ -1,7 +1,4 @@
-/***************************************************************************************************
- * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
- */
-import '@angular/localize/init';
+/* eslint-disable capitalized-comments, spaced-comment */
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -19,10 +16,17 @@ import '@angular/localize/init';
  */
 
 /***************************************************************************************************
+ * Load `$localize` onto the global scope - used if i18n tags appear in Angular templates.
+ */
+import '@angular/localize/init';
+
+/***************************************************************************************************
  * BROWSER POLYFILLS
  */
 
-/** IE10 and IE11 requires the following for NgClass support on SVG elements */
+/**
+ * IE11 requires the following for NgClass support on SVG elements
+ */
 // import 'classlist.js';  // Run `npm install --save classlist.js`.
 
 /**
@@ -39,7 +43,7 @@ import '@angular/localize/init';
  * will put import in the top of bundle, so user need to create a separate file
  * in this directory (for example: zone-flags.ts), and put the following flags
  * into that file, and then add the following code before importing zone.js.
- * import './zone-flags.ts';
+ * import './zone-flags';
  *
  * The flags allowed in zone-flags.ts are listed here.
  *
@@ -70,18 +74,18 @@ const w = window as any;
 // Add global to window, assigning the value of window itself.
 w.global = w;
 
-// workaround for Uncaught ReferenceError: setImmediate is not defined
+// Workaround for Uncaught ReferenceError: setImmediate is not defined
 // cf. https://stackoverflow.com/a/58088954
 w.setImmediate = w.setTimeout;
 
-// workaround for Uncaught ReferenceError: Buffer is not defined
+// Workaround for Uncaught ReferenceError: Buffer is not defined
 // cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
 // @ts-ignore
 w.Buffer = []; // w.Buffer || require('buffer').Buffer;
 
-// workaround for Uncaught ReferenceError: process is not defined
+// Workaround for Uncaught ReferenceError: process is not defined
 // cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691
 w.process = {
     env: { DEBUG: undefined },
-    version: []
+    version: [],
 };

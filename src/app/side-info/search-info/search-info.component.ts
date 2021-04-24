@@ -15,7 +15,7 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
     selector: 'awg-search-info',
     templateUrl: './search-info.component.html',
     styleUrls: ['./search-info.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchInfoComponent implements OnInit {
     /**

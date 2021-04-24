@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -8,7 +8,7 @@ import { ResourceDetail } from '@awg-views/data-view/models';
 
 import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw.component';
 
-// mock awg-json-viewer component
+// Mock awg-json-viewer component
 @Component({ selector: 'awg-json-viewer', template: '' })
 class JsonViewerStubComponent {
     @Input()
@@ -26,11 +26,13 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     const expectedHeader = 'Raw JSON response from Salsah-API';
     let expectedData: ResourceFullResponseJson;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailJsonRawComponent);
@@ -38,7 +40,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedData = new ResourceFullResponseJson();
         expectedData.status = 1;
     });
@@ -76,10 +78,10 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.resourceJsonRawData = expectedData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

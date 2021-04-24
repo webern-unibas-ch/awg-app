@@ -20,5 +20,5 @@ export {
     mockResourceDetail,
     mockResourceFullResponseJson,
     mockSearchResponseConverted,
-    mockSearchResponseJson
+    mockSearchResponseJson,
 };

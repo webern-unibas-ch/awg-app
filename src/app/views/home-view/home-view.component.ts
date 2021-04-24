@@ -13,7 +13,7 @@ import { EditionWorks } from '@awg-views/edition-view/models';
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
     styleUrls: ['./home-view.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeViewComponent implements OnInit {
     /**
@@ -33,18 +33,18 @@ export class HomeViewComponent implements OnInit {
     homeViewId = 'awg-home-view';
 
     /**
-     * Readonly constant: editionWorkOp12.
+     * Readonly constant: EDITION_WORK_OP12.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp12 = EditionWorks.op12;
+    readonly EDITION_WORK_OP12 = EditionWorks.OP12;
 
     /**
-     * Readonly constant: editionWorkOp25.
+     * Readonly constant: EDITION_WORK_OP25.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp25 = EditionWorks.op25;
+    readonly EDITION_WORK_OP25 = EditionWorks.OP25;
 
     /**
      * Constructor of the HomeViewComponent.
@@ -73,10 +73,10 @@ export class HomeViewComponent implements OnInit {
      * @returns {void} Activates the edition-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 }

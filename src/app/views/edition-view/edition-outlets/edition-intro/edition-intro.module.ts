@@ -13,6 +13,6 @@ import { EditionIntroRoutingModule, routedEditionIntroComponents } from './editi
  */
 @NgModule({
     imports: [SharedModule, EditionIntroRoutingModule],
-    declarations: [routedEditionIntroComponents]
+    declarations: [routedEditionIntroComponents],
 })
 export class EditionIntroModule {}

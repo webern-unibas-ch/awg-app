@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -6,7 +6,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -26,11 +26,13 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
     let expectedProps: ResourceDetailProperty[];
     let expectedMetaBreakLine: string;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentPropsComponent);
@@ -38,24 +40,25 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedMetaBreakLine = 'Versionsdatum';
 
-        const prop1Value1 = `<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])`;
+        const prop1Value1 =
+            '<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])';
         const props1: ResourceDetailProperty = new ResourceDetailProperty('0', 'text', 'prop1', [
             prop1Value1,
-            'prop1-value2'
+            'prop1-value2',
         ]);
         const props2: ResourceDetailProperty = new ResourceDetailProperty('1', 'date', 'Versionsdatum', ['2019']);
         const props3: ResourceDetailProperty = new ResourceDetailProperty('2', 'richtext', 'prop2', [
             'prop2-value1',
             'prop2-value2',
-            'prop2-value3'
+            'prop2-value3',
         ]);
         const props4: ResourceDetailProperty = new ResourceDetailProperty('3', 'text', 'prop1', []);
         expectedProps = [props1, props2, props3, props4];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
@@ -89,11 +92,11 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
             });
 
             it('... should contain one header', () => {
-                // header debug element
+                // Header debug element
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'section.awg-props > h4.awg-props-title', 1, 1);
                 const headerEl = headerDes[0].nativeElement;
 
-                // check output
+                // Check output
                 expect(headerEl.textContent).toContain('Objektdaten');
             });
 
@@ -105,10 +108,10 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.props = expectedProps;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -155,7 +158,7 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                     expect(html.name).toBeDefined();
                     expect(html.name).toBe('span');
 
-                    // check parent
+                    // Check parent
                     expect(html.parent.name).toBe('li');
                     expect(html.parent.attributes.class).toBeDefined();
                     expect(html.parent.attributes.class).toBe('awg-prop-value');
@@ -173,22 +176,22 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 );
                 const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                // no id
+                // No id
                 expectSpyCall(navigateToResourceSpy, 1, '');
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                // string as input
+                // String as input
                 expectSpyCall(navigateToResourceSpy, 2, '28');
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                // number as input
+                // Number as input
                 expectSpyCall(navigateToResourceSpy, 3, 330);
             }));
 
@@ -201,9 +204,9 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 );
                 const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
-                // first anchor has no id
+                // First anchor has no id
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expect(emitSpy).not.toHaveBeenCalled();
@@ -219,16 +222,16 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
                 );
                 const anchorDes = getAndExpectDebugElementByCss(innerLiDes[0], 'a', 3, 3);
 
-                // first anchor has no id, see above
+                // First anchor has no id, see above
 
-                // second anchor has @id: string
-                // trigger click with click helper & wait for changes
+                // Second anchor has @id: string
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(emitSpy, 1, '28');
 
-                // third anchor has @id: number
-                // trigger click with click helper & wait for changes
+                // Third anchor has @id: number
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(emitSpy, 2, '330');

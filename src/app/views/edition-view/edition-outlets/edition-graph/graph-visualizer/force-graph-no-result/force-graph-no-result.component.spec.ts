@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
@@ -20,17 +20,19 @@ describe('ForceGraphNoResultComponent', () => {
     let expectedLogos: Logos;
     let expectedHeight: number;
 
-    beforeEach(async(() => {
-        // stub service for test purposes
-        mockCoreService = {
-            getLogos: () => expectedLogos
-        };
+    beforeEach(
+        waitForAsync(() => {
+            // Stub service for test purposes
+            mockCoreService = {
+                getLogos: () => expectedLogos,
+            };
 
-        TestBed.configureTestingModule({
-            declarations: [ForceGraphNoResultComponent],
-            providers: [{ provide: CoreService, useValue: mockCoreService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [ForceGraphNoResultComponent],
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ForceGraphNoResultComponent);
@@ -38,11 +40,11 @@ describe('ForceGraphNoResultComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedLogos = LOGOSDATA;
         expectedHeight = 500;
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
@@ -91,13 +93,13 @@ describe('ForceGraphNoResultComponent', () => {
                 expect(p1El.textContent).toBeDefined();
                 expect(p1El.textContent).toContain(
                     'Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.',
-                    `should contain: Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.`
+                    'should contain: Entschuldigung, Ihre SPARQL-Anfrage führte leider zu keinem Ergebnis.'
                 );
 
                 expect(p2El.textContent).toBeDefined();
                 expect(p2El.textContent).toContain(
                     'Möglicherweise können Sie Ihre Anfrage anpassen.',
-                    `should contain: Möglicherweise können Sie Ihre Anfrage anpassen.`
+                    'should contain: Möglicherweise können Sie Ihre Anfrage anpassen.'
                 );
             });
 
@@ -133,13 +135,13 @@ describe('ForceGraphNoResultComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.height = expectedHeight;
 
-            // mock the call to the meta service in #provideMetaData
+            // Mock the call to the meta service in #provideMetaData
             component.logos = mockCoreService.getLogos();
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

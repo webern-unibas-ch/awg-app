@@ -1,5 +1,5 @@
-/* tslint:disable:no-unused-variable */
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+/* eslint-disable @typescript-eslint/no-unused-vars */
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { QueryParamsHandling } from '@angular/router';
 
@@ -16,7 +16,7 @@ import { EditionConstants, EditionWork, EditionWorks } from '@awg-views/edition-
 
 import { EditionOverviewComponent } from './edition-overview.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-router-link-button-group', template: '' })
 class RouterLinkButtonGroupStubComponent {
     @Input()
@@ -38,17 +38,19 @@ describe('EditionOverviewComponent (DONE)', () => {
     let setButtonsSpy: Spy;
     let getEditionWorkSpy: Spy;
 
-    beforeEach(async(() => {
-        // create a fake service object with a `getData()` spy
-        const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-        // make the spy return a synchronous Observable with the test data
-        getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+    beforeEach(
+        waitForAsync(() => {
+            // Create a fake service object with a `getData()` spy
+            const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
+            // Make the spy return a synchronous Observable with the test data
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
 
-        TestBed.configureTestingModule({
-            declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-            providers: [{ provide: EditionService, useValue: mockEditionService }]
-        }).compileComponents();
-    }));
+            TestBed.configureTestingModule({
+                declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
+                providers: [{ provide: EditionService, useValue: mockEditionService }],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionOverviewComponent);
@@ -56,36 +58,36 @@ describe('EditionOverviewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
-        expectedEditionWork = EditionWorks.op12;
+        // Test data
+        expectedEditionWork = EditionWorks.OP12;
         expectedEditionRouterLinkButtons = [
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.introRoute.route,
-                EditionConstants.editionIntro.short,
+                EditionConstants.EDITION_INTRO.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.detailRoute.route,
-                EditionConstants.editionDetail.short,
+                EditionConstants.EDITION_DETAIL.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.reportRoute.route,
-                EditionConstants.editionReport.short,
+                EditionConstants.EDITION_REPORT.short,
                 false
             ),
             new RouterLinkButton(
                 expectedEditionWork.baseRoute,
                 expectedEditionWork.graphRoute.route,
-                EditionConstants.editionGraph.short,
+                EditionConstants.EDITION_GRAPH.short,
                 false
-            )
+            ),
         ];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         setButtonsSpy = spyOn(component, 'setButtons').and.callThrough();
@@ -133,7 +135,7 @@ describe('EditionOverviewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

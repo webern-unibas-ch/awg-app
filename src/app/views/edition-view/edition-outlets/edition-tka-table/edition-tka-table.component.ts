@@ -12,7 +12,7 @@ import { TextcriticalComment } from '../../models/index';
     selector: 'awg-edition-tka-table',
     templateUrl: './edition-tka-table.component.html',
     styleUrls: ['./edition-tka-table.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionTkaTableComponent implements OnInit {
     /**

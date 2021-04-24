@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -8,7 +8,7 @@ import { ResourceDetail, ResourceDetailContent } from '@awg-views/data-view/mode
 
 import { ResourceDetailJsonConvertedComponent } from './resource-detail-json-converted.component';
 
-// mock awg-json-viewer component
+// Mock awg-json-viewer component
 @Component({ selector: 'awg-json-viewer', template: '' })
 class JsonViewerStubComponent {
     @Input()
@@ -26,11 +26,13 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     const expectedHeader = 'Converted JSON response from Salsah-API';
     let expectedData: ResourceDetail;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailJsonConvertedComponent);
@@ -38,7 +40,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedData = new ResourceDetail(
             { objID: '', icon: '', type: '', title: 'test', lastmod: '2019' },
             new ResourceDetailContent(undefined, undefined, undefined)
@@ -79,10 +81,10 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.resourceJsonConvertedData = expectedData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -14,14 +14,16 @@ describe('ViewContainerComponent (DONE)', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
-        // add custom jasmine matchers (ToHaveCssClass)
+        // Add custom jasmine matchers (ToHaveCssClass)
         jasmine.addMatchers(customJasmineMatchers);
 
         fixture = TestBed.createComponent(ViewContainerComponent);
@@ -56,11 +58,11 @@ describe('ViewContainerComponent (DONE)', () => {
             it('... should contain only one named router outlet (stubbed)', () => {
                 const routletDes = getAndExpectDebugElementByDirective(compDe, RouterOutletStubComponent, 2, 2);
 
-                // main outlet should not be named
+                // Main outlet should not be named
                 expect(routletDes[0].attributes).toBeDefined();
                 expect(routletDes[0].attributes.name).not.toBeDefined();
 
-                // secondary outlet should be named 'side'
+                // Secondary outlet should be named 'side'
                 expect(routletDes[1].attributes).toBeDefined();
                 expect(routletDes[1].attributes.name).toBeDefined();
                 expect(routletDes[1].attributes.name).toBe('side', 'should have name `side`');

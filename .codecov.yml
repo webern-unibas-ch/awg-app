@@ -17,7 +17,7 @@ coverage:
                 flags: home
             edition:
                 target: 70%
-                flags: backend
+                flags: edition
             search:
                 target: 70%
                 flags: search

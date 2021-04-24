@@ -4,4 +4,4 @@ declare namespace jasmine {
     }
 }
 
-// custom matchers, see https://stackoverflow.com/a/44996479
+// For custom matchers, see https://stackoverflow.com/a/44996479

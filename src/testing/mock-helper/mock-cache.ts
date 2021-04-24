@@ -45,5 +45,5 @@ export const mockCache: IMockCache = {
     },
     clear(): void {
         cachedResponses = new Map<string, HttpResponse<any>>();
-    }
+    },
 };

@@ -21,7 +21,7 @@ export class ApiServiceResult {
     /**
      * Configuration and instantiation of JsonConvert.
      */
-    private static jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
+    private static _jsonConvert: JsonConvert = new JsonConvert(OperationMode.ENABLE, ValueCheckingMode.ALLOW_NULL);
 
     /**
      * Status number
@@ -53,6 +53,6 @@ export class ApiServiceResult {
      */
     getBody(classObject?: new () => any): any {
         // console.log(this.body);
-        return ApiServiceResult.jsonConvert.deserialize(this.body, classObject);
+        return ApiServiceResult._jsonConvert.deserialize(this.body, classObject);
     }
 }

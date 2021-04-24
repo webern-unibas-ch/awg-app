@@ -1,4 +1,4 @@
-import { ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
@@ -23,7 +23,7 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ResourceInfoComponent } from './resource-info.component';
 
-@Component({ selector: 'awg-test', template: `` })
+@Component({ selector: 'awg-test', template: '' })
 class SearchPanelStubComponent {}
 
 describe('ResourceInfoComponent (DONE)', () => {
@@ -42,7 +42,7 @@ describe('ResourceInfoComponent (DONE)', () => {
     let navigateToResourceSpy: Spy;
     let navigateToResourceByIndexSpy: Spy;
     let navigateToSearchPanelSpy: Spy;
-    let subscribeResourceInfoDataSpy: Spy;
+    let getResourceInfoDataSpy: Spy;
     let updateResourceInfoSpy: Spy;
 
     let dataStreamerResourceIdSpy: Spy;
@@ -55,33 +55,31 @@ describe('ResourceInfoComponent (DONE)', () => {
     let expectedGoToIndex: number;
     let expectedResultSize: number;
 
-    beforeEach(async () => {
-        // router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+    beforeEach(
+        waitForAsync(() => {
+            // Router spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-        // mocked dataStreamerService
-        mockDataStreamerService = {
-            getResourceId: (): Observable<string> => {
-                return observableOf('test');
-            },
-            getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => {
-                return observableOf();
-            }
-        };
+            // Mocked dataStreamerService
+            mockDataStreamerService = {
+                getResourceId: (): Observable<string> => observableOf('test'),
+                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
+            };
 
-        await TestBed.configureTestingModule({
-            imports: [FontAwesomeTestingModule, ReactiveFormsModule],
-            providers: [
-                { provide: Router, useValue: mockRouter },
-                { provide: DataStreamerService, useValue: mockDataStreamerService },
-                FormBuilder
-            ],
-            declarations: [ResourceInfoComponent, CompileHtmlComponent]
-        }).compileComponents();
-    });
+            TestBed.configureTestingModule({
+                imports: [FontAwesomeTestingModule, ReactiveFormsModule],
+                providers: [
+                    { provide: Router, useValue: mockRouter },
+                    { provide: DataStreamerService, useValue: mockDataStreamerService },
+                    FormBuilder,
+                ],
+                declarations: [ResourceInfoComponent, CompileHtmlComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
-        // add custom jasmine matchers (ToHaveCssClass)
+        // Add custom jasmine matchers (ToHaveCssClass)
         jasmine.addMatchers(customJasmineMatchers);
 
         fixture = TestBed.createComponent(ResourceInfoComponent);
@@ -89,7 +87,7 @@ describe('ResourceInfoComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // inject service from root
+        // Inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);
         formBuilder = TestBed.inject(FormBuilder);
 
@@ -98,16 +96,16 @@ describe('ResourceInfoComponent (DONE)', () => {
         expectedResultSize = 5;
         expectedGoToIndex = 3;
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
-        buildFormSpy = spyOn(component as any, 'buildForm').and.callThrough();
+        buildFormSpy = spyOn(component as any, '_buildForm').and.callThrough();
         findIndexPositionInSearchResultsByIdSpy = spyOn(
             component as any,
-            'findIndexPositionInSearchResultsById'
+            '_findIndexPositionInSearchResultsById'
         ).and.callThrough();
-        updateResourceInfoSpy = spyOn(component as any, 'updateResourceInfo').and.callThrough();
-        subscribeResourceInfoDataSpy = spyOn(component, 'subscribeResourceInfoData').and.callThrough();
+        updateResourceInfoSpy = spyOn(component as any, '_updateResourceInfo').and.callThrough();
+        getResourceInfoDataSpy = spyOn(component, 'getResourceInfoData').and.callThrough();
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
         navigateToResourceByIndexSpy = spyOn(component, 'navigateToResourceByIndex').and.callThrough();
         navigateToSearchPanelSpy = spyOn(component, 'navigateToSearchPanel').and.callThrough();
@@ -119,7 +117,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             dataStreamerService,
             'getSearchResponseWithQuery'
         ).and.returnValue(observableOf(expectedSearchResponseWithQuery));
-        consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
     });
 
     afterAll(() => {
@@ -135,11 +133,6 @@ describe('ResourceInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have resourceInfoDataSubscription', () => {
-            expectSpyCall(subscribeResourceInfoDataSpy, 0);
-            expect((component as any).resourceInfoDataSubscription).toBeUndefined('should be undefined');
-        });
-
         it('... should not have goToIndex', () => {
             expect(component.goToIndex).toBeUndefined('should be undefined');
         });
@@ -174,25 +167,25 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#subscribeResourceInfoData', () => {
+        describe('#getResourceInfoData', () => {
             it('... should not have been called', () => {
-                expectSpyCall(subscribeResourceInfoDataSpy, 0);
+                expectSpyCall(getResourceInfoDataSpy, 0);
             });
         });
 
-        describe('#updateResourceInfo', () => {
+        describe('#_updateResourceInfo', () => {
             it('... should not have been called', () => {
                 expectSpyCall(updateResourceInfoSpy, 0);
             });
         });
 
-        describe('#buildForm', () => {
+        describe('#_buildForm', () => {
             it('... should not have been called', () => {
                 expectSpyCall(buildFormSpy, 0);
             });
         });
 
-        describe('#findIndexPositionInSearchResultsById', () => {
+        describe('#_findIndexPositionInSearchResultsById', () => {
             it('... should not have been called', () => {
                 expectSpyCall(findIndexPositionInSearchResultsByIdSpy, 0);
             });
@@ -213,14 +206,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
-        describe('#subscribeResourceInfoData', () => {
-            it('... should have been called and created subscription', () => {
-                expectSpyCall(subscribeResourceInfoDataSpy, 1);
-                expect((component as any).resourceInfoDataSubscription).toBeDefined();
+        describe('#getResourceInfoData', () => {
+            it('... should have been called', () => {
+                expectSpyCall(getResourceInfoDataSpy, 1);
             });
 
             it('... should have got `resourceId` from dataStreamerService', () => {
@@ -234,12 +226,12 @@ describe('ResourceInfoComponent (DONE)', () => {
                 expectSpyCall(dataStreamerSearchResponseWithQuerySpy, 1);
             });
 
-            it('... should have called updateResourceInfo with `resourceId` and searchResponse', () => {
+            it('... should have called _updateResourceInfo with `resourceId` and searchResponse', () => {
                 const expectedResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
                 expectSpyCall(updateResourceInfoSpy, 1, [expectedResourceId, expectedResponseClone]);
             });
-            it('... should have set `goToIndex` and `resultSize` (via updateResourceInfo)', () => {
+            it('... should have set `goToIndex` and `resultSize` (via _updateResourceInfo)', () => {
                 expect(component.resultSize).toBeTruthy('should be truthy');
                 expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
 
@@ -247,55 +239,55 @@ describe('ResourceInfoComponent (DONE)', () => {
                 expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
             });
 
-            it('... should have called buildForm with `goToIndex` and `resultSize`', () => {
+            it('... should have called _buildForm with `goToIndex` and `resultSize`', () => {
                 expectSpyCall(buildFormSpy, 1, [expectedGoToIndex, expectedResultSize]);
             });
 
-            it(`... should not log to console if subscription succeeds`, () => {
-                // check initial subscription
-                expectSpyCall(subscribeResourceInfoDataSpy, 1);
+            it('... should not log error to console if subscription succeeds', () => {
+                // Check initial subscription
+                expectSpyCall(getResourceInfoDataSpy, 1);
                 expectSpyCall(dataStreamerResourceIdSpy, 1);
                 expectSpyCall(dataStreamerSearchResponseWithQuerySpy, 1);
 
-                // should not have logged to console
+                // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+                expect(mockConsole.get(0)).toBeUndefined('should be undefined');
             });
 
-            it(`... should throw an error if subscription fails and log to console`, () => {
-                // check initial subscription
-                expectSpyCall(subscribeResourceInfoDataSpy, 1);
+            it('... should throw an error if subscription fails and log to console', () => {
+                // Check initial subscription
+                expectSpyCall(getResourceInfoDataSpy, 1);
                 expectSpyCall(dataStreamerResourceIdSpy, 1);
                 expectSpyCall(dataStreamerSearchResponseWithQuerySpy, 1);
 
-                // should not have logged to console
+                // Should not have logged to console
                 expectSpyCall(consoleSpy, 0);
-                expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+                expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 
-                // spy on dataStreamerService to return an error
+                // Spy on dataStreamerService to return an error
                 dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableThrowError({ status: 404 }));
 
                 const expectedLogMessage = 'RESOURCE-INFO: Got no sideInfoData from Subscription!';
 
-                // init new subscription with error
-                component.subscribeResourceInfoData();
+                // Init new subscription with error
+                component.getResourceInfoData();
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
-                // check new subscription
-                expectSpyCall(subscribeResourceInfoDataSpy, 2);
+                // Check new subscription
+                expectSpyCall(getResourceInfoDataSpy, 2);
                 expectSpyCall(dataStreamerResourceIdSpy, 2);
                 expectSpyCall(dataStreamerSearchResponseWithQuerySpy, 2);
 
-                // check console
+                // Check console
                 expectSpyCall(consoleSpy, 1, expectedLogMessage);
                 expect(mockConsole.get(0)).toEqual(expectedLogMessage, `should be ${expectedLogMessage}`);
             });
         });
 
-        describe('#updateResourceInfo', () => {
-            it('... should have called `findIndexPositionInSearchResultsById` with `resourceId` and searchResponse', () => {
+        describe('#_updateResourceInfo', () => {
+            it('... should have called `_findIndexPositionInSearchResultsById` with `resourceId` and searchResponse', () => {
                 const expectedResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
                 expectSpyCall(findIndexPositionInSearchResultsByIdSpy, 1, [expectedResourceId, expectedResponseClone]);
@@ -311,12 +303,12 @@ describe('ResourceInfoComponent (DONE)', () => {
 
             it('... should change `goToIndex` and `resultSize` depending on input', () => {
                 const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
-                // pick last 3 entries
+                // Pick last 3 entries
                 otherResponseClone.data.subjects = otherResponseClone.data.subjects.slice(-3);
                 expectedResultSize = 3;
                 expectedGoToIndex = 1;
 
-                (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                 expect(component.resultSize).toBeTruthy('should be truthy');
                 expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
@@ -339,8 +331,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: new ResourceInfoResource(expectedNext, i + 1),
-                        previous: new ResourceInfoResource(expectedPrevious, i - 1)
-                    }
+                        previous: new ResourceInfoResource(expectedPrevious, i - 1),
+                    },
                 };
 
                 expect(component.resourceInfoData).toBeTruthy('should be truthy');
@@ -366,11 +358,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: new ResourceInfoResource(expectedNext, i + 1),
-                        previous: undefined
-                    }
+                        previous: undefined,
+                    },
                 };
 
-                (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                 expect(component.goToIndex).toBe(1, 'should be 1');
                 expect(component.resultSize).toBe(3, 'should be 3');
@@ -398,11 +390,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: undefined,
-                        previous: new ResourceInfoResource(expectedPrevious, i - 1)
-                    }
+                        previous: new ResourceInfoResource(expectedPrevious, i - 1),
+                    },
                 };
 
-                (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                 expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
                 expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
@@ -429,11 +421,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: undefined,
-                        previous: undefined
-                    }
+                        previous: undefined,
+                    },
                 };
 
-                (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                 expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
                 expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
@@ -448,7 +440,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             it('... should set `resourceInfoData` (no previous, current resource given)', () => {
                 const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
                 const sliceIndex = 2;
-                // remove resource with resourceId from subjects (on array index position 2)
+                // Remove resource with resourceId from subjects (on array index position 2)
                 otherResponseClone.data.subjects = otherResponseClone.data.subjects
                     .slice(0, sliceIndex)
                     .concat(
@@ -467,11 +459,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: undefined,
                         next: new ResourceInfoResource(expectedNext, i + 1),
-                        previous: undefined
-                    }
+                        previous: undefined,
+                    },
                 };
 
-                (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
                 expect(component.goToIndex).toBe(expectedGoToIndex, `should be ${expectedGoToIndex}`);
                 expect(component.resultSize).toBe(expectedResultSize, `should be ${expectedResultSize}`);
@@ -484,7 +476,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#buildForm', () => {
+        describe('#_buildForm', () => {
             it('... should have been called with `goToIndex` and `resultSize`', () => {
                 expectedGoToIndex = 3;
                 expectedResultSize = 5;
@@ -494,15 +486,15 @@ describe('ResourceInfoComponent (DONE)', () => {
             it('... should have been called with updated values when changed', () => {
                 expectSpyCall(buildFormSpy, 1, [expectedGoToIndex, expectedResultSize]);
 
-                // remove last two entries from searchResponse to get no next resource
+                // Remove last two entries from searchResponse to get no next resource
                 const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
                 otherResponseClone.data.subjects = otherResponseClone.data.subjects.slice(-3);
 
                 dataStreamerSearchResponseWithQuerySpy.and.returnValue(observableOf(otherResponseClone));
 
-                component.subscribeResourceInfoData();
+                component.getResourceInfoData();
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
                 expectedGoToIndex = 1;
@@ -531,9 +523,9 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should have initiated resourceInfoFormGroup with empty index if none is given', () => {
-                (component as any).buildForm(undefined, expectedResultSize);
+                (component as any)._buildForm(undefined, expectedResultSize);
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
                 expect(component.resourceInfoFormGroup).toBeTruthy();
@@ -549,25 +541,25 @@ describe('ResourceInfoComponent (DONE)', () => {
                     let errors = {};
                     const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
-                    // empty string
+                    // Empty string
                     resourceInfoIndex.setValue('');
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['required']).toBeTruthy();
 
-                    // empty array
+                    // Empty array
                     resourceInfoIndex.setValue([]);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['required']).toBeTruthy();
 
-                    // null
+                    // Null
                     resourceInfoIndex.setValue(null);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['required']).toBeTruthy();
 
-                    // undefined
+                    // Undefined
                     resourceInfoIndex.setValue(undefined);
                     errors = resourceInfoIndex.errors || {};
 
@@ -589,7 +581,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         `should be { requiredPattern: ${expectedPattern}, actualValue: NaN }`
                     );
 
-                    // string
+                    // String
                     resourceInfoIndex.setValue('should error');
                     errors = resourceInfoIndex.errors || {};
 
@@ -599,7 +591,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         `should be { requiredPattern:  ${expectedPattern}, actualValue: \'should error\'}`
                     );
 
-                    // array
+                    // Array
                     resourceInfoIndex.setValue([1, 2, 3]);
                     errors = resourceInfoIndex.errors || {};
 
@@ -609,7 +601,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         `should be { requiredPattern: ${expectedPattern}, actualValue: [1, 2, 3]}`
                     );
 
-                    // empty object
+                    // Empty object
                     resourceInfoIndex.setValue({});
                     errors = resourceInfoIndex.errors || {};
 
@@ -619,7 +611,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                         `should be { requiredPattern: ${expectedPattern}, actualValue: {} }`
                     );
 
-                    // object
+                    // Object
                     resourceInfoIndex.setValue({ 1: 'should', 2: 'error' });
                     errors = resourceInfoIndex.errors || {};
 
@@ -714,27 +706,27 @@ describe('ResourceInfoComponent (DONE)', () => {
                     let errors = {};
                     const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
-                    // value less than 0
+                    // Value less than 0
                     resourceInfoIndex.setValue(-1);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['min']).toBeTruthy();
                     expect(errors['min']).toEqual({ min: 1, actual: -1 }, 'should be { min: 1, actual: -1 }');
 
-                    // value 0
+                    // Value 0
                     resourceInfoIndex.setValue(0);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['min']).toBeTruthy();
                     expect(errors['min']).toEqual({ min: 1, actual: 0 }, 'should be { min: 1, actual: 0}');
 
-                    // value 1
+                    // Value 1
                     resourceInfoIndex.setValue(1);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['min']).toBeFalsy();
 
-                    // value greater than 1
+                    // Value greater than 1
                     resourceInfoIndex.setValue(3);
                     errors = resourceInfoIndex.errors || {};
 
@@ -745,20 +737,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                     let errors = {};
                     const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
-                    // value greater than resultSize
+                    // Value greater than resultSize
                     resourceInfoIndex.setValue(expectedResultSize + 1);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['max']).toBeTruthy();
                     expect(errors['max']).toEqual({ max: 5, actual: 6 }, 'should be { max: 5, actual: 6 }');
 
-                    // value equals resultSize
+                    // Value equals resultSize
                     resourceInfoIndex.setValue(expectedResultSize);
                     errors = resourceInfoIndex.errors || {};
 
                     expect(errors['max']).toBeFalsy();
 
-                    // value less than resultSize
+                    // Value less than resultSize
                     resourceInfoIndex.setValue(expectedResultSize - 1);
                     errors = resourceInfoIndex.errors || {};
 
@@ -767,12 +759,12 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#findIndexPositionInSearchResultsById', () => {
+        describe('#_findIndexPositionInSearchResultsById', () => {
             it('... should return index position of a given `resourceId` in given search response', () => {
                 const expectedResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
                 expect(
-                    (component as any).findIndexPositionInSearchResultsById(expectedResourceId, expectedResponseClone)
+                    (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, expectedResponseClone)
                 ).toBe(2, 'should be 2');
             });
 
@@ -780,7 +772,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
 
                 const sliceIndex = 2;
-                // remove resource with resourceId from subjects (on array index position 2)
+                // Remove resource with resourceId from subjects (on array index position 2)
                 otherResponseClone.data.subjects = otherResponseClone.data.subjects
                     .slice(0, sliceIndex)
                     .concat(
@@ -788,7 +780,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     );
 
                 expect(
-                    (component as any).findIndexPositionInSearchResultsById(expectedResourceId, otherResponseClone)
+                    (component as any)._findIndexPositionInSearchResultsById(expectedResourceId, otherResponseClone)
                 ).toBe(-1, 'should be -1');
             });
         });
@@ -797,7 +789,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create SpyObj of mockrouter
+                // Create SpyObj of mockrouter
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
@@ -819,16 +811,16 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const ulDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-resource-info-list-group', 1, 1);
                 const aDes = getAndExpectDebugElementByCss(ulDes[0], 'a.awg-list-group-item', 2, 2);
 
-                // trigger click on first anchor (previous) with click helper & wait for changes
+                // Trigger click on first anchor (previous) with click helper & wait for changes
                 clickAndAwaitChanges(aDes[0], fixture);
 
-                // called previous resource (id: 1231)
+                // Called previous resource (id: 1231)
                 expectSpyCall(navigateToResourceSpy, 1, '1231');
 
-                // trigger click on second anchor (next) with click helper & wait for changes
+                // Trigger click on second anchor (next) with click helper & wait for changes
                 clickAndAwaitChanges(aDes[1], fixture);
 
-                // called next resource (id: 1231)
+                // Called next resource (id: 1231)
                 expectSpyCall(navigateToResourceSpy, 2, '1233');
             }));
         });
@@ -837,7 +829,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // Create spy of mockrouter SpyObj
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
@@ -864,7 +856,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 expectSpyCall(navigateToResourceSpy, 1, expectedId);
                 expectSpyCall(navigationSpy, 1, [[expectedRoute, expectedId]]);
 
-                // change formIndex
+                // Change formIndex
                 formIndex = 1;
 
                 component.navigateToResourceByIndex(formIndex);
@@ -884,34 +876,34 @@ describe('ResourceInfoComponent (DONE)', () => {
                 );
                 const buttonEl = buttonDes[0].nativeElement;
 
-                // set input to another index then current.displayIndex (=3)
+                // Set input to another index then current.displayIndex (=3)
                 let chosenIndex = 1;
                 let resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                 resourceInfoIndex.setValue(chosenIndex);
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
-                // trigger click on resourceIndex=1 with click helper & wait for changes
+                // Trigger click on resourceIndex=1 with click helper & wait for changes
                 clickAndAwaitChanges(buttonDes[0], fixture);
 
-                // called resourceIndex=1 (id: 1230)
+                // Called resourceIndex=1 (id: 1230)
                 expectSpyCall(navigateToResourceByIndexSpy, 1, 1);
                 expectSpyCall(navigateToResourceSpy, 1, '1230');
 
                 // -----------------------------------------------------------
-                // set input to another index then current.displayIndex (=3)
+                // Set input to another index then current.displayIndex (=3)
                 chosenIndex = 5;
                 resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                 resourceInfoIndex.setValue(chosenIndex);
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
-                // trigger click on resourceIndex=5 with click helper & wait for changes
+                // Trigger click on resourceIndex=5 with click helper & wait for changes
                 clickAndAwaitChanges(buttonDes[0], fixture);
 
-                // called resourceIndex=5 (id: 1234)
+                // Called resourceIndex=5 (id: 1234)
                 expectSpyCall(navigateToResourceByIndexSpy, 2, 5);
                 expectSpyCall(navigateToResourceSpy, 2, '1234');
             }));
@@ -921,7 +913,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // Create spy of mockrouter SpyObj
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
 
                 component.resourceInfoData = new ResourceInfo();
@@ -955,7 +947,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 component.resourceInfoData.searchResults.query = '';
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(buttonDe[0], fixture);
 
                 expectSpyCall(navigateToSearchPanelSpy, 1, undefined);
@@ -966,7 +958,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                 component.resourceInfoData.searchResults.query = 'Test';
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(buttonDe[0], fixture);
 
                 expectSpyCall(navigateToSearchPanelSpy, 1);
@@ -1043,7 +1035,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                     const spanDes = getAndExpectDebugElementByCss(divDes[1], 'span', 1, 1);
                     const spanEl = spanDes[0].nativeElement;
 
-                    expect(spanEl.innerText).toBe('---', `should be ---`);
+                    expect(spanEl.innerText).toBe('---', 'should be ---');
                 });
             });
 
@@ -1079,10 +1071,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                         it('... should navigate to previous resource on click', fakeAsync(() => {
                             const aDes = getAndExpectDebugElementByCss(compDe, 'a.awg-list-group-item.text-left', 1, 1);
 
-                            // trigger click on anchor (previous) with click helper & wait for changes
+                            // Trigger click on anchor (previous) with click helper & wait for changes
                             clickAndAwaitChanges(aDes[0], fixture);
 
-                            // called previous resource (id: 1231)
+                            // Called previous resource (id: 1231)
                             expectSpyCall(navigateToResourceSpy, 1, '1231');
                         }));
 
@@ -1104,7 +1096,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get first div
+                            // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
@@ -1154,7 +1146,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2
                             );
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
-                            // get second div
+                            // Get second div
                             const divEl1 = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveCssClass('text-muted');
@@ -1168,7 +1160,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get spans of second outerDiv
+                            // Get spans of second outerDiv
                             const spanDes = getAndExpectDebugElementByCss(
                                 outerDivDes[1],
                                 'div.single-line > span',
@@ -1205,13 +1197,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     describe('if previous resource is not given', () => {
                         beforeEach(() => {
-                            // remove first two entries from searchResponse to get no previous resource
+                            // Remove first two entries from searchResponse to get no previous resource
                             const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
                             otherResponseClone.data.subjects = otherResponseClone.data.subjects.slice(-3);
 
-                            (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                            (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                            // apply changes
+                            // Apply changes
                             fixture.detectChanges();
                         });
 
@@ -1243,7 +1235,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get first div
+                            // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
@@ -1271,20 +1263,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get second outer div
+                            // Get second outer div
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
-                            // get second inner div
+                            // Get second inner div
                             const divEl1 = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveCssClass('text-muted');
                             expect(divEl1).toHaveCssClass('small');
 
-                            // get spans
+                            // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
                             const spanEl0 = spanDes[0].nativeElement;
                             const spanEl1 = spanDes[1].nativeElement;
 
-                            const whiteSpace = '\xA0'; // hex code for a non-breaking space '&nbsp;'
+                            const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
                             expect(spanEl0.innerText).toBeTruthy();
                             expect(spanEl0.innerText).toBe(
@@ -1392,23 +1384,23 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const inputEl = inputDes[0].nativeElement;
 
-                            // formControlName='resourceInfoIndex'
+                            // FormControlName='resourceInfoIndex'
                             expect(inputDes[0].attributes.formControlName).toBeTruthy();
                             expect(inputDes[0].attributes.formControlName).toBe(
                                 'resourceInfoIndex',
-                                `should be resourceInfoIndex`
+                                'should be resourceInfoIndex'
                             );
 
-                            // type='number'
+                            // Type='number'
                             expect(inputDes[0].attributes.type).toBeTruthy();
-                            expect(inputDes[0].attributes.type).toBe('number', `should be number`);
+                            expect(inputDes[0].attributes.type).toBe('number', 'should be number');
 
-                            // size=4
+                            // Size=4
                             expect(inputDes[0].attributes.size).toBeTruthy();
-                            expect(inputDes[0].attributes.size).toBe('4', `should be 4`);
-                            // step=1
+                            expect(inputDes[0].attributes.size).toBe('4', 'should be 4');
+                            // Step=1
                             expect(inputDes[0].attributes.step).toBeTruthy();
-                            expect(inputDes[0].attributes.step).toBe('1', `should be 1`);
+                            expect(inputDes[0].attributes.step).toBe('1', 'should be 1');
                         });
 
                         describe('button', () => {
@@ -1421,14 +1413,14 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                // type='submit'
+                                // Type='submit'
                                 expect(buttonDes[0].attributes.type).toBeTruthy();
-                                expect(buttonDes[0].attributes.type).toBe('submit', `should be submit`);
+                                expect(buttonDes[0].attributes.type).toBe('submit', 'should be submit');
 
-                                // class=btn
+                                // Class=btn
                                 expect(buttonEl).toHaveClass('btn');
 
-                                // disabled = true
+                                // Disabled = true
                                 expect(buttonEl.disabled).toBeTrue();
                             });
 
@@ -1454,21 +1446,21 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                // form is valid
+                                // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
-                                // class is btn-outline-success
+                                // Class is btn-outline-success
                                 expect(buttonEl).toHaveClass('btn-outline-success');
                                 expect(buttonEl).not.toHaveClass('btn-outline-danger');
                             });
 
                             it('... should have btn-outline-danger class when form is not valid', () => {
-                                // set input to empty string
+                                // Set input to empty string
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                                 resourceInfoIndex.setValue('');
 
-                                // apply changes
+                                // Apply changes
                                 fixture.detectChanges();
 
                                 const buttonDes = getAndExpectDebugElementByCss(
@@ -1479,11 +1471,11 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                // form is invalid
+                                // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
-                                // class is btn-outline-danger
+                                // Class is btn-outline-danger
                                 expect(buttonEl).not.toHaveClass('btn-outline-success');
                                 expect(buttonEl).toHaveClass('btn-outline-danger');
                             });
@@ -1498,20 +1490,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 const buttonEl = buttonDes[0].nativeElement;
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
 
-                                // input index is current.displayIndex
+                                // Input index is current.displayIndex
                                 expect(resourceInfoIndex.value).toBe(
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
-                                // disabled = true
+                                // Disabled = true
                                 expect(buttonEl.disabled).toBeTrue();
                             });
 
                             it('... should be disabled when form is not valid', () => {
-                                // set input to empty string
+                                // Set input to empty string
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                                 resourceInfoIndex.setValue('');
 
-                                // apply changes
+                                // Apply changes
                                 fixture.detectChanges();
 
                                 const buttonDes = getAndExpectDebugElementByCss(
@@ -1522,20 +1514,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                // form is invalid
+                                // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
-                                // disabled = true
+                                // Disabled = true
                                 expect(buttonEl.disabled).toBeTrue();
                             });
 
                             it('... should be enabled when input index is not current.displayIndex and form is valid', () => {
-                                // set input index different from current.displayIndex
+                                // Set input index different from current.displayIndex
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                                 resourceInfoIndex.setValue(1);
 
-                                // apply changes
+                                // Apply changes
                                 fixture.detectChanges();
 
                                 const buttonDes = getAndExpectDebugElementByCss(
@@ -1546,16 +1538,16 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                // form is valid
+                                // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
-                                // input index is different from current.displayIndex
+                                // Input index is different from current.displayIndex
                                 expect(resourceInfoIndex.value).not.toBe(
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
 
-                                // disabled = false
+                                // Disabled = false
                                 expect(buttonEl.disabled).toBeFalse();
                             });
 
@@ -1571,39 +1563,39 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                                 // ---------------------------
                                 // DISABLED: case 1
-                                // input index is current.displayIndex
+                                // Input index is current.displayIndex
                                 expect(resourceInfoIndex.value).toBe(
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
 
-                                // form is valid
+                                // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
-                                // disabled = true
+                                // Disabled = true
                                 expect(buttonEl.disabled).toBeTrue();
 
-                                // trigger click on button with click helper & wait for changes
+                                // Trigger click on button with click helper & wait for changes
                                 clickAndAwaitChanges(buttonDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 0);
 
                                 // ---------------------------
                                 // DISABLED: case 2
-                                // input has invalid value
+                                // Input has invalid value
                                 resourceInfoIndex.setValue('');
 
-                                // apply changes
+                                // Apply changes
                                 fixture.detectChanges();
 
-                                // form is invalid
+                                // Form is invalid
                                 expect(component.resourceInfoFormGroup.valid).toBeFalsy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeTruthy();
 
-                                // disabled = true
+                                // Disabled = true
                                 expect(buttonEl.disabled).toBeTrue();
 
-                                // trigger click on button with click helper & wait for changes
+                                // Trigger click on button with click helper & wait for changes
                                 clickAndAwaitChanges(buttonDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 0);
@@ -1618,27 +1610,27 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 );
                                 const buttonEl = buttonDes[0].nativeElement;
 
-                                // set input to another index then current.displayIndex (=3)
+                                // Set input to another index then current.displayIndex (=3)
                                 const chosenIndex = 1;
                                 const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                                 resourceInfoIndex.setValue(chosenIndex);
 
-                                // apply changes
+                                // Apply changes
                                 fixture.detectChanges();
 
-                                // input index is different from current.displayIndex
+                                // Input index is different from current.displayIndex
                                 expect(resourceInfoIndex.value).not.toBe(
                                     component.resourceInfoData.resources.current.displayIndex
                                 );
 
-                                // form is valid
+                                // Form is valid
                                 expect(component.resourceInfoFormGroup.valid).toBeTruthy();
                                 expect(component.resourceInfoFormGroup.invalid).toBeFalsy();
 
-                                // button.disabled = false
+                                // Button.disabled = false
                                 expect(buttonEl.disabled).toBeFalse();
 
-                                // trigger click on button with click helper & wait for changes
+                                // Trigger click on button with click helper & wait for changes
                                 clickAndAwaitChanges(buttonDes[0], fixture);
 
                                 expectSpyCall(navigateToResourceByIndexSpy, 1, chosenIndex);
@@ -1648,7 +1640,7 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     describe('if current resource is not given', () => {
                         it('... should not be displayed', () => {
-                            // remove resource with resourceId from subjects (on array index position 2)
+                            // Remove resource with resourceId from subjects (on array index position 2)
                             const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
                             const sliceIndex = 2;
                             otherResponseClone.data.subjects = otherResponseClone.data.subjects
@@ -1660,9 +1652,9 @@ describe('ResourceInfoComponent (DONE)', () => {
                                     )
                                 );
 
-                            (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                            (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                            // apply changes
+                            // Apply changes
                             fixture.detectChanges();
 
                             getAndExpectDebugElementByCss(compDe, 'li.awg-list-group-item', 0, 0);
@@ -1700,10 +1692,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1
                             );
 
-                            // trigger click on anchor (next) with click helper & wait for changes
+                            // Trigger click on anchor (next) with click helper & wait for changes
                             clickAndAwaitChanges(aDes[0], fixture);
 
-                            // called next resource (id: 1231)
+                            // Called next resource (id: 1231)
                             expectSpyCall(navigateToResourceSpy, 1, '1233');
                         }));
 
@@ -1788,7 +1780,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get spans of second outerDiv
+                            // Get spans of second outerDiv
                             const spanDes = getAndExpectDebugElementByCss(
                                 outerDivDes[1],
                                 'div.single-line > span',
@@ -1809,7 +1801,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get spans of second outerDiv
+                            // Get spans of second outerDiv
                             const spanDes = getAndExpectDebugElementByCss(
                                 outerDivDes[1],
                                 'div.single-line > span',
@@ -1826,13 +1818,13 @@ describe('ResourceInfoComponent (DONE)', () => {
 
                     describe('if next resource is not given', () => {
                         beforeEach(() => {
-                            // remove last two entries from searchResponse to get no next resource
+                            // Remove last two entries from searchResponse to get no next resource
                             const otherResponseClone = JSON.parse(JSON.stringify(expectedSearchResponseWithQuery));
                             otherResponseClone.data.subjects = otherResponseClone.data.subjects.slice(0, 3);
 
-                            (component as any).updateResourceInfo(expectedResourceId, otherResponseClone);
+                            (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
 
-                            // apply changes
+                            // Apply changes
                             fixture.detectChanges();
                         });
 
@@ -1872,7 +1864,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get first div
+                            // Get first div
                             const strongDes = getAndExpectDebugElementByCss(divDes[0], 'strong', 1, 1);
                             const strongEl = strongDes[0].nativeElement;
 
@@ -1900,20 +1892,20 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 2,
                                 2
                             );
-                            // get second outer div
+                            // Get second outer div
                             const divDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line', 2, 2);
-                            // get second inner div
+                            // Get second inner div
                             const divEl1 = divDes[1].nativeElement;
 
                             expect(divEl1).toHaveCssClass('text-muted');
                             expect(divEl1).toHaveCssClass('small');
 
-                            // get spans
+                            // Get spans
                             const spanDes = getAndExpectDebugElementByCss(outerDivDes[1], 'div.single-line span', 2, 2);
                             const spanEl0 = spanDes[0].nativeElement;
                             const spanEl1 = spanDes[1].nativeElement;
 
-                            const whiteSpace = '\xA0'; // hex code for a non-breaking space '&nbsp;'
+                            const whiteSpace = '\xA0'; // Hex code for a non-breaking space '&nbsp;'
 
                             expect(spanEl0.innerText).toBeTruthy();
                             expect(spanEl0.innerText).toBe(

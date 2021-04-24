@@ -1,4 +1,4 @@
-import { async, ComponentFixture, fakeAsync, TestBed } from '@angular/core/testing';
+import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import Spy = jasmine.Spy;
 
@@ -8,7 +8,7 @@ import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
 
@@ -18,12 +18,12 @@ import {
     ResourceDetailContent,
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailImage,
-    ResourceDetailProperty
+    ResourceDetailProperty,
 } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentComponent } from './resource-detail-html-content.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-resource-detail-html-content-props', template: '' })
 class ResourceDetailHtmlContentPropsStubComponent {
     @Input()
@@ -57,22 +57,24 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
 
-    // json object
+    // Json object
     let jsonConvert: JsonConvert;
     let context: ContextJson;
 
     let expectedContent: ResourceDetailContent;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [
-                ResourceDetailHtmlContentComponent,
-                ResourceDetailHtmlContentPropsStubComponent,
-                ResourceDetailHtmlContentImageobjectsStubComponent,
-                ResourceDetailHtmlContentLinkedobjectsStubComponent
-            ]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [
+                    ResourceDetailHtmlContentComponent,
+                    ResourceDetailHtmlContentPropsStubComponent,
+                    ResourceDetailHtmlContentImageobjectsStubComponent,
+                    ResourceDetailHtmlContentLinkedobjectsStubComponent,
+                ],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentComponent);
@@ -80,22 +82,22 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // convert json object
+        // Convert json object
         jsonConvert = new JsonConvert();
         context = jsonConvert.deserializeObject(mockContextJson, ContextJson);
 
-        // test data
+        // Test data
         const images: ResourceDetailImage[] = [
             new ResourceDetailImage(context, 0),
-            new ResourceDetailImage(context, 1)
+            new ResourceDetailImage(context, 1),
         ];
         const incoming = [new ResourceDetailGroupedIncomingLinks()];
         const props: ResourceDetailProperty[] = [
-            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
+            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2']),
         ];
         expectedContent = new ResourceDetailContent(props, images, incoming);
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         navigateToResourceSpy = spyOn(component, 'navigateToResource').and.callThrough();
@@ -149,10 +151,10 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.content = expectedContent;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -163,7 +165,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should pass down `content.props` to ResourceDetailHtmlContentPropsComponent', () => {
-                // get debug and native element of stubbed child
+                // Get debug and native element of stubbed child
                 const propsDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentPropsStubComponent,
@@ -179,7 +181,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             });
 
             it('... should pass down `content.images` to ResourceDetailHtmlContentImageobjectsComponent', () => {
-                // get debug and native element of stubbed child
+                // Get debug and native element of stubbed child
                 const imagesDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentImageobjectsStubComponent,
@@ -195,7 +197,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             });
 
             it('... should pass down `content.incoming` to ResourceDetailHtmlContentLinkedobjectsComponent', () => {
-                // get debug and native element of stubbed child
+                // Get debug and native element of stubbed child
                 const incomingDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentLinkedobjectsStubComponent,
@@ -225,19 +227,19 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
                 let id;
 
-                // undefined
+                // Undefined
                 id = undefined;
                 propsCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 1, id);
 
-                // number
+                // Number
                 id = 28;
                 propsCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 2, id);
 
-                // string
+                // String
                 id = '330';
                 propsCmp.resourceRequest.emit(id);
 
@@ -257,19 +259,19 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
                 let id;
 
-                // undefined
+                // Undefined
                 id = undefined;
                 propsCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 1, id);
 
-                // number
+                // Number
                 id = 28;
                 propsCmp.resourceRequest.emit(id);
 
                 expectSpyCall(navigateToResourceSpy, 2, id);
 
-                // string
+                // String
                 id = '330';
                 propsCmp.resourceRequest.emit(id);
 
@@ -277,7 +279,7 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
             }));
 
             it('... should not emit anything if no id is provided', fakeAsync(() => {
-                // props
+                // Props
                 const propsDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentPropsStubComponent,
@@ -288,16 +290,16 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentPropsStubComponent
                 ) as ResourceDetailHtmlContentPropsStubComponent;
 
-                // no id
+                // No id
                 propsCmp.resourceRequest.emit(undefined);
 
-                // id is undefined
+                // Id is undefined
                 expect(emitSpy).not.toHaveBeenCalled();
                 expect(emitSpy).toHaveBeenCalledTimes(0);
             }));
 
             it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                // props
+                // Props
                 const propsDes = getAndExpectDebugElementByDirective(
                     compDe,
                     ResourceDetailHtmlContentPropsStubComponent,
@@ -310,13 +312,13 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
 
                 let id;
 
-                // number
+                // Number
                 id = 28;
                 propsCmp.resourceRequest.emit(id);
 
                 expectSpyCall(emitSpy, 1, id.toString());
 
-                // string
+                // String
                 id = '28';
                 propsCmp.resourceRequest.emit(id);
 

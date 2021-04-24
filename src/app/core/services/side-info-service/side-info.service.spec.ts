@@ -13,12 +13,12 @@ describe('SideInfoService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [SideInfoService]
+            providers: [SideInfoService],
         });
-        // inject service
+        // Inject service
         sideInfoService = TestBed.inject(SideInfoService);
 
-        // test data (default)
+        // Test data (default)
         expectedSearchInfoData = new SearchInfo('---', '---');
         expectedSearchInfoTitle = '';
     });
@@ -32,81 +32,81 @@ describe('SideInfoService (DONE)', () => {
     });
 
     it('should have searchInfoDataSubject', () => {
-        expect((sideInfoService as any).searchInfoDataSubject).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoDataSubject).toBeTruthy();
     });
 
     it('should have searchInfoDataStream$', () => {
-        expect((sideInfoService as any).searchInfoDataStream$).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoDataStream$).toBeTruthy();
     });
 
     it('should have searchInfoTitleSubject', () => {
-        expect((sideInfoService as any).searchInfoTitleSubject).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoTitleSubject).toBeTruthy();
     });
 
     it('should have searchInfoTitleStream$', () => {
-        expect((sideInfoService as any).searchInfoTitleStream$).toBeTruthy();
+        expect((sideInfoService as any)._searchInfoTitleStream$).toBeTruthy();
     });
 
     describe('SearchInfoData', () => {
         describe('#getSearchInfoData', () => {
-            it(`... should return default empty search info data`, done => {
+            it('... should return default empty search info data', done => {
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
                 });
             });
 
-            it(`... should return updated search info data`, done => {
+            it('... should return updated search info data', done => {
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
                 });
 
-                // update search info data
+                // Update search info data
                 expectedSearchInfoData = new SearchInfo('Test', '5');
                 sideInfoService.updateSearchInfoData(expectedSearchInfoData);
             });
         });
 
         describe('#updateSearchInfoData', () => {
-            it(`... should emit updated search info data`, done => {
+            it('... should emit updated search info data', done => {
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
                 });
 
-                // update search info data
+                // Update search info data
                 expectedSearchInfoData = new SearchInfo('Test', '5');
                 sideInfoService.updateSearchInfoData(expectedSearchInfoData);
 
-                // update search info data
+                // Update search info data
                 expectedSearchInfoData = new SearchInfo('Test2', '3');
                 sideInfoService.updateSearchInfoData(expectedSearchInfoData);
             });
         });
 
         describe('#clearSearchInfoData', () => {
-            it(`... should update search info data with empty SearchInfo`, done => {
+            it('... should update search info data with empty SearchInfo', done => {
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
                 });
 
-                // clear search info data
+                // Clear search info data
                 sideInfoService.clearSearchInfoData();
             });
 
-            it(`... should overwrite existing search info data`, done => {
+            it('... should overwrite existing search info data', done => {
                 sideInfoService.getSearchInfoData().subscribe((searchInfo: SearchInfo) => {
                     expect(searchInfo).toEqual(expectedSearchInfoData, `should equal ${expectedSearchInfoData}`);
                     done();
                 });
 
-                // update search info data
+                // Update search info data
                 expectedSearchInfoData = new SearchInfo('Test', '5');
                 sideInfoService.updateSearchInfoData(expectedSearchInfoData);
 
-                // clear search info data
+                // Clear search info data
                 expectedSearchInfoData = new SearchInfo('---', '---');
                 sideInfoService.clearSearchInfoData();
             });
@@ -115,7 +115,7 @@ describe('SideInfoService (DONE)', () => {
 
     describe('SearchInfoTitle', () => {
         describe('#getSearchInfoTitle', () => {
-            it(`... should return default empty search info title`, done => {
+            it('... should return default empty search info title', done => {
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     expect(title).not.toBeTruthy('should be empty string');
@@ -123,37 +123,37 @@ describe('SideInfoService (DONE)', () => {
                 });
             });
 
-            it(`... should return updated search info title`, done => {
+            it('... should return updated search info title', done => {
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     done();
                 });
 
-                // update search info title
+                // Update search info title
                 expectedSearchInfoTitle = 'Test';
                 sideInfoService.updateSearchInfoTitle(expectedSearchInfoTitle);
             });
         });
 
         describe('#updateSearchInfoTitle', () => {
-            it(`... should emit updated search info title`, done => {
+            it('... should emit updated search info title', done => {
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     done();
                 });
 
-                // update search info title
+                // Update search info title
                 expectedSearchInfoTitle = 'Test';
                 sideInfoService.updateSearchInfoTitle(expectedSearchInfoTitle);
 
-                // update search info title
+                // Update search info title
                 expectedSearchInfoTitle = 'Test2';
                 sideInfoService.updateSearchInfoTitle(expectedSearchInfoTitle);
             });
         });
 
         describe('#clearSearchInfoTitle', () => {
-            it(`... should update search info title with empty string`, done => {
+            it('... should update search info title with empty string', done => {
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).not.toBeTruthy('should be empty string');
                     done();
@@ -162,17 +162,17 @@ describe('SideInfoService (DONE)', () => {
                 sideInfoService.clearSearchInfoTitle();
             });
 
-            it(`... should overwrite existing search info title`, done => {
+            it('... should overwrite existing search info title', done => {
                 sideInfoService.getSearchInfoTitle().subscribe((title: string) => {
                     expect(title).toBe(expectedSearchInfoTitle, `should be ${expectedSearchInfoTitle}`);
                     done();
                 });
 
-                // update search info title
+                // Update search info title
                 expectedSearchInfoTitle = 'Test';
                 sideInfoService.updateSearchInfoTitle(expectedSearchInfoTitle);
 
-                // clear search info title
+                // Clear search info title
                 expectedSearchInfoTitle = '';
                 sideInfoService.clearSearchInfoTitle();
             });

@@ -6,7 +6,7 @@ import {
     Input,
     OnChanges,
     Output,
-    SimpleChanges
+    SimpleChanges,
 } from '@angular/core';
 
 import {
@@ -15,16 +15,16 @@ import {
     FolioSvgData,
     EditionSvgSheet,
     ViewBox,
-    FolioConvolute
+    FolioConvolute,
 } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
 /**
  * Declared variable: Snap.
  *
- * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
+ * It provides access to the embedded SnapSvg library (see snapsvg.io).
  */
-declare var Snap: any;
+declare let Snap: any;
 
 /**
  * The Folio component.
@@ -37,7 +37,7 @@ declare var Snap: any;
     selector: 'awg-edition-folio',
     templateUrl: './folio-overview.component.html',
     styleUrls: ['./folio-overview.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
@@ -111,18 +111,9 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     fgColor = 'orange';
 
     /**
-     * Private variable: _folioSettings.
-     *
-     * It keeps the format settings for the folio.
+     * Self-referring variable needed for CompileHtml library.
      */
-    private _folioSettings: FolioSettings = {
-        factor: 1.5,
-        formatX: 175,
-        formatY: 270,
-        initialOffsetX: 5,
-        initialOffsetY: 5,
-        numberOfFolios: 0
-    };
+    ref: FolioOverviewComponent;
 
     /**
      * Getter for folio format settings.
@@ -139,9 +130,18 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     }
 
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Private variable: _folioSettings.
+     *
+     * It keeps the format settings for the folio.
      */
-    ref: FolioOverviewComponent;
+    private _folioSettings: FolioSettings = {
+        factor: 1.5,
+        formatX: 175,
+        formatY: 270,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
+        numberOfFolios: 0,
+    };
 
     /**
      * Constructor of the FolioComponent.
@@ -174,9 +174,9 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * after the view was built and checked.
      */
     ngAfterViewChecked() {
-        // start to render svg only after view, inputs and calculation are available
+        // Start to render svg only after view, inputs and calculation are available
         this.renderSnapSvg();
-        // toggle active classes after view was checked
+        // Toggle active classes after view was checked
         this.toggleActiveClass();
     }
 
@@ -189,14 +189,14 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Toggles the css class.
      */
     toggleActiveClass(): void {
-        // iterate over canvas Array
+        // Iterate over canvas Array
         if (!this.canvasArray) {
             return;
         }
         this.canvasArray.forEach(canvas => {
-            // find all item groups
+            // Find all item groups
             canvas.selectAll('.item-group').forEach(itemGroup => {
-                // toggle active class if itemId corresponds to selectedSvgSheetId
+                // Toggle active class if itemId corresponds to selectedSvgSheetId
                 const itemId = itemGroup.node.attributes.itemId.value;
                 itemGroup.toggleClass('active', this.isSelectedSvgSheet(itemId));
             });
@@ -213,20 +213,20 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      */
     prepareFolioSvgOutput(): void {
         this.selectedConvolute.folios.map((folio: Folio, folioIndex: number) => {
-            // update folio settings
+            // Update folio settings
             this.folioSettings = {
                 factor: this.folioSettings.factor,
                 formatX: +folio.format.width,
                 formatY: +folio.format.height,
                 initialOffsetX: this.folioSettings.initialOffsetX,
                 initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.selectedConvolute.folios.length
+                numberOfFolios: +this.selectedConvolute.folios.length,
             };
 
-            // prepare viewbox settings
+            // Prepare viewbox settings
             this.vbArray[folioIndex] = new ViewBox(this.folioSettings);
 
-            // calculate svg data
+            // Calculate svg data
             this.folioSvgDataArray[folioIndex] = this.folioService.getFolioSvgData(this.folioSettings, folio);
         });
     }
@@ -240,22 +240,22 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Sets the canvasArray variable.
      */
     renderSnapSvg(): void {
-        // empty canvasArray
+        // Empty canvasArray
         this.canvasArray = [];
 
-        /* apply data from folioSvgDataArray to render the svg image with snapsvg */
+        /* Apply data from folioSvgDataArray to render the svg image with snapsvg */
         this.folioSvgDataArray.map((folioSvg: FolioSvgData, folioIndex: number) => {
-            // init canvas
+            // Init canvas
             const snapId: string = '#folio-' + folioSvg.sheet.folioId;
             const snapCanvas: any = Snap(snapId);
             if (!snapCanvas) {
                 return;
             }
 
-            // svg viewBox
+            // Svg viewBox
             this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
 
-            // svg content
+            // Svg content
             this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
 
             this.canvasArray.push(snapCanvas);

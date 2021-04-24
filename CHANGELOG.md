@@ -2,6 +2,48 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.10](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.9...v0.7.10) (2021-04-24)
+
+### Features
+
+-   **app:** add open graph meta data to index ([8b9e036](https://github.com/webern-unibas-ch/awg-app/commit/8b9e0363f38857ab5a2907503dcc7aecb10200ac))
+-   **app:** add titleService to set page title by route ([35bf69d](https://github.com/webern-unibas-ch/awg-app/commit/35bf69d6f9cfc7f215f48efc55d04dc7038f863f))
+-   **edition:** add fullscreen mode to GraphVisualizer ([cb05db2](https://github.com/webern-unibas-ch/awg-app/commit/cb05db2d05e7c8329e9f2f37a4d495a93c159be1))
+
+### Tests
+
+-   **app:** fix tests after move to ESLint ([93e5c08](https://github.com/webern-unibas-ch/awg-app/commit/93e5c089f72ec73241d6b666b83c4c1eea111e07))
+-   **app:** switch linting rules to eslint ([76c8bfc](https://github.com/webern-unibas-ch/awg-app/commit/76c8bfca3a97e7a28f37520199e7609ed17643e7))
+-   **core:** add missing branch test for CachingInterceptor ([c26d34e](https://github.com/webern-unibas-ch/awg-app/commit/c26d34e9b99f284e9daea97ce320bd920e2c2649))
+-   **core:** add missing branch test for SearchOverviewComponent ([fa3c95d](https://github.com/webern-unibas-ch/awg-app/commit/fa3c95d9ee09939e888c92a213b654b28d578237))
+-   **edition:** fix tests after changes ([a8079b9](https://github.com/webern-unibas-ch/awg-app/commit/a8079b9c913d930f13b30df25288293208fe59ed))
+
+### Continuous Integration
+
+-   **gh-actions:** update CodeQL action ([2afca0d](https://github.com/webern-unibas-ch/awg-app/commit/2afca0d34e6ad854256a79a26d96aa5dca4b825e))
+-   **travis:** remove Travis CI pipeline ([4046345](https://github.com/webern-unibas-ch/awg-app/commit/404634549c54c67c9f3f408cf530bcbb966fd202))
+
+### Build System
+
+-   **app:** configure eslint with prettier ([20173cd](https://github.com/webern-unibas-ch/awg-app/commit/20173cdbf909410a480befd7d958526678a6d289))
+-   **app:** configure lint-staged with eslint ([b461687](https://github.com/webern-unibas-ch/awg-app/commit/b461687e7a8a2f7f25782c2deefb9463c3d7ed5d))
+-   **app:** migrate from tslint to eslint ([a15ed76](https://github.com/webern-unibas-ch/awg-app/commit/a15ed769caace8f04e19e2bf7dc86f16bd6a92f8))
+-   **app:** remove obsolete tsconfig.base.json ([7df79e6](https://github.com/webern-unibas-ch/awg-app/commit/7df79e6cea7771c745b4450395dbf3333f4252b2))
+-   **app:** update eslint rules according to DSP ([f2918b9](https://github.com/webern-unibas-ch/awg-app/commit/f2918b9c0dbc8e0677ccc6801da93ba59f4e9dce))
+-   **deps:** add nodeLinker strategy compatible with Angular ([0350dc9](https://github.com/webern-unibas-ch/awg-app/commit/0350dc9cca917b936b98c6e05b2e3ccc0c6bd00c))
+-   **deps:** adjust scripts to yarn 2 ([b99918e](https://github.com/webern-unibas-ch/awg-app/commit/b99918e37c01a1be18af8b338f57162ff22ec61f))
+-   **deps:** bump elliptic from 6.5.3 to 6.5.4 ([46243eb](https://github.com/webern-unibas-ch/awg-app/commit/46243eb8709af2d7c859e5b5cf6436e565cba59b))
+-   **deps:** bump socket.io from 2.3.0 to 2.4.1 ([70a7031](https://github.com/webern-unibas-ch/awg-app/commit/70a7031b86580e5661603df598c215741889a688))
+-   **deps:** bump y18n from 4.0.0 to 4.0.1 ([c97a090](https://github.com/webern-unibas-ch/awg-app/commit/c97a090e030db10ea4b65b7208c646f3ad6d004a))
+-   **deps:** switch back to yarn 1 ([3d31803](https://github.com/webern-unibas-ch/awg-app/commit/3d31803c09d9b4dc3201bcd79f03201ca2fa86e1))
+-   **deps:** update [@angular](https://github.com/angular) to version 11 ([3559e01](https://github.com/webern-unibas-ch/awg-app/commit/3559e01fb6dac2d83c938311666b35971337128a))
+-   **deps:** update dependabot configuration ([47c1b0e](https://github.com/webern-unibas-ch/awg-app/commit/47c1b0e686386aff3cc8f098dc46240b24871a20))
+-   **deps:** update dependencies after update to Angular 11 ([4349578](https://github.com/webern-unibas-ch/awg-app/commit/43495785ec4d0d76c28701ee11c508429da33969))
+-   **deps:** update files after update to Angular 11 ([7b81eeb](https://github.com/webern-unibas-ch/awg-app/commit/7b81eeb1566c6d7ee867fd476dde8ca18117628b))
+-   **deps:** update husky to v6 ([f9fb418](https://github.com/webern-unibas-ch/awg-app/commit/f9fb418da617a26bba55f834cef5bd933cd73a69))
+-   **deps:** update version-control deps ([b172b49](https://github.com/webern-unibas-ch/awg-app/commit/b172b494bf99f342b755983ccc0d846cff7a3228))
+-   **deps:** upgrade to yarn 2 ([64c6242](https://github.com/webern-unibas-ch/awg-app/commit/64c6242d5b2591d1034b4184c6923def005324a0))
+
 ### [0.7.9](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.8...v0.7.9) (2020-11-20)
 
 ### Features

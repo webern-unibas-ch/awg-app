@@ -4,13 +4,13 @@ import { RouterModule, Routes } from '@angular/router';
 import { BibliographyComponent } from './bibliography.component';
 import { BibliographyDetailComponent } from './bibliography-detail/bibliography-detail.component';
 
-/* routes of the BibliographyModule */
+/* Routes of the BibliographyModule */
 const bibliographyRoutes: Routes = [
     {
         path: '',
         component: BibliographyComponent,
-        children: [{ path: 'detail/:id', component: BibliographyDetailComponent }]
-    }
+        children: [{ path: 'detail/:id', component: BibliographyDetailComponent }],
+    },
 ];
 
 /**
@@ -26,6 +26,6 @@ export const routedBibliographyComponents = [BibliographyComponent, Bibliography
  */
 @NgModule({
     imports: [RouterModule.forChild(bibliographyRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class BibliographyRoutingModule {}

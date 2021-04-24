@@ -41,10 +41,8 @@ export const mockWindow: IMockWindow = {
     postMessage: (value: { gnd: string }, messageTarget: string) => {
         windowStore.push([value, messageTarget]);
     },
-    get: (index: number): postMessageType => {
-        return windowStore[index];
-    },
+    get: (index: number): postMessageType => windowStore[index],
     clear: () => {
         windowStore = [];
-    }
+    },
 };

@@ -46,7 +46,7 @@
             em: 3,
             span: 3,
             sup: 3,
-            sub: 3
+            sub: 3,
         };
 
         var localdata = {};
@@ -56,7 +56,7 @@
             textattr: {},
             css: {
                 width: '100%',
-                minHeight: '30px'
+                minHeight: '30px',
             },
             matching: {
                 // match tagnames to offset labels
@@ -77,8 +77,8 @@
                 span: 'style',
                 p: 'p',
                 sup: 'sup',
-                sub: 'sub'
-            }
+                sub: 'sub',
+            },
         };
 
         // invert matching so that we can check for the offset names
@@ -112,7 +112,7 @@
                 }
                 proparr[pos].push({
                     propname: propname,
-                    proptype: 'start'
+                    proptype: 'start',
                 });
 
                 if (proparr[pos][proparr[pos].length - 1].propname == '_link') {
@@ -131,7 +131,7 @@
                 }
                 proparr[pos].push({
                     propname: propname,
-                    proptype: 'end'
+                    proptype: 'end',
                 });
             } //END for idx
         } //END for propname

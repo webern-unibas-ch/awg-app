@@ -6,7 +6,7 @@
 export enum MetaSectionTypes {
     page = 'page',
     structure = 'structure',
-    contact = 'contact'
+    contact = 'contact',
 }
 
 /**

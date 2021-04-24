@@ -32,7 +32,7 @@ interface IFolioLegend {
     selector: 'awg-edition-convolute',
     templateUrl: './edition-convolute.component.html',
     styleUrls: ['./edition-convolute.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionConvoluteComponent implements OnInit {
     /**
@@ -99,16 +99,16 @@ export class EditionConvoluteComponent implements OnInit {
     folioLegends: IFolioLegend[] = [
         {
             color: 'olivedrab',
-            label: 'aktuell ausgewählt'
+            label: 'aktuell ausgewählt',
         },
         {
             color: 'orange',
-            label: 'auswählbar'
+            label: 'auswählbar',
         },
         {
             color: 'grey',
-            label: '(momentan noch) nicht auswählbar'
-        }
+            label: '(momentan noch) nicht auswählbar',
+        },
     ];
 
     /**

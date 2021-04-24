@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -17,11 +17,13 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     let expectedPageMetaData: MetaPage;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [FooterCopyrightComponent]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [FooterCopyrightComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FooterCopyrightComponent);
@@ -29,7 +31,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
     });
 
@@ -71,10 +73,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.pageMetaData = expectedPageMetaData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

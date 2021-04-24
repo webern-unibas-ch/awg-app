@@ -3,12 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { PageNotFoundViewComponent } from '@awg-views/page-not-found-view/page-not-found-view.component';
 
-/* routes of the PageNotFoundViewModule */
+/* Routes of the PageNotFoundViewModule */
 const pageNotFoundViewRoutes: Routes = [
     {
         path: '',
-        component: PageNotFoundViewComponent
-    }
+        component: PageNotFoundViewComponent,
+        data: { title: 'AWG Online Edition – 404' },
+    },
 ];
 
 /**
@@ -24,6 +25,6 @@ export const routedPageNotFoundViewComponents = [PageNotFoundViewComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(pageNotFoundViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class PageNotFoundViewRoutingModule {}

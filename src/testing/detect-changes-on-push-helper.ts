@@ -16,7 +16,7 @@ import { ChangeDetectorRef } from '@angular/core';
  */
 export async function detectChangesOnPush<T>(cf: ComponentFixture<T>) {
     const cd = cf.debugElement.injector.get<ChangeDetectorRef>(
-        // tslint:disable-next-line:no-any
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         ChangeDetectorRef as any
     );
     cd.detectChanges();

@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 
@@ -19,7 +19,7 @@ import { ResourceData, ResourceDetail, ResourceDetailHeader } from '@awg-views/d
 
 import { ResourceDetailComponent } from './resource-detail.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-resource-detail-header', template: '' })
 class ResourceDetailHeaderStubComponent {
     @Input()
@@ -64,46 +64,48 @@ describe('ResourceDetailComponent', () => {
     let mockRouter: Spy;
     let mockActivatedRoute: ActivatedRouteStub;
 
-    // json object
+    // Json object
     let jsonConvert: JsonConvert;
     let expectedResourceFullResponseJson: ResourceFullResponseJson;
 
     let expectedResourceData: ResourceData;
 
-    beforeEach(async () => {
-        // stub services for test purposes
-        // TODO: provide accurate types and service responses
-        const mockDataApiService = {
-            httpGetUrl: '/testUrl',
-            getResourceData: () => observableOf(expectedResourceData)
-        };
-        const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-        const mockDataStreamerService = { updateResourceId: () => {} };
+    beforeEach(
+        waitForAsync(() => {
+            // Stub services for test purposes
+            // TODO: provide accurate types and service responses
+            const mockDataApiService = {
+                httpGetUrl: '/testUrl',
+                getResourceData: () => observableOf(expectedResourceData),
+            };
+            const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
+            const mockDataStreamerService = { updateResourceId: () => {} };
 
-        // router spy object
-        mockRouter = jasmine.createSpyObj('Router', ['navigate']);
-        // mocked activated route
-        mockActivatedRoute = new ActivatedRouteStub();
+            // Router spy object
+            mockRouter = jasmine.createSpyObj('Router', ['navigate']);
+            // Mocked activated route
+            mockActivatedRoute = new ActivatedRouteStub();
 
-        await TestBed.configureTestingModule({
-            imports: [NgbNavModule],
-            declarations: [
-                ResourceDetailComponent,
-                ResourceDetailHeaderStubComponent,
-                ResourceDetailHtmlStubComponent,
-                ResourceDetailJsonConvertedStubComponent,
-                ResourceDetailJsonRawStubComponent,
-                TwelveToneSpinnerStubComponent
-            ],
-            providers: [
-                { provide: ActivatedRoute, useValue: mockActivatedRoute },
-                { provide: Router, useValue: mockRouter },
-                { provide: DataApiService, useValue: mockDataApiService },
-                { provide: DataStreamerService, useValue: mockDataStreamerService },
-                { provide: LoadingService, useValue: mockLoadingService }
-            ]
-        }).compileComponents();
-    });
+            TestBed.configureTestingModule({
+                imports: [NgbNavModule],
+                declarations: [
+                    ResourceDetailComponent,
+                    ResourceDetailHeaderStubComponent,
+                    ResourceDetailHtmlStubComponent,
+                    ResourceDetailJsonConvertedStubComponent,
+                    ResourceDetailJsonRawStubComponent,
+                    TwelveToneSpinnerStubComponent,
+                ],
+                providers: [
+                    { provide: ActivatedRoute, useValue: mockActivatedRoute },
+                    { provide: Router, useValue: mockRouter },
+                    { provide: DataApiService, useValue: mockDataApiService },
+                    { provide: DataStreamerService, useValue: mockDataStreamerService },
+                    { provide: LoadingService, useValue: mockLoadingService },
+                ],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(ResourceDetailComponent);
@@ -111,17 +113,17 @@ describe('ResourceDetailComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // mockActivatedRoute.setParamMap({ id: '1234' });
-        // mockActivatedRoute.paramMap.subscribe(value => console.log(value));
+        // MockActivatedRoute.setParamMap({ id: '1234' });
+        // MockActivatedRoute.paramMap.subscribe(value => console.log(value));
 
-        // convert json objects
+        // Convert json objects
         jsonConvert = new JsonConvert();
         expectedResourceFullResponseJson = jsonConvert.deserializeObject(
             mockResourceFullResponseJson,
             ResourceFullResponseJson
         );
 
-        // test data
+        // Test data
         expectedResourceData = new ResourceData(expectedResourceFullResponseJson, mockResourceDetail);
 
         fixture.detectChanges();

@@ -20,7 +20,7 @@ export class PrefixPipe implements PipeTransform {
         new Prefix('prov', 'http://www.w3.org/ns/prov#'),
         new Prefix('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'),
         new Prefix('rdfs', 'http://www.w3.org/2000/01/rdf-schema#'),
-        new Prefix('xsd', 'http://www.w3.org/2001/XMLSchema#')
+        new Prefix('xsd', 'http://www.w3.org/2001/XMLSchema#'),
     ];
 
     /**
@@ -31,7 +31,7 @@ export class PrefixPipe implements PipeTransform {
      */
     transform(prefixForm: PrefixForm, value: any): any {
         let val = value;
-        const transformedValue = this.switchPrefixForm(prefixForm, val);
+        const transformedValue = this._switchPrefixForm(prefixForm, val);
 
         if (transformedValue) {
             val = transformedValue;
@@ -41,7 +41,7 @@ export class PrefixPipe implements PipeTransform {
     }
 
     /**
-     * Private method: switchPrefixForm.
+     * Private method: _switchPrefixForm.
      *
      * It shortens or expands a given value
      * depending on the requested prefix form.
@@ -49,7 +49,7 @@ export class PrefixPipe implements PipeTransform {
      * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      * @param {*} oldValue The given value to be piped.
      */
-    private switchPrefixForm(prefixForm: PrefixForm, oldValue: any): any {
+    private _switchPrefixForm(prefixForm: PrefixForm, oldValue: any): any {
         let newValue;
 
         switch (prefixForm) {

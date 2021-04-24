@@ -17,7 +17,7 @@ import { ApiRequest } from './api-request.model';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ApiService {
     /**
@@ -62,23 +62,18 @@ export class ApiService {
             queryHttpParams = new HttpParams();
         }
 
-        return this.httpGet(queryPath, queryHttpParams).pipe(
-            map(
-                (result: ApiServiceResult): Observable<any> => {
-                    return result.getBody(responseJsonType);
-                }
-            ),
+        return this._httpGet(queryPath, queryHttpParams).pipe(
+            map((result: ApiServiceResult): Observable<any> => result.getBody(responseJsonType)),
             catchError(
-                (error: ApiServiceError): Observable<ApiServiceError> => {
+                (error: ApiServiceError): Observable<ApiServiceError> =>
                     // console.error('ApiService - getApiResponse - error: ', error);
-                    return observableThrowError(error);
-                }
+                    observableThrowError(error)
             )
         );
     }
 
     /**
-     * Private method: httpGet.
+     * Private method: _httpGet.
      *
      * Performs an HTTP GET request to the given (Salsah) API.
      *
@@ -87,21 +82,21 @@ export class ApiService {
      *
      * @returns {Observable<ApiServiceResult | ApiServiceError>} The observable of the api service result or error.
      */
-    private httpGet(queryPath: string, queryHttpParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
+    private _httpGet(queryPath: string, queryHttpParams: HttpParams): Observable<ApiServiceResult | ApiServiceError> {
         const apiRequest = new ApiRequest(queryPath, queryHttpParams);
 
         return this.http
             .get<ApiServiceResult | ApiServiceError>(apiRequest.url, {
                 observe: 'response',
                 params: apiRequest.params,
-                headers: apiRequest.headers
+                headers: apiRequest.headers,
             })
             .pipe(
-                // store the actual url
+                // Store the actual url
                 tap((response: HttpResponse<ApiServiceResult>) => {
                     this.httpGetUrl = response.url;
                 }),
-                // map the response into ApiServiceResult class
+                // Map the response into ApiServiceResult class
                 map(
                     (response: HttpResponse<any>): ApiServiceResult => {
                         const apiServiceResult = new ApiServiceResult();
@@ -113,17 +108,13 @@ export class ApiService {
                         return apiServiceResult;
                     }
                 ),
-                // catch any errors
-                catchError(
-                    (error: HttpErrorResponse): Observable<ApiServiceError> => {
-                        return this.handleRequestError(error);
-                    }
-                )
+                // Catch any errors
+                catchError((error: HttpErrorResponse): Observable<ApiServiceError> => this._handleRequestError(error))
             );
     }
 
     /**
-     * Private method: handleRequestError.
+     * Private method: _handleRequestError.
      *
      * It handles request errors in case of server error.
      *
@@ -131,7 +122,7 @@ export class ApiService {
      *
      * @returns {Observable<ApiServiceError>} The observable of the api service error.
      */
-    private handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
+    private _handleRequestError(error: HttpErrorResponse): Observable<ApiServiceError> {
         // console.error(error);
         const apiServiceError = new ApiServiceError();
         apiServiceError.status = error.status ? error.status : apiServiceError.status;

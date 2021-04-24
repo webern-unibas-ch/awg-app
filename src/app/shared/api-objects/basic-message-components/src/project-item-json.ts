@@ -92,7 +92,7 @@ export class ProjectItemJson {
     public ontologyNamedGraph: string = undefined;
 
     /**
-     * obsolete
+     * Obsolete
      * @param rights: KnoraRights | null
      */
     @JsonProperty('rights', Number, true)

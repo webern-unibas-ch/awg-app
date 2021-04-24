@@ -13,7 +13,7 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
     selector: 'awg-edition-svg-sheet-nav',
     templateUrl: './edition-svg-sheet-nav.component.html',
     styleUrls: ['./edition-svg-sheet-nav.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetNavComponent implements OnInit {
     /**

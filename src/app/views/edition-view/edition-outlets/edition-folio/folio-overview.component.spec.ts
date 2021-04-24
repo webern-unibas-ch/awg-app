@@ -1,4 +1,4 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { FolioOverviewComponent } from './folio-overview.component';
 import { FolioService } from './folio.service';
@@ -10,12 +10,14 @@ describe('FolioComponent', () => {
     let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
 
-    beforeEach(async(() => {
-        TestBed.configureTestingModule({
-            declarations: [FolioOverviewComponent],
-            providers: [FolioService]
-        }).compileComponents();
-    }));
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                declarations: [FolioOverviewComponent],
+                providers: [FolioService],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
         fixture = TestBed.createComponent(FolioOverviewComponent);
@@ -38,12 +40,12 @@ describe('FolioComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the inputs supplied by the parent component
+            // Mock the inputs supplied by the parent component
             expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
                 image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-                alt: 'Aa:SkI/2'
+                alt: 'Aa:SkI/2',
             };
             const folioFormatSettings: FolioSettings = {
                 factor: 1.5,
@@ -51,7 +53,7 @@ describe('FolioComponent', () => {
                 formatY: 270,
                 initialOffsetX: 5,
                 initialOffsetY: 5,
-                numberOfFolios: 0
+                numberOfFolios: 0,
             };
             expectedConvolute = {
                 convoluteId: 'A Skizzen (Basel, Paul Sacher Stiftung)',
@@ -61,7 +63,7 @@ describe('FolioComponent', () => {
                         systems: '16',
                         format: {
                             height: 175,
-                            width: 270
+                            width: 270,
                         },
                         content: [
                             {
@@ -71,20 +73,20 @@ describe('FolioComponent', () => {
                                 sections: [
                                     {
                                         startSystem: 2,
-                                        endSystem: 4
-                                    }
-                                ]
-                            }
-                        ]
-                    }
-                ]
+                                        endSystem: 4,
+                                    },
+                                ],
+                            },
+                        ],
+                    },
+                ],
             };
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.selectedConvolute = expectedConvolute;
             component.selectedSvgSheet = expectedSvgSheet;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

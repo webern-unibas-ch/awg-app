@@ -30,9 +30,9 @@ import { PrefixPipe } from './prefix-pipe/prefix.pipe';
         TriplesEditorComponent,
         SelectResultsComponent,
         SparqlEditorComponent,
-        UnsupportedTypeResultsComponent
+        UnsupportedTypeResultsComponent,
     ],
     exports: [GraphVisualizerComponent],
-    providers: [PrefixPipe]
+    providers: [PrefixPipe],
 })
 export class GraphVisualizerModule {}
