@@ -1,6 +1,6 @@
 // This file is required by karma.conf.js and loads recursively all the .spec and framework files
 
-// custom matchers, see https://stackoverflow.com/a/44996479
+// For custom matchers, see https://stackoverflow.com/a/44996479
 import '@testing/custom-matchers';
 
 import 'zone.js/dist/zone-testing';

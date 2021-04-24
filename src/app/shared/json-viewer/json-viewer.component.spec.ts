@@ -1,4 +1,4 @@
-/* eslint-disable-next-line  @typescript-eslint/triple-slash-reference */
+/* eslint-disable-next-line spaced-comment, @typescript-eslint/triple-slash-reference */
 /// <reference path="../../../testing/custom-matchers.d.ts"/>
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
@@ -95,7 +95,7 @@ describe('JsonViewerComponent (DONE)', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbNavWithConfigModule],
-                declarations: [JsonViewerComponent, NgxJsonViewerStubComponent]
+                declarations: [JsonViewerComponent, NgxJsonViewerStubComponent],
             }).compileComponents();
         })
     );

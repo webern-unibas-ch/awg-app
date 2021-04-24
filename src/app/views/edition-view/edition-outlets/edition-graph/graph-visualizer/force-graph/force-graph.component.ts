@@ -14,7 +14,7 @@ import {
     OnInit,
     Output,
     SimpleChanges,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 
 import { Subject } from 'rxjs';
@@ -33,7 +33,7 @@ import {
     D3SimulationNodeType,
     D3ZoomBehaviour,
     PrefixForm,
-    Triple
+    Triple,
 } from '../models';
 import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 import { GraphVisualizerService } from '../services/graph-visualizer.service';
@@ -53,7 +53,7 @@ import * as d3_zoom from 'd3-zoom';
 const FORCES = {
     LINK_DISTANCE: 50,
     COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -3
+    CHARGE_STRENGTH: -3,
 };
 
 /**
@@ -64,7 +64,7 @@ const FORCES = {
 @Component({
     selector: 'awg-force-graph',
     templateUrl: './force-graph.component.html',
-    styleUrls: ['./force-graph.component.css']
+    styleUrls: ['./force-graph.component.css'],
 })
 export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     /**
@@ -100,14 +100,16 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It keeps the reference to the input range slider.
      */
-    @ViewChild('sliderInput', { static: true }) private _sliderInput: ElementRef;
+    @ViewChild('sliderInput', { static: true })
+    private _sliderInput: ElementRef;
 
     /**
      * ViewChild variable: _sliderInputLabel.
      *
      * It keeps the reference to the input sliderInputLabel.
      */
-    @ViewChild('sliderInputLabel', { static: true }) private _sliderInputLabel: ElementRef;
+    @ViewChild('sliderInputLabel', { static: true })
+    private _sliderInputLabel: ElementRef;
 
     /**
      * Public variable: faCompressArrowsAlt.
@@ -140,7 +142,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         min: 0.1,
         max: 3,
         step: 1 / 100,
-        value: 1
+        value: 1,
     };
 
     /**
@@ -940,7 +942,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
     private _updateNodePositions(nodes: D3Selection): void {
         nodes.attr('cx', (d: D3SimulationNode) => d.x).attr('cy', (d: D3SimulationNode) => d.y);
 
-        /*/ / constrains the nodes to be within a box
+        /*
+        // constrains the nodes to be within a box
         nodes
             .attr(
                 'cx',
@@ -951,7 +954,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 'cy',
                 (d: D3SimulationNode) =>
                     (d.y = Math.max(this._nodeRadius(d), Math.min(this._divHeight - this._nodeRadius(d), d.y)))
-            );*/
+            );
+         */
     }
 
     /**

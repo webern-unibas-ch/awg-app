@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /**
  * Test helper data file: mockResourceContextResponseJson.
  *
@@ -9,7 +11,7 @@
 export const mockResourceContextResponseJson = {
     status: 0,
     userdata: {
-        lang: 'en'
+        lang: 'en',
     },
     resource_context: {
         res_id: ['2173574', '2173577'],
@@ -23,7 +25,7 @@ export const mockResourceContextResponseJson = {
                 nx: 0,
                 ny: 0,
                 duration: '0.000',
-                fps: '0.000'
+                fps: '0.000',
             },
             {
                 path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=thumbnail',
@@ -33,8 +35,8 @@ export const mockResourceContextResponseJson = {
                 nx: 0,
                 ny: 0,
                 duration: '0.000',
-                fps: '0.000'
-            }
+                fps: '0.000',
+            },
         ],
         locations: [
             [
@@ -46,7 +48,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: '0.000',
-                    fps: '0.000'
+                    fps: '0.000',
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=5',
@@ -56,7 +58,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=4',
@@ -66,7 +68,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=3',
@@ -76,7 +78,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=2',
@@ -86,7 +88,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=1',
@@ -96,7 +98,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=0',
@@ -106,8 +108,8 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
-                }
+                    fps: 0,
+                },
             ],
             [
                 {
@@ -118,7 +120,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: '0.000',
-                    fps: '0.000'
+                    fps: '0.000',
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=5',
@@ -128,7 +130,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=4',
@@ -138,7 +140,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=3',
@@ -148,7 +150,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=2',
@@ -158,7 +160,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=1',
@@ -168,7 +170,7 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=0',
@@ -178,9 +180,9 @@ export const mockResourceContextResponseJson = {
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
-                }
-            ]
+                    fps: 0,
+                },
+            ],
         ],
         firstprop: ['Programm_Prag_19350109_Bild_1_2', 'Programm_Prag_19350109_Bild_2_2'],
         region: ['', ''],
@@ -203,8 +205,8 @@ export const mockResourceContextResponseJson = {
             lastmod: '2017-12-05 15:16:17',
             lastmod_utc: '2017-12-05 14:16:17',
             value_of: 0,
-            firstproperty: '[Programm:] Sdru\u017een\u00ed pro soudobou houdbu v Praze'
+            firstproperty: '[Programm:] Sdru\u017een\u00ed pro soudobou houdbu v Praze',
         },
-        canonical_res_id: '2173561'
-    }
+        canonical_res_id: '2173561',
+    },
 };

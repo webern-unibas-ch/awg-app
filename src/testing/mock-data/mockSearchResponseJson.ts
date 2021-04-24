@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /**
  * Test helper data file: mockSearchResponseJson.
  *
@@ -16,15 +18,15 @@ export const mockSearchResponseJson = {
         password: undefined,
         status: undefined,
         token: undefined,
-        user_id: undefined
+        user_id: undefined,
     },
     nhits: '5',
     paging: [
         {
             current: true,
             show_nrows: 10,
-            start_at: 0
-        }
+            start_at: 0,
+        },
     ],
     subjects: [
         {
@@ -39,7 +41,7 @@ export const mockSearchResponseJson = {
             rights: undefined,
             value: ['Auer 2017'],
             valuelabel: ['Kurztitel'],
-            valuetype_id: ['1']
+            valuetype_id: ['1'],
         },
         {
             iconlabel: 'Bibliografie',
@@ -53,7 +55,7 @@ export const mockSearchResponseJson = {
             rights: undefined,
             value: ['Nelson 1974'],
             valuelabel: ['Kurztitel'],
-            valuetype_id: ['1']
+            valuetype_id: ['1'],
         },
         {
             iconlabel: 'Bibliografie',
@@ -67,7 +69,7 @@ export const mockSearchResponseJson = {
             rights: undefined,
             value: ['Test'],
             valuelabel: ['Kurztitel'],
-            valuetype_id: ['1']
+            valuetype_id: ['1'],
         },
         {
             iconlabel: 'Bibliografie',
@@ -81,7 +83,7 @@ export const mockSearchResponseJson = {
             rights: undefined,
             value: ['BrownJ 2014'],
             valuelabel: ['Kurztitel'],
-            valuetype_id: ['1']
+            valuetype_id: ['1'],
         },
         {
             iconlabel: 'Bibliografie',
@@ -95,11 +97,11 @@ export const mockSearchResponseJson = {
             rights: undefined,
             value: ['Oliveira Sampaio 2000'],
             valuelabel: ['Kurztitel'],
-            valuetype_id: ['1']
-        }
+            valuetype_id: ['1'],
+        },
     ],
     thumb_max: {
         nx: 32,
-        ny: 32
-    }
+        ny: 32,
+    },
 };

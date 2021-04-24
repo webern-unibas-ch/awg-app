@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /**
  * Test helper data file: mockResourceFullResponseJson.
  *
@@ -24,7 +26,7 @@ export const mockResourceFullResponseJson = {
         resclass_has_location: false,
         lastmod: '2017-04-04 15:25:54',
         lastmod_utc: '2017-04-04 13:25:54',
-        value_of: 0
+        value_of: 0,
     },
     resdata: {
         res_id: '11398',
@@ -32,7 +34,7 @@ export const mockResourceFullResponseJson = {
         restype_label: 'Musikstück (Moldenhauer-Nummer)',
         iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
         resclass_name: 'object',
-        rights: '2'
+        rights: '2',
     },
     props: {
         'webern:mnr': {
@@ -50,7 +52,7 @@ export const mockResourceFullResponseJson = {
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
+            value_firstprops: [''],
         },
         'dc:title': {
             pid: '1',
@@ -67,7 +69,7 @@ export const mockResourceFullResponseJson = {
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
+            value_firstprops: [''],
         },
         'webern:date_composition': {
             pid: '97',
@@ -84,15 +86,15 @@ export const mockResourceFullResponseJson = {
                     dateval2: '2416480',
                     calendar: 'GREGORIAN',
                     dateprecision1: 'YEAR',
-                    dateprecision2: 'YEAR'
-                }
+                    dateprecision2: 'YEAR',
+                },
             ],
             value_ids: ['67654'],
             comments: ['1903] '],
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
+            value_firstprops: [''],
         },
         'webern:performance': {
             pid: '94',
@@ -102,7 +104,7 @@ export const mockResourceFullResponseJson = {
             is_annotation: '0',
             label: 'Aufführungen',
             attributes: 'restypeid=28;numprops=1',
-            occurrence: '0-n'
+            occurrence: '0-n',
         },
         'webern:date_firstpublication': {
             pid: '96',
@@ -112,7 +114,7 @@ export const mockResourceFullResponseJson = {
             is_annotation: '0',
             label: 'Datum der Erstpublikation',
             attributes: null,
-            occurrence: '0-1'
+            occurrence: '0-1',
         },
         'webern:firstpublisher': {
             pid: '95',
@@ -122,7 +124,7 @@ export const mockResourceFullResponseJson = {
             is_annotation: '0',
             label: 'Erstverlag',
             attributes: null,
-            occurrence: '0-1'
+            occurrence: '0-1',
         },
         'webern:instrumentation_rt': {
             pid: '196',
@@ -138,15 +140,15 @@ export const mockResourceFullResponseJson = {
                     utf8str: 'Ges, Kl',
                     textattr: '{}',
                     resource_reference: [],
-                    resid: '26396'
-                }
+                    resid: '26396',
+                },
             ],
             value_ids: ['135434'],
             comments: [''],
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
+            value_firstprops: [''],
         },
         'dc:source_rt': {
             pid: '193',
@@ -163,15 +165,15 @@ export const mockResourceFullResponseJson = {
                         '["Du träumst so süss im Sommerwind": Skizze, 2 S., Bleistift mit zahlreichen Korrekturen] Stiftung Martin Bodmer-Bibliotheca Bodmeriana / Genf (Signatur Ms 11706)\r',
                     textattr: '{"p":[{"start":0,"end":163}]}',
                     resource_reference: [],
-                    resid: '2426569'
-                }
+                    resid: '2426569',
+                },
             ],
             value_ids: ['135430'],
             comments: [''],
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
+            value_firstprops: [''],
         },
         'webern:textsource_rt': {
             pid: '198',
@@ -188,15 +190,15 @@ export const mockResourceFullResponseJson = {
                         'Franz Evers, Erntelieder, Leipzig 1901. (Vgl. auch Conrad Ansorge, Erntelieder op. 18, Berlin 1908: Nr. 3.)\r',
                     textattr: '{"italic":[{"start":13,"end":24},{"start":67,"end":78}],"p":[{"start":0,"end":108}]}',
                     resource_reference: [],
-                    resid: '2426570'
-                }
+                    resid: '2426570',
+                },
             ],
             value_ids: ['135438'],
             comments: [''],
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
+            value_firstprops: [''],
         },
         'salsah:comment_rt': {
             pid: '199',
@@ -212,16 +214,16 @@ export const mockResourceFullResponseJson = {
                     utf8str: 'Moldenhauer 1980, S. 655, liest "Du träumst so heiß im Sommerwind".\r',
                     textattr: '{"p":[{"start":0,"end":68}]}',
                     resource_reference: [],
-                    resid: '2426571'
-                }
+                    resid: '2426571',
+                },
             ],
             value_ids: ['135442'],
             comments: [''],
             value_rights: ['1'],
             value_iconsrcs: [''],
             value_restype: [''],
-            value_firstprops: ['']
-        }
+            value_firstprops: [''],
+        },
     },
     incoming: [],
     access: 'OK',
@@ -229,6 +231,6 @@ export const mockResourceFullResponseJson = {
     userdata: {
         lang: 'en',
         language_id: '4',
-        PHPSESSION: 'TRUE'
-    }
+        PHPSESSION: 'TRUE',
+    },
 };
