@@ -30,7 +30,7 @@ describe('FooterLogoComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [FooterLogoComponent]
+                declarations: [FooterLogoComponent],
             }).compileComponents();
         })
     );

@@ -11,7 +11,7 @@ import { BibEntry } from './bibliography-entry.model';
  *   `{{ bibEntry | bibFormat }}`
  */
 @Pipe({
-    name: 'bibFormat'
+    name: 'bibFormat',
 })
 export class BibliographyFormatPipe implements PipeTransform {
     /**
@@ -42,7 +42,7 @@ export class BibliographyFormatPipe implements PipeTransform {
         'Verlagsort',
         'Publikationsdatum',
         'Reihentitel',
-        'Seitenangabe'
+        'Seitenangabe',
     ];
 
     /**

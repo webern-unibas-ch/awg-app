@@ -19,7 +19,7 @@ describe('HeadingComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [HeadingComponent]
+                declarations: [HeadingComponent],
             }).compileComponents();
         })
     );

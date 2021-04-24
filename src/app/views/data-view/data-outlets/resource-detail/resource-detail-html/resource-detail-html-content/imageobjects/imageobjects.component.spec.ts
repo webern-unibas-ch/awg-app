@@ -29,7 +29,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgxGalleryModule],
-                declarations: [ResourceDetailHtmlContentImageobjectsComponent]
+                declarations: [ResourceDetailHtmlContentImageobjectsComponent],
             }).compileComponents();
         })
     );
@@ -56,8 +56,8 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 previewCloseOnEsc: true,
                 previewZoom: true,
                 previewRotate: true,
-                linkTarget: '_blank'
-            })
+                linkTarget: '_blank',
+            }),
         ];
 
         const images = [new ResourceDetailImage(context, 0), new ResourceDetailImage(context, 1)];
@@ -69,7 +69,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 big: image.fullSize,
                 description: image.origname,
                 label: image.label,
-                url: image.fullSize
+                url: image.fullSize,
             };
             expectedImages.push(gImage);
         });

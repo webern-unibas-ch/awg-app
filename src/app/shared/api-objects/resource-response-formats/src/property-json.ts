@@ -19,7 +19,7 @@ import {
     KnoraIRI,
     KnoraRights,
     LocationItemJson,
-    StringOrNumber
+    StringOrNumber,
 } from '@awg-shared/api-objects/basic-message-components';
 
 /**

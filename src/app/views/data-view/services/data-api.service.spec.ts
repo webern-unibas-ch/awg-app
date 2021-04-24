@@ -15,7 +15,7 @@ import {
     mockResourceDetail,
     mockResourceFullResponseJson,
     mockSearchResponseConverted,
-    mockSearchResponseJson
+    mockSearchResponseJson,
 } from '@testing/mock-data';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -52,7 +52,7 @@ describe('DataApiService', () => {
         search: 'search/',
         geonames: 'geonames/',
         hlists: 'hlists/',
-        selections: 'selections/'
+        selections: 'selections/',
     };
     const apiUrl = AppConfig.API_ENDPOINT;
 
@@ -60,12 +60,12 @@ describe('DataApiService', () => {
         // Stub service for test purposes
         mockConversionService = {
             convertFullTextSearchResults: () => expectedSearchResponseConverted,
-            convertResourceData: () => expectedResourceDetail
+            convertResourceData: () => expectedResourceDetail,
         };
 
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [DataApiService, { provide: ConversionService, useValue: mockConversionService }]
+            providers: [DataApiService, { provide: ConversionService, useValue: mockConversionService }],
         });
 
         // Inject services and http client handler
@@ -151,7 +151,7 @@ describe('DataApiService', () => {
 
                 // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
                 // Check for GET request
@@ -358,7 +358,7 @@ describe('DataApiService', () => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 SearchResponseJson,
                                 expectedQueryPath,
-                                expectedQueryHttpParams
+                                expectedQueryHttpParams,
                             ]);
                         });
                 })
@@ -412,7 +412,7 @@ describe('DataApiService', () => {
                                 expectSpyCall(getApiResponseSpy, 1, [
                                     SearchResponseJson,
                                     expectedQueryPath,
-                                    expectedQueryHttpParams
+                                    expectedQueryHttpParams,
                                 ]);
                                 expect(error).toEqual(expectedApiServiceError);
                             }

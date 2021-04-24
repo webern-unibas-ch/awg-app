@@ -43,5 +43,5 @@ export const mockConsole: IMockConsole = {
 
     clear(): void {
         consoleMessages = [];
-    }
+    },
 };

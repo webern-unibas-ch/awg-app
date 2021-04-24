@@ -30,5 +30,5 @@ export {
     ResourceDetailGroupedIncomingLinks,
     SearchParams,
     SearchParamsViewTypes,
-    SearchResponseWithQuery
+    SearchResponseWithQuery,
 };

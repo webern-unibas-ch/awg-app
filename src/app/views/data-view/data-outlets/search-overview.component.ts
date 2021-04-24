@@ -15,7 +15,7 @@ import { SideInfoService } from '@awg-core/services';
 @Component({
     selector: 'awg-search-overview',
     templateUrl: './search-overview.component.html',
-    styleUrls: ['./search-overview.component.css']
+    styleUrls: ['./search-overview.component.css'],
 })
 export class SearchOverviewComponent implements OnInit {
     /**
@@ -59,7 +59,7 @@ export class SearchOverviewComponent implements OnInit {
         this.searchRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
         ];
     }
 

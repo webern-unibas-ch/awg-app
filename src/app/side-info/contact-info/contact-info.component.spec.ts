@@ -8,7 +8,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -67,7 +67,7 @@ describe('ContactInfoComponent (DONE)', () => {
             TestBed.configureTestingModule({
                 imports: [BrowserModule],
                 declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );

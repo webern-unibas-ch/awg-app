@@ -13,6 +13,6 @@ import { PageNotFoundViewRoutingModule, routedPageNotFoundViewComponents } from 
  */
 @NgModule({
     imports: [SharedModule, PageNotFoundViewRoutingModule],
-    declarations: [routedPageNotFoundViewComponents]
+    declarations: [routedPageNotFoundViewComponents],
 })
 export class PageNotFoundViewModule {}

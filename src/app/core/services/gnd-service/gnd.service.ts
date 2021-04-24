@@ -11,7 +11,7 @@ import { StorageType, StorageService } from '@awg-core/services/storage-service'
 export enum GndEventType {
     SET = 'set',
     GET = 'get',
-    REMOVE = 'remove'
+    REMOVE = 'remove',
 }
 
 /**
@@ -53,7 +53,7 @@ export class GndEvent {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class GndService extends StorageService {
     /**
@@ -77,7 +77,7 @@ export class GndService extends StorageService {
      * It returns the origin of the current location.
      */
     readonly CURRENT_LOCATION = {
-        getOrigin: (location: Location) => location.origin
+        getOrigin: (location: Location) => location.origin,
     };
 
     /**

@@ -4,7 +4,7 @@ import {
     EditionSvgSheet,
     EditionSvgOverlay,
     EditionSvgSheetList,
-    EditionSvgOverlayTypes
+    EditionSvgOverlayTypes,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -18,7 +18,7 @@ export enum SvgSheetLabelsOp12 {
     SHEET_2 = 'Aa:SkI/2',
     SHEET_3 = 'Aa:SkI/3',
     SHEET_4 = 'Aa:SkI/4',
-    SHEET_5 = 'Aa:SkI/5'
+    SHEET_5 = 'Aa:SkI/5',
 }
 
 /**
@@ -47,7 +47,7 @@ export enum SvgSheetLabelsOp25 {
     SHEET_4_D = 'A:SkI/4d',
     SHEET_4_1 = 'A:SkI/4.1',
     SHEET_4_2 = 'A:SkI/4.2',
-    SHEET_4_3 = 'A:SkI/4.3'
+    SHEET_4_3 = 'A:SkI/4.3',
 }
 
 /**
@@ -61,7 +61,7 @@ export enum SvgSheetLabelsOp25 {
     selector: 'awg-edition-svg-sheet',
     templateUrl: './edition-svg-sheet.component.html',
     styleUrls: ['./edition-svg-sheet.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionSvgSheetComponent implements OnInit {
     /**
@@ -116,7 +116,7 @@ export class EditionSvgSheetComponent implements OnInit {
             SHEET_2: SvgSheetLabelsOp12.SHEET_2,
             SHEET_3: SvgSheetLabelsOp12.SHEET_3,
             SHEET_4: SvgSheetLabelsOp12.SHEET_4,
-            SHEET_5: SvgSheetLabelsOp12.SHEET_5
+            SHEET_5: SvgSheetLabelsOp12.SHEET_5,
         },
         op25: {
             SHEET_1: SvgSheetLabelsOp25.SHEET_1,
@@ -138,8 +138,8 @@ export class EditionSvgSheetComponent implements OnInit {
             SHEET_4_D: SvgSheetLabelsOp25.SHEET_4_D,
             SHEET_4_1: SvgSheetLabelsOp25.SHEET_4_1,
             SHEET_4_2: SvgSheetLabelsOp25.SHEET_4_2,
-            SHEET_4_3: SvgSheetLabelsOp25.SHEET_4_3
-        }
+            SHEET_4_3: SvgSheetLabelsOp25.SHEET_4_3,
+        },
     };
 
     /**

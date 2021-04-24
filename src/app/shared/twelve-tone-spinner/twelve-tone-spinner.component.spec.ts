@@ -11,7 +11,7 @@ describe('TwelveToneSpinnerComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [TwelveToneSpinnerComponent]
+                declarations: [TwelveToneSpinnerComponent],
             }).compileComponents();
         })
     );

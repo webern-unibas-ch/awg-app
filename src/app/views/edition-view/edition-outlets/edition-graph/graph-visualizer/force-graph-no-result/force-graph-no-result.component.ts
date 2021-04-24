@@ -14,7 +14,7 @@ import { CoreService } from '@awg-core/services';
     selector: 'awg-force-graph-no-result',
     templateUrl: './force-graph-no-result.component.html',
     styleUrls: ['./force-graph-no-result.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ForceGraphNoResultComponent implements OnInit {
     /**

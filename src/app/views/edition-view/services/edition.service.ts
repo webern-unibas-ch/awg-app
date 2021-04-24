@@ -6,7 +6,7 @@ import {
     EditionSvgOverlay,
     EditionSvgOverlayTypes,
     EditionWork,
-    TextcriticalComment
+    TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -19,7 +19,7 @@ import {
  * @used in the {@link EditionDetailComponent}.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class EditionService {
     /**

@@ -6,7 +6,7 @@ import {
     HostListener,
     Inject,
     OnInit,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
@@ -29,7 +29,7 @@ import { GraphVisualizerComponent } from './graph-visualizer';
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
     styleUrls: ['./edition-graph.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionGraphComponent implements OnInit {
     /**
@@ -81,7 +81,7 @@ export class EditionGraphComponent implements OnInit {
      */
     readonly GRAPH_IMAGES = {
         op12: '',
-        op25: EditionConstants.GRAPH_IMAGE_OP25.route
+        op25: EditionConstants.GRAPH_IMAGE_OP25.route,
     };
 
     /**

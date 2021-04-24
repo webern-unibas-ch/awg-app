@@ -11,14 +11,14 @@ import {
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     SearchResponseJson,
-    SelectionJson
+    SelectionJson,
 } from '@awg-shared/api-objects';
 import {
     IResourceDataResponse,
     ResourceData,
     ResourceDetail,
     SearchParams,
-    SearchParamsViewTypes
+    SearchParamsViewTypes,
 } from '@awg-views/data-view/models';
 
 /**
@@ -31,7 +31,7 @@ import {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class DataApiService extends ApiService {
     /**
@@ -59,7 +59,7 @@ export class DataApiService extends ApiService {
         search: 'search/',
         geonames: 'geonames/',
         hlists: 'hlists/',
-        selections: 'selections/'
+        selections: 'selections/',
     };
 
     /**
@@ -98,7 +98,7 @@ export class DataApiService extends ApiService {
             query: searchParams.query,
             nRows: searchParams.nRows || '-1',
             startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchParamsViewTypes.table
+            view: searchParams.view || SearchParamsViewTypes.table,
         };
 
         // Set path and params of query

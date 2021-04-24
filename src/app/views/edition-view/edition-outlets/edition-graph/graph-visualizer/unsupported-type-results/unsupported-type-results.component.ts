@@ -10,7 +10,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
     selector: 'awg-unsupported-type-results',
     templateUrl: './unsupported-type-results.component.html',
     styleUrls: ['./unsupported-type-results.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class UnsupportedTypeResultsComponent implements OnInit {
     /**

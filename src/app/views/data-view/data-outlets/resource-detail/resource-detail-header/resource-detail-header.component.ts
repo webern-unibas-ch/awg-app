@@ -12,7 +12,7 @@ import { ResourceDetailHeader } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail-header',
     templateUrl: './resource-detail-header.component.html',
     styleUrls: ['./resource-detail-header.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHeaderComponent implements OnInit {
     /**

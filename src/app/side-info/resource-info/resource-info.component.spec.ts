@@ -63,7 +63,7 @@ describe('ResourceInfoComponent (DONE)', () => {
             // Mocked dataStreamerService
             mockDataStreamerService = {
                 getResourceId: (): Observable<string> => observableOf('test'),
-                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf()
+                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
             };
 
             TestBed.configureTestingModule({
@@ -71,9 +71,9 @@ describe('ResourceInfoComponent (DONE)', () => {
                 providers: [
                     { provide: Router, useValue: mockRouter },
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    FormBuilder
+                    FormBuilder,
                 ],
-                declarations: [ResourceInfoComponent, CompileHtmlComponent]
+                declarations: [ResourceInfoComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );
@@ -331,8 +331,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: new ResourceInfoResource(expectedNext, i + 1),
-                        previous: new ResourceInfoResource(expectedPrevious, i - 1)
-                    }
+                        previous: new ResourceInfoResource(expectedPrevious, i - 1),
+                    },
                 };
 
                 expect(component.resourceInfoData).toBeTruthy('should be truthy');
@@ -358,8 +358,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: new ResourceInfoResource(expectedNext, i + 1),
-                        previous: undefined
-                    }
+                        previous: undefined,
+                    },
                 };
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
@@ -390,8 +390,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: undefined,
-                        previous: new ResourceInfoResource(expectedPrevious, i - 1)
-                    }
+                        previous: new ResourceInfoResource(expectedPrevious, i - 1),
+                    },
                 };
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
@@ -421,8 +421,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
                         next: undefined,
-                        previous: undefined
-                    }
+                        previous: undefined,
+                    },
                 };
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);
@@ -459,8 +459,8 @@ describe('ResourceInfoComponent (DONE)', () => {
                     resources: {
                         current: undefined,
                         next: new ResourceInfoResource(expectedNext, i + 1),
-                        previous: undefined
-                    }
+                        previous: undefined,
+                    },
                 };
 
                 (component as any)._updateResourceInfo(expectedResourceId, otherResponseClone);

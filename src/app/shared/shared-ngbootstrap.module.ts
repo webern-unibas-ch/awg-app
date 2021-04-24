@@ -7,7 +7,7 @@ import {
     NgbModalModule,
     NgbNavModule,
     NgbPaginationModule,
-    NgbTooltipModule
+    NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -19,7 +19,7 @@ import {
         NgbModalModule,
         NgbNavModule,
         NgbPaginationModule,
-        NgbTooltipModule
+        NgbTooltipModule,
     ],
     exports: [
         NgbAccordionModule,
@@ -29,7 +29,7 @@ import {
         NgbModalModule,
         NgbNavModule,
         NgbPaginationModule,
-        NgbTooltipModule
-    ]
+        NgbTooltipModule,
+    ],
 })
 export class SharedNgbootstrapModule {}

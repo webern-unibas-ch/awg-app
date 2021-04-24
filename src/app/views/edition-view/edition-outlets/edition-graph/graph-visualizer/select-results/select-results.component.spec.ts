@@ -41,7 +41,7 @@ describe('SelectResultsComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [SelectResultsComponent, TwelveToneSpinnerStubComponent]
+                declarations: [SelectResultsComponent, TwelveToneSpinnerStubComponent],
             }).compileComponents();
         })
     );
@@ -60,8 +60,8 @@ describe('SelectResultsComponent', () => {
             {
                 subject: { nominalValue: 'example:Test' },
                 predicate: { nominalValue: 'example:has' },
-                object: { nominalValue: 'example:Success' }
-            }
+                object: { nominalValue: 'example:Success' },
+            },
         ];
         expectedQueryResult = observableOf(expectedTriples);
     });

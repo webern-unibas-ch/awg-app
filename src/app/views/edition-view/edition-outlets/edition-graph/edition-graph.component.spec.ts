@@ -11,7 +11,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -22,7 +22,7 @@ import {
     Graph,
     GraphList,
     GraphRDFData,
-    GraphSparqlQuery
+    GraphSparqlQuery,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
@@ -74,11 +74,11 @@ describe('EditionGraphComponent (DONE)', () => {
         waitForAsync(() => {
             // Mocked editionDataService
             mockEditionDataService = {
-                getEditionGraphData: (editionWork: EditionWork): Observable<GraphList> => observableOf()
+                getEditionGraphData: (editionWork: EditionWork): Observable<GraphList> => observableOf(),
             };
             // Mocked editionService
             mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> => observableOf()
+                getEditionWork: (): Observable<EditionWork> => observableOf(),
             };
 
             TestBed.configureTestingModule({
@@ -87,12 +87,12 @@ describe('EditionGraphComponent (DONE)', () => {
                     EditionGraphComponent,
                     GraphVisualizerStubComponent,
                     ModalStubComponent,
-                    CompileHtmlComponent
+                    CompileHtmlComponent,
                 ],
                 providers: [
                     { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService }
-                ]
+                    { provide: EditionService, useValue: mockEditionService },
+                ],
             }).compileComponents();
         })
     );

@@ -9,7 +9,7 @@ import { isPlatformBrowser } from '@angular/common';
  */
 @Directive({
     // eslint-disable-next-line @angular-eslint/directive-selector
-    selector: 'a[href]'
+    selector: 'a[href]',
 })
 export class ExternalLinkDirective implements OnChanges {
     /**

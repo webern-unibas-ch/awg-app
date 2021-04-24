@@ -12,7 +12,7 @@ import { LOGOSDATA } from '@awg-core/mock-data';
     selector: 'awg-footer-logo',
     templateUrl: './footer-logo.component.html',
     styleUrls: ['./footer-logo.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterLogoComponent {
     /**

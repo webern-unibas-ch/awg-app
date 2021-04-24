@@ -14,7 +14,7 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class DataStreamerService {
     /**

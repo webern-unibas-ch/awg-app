@@ -6,7 +6,7 @@ import {
     HttpHeaders,
     HttpInterceptor,
     HttpRequest,
-    HttpResponse
+    HttpResponse,
 } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Data } from '@angular/router';
@@ -47,9 +47,9 @@ describe('CachingInterceptor (DONE)', () => {
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: CachingInterceptor,
-                    multi: true
-                }
-            ]
+                    multi: true,
+                },
+            ],
         });
 
         // Inject services and http client handler
@@ -100,7 +100,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                 // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
                 // Check for GET request
@@ -168,7 +168,7 @@ describe('CachingInterceptor (DONE)', () => {
             status: 200,
             statusText: 'OK',
             url: expectedUrl,
-            body: testData
+            body: testData,
         });
         let call: TestRequest;
 
@@ -182,7 +182,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                 // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
@@ -251,7 +251,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                     // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
                     // Resolve request
@@ -282,7 +282,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                     // Expect not an HTTP request, since response is delivered from cache
                     httpTestingController.expectNone({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
                     // Expect spy calls
@@ -315,7 +315,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                     // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
                     // Resolve request
@@ -344,7 +344,7 @@ describe('CachingInterceptor (DONE)', () => {
                     const expectedError = new HttpErrorResponse({
                         status: 401,
                         statusText: 'error',
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
                     httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
 
@@ -361,7 +361,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                     // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
                     // Expecting spy calls
@@ -406,7 +406,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                     // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
                     // Expecting spy calls

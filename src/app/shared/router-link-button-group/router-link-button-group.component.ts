@@ -13,7 +13,7 @@ import { RouterLinkButton } from './router-link-button.model';
     selector: 'awg-router-link-button-group',
     templateUrl: './router-link-button-group.component.html',
     styleUrls: ['./router-link-button-group.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class RouterLinkButtonGroupComponent {
     /**

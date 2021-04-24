@@ -12,7 +12,7 @@ import {
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { Subject } from 'rxjs';
@@ -29,7 +29,7 @@ import { Subject } from 'rxjs';
 @Component({
     selector: 'awg-edition-detail',
     templateUrl: './edition-detail.component.html',
-    styleUrls: ['./edition-detail.component.css']
+    styleUrls: ['./edition-detail.component.css'],
 })
 export class EditionDetailComponent implements OnInit, OnDestroy {
     /**
@@ -265,7 +265,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
 
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: ''
+            queryParamsHandling: '',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);

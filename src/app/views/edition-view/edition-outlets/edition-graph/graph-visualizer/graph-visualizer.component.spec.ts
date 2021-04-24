@@ -7,7 +7,7 @@ import Spy = jasmine.Spy;
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
@@ -95,7 +95,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     new Promise((resolve, reject) => {
                         resolve(expectedResult);
                         reject({ name: 'Error1', message: 'failed' });
-                    })
+                    }),
             };
 
             TestBed.configureTestingModule({
@@ -105,9 +105,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     SparqlEditorStubComponent,
                     ConstructResultsStubComponent,
                     SelectResultsStubComponent,
-                    UnsupportedTypeResultsStubComponent
+                    UnsupportedTypeResultsStubComponent,
                 ],
-                providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }]
+                providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }],
             }).compileComponents();
         })
     );
@@ -126,11 +126,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedGraphRDFData.queryList = [];
         expectedGraphRDFData.queryList.push({
             queryLabel: 'Test Query 1',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test ?has ?success . }'
+            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test ?has ?success . }',
         });
         expectedGraphRDFData.queryList.push({
             queryLabel: 'Test Query 2',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test2 ?has ?success2 . }'
+            queryString:
+                'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test2 ?has ?success2 . }',
         });
         expectedGraphRDFData.triples =
             '@prefix example: <http://example.com/onto#> .\n\n example:Test example:has example:Success .';
@@ -139,8 +140,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             {
                 subject: { nominalValue: 'Test' },
                 predicate: { nominalValue: 'has' },
-                object: { nominalValue: 'Success' }
-            }
+                object: { nominalValue: 'Success' },
+            },
         ];
 
         // Spies on component functions
@@ -268,7 +269,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             const expectedCallback = [
                 'construct',
                 expectedGraphRDFData.queryList[0].queryString,
-                expectedGraphRDFData.triples
+                expectedGraphRDFData.triples,
             ];
 
             await expectAsync(
@@ -375,7 +376,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const changedQuery = {
                     queryLabel: 'Test Query 2',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?otherStringValue3 . }'
+                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?otherStringValue3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -396,7 +397,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const changedQuery = {
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }'
+                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -441,7 +442,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const changedQuery = {
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }'
+                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -481,7 +482,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const queryStringWithoutPrefixes = 'CONSTRUCT * WHERE { ?test ?has ?success . }';
                 const queryWithoutPrefixes: GraphSparqlQuery = {
                     queryLabel: 'Test Query 1',
-                    queryString: queryStringWithoutPrefixes
+                    queryString: queryStringWithoutPrefixes,
                 };
                 const namespaceSpy = spyOn(graphVisualizerService, 'appendNamespacesToQuery').and.returnValue(
                     'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test ?has ?success . }'
@@ -521,7 +522,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(queryLocalStoreSpy, 1, [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ]);
 
                 // Perform query
@@ -532,7 +533,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(queryLocalStoreSpy, 2, [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ]);
             });
 
@@ -608,7 +609,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ];
 
                 // Perform query
@@ -624,7 +625,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ];
 
                 // Perform query
@@ -650,7 +651,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
@@ -680,7 +681,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
@@ -702,7 +703,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ];
                 const expectedError = { name: 'Error', message: 'error message' };
 
@@ -724,7 +725,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedCallback = [
                     'construct',
                     expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples
+                    expectedGraphRDFData.triples,
                 ];
                 const expectedError = { name: 'Error', message: 'error message undefined' };
 

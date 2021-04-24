@@ -20,7 +20,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [FooterCopyrightComponent]
+                declarations: [FooterCopyrightComponent],
             }).compileComponents();
         })
     );

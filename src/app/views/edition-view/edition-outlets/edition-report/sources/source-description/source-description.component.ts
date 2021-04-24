@@ -13,7 +13,7 @@ import { EditionConstants, EditionWorks, SourceDescriptionList } from '@awg-view
     selector: 'awg-source-description',
     templateUrl: './source-description.component.html',
     styleUrls: ['./source-description.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceDescriptionComponent implements OnInit {
     /**
@@ -48,11 +48,11 @@ export class SourceDescriptionComponent implements OnInit {
      */
     readonly FIRM_SIGNS = {
         op12: {
-            A: [EditionConstants.FIRM_JE_NO_9_LIN_28]
+            A: [EditionConstants.FIRM_JE_NO_9_LIN_28],
         },
         op25: {
-            A: [EditionConstants.FIRM_JE_NO_15_LIN_16]
-        }
+            A: [EditionConstants.FIRM_JE_NO_15_LIN_16],
+        },
     };
 
     /**

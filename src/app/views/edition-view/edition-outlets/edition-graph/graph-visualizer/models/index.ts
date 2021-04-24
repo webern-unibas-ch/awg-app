@@ -39,5 +39,5 @@ export {
     QueryResult,
     QueryTypeIndex,
     Triple,
-    TripleComponent
+    TripleComponent,
 };

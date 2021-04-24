@@ -30,7 +30,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [UnsupportedTypeResultsComponent]
+                declarations: [UnsupportedTypeResultsComponent],
             }).compileComponents();
         })
     );

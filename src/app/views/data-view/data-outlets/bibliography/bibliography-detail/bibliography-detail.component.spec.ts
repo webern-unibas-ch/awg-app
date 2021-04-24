@@ -35,15 +35,15 @@ describe('BibliographyDetailComponent', () => {
             // Stub conversionService to return convertedBibItemDetail
             expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
             mockConversionService = {
-                convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail
+                convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail,
             };
 
             TestBed.configureTestingModule({
                 declarations: [BibliographyDetailComponent, BibliographyFormatPipe],
                 providers: [
                     { provide: BibliographyService, useValue: mockBibliographyService },
-                    { provide: ConversionService, useValue: mockConversionService }
-                ]
+                    { provide: ConversionService, useValue: mockConversionService },
+                ],
             }).compileComponents();
         })
     );

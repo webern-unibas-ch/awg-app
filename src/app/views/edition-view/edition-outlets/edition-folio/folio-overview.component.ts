@@ -6,7 +6,7 @@ import {
     Input,
     OnChanges,
     Output,
-    SimpleChanges
+    SimpleChanges,
 } from '@angular/core';
 
 import {
@@ -15,7 +15,7 @@ import {
     FolioSvgData,
     EditionSvgSheet,
     ViewBox,
-    FolioConvolute
+    FolioConvolute,
 } from '@awg-views/edition-view/models';
 import { FolioService } from './folio.service';
 
@@ -37,7 +37,7 @@ declare let Snap: any;
     selector: 'awg-edition-folio',
     templateUrl: './folio-overview.component.html',
     styleUrls: ['./folio-overview.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
@@ -140,7 +140,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
         formatY: 270,
         initialOffsetX: 5,
         initialOffsetY: 5,
-        numberOfFolios: 0
+        numberOfFolios: 0,
     };
 
     /**
@@ -220,7 +220,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
                 formatY: +folio.format.height,
                 initialOffsetX: this.folioSettings.initialOffsetX,
                 initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.selectedConvolute.folios.length
+                numberOfFolios: +this.selectedConvolute.folios.length,
             };
 
             // Prepare viewbox settings

@@ -6,7 +6,7 @@ import {
     FolioCalculation,
     FolioCalculationLine,
     FolioSettings,
-    ViewBox
+    ViewBox,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -25,7 +25,7 @@ declare let Snap: any;
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class FolioService {
     /**
@@ -78,7 +78,7 @@ export class FolioService {
             version: '1.1',
             xmlns: 'https://www.w3.org/2000/svg',
             xlink: 'https://www.w3.org/1999/xlink',
-            preserveAspectRatio: 'xMinYMin meet'
+            preserveAspectRatio: 'xMinYMin meet',
         });
     }
 
@@ -151,7 +151,7 @@ export class FolioService {
         // Sheet id
         snapSheetGroup.attr({
             sheetGroupId: folioId,
-            class: 'sheet-group'
+            class: 'sheet-group',
         });
 
         // Sheet rectangle
@@ -159,7 +159,7 @@ export class FolioService {
         snapSheetRect.attr({
             fill: 'white',
             stroke: bgColor,
-            strokeWidth: 1
+            strokeWidth: 1,
         });
 
         // Sheet title
@@ -195,7 +195,7 @@ export class FolioService {
             const snapSystemLineGroup: any = snapCanvas.group();
             snapSystemLineGroup.attr({
                 systemLineGroupId: systemIndex + 1,
-                class: 'system-line-group'
+                class: 'system-line-group',
             });
 
             // System lines
@@ -210,7 +210,7 @@ export class FolioService {
                 systemLine.attr({
                     class: 'system-line',
                     stroke: bgColor,
-                    strokeWidth: 0.7
+                    strokeWidth: 0.7,
                 });
                 snapSystemLineGroup.add(systemLine);
             });
@@ -225,14 +225,14 @@ export class FolioService {
             snapSystemLabel.attr({
                 class: 'system-label',
                 dominantBaseline: 'hanging',
-                fill: bgColor
+                fill: bgColor,
             });
 
             // Systems group
             const snapSystemsGroup: any = snapCanvas.group(snapSystemLineGroup, snapSystemLabel);
             snapSystemsGroup.attr({
                 systemsGroupId: systemIndex + 1,
-                class: 'systems-group'
+                class: 'systems-group',
             });
 
             // Add the systems group to the sheet group
@@ -275,21 +275,21 @@ export class FolioService {
             snapItemLabel.attr({
                 class: 'item-label',
                 style: 'font: 12px Source Sans Pro, source-sans-pro, sans-serif',
-                dominantBaseline: 'middle'
+                dominantBaseline: 'middle',
             });
             // Attributes for tspan elements of itemLabel array
             const textAnchor = 'middle';
             snapItemLabel.select('tspan:first-of-type').attr({
                 x: centeredXPosition,
                 y: centeredYPosition,
-                textAnchor
+                textAnchor,
             });
             if (itemLabelArray.length > 1) {
                 snapItemLabel.select('tspan:last-of-type').attr({
                     x: centeredXPosition,
                     y: centeredYPosition,
                     textAnchor,
-                    dy: '1.2em'
+                    dy: '1.2em',
                 });
             }
 
@@ -308,13 +308,13 @@ export class FolioService {
             snapItemShape.attr({
                 class: 'item-shape',
                 strokeWidth: 2,
-                fill: 'white'
+                fill: 'white',
             });
 
             // Item link
             const snapItemLink: any = snapCanvas.el('a');
             snapItemLink.attr({
-                class: 'item-link'
+                class: 'item-link',
             });
 
             // Add shape and label to item link
@@ -326,7 +326,7 @@ export class FolioService {
             snapItemGroup.attr({
                 itemGroupId: itemLabelArray,
                 itemId: contentItem.sigle,
-                class: 'item-group'
+                class: 'item-group',
             });
 
             // Apply title when hovering item
@@ -339,13 +339,13 @@ export class FolioService {
                 snapItemGroup.click(() => this.ref.openModal(contentItem.linkTo));
                 snapItemGroup.attr({
                     stroke: 'grey',
-                    fill: 'grey'
+                    fill: 'grey',
                 });
             } else {
                 snapItemGroup.click(() => this.ref.selectSvgSheet(contentItem.sigle));
                 snapItemGroup.attr({
                     stroke: fgColor,
-                    fill: fgColor
+                    fill: fgColor,
                 });
             }
 

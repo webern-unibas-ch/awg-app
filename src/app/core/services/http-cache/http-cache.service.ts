@@ -34,7 +34,7 @@ abstract class HttpCache {
  * and handles cached http responses.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class HttpCacheService implements HttpCache {
     /**

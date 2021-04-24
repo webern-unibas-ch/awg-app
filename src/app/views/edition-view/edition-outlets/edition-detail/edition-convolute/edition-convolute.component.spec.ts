@@ -34,7 +34,7 @@ describe('EditionConvoluteComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, NgbAccordionWithConfigModule],
-                declarations: [EditionConvoluteComponent, FolioStubComponent]
+                declarations: [EditionConvoluteComponent, FolioStubComponent],
             }).compileComponents();
         })
     );

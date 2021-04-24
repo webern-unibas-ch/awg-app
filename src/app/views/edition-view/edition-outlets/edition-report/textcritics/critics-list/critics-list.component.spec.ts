@@ -35,7 +35,7 @@ describe('CriticsListComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [CriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent]
+                declarations: [CriticsListComponent, CompileHtmlComponent, EditionTkaTableStubComponent],
             }).compileComponents();
         })
     );

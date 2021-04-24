@@ -16,7 +16,7 @@ describe('ConversionService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [AppModule, RouterTestingModule],
-            providers: [ConversionService]
+            providers: [ConversionService],
         });
         conversionService = TestBed.inject(ConversionService);
     });

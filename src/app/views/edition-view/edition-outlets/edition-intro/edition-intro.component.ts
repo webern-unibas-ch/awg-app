@@ -19,7 +19,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     selector: 'awg-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionIntroComponent implements OnInit {
     /**
@@ -125,7 +125,7 @@ export class EditionIntroComponent implements OnInit {
             fragmentId = '';
         }
         const navigationExtras: NavigationExtras = {
-            fragment: fragmentId
+            fragment: fragmentId,
         };
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
     }
@@ -158,7 +158,7 @@ export class EditionIntroComponent implements OnInit {
         }
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: ''
+            queryParamsHandling: '',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);

@@ -13,7 +13,7 @@ import { Triple } from '../models';
     selector: 'awg-select-results',
     templateUrl: './select-results.component.html',
     styleUrls: ['./select-results.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SelectResultsComponent implements OnInit {
     /**

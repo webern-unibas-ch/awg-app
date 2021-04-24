@@ -22,7 +22,7 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
 @Component({
     selector: 'awg-search-panel',
     templateUrl: './search-panel.component.html',
-    styleUrls: ['./search-panel.component.css']
+    styleUrls: ['./search-panel.component.css'],
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
     /**
@@ -48,7 +48,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         query: '',
         nRows: '25',
         startAt: '0',
-        view: SearchParamsViewTypes.table
+        view: SearchParamsViewTypes.table,
     };
 
     /**
@@ -191,7 +191,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: requestedStartAt,
-                view: this.searchParams.view
+                view: this.searchParams.view,
             };
             // Route to new params
             this.routeToSelf(this.searchParams);
@@ -218,7 +218,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 query: this.searchParams.query,
                 nRows: requestedRows,
                 startAt: '0',
-                view: this.searchParams.view
+                view: this.searchParams.view,
             };
 
             // Route to new params
@@ -246,7 +246,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
-                view: SearchParamsViewTypes[requestedView]
+                view: SearchParamsViewTypes[requestedView],
             };
 
             // Route to new params
@@ -274,7 +274,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                 query: requestedQuery,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
-                view: this.searchParams.view
+                view: this.searchParams.view,
             };
 
             // Route to new search params
@@ -295,7 +295,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.router.navigate([], {
             relativeTo: this.route,
             queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
-            queryParamsHandling: 'merge'
+            queryParamsHandling: 'merge',
         });
     }
 
@@ -322,7 +322,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             query: params.get('query') || this.searchParams.query,
             nRows: params.get('nrows') || this.searchParams.nRows,
             startAt: params.get('startAt') || this.searchParams.startAt,
-            view: SearchParamsViewTypes[params.get('view')] || this.searchParams.view
+            view: SearchParamsViewTypes[params.get('view')] || this.searchParams.view,
         };
 
         if (routing) {

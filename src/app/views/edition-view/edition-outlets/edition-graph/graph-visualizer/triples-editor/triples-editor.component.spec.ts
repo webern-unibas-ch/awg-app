@@ -9,7 +9,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { TriplesEditorComponent } from './triples-editor.component';
@@ -55,7 +55,7 @@ describe('TriplesEditorComponent (DONE)', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [TriplesEditorComponent, CodeMirrorStubComponent]
+                declarations: [TriplesEditorComponent, CodeMirrorStubComponent],
             }).compileComponents();
         })
     );
@@ -73,7 +73,7 @@ describe('TriplesEditorComponent (DONE)', () => {
             firstLineNumber: 1,
             lineWrapping: true,
             matchBrackets: true,
-            mode: 'turtle'
+            mode: 'turtle',
         };
 
         // Spies on component functions

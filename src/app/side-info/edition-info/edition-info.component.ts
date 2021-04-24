@@ -11,7 +11,7 @@ import { EditionWorks } from '@awg-views/edition-view/models';
     selector: 'awg-edition-info',
     templateUrl: './edition-info.component.html',
     styleUrls: ['./edition-info.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionInfoComponent implements OnInit {
     /**

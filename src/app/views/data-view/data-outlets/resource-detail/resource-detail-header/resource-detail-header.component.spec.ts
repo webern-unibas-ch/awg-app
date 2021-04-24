@@ -5,7 +5,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import Spy = jasmine.Spy;
@@ -30,7 +30,7 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ResourceDetailHeaderComponent, CompileHtmlComponent]
+                declarations: [ResourceDetailHeaderComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );

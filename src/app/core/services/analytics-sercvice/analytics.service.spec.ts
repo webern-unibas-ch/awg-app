@@ -39,7 +39,7 @@ describe('AnalyticsService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [AnalyticsService]
+            providers: [AnalyticsService],
         });
 
         // Inject service
@@ -210,7 +210,7 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView }
+                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView },
             ];
 
             // Init analytics
@@ -227,13 +227,13 @@ describe('AnalyticsService (DONE)', () => {
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView }
+                { page_path: expectedPage, anonymize_ip: true, send_page_view: expectedSendPageView },
             ];
             const otherAnalyticsEvent = [
                 'config',
                 expectedAnalyticsId,
                 // eslint-disable-next-line @typescript-eslint/naming-convention
-                { page_path: otherPage, anonymize_ip: true, send_page_view: expectedSendPageView }
+                { page_path: otherPage, anonymize_ip: true, send_page_view: expectedSendPageView },
             ];
 
             // Init analytics

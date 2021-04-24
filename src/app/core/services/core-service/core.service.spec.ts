@@ -15,7 +15,7 @@ describe('CoreService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [CoreService]
+            providers: [CoreService],
         });
         // Inject service
         coreService = TestBed.inject(CoreService);

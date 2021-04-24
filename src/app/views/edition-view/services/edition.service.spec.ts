@@ -10,7 +10,7 @@ import {
     EditionSvgOverlayTypes,
     EditionWork,
     EditionWorks,
-    TextcriticalComment
+    TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
 import { EditionService } from './edition.service';
@@ -30,7 +30,7 @@ describe('EditionService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [EditionService]
+            providers: [EditionService],
         });
         // Inject service
         editionService = TestBed.inject(EditionService);
@@ -43,32 +43,32 @@ describe('EditionService (DONE)', () => {
                 measure: '1',
                 system: '11',
                 position: '1. Note',
-                comment: '1. Kommentar.'
+                comment: '1. Kommentar.',
             },
             {
                 measure: '2',
                 system: '12',
                 position: '2. Note',
-                comment: '2. Kommentar.'
+                comment: '2. Kommentar.',
             },
             {
                 measure: '2',
                 system: '14',
                 position: '3. Note',
-                comment: '3. Kommentar.'
+                comment: '3. Kommentar.',
             },
             {
                 measure: '[3]',
                 system: '14',
                 position: '4. Note',
-                comment: '4. Kommentar.'
+                comment: '4. Kommentar.',
             },
             {
                 measure: '4',
                 system: '[13]',
                 position: '5. Note',
-                comment: '5. Kommentar.'
-            }
+                comment: '5. Kommentar.',
+            },
         ];
         // Overlay for measure 9 entries
         expectedOverlay = new EditionSvgOverlay(EditionSvgOverlayTypes.measure, '9');
@@ -192,7 +192,7 @@ describe('EditionService (DONE)', () => {
             expectSpyCall(filterTextcriticalCommentsSpy, expectedTka.length, [
                 expectedTka[expectedTka.length - 1],
                 expectedOverlay,
-                expectedTka.length - 1
+                expectedTka.length - 1,
             ]);
         });
 

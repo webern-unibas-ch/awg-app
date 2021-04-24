@@ -11,7 +11,7 @@ describe('EditionSeriesComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionSeriesComponent, RouterOutletStubComponent]
+                declarations: [EditionSeriesComponent, RouterOutletStubComponent],
             }).compileComponents();
         })
     );

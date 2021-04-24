@@ -58,7 +58,7 @@ describe('ApiService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientModule, HttpClientTestingModule],
-            providers: [ApiService]
+            providers: [ApiService],
         });
         // Inject services and http client handler
         apiService = TestBed.inject(ApiService);
@@ -109,7 +109,7 @@ describe('ApiService', () => {
 
                 // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
                 // Check for GET request

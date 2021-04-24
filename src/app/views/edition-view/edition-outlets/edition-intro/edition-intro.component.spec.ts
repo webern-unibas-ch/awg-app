@@ -20,7 +20,7 @@ describe('IntroComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbModalModule, HttpClientTestingModule, RouterTestingModule],
-                declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective]
+                declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );

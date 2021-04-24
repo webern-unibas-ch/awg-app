@@ -46,7 +46,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
-        SharedNgbootstrapModule
+        SharedNgbootstrapModule,
     ],
     declarations: [
         AddressComponent,
@@ -57,7 +57,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         RouterLinkButtonGroupComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
-        OrderByPipe
+        OrderByPipe,
     ],
     exports: [
         CommonModule,
@@ -79,7 +79,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         RouterLinkButtonGroupComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
-        OrderByPipe
-    ]
+        OrderByPipe,
+    ],
 })
 export class SharedModule {}

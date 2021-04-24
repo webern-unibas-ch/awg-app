@@ -15,7 +15,7 @@ describe('DataStreamerService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [DataStreamerService]
+            providers: [DataStreamerService],
         });
         // Inject service
         dataStreamerService = TestBed.inject(DataStreamerService);

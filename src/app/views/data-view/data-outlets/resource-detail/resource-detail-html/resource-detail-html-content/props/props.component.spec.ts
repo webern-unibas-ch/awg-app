@@ -6,7 +6,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -29,7 +29,7 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent]
+                declarations: [ResourceDetailHtmlContentPropsComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );
@@ -47,13 +47,13 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
             '<a (click)="ref.navigateToResource()">Op. 28</a>: Skizzen zu einem "1. Satz"<a (click)="ref.navigateToResource(\'28\')"> (später 2. Satz [<a (click)="ref.navigateToResource(330)">M 330</a>])';
         const props1: ResourceDetailProperty = new ResourceDetailProperty('0', 'text', 'prop1', [
             prop1Value1,
-            'prop1-value2'
+            'prop1-value2',
         ]);
         const props2: ResourceDetailProperty = new ResourceDetailProperty('1', 'date', 'Versionsdatum', ['2019']);
         const props3: ResourceDetailProperty = new ResourceDetailProperty('2', 'richtext', 'prop2', [
             'prop2-value1',
             'prop2-value2',
-            'prop2-value3'
+            'prop2-value3',
         ]);
         const props4: ResourceDetailProperty = new ResourceDetailProperty('3', 'text', 'prop1', []);
         expectedProps = [props1, props2, props3, props4];

@@ -15,11 +15,11 @@ export const httpInterceptorProviders = [
     {
         provide: HTTP_INTERCEPTORS,
         useClass: CachingInterceptor,
-        multi: true
+        multi: true,
     },
     {
         provide: HTTP_INTERCEPTORS,
         useClass: LoadingInterceptor,
-        multi: true
-    }
+        multi: true,
+    },
 ];

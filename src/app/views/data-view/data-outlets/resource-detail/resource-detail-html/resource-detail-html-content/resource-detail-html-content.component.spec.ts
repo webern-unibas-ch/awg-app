@@ -8,7 +8,7 @@ import { NgxGalleryImage } from '@kolkov/ngx-gallery';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { mockContextJson } from '@testing/mock-data';
 
@@ -18,7 +18,7 @@ import {
     ResourceDetailContent,
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailImage,
-    ResourceDetailProperty
+    ResourceDetailProperty,
 } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentComponent } from './resource-detail-html-content.component';
@@ -70,8 +70,8 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
                     ResourceDetailHtmlContentComponent,
                     ResourceDetailHtmlContentPropsStubComponent,
                     ResourceDetailHtmlContentImageobjectsStubComponent,
-                    ResourceDetailHtmlContentLinkedobjectsStubComponent
-                ]
+                    ResourceDetailHtmlContentLinkedobjectsStubComponent,
+                ],
             }).compileComponents();
         })
     );
@@ -89,11 +89,11 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         // Test data
         const images: ResourceDetailImage[] = [
             new ResourceDetailImage(context, 0),
-            new ResourceDetailImage(context, 1)
+            new ResourceDetailImage(context, 1),
         ];
         const incoming = [new ResourceDetailGroupedIncomingLinks()];
         const props: ResourceDetailProperty[] = [
-            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
+            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2']),
         ];
         expectedContent = new ResourceDetailContent(props, images, incoming);
 

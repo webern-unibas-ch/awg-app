@@ -24,7 +24,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [FooterDeclarationComponent, RouterLinkStubDirective]
+                declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );

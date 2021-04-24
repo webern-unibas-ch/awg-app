@@ -21,7 +21,7 @@ describe('AddressComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [AddressComponent]
+                declarations: [AddressComponent],
             }).compileComponents();
         })
     );

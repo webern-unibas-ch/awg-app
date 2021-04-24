@@ -11,7 +11,7 @@ describe('EditionSvgSheetNavComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionSvgSheetNavComponent]
+                declarations: [EditionSvgSheetNavComponent],
             }).compileComponents();
         })
     );

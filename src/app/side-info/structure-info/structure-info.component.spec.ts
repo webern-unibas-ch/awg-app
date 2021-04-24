@@ -28,7 +28,7 @@ describe('StructureInfoComponent (DONE)', () => {
 
             TestBed.configureTestingModule({
                 declarations: [StructureInfoComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );

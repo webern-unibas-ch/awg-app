@@ -17,7 +17,7 @@ import { takeUntil } from 'rxjs/operators';
 @Component({
     selector: 'awg-edition-overview',
     templateUrl: './edition-overview.component.html',
-    styleUrls: ['./edition-overview.component.css']
+    styleUrls: ['./edition-overview.component.css'],
 })
 export class EditionOverviewComponent implements OnInit, OnDestroy {
     /**
@@ -117,7 +117,7 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
                 this.editionWork.graphRoute.route,
                 EditionConstants.EDITION_GRAPH.short,
                 false
-            )
+            ),
         ];
     }
 

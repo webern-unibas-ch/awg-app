@@ -8,8 +8,8 @@ const editionDetailRoutes: Routes = [
     {
         path: '',
         component: EditionDetailComponent,
-        data: { title: 'AWG Online Edition – Detail' }
-    }
+        data: { title: 'AWG Online Edition – Detail' },
+    },
 ];
 
 /**
@@ -25,6 +25,6 @@ export const routedEditionDetailComponents = [EditionDetailComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(editionDetailRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class EditionDetailRoutingModule {}

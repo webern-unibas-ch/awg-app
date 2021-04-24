@@ -11,7 +11,7 @@ import {
     ResourceDetailGroupedIncomingLinks,
     ResourceDetailHeader,
     ResourceDetailImage,
-    ResourceDetailProperty
+    ResourceDetailProperty,
 } from '@awg-views/data-view/models';
 import { GndEvent } from '@awg-core/services/gnd-service';
 
@@ -42,7 +42,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ResourceDetailHtmlComponent, ResourceDetailHtmlContentStubComponent]
+                declarations: [ResourceDetailHtmlComponent, ResourceDetailHtmlContentStubComponent],
             }).compileComponents();
         })
     );
@@ -58,7 +58,7 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         const images: ResourceDetailImage[] = [];
         const incoming = [new ResourceDetailGroupedIncomingLinks()];
         const props: ResourceDetailProperty[] = [
-            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2'])
+            new ResourceDetailProperty('1', 'text', 'Test-Label', ['Test1', 'Test2']),
         ];
         const content: ResourceDetailContent = { props, images, incoming };
 

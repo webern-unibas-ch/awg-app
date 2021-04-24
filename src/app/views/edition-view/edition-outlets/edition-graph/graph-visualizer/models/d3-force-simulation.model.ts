@@ -17,7 +17,7 @@ import { D3SimulationNodeTriple } from '@awg-views/edition-view/edition-outlets/
 const FORCES = {
     LINK_DISTANCE: 1 / 50,
     COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -1
+    CHARGE_STRENGTH: -1,
 };
 
 /**

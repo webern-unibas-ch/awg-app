@@ -14,7 +14,7 @@ import {
     SourceList,
     SourceDescriptionList,
     SourceEvaluationList,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -27,7 +27,7 @@ import {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class EditionDataService {
     /**
@@ -151,14 +151,14 @@ export class EditionDataService {
             sourceListData$,
             sourceDescriptionListData$,
             sourceEvaluationListData$,
-            textciticsListData$
+            textciticsListData$,
         ]).pipe(
             // Default empty value
             defaultIfEmpty([
                 new SourceList(),
                 new SourceDescriptionList(),
                 new SourceEvaluationList(),
-                new TextcriticsList()
+                new TextcriticsList(),
             ]),
             // Take only first request (JSON fetch)
             take(1)

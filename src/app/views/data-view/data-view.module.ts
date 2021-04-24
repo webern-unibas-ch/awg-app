@@ -20,6 +20,6 @@ import { DataViewRoutingModule, routedDataViewComponents } from './data-view-rou
  */
 @NgModule({
     imports: [SharedModule, ResourceDetailModule, DataViewRoutingModule],
-    declarations: [routedDataViewComponents, SearchFormComponent, SearchResultListComponent]
+    declarations: [routedDataViewComponents, SearchFormComponent, SearchResultListComponent],
 })
 export class DataViewModule {}

@@ -26,7 +26,7 @@ import { ResourceData } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail',
     templateUrl: './resource-detail.component.html',
     styleUrls: ['./resource-detail.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**
@@ -65,7 +65,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     tabTitles = {
         html: 'Detail',
         raw: 'JSON (raw)',
-        converted: 'JSON (converted)'
+        converted: 'JSON (converted)',
     };
 
     /**
@@ -226,7 +226,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     routeToSidenav(): void {
         this.router.navigate([{ outlets: { side: 'resourceInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 

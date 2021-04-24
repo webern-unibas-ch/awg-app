@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'awg-data',
     templateUrl: './data-view.component.html',
-    styleUrls: ['./data-view.component.css']
+    styleUrls: ['./data-view.component.css'],
 })
 export class DataViewComponent implements OnInit {
     /**
@@ -60,7 +60,7 @@ export class DataViewComponent implements OnInit {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'searchInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 }

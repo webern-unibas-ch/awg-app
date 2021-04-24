@@ -7,5 +7,5 @@
  */
 export const environment = {
     production: true,
-    GA_SEND_PAGE_VIEW: true
+    GA_SEND_PAGE_VIEW: true,
 };

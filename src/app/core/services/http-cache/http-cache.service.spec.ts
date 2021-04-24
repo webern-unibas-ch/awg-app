@@ -20,12 +20,12 @@ describe('HttpCacheService (DONE)', () => {
         status: 200,
         statusText: 'OK',
         url: expectedUrl,
-        body: testData
+        body: testData,
     });
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [HttpCacheService]
+            providers: [HttpCacheService],
         });
 
         // Inject services and http client handler

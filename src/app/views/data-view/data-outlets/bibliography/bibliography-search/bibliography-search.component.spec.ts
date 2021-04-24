@@ -11,7 +11,7 @@ describe('BibliographySearchComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [BibliographySearchComponent]
+                declarations: [BibliographySearchComponent],
             }).compileComponents();
         })
     );

@@ -7,7 +7,7 @@ import { Injectable } from '@angular/core';
  */
 export enum StorageType {
     localStorage = 'localStorage',
-    sessionStorage = 'sessionStorage'
+    sessionStorage = 'sessionStorage',
 }
 
 /**
@@ -19,7 +19,7 @@ export enum StorageType {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class StorageService {
     /**

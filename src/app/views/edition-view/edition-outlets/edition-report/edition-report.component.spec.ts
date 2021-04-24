@@ -15,7 +15,7 @@ import {
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
@@ -77,12 +77,12 @@ describe('EditionReportComponent', () => {
                     HeadingStubComponent,
                     SourcesStubComponent,
                     TextcritisStubComponent,
-                    ModalComponent
+                    ModalComponent,
                 ],
                 providers: [
                     { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService }
-                ]
+                    { provide: EditionService, useValue: mockEditionService },
+                ],
             }).compileComponents();
         })
     );

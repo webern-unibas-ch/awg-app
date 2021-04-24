@@ -17,7 +17,7 @@ import { BibEntry } from '../bibliography-entry.model';
 @Component({
     selector: 'awg-bibliography-detail',
     templateUrl: './bibliography-detail.component.html',
-    styleUrls: ['./bibliography-detail.component.css']
+    styleUrls: ['./bibliography-detail.component.css'],
 })
 export class BibliographyDetailComponent implements OnInit {
     /**

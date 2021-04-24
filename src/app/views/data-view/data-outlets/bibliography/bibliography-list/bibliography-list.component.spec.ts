@@ -21,7 +21,7 @@ describe('BibliographyListComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [BibliographyListComponent, BibliographyDetailStubComponent]
+                declarations: [BibliographyListComponent, BibliographyDetailStubComponent],
             }).compileComponents();
         })
     );

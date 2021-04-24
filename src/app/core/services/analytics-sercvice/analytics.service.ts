@@ -18,7 +18,7 @@ declare let gtag: Function;
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class AnalyticsService {
     /**
@@ -101,7 +101,7 @@ export class AnalyticsService {
             // eslint-disable-next-line @typescript-eslint/naming-convention
             anonymize_ip: true,
             // eslint-disable-next-line @typescript-eslint/naming-convention
-            send_page_view: this._sendPageView
+            send_page_view: this._sendPageView,
         });
     }
 

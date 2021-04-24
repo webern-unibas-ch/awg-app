@@ -17,7 +17,7 @@ describe('ModalComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbModalModule],
-                declarations: [ModalComponent, CompileHtmlComponent]
+                declarations: [ModalComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );

@@ -63,8 +63,8 @@ describe('SourcesComponent', () => {
                     SourceListStubComponent,
                     SourceDescriptionStubComponent,
                     SourceEvaluationStubComponent,
-                    RouterLinkStubDirective
-                ]
+                    RouterLinkStubDirective,
+                ],
             }).compileComponents();
         })
     );
@@ -115,21 +115,21 @@ describe('SourcesComponent', () => {
                         siglum: 'A',
                         type: 'Skizzen',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'sourceA'
+                        linkTo: 'sourceA',
                     },
                     {
                         siglum: 'B',
                         type: 'Autograph von Nr. I.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'OP12_SOURCE_NOT_A'
+                        linkTo: 'OP12_SOURCE_NOT_A',
                     },
                     {
                         siglum: 'C',
                         type: 'Autograph von Nr. I–IV.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'OP12_SOURCE_NOT_A'
-                    }
-                ]
+                        linkTo: 'OP12_SOURCE_NOT_A',
+                    },
+                ],
             };
             expectedSourceDescriptionListData = {
                 sources: [
@@ -137,17 +137,17 @@ describe('SourcesComponent', () => {
                         id: 'sourceA',
                         siglum: 'A',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        description: []
-                    }
-                ]
+                        description: [],
+                    },
+                ],
             };
             expectedSourceEvaluationListData = {
                 sources: [
                     {
                         id: 'op12',
-                        content: ['Die Skizzen in A sind zum Testen da.']
-                    }
-                ]
+                        content: ['Die Skizzen in A sind zum Testen da.'],
+                    },
+                ],
             };
 
             // Simulate the parent setting the input properties

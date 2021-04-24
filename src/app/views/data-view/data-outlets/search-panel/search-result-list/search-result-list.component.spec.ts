@@ -44,7 +44,7 @@ describe('SearchResultListComponent', () => {
 
             // Mock services
             mockConversionService = {
-                prepareFullTextSearchResultText: () => expectedSearchResultText
+                prepareFullTextSearchResultText: () => expectedSearchResultText,
             };
             mockSideInfoService = { updateSearchInfoData: () => {}, clearSearchInfoData: () => {} }; // TODO: provide real test data
 
@@ -54,8 +54,8 @@ describe('SearchResultListComponent', () => {
                 providers: [
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
                     { provide: ConversionService, useValue: mockConversionService },
-                    { provide: SideInfoService, useValue: mockSideInfoService }
-                ]
+                    { provide: SideInfoService, useValue: mockSideInfoService },
+                ],
             }).compileComponents();
         })
     );

@@ -9,7 +9,7 @@ import { click, clickAndAwaitChanges } from '@testing/click-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -34,7 +34,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective]
+                declarations: [RouterLinkButtonGroupComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );
@@ -49,7 +49,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         expectedRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
         ];
         expectedQueryParamsHandling = 'preserve';
 

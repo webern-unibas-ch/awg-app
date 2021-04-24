@@ -13,7 +13,7 @@ import { EditionWorks } from '@awg-views/edition-view/models';
     selector: 'awg-home-view',
     templateUrl: './home-view.component.html',
     styleUrls: ['./home-view.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeViewComponent implements OnInit {
     /**
@@ -76,7 +76,7 @@ export class HomeViewComponent implements OnInit {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'editionInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 }

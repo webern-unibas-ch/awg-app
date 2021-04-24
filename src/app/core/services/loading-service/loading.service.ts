@@ -12,7 +12,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class LoadingService {
     /**

@@ -27,7 +27,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [BrowserModule],
-                declarations: [OpenStreetMapComponent]
+                declarations: [OpenStreetMapComponent],
             }).compileComponents();
         })
     );
@@ -45,7 +45,7 @@ describe('OpenStreetMapComponent (DONE)', () => {
         expectedOsmIFrameSettings = {
             width: '100%',
             height: '350',
-            scrolling: 'no'
+            scrolling: 'no',
         };
 
         // Unsafe link values for open streets map

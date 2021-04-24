@@ -13,6 +13,6 @@ import { SideInfoRoutingModule, routedSideInfoComponents } from './side-info-rou
  */
 @NgModule({
     imports: [SharedModule, SideInfoRoutingModule],
-    declarations: [routedSideInfoComponents]
+    declarations: [routedSideInfoComponents],
 })
 export class SideInfoModule {}

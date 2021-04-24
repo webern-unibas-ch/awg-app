@@ -24,12 +24,12 @@ describe('ForceGraphNoResultComponent', () => {
         waitForAsync(() => {
             // Stub service for test purposes
             mockCoreService = {
-                getLogos: () => expectedLogos
+                getLogos: () => expectedLogos,
             };
 
             TestBed.configureTestingModule({
                 declarations: [ForceGraphNoResultComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );

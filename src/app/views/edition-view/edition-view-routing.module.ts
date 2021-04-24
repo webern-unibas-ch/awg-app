@@ -29,40 +29,40 @@ const editionViewRoutes: Routes = [
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-intro/edition-intro.module').then(
                                         m => m.EditionIntroModule
-                                    )
+                                    ),
                             },
                             {
                                 path: EditionConstants.EDITION_DETAIL.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-detail/edition-detail.module').then(
                                         m => m.EditionDetailModule
-                                    )
+                                    ),
                             },
                             {
                                 path: EditionConstants.EDITION_REPORT.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-report/edition-report.module').then(
                                         m => m.EditionReportModule
-                                    )
+                                    ),
                             },
                             {
                                 path: EditionConstants.EDITION_GRAPH.route,
                                 loadChildren: () =>
                                     import('./edition-outlets/edition-graph/edition-graph.module').then(
                                         m => m.EditionGraphModule
-                                    )
+                                    ),
                             },
                             {
                                 path: '',
                                 redirectTo: '/' + EditionConstants.EDITION_INTRO.route,
-                                pathMatch: 'full'
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
+                                pathMatch: 'full',
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
 ];
 
 /**
@@ -76,7 +76,7 @@ export const routedEditionViewComponents = [
     EditionOverviewComponent,
     EditionSectionComponent,
     EditionSeriesComponent,
-    EditionTypeComponent
+    EditionTypeComponent,
 ];
 
 /**
@@ -86,6 +86,6 @@ export const routedEditionViewComponents = [
  */
 @NgModule({
     imports: [RouterModule.forChild(editionViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class EditionViewRoutingModule {}

@@ -4,7 +4,7 @@ import {
     FolioCalculationContentItem,
     FolioCalculationSheet,
     FolioCalculationSystems,
-    FolioCalculation
+    FolioCalculation,
 } from './folio-calculation.model';
 
 /**

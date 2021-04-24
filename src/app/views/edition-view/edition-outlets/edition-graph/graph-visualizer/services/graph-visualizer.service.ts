@@ -24,7 +24,7 @@ declare let rdfstore: any;
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class GraphVisualizerService {
     /**
@@ -221,7 +221,7 @@ export class GraphVisualizerService {
             { queryType: 'count', index: -1 },
             { queryType: 'describe', index: -1 },
             { queryType: 'insert', index: -1 },
-            { queryType: 'delete', index: -1 }
+            { queryType: 'delete', index: -1 },
         ];
 
         // Get indexes and set a variable if at least one matches + store lowest index

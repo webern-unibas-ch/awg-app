@@ -14,6 +14,6 @@ import { EditionGraphRoutingModule, routedEditionGraphComponents } from './editi
  */
 @NgModule({
     imports: [SharedModule, GraphVisualizerModule, EditionGraphRoutingModule],
-    declarations: [routedEditionGraphComponents]
+    declarations: [routedEditionGraphComponents],
 })
 export class EditionGraphModule {}

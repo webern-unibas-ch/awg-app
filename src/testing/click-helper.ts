@@ -9,7 +9,7 @@ import { ComponentFixture, flush } from '@angular/core/testing';
  */
 export const BUTTON_CLICK_EVENTS = {
     left: { button: 0 },
-    right: { button: 2 }
+    right: { button: 2 },
 };
 
 /**

@@ -13,7 +13,7 @@ import { SearchInfo } from '@awg-side-info/side-info-models';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class SideInfoService {
     /**

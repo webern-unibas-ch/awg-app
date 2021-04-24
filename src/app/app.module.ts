@@ -27,6 +27,6 @@ registerLocaleData(localeDeDE);
     imports: [BrowserModule, HttpClientModule, CoreModule, SharedModule, SideInfoModule, AppRoutingModule],
     declarations: [AppComponent],
     providers: [{ provide: LOCALE_ID, useValue: 'de-DE' }], // Change global LOCALE-ID
-    bootstrap: [AppComponent]
+    bootstrap: [AppComponent],
 })
 export class AppModule {}

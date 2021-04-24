@@ -10,7 +10,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { D3SimulationNode, D3SimulationNodeType, Triple } from '../models';
@@ -63,8 +63,8 @@ describe('ConstructResultsComponent (DONE)', () => {
                     ConstructResultsComponent,
                     ForceGraphStubComponent,
                     ForceGraphNoResultStubComponent,
-                    TwelveToneSpinnerStubComponent
-                ]
+                    TwelveToneSpinnerStubComponent,
+                ],
             }).compileComponents();
         })
     );
@@ -81,8 +81,8 @@ describe('ConstructResultsComponent (DONE)', () => {
             {
                 subject: { nominalValue: 'example:Test' },
                 predicate: { nominalValue: 'example:has' },
-                object: { nominalValue: 'example:Success' }
-            }
+                object: { nominalValue: 'example:Success' },
+            },
         ];
         expectedQueryResult = observableOf(expectedTriples);
 

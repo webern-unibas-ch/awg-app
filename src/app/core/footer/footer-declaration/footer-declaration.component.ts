@@ -12,7 +12,7 @@ import { MetaPage } from '@awg-core/core-models';
     selector: 'awg-footer-declaration',
     templateUrl: './footer-declaration.component.html',
     styleUrls: ['./footer-declaration.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FooterDeclarationComponent {
     /**

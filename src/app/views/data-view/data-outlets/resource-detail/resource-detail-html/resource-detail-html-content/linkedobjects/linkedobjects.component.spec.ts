@@ -51,7 +51,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [ResourceDetailHtmlContentLinkedobjectsComponent]
+                declarations: [ResourceDetailHtmlContentLinkedobjectsComponent],
             }).compileComponents();
         })
     );
@@ -66,25 +66,25 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         incomingLink1 = {
             id: '',
             value: 'testexpectedLinkValue1',
-            restype: { id: '1234', label: 'test-type1', icon: '/assets/img/logos/angular.png' }
+            restype: { id: '1234', label: 'test-type1', icon: '/assets/img/logos/angular.png' },
         };
         incomingLink2 = {
             id: '28',
             value: 'testvalue2',
-            restype: { id: '1235', label: 'test-type2', icon: '/assets/img/logos/snf.png' }
+            restype: { id: '1235', label: 'test-type2', icon: '/assets/img/logos/snf.png' },
         };
         incomingLink3 = {
             id: '330',
             value: 'testvalue3',
-            restype: { id: '1236', label: 'test-type3', icon: '/assets/img/logos/awg.png' }
+            restype: { id: '1236', label: 'test-type3', icon: '/assets/img/logos/awg.png' },
         };
 
         expectedIncoming = [
             {
                 restypeLabel: 'testkey1',
-                links: [incomingLink1, incomingLink2]
+                links: [incomingLink1, incomingLink2],
             },
-            { restypeLabel: 'testkey2', links: [incomingLink1, incomingLink2, incomingLink3] }
+            { restypeLabel: 'testkey2', links: [incomingLink1, incomingLink2, incomingLink3] },
         ];
 
         // Spies on component functions
@@ -165,8 +165,8 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             const newExpectedIncomingGroups: ResourceDetailGroupedIncomingLinks[] = [
                 {
                     restypeLabel: 'testkey1',
-                    links: [incomingLink1, incomingLink2, incomingLink3, incomingLink1]
-                }
+                    links: [incomingLink1, incomingLink2, incomingLink3, incomingLink1],
+                },
             ];
             const newExpectedTotalItems = newExpectedIncomingGroups[0].links.length;
 

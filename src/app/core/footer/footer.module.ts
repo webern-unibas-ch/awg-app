@@ -15,8 +15,8 @@ import { FooterPoweredbyComponent } from './footer-poweredby/footer-poweredby.co
         FooterCopyrightComponent,
         FooterDeclarationComponent,
         FooterLogoComponent,
-        FooterPoweredbyComponent
+        FooterPoweredbyComponent,
     ],
-    exports: [FooterComponent]
+    exports: [FooterComponent],
 })
 export class FooterModule {}

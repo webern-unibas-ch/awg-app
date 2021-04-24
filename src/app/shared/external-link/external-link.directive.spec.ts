@@ -19,7 +19,7 @@ import { ExternalLinkDirective } from './external-link.directive';
         <a href="{{ dynamicInternalLink }}">Link Internal Dynamic</a>
 
         <br /><br />
-        <a (click)="doSomething()">Link without href</a>`
+        <a (click)="doSomething()">Link without href</a>`,
 })
 class TestExernalLinkComponent {
     hostname = location.hostname;
@@ -46,7 +46,7 @@ describe('ExternalLinkDirective', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestExernalLinkComponent, ExternalLinkDirective]
+            declarations: [TestExernalLinkComponent, ExternalLinkDirective],
         });
 
         fixture = TestBed.createComponent(TestExernalLinkComponent);

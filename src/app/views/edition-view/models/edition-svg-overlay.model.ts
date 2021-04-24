@@ -6,7 +6,7 @@
 export enum EditionSvgOverlayTypes {
     measure = 'Takt',
     system = 'System',
-    item = 'Anmerkung'
+    item = 'Anmerkung',
 }
 
 /**

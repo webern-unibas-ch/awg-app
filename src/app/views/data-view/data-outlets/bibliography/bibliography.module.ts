@@ -21,13 +21,13 @@ import { BibliographyRoutingModule, routedBibliographyComponents } from './bibli
         routedBibliographyComponents,
         BibliographySearchComponent,
         BibliographyListComponent,
-        BibliographyFormatPipe
+        BibliographyFormatPipe,
     ],
     exports: [
         routedBibliographyComponents,
         BibliographySearchComponent,
         BibliographyListComponent,
-        BibliographyFormatPipe
-    ]
+        BibliographyFormatPipe,
+    ],
 })
 export class BibliographyModule {}

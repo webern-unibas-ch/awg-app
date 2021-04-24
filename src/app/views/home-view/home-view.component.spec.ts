@@ -9,7 +9,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
@@ -49,7 +49,7 @@ describe('HomeViewComponent (DONE)', () => {
 
             TestBed.configureTestingModule({
                 declarations: [HomeViewComponent, HeadingStubComponent, RouterLinkStubDirective],
-                providers: [{ provide: Router, useValue: mockRouter }]
+                providers: [{ provide: Router, useValue: mockRouter }],
             }).compileComponents();
         })
     );
@@ -349,24 +349,24 @@ describe('HomeViewComponent (DONE)', () => {
                     expect(routerLinks.length).toBe(8, 'should have 8 routerLinks');
                     expect(routerLinks[0].linkParams).toEqual([
                         expectedEditionWorkOp12.baseRoute,
-                        expectedEditionWorkOp12.introRoute.route
+                        expectedEditionWorkOp12.introRoute.route,
                     ]);
                     expect(routerLinks[1].linkParams).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.detailRoute.route
+                        expectedEditionWorkOp25.detailRoute.route,
                     ]);
                     expect(routerLinks[2].linkParams).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.graphRoute.route
+                        expectedEditionWorkOp25.graphRoute.route,
                     ]);
                     expect(routerLinks[3].linkParams).toEqual(['/structure']);
                     expect(routerLinks[4].linkParams).toEqual([
                         expectedEditionWorkOp12.baseRoute,
-                        expectedEditionWorkOp12.detailRoute.route
+                        expectedEditionWorkOp12.detailRoute.route,
                     ]);
                     expect(routerLinks[5].linkParams).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.detailRoute.route
+                        expectedEditionWorkOp25.detailRoute.route,
                     ]);
                     expect(routerLinks[6].linkParams).toEqual(['/data/search', 'fulltext']);
                     expect(routerLinks[7].linkParams).toEqual(['/contact']);
@@ -384,7 +384,7 @@ describe('HomeViewComponent (DONE)', () => {
 
                     expect(introLink.navigatedTo).toEqual([
                         expectedEditionWorkOp12.baseRoute,
-                        expectedEditionWorkOp12.introRoute.route
+                        expectedEditionWorkOp12.introRoute.route,
                     ]);
                 });
 
@@ -400,7 +400,7 @@ describe('HomeViewComponent (DONE)', () => {
 
                     expect(detailLink.navigatedTo).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.detailRoute.route
+                        expectedEditionWorkOp25.detailRoute.route,
                     ]);
                 });
 
@@ -416,7 +416,7 @@ describe('HomeViewComponent (DONE)', () => {
 
                     expect(graphLink.navigatedTo).toEqual([
                         expectedEditionWorkOp25.baseRoute,
-                        expectedEditionWorkOp25.graphRoute.route
+                        expectedEditionWorkOp25.graphRoute.route,
                     ]);
                 });
 

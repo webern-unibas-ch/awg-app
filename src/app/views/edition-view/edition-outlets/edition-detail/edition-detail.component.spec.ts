@@ -17,7 +17,7 @@ import {
     FolioConvoluteList,
     EditionWork,
     EditionWorks,
-    FolioConvolute
+    FolioConvolute,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -72,7 +72,7 @@ describe('EditionDetailComponent', () => {
             // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', [
                 'getTextcriticalComments',
-                'getEditionWork'
+                'getEditionWork',
             ]);
             // Make the spies return a synchronous Observable with the test data
             getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
@@ -93,12 +93,12 @@ describe('EditionDetailComponent', () => {
                     EditionDetailComponent,
                     EditionConvoluteStubComponent,
                     EditionAccoladeStubComponent,
-                    ModalComponent
+                    ModalComponent,
                 ],
                 providers: [
                     { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService }
-                ]
+                    { provide: EditionService, useValue: mockEditionService },
+                ],
             }).compileComponents();
         })
     );

@@ -10,7 +10,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -63,7 +63,7 @@ describe('EditionViewComponent (DONE)', () => {
                 getEditionWork: (): Observable<EditionWork> =>
                     // Return op. 12 by default
                     observableOf(EditionWorks[expectedWorkId]),
-                updateEditionWork: (editionWork: EditionWork): void => {}
+                updateEditionWork: (editionWork: EditionWork): void => {},
             };
 
             TestBed.configureTestingModule({
@@ -72,10 +72,10 @@ describe('EditionViewComponent (DONE)', () => {
                     { provide: EditionService, useValue: mockEditionService },
                     {
                         provide: ActivatedRoute,
-                        useValue: mockActivatedRoute
+                        useValue: mockActivatedRoute,
                     },
-                    { provide: Router, useValue: mockRouter }
-                ]
+                    { provide: Router, useValue: mockRouter },
+                ],
             }).compileComponents();
         })
     );

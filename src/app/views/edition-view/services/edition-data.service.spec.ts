@@ -30,7 +30,7 @@ import {
     GraphList,
     Graph,
     IntroList,
-    Intro
+    Intro,
 } from '@awg-views/edition-view/models';
 
 import { EditionDataService } from './edition-data.service';
@@ -64,7 +64,7 @@ describe('EditionDataService (DONE)', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientModule, HttpClientTestingModule],
-            providers: [EditionDataService]
+            providers: [EditionDataService],
         });
 
         // Inject services and http client handler
@@ -106,7 +106,7 @@ describe('EditionDataService (DONE)', () => {
 
                 // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
                 // Check for GET request
@@ -341,7 +341,7 @@ describe('EditionDataService (DONE)', () => {
                         const expectedResult = [
                             new FolioConvoluteList(),
                             new EditionSvgSheetList(),
-                            new TextcriticsList()
+                            new TextcriticsList(),
                         ];
 
                         // Set spy on private method
@@ -1108,7 +1108,7 @@ describe('EditionDataService (DONE)', () => {
                             new SourceList(),
                             new SourceDescriptionList(),
                             new SourceEvaluationList(),
-                            new TextcriticsList()
+                            new TextcriticsList(),
                         ];
 
                         // Set spy on private method
@@ -1581,7 +1581,7 @@ describe('EditionDataService (DONE)', () => {
                             new SourceList(),
                             new SourceDescriptionList(),
                             new SourceEvaluationList(),
-                            []
+                            [],
                         ];
 
                         // Call service function (success)
@@ -1699,7 +1699,7 @@ describe('EditionDataService (DONE)', () => {
                             [],
                             new SourceDescriptionList(),
                             new SourceEvaluationList(),
-                            new TextcriticsList()
+                            new TextcriticsList(),
                         ];
 
                         // Call service function (success)

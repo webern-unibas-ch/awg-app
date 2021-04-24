@@ -7,7 +7,7 @@ import {
     OnDestroy,
     Output,
     SimpleChange,
-    SimpleChanges
+    SimpleChanges,
 } from '@angular/core';
 
 import { GndEvent, GndEventType } from '@awg-core/services/gnd-service';
@@ -23,7 +23,7 @@ import { ResourceDetailProperty } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail-html-content-props',
     templateUrl: './props.component.html',
     styleUrls: ['./props.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDestroy {
     /**

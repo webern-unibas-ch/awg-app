@@ -26,7 +26,7 @@ import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw/resou
         ResourceDetailHtmlContentLinkedobjectsComponent,
         ResourceDetailHtmlContentPropsComponent,
         ResourceDetailJsonConvertedComponent,
-        ResourceDetailJsonRawComponent
+        ResourceDetailJsonRawComponent,
     ],
     exports: [
         ResourceDetailHeaderComponent,
@@ -36,7 +36,7 @@ import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw/resou
         ResourceDetailHtmlContentLinkedobjectsComponent,
         ResourceDetailHtmlContentPropsComponent,
         ResourceDetailJsonConvertedComponent,
-        ResourceDetailJsonRawComponent
-    ]
+        ResourceDetailJsonRawComponent,
+    ],
 })
 export class ResourceDetailModule {}

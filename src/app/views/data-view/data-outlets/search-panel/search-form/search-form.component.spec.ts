@@ -24,7 +24,7 @@ describe('SearchFormComponent', () => {
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, ReactiveFormsModule],
                 declarations: [SearchFormComponent],
-                providers: [{ provide: FormBuilder, useValue: formBuilder }]
+                providers: [{ provide: FormBuilder, useValue: formBuilder }],
             }).compileComponents();
         })
     );
@@ -37,7 +37,7 @@ describe('SearchFormComponent', () => {
 
         // Pass in the form dynamically
         component.searchForm = formBuilder.group({
-            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
 
         fixture.detectChanges();

@@ -18,7 +18,7 @@ import { ResourceDetail } from '@awg-views/data-view/models';
     selector: 'awg-json-viewer',
     templateUrl: './json-viewer.component.html',
     styleUrls: ['./json-viewer.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class JsonViewerComponent {
     /**

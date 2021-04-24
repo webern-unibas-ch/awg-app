@@ -15,7 +15,7 @@ import { ResourceFullResponseJson, SearchResponseJson } from '@awg-shared/api-ob
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class BibliographyService extends ApiService {
     /**

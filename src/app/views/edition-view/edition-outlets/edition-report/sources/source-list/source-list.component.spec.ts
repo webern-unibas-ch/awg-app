@@ -17,7 +17,7 @@ describe('SourceListComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [RouterTestingModule],
-                declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective]
+                declarations: [SourceListComponent, CompileHtmlComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );
@@ -46,21 +46,21 @@ describe('SourceListComponent', () => {
                         siglum: 'A',
                         type: 'Skizzen',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'sourceA'
+                        linkTo: 'sourceA',
                     },
                     {
                         siglum: 'B',
                         type: 'Autograph von Nr. I.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'OP12_SOURCE_NOT_A'
+                        linkTo: 'OP12_SOURCE_NOT_A',
                     },
                     {
                         siglum: 'C',
                         type: 'Autograph von Nr. I–IV.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'OP12_SOURCE_NOT_A'
-                    }
-                ]
+                        linkTo: 'OP12_SOURCE_NOT_A',
+                    },
+                ],
             };
 
             // Simulate the parent setting the input properties

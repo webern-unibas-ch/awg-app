@@ -41,7 +41,7 @@ describe('BibliographyService (DONE)', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [BibliographyService]
+            providers: [BibliographyService],
         });
         // Inject services and http client handler
         bibliographyService = TestBed.inject(BibliographyService);
@@ -119,7 +119,7 @@ describe('BibliographyService (DONE)', () => {
 
                 // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
                 // Check for GET request
@@ -208,7 +208,7 @@ describe('BibliographyService (DONE)', () => {
                         expectSpyCall(getApiResponseSpy, 1, [
                             SearchResponseJson,
                             expectedQueryPath,
-                            expectedQueryHttpParams
+                            expectedQueryHttpParams,
                         ]);
                     });
                 })
@@ -255,7 +255,7 @@ describe('BibliographyService (DONE)', () => {
                                 expectSpyCall(getApiResponseSpy, 1, [
                                     SearchResponseJson,
                                     expectedQueryPath,
-                                    expectedQueryHttpParams
+                                    expectedQueryHttpParams,
                                 ]);
                                 expect(error).toEqual(expectedApiServiceError);
                             }
@@ -302,7 +302,7 @@ describe('BibliographyService (DONE)', () => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 ResourceFullResponseJson,
                                 expectedQueryPath,
-                                expectedQueryHttpParams
+                                expectedQueryHttpParams,
                             ]);
                         });
                 })
@@ -349,7 +349,7 @@ describe('BibliographyService (DONE)', () => {
                                 expectSpyCall(getApiResponseSpy, 1, [
                                     ResourceFullResponseJson,
                                     expectedQueryPath,
-                                    expectedQueryHttpParams
+                                    expectedQueryHttpParams,
                                 ]);
                                 expect(error).toEqual(expectedApiServiceError);
                             }

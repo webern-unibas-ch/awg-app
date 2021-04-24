@@ -34,7 +34,7 @@ export class EditionConstants {
     static readonly EDITION: EditionRoute = {
         route: '/edition',
         short: 'AWG',
-        full: 'Anton Webern Gesamtausgabe'
+        full: 'Anton Webern Gesamtausgabe',
     };
 
     /**
@@ -43,7 +43,7 @@ export class EditionConstants {
     static readonly COMPOSITION: EditionRoute = {
         route: '/composition',
         short: 'Komposition',
-        full: 'Komposition'
+        full: 'Komposition',
     };
 
     /**
@@ -52,7 +52,7 @@ export class EditionConstants {
     static readonly OPUS: EditionRoute = {
         route: '/opus',
         short: 'op.',
-        full: 'Opus'
+        full: 'Opus',
     };
 
     /**
@@ -61,7 +61,7 @@ export class EditionConstants {
     static readonly MNR: EditionRoute = {
         route: '/mnr',
         short: 'M',
-        full: 'Moldenhauer-Nr.'
+        full: 'Moldenhauer-Nr.',
     };
 
     /**
@@ -70,7 +70,7 @@ export class EditionConstants {
     static readonly SERIES_1: EditionRoute = {
         route: '/series1',
         short: 'I',
-        full: 'Serie I (Werke mit Opuszahlen)'
+        full: 'Serie I (Werke mit Opuszahlen)',
     };
 
     /**
@@ -79,7 +79,7 @@ export class EditionConstants {
     static readonly SERIES_2: EditionRoute = {
         route: '/series2',
         short: 'II',
-        full: 'Serie II (Nachgelassene Kompositionen und Fragmente)'
+        full: 'Serie II (Nachgelassene Kompositionen und Fragmente)',
     };
 
     /**
@@ -88,7 +88,7 @@ export class EditionConstants {
     static readonly SERIES_3: EditionRoute = {
         route: '/series3',
         short: 'III',
-        full: 'Serie III (Bearbeitungen von Werken anderer Komponisten)'
+        full: 'Serie III (Bearbeitungen von Werken anderer Komponisten)',
     };
 
     /**
@@ -97,7 +97,7 @@ export class EditionConstants {
     static readonly SECTION_1: EditionRoute = {
         route: '/section1',
         short: '1',
-        full: 'Abteilung 1 (Orchestermusik)'
+        full: 'Abteilung 1 (Orchestermusik)',
     };
 
     /**
@@ -106,7 +106,7 @@ export class EditionConstants {
     static readonly SECTION_2: EditionRoute = {
         route: '/section2',
         short: '2',
-        full: 'Abteilung 2 (Kammer- und Klaviermusik)'
+        full: 'Abteilung 2 (Kammer- und Klaviermusik)',
     };
 
     /**
@@ -115,7 +115,7 @@ export class EditionConstants {
     static readonly SECTION_3: EditionRoute = {
         route: '/section3',
         short: '3',
-        full: 'Abteilung 3 (Chormusik)'
+        full: 'Abteilung 3 (Chormusik)',
     };
 
     /**
@@ -124,7 +124,7 @@ export class EditionConstants {
     static readonly SECTION_4: EditionRoute = {
         route: '/section4',
         short: '4',
-        full: 'Abteilung 4 (Vokalmusik mit Ensemblebegleitung)'
+        full: 'Abteilung 4 (Vokalmusik mit Ensemblebegleitung)',
     };
 
     /**
@@ -133,7 +133,7 @@ export class EditionConstants {
     static readonly SECTION_5 = {
         route: '/section5',
         short: '5',
-        full: 'Abteilung 5 (Klavierlieder)'
+        full: 'Abteilung 5 (Klavierlieder)',
     };
 
     /**
@@ -142,7 +142,7 @@ export class EditionConstants {
     static readonly TEXT_EDITION: EditionRoute = {
         route: '/texts',
         short: 'Textedition',
-        full: 'Textedition'
+        full: 'Textedition',
     };
 
     /**
@@ -151,7 +151,7 @@ export class EditionConstants {
     static readonly SKETCH_EDITION: EditionRoute = {
         route: '/sketches',
         short: 'Skizzenedition',
-        full: 'Skizzenedition'
+        full: 'Skizzenedition',
     };
 
     /**
@@ -160,7 +160,7 @@ export class EditionConstants {
     static readonly EDITION_GRAPH: EditionRoute = {
         route: 'graph',
         short: 'Graph',
-        full: 'Graph'
+        full: 'Graph',
     };
 
     /**
@@ -169,7 +169,7 @@ export class EditionConstants {
     static readonly EDITION_INTRO: EditionRoute = {
         route: 'intro',
         short: 'Einleitung',
-        full: 'Einleitung'
+        full: 'Einleitung',
     };
 
     /**
@@ -178,7 +178,7 @@ export class EditionConstants {
     static readonly EDITION_DETAIL: EditionRoute = {
         route: 'detail',
         short: 'Edierter Notentext',
-        full: 'Edierter Notentext'
+        full: 'Edierter Notentext',
     };
 
     /**
@@ -187,7 +187,7 @@ export class EditionConstants {
     static readonly EDITION_REPORT: EditionRoute = {
         route: 'report',
         short: 'Kritischer Bericht',
-        full: 'Kritischer Bericht'
+        full: 'Kritischer Bericht',
     };
 
     /**
@@ -206,7 +206,7 @@ export class EditionConstants {
         sourceListFile: 'source-list.json',
         sourceDescriptionListFile: 'source-description.json',
         sourceEvaluationListFile: 'source-evaluation.json',
-        textcriticsFile: 'textcritics.json'
+        textcriticsFile: 'textcritics.json',
     };
 
     /**
@@ -216,7 +216,7 @@ export class EditionConstants {
         route: 'assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png',
         short: '[JE] | No. 9 | 28 linig.',
         full:
-            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.'
+            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.',
     };
 
     /**
@@ -226,7 +226,7 @@ export class EditionConstants {
         route: 'assets/img/edition/series1/section5/op25/firm_je_no15_lin16.png',
         short: '[JE] | No. 15 | 16 linig.',
         full:
-            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.'
+            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.',
     };
 
     /**
@@ -235,6 +235,6 @@ export class EditionConstants {
     static readonly GRAPH_IMAGE_OP25: EditionRoute = {
         route: 'assets/img/edition/series1/section5/op25/graph_op25_1.png',
         short: 'Statischer Graph op. 25/I',
-        full: 'Statischer Graph der Skizzen von Opus 25/I.'
+        full: 'Statischer Graph der Skizzen von Opus 25/I.',
     };
 }

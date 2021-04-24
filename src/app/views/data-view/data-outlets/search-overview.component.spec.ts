@@ -47,7 +47,7 @@ describe('SearchOverviewComponent (DONE)', () => {
             // Create a fake service object with a `updateSearchInfoTitle()` spy
             const mockSideInfoService = jasmine.createSpyObj('SideInfoService', [
                 'updateSearchInfoTitle',
-                'clearSearchInfoData'
+                'clearSearchInfoData',
             ]);
 
             // Spies on service
@@ -58,8 +58,8 @@ describe('SearchOverviewComponent (DONE)', () => {
             // See https://gist.github.com/benjamincharity/3d25cd2c95b6ecffadb18c3d4dbbd80b
             expectedRouteParams = [
                 {
-                    url: [{ path: 'fulltext' }]
-                }
+                    url: [{ path: 'fulltext' }],
+                },
             ];
             mockActivatedRoute = new ActivatedRouteStub();
             mockActivatedRoute.testChildren = expectedRouteParams;
@@ -72,9 +72,9 @@ describe('SearchOverviewComponent (DONE)', () => {
                     { provide: SideInfoService, useValue: mockSideInfoService },
                     {
                         provide: ActivatedRoute,
-                        useValue: mockActivatedRoute
-                    }
-                ]
+                        useValue: mockActivatedRoute,
+                    },
+                ],
             }).compileComponents();
         })
     );
@@ -89,7 +89,7 @@ describe('SearchOverviewComponent (DONE)', () => {
         expectedsearchRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true)
+            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
         ];
 
         // Spies on component functions
@@ -109,8 +109,8 @@ describe('SearchOverviewComponent (DONE)', () => {
 
         const changedRouteParams = [
             {
-                url: [{ path: 'other' }]
-            }
+                url: [{ path: 'other' }],
+            },
         ];
         mockActivatedRoute.testChildren = changedRouteParams;
 
@@ -222,8 +222,8 @@ describe('SearchOverviewComponent (DONE)', () => {
 
                 const changedRouteParams = [
                     {
-                        url: [{ path: 'other' }]
-                    }
+                        url: [{ path: 'other' }],
+                    },
                 ];
                 mockActivatedRoute.testChildren = changedRouteParams;
 

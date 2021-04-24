@@ -13,7 +13,7 @@ describe('SideInfoService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [SideInfoService]
+            providers: [SideInfoService],
         });
         // Inject service
         sideInfoService = TestBed.inject(SideInfoService);

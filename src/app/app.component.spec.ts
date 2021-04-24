@@ -33,7 +33,7 @@ export class RoutedTest2MockComponent {}
 export const mockRoutes: Routes = [
     { path: '', redirectTo: 'test', pathMatch: 'full' },
     { path: 'test', component: RoutedTestMockComponent },
-    { path: 'test2', component: RoutedTest2MockComponent }
+    { path: 'test2', component: RoutedTest2MockComponent },
 ];
 
 describe('AppComponent (DONE)', () => {
@@ -55,7 +55,7 @@ describe('AppComponent (DONE)', () => {
             // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
             mockAnalyticsService = {
                 initializeAnalytics: (): void => {},
-                trackPageView: (page: string): void => {}
+                trackPageView: (page: string): void => {},
             };
 
             TestBed.configureTestingModule({
@@ -66,12 +66,12 @@ describe('AppComponent (DONE)', () => {
                     NavbarStubComponent,
                     ViewContainerStubComponent,
                     RoutedTestMockComponent,
-                    RoutedTest2MockComponent
+                    RoutedTest2MockComponent,
                 ],
                 providers: [
                     //  Mocked router provided wth RouterTestingModule
-                    { provide: AnalyticsService, useValue: mockAnalyticsService }
-                ]
+                    { provide: AnalyticsService, useValue: mockAnalyticsService },
+                ],
             }).compileComponents();
 
             // Spies for service methods

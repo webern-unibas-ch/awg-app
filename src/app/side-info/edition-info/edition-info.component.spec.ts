@@ -25,7 +25,7 @@ describe('EditionInfoComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionInfoComponent, RouterLinkStubDirective]
+                declarations: [EditionInfoComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );
@@ -267,15 +267,15 @@ describe('EditionInfoComponent (DONE)', () => {
                 expect(routerLinks.length).toBe(3, 'should have 3 routerLinks');
                 expect(routerLinks[0].linkParams).toEqual([
                     expectedEditionWorkOp12.baseRoute,
-                    expectedEditionWorkOp12.introRoute.route
+                    expectedEditionWorkOp12.introRoute.route,
                 ]);
                 expect(routerLinks[1].linkParams).toEqual([
                     expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.detailRoute.route
+                    expectedEditionWorkOp25.detailRoute.route,
                 ]);
                 expect(routerLinks[2].linkParams).toEqual([
                     expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.graphRoute.route
+                    expectedEditionWorkOp25.graphRoute.route,
                 ]);
             });
 
@@ -291,7 +291,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 expect(introLink.navigatedTo).toEqual([
                     expectedEditionWorkOp12.baseRoute,
-                    expectedEditionWorkOp12.introRoute.route
+                    expectedEditionWorkOp12.introRoute.route,
                 ]);
             });
 
@@ -307,7 +307,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 expect(detailLink.navigatedTo).toEqual([
                     expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.detailRoute.route
+                    expectedEditionWorkOp25.detailRoute.route,
                 ]);
             });
 
@@ -323,7 +323,7 @@ describe('EditionInfoComponent (DONE)', () => {
 
                 expect(graphLink.navigatedTo).toEqual([
                     expectedEditionWorkOp25.baseRoute,
-                    expectedEditionWorkOp25.graphRoute.route
+                    expectedEditionWorkOp25.graphRoute.route,
                 ]);
             });
         });

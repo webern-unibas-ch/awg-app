@@ -42,13 +42,13 @@ describe('BibliographyComponent', () => {
                 // eslint-disable-next-line @typescript-eslint/naming-convention
                 thumb_max: undefined,
                 status: undefined,
-                userdata: undefined
+                userdata: undefined,
             };
             getBibliographyListSpy = mockBibliographyService.getBibliographyList.and.returnValue(observableOf()); // TODO: add real test data (SearchResponseJson)
 
             TestBed.configureTestingModule({
                 declarations: [BibliographyComponent, BibliographySearchStubComponent, BibliographyListStubComponent],
-                providers: [{ provide: BibliographyService, useValue: mockBibliographyService }]
+                providers: [{ provide: BibliographyService, useValue: mockBibliographyService }],
             }).compileComponents();
         })
     );

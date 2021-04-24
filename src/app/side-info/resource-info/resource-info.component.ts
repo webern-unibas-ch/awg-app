@@ -20,7 +20,7 @@ import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-mod
 @Component({
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
-    styleUrls: ['./resource-info.component.css']
+    styleUrls: ['./resource-info.component.css'],
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
@@ -217,7 +217,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     navigateToSearchPanel(): void {
         const queryStr = this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : '';
         this.router.navigate(['/data/search/fulltext'], {
-            queryParams: { query: queryStr }
+            queryParams: { query: queryStr },
         });
     }
 
@@ -268,8 +268,8 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
             resources: {
                 current,
                 next,
-                previous
-            }
+                previous,
+            },
         };
     }
 
@@ -295,9 +295,9 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     Validators.required,
                     Validators.pattern(regexPattern),
                     Validators.min(1),
-                    Validators.max(resultSize)
-                ])
-            ]
+                    Validators.max(resultSize),
+                ]),
+            ],
         });
     }
 

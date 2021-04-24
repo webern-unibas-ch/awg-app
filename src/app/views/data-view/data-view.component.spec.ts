@@ -9,7 +9,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -42,7 +42,7 @@ describe('DataViewComponent (DONE)', () => {
 
             TestBed.configureTestingModule({
                 declarations: [DataViewComponent, HeadingStubComponent, RouterOutletStubComponent],
-                providers: [{ provide: Router, useValue: mockRouter }]
+                providers: [{ provide: Router, useValue: mockRouter }],
             }).compileComponents();
         })
     );

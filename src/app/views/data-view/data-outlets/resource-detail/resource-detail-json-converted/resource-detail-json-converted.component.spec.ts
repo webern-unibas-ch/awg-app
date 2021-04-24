@@ -29,7 +29,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent]
+                declarations: [ResourceDetailJsonConvertedComponent, JsonViewerStubComponent],
             }).compileComponents();
         })
     );

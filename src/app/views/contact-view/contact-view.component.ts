@@ -15,7 +15,7 @@ import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
     selector: 'awg-contact-view',
     templateUrl: './contact-view.component.html',
     styleUrls: ['./contact-view.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactViewComponent implements OnInit {
     /**
@@ -134,7 +134,7 @@ export class ContactViewComponent implements OnInit {
         // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'contactInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 }

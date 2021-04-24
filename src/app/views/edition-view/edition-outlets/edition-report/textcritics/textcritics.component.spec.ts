@@ -33,7 +33,7 @@ describe('TextcriticsComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [TextcriticsComponent, CriticsListStubComponent]
+                declarations: [TextcriticsComponent, CriticsListStubComponent],
             }).compileComponents();
         })
     );

@@ -17,7 +17,7 @@ import { ApiRequest } from './api-request.model';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ApiService {
     /**
@@ -89,7 +89,7 @@ export class ApiService {
             .get<ApiServiceResult | ApiServiceError>(apiRequest.url, {
                 observe: 'response',
                 params: apiRequest.params,
-                headers: apiRequest.headers
+                headers: apiRequest.headers,
             })
             .pipe(
                 // Store the actual url

@@ -10,7 +10,7 @@ import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
@@ -61,7 +61,7 @@ describe('SparqlEditorComponent (DONE)', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [SparqlEditorComponent, CodeMirrorStubComponent]
+                declarations: [SparqlEditorComponent, CodeMirrorStubComponent],
             }).compileComponents();
         })
     );
@@ -91,7 +91,7 @@ describe('SparqlEditorComponent (DONE)', () => {
             firstLineNumber: 1,
             lineWrapping: true,
             matchBrackets: true,
-            mode: 'sparql'
+            mode: 'sparql',
         };
 
         // Spies on component functions

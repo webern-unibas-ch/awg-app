@@ -43,7 +43,7 @@ describe('GndService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [GndService]
+            providers: [GndService],
         });
         // Inject service
         gndService = TestBed.inject(GndService);

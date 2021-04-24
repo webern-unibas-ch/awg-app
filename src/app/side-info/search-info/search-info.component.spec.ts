@@ -11,7 +11,7 @@ describe('SearchInfoComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [SearchInfoComponent]
+                declarations: [SearchInfoComponent],
             }).compileComponents();
         })
     );

@@ -47,7 +47,7 @@ describe('EditionOverviewComponent (DONE)', () => {
 
             TestBed.configureTestingModule({
                 declarations: [EditionOverviewComponent, RouterLinkButtonGroupStubComponent, RouterOutletStubComponent],
-                providers: [{ provide: EditionService, useValue: mockEditionService }]
+                providers: [{ provide: EditionService, useValue: mockEditionService }],
             }).compileComponents();
         })
     );
@@ -84,7 +84,7 @@ describe('EditionOverviewComponent (DONE)', () => {
                 expectedEditionWork.graphRoute.route,
                 EditionConstants.EDITION_GRAPH.short,
                 false
-            )
+            ),
         ];
 
         // Spies on component functions

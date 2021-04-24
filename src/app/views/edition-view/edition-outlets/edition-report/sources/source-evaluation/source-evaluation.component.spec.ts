@@ -13,7 +13,7 @@ describe('SourceEvaluationComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective]
+                declarations: [SourceEvaluationComponent, CompileHtmlComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );

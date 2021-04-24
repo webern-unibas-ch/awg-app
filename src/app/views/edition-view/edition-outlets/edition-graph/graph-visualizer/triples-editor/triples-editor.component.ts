@@ -13,7 +13,7 @@ import 'codemirror/mode/turtle/turtle';
     selector: 'awg-triples-editor',
     templateUrl: './triples-editor.component.html',
     styleUrls: ['./triples-editor.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TriplesEditorComponent implements OnInit {
     /**
@@ -73,7 +73,7 @@ export class TriplesEditorComponent implements OnInit {
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
-        mode: 'turtle'
+        mode: 'turtle',
     };
 
     /**

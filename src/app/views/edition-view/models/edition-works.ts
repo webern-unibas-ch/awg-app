@@ -16,21 +16,21 @@ export class EditionWorks {
         {
             title: 'Vier Lieder',
             catalogueType: EditionConstants.OPUS,
-            catalogueNumber: '12'
+            catalogueNumber: '12',
         },
         {
             editors: [
                 {
                     name: 'Thomas Ahrend',
-                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
             ],
-            lastModified: '29. Januar 2020'
+            lastModified: '29. Januar 2020',
         },
         {
             route: '/op12',
             short: '',
-            full: ''
+            full: '',
         },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,
@@ -44,21 +44,21 @@ export class EditionWorks {
         {
             title: 'Drei Lieder nach Gedichten von Hildegard Jone',
             catalogueType: EditionConstants.OPUS,
-            catalogueNumber: '25'
+            catalogueNumber: '25',
         },
         {
             editors: [
                 {
                     name: 'Thomas Ahrend',
-                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
             ],
-            lastModified: '29. Januar 2020'
+            lastModified: '29. Januar 2020',
         },
         {
             route: '/op25',
             short: '',
-            full: ''
+            full: '',
         },
         EditionConstants.SERIES_1,
         EditionConstants.SECTION_5,

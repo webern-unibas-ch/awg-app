@@ -23,8 +23,8 @@ module.exports = {
                 'README',
                 'CHANGELOG',
                 'LICENSE',
-                'gh-actions'
-            ]
-        ]
-    }
+                'gh-actions',
+            ],
+        ],
+    },
 };

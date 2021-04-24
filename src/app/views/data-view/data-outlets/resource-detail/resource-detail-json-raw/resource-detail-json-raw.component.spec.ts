@@ -29,7 +29,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent]
+                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent],
             }).compileComponents();
         })
     );

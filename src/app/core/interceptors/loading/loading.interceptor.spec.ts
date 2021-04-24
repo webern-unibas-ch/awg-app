@@ -37,9 +37,9 @@ describe('LoadingInterceptor (DONE)', () => {
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: LoadingInterceptor,
-                    multi: true
-                }
-            ]
+                    multi: true,
+                },
+            ],
         });
 
         // Inject services and http client handler
@@ -83,7 +83,7 @@ describe('LoadingInterceptor (DONE)', () => {
 
                 // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
                 // Check for GET request
@@ -115,7 +115,7 @@ describe('LoadingInterceptor (DONE)', () => {
             waitForAsync(() => {
                 // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
@@ -127,7 +127,7 @@ describe('LoadingInterceptor (DONE)', () => {
             waitForAsync(() => {
                 // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
@@ -140,7 +140,7 @@ describe('LoadingInterceptor (DONE)', () => {
             waitForAsync(() => {
                 // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
@@ -160,13 +160,13 @@ describe('LoadingInterceptor (DONE)', () => {
                 status: 201,
                 statusText: 'Created',
                 body: 'anotherResponse',
-                url: expectedUrl
+                url: expectedUrl,
             });
             httpHandlerSpy.handle.and.returnValue(observableOf(expectedHttpResponse));
 
             // Expect an HTTP request
             call = httpTestingController.expectOne({
-                url: expectedUrl
+                url: expectedUrl,
             });
 
             expectSpyCall(interceptSpy, 1, call.request);
@@ -201,7 +201,7 @@ describe('LoadingInterceptor (DONE)', () => {
 
             // Expect an HTTP request
             call = httpTestingController.expectOne({
-                url: expectedUrl
+                url: expectedUrl,
             });
 
             expectSpyCall(interceptSpy, 1, call.request);

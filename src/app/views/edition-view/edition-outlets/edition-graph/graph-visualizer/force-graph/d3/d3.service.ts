@@ -7,7 +7,7 @@ import {
     D3ForceSimulationOptions,
     D3SimulationLink,
     D3SimulationNode,
-    D3DragBehaviour
+    D3DragBehaviour,
 } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models';
 
 import * as d3_drag from 'd3-drag';
@@ -23,7 +23,7 @@ import * as d3_zoom from 'd3-zoom';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class D3Service {
     /**

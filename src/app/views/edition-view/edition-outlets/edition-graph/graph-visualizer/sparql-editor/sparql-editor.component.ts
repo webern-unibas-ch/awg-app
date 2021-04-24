@@ -15,7 +15,7 @@ import 'codemirror/mode/sparql/sparql';
     selector: 'awg-sparql-editor',
     templateUrl: './sparql-editor.component.html',
     styleUrls: ['./sparql-editor.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlEditorComponent implements OnInit {
     /**
@@ -83,7 +83,7 @@ export class SparqlEditorComponent implements OnInit {
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
-        mode: 'sparql'
+        mode: 'sparql',
     };
 
     /**

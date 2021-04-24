@@ -24,7 +24,7 @@ import {
     ModuleWithProviders,
     NgModule,
     Compiler,
-    NgModuleFactory
+    NgModuleFactory,
 } from '@angular/core';
 import { CommonModule } from '@angular/common';
 
@@ -96,7 +96,7 @@ const nextId = (): string => {
         <ng-container *ngIf="html !== undefined && html !== null && html.trim() !== ''">
             <ng-container *ngComponentOutlet="dynamicComponent; ngModuleFactory: dynamicModule"></ng-container>
         </ng-container>
-    `
+    `,
 })
 @Injectable()
 export class CompileHtmlComponent implements OnChanges {
@@ -243,7 +243,7 @@ export class CompileHtmlComponent implements OnChanges {
     private _createNewComponent(html: string, ref: any) {
         @Component({
             selector: nextId(),
-            template: html
+            template: html,
         })
         class DynamicComponent {
             ref: any = ref;

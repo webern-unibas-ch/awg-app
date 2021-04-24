@@ -9,8 +9,8 @@ const bibliographyRoutes: Routes = [
     {
         path: '',
         component: BibliographyComponent,
-        children: [{ path: 'detail/:id', component: BibliographyDetailComponent }]
-    }
+        children: [{ path: 'detail/:id', component: BibliographyDetailComponent }],
+    },
 ];
 
 /**
@@ -26,6 +26,6 @@ export const routedBibliographyComponents = [BibliographyComponent, Bibliography
  */
 @NgModule({
     imports: [RouterModule.forChild(bibliographyRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class BibliographyRoutingModule {}

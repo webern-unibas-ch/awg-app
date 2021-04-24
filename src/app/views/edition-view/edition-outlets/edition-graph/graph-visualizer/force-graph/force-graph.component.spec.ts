@@ -17,7 +17,7 @@ describe('ForceGraphComponent', () => {
             TestBed.configureTestingModule({
                 imports: [FontAwesomeTestingModule, FormsModule],
                 declarations: [ForceGraphComponent, PrefixPipe],
-                providers: [GraphVisualizerService, PrefixPipe]
+                providers: [GraphVisualizerService, PrefixPipe],
             }).compileComponents();
         })
     );

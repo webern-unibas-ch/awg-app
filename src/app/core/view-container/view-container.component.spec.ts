@@ -17,7 +17,7 @@ describe('ViewContainerComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent]
+                declarations: [ViewContainerComponent, RouterLinkStubDirective, RouterOutletStubComponent],
             }).compileComponents();
         })
     );

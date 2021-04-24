@@ -76,7 +76,7 @@ describe('ResourceDetailComponent', () => {
             // TODO: provide accurate types and service responses
             const mockDataApiService = {
                 httpGetUrl: '/testUrl',
-                getResourceData: () => observableOf(expectedResourceData)
+                getResourceData: () => observableOf(expectedResourceData),
             };
             const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
             const mockDataStreamerService = { updateResourceId: () => {} };
@@ -94,15 +94,15 @@ describe('ResourceDetailComponent', () => {
                     ResourceDetailHtmlStubComponent,
                     ResourceDetailJsonConvertedStubComponent,
                     ResourceDetailJsonRawStubComponent,
-                    TwelveToneSpinnerStubComponent
+                    TwelveToneSpinnerStubComponent,
                 ],
                 providers: [
                     { provide: ActivatedRoute, useValue: mockActivatedRoute },
                     { provide: Router, useValue: mockRouter },
                     { provide: DataApiService, useValue: mockDataApiService },
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    { provide: LoadingService, useValue: mockLoadingService }
-                ]
+                    { provide: LoadingService, useValue: mockLoadingService },
+                ],
             }).compileComponents();
         })
     );

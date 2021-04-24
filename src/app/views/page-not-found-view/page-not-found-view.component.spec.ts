@@ -25,7 +25,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [PageNotFoundViewComponent, RouterLinkStubDirective]
+                declarations: [PageNotFoundViewComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );

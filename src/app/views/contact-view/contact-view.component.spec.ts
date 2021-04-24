@@ -10,7 +10,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { MetaContact, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
@@ -64,8 +64,8 @@ describe('ContactViewComponent (DONE)', () => {
                 declarations: [ContactViewComponent, HeadingStubComponent],
                 providers: [
                     { provide: CoreService, useValue: mockCoreService },
-                    { provide: Router, useValue: mockRouter }
-                ]
+                    { provide: Router, useValue: mockRouter },
+                ],
             }).compileComponents();
         })
     );

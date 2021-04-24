@@ -11,7 +11,7 @@ describe('EditionTkaTableComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionTkaTableComponent, CompileHtmlComponent]
+                declarations: [EditionTkaTableComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );

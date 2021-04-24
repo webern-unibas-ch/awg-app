@@ -13,7 +13,7 @@ const sideInfoRoutes: Routes = [
     { path: 'editionInfo', component: EditionInfoComponent, outlet: 'side' },
     { path: 'resourceInfo', component: ResourceInfoComponent, outlet: 'side' },
     { path: 'searchInfo', component: SearchInfoComponent, outlet: 'side' },
-    { path: 'structureInfo', component: StructureInfoComponent, outlet: 'side' }
+    { path: 'structureInfo', component: StructureInfoComponent, outlet: 'side' },
 ];
 
 /**
@@ -27,7 +27,7 @@ export const routedSideInfoComponents = [
     EditionInfoComponent,
     ResourceInfoComponent,
     SearchInfoComponent,
-    StructureInfoComponent
+    StructureInfoComponent,
 ];
 
 /**
@@ -37,6 +37,6 @@ export const routedSideInfoComponents = [
  */
 @NgModule({
     imports: [RouterModule.forChild(sideInfoRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class SideInfoRoutingModule {}

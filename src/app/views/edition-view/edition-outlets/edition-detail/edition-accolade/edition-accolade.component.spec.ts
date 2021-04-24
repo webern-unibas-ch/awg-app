@@ -7,7 +7,7 @@ import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalComment
+    TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
@@ -66,8 +66,8 @@ describe('EditionAccoladeComponent', () => {
                     EditionAccoladeComponent,
                     EditionSvgSheetStubComponent,
                     EditionSvgSheetNavStubComponent,
-                    EditionTkaTableStubComponent
-                ]
+                    EditionTkaTableStubComponent,
+                ],
             }).compileComponents();
         })
     );

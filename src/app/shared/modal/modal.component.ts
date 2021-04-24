@@ -44,7 +44,7 @@ const MODALCONTENTSNIPPETS = {
         '        <i>SPARQL Abfrage</i>: Die SPARQL Protocol And RDF Query Language (<i>SPARQL</i>) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des <i>graph pattern matching</i> der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt <i>SPARQL Abfrage</i> lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: <a href="https://www.w3.org/TR/sparql11-query/">https://www.w3.org/TR/sparql11-query/</a>.<br /><br />\n' +
         '\n' +
         '        <i>Resultat</i>: Der durch die <i>SPARQL Abfrage</i> über die <i>RDF Triples</i> zurückgelieferte Datensatz wird unter dem Punkt <i>Resultat</i> als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek <a href="https://d3js.org/">d3.js</a> visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch "Ziehen" mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.<br />\n' +
-        '    </p>'
+        '    </p>',
 };
 
 /**
@@ -56,7 +56,7 @@ const MODALCONTENTSNIPPETS = {
 @Component({
     selector: 'awg-modal',
     templateUrl: './modal.component.html',
-    styleUrls: ['./modal.component.css']
+    styleUrls: ['./modal.component.css'],
 })
 export class ModalComponent {
     /**

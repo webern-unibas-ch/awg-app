@@ -51,7 +51,7 @@ describe('FooterComponent (DONE)', () => {
             // Stub service for test purposes
             mockCoreService = {
                 getMetaDataSection: sectionType => METADATA[sectionType],
-                getLogos: () => expectedLogos
+                getLogos: () => expectedLogos,
             };
 
             TestBed.configureTestingModule({
@@ -60,9 +60,9 @@ describe('FooterComponent (DONE)', () => {
                     FooterCopyrightStubComponent,
                     FooterDeclarationStubComponent,
                     FooterLogoStubComponent,
-                    FooterPoweredbyStubComponent
+                    FooterPoweredbyStubComponent,
                 ],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );

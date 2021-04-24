@@ -5,7 +5,7 @@ import { FolioService } from './folio.service';
 describe('FolioService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [FolioService]
+            providers: [FolioService],
         });
     });
 

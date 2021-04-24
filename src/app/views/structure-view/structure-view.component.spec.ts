@@ -9,7 +9,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { StructureViewComponent } from './structure-view.component';
@@ -41,7 +41,7 @@ describe('StructureViewComponent (DONE)', () => {
 
             TestBed.configureTestingModule({
                 declarations: [StructureViewComponent, HeadingStubComponent],
-                providers: [{ provide: Router, useValue: mockRouter }]
+                providers: [{ provide: Router, useValue: mockRouter }],
             }).compileComponents();
         })
     );

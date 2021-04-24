@@ -21,7 +21,7 @@ import { GraphVisualizerService } from './services/graph-visualizer.service';
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class GraphVisualizerComponent implements OnInit {
     /**

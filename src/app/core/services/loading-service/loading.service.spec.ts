@@ -11,7 +11,7 @@ describe('LoadingService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [LoadingService]
+            providers: [LoadingService],
         });
         // Inject service
         loadingService = TestBed.inject(LoadingService);

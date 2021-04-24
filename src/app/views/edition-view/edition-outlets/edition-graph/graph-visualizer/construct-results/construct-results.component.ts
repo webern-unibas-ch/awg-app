@@ -13,7 +13,7 @@ import { D3SimulationNode, Triple } from '../models';
     selector: 'awg-construct-results',
     templateUrl: './construct-results.component.html',
     styleUrls: ['./construct-results.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConstructResultsComponent implements OnInit {
     /**
