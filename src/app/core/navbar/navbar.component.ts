@@ -15,7 +15,7 @@ import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css']
+    styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
     /**

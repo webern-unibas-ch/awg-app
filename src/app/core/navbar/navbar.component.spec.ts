@@ -35,7 +35,7 @@ describe('NavbarComponent (DONE)', () => {
     let expectedEditionWorks: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
     let expectedSelectEditionWork: EditionWork = EditionWorks.OP12;
 
-    // Global NgbConfigModule
+    // global NgbConfigModule
     @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
     class NgbWithConfigModule {
         constructor(config: NgbConfig) {
@@ -48,13 +48,13 @@ describe('NavbarComponent (DONE)', () => {
         waitForAsync(() => {
             // Stub service for test purposes
             mockCoreService = {
-                getMetaDataSection: sectionType => METADATA[sectionType]
+                getMetaDataSection: sectionType => METADATA[sectionType],
             };
 
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, NgbWithConfigModule],
                 declarations: [NavbarComponent, RouterLinkStubDirective],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );
@@ -226,51 +226,51 @@ describe('NavbarComponent (DONE)', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual([
                     expectedEditionWorks[0].baseRoute,
-                    expectedEditionWorks[0].introRoute.route
+                    expectedEditionWorks[0].introRoute.route,
                 ]);
                 expect(routerLinks[2].linkParams).toEqual([
                     expectedEditionWorks[1].baseRoute,
-                    expectedEditionWorks[1].introRoute.route
+                    expectedEditionWorks[1].introRoute.route,
                 ]);
                 expect(routerLinks[3].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.introRoute.route
+                    expectedSelectEditionWork.introRoute.route,
                 ]);
                 expect(routerLinks[4].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[5].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[6].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[7].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[8].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[9].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[10].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[11].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[12].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[13].linkParams).toEqual(['/structure']);
                 expect(routerLinks[14].linkParams).toEqual(['/data/search', 'fulltext']);
@@ -307,7 +307,7 @@ describe('NavbarComponent (DONE)', () => {
 
                 expect(editionLink.navigatedTo).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.introRoute.route
+                    expectedSelectEditionWork.introRoute.route,
                 ]);
             });
 

@@ -21,7 +21,7 @@ import {
     SearchResponseJson,
     SelectionItemJson,
     SelectionJson,
-    SubjectItemJson
+    SubjectItemJson,
 } from '@awg-shared/api-objects';
 import {
     IResourceDataResponse,
@@ -32,7 +32,7 @@ import {
     ResourceDetailImage,
     ResourceDetailIncomingLink,
     ResourceDetailProperty,
-    SearchResponseWithQuery
+    SearchResponseWithQuery,
 } from '@awg-views/data-view/models';
 import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
@@ -60,7 +60,7 @@ declare let dateConverter: any;
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class ConversionService extends ApiService {
     /**
@@ -371,7 +371,7 @@ export class ConversionService extends ApiService {
                             big: image.fullSize,
                             description: image.origname,
                             label: image.label,
-                            url: image.fullSize
+                            url: image.fullSize,
                         });
 
                         images.push(gImage);
@@ -960,7 +960,7 @@ export class ConversionService extends ApiService {
         // Produce a list of restypes with its incoming links
         return Array.from(restypeLabels).map(label => ({
             restypeLabel: label,
-            links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label)
+            links: incomingLinks.filter(incomingLink => incomingLink.restype.label === label),
         }));
     }
 }
