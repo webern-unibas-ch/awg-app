@@ -1,6 +1,6 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NgModule } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { click } from '@testing/click-helper';
@@ -9,9 +9,9 @@ import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faEnvelope, faFileAlt, faHome, faNetworkWired, faSearch } from '@fortawesome/free-solid-svg-icons';
-import { NgbCollapseModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbCollapseModule, NgbConfig, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
 
-import { Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -32,20 +32,29 @@ describe('NavbarComponent (DONE)', () => {
     let expectedPageMetaData: MetaPage;
     let expectedIsCollapsed: boolean;
 
-    let expectedEditionWorks: EditionWork[] = [EditionWorks.op12, EditionWorks.op25];
-    let expectedSelectEditionWork: EditionWork = EditionWorks.op12;
+    let expectedEditionWorks: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
+    let expectedSelectEditionWork: EditionWork = EditionWorks.OP12;
+
+    // global NgbConfigModule
+    @NgModule({ imports: [NgbCollapseModule, NgbDropdownModule], exports: [NgbCollapseModule, NgbDropdownModule] })
+    class NgbWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
 
     beforeEach(
         waitForAsync(() => {
-            // stub service for test purposes
+            // Stub service for test purposes
             mockCoreService = {
-                getMetaDataSection: sectionType => METADATA[sectionType]
+                getMetaDataSection: sectionType => METADATA[sectionType],
             };
 
             TestBed.configureTestingModule({
-                imports: [FontAwesomeModule, NgbCollapseModule, NgbDropdownModule],
+                imports: [FontAwesomeModule, NgbWithConfigModule],
                 declarations: [NavbarComponent, RouterLinkStubDirective],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );
@@ -56,13 +65,13 @@ describe('NavbarComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedIsCollapsed = true;
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
-        expectedEditionWorks = [EditionWorks.op12, EditionWorks.op25];
-        expectedSelectEditionWork = EditionWorks.op12;
+        expectedEditionWorks = [EditionWorks.OP12, EditionWorks.OP25];
+        expectedSelectEditionWork = EditionWorks.OP12;
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
@@ -111,14 +120,14 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... should be called when button clicked (click helper)', () => {
-                // find button elements
+                // Find button elements
                 const buttonDes = getAndExpectDebugElementByCss(compDe, 'button.navbar-toggler', 1, 1);
                 const buttonEl = buttonDes[0].nativeElement;
 
-                // should have not been called yet
+                // Should have not been called yet
                 expect(component.toggleNav).not.toHaveBeenCalled();
 
-                // click button
+                // Click button
                 click(buttonDes[0]);
                 click(buttonEl);
 
@@ -165,7 +174,7 @@ describe('NavbarComponent (DONE)', () => {
         beforeEach(() => {
             component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -202,10 +211,10 @@ describe('NavbarComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
+                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 16, 16);
 
-                // get attached link directive instances using each DebugElement's injector
+                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
@@ -217,51 +226,51 @@ describe('NavbarComponent (DONE)', () => {
                 expect(routerLinks[0].linkParams).toEqual(['/home']);
                 expect(routerLinks[1].linkParams).toEqual([
                     expectedEditionWorks[0].baseRoute,
-                    expectedEditionWorks[0].introRoute.route
+                    expectedEditionWorks[0].introRoute.route,
                 ]);
                 expect(routerLinks[2].linkParams).toEqual([
                     expectedEditionWorks[1].baseRoute,
-                    expectedEditionWorks[1].introRoute.route
+                    expectedEditionWorks[1].introRoute.route,
                 ]);
                 expect(routerLinks[3].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.introRoute.route
+                    expectedSelectEditionWork.introRoute.route,
                 ]);
                 expect(routerLinks[4].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[5].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[6].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[7].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.detailRoute.route
+                    expectedSelectEditionWork.detailRoute.route,
                 ]);
                 expect(routerLinks[8].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[9].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[10].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[11].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[12].linkParams).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.reportRoute.route
+                    expectedSelectEditionWork.reportRoute.route,
                 ]);
                 expect(routerLinks[13].linkParams).toEqual(['/structure']);
                 expect(routerLinks[14].linkParams).toEqual(['/data/search', 'fulltext']);
@@ -276,8 +285,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Home link in template', () => {
-                const homeLinkDe = linkDes[0]; // contact link DebugElement
-                const homeLink = routerLinks[0]; // contact link directive
+                const homeLinkDe = linkDes[0]; // Contact link DebugElement
+                const homeLink = routerLinks[0]; // Contact link directive
 
                 expect(homeLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -288,8 +297,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Edition link in template', () => {
-                const editionLinkDe = linkDes[1]; // contact link DebugElement
-                const editionLink = routerLinks[1]; // contact link directive
+                const editionLinkDe = linkDes[1]; // Contact link DebugElement
+                const editionLink = routerLinks[1]; // Contact link directive
 
                 expect(editionLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -298,13 +307,13 @@ describe('NavbarComponent (DONE)', () => {
 
                 expect(editionLink.navigatedTo).toEqual([
                     expectedSelectEditionWork.baseRoute,
-                    expectedSelectEditionWork.introRoute.route
+                    expectedSelectEditionWork.introRoute.route,
                 ]);
             });
 
             it('... can click Structure link in template', () => {
-                const structureLinkDe = linkDes[13]; // contact link DebugElement
-                const structureLink = routerLinks[13]; // contact link directive
+                const structureLinkDe = linkDes[13]; // Contact link DebugElement
+                const structureLink = routerLinks[13]; // Contact link directive
 
                 expect(structureLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -315,8 +324,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Data link in template', () => {
-                const dataLinkDe = linkDes[14]; // contact link DebugElement
-                const dataLink = routerLinks[14]; // contact link directive
+                const dataLinkDe = linkDes[14]; // Contact link DebugElement
+                const dataLink = routerLinks[14]; // Contact link directive
 
                 expect(dataLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -327,8 +336,8 @@ describe('NavbarComponent (DONE)', () => {
             });
 
             it('... can click Contact link in template', () => {
-                const contactLinkDe = linkDes[15]; // contact link DebugElement
-                const contactLink = routerLinks[15]; // contact link directive
+                const contactLinkDe = linkDes[15]; // Contact link DebugElement
+                const contactLink = routerLinks[15]; // Contact link directive
 
                 expect(contactLink.navigatedTo).toBeNull('should not have navigated yet');
 

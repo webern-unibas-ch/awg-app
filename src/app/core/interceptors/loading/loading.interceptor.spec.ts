@@ -37,28 +37,28 @@ describe('LoadingInterceptor (DONE)', () => {
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: LoadingInterceptor,
-                    multi: true
-                }
-            ]
+                    multi: true,
+                },
+            ],
         });
 
-        // inject services and http client handler
+        // Inject services and http client handler
         loadingService = TestBed.inject(LoadingService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
 
-        // uses helper function to get interceptor instance
+        // Uses helper function to get interceptor instance
         loadingInterceptor = getInterceptorInstance<LoadingInterceptor>(
             TestBed.inject(HTTP_INTERCEPTORS),
             LoadingInterceptor
         );
 
-        // spies on service functions
+        // Spies on service functions
         updateLoadingStatusSpy = spyOn(loadingService, 'updateLoadingStatus').and.callThrough();
         interceptSpy = spyOn(loadingInterceptor, 'intercept').and.callThrough();
     });
 
-    // after every test, assert that there are no more pending requests
+    // After every test, assert that there are no more pending requests
     afterEach(() => {
         httpTestingController.verify();
     });
@@ -67,13 +67,13 @@ describe('LoadingInterceptor (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it(`... should test if interceptor instance is created`, () => {
+    it('... should test if interceptor instance is created', () => {
         expect(loadingInterceptor).toBeTruthy();
     });
 
     describe('httpTestingController', () => {
         it(
-            `... should issue a mocked http get request`,
+            '... should issue a mocked http get request',
             waitForAsync(() => {
                 const testData: Data = { name: 'TestData' };
 
@@ -81,29 +81,29 @@ describe('LoadingInterceptor (DONE)', () => {
                     expect(data).toEqual(testData);
                 });
 
-                // match the request url
+                // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
-                // check for GET request
+                // Check for GET request
                 expect(call.request.method).toBe('GET');
 
-                // respond with mocked data
+                // Respond with mocked data
                 call.flush(testData);
             })
         );
     });
 
     describe('loadingInterceptor', () => {
-        // prepare HTTP call
+        // Prepare HTTP call
         const expectedUrl = apiUrl + searchRoute + 'Test';
         const testData: Data = { name: 'TestData' };
         let call: TestRequest;
 
         beforeEach(
             waitForAsync(() => {
-                // subscribe to GET Http Request
+                // Subscribe to GET Http Request
                 httpClient.get<Data>(expectedUrl).subscribe(data => {
                     expect(data).toEqual(testData);
                 });
@@ -111,11 +111,11 @@ describe('LoadingInterceptor (DONE)', () => {
         );
 
         it(
-            `... should intercept HTTP requests`,
+            '... should intercept HTTP requests',
             waitForAsync(() => {
-                // expect an HTTP request
+                // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
@@ -123,11 +123,11 @@ describe('LoadingInterceptor (DONE)', () => {
         );
 
         it(
-            `... should call loadingService to update status (true) for pending HTTP requests`,
+            '... should call loadingService to update status (true) for pending HTTP requests',
             waitForAsync(() => {
-                // expect an HTTP request
+                // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
@@ -136,43 +136,43 @@ describe('LoadingInterceptor (DONE)', () => {
         );
 
         it(
-            `... should call loadingService to update status (false) for resolved HTTP requests`,
+            '... should call loadingService to update status (false) for resolved HTTP requests',
             waitForAsync(() => {
-                // expect an HTTP request
+                // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
                 expectSpyCall(updateLoadingStatusSpy, 1, true);
 
-                // resolve request
+                // Resolve request
                 call.flush(testData);
 
                 expectSpyCall(updateLoadingStatusSpy, 2, false);
             })
         );
 
-        it(`... should call loadingService to update status for multiple HTTP requests and decrease pending requests`, done => {
-            // spy on HTTP handler to handle another response
+        it('... should call loadingService to update status for multiple HTTP requests and decrease pending requests', done => {
+            // Spy on HTTP handler to handle another response
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
             const expectedHttpResponse = new HttpResponse({
                 status: 201,
                 statusText: 'Created',
                 body: 'anotherResponse',
-                url: expectedUrl
+                url: expectedUrl,
             });
             httpHandlerSpy.handle.and.returnValue(observableOf(expectedHttpResponse));
 
-            // expect an HTTP request
+            // Expect an HTTP request
             call = httpTestingController.expectOne({
-                url: expectedUrl
+                url: expectedUrl,
             });
 
             expectSpyCall(interceptSpy, 1, call.request);
             expectSpyCall(updateLoadingStatusSpy, 1, true);
 
-            // add another request to the stack
+            // Add another request to the stack
             loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
                 response => {
                     expect(response).toBe(expectedHttpResponse);
@@ -192,22 +192,22 @@ describe('LoadingInterceptor (DONE)', () => {
             expectSpyCall(updateLoadingStatusSpy, 4, false);
         });
 
-        it(`... should call loadingService to update status (false) for failed HTTP requests`, done => {
-            // spy on HTTP handler to throw a mocked error
-            // cf. https://stackoverflow.com/a/53688721
+        it('... should call loadingService to update status (false) for failed HTTP requests', done => {
+            // Spy on HTTP handler to throw a mocked error
+            // Cf. https://stackoverflow.com/a/53688721
             const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
             const expectedError = { status: 401, statusText: 'error', message: 'test-error' };
             httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
 
-            // expect an HTTP request
+            // Expect an HTTP request
             call = httpTestingController.expectOne({
-                url: expectedUrl
+                url: expectedUrl,
             });
 
             expectSpyCall(interceptSpy, 1, call.request);
             expectSpyCall(updateLoadingStatusSpy, 1, true);
 
-            // throw error via httpHandlerSpy
+            // Throw error via httpHandlerSpy
             loadingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
                 response => fail('should have been failed'),
                 err => {

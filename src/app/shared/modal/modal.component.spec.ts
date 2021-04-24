@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
@@ -17,7 +17,7 @@ describe('ModalComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbModalModule],
-                declarations: [ModalComponent, CompileHtmlComponent]
+                declarations: [ModalComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );

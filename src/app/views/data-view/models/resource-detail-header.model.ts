@@ -33,23 +33,6 @@ export class ResourceDetailHeader {
     lastmod: string;
 
     /**
-     * Private static method: replaceParagraphTags.
-     *
-     * It replaces paragraph tags with break lines
-     * in a resource's rich text area (here: title).
-     */
-    private static replaceParagraphTags(str: string): string {
-        if (!str) {
-            return;
-        }
-        str = str
-            .replace(/<\/p><p>/g, '<br />')
-            .replace(/<p>|<\/p>/g, '')
-            .replace(str, '«$&»');
-        return str;
-    }
-
-    /**
      * Constructor of the ResourceDetailHeader class.
      *
      * It initializes the class with values from a
@@ -60,50 +43,53 @@ export class ResourceDetailHeader {
      * @param {string} currentId The given id of the current resource.
      */
     constructor(data: ResourceFullResponseJson, currentId: string) {
-        // init values
+        // Init values
         this.objID = '---';
         this.icon = '---';
         this.type = '---';
         this.lastmod = '---';
         this.title = '---';
 
-        // shortcuts
+        // Shortcuts
         const info = data.resinfo;
         const props = data.props;
 
-        // header for accessible objects
+        // Header for accessible objects
         if (typeof info !== 'undefined') {
             const id = data.resdata.res_id;
             if (id !== currentId) {
                 console.error(
-                    `ERROR: ` +
-                        `ResourceDetailHeader => ` +
+                    'ERROR: ' +
+                        'ResourceDetailHeader => ' +
                         `currentId ${currentId} not matching data.resdata.res_id ${id}`
                 );
                 return;
             }
 
-            // extract common default metadata for header
+            // Extract common default metadata for header
             this.objID = id;
             this.icon = info.restype_iconsrc;
             this.type = info.restype_label;
             this.lastmod = info.lastmod;
 
-            // extract restype specific title for header
+            // Extract restype specific title for header
             switch (info.restype_id) {
                 // CHRONOLOGIE
                 case '28':
-                    // richtext value has already been converted in detail using plugin "htmlConverter"
+                    // Richtext value has already been converted in detail using plugin "htmlConverter"
                     let htmlstr = props['webern:event_rt'].toHtml[0];
 
-                    // strip & replace <p>-tags for displaying title
-                    htmlstr = ResourceDetailHeader.replaceParagraphTags(htmlstr);
+                    // Strip & replace <p>-tags for displaying title
+                    htmlstr = ResourceDetailHeader._replaceParagraphTags(htmlstr);
 
                     this.title = htmlstr;
                     break;
 
                 // KORRESPONDENZ (same as SUPPLEMENT)
                 case '29':
+                    this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
+                    break;
+
                 // SUPPLEMENT
                 case '125':
                     this.title = props['dc:title'].toHtml[0] + '<br/>' + props['dc:date'].toHtml[0];
@@ -136,15 +122,32 @@ export class ResourceDetailHeader {
                     this.title = info.restype_description;
             }
         } else {
-            // header for undefined & restricted object
+            // Header for undefined & restricted object
             this.objID = currentId;
             this.icon = 'https://www.salsah.org/app/icons/16x16/delete.png';
         }
 
-        // additional header for restricted objects
+        // Additional header for restricted objects
         if (data.access === 'NO_ACCESS') {
             this.type = 'restricted';
             this.title = 'Kein Zugriff auf dieses Objekt möglich';
         }
+    }
+
+    /**
+     * Private static method: _replaceParagraphTags.
+     *
+     * It replaces paragraph tags with break lines
+     * in a resource's rich text area (here: title).
+     */
+    private static _replaceParagraphTags(str: string): string {
+        if (!str) {
+            return;
+        }
+        str = str
+            .replace(/<\/p><p>/g, '<br />')
+            .replace(/<p>|<\/p>/g, '')
+            .replace(str, '«$&»');
+        return str;
     }
 }

@@ -13,6 +13,6 @@ import { EditionViewRoutingModule, routedEditionViewComponents } from './edition
  */
 @NgModule({
     imports: [SharedModule, EditionViewRoutingModule],
-    declarations: [routedEditionViewComponents]
+    declarations: [routedEditionViewComponents],
 })
 export class EditionViewModule {}

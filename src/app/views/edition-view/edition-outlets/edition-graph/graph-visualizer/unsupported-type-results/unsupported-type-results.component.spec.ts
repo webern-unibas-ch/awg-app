@@ -1,7 +1,7 @@
-import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
+import { DebugElement, NgModule } from '@angular/core';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
@@ -17,15 +17,26 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     let expectedQueryType: string;
 
-    beforeEach(async () => {
-        await TestBed.configureTestingModule({
-            imports: [NgbAccordionModule],
-            declarations: [UnsupportedTypeResultsComponent]
-        }).compileComponents();
-    });
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
+    beforeEach(
+        waitForAsync(() => {
+            TestBed.configureTestingModule({
+                imports: [NgbAccordionWithConfigModule],
+                declarations: [UnsupportedTypeResultsComponent],
+            }).compileComponents();
+        })
+    );
 
     beforeEach(() => {
-        // add custom jasmine matchers (ToHaveCssClass)
+        // Add custom jasmine matchers (ToHaveCssClass)
         jasmine.addMatchers(customJasmineMatchers);
 
         fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
@@ -33,7 +44,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedQueryType = 'ask';
     });
 
@@ -48,10 +59,10 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one ngb-accordion without panel (div.card) yet', () => {
-                // ngb-accordion debug element
+                // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                // panel
+                // Panel
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
             });
         });
@@ -59,10 +70,10 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.queryType = expectedQueryType;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -73,19 +84,19 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one ngb-accordion with panel (div.card) header and body', () => {
-                // ngb-accordion debug element
+                // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
-                // panel (div.card)
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // panel (div.card)
-                // header
+                // Panel (div.card)
+                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                // Header
                 getAndExpectDebugElementByCss(
                     panelDes[0],
                     'div#awg-graph-visualizer-unsupported-query-type-result-header.card-header',
                     1,
                     1
-                ); // panel (div.card)
-                // body
+                ); // Panel (div.card)
+                // Body
                 getAndExpectDebugElementByCss(
                     panelDes[0],
                     'div#awg-graph-visualizer-unsupported-query-type-result > div.card-body',
@@ -95,7 +106,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             });
 
             it('... should display panel header button', () => {
-                // panel header button
+                // Panel header button
                 const btnDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-unsupported-query-type-result-header > button',
@@ -105,13 +116,13 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
 
                 const btnEl = btnDes[0].nativeElement;
 
-                // check button content
+                // Check button content
                 expect(btnEl.textContent).toBeTruthy();
-                expect(btnEl.textContent).toContain('Resultat', `should contain Resultat`);
+                expect(btnEl.textContent).toContain('Resultat', 'should contain Resultat');
             });
 
             it('... should contain panel body with two centered paragraphs', () => {
-                // panel body paragraphs
+                // Panel body paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-unsupported-query-type-result > div.card-body > p',
@@ -127,7 +138,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             });
 
             it('... should display messages in panel body paragraphs', () => {
-                // panel body paragraphs
+                // Panel body paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-unsupported-query-type-result > div.card-body > p',
@@ -152,7 +163,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
             });
 
             it('... should display correct queryType if input changes', () => {
-                // panel body paragraphs
+                // Panel body paragraphs
                 const pDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div#awg-graph-visualizer-unsupported-query-type-result > div.card-body > p',
@@ -171,14 +182,14 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
                 component.queryType = newQueryType;
                 detectChangesOnPush(fixture);
 
-                expect(pEl0.textContent).toContain(newQueryType.toUpperCase(), `should contain DESCRIBE`);
+                expect(pEl0.textContent).toContain(newQueryType.toUpperCase(), 'should contain DESCRIBE');
 
                 // COUNT
                 newQueryType = 'count';
                 component.queryType = newQueryType;
                 detectChangesOnPush(fixture);
 
-                expect(pEl0.textContent).toContain(newQueryType.toUpperCase(), `should contain COUNT`);
+                expect(pEl0.textContent).toContain(newQueryType.toUpperCase(), 'should contain COUNT');
             });
         });
     });

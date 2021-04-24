@@ -2,8 +2,8 @@ import { Component, OnDestroy, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 
-import { Subscription } from 'rxjs';
-import { switchMap } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { switchMap, takeUntil } from 'rxjs/operators';
 
 import { faArrowLeft, faChevronLeft, faChevronRight, faTimesCircle } from '@fortawesome/free-solid-svg-icons';
 
@@ -20,16 +20,9 @@ import { ResourceInfo, ResourceInfoResource } from '@awg-side-info/side-info-mod
 @Component({
     selector: 'awg-resource-info',
     templateUrl: './resource-info.component.html',
-    styleUrls: ['./resource-info.component.css']
+    styleUrls: ['./resource-info.component.css'],
 })
 export class ResourceInfoComponent implements OnInit, OnDestroy {
-    /**
-     * Private variable: resourceInfoDataSubscription.
-     *
-     * It keeps the subscription for the resource info data.
-     */
-    private resourceInfoDataSubscription: Subscription;
-
     /**
      * Public variable: faArrowLeft.
      *
@@ -96,6 +89,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     resultSize: number;
 
     /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
+
+    /**
      * Constructor of the ResourceInfoComponent.
      *
      * It declares a private FormBuilder instance,
@@ -116,11 +116,11 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
-        this.subscribeResourceInfoData();
+        this.getResourceInfoData();
     }
 
     /**
-     * Public method: subscribeResourceInfoData.
+     * Public method: getResourceInfoData.
      *
      * It calls the DataStreamerService to get
      * the current resource id and loads it
@@ -130,116 +130,35 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      *
      * @returns {void} Subscribes to StreamerService.
      */
-    subscribeResourceInfoData(): void {
-        // subscribe to streamer service
-        this.resourceInfoDataSubscription = this.streamerService
+    getResourceInfoData(): void {
+        // Subscribe to streamer service
+        this.streamerService
             .getResourceId()
             .pipe(
                 switchMap(id => {
-                    // update id from streamer service
+                    // Update id from streamer service
                     this.resourceId = id;
 
-                    // return search response with query from streamer service
+                    // Return search response with query from streamer service
                     return this.streamerService.getSearchResponseWithQuery();
-                })
+                }),
+                takeUntil(this._destroy$)
             )
             .subscribe(
                 (res: SearchResponseWithQuery) => {
-                    // deep clone search results from streamer service
+                    // Deep clone search results from streamer service
                     const response = JSON.parse(JSON.stringify(res));
 
-                    // update resource Info
-                    this.updateResourceInfo(this.resourceId, response);
+                    // Update resource Info
+                    this._updateResourceInfo(this.resourceId, response);
 
-                    // build the form
-                    this.buildForm(this.goToIndex, this.resultSize);
+                    // Build the form
+                    this._buildForm(this.goToIndex, this.resultSize);
                 },
                 error => {
-                    console.log('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
+                    console.error('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
                 }
             );
-    }
-
-    /**
-     * Private method: updateResourceInfo.
-     *
-     * It updates the current resource info data.
-     *
-     * @returns {void} Sets the resourceInfoData.
-     */
-    private updateResourceInfo(id: string, response: SearchResponseWithQuery): void {
-        // find index position of resource with given id in search results
-        const index = this.findIndexPositionInSearchResultsById(id, response);
-
-        // shortcuts for indices
-        const nextIndex = index + 1;
-        const prevIndex = index - 1;
-
-        // shortcuts for current subject and its neighbours
-        const subjects = response.data.subjects;
-        const current = subjects[index] ? new ResourceInfoResource(subjects[index], index) : undefined;
-        const next = subjects[nextIndex] ? new ResourceInfoResource(subjects[nextIndex], nextIndex) : undefined;
-        const previous = subjects[prevIndex] ? new ResourceInfoResource(subjects[prevIndex], prevIndex) : undefined;
-
-        // set result length and goToIndex
-        this.resultSize = subjects.length;
-        this.goToIndex = index + 1;
-
-        // update resourceInfoData (immutable)
-        this.resourceInfoData = {
-            searchResults: response,
-            resources: {
-                current,
-                next,
-                previous
-            }
-        };
-    }
-
-    /**
-     * Private method: buildForm.
-     *
-     * It builds the form group to display the resource
-     * depending on the given index position and result size.
-     *
-     * @param {number} index The given index position
-     * of the resource to be displayed.
-     * @param {number} resultSize The given length of the
-     * search result subjects array.
-     * @returns {void} Sets the resourceInfoData.resources.
-     */
-    private buildForm(index: number, resultSize: number): void {
-        const regexPattern = /^[1-9]+\d*$/;
-
-        this.resourceInfoFormGroup = this.fb.group({
-            resourceInfoIndex: [
-                index || '',
-                Validators.compose([
-                    Validators.required,
-                    Validators.pattern(regexPattern),
-                    Validators.min(1),
-                    Validators.max(resultSize)
-                ])
-            ]
-        });
-    }
-
-    /**
-     * Private method: findIndexPositionInSearchResultsById.
-     *
-     * It looks for the index position of the given resource id
-     * in the search response subjects array.
-     *
-     * @param {string} id The given resource id.
-     * @param {SearchResponseWithQuery} response The given search response.
-     * @returns {number} The array index position.
-     */
-    private findIndexPositionInSearchResultsById(id: string, response: SearchResponseWithQuery): number {
-        // shortcut for search result subjects
-        const subjects = response.data.subjects;
-
-        // compare given id with obj_id of subjects in searchResults.subjects array
-        return subjects.findIndex(subject => subject.obj_id === id);
     }
 
     /**
@@ -262,11 +181,11 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
         if (!formIndex || formIndex < 1) {
             return;
         }
-        // find resource id of subject at array position formIndex - 1
+        // Find resource id of subject at array position formIndex - 1
         const subjects = this.resourceInfoData.searchResults.data.subjects;
         const id = subjects[formIndex - 1].obj_id;
 
-        // navigate to resource with resource id
+        // Navigate to resource with resource id
         this.navigateToResource(id);
     }
 
@@ -298,7 +217,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     navigateToSearchPanel(): void {
         const queryStr = this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : '';
         this.router.navigate(['/data/search/fulltext'], {
-            queryParams: { query: queryStr }
+            queryParams: { query: queryStr },
         });
     }
 
@@ -311,9 +230,92 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * Destroys subscriptions.
      */
     ngOnDestroy() {
-        // prevent memory leak when component destroyed
-        if (this.resourceInfoDataSubscription) {
-            this.resourceInfoDataSubscription.unsubscribe();
-        }
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
+
+        // Now let's also unsubscribe from the subject itself:
+        this._destroy$.unsubscribe();
+    }
+
+    /**
+     * Private method: _updateResourceInfo.
+     *
+     * It updates the current resource info data.
+     *
+     * @returns {void} Sets the resourceInfoData.
+     */
+    private _updateResourceInfo(id: string, response: SearchResponseWithQuery): void {
+        // Find index position of resource with given id in search results
+        const index = this._findIndexPositionInSearchResultsById(id, response);
+
+        // Shortcuts for indices
+        const nextIndex = index + 1;
+        const prevIndex = index - 1;
+
+        // Shortcuts for current subject and its neighbours
+        const subjects = response.data.subjects;
+        const current = subjects[index] ? new ResourceInfoResource(subjects[index], index) : undefined;
+        const next = subjects[nextIndex] ? new ResourceInfoResource(subjects[nextIndex], nextIndex) : undefined;
+        const previous = subjects[prevIndex] ? new ResourceInfoResource(subjects[prevIndex], prevIndex) : undefined;
+
+        // Set result length and goToIndex
+        this.resultSize = subjects.length;
+        this.goToIndex = index + 1;
+
+        // Update resourceInfoData (immutable)
+        this.resourceInfoData = {
+            searchResults: response,
+            resources: {
+                current,
+                next,
+                previous,
+            },
+        };
+    }
+
+    /**
+     * Private method: _buildForm.
+     *
+     * It builds the form group to display the resource
+     * depending on the given index position and result size.
+     *
+     * @param {number} index The given index position
+     * of the resource to be displayed.
+     * @param {number} resultSize The given length of the
+     * search result subjects array.
+     * @returns {void} Sets the resourceInfoData.resources.
+     */
+    private _buildForm(index: number, resultSize: number): void {
+        const regexPattern = /^[1-9]+\d*$/;
+
+        this.resourceInfoFormGroup = this.fb.group({
+            resourceInfoIndex: [
+                index || '',
+                Validators.compose([
+                    Validators.required,
+                    Validators.pattern(regexPattern),
+                    Validators.min(1),
+                    Validators.max(resultSize),
+                ]),
+            ],
+        });
+    }
+
+    /**
+     * Private method: _findIndexPositionInSearchResultsById.
+     *
+     * It looks for the index position of the given resource id
+     * in the search response subjects array.
+     *
+     * @param {string} id The given resource id.
+     * @param {SearchResponseWithQuery} response The given search response.
+     * @returns {number} The array index position.
+     */
+    private _findIndexPositionInSearchResultsById(id: string, response: SearchResponseWithQuery): number {
+        // Shortcut for search result subjects
+        const subjects = response.data.subjects;
+
+        // Compare given id with obj_id of subjects in searchResults.subjects array
+        return subjects.findIndex(subject => subject.obj_id === id);
     }
 }

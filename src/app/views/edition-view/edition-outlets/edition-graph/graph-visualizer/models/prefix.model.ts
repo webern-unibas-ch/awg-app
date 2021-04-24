@@ -5,7 +5,7 @@
  */
 export enum PrefixForm {
     short = 'short',
-    long = 'long'
+    long = 'long',
 }
 
 /**

@@ -13,6 +13,6 @@ import { HomeViewRoutingModule, routedHomeViewComponents } from './home-view-rou
  */
 @NgModule({
     imports: [SharedModule, HomeViewRoutingModule],
-    declarations: [routedHomeViewComponents]
+    declarations: [routedHomeViewComponents],
 })
 export class HomeViewModule {}

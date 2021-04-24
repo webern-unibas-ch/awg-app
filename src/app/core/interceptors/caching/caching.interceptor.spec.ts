@@ -6,7 +6,7 @@ import {
     HttpHeaders,
     HttpInterceptor,
     HttpRequest,
-    HttpResponse
+    HttpResponse,
 } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController, TestRequest } from '@angular/common/http/testing';
 import { Data } from '@angular/router';
@@ -47,34 +47,34 @@ describe('CachingInterceptor (DONE)', () => {
                 {
                     provide: HTTP_INTERCEPTORS,
                     useClass: CachingInterceptor,
-                    multi: true
-                }
-            ]
+                    multi: true,
+                },
+            ],
         });
 
-        // inject services and http client handler
+        // Inject services and http client handler
         httpCacheService = TestBed.inject(HttpCacheService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
 
-        // uses helper function to get interceptor instance
+        // Uses helper function to get interceptor instance
         cachingInterceptor = getInterceptorInstance<CachingInterceptor>(
             TestBed.inject(HTTP_INTERCEPTORS),
             CachingInterceptor
         );
 
-        // spies on service functions
+        // Spies on service functions
         interceptSpy = spyOn(cachingInterceptor, 'intercept').and.callThrough();
         cacheGetSpy = spyOn(httpCacheService, 'get').and.callFake(mockCache.get);
         cachePutSpy = spyOn(httpCacheService, 'put').and.callFake(mockCache.put);
-        consoleSpy = spyOn(console, 'log').and.callFake(mockConsole.log);
+        consoleSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
     });
 
     afterEach(() => {
-        // after every test, assert that there are no more pending requests
+        // After every test, assert that there are no more pending requests
         httpTestingController.verify();
 
-        // clear mock stores after each test
+        // Clear mock stores after each test
         (httpCacheService as any).cachedResponses = new Map<string, HttpResponse<any>>();
         mockCache.clear();
         mockConsole.clear();
@@ -84,13 +84,13 @@ describe('CachingInterceptor (DONE)', () => {
         cleanStylesFromDOM();
     });
 
-    it(`... should test if interceptor instance is created`, () => {
+    it('... should test if interceptor instance is created', () => {
         expect(cachingInterceptor).toBeTruthy();
     });
 
     describe('httpTestingController', () => {
         it(
-            `... should issue a mocked http get request`,
+            '... should issue a mocked http get request',
             waitForAsync(() => {
                 const testData: Data = { name: 'TestData' };
 
@@ -98,22 +98,22 @@ describe('CachingInterceptor (DONE)', () => {
                     expect(data).toEqual(testData);
                 });
 
-                // match the request url
+                // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
-                // check for GET request
+                // Check for GET request
                 expect(call.request.method).toBe('GET');
 
-                // respond with mocked data
+                // Respond with mocked data
                 call.flush(testData);
             })
         );
     });
 
     describe('mock test objects (self-test)', () => {
-        // prepare HTTP call
+        // Prepare HTTP call
         const expectedUrl = '/foo/bar';
         const testData: Data = { name: 'TestData' };
         const expectedRequest = new HttpRequest('GET', expectedUrl);
@@ -122,45 +122,45 @@ describe('CachingInterceptor (DONE)', () => {
         it(
             '... should use mock cache',
             waitForAsync(() => {
-                // create cached response via cache service
+                // Create cached response via cache service
                 httpCacheService.put(expectedRequest, expectedResponse);
 
-                // expect cache.put to be called
+                // Expect cache.put to be called
                 expectSpyCall(cachePutSpy, 1, 0);
 
-                // mock cache has created response
+                // Mock cache has created response
                 expect(mockCache.get(expectedRequest)).toEqual(expectedResponse, `should equal ${expectedResponse}`);
-                // spied service call returns created response
+                // Spied service call returns created response
                 expect(httpCacheService.get(expectedRequest)).toEqual(
                     expectedResponse,
                     `should equal ${expectedResponse}`
                 );
-                // real service does not have created response
-                expect((httpCacheService as any).cachedResponses.has(expectedRequest.urlWithParams)).toBeFalse();
+                // Real service does not have created response
+                expect((httpCacheService as any)._cachedResponses.has(expectedRequest.urlWithParams)).toBeFalse();
             })
         );
 
         it(
             '... should clear mock cache after each run',
             waitForAsync(() => {
-                expect(mockCache.get(expectedRequest)).toBeNull(`should be null`);
-                expect(httpCacheService.get(expectedRequest)).toBeNull(`should be null`);
+                expect(mockCache.get(expectedRequest)).toBeNull('should be null');
+                expect(httpCacheService.get(expectedRequest)).toBeNull('should be null');
             })
         );
 
         it('... should use mock console', () => {
-            console.log('Test');
+            console.error('Test');
 
             expect(mockConsole.get(0)).toBe('Test');
         });
 
         it('... should clear mock console after each run', () => {
-            expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+            expect(mockConsole.get(0)).toBeUndefined('should be undefined');
         });
     });
 
     describe('cachingInterceptor', () => {
-        // prepare HTTP call
+        // Prepare HTTP call
         const expectedUrl = apiUrl + searchRoute + 'Test';
         const testData: Data = { name: 'TestData' };
         const expectedResponse = new HttpResponse({
@@ -168,42 +168,42 @@ describe('CachingInterceptor (DONE)', () => {
             status: 200,
             statusText: 'OK',
             url: expectedUrl,
-            body: testData
+            body: testData,
         });
         let call: TestRequest;
 
         it(
-            `... should intercept HTTP requests`,
+            '... should intercept HTTP requests',
             waitForAsync(() => {
-                // subscribe to GET Http Request
+                // Subscribe to GET Http Request
                 httpClient.get<Data>(expectedUrl).subscribe(data => {
                     expect(data).toEqual(testData);
                 });
 
-                // expect an HTTP request
+                // Expect an HTTP request
                 call = httpTestingController.expectOne({
-                    url: expectedUrl
+                    url: expectedUrl,
                 });
 
                 expectSpyCall(interceptSpy, 1, call.request);
             })
         );
 
-        describe(`no GET request`, () => {
+        describe('no GET request', () => {
             it(
-                `... should do nothing if POST request`,
+                '... should do nothing if POST request',
                 waitForAsync(() => {
-                    // subscribe to PUT Http Request
+                    // Subscribe to PUT Http Request
                     httpClient.post<Data>(expectedUrl, testData).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect an HTTP request
+                    // Expect an HTTP request
                     call = httpTestingController.expectOne(expectedUrl);
                     expect(call.request.method).toEqual('POST', 'should be POST');
                     expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
 
-                    // expect request to return the expected response after POST
+                    // Expect request to return the expected response after POST
                     call.event(expectedResponse);
 
                     expectSpyCall(interceptSpy, 1, call.request);
@@ -213,19 +213,19 @@ describe('CachingInterceptor (DONE)', () => {
             );
 
             it(
-                `... should do nothing if PUT request`,
+                '... should do nothing if PUT request',
                 waitForAsync(() => {
-                    // subscribe to PUT Http Request
+                    // Subscribe to PUT Http Request
                     httpClient.put<Data>(expectedUrl, testData).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect an HTTP request
+                    // Expect an HTTP request
                     call = httpTestingController.expectOne(expectedUrl);
                     expect(call.request.method).toEqual('PUT', 'should be PUT');
                     expect(call.request.url).toEqual(expectedUrl, `should be ${expectedUrl}`);
 
-                    // expect request to return the expected response after PUT
+                    // Expect request to return the expected response after PUT
                     call.event(expectedResponse);
 
                     expectSpyCall(interceptSpy, 1, call.request);
@@ -235,64 +235,64 @@ describe('CachingInterceptor (DONE)', () => {
             );
         });
 
-        describe(`GET request`, () => {
+        describe('GET request', () => {
             it(
-                `... should check for existing requests in cache via httpCacheService`,
+                '... should check for existing requests in cache via httpCacheService',
                 waitForAsync(() => {
                     const expectedRequest = new HttpRequest('GET', expectedUrl);
 
-                    // mock cache is empty
-                    expect(mockCache.get(expectedRequest)).toBeNull(`should be null`);
+                    // Mock cache is empty
+                    expect(mockCache.get(expectedRequest)).toBeNull('should be null');
 
-                    // subscribe to GET Http Request
+                    // Subscribe to GET Http Request
                     const sub = httpClient.get<Data>(expectedUrl).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect an HTTP request
+                    // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
-                    // resolve request
+                    // Resolve request
                     call.event(expectedResponse);
 
-                    // make sure real request and expectedRequest are identical
+                    // Make sure real request and expectedRequest are identical
                     expect(call.request).toEqual(expectedRequest);
 
-                    // expect spy calls
+                    // Expect spy calls
                     expectSpyCall(interceptSpy, 1, call.request);
                     expectSpyCall(cacheGetSpy, 1, call.request);
                     expectSpyCall(cachePutSpy, 1, call.request);
 
-                    // mock cache has created response
+                    // Mock cache has created response
                     expect(mockCache.get(expectedRequest)).toEqual(
                         expectedResponse,
                         `should equal ${expectedResponse}`
                     );
 
-                    // unsubscribe from first request
+                    // Unsubscribe from first request
                     sub.unsubscribe();
 
                     // ----------------------
-                    // subscribe to new GET Http Request
+                    // Subscribe to new GET Http Request
                     httpClient.get<Data>(expectedUrl).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect not an HTTP request, since response is delivered from cache
+                    // Expect not an HTTP request, since response is delivered from cache
                     httpTestingController.expectNone({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
-                    // expect spy calls
+                    // Expect spy calls
                     expectSpyCall(interceptSpy, 2, call.request);
-                    // should get cache
+                    // Should get cache
                     expectSpyCall(cacheGetSpy, 2, call.request);
-                    // should not have put response to cache again (still 1)
+                    // Should not have put response to cache again (still 1)
                     expectSpyCall(cachePutSpy, 1, call.request);
 
-                    // mock cache still has response
+                    // Mock cache still has response
                     expect(mockCache.get(expectedRequest)).toEqual(
                         expectedResponse,
                         `should equal ${expectedResponse}`
@@ -301,32 +301,32 @@ describe('CachingInterceptor (DONE)', () => {
             );
 
             it(
-                `... should put new requests to cache via httpCacheService`,
+                '... should put new requests to cache via httpCacheService',
                 waitForAsync(() => {
                     const expectedRequest = new HttpRequest('GET', expectedUrl);
 
-                    // no cached response in cache
+                    // No cached response in cache
                     expect(mockCache.get(expectedRequest)).toBeNull('should be null');
 
-                    // subscribe to GET Http Request
+                    // Subscribe to GET Http Request
                     httpClient.get<Data>(expectedUrl).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect an HTTP request
+                    // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
-                    // resolve request
+                    // Resolve request
                     call.flush(testData);
 
-                    // expect spy calls
+                    // Expect spy calls
                     expectSpyCall(interceptSpy, 1, call.request);
                     expectSpyCall(cacheGetSpy, 1, call.request);
                     expectSpyCall(cachePutSpy, 1, call.request);
 
-                    // expect new cached response
+                    // Expect new cached response
                     expect(call.request).toEqual(expectedRequest);
                     expect(mockCache.get(expectedRequest)).toBeTruthy('should be truthy');
                     expect(mockCache.get(expectedRequest)).toEqual(
@@ -337,38 +337,38 @@ describe('CachingInterceptor (DONE)', () => {
             );
 
             it(
-                `... should throw an error and log to console if request fails with HttpErrorResponse`,
+                '... should throw an error and log to console if request fails with HttpErrorResponse',
                 waitForAsync(() => {
-                    // spy on HTTP handler to handle another response
+                    // Spy on HTTP handler to handle another response
                     const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
                     const expectedError = new HttpErrorResponse({
                         status: 401,
                         statusText: 'error',
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
                     httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
 
-                    // set log message and spy on console
+                    // Set log message and spy on console
                     const expectedLogMessage = 'CachingInterceptor: Processing http error';
 
                     expectSpyCall(consoleSpy, 0);
-                    expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+                    expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 
-                    // subscribe to GET Http Request
+                    // Subscribe to GET Http Request
                     httpClient.get<Data>(expectedUrl).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect an HTTP request
+                    // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
-                    // expecting spy calls
+                    // Expecting spy calls
                     expectSpyCall(interceptSpy, 1, call.request);
                     expectSpyCall(cacheGetSpy, 1, call.request);
 
-                    // add another request to the stack
+                    // Add another request to the stack
                     cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
                         response => fail('should have been failed'),
                         err => {
@@ -386,34 +386,34 @@ describe('CachingInterceptor (DONE)', () => {
             );
 
             it(
-                `... should throw an error, but not log to console if request fails with another error`,
+                '... should throw an error, but not log to console if request fails with another error',
                 waitForAsync(() => {
-                    // spy on HTTP handler to handle another response
+                    // Spy on HTTP handler to handle another response
                     const httpHandlerSpy = jasmine.createSpyObj('HttpHandler', ['handle']);
                     const expectedError = new Error('error');
                     httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
 
-                    // set log message and spy on console
+                    // Set log message and spy on console
                     const expectedLogMessage = 'CachingInterceptor: Processing http error';
 
                     expectSpyCall(consoleSpy, 0);
-                    expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+                    expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 
-                    // subscribe to GET Http Request
+                    // Subscribe to GET Http Request
                     httpClient.get<Data>(expectedUrl).subscribe(data => {
                         expect(data).toEqual(testData);
                     });
 
-                    // expect an HTTP request
+                    // Expect an HTTP request
                     call = httpTestingController.expectOne({
-                        url: expectedUrl
+                        url: expectedUrl,
                     });
 
-                    // expecting spy calls
+                    // Expecting spy calls
                     expectSpyCall(interceptSpy, 1, call.request);
                     expectSpyCall(cacheGetSpy, 1, call.request);
 
-                    // add another request to the stack
+                    // Add another request to the stack
                     cachingInterceptor.intercept(call.request, httpHandlerSpy).subscribe(
                         response => fail('should not call next'),
                         err => {
@@ -426,7 +426,7 @@ describe('CachingInterceptor (DONE)', () => {
 
                     expectSpyCall(cachePutSpy, 0);
                     expectSpyCall(consoleSpy, 0);
-                    expect(mockConsole.get(0)).toBeUndefined(`should be undefined`);
+                    expect(mockConsole.get(0)).toBeUndefined('should be undefined');
                 })
             );
         });

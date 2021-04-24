@@ -48,5 +48,5 @@ export {
     ResourceRightsResponseJson,
     ResourceTypeResponseJson,
     ResourceTypesInVocabularyResponseJson,
-    VocabularyResponseJson
+    VocabularyResponseJson,
 };

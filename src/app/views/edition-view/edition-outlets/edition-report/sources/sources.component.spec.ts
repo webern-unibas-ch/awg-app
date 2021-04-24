@@ -1,18 +1,18 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, Input, NgModule } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
 import { SourcesComponent } from './sources.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-source-list', template: '' })
 class SourceListStubComponent {
     @Input()
@@ -45,17 +45,26 @@ describe('SourcesComponent', () => {
     let expectedSourceDescriptionListData: SourceDescriptionList;
     let expectedSourceEvaluationListData: SourceEvaluationList;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbAccordionModule, RouterTestingModule],
+                imports: [NgbAccordionWithConfigModule, RouterTestingModule],
                 declarations: [
                     SourcesComponent,
                     SourceListStubComponent,
                     SourceDescriptionStubComponent,
                     SourceEvaluationStubComponent,
-                    RouterLinkStubDirective
-                ]
+                    RouterLinkStubDirective,
+                ],
             }).compileComponents();
         })
     );
@@ -99,28 +108,28 @@ describe('SourcesComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the input values supplied by the parent component
+            // Mock the input values supplied by the parent component
             expectedSourceListData = {
                 sources: [
                     {
                         siglum: 'A',
                         type: 'Skizzen',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'sourceA'
+                        linkTo: 'sourceA',
                     },
                     {
                         siglum: 'B',
                         type: 'Autograph von Nr. I.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'op12_sourceNotA'
+                        linkTo: 'OP12_SOURCE_NOT_A',
                     },
                     {
                         siglum: 'C',
                         type: 'Autograph von Nr. I–IV.',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        linkTo: 'op12_sourceNotA'
-                    }
-                ]
+                        linkTo: 'OP12_SOURCE_NOT_A',
+                    },
+                ],
             };
             expectedSourceDescriptionListData = {
                 sources: [
@@ -128,25 +137,25 @@ describe('SourcesComponent', () => {
                         id: 'sourceA',
                         siglum: 'A',
                         location: 'Basel, Paul Sacher Stiftung, Sammlung Anton Webern.',
-                        description: []
-                    }
-                ]
+                        description: [],
+                    },
+                ],
             };
             expectedSourceEvaluationListData = {
                 sources: [
                     {
                         id: 'op12',
-                        content: ['Die Skizzen in A sind zum Testen da.']
-                    }
-                ]
+                        content: ['Die Skizzen in A sind zum Testen da.'],
+                    },
+                ],
             };
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.sourceListData = expectedSourceListData;
             component.sourceDescriptionListData = expectedSourceDescriptionListData;
             component.sourceEvaluationListData = expectedSourceEvaluationListData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

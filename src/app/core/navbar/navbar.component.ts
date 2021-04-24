@@ -15,7 +15,7 @@ import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 @Component({
     selector: 'awg-navbar',
     templateUrl: './navbar.component.html',
-    styleUrls: ['./navbar.component.css']
+    styleUrls: ['./navbar.component.css'],
 })
 export class NavbarComponent implements OnInit {
     /**
@@ -68,18 +68,18 @@ export class NavbarComponent implements OnInit {
     pageMetaData: MetaPage;
 
     /**
-     * Readonly constant: editionWorks.
+     * Public variable: selectedEditionWork.
+     *
+     * It keeps the currently selected composition.
+     */
+    selectedEditionWork: EditionWork;
+
+    /**
+     * Readonly constant: EDITION_WORKS.
      *
      * It keeps the array of compositions.
      */
-    readonly editionWorks: EditionWork[] = [EditionWorks.op12, EditionWorks.op25];
-
-    /**
-     * Public variable: editionWork.
-     *
-     * It keeps the currently selected compositions.
-     */
-    selectedEditionWork: EditionWork;
+    readonly EDITION_WORKS: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
 
     /**
      * Constructor of the HeaderComponent.
@@ -99,7 +99,7 @@ export class NavbarComponent implements OnInit {
      */
     ngOnInit() {
         // TODO: move to method
-        this.selectedEditionWork = this.editionWorks[0];
+        this.selectedEditionWork = this.EDITION_WORKS[0];
 
         this.provideMetaData();
     }

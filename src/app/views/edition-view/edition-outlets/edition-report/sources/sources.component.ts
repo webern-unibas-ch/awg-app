@@ -14,7 +14,7 @@ import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-vi
     selector: 'awg-sources',
     templateUrl: './sources.component.html',
     styleUrls: ['./sources.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourcesComponent implements OnInit {
     /**

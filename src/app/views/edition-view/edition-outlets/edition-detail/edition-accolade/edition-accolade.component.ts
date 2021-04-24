@@ -4,7 +4,7 @@ import {
     EditionSvgSheet,
     EditionSvgSheetList,
     EditionSvgOverlay,
-    TextcriticalComment
+    TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -20,7 +20,7 @@ import {
     selector: 'awg-edition-accolade',
     templateUrl: './edition-accolade.component.html',
     styleUrls: ['./edition-accolade.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionAccoladeComponent implements OnInit {
     /**

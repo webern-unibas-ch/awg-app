@@ -11,29 +11,29 @@ import { BibEntry } from './bibliography-entry.model';
  *   `{{ bibEntry | bibFormat }}`
  */
 @Pipe({
-    name: 'bibFormat'
+    name: 'bibFormat',
 })
 export class BibliographyFormatPipe implements PipeTransform {
     /**
-     * Private variable: entry.
+     * Private variable: _entry.
      *
      * It keeps the input BibEntry.
      */
-    private entry: BibEntry;
+    private _entry: BibEntry;
 
     /**
-     * Private variable: formattedEntry.
+     * Private variable: _formattedEntry.
      *
      * It keeps the formatted BibEntry.
      */
-    private formattedEntry: BibEntry;
+    private _formattedEntry: BibEntry;
 
     /**
-     * Private array: formatFieldArr.
+     * Private array: _formatFieldArr.
      *
      * It keeps the fields to be formatted.
      */
-    private formatFieldArr: Array<string> = [
+    private _formatFieldArr: Array<string> = [
         'Author',
         'Titel_unselbst',
         'Titel_selbst',
@@ -42,7 +42,7 @@ export class BibliographyFormatPipe implements PipeTransform {
         'Verlagsort',
         'Publikationsdatum',
         'Reihentitel',
-        'Seitenangabe'
+        'Seitenangabe',
     ];
 
     /**
@@ -56,31 +56,31 @@ export class BibliographyFormatPipe implements PipeTransform {
         if (!bibItem) {
             return null;
         }
-        this.entry = bibItem;
-        this.formattedEntry = this.getFormatFields('edit', this.entry);
-        this.getFormattedValues(this.formattedEntry);
+        this._entry = bibItem;
+        this._formattedEntry = this._getFormatFields('edit', this._entry);
+        this._getFormattedValues(this._formattedEntry);
 
-        return this.getFormatFields('output', this.formattedEntry);
+        return this._getFormatFields('output', this._formattedEntry);
     }
 
     /**
-     * Private function: getFormatFields.
+     * Private function: _getFormatFields.
      *
-     * It gets the fields to be formatted from {@link formatFieldArr}.
+     * It gets the fields to be formatted from {@link _formatFieldArr}.
      *
      * @param {string} opt Options to be set: `output` or `edit`
      * @param {BibEntry} entry The input BibEntry.
      *
      * @returns {*}
      */
-    private getFormatFields(opt: string, entry: BibEntry): any {
+    private _getFormatFields(opt: string, entry: BibEntry): any {
         let output: string | object = {};
-        for (let i = 0; i < this.formatFieldArr.length; i++) {
-            if (entry[this.formatFieldArr[i]]) {
+        for (let i = 0; i < this._formatFieldArr.length; i++) {
+            if (entry[this._formatFieldArr[i]]) {
                 if (opt === 'edit') {
-                    output[this.formatFieldArr[i]] = entry[this.formatFieldArr[i]];
+                    output[this._formatFieldArr[i]] = entry[this._formatFieldArr[i]];
                 } else if (opt === 'output') {
-                    output = i === 0 ? entry[this.formatFieldArr[i]] : output + entry[this.formatFieldArr[i]];
+                    output = i === 0 ? entry[this._formatFieldArr[i]] : output + entry[this._formatFieldArr[i]];
                 }
             }
         }
@@ -88,7 +88,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     /**
-     * Private function: getFormattedValues.
+     * Private function: _getFormattedValues.
      *
      * It separates the BibEntries object key-value pairs
      * by their keys and requests them to be converted.
@@ -97,15 +97,15 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {*}
      */
-    private getFormattedValues(entry: BibEntry): any {
+    private _getFormattedValues(entry: BibEntry): any {
         Object.keys(entry).forEach(key => {
-            entry[key] = this.getFormattedValueByKey(entry, key);
+            entry[key] = this._getFormattedValueByKey(entry, key);
         });
         return entry;
     }
 
     /**
-     * Private function: getFormattedValueByKey.
+     * Private function: _getFormattedValueByKey.
      *
      * It requests the designated conversion
      * methods for the values of the BibEntry.
@@ -115,43 +115,43 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string}
      */
-    private getFormattedValueByKey(entry: BibEntry, key: string): string {
+    private _getFormattedValueByKey(entry: BibEntry, key: string): string {
         let value = '';
         switch (key) {
             case 'Kurztitel':
-                value = this.formatBibTitleShort(entry[key]);
+                value = this._formatBibTitleShort(entry[key]);
                 break;
             case 'Author':
-                value = this.formatBibAuthor(entry[key]);
+                value = this._formatBibAuthor(entry[key]);
                 break;
             case 'Titel_selbst':
-                value = this.formatBibTitleIndep(entry[key]);
+                value = this._formatBibTitleIndep(entry[key]);
                 break;
             case 'Titel_unselbst':
-                value = this.formatBibTitleDep(entry[key]);
+                value = this._formatBibTitleDep(entry[key]);
                 break;
             case 'Herausgeber':
-                value = this.formatBibEditor(entry[key]);
+                value = this._formatBibEditor(entry[key]);
                 break;
             case 'unpubliziert':
-                value = this.formatBibUnpublished(entry[key]);
+                value = this._formatBibUnpublished(entry[key]);
                 break;
             case 'Verlagsort':
-                value = this.formatBibPubPlace(entry[key]);
+                value = this._formatBibPubPlace(entry[key]);
                 break;
-            /* done in pubplace
+            /* Done in pubplace
              case 'publisher':
-             value = this.formatBibPublisher(bibItem[key]);
+             value = this._formatBibPublisher(bibItem[key]);
              break;
              */
             case 'Publikationsdatum':
-                value = this.formatBibPubDate(entry[key]);
+                value = this._formatBibPubDate(entry[key]);
                 break;
             case 'Reihentitel':
-                value = this.formatBibTitleSeries(entry[key]);
+                value = this._formatBibTitleSeries(entry[key]);
                 break;
             case 'Seitenangabe':
-                value = this.formatBibPages(entry[key]);
+                value = this._formatBibPages(entry[key]);
                 break;
             default:
                 value = entry[key];
@@ -160,7 +160,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     /**
-     * Private function: formatBibTitleShort.
+     * Private function: _formatBibTitleShort.
      *
      * It converts the short title of the BibEntry.
      *
@@ -168,12 +168,12 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted short title.
      */
-    private formatBibTitleShort(shortTitle: string): string {
+    private _formatBibTitleShort(shortTitle: string): string {
         return !shortTitle ? '' : shortTitle + ' | ';
     }
 
     /**
-     * Private function: formatBibAuthor.
+     * Private function: _formatBibAuthor.
      *
      * It converts the author(s) of the BibEntry.
      *
@@ -181,32 +181,32 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted author(s).
      */
-    private formatBibAuthor(authors: string | object): string {
+    private _formatBibAuthor(authors: string | object): string {
         if (!authors) {
             return '';
         }
 
         let formattedAuthor = '';
         if (typeof authors === 'object') {
-            // get first author name
-            formattedAuthor += this.splitName(authors[0], '');
-            // get further author names
+            // Get first author name
+            formattedAuthor += this._splitName(authors[0], '');
+            // Get further author names
             const l: number = Object.keys(authors).length;
             for (let i = 1; i < l; i++) {
-                // last name seperated by "und", others by comma
+                // Last name seperated by "und", others by comma
                 const divider = i === l - 1 ? ' und ' : ', ';
-                formattedAuthor += this.splitName(authors[i], divider);
+                formattedAuthor += this._splitName(authors[i], divider);
             }
         } else if (typeof authors === 'string') {
-            // get author name
-            formattedAuthor += this.splitName(authors, '');
+            // Get author name
+            formattedAuthor += this._splitName(authors, '');
         }
-        formattedAuthor += ': '; // ending author string with ":"
+        formattedAuthor += ': '; // Ending author string with ":"
         return formattedAuthor;
     }
 
     /**
-     * Private function: formatBibTitleIndep.
+     * Private function: _formatBibTitleIndep.
      *
      * It converts the independent title(s) of the BibEntry.
      *
@@ -214,12 +214,12 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted independent title(s).
      */
-    private formatBibTitleIndep(indepTitle: string): string {
-        return !indepTitle ? '' : this.entry['Typ'] !== 'Zeitschriftenartikel' ? indepTitle + ', ' : indepTitle;
+    private _formatBibTitleIndep(indepTitle: string): string {
+        return !indepTitle ? '' : this._entry['Typ'] !== 'Zeitschriftenartikel' ? indepTitle + ', ' : indepTitle;
     }
 
     /**
-     * Private function: formatBibTitleDep.
+     * Private function: _formatBibTitleDep.
      *
      * It converts the dependent title(s) of the BibEntry.
      *
@@ -227,12 +227,12 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted dependent title(s).
      */
-    private formatBibTitleDep(depTitle: string): string {
+    private _formatBibTitleDep(depTitle: string): string {
         return !depTitle ? '' : '„' + depTitle + '“, in: ';
     }
 
     /**
-     * Private function: formatBibEditor.
+     * Private function: _formatBibEditor.
      *
      * It converts the editor(s) of the BibEntry.
      *
@@ -240,32 +240,32 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted editor(s).
      */
-    private formatBibEditor(editors: string | object): string {
+    private _formatBibEditor(editors: string | object): string {
         if (!editors) {
             return '';
         }
 
         let formattedEditor = 'hg. von ';
         if (typeof editors === 'object') {
-            // get first editor name
-            formattedEditor += this.splitName(editors[0], '');
-            // get further editor names
+            // Get first editor name
+            formattedEditor += this._splitName(editors[0], '');
+            // Get further editor names
             const l: number = Object.keys(editors).length;
             for (let i = 1; i < l; i++) {
-                // last name separated by "und", others by comma
+                // Last name separated by "und", others by comma
                 const divider = i === l - 1 ? ' und ' : ', ';
-                formattedEditor += this.splitName(editors[i], divider);
+                formattedEditor += this._splitName(editors[i], divider);
             }
         } else if (typeof editors === 'string') {
-            // get editor name
-            formattedEditor += this.splitName(editors, '');
+            // Get editor name
+            formattedEditor += this._splitName(editors, '');
         }
-        formattedEditor += ', '; // ending editor string with ","
+        formattedEditor += ', '; // Ending editor string with ","
         return formattedEditor;
     }
 
     /**
-     * Private function: formatBibUnpublished.
+     * Private function: _formatBibUnpublished.
      *
      * It converts the unpublished literature type (if any) of the BibEntry.
      *
@@ -273,12 +273,12 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted unpublished literature type.
      */
-    private formatBibUnpublished(unpub: string): string {
+    private _formatBibUnpublished(unpub: string): string {
         return !unpub ? '' : unpub + ' ';
     }
 
     /**
-     * Private function: formatBibPubPlace.
+     * Private function: _formatBibPubPlace.
      *
      * It converts the publication place and publisher of the BibEntry.
      *
@@ -286,27 +286,27 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted publication place and publisher.
      */
-    private formatBibPubPlace(pubPlace: string | object): string {
-        const pub = this.entry['Verlag'] ? this.entry['Verlag'] : null;
+    private _formatBibPubPlace(pubPlace: string | object): string {
+        const pub = this._entry['Verlag'] ? this._entry['Verlag'] : null;
         if (!pubPlace) {
-            // no place but publisher
+            // No place but publisher
             if (pub) {
-                console.log('Ort fehlt: "' + pub + '" (' + this.entry['Kurztitel'] + ')');
+                console.warn('Ort fehlt: "' + pub + '" (' + this._entry['Kurztitel'] + ')');
             }
-            // no place nor publisher ("zeitschriftenartikel")
+            // No place nor publisher ("zeitschriftenartikel")
             return '';
         }
 
         let out = '';
-        // pubPlace == object
+        // PubPlace == object
         if (typeof pubPlace === 'object') {
             const locl = Object.keys(pubPlace).length;
             if (pub) {
                 if (typeof pub === 'object') {
                     const publ = Object.keys(pub).length;
                     if (publ === locl) {
-                        // publisher == object
-                        // case: "Kassel: Bärenreiter, und Stuttgart: Metzler,"
+                        // Publisher == object
+                        // Case: "Kassel: Bärenreiter, und Stuttgart: Metzler,"
                         for (let i = 0; i < locl; i++) {
                             if (i === locl - 1) {
                                 out += 'und ';
@@ -315,8 +315,8 @@ export class BibliographyFormatPipe implements PipeTransform {
                         }
                     }
                 } else {
-                    // publisher == String
-                    // case: "Kassel, New York: Bärenreiter,"
+                    // Publisher == String
+                    // Case: "Kassel, New York: Bärenreiter,"
                     for (let i = 0; i < locl; i++) {
                         if (i === locl - 1) {
                             out += pubPlace[i] + ': ' + pub + ', ';
@@ -326,35 +326,35 @@ export class BibliographyFormatPipe implements PipeTransform {
                     }
                 }
             } else {
-                // no publisher
-                // case: "Wien, Stuttgart,"
+                // No publisher
+                // Case: "Wien, Stuttgart,"
                 for (let i = 0; i < locl; i++) {
                     out += pubPlace[i] + ', ';
                 }
-                if (!this.entry['unpubliziert']) {
-                    console.log('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
+                if (!this._entry['unpubliziert']) {
+                    console.warn('Verlag fehlt: "' + out + '" (' + this._entry['Kurztitel'] + ')');
                 }
             }
         } else {
             if (pub) {
                 out += pubPlace + ': ';
-                // publisher == object
-                // case: "Wien: Böhlau, Lafite, "
+                // Publisher == object
+                // Case: "Wien: Böhlau, Lafite, "
                 if (typeof pub === 'object') {
                     const publ = Object.keys(pub).length;
                     for (let i = 0; i < publ; i++) {
                         out += pub[i] + ', ';
                     }
                 } else {
-                    // publisher == String
-                    // case: "Wien: Böhlau,"
+                    // Publisher == String
+                    // Case: "Wien: Böhlau,"
                     out += pub + ', ';
                 }
             } else {
-                // place without publisher (e.g. "Hochschulschriften")
-                // case: "Wien, "
-                if (!this.entry['unpubliziert']) {
-                    console.log('Verlag fehlt: "' + out + '" (' + this.entry['Kurztitel'] + ')');
+                // Place without publisher (e.g. "Hochschulschriften")
+                // Case: "Wien, "
+                if (!this._entry['unpubliziert']) {
+                    console.warn('Verlag fehlt: "' + out + '" (' + this._entry['Kurztitel'] + ')');
                 }
                 out += pubPlace + ', ';
             }
@@ -363,7 +363,7 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     /**
-     * Private function: formatBibPublisher.
+     * Private function: _formatBibPublisher.
      *
      * It converts the publisher of the BibEntry.
      *
@@ -371,14 +371,14 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted publisher.
      *
-     * DONE IN {@link formatBibPubPlace}.
+     * DONE IN {@link _formatBibPubPlace}.
      */
-    private formatBibPublisher(pub: string): string {
+    private _formatBibPublisher(pub: string): string {
         return '';
     }
 
     /**
-     * Private function: formatBibPubDate.
+     * Private function: _formatBibPubDate.
      *
      * It converts the publication date of the BibEntry.
      *
@@ -386,12 +386,12 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted publication date.
      */
-    private formatBibPubDate(pubDate: string) {
-        return this.entry['Typ'] === 'Zeitschriftenartikel' ? ' (' + pubDate + ')' : ' ' + pubDate;
+    private _formatBibPubDate(pubDate: string) {
+        return this._entry['Typ'] === 'Zeitschriftenartikel' ? ' (' + pubDate + ')' : ' ' + pubDate;
     }
 
     /**
-     * Private function: formatBibTitleSeries.
+     * Private function: _formatBibTitleSeries.
      *
      * It converts the series title of the BibEntry.
      *
@@ -399,12 +399,12 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted series title.
      */
-    private formatBibTitleSeries(seriesTitle: string): string {
+    private _formatBibTitleSeries(seriesTitle: string): string {
         return !seriesTitle ? '' : ' (' + seriesTitle + ')';
     }
 
     /**
-     * Private function: formatBibPages.
+     * Private function: _formatBibPages.
      *
      * It converts the page numbers of the BibEntry.
      *
@@ -412,7 +412,7 @@ export class BibliographyFormatPipe implements PipeTransform {
      *
      * @returns {string} The formatted page numbers.
      */
-    private formatBibPages(pageNum: string | object): string {
+    private _formatBibPages(pageNum: string | object): string {
         if (!pageNum) {
             return '';
         }
@@ -431,26 +431,26 @@ export class BibliographyFormatPipe implements PipeTransform {
     }
 
     /**
-     * Private function: splitName.
+     * Private function: _splitName.
      *
      * It splits a comma-separated name and defines the order
      * of items (according to bibliography style).
      *
      * @param {string} name A name to be converted.
-     * @param {string} pre_delimiter The delimiter to appear before a name, e.g. a comma.
+     * @param {string} preDelimiter The delimiter to appear before a name, e.g. a comma.
      *
      * @returns {string} The splitted name(s).
      */
-    private splitName(name: string, pre_delimiter: string): string {
+    private _splitName(name: string, preDelimiter: string): string {
         let tmp = [];
         if (name.match(',')) {
             tmp = name.split(', ');
-            // changes positions of first and last name
-            // look here: http://stackoverflow.com/a/5306832
+            // Changes positions of first and last name
+            // Look here: http://stackoverflow.com/a/5306832
             tmp.splice(1, 0, tmp.splice(0, 1)[0]);
-            return pre_delimiter + tmp[0] + ' ' + tmp[1];
+            return preDelimiter + tmp[0] + ' ' + tmp[1];
         } else {
-            return pre_delimiter + name;
+            return preDelimiter + name;
         }
     }
 }

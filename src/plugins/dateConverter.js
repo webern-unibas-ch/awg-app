@@ -30,7 +30,7 @@
         GREGORIAN: { name: 'Gregorian', short: 'G', n_months: 12 },
         JULIAN: { name: 'Julian', short: 'Ju', n_months: 12 },
         JEWISH: { name: 'Jewish', short: 'Je', n_months: 13 },
-        FRENCH: { name: 'Revol.', short: 'R', n_months: 13 }
+        FRENCH: { name: 'Revol.', short: 'R', n_months: 13 },
     };
 
     var weekday = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
@@ -54,7 +54,7 @@
             'Sivan',
             'Tammuz',
             'Av',
-            'Elul'
+            'Elul',
         ],
         FRENCH: [
             'ZERO',
@@ -70,8 +70,8 @@
             'Messidor',
             'Thermidor',
             'Fructidor',
-            'Extra'
-        ]
+            'Extra',
+        ],
     };
 
     var months_long = {
@@ -88,7 +88,7 @@
             'September',
             'Oktober',
             'November',
-            'Dezember'
+            'Dezember',
         ],
         // GREGORIAN: ['ZERO', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
         JULIAN: [
@@ -104,7 +104,7 @@
             'September',
             'October',
             'November',
-            'December'
+            'December',
         ],
         JEWISH: [
             'ZERO',
@@ -120,7 +120,7 @@
             'Sivan',
             'Tammuz',
             'Av',
-            'Elul'
+            'Elul',
         ],
         FRENCH: [
             'ZERO',
@@ -136,8 +136,8 @@
             'Messidor',
             'Thermidor',
             'Fructidor',
-            'Extra'
-        ]
+            'Extra',
+        ],
     };
 
     //                          <snip> code </snip>             //

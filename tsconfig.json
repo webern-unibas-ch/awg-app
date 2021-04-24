@@ -2,7 +2,7 @@
 {
     "compileOnSave": false,
     "compilerOptions": {
-        "baseUrl": "./",
+        "baseUrl": "./src",
         "outDir": "./dist/out-tsc",
         "sourceMap": true,
         "declaration": false,
@@ -15,12 +15,12 @@
         "typeRoots": ["node_modules/@types"],
         "lib": ["es2018", "dom"],
         "paths": {
-            "@awg-app/*": ["src/app/*"],
-            "@awg-core/*": ["src/app/core/*"],
-            "@awg-shared/*": ["src/app/shared/*"],
-            "@awg-side-info/*": ["src/app/side-info/*"],
-            "@awg-views/*": ["src/app/views/*"],
-            "@testing/*": ["src/testing/*"]
+            "@awg-app/*": ["app/*"],
+            "@awg-core/*": ["app/core/*"],
+            "@awg-shared/*": ["app/shared/*"],
+            "@awg-side-info/*": ["app/side-info/*"],
+            "@awg-views/*": ["app/views/*"],
+            "@testing/*": ["testing/*"]
         }
     },
     "angularCompilerOptions": {

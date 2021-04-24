@@ -12,56 +12,56 @@ export class EditionWorks {
     /**
      * An EditionWork object for Opus 12.
      */
-    static readonly op12: EditionWork = new EditionWork(
+    static readonly OP12: EditionWork = new EditionWork(
         {
             title: 'Vier Lieder',
-            catalogueType: EditionConstants.opus,
-            catalogueNumber: '12'
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: '12',
         },
         {
             editors: [
                 {
                     name: 'Thomas Ahrend',
-                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
             ],
-            lastModified: '29. Januar 2020'
+            lastModified: '29. Januar 2020',
         },
         {
             route: '/op12',
             short: '',
-            full: ''
+            full: '',
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     );
 
     /**
      * An EditionWork object for Opus 25.
      */
-    static readonly op25: EditionWork = new EditionWork(
+    static readonly OP25: EditionWork = new EditionWork(
         {
             title: 'Drei Lieder nach Gedichten von Hildegard Jone',
-            catalogueType: EditionConstants.opus,
-            catalogueNumber: '25'
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: '25',
         },
         {
             editors: [
                 {
                     name: 'Thomas Ahrend',
-                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3'
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + 'index.php?id=3',
+                },
             ],
-            lastModified: '29. Januar 2020'
+            lastModified: '29. Januar 2020',
         },
         {
             route: '/op25',
             short: '',
-            full: ''
+            full: '',
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     );
 }

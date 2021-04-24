@@ -14,7 +14,7 @@ import {
     SourceList,
     SourceDescriptionList,
     SourceEvaluationList,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 
 /**
@@ -27,15 +27,15 @@ import {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class EditionDataService {
     /**
-     * Private variable: assetWorkPath.
+     * Private variable: _assetWorkPath.
      *
      * It keeps the asset path to the JSON files of a work.
      */
-    private assetWorkPath = '';
+    private _assetWorkPath = '';
 
     /**
      * Constructor of the EditionDataService.
@@ -65,16 +65,16 @@ export class EditionDataService {
     getEditionDetailData(
         editionWork: EditionWork
     ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
-        this.setAssetWorkPath(editionWork);
+        this._setAssetWorkPath(editionWork);
 
-        const folioData$: Observable<FolioConvoluteList> = this.getFolioConvoluteData();
-        const svgSheetsData$: Observable<EditionSvgSheetList> = this.getSvgSheetsData();
-        const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
+        const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
+        const svgSheetsData$: Observable<EditionSvgSheetList> = this._getSvgSheetsData();
+        const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
 
         return observableForkJoin([folioData$, svgSheetsData$, textciticsListData$]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([new FolioConvoluteList(), new EditionSvgSheetList(), new TextcriticsList()]),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -90,13 +90,13 @@ export class EditionDataService {
      * @returns {Observable<GraphList>} The observable with the GraphList data.
      */
     getEditionGraphData(editionWork: EditionWork): Observable<GraphList> {
-        this.setAssetWorkPath(editionWork);
-        const graphData$: Observable<GraphList> = this.getGraphData();
+        this._setAssetWorkPath(editionWork);
+        const graphData$: Observable<GraphList> = this._getGraphData();
 
         return graphData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new GraphList()),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -112,13 +112,13 @@ export class EditionDataService {
      * @returns {Observable<IntroList>} The observable with the IntroList data.
      */
     getEditionIntroData(editionWork: EditionWork): Observable<IntroList> {
-        this.setAssetWorkPath(editionWork);
-        const introData$: Observable<IntroList> = this.getIntroData();
+        this._setAssetWorkPath(editionWork);
+        const introData$: Observable<IntroList> = this._getIntroData();
 
         return introData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new IntroList()),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
@@ -141,32 +141,32 @@ export class EditionDataService {
     getEditionReportData(
         editionWork: EditionWork
     ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> {
-        this.setAssetWorkPath(editionWork);
-        const sourceListData$: Observable<SourceList> = this.getSourceListData();
-        const sourceDescriptionListData$: Observable<SourceDescriptionList> = this.getSourceDescriptionListData();
-        const sourceEvaluationListData$: Observable<SourceEvaluationList> = this.getSourceEvaluationListData();
-        const textciticsListData$: Observable<TextcriticsList> = this.getTextcriticsListData();
+        this._setAssetWorkPath(editionWork);
+        const sourceListData$: Observable<SourceList> = this._getSourceListData();
+        const sourceDescriptionListData$: Observable<SourceDescriptionList> = this._getSourceDescriptionListData();
+        const sourceEvaluationListData$: Observable<SourceEvaluationList> = this._getSourceEvaluationListData();
+        const textciticsListData$: Observable<TextcriticsList> = this._getTextcriticsListData();
 
         return observableForkJoin([
             sourceListData$,
             sourceDescriptionListData$,
             sourceEvaluationListData$,
-            textciticsListData$
+            textciticsListData$,
         ]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([
                 new SourceList(),
                 new SourceDescriptionList(),
                 new SourceEvaluationList(),
-                new TextcriticsList()
+                new TextcriticsList(),
             ]),
-            // take only first request (JSON fetch)
+            // Take only first request (JSON fetch)
             take(1)
         );
     }
 
     /**
-     * Private method: setAssetWorkPath.
+     * Private method: _setAssetWorkPath.
      *
      * It sets the path to correct assets folder of a given work.
      *
@@ -174,13 +174,13 @@ export class EditionDataService {
      *
      * @returns {void} It sets the asset path.
      */
-    private setAssetWorkPath(editionWork: EditionWork): void {
+    private _setAssetWorkPath(editionWork: EditionWork): void {
         const workRoute = editionWork.series.route + editionWork.section.route + editionWork.work.route;
-        this.assetWorkPath = EditionConstants.editionAssets.baseRoute + workRoute;
+        this._assetWorkPath = EditionConstants.EDITION_ASSETS.baseRoute + workRoute;
     }
 
     /**
-     * Private method: getFolioConvoluteData.
+     * Private method: _getFolioConvoluteData.
      *
      * It sets the path to the JSON file with
      * the folio convolute data and triggers
@@ -188,14 +188,14 @@ export class EditionDataService {
      *
      * @returns {Observable<FolioConvoluteList>} The observable with the FolioConvolute data.
      */
-    private getFolioConvoluteData(): Observable<FolioConvoluteList> {
-        const file = EditionConstants.editionAssets.folioConvoluteFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getFolioConvoluteData(): Observable<FolioConvoluteList> {
+        const file = EditionConstants.EDITION_ASSETS.folioConvoluteFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getGraphData.
+     * Private method: _getGraphData.
      *
      * It sets the path to the JSON file with
      * the graph data and triggers
@@ -203,14 +203,14 @@ export class EditionDataService {
      *
      * @returns {Observable<GraphList>} The observable with the Graph data.
      */
-    private getGraphData(): Observable<GraphList> {
-        const file = EditionConstants.editionAssets.graphFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getGraphData(): Observable<GraphList> {
+        const file = EditionConstants.EDITION_ASSETS.graphFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getIntroData.
+     * Private method: _getIntroData.
      *
      * It sets the path to the JSON file with
      * the intro data and triggers
@@ -218,14 +218,14 @@ export class EditionDataService {
      *
      * @returns {Observable<IntroList>} The observable with the Intro data.
      */
-    private getIntroData(): Observable<IntroList> {
-        const file = EditionConstants.editionAssets.introFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getIntroData(): Observable<IntroList> {
+        const file = EditionConstants.EDITION_ASSETS.introFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getSourceListData.
+     * Private method: _getSourceListData.
      *
      * It sets the path to the JSON file with
      * the source list data and triggers
@@ -233,14 +233,14 @@ export class EditionDataService {
      *
      * @returns {Observable<SourceList>} The observable with the SourceList data.
      */
-    private getSourceListData(): Observable<SourceList> {
-        const file = EditionConstants.editionAssets.sourceListFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getSourceListData(): Observable<SourceList> {
+        const file = EditionConstants.EDITION_ASSETS.sourceListFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getSourceDescriptionListData.
+     * Private method: _getSourceDescriptionListData.
      *
      * It sets the path to the JSON file with
      * the source description list data and triggers
@@ -248,14 +248,14 @@ export class EditionDataService {
      *
      * @returns {Observable<SourceDescriptionList>} The observable with the SourceDescriptionList data.
      */
-    private getSourceDescriptionListData(): Observable<SourceDescriptionList> {
-        const file = EditionConstants.editionAssets.sourceDescriptionListFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getSourceDescriptionListData(): Observable<SourceDescriptionList> {
+        const file = EditionConstants.EDITION_ASSETS.sourceDescriptionListFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getSourceEvaluationListData.
+     * Private method: _getSourceEvaluationListData.
      *
      * It sets the path to the JSON file with
      * the source evaluation list data and triggers
@@ -263,14 +263,14 @@ export class EditionDataService {
      *
      * @returns {Observable<SourceEvaluationList>} The observable with the SourceEvaluationList data.
      */
-    private getSourceEvaluationListData(): Observable<SourceEvaluationList> {
-        const file = EditionConstants.editionAssets.sourceEvaluationListFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getSourceEvaluationListData(): Observable<SourceEvaluationList> {
+        const file = EditionConstants.EDITION_ASSETS.sourceEvaluationListFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getSvgSheetsData.
+     * Private method: _getSvgSheetsData.
      *
      * It sets the path to the JSON file with
      * the svg sheets data and triggers
@@ -278,14 +278,14 @@ export class EditionDataService {
      *
      * @returns {Observable<EditionSvgSheetList>} The observable with the EditionSvgSheet data.
      */
-    private getSvgSheetsData(): Observable<EditionSvgSheetList> {
-        const file = EditionConstants.editionAssets.svgSheetsFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getSvgSheetsData(): Observable<EditionSvgSheetList> {
+        const file = EditionConstants.EDITION_ASSETS.svgSheetsFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getTextcriticsListData.
+     * Private method: _getTextcriticsListData.
      *
      * It sets the path to the JSON file with
      * the textcritics list data and triggers
@@ -293,29 +293,29 @@ export class EditionDataService {
      *
      * @returns {Observable<TextcriticsList>} The observable with the TextcriticsList data.
      */
-    private getTextcriticsListData(): Observable<TextcriticsList> {
-        const file = EditionConstants.editionAssets.textcriticsFile;
-        const url = `${this.assetWorkPath}/${file}`;
-        return this.getJsonData(url);
+    private _getTextcriticsListData(): Observable<TextcriticsList> {
+        const file = EditionConstants.EDITION_ASSETS.textcriticsFile;
+        const url = `${this._assetWorkPath}/${file}`;
+        return this._getJsonData(url);
     }
 
     /**
-     * Private method: getJsonData.
+     * Private method: _getJsonData.
      *
      * It fetches the given JSON file (path) via HTTP request.
      *
      * @param {string} path The path to the JSON file.
      * @returns {Observable<any>} The observable with the requested data.
      */
-    private getJsonData(path: string): Observable<any> {
+    private _getJsonData(path: string): Observable<any> {
         return this.http.get(path).pipe(
-            // tap(res => this.log(`fetched jsonData with url=${url}`)),
-            catchError(this.handleError(`getJsonData`, []))
+            // Tap(res => this._logError(`fetched jsonData with url=${url}`)),
+            catchError(this._handleError('_getJsonData', []))
         );
     }
 
     /**
-     * Private method: handleError.
+     * Private method: _handleError.
      *
      * It handles errors, if any, of the HTTP request.
      *
@@ -323,11 +323,10 @@ export class EditionDataService {
      * @param {T} [result] An optional empty result to let the app keep running.
      * @returns An observable of the error.
      */
-    private handleError<T>(operation: string, result?: T) {
+    private _handleError<T>(operation: string, result?: T) {
         return (error: any): Observable<T> => {
             // TODO: better job of transforming error for user consumption
-            this.log(`${operation} failed: ${error.message}`);
-            // console.error(error);
+            this._logError(`${operation} failed: ${error.message}`);
 
             // Let the app keep running by returning an empty result.
             return observableOf(result as T);
@@ -335,14 +334,15 @@ export class EditionDataService {
     }
 
     /**
-     * Private method: log.
+     * Private method: _logError.
      *
-     * It logs a message to the console.
+     * It logs an error message to the console.
      *
-     * @param {string} message The given message to be logged.
-     * @returns {void} Logs the message to the console.
+     * @param {string} message The given error message to be logged.
+     *
+     * @returns {void} Logs the error message to the console.
      */
-    private log(message: string): void {
-        console.log(message);
+    private _logError(message: string): void {
+        console.error(message);
     }
 }

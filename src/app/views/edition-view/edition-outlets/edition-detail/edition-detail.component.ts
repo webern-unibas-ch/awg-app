@@ -12,7 +12,7 @@ import {
     FolioConvolute,
     FolioConvoluteList,
     TextcriticalComment,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { Subject } from 'rxjs';
@@ -29,7 +29,7 @@ import { Subject } from 'rxjs';
 @Component({
     selector: 'awg-edition-detail',
     templateUrl: './edition-detail.component.html',
-    styleUrls: ['./edition-detail.component.css']
+    styleUrls: ['./edition-detail.component.css'],
 })
 export class EditionDetailComponent implements OnInit, OnDestroy {
     /**
@@ -38,13 +38,6 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * It keeps the reference to the awg-modal.
      */
     @ViewChild('modal', { static: true }) modal: ModalComponent;
-
-    /**
-     * Private variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    private destroy$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Public variable: editionWork.
@@ -117,6 +110,13 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
     showTkA = false;
 
     /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject<boolean> = new Subject<boolean>();
+
+    /**
      * Constructor of the EditionDetailComponent.
      *
      * It declares private instances of
@@ -156,16 +156,16 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      */
     getEditionDetailData(): void {
         this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // return EditionDetailData from editionDataService
+                    // Return EditionDetailData from editionDataService
                     return this.editionDataService.getEditionDetailData(this.editionWork);
                 }),
-                takeUntil(this.destroy$)
+                takeUntil(this._destroy$)
             )
             .pipe(
                 switchMap((data: [FolioConvoluteList, EditionSvgSheetList, TextcriticsList]) => {
@@ -173,17 +173,17 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
                     this.svgSheetsData = data[1];
                     this.textcriticsData = data[2];
                     if (this.route.queryParamMap) {
-                        // return queryParams if available
+                        // Return queryParams if available
                         return this.route.queryParamMap;
                     }
                 }),
-                takeUntil(this.destroy$)
+                takeUntil(this._destroy$)
             )
             .subscribe(
                 (queryParams: ParamMap) => {
-                    const sheetId: string = this.getSketchParams(queryParams);
-                    this.selectedSvgSheet = this.findSvgSheet(sheetId);
-                    this.selectedConvolute = this.findConvolute('');
+                    const sheetId: string = this._getSketchParams(queryParams);
+                    this.selectedSvgSheet = this._findSvgSheet(sheetId);
+                    this.selectedConvolute = this._findConvolute('');
                     if (
                         !this.selectedConvolute &&
                         this.folioConvoluteData.convolutes &&
@@ -211,10 +211,10 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!id) {
             return;
         }
-        const convolute: FolioConvolute = this.findConvolute(id);
+        const convolute: FolioConvolute = this._findConvolute(id);
 
         if (convolute.folios && convolute.folios.constructor === Array && convolute.folios.length === 0) {
-            // if no folio data provided, open modal
+            // If no folio data provided, open modal
             if (convolute.linkTo) {
                 this.modal.open(convolute.linkTo);
             }
@@ -236,7 +236,7 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!this.textcriticsData && !this.selectedSvgSheet) {
             return;
         }
-        const textcriticalComments: TextcriticalComment[] = this.findTextCriticalComments();
+        const textcriticalComments: TextcriticalComment[] = this._findTextCriticalComments();
 
         this.selectedOverlay = overlay;
         this.selectedTextcriticalComments = this.editionService.getTextcriticalComments(
@@ -260,103 +260,15 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!id) {
             id = this.svgSheetsData.sheets[0].id || '';
         }
-        this.selectedSvgSheet = this.findSvgSheet(id);
-        this.clearOverlaySelection();
+        this.selectedSvgSheet = this._findSvgSheet(id);
+        this._clearOverlaySelection();
 
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: ''
+            queryParamsHandling: '',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);
-    }
-
-    /**
-     * Private method: clearOverlaySelection.
-     *
-     * It clears the selected overlay and TkA.
-     *
-     * @returns {void} Clears the selection.
-     */
-    private clearOverlaySelection(): void {
-        this.selectedOverlay = null;
-        this.showTkA = false;
-    }
-
-    /**
-     * Private method: getSketchParams.
-     *
-     * It checks the route params for a sketch query
-     * and returns the id of the selected sheet.
-     *
-     * @default first entry of this.svgSheetsData
-     *
-     * @param {ParamMap} queryParams The query paramMap of the activated route.
-     * @returns {string} The id of the selected sheet.
-     */
-    private getSketchParams(queryParams?: ParamMap): string {
-        // if there is no id in query params
-        // take first entry of svg sheets data as default
-        if (!queryParams.get('sketch')) {
-            this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
-            return;
-        }
-        return queryParams.get('sketch') ? queryParams.get('sketch') : this.svgSheetsData.sheets[0].id;
-    }
-
-    /**
-     * Private method: findConvolute.
-     *
-     * It finds a convolute with a given id.
-     *
-     * @param {string} id The given id input.
-     * @returns {FolioConvolute} The convolute that was found.
-     */
-    private findConvolute(id: string): FolioConvolute {
-        if (!id) {
-            return;
-        }
-        // find index of given id in folioConvoluteData.convolutes array
-        const convoluteIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
-        // return the convolute with the given id
-        return this.folioConvoluteData.convolutes[convoluteIndex];
-    }
-
-    /**
-     * Private method: findSvgSheet.
-     *
-     * It finds a svg sheet with a given id.
-     *
-     * @param {string} id The given id input.
-     * @returns {EditionSvgSheet} The sheet that was found.
-     */
-    private findSvgSheet(id: string): EditionSvgSheet {
-        if (!id) {
-            return;
-        }
-        // find index of given id in svgSheetsData.sheets array
-        const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
-        // return the sheet with the given id
-        return this.svgSheetsData.sheets[sheetIndex];
-    }
-
-    /**
-     * Private method: findTextCriticalComments.
-     *
-     * It finds the textcritical comments for an svg overlay.
-     *
-     * @returns {TextcriticalComment[]} The textcritical comments that were found.
-     */
-    private findTextCriticalComments(): TextcriticalComment[] {
-        if (!this.textcriticsData && !this.selectedSvgSheet) {
-            return;
-        }
-        // find index of teh selected svg sheet id in textcriticsData.textcritics array
-        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
-            textcritic => textcritic.id === this.selectedSvgSheet.id
-        );
-        // return the comments with the given id
-        return this.textcriticsData.textcritics[textcriticsIndex].comments;
     }
 
     /**
@@ -366,10 +278,98 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
 
         // Now let's also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
+    }
+
+    /**
+     * Private method: _clearOverlaySelection.
+     *
+     * It clears the selected overlay and TkA.
+     *
+     * @returns {void} Clears the selection.
+     */
+    private _clearOverlaySelection(): void {
+        this.selectedOverlay = null;
+        this.showTkA = false;
+    }
+
+    /**
+     * Private method: _getSketchParams.
+     *
+     * It checks the route params for a sketch query
+     * and returns the id of the selected sheet.
+     *
+     * @default first entry of this.svgSheetsData
+     *
+     * @param {ParamMap} queryParams The query paramMap of the activated route.
+     * @returns {string} The id of the selected sheet.
+     */
+    private _getSketchParams(queryParams?: ParamMap): string {
+        // If there is no id in query params
+        // Take first entry of svg sheets data as default
+        if (!queryParams.get('sketch')) {
+            this.onSvgSheetSelect(this.svgSheetsData.sheets[0].id);
+            return;
+        }
+        return queryParams.get('sketch') ? queryParams.get('sketch') : this.svgSheetsData.sheets[0].id;
+    }
+
+    /**
+     * Private method: _findConvolute.
+     *
+     * It finds a convolute with a given id.
+     *
+     * @param {string} id The given id input.
+     * @returns {FolioConvolute} The convolute that was found.
+     */
+    private _findConvolute(id: string): FolioConvolute {
+        if (!id) {
+            return;
+        }
+        // Find index of given id in folioConvoluteData.convolutes array
+        const convoluteIndex = this.folioConvoluteData.convolutes.findIndex(convolute => convolute.convoluteId === id);
+        // Return the convolute with the given id
+        return this.folioConvoluteData.convolutes[convoluteIndex];
+    }
+
+    /**
+     * Private method: _findSvgSheet.
+     *
+     * It finds a svg sheet with a given id.
+     *
+     * @param {string} id The given id input.
+     * @returns {EditionSvgSheet} The sheet that was found.
+     */
+    private _findSvgSheet(id: string): EditionSvgSheet {
+        if (!id) {
+            return;
+        }
+        // Find index of given id in svgSheetsData.sheets array
+        const sheetIndex = this.svgSheetsData.sheets.findIndex(sheets => sheets.id === id);
+        // Return the sheet with the given id
+        return this.svgSheetsData.sheets[sheetIndex];
+    }
+
+    /**
+     * Private method: _findTextCriticalComments.
+     *
+     * It finds the textcritical comments for an svg overlay.
+     *
+     * @returns {TextcriticalComment[]} The textcritical comments that were found.
+     */
+    private _findTextCriticalComments(): TextcriticalComment[] {
+        if (!this.textcriticsData && !this.selectedSvgSheet) {
+            return;
+        }
+        // Find index of teh selected svg sheet id in textcriticsData.textcritics array
+        const textcriticsIndex = this.textcriticsData.textcritics.findIndex(
+            textcritic => textcritic.id === this.selectedSvgSheet.id
+        );
+        // Return the comments with the given id
+        return this.textcriticsData.textcritics[textcriticsIndex].comments;
     }
 }

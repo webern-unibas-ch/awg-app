@@ -1,0 +1,8 @@
+# Ignore miscellaneous folders
+.github/
+.idea/
+.vscode/
+.yarn/
+node_modules/
+dist/
+tmp/

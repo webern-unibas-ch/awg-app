@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 
@@ -11,7 +11,7 @@ describe('EditionSvgSheetNavComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionSvgSheetNavComponent]
+                declarations: [EditionSvgSheetNavComponent],
             }).compileComponents();
         })
     );

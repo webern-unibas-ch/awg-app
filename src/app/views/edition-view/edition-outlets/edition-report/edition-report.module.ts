@@ -16,6 +16,6 @@ import { EditionReportRoutingModule, routedEditionReportComponents } from './edi
  */
 @NgModule({
     imports: [SharedModule, SourcesModule, TextcriticsModule, EditionReportRoutingModule],
-    declarations: [routedEditionReportComponents]
+    declarations: [routedEditionReportComponents],
 })
 export class EditionReportModule {}

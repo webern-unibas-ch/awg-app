@@ -50,7 +50,7 @@ export class ResourceDetailIncomingLink {
         this.restype = {
             id: incoming.resinfo.restype_id,
             label: incoming.resinfo.restype_label,
-            icon: incoming.resinfo.restype_iconsrc
+            icon: incoming.resinfo.restype_iconsrc,
         };
     }
 }

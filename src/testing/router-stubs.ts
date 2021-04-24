@@ -1,5 +1,5 @@
-/* tslint:disable:no-input-rename */
-/* tslint:disable:directive-selector component-selector */
+/* eslint-disable @angular-eslint/no-input-rename */
+/* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
 import { NavigationExtras, QueryParamsHandling } from '@angular/router';
 
@@ -13,7 +13,7 @@ import { AppModule } from '@awg-app/app.module';
  * after click.
  */
 @Directive({
-    selector: '[routerLink]'
+    selector: '[routerLink]',
 })
 export class RouterLinkStubDirective {
     /**
@@ -55,14 +55,14 @@ export class RouterLinkStubDirective {
  */
 @Component({
     selector: 'router-outlet',
-    template: ''
+    template: '',
 })
 export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub
 
 // #docregion activated-route-stub
 import { convertToParamMap, ParamMap, Params } from '@angular/router';
-import { BehaviorSubject, ReplaySubject } from 'rxjs';
+import { BehaviorSubject } from 'rxjs';
 
 /**
  * An ActivatedRoute test double (stub) with a `paramMap` observable.
@@ -76,13 +76,14 @@ export class ActivatedRouteStub {
     /**
      * Private BehaviorSubject to handle test route parameters.
      */
-    private paramSubject = new BehaviorSubject(this.testParams);
+    private _paramSubject = new BehaviorSubject(this.testParams);
 
     /**
      * Readonly ActivatedRoute.params test double (stub)
      * as observable (`BehaviorSubject`).
      */
-    readonly params = this.paramSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly params = this._paramSubject.asObservable();
 
     /**
      * Private variable for test parameters.
@@ -103,31 +104,19 @@ export class ActivatedRouteStub {
      */
     set testParams(params: {}) {
         this._testParams = params;
-        this.paramSubject.next(params);
-    }
-
-    /**
-     * Constructor for the ActivatedRouteStub (stub).
-     *
-     * @param {Params} [initialParams] The optional initial route parameters.
-     */
-    constructor(initialParams?: Params) {
-        if (initialParams) {
-            this.testParamMap = initialParams;
-        } else {
-            this.testParamMap = {};
-        }
+        this._paramSubject.next(params);
     }
 
     /**
      * Private ReplaySubject to handle route paramMaps.
      */
-    private paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
+    private _paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
 
     /**
      * Observable that contains a map of the test parameters
      */
-    readonly paramMap = this.paramMapSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly paramMap = this._paramMapSubject.asObservable();
 
     /**
      * Private variable: _testParamMap
@@ -148,18 +137,19 @@ export class ActivatedRouteStub {
      */
     set testParamMap(params: {}) {
         this._testParamMap = convertToParamMap(params);
-        this.paramMapSubject.next(this._testParamMap);
+        this._paramMapSubject.next(this._testParamMap);
     }
 
     /**
      * Private BehaviourSubject to handle query parameters.
      */
-    private queryParamMapSubject = new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
+    private _queryParamMapSubject = new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
 
     /**
      * Observable that contains a map of the query parameters
      */
-    readonly queryParamMap = this.queryParamMapSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly queryParamMap = this._queryParamMapSubject.asObservable();
 
     /**
      * Private variable: _testQueryParamMap
@@ -180,18 +170,19 @@ export class ActivatedRouteStub {
      */
     set testQueryParamMap(params: {}) {
         this._testQueryParamMap = convertToParamMap(params);
-        this.queryParamMapSubject.next(this._testQueryParamMap);
+        this._queryParamMapSubject.next(this._testQueryParamMap);
     }
 
     /**
      * Private BehaviourSubject to handle children parameters.
      */
-    private childrenSubject = new BehaviorSubject(this.testChildren);
+    private _childrenSubject = new BehaviorSubject(this.testChildren);
 
     /**
      * Observable that contains a map of the children parameters
      */
-    readonly children = this.childrenSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly children = this._childrenSubject.asObservable();
 
     /**
      * Private variable: _testChildren
@@ -212,7 +203,7 @@ export class ActivatedRouteStub {
      */
     set testChildren(params: {}) {
         this._testChildren = params;
-        this.childrenSubject.next(this._testChildren);
+        this._childrenSubject.next(this._testChildren);
     }
 
     /**
@@ -225,8 +216,21 @@ export class ActivatedRouteStub {
             params: this.testParams,
             paramMap: this.testParamMap,
             queryParamMap: this.testQueryParamMap,
-            children: this.testChildren
+            children: this.testChildren,
         };
+    }
+
+    /**
+     * Constructor for the ActivatedRouteStub (stub).
+     *
+     * @param {Params} [initialParams] The optional initial route parameters.
+     */
+    constructor(initialParams?: Params) {
+        if (initialParams) {
+            this.testParamMap = initialParams;
+        } else {
+            this.testParamMap = {};
+        }
     }
 }
 // #enddocregion activated-route-stub
@@ -238,6 +242,6 @@ export class ActivatedRouteStub {
  */
 @NgModule({
     imports: [AppModule],
-    declarations: [RouterLinkStubDirective, RouterOutletStubComponent]
+    declarations: [RouterLinkStubDirective, RouterOutletStubComponent],
 })
 export class FakeRouterModule {}

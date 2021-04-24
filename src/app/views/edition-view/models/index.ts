@@ -65,5 +65,5 @@ export {
     TextcriticalComment,
     Textcritics,
     TextcriticsList,
-    ViewBox
+    ViewBox,
 };

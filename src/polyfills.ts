@@ -1,3 +1,4 @@
+/* eslint-disable capitalized-comments, spaced-comment */
 /**
  * This file includes polyfills needed by Angular and is loaded before the app.
  * You can add your own extra polyfills to this file.
@@ -73,18 +74,18 @@ const w = window as any;
 // Add global to window, assigning the value of window itself.
 w.global = w;
 
-// workaround for Uncaught ReferenceError: setImmediate is not defined
+// Workaround for Uncaught ReferenceError: setImmediate is not defined
 // cf. https://stackoverflow.com/a/58088954
 w.setImmediate = w.setTimeout;
 
-// workaround for Uncaught ReferenceError: Buffer is not defined
+// Workaround for Uncaught ReferenceError: Buffer is not defined
 // cf. https://github.com/agoncal/swagger-ui-angular6/issues/2
 // @ts-ignore
 w.Buffer = []; // w.Buffer || require('buffer').Buffer;
 
-// workaround for Uncaught ReferenceError: process is not defined
+// Workaround for Uncaught ReferenceError: process is not defined
 // cf. https://github.com/algolia/algoliasearch-client-javascript/issues/691
 w.process = {
     env: { DEBUG: undefined },
-    version: []
+    version: [],
 };

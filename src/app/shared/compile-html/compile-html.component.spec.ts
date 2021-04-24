@@ -11,7 +11,7 @@ describe('CompileHtmlComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [CompileHtmlComponent]
+                declarations: [CompileHtmlComponent],
             }).compileComponents();
         })
     );

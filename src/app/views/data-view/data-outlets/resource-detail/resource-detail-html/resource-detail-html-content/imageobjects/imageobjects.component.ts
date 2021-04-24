@@ -13,7 +13,7 @@ import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
     selector: 'awg-resource-detail-html-content-imageobjects',
     templateUrl: './imageobjects.component.html',
     styleUrls: ['./imageobjects.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
     /**
@@ -41,8 +41,8 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
             previewCloseOnEsc: true,
             previewZoom: true,
             previewRotate: true,
-            linkTarget: '_blank'
-        })
+            linkTarget: '_blank',
+        }),
     ];
 
     /**

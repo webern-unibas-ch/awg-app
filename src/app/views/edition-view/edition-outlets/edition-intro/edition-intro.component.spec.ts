@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClientTestingModule } from '@angular/common/http/testing';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -20,7 +20,7 @@ describe('IntroComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbModalModule, HttpClientTestingModule, RouterTestingModule],
-                declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective]
+                declarations: [CompileHtmlComponent, EditionIntroComponent, ModalComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );

@@ -19,7 +19,7 @@ import { EditionDataService, EditionService } from '@awg-views/edition-view/serv
     selector: 'awg-intro',
     templateUrl: './edition-intro.component.html',
     styleUrls: ['./edition-intro.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionIntroComponent implements OnInit {
     /**
@@ -95,16 +95,16 @@ export class EditionIntroComponent implements OnInit {
      */
     getEditionIntroData(): void {
         this.editionIntroData$ = this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // get intro data from editionDataService
+                    // Get intro data from editionDataService
                     return this.editionDataService.getEditionIntroData(this.editionWork);
                 }),
-                // error handling
+                // Error handling
                 catchError(err => {
                     this.errorObject = err;
                     return throwError(err);
@@ -125,7 +125,7 @@ export class EditionIntroComponent implements OnInit {
             fragmentId = '';
         }
         const navigationExtras: NavigationExtras = {
-            fragment: fragmentId
+            fragment: fragmentId,
         };
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
     }
@@ -158,7 +158,7 @@ export class EditionIntroComponent implements OnInit {
         }
         const navigationExtras: NavigationExtras = {
             queryParams: { sketch: id },
-            queryParamsHandling: ''
+            queryParamsHandling: '',
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);

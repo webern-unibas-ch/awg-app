@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -35,16 +35,16 @@ describe('SearchResultListComponent', () => {
             expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), ''); // TODO: provide real test data
             expectedSearchResultText = ''; // TODO: provide real test data
 
-            // create a fake DataStreamerService object with a `getSearchResponseWithQuery()` spy
+            // Create a fake DataStreamerService object with a `getSearchResponseWithQuery()` spy
             const mockDataStreamerService = jasmine.createSpyObj('DataStreamerService', ['getSearchResponseWithQuery']);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             getSearchResponseWithQuerySpy = mockDataStreamerService.getSearchResponseWithQuery.and.returnValue(
                 observableOf()
             ); // TODO: provide real test data
 
-            // mock services
+            // Mock services
             mockConversionService = {
-                prepareFullTextSearchResultText: () => expectedSearchResultText
+                prepareFullTextSearchResultText: () => expectedSearchResultText,
             };
             mockSideInfoService = { updateSearchInfoData: () => {}, clearSearchInfoData: () => {} }; // TODO: provide real test data
 
@@ -54,8 +54,8 @@ describe('SearchResultListComponent', () => {
                 providers: [
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
                     { provide: ConversionService, useValue: mockConversionService },
-                    { provide: SideInfoService, useValue: mockSideInfoService }
-                ]
+                    { provide: SideInfoService, useValue: mockSideInfoService },
+                ],
             }).compileComponents();
         })
     );

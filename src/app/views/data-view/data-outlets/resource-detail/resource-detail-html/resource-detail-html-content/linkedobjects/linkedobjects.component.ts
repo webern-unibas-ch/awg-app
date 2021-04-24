@@ -12,7 +12,7 @@ import { ResourceDetailGroupedIncomingLinks } from '@awg-views/data-view/models'
     selector: 'awg-resource-detail-html-content-linkedobjects',
     templateUrl: './linkedobjects.component.html',
     styleUrls: ['./linkedobjects.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentLinkedobjectsComponent {
     /**
@@ -35,7 +35,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      * Getter for the total number of incoming links.
      */
     get totalNumber() {
-        return this.getNestedArraysTotalItems(this.incomingGroups) || 0;
+        return this._getNestedArraysTotalItems(this.incomingGroups) || 0;
     }
 
     /**
@@ -57,7 +57,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
     }
 
     /**
-     * Private method: getNestedArraysTotalItems.
+     * Private method: _getNestedArraysTotalItems.
      *
      * It sums up the total items (length) of all arrays
      * nested in an ResourceDetailGroupedIncomingLinks
@@ -67,16 +67,16 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      *
      * @returns {number} The number of total items (length) of the nested array.
      */
-    private getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
+    private _getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
         if (!groupedLinksArr) {
             return;
         }
 
-        // callback for reduce function
-        // adds curValue to the previous result of the calculation (prevRes))
+        // Callback for reduce function
+        // Adds curValue to the previous result of the calculation (prevRes))
         const reducer = (prevRes: number, curValue: number): number => prevRes + curValue;
 
-        // map the length of every nested link array into the reducer function; default initial value: 0
+        // Map the length of every nested link array into the reducer function; default initial value: 0
         return groupedLinksArr.map(groupedLink => groupedLink.links.length).reduce(reducer, 0);
     }
 }

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { OrderByPipe } from './order-by.pipe';
 
@@ -14,7 +16,7 @@ describe('OrderByPipe (DONE)', () => {
     beforeEach(() => {
         orderByPipe = new OrderByPipe();
 
-        // testData
+        // TestData
         testArray = [{ obj_id: 4 }, { obj_id: 7 }, { obj_id: 3 }, { obj_id: 1 }];
         testEqualArray = [{ obj_id: 7 }, { obj_id: 4 }, { obj_id: 1 }, { obj_id: 7 }];
         expectedEqualArray = [{ obj_id: 1 }, { obj_id: 4 }, { obj_id: 7 }, { obj_id: 7 }];
@@ -41,7 +43,7 @@ describe('OrderByPipe (DONE)', () => {
 
         expect(pipedTestArray).toEqual(expectedUnchangedArray, 'should be unchanged');
 
-        // change direction
+        // Change direction
         args = { direction: -1 };
         pipedTestArray = orderByPipe.transform(testArray, args);
 
@@ -63,19 +65,19 @@ describe('OrderByPipe (DONE)', () => {
 
         expect(pipedTestArray).toEqual(expectedAscArray, 'should be sorted ascending');
 
-        // reset testArray
+        // Reset testArray
         testArray = [{ obj_id: 4 }, { obj_id: 7 }, { obj_id: 3 }, { obj_id: 1 }];
 
-        // change to any positive value
+        // Change to any positive value
         args = { property: 'obj_id', direction: 99 };
         pipedTestArray = orderByPipe.transform(testArray, args);
 
         expect(pipedTestArray).toEqual(expectedAscArray, 'should be sorted ascending');
 
-        // reset testArray
+        // Reset testArray
         testArray = [{ obj_id: 4 }, { obj_id: 7 }, { obj_id: 3 }, { obj_id: 1 }];
 
-        // change to 0
+        // Change to 0
         args = { property: 'obj_id', direction: 0 };
         pipedTestArray = orderByPipe.transform(testArray, args);
 
@@ -88,10 +90,10 @@ describe('OrderByPipe (DONE)', () => {
 
         expect(pipedTestArray).toEqual(expectedDescArray, 'should be sorted descending');
 
-        // reset testArray
+        // Reset testArray
         testArray = [{ obj_id: 4 }, { obj_id: 7 }, { obj_id: 3 }, { obj_id: 1 }];
 
-        // change to any negative value
+        // Change to any negative value
         args = { property: 'obj_id', direction: -99 };
         pipedTestArray = orderByPipe.transform(testArray, args);
 

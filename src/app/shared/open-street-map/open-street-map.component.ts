@@ -11,7 +11,7 @@ import { SafeResourceUrl } from '@angular/platform-browser';
     selector: 'awg-open-street-map',
     templateUrl: './open-street-map.component.html',
     styleUrls: ['./open-street-map.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class OpenStreetMapComponent {
     /**
@@ -45,6 +45,6 @@ export class OpenStreetMapComponent {
     osmIFrameSettings = {
         width: '100%',
         height: '350',
-        scrolling: 'no'
+        scrolling: 'no',
     };
 }

@@ -12,18 +12,18 @@ import { BehaviorSubject, Observable } from 'rxjs';
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class LoadingService {
     /**
      * Private behavior subject to handle loading status.
      */
-    private isLoadingSubject = new BehaviorSubject<boolean>(false);
+    private _isLoadingSubject = new BehaviorSubject<boolean>(false);
 
     /**
      * Private readonly isLoading stream as observable (`BehaviorSubject`).
      */
-    private readonly isLoadingStream$ = this.isLoadingSubject.asObservable();
+    private readonly _isLoadingStream$ = this._isLoadingSubject.asObservable();
 
     /**
      * Public method: getLoadingStatus.
@@ -33,7 +33,7 @@ export class LoadingService {
      * @returns {Observable<boolean>} The isLoading stream as observable.
      */
     getLoadingStatus(): Observable<boolean> {
-        return this.isLoadingStream$;
+        return this._isLoadingStream$;
     }
 
     /**
@@ -44,6 +44,6 @@ export class LoadingService {
      * @returns {void} Sets the next boolean value to the stream.
      */
     updateLoadingStatus(isLoading: boolean): void {
-        this.isLoadingSubject.next(isLoading);
+        this._isLoadingSubject.next(isLoading);
     }
 }

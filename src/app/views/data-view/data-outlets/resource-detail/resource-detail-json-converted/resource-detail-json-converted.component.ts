@@ -13,7 +13,7 @@ import { ResourceDetail } from '@awg-views/data-view/models';
     selector: 'awg-resource-detail-json-converted',
     templateUrl: './resource-detail-json-converted.component.html',
     styleUrls: ['./resource-detail-json-converted.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailJsonConvertedComponent implements OnInit {
     /**

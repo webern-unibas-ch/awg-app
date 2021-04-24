@@ -21,7 +21,7 @@ describe('AddressComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [AddressComponent]
+                declarations: [AddressComponent],
             }).compileComponents();
         })
     );
@@ -32,7 +32,7 @@ describe('AddressComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedContactMetaData = METADATA[MetaSectionTypes.contact];
     });
@@ -68,10 +68,10 @@ describe('AddressComponent (DONE)', () => {
                 const headerEl = headerDes[0].nativeElement;
 
                 expect(headerEl.href).toBeDefined();
-                expect(headerEl.href).toBe('', `should be empty string`);
+                expect(headerEl.href).toBe('', 'should be empty string');
 
                 expect(headerEl.textContent).toBeDefined();
-                expect(headerEl.textContent).toBe('', `should be empty string`);
+                expect(headerEl.textContent).toBe('', 'should be empty string');
             });
 
             it('... should not render the address content information yet', () => {
@@ -79,7 +79,7 @@ describe('AddressComponent (DONE)', () => {
                 const content0Des = contentDes[0];
                 const content1Des = contentDes[1];
 
-                // content1
+                // Content1
                 const insitutionDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-institution', 1, 1);
                 const streetDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-street', 1, 1);
                 const postalCityDes = getAndExpectDebugElementByCss(content0Des, '#awg-address-postal-city', 1, 1);
@@ -90,7 +90,7 @@ describe('AddressComponent (DONE)', () => {
                 const postalCityEl = postalCityDes[0].nativeElement;
                 const countryEl = countryDes[0].nativeElement;
 
-                // content 2
+                // Content 2
                 const phoneDes = getAndExpectDebugElementByCss(content1Des, '#awg-address-phone', 1, 1);
                 const emailDes = getAndExpectDebugElementByCss(content1Des, '#awg-address-email a', 1, 1);
 
@@ -98,35 +98,35 @@ describe('AddressComponent (DONE)', () => {
                 const emailEl = emailDes[0].nativeElement;
 
                 expect(institutionEl.textContent).toBeDefined();
-                expect(institutionEl.textContent).toBe('', `should be empty string`);
+                expect(institutionEl.textContent).toBe('', 'should be empty string');
 
                 expect(streetEl.textContent).toBeDefined();
-                expect(streetEl.textContent).toBe('', `should be empty string`);
+                expect(streetEl.textContent).toBe('', 'should be empty string');
 
                 expect(postalCityEl.textContent).toBeDefined();
-                expect(postalCityEl.textContent).toBe('', `should be empty string`);
+                expect(postalCityEl.textContent).toBe('', 'should be empty string');
 
                 expect(countryEl.textContent).toBeDefined();
-                expect(countryEl.textContent).toBe('', `should be empty string`);
+                expect(countryEl.textContent).toBe('', 'should be empty string');
 
                 expect(phoneEl.textContent).toBeDefined();
-                expect(phoneEl.textContent).toBe('', `should be empty string`);
+                expect(phoneEl.textContent).toBe('', 'should be empty string');
 
                 expect(emailEl.href).toBeDefined();
-                expect(emailEl.href).toBe('', `should be empty string`);
+                expect(emailEl.href).toBe('', 'should be empty string');
                 expect(emailEl.textContent).toBeDefined();
-                expect(emailEl.textContent).toBe('', `should be empty string`);
+                expect(emailEl.textContent).toBe('', 'should be empty string');
             });
         });
     });
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.pageMetaData = expectedPageMetaData;
             component.contactMetaData = expectedContactMetaData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

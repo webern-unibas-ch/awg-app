@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, Router } from '@angular/router';
@@ -45,23 +45,20 @@ describe('SearchPanelComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    let mockRouter;
-    let mockActivatedRoute: ActivatedRouteStub;
-
-    // stub services for test purposes
+    // Stub services for test purposes
     const mocConversionService = { convertFullTextSearchResults: () => {} };
     const mockDataApiService = { httpGetUrl: '/testUrl', getFulltextSearchData: () => observableOf({}) };
     const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
     const mockDataStreamerService = { updateSearchResponseWithQuery: () => {} };
 
-    // router spy object
-    mockRouter = {
+    // Router spy object
+    const mockRouter = {
         url: '/test-url',
         events: observableOf(new NavigationEnd(0, 'http://localhost:4200/test-url', 'http://localhost:4200/test-url')),
-        navigate: jasmine.createSpy('navigate')
+        navigate: jasmine.createSpy('navigate'),
     };
-    // mocked activated route
-    mockActivatedRoute = new ActivatedRouteStub();
+    // Mocked activated route
+    const mockActivatedRoute: ActivatedRouteStub = new ActivatedRouteStub();
 
     beforeEach(
         waitForAsync(() => {
@@ -71,7 +68,7 @@ describe('SearchPanelComponent', () => {
                     SearchPanelComponent,
                     SearchFormStubComponent,
                     SearchResultListStubComponent,
-                    TwelveToneSpinnerStubComponent
+                    TwelveToneSpinnerStubComponent,
                 ],
                 providers: [
                     { provide: ActivatedRoute, useValue: mockActivatedRoute },
@@ -79,8 +76,8 @@ describe('SearchPanelComponent', () => {
                     { provide: ConversionService, useValue: mocConversionService },
                     { provide: DataApiService, useValue: mockDataApiService },
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
-                    { provide: LoadingService, useValue: mockLoadingService }
-                ]
+                    { provide: LoadingService, useValue: mockLoadingService },
+                ],
             }).compileComponents();
         })
     );

@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { Router } from '@angular/router';
@@ -9,12 +9,12 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { StructureViewComponent } from './structure-view.component';
 
-// mock heading component
+// Mock heading component
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -36,12 +36,12 @@ describe('StructureViewComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // router spy object
+            // Router spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
             TestBed.configureTestingModule({
                 declarations: [StructureViewComponent, HeadingStubComponent],
-                providers: [{ provide: Router, useValue: mockRouter }]
+                providers: [{ provide: Router, useValue: mockRouter }],
             }).compileComponents();
         })
     );
@@ -52,7 +52,7 @@ describe('StructureViewComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'routeToSidenav').and.callThrough();
@@ -103,7 +103,7 @@ describe('StructureViewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -111,12 +111,12 @@ describe('StructureViewComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // Create spy of mockrouter SpyObj
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
             it('... should have been called', () => {
-                // router navigation triggerd by onInit
+                // Router navigation triggerd by onInit
                 expect(component.routeToSidenav).toHaveBeenCalled();
             });
 
@@ -127,7 +127,7 @@ describe('StructureViewComponent (DONE)', () => {
             it('... should tell ROUTER to navigate to `structureInfo` outlet', () => {
                 const expectedRoute = 'structureInfo';
 
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
@@ -140,7 +140,7 @@ describe('StructureViewComponent (DONE)', () => {
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const navExtras = navArgs[1];
 

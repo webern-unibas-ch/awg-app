@@ -13,7 +13,7 @@ import { CoreService } from '@awg-core/services';
     selector: 'awg-structure-info',
     templateUrl: './structure-info.component.html',
     styleUrls: ['./structure-info.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StructureInfoComponent implements OnInit {
     /**

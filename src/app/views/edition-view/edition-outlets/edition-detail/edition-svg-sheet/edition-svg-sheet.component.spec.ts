@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
@@ -16,7 +16,7 @@ describe('EditionSvgSheetComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgxGalleryModule],
-                declarations: [EditionSvgSheetComponent]
+                declarations: [EditionSvgSheetComponent],
             }).compileComponents();
         })
     );
@@ -42,27 +42,23 @@ describe('EditionSvgSheetComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // find the svgFile's DebugElement and element
-            // svgFileDe = fixture.debugElement.query(By.css('.svg.edition-svg));
-            // svgFileEl = svgFIleDe.nativeElement;
-
-            // mock the inputs supplied by the parent component
+            // Mock the inputs supplied by the parent component
             expectedSvgSheet = {
                 id: 'Aa:SkI/2',
                 svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
                 image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
-                alt: 'Aa:SkI/2'
+                alt: 'Aa:SkI/2',
             };
             const type = EditionSvgOverlayTypes.measure;
             const id = '10';
             expectedOverlay = new EditionSvgOverlay(type, id);
 
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.svgSheetsData = { sheets: [expectedSvgSheet] };
             component.selectedSvgSheet = expectedSvgSheet;
             component.selectedOverlay = expectedOverlay;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -75,6 +71,6 @@ describe('EditionSvgSheetComponent', () => {
         });
 
         // TODO: test crrect implementation of EditionSVGOverlayEnum
-        // cf. https://stackoverflow.com/a/62376649
+        // Cf. https://stackoverflow.com/a/62376649
     });
 });

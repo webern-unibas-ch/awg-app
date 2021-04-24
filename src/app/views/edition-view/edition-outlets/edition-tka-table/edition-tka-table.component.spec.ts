@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
@@ -11,7 +11,7 @@ describe('EditionTkaTableComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionTkaTableComponent, CompileHtmlComponent]
+                declarations: [EditionTkaTableComponent, CompileHtmlComponent],
             }).compileComponents();
         })
     );

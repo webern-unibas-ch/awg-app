@@ -12,7 +12,7 @@ import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/mo
 @Component({
     selector: 'awg-critics-list',
     templateUrl: './critics-list.component.html',
-    styleUrls: ['./critics-list.component.css']
+    styleUrls: ['./critics-list.component.css'],
 })
 export class CriticsListComponent implements OnInit {
     /**

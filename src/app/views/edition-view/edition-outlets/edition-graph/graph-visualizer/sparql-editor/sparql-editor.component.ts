@@ -15,7 +15,7 @@ import 'codemirror/mode/sparql/sparql';
     selector: 'awg-sparql-editor',
     templateUrl: './sparql-editor.component.html',
     styleUrls: ['./sparql-editor.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SparqlEditorComponent implements OnInit {
     /**
@@ -83,7 +83,7 @@ export class SparqlEditorComponent implements OnInit {
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
-        mode: 'sparql'
+        mode: 'sparql',
     };
 
     /**
@@ -116,7 +116,9 @@ export class SparqlEditorComponent implements OnInit {
      * @returns {void} Emits the query.
      */
     onEditorInputChange(queryString: string): void {
-        if (!queryString) return;
+        if (!queryString) {
+            return;
+        }
         this.updateQueryStringRequest.emit(queryString);
     }
 
@@ -133,7 +135,7 @@ export class SparqlEditorComponent implements OnInit {
         if (!(query && this.queryList)) {
             return;
         }
-        // find the given query in the queryList or take its first item
+        // Find the given query in the queryList or take its first item
         query = this.queryList.find(q => query === q) || this.queryList[0];
         this.resetQuery(query);
     }
@@ -161,7 +163,9 @@ export class SparqlEditorComponent implements OnInit {
      * @returns {void} Triggers the request.
      */
     resetQuery(query: GraphSparqlQuery): void {
-        if (!query) return;
+        if (!query) {
+            return;
+        }
         this.resetQueryRequest.emit(query);
     }
 

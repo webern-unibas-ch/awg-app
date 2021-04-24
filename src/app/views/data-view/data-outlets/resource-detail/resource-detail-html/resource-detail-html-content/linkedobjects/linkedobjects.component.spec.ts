@@ -1,23 +1,24 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { DebugElement, NgModule } from '@angular/core';
 import Spy = jasmine.Spy;
 
 import { click, clickAndAwaitChanges } from '@testing/click-helper';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { ResourceDetailGroupedIncomingLinks, ResourceDetailIncomingLink } from '@awg-views/data-view/models';
 
 import { ResourceDetailHtmlContentLinkedobjectsComponent } from './linkedobjects.component';
 
-// helper functions
+// Helper functions
 function expectClosedPanelBody(de: DebugElement, id: number, msg: string) {
-    // body debug elements
+    // Body debug elements
     getAndExpectDebugElementByCss(de, `div.card > div#incoming-linkgroup-${id} > div.card-body`, 0, 0, msg);
 }
 function expectOpenPanelBody(de: DebugElement, id: number, msg: string) {
-    // body debug elements
+    // Body debug elements
     getAndExpectDebugElementByCss(de, `div.card > div#incoming-linkgroup-${id} > div.card-body`, 1, 1, msg);
 }
 
@@ -37,11 +38,20 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let incomingLink3: ResourceDetailIncomingLink;
     const expectedTotalItems = 5;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbAccordionModule],
-                declarations: [ResourceDetailHtmlContentLinkedobjectsComponent]
+                imports: [NgbAccordionWithConfigModule],
+                declarations: [ResourceDetailHtmlContentLinkedobjectsComponent],
             }).compileComponents();
         })
     );
@@ -52,32 +62,32 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         incomingLink1 = {
             id: '',
             value: 'testexpectedLinkValue1',
-            restype: { id: '1234', label: 'test-type1', icon: '/assets/img/logos/angular.png' }
+            restype: { id: '1234', label: 'test-type1', icon: '/assets/img/logos/angular.png' },
         };
         incomingLink2 = {
             id: '28',
             value: 'testvalue2',
-            restype: { id: '1235', label: 'test-type2', icon: '/assets/img/logos/snf.png' }
+            restype: { id: '1235', label: 'test-type2', icon: '/assets/img/logos/snf.png' },
         };
         incomingLink3 = {
             id: '330',
             value: 'testvalue3',
-            restype: { id: '1236', label: 'test-type3', icon: '/assets/img/logos/awg.png' }
+            restype: { id: '1236', label: 'test-type3', icon: '/assets/img/logos/awg.png' },
         };
 
         expectedIncoming = [
             {
                 restypeLabel: 'testkey1',
-                links: [incomingLink1, incomingLink2]
+                links: [incomingLink1, incomingLink2],
             },
-            { restypeLabel: 'testkey2', links: [incomingLink1, incomingLink2, incomingLink3] }
+            { restypeLabel: 'testkey2', links: [incomingLink1, incomingLink2, incomingLink3] },
         ];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         totalNumberSpy = spyOnProperty(component, 'totalNumber', 'get').and.callThrough();
@@ -105,17 +115,17 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             });
 
             it('... should contain one header showing no number of items yet', () => {
-                // header debug element
+                // Header debug element
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > h5', 1, 1);
-                // size debug element
+                // Size debug element
                 getAndExpectDebugElementByCss(headerDes[0], 'span#awg-incoming-size', 0, 0);
             });
 
             it('... should contain one ngb-accordion without panels (div.card) yet', () => {
-                // ngb-accordion debug element
+                // Ngb-accordion debug element
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'div.awg-linked-obj > ngb-accordion', 1, 1);
 
-                // panel
+                // Panel
                 getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
             });
         });
@@ -130,10 +140,10 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.incomingGroups = expectedIncoming;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -155,16 +165,16 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             const newExpectedIncomingGroups: ResourceDetailGroupedIncomingLinks[] = [
                 {
                     restypeLabel: 'testkey1',
-                    links: [incomingLink1, incomingLink2, incomingLink3, incomingLink1]
-                }
+                    links: [incomingLink1, incomingLink2, incomingLink3, incomingLink1],
+                },
             ];
             const newExpectedTotalItems = newExpectedIncomingGroups[0].links.length;
 
-            // simulate the parent changing the input properties
-            // no fixture detect changes needed because totalNumber is a getter()
+            // Simulate the parent changing the input properties
+            // No fixture detect changes needed because totalNumber is a getter()
             component.incomingGroups = newExpectedIncomingGroups;
 
-            // output has changed
+            // Output has changed
             expect(component.totalNumber).toBe(
                 newExpectedTotalItems,
                 `should be newExpectedTotalItems: ${newExpectedTotalItems}`
@@ -173,7 +183,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one header showing number of items', () => {
-                // size debug elements
+                // Size debug elements
                 const sizeDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-linked-obj > h5 > span#awg-incoming-size',
@@ -182,7 +192,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 );
                 const sizeEl = sizeDes[0].nativeElement;
 
-                // check size output
+                // Check size output
                 expect(sizeEl.textContent).toBeDefined();
                 expect(sizeEl.textContent).toContain(
                     component.totalNumber,
@@ -191,14 +201,14 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             });
 
             it('... should contain 2 ngb-panel elements (div.card) with header but no body (closed)', () => {
-                // panel debug elements
+                // Panel debug elements
                 const panelDes = getAndExpectDebugElementByCss(compDe, 'div.card', 2, 2);
 
-                // header debug elements
+                // Header debug elements
                 getAndExpectDebugElementByCss(panelDes[0], 'div.card-header', 1, 1, 'in first panel');
                 getAndExpectDebugElementByCss(panelDes[1], 'div.card-header', 1, 1, 'in second panel');
 
-                // body debug elements
+                // Body debug elements
                 getAndExpectDebugElementByCss(
                     panelDes[0],
                     'div.card-header > div > div.card-body',
@@ -216,7 +226,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             });
 
             it('... should render incoming group length as badges in panel header (div.card-header)', () => {
-                // header debug element
+                // Header debug element
                 const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
                 const badgeDes0 = getAndExpectDebugElementByCss(
                     panelHeaderDes[0],
@@ -249,7 +259,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             });
 
             it('... should render restype label in panel header (div.card-header)', () => {
-                // header debug element
+                // Header debug element
                 const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
                 const labelDes0 = getAndExpectDebugElementByCss(
                     panelHeaderDes[0],
@@ -281,11 +291,11 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 );
             });
 
-            it('... should toggle panels alternately on click', () => {
-                // header debug elements
+            it('... should open and close panels on click', fakeAsync(() => {
+                // Header debug elements
                 const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
 
-                // button debug elements
+                // Button debug elements
                 const button0Des = getAndExpectDebugElementByCss(
                     panelHeaderDes[0],
                     'button.btn-link',
@@ -301,66 +311,81 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     'in second panel'
                 );
 
-                // button native elements to click on
-                const button0El = button0Des[0].nativeElement;
-                const button1El = button1Des[0].nativeElement;
-
-                // both panels closed first by default
+                // Both panels closed first by default
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
-                // click first panel
-                click(button0El as HTMLElement);
-                fixture.detectChanges();
+                // Click first panel
+                clickAndAwaitChanges(button0Des[0], fixture);
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
-                // click first panel again
-                click(button0El as HTMLElement);
-                fixture.detectChanges();
+                // Click first panel again
+                clickAndAwaitChanges(button0Des[0], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
-                // click second panel
-                click(button1El as HTMLElement);
-                fixture.detectChanges();
+                // Click second panel
+                clickAndAwaitChanges(button1Des[0], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectOpenPanelBody(compDe, 1, 'opened (second panel)');
 
-                // click second panel again
-                click(button1El as HTMLElement);
-                fixture.detectChanges();
+                // Click second panel again
+                clickAndAwaitChanges(button1Des[0], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+            }));
 
-                // click first panel
-                click(button0El as HTMLElement);
-                fixture.detectChanges();
+            it('... should toggle panels alternately on click', fakeAsync(() => {
+                // Header debug elements
+                const panelHeaderDes = getAndExpectDebugElementByCss(compDe, 'div.card > div.card-header', 2, 2);
+
+                // Button debug elements
+                const button0Des = getAndExpectDebugElementByCss(
+                    panelHeaderDes[0],
+                    'button.btn-link',
+                    1,
+                    1,
+                    'in first panel'
+                );
+                const button1Des = getAndExpectDebugElementByCss(
+                    panelHeaderDes[1],
+                    'button.btn-link',
+                    1,
+                    1,
+                    'in second panel'
+                );
+
+                // Both panels closed first by default
+                expectClosedPanelBody(compDe, 0, 'closed (first panel)');
+                expectClosedPanelBody(compDe, 1, 'closed (second panel)');
+
+                // Click first panel
+                clickAndAwaitChanges(button0Des[0], fixture);
 
                 expectOpenPanelBody(compDe, 0, 'opened (first panel)');
                 expectClosedPanelBody(compDe, 1, 'closed (second panel)');
 
-                // click second panel
-                click(button1El as HTMLElement);
-                fixture.detectChanges();
+                // Click second panel
+                clickAndAwaitChanges(button1Des[0], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'closed (first panel)');
                 expectOpenPanelBody(compDe, 1, 'opened (second panel)');
-            });
+            }));
 
             describe('... should render panel content (div.card-body)', () => {
                 let tableDes: DebugElement[];
 
-                beforeEach(() => {
+                beforeEach(async () => {
                     /**
                      * Click button to open first panel and get inner table
                      */
 
-                    // button debug elements
+                    // Button debug elements
                     const buttonDes = getAndExpectDebugElementByCss(
                         compDe,
                         'div.card > div.card-header button.btn-link',
@@ -368,16 +393,16 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                         2
                     );
 
-                    // first button's native element to click on
+                    // First button's native element to click on
                     const button0El = buttonDes[0].nativeElement;
 
-                    // open first panel
+                    // Open first panel
                     click(button0El as HTMLElement);
-                    fixture.detectChanges();
+                    await detectChangesOnPush(fixture); // Replacement for fixture.detectChanges with OnPush
 
                     expectOpenPanelBody(compDe, 0, 'should have first panel opened');
 
-                    // table debug elements
+                    // Table debug elements
                     tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
                 });
 
@@ -449,9 +474,9 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
         describe('#navigateToResource', () => {
             beforeEach(fakeAsync(() => {
-                // open second panel
+                // Open second panel
 
-                // button debug elements
+                // Button debug elements
                 const buttonDes = getAndExpectDebugElementByCss(
                     compDe,
                     'div.card > div.card-header button.btn-link',
@@ -459,7 +484,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     2
                 );
 
-                // open first panel
+                // Open first panel
                 clickAndAwaitChanges(buttonDes[1], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'should have first panel closed');
@@ -470,22 +495,22 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                // no id
+                // No id
                 expectSpyCall(navigateToResourceSpy, 1, '');
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                // string
+                // String
                 expectSpyCall(navigateToResourceSpy, 2, '28');
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
-                // string
+                // String
                 expectSpyCall(navigateToResourceSpy, 3, '330');
             }));
 
@@ -493,9 +518,9 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
 
-                // first anchor has no id
+                // First anchor has no id
 
-                // trigger click with click helper & wait for changes
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
                 expect(emitSpy).not.toHaveBeenCalled();
@@ -506,16 +531,16 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                 const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
                 const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
 
-                // first anchor has no id, see above
+                // First anchor has no id, see above
 
-                // second anchor has @id: string
-                // trigger click with click helper & wait for changes
+                // Second anchor has @id: string
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
                 expectSpyCall(emitSpy, 1, '28');
 
-                // third anchor has @id: string
-                // trigger click with click helper & wait for changes
+                // Third anchor has @id: string
+                // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[2], fixture);
 
                 expectSpyCall(emitSpy, 2, '330');

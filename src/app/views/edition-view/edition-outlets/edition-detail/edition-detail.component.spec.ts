@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -17,7 +17,7 @@ import {
     FolioConvoluteList,
     EditionWork,
     EditionWorks,
-    FolioConvolute
+    FolioConvolute,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
@@ -63,24 +63,24 @@ describe('EditionDetailComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake service object with a `getEditionDetailData()` spy
+            // Create a fake service object with a `getEditionDetailData()` spy
             const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionDetailData']);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             getEditionDetailDataSpy = mockEditionDataService.getEditionDetailData.and.returnValue(observableOf()); // TODO: provide real test data
 
             const expectedTextcriticalComments = []; // TODO: provide real test data
-            // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+            // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', [
                 'getTextcriticalComments',
-                'getEditionWork'
+                'getEditionWork',
             ]);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
                 expectedTextcriticalComments
             );
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12));
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
             /*
-        mockEditionService = {
+        MockEditionService = {
             // getTextcriticalComments: (textcritics: TextcriticalComment[], overlay: { type: string; id: string }) => expectedTextcritics,
 
         };
@@ -93,12 +93,12 @@ describe('EditionDetailComponent', () => {
                     EditionDetailComponent,
                     EditionConvoluteStubComponent,
                     EditionAccoladeStubComponent,
-                    ModalComponent
+                    ModalComponent,
                 ],
                 providers: [
                     { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService }
-                ]
+                    { provide: EditionService, useValue: mockEditionService },
+                ],
             }).compileComponents();
         })
     );

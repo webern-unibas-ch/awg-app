@@ -5,7 +5,7 @@
  */
 export enum SearchParamsViewTypes {
     table = 'table',
-    grid = 'grid'
+    grid = 'grid',
 }
 
 /**

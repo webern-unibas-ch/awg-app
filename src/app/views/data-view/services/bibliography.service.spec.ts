@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed, waitForAsync } from '@angular/core/testing';
 import { HttpClient, HttpParams, HttpRequest } from '@angular/common/http';
 import { HttpClientTestingModule, HttpTestingController } from '@angular/common/http/testing';
@@ -26,13 +26,13 @@ describe('BibliographyService (DONE)', () => {
 
     let getApiResponseSpy: Spy;
 
-    // json object
+    // Json object
     let jsonConvert: JsonConvert;
     let expectedResourceFullResponseJson: ResourceFullResponseJson;
     let expectedSearchResponseJson: SearchResponseJson;
 
     const expectedProjectId = '6';
-    const expectedResTypeId = '126'; // test-01: 127
+    const expectedResTypeId = '126'; // Test-01: 127
     const expectedBibShortTitlePropertyId = '614'; // 614 = Bibligoraphie#Kurztitel
     const expectedResourcesRoute = 'resources/';
     const expectedSearchRoute = 'search/';
@@ -41,14 +41,14 @@ describe('BibliographyService (DONE)', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [HttpClientTestingModule],
-            providers: [BibliographyService]
+            providers: [BibliographyService],
         });
-        // inject services and http client handler
+        // Inject services and http client handler
         bibliographyService = TestBed.inject(BibliographyService);
         httpClient = TestBed.inject(HttpClient);
         httpTestingController = TestBed.inject(HttpTestingController);
 
-        // convert json objects
+        // Convert json objects
         jsonConvert = new JsonConvert();
         expectedResourceFullResponseJson = jsonConvert.deserializeObject(
             mockResourceFullResponseJson,
@@ -56,7 +56,7 @@ describe('BibliographyService (DONE)', () => {
         );
         expectedSearchResponseJson = jsonConvert.deserializeObject(mockSearchResponseJson, SearchResponseJson);
 
-        // spies on service functions
+        // Spies on service functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         getApiResponseSpy = spyOn(bibliographyService, 'getApiResponse').and.callThrough();
@@ -101,7 +101,7 @@ describe('BibliographyService (DONE)', () => {
             expect(bibliographyService.searchRoute).toBe(expectedSearchRoute);
         });
 
-        it(`... should have empty 'httpGetUrl' (inherited from ApiService)`, () => {
+        it("... should have empty 'httpGetUrl' (inherited from ApiService)", () => {
             expect(bibliographyService.httpGetUrl).toBeDefined();
             expect(bibliographyService.httpGetUrl).toBe('');
         });
@@ -109,7 +109,7 @@ describe('BibliographyService (DONE)', () => {
 
     describe('httpTestingController', () => {
         it(
-            `... should issue a mocked http get request`,
+            '... should issue a mocked http get request',
             waitForAsync(() => {
                 const testData: Data = { name: 'TestData' };
 
@@ -117,15 +117,15 @@ describe('BibliographyService (DONE)', () => {
                     expect(data).toEqual(testData);
                 });
 
-                // match the request url
+                // Match the request url
                 const call = httpTestingController.expectOne({
-                    url: '/foo/bar'
+                    url: '/foo/bar',
                 });
 
-                // check for GET request
+                // Check for GET request
                 expect(call.request.method).toEqual('GET');
 
-                // respond with mocked data
+                // Respond with mocked data
                 call.flush(testData);
             })
         );
@@ -134,17 +134,19 @@ describe('BibliographyService (DONE)', () => {
     describe('#getBibliographyList', () => {
         describe('request', () => {
             it(
-                `... should perform an HTTP GET request to the Knora API (via ApiService)`,
+                '... should perform an HTTP GET request to the Knora API (via ApiService)',
                 waitForAsync(() => {
                     const expectedUrl = apiUrl + expectedSearchRoute;
 
-                    // call service function
+                    // Call service function
                     bibliographyService.getBibliographyList().subscribe();
 
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
-                        return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
-                    }, `GET to ${expectedUrl}`);
+                    // Expect one request to url with given settings
+                    const call = httpTestingController.expectOne(
+                        (req: HttpRequest<any>) =>
+                            req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl,
+                        `GET to ${expectedUrl}`
+                    );
 
                     expect(call.request.method).toEqual('GET', 'should be GET');
                     expect(call.request.responseType).toEqual('json', 'should be json');
@@ -153,17 +155,19 @@ describe('BibliographyService (DONE)', () => {
             );
 
             it(
-                `... should set filter params for GET request`,
+                '... should set filter params for GET request',
                 waitForAsync(() => {
                     const expectedUrl = apiUrl + expectedSearchRoute;
 
-                    // call service function
+                    // Call service function
                     bibliographyService.getBibliographyList().subscribe();
 
-                    // expect one request to url with given settings
-                    const call = httpTestingController.expectOne((req: HttpRequest<any>) => {
-                        return req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl;
-                    }, `GET to ${expectedUrl}`);
+                    // Expect one request to url with given settings
+                    const call = httpTestingController.expectOne(
+                        (req: HttpRequest<any>) =>
+                            req.method === 'GET' && req.responseType === 'json' && req.url === expectedUrl,
+                        `GET to ${expectedUrl}`
+                    );
 
                     expect(call.request.method).toEqual('GET', 'should be GET');
                     expect(call.request.responseType).toEqual('json', 'should be json');
@@ -183,12 +187,12 @@ describe('BibliographyService (DONE)', () => {
                         expectedBibShortTitlePropertyId,
                         `should be ${expectedBibShortTitlePropertyId}`
                     );
-                    expect(call.request.params.get('compop')).toBe('EXISTS', `should be EXISTS`);
+                    expect(call.request.params.get('compop')).toBe('EXISTS', 'should be EXISTS');
                 })
             );
 
             it(
-                `... should call getApiResponse (via ApiService) with filter params`,
+                '... should call getApiResponse (via ApiService) with filter params',
                 waitForAsync(() => {
                     const expectedQueryPath = expectedSearchRoute;
                     const expectedQueryHttpParams = new HttpParams()
@@ -204,7 +208,7 @@ describe('BibliographyService (DONE)', () => {
                         expectSpyCall(getApiResponseSpy, 1, [
                             SearchResponseJson,
                             expectedQueryPath,
-                            expectedQueryHttpParams
+                            expectedQueryHttpParams,
                         ]);
                     });
                 })
@@ -214,7 +218,7 @@ describe('BibliographyService (DONE)', () => {
         describe('response', () => {
             describe('success', () => {
                 it(
-                    `... should return an Observable<SearchResponseJson>`,
+                    '... should return an Observable<SearchResponseJson>',
                     waitForAsync(() => {
                         getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
@@ -227,7 +231,7 @@ describe('BibliographyService (DONE)', () => {
 
             describe('fail', () => {
                 it(
-                    `... should return an Observable<ApiServiceError>`,
+                    '... should return an Observable<ApiServiceError>',
                     waitForAsync(() => {
                         const expectedQueryPath = expectedSearchRoute;
                         const expectedQueryHttpParams = new HttpParams()
@@ -251,7 +255,7 @@ describe('BibliographyService (DONE)', () => {
                                 expectSpyCall(getApiResponseSpy, 1, [
                                     SearchResponseJson,
                                     expectedQueryPath,
-                                    expectedQueryHttpParams
+                                    expectedQueryHttpParams,
                                 ]);
                                 expect(error).toEqual(expectedApiServiceError);
                             }
@@ -265,15 +269,15 @@ describe('BibliographyService (DONE)', () => {
     describe('#getBibliographyItemDetail', () => {
         describe('request', () => {
             it(
-                `... should perform an HTTP GET request to the Knora API (via ApiService)`,
+                '... should perform an HTTP GET request to the Knora API (via ApiService)',
                 waitForAsync(() => {
                     const expectedResourceId = '11398';
                     const expectedUrl = apiUrl + expectedResourcesRoute + expectedResourceId;
 
-                    // call service function
+                    // Call service function
                     bibliographyService.getBibliographyItemDetail(expectedResourceId).subscribe();
 
-                    // expect one request to url with given settings
+                    // Expect one request to url with given settings
                     httpTestingController.expectOne((req: HttpRequest<any>) => {
                         expect(req.params).toBeDefined();
                         expect(req.params.keys().length).toBe(0, 'should be 0');
@@ -284,7 +288,7 @@ describe('BibliographyService (DONE)', () => {
             );
 
             it(
-                `... should call getApiResponse (via ApiService) with resource id`,
+                '... should call getApiResponse (via ApiService) with resource id',
                 waitForAsync(() => {
                     const expectedResourceId = '11398';
                     const expectedQueryPath = expectedResourcesRoute + expectedResourceId;
@@ -298,7 +302,7 @@ describe('BibliographyService (DONE)', () => {
                             expectSpyCall(getApiResponseSpy, 1, [
                                 ResourceFullResponseJson,
                                 expectedQueryPath,
-                                expectedQueryHttpParams
+                                expectedQueryHttpParams,
                             ]);
                         });
                 })
@@ -308,7 +312,7 @@ describe('BibliographyService (DONE)', () => {
         describe('response', () => {
             describe('success', () => {
                 it(
-                    `... should return an Observable<ResourceFullResponseJson>`,
+                    '... should return an Observable<ResourceFullResponseJson>',
                     waitForAsync(() => {
                         const expectedResourceId = '11398';
 
@@ -325,7 +329,7 @@ describe('BibliographyService (DONE)', () => {
 
             describe('fail', () => {
                 it(
-                    `... should return an Observable<ApiServiceError>`,
+                    '... should return an Observable<ApiServiceError>',
                     waitForAsync(() => {
                         const expectedResourceId = undefined;
                         const expectedQueryPath = expectedResourcesRoute + expectedResourceId;
@@ -345,7 +349,7 @@ describe('BibliographyService (DONE)', () => {
                                 expectSpyCall(getApiResponseSpy, 1, [
                                     ResourceFullResponseJson,
                                     expectedQueryPath,
-                                    expectedQueryHttpParams
+                                    expectedQueryHttpParams,
                                 ]);
                                 expect(error).toEqual(expectedApiServiceError);
                             }

@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
     selector: 'awg-structure-view',
     templateUrl: './structure-view.component.html',
     styleUrls: ['./structure-view.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StructureViewComponent implements OnInit {
     /**
@@ -57,10 +57,10 @@ export class StructureViewComponent implements OnInit {
      * @returns {void} Activates the structure-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: 'structureInfo' } }], {
             preserveFragment: true,
-            queryParamsHandling: 'preserve'
+            queryParamsHandling: 'preserve',
         });
     }
 }

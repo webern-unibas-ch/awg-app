@@ -1,18 +1,18 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, Input, NgModule } from '@angular/core';
 
-import { NgbAccordionModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import {
     EditionSvgOverlay,
     EditionSvgSheet,
     EditionSvgSheetList,
-    TextcriticalComment
+    TextcriticalComment,
 } from '@awg-views/edition-view/models';
 
 import { EditionAccoladeComponent } from './edition-accolade.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-edition-svg-sheet-nav', template: '' })
 class EditionSvgSheetNavStubComponent {
     @Input()
@@ -49,16 +49,25 @@ describe('EditionAccoladeComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
+    // Global NgbConfigModule
+    @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
+    class NgbAccordionWithConfigModule {
+        constructor(config: NgbConfig) {
+            // Set animations to false
+            config.animation = false;
+        }
+    }
+
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                imports: [NgbAccordionModule],
+                imports: [NgbAccordionWithConfigModule],
                 declarations: [
                     EditionAccoladeComponent,
                     EditionSvgSheetStubComponent,
                     EditionSvgSheetNavStubComponent,
-                    EditionTkaTableStubComponent
-                ]
+                    EditionTkaTableStubComponent,
+                ],
             }).compileComponents();
         })
     );

@@ -28,5 +28,5 @@ export {
     HttpCacheService,
     LoadingService,
     SideInfoService,
-    StorageService
+    StorageService,
 };

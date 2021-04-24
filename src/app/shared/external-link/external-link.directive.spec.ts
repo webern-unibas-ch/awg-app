@@ -19,7 +19,7 @@ import { ExternalLinkDirective } from './external-link.directive';
         <a href="{{ dynamicInternalLink }}">Link Internal Dynamic</a>
 
         <br /><br />
-        <a (click)="doSomething()">Link without href</a>`
+        <a (click)="doSomething()">Link without href</a>`,
 })
 class TestExernalLinkComponent {
     hostname = location.hostname;
@@ -27,7 +27,7 @@ class TestExernalLinkComponent {
     dynamicExternalLink = 'https://coryrylan.com/blog/managing-external-links-safely-in-angular';
 
     doSomething() {
-        console.log('Clicked on link without href');
+        console.info('Clicked on link without href');
     }
 }
 
@@ -46,13 +46,13 @@ describe('ExternalLinkDirective', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestExernalLinkComponent, ExternalLinkDirective]
+            declarations: [TestExernalLinkComponent, ExternalLinkDirective],
         });
 
         fixture = TestBed.createComponent(TestExernalLinkComponent);
         component = fixture.componentInstance;
 
-        fixture.detectChanges(); // initial binding
+        fixture.detectChanges(); // Initial binding
     });
 
     afterAll(() => {
@@ -60,7 +60,7 @@ describe('ExternalLinkDirective', () => {
     });
 
     it('should have 4 anchor elements with href attributes', () => {
-        // all elements with an attached ExternalLinkDirective (a[href])
+        // All elements with an attached ExternalLinkDirective (a[href])
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));
 
         expect(aDes.length).toBe(4, 'should be 4');
@@ -146,7 +146,7 @@ describe('ExternalLinkDirective', () => {
     it('should reflect input change for [href] values', () => {
         component.dynamicExternalLink = expectedNewExternalLink;
 
-        // apply changes
+        // Apply changes
         fixture.detectChanges();
 
         aDes = fixture.debugElement.queryAll(By.directive(ExternalLinkDirective));

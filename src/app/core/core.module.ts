@@ -13,7 +13,7 @@ import { httpInterceptorProviders } from './interceptors';
     imports: [SharedModule, FooterModule],
     declarations: [NavbarComponent, ViewContainerComponent],
     exports: [NavbarComponent, ViewContainerComponent, FooterModule],
-    providers: [httpInterceptorProviders, Title]
+    providers: [httpInterceptorProviders, Title],
 })
 export class CoreModule {
     constructor(

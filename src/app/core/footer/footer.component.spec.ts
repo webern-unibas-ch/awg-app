@@ -1,17 +1,16 @@
-/* tslint:disable:no-unused-variable */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
-import { Logo, Logos, Meta, MetaContact, MetaPage, MetaSectionTypes, MetaStructure } from '@awg-core/core-models';
+import { Logo, Logos, MetaPage, MetaSectionTypes } from '@awg-core/core-models';
 import { LOGOSDATA, METADATA } from '@awg-core/mock-data';
 
 import { CoreService } from '@awg-core/services';
 import { FooterComponent } from './footer.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-footer-copyright', template: '' })
 class FooterCopyrightStubComponent {
     @Input()
@@ -49,10 +48,10 @@ describe('FooterComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // stub service for test purposes
+            // Stub service for test purposes
             mockCoreService = {
                 getMetaDataSection: sectionType => METADATA[sectionType],
-                getLogos: () => expectedLogos
+                getLogos: () => expectedLogos,
             };
 
             TestBed.configureTestingModule({
@@ -61,9 +60,9 @@ describe('FooterComponent (DONE)', () => {
                     FooterCopyrightStubComponent,
                     FooterDeclarationStubComponent,
                     FooterLogoStubComponent,
-                    FooterPoweredbyStubComponent
+                    FooterPoweredbyStubComponent,
                 ],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );
@@ -74,11 +73,11 @@ describe('FooterComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedLogos = LOGOSDATA;
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         spyOn(component, 'provideMetaData').and.callThrough();
@@ -150,10 +149,10 @@ describe('FooterComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the call to the meta service in #provideMetaData
+            // Mock the call to the meta service in #provideMetaData
             component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

@@ -39,13 +39,13 @@ export class ViewBox {
      * @param {FolioSettings} folioSettings The given folio settings.
      */
     constructor(folioSettings: FolioSettings) {
-        // calculate the width for the viewBox string
+        // Calculate the width for the viewBox string
         const width = (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor;
 
-        // calculate the height for the viewBox string
+        // Calculate the height for the viewBox string
         const height = (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor;
 
-        // set the viewBox string
+        // Set the viewBox string
         this.viewBox = '0 0 ' + width + ' ' + height;
     }
 }

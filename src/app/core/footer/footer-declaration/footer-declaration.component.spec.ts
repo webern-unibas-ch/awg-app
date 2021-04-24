@@ -24,7 +24,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [FooterDeclarationComponent, RouterLinkStubDirective]
+                declarations: [FooterDeclarationComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );
@@ -35,7 +35,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
     });
 
@@ -58,15 +58,15 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... should not render pageMetaData yet', () => {
-                // find debug elements
+                // Find debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
 
-                // find native elements
+                // Find native elements
                 const versionEl = versionDes[0].nativeElement;
                 const versionDateEl = versionDateDes[0].nativeElement;
 
-                // check output
+                // Check output
                 expect(versionEl.textContent).toBeDefined();
                 expect(versionEl.textContent).toBe('', 'should contain empty string');
 
@@ -78,10 +78,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.pageMetaData = expectedPageMetaData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -90,11 +90,11 @@ describe('FooterDeclarationComponent (DONE)', () => {
                 const expectedVersion = expectedPageMetaData.version;
                 const expectedVersionDate = expectedPageMetaData.versionReleaseDate;
 
-                // find debug elements
+                // Find debug elements
                 const versionDes = getAndExpectDebugElementByCss(compDe, '#awg-version', 1, 1);
                 const versionDateDes = getAndExpectDebugElementByCss(compDe, '#awg-version-date', 1, 1);
 
-                // find native elements
+                // Find native elements
                 const versionEl = versionDes[0].nativeElement;
                 const versionDateEl = versionDateDes[0].nativeElement;
 
@@ -108,10 +108,10 @@ describe('FooterDeclarationComponent (DONE)', () => {
 
         describe('[routerLink]', () => {
             beforeEach(() => {
-                // find DebugElements with an attached RouterLinkStubDirective
+                // Find DebugElements with an attached RouterLinkStubDirective
                 linkDes = getAndExpectDebugElementByDirective(compDe, RouterLinkStubDirective, 2, 2);
 
-                // get attached link directive instances using each DebugElement's injector
+                // Get attached link directive instances using each DebugElement's injector
                 routerLinks = linkDes.map(de => de.injector.get(RouterLinkStubDirective));
             });
 
@@ -122,8 +122,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can click imprint link in template', () => {
-                const imprintLinkDe = linkDes[0]; // contact link DebugElement
-                const imprintLink = routerLinks[0]; // contact link directive
+                const imprintLinkDe = linkDes[0]; // Contact link DebugElement
+                const imprintLink = routerLinks[0]; // Contact link directive
 
                 expect(imprintLink.navigatedTo).toBeNull('should not have navigated yet');
 
@@ -134,8 +134,8 @@ describe('FooterDeclarationComponent (DONE)', () => {
             });
 
             it('... can click documentation link in template', () => {
-                const documentationLinkDe = linkDes[1]; // contact link DebugElement
-                const documentationLink = routerLinks[1]; // contact link directive
+                const documentationLinkDe = linkDes[1]; // Contact link DebugElement
+                const documentationLink = routerLinks[1]; // Contact link directive
 
                 expect(documentationLink.navigatedTo).toBeNull('should not have navigated yet');
 

@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed, inject } from '@angular/core/testing';
 import { RouterTestingModule } from '@angular/router/testing';
 
@@ -16,7 +16,7 @@ describe('ConversionService', () => {
     beforeEach(() => {
         TestBed.configureTestingModule({
             imports: [AppModule, RouterTestingModule],
-            providers: [ConversionService]
+            providers: [ConversionService],
         });
         conversionService = TestBed.inject(ConversionService);
     });

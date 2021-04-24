@@ -21,7 +21,7 @@ import { GraphVisualizerService } from './services/graph-visualizer.service';
     selector: 'awg-graph-visualizer',
     templateUrl: './graph-visualizer.component.html',
     styleUrls: ['./graph-visualizer.component.css'],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class GraphVisualizerComponent implements OnInit {
     /**
@@ -112,7 +112,7 @@ export class GraphVisualizerComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        // set initial values
+        // Set initial values
         this.resetTriples();
         this.resetQuery();
     }
@@ -168,13 +168,13 @@ export class GraphVisualizerComponent implements OnInit {
             );
         }
 
-        // get the query type
+        // Get the query type
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
-        // perform only construct queries for now
+        // Perform only construct queries for now
         if (this.queryType === 'construct') {
-            // query local store
-            const result = this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+            // Query local store
+            const result = this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
             this.queryResult = from(result);
         } else {
             this.queryResult = EMPTY;
@@ -190,7 +190,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Logs the click event.
      */
     onGraphNodeClick(node: D3SimulationNode) {
-        console.log('GraphVisualizerComponent# graphClick on node', node);
+        console.info('GraphVisualizerComponent# graphClick on node', node);
     }
 
     /**
@@ -203,7 +203,9 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query with the given URI.
      */
     onTableClick(IRI: string): void {
-        if (!IRI) return;
+        if (!IRI) {
+            return;
+        }
         this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
         this.performQuery();
     }
@@ -225,17 +227,17 @@ export class GraphVisualizerComponent implements OnInit {
         if (!durationValue) {
             durationValue = 10000;
         }
-        console.log(message, durationValue);
-        // TODO: use snackbar instead of console.log
+        console.error(message, durationValue);
+        // TODO: use snackbar instead of console
         /*
-        this.snackBar.open(message, 'close', {
+        This.snackBar.open(message, 'close', {
             duration: durationValue
         });
         */
     }
 
     /**
-     * Private method: queryLocalStore
+     * Private method: _queryLocalStore
      *
      * It performs a query against the local rdfstore.
      *
@@ -245,7 +247,7 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {Promise<Triple[]>} The result of the query as an promise of triple array.
      */
-    private async queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
+    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise<Triple[]> {
         // Capture start time of query
         const t1 = Date.now();
 
@@ -269,7 +271,6 @@ export class GraphVisualizerComponent implements OnInit {
 
             // Capture query time
             this.queryTime = Date.now() - t1;
-            // console.log('QUERYTIME:', this.queryTime);
 
             result = [];
         }

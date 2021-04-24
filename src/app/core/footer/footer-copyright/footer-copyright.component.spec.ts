@@ -20,7 +20,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [FooterCopyrightComponent]
+                declarations: [FooterCopyrightComponent],
             }).compileComponents();
         })
     );
@@ -31,7 +31,7 @@ describe('FooterCopyrightComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
     });
 
@@ -73,10 +73,10 @@ describe('FooterCopyrightComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.pageMetaData = expectedPageMetaData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

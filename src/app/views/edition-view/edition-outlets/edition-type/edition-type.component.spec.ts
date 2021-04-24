@@ -11,7 +11,7 @@ describe('EditionTypeComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [EditionTypeComponent, RouterOutletStubComponent]
+                declarations: [EditionTypeComponent, RouterOutletStubComponent],
             }).compileComponents();
         })
     );

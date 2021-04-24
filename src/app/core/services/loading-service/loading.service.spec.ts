@@ -11,12 +11,12 @@ describe('LoadingService (DONE)', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            providers: [LoadingService]
+            providers: [LoadingService],
         });
-        // inject service
+        // Inject service
         loadingService = TestBed.inject(LoadingService);
 
-        // test data (default)
+        // Test data (default)
         loadingStatus = false;
     });
 
@@ -28,46 +28,46 @@ describe('LoadingService (DONE)', () => {
         expect(loadingService).toBeTruthy();
     });
 
-    it('should have isLoadingSubject', () => {
-        expect((loadingService as any).isLoadingSubject).toBeTruthy();
+    it('should have _isLoadingSubject', () => {
+        expect((loadingService as any)._isLoadingSubject).toBeTruthy();
     });
 
-    it('should have isLoadingStream$', () => {
-        expect((loadingService as any).isLoadingStream$).toBeTruthy();
+    it('should have _isLoadingStream$', () => {
+        expect((loadingService as any)._isLoadingStream$).toBeTruthy();
     });
 
     describe('#getLoadingStatus', () => {
-        it(`... should return default false value`, done => {
+        it('... should return default false value', done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBeFalse();
                 done();
             });
         });
 
-        it(`... should return updated value`, done => {
+        it('... should return updated value', done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
 
-            // update status
+            // Update status
             loadingStatus = true;
             loadingService.updateLoadingStatus(loadingStatus);
         });
     });
 
     describe('#updateLoadingStatus', () => {
-        it(`... should emit updated loading status`, done => {
+        it('... should emit updated loading status', done => {
             loadingService.getLoadingStatus().subscribe((isLoading: boolean) => {
                 expect(isLoading).toBe(loadingStatus, `should be ${loadingStatus}`);
                 done();
             });
 
-            // update status
+            // Update status
             loadingStatus = true;
             loadingService.updateLoadingStatus(loadingStatus);
 
-            // update status
+            // Update status
             loadingStatus = false;
             loadingService.updateLoadingStatus(loadingStatus);
         });

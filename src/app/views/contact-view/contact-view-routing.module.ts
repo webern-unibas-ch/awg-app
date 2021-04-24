@@ -3,13 +3,13 @@ import { Routes, RouterModule } from '@angular/router';
 
 import { ContactViewComponent } from '@awg-views/contact-view/contact-view.component';
 
-/* routes of the ContactViewModule */
+/* Routes of the ContactViewModule */
 const contactViewRoutes: Routes = [
     {
         path: '',
         component: ContactViewComponent,
-        data: { title: 'AWG Online Edition – Contact' }
-    }
+        data: { title: 'AWG Online Edition – Contact' },
+    },
 ];
 
 /**
@@ -25,6 +25,6 @@ export const routedContactViewComponents = [ContactViewComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(contactViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class ContactViewRoutingModule {}

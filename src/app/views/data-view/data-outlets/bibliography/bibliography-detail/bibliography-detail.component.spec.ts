@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 
@@ -24,26 +24,26 @@ describe('BibliographyDetailComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake bibliography service object with a `getBibliographyItemDetail()` spy
+            // Create a fake bibliography service object with a `getBibliographyItemDetail()` spy
             const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyItemDetail']);
-            // make the spies return a synchronous Observable with the test data
+            // Make the spies return a synchronous Observable with the test data
             expectedBibItemDetailBody = new ResourceFullResponseJson();
             getBibliographyListSpy = mockBibliographyService.getBibliographyItemDetail.and.returnValue(
                 observableOf(expectedBibItemDetailBody)
             );
 
-            // stub conversionService to return convertedBibItemDetail
+            // Stub conversionService to return convertedBibItemDetail
             expectedConvertedBibItemDetail = new BibEntry('Test', 'Monographie', 'Tim Test', 'Testbuch', '2018');
             mockConversionService = {
-                convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail
+                convertObjectProperties: (resourceData: ResourceFullResponseJson) => expectedConvertedBibItemDetail,
             };
 
             TestBed.configureTestingModule({
                 declarations: [BibliographyDetailComponent, BibliographyFormatPipe],
                 providers: [
                     { provide: BibliographyService, useValue: mockBibliographyService },
-                    { provide: ConversionService, useValue: mockConversionService }
-                ]
+                    { provide: ConversionService, useValue: mockConversionService },
+                ],
             }).compileComponents();
         })
     );
@@ -52,7 +52,7 @@ describe('BibliographyDetailComponent', () => {
         fixture = TestBed.createComponent(BibliographyDetailComponent);
         component = fixture.componentInstance;
 
-        // test data
+        // Test data
         expectedObjId = '1234';
     });
 
@@ -68,10 +68,10 @@ describe('BibliographyDetailComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.objId = expectedObjId;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

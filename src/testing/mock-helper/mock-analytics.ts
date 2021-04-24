@@ -1,7 +1,13 @@
 /**
  * Type for mocked analytics events.
  */
-type analyticsType = [string, string, { page_path?: string; anonymize_ip?: boolean; send_page_view?: boolean }];
+type analyticsType = [
+    /* eslint-disable @typescript-eslint/naming-convention */
+    string,
+    string,
+    { page_path?: string; anonymize_ip?: boolean; send_page_view?: boolean }
+    /* eslint-enable @typescript-eslint/naming-convention */
+];
 
 /**
  * The internal IMockAnalytics interface.
@@ -41,14 +47,18 @@ export const mockAnalytics: IMockAnalytics = {
     gtag: (
         event: string,
         eventName: string,
-        eventOptions: { page_path: string; anonymize_ip: boolean; send_page_view: boolean }
+        eventOptions: {
+            /* eslint-disable @typescript-eslint/naming-convention */
+            page_path: string;
+            anonymize_ip: boolean;
+            send_page_view: boolean;
+            /* eslint-enable @typescript-eslint/naming-convention */
+        }
     ): void => {
         analyticsStore.push([event, eventName, eventOptions]);
     },
-    getGtag: (index: number): analyticsType => {
-        return analyticsStore[index] || null;
-    },
+    getGtag: (index: number): analyticsType => analyticsStore[index] || null,
     clear: () => {
         analyticsStore = [];
-    }
+    },
 };

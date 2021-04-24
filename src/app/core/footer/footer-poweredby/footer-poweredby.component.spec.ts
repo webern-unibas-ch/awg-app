@@ -24,7 +24,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [FooterPoweredbyComponent, FooterLogoStubComponent]
+                declarations: [FooterPoweredbyComponent, FooterLogoStubComponent],
             }).compileComponents();
         })
     );
@@ -35,38 +35,38 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedLogos = {
             angular: {
                 id: 'angularlogo',
                 src: 'assets/img/logos/angular.svg',
                 alt: 'Logo Angular',
-                href: 'https://angular.io'
+                href: 'https://angular.io',
             },
             bootstrap: {
                 id: 'bootstraplogo',
                 src: 'assets/img/logos/ng-bootstrap.svg',
                 alt: 'Logo ng-Bootstrap',
-                href: 'https://ng-bootstrap.github.io/'
+                href: 'https://ng-bootstrap.github.io/',
             },
             github: {
                 id: 'githublogo',
                 src: 'assets/img/logos/github.svg',
                 alt: 'Logo GitHub',
-                href: 'https://github.com/webern-unibas-ch/awg-app'
+                href: 'https://github.com/webern-unibas-ch/awg-app',
             },
             snf: {
                 id: 'snflogo',
                 src: 'assets/img/logos/snf.png',
                 alt: 'Logo SNF',
-                href: 'http://www.snf.ch'
+                href: 'http://www.snf.ch',
             },
             unibas: {
                 id: 'unibaslogo',
                 src: 'assets/img/logos/uni.svg',
                 alt: 'Logo Uni Basel',
-                href: 'https://www.unibas.ch'
-            }
+                href: 'https://www.unibas.ch',
+            },
         };
     });
 
@@ -96,10 +96,10 @@ describe('FooterPoweredbyComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.logos = expectedLogos;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

@@ -13,7 +13,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     selector: 'awg-textcritics',
     templateUrl: './textcritics.component.html',
     styleUrls: ['./textcritics.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class TextcriticsComponent implements OnInit {
     /**

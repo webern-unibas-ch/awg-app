@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
 import { RouterLinkStubDirective } from '@testing/router-stubs';
@@ -13,7 +13,7 @@ describe('SourceDescriptionComponent', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [SourceDescriptionComponent, CompileHtmlComponent, RouterLinkStubDirective]
+                declarations: [SourceDescriptionComponent, CompileHtmlComponent, RouterLinkStubDirective],
             }).compileComponents();
         })
     );

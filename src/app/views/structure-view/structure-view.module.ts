@@ -13,6 +13,6 @@ import { StructureViewRoutingModule, routedStructureViewComponents } from './str
  */
 @NgModule({
     imports: [SharedModule, StructureViewRoutingModule],
-    declarations: [routedStructureViewComponents]
+    declarations: [routedStructureViewComponents],
 })
 export class StructureViewModule {}

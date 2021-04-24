@@ -3,13 +3,13 @@ import { RouterModule, Routes } from '@angular/router';
 
 import { EditionReportComponent } from './edition-report.component';
 
-/* routes of the EditionReportModule */
+/* Routes of the EditionReportModule */
 const editionReportRoutes: Routes = [
     {
         path: '',
         component: EditionReportComponent,
-        data: { title: 'AWG Online Edition – Report' }
-    }
+        data: { title: 'AWG Online Edition – Report' },
+    },
 ];
 
 /**
@@ -25,6 +25,6 @@ export const routedEditionReportComponents = [EditionReportComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(editionReportRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class EditionReportRoutingModule {}

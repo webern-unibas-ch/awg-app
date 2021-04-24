@@ -11,14 +11,14 @@ import {
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     SearchResponseJson,
-    SelectionJson
+    SelectionJson,
 } from '@awg-shared/api-objects';
 import {
     IResourceDataResponse,
     ResourceData,
     ResourceDetail,
     SearchParams,
-    SearchParamsViewTypes
+    SearchParamsViewTypes,
 } from '@awg-views/data-view/models';
 
 /**
@@ -31,7 +31,7 @@ import {
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class DataApiService extends ApiService {
     /**
@@ -59,7 +59,7 @@ export class DataApiService extends ApiService {
         search: 'search/',
         geonames: 'geonames/',
         hlists: 'hlists/',
-        selections: 'selections/'
+        selections: 'selections/',
     };
 
     /**
@@ -93,15 +93,15 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        // default values
+        // Default values
         const sp: SearchParams = {
             query: searchParams.query,
             nRows: searchParams.nRows || '-1',
             startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchParamsViewTypes.table
+            view: searchParams.view || SearchParamsViewTypes.table,
         };
 
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string = this.routes.search + sp.query;
         const queryHttpParams = new HttpParams()
             .set('searchtype', 'fulltext')
@@ -109,22 +109,22 @@ export class DataApiService extends ApiService {
             .set('show_nrows', sp.nRows)
             .set('start_at', sp.startAt);
 
-        // cold request to API
+        // Cold request to API
         const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
             SearchResponseJson,
             queryPath,
             queryHttpParams
         );
 
-        // return converted search response
+        // Return converted search response
         return searchData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new SearchResponseJson()),
 
-            // map the response to a converted search response object for HTML display
-            map((searchResponse: SearchResponseJson) => {
-                return this.conversionService.convertFullTextSearchResults(searchResponse);
-            })
+            // Map the response to a converted search response object for HTML display
+            map((searchResponse: SearchResponseJson) =>
+                this.conversionService.convertFullTextSearchResults(searchResponse)
+            )
         );
     }
 
@@ -143,24 +143,24 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        // cold request to API
-        const fullResponseData$: Observable<ResourceFullResponseJson> = this.getResourceFullResponseData(resourceId);
-        const contextData$: Observable<ResourceContextResponseJson> = this.getResourceContextData(resourceId);
+        // Cold request to API
+        const fullResponseData$: Observable<ResourceFullResponseJson> = this._getResourceFullResponseData(resourceId);
+        const contextData$: Observable<ResourceContextResponseJson> = this._getResourceContextData(resourceId);
 
-        // return converted search response
+        // Return converted search response
         return observableForkJoin([fullResponseData$, contextData$]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([new ResourceFullResponseJson(), new ResourceContextResponseJson()]),
 
-            // map the forkJoined response to a ResourceData object
-            map((resourceDataResponse: IResourceDataResponse) => {
-                return this.prepareResourceData(resourceDataResponse, resourceId);
-            })
+            // Map the forkJoined response to a ResourceData object
+            map((resourceDataResponse: IResourceDataResponse) =>
+                this._prepareResourceData(resourceDataResponse, resourceId)
+            )
         );
     }
 
     /**
-     * Private method: prepareResourceData.
+     * Private method: _prepareResourceData.
      *
      * It converts the data response of a requested resource
      * to a ResourceData object.
@@ -170,53 +170,53 @@ export class DataApiService extends ApiService {
      *
      * @returns {ResourceData} The resource data object.
      */
-    private prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
+    private _prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
         if (Object.keys(resourceDataResponse[0]).length === 0 && resourceDataResponse[0].constructor === Object) {
             return new ResourceData(new ResourceFullResponseJson(), undefined);
         }
 
-        // convert data for displaying resource detail
+        // Convert data for displaying resource detail
         const resourceDetail: ResourceDetail = this.conversionService.convertResourceData(
             resourceDataResponse,
             resourceId
         );
 
-        // return new resource data
+        // Return new resource data
         return new ResourceData(resourceDataResponse[0], resourceDetail);
     }
 
     /**
-     * Private method: getResourceContextData.
+     * Private method: _getResourceContextData.
      *
-     * It calls the {@link getResourceDataResponseFromApi} method to
+     * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the ResourceContextResponseJson data.
      *
      * @params {string} resourceId The id of the requested resource.
      *
      * @returns {Observable<ResourceContextResponseJson>} The observable of the response data.
      */
-    private getResourceContextData(resourceId: string): Observable<ResourceContextResponseJson> {
-        return this.getResourceDataResponseFromApi(ResourceContextResponseJson, resourceId);
+    private _getResourceContextData(resourceId: string): Observable<ResourceContextResponseJson> {
+        return this._getResourceDataResponseFromApi(ResourceContextResponseJson, resourceId);
     }
 
     /**
-     * Private method: getResourceFullResponseData.
+     * Private method: _getResourceFullResponseData.
      *
-     * It calls the {@link getResourceDataResponseFromApi} method to
+     * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the ResourceFullResponseJson data.
      *
      * @params {string} resourceId The id of the requested resource.
      *
      * @returns {Observable<ResourceFullResponseJson>} The observable of the response data.
      */
-    private getResourceFullResponseData(resourceId: string): Observable<ResourceFullResponseJson> {
-        return this.getResourceDataResponseFromApi(ResourceFullResponseJson, resourceId);
+    private _getResourceFullResponseData(resourceId: string): Observable<ResourceFullResponseJson> {
+        return this._getResourceDataResponseFromApi(ResourceFullResponseJson, resourceId);
     }
 
     /**
-     * Private method: getGeoData.
+     * Private method: _getGeoData.
      *
-     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the GeoDataJson data.
      *
      * NOT USED.
@@ -227,14 +227,14 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable<GeoDataJson>} The observable of the response data.
      */
-    private getGeoData(resourceId: string): Observable<GeoDataJson> {
-        return this.getResourceDataResponseFromApi(GeoDataJson, resourceId);
+    private _getGeoData(resourceId: string): Observable<GeoDataJson> {
+        return this._getResourceDataResponseFromApi(GeoDataJson, resourceId);
     }
 
     /**
-     * Private method: getHlistData.
+     * Private method: _getHlistData.
      *
-     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the HlistJson data.
      *
      * NOT USED.
@@ -245,14 +245,14 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable<HlistJson>} The observable of the response data.
      */
-    private getHlistData(resourceId: string): Observable<HlistJson> {
-        return this.getResourceDataResponseFromApi(HlistJson, resourceId);
+    private _getHlistData(resourceId: string): Observable<HlistJson> {
+        return this._getResourceDataResponseFromApi(HlistJson, resourceId);
     }
 
     /**
-     * Private method: getSelectionsData.
+     * Private method: _getSelectionsData.
      *
-     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the SelectionJson data.
      *
      * NOT USED.
@@ -263,12 +263,12 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable<SelectionJson>} The observable of the response data.
      */
-    private getSelectionsData(resourceId: string): Observable<SelectionJson> {
-        return this.getResourceDataResponseFromApi(SelectionJson, resourceId);
+    private _getSelectionsData(resourceId: string): Observable<SelectionJson> {
+        return this._getResourceDataResponseFromApi(SelectionJson, resourceId);
     }
 
     /**
-     * Private method: getResourceDataResponseFromApi.
+     * Private method: _getResourceDataResponseFromApi.
      *
      * It prepares the calls to the given (SALSAH) API
      * for a resource id depending on the responseJsonType
@@ -279,12 +279,12 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable<any>} The observable of the HTTP response.
      */
-    private getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable<any> {
-        // init query path and params
+    private _getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable<any> {
+        // Init query path and params
         let queryPath: string;
         let queryHttpParams: HttpParams = new HttpParams();
 
-        // set path and params of query depending on responseJsonType
+        // Set path and params of query depending on responseJsonType
         switch (responseJsonType) {
             case GeoDataJson:
                 queryPath = this.routes.geonames + id;
@@ -305,12 +305,12 @@ export class DataApiService extends ApiService {
                 break;
         }
 
-        // trigger call to API
+        // Trigger call to API
         return this.getApiResponse(responseJsonType, queryPath, queryHttpParams);
     }
 
     /**
-     * Private method: getNodeIdFromAttributes.
+     * Private method: _getNodeIdFromAttributes.
      *
      * It gets a node id from the prop.attributes
      * of a selections or hlists value.
@@ -323,9 +323,9 @@ export class DataApiService extends ApiService {
      *
      * @returns {string} id The node id.
      */
-    private getNodeIdFromAttributes(attributes: string): string {
-        // identify node id from prop.attributes
-        // e.g. "hlist=17" or "selection=77"
+    private _getNodeIdFromAttributes(attributes: string): string {
+        // Identify node id from prop.attributes
+        // E.g. "hlist=17" or "selection=77"
         return attributes.split('=')[1].toString();
     }
 }

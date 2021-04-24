@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /* Copyright © 2016 Lukas Rosenthaler, André Kilchenmann, Andreas Aeschlimann,
  * Sofia Georgakopoulou, Ivan Subotic, Benjamin Geer, Tobias Schweizer.
  * This file is part of SALSAH.
@@ -54,7 +56,7 @@ export class SearchResponseJson extends BasicResponseJson {
     public subjects: SubjectItemJson[] = undefined;
 
     /**
-     * maximal dimensions of preview representations
+     * Maximal dimensions of preview representations
      * @param thumb_max: object
      */
     @JsonProperty('thumb_max', ThumbMaxJson)

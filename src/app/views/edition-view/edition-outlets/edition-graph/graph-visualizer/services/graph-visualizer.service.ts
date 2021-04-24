@@ -14,7 +14,7 @@ import * as N3 from 'n3';
  *
  * It provides access to the rdfstore library.
  */
-declare var rdfstore: any;
+declare let rdfstore: any;
 
 /**
  * The GraphVisualizer service.
@@ -24,15 +24,15 @@ declare var rdfstore: any;
  * Provided in: `root`.
  */
 @Injectable({
-    providedIn: 'root'
+    providedIn: 'root',
 })
 export class GraphVisualizerService {
     /**
-     * Private variable: store.
+     * Private variable: _store.
      *
      * It keeps the rdfstore instance.
      */
-    private store: any;
+    private _store: any;
 
     /**
      * Constructor of the GraphVisualizerService.
@@ -109,14 +109,14 @@ export class GraphVisualizerService {
 
             // Abbreviate turtle format
             if (mimeType === 'text/turtle') {
-                if (this.abbreviate(s, namespaces) != null) {
-                    s = this.abbreviate(s, namespaces);
+                if (this._abbreviate(s, namespaces) != null) {
+                    s = this._abbreviate(s, namespaces);
                 }
-                if (this.abbreviate(p, namespaces) != null) {
-                    p = this.abbreviate(p, namespaces);
+                if (this._abbreviate(p, namespaces) != null) {
+                    p = this._abbreviate(p, namespaces);
                 }
-                if (this.abbreviate(o, namespaces) != null) {
-                    o = this.abbreviate(o, namespaces);
+                if (this._abbreviate(o, namespaces) != null) {
+                    o = this._abbreviate(o, namespaces);
                 }
             }
             return { subject: s, predicate: p, object: o };
@@ -137,11 +137,11 @@ export class GraphVisualizerService {
         if (!query || !ttlString) {
             return;
         }
-        // get namespaces from triples
-        const namespaces: Namespace = this.extractNamespacesFromTTL(ttlString);
+        // Get namespaces from triples
+        const namespaces: Namespace = this._extractNamespacesFromTTL(ttlString);
 
-        // get prefixes from query
-        const prefixes: string[] = this.extractPrefixesFromQuery(query);
+        // Get prefixes from query
+        const prefixes: string[] = this._extractPrefixesFromQuery(query);
 
         // Append the used namespaces to the query
         const keys = Object.keys(namespaces);
@@ -176,36 +176,31 @@ export class GraphVisualizerService {
             mimeType = 'text/turtle';
         }
 
-        return this.createStore()
+        return this._createStore()
             .then(store => {
-                // console.log('STORE', store);
-                this.store = store;
+                this._store = store;
 
-                return this.loadTriplesInStore(store, ttlString, mimeType);
+                return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((storeSize: number) => {
-                // console.log('STORESIZE', storeSize);
-                return this.executeQuery(this.store, query);
-            })
+            .then((storeSize: number) => this._executeQuery(this._store, query))
             .then((res: QueryResult) => {
-                // console.log('RES', res);
                 const data: QueryResult = res;
 
                 // Reformat data if select query
                 if (queryType === 'select') {
-                    console.log('got SELECT request');
-                    // return this.sparqlJSON(data).data;
+                    console.info('got SELECT request');
+                    // Return this.sparqlJSON(data).data;
                 }
 
                 /**
                  * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
                  */
 
-                // get namespaces
-                return this.getNamespaces(ttlString).then((namespaces: Namespace) => {
+                // Get namespaces
+                return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
                     // Process result
-                    return this.abbreviateTriples(data.triples, namespaces, mimeType);
-                });
+                    this.abbreviateTriples(data.triples, namespaces, mimeType)
+                );
             });
     }
 
@@ -226,14 +221,12 @@ export class GraphVisualizerService {
             { queryType: 'count', index: -1 },
             { queryType: 'describe', index: -1 },
             { queryType: 'insert', index: -1 },
-            { queryType: 'delete', index: -1 }
+            { queryType: 'delete', index: -1 },
         ];
 
         // Get indexes and set a variable if at least one matches + store lowest index
         let match = false; // Set to true if some keyword match is found
         let low = Infinity;
-        let lowest: QueryTypeIndex;
-        let type: string;
 
         keyWords = keyWords.map(item => {
             item.index = query.toLowerCase().indexOf(item.queryType);
@@ -252,11 +245,11 @@ export class GraphVisualizerService {
         }
 
         // If more exist, take the lowest
-        lowest = keyWords.find(item => item.index === low);
+        const lowest: QueryTypeIndex = keyWords.find(item => item.index === low);
         if (!lowest) {
             return null;
         }
-        type = lowest.queryType;
+        const type: string = lowest.queryType;
 
         if (type === 'insert' || type === 'delete') {
             return 'update';
@@ -266,7 +259,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: abbreviate.
+     * Private method: _abbreviate.
      *
      * It abbreviates the namespaces of a given iri.
      *
@@ -275,7 +268,7 @@ export class GraphVisualizerService {
      *
      * @returns {TripleComponent} The abbreviated triple component.
      */
-    private abbreviate(iri: any, namespaces: Namespace): TripleComponent {
+    private _abbreviate(iri: any, namespaces: Namespace): TripleComponent {
         let newVal: TripleComponent = null;
         // If IRI has 'http' in its name, continue
         if (iri.indexOf('http') !== -1) {
@@ -291,13 +284,13 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: createStore.
+     * Private method: _createStore.
      *
      * It creates an instance of the triple store.
      *
      * @returns {Promise<any>} A promise of the triple store instance.
      */
-    private createStore(): Promise<any> {
+    private _createStore(): Promise<any> {
         return new Promise((resolve, reject) => {
             rdfstore.create((err, store) => {
                 if (err) {
@@ -309,7 +302,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: executeQuery.
+     * Private method: _executeQuery.
      *
      * It executes a given query against a given triple store.
      *
@@ -318,22 +311,20 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<QueryResult>} A promise of the query result.
      */
-    private executeQuery(store: any, query: string): Promise<QueryResult> {
-        // console.log('executeQuery# QUERY', query);
+    private _executeQuery(store: any, query: string): Promise<QueryResult> {
         return new Promise((resolve, reject) => {
             store.execute(query, (err, res: QueryResult) => {
                 if (err) {
-                    console.error('executeQuery# got ERROR', err);
+                    console.error('_executeQuery# got ERROR', err);
                     reject(err);
                 }
-                // console.log('executeQuery# RESOLVED', res);
                 resolve(res);
             });
         });
     }
 
     /**
-     * Private method: extractNamespacesFromTTL.
+     * Private method: _extractNamespacesFromTTL.
      *
      * It extracts the namespaces from a given triple string.
      *
@@ -341,9 +332,9 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<Namespace>} A promise of the namespaces.
      */
-    private extractNamespacesFromTTL(triples: string) {
+    private _extractNamespacesFromTTL(triples: string) {
         // Replace all whitespace characters with a single space and split by space
-        // remove empty values
+        // Remove empty values
         const arr = triples
             .replace(/\s/g, ' ')
             .split(' ')
@@ -362,13 +353,11 @@ export class GraphVisualizerService {
             obj[arr[prefixIndex + 1]] = arr[prefixIndex + 2];
         });
 
-        console.log(obj);
-
         return obj;
     }
 
     /**
-     * Private method: extractPrefixesFromQuery.
+     * Private method: _extractPrefixesFromQuery.
      *
      * It identifies the prefixes that are used in a SPARQL query.
      *
@@ -376,13 +365,13 @@ export class GraphVisualizerService {
      *
      * @returns {string[]} A string array of the used namespaces.
      */
-    private extractPrefixesFromQuery(query: string): string[] {
+    private _extractPrefixesFromQuery(query: string): string[] {
         const nameSpaces: string[] = [];
 
         const regex = /[a-zA-Z]+:/g;
         let m;
 
-        // tslint:disable-next-line:no-conditional-assignment
+        // eslint-disable-next-line no-cond-assign
         while ((m = regex.exec(query)) !== null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index === regex.lastIndex) {
@@ -400,7 +389,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: getNamespaces.
+     * Private method: _getNamespaces.
      *
      * It extracts the namespaces from a given triple string.
      *
@@ -408,11 +397,10 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<Namespace>} A promise of the namespaces.
      */
-    private getNamespaces(triples: string): Promise<Namespace> {
-        // parse triples
+    private _getNamespaces(triples: string): Promise<Namespace> {
+        // Parse triples
         const parser = new N3.Parser();
 
-        // console.log('PARSER', parser);
         return new Promise((resolve, reject) => {
             parser.parse(triples, (err, triple, prefixes) => {
                 if (!triple) {
@@ -426,7 +414,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: loadTriplesInStore.
+     * Private method: _loadTriplesInStore.
      *
      * It loads the given triple string into the given triplestore.
      *
@@ -436,7 +424,7 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<number>} A promise of the size of the triples loaded into the store.
      */
-    private loadTriplesInStore(store: any, triples: string, mimeType?: string): Promise<number> {
+    private _loadTriplesInStore(store: any, triples: string, mimeType?: string): Promise<number> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }
@@ -444,10 +432,9 @@ export class GraphVisualizerService {
         return new Promise((resolve, reject) => {
             store.load(mimeType, triples, (err, size) => {
                 if (err) {
-                    console.error('loadTriplesInStore# got error', err);
+                    console.error('_loadTriplesInStore# got error', err);
                     reject(err);
                 }
-                // console.log('loadTriplesInStore# resolved', size);
                 resolve(size);
             });
         });

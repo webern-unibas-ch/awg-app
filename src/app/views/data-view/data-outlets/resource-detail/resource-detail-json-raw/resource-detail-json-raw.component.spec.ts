@@ -8,7 +8,7 @@ import { ResourceDetail } from '@awg-views/data-view/models';
 
 import { ResourceDetailJsonRawComponent } from './resource-detail-json-raw.component';
 
-// mock awg-json-viewer component
+// Mock awg-json-viewer component
 @Component({ selector: 'awg-json-viewer', template: '' })
 class JsonViewerStubComponent {
     @Input()
@@ -29,7 +29,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     beforeEach(
         waitForAsync(() => {
             TestBed.configureTestingModule({
-                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent]
+                declarations: [ResourceDetailJsonRawComponent, JsonViewerStubComponent],
             }).compileComponents();
         })
     );
@@ -40,7 +40,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // test data
+        // Test data
         expectedData = new ResourceFullResponseJson();
         expectedData.status = 1;
     });
@@ -78,10 +78,10 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.resourceJsonRawData = expectedData;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

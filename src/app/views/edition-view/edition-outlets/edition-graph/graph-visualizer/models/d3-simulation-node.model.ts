@@ -7,7 +7,7 @@ import * as d3_force from 'd3-force';
  */
 export enum D3SimulationNodeType {
     link = 'link',
-    node = 'node'
+    node = 'node',
 }
 
 /**

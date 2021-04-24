@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /* Copyright © 2016 Lukas Rosenthaler, André Kilchenmann, Andreas Aeschlimann,
  * Sofia Georgakopoulou, Ivan Subotic, Benjamin Geer, Tobias Schweizer.
  * This file is part of SALSAH.

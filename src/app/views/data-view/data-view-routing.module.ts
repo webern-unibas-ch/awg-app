@@ -7,7 +7,7 @@ import { SearchOverviewComponent } from './data-outlets/search-overview.componen
 import { SearchPanelComponent } from './data-outlets/search-panel/search-panel.component';
 import { TimelineComponent } from './data-outlets/timeline/timeline.component';
 
-/* routes of the DataViewModule */
+/* Routes of the DataViewModule */
 const dataViewRoutes: Routes = [
     {
         path: '',
@@ -20,10 +20,10 @@ const dataViewRoutes: Routes = [
                     {
                         path: 'fulltext',
                         component: SearchPanelComponent,
-                        data: { title: 'AWG Online Edition – Search' }
+                        data: { title: 'AWG Online Edition – Search' },
                     },
-                    { path: 'detail/:id', redirectTo: 'resource/:id' }, // absolute redirect (replacement of route) to resource/:id,
-                    /* muted for now
+                    { path: 'detail/:id', redirectTo: 'resource/:id' }, // Absolute redirect (replacement of route) to resource/:id,
+                    /* Muted for now
                     { path: 'timeline', component: TimelineComponent },
                     {
                         path: 'bibliography',
@@ -31,16 +31,16 @@ const dataViewRoutes: Routes = [
                             import('./data-outlets/bibliography/bibliography.module').then(m => m.BibliographyModule)
                     },
                     */
-                    { path: '', pathMatch: 'full', redirectTo: 'fulltext' }
-                ]
-            }
-        ]
+                    { path: '', pathMatch: 'full', redirectTo: 'fulltext' },
+                ],
+            },
+        ],
     },
     {
         path: 'resource/:id',
         component: ResourceDetailComponent,
-        data: { title: 'AWG Online Edition – Resource Detail' }
-    }
+        data: { title: 'AWG Online Edition – Resource Detail' },
+    },
 ];
 
 /**
@@ -53,7 +53,7 @@ export const routedDataViewComponents = [
     DataViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
-    ResourceDetailComponent
+    ResourceDetailComponent,
     // TimelineComponent
 ];
 
@@ -64,6 +64,6 @@ export const routedDataViewComponents = [
  */
 @NgModule({
     imports: [RouterModule.forChild(dataViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class DataViewRoutingModule {}

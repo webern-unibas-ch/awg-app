@@ -13,7 +13,7 @@ import { D3SimulationNode, Triple } from '../models';
     selector: 'awg-construct-results',
     templateUrl: './construct-results.component.html',
     styleUrls: ['./construct-results.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ConstructResultsComponent implements OnInit {
     /**
@@ -59,7 +59,9 @@ export class ConstructResultsComponent implements OnInit {
      * @returns {void} Triggers the request.
      */
     onGraphNodeClick(node: D3SimulationNode): void {
-        if (!node) return;
+        if (!node) {
+            return;
+        }
         this.clickedNodeRequest.emit(node);
     }
 }

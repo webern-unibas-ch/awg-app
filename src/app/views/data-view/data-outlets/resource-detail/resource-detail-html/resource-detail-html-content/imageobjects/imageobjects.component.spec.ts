@@ -18,7 +18,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    // json object
+    // Json object
     let jsonConvert: JsonConvert;
     let context: ContextJson;
 
@@ -29,7 +29,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgxGalleryModule],
-                declarations: [ResourceDetailHtmlContentImageobjectsComponent]
+                declarations: [ResourceDetailHtmlContentImageobjectsComponent],
             }).compileComponents();
         })
     );
@@ -40,11 +40,11 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // convert json object
+        // Convert json object
         jsonConvert = new JsonConvert();
         context = jsonConvert.deserializeObject(mockContextJson, ContextJson);
 
-        // test data
+        // Test data
         expectedGalleryOptions = [
             new NgxGalleryOptions({
                 width: '100%',
@@ -56,8 +56,8 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 previewCloseOnEsc: true,
                 previewZoom: true,
                 previewRotate: true,
-                linkTarget: '_blank'
-            })
+                linkTarget: '_blank',
+            }),
         ];
 
         const images = [new ResourceDetailImage(context, 0), new ResourceDetailImage(context, 1)];
@@ -69,7 +69,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
                 big: image.fullSize,
                 description: image.origname,
                 label: image.label,
-                url: image.fullSize
+                url: image.fullSize,
             };
             expectedImages.push(gImage);
         });
@@ -101,10 +101,10 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // simulate the parent setting the input properties
+            // Simulate the parent setting the input properties
             component.images = expectedImages;
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -119,13 +119,13 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             });
 
             it('... should contain one header showing number of images', () => {
-                // header debug element
+                // Header debug element
                 const headerDes = getAndExpectDebugElementByCss(compDe, 'div.awg-image-obj > h5', 1, 1);
-                // size debug element
+                // Size debug element
                 const sizeDes = getAndExpectDebugElementByCss(headerDes[0], 'span#awg-image-number', 1, 1);
                 const sizeEl = sizeDes[0].nativeElement;
 
-                // check size output
+                // Check size output
                 expect(sizeEl.textContent).toBeDefined();
                 expect(sizeEl.textContent).toBe(
                     expectedImages.length.toString(),
@@ -145,7 +145,7 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
             });
 
             it('... should pass down `images` and `galleryOptions` to NgxGalleryComponent', () => {
-                // get debug and native element of NgxGalleryComponent
+                // Get debug and native element of NgxGalleryComponent
                 const galleryDes = getAndExpectDebugElementByDirective(compDe, NgxGalleryComponent, 1, 1);
                 const galleryCmp = galleryDes[0].injector.get(NgxGalleryComponent) as NgxGalleryComponent;
 

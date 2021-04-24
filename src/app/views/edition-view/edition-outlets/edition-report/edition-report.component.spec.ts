@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, Input } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -15,13 +15,13 @@ import {
     SourceDescriptionList,
     SourceEvaluationList,
     SourceList,
-    TextcriticsList
+    TextcriticsList,
 } from '@awg-views/edition-view/models';
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
 
-// mock components
+// Mock components
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -59,15 +59,15 @@ describe('EditionReportComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // create a fake service object with a `getEditionReportData()` spy
+            // Create a fake service object with a `getEditionReportData()` spy
             const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
-            // make the spy return a synchronous Observable with the test data
+            // Make the spy return a synchronous Observable with the test data
             getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
 
-            // create a fake service object with a `getEditionWork()` spy
+            // Create a fake service object with a `getEditionWork()` spy
             const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-            // make the spy return a synchronous Observable with the test data
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.op12)); // TODO: provide real test data
+            // Make the spy return a synchronous Observable with the test data
+            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12)); // TODO: provide real test data
 
             TestBed.configureTestingModule({
                 imports: [NgbModalModule, RouterTestingModule],
@@ -77,12 +77,12 @@ describe('EditionReportComponent', () => {
                     HeadingStubComponent,
                     SourcesStubComponent,
                     TextcritisStubComponent,
-                    ModalComponent
+                    ModalComponent,
                 ],
                 providers: [
                     { provide: EditionDataService, useValue: mockEditionDataService },
-                    { provide: EditionService, useValue: mockEditionService }
-                ]
+                    { provide: EditionService, useValue: mockEditionService },
+                ],
             }).compileComponents();
         })
     );
@@ -98,7 +98,7 @@ describe('EditionReportComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 

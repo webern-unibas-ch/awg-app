@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
@@ -13,8 +13,8 @@ describe('SearchFormComponent', () => {
     let compDe: DebugElement;
     let compEl: any;
 
-    // create new instance of FormBuilder
-    // see 'Karma formGroup expects a FormGroup instance. Please pass one in',
+    // Create new instance of FormBuilder
+    // See 'Karma formGroup expects a FormGroup instance. Please pass one in',
     // https://medium.com/@charlesprobaker/karma-testing-a-formgroup-instance-a0a90de831d4
     // https://stackoverflow.com/a/48671534
     const formBuilder: FormBuilder = new FormBuilder();
@@ -24,7 +24,7 @@ describe('SearchFormComponent', () => {
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, ReactiveFormsModule],
                 declarations: [SearchFormComponent],
-                providers: [{ provide: FormBuilder, useValue: formBuilder }]
+                providers: [{ provide: FormBuilder, useValue: formBuilder }],
             }).compileComponents();
         })
     );
@@ -35,9 +35,9 @@ describe('SearchFormComponent', () => {
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
-        // pass in the form dynamically
+        // Pass in the form dynamically
         component.searchForm = formBuilder.group({
-            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])]
+            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
 
         fixture.detectChanges();

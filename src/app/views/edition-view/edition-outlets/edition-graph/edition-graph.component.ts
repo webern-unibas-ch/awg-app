@@ -6,7 +6,7 @@ import {
     HostListener,
     Inject,
     OnInit,
-    ViewChild
+    ViewChild,
 } from '@angular/core';
 import { DOCUMENT } from '@angular/common';
 
@@ -29,7 +29,7 @@ import { GraphVisualizerComponent } from './graph-visualizer';
     selector: 'awg-edition-graph',
     templateUrl: './edition-graph.component.html',
     styleUrls: ['./edition-graph.component.css'],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionGraphComponent implements OnInit {
     /**
@@ -75,13 +75,13 @@ export class EditionGraphComponent implements OnInit {
     editionGraphData$: Observable<GraphList | never>;
 
     /**
-     * Readonly constant: graphImages.
+     * Readonly constant: GRAPH_IMAGES.
      *
      * It keeps the paths to static graph images.
      */
-    readonly graphImages = {
+    readonly GRAPH_IMAGES = {
         op12: '',
-        op25: EditionConstants.graphImageOp25.route
+        op25: EditionConstants.GRAPH_IMAGE_OP25.route,
     };
 
     /**
@@ -95,21 +95,6 @@ export class EditionGraphComponent implements OnInit {
      * Self-referring variable needed for CompileHtml library.
      */
     ref: EditionGraphComponent;
-
-    /**
-     * HostListener: document:fullscreenchange.
-     *
-     * It listens for fullscreen exit with ESC key.
-     */
-    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
-        if (
-            !this.document.fullscreenElement && // alternative standard method
-            !this.document.mozFullScreenElement &&
-            !this.document.webkitFullscreenElement
-        ) {
-            this.isFullscreen = false;
-        }
-    }
 
     /**
      * Constructor of the EditionGraphComponent.
@@ -127,6 +112,21 @@ export class EditionGraphComponent implements OnInit {
         @Inject(DOCUMENT) private document: any
     ) {
         this.ref = this;
+    }
+
+    /**
+     * HostListener: document:fullscreenchange.
+     *
+     * It listens for fullscreen exit with ESC key.
+     */
+    @HostListener('document:fullscreenchange', ['$event']) onKeydownHandler(event: KeyboardEvent) {
+        if (
+            !this.document.fullscreenElement && // Alternative standard method
+            !this.document.mozFullScreenElement &&
+            !this.document.webkitFullscreenElement
+        ) {
+            this.isFullscreen = false;
+        }
     }
 
     /**
@@ -150,20 +150,20 @@ export class EditionGraphComponent implements OnInit {
      */
     getEditionGraphData(): void {
         this.editionGraphData$ = this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) => {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork = work;
-                    // get graph data from editionDataService
+                    // Get graph data from editionDataService
                     return this.editionDataService.getEditionGraphData(this.editionWork);
                 }),
-                // error handling
+                // Error handling
                 catchError(err => {
-                    // set error object
+                    // Set error object
                     this.errorObject = err;
-                    // return empty observable to complete observable without data
+                    // Return empty observable to complete observable without data
                     return EMPTY;
                 })
             );
@@ -181,11 +181,11 @@ export class EditionGraphComponent implements OnInit {
 
         this.isFullscreen = true;
         if (
-            !this.document.fullscreenElement && // alternative standard method
+            !this.document.fullscreenElement && // Alternative standard method
             !this.document.mozFullScreenElement &&
             !this.document.webkitFullscreenElement
         ) {
-            // current working methods
+            // Current working methods
             if (el.requestFullscreen) {
                 el.requestFullscreen();
             } else if (el.mozRequestFullScreen) {

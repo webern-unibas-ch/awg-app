@@ -15,7 +15,7 @@
                             "sigle": "Aa:SkI/1a",
                             "measure": "1–2, [3–6]",
                             "selectable": false,
-                            "linkTo": "op12_sourceNotA",
+                            "linkTo": "OP12_SOURCE_NOT_A",
                             "sectionPartition": 1,
                             "sections": [
                                 {
@@ -27,7 +27,7 @@
                         {
                             "sigle": "Aa:SkI/1a",
                             "selectable": false,
-                            "linkTo": "op12_sourceNotA",
+                            "linkTo": "OP12_SOURCE_NOT_A",
                             "measure": "[7–12]",
                             "sectionPartition": 1,
                             "sections": [
@@ -41,7 +41,7 @@
                         {
                             "sigle": "Aa:SkI/1a",
                             "selectable": false,
-                            "linkTo": "op12_sourceNotA",
+                            "linkTo": "OP12_SOURCE_NOT_A",
                             "measure": "[13–17]",
                             "sectionPartition": 1,
                             "sections": [
@@ -123,7 +123,7 @@
                         {
                             "sigle": "Aa:SkI/1b",
                             "selectable": false,
-                            "linkTo": "op12_sourceNotA",
+                            "linkTo": "OP12_SOURCE_NOT_A",
                             "measure": "[18–22]",
                             "sections": [
                                 {
@@ -135,7 +135,7 @@
                         {
                             "sigle": "Aa:SkI/1b",
                             "selectable": false,
-                            "linkTo": "op12_sourceNotA",
+                            "linkTo": "OP12_SOURCE_NOT_A",
                             "measure": "[23–24]",
                             "sectionPartition": 1,
                             "sections": [
@@ -162,7 +162,7 @@
         {
             "convoluteId": "B–H (siehe Kritischer Bericht)",
             "folios": [],
-            "linkTo": "op12_sourceNotA"
+            "linkTo": "OP12_SOURCE_NOT_A"
         }
     ]
 }

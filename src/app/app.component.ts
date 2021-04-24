@@ -16,7 +16,7 @@ import { AnalyticsService } from '@awg-core/services';
 @Component({
     selector: 'awg-app',
     templateUrl: './app.component.html',
-    styleUrls: ['./app.component.css']
+    styleUrls: ['./app.component.css'],
 })
 export class AppComponent {
     /**
@@ -37,25 +37,25 @@ export class AppComponent {
         private readonly router: Router,
         private titleService: Title
     ) {
-        // disable Bootstrap animation
+        // Disable Bootstrap animation
         ngbConfig.animation = false;
 
-        // get app title from index.html
-        // cf. https://blog.bitsrc.io/dynamic-page-titles-in-angular-98ce20b5c334
+        // Get app title from index.html
+        // Cf. https://blog.bitsrc.io/dynamic-page-titles-in-angular-98ce20b5c334
         const appTitle = this.titleService.getTitle();
 
-        // init analytics
+        // Init analytics
         this.analyticsService.initializeAnalytics();
 
-        // track router events
+        // Track router events
         this.router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
                 map((event: NavigationEnd) => {
-                    // track page view on every NavigationEnd
+                    // Track page view on every NavigationEnd
                     this.analyticsService.trackPageView(event.urlAfterRedirects);
 
-                    // get page title from route data
+                    // Get page title from route data
                     let child = this.activatedRoute.firstChild;
                     while (child.firstChild) {
                         child = child.firstChild;
@@ -67,7 +67,7 @@ export class AppComponent {
                 })
             )
             .subscribe((pageTitle: string) => {
-                // set page title
+                // Set page title
                 this.titleService.setTitle(pageTitle);
             });
     }

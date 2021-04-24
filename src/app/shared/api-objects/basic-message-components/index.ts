@@ -32,7 +32,7 @@ import {
     KnoraRights,
     KnoraStatusCode,
     KnoraValue,
-    StringOrNumber
+    StringOrNumber,
 } from './src/basic-type-aliases';
 
 export {
@@ -46,5 +46,5 @@ export {
     LocationItemJson,
     ProjectItemJson,
     StringOrNumber,
-    UserDataJson
+    UserDataJson,
 };

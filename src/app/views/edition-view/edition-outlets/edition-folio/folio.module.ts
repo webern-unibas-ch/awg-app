@@ -12,6 +12,6 @@ import { FolioOverviewComponent } from './folio-overview.component';
 @NgModule({
     imports: [SharedModule],
     declarations: [FolioOverviewComponent],
-    exports: [FolioOverviewComponent]
+    exports: [FolioOverviewComponent],
 })
 export class FolioModule {}

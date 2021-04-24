@@ -15,6 +15,6 @@ import { TextcriticsComponent } from './textcritics.component';
 @NgModule({
     imports: [SharedModule, EditionTkaTableModule],
     declarations: [CriticsListComponent, TextcriticsComponent],
-    exports: [CriticsListComponent, TextcriticsComponent]
+    exports: [CriticsListComponent, TextcriticsComponent],
 })
 export class TextcriticsModule {}

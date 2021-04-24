@@ -1,4 +1,4 @@
-/* tslint:disable:no-unused-variable */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, Input } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
@@ -10,7 +10,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 import { ActivatedRouteStub, RouterOutletStubComponent } from '@testing/router-stubs';
 
@@ -19,7 +19,7 @@ import { EditionWork, EditionWorks } from '@awg-views/edition-view/models';
 
 import { EditionViewComponent } from './edition-view.component';
 
-// mock heading component
+// Mock heading component
 @Component({ selector: 'awg-heading', template: '' })
 class HeadingStubComponent {
     @Input()
@@ -44,7 +44,7 @@ describe('EditionViewComponent (DONE)', () => {
     let editionServiceGetWorkSpy: Spy;
     let editionServiceUpdateWorkSpy: Spy;
 
-    let expectedWorkId = 'op12';
+    let expectedWorkId = 'OP12';
     let expectedWork: EditionWork;
 
     const expectedTitle = 'Beispieledition ausgewählter Skizzen';
@@ -52,19 +52,18 @@ describe('EditionViewComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // mock router with spy object
+            // Mock router with spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);
 
-            // mock activated route with stub class
+            // Mock activated route with stub class
             mockActivatedRoute = new ActivatedRouteStub();
 
-            // mock edition service
+            // Mock edition service
             mockEditionService = {
-                getEditionWork: (): Observable<EditionWork> => {
-                    // return op. 12 by default
-                    return observableOf(EditionWorks[expectedWorkId]);
-                },
-                updateEditionWork: (editionWork: EditionWork): void => {}
+                getEditionWork: (): Observable<EditionWork> =>
+                    // Return op. 12 by default
+                    observableOf(EditionWorks[expectedWorkId]),
+                updateEditionWork: (editionWork: EditionWork): void => {},
             };
 
             TestBed.configureTestingModule({
@@ -73,10 +72,10 @@ describe('EditionViewComponent (DONE)', () => {
                     { provide: EditionService, useValue: mockEditionService },
                     {
                         provide: ActivatedRoute,
-                        useValue: mockActivatedRoute
+                        useValue: mockActivatedRoute,
                     },
-                    { provide: Router, useValue: mockRouter }
-                ]
+                    { provide: Router, useValue: mockRouter },
+                ],
             }).compileComponents();
         })
     );
@@ -89,16 +88,16 @@ describe('EditionViewComponent (DONE)', () => {
 
         mockEditionService = TestBed.inject(EditionService);
 
-        // test data
-        expectedWork = EditionWorks[expectedWorkId]; // op. 12
+        // Test data
+        expectedWork = EditionWorks[expectedWorkId]; // Op. 12
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         getEditionWorkFromRouteSpy = spyOn(component, 'getEditionWorkFromRoute').and.callThrough();
         routeToSidenavSpy = spyOn(component, 'routeToSidenav').and.callThrough();
 
-        // spies for service methods
+        // Spies for service methods
         editionServiceUpdateWorkSpy = spyOn(mockEditionService, 'updateEditionWork').and.callThrough();
         editionServiceGetWorkSpy = spyOn(mockEditionService, 'getEditionWork').and.callThrough();
     });
@@ -166,11 +165,11 @@ describe('EditionViewComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // set route params via ActivatedRoute mock
-            expectedWorkId = 'op12';
-            mockActivatedRoute.testParamMap = { compositionId: expectedWorkId }; // op. 12
+            // Set route params via ActivatedRoute mock
+            expectedWorkId = 'OP12';
+            mockActivatedRoute.testParamMap = { compositionId: expectedWorkId }; // Op. 12
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -197,45 +196,45 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             it('... should get correct id from router', () => {
-                // call with op. 12 (default)
+                // Call with op. 12 (default)
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateWorkSpy, 1, EditionWorks['op12']);
+                expectSpyCall(editionServiceUpdateWorkSpy, 1, EditionWorks.OP12);
 
                 // ----------------
-                // change to op. 25
-                mockActivatedRoute.testParamMap = { compositionId: 'op25' };
+                // Change to op. 25
+                mockActivatedRoute.testParamMap = { compositionId: 'OP25' };
 
-                // trigger initial data binding
+                // Trigger initial data binding
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
-                expectSpyCall(editionServiceUpdateWorkSpy, 2, EditionWorks['op25']);
+                expectSpyCall(editionServiceUpdateWorkSpy, 2, EditionWorks.OP25);
 
                 // ------------------
-                // change to non-existing id
+                // Change to non-existing id
                 mockActivatedRoute.testParamMap = { compositionId: 'fail' };
 
-                // trigger initial data binding
+                // Trigger initial data binding
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
                 expectSpyCall(editionServiceUpdateWorkSpy, 3, EditionWorks['fail']);
 
                 // ------------------
-                // change to empty id
+                // Change to empty id
                 mockActivatedRoute.testParamMap = { compositionId: '' };
 
-                // trigger initial data binding
+                // Trigger initial data binding
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
                 expectSpyCall(editionServiceUpdateWorkSpy, 4, EditionWorks['']);
 
                 // ----------------------
-                // change to another key
-                mockActivatedRoute.testParamMap = { anotherId: 'op12' };
+                // Change to another key
+                mockActivatedRoute.testParamMap = { anotherId: 'OP12' };
 
-                // trigger initial data binding
+                // Trigger initial data binding
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
@@ -262,12 +261,12 @@ describe('EditionViewComponent (DONE)', () => {
 
             it('... should get correct edition work from EditionService and set correct editionWork', done => {
                 // ----------------
-                // check for op. 12
+                // Check for op. 12
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
                 expectSpyCall(editionServiceUpdateWorkSpy, 1, EditionWorks[expectedWorkId]);
                 expectSpyCall(editionServiceGetWorkSpy, 1);
 
-                // subscribe to editionWork observable (changed values will be reflected here)
+                // Subscribe to editionWork observable (changed values will be reflected here)
                 expect(component.editionWork$).toBeDefined();
                 let sub = component.editionWork$.subscribe(work => {
                     expect(work).toEqual(EditionWorks[expectedWorkId], `should equal ${EditionWorks[expectedWorkId]}`);
@@ -277,11 +276,11 @@ describe('EditionViewComponent (DONE)', () => {
                 sub.unsubscribe();
 
                 // ----------------
-                // change to op. 25
-                expectedWorkId = 'op25';
+                // Change to op. 25
+                expectedWorkId = 'OP25';
                 mockActivatedRoute.testParamMap = { compositionId: expectedWorkId };
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
@@ -290,18 +289,18 @@ describe('EditionViewComponent (DONE)', () => {
 
                 expect(component.editionWork$).toBeDefined();
                 sub = component.editionWork$.subscribe(work => {
-                    expect(work).toEqual(EditionWorks['op25'], `should equal ${EditionWorks['op25']}`);
+                    expect(work).toEqual(EditionWorks.OP25, `should equal ${EditionWorks.OP25}`);
                     done();
                 });
 
                 sub.unsubscribe();
 
                 // ----------------
-                // change to ''
+                // Change to ''
                 expectedWorkId = '';
                 mockActivatedRoute.testParamMap = { compositionId: expectedWorkId };
 
-                // apply changes
+                // Apply changes
                 fixture.detectChanges();
 
                 expectSpyCall(getEditionWorkFromRouteSpy, 1);
@@ -322,12 +321,12 @@ describe('EditionViewComponent (DONE)', () => {
             let navigationSpy: Spy;
 
             beforeEach(() => {
-                // create spy of mockrouter SpyObj
+                // Create spy of mockrouter SpyObj
                 navigationSpy = mockRouter.navigate as jasmine.Spy;
             });
 
             it('... should have been called', () => {
-                // router navigation triggerd by onInit
+                // Router navigation triggerd by onInit
                 expectSpyCall(routeToSidenavSpy, 1);
             });
 
@@ -338,7 +337,7 @@ describe('EditionViewComponent (DONE)', () => {
             it('... should tell ROUTER to navigate to `editionInfo` outlet', () => {
                 const expectedRoute = 'editionInfo';
 
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const outletRoute = navArgs[0][0].outlets.side;
 
@@ -351,7 +350,7 @@ describe('EditionViewComponent (DONE)', () => {
             });
 
             it('... should tell ROUTER to navigate with `preserveFragment:true`', () => {
-                // catch args passed to navigation spy
+                // Catch args passed to navigation spy
                 const navArgs = navigationSpy.calls.first().args;
                 const navExtras = navArgs[1];
 
@@ -375,8 +374,8 @@ describe('EditionViewComponent (DONE)', () => {
             it(
                 '... should display editionWork in breadcrumb header (h6)',
                 waitForAsync(() => {
-                    // wait for async data
-                    fixture.detectChanges(); // refresh template
+                    // Wait for async data
+                    fixture.detectChanges(); // Refresh template
 
                     const hDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -396,8 +395,8 @@ describe('EditionViewComponent (DONE)', () => {
             it(
                 '... should display editionWork title and catalogue number in awg-edition-info-header',
                 waitForAsync(() => {
-                    // wait for async data
-                    fixture.detectChanges(); // refresh template
+                    // Wait for async data
+                    fixture.detectChanges(); // Refresh template
 
                     const hDes = getAndExpectDebugElementByCss(
                         compDe,
@@ -429,8 +428,8 @@ describe('EditionViewComponent (DONE)', () => {
             it(
                 '... should have one paragraph with editor and version in responsibility div',
                 waitForAsync(() => {
-                    // wait for async data
-                    fixture.detectChanges(); // refresh template
+                    // Wait for async data
+                    fixture.detectChanges(); // Refresh template
 
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 
@@ -444,8 +443,8 @@ describe('EditionViewComponent (DONE)', () => {
             it(
                 '... should display editor and version in responsibility div',
                 waitForAsync(() => {
-                    // wait for async data
-                    fixture.detectChanges(); // refresh template
+                    // Wait for async data
+                    fixture.detectChanges(); // Refresh template
 
                     const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-edition-responsibility > p', 1, 1);
 

@@ -1,3 +1,5 @@
+/* eslint-disable @typescript-eslint/naming-convention */
+
 /**
  * Test helper data file: mockResourceDetail.
  *
@@ -12,7 +14,7 @@ export const mockResourceDetail = {
         icon: 'https://www.salsah.org:443/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=125',
         type: 'Supplement',
         lastmod: '2017-12-05 15:16:17',
-        title: '[Programm:] Sdružení pro soudobou houdbu v Praze<br/>[Mi] 9. Jan 1935'
+        title: '[Programm:] Sdružení pro soudobou houdbu v Praze<br/>[Mi] 9. Jan 1935',
     },
     content: {
         props: [
@@ -20,80 +22,80 @@ export const mockResourceDetail = {
                 pid: '1',
                 guielement: 'text',
                 label: 'Title',
-                values: ['[Programm:] Sdružení pro soudobou houdbu v Praze']
+                values: ['[Programm:] Sdružení pro soudobou houdbu v Praze'],
             },
             {
                 pid: '597',
                 guielement: 'pulldown',
                 label: 'Art',
-                values: ['Programm']
+                values: ['Programm'],
             },
             {
                 pid: '25',
                 guielement: 'text',
                 label: 'Creator',
-                values: ['']
+                values: [''],
             },
             {
                 pid: '43',
                 guielement: 'text',
                 label: 'Ort',
-                values: ['Prag']
+                values: ['Prag'],
             },
             {
                 pid: '46',
                 guielement: 'date',
                 label: 'Date',
-                values: ['[Mi] 9. Jan 1935']
+                values: ['[Mi] 9. Jan 1935'],
             },
             {
                 pid: '200',
                 guielement: 'richtext',
                 label: 'Standort des physischen Originals',
-                values: [null]
+                values: [null],
             },
             {
                 pid: '192',
                 guielement: 'richtext',
                 label: 'Beschreibung',
-                values: [null]
+                values: [null],
             },
             {
                 pid: '221',
                 guielement: 'richtext',
                 label: 'Inhalt',
-                values: ['<p>[Programm:] Sdružení pro soudobou houdbu v Praze</p>']
+                values: ['<p>[Programm:] Sdružení pro soudobou houdbu v Praze</p>'],
             },
             {
                 pid: '604',
                 guielement: 'richtext',
                 label: 'Transkription',
-                values: [null]
+                values: [null],
             },
             {
                 pid: '92',
                 guielement: 'richtext',
                 label: 'Literaturnachweis',
-                values: [null]
+                values: [null],
             },
             {
                 pid: '603',
                 guielement: 'richtext',
                 label: 'andere Quellen',
-                values: [null]
+                values: [null],
             },
             {
                 pid: '193',
                 guielement: 'richtext',
                 label: 'Quelle',
-                values: [null]
+                values: [null],
             },
             {
                 pid: '199',
                 guielement: 'richtext',
                 label: 'Kommentar',
-                values: [null]
-            }
+                values: [null],
+            },
         ],
         images: [
             {
@@ -102,7 +104,7 @@ export const mockResourceDetail = {
                 big: 'https://www.salsah.org:443/core/sendlocdata.php?res=2173574&qtype=full&reduce=0',
                 description: 'Programm_Prag19350109_op7-1.jpg',
                 url: 'https://www.salsah.org:443/core/sendlocdata.php?res=2173574&qtype=full&reduce=0',
-                label: 'Programm_Prag_19350109_Bild_1_2'
+                label: 'Programm_Prag_19350109_Bild_1_2',
             },
             {
                 small: 'https://www.salsah.org:443/core/sendlocdata.php?res=2173577&qtype=full&reduce=3',
@@ -110,8 +112,8 @@ export const mockResourceDetail = {
                 big: 'https://www.salsah.org:443/core/sendlocdata.php?res=2173577&qtype=full&reduce=0',
                 description: 'Programm_Prag19350109_op7-2.jpg',
                 url: 'https://www.salsah.org:443/core/sendlocdata.php?res=2173577&qtype=full&reduce=0',
-                label: 'Programm_Prag_19350109_Bild_2_2'
-            }
+                label: 'Programm_Prag_19350109_Bild_2_2',
+            },
         ],
         incoming: [
             {
@@ -125,11 +127,11 @@ export const mockResourceDetail = {
                             id: '28',
                             label: 'Chronologie',
                             icon:
-                                'https://www.salsah.org:443/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=28'
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                                'https://www.salsah.org:443/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=28',
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 };

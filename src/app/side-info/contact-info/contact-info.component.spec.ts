@@ -8,7 +8,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import {
     expectSpyCall,
     getAndExpectDebugElementByCss,
-    getAndExpectDebugElementByDirective
+    getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -18,7 +18,7 @@ import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 import { ContactInfoComponent } from './contact-info.component';
 
-// mock address component
+// Mock address component
 @Component({ selector: 'awg-address', template: '' })
 class AddressStubComponent {
     @Input()
@@ -27,7 +27,7 @@ class AddressStubComponent {
     contactMetaData: MetaContact;
 }
 
-// mock open street map component
+// Mock open street map component
 @Component({ selector: 'awg-open-street-map', template: '' })
 class OpenStreetMapStubComponent {
     @Input()
@@ -61,13 +61,13 @@ describe('ContactInfoComponent (DONE)', () => {
 
     beforeEach(
         waitForAsync(() => {
-            // mock service for test purposes
+            // Mock service for test purposes
             mockCoreService = { getMetaDataSection: sectionType => METADATA[sectionType] };
 
             TestBed.configureTestingModule({
                 imports: [BrowserModule],
                 declarations: [ContactInfoComponent, AddressStubComponent, OpenStreetMapStubComponent],
-                providers: [{ provide: CoreService, useValue: mockCoreService }]
+                providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );
@@ -80,23 +80,23 @@ describe('ContactInfoComponent (DONE)', () => {
 
         domSanitizer = TestBed.inject(DomSanitizer);
 
-        // test data
+        // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
-        // unsafe link values for open streets map
+        // Unsafe link values for open streets map
         expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
         expectedUnsafeOsmLinkUrl = AppConfig.UNSAFE_OSM_LINK_URL;
 
-        // bypass the unsafe values
+        // Bypass the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
         expectedOsmLinkUrl = domSanitizer.sanitize(SecurityContext.URL, expectedUnsafeOsmLinkUrl);
 
-        // spies on component functions
+        // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
-        sanitizeSpy = spyOn<any>(component, 'sanitizeUrls').and.callThrough();
+        sanitizeSpy = spyOn<any>(component, '_sanitizeUrls').and.callThrough();
     });
 
     afterAll(() => {
@@ -131,7 +131,7 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#sanitizeUrls', () => {
+        describe('#_sanitizeUrls', () => {
             it('... should not have been called', () => {
                 expectSpyCall(sanitizeSpy, 0);
             });
@@ -183,16 +183,16 @@ describe('ContactInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // mock the call to the DomSanitizer in #sanitizeUrls
-            // it sets the bypassed links (SafeResourceUrl)
+            // Mock the call to the DomSanitizer in #_sanitizeUrls
+            // It sets the bypassed links (SafeResourceUrl)
             component.osmEmbedUrl = expectedOsmEmbedUrl;
             component.osmLinkUrl = expectedOsmLinkUrl;
 
-            // mock the call to the meta service in #provideMetaData
+            // Mock the call to the meta service in #provideMetaData
             component.pageMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.page);
             component.contactMetaData = mockCoreService.getMetaDataSection(MetaSectionTypes.contact);
 
-            // trigger initial data binding
+            // Trigger initial data binding
             fixture.detectChanges();
         });
 
@@ -212,7 +212,7 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#sanitizeUrls', () => {
+        describe('#_sanitizeUrls', () => {
             it('... should have been called', () => {
                 expectSpyCall(sanitizeSpy, 1);
             });

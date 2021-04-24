@@ -13,6 +13,6 @@ import { ContactViewRoutingModule, routedContactViewComponents } from './contact
  */
 @NgModule({
     imports: [SharedModule, ContactViewRoutingModule],
-    declarations: [routedContactViewComponents]
+    declarations: [routedContactViewComponents],
 })
 export class ContactViewModule {}
