@@ -24,107 +24,107 @@
 <title>cluster_FooterModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1037,-268 1037,-70 8,-70"/>
 </g>
-<g id="clust9" class="cluster">
-<title>cluster_FooterModule_exports</title>
-<polygon fill="none" stroke="black" points="508,-208 508,-260 646,-260 646,-208 508,-208"/>
+<g id="clust2" class="cluster">
+<title>cluster_FooterModule_declarations</title>
+<polygon fill="none" stroke="black" points="138,-78 138,-130 1029,-130 1029,-78 138,-78"/>
 </g>
 <g id="clust8" class="cluster">
 <title>cluster_FooterModule_imports</title>
-<polygon fill="none" stroke="black" points="915,-78 915,-130 1029,-130 1029,-78 915,-78"/>
+<polygon fill="none" stroke="black" points="16,-78 16,-130 130,-130 130,-78 16,-78"/>
 </g>
-<g id="clust2" class="cluster">
-<title>cluster_FooterModule_declarations</title>
-<polygon fill="none" stroke="black" points="16,-78 16,-130 907,-130 907,-78 16,-78"/>
+<g id="clust9" class="cluster">
+<title>cluster_FooterModule_exports</title>
+<polygon fill="none" stroke="black" points="440,-208 440,-260 578,-260 578,-208 440,-208"/>
 </g>
 <!-- FooterComponent -->
 <g id="node1" class="node">
 <title>FooterComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="898.88,-122 781.12,-122 781.12,-86 898.88,-86 898.88,-122"/>
-<text text-anchor="middle" x="840" y="-99.8" font-family="Times,serif" font-size="14.00">FooterComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="1020.88,-122 903.12,-122 903.12,-86 1020.88,-86 1020.88,-122"/>
+<text text-anchor="middle" x="962" y="-99.8" font-family="Times,serif" font-size="14.00">FooterComponent</text>
 </g>
 <!-- FooterModule -->
 <g id="node6" class="node">
 <title>FooterModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="625.1,-187 622.1,-191 601.1,-191 598.1,-187 528.9,-187 528.9,-151 625.1,-151 625.1,-187"/>
-<text text-anchor="middle" x="577" y="-164.8" font-family="Times,serif" font-size="14.00">FooterModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="557.1,-187 554.1,-191 533.1,-191 530.1,-187 460.9,-187 460.9,-151 557.1,-151 557.1,-187"/>
+<text text-anchor="middle" x="509" y="-164.8" font-family="Times,serif" font-size="14.00">FooterModule</text>
 </g>
 <!-- FooterComponent&#45;&gt;FooterModule -->
 <g id="edge1" class="edge">
 <title>FooterComponent&#45;&gt;FooterModule</title>
-<path fill="none" stroke="black" d="M840,-122.02C840,-139.37 840,-163 840,-163 840,-163 635.24,-163 635.24,-163"/>
-<polygon fill="black" stroke="black" points="635.24,-159.5 625.24,-163 635.24,-166.5 635.24,-159.5"/>
+<path fill="none" stroke="black" d="M962,-122.28C962,-143.32 962,-175 962,-175 962,-175 567.05,-175 567.05,-175"/>
+<polygon fill="black" stroke="black" points="567.05,-171.5 557.05,-175 567.05,-178.5 567.05,-171.5"/>
 </g>
 <!-- FooterCopyrightComponent -->
 <g id="node2" class="node">
 <title>FooterCopyrightComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="763.16,-122 588.84,-122 588.84,-86 763.16,-86 763.16,-122"/>
-<text text-anchor="middle" x="676" y="-99.8" font-family="Times,serif" font-size="14.00">FooterCopyrightComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="885.16,-122 710.84,-122 710.84,-86 885.16,-86 885.16,-122"/>
+<text text-anchor="middle" x="798" y="-99.8" font-family="Times,serif" font-size="14.00">FooterCopyrightComponent</text>
 </g>
 <!-- FooterCopyrightComponent&#45;&gt;FooterModule -->
 <g id="edge2" class="edge">
 <title>FooterCopyrightComponent&#45;&gt;FooterModule</title>
-<path fill="none" stroke="black" d="M606.86,-122.11C606.86,-122.11 606.86,-140.99 606.86,-140.99"/>
-<polygon fill="black" stroke="black" points="603.36,-140.99 606.86,-150.99 610.36,-140.99 603.36,-140.99"/>
+<path fill="none" stroke="black" d="M798,-122.02C798,-139.37 798,-163 798,-163 798,-163 567.37,-163 567.37,-163"/>
+<polygon fill="black" stroke="black" points="567.37,-159.5 557.37,-163 567.37,-166.5 567.37,-159.5"/>
 </g>
 <!-- FooterDeclarationComponent -->
 <g id="node3" class="node">
 <title>FooterDeclarationComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="570.68,-122 387.32,-122 387.32,-86 570.68,-86 570.68,-122"/>
-<text text-anchor="middle" x="479" y="-99.8" font-family="Times,serif" font-size="14.00">FooterDeclarationComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="692.68,-122 509.32,-122 509.32,-86 692.68,-86 692.68,-122"/>
+<text text-anchor="middle" x="601" y="-99.8" font-family="Times,serif" font-size="14.00">FooterDeclarationComponent</text>
 </g>
 <!-- FooterDeclarationComponent&#45;&gt;FooterModule -->
 <g id="edge3" class="edge">
 <title>FooterDeclarationComponent&#45;&gt;FooterModule</title>
-<path fill="none" stroke="black" d="M549.77,-122.11C549.77,-122.11 549.77,-140.99 549.77,-140.99"/>
-<polygon fill="black" stroke="black" points="546.27,-140.99 549.77,-150.99 553.27,-140.99 546.27,-140.99"/>
+<path fill="none" stroke="black" d="M533.23,-122.11C533.23,-122.11 533.23,-140.99 533.23,-140.99"/>
+<polygon fill="black" stroke="black" points="529.73,-140.99 533.23,-150.99 536.73,-140.99 529.73,-140.99"/>
 </g>
 <!-- FooterLogoComponent -->
 <g id="node4" class="node">
 <title>FooterLogoComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="369.93,-122 222.07,-122 222.07,-86 369.93,-86 369.93,-122"/>
-<text text-anchor="middle" x="296" y="-99.8" font-family="Times,serif" font-size="14.00">FooterLogoComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="491.93,-122 344.07,-122 344.07,-86 491.93,-86 491.93,-122"/>
+<text text-anchor="middle" x="418" y="-99.8" font-family="Times,serif" font-size="14.00">FooterLogoComponent</text>
 </g>
 <!-- FooterLogoComponent&#45;&gt;FooterModule -->
 <g id="edge4" class="edge">
 <title>FooterLogoComponent&#45;&gt;FooterModule</title>
-<path fill="none" stroke="black" d="M296,-122.02C296,-139.37 296,-163 296,-163 296,-163 518.69,-163 518.69,-163"/>
-<polygon fill="black" stroke="black" points="518.69,-166.5 528.69,-163 518.69,-159.5 518.69,-166.5"/>
+<path fill="none" stroke="black" d="M476.33,-122.11C476.33,-122.11 476.33,-140.99 476.33,-140.99"/>
+<polygon fill="black" stroke="black" points="472.83,-140.99 476.33,-150.99 479.83,-140.99 472.83,-140.99"/>
 </g>
 <!-- FooterPoweredbyComponent -->
 <g id="node5" class="node">
 <title>FooterPoweredbyComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="204.36,-122 23.64,-122 23.64,-86 204.36,-86 204.36,-122"/>
-<text text-anchor="middle" x="114" y="-99.8" font-family="Times,serif" font-size="14.00">FooterPoweredbyComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="326.36,-122 145.64,-122 145.64,-86 326.36,-86 326.36,-122"/>
+<text text-anchor="middle" x="236" y="-99.8" font-family="Times,serif" font-size="14.00">FooterPoweredbyComponent</text>
 </g>
 <!-- FooterPoweredbyComponent&#45;&gt;FooterModule -->
 <g id="edge5" class="edge">
 <title>FooterPoweredbyComponent&#45;&gt;FooterModule</title>
-<path fill="none" stroke="black" d="M114,-122.28C114,-143.32 114,-175 114,-175 114,-175 518.76,-175 518.76,-175"/>
-<polygon fill="black" stroke="black" points="518.76,-178.5 528.76,-175 518.76,-171.5 518.76,-178.5"/>
+<path fill="none" stroke="black" d="M236,-122.02C236,-139.37 236,-163 236,-163 236,-163 450.82,-163 450.82,-163"/>
+<polygon fill="black" stroke="black" points="450.82,-166.5 460.82,-163 450.82,-159.5 450.82,-166.5"/>
 </g>
 <!-- FooterComponent  -->
 <g id="node8" class="node">
 <title>FooterComponent </title>
-<polygon fill="#fb8072" stroke="black" points="637.88,-252 516.12,-252 516.12,-216 637.88,-216 637.88,-252"/>
-<text text-anchor="middle" x="577" y="-229.8" font-family="Times,serif" font-size="14.00">FooterComponent </text>
+<polygon fill="#fb8072" stroke="black" points="569.88,-252 448.12,-252 448.12,-216 569.88,-216 569.88,-252"/>
+<text text-anchor="middle" x="509" y="-229.8" font-family="Times,serif" font-size="14.00">FooterComponent </text>
 </g>
 <!-- FooterModule&#45;&gt;FooterComponent  -->
 <g id="edge7" class="edge">
 <title>FooterModule&#45;&gt;FooterComponent </title>
-<path fill="none" stroke="black" stroke-dasharray="5,2" d="M577,-187.11C577,-187.11 577,-205.99 577,-205.99"/>
-<polygon fill="black" stroke="black" points="573.5,-205.99 577,-215.99 580.5,-205.99 573.5,-205.99"/>
+<path fill="none" stroke="black" stroke-dasharray="5,2" d="M509,-187.11C509,-187.11 509,-205.99 509,-205.99"/>
+<polygon fill="black" stroke="black" points="505.5,-205.99 509,-215.99 512.5,-205.99 505.5,-205.99"/>
 </g>
 <!-- SharedModule -->
 <g id="node7" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="1021.42,-122 1018.42,-126 997.42,-126 994.42,-122 922.58,-122 922.58,-86 1021.42,-86 1021.42,-122"/>
-<text text-anchor="middle" x="972" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="122.42,-122 119.42,-126 98.42,-126 95.42,-122 23.58,-122 23.58,-86 122.42,-86 122.42,-122"/>
+<text text-anchor="middle" x="73" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;FooterModule -->
 <g id="edge6" class="edge">
 <title>SharedModule&#45;&gt;FooterModule</title>
-<path fill="none" stroke="black" d="M972,-122.28C972,-143.32 972,-175 972,-175 972,-175 635.43,-175 635.43,-175"/>
-<polygon fill="black" stroke="black" points="635.43,-171.5 625.43,-175 635.43,-178.5 635.43,-171.5"/>
+<path fill="none" stroke="black" d="M73,-122.28C73,-143.32 73,-175 73,-175 73,-175 450.67,-175 450.67,-175"/>
+<polygon fill="black" stroke="black" points="450.67,-178.5 460.67,-175 450.67,-171.5 450.67,-178.5"/>
 </g>
 </g>
 </svg>

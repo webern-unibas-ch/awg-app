@@ -1,14 +1,16 @@
 {
     "textcritics": [
         {
-            "id": "Aa:SkI/1",
+            "id": "Aa-SkI-1",
+            "label": "Aa:SkI/1",
             "description": [
                 "<small class=\"text-muted\">[Der Skizzenkommentar und die textkritischen Kommentare zu <strong>Aa:Sk1/1</strong> erscheinen im Zusammenhang der vollständigen Edition der <i>Vier Lieder</i> op. 12 in AWG I/5.]</small>"
             ],
             "comments": []
         },
         {
-            "id": "Aa:SkI/2",
+            "id": "Aa-SkI-2",
+            "label": "Aa:SkI/2",
             "description": [],
             "comments": [
                 {
@@ -38,7 +40,8 @@
             ]
         },
         {
-            "id": "Aa:SkI/3",
+            "id": "Aa-SkI-3",
+            "label": "Aa:SkI/3",
             "description": [],
             "comments": [
                 {
@@ -62,7 +65,8 @@
             ]
         },
         {
-            "id": "Aa:SkI/4",
+            "id": "Aa-SkI-4",
+            "label": "Aa:SkI/4",
             "description": [],
             "comments": [
                 {
@@ -80,7 +84,8 @@
             ]
         },
         {
-            "id": "Aa:SkI/5",
+            "id": "Aa-SkI-5",
+            "label": "Aa:SkI/5",
             "description": [],
             "comments": [
                 {

@@ -620,7 +620,7 @@ export class EditionViewComponent implements OnInit {
     getEditionWorkFromRoute(): void {
         this.route.paramMap.subscribe(params &#x3D;&gt; {
             const id: string &#x3D; params.get(&#x27;compositionId&#x27;) ? params.get(&#x27;compositionId&#x27;) : &#x27;&#x27;;
-            this.editionService.updateEditionWork(EditionWorks[id]);
+            this.editionService.updateEditionWork(EditionWorks[id.toUpperCase()]);
             this.editionWork$ &#x3D; this.editionService.getEditionWork();
         });
     }

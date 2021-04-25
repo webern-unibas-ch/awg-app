@@ -1884,9 +1884,9 @@ export class EditionDetailComponent implements OnInit, OnDestroy {
         if (!this.textcriticsData &amp;&amp; !this.selectedSvgSheet) {
             return;
         }
-        // Find index of teh selected svg sheet id in textcriticsData.textcritics array
+        // Find index of the selected svg sheet id in textcriticsData.textcritics array
         const textcriticsIndex &#x3D; this.textcriticsData.textcritics.findIndex(
-            textcritic &#x3D;&gt; textcritic.id &#x3D;&#x3D;&#x3D; this.selectedSvgSheet.id
+            textcritic &#x3D;&gt; textcritic.label &#x3D;&#x3D;&#x3D; this.selectedSvgSheet.id
         );
         // Return the comments with the given id
         return this.textcriticsData.textcritics[textcriticsIndex].comments;
