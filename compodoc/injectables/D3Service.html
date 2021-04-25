@@ -441,7 +441,7 @@ import {
     D3ForceSimulationOptions,
     D3SimulationLink,
     D3SimulationNode,
-    D3DragBehaviour
+    D3DragBehaviour,
 } from &#x27;@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models&#x27;;
 
 import * as d3_drag from &#x27;d3-drag&#x27;;
@@ -457,7 +457,7 @@ import * as d3_zoom from &#x27;d3-zoom&#x27;;
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class D3Service {
     /**
@@ -476,10 +476,10 @@ export class D3Service {
      *  @returns {void} Sets the drag behaviour.
      */
     applyDragBehaviour(dragContext: D3Selection, simulation: D3Simulation): void {
-        // const dragElement: D3Selection &#x3D; d3_selection.select(element);
+        // Const dragElement: D3Selection &#x3D; d3_selection.select(element);
 
         const dragStart &#x3D; (event: any, d: D3SimulationNode) &#x3D;&gt; {
-            // prevent propagation of dragstart to parent elements
+            // Prevent propagation of dragstart to parent elements
             event.sourceEvent.stopPropagation();
 
             if (!event.active) {
@@ -504,14 +504,14 @@ export class D3Service {
             d.fy &#x3D; null;
         };
 
-        // create drag behaviour
+        // Create drag behaviour
         const dragBehaviour: D3DragBehaviour &#x3D; d3_drag
             .drag()
             .on(&#x27;start&#x27;, dragStart)
             .on(&#x27;drag&#x27;, dragged)
             .on(&#x27;end&#x27;, dragEnd);
 
-        // apply drag behaviour
+        // Apply drag behaviour
         dragContext.call(dragBehaviour);
     }
 
@@ -525,21 +525,21 @@ export class D3Service {
      *  @returns {void} Sets the zoom behaviour.
      */
     applyZoomBehaviour(zoomContainerElement: any, svgElement: any): void {
-        // select the elements
+        // Select the elements
         const svg: D3Selection &#x3D; d3_selection.select(svgElement);
         const zoomContainer: D3Selection &#x3D; d3_selection.select(zoomContainerElement);
 
-        // perform the zooming
+        // Perform the zooming
         const zoomed &#x3D; (event: any) &#x3D;&gt; {
             const currentTransform &#x3D; event.transform;
-            // update d3 zoom context
+            // Update d3 zoom context
             zoomContainer.attr(&#x27;transform&#x27;, currentTransform);
         };
 
-        // create zoom behaviour that calls the zoomActions on zoom
+        // Create zoom behaviour that calls the zoomActions on zoom
         const zoomBehaviour &#x3D; d3_zoom.zoom().on(&#x27;zoom&#x27;, zoomed);
 
-        // apply zoom behaviour
+        // Apply zoom behaviour
         svg.call(zoomBehaviour);
     }
 

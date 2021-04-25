@@ -257,12 +257,10 @@ export const mockWindow: IMockWindow &#x3D; {
     postMessage: (value: { gnd: string }, messageTarget: string) &#x3D;&gt; {
         windowStore.push([value, messageTarget]);
     },
-    get: (index: number): postMessageType &#x3D;&gt; {
-        return windowStore[index];
-    },
+    get: (index: number): postMessageType &#x3D;&gt; windowStore[index],
     clear: () &#x3D;&gt; {
         windowStore &#x3D; [];
-    }
+    },
 };
 </code></pre>
     </div>

@@ -727,7 +727,7 @@ from the searchValue input.</p>
                             <i>Default value : </i><code>{
         label: &#x27;Search Input&#x27;,
         placeholder: &#x27;Volltextsuche in der Webern-Datenbank …&#x27;,
-        errorMessage: &#x27;Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!&#x27;
+        errorMessage: &#x27;Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!&#x27;,
     }</code>
                         </td>
                     </tr>
@@ -805,7 +805,7 @@ import { faSearch } from &#x27;@fortawesome/free-solid-svg-icons&#x27;;
     selector: &#x27;awg-search-form&#x27;,
     templateUrl: &#x27;./search-form.component.html&#x27;,
     styleUrls: [&#x27;./search-form.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SearchFormComponent implements OnChanges {
     /**
@@ -846,7 +846,7 @@ export class SearchFormComponent implements OnChanges {
     searchFormStrings &#x3D; {
         label: &#x27;Search Input&#x27;,
         placeholder: &#x27;Volltextsuche in der Webern-Datenbank …&#x27;,
-        errorMessage: &#x27;Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!&#x27;
+        errorMessage: &#x27;Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!&#x27;,
     };
 
     /**
@@ -888,7 +888,7 @@ export class SearchFormComponent implements OnChanges {
      */
     createFormGroup(): void {
         this.searchForm &#x3D; this.formBuilder.group({
-            searchValueControl: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.minLength(3)])]
+            searchValueControl: [&#x27;&#x27;, Validators.compose([Validators.required, Validators.minLength(3)])],
         });
     }
 
@@ -904,11 +904,11 @@ export class SearchFormComponent implements OnChanges {
     listenToUserInputChange(): void {
         this.searchValueControl.valueChanges
             .pipe(
-                // at least 3 characters
+                // At least 3 characters
                 filter(x &#x3D;&gt; x.length &gt;&#x3D; 3),
-                // do not check changes before half a second
+                // Do not check changes before half a second
                 debounceTime(500),
-                // do not check unchanged values
+                // Do not check unchanged values
                 distinctUntilChanged()
             )
             .subscribe((query: string) &#x3D;&gt; this.onSearch(query));

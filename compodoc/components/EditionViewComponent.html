@@ -562,7 +562,7 @@ import { Observable } from &#x27;rxjs&#x27;;
 @Component({
     selector: &#x27;awg-edition-view&#x27;,
     templateUrl: &#x27;./edition-view.component.html&#x27;,
-    styleUrls: [&#x27;./edition-view.component.css&#x27;]
+    styleUrls: [&#x27;./edition-view.component.css&#x27;],
 })
 export class EditionViewComponent implements OnInit {
     /**
@@ -633,10 +633,10 @@ export class EditionViewComponent implements OnInit {
      * @returns {void} Activates the edition-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: &#x27;editionInfo&#x27; } }], {
             preserveFragment: true,
-            queryParamsHandling: &#x27;preserve&#x27;
+            queryParamsHandling: &#x27;preserve&#x27;,
         });
     }
 }

@@ -92,12 +92,12 @@ to store work information of the editions.</p>
                             <li>
                                     <span class="modifier">Static</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#op12">op12</a>
+                                <a href="#OP12">OP12</a>
                             </li>
                             <li>
                                     <span class="modifier">Static</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#op25">op25</a>
+                                <a href="#OP25">OP25</a>
                             </li>
                         </ul>
                     </td>
@@ -122,13 +122,13 @@ to store work information of the editions.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="op12"></a>
+                        <a name="OP12"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Static</span>
                                 <span class="modifier">Readonly</span>
-                            op12</b>
-                            <a href="#op12"><span class="icon ion-ios-link"></span></a>
+                            OP12</b>
+                            <a href="#OP12"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -143,26 +143,26 @@ to store work information of the editions.</p>
                             <i>Default value : </i><code>new EditionWork(
         {
             title: &#x27;Vier Lieder&#x27;,
-            catalogueType: EditionConstants.opus,
-            catalogueNumber: &#x27;12&#x27;
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: &#x27;12&#x27;,
         },
         {
             editors: [
                 {
                     name: &#x27;Thomas Ahrend&#x27;,
-                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;,
+                },
             ],
-            lastModified: &#x27;29. Januar 2020&#x27;
+            lastModified: &#x27;29. Januar 2020&#x27;,
         },
         {
             route: &#x27;/op12&#x27;,
             short: &#x27;&#x27;,
-            full: &#x27;&#x27;
+            full: &#x27;&#x27;,
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     )</code>
                         </td>
                     </tr>
@@ -185,13 +185,13 @@ to store work information of the editions.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="op25"></a>
+                        <a name="OP25"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Static</span>
                                 <span class="modifier">Readonly</span>
-                            op25</b>
-                            <a href="#op25"><span class="icon ion-ios-link"></span></a>
+                            OP25</b>
+                            <a href="#OP25"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -206,26 +206,26 @@ to store work information of the editions.</p>
                             <i>Default value : </i><code>new EditionWork(
         {
             title: &#x27;Drei Lieder nach Gedichten von Hildegard Jone&#x27;,
-            catalogueType: EditionConstants.opus,
-            catalogueNumber: &#x27;25&#x27;
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: &#x27;25&#x27;,
         },
         {
             editors: [
                 {
                     name: &#x27;Thomas Ahrend&#x27;,
-                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;,
+                },
             ],
-            lastModified: &#x27;29. Januar 2020&#x27;
+            lastModified: &#x27;29. Januar 2020&#x27;,
         },
         {
             route: &#x27;/op25&#x27;,
             short: &#x27;&#x27;,
-            full: &#x27;&#x27;
+            full: &#x27;&#x27;,
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     )</code>
                         </td>
                     </tr>
@@ -270,57 +270,57 @@ export class EditionWorks {
     /**
      * An EditionWork object for Opus 12.
      */
-    static readonly op12: EditionWork &#x3D; new EditionWork(
+    static readonly OP12: EditionWork &#x3D; new EditionWork(
         {
             title: &#x27;Vier Lieder&#x27;,
-            catalogueType: EditionConstants.opus,
-            catalogueNumber: &#x27;12&#x27;
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: &#x27;12&#x27;,
         },
         {
             editors: [
                 {
                     name: &#x27;Thomas Ahrend&#x27;,
-                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;,
+                },
             ],
-            lastModified: &#x27;29. Januar 2020&#x27;
+            lastModified: &#x27;29. Januar 2020&#x27;,
         },
         {
             route: &#x27;/op12&#x27;,
             short: &#x27;&#x27;,
-            full: &#x27;&#x27;
+            full: &#x27;&#x27;,
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     );
 
     /**
      * An EditionWork object for Opus 25.
      */
-    static readonly op25: EditionWork &#x3D; new EditionWork(
+    static readonly OP25: EditionWork &#x3D; new EditionWork(
         {
             title: &#x27;Drei Lieder nach Gedichten von Hildegard Jone&#x27;,
-            catalogueType: EditionConstants.opus,
-            catalogueNumber: &#x27;25&#x27;
+            catalogueType: EditionConstants.OPUS,
+            catalogueNumber: &#x27;25&#x27;,
         },
         {
             editors: [
                 {
                     name: &#x27;Thomas Ahrend&#x27;,
-                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
-                }
+                    homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;,
+                },
             ],
-            lastModified: &#x27;29. Januar 2020&#x27;
+            lastModified: &#x27;29. Januar 2020&#x27;,
         },
         {
             route: &#x27;/op25&#x27;,
             short: &#x27;&#x27;,
-            full: &#x27;&#x27;
+            full: &#x27;&#x27;,
         },
-        EditionConstants.series1,
-        EditionConstants.section5,
-        EditionConstants.sketchEdition
+        EditionConstants.SERIES_1,
+        EditionConstants.SECTION_5,
+        EditionConstants.SKETCH_EDITION
     );
 }
 </code></pre>

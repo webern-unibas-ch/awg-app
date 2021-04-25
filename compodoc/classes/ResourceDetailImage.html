@@ -459,7 +459,7 @@ export class ResourceDetailImage {
      */
     constructor(context: ContextJson, index: number) {
         const imgSize &#x3D; context.locations[index];
-        // find proper image solution [3] &#x3D; reduction 3
+        // Find proper image solution [3] &#x3D; reduction 3
         const preview &#x3D; imgSize[3] ? imgSize[3] : imgSize[0];
 
         this.resId &#x3D; context.res_id[index];

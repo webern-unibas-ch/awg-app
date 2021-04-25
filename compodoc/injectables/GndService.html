@@ -93,15 +93,15 @@ to the session storage via the StorageService</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#currentLocation">currentLocation</a>
+                                <a href="#CURRENT_LOCATION">CURRENT_LOCATION</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#dnbReg">dnbReg</a>
+                                <a href="#DNB_REG">DNB_REG</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#gndKey">gndKey</a>
+                                <a href="#GND_KEY">GND_KEY</a>
                             </li>
                             <li>
                                 <a href="#linkRegArr">linkRegArr</a>
@@ -119,23 +119,35 @@ to the session storage via the StorageService</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_exposeGndMessageToParent">_exposeGndMessageToParent</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_removeGndFromSessionStorage">_removeGndFromSessionStorage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_setGndToSessionStorage">_setGndToSessionStorage</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_valueHasGnd">_valueHasGnd</a>
+                            </li>
+                            <li>
                                 <a href="#exposeGnd">exposeGnd</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#exposeGndMessageToParent">exposeGndMessageToParent</a>
+                                <a href="#_storageHasKey">_storageHasKey</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#removeGndFromSessionStorage">removeGndFromSessionStorage</a>
+                                <a href="#_storageIsAvailable">_storageIsAvailable</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#setGndToSessionStorage">setGndToSessionStorage</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#valueHasGnd">valueHasGnd</a>
+                                <a href="#_storageIsSupported">_storageIsSupported</a>
                             </li>
                             <li>
                                 <a href="#getStorageKey">getStorageKey</a>
@@ -145,18 +157,6 @@ to the session storage via the StorageService</p>
                             </li>
                             <li>
                                 <a href="#setStorageKey">setStorageKey</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#storageHasKey">storageHasKey</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#storageIsAvailable">storageIsAvailable</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#storageIsSupported">storageIsSupported</a>
                             </li>
                         </ul>
                     </td>
@@ -180,6 +180,306 @@ to the session storage via the StorageService</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_exposeGndMessageToParent"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _exposeGndMessageToParent
+                        </b>
+                        <a href="#_exposeGndMessageToParent"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_exposeGndMessageToParent(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="170"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:170</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _exposeGndMessageToParent.</p>
+<p>It exposes a given GND value to the
+parent windows of the given targets,
+for now esp. Inseri IFrame,
+via the Web API postmessage method
+(cf. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage">https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage</a>).</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given value to post.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Sends the postMessage to the parent window.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_removeGndFromSessionStorage"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _removeGndFromSessionStorage
+                        </b>
+                        <a href="#_removeGndFromSessionStorage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_removeGndFromSessionStorage()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="150"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:150</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: _removeGndFromSessionStorage.</p>
+<p>It removes the key defined in &#39;GND_KEY&#39;
+from the sessionStorage.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>It removes the key/value pair from the storage.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_setGndToSessionStorage"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _setGndToSessionStorage
+                        </b>
+                        <a href="#_setGndToSessionStorage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_setGndToSessionStorage(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="129"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:129</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: _setGndToSessionStorage.</p>
+<p>It sets a given value to the key defined in &#39;GND_KEY&#39;
+in the sessionStorage.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>value</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given input value.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>It sets the key/value pair to the storage.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_valueHasGnd"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _valueHasGnd
+                        </b>
+                        <a href="#_valueHasGnd"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_valueHasGnd(checkValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="193"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:193</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _valueHasGnd.</p>
+<p>It checks if a given value contains a GND link
+(checked via the DNB_REG regex).</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>checkValue</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given value to check.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The boolean result of the check.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="exposeGnd"></a>
                     <span class="name">
                         <b>
@@ -198,8 +498,8 @@ to the session storage via the StorageService</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="103"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:103</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="100"
+                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:100</a></div>
                 </td>
             </tr>
 
@@ -260,40 +560,42 @@ to/from the sessionStorage.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="exposeGndMessageToParent"></a>
+                    <a name="_storageHasKey"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            exposeGndMessageToParent
+                            _storageHasKey
                         </b>
-                        <a href="#exposeGndMessageToParent"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_storageHasKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>exposeGndMessageToParent(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_storageHasKey(storage: Storage, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:173</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/StorageService.html#source" target="_self" >StorageService:107</a></code>
+</div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: exposeGndMessageToParent.</p>
-<p>It exposes a given GND value to the
-parent windows of the given targets,
-for now esp. Inseri IFrame,
-via the Web API postmessage method
-(cf. <a href="https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage">https://developer.mozilla.org/en-US/docs/Web/API/Window/postMessage</a>).</p>
+                    <div class="io-description"><p>Private method: _storageHasKey.</p>
+<p>It checks if a given storage type has a given key.</p>
 </div>
 
                     <div class="io-description">
@@ -309,7 +611,23 @@ via the Web API postmessage method
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>value</td>
+                                    <td>storage</td>
+                                    <td>
+                                            <code>Storage</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given storage type.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>key</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -320,222 +638,7 @@ via the Web API postmessage method
 
 
                                     <td>
-                                        <p>The given value to post.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Sends the postMessage to the parent window.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="removeGndFromSessionStorage"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            removeGndFromSessionStorage
-                        </b>
-                        <a href="#removeGndFromSessionStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>removeGndFromSessionStorage()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="153"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:153</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: removeGndFromSessionStorage.</p>
-<p>It removes the key defined in &#39;gndKey&#39;
-from the sessionStorage.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>It removes the key/value pair from the storage.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="setGndToSessionStorage"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            setGndToSessionStorage
-                        </b>
-                        <a href="#setGndToSessionStorage"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>setGndToSessionStorage(value: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="132"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:132</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: setGndToSessionStorage.</p>
-<p>It sets a given value to the key defined in &#39;gndKey&#39;
-in the sessionStorage.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>value</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given input value.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>It sets the key/value pair to the storage.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="valueHasGnd"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            valueHasGnd
-                        </b>
-                        <a href="#valueHasGnd"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>valueHasGnd(checkValue: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="196"
-                            class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:196</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: valueHasGnd.</p>
-<p>It checks if a given value contains a GND link
-(checked via the dnbReg regex).</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>checkValue</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given value to check.</p>
+                                        <p>The given key.</p>
 
                                     </td>
                                 </tr>
@@ -549,7 +652,182 @@ in the sessionStorage.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>The boolean result of the check.</p>
+                        <p>The boolean value for the given key in the given storage type.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_storageIsAvailable"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _storageIsAvailable
+                        </b>
+                        <a href="#_storageIsAvailable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_storageIsAvailable(storage: Storage)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/StorageService.html#source" target="_self" >StorageService:137</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _storageIsAvailable.</p>
+<p>It checks if a given storage type is available.
+cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathiasbynens.be/notes/localstorage-pattern</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>storage</td>
+                                    <td>
+                                            <code>Storage</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given storage type.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Storage</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The local reference to Storage for the given storage type.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_storageIsSupported"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _storageIsSupported
+                        </b>
+                        <a href="#_storageIsSupported"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_storageIsSupported(storage: Storage)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/StorageService.html#source" target="_self" >StorageService:123</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _storageIsSupported.</p>
+<p>It checks if a given storage type is supported.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>storage</td>
+                                    <td>
+                                            <code>Storage</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given storage type.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Storage</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The local reference to Storage for the given storage type.</p>
 
                     </div>
                 </td>
@@ -875,284 +1153,6 @@ in the sessionStorage.</p>
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="storageHasKey"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            storageHasKey
-                        </b>
-                        <a href="#storageHasKey"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>storageHasKey(storage: Storage, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/StorageService.html#source" target="_self" >StorageService:107</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: storageHasKey.</p>
-<p>It checks if a given storage type has a given key.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>storage</td>
-                                    <td>
-                                            <code>Storage</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given storage type.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>key</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given key.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The boolean value for the given key in the given storage type.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="storageIsAvailable"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            storageIsAvailable
-                        </b>
-                        <a href="#storageIsAvailable"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>storageIsAvailable(storage: Storage)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/StorageService.html#source" target="_self" >StorageService:137</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: storageIsAvailable.</p>
-<p>It checks if a given storage type is available.
-cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathiasbynens.be/notes/localstorage-pattern</a></p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>storage</td>
-                                    <td>
-                                            <code>Storage</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given storage type.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Storage</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The local reference to Storage for the given storage type.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="storageIsSupported"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            storageIsSupported
-                        </b>
-                        <a href="#storageIsSupported"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>storageIsSupported(storage: Storage)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/StorageService.html" target="_self" >StorageService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/StorageService.html#source" target="_self" >StorageService:123</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: storageIsSupported.</p>
-<p>It checks if a given storage type is supported.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>storage</td>
-                                    <td>
-                                            <code>Storage</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given storage type.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Storage</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The local reference to Storage for the given storage type.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
             <section>
     
@@ -1163,12 +1163,12 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="currentLocation"></a>
+                        <a name="CURRENT_LOCATION"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            currentLocation</b>
-                            <a href="#currentLocation"><span class="icon ion-ios-link"></span></a>
+                            CURRENT_LOCATION</b>
+                            <a href="#CURRENT_LOCATION"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1181,10 +1181,7 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-        getOrigin: (location: Location) &#x3D;&gt; {
-            // console.info(&#x27;got location&#x27;, location);
-            return location.origin;
-        }
+        getOrigin: (location: Location) &#x3D;&gt; location.origin,
     }</code>
                         </td>
                     </tr>
@@ -1196,7 +1193,7 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly variable: currentLocation.</p>
+                        <div class="io-description"><p>Readonly variable: CURRENT_LOCATION.</p>
 <p>Helper function to spy on and set origin in tests.
 It returns the origin of the current location.</p>
 </div>
@@ -1209,12 +1206,12 @@ It returns the origin of the current location.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="dnbReg"></a>
+                        <a name="DNB_REG"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            dnbReg</b>
-                            <a href="#dnbReg"><span class="icon ion-ios-link"></span></a>
+                            DNB_REG</b>
+                            <a href="#DNB_REG"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1231,7 +1228,7 @@ It returns the origin of the current location.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly variable: dnbReg.</p>
+                        <div class="io-description"><p>Readonly variable: DNB_REG.</p>
 <p>It holds the regular expression for a d-nb link in a href.</p>
 </div>
                     </td>
@@ -1243,12 +1240,12 @@ It returns the origin of the current location.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="gndKey"></a>
+                        <a name="GND_KEY"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            gndKey</b>
-                            <a href="#gndKey"><span class="icon ion-ios-link"></span></a>
+                            GND_KEY</b>
+                            <a href="#GND_KEY"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1271,7 +1268,7 @@ It returns the origin of the current location.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly variable: gndKey.</p>
+                        <div class="io-description"><p>Readonly variable: GND_KEY.</p>
 <p>It holds the public key that is set to the storage.</p>
 </div>
                     </td>
@@ -1299,7 +1296,7 @@ It returns the origin of the current location.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:91</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:88</a></div>
                             </td>
                         </tr>
 
@@ -1330,9 +1327,9 @@ import { StorageType, StorageService } from &#x27;@awg-core/services/storage-ser
  * It stores the possible GND event types.
  */
 export enum GndEventType {
-    set &#x3D; &#x27;set&#x27;,
-    get &#x3D; &#x27;get&#x27;,
-    remove &#x3D; &#x27;remove&#x27;
+    SET &#x3D; &#x27;set&#x27;,
+    GET &#x3D; &#x27;get&#x27;,
+    REMOVE &#x3D; &#x27;remove&#x27;,
 }
 
 /**
@@ -1374,34 +1371,31 @@ export class GndEvent {
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class GndService extends StorageService {
     /**
-     * Readonly variable: gndKey.
+     * Readonly variable: GND_KEY.
      *
      * It holds the public key that is set to the storage.
      */
-    readonly gndKey &#x3D; &#x27;gnd&#x27;;
+    readonly GND_KEY &#x3D; &#x27;gnd&#x27;;
 
     /**
-     * Readonly variable: dnbReg.
+     * Readonly variable: DNB_REG.
      *
      * It holds the regular expression for a d-nb link in a href.
      */
-    readonly dnbReg &#x3D; /href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i; // regexp for d-nb links
+    readonly DNB_REG &#x3D; /href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i; // Regexp for d-nb links
 
     /**
-     * Readonly variable: currentLocation.
+     * Readonly variable: CURRENT_LOCATION.
      *
      * Helper function to spy on and set origin in tests.
      * It returns the origin of the current location.
      */
-    readonly currentLocation &#x3D; {
-        getOrigin: (location: Location) &#x3D;&gt; {
-            // console.info(&#x27;got location&#x27;, location);
-            return location.origin;
-        }
+    readonly CURRENT_LOCATION &#x3D; {
+        getOrigin: (location: Location) &#x3D;&gt; location.origin,
     };
 
     /**
@@ -1426,60 +1420,60 @@ export class GndService extends StorageService {
             return;
         }
         switch (gndEvent.type) {
-            case GndEventType.set: {
-                this.setGndToSessionStorage(gndEvent.value);
+            case GndEventType.SET: {
+                this._setGndToSessionStorage(gndEvent.value);
                 break;
             }
-            case GndEventType.remove: {
-                this.removeGndFromSessionStorage();
+            case GndEventType.REMOVE: {
+                this._removeGndFromSessionStorage();
                 break;
             }
             default: {
-                console.log(&#x27;got an uncatched GND event&#x27;, gndEvent);
+                console.warn(&#x27;Got an uncatched GND event&#x27;, gndEvent);
             }
         }
     }
 
     /**
-     * Public method: setGndToSessionStorage.
+     * Public method: _setGndToSessionStorage.
      *
-     * It sets a given value to the key defined in &#x27;gndKey&#x27;
+     * It sets a given value to the key defined in &#x27;GND_KEY&#x27;
      * in the sessionStorage.
      *
      * @param {string} value The given input value.
      *
      * @returns {void} It sets the key/value pair to the storage.
      */
-    private setGndToSessionStorage(value: string): void {
-        if (this.valueHasGnd(value)) {
-            // take last argument (pop) of linkRegArray
+    private _setGndToSessionStorage(value: string): void {
+        if (this._valueHasGnd(value)) {
+            // Take last argument (pop) of linkRegArray
             const gndItem &#x3D; this.linkRegArr.pop().toString();
 
-            // set to storage
-            this.setStorageKey(StorageType.sessionStorage, this.gndKey, gndItem);
+            // Set to storage
+            this.setStorageKey(StorageType.sessionStorage, this.GND_KEY, gndItem);
 
-            // expose gndItem to parent window
-            this.exposeGndMessageToParent(gndItem);
+            // Expose gndItem to parent window
+            this._exposeGndMessageToParent(gndItem);
         }
     }
 
     /**
-     * Public method: removeGndFromSessionStorage.
+     * Public method: _removeGndFromSessionStorage.
      *
-     * It removes the key defined in &#x27;gndKey&#x27;
+     * It removes the key defined in &#x27;GND_KEY&#x27;
      * from the sessionStorage.
      *
      * @returns {void} It removes the key/value pair from the storage.
      */
-    private removeGndFromSessionStorage(): void {
-        this.removeStorageKey(StorageType.sessionStorage, this.gndKey);
+    private _removeGndFromSessionStorage(): void {
+        this.removeStorageKey(StorageType.sessionStorage, this.GND_KEY);
 
-        // expose removed gndItem to parent window
-        this.exposeGndMessageToParent(null);
+        // Expose removed gndItem to parent window
+        this._exposeGndMessageToParent(null);
     }
 
     /**
-     * Private method: exposeGndMessageToParent.
+     * Private method: _exposeGndMessageToParent.
      *
      * It exposes a given GND value to the
      * parent windows of the given targets,
@@ -1491,32 +1485,32 @@ export class GndService extends StorageService {
      *
      * @return {void} Sends the postMessage to the parent window.
      */
-    private exposeGndMessageToParent(value: string): void {
+    private _exposeGndMessageToParent(value: string): void {
         const inseriTarget &#x3D; AppConfig.INSERI_TEST_URL;
         const localTarget &#x3D; AppConfig.LOCALHOST_URL;
         const targets &#x3D; [inseriTarget, localTarget];
 
         for (const target of targets) {
-            // check if parent location meets target
-            if (this.currentLocation.getOrigin(window.parent.location) &#x3D;&#x3D;&#x3D; target) {
+            // Check if parent location meets target
+            if (this.CURRENT_LOCATION.getOrigin(window.parent.location) &#x3D;&#x3D;&#x3D; target) {
                 window.parent.window.postMessage({ gnd: value }, target);
             }
         }
     }
 
     /**
-     * Private method: valueHasGnd.
+     * Private method: _valueHasGnd.
      *
      * It checks if a given value contains a GND link
-     * (checked via the dnbReg regex).
+     * (checked via the DNB_REG regex).
      *
      * @param {string} checkValue The given value to check.
      *
      * @return {boolean} The boolean result of the check.
      */
-    private valueHasGnd(checkValue: string): boolean {
-        if (this.dnbReg.test(checkValue)) {
-            this.linkRegArr &#x3D; this.dnbReg.exec(checkValue);
+    private _valueHasGnd(checkValue: string): boolean {
+        if (this.DNB_REG.test(checkValue)) {
+            this.linkRegArr &#x3D; this.DNB_REG.exec(checkValue);
         } else {
             this.linkRegArr &#x3D; null;
         }

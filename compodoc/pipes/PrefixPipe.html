@@ -95,20 +95,20 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="switchPrefixForm"></a>
+                    <a name="_switchPrefixForm"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            switchPrefixForm
+                            _switchPrefixForm
                         </b>
-                        <a href="#switchPrefixForm"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_switchPrefixForm"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>switchPrefixForm(prefixForm: <a href="../classes/Prefix.html">PrefixForm</a>, oldValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>_switchPrefixForm(prefixForm: <a href="../classes/Prefix.html">PrefixForm</a>, oldValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
@@ -123,7 +123,7 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: switchPrefixForm.</p>
+                    <div class="io-description"><p>Private method: _switchPrefixForm.</p>
 <p>It shortens or expands a given value
 depending on the requested prefix form.</p>
 </div>
@@ -313,7 +313,7 @@ depending on the requested prefix form.</p>
         new Prefix(&#x27;prov&#x27;, &#x27;http://www.w3.org/ns/prov#&#x27;),
         new Prefix(&#x27;rdf&#x27;, &#x27;http://www.w3.org/1999/02/22-rdf-syntax-ns#&#x27;),
         new Prefix(&#x27;rdfs&#x27;, &#x27;http://www.w3.org/2000/01/rdf-schema#&#x27;),
-        new Prefix(&#x27;xsd&#x27;, &#x27;http://www.w3.org/2001/XMLSchema#&#x27;)
+        new Prefix(&#x27;xsd&#x27;, &#x27;http://www.w3.org/2001/XMLSchema#&#x27;),
     ]</code>
                         </td>
                     </tr>
@@ -361,7 +361,7 @@ export class PrefixPipe implements PipeTransform {
         new Prefix(&#x27;prov&#x27;, &#x27;http://www.w3.org/ns/prov#&#x27;),
         new Prefix(&#x27;rdf&#x27;, &#x27;http://www.w3.org/1999/02/22-rdf-syntax-ns#&#x27;),
         new Prefix(&#x27;rdfs&#x27;, &#x27;http://www.w3.org/2000/01/rdf-schema#&#x27;),
-        new Prefix(&#x27;xsd&#x27;, &#x27;http://www.w3.org/2001/XMLSchema#&#x27;)
+        new Prefix(&#x27;xsd&#x27;, &#x27;http://www.w3.org/2001/XMLSchema#&#x27;),
     ];
 
     /**
@@ -372,7 +372,7 @@ export class PrefixPipe implements PipeTransform {
      */
     transform(prefixForm: PrefixForm, value: any): any {
         let val &#x3D; value;
-        const transformedValue &#x3D; this.switchPrefixForm(prefixForm, val);
+        const transformedValue &#x3D; this._switchPrefixForm(prefixForm, val);
 
         if (transformedValue) {
             val &#x3D; transformedValue;
@@ -382,7 +382,7 @@ export class PrefixPipe implements PipeTransform {
     }
 
     /**
-     * Private method: switchPrefixForm.
+     * Private method: _switchPrefixForm.
      *
      * It shortens or expands a given value
      * depending on the requested prefix form.
@@ -390,7 +390,7 @@ export class PrefixPipe implements PipeTransform {
      * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      * @param {*} oldValue The given value to be piped.
      */
-    private switchPrefixForm(prefixForm: PrefixForm, oldValue: any): any {
+    private _switchPrefixForm(prefixForm: PrefixForm, oldValue: any): any {
         let newValue;
 
         switch (prefixForm) {

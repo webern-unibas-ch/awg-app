@@ -86,20 +86,22 @@ titles for the side info components.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#searchInfoDataStream$">searchInfoDataStream$</a>
+                                <a href="#_searchInfoDataStream$">_searchInfoDataStream$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#searchInfoDataSubject">searchInfoDataSubject</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Readonly</span>
-                                <a href="#searchInfoTitleStream$">searchInfoTitleStream$</a>
+                                <a href="#_searchInfoDataSubject">_searchInfoDataSubject</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#searchInfoTitleSubject">searchInfoTitleSubject</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#_searchInfoTitleStream$">_searchInfoTitleStream$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_searchInfoTitleSubject">_searchInfoTitleSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -499,18 +501,19 @@ titles for the side info components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchInfoDataStream$"></a>
+                        <a name="_searchInfoDataStream$"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Private</span>
                                 <span class="modifier">Readonly</span>
-                            searchInfoDataStream$</b>
-                            <a href="#searchInfoDataStream$"><span class="icon ion-ios-link"></span></a>
+                            _searchInfoDataStream$</b>
+                            <a href="#_searchInfoDataStream$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.searchInfoDataSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._searchInfoDataSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
@@ -532,12 +535,12 @@ titles for the side info components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchInfoDataSubject"></a>
+                        <a name="_searchInfoDataSubject"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            searchInfoDataSubject</b>
-                            <a href="#searchInfoDataSubject"><span class="icon ion-ios-link"></span></a>
+                            _searchInfoDataSubject</b>
+                            <a href="#_searchInfoDataSubject"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -571,18 +574,19 @@ titles for the side info components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchInfoTitleStream$"></a>
+                        <a name="_searchInfoTitleStream$"></a>
                         <span class="name">
                             <b>
+                                <span class="modifier">Private</span>
                                 <span class="modifier">Readonly</span>
-                            searchInfoTitleStream$</b>
-                            <a href="#searchInfoTitleStream$"><span class="icon ion-ios-link"></span></a>
+                            _searchInfoTitleStream$</b>
+                            <a href="#_searchInfoTitleStream$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.searchInfoTitleSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._searchInfoTitleSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
@@ -604,12 +608,12 @@ titles for the side info components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchInfoTitleSubject"></a>
+                        <a name="_searchInfoTitleSubject"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            searchInfoTitleSubject</b>
-                            <a href="#searchInfoTitleSubject"><span class="icon ion-ios-link"></span></a>
+                            _searchInfoTitleSubject</b>
+                            <a href="#_searchInfoTitleSubject"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -660,28 +664,28 @@ import { SearchInfo } from &#x27;@awg-side-info/side-info-models&#x27;;
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class SideInfoService {
     /**
      * Private subject to handle search info data.
      */
-    private searchInfoDataSubject: Subject&lt;SearchInfo&gt; &#x3D; new BehaviorSubject&lt;SearchInfo&gt;(new SearchInfo(&#x27;---&#x27;, &#x27;---&#x27;));
+    private _searchInfoDataSubject: Subject&lt;SearchInfo&gt; &#x3D; new BehaviorSubject&lt;SearchInfo&gt;(new SearchInfo(&#x27;---&#x27;, &#x27;---&#x27;));
 
     /**
      * Readonly search info data stream as observable (&#x60;Subject&#x60;).
      */
-    readonly searchInfoDataStream$ &#x3D; this.searchInfoDataSubject.asObservable();
+    private readonly _searchInfoDataStream$ &#x3D; this._searchInfoDataSubject.asObservable();
 
     /**
      * Private behavior subject to handle search info title.
      */
-    private searchInfoTitleSubject: Subject&lt;string&gt; &#x3D; new BehaviorSubject&lt;string&gt;(&#x27;&#x27;);
+    private _searchInfoTitleSubject: Subject&lt;string&gt; &#x3D; new BehaviorSubject&lt;string&gt;(&#x27;&#x27;);
 
     /**
      * Readonly search info title stream as observable (&#x60;BehaviorSubject&#x60;).
      */
-    readonly searchInfoTitleStream$ &#x3D; this.searchInfoTitleSubject.asObservable();
+    private readonly _searchInfoTitleStream$ &#x3D; this._searchInfoTitleSubject.asObservable();
 
     /**
      * Public method: getSearchInfoData.
@@ -691,7 +695,7 @@ export class SideInfoService {
      * @returns {Observable&lt;SearchInfo&gt;} The search info data stream as observable.
      */
     getSearchInfoData(): Observable&lt;SearchInfo&gt; {
-        return this.searchInfoDataStream$;
+        return this._searchInfoDataStream$;
     }
 
     /**
@@ -702,7 +706,7 @@ export class SideInfoService {
      * @returns {Observable&lt;string&gt;} The search info title stream as observable.
      */
     getSearchInfoTitle(): Observable&lt;string&gt; {
-        return this.searchInfoTitleStream$;
+        return this._searchInfoTitleStream$;
     }
 
     /**
@@ -713,7 +717,7 @@ export class SideInfoService {
      * @returns {void} Sets the next searchInfo to the side info data stream.
      */
     updateSearchInfoData(searchInfo: SearchInfo): void {
-        this.searchInfoDataSubject.next(searchInfo);
+        this._searchInfoDataSubject.next(searchInfo);
     }
 
     /**
@@ -724,7 +728,7 @@ export class SideInfoService {
      * @returns {void} Sets the next title to the search info title stream.
      */
     updateSearchInfoTitle(title: string): void {
-        this.searchInfoTitleSubject.next(title);
+        this._searchInfoTitleSubject.next(title);
     }
 
     /**
@@ -735,7 +739,7 @@ export class SideInfoService {
      * @returns {void} Clears the search info data stream.
      */
     clearSearchInfoData(): void {
-        this.searchInfoDataSubject.next(new SearchInfo(&#x27;---&#x27;, &#x27;---&#x27;));
+        this._searchInfoDataSubject.next(new SearchInfo(&#x27;---&#x27;, &#x27;---&#x27;));
     }
 
     /**
@@ -746,7 +750,7 @@ export class SideInfoService {
      * @returns {void} Clears the search info title stream.
      */
     clearSearchInfoTitle(): void {
-        this.searchInfoTitleSubject.next(&#x27;&#x27;);
+        this._searchInfoTitleSubject.next(&#x27;&#x27;);
     }
 }
 </code></pre>

@@ -329,8 +329,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/views/data-view/data-outlets/search-overview.component.ts:99</a></div>
                 </td>
             </tr>
 
@@ -548,7 +548,7 @@ import { SideInfoService } from &#x27;@awg-core/services&#x27;;
 @Component({
     selector: &#x27;awg-search-overview&#x27;,
     templateUrl: &#x27;./search-overview.component.html&#x27;,
-    styleUrls: [&#x27;./search-overview.component.css&#x27;]
+    styleUrls: [&#x27;./search-overview.component.css&#x27;],
 })
 export class SearchOverviewComponent implements OnInit {
     /**
@@ -592,7 +592,7 @@ export class SearchOverviewComponent implements OnInit {
         this.searchRouterLinkButtons &#x3D; [
             new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;fulltext&#x27;, &#x27;Volltext-Suche&#x27;, false),
             new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;timeline&#x27;, &#x27;Timeline&#x27;, true),
-            new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;bibliography&#x27;, &#x27;Bibliographie&#x27;, true)
+            new RouterLinkButton(&#x27;/data/search&#x27;, &#x27;bibliography&#x27;, &#x27;Bibliographie&#x27;, true),
         ];
     }
 
@@ -606,15 +606,13 @@ export class SearchOverviewComponent implements OnInit {
      * @returns {void} Updates the search info title.
      */
     updateSearchInfoTitleFromPath(): void {
-        // get snapshot from current url path
+        // Get snapshot from current url path
         const path &#x3D; this.route.snapshot.children[0].url[0].path;
 
-        // filter searchButtonArray
-        const selectedButton &#x3D; this.searchRouterLinkButtons.filter(button &#x3D;&gt; {
-            return button.link &#x3D;&#x3D;&#x3D; path;
-        });
+        // Filter searchButtonArray
+        const selectedButton &#x3D; this.searchRouterLinkButtons.filter(button &#x3D;&gt; button.link &#x3D;&#x3D;&#x3D; path);
 
-        // update side info title if path is in array
+        // Update side info title if path is in array
         if (selectedButton.length &#x3D;&#x3D;&#x3D; 1) {
             this.sideInfoService.updateSearchInfoTitle(selectedButton[0].label);
         }

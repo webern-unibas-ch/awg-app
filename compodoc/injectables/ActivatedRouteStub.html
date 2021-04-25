@@ -86,6 +86,26 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
+                                <a href="#_childrenSubject">_childrenSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_paramMapSubject">_paramMapSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_paramSubject">_paramSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_queryParamMapSubject">_queryParamMapSubject</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_testChildren">_testChildren</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
                                 <a href="#_testParamMap">_testParamMap</a>
                             </li>
                             <li>
@@ -98,27 +118,19 @@
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#paramMap">paramMap</a>
+                                <a href="#children">children</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#paramMapSubject">paramMapSubject</a>
+                                    <span class="modifier">Readonly</span>
+                                <a href="#paramMap">paramMap</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#params">params</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#paramSubject">paramSubject</a>
-                            </li>
-                            <li>
                                     <span class="modifier">Readonly</span>
                                 <a href="#queryParamMap">queryParamMap</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#queryParamMapSubject">queryParamMapSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -147,6 +159,9 @@
                                     <a href="#testQueryParamMap">testQueryParamMap</a>
                                 </li>
                                 <li>
+                                    <a href="#testChildren">testChildren</a>
+                                </li>
+                                <li>
                                     <a href="#snapshot">snapshot</a>
                                 </li>
                             </ul>
@@ -167,7 +182,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="107" class="link-to-prism">src/testing/router-stubs.ts:107</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="221" class="link-to-prism">src/testing/router-stubs.ts:221</a></div>
                             </td>
                         </tr>
 
@@ -222,6 +237,172 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
+                        <a name="_childrenSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _childrenSubject</b>
+                            <a href="#_childrenSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BehaviorSubject(this.testChildren)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="179" class="link-to-prism">src/testing/router-stubs.ts:179</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private BehaviourSubject to handle children parameters.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_paramMapSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _paramMapSubject</b>
+                            <a href="#_paramMapSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BehaviorSubject(convertToParamMap(this.testParamMap))</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/testing/router-stubs.ts:113</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private ReplaySubject to handle route paramMaps.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_paramSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _paramSubject</b>
+                            <a href="#_paramSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BehaviorSubject(this.testParams)</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/testing/router-stubs.ts:79</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private BehaviorSubject to handle test route parameters.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_queryParamMapSubject"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _queryParamMapSubject</b>
+                            <a href="#_queryParamMapSubject"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>new BehaviorSubject(convertToParamMap(this.testQueryParamMap))</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="146" class="link-to-prism">src/testing/router-stubs.ts:146</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private BehaviourSubject to handle query parameters.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_testChildren"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _testChildren</b>
+                            <a href="#_testChildren"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/router/Params" target="_blank" >Params</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="190" class="link-to-prism">src/testing/router-stubs.ts:190</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: _testChildren</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
                         <a name="_testParamMap"></a>
                         <span class="name">
                             <b>
@@ -239,7 +420,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="135" class="link-to-prism">src/testing/router-stubs.ts:135</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="124" class="link-to-prism">src/testing/router-stubs.ts:124</a></div>
                             </td>
                         </tr>
 
@@ -273,7 +454,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/testing/router-stubs.ts:90</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="91" class="link-to-prism">src/testing/router-stubs.ts:91</a></div>
                             </td>
                         </tr>
 
@@ -307,13 +488,46 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/testing/router-stubs.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/testing/router-stubs.ts:157</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Private variable: _testQueryParamMap</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="children"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Readonly</span>
+                            children</b>
+                            <a href="#children"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Default value : </i><code>this._childrenSubject.asObservable()</code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="185" class="link-to-prism">src/testing/router-stubs.ts:185</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Observable that contains a map of the children parameters</p>
 </div>
                     </td>
                 </tr>
@@ -335,51 +549,18 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.paramMapSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._paramMapSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/testing/router-stubs.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="119" class="link-to-prism">src/testing/router-stubs.ts:119</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Observable that contains a map of the test parameters</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="paramMapSubject"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            paramMapSubject</b>
-                            <a href="#paramMapSubject"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject(convertToParamMap(this.testParamMap))</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="125" class="link-to-prism">src/testing/router-stubs.ts:125</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private ReplaySubject to handle route paramMaps.</p>
 </div>
                     </td>
                 </tr>
@@ -401,12 +582,12 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.paramSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._paramSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/testing/router-stubs.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="86" class="link-to-prism">src/testing/router-stubs.ts:86</a></div>
                             </td>
                         </tr>
 
@@ -414,39 +595,6 @@
                     <td class="col-md-4">
                         <div class="io-description"><p>Readonly ActivatedRoute.params test double (stub)
 as observable (<code>BehaviorSubject</code>).</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="paramSubject"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            paramSubject</b>
-                            <a href="#paramSubject"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject(this.testParams)</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/testing/router-stubs.ts:79</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private BehaviorSubject to handle test route parameters.</p>
 </div>
                     </td>
                 </tr>
@@ -468,51 +616,18 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.queryParamMapSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._queryParamMapSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="162" class="link-to-prism">src/testing/router-stubs.ts:162</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="152" class="link-to-prism">src/testing/router-stubs.ts:152</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Observable that contains a map of the query parameters</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="queryParamMapSubject"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            queryParamMapSubject</b>
-                            <a href="#queryParamMapSubject"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new BehaviorSubject(convertToParamMap(this.testQueryParamMap))</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="157" class="link-to-prism">src/testing/router-stubs.ts:157</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private BehaviourSubject to handle query parameters.</p>
 </div>
                     </td>
                 </tr>
@@ -541,7 +656,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="96" class="link-to-prism">src/testing/router-stubs.ts:96</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/testing/router-stubs.ts:97</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -561,7 +676,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="104" class="link-to-prism">src/testing/router-stubs.ts:104</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/testing/router-stubs.ts:105</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -626,7 +741,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/testing/router-stubs.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/testing/router-stubs.ts:130</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -646,7 +761,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="149" class="link-to-prism">src/testing/router-stubs.ts:149</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="138" class="link-to-prism">src/testing/router-stubs.ts:138</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -711,12 +826,12 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="173" class="link-to-prism">src/testing/router-stubs.ts:173</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="163" class="link-to-prism">src/testing/router-stubs.ts:163</a></div>
                                 </td>
                             </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-description"><p>Getter for the test route queryÜaramMap.</p>
+                                <div class="io-description"><p>Getter for the test route queryParamMap.</p>
 </div>
 
                                 <div>
@@ -731,7 +846,92 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="181" class="link-to-prism">src/testing/router-stubs.ts:181</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="171" class="link-to-prism">src/testing/router-stubs.ts:171</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Setter for the test route queryParamMap</p>
+</div>
+
+                                <div class="io-description">
+                                        <b>Parameters :</b>
+                                        <table class="params">
+                                            <thead>
+                                                <tr>
+                                                    <td>Name</td>
+                                                        <td>Type</td>
+                                                    <td>Optional</td>
+                                                        <td>Description</td>
+                                                </tr>
+                                            </thead>
+                                            <tbody>
+                                                    <tr>
+                                                            <td>params</td>
+                                                    
+                                                            <td>
+                                                                        <code>literal type</code>
+                                                            </td>
+                                                    
+                                                        <td>
+                                                                No
+                                                        </td>
+                                                        
+                                                            <td>
+                                                                    <code><p>The route queryParameters to be set.</p>
+</code>
+                                                            </td>
+                                                    </tr>
+                                            </tbody>
+                                        </table>
+                                </div>
+                                <div>
+                                </div>
+                                <div class="io-description">
+                                    <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                                </div>
+                        </td>
+                    </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="testChildren"></a>
+                        <span class="name"><b>testChildren</b><a href="#testChildren"><span class="icon ion-ios-link"></span></a></span>
+                    </td>
+                </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>get</b><code>testChildren()</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="196" class="link-to-prism">src/testing/router-stubs.ts:196</a></div>
+                                </td>
+                            </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-description"><p>Getter for the test route queryÜaramMap.</p>
+</div>
+
+                                <div>
+                                </div>
+                        </td>
+                    </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <span class="accessor"><b>set</b><code>testChildren(params: literal type)</code></span>
+                    </td>
+                </tr>
+                            <tr>
+                                <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="204" class="link-to-prism">src/testing/router-stubs.ts:204</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -796,7 +996,7 @@ as observable (<code>BehaviorSubject</code>).</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="191" class="link-to-prism">src/testing/router-stubs.ts:191</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="214" class="link-to-prism">src/testing/router-stubs.ts:214</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -829,7 +1029,7 @@ import { AppModule } from &#x27;@awg-app/app.module&#x27;;
  * after click.
  */
 @Directive({
-    selector: &#x27;[routerLink]&#x27;
+    selector: &#x27;[routerLink]&#x27;,
 })
 export class RouterLinkStubDirective {
     /**
@@ -871,14 +1071,14 @@ export class RouterLinkStubDirective {
  */
 @Component({
     selector: &#x27;router-outlet&#x27;,
-    template: &#x27;&#x27;
+    template: &#x27;&#x27;,
 })
 export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub
 
 // #docregion activated-route-stub
 import { convertToParamMap, ParamMap, Params } from &#x27;@angular/router&#x27;;
-import { BehaviorSubject, ReplaySubject } from &#x27;rxjs&#x27;;
+import { BehaviorSubject } from &#x27;rxjs&#x27;;
 
 /**
  * An ActivatedRoute test double (stub) with a &#x60;paramMap&#x60; observable.
@@ -892,13 +1092,14 @@ export class ActivatedRouteStub {
     /**
      * Private BehaviorSubject to handle test route parameters.
      */
-    private paramSubject &#x3D; new BehaviorSubject(this.testParams);
+    private _paramSubject &#x3D; new BehaviorSubject(this.testParams);
 
     /**
      * Readonly ActivatedRoute.params test double (stub)
      * as observable (&#x60;BehaviorSubject&#x60;).
      */
-    readonly params &#x3D; this.paramSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly params &#x3D; this._paramSubject.asObservable();
 
     /**
      * Private variable for test parameters.
@@ -919,31 +1120,19 @@ export class ActivatedRouteStub {
      */
     set testParams(params: {}) {
         this._testParams &#x3D; params;
-        this.paramSubject.next(params);
-    }
-
-    /**
-     * Constructor for the ActivatedRouteStub (stub).
-     *
-     * @param {Params} [initialParams] The optional initial route parameters.
-     */
-    constructor(initialParams?: Params) {
-        if (initialParams) {
-            this.testParamMap &#x3D; initialParams;
-        } else {
-            this.testParamMap &#x3D; {};
-        }
+        this._paramSubject.next(params);
     }
 
     /**
      * Private ReplaySubject to handle route paramMaps.
      */
-    private paramMapSubject &#x3D; new BehaviorSubject(convertToParamMap(this.testParamMap));
+    private _paramMapSubject &#x3D; new BehaviorSubject(convertToParamMap(this.testParamMap));
 
     /**
      * Observable that contains a map of the test parameters
      */
-    readonly paramMap &#x3D; this.paramMapSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly paramMap &#x3D; this._paramMapSubject.asObservable();
 
     /**
      * Private variable: _testParamMap
@@ -964,25 +1153,26 @@ export class ActivatedRouteStub {
      */
     set testParamMap(params: {}) {
         this._testParamMap &#x3D; convertToParamMap(params);
-        this.paramMapSubject.next(this._testParamMap);
+        this._paramMapSubject.next(this._testParamMap);
     }
 
     /**
      * Private BehaviourSubject to handle query parameters.
      */
-    private queryParamMapSubject &#x3D; new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
+    private _queryParamMapSubject &#x3D; new BehaviorSubject(convertToParamMap(this.testQueryParamMap));
 
     /**
      * Observable that contains a map of the query parameters
      */
-    readonly queryParamMap &#x3D; this.queryParamMapSubject.asObservable();
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly queryParamMap &#x3D; this._queryParamMapSubject.asObservable();
 
     /**
      * Private variable: _testQueryParamMap
      */
     private _testQueryParamMap: ParamMap;
     /**
-     * Getter for the test route queryÜaramMap.
+     * Getter for the test route queryParamMap.
      *
      * @returns The latest test route queryParamMap.
      */
@@ -996,7 +1186,40 @@ export class ActivatedRouteStub {
      */
     set testQueryParamMap(params: {}) {
         this._testQueryParamMap &#x3D; convertToParamMap(params);
-        this.queryParamMapSubject.next(this._testQueryParamMap);
+        this._queryParamMapSubject.next(this._testQueryParamMap);
+    }
+
+    /**
+     * Private BehaviourSubject to handle children parameters.
+     */
+    private _childrenSubject &#x3D; new BehaviorSubject(this.testChildren);
+
+    /**
+     * Observable that contains a map of the children parameters
+     */
+    // eslint-disable-next-line @typescript-eslint/member-ordering, @typescript-eslint/naming-convention
+    readonly children &#x3D; this._childrenSubject.asObservable();
+
+    /**
+     * Private variable: _testChildren
+     */
+    private _testChildren: Params;
+    /**
+     * Getter for the test route queryÜaramMap.
+     *
+     * @returns The latest test route queryParamMap.
+     */
+    get testChildren() {
+        return this._testChildren;
+    }
+    /**
+     * Setter for the test route queryParamMap
+     *
+     * @param {Params} params The route queryParameters to be set.
+     */
+    set testChildren(params: {}) {
+        this._testChildren &#x3D; params;
+        this._childrenSubject.next(this._testChildren);
     }
 
     /**
@@ -1005,7 +1228,25 @@ export class ActivatedRouteStub {
      * @returns Snapshot of the test route parameters.
      */
     get snapshot() {
-        return { params: this.testParams, paramMap: this.testParamMap, queryParamMap: this.testQueryParamMap };
+        return {
+            params: this.testParams,
+            paramMap: this.testParamMap,
+            queryParamMap: this.testQueryParamMap,
+            children: this.testChildren,
+        };
+    }
+
+    /**
+     * Constructor for the ActivatedRouteStub (stub).
+     *
+     * @param {Params} [initialParams] The optional initial route parameters.
+     */
+    constructor(initialParams?: Params) {
+        if (initialParams) {
+            this.testParamMap &#x3D; initialParams;
+        } else {
+            this.testParamMap &#x3D; {};
+        }
     }
 }
 // #enddocregion activated-route-stub
@@ -1017,7 +1258,7 @@ export class ActivatedRouteStub {
  */
 @NgModule({
     imports: [AppModule],
-    declarations: [RouterLinkStubDirective, RouterOutletStubComponent]
+    declarations: [RouterLinkStubDirective, RouterOutletStubComponent],
 })
 export class FakeRouterModule {}
 </code></pre>

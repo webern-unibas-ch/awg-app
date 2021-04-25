@@ -82,33 +82,33 @@
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { NgModule } from &#x27;@angular/core&#x27;;
 import { PreloadAllModules, RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
-/* routes of the AppModule */
+/* Routes of the AppModule */
 const appRoutes: Routes &#x3D; [
-    // lazy loaded
+    // Lazy loaded
     { path: &#x27;home&#x27;, loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/home-view/home-view.module&#x27;).then(m &#x3D;&gt; m.HomeViewModule) },
     {
         path: &#x27;contact&#x27;,
-        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule)
+        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/contact-view/contact-view.module&#x27;).then(m &#x3D;&gt; m.ContactViewModule),
     },
     { path: &#x27;data&#x27;, loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/data-view/data-view.module&#x27;).then(m &#x3D;&gt; m.DataViewModule) },
     {
         path: &#x27;edition&#x27;,
-        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule)
+        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/edition-view/edition-view.module&#x27;).then(m &#x3D;&gt; m.EditionViewModule),
     },
     { path: &#x27;editions&#x27;, redirectTo: &#x27;edition&#x27;, pathMatch: &#x27;full&#x27; },
     {
         path: &#x27;structure&#x27;,
-        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule)
+        loadChildren: () &#x3D;&gt; import(&#x27;@awg-views/structure-view/structure-view.module&#x27;).then(m &#x3D;&gt; m.StructureViewModule),
     },
 
-    // default routes
+    // Default routes
     { path: &#x27;&#x27;, redirectTo: &#x27;home&#x27;, pathMatch: &#x27;full&#x27; },
     {
         path: &#x27;404&#x27;,
         loadChildren: () &#x3D;&gt;
-            import(&#x27;@awg-views/page-not-found-view/page-not-found-view.module&#x27;).then(m &#x3D;&gt; m.PageNotFoundViewModule)
+            import(&#x27;@awg-views/page-not-found-view/page-not-found-view.module&#x27;).then(m &#x3D;&gt; m.PageNotFoundViewModule),
     },
-    { path: &#x27;**&#x27;, redirectTo: &#x27;404&#x27;, pathMatch: &#x27;full&#x27; }
+    { path: &#x27;**&#x27;, redirectTo: &#x27;404&#x27;, pathMatch: &#x27;full&#x27; },
 ];
 
 /**
@@ -119,14 +119,15 @@ const appRoutes: Routes &#x3D; [
 @NgModule({
     imports: [
         RouterModule.forRoot(appRoutes, {
-            anchorScrolling: &#x27;enabled&#x27;, // use anchor scrolling
-            onSameUrlNavigation: &#x27;reload&#x27;, // reload when navigating to same url
-            scrollPositionRestoration: &#x27;enabled&#x27;, // restore scroll position
-            preloadingStrategy: PreloadAllModules // preload all lazy modules
-            // enableTracing: true          // TODO: do not enable tracing for production
-        })
+            anchorScrolling: &#x27;enabled&#x27;,
+            onSameUrlNavigation: &#x27;reload&#x27;,
+            scrollPositionRestoration: &#x27;enabled&#x27;,
+            preloadingStrategy: PreloadAllModules, // Preload all lazy modules
+            // EnableTracing: true          // TODO: do not enable tracing for production
+            relativeLinkResolution: &#x27;legacy&#x27;,
+        }),
     ],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class AppRoutingModule {}
 </code></pre>

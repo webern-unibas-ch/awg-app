@@ -845,7 +845,7 @@ import { EditionDataService, EditionService } from &#x27;@awg-views/edition-view
     selector: &#x27;awg-intro&#x27;,
     templateUrl: &#x27;./edition-intro.component.html&#x27;,
     styleUrls: [&#x27;./edition-intro.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class EditionIntroComponent implements OnInit {
     /**
@@ -921,16 +921,16 @@ export class EditionIntroComponent implements OnInit {
      */
     getEditionIntroData(): void {
         this.editionIntroData$ &#x3D; this.editionService
-            // get current editionWork from editionService
+            // Get current editionWork from editionService
             .getEditionWork()
             .pipe(
                 switchMap((work: EditionWork) &#x3D;&gt; {
-                    // set current editionWork
+                    // Set current editionWork
                     this.editionWork &#x3D; work;
-                    // get intro data from editionDataService
+                    // Get intro data from editionDataService
                     return this.editionDataService.getEditionIntroData(this.editionWork);
                 }),
-                // error handling
+                // Error handling
                 catchError(err &#x3D;&gt; {
                     this.errorObject &#x3D; err;
                     return throwError(err);
@@ -951,7 +951,7 @@ export class EditionIntroComponent implements OnInit {
             fragmentId &#x3D; &#x27;&#x27;;
         }
         const navigationExtras: NavigationExtras &#x3D; {
-            fragment: fragmentId
+            fragment: fragmentId,
         };
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.reportRoute.route], navigationExtras);
     }
@@ -984,7 +984,7 @@ export class EditionIntroComponent implements OnInit {
         }
         const navigationExtras: NavigationExtras &#x3D; {
             queryParams: { sketch: id },
-            queryParamsHandling: &#x27;&#x27;
+            queryParamsHandling: &#x27;&#x27;,
         };
 
         this.router.navigate([this.editionWork.baseRoute, this.editionWork.detailRoute.route], navigationExtras);

@@ -87,25 +87,25 @@ and resource ids for the search components.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#bufferSize">bufferSize</a>
+                                <a href="#_bufferSize">_bufferSize</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#resourceIdStream$">resourceIdStream$</a>
+                                <a href="#_resourceIdStream$">_resourceIdStream$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#resourceIdSubject">resourceIdSubject</a>
+                                <a href="#_resourceIdSubject">_resourceIdSubject</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#searchResponseWithQueryStream$">searchResponseWithQueryStream$</a>
+                                <a href="#_searchResponseWithQueryStream$">_searchResponseWithQueryStream$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#searchResponseWithQuerySubject">searchResponseWithQuerySubject</a>
+                                <a href="#_searchResponseWithQuerySubject">_searchResponseWithQuerySubject</a>
                             </li>
                         </ul>
                     </td>
@@ -507,12 +507,12 @@ with the given searchResponseWithQuery.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="bufferSize"></a>
+                        <a name="_bufferSize"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            bufferSize</b>
-                            <a href="#bufferSize"><span class="icon ion-ios-link"></span></a>
+                            _bufferSize</b>
+                            <a href="#_bufferSize"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -546,19 +546,19 @@ with the given searchResponseWithQuery.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="resourceIdStream$"></a>
+                        <a name="_resourceIdStream$"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
                                 <span class="modifier">Readonly</span>
-                            resourceIdStream$</b>
-                            <a href="#resourceIdStream$"><span class="icon ion-ios-link"></span></a>
+                            _resourceIdStream$</b>
+                            <a href="#_resourceIdStream$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.resourceIdSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._resourceIdSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
@@ -580,18 +580,18 @@ with the given searchResponseWithQuery.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="resourceIdSubject"></a>
+                        <a name="_resourceIdSubject"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            resourceIdSubject</b>
-                            <a href="#resourceIdSubject"><span class="icon ion-ios-link"></span></a>
+                            _resourceIdSubject</b>
+                            <a href="#_resourceIdSubject"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>new ReplaySubject&lt;string&gt;(this.bufferSize)</code>
+                            <i>Default value : </i><code>new ReplaySubject&lt;string&gt;(this._bufferSize)</code>
                         </td>
                     </tr>
                         <tr>
@@ -613,19 +613,19 @@ with the given searchResponseWithQuery.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchResponseWithQueryStream$"></a>
+                        <a name="_searchResponseWithQueryStream$"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
                                 <span class="modifier">Readonly</span>
-                            searchResponseWithQueryStream$</b>
-                            <a href="#searchResponseWithQueryStream$"><span class="icon ion-ios-link"></span></a>
+                            _searchResponseWithQueryStream$</b>
+                            <a href="#_searchResponseWithQueryStream$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.searchResponseWithQuerySubject.asObservable()</code>
+                            <i>Default value : </i><code>this._searchResponseWithQuerySubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
@@ -647,18 +647,18 @@ with the given searchResponseWithQuery.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchResponseWithQuerySubject"></a>
+                        <a name="_searchResponseWithQuerySubject"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            searchResponseWithQuerySubject</b>
-                            <a href="#searchResponseWithQuerySubject"><span class="icon ion-ios-link"></span></a>
+                            _searchResponseWithQuerySubject</b>
+                            <a href="#_searchResponseWithQuerySubject"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>new ReplaySubject&lt;SearchResponseWithQuery&gt;(this.bufferSize)</code>
+                            <i>Default value : </i><code>new ReplaySubject&lt;SearchResponseWithQuery&gt;(this._bufferSize)</code>
                         </td>
                     </tr>
                         <tr>
@@ -698,33 +698,33 @@ import { SearchResponseWithQuery } from &#x27;@awg-views/data-view/models&#x27;;
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class DataStreamerService {
     /**
      * Private variable for the replay subject´s buffer size.
      */
-    private bufferSize &#x3D; 1;
+    private _bufferSize &#x3D; 1;
 
     /**
      * Private replay subject to handle search response with query.
      */
-    private searchResponseWithQuerySubject &#x3D; new ReplaySubject&lt;SearchResponseWithQuery&gt;(this.bufferSize);
+    private _searchResponseWithQuerySubject &#x3D; new ReplaySubject&lt;SearchResponseWithQuery&gt;(this._bufferSize);
 
     /**
      * Private readonly search response with query stream as observable (&#x60;ReplaySubject&#x60;).
      */
-    private readonly searchResponseWithQueryStream$ &#x3D; this.searchResponseWithQuerySubject.asObservable();
+    private readonly _searchResponseWithQueryStream$ &#x3D; this._searchResponseWithQuerySubject.asObservable();
 
     /**
      * Private replay subject to handle resource id.
      */
-    private resourceIdSubject &#x3D; new ReplaySubject&lt;string&gt;(this.bufferSize);
+    private _resourceIdSubject &#x3D; new ReplaySubject&lt;string&gt;(this._bufferSize);
 
     /**
      * Private readonly resource id stream as observable (&#x60;ReplaySubject&#x60;).
      */
-    private readonly resourceIdStream$ &#x3D; this.resourceIdSubject.asObservable();
+    private readonly _resourceIdStream$ &#x3D; this._resourceIdSubject.asObservable();
 
     /**
      * Public method: getSearchResponseWithQuery.
@@ -736,7 +736,7 @@ export class DataStreamerService {
      * The search response with query stream as observable.
      */
     getSearchResponseWithQuery(): Observable&lt;SearchResponseWithQuery&gt; {
-        return this.searchResponseWithQueryStream$;
+        return this._searchResponseWithQueryStream$;
     }
 
     /**
@@ -747,7 +747,7 @@ export class DataStreamerService {
      * @returns {Observable&lt;string&gt;} The resource id stream as observable.
      */
     getResourceId(): Observable&lt;string&gt; {
-        return this.resourceIdStream$;
+        return this._resourceIdStream$;
     }
 
     /**
@@ -759,7 +759,7 @@ export class DataStreamerService {
      * @returns {void} Sets the next search response with query to the stream.
      */
     updateSearchResponseWithQuery(searchResponseWithQuery: SearchResponseWithQuery): void {
-        this.searchResponseWithQuerySubject.next(searchResponseWithQuery);
+        this._searchResponseWithQuerySubject.next(searchResponseWithQuery);
     }
 
     /**
@@ -770,7 +770,7 @@ export class DataStreamerService {
      * @returns {void} Sets the next resource id to the stream.
      */
     updateResourceId(id: string): void {
-        this.resourceIdSubject.next(id);
+        this._resourceIdSubject.next(id);
     }
 
     /**
@@ -781,7 +781,7 @@ export class DataStreamerService {
      * @returns {void} Clears the search results with query stream.
      */
     clearSearchResults(): void {
-        this.searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), &#x27;&#x27;));
+        this._searchResponseWithQuerySubject.next(new SearchResponseWithQuery(new SearchResponseJson(), &#x27;&#x27;));
     }
 
     /**
@@ -792,7 +792,7 @@ export class DataStreamerService {
      * @returns {void} Clears the resource id stream.
      */
     clearResourceId(): void {
-        this.resourceIdSubject.next(&#x27;&#x27;);
+        this._resourceIdSubject.next(&#x27;&#x27;);
     }
 }
 </code></pre>

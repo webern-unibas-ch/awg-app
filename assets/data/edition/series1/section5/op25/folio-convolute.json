@@ -39,7 +39,7 @@
                             "sigle": "A:SkI/2.1",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 5,
                             "sections": [
                                 {
@@ -53,7 +53,7 @@
                             "sigle": "A:SkI/2.1.1",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 5,
                             "sections": [
                                 {
@@ -67,7 +67,7 @@
                             "sigle": "A:SkI/2.1.2",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 5,
                             "sections": [
                                 {
@@ -81,7 +81,7 @@
                             "sigle": "A:SkI/2.1.2.1",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 8,
                             "sections": [
                                 {
@@ -119,7 +119,7 @@
                             "sigle": "A:SkI/4.1",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 3,
                             "sections": [
                                 {
@@ -179,7 +179,7 @@
                             "sigle": "A:SkI/4.2",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 4,
                             "sections": [
                                 {
@@ -193,7 +193,7 @@
                             "sigle": "A:SkI/4.3",
                             "measure": "",
                             "selectable": false,
-                            "linkTo": "op25_sheetComingSoon",
+                            "linkTo": "OP25_SHEET_COMING_SOON",
                             "sectionPartition": 7,
                             "sections": [
                                 {
@@ -233,7 +233,7 @@
         {
             "convoluteId": "B, D–E (siehe kritischer Bericht)",
             "folios": [],
-            "linkTo": "op25_sourceNotA"
+            "linkTo": "OP25_SOURCE_NOT_A"
         }
     ]
 }

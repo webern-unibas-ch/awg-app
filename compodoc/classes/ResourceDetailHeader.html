@@ -119,7 +119,7 @@ to store the data for the resource detail header.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Static</span>
-                                <a href="#replaceParagraphTags">replaceParagraphTags</a>
+                                <a href="#_replaceParagraphTags">_replaceParagraphTags</a>
                             </li>
                         </ul>
                     </td>
@@ -144,7 +144,7 @@ to store the data for the resource detail header.</p>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="50" class="link-to-prism">src/app/views/data-view/models/resource-detail-header.model.ts:50</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/data-view/models/resource-detail-header.model.ts:33</a></div>
                             </td>
                         </tr>
 
@@ -389,36 +389,36 @@ of the current resource.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="replaceParagraphTags"></a>
+                    <a name="_replaceParagraphTags"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
                             <span class="modifier">Static</span>
-                            replaceParagraphTags
+                            _replaceParagraphTags
                         </b>
-                        <a href="#replaceParagraphTags"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_replaceParagraphTags"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>replaceParagraphTags(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_replaceParagraphTags(str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="41"
-                            class="link-to-prism">src/app/views/data-view/models/resource-detail-header.model.ts:41</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="143"
+                            class="link-to-prism">src/app/views/data-view/models/resource-detail-header.model.ts:143</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private static method: replaceParagraphTags.</p>
+                    <div class="io-description"><p>Private static method: _replaceParagraphTags.</p>
 <p>It replaces paragraph tags with break lines
 in a resource&#39;s rich text area (here: title).</p>
 </div>
@@ -507,23 +507,6 @@ export class ResourceDetailHeader {
     lastmod: string;
 
     /**
-     * Private static method: replaceParagraphTags.
-     *
-     * It replaces paragraph tags with break lines
-     * in a resource&#x27;s rich text area (here: title).
-     */
-    private static replaceParagraphTags(str: string): string {
-        if (!str) {
-            return;
-        }
-        str &#x3D; str
-            .replace(/&lt;\/p&gt;&lt;p&gt;/g, &#x27;&lt;br /&gt;&#x27;)
-            .replace(/&lt;p&gt;|&lt;\/p&gt;/g, &#x27;&#x27;)
-            .replace(str, &#x27;«$&amp;»&#x27;);
-        return str;
-    }
-
-    /**
      * Constructor of the ResourceDetailHeader class.
      *
      * It initializes the class with values from a
@@ -534,50 +517,53 @@ export class ResourceDetailHeader {
      * @param {string} currentId The given id of the current resource.
      */
     constructor(data: ResourceFullResponseJson, currentId: string) {
-        // init values
+        // Init values
         this.objID &#x3D; &#x27;---&#x27;;
         this.icon &#x3D; &#x27;---&#x27;;
         this.type &#x3D; &#x27;---&#x27;;
         this.lastmod &#x3D; &#x27;---&#x27;;
         this.title &#x3D; &#x27;---&#x27;;
 
-        // shortcuts
+        // Shortcuts
         const info &#x3D; data.resinfo;
         const props &#x3D; data.props;
 
-        // header for accessible objects
+        // Header for accessible objects
         if (typeof info !&#x3D;&#x3D; &#x27;undefined&#x27;) {
             const id &#x3D; data.resdata.res_id;
             if (id !&#x3D;&#x3D; currentId) {
                 console.error(
-                    &#x60;ERROR: &#x60; +
-                        &#x60;ResourceDetailHeader &#x3D;&gt; &#x60; +
+                    &#x27;ERROR: &#x27; +
+                        &#x27;ResourceDetailHeader &#x3D;&gt; &#x27; +
                         &#x60;currentId ${currentId} not matching data.resdata.res_id ${id}&#x60;
                 );
                 return;
             }
 
-            // extract common default metadata for header
+            // Extract common default metadata for header
             this.objID &#x3D; id;
             this.icon &#x3D; info.restype_iconsrc;
             this.type &#x3D; info.restype_label;
             this.lastmod &#x3D; info.lastmod;
 
-            // extract restype specific title for header
+            // Extract restype specific title for header
             switch (info.restype_id) {
                 // CHRONOLOGIE
                 case &#x27;28&#x27;:
-                    // richtext value has already been converted in detail using plugin &quot;htmlConverter&quot;
+                    // Richtext value has already been converted in detail using plugin &quot;htmlConverter&quot;
                     let htmlstr &#x3D; props[&#x27;webern:event_rt&#x27;].toHtml[0];
 
-                    // strip &amp; replace &lt;p&gt;-tags for displaying title
-                    htmlstr &#x3D; ResourceDetailHeader.replaceParagraphTags(htmlstr);
+                    // Strip &amp; replace &lt;p&gt;-tags for displaying title
+                    htmlstr &#x3D; ResourceDetailHeader._replaceParagraphTags(htmlstr);
 
                     this.title &#x3D; htmlstr;
                     break;
 
                 // KORRESPONDENZ (same as SUPPLEMENT)
                 case &#x27;29&#x27;:
+                    this.title &#x3D; props[&#x27;dc:title&#x27;].toHtml[0] + &#x27;&lt;br/&gt;&#x27; + props[&#x27;dc:date&#x27;].toHtml[0];
+                    break;
+
                 // SUPPLEMENT
                 case &#x27;125&#x27;:
                     this.title &#x3D; props[&#x27;dc:title&#x27;].toHtml[0] + &#x27;&lt;br/&gt;&#x27; + props[&#x27;dc:date&#x27;].toHtml[0];
@@ -610,16 +596,33 @@ export class ResourceDetailHeader {
                     this.title &#x3D; info.restype_description;
             }
         } else {
-            // header for undefined &amp; restricted object
+            // Header for undefined &amp; restricted object
             this.objID &#x3D; currentId;
             this.icon &#x3D; &#x27;https://www.salsah.org/app/icons/16x16/delete.png&#x27;;
         }
 
-        // additional header for restricted objects
+        // Additional header for restricted objects
         if (data.access &#x3D;&#x3D;&#x3D; &#x27;NO_ACCESS&#x27;) {
             this.type &#x3D; &#x27;restricted&#x27;;
             this.title &#x3D; &#x27;Kein Zugriff auf dieses Objekt möglich&#x27;;
         }
+    }
+
+    /**
+     * Private static method: _replaceParagraphTags.
+     *
+     * It replaces paragraph tags with break lines
+     * in a resource&#x27;s rich text area (here: title).
+     */
+    private static _replaceParagraphTags(str: string): string {
+        if (!str) {
+            return;
+        }
+        str &#x3D; str
+            .replace(/&lt;\/p&gt;&lt;p&gt;/g, &#x27;&lt;br /&gt;&#x27;)
+            .replace(/&lt;p&gt;|&lt;\/p&gt;/g, &#x27;&#x27;)
+            .replace(str, &#x27;«$&amp;»&#x27;);
+        return str;
     }
 }
 </code></pre>

@@ -441,7 +441,7 @@ import { Router } from &#x27;@angular/router&#x27;;
     selector: &#x27;awg-structure-view&#x27;,
     templateUrl: &#x27;./structure-view.component.html&#x27;,
     styleUrls: [&#x27;./structure-view.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class StructureViewComponent implements OnInit {
     /**
@@ -487,10 +487,10 @@ export class StructureViewComponent implements OnInit {
      * @returns {void} Activates the structure-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: &#x27;structureInfo&#x27; } }], {
             preserveFragment: true,
-            queryParamsHandling: &#x27;preserve&#x27;
+            queryParamsHandling: &#x27;preserve&#x27;,
         });
     }
 }

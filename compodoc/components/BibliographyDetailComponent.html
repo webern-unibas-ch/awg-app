@@ -483,7 +483,7 @@ import { BibEntry } from &#x27;../bibliography-entry.model&#x27;;
 @Component({
     selector: &#x27;awg-bibliography-detail&#x27;,
     templateUrl: &#x27;./bibliography-detail.component.html&#x27;,
-    styleUrls: [&#x27;./bibliography-detail.component.css&#x27;]
+    styleUrls: [&#x27;./bibliography-detail.component.css&#x27;],
 })
 export class BibliographyDetailComponent implements OnInit {
     /**
@@ -532,11 +532,9 @@ export class BibliographyDetailComponent implements OnInit {
      * @returns {void} Sets the bibEntry observable.
      */
     getBibEntry(id: string): void {
-        this.bibEntry$ &#x3D; this.bibliographyService.getBibliographyItemDetail(id).pipe(
-            map((data: ResourceFullResponseJson) &#x3D;&gt; {
-                return this.conversionService.convertObjectProperties(data);
-            })
-        );
+        this.bibEntry$ &#x3D; this.bibliographyService
+            .getBibliographyItemDetail(id)
+            .pipe(map((data: ResourceFullResponseJson) &#x3D;&gt; this.conversionService.convertObjectProperties(data)));
     }
 }
 </code></pre>

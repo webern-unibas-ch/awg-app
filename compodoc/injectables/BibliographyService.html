@@ -135,15 +135,15 @@ for the data bibliography view and provides the bibliography data.</p>
                                 <a href="#getBibliographyList">getBibliographyList</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_handleRequestError">_handleRequestError</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_httpGet">_httpGet</a>
+                            </li>
+                            <li>
                                 <a href="#getApiResponse">getApiResponse</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#handleRequestError">handleRequestError</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#httpGet">httpGet</a>
                             </li>
                         </ul>
                     </td>
@@ -349,6 +349,196 @@ from the given (SALSAH) API.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_handleRequestError"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _handleRequestError
+                        </b>
+                        <a href="#_handleRequestError"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_handleRequestError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:125</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _handleRequestError.</p>
+<p>It handles request errors in case of server error.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>error</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given error.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceError&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the api service error.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_httpGet"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _httpGet
+                        </b>
+                        <a href="#_httpGet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_httpGet(queryPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryHttpParams: <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:85</a></code>
+</div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _httpGet.</p>
+<p>Performs an HTTP GET request to the given (Salsah) API.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>queryPath</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given path of the query.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>queryHttpParams</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpParams" target="_blank" >HttpParams</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given HTTP params for the query.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceResult | ApiServiceError&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the api service result or error.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getApiResponse"></a>
                     <span class="name">
                         <b>
@@ -456,196 +646,6 @@ from the given (SALSAH) API.</p>
                     </div>
                     <div class="io-description">
                         <p>The observable of the API request.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="handleRequestError"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            handleRequestError
-                        </b>
-                        <a href="#handleRequestError"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>handleRequestError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:134</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: handleRequestError.</p>
-<p>It handles request errors in case of server error.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>error</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given error.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceError&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the api service error.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="httpGet"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            httpGet
-                        </b>
-                        <a href="#httpGet"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>httpGet(queryPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryHttpParams: <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:90</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: httpGet.</p>
-<p>Performs an HTTP GET request to the given (Salsah) API.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>queryPath</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given path of the query.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>queryHttpParams</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/common/http/HttpParams" target="_blank" >HttpParams</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given HTTP params for the query.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceResult | ApiServiceError&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the api service result or error.</p>
 
                     </div>
                 </td>
@@ -1010,7 +1010,7 @@ import { ResourceFullResponseJson, SearchResponseJson } from &#x27;@awg-shared/a
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class BibliographyService extends ApiService {
     /**
@@ -1073,7 +1073,7 @@ export class BibliographyService extends ApiService {
      * @returns {Observable&lt;SearchResponseJson&gt;} The observable with the SearchResponseJson data.
      */
     getBibliographyList(): Observable&lt;SearchResponseJson&gt; {
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string &#x3D; this.searchRoute;
         const queryHttpParams &#x3D; new HttpParams()
             .set(&#x27;searchtype&#x27;, &#x27;extended&#x27;)
@@ -1082,7 +1082,7 @@ export class BibliographyService extends ApiService {
             .set(&#x27;filter_by_project&#x27;, this.projectId)
             .set(&#x27;filter_by_restype&#x27;, this.resTypeId);
 
-        // request to API
+        // Request to API
         return this.getApiResponse(SearchResponseJson, queryPath, queryHttpParams);
     }
 
@@ -1099,11 +1099,11 @@ export class BibliographyService extends ApiService {
      * @todo Replace with {@link DataApiService#getResourceDetailData}.
      */
     getBibliographyItemDetail(resourceId: string): Observable&lt;ResourceFullResponseJson&gt; {
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string &#x3D; this.resourcesRoute + resourceId;
         const queryHttpParams &#x3D; new HttpParams();
 
-        // request to API
+        // Request to API
         return this.getApiResponse(ResourceFullResponseJson, queryPath, queryHttpParams);
     }
 }

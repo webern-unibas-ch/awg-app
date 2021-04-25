@@ -84,12 +84,13 @@ import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 
 import { StructureViewComponent } from &#x27;@awg-views/structure-view/structure-view.component&#x27;;
 
-/* routes of the StructureViewModule */
+/* Routes of the StructureViewModule */
 const structureViewRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
-        component: StructureViewComponent
-    }
+        component: StructureViewComponent,
+        data: { title: &#x27;AWG Online Edition – Structure&#x27; },
+    },
 ];
 
 /**
@@ -105,7 +106,7 @@ export const routedStructureViewComponents &#x3D; [StructureViewComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(structureViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class StructureViewRoutingModule {}
 </code></pre>

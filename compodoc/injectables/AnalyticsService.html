@@ -87,19 +87,19 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#analyticsEndpoint">analyticsEndpoint</a>
+                                <a href="#_analyticsEndpoint">_analyticsEndpoint</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#analyticsId">analyticsId</a>
+                                <a href="#_analyticsId">_analyticsId</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#isInitialized">isInitialized</a>
+                                <a href="#_isInitialized">_isInitialized</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#sendPageView">sendPageView</a>
+                                <a href="#_sendPageView">_sendPageView</a>
                             </li>
                         </ul>
                     </td>
@@ -114,11 +114,11 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#initializeAnalytics">initializeAnalytics</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_prependAnalyticsScript">_prependAnalyticsScript</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#prependAnalyticsScript">prependAnalyticsScript</a>
+                                <a href="#initializeAnalytics">initializeAnalytics</a>
                             </li>
                             <li>
                                 <a href="#trackPageView">trackPageView</a>
@@ -201,6 +201,56 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_prependAnalyticsScript"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _prependAnalyticsScript
+                        </b>
+                        <a href="#_prependAnalyticsScript"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_prependAnalyticsScript()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="115"
+                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:115</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _prependAnalyticsScript.</p>
+<p>It prepends the Analytics <script> tag to index.html via DOCUMENT.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Prepends Analytics script.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="initializeAnalytics"></a>
                     <span class="name">
                         <b>
@@ -239,56 +289,6 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
                     </div>
                     <div class="io-description">
                         <p>Inits Analytics.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="prependAnalyticsScript"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            prependAnalyticsScript
-                        </b>
-                        <a href="#prependAnalyticsScript"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>prependAnalyticsScript()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="112"
-                            class="link-to-prism">src/app/core/services/analytics-sercvice/analytics.service.ts:112</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: prependAnalyticsScript.</p>
-<p>It prepends the Analytics <script> tag to index.html via DOCUMENT.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Prepends Analytics script.</p>
 
                     </div>
                 </td>
@@ -379,12 +379,12 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="analyticsEndpoint"></a>
+                        <a name="_analyticsEndpoint"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            analyticsEndpoint</b>
-                            <a href="#analyticsEndpoint"><span class="icon ion-ios-link"></span></a>
+                            _analyticsEndpoint</b>
+                            <a href="#_analyticsEndpoint"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -407,7 +407,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: analyticsEndpoint.</p>
+                        <div class="io-description"><p>Private variable: _analyticsEndpoint.</p>
 <p>It stores the analytics endpoint.</p>
 </div>
                     </td>
@@ -419,12 +419,12 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="analyticsId"></a>
+                        <a name="_analyticsId"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            analyticsId</b>
-                            <a href="#analyticsId"><span class="icon ion-ios-link"></span></a>
+                            _analyticsId</b>
+                            <a href="#_analyticsId"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -447,7 +447,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: analyticsId.</p>
+                        <div class="io-description"><p>Private variable: _analyticsId.</p>
 <p>It stores the analytics id.</p>
 </div>
                     </td>
@@ -459,12 +459,12 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isInitialized"></a>
+                        <a name="_isInitialized"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            isInitialized</b>
-                            <a href="#isInitialized"><span class="icon ion-ios-link"></span></a>
+                            _isInitialized</b>
+                            <a href="#_isInitialized"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -481,7 +481,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: isInitialized.</p>
+                        <div class="io-description"><p>Private variable: _isInitialized.</p>
 <p>It stores a boolean flag for successful initialization.</p>
 </div>
                     </td>
@@ -493,12 +493,12 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sendPageView"></a>
+                        <a name="_sendPageView"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            sendPageView</b>
-                            <a href="#sendPageView"><span class="icon ion-ios-link"></span></a>
+                            _sendPageView</b>
+                            <a href="#_sendPageView"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -515,7 +515,7 @@ Inspired by <a href="https://www.ngdevelop.tech/integrate-google-analytics-with-
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: sendPageView.</p>
+                        <div class="io-description"><p>Private variable: _sendPageView.</p>
 <p>It stores a boolean flag to send page views dependent from environment.</p>
 <p>DEVELOP: FALSE
 PRODUCTION: TRUE</p>
@@ -538,7 +538,7 @@ import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
 import { environment } from &#x27;../../../../environments/environment&#x27;;
 
 /**
- * gtag function for Analytics.
+ * The global gtag variable for Analytics.
  */
 declare let gtag: Function;
 
@@ -551,40 +551,40 @@ declare let gtag: Function;
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class AnalyticsService {
     /**
-     * Private variable: analyticsId.
+     * Private variable: _analyticsId.
      *
      * It stores the analytics id.
      *
      */
-    private analyticsId: string &#x3D; AppConfig.ANALYTICS_ID;
+    private _analyticsId: string &#x3D; AppConfig.ANALYTICS_ID;
 
     /**
-     * Private variable: analyticsEndpoint.
+     * Private variable: _analyticsEndpoint.
      *
      * It stores the analytics endpoint.
      */
-    private analyticsEndpoint: string &#x3D; AppConfig.ANALYTICS_ENDPOINT;
+    private _analyticsEndpoint: string &#x3D; AppConfig.ANALYTICS_ENDPOINT;
 
     /**
-     * Private variable: isInitialized.
+     * Private variable: _isInitialized.
      *
      * It stores a boolean flag for successful initialization.
      */
-    private isInitialized &#x3D; false;
+    private _isInitialized &#x3D; false;
 
     /**
-     * Private variable: sendPageView.
+     * Private variable: _sendPageView.
      *
      * It stores a boolean flag to send page views dependent from environment.
      *
      * DEVELOP: FALSE
      * PRODUCTION: TRUE
      */
-    private sendPageView &#x3D; environment.GA_SEND_PAGE_VIEW;
+    private _sendPageView &#x3D; environment.GA_SEND_PAGE_VIEW;
 
     /**
      * Constructor of the AnalyticsService.
@@ -603,15 +603,15 @@ export class AnalyticsService {
      * @returns {void} Inits Analytics.
      */
     initializeAnalytics(): void {
-        if (!this.analyticsEndpoint || !this.analyticsId) {
+        if (!this._analyticsEndpoint || !this._analyticsId) {
             return;
         }
-        if (this.sendPageView &#x3D;&#x3D;&#x3D; false) {
-            console.log(&#x27;Running non-production analytics replacement now&#x27;);
+        if (this._sendPageView &#x3D;&#x3D;&#x3D; false) {
+            console.info(&#x27;Running non-production analytics replacement now&#x27;);
         } else {
-            this.prependAnalyticsScript();
+            this._prependAnalyticsScript();
         }
-        this.isInitialized &#x3D; true;
+        this._isInitialized &#x3D; true;
     }
 
     /**
@@ -624,28 +624,31 @@ export class AnalyticsService {
      * @returns {void} Configures and sends the page view to Analytics.
      */
     trackPageView(page: string): void {
-        if (!page || this.isInitialized !&#x3D;&#x3D; true) {
+        if (!page || this._isInitialized !&#x3D;&#x3D; true) {
             return;
         }
 
-        gtag(&#x27;config&#x27;, this.analyticsId, {
+        gtag(&#x27;config&#x27;, this._analyticsId, {
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             page_path: page,
+            // eslint-disable-next-line @typescript-eslint/naming-convention
             anonymize_ip: true,
-            send_page_view: this.sendPageView
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            send_page_view: this._sendPageView,
         });
     }
 
     /**
-     * Private method: prependAnalyticsScript.
+     * Private method: _prependAnalyticsScript.
      *
      * It prepends the Analytics &lt;script&gt; tag to index.html via DOCUMENT.
      *
      * @returns {void} Prepends Analytics script.
      */
-    private prependAnalyticsScript(): void {
+    private _prependAnalyticsScript(): void {
         const gtagScript: HTMLScriptElement &#x3D; this.doc.createElement(&#x27;script&#x27;);
         gtagScript.async &#x3D; true;
-        gtagScript.src &#x3D; this.analyticsEndpoint + &#x27;?id&#x3D;&#x27; + this.analyticsId;
+        gtagScript.src &#x3D; this._analyticsEndpoint + &#x27;?id&#x3D;&#x27; + this._analyticsId;
         this.doc.head.prepend(gtagScript);
     }
 }

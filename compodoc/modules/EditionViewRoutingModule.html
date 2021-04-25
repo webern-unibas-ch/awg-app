@@ -90,14 +90,14 @@ import { EditionTypeComponent } from &#x27;./edition-outlets/edition-type&#x27;;
 
 import { EditionConstants } from &#x27;./models&#x27;;
 
-/* routes of the EditionViewModule */
+/* Routes of the EditionViewModule */
 const editionViewRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
         component: EditionSectionComponent,
         children: [
             {
-                // compositionID (op12, M317, etc.
+                // CompositionID (op12, M317, etc.
                 path: &#x27;composition/:compositionId&#x27;,
                 component: EditionViewComponent,
                 children: [
@@ -106,44 +106,44 @@ const editionViewRoutes: Routes &#x3D; [
                         component: EditionOverviewComponent,
                         children: [
                             {
-                                path: EditionConstants.editionIntro.route,
+                                path: EditionConstants.EDITION_INTRO.route,
                                 loadChildren: () &#x3D;&gt;
                                     import(&#x27;./edition-outlets/edition-intro/edition-intro.module&#x27;).then(
                                         m &#x3D;&gt; m.EditionIntroModule
-                                    )
+                                    ),
                             },
                             {
-                                path: EditionConstants.editionDetail.route,
+                                path: EditionConstants.EDITION_DETAIL.route,
                                 loadChildren: () &#x3D;&gt;
                                     import(&#x27;./edition-outlets/edition-detail/edition-detail.module&#x27;).then(
                                         m &#x3D;&gt; m.EditionDetailModule
-                                    )
+                                    ),
                             },
                             {
-                                path: EditionConstants.editionReport.route,
+                                path: EditionConstants.EDITION_REPORT.route,
                                 loadChildren: () &#x3D;&gt;
                                     import(&#x27;./edition-outlets/edition-report/edition-report.module&#x27;).then(
                                         m &#x3D;&gt; m.EditionReportModule
-                                    )
+                                    ),
                             },
                             {
-                                path: EditionConstants.editionGraph.route,
+                                path: EditionConstants.EDITION_GRAPH.route,
                                 loadChildren: () &#x3D;&gt;
                                     import(&#x27;./edition-outlets/edition-graph/edition-graph.module&#x27;).then(
                                         m &#x3D;&gt; m.EditionGraphModule
-                                    )
+                                    ),
                             },
                             {
                                 path: &#x27;&#x27;,
-                                redirectTo: &#x27;/&#x27; + EditionConstants.editionIntro.route,
-                                pathMatch: &#x27;full&#x27;
-                            }
-                        ]
-                    }
-                ]
-            }
-        ]
-    }
+                                redirectTo: &#x27;/&#x27; + EditionConstants.EDITION_INTRO.route,
+                                pathMatch: &#x27;full&#x27;,
+                            },
+                        ],
+                    },
+                ],
+            },
+        ],
+    },
 ];
 
 /**
@@ -157,7 +157,7 @@ export const routedEditionViewComponents &#x3D; [
     EditionOverviewComponent,
     EditionSectionComponent,
     EditionSeriesComponent,
-    EditionTypeComponent
+    EditionTypeComponent,
 ];
 
 /**
@@ -167,7 +167,7 @@ export const routedEditionViewComponents &#x3D; [
  */
 @NgModule({
     imports: [RouterModule.forChild(editionViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class EditionViewRoutingModule {}
 </code></pre>

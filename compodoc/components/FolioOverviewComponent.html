@@ -989,13 +989,13 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
         formatY: 270,
         initialOffsetX: 5,
         initialOffsetY: 5,
-        numberOfFolios: 0
+        numberOfFolios: 0,
     }</code>
                         </td>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="118" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:118</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:137</a></div>
                             </td>
                         </tr>
 
@@ -1186,7 +1186,7 @@ needed to draw the Snap canvas of the folios.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="144" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:144</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="116" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:116</a></div>
                             </td>
                         </tr>
 
@@ -1261,7 +1261,7 @@ viewbox data for the folios.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="130" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:130</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="121" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:121</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1279,7 +1279,7 @@ viewbox data for the folios.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="137" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:137</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="128" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-folio/folio-overview.component.ts:128</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1332,7 +1332,7 @@ viewbox data for the folios.</p>
     Input,
     OnChanges,
     Output,
-    SimpleChanges
+    SimpleChanges,
 } from &#x27;@angular/core&#x27;;
 
 import {
@@ -1341,16 +1341,16 @@ import {
     FolioSvgData,
     EditionSvgSheet,
     ViewBox,
-    FolioConvolute
+    FolioConvolute,
 } from &#x27;@awg-views/edition-view/models&#x27;;
 import { FolioService } from &#x27;./folio.service&#x27;;
 
 /**
  * Declared variable: Snap.
  *
- * It provides access to the embedded SnapSvg library (see {@link snapsvg.io}).
+ * It provides access to the embedded SnapSvg library (see snapsvg.io).
  */
-declare var Snap: any;
+declare let Snap: any;
 
 /**
  * The Folio component.
@@ -1363,7 +1363,7 @@ declare var Snap: any;
     selector: &#x27;awg-edition-folio&#x27;,
     templateUrl: &#x27;./folio-overview.component.html&#x27;,
     styleUrls: [&#x27;./folio-overview.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     /**
@@ -1437,18 +1437,9 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     fgColor &#x3D; &#x27;orange&#x27;;
 
     /**
-     * Private variable: _folioSettings.
-     *
-     * It keeps the format settings for the folio.
+     * Self-referring variable needed for CompileHtml library.
      */
-    private _folioSettings: FolioSettings &#x3D; {
-        factor: 1.5,
-        formatX: 175,
-        formatY: 270,
-        initialOffsetX: 5,
-        initialOffsetY: 5,
-        numberOfFolios: 0
-    };
+    ref: FolioOverviewComponent;
 
     /**
      * Getter for folio format settings.
@@ -1465,9 +1456,18 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     }
 
     /**
-     * Self-referring variable needed for CompileHtml library.
+     * Private variable: _folioSettings.
+     *
+     * It keeps the format settings for the folio.
      */
-    ref: FolioOverviewComponent;
+    private _folioSettings: FolioSettings &#x3D; {
+        factor: 1.5,
+        formatX: 175,
+        formatY: 270,
+        initialOffsetX: 5,
+        initialOffsetY: 5,
+        numberOfFolios: 0,
+    };
 
     /**
      * Constructor of the FolioComponent.
@@ -1500,9 +1500,9 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * after the view was built and checked.
      */
     ngAfterViewChecked() {
-        // start to render svg only after view, inputs and calculation are available
+        // Start to render svg only after view, inputs and calculation are available
         this.renderSnapSvg();
-        // toggle active classes after view was checked
+        // Toggle active classes after view was checked
         this.toggleActiveClass();
     }
 
@@ -1515,14 +1515,14 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Toggles the css class.
      */
     toggleActiveClass(): void {
-        // iterate over canvas Array
+        // Iterate over canvas Array
         if (!this.canvasArray) {
             return;
         }
         this.canvasArray.forEach(canvas &#x3D;&gt; {
-            // find all item groups
+            // Find all item groups
             canvas.selectAll(&#x27;.item-group&#x27;).forEach(itemGroup &#x3D;&gt; {
-                // toggle active class if itemId corresponds to selectedSvgSheetId
+                // Toggle active class if itemId corresponds to selectedSvgSheetId
                 const itemId &#x3D; itemGroup.node.attributes.itemId.value;
                 itemGroup.toggleClass(&#x27;active&#x27;, this.isSelectedSvgSheet(itemId));
             });
@@ -1539,20 +1539,20 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      */
     prepareFolioSvgOutput(): void {
         this.selectedConvolute.folios.map((folio: Folio, folioIndex: number) &#x3D;&gt; {
-            // update folio settings
+            // Update folio settings
             this.folioSettings &#x3D; {
                 factor: this.folioSettings.factor,
                 formatX: +folio.format.width,
                 formatY: +folio.format.height,
                 initialOffsetX: this.folioSettings.initialOffsetX,
                 initialOffsetY: this.folioSettings.initialOffsetY,
-                numberOfFolios: +this.selectedConvolute.folios.length
+                numberOfFolios: +this.selectedConvolute.folios.length,
             };
 
-            // prepare viewbox settings
+            // Prepare viewbox settings
             this.vbArray[folioIndex] &#x3D; new ViewBox(this.folioSettings);
 
-            // calculate svg data
+            // Calculate svg data
             this.folioSvgDataArray[folioIndex] &#x3D; this.folioService.getFolioSvgData(this.folioSettings, folio);
         });
     }
@@ -1566,22 +1566,22 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Sets the canvasArray variable.
      */
     renderSnapSvg(): void {
-        // empty canvasArray
+        // Empty canvasArray
         this.canvasArray &#x3D; [];
 
-        /* apply data from folioSvgDataArray to render the svg image with snapsvg */
+        /* Apply data from folioSvgDataArray to render the svg image with snapsvg */
         this.folioSvgDataArray.map((folioSvg: FolioSvgData, folioIndex: number) &#x3D;&gt; {
-            // init canvas
+            // Init canvas
             const snapId: string &#x3D; &#x27;#folio-&#x27; + folioSvg.sheet.folioId;
             const snapCanvas: any &#x3D; Snap(snapId);
             if (!snapCanvas) {
                 return;
             }
 
-            // svg viewBox
+            // Svg viewBox
             this.folioService.addViewBoxToSnapSvgCanvas(snapCanvas, this.vbArray[folioIndex]);
 
-            // svg content
+            // Svg content
             this.folioService.addFolioToSnapSvgCanvas(snapCanvas, folioSvg, this.bgColor, this.fgColor, this.ref);
 
             this.canvasArray.push(snapCanvas);

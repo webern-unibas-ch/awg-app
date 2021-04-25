@@ -84,12 +84,13 @@ import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
 import { EditionGraphComponent } from &#x27;./edition-graph.component&#x27;;
 
-/* routes of the EditionGraphModule */
+/* Routes of the EditionGraphModule */
 const editionGraphRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
-        component: EditionGraphComponent
-    }
+        component: EditionGraphComponent,
+        data: { title: &#x27;AWG Online Edition – Graph&#x27; },
+    },
 ];
 
 /**
@@ -105,7 +106,7 @@ export const routedEditionGraphComponents &#x3D; [EditionGraphComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(editionGraphRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class EditionGraphRoutingModule {}
 </code></pre>

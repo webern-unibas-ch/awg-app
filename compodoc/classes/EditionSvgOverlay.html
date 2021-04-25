@@ -112,7 +112,7 @@ to store the data of a svg overlay.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#getEnumKeyFromValue">getEnumKeyFromValue</a>
+                                <a href="#_getEnumKeyFromValue">_getEnumKeyFromValue</a>
                             </li>
                         </ul>
                     </td>
@@ -314,20 +314,20 @@ to store the data of a svg overlay.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getEnumKeyFromValue"></a>
+                    <a name="_getEnumKeyFromValue"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            getEnumKeyFromValue
+                            _getEnumKeyFromValue
                         </b>
-                        <a href="#getEnumKeyFromValue"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_getEnumKeyFromValue"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getEnumKeyFromValue(enumValue: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlayTypes</a>)</code>
+                    <code>_getEnumKeyFromValue(enumValue: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlayTypes</a>)</code>
                 </td>
             </tr>
 
@@ -342,7 +342,7 @@ to store the data of a svg overlay.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getEnumKeyFromValue.</p>
+                    <div class="io-description"><p>Private method: _getEnumKeyFromValue.</p>
 <p>It gets the type of a string enum by its value.</p>
 <p>Cf. <a href="https://www.tutorialsteacher.com/typescript/typescript-enum">https://www.tutorialsteacher.com/typescript/typescript-enum</a></p>
 </div>
@@ -405,7 +405,7 @@ to store the data of a svg overlay.</p>
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">export enum EditionSvgOverlayTypes {
     measure &#x3D; &#x27;Takt&#x27;,
     system &#x3D; &#x27;System&#x27;,
-    item &#x3D; &#x27;Anmerkung&#x27;
+    item &#x3D; &#x27;Anmerkung&#x27;,
 }
 
 /**
@@ -441,11 +441,11 @@ export class EditionSvgOverlay {
     constructor(typeValue: EditionSvgOverlayTypes, id: string) {
         this.type &#x3D; typeValue;
         this.id &#x3D; id;
-        this.typeKey &#x3D; this.getEnumKeyFromValue(typeValue);
+        this.typeKey &#x3D; this._getEnumKeyFromValue(typeValue);
     }
 
     /**
-     * Private method: getEnumKeyFromValue.
+     * Private method: _getEnumKeyFromValue.
      *
      * It gets the type of a string enum by its value.
      *
@@ -455,9 +455,9 @@ export class EditionSvgOverlay {
      *
      * @returns {string} Filtered key of the EditionSvgOverlayTypes.
      */
-    private getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
+    private _getEnumKeyFromValue(enumValue: EditionSvgOverlayTypes): string {
         const enumKey: string &#x3D; Object.keys(EditionSvgOverlayTypes)
-            // find key of enumValue
+            // Find key of enumValue
             .find((key: string) &#x3D;&gt; EditionSvgOverlayTypes[key] &#x3D;&#x3D;&#x3D; enumValue);
 
         return enumKey;

@@ -90,11 +90,11 @@ that can be subscribed by components.</p>
                             <li>
                                     <span class="modifier">Private</span>
                                     <span class="modifier">Readonly</span>
-                                <a href="#isLoadingStream$">isLoadingStream$</a>
+                                <a href="#_isLoadingStream$">_isLoadingStream$</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#isLoadingSubject">isLoadingSubject</a>
+                                <a href="#_isLoadingSubject">_isLoadingSubject</a>
                             </li>
                         </ul>
                     </td>
@@ -264,19 +264,19 @@ that can be subscribed by components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isLoadingStream$"></a>
+                        <a name="_isLoadingStream$"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
                                 <span class="modifier">Readonly</span>
-                            isLoadingStream$</b>
-                            <a href="#isLoadingStream$"><span class="icon ion-ios-link"></span></a>
+                            _isLoadingStream$</b>
+                            <a href="#_isLoadingStream$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>this.isLoadingSubject.asObservable()</code>
+                            <i>Default value : </i><code>this._isLoadingSubject.asObservable()</code>
                         </td>
                     </tr>
                         <tr>
@@ -298,12 +298,12 @@ that can be subscribed by components.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="isLoadingSubject"></a>
+                        <a name="_isLoadingSubject"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            isLoadingSubject</b>
-                            <a href="#isLoadingSubject"><span class="icon ion-ios-link"></span></a>
+                            _isLoadingSubject</b>
+                            <a href="#_isLoadingSubject"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -347,18 +347,18 @@ import { BehaviorSubject, Observable } from &#x27;rxjs&#x27;;
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class LoadingService {
     /**
      * Private behavior subject to handle loading status.
      */
-    private isLoadingSubject &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
+    private _isLoadingSubject &#x3D; new BehaviorSubject&lt;boolean&gt;(false);
 
     /**
      * Private readonly isLoading stream as observable (&#x60;BehaviorSubject&#x60;).
      */
-    private readonly isLoadingStream$ &#x3D; this.isLoadingSubject.asObservable();
+    private readonly _isLoadingStream$ &#x3D; this._isLoadingSubject.asObservable();
 
     /**
      * Public method: getLoadingStatus.
@@ -368,7 +368,7 @@ export class LoadingService {
      * @returns {Observable&lt;boolean&gt;} The isLoading stream as observable.
      */
     getLoadingStatus(): Observable&lt;boolean&gt; {
-        return this.isLoadingStream$;
+        return this._isLoadingStream$;
     }
 
     /**
@@ -379,7 +379,7 @@ export class LoadingService {
      * @returns {void} Sets the next boolean value to the stream.
      */
     updateLoadingStatus(isLoading: boolean): void {
-        this.isLoadingSubject.next(isLoading);
+        this._isLoadingSubject.next(isLoading);
     }
 }
 </code></pre>

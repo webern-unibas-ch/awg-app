@@ -217,7 +217,13 @@
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">type analyticsType &#x3D; [string, string, { page_path?: string; anonymize_ip?: boolean; send_page_view?: boolean }];
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">type analyticsType &#x3D; [
+    /* eslint-disable @typescript-eslint/naming-convention */
+    string,
+    string,
+    { page_path?: string; anonymize_ip?: boolean; send_page_view?: boolean }
+    /* eslint-enable @typescript-eslint/naming-convention */
+];
 
 /**
  * The internal IMockAnalytics interface.
@@ -257,16 +263,20 @@ export const mockAnalytics: IMockAnalytics &#x3D; {
     gtag: (
         event: string,
         eventName: string,
-        eventOptions: { page_path: string; anonymize_ip: boolean; send_page_view: boolean }
+        eventOptions: {
+            /* eslint-disable @typescript-eslint/naming-convention */
+            page_path: string;
+            anonymize_ip: boolean;
+            send_page_view: boolean;
+            /* eslint-enable @typescript-eslint/naming-convention */
+        }
     ): void &#x3D;&gt; {
         analyticsStore.push([event, eventName, eventOptions]);
     },
-    getGtag: (index: number): analyticsType &#x3D;&gt; {
-        return analyticsStore[index] || null;
-    },
+    getGtag: (index: number): analyticsType &#x3D;&gt; analyticsStore[index] || null,
     clear: () &#x3D;&gt; {
         analyticsStore &#x3D; [];
-    }
+    },
 };
 </code></pre>
     </div>

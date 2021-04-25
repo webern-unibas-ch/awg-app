@@ -1154,7 +1154,7 @@ by routing to the component itself again.</p>
         query: &#x27;&#x27;,
         nRows: &#x27;25&#x27;,
         startAt: &#x27;0&#x27;,
-        view: SearchParamsViewTypes.table
+        view: SearchParamsViewTypes.table,
     }</code>
                         </td>
                     </tr>
@@ -1308,7 +1308,7 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from &#x
 @Component({
     selector: &#x27;awg-search-panel&#x27;,
     templateUrl: &#x27;./search-panel.component.html&#x27;,
-    styleUrls: [&#x27;./search-panel.component.css&#x27;]
+    styleUrls: [&#x27;./search-panel.component.css&#x27;],
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
     /**
@@ -1334,7 +1334,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         query: &#x27;&#x27;,
         nRows: &#x27;25&#x27;,
         startAt: &#x27;0&#x27;,
-        view: SearchParamsViewTypes.table
+        view: SearchParamsViewTypes.table,
     };
 
     /**
@@ -1412,26 +1412,26 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     getFulltextSearchData(): void {
         this.router.events.pipe(takeUntil(this.destroy$)).subscribe(
             (e: any) &#x3D;&gt; {
-                // check for end of navigation
+                // Check for end of navigation
                 if (e instanceof NavigationEnd) {
-                    // snapshot of current route query params
+                    // Snapshot of current route query params
                     const qp &#x3D; this.route.snapshot.queryParamMap;
 
                     if (qp !&#x3D;&#x3D; this.currentQueryParams) {
                         this.currentQueryParams &#x3D; qp;
 
                         if (qp.keys.length &lt; 4) {
-                            // update search params
+                            // Update search params
                             this.updateSearchParamsFromRoute(qp, true);
                         } else {
-                            // update search params from route if available
+                            // Update search params from route if available
                             this.updateSearchParamsFromRoute(qp, false);
 
                             if (this.searchParams.query &amp;&amp; !this.viewChanged) {
-                                // fetch search data
+                                // Fetch search data
                                 return this.dataApiService.getFulltextSearchData(this.searchParams).subscribe(
                                     (searchResponse: SearchResponseJson) &#x3D;&gt; {
-                                        // share search data via streamer service
+                                        // Share search data via streamer service
                                         const searchResponseWithQuery: SearchResponseWithQuery &#x3D; new SearchResponseWithQuery(
                                             searchResponse,
                                             this.searchParams.query
@@ -1443,11 +1443,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                                     }
                                 );
                             } else {
-                                // console.log(&#x27;No search query!&#x27;);
+                                // Console.log(&#x27;No search query!&#x27;);
                             }
                         }
                     } else {
-                        // console.log(&#x27;Routed on same page with same query params&#x27;);
+                        // Console.log(&#x27;Routed on same page with same query params&#x27;);
                     }
                 }
             },
@@ -1470,16 +1470,16 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onPageChange(requestedStartAt: string): void {
         if (requestedStartAt !&#x3D;&#x3D; this.searchParams.startAt) {
-            // view has not changed
+            // View has not changed
             this.viewChanged &#x3D; false;
 
             this.searchParams &#x3D; {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: requestedStartAt,
-                view: this.searchParams.view
+                view: this.searchParams.view,
             };
-            // route to new params
+            // Route to new params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -1497,17 +1497,17 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onRowNumberChange(requestedRows: string): void {
         if (requestedRows !&#x3D;&#x3D; this.searchParams.nRows) {
-            // view has not changed
+            // View has not changed
             this.viewChanged &#x3D; false;
 
             this.searchParams &#x3D; {
                 query: this.searchParams.query,
                 nRows: requestedRows,
                 startAt: &#x27;0&#x27;,
-                view: this.searchParams.view
+                view: this.searchParams.view,
             };
 
-            // route to new params
+            // Route to new params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -1525,17 +1525,17 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onViewChange(requestedView: string): void {
         if (requestedView !&#x3D;&#x3D; this.searchParams.view) {
-            // view has changed
+            // View has changed
             this.viewChanged &#x3D; true;
 
             this.searchParams &#x3D; {
                 query: this.searchParams.query,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
-                view: SearchParamsViewTypes[requestedView]
+                view: SearchParamsViewTypes[requestedView],
             };
 
-            // route to new params
+            // Route to new params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -1553,17 +1553,17 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     onSearch(requestedQuery: string): void {
         if (requestedQuery !&#x3D;&#x3D; this.searchParams.query) {
-            // view has not changed
+            // View has not changed
             this.viewChanged &#x3D; false;
 
             this.searchParams &#x3D; {
                 query: requestedQuery,
                 nRows: this.searchParams.nRows,
                 startAt: this.searchParams.startAt,
-                view: this.searchParams.view
+                view: this.searchParams.view,
             };
 
-            // route to new search params
+            // Route to new search params
             this.routeToSelf(this.searchParams);
         }
     }
@@ -1581,7 +1581,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         this.router.navigate([], {
             relativeTo: this.route,
             queryParams: { query: sp.query, nrows: sp.nRows, startAt: sp.startAt, view: sp.view },
-            queryParamsHandling: &#x27;merge&#x27;
+            queryParamsHandling: &#x27;merge&#x27;,
         });
     }
 
@@ -1603,12 +1603,12 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // update search params (immutable)
+        // Update search params (immutable)
         this.searchParams &#x3D; {
             query: params.get(&#x27;query&#x27;) || this.searchParams.query,
             nRows: params.get(&#x27;nrows&#x27;) || this.searchParams.nRows,
             startAt: params.get(&#x27;startAt&#x27;) || this.searchParams.startAt,
-            view: SearchParamsViewTypes[params.get(&#x27;view&#x27;)] || this.searchParams.view
+            view: SearchParamsViewTypes[params.get(&#x27;view&#x27;)] || this.searchParams.view,
         };
 
         if (routing) {
@@ -1623,10 +1623,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // emit truthy value to end all subscriptions
+        // Emit truthy value to end all subscriptions
         this.destroy$.next(true);
 
-        // unsubscribe from the destroy subject itself
+        // Unsubscribe from the destroy subject itself
         this.destroy$.unsubscribe();
     }
 }

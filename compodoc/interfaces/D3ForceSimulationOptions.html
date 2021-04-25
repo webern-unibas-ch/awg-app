@@ -198,7 +198,7 @@ import { D3SimulationNodeTriple } from &#x27;@awg-views/edition-view/edition-out
 const FORCES &#x3D; {
     LINK_DISTANCE: 1 / 50,
     COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -1
+    CHARGE_STRENGTH: -1,
 };
 
 /**
@@ -261,32 +261,32 @@ export class D3ForceSimulation {
     links: D3SimulationLink[] &#x3D; [];
 
     /**
-     * Private variable: chargeForce.
+     * Private variable: _chargeForce.
      *
      * It keeps the charging force.
      */
-    private chargeForce;
+    private _chargeForce;
 
     /**
-     * Private variable: centerForce.
+     * Private variable: _centerForce.
      *
      * It keeps the centering force.
      */
-    private centerForce;
+    private _centerForce;
 
     /**
-     * Private variable: collideForce.
+     * Private variable: _collideForce.
      *
      * It keeps the colliding force.
      */
-    private collideForce;
+    private _collideForce;
 
     /**
-     * Private variable: linkForce.
+     * Private variable: _linkForce.
      *
      * It keeps the linking force.
      */
-    private linkForce;
+    private _linkForce;
 
     /**
      * Constructor of the D3ForceSimulation class.
@@ -301,11 +301,11 @@ export class D3ForceSimulation {
         this.nodes &#x3D; nodes;
         this.links &#x3D; links;
 
-        this.initSimulation(options);
+        this._initSimulation(options);
     }
 
     /**
-     * Private method: initSimulation.
+     * Private method: _initSimulation.
      *
      * It inits the simulation.
      *
@@ -313,42 +313,42 @@ export class D3ForceSimulation {
      *
      * @returns {void} It inits the simulation.
      */
-    private initSimulation(options: D3ForceSimulationOptions): void {
+    private _initSimulation(options: D3ForceSimulationOptions): void {
         if (!options || !options.width || !options.height) {
             throw new Error(&#x27;Missing options when initializing simulation&#x27;);
         }
 
-        // create the simulation
+        // Create the simulation
         if (!this.forceSimulation) {
             const ticker &#x3D; this.ticker;
 
-            // set up the simulation
+            // Set up the simulation
             this.forceSimulation &#x3D; d3_force.forceSimulation();
 
-            this.createForces(options);
+            this._createForces(options);
 
-            // add forces to the simulation
+            // Add forces to the simulation
             this.forceSimulation
-                .force(&#x27;charge_force&#x27;, this.chargeForce)
-                .force(&#x27;collide_force&#x27;, this.collideForce)
-                .force(&#x27;center_force&#x27;, this.centerForce);
+                .force(&#x27;charge_force&#x27;, this._chargeForce)
+                .force(&#x27;collide_force&#x27;, this._collideForce)
+                .force(&#x27;center_force&#x27;, this._centerForce);
 
-            // connect the d3 ticker to an angular event emitter
+            // Connect the d3 ticker to an angular event emitter
             this.forceSimulation.on(&#x27;tick&#x27;, function () {
                 ticker.emit(this);
             });
 
-            // add nodes and links to the simulation
-            this.initNodes();
-            this.initLinks();
+            // Add nodes and links to the simulation
+            this._initNodes();
+            this._initLinks();
         }
 
-        // restart the simulation&#x27;s internal timer
+        // Restart the simulation&#x27;s internal timer
         this.forceSimulation.alpha(1).restart();
     }
 
     /**
-     * Private method: createForces.
+     * Private method: _createForces.
      *
      * It creates the simulation&#x27;s forces.
      *
@@ -356,20 +356,20 @@ export class D3ForceSimulation {
      *
      * @returns {void} It creates the simulation&#x27;s forces.
      */
-    private createForces(options: D3ForceSimulationOptions): void {
-        // create forces
-        this.chargeForce &#x3D; d3_force.forceManyBody().strength((d: D3SimulationNode) &#x3D;&gt; d[&#x27;r&#x27;] * FORCES.CHARGE_STRENGTH);
+    private _createForces(options: D3ForceSimulationOptions): void {
+        // Create forces
+        this._chargeForce &#x3D; d3_force.forceManyBody().strength((d: D3SimulationNode) &#x3D;&gt; d[&#x27;r&#x27;] * FORCES.CHARGE_STRENGTH);
 
-        this.centerForce &#x3D; d3_force.forceCenter(options.width / 2, options.height / 2);
+        this._centerForce &#x3D; d3_force.forceCenter(options.width / 2, options.height / 2);
 
-        this.collideForce &#x3D; d3_force
+        this._collideForce &#x3D; d3_force
             .forceCollide()
             .strength(FORCES.COLLISION_STRENGTH)
             .radius(d &#x3D;&gt; d[&#x27;r&#x27;] + 5)
             .iterations(2);
 
-        // create a custom link force with id accessor to use named sources and targets
-        this.linkForce &#x3D; d3_force
+        // Create a custom link force with id accessor to use named sources and targets
+        this._linkForce &#x3D; d3_force
             .forceLink()
             .links(this.links)
             .id((d: D3SimulationLink) &#x3D;&gt; d.predicate)
@@ -377,32 +377,32 @@ export class D3ForceSimulation {
     }
 
     /**
-     * Private method: initLinks.
+     * Private method: _initLinks.
      *
      * It inits the link force of the simulation.
      *
      * @returns {void} It inits the link force of the simulation.
      */
-    private initLinks(): void {
+    private _initLinks(): void {
         if (!this.forceSimulation) {
             throw new Error(&#x27;Simulation was not initialized yet&#x27;);
         }
-        // add links to the simulation
-        this.forceSimulation.force(&#x27;links&#x27;, this.linkForce);
+        // Add links to the simulation
+        this.forceSimulation.force(&#x27;links&#x27;, this._linkForce);
     }
 
     /**
-     * Private method: initNodes.
+     * Private method: _initNodes.
      *
      * It inits the nodes of the simulation.
      *
      * @returns {void} It inits the nodes of the simulation.
      */
-    private initNodes(): void {
+    private _initNodes(): void {
         if (!this.forceSimulation) {
             throw new Error(&#x27;Simulation was not initialized yet&#x27;);
         }
-        // add nodes to the simulation
+        // Add nodes to the simulation
         this.forceSimulation.nodes(this.nodes);
     }
 }

@@ -834,7 +834,7 @@ import { MetaContact, MetaPage, MetaSectionTypes } from &#x27;@awg-core/core-mod
     selector: &#x27;awg-contact-view&#x27;,
     templateUrl: &#x27;./contact-view.component.html&#x27;,
     styleUrls: [&#x27;./contact-view.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ContactViewComponent implements OnInit {
     /**
@@ -950,10 +950,10 @@ export class ContactViewComponent implements OnInit {
      * @returns {void} Activates the contact-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: &#x27;contactInfo&#x27; } }], {
             preserveFragment: true,
-            queryParamsHandling: &#x27;preserve&#x27;
+            queryParamsHandling: &#x27;preserve&#x27;,
         });
     }
 }

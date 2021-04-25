@@ -106,7 +106,7 @@ adds specific attributes if href has an external target.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#isExternalLink">isExternalLink</a>
+                                <a href="#_isExternalLink">_isExternalLink</a>
                             </li>
                             <li>
                                 <a href="#ngOnChanges">ngOnChanges</a>
@@ -358,20 +358,20 @@ adds specific attributes if href has an external target.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="isExternalLink"></a>
+                    <a name="_isExternalLink"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            isExternalLink
+                            _isExternalLink
                         </b>
-                        <a href="#isExternalLink"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_isExternalLink"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>isExternalLink()</code>
+                    <code>_isExternalLink()</code>
                 </td>
             </tr>
 
@@ -386,7 +386,7 @@ adds specific attributes if href has an external target.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: isExternalLink.</p>
+                    <div class="io-description"><p>Private method: _isExternalLink.</p>
 <p>It detects if the app is running in the browser
 and if value of href attribute is included in location.hostname.</p>
 </div>
@@ -398,7 +398,7 @@ and if value of href attribute is included in location.hostname.</p>
 
                     </div>
                     <div class="io-description">
-                        <p>Sets the isExternalLink flag.</p>
+                        <p>Sets the _isExternalLink flag.</p>
 
                     </div>
                 </td>
@@ -464,8 +464,8 @@ import { isPlatformBrowser } from &#x27;@angular/common&#x27;;
  * adds specific attributes if href has an external target.
  */
 @Directive({
-    // tslint:disable-next-line:directive-selector
-    selector: &#x27;a[href]&#x27;
+    // eslint-disable-next-line @angular-eslint/directive-selector
+    selector: &#x27;a[href]&#x27;,
 })
 export class ExternalLinkDirective implements OnChanges {
     /**
@@ -513,21 +513,21 @@ export class ExternalLinkDirective implements OnChanges {
     ngOnChanges() {
         this.hrefAttr &#x3D; this.href;
 
-        if (this.isExternalLink()) {
+        if (this._isExternalLink()) {
             this.targetAttr &#x3D; &#x27;_blank&#x27;;
             this.relAttr &#x3D; &#x27;noopener noreferrer&#x27;;
         }
     }
 
     /**
-     * Private method: isExternalLink.
+     * Private method: _isExternalLink.
      *
      * It detects if the app is running in the browser
      * and if value of href attribute is included in location.hostname.
      *
-     * @returns {boolean} Sets the isExternalLink flag.
+     * @returns {boolean} Sets the _isExternalLink flag.
      */
-    private isExternalLink(): boolean {
+    private _isExternalLink(): boolean {
         return isPlatformBrowser(this.platformId) &amp;&amp; !this.href.includes(location.hostname);
     }
 }

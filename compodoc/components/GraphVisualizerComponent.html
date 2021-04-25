@@ -147,6 +147,9 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                                 <a href="#defaultForceGraphHeight">defaultForceGraphHeight</a>
                             </li>
                             <li>
+                                <a href="#fs">fs</a>
+                            </li>
+                            <li>
                                 <a href="#query">query</a>
                             </li>
                             <li>
@@ -177,6 +180,11 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                    <span class="modifier">Async</span>
+                                <a href="#_queryLocalStore">_queryLocalStore</a>
+                            </li>
+                            <li>
                                 <a href="#ngOnInit">ngOnInit</a>
                             </li>
                             <li>
@@ -187,11 +195,6 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                             </li>
                             <li>
                                 <a href="#performQuery">performQuery</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                    <span class="modifier">Async</span>
-                                <a href="#queryLocalStore">queryLocalStore</a>
                             </li>
                             <li>
                                 <a href="#resetQuery">resetQuery</a>
@@ -217,6 +220,9 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                             <li>
                                 <a href="#graphRDFInputData">graphRDFInputData</a>
                             </li>
+                            <li>
+                                <a href="#isFullscreen">isFullscreen</a>
+                            </li>
                         </ul>
                     </td>
                 </tr>
@@ -239,7 +245,7 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:82</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -303,13 +309,41 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
                 </tr>
                         <tr>
                             <td class="col-md-2" colspan="2">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:33</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:40</a></div>
                             </td>
                         </tr>
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Input variable: graphRDFInputData.</p>
 <p>It keeps the input data for the RDF graph.</p>
+</div>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="isFullscreen"></a>
+                        <b>isFullscreen</b>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                        <tr>
+                            <td class="col-md-2" colspan="2">
+                                    <div class="io-line">Defined in <a href="" data-line="48" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:48</a></div>
+                            </td>
+                        </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Input variable: isFullscreen.</p>
+<p>It keeps a boolean flag if fullscreenMode is active.</p>
 </div>
                     </td>
                 </tr>
@@ -328,280 +362,36 @@ and to visualize a graph via the <a href="../components/ForceGraphComponent.html
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:99</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onGraphNodeClick"></a>
-                    <span class="name">
-                        <b>
-                            onGraphNodeClick
-                        </b>
-                        <a href="#onGraphNodeClick"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onGraphNodeClick(node: <a href="../interfaces/D3Simulation.html">D3SimulationNode</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="177"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:177</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onGraphClick.</p>
-<p>It is called when a node in the graph is clicked.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>node</td>
-                                    <td>
-                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Logs the click event.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="onTableClick"></a>
-                    <span class="name">
-                        <b>
-                            onTableClick
-                        </b>
-                        <a href="#onTableClick"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>onTableClick(IRI: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="190"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:190</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: onTableClick.</p>
-<p>It performs a query for a given IRI from the result table.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>IRI</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given IRI.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Performs the query with the given URI.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="performQuery"></a>
-                    <span class="name">
-                        <b>
-                            performQuery
-                        </b>
-                        <a href="#performQuery"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>performQuery()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="147"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:147</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Public method: performQuery.</p>
-<p>It performs a SPARQL query against the rdfstore.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Performs the query.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="queryLocalStore"></a>
+                    <a name="_queryLocalStore"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
                             <span class="modifier">Async</span>
-                            queryLocalStore
+                            _queryLocalStore
                         </b>
-                        <a href="#queryLocalStore"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_queryLocalStore"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>queryLocalStore(queryType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_queryLocalStore(queryType: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="233"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:233</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="250"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:250</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: queryLocalStore</p>
+                    <div class="io-description"><p>Private method: _queryLocalStore</p>
 <p>It performs a query against the local rdfstore.</p>
 </div>
 
@@ -686,6 +476,250 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="ngOnInit"></a>
+                    <span class="name">
+                        <b>
+                            ngOnInit
+                        </b>
+                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>ngOnInit()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="114"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:114</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
+<p>It calls the containing methods
+when initializing the component.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onGraphNodeClick"></a>
+                    <span class="name">
+                        <b>
+                            onGraphNodeClick
+                        </b>
+                        <a href="#onGraphNodeClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onGraphNodeClick(node: <a href="../interfaces/D3Simulation.html">D3SimulationNode</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="192"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:192</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onGraphClick.</p>
+<p>It is called when a node in the graph is clicked.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>node</td>
+                                    <td>
+                                                <code><a href="../interfaces/D3Simulation.html" target="_self" >D3SimulationNode</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Logs the click event.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="onTableClick"></a>
+                    <span class="name">
+                        <b>
+                            onTableClick
+                        </b>
+                        <a href="#onTableClick"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onTableClick(IRI: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="205"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:205</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: onTableClick.</p>
+<p>It performs a query for a given IRI from the result table.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>IRI</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given IRI.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Performs the query with the given URI.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="performQuery"></a>
+                    <span class="name">
+                        <b>
+                            performQuery
+                        </b>
+                        <a href="#performQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>performQuery()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="162"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:162</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: performQuery.</p>
+<p>It performs a SPARQL query against the rdfstore.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Performs the query.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="resetQuery"></a>
                     <span class="name">
                         <b>
@@ -704,8 +738,8 @@ when initializing the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="130"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:130</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="145"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:145</a></div>
                 </td>
             </tr>
 
@@ -784,8 +818,8 @@ if it is known from the RDF input data.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="113"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:113</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="128"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:128</a></div>
                 </td>
             </tr>
 
@@ -833,8 +867,8 @@ from the RDF input data.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="206"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:206</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="223"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:223</a></div>
                 </td>
             </tr>
 
@@ -937,7 +971,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:40</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="55" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:55</a></div>
                             </td>
                         </tr>
 
@@ -945,6 +979,49 @@ from the RDF input data.</p>
                     <td class="col-md-4">
                         <div class="io-description"><p>Public variable: defaultForceGraphHeight.</p>
 <p>It keeps the default height for the force graph.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="fs"></a>
+                        <span class="name">
+                            <b>
+                            fs</b>
+                            <a href="#fs"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://angular.io/api/core/ElementRef" target="_blank" >ElementRef</a></code>
+
+                        </td>
+                    </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <b>Decorators : </b>
+                            <br />
+                            <code>
+                                @ViewChild(&#x27;fs&#x27;)<br />
+                            </code>
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="32" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:32</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>ViewChild variable: fs.</p>
+<p>It keeps the reference to the full screen element.</p>
 </div>
                     </td>
                 </tr>
@@ -971,7 +1048,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:47</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="62" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:62</a></div>
                             </td>
                         </tr>
 
@@ -1005,7 +1082,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:54</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="69" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:69</a></div>
                             </td>
                         </tr>
 
@@ -1039,7 +1116,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:61</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="76" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:76</a></div>
                             </td>
                         </tr>
 
@@ -1073,7 +1150,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:68</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="83" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:83</a></div>
                             </td>
                         </tr>
 
@@ -1107,7 +1184,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:75</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="90" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:90</a></div>
                             </td>
                         </tr>
 
@@ -1141,7 +1218,7 @@ from the RDF input data.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:82</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/graph-visualizer.component.ts:97</a></div>
                             </td>
                         </tr>
 
@@ -1161,7 +1238,7 @@ from the RDF input data.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, ElementRef, Input, OnInit, ViewChild } from &#x27;@angular/core&#x27;;
 
 import { EMPTY, from, Observable } from &#x27;rxjs&#x27;;
 
@@ -1180,9 +1257,16 @@ import { GraphVisualizerService } from &#x27;./services/graph-visualizer.service
     selector: &#x27;awg-graph-visualizer&#x27;,
     templateUrl: &#x27;./graph-visualizer.component.html&#x27;,
     styleUrls: [&#x27;./graph-visualizer.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class GraphVisualizerComponent implements OnInit {
+    /**
+     * ViewChild variable: fs.
+     *
+     * It keeps the reference to the full screen element.
+     */
+    @ViewChild(&#x27;fs&#x27;) fs: ElementRef;
+
     /**
      * Input variable: graphRDFInputData.
      *
@@ -1190,6 +1274,14 @@ export class GraphVisualizerComponent implements OnInit {
      */
     @Input()
     graphRDFInputData: GraphRDFData;
+
+    /**
+     * Input variable: isFullscreen.
+     *
+     * It keeps a boolean flag if fullscreenMode is active.
+     */
+    @Input()
+    isFullscreen: boolean;
 
     /**
      * Public variable: defaultForceGraphHeight.
@@ -1256,7 +1348,7 @@ export class GraphVisualizerComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        // set initial values
+        // Set initial values
         this.resetTriples();
         this.resetQuery();
     }
@@ -1312,13 +1404,13 @@ export class GraphVisualizerComponent implements OnInit {
             );
         }
 
-        // get the query type
+        // Get the query type
         this.queryType &#x3D; this.graphVisualizerService.getQuerytype(this.query.queryString);
 
-        // perform only construct queries for now
+        // Perform only construct queries for now
         if (this.queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;) {
-            // query local store
-            const result &#x3D; this.queryLocalStore(this.queryType, this.query.queryString, this.triples);
+            // Query local store
+            const result &#x3D; this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
             this.queryResult &#x3D; from(result);
         } else {
             this.queryResult &#x3D; EMPTY;
@@ -1334,7 +1426,7 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Logs the click event.
      */
     onGraphNodeClick(node: D3SimulationNode) {
-        console.log(&#x27;GraphVisualizerComponent# graphClick on node&#x27;, node);
+        console.info(&#x27;GraphVisualizerComponent# graphClick on node&#x27;, node);
     }
 
     /**
@@ -1347,7 +1439,9 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Performs the query with the given URI.
      */
     onTableClick(IRI: string): void {
-        if (!IRI) return;
+        if (!IRI) {
+            return;
+        }
         this.query.queryString &#x3D; &#x60;SELECT * WHERE {\n\tBIND(&lt;${IRI}&gt; AS ?el)\n\t?el ?key ?value\n}&#x60;;
         this.performQuery();
     }
@@ -1369,17 +1463,17 @@ export class GraphVisualizerComponent implements OnInit {
         if (!durationValue) {
             durationValue &#x3D; 10000;
         }
-        console.log(message, durationValue);
-        // TODO: use snackbar instead of console.log
+        console.error(message, durationValue);
+        // TODO: use snackbar instead of console
         /*
-        this.snackBar.open(message, &#x27;close&#x27;, {
+        This.snackBar.open(message, &#x27;close&#x27;, {
             duration: durationValue
         });
         */
     }
 
     /**
-     * Private method: queryLocalStore
+     * Private method: _queryLocalStore
      *
      * It performs a query against the local rdfstore.
      *
@@ -1389,7 +1483,7 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {Promise&lt;Triple[]&gt;} The result of the query as an promise of triple array.
      */
-    private async queryLocalStore(queryType: string, queryString: string, triples: string): Promise&lt;Triple[]&gt; {
+    private async _queryLocalStore(queryType: string, queryString: string, triples: string): Promise&lt;Triple[]&gt; {
         // Capture start time of query
         const t1 &#x3D; Date.now();
 
@@ -1413,7 +1507,6 @@ export class GraphVisualizerComponent implements OnInit {
 
             // Capture query time
             this.queryTime &#x3D; Date.now() - t1;
-            // console.log(&#x27;QUERYTIME:&#x27;, this.queryTime);
 
             result &#x3D; [];
         }
@@ -1426,56 +1519,109 @@ export class GraphVisualizerComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;!-- Data: Triples, SPARQL query, result --&gt;
 
-&lt;div *ngIf&#x3D;&quot;graphRDFInputData&quot; class&#x3D;&quot;row&quot;&gt;
-    &lt;!-- awg-graph-triples-editor --&gt;
-    &lt;div class&#x3D;&quot;col-lg-6 pr-lg-0&quot;&gt;
-        &lt;awg-triples-editor
-            [triples]&#x3D;&quot;triples&quot;
-            (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
-            (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
-            (performQueryRequest)&#x3D;&quot;performQuery()&quot;
-        &gt;&lt;/awg-triples-editor&gt;
-    &lt;/div&gt;
+&lt;div #fs class&#x3D;&quot;row&quot; [class.is-fullscreen]&#x3D;&quot;isFullscreen&quot; *ngIf&#x3D;&quot;graphRDFInputData&quot;&gt;
+    &lt;ng-container *ngIf&#x3D;&quot;!isFullscreen&quot;&gt;
+        &lt;!-- awg-graph-triples-editor --&gt;
+        &lt;div class&#x3D;&quot;col-lg-6 pr-lg-0&quot;&gt;
+            &lt;awg-triples-editor
+                [triples]&#x3D;&quot;triples&quot;
+                (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
+                (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
+                (performQueryRequest)&#x3D;&quot;performQuery()&quot;
+            &gt;&lt;/awg-triples-editor&gt;
+        &lt;/div&gt;
 
-    &lt;!-- awg-graph-sparql-editor --&gt;
-    &lt;div class&#x3D;&quot;col-lg-6 pl-lg-0&quot;&gt;
-        &lt;awg-sparql-editor
-            [queryList]&#x3D;&quot;queryList&quot;
-            [query]&#x3D;&quot;query&quot;
-            (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
-            (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
-            (performQueryRequest)&#x3D;&quot;performQuery()&quot;
-        &gt;&lt;/awg-sparql-editor&gt;
-    &lt;/div&gt;
+        &lt;!-- awg-graph-sparql-editor --&gt;
+        &lt;div class&#x3D;&quot;col-lg-6 pl-lg-0&quot;&gt;
+            &lt;awg-sparql-editor
+                [queryList]&#x3D;&quot;queryList&quot;
+                [query]&#x3D;&quot;query&quot;
+                (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
+                (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
+                (performQueryRequest)&#x3D;&quot;performQuery()&quot;
+            &gt;&lt;/awg-sparql-editor&gt;
+        &lt;/div&gt;
 
-    &lt;!-- Results --&gt;
-    &lt;div class&#x3D;&quot;col-12&quot;&gt;
-        &lt;!-- CONSTRUCT --&gt;
-        &lt;!-- awg-graph-construct-result --&gt;
-        &lt;awg-construct-results
-            #queryConstructResultAcc
-            *ngIf&#x3D;&quot;queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;; else querySelectResultAcc&quot;
-            [queryResult]&#x3D;&quot;queryResult&quot;
-            [defaultForceGraphHeight]&#x3D;&quot;defaultForceGraphHeight&quot;
-            (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;
-        &gt;&lt;/awg-construct-results&gt;
-
-        &lt;!-- SELECT --&gt;
-        &lt;!-- awg-graph-select-result --&gt;
-        &lt;ng-template #querySelectResultAcc&gt;
-            &lt;awg-select-results
-                *ngIf&#x3D;&quot;queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;; else queryUnsupportedTypeAcc&quot;
+        &lt;!-- Results --&gt;
+        &lt;div class&#x3D;&quot;col-12&quot;&gt;
+            &lt;!-- CONSTRUCT --&gt;
+            &lt;!-- awg-graph-construct-result --&gt;
+            &lt;awg-construct-results
+                #queryConstructResultAcc
+                *ngIf&#x3D;&quot;queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;; else querySelectResultAcc&quot;
                 [queryResult]&#x3D;&quot;queryResult&quot;
-                (clickedTableRequest)&#x3D;&quot;onTableClick($event)&quot;
-            &gt;&lt;/awg-select-results&gt;
-        &lt;/ng-template&gt;
+                [defaultForceGraphHeight]&#x3D;&quot;defaultForceGraphHeight&quot;
+                (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;
+            &gt;&lt;/awg-construct-results&gt;
 
-        &lt;!-- OTHERS --&gt;
-        &lt;!-- awg-graph-unsupported-query-type-result --&gt;
-        &lt;ng-template #queryUnsupportedTypeAcc&gt;
-            &lt;awg-unsupported-type-results [queryType]&#x3D;&quot;queryType&quot;&gt;&lt;/awg-unsupported-type-results&gt;
-        &lt;/ng-template&gt;
-    &lt;/div&gt;
+            &lt;!-- SELECT --&gt;
+            &lt;!-- awg-graph-select-result --&gt;
+            &lt;ng-template #querySelectResultAcc&gt;
+                &lt;awg-select-results
+                    *ngIf&#x3D;&quot;queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;; else queryUnsupportedTypeAcc&quot;
+                    [queryResult]&#x3D;&quot;queryResult&quot;
+                    (clickedTableRequest)&#x3D;&quot;onTableClick($event)&quot;
+                &gt;&lt;/awg-select-results&gt;
+            &lt;/ng-template&gt;
+
+            &lt;!-- OTHERS --&gt;
+            &lt;!-- awg-graph-unsupported-query-type-result --&gt;
+            &lt;ng-template #queryUnsupportedTypeAcc&gt;
+                &lt;awg-unsupported-type-results [queryType]&#x3D;&quot;queryType&quot;&gt;&lt;/awg-unsupported-type-results&gt;
+            &lt;/ng-template&gt;
+        &lt;/div&gt;
+    &lt;/ng-container&gt;
+    &lt;ng-container *ngIf&#x3D;&quot;isFullscreen&quot;&gt;
+        &lt;div class&#x3D;&quot;col-md-4 col-lg-3 px-0 awg-fullscreen&quot;&gt;
+            &lt;!-- awg-graph-triples-editor --&gt;
+            &lt;awg-triples-editor
+                [triples]&#x3D;&quot;triples&quot;
+                [isFullscreen]&#x3D;&quot;isFullscreen&quot;
+                (updateTriplesRequest)&#x3D;&quot;triples &#x3D; $event&quot;
+                (resetTriplesRequest)&#x3D;&quot;resetTriples()&quot;
+                (performQueryRequest)&#x3D;&quot;performQuery()&quot;
+            &gt;&lt;/awg-triples-editor&gt;
+
+            &lt;!-- awg-graph-sparql-editor --&gt;
+            &lt;awg-sparql-editor
+                [queryList]&#x3D;&quot;queryList&quot;
+                [query]&#x3D;&quot;query&quot;
+                [isFullscreen]&#x3D;&quot;isFullscreen&quot;
+                (updateQueryStringRequest)&#x3D;&quot;query.queryString &#x3D; $event&quot;
+                (resetQueryRequest)&#x3D;&quot;resetQuery($event)&quot;
+                (performQueryRequest)&#x3D;&quot;performQuery()&quot;
+            &gt;&lt;/awg-sparql-editor&gt;
+        &lt;/div&gt;
+
+        &lt;!-- Results --&gt;
+        &lt;div class&#x3D;&quot;col-md-8 col-lg-9 px-0 awg-fullscreen&quot;&gt;
+            &lt;!-- CONSTRUCT --&gt;
+            &lt;!-- awg-graph-construct-result --&gt;
+            &lt;awg-construct-results
+                #queryConstructResultAcc
+                *ngIf&#x3D;&quot;queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;; else querySelectResultAcc&quot;
+                [queryResult]&#x3D;&quot;queryResult&quot;
+                [defaultForceGraphHeight]&#x3D;&quot;1000&quot;
+                (clickedNodeRequest)&#x3D;&quot;onGraphNodeClick($event)&quot;
+            &gt;&lt;/awg-construct-results&gt;
+
+            &lt;!-- SELECT --&gt;
+            &lt;!-- awg-graph-select-result --&gt;
+            &lt;ng-template #querySelectResultAcc&gt;
+                &lt;awg-select-results
+                    *ngIf&#x3D;&quot;queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;; else queryUnsupportedTypeAcc&quot;
+                    [queryResult]&#x3D;&quot;queryResult&quot;
+                    (clickedTableRequest)&#x3D;&quot;onTableClick($event)&quot;
+                &gt;&lt;/awg-select-results&gt;
+            &lt;/ng-template&gt;
+
+            &lt;!-- OTHERS --&gt;
+            &lt;!-- awg-graph-unsupported-query-type-result --&gt;
+            &lt;ng-template #queryUnsupportedTypeAcc&gt;
+                &lt;awg-unsupported-type-results [queryType]&#x3D;&quot;queryType&quot;&gt;&lt;/awg-unsupported-type-results&gt;
+            &lt;/ng-template&gt;
+        &lt;/div&gt;
+    &lt;/ng-container&gt;
 &lt;/div&gt;
 </code></pre>
     </div>
@@ -1484,7 +1630,18 @@ export class GraphVisualizerComponent implements OnInit {
                 <p class="comment">
                     <code>./graph-visualizer.component.css</code>
                 </p>
-                <pre class="line-numbers"><code class="language-scss"></code></pre>
+                <pre class="line-numbers"><code class="language-scss">.awg-fullscreen ::ng-deep .collapse.show {
+    height: 100vh;
+}
+
+.awg-fullscreen ::ng-deep #awg-graph-visualizer-triples.collapse.show {
+    height: 45vh;
+}
+
+.awg-fullscreen ::ng-deep #awg-graph-visualizer-query.collapse.show {
+    height: 50vh;
+}
+</code></pre>
     </div>
 
     <div class="tab-pane fade " id="c-tree">
@@ -1512,7 +1669,7 @@ export class GraphVisualizerComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result --><div *ngIf="graphRDFInputData" class="row">    <!-- awg-graph-triples-editor -->    <div class="col-lg-6 pr-lg-0">        <awg-triples-editor            [triples]="triples"            (updateTriplesRequest)="triples = $event"            (resetTriplesRequest)="resetTriples()"            (performQueryRequest)="performQuery()"        ></awg-triples-editor>    </div>    <!-- awg-graph-sparql-editor -->    <div class="col-lg-6 pl-lg-0">        <awg-sparql-editor            [queryList]="queryList"            [query]="query"            (updateQueryStringRequest)="query.queryString = $event"            (resetQueryRequest)="resetQuery($event)"            (performQueryRequest)="performQuery()"        ></awg-sparql-editor>    </div>    <!-- Results -->    <div class="col-12">        <!-- CONSTRUCT -->        <!-- awg-graph-construct-result -->        <awg-construct-results            #queryConstructResultAcc            *ngIf="queryType === \'construct\'; else querySelectResultAcc"            [queryResult]="queryResult"            [defaultForceGraphHeight]="defaultForceGraphHeight"            (clickedNodeRequest)="onGraphNodeClick($event)"        ></awg-construct-results>        <!-- SELECT -->        <!-- awg-graph-select-result -->        <ng-template #querySelectResultAcc>            <awg-select-results                *ngIf="queryType === \'select\'; else queryUnsupportedTypeAcc"                [queryResult]="queryResult"                (clickedTableRequest)="onTableClick($event)"            ></awg-select-results>        </ng-template>        <!-- OTHERS -->        <!-- awg-graph-unsupported-query-type-result -->        <ng-template #queryUnsupportedTypeAcc>            <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>        </ng-template>    </div></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- Data: Triples, SPARQL query, result --><div #fs class="row" [class.is-fullscreen]="isFullscreen" *ngIf="graphRDFInputData">    <ng-container *ngIf="!isFullscreen">        <!-- awg-graph-triples-editor -->        <div class="col-lg-6 pr-lg-0">            <awg-triples-editor                [triples]="triples"                (updateTriplesRequest)="triples = $event"                (resetTriplesRequest)="resetTriples()"                (performQueryRequest)="performQuery()"            ></awg-triples-editor>        </div>        <!-- awg-graph-sparql-editor -->        <div class="col-lg-6 pl-lg-0">            <awg-sparql-editor                [queryList]="queryList"                [query]="query"                (updateQueryStringRequest)="query.queryString = $event"                (resetQueryRequest)="resetQuery($event)"                (performQueryRequest)="performQuery()"            ></awg-sparql-editor>        </div>        <!-- Results -->        <div class="col-12">            <!-- CONSTRUCT -->            <!-- awg-graph-construct-result -->            <awg-construct-results                #queryConstructResultAcc                *ngIf="queryType === \'construct\'; else querySelectResultAcc"                [queryResult]="queryResult"                [defaultForceGraphHeight]="defaultForceGraphHeight"                (clickedNodeRequest)="onGraphNodeClick($event)"            ></awg-construct-results>            <!-- SELECT -->            <!-- awg-graph-select-result -->            <ng-template #querySelectResultAcc>                <awg-select-results                    *ngIf="queryType === \'select\'; else queryUnsupportedTypeAcc"                    [queryResult]="queryResult"                    (clickedTableRequest)="onTableClick($event)"                ></awg-select-results>            </ng-template>            <!-- OTHERS -->            <!-- awg-graph-unsupported-query-type-result -->            <ng-template #queryUnsupportedTypeAcc>                <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>            </ng-template>        </div>    </ng-container>    <ng-container *ngIf="isFullscreen">        <div class="col-md-4 col-lg-3 px-0 awg-fullscreen">            <!-- awg-graph-triples-editor -->            <awg-triples-editor                [triples]="triples"                [isFullscreen]="isFullscreen"                (updateTriplesRequest)="triples = $event"                (resetTriplesRequest)="resetTriples()"                (performQueryRequest)="performQuery()"            ></awg-triples-editor>            <!-- awg-graph-sparql-editor -->            <awg-sparql-editor                [queryList]="queryList"                [query]="query"                [isFullscreen]="isFullscreen"                (updateQueryStringRequest)="query.queryString = $event"                (resetQueryRequest)="resetQuery($event)"                (performQueryRequest)="performQuery()"            ></awg-sparql-editor>        </div>        <!-- Results -->        <div class="col-md-8 col-lg-9 px-0 awg-fullscreen">            <!-- CONSTRUCT -->            <!-- awg-graph-construct-result -->            <awg-construct-results                #queryConstructResultAcc                *ngIf="queryType === \'construct\'; else querySelectResultAcc"                [queryResult]="queryResult"                [defaultForceGraphHeight]="1000"                (clickedNodeRequest)="onGraphNodeClick($event)"            ></awg-construct-results>            <!-- SELECT -->            <!-- awg-graph-select-result -->            <ng-template #querySelectResultAcc>                <awg-select-results                    *ngIf="queryType === \'select\'; else queryUnsupportedTypeAcc"                    [queryResult]="queryResult"                    (clickedTableRequest)="onTableClick($event)"                ></awg-select-results>            </ng-template>            <!-- OTHERS -->            <!-- awg-graph-unsupported-query-type-result -->            <ng-template #queryUnsupportedTypeAcc>                <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>            </ng-template>        </div>    </ng-container></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'GraphVisualizerComponent'};

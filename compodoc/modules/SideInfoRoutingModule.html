@@ -88,13 +88,13 @@ import { ResourceInfoComponent } from &#x27;./resource-info/resource-info.compon
 import { SearchInfoComponent } from &#x27;./search-info/search-info.component&#x27;;
 import { StructureInfoComponent } from &#x27;./structure-info/structure-info.component&#x27;;
 
-/* routes of the SideInfoModule */
+/* Routes of the SideInfoModule */
 const sideInfoRoutes: Routes &#x3D; [
     { path: &#x27;contactInfo&#x27;, component: ContactInfoComponent, outlet: &#x27;side&#x27; },
     { path: &#x27;editionInfo&#x27;, component: EditionInfoComponent, outlet: &#x27;side&#x27; },
     { path: &#x27;resourceInfo&#x27;, component: ResourceInfoComponent, outlet: &#x27;side&#x27; },
     { path: &#x27;searchInfo&#x27;, component: SearchInfoComponent, outlet: &#x27;side&#x27; },
-    { path: &#x27;structureInfo&#x27;, component: StructureInfoComponent, outlet: &#x27;side&#x27; }
+    { path: &#x27;structureInfo&#x27;, component: StructureInfoComponent, outlet: &#x27;side&#x27; },
 ];
 
 /**
@@ -108,7 +108,7 @@ export const routedSideInfoComponents &#x3D; [
     EditionInfoComponent,
     ResourceInfoComponent,
     SearchInfoComponent,
-    StructureInfoComponent
+    StructureInfoComponent,
 ];
 
 /**
@@ -118,7 +118,7 @@ export const routedSideInfoComponents &#x3D; [
  */
 @NgModule({
     imports: [RouterModule.forChild(sideInfoRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class SideInfoRoutingModule {}
 </code></pre>

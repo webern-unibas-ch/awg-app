@@ -84,12 +84,13 @@ import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 
 import { ContactViewComponent } from &#x27;@awg-views/contact-view/contact-view.component&#x27;;
 
-/* routes of the ContactViewModule */
+/* Routes of the ContactViewModule */
 const contactViewRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
-        component: ContactViewComponent
-    }
+        component: ContactViewComponent,
+        data: { title: &#x27;AWG Online Edition – Contact&#x27; },
+    },
 ];
 
 /**
@@ -105,7 +106,7 @@ export const routedContactViewComponents &#x3D; [ContactViewComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(contactViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class ContactViewRoutingModule {}
 </code></pre>

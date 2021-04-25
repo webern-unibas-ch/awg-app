@@ -274,9 +274,9 @@ import { StorageType, StorageService } from &#x27;@awg-core/services/storage-ser
  * It stores the possible GND event types.
  */
 export enum GndEventType {
-    set &#x3D; &#x27;set&#x27;,
-    get &#x3D; &#x27;get&#x27;,
-    remove &#x3D; &#x27;remove&#x27;
+    SET &#x3D; &#x27;set&#x27;,
+    GET &#x3D; &#x27;get&#x27;,
+    REMOVE &#x3D; &#x27;remove&#x27;,
 }
 
 /**
@@ -318,34 +318,31 @@ export class GndEvent {
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class GndService extends StorageService {
     /**
-     * Readonly variable: gndKey.
+     * Readonly variable: GND_KEY.
      *
      * It holds the public key that is set to the storage.
      */
-    readonly gndKey &#x3D; &#x27;gnd&#x27;;
+    readonly GND_KEY &#x3D; &#x27;gnd&#x27;;
 
     /**
-     * Readonly variable: dnbReg.
+     * Readonly variable: DNB_REG.
      *
      * It holds the regular expression for a d-nb link in a href.
      */
-    readonly dnbReg &#x3D; /href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i; // regexp for d-nb links
+    readonly DNB_REG &#x3D; /href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i; // Regexp for d-nb links
 
     /**
-     * Readonly variable: currentLocation.
+     * Readonly variable: CURRENT_LOCATION.
      *
      * Helper function to spy on and set origin in tests.
      * It returns the origin of the current location.
      */
-    readonly currentLocation &#x3D; {
-        getOrigin: (location: Location) &#x3D;&gt; {
-            // console.info(&#x27;got location&#x27;, location);
-            return location.origin;
-        }
+    readonly CURRENT_LOCATION &#x3D; {
+        getOrigin: (location: Location) &#x3D;&gt; location.origin,
     };
 
     /**
@@ -370,60 +367,60 @@ export class GndService extends StorageService {
             return;
         }
         switch (gndEvent.type) {
-            case GndEventType.set: {
-                this.setGndToSessionStorage(gndEvent.value);
+            case GndEventType.SET: {
+                this._setGndToSessionStorage(gndEvent.value);
                 break;
             }
-            case GndEventType.remove: {
-                this.removeGndFromSessionStorage();
+            case GndEventType.REMOVE: {
+                this._removeGndFromSessionStorage();
                 break;
             }
             default: {
-                console.log(&#x27;got an uncatched GND event&#x27;, gndEvent);
+                console.warn(&#x27;Got an uncatched GND event&#x27;, gndEvent);
             }
         }
     }
 
     /**
-     * Public method: setGndToSessionStorage.
+     * Public method: _setGndToSessionStorage.
      *
-     * It sets a given value to the key defined in &#x27;gndKey&#x27;
+     * It sets a given value to the key defined in &#x27;GND_KEY&#x27;
      * in the sessionStorage.
      *
      * @param {string} value The given input value.
      *
      * @returns {void} It sets the key/value pair to the storage.
      */
-    private setGndToSessionStorage(value: string): void {
-        if (this.valueHasGnd(value)) {
-            // take last argument (pop) of linkRegArray
+    private _setGndToSessionStorage(value: string): void {
+        if (this._valueHasGnd(value)) {
+            // Take last argument (pop) of linkRegArray
             const gndItem &#x3D; this.linkRegArr.pop().toString();
 
-            // set to storage
-            this.setStorageKey(StorageType.sessionStorage, this.gndKey, gndItem);
+            // Set to storage
+            this.setStorageKey(StorageType.sessionStorage, this.GND_KEY, gndItem);
 
-            // expose gndItem to parent window
-            this.exposeGndMessageToParent(gndItem);
+            // Expose gndItem to parent window
+            this._exposeGndMessageToParent(gndItem);
         }
     }
 
     /**
-     * Public method: removeGndFromSessionStorage.
+     * Public method: _removeGndFromSessionStorage.
      *
-     * It removes the key defined in &#x27;gndKey&#x27;
+     * It removes the key defined in &#x27;GND_KEY&#x27;
      * from the sessionStorage.
      *
      * @returns {void} It removes the key/value pair from the storage.
      */
-    private removeGndFromSessionStorage(): void {
-        this.removeStorageKey(StorageType.sessionStorage, this.gndKey);
+    private _removeGndFromSessionStorage(): void {
+        this.removeStorageKey(StorageType.sessionStorage, this.GND_KEY);
 
-        // expose removed gndItem to parent window
-        this.exposeGndMessageToParent(null);
+        // Expose removed gndItem to parent window
+        this._exposeGndMessageToParent(null);
     }
 
     /**
-     * Private method: exposeGndMessageToParent.
+     * Private method: _exposeGndMessageToParent.
      *
      * It exposes a given GND value to the
      * parent windows of the given targets,
@@ -435,32 +432,32 @@ export class GndService extends StorageService {
      *
      * @return {void} Sends the postMessage to the parent window.
      */
-    private exposeGndMessageToParent(value: string): void {
+    private _exposeGndMessageToParent(value: string): void {
         const inseriTarget &#x3D; AppConfig.INSERI_TEST_URL;
         const localTarget &#x3D; AppConfig.LOCALHOST_URL;
         const targets &#x3D; [inseriTarget, localTarget];
 
         for (const target of targets) {
-            // check if parent location meets target
-            if (this.currentLocation.getOrigin(window.parent.location) &#x3D;&#x3D;&#x3D; target) {
+            // Check if parent location meets target
+            if (this.CURRENT_LOCATION.getOrigin(window.parent.location) &#x3D;&#x3D;&#x3D; target) {
                 window.parent.window.postMessage({ gnd: value }, target);
             }
         }
     }
 
     /**
-     * Private method: valueHasGnd.
+     * Private method: _valueHasGnd.
      *
      * It checks if a given value contains a GND link
-     * (checked via the dnbReg regex).
+     * (checked via the DNB_REG regex).
      *
      * @param {string} checkValue The given value to check.
      *
      * @return {boolean} The boolean result of the check.
      */
-    private valueHasGnd(checkValue: string): boolean {
-        if (this.dnbReg.test(checkValue)) {
-            this.linkRegArr &#x3D; this.dnbReg.exec(checkValue);
+    private _valueHasGnd(checkValue: string): boolean {
+        if (this.DNB_REG.test(checkValue)) {
+            this.linkRegArr &#x3D; this.DNB_REG.exec(checkValue);
         } else {
             this.linkRegArr &#x3D; null;
         }

@@ -338,13 +338,13 @@ export class ViewBox {
      * @param {FolioSettings} folioSettings The given folio settings.
      */
     constructor(folioSettings: FolioSettings) {
-        // calculate the width for the viewBox string
+        // Calculate the width for the viewBox string
         const width &#x3D; (folioSettings.formatX + 2 * folioSettings.initialOffsetX) * folioSettings.factor;
 
-        // calculate the height for the viewBox string
+        // Calculate the height for the viewBox string
         const height &#x3D; (folioSettings.formatY + 2 * folioSettings.initialOffsetY) * folioSettings.factor;
 
-        // set the viewBox string
+        // Set the viewBox string
         this.viewBox &#x3D; &#x27;0 0 &#x27; + width + &#x27; &#x27; + height;
     }
 }

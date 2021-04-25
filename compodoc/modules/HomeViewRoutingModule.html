@@ -84,12 +84,13 @@ import { Routes, RouterModule } from &#x27;@angular/router&#x27;;
 
 import { HomeViewComponent } from &#x27;@awg-views/home-view/home-view.component&#x27;;
 
-/* routes of the PageNotFoundViewModule */
+/* Routes of the PageNotFoundViewModule */
 const homeViewRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
-        component: HomeViewComponent
-    }
+        component: HomeViewComponent,
+        data: { title: &#x27;AWG Online Edition – Home&#x27; },
+    },
 ];
 
 /**
@@ -105,7 +106,7 @@ export const routedHomeViewComponents &#x3D; [HomeViewComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(homeViewRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class HomeViewRoutingModule {}
 </code></pre>

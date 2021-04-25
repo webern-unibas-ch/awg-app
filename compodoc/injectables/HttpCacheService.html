@@ -86,7 +86,7 @@ and handles cached http responses.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#cachedResponses">cachedResponses</a>
+                                <a href="#_cachedResponses">_cachedResponses</a>
                             </li>
                         </ul>
                     </td>
@@ -308,12 +308,12 @@ and handles cached http responses.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="cachedResponses"></a>
+                        <a name="_cachedResponses"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            cachedResponses</b>
-                            <a href="#cachedResponses"><span class="icon ion-ios-link"></span></a>
+                            _cachedResponses</b>
+                            <a href="#_cachedResponses"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -336,8 +336,8 @@ and handles cached http responses.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: cachedResponses.</p>
-<p>It keeps the cachedResponses as <code>Map</code>s of a <code>string</code>
+                        <div class="io-description"><p>Private variable: _cachedResponses.</p>
+<p>It keeps the _cachedResponses as <code>Map</code>s of a <code>string</code>
 (i.e. an <code>HttpRequest.urlWithParams</code>) and an <code>HttpResponse</code>.</p>
 </div>
                     </td>
@@ -387,16 +387,16 @@ abstract class HttpCache {
  * and handles cached http responses.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class HttpCacheService implements HttpCache {
     /**
-     * Private variable: cachedResponses.
+     * Private variable: _cachedResponses.
      *
-     * It keeps the cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
+     * It keeps the _cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
      * (i.e. an &#x60;HttpRequest.urlWithParams&#x60;) and an &#x60;HttpResponse&#x60;.
      */
-    private cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
+    private _cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
 
     /**
      * Getter for a cached response.
@@ -408,8 +408,8 @@ export class HttpCacheService implements HttpCache {
      * @returns {HttpResponse&lt;any&gt; | null} A cached response or null.
      */
     get(req: HttpRequest&lt;any&gt;): HttpResponse&lt;any&gt; | null {
-        return this.cachedResponses &amp;&amp; this.cachedResponses.has(req.urlWithParams)
-            ? this.cachedResponses.get(req.urlWithParams)
+        return this._cachedResponses &amp;&amp; this._cachedResponses.has(req.urlWithParams)
+            ? this._cachedResponses.get(req.urlWithParams)
             : null;
     }
 
@@ -424,7 +424,7 @@ export class HttpCacheService implements HttpCache {
      * @returns {void} Caches the response.
      */
     put(req: HttpRequest&lt;any&gt;, resp: HttpResponse&lt;any&gt;): void {
-        this.cachedResponses.set(req.urlWithParams, resp.clone());
+        this._cachedResponses.set(req.urlWithParams, resp.clone());
     }
 }
 </code></pre>

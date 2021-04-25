@@ -87,6 +87,18 @@ in the session- or localstorage.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_storageHasKey">_storageHasKey</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_storageIsAvailable">_storageIsAvailable</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_storageIsSupported">_storageIsSupported</a>
+                            </li>
+                            <li>
                                 <a href="#getStorageKey">getStorageKey</a>
                             </li>
                             <li>
@@ -94,18 +106,6 @@ in the session- or localstorage.</p>
                             </li>
                             <li>
                                 <a href="#setStorageKey">setStorageKey</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#storageHasKey">storageHasKey</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#storageIsAvailable">storageIsAvailable</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#storageIsSupported">storageIsSupported</a>
                             </li>
                         </ul>
                     </td>
@@ -149,6 +149,266 @@ in the session- or localstorage.</p>
     <h3 id="methods">
         Methods
     </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_storageHasKey"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _storageHasKey
+                        </b>
+                        <a href="#_storageHasKey"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_storageHasKey(storage: Storage, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="107"
+                            class="link-to-prism">src/app/core/services/storage-service/storage.service.ts:107</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _storageHasKey.</p>
+<p>It checks if a given storage type has a given key.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>storage</td>
+                                    <td>
+                                            <code>Storage</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given storage type.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>key</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given key.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The boolean value for the given key in the given storage type.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_storageIsAvailable"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _storageIsAvailable
+                        </b>
+                        <a href="#_storageIsAvailable"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_storageIsAvailable(storage: Storage)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="137"
+                            class="link-to-prism">src/app/core/services/storage-service/storage.service.ts:137</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _storageIsAvailable.</p>
+<p>It checks if a given storage type is available.
+cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathiasbynens.be/notes/localstorage-pattern</a></p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>storage</td>
+                                    <td>
+                                            <code>Storage</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given storage type.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Storage</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The local reference to Storage for the given storage type.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_storageIsSupported"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _storageIsSupported
+                        </b>
+                        <a href="#_storageIsSupported"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_storageIsSupported(storage: Storage)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="123"
+                            class="link-to-prism">src/app/core/services/storage-service/storage.service.ts:123</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _storageIsSupported.</p>
+<p>It checks if a given storage type is supported.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>storage</td>
+                                    <td>
+                                            <code>Storage</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given storage type.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Storage</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The local reference to Storage for the given storage type.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -450,266 +710,6 @@ in the session- or localstorage.</p>
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="storageHasKey"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            storageHasKey
-                        </b>
-                        <a href="#storageHasKey"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>storageHasKey(storage: Storage, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="107"
-                            class="link-to-prism">src/app/core/services/storage-service/storage.service.ts:107</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: storageHasKey.</p>
-<p>It checks if a given storage type has a given key.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>storage</td>
-                                    <td>
-                                            <code>Storage</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given storage type.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>key</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given key.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The boolean value for the given key in the given storage type.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="storageIsAvailable"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            storageIsAvailable
-                        </b>
-                        <a href="#storageIsAvailable"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>storageIsAvailable(storage: Storage)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="137"
-                            class="link-to-prism">src/app/core/services/storage-service/storage.service.ts:137</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: storageIsAvailable.</p>
-<p>It checks if a given storage type is available.
-cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathiasbynens.be/notes/localstorage-pattern</a></p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>storage</td>
-                                    <td>
-                                            <code>Storage</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given storage type.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Storage</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The local reference to Storage for the given storage type.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="storageIsSupported"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            storageIsSupported
-                        </b>
-                        <a href="#storageIsSupported"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>storageIsSupported(storage: Storage)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="123"
-                            class="link-to-prism">src/app/core/services/storage-service/storage.service.ts:123</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: storageIsSupported.</p>
-<p>It checks if a given storage type is supported.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>storage</td>
-                                    <td>
-                                            <code>Storage</code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given storage type.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Storage</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The local reference to Storage for the given storage type.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
 
     </div>
@@ -725,7 +725,7 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
  */
 export enum StorageType {
     localStorage &#x3D; &#x27;localStorage&#x27;,
-    sessionStorage &#x3D; &#x27;sessionStorage&#x27;
+    sessionStorage &#x3D; &#x27;sessionStorage&#x27;,
 }
 
 /**
@@ -737,7 +737,7 @@ export enum StorageType {
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class StorageService {
     /**
@@ -761,7 +761,7 @@ export class StorageService {
             return;
         }
         const storage &#x3D; window[type];
-        if (this.storageIsSupported(storage)) {
+        if (this._storageIsSupported(storage)) {
             storage.setItem(key, item);
         } else {
             return;
@@ -783,7 +783,7 @@ export class StorageService {
             return null;
         }
         const storage &#x3D; window[type];
-        if (this.storageHasKey(storage, key)) {
+        if (this._storageHasKey(storage, key)) {
             return storage.getItem(key);
         } else {
             return null;
@@ -805,7 +805,7 @@ export class StorageService {
             return;
         }
         const storage &#x3D; window[type];
-        if (this.storageHasKey(storage, key)) {
+        if (this._storageHasKey(storage, key)) {
             storage.removeItem(key);
         } else {
             return;
@@ -813,7 +813,7 @@ export class StorageService {
     }
 
     /**
-     * Private method: storageHasKey.
+     * Private method: _storageHasKey.
      *
      * It checks if a given storage type has a given key.
      *
@@ -822,15 +822,15 @@ export class StorageService {
      *
      * @returns {boolean} The boolean value for the given key in the given storage type.
      */
-    private storageHasKey(storage: Storage, key: string): boolean {
-        if (this.storageIsSupported(storage)) {
+    private _storageHasKey(storage: Storage, key: string): boolean {
+        if (this._storageIsSupported(storage)) {
             return !!storage.getItem(key);
         }
         return false;
     }
 
     /**
-     * Private method: storageIsSupported.
+     * Private method: _storageIsSupported.
      *
      * It checks if a given storage type is supported.
      *
@@ -838,12 +838,12 @@ export class StorageService {
      *
      * @returns {Storage} The local reference to Storage for the given storage type.
      */
-    private storageIsSupported(storage: Storage): Storage {
-        return typeof storage !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; storage !&#x3D;&#x3D; null &amp;&amp; this.storageIsAvailable(storage);
+    private _storageIsSupported(storage: Storage): Storage {
+        return typeof storage !&#x3D;&#x3D; &#x27;undefined&#x27; &amp;&amp; storage !&#x3D;&#x3D; null &amp;&amp; this._storageIsAvailable(storage);
     }
 
     /**
-     * Private method: storageIsAvailable.
+     * Private method: _storageIsAvailable.
      *
      * It checks if a given storage type is available.
      * cf. https://mathiasbynens.be/notes/localstorage-pattern
@@ -852,18 +852,18 @@ export class StorageService {
      *
      * @returns {Storage} The local reference to Storage for the given storage type.
      */
-    private storageIsAvailable(storage: Storage): Storage {
+    private _storageIsAvailable(storage: Storage): Storage {
         try {
-            // make uid from Date
+            // Make uid from Date
             const uid &#x3D; new Date().toDateString();
 
-            // set, get and remove item
+            // Set, get and remove item
             storage.setItem(uid, uid);
             const result &#x3D; storage.getItem(uid) &#x3D;&#x3D;&#x3D; uid;
 
             storage.removeItem(uid);
 
-            // return local reference to Storage or undefined
+            // Return local reference to Storage or undefined
             return result &amp;&amp; storage;
         } catch (e) {}
     }

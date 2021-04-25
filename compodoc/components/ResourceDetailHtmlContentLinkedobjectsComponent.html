@@ -140,7 +140,7 @@ their total number.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#getNestedArraysTotalItems">getNestedArraysTotalItems</a>
+                                <a href="#_getNestedArraysTotalItems">_getNestedArraysTotalItems</a>
                             </li>
                             <li>
                                 <a href="#navigateToResource">navigateToResource</a>
@@ -273,20 +273,20 @@ their total number.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getNestedArraysTotalItems"></a>
+                    <a name="_getNestedArraysTotalItems"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            getNestedArraysTotalItems
+                            _getNestedArraysTotalItems
                         </b>
-                        <a href="#getNestedArraysTotalItems"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_getNestedArraysTotalItems"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[])</code>
+                    <code>_getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[])</code>
                 </td>
             </tr>
 
@@ -301,7 +301,7 @@ their total number.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getNestedArraysTotalItems.</p>
+                    <div class="io-description"><p>Private method: _getNestedArraysTotalItems.</p>
 <p>It sums up the total items (length) of all arrays
 nested in an ResourceDetailGroupedIncomingLinks
 array.</p>
@@ -486,7 +486,7 @@ import { ResourceDetailGroupedIncomingLinks } from &#x27;@awg-views/data-view/mo
     selector: &#x27;awg-resource-detail-html-content-linkedobjects&#x27;,
     templateUrl: &#x27;./linkedobjects.component.html&#x27;,
     styleUrls: [&#x27;./linkedobjects.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class ResourceDetailHtmlContentLinkedobjectsComponent {
     /**
@@ -509,7 +509,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      * Getter for the total number of incoming links.
      */
     get totalNumber() {
-        return this.getNestedArraysTotalItems(this.incomingGroups) || 0;
+        return this._getNestedArraysTotalItems(this.incomingGroups) || 0;
     }
 
     /**
@@ -531,7 +531,7 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
     }
 
     /**
-     * Private method: getNestedArraysTotalItems.
+     * Private method: _getNestedArraysTotalItems.
      *
      * It sums up the total items (length) of all arrays
      * nested in an ResourceDetailGroupedIncomingLinks
@@ -541,16 +541,16 @@ export class ResourceDetailHtmlContentLinkedobjectsComponent {
      *
      * @returns {number} The number of total items (length) of the nested array.
      */
-    private getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
+    private _getNestedArraysTotalItems(groupedLinksArr: ResourceDetailGroupedIncomingLinks[]): number {
         if (!groupedLinksArr) {
             return;
         }
 
-        // callback for reduce function
-        // adds curValue to the previous result of the calculation (prevRes))
+        // Callback for reduce function
+        // Adds curValue to the previous result of the calculation (prevRes))
         const reducer &#x3D; (prevRes: number, curValue: number): number &#x3D;&gt; prevRes + curValue;
 
-        // map the length of every nested link array into the reducer function; default initial value: 0
+        // Map the length of every nested link array into the reducer function; default initial value: 0
         return groupedLinksArr.map(groupedLink &#x3D;&gt; groupedLink.links.length).reduce(reducer, 0);
     }
 }

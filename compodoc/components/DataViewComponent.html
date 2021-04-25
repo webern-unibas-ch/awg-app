@@ -438,7 +438,7 @@ import { Router } from &#x27;@angular/router&#x27;;
 @Component({
     selector: &#x27;awg-data&#x27;,
     templateUrl: &#x27;./data-view.component.html&#x27;,
-    styleUrls: [&#x27;./data-view.component.css&#x27;]
+    styleUrls: [&#x27;./data-view.component.css&#x27;],
 })
 export class DataViewComponent implements OnInit {
     /**
@@ -484,10 +484,10 @@ export class DataViewComponent implements OnInit {
      * @returns {void} Activates the search-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: &#x27;searchInfo&#x27; } }], {
             preserveFragment: true,
-            queryParamsHandling: &#x27;preserve&#x27;
+            queryParamsHandling: &#x27;preserve&#x27;,
         });
     }
 }

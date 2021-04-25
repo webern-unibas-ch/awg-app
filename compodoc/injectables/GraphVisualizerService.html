@@ -86,7 +86,7 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#store">store</a>
+                                <a href="#_store">_store</a>
                             </li>
                         </ul>
                     </td>
@@ -102,7 +102,31 @@
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#abbreviate">abbreviate</a>
+                                <a href="#_abbreviate">_abbreviate</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_createStore">_createStore</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_executeQuery">_executeQuery</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_extractNamespacesFromTTL">_extractNamespacesFromTTL</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_extractPrefixesFromQuery">_extractPrefixesFromQuery</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getNamespaces">_getNamespaces</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_loadTriplesInStore">_loadTriplesInStore</a>
                             </li>
                             <li>
                                 <a href="#abbreviateTriples">abbreviateTriples</a>
@@ -111,37 +135,13 @@
                                 <a href="#appendNamespacesToQuery">appendNamespacesToQuery</a>
                             </li>
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#createStore">createStore</a>
-                            </li>
-                            <li>
                                 <a href="#doQuery">doQuery</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#executeQuery">executeQuery</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#extractNamespacesFromTTL">extractNamespacesFromTTL</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#extractPrefixesFromQuery">extractPrefixesFromQuery</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getNamespaces">getNamespaces</a>
                             </li>
                             <li>
                                 <a href="#getQuerytype">getQuerytype</a>
                             </li>
                             <li>
                                 <a href="#limitTriples">limitTriples</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#loadTriplesInStore">loadTriplesInStore</a>
                             </li>
                             <li>
                                 <a href="#parseTriples">parseTriples</a>
@@ -192,35 +192,35 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="abbreviate"></a>
+                    <a name="_abbreviate"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            abbreviate
+                            _abbreviate
                         </b>
-                        <a href="#abbreviate"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_abbreviate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>abbreviate(iri: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, namespaces: <a href="../interfaces/Namespace.html">Namespace</a>)</code>
+                    <code>_abbreviate(iri: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, namespaces: <a href="../interfaces/Namespace.html">Namespace</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="278"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:278</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="271"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:271</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: abbreviate.</p>
+                    <div class="io-description"><p>Private method: _abbreviate.</p>
 <p>It abbreviates the namespaces of a given iri.</p>
 </div>
 
@@ -279,6 +279,509 @@
                     </div>
                     <div class="io-description">
                         <p>The abbreviated triple component.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_createStore"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _createStore
+                        </b>
+                        <a href="#_createStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_createStore()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="293"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:293</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _createStore.</p>
+<p>It creates an instance of the triple store.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A promise of the triple store instance.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_executeQuery"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _executeQuery
+                        </b>
+                        <a href="#_executeQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_executeQuery(store: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="314"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:314</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _executeQuery.</p>
+<p>It executes a given query against a given triple store.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>store</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triplestore.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given query string.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/QueryResult.html" target="_self" >Promise&lt;QueryResult&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A promise of the query result.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_extractNamespacesFromTTL"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _extractNamespacesFromTTL
+                        </b>
+                        <a href="#_extractNamespacesFromTTL"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_extractNamespacesFromTTL(triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="335"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:335</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _extractNamespacesFromTTL.</p>
+<p>It extracts the namespaces from a given triple string.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>triples</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triple string.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>{}</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A promise of the namespaces.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_extractPrefixesFromQuery"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _extractPrefixesFromQuery
+                        </b>
+                        <a href="#_extractPrefixesFromQuery"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_extractPrefixesFromQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="368"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:368</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _extractPrefixesFromQuery.</p>
+<p>It identifies the prefixes that are used in a SPARQL query.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>query</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given query.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>string[]</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A string array of the used namespaces.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getNamespaces"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getNamespaces
+                        </b>
+                        <a href="#_getNamespaces"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getNamespaces(triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="400"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:400</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getNamespaces.</p>
+<p>It extracts the namespaces from a given triple string.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>triples</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triple string.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../interfaces/Namespace.html" target="_self" >Promise&lt;Namespace&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A promise of the namespaces.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_loadTriplesInStore"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _loadTriplesInStore
+                        </b>
+                        <a href="#_loadTriplesInStore"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_loadTriplesInStore(store: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, mimeType?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="427"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:427</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _loadTriplesInStore.</p>
+<p>It loads the given triple string into the given triplestore.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>store</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triplestore.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>triples</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given triple string.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>mimeType</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        Yes
+                                    </td>
+
+
+                                    <td>
+                                        <p>The optional given mimetype.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>A promise of the size of the triples loaded into the store.</p>
 
                     </div>
                 </td>
@@ -495,56 +998,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createStore"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            createStore
-                        </b>
-                        <a href="#createStore"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createStore()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="300"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:300</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: createStore.</p>
-<p>It creates an instance of the triple store.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;any&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A promise of the triple store instance.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="doQuery"></a>
                     <span class="name">
                         <b>
@@ -672,346 +1125,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="executeQuery"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            executeQuery
-                        </b>
-                        <a href="#executeQuery"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>executeQuery(store: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="321"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:321</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: executeQuery.</p>
-<p>It executes a given query against a given triple store.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>store</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given triplestore.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>query</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given query string.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/QueryResult.html" target="_self" >Promise&lt;QueryResult&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A promise of the query result.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="extractNamespacesFromTTL"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            extractNamespacesFromTTL
-                        </b>
-                        <a href="#extractNamespacesFromTTL"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>extractNamespacesFromTTL(triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="344"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:344</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: extractNamespacesFromTTL.</p>
-<p>It extracts the namespaces from a given triple string.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>triples</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given triple string.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>{}</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A promise of the namespaces.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="extractPrefixesFromQuery"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            extractPrefixesFromQuery
-                        </b>
-                        <a href="#extractPrefixesFromQuery"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>extractPrefixesFromQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="379"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:379</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: extractPrefixesFromQuery.</p>
-<p>It identifies the prefixes that are used in a SPARQL query.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>query</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given query.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>string[]</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A string array of the used namespaces.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getNamespaces"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            getNamespaces
-                        </b>
-                        <a href="#getNamespaces"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getNamespaces(triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="411"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:411</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getNamespaces.</p>
-<p>It extracts the namespaces from a given triple string.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>triples</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given triple string.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Namespace.html" target="_self" >Promise&lt;Namespace&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A promise of the namespaces.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="getQuerytype"></a>
                     <span class="name">
                         <b>
@@ -1030,8 +1143,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="221"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:221</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="216"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:216</a></div>
                 </td>
             </tr>
 
@@ -1186,119 +1299,6 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="loadTriplesInStore"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            loadTriplesInStore
-                        </b>
-                        <a href="#loadTriplesInStore"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>loadTriplesInStore(store: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, mimeType?: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="439"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:439</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: loadTriplesInStore.</p>
-<p>It loads the given triple string into the given triplestore.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>store</td>
-                                    <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given triplestore.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>triples</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given triple string.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>mimeType</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        Yes
-                                    </td>
-
-
-                                    <td>
-                                        <p>The optional given mimetype.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>    <code>Promise&lt;number&gt;</code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>A promise of the size of the triples loaded into the store.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
                     <a name="parseTriples"></a>
                     <span class="name">
                         <b>
@@ -1384,12 +1384,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="store"></a>
+                        <a name="_store"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Private</span>
-                            store</b>
-                            <a href="#store"><span class="icon ion-ios-link"></span></a>
+                            _store</b>
+                            <a href="#_store"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1407,7 +1407,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: store.</p>
+                        <div class="io-description"><p>Private variable: _store.</p>
 <p>It keeps the rdfstore instance.</p>
 </div>
                     </td>
@@ -1432,7 +1432,7 @@ import * as N3 from &#x27;n3&#x27;;
  *
  * It provides access to the rdfstore library.
  */
-declare var rdfstore: any;
+declare let rdfstore: any;
 
 /**
  * The GraphVisualizer service.
@@ -1442,15 +1442,15 @@ declare var rdfstore: any;
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class GraphVisualizerService {
     /**
-     * Private variable: store.
+     * Private variable: _store.
      *
      * It keeps the rdfstore instance.
      */
-    private store: any;
+    private _store: any;
 
     /**
      * Constructor of the GraphVisualizerService.
@@ -1527,14 +1527,14 @@ export class GraphVisualizerService {
 
             // Abbreviate turtle format
             if (mimeType &#x3D;&#x3D;&#x3D; &#x27;text/turtle&#x27;) {
-                if (this.abbreviate(s, namespaces) !&#x3D; null) {
-                    s &#x3D; this.abbreviate(s, namespaces);
+                if (this._abbreviate(s, namespaces) !&#x3D; null) {
+                    s &#x3D; this._abbreviate(s, namespaces);
                 }
-                if (this.abbreviate(p, namespaces) !&#x3D; null) {
-                    p &#x3D; this.abbreviate(p, namespaces);
+                if (this._abbreviate(p, namespaces) !&#x3D; null) {
+                    p &#x3D; this._abbreviate(p, namespaces);
                 }
-                if (this.abbreviate(o, namespaces) !&#x3D; null) {
-                    o &#x3D; this.abbreviate(o, namespaces);
+                if (this._abbreviate(o, namespaces) !&#x3D; null) {
+                    o &#x3D; this._abbreviate(o, namespaces);
                 }
             }
             return { subject: s, predicate: p, object: o };
@@ -1555,11 +1555,11 @@ export class GraphVisualizerService {
         if (!query || !ttlString) {
             return;
         }
-        // get namespaces from triples
-        const namespaces: Namespace &#x3D; this.extractNamespacesFromTTL(ttlString);
+        // Get namespaces from triples
+        const namespaces: Namespace &#x3D; this._extractNamespacesFromTTL(ttlString);
 
-        // get prefixes from query
-        const prefixes: string[] &#x3D; this.extractPrefixesFromQuery(query);
+        // Get prefixes from query
+        const prefixes: string[] &#x3D; this._extractPrefixesFromQuery(query);
 
         // Append the used namespaces to the query
         const keys &#x3D; Object.keys(namespaces);
@@ -1594,36 +1594,31 @@ export class GraphVisualizerService {
             mimeType &#x3D; &#x27;text/turtle&#x27;;
         }
 
-        return this.createStore()
+        return this._createStore()
             .then(store &#x3D;&gt; {
-                // console.log(&#x27;STORE&#x27;, store);
-                this.store &#x3D; store;
+                this._store &#x3D; store;
 
-                return this.loadTriplesInStore(store, ttlString, mimeType);
+                return this._loadTriplesInStore(store, ttlString, mimeType);
             })
-            .then((storeSize: number) &#x3D;&gt; {
-                // console.log(&#x27;STORESIZE&#x27;, storeSize);
-                return this.executeQuery(this.store, query);
-            })
+            .then((storeSize: number) &#x3D;&gt; this._executeQuery(this._store, query))
             .then((res: QueryResult) &#x3D;&gt; {
-                // console.log(&#x27;RES&#x27;, res);
                 const data: QueryResult &#x3D; res;
 
                 // Reformat data if select query
                 if (queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
-                    console.log(&#x27;got SELECT request&#x27;);
-                    // return this.sparqlJSON(data).data;
+                    console.info(&#x27;got SELECT request&#x27;);
+                    // Return this.sparqlJSON(data).data;
                 }
 
                 /**
                  * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
                  */
 
-                // get namespaces
-                return this.getNamespaces(ttlString).then((namespaces: Namespace) &#x3D;&gt; {
+                // Get namespaces
+                return this._getNamespaces(ttlString).then((namespaces: Namespace) &#x3D;&gt;
                     // Process result
-                    return this.abbreviateTriples(data.triples, namespaces, mimeType);
-                });
+                    this.abbreviateTriples(data.triples, namespaces, mimeType)
+                );
             });
     }
 
@@ -1644,14 +1639,12 @@ export class GraphVisualizerService {
             { queryType: &#x27;count&#x27;, index: -1 },
             { queryType: &#x27;describe&#x27;, index: -1 },
             { queryType: &#x27;insert&#x27;, index: -1 },
-            { queryType: &#x27;delete&#x27;, index: -1 }
+            { queryType: &#x27;delete&#x27;, index: -1 },
         ];
 
         // Get indexes and set a variable if at least one matches + store lowest index
         let match &#x3D; false; // Set to true if some keyword match is found
         let low &#x3D; Infinity;
-        let lowest: QueryTypeIndex;
-        let type: string;
 
         keyWords &#x3D; keyWords.map(item &#x3D;&gt; {
             item.index &#x3D; query.toLowerCase().indexOf(item.queryType);
@@ -1670,11 +1663,11 @@ export class GraphVisualizerService {
         }
 
         // If more exist, take the lowest
-        lowest &#x3D; keyWords.find(item &#x3D;&gt; item.index &#x3D;&#x3D;&#x3D; low);
+        const lowest: QueryTypeIndex &#x3D; keyWords.find(item &#x3D;&gt; item.index &#x3D;&#x3D;&#x3D; low);
         if (!lowest) {
             return null;
         }
-        type &#x3D; lowest.queryType;
+        const type: string &#x3D; lowest.queryType;
 
         if (type &#x3D;&#x3D;&#x3D; &#x27;insert&#x27; || type &#x3D;&#x3D;&#x3D; &#x27;delete&#x27;) {
             return &#x27;update&#x27;;
@@ -1684,7 +1677,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: abbreviate.
+     * Private method: _abbreviate.
      *
      * It abbreviates the namespaces of a given iri.
      *
@@ -1693,7 +1686,7 @@ export class GraphVisualizerService {
      *
      * @returns {TripleComponent} The abbreviated triple component.
      */
-    private abbreviate(iri: any, namespaces: Namespace): TripleComponent {
+    private _abbreviate(iri: any, namespaces: Namespace): TripleComponent {
         let newVal: TripleComponent &#x3D; null;
         // If IRI has &#x27;http&#x27; in its name, continue
         if (iri.indexOf(&#x27;http&#x27;) !&#x3D;&#x3D; -1) {
@@ -1709,13 +1702,13 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: createStore.
+     * Private method: _createStore.
      *
      * It creates an instance of the triple store.
      *
      * @returns {Promise&lt;any&gt;} A promise of the triple store instance.
      */
-    private createStore(): Promise&lt;any&gt; {
+    private _createStore(): Promise&lt;any&gt; {
         return new Promise((resolve, reject) &#x3D;&gt; {
             rdfstore.create((err, store) &#x3D;&gt; {
                 if (err) {
@@ -1727,7 +1720,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: executeQuery.
+     * Private method: _executeQuery.
      *
      * It executes a given query against a given triple store.
      *
@@ -1736,22 +1729,20 @@ export class GraphVisualizerService {
      *
      * @returns {Promise&lt;QueryResult&gt;} A promise of the query result.
      */
-    private executeQuery(store: any, query: string): Promise&lt;QueryResult&gt; {
-        // console.log(&#x27;executeQuery# QUERY&#x27;, query);
+    private _executeQuery(store: any, query: string): Promise&lt;QueryResult&gt; {
         return new Promise((resolve, reject) &#x3D;&gt; {
             store.execute(query, (err, res: QueryResult) &#x3D;&gt; {
                 if (err) {
-                    console.error(&#x27;executeQuery# got ERROR&#x27;, err);
+                    console.error(&#x27;_executeQuery# got ERROR&#x27;, err);
                     reject(err);
                 }
-                // console.log(&#x27;executeQuery# RESOLVED&#x27;, res);
                 resolve(res);
             });
         });
     }
 
     /**
-     * Private method: extractNamespacesFromTTL.
+     * Private method: _extractNamespacesFromTTL.
      *
      * It extracts the namespaces from a given triple string.
      *
@@ -1759,9 +1750,9 @@ export class GraphVisualizerService {
      *
      * @returns {Promise&lt;Namespace&gt;} A promise of the namespaces.
      */
-    private extractNamespacesFromTTL(triples: string) {
+    private _extractNamespacesFromTTL(triples: string) {
         // Replace all whitespace characters with a single space and split by space
-        // remove empty values
+        // Remove empty values
         const arr &#x3D; triples
             .replace(/\s/g, &#x27; &#x27;)
             .split(&#x27; &#x27;)
@@ -1780,13 +1771,11 @@ export class GraphVisualizerService {
             obj[arr[prefixIndex + 1]] &#x3D; arr[prefixIndex + 2];
         });
 
-        console.log(obj);
-
         return obj;
     }
 
     /**
-     * Private method: extractPrefixesFromQuery.
+     * Private method: _extractPrefixesFromQuery.
      *
      * It identifies the prefixes that are used in a SPARQL query.
      *
@@ -1794,13 +1783,13 @@ export class GraphVisualizerService {
      *
      * @returns {string[]} A string array of the used namespaces.
      */
-    private extractPrefixesFromQuery(query: string): string[] {
+    private _extractPrefixesFromQuery(query: string): string[] {
         const nameSpaces: string[] &#x3D; [];
 
         const regex &#x3D; /[a-zA-Z]+:/g;
         let m;
 
-        // tslint:disable-next-line:no-conditional-assignment
+        // eslint-disable-next-line no-cond-assign
         while ((m &#x3D; regex.exec(query)) !&#x3D;&#x3D; null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index &#x3D;&#x3D;&#x3D; regex.lastIndex) {
@@ -1818,7 +1807,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: getNamespaces.
+     * Private method: _getNamespaces.
      *
      * It extracts the namespaces from a given triple string.
      *
@@ -1826,11 +1815,10 @@ export class GraphVisualizerService {
      *
      * @returns {Promise&lt;Namespace&gt;} A promise of the namespaces.
      */
-    private getNamespaces(triples: string): Promise&lt;Namespace&gt; {
-        // parse triples
+    private _getNamespaces(triples: string): Promise&lt;Namespace&gt; {
+        // Parse triples
         const parser &#x3D; new N3.Parser();
 
-        // console.log(&#x27;PARSER&#x27;, parser);
         return new Promise((resolve, reject) &#x3D;&gt; {
             parser.parse(triples, (err, triple, prefixes) &#x3D;&gt; {
                 if (!triple) {
@@ -1844,7 +1832,7 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: loadTriplesInStore.
+     * Private method: _loadTriplesInStore.
      *
      * It loads the given triple string into the given triplestore.
      *
@@ -1854,7 +1842,7 @@ export class GraphVisualizerService {
      *
      * @returns {Promise&lt;number&gt;} A promise of the size of the triples loaded into the store.
      */
-    private loadTriplesInStore(store: any, triples: string, mimeType?: string): Promise&lt;number&gt; {
+    private _loadTriplesInStore(store: any, triples: string, mimeType?: string): Promise&lt;number&gt; {
         if (!mimeType) {
             mimeType &#x3D; &#x27;text/turtle&#x27;;
         }
@@ -1862,10 +1850,9 @@ export class GraphVisualizerService {
         return new Promise((resolve, reject) &#x3D;&gt; {
             store.load(mimeType, triples, (err, size) &#x3D;&gt; {
                 if (err) {
-                    console.error(&#x27;loadTriplesInStore# got error&#x27;, err);
+                    console.error(&#x27;_loadTriplesInStore# got error&#x27;, err);
                     reject(err);
                 }
-                // console.log(&#x27;loadTriplesInStore# resolved&#x27;, size);
                 resolve(size);
             });
         });

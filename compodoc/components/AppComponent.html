@@ -127,12 +127,12 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, analyticsService: <a href="../injectables/AnalyticsService.html">AnalyticsService</a>)</code>
+<code>constructor(activatedRoute: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, analyticsService: <a href="../injectables/AnalyticsService.html">AnalyticsService</a>, ngbConfig: NgbConfig, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, titleService: <a href="https://angular.io/api/platform-browser/Title" target="_blank">Title</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="16" class="link-to-prism">src/app/app.component.ts:16</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="21" class="link-to-prism">src/app/app.component.ts:21</a></div>
                             </td>
                         </tr>
 
@@ -154,10 +154,10 @@
                                         </thead>
                                         <tbody>
                                                 <tr>
-                                                        <td>router</td>
+                                                        <td>activatedRoute</td>
                                                   
                                                         <td>
-                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                                        <code><a href="https://angular.io/api/router/ActivatedRoute" target="_blank" >ActivatedRoute</a></code>
                                                         </td>
                                                   
                                                     <td>
@@ -165,7 +165,7 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the Angular router.</p>
+                                                                <code><p>Instance of the Angular ActivatedRoute.</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -182,6 +182,54 @@
                                                     
                                                         <td>
                                                                 <code><p>Instance of the AnalyticsService.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>ngbConfig</td>
+                                                  
+                                                        <td>
+                                                                    <code>NgbConfig</code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the NGBootstrap NgbConfig.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>router</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/router/Router" target="_blank" >Router</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the Angular router.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                                <tr>
+                                                        <td>titleService</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="https://angular.io/api/platform-browser/Title" target="_blank" >Title</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the Angular Title.</p>
 </code>
                                                         </td>
                                                 </tr>
@@ -205,7 +253,12 @@
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Component } from &#x27;@angular/core&#x27;;
-import { NavigationEnd, Router } from &#x27;@angular/router&#x27;;
+import { Title } from &#x27;@angular/platform-browser&#x27;;
+import { ActivatedRoute, NavigationEnd, Router } from &#x27;@angular/router&#x27;;
+
+import { filter, map } from &#x27;rxjs/operators&#x27;;
+
+import { NgbConfig } from &#x27;@ng-bootstrap/ng-bootstrap&#x27;;
 
 import { AnalyticsService } from &#x27;@awg-core/services&#x27;;
 
@@ -217,7 +270,7 @@ import { AnalyticsService } from &#x27;@awg-core/services&#x27;;
 @Component({
     selector: &#x27;awg-app&#x27;,
     templateUrl: &#x27;./app.component.html&#x27;,
-    styleUrls: [&#x27;./app.component.css&#x27;]
+    styleUrls: [&#x27;./app.component.css&#x27;],
 })
 export class AppComponent {
     /**
@@ -225,17 +278,52 @@ export class AppComponent {
      *
      * It declares private instances of the Angular router and the AnalyticsService.
      *
-     * @param {Router} router Instance of the Angular router.
+     * @param {ActivatedRoute} activatedRoute Instance of the Angular ActivatedRoute.
      * @param {AnalyticsService} analyticsService Instance of the AnalyticsService.
+     * @param {NgbConfig} ngbConfig Instance of the NGBootstrap NgbConfig.
+     * @param {Router} router Instance of the Angular router.
+     * @param {Title} titleService Instance of the Angular Title.
      */
-    constructor(private readonly router: Router, private analyticsService: AnalyticsService) {
+    constructor(
+        private readonly activatedRoute: ActivatedRoute,
+        private analyticsService: AnalyticsService,
+        ngbConfig: NgbConfig,
+        private readonly router: Router,
+        private titleService: Title
+    ) {
+        // Disable Bootstrap animation
+        ngbConfig.animation &#x3D; false;
+
+        // Get app title from index.html
+        // Cf. https://blog.bitsrc.io/dynamic-page-titles-in-angular-98ce20b5c334
+        const appTitle &#x3D; this.titleService.getTitle();
+
+        // Init analytics
         this.analyticsService.initializeAnalytics();
 
-        this.router.events.subscribe(event &#x3D;&gt; {
-            if (event instanceof NavigationEnd) {
-                this.analyticsService.trackPageView(event.urlAfterRedirects);
-            }
-        });
+        // Track router events
+        this.router.events
+            .pipe(
+                filter(event &#x3D;&gt; event instanceof NavigationEnd),
+                map((event: NavigationEnd) &#x3D;&gt; {
+                    // Track page view on every NavigationEnd
+                    this.analyticsService.trackPageView(event.urlAfterRedirects);
+
+                    // Get page title from route data
+                    let child &#x3D; this.activatedRoute.firstChild;
+                    while (child.firstChild) {
+                        child &#x3D; child.firstChild;
+                    }
+                    if (child.snapshot.data[&#x27;title&#x27;]) {
+                        return child.snapshot.data[&#x27;title&#x27;];
+                    }
+                    return appTitle;
+                })
+            )
+            .subscribe((pageTitle: string) &#x3D;&gt; {
+                // Set page title
+                this.titleService.setTitle(pageTitle);
+            });
     }
 }
 </code></pre>

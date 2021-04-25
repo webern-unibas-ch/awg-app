@@ -145,11 +145,11 @@ with basic information about the prototype.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#editionWorkOp12">editionWorkOp12</a>
+                                <a href="#EDITION_WORK_OP12">EDITION_WORK_OP12</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#editionWorkOp25">editionWorkOp25</a>
+                                <a href="#EDITION_WORK_OP25">EDITION_WORK_OP25</a>
                             </li>
                             <li>
                                 <a href="#homeViewId">homeViewId</a>
@@ -354,18 +354,18 @@ when initializing the component.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editionWorkOp12"></a>
+                        <a name="EDITION_WORK_OP12"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            editionWorkOp12</b>
-                            <a href="#editionWorkOp12"><span class="icon ion-ios-link"></span></a>
+                            EDITION_WORK_OP12</b>
+                            <a href="#EDITION_WORK_OP12"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionWorks.op12</code>
+                            <i>Default value : </i><code>EditionWorks.OP12</code>
                         </td>
                     </tr>
                         <tr>
@@ -376,7 +376,7 @@ when initializing the component.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly constant: editionWorkOp12.</p>
+                        <div class="io-description"><p>Readonly constant: EDITION_WORK_OP12.</p>
 <p>It keeps the current composition.</p>
 </div>
                     </td>
@@ -388,18 +388,18 @@ when initializing the component.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editionWorkOp25"></a>
+                        <a name="EDITION_WORK_OP25"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            editionWorkOp25</b>
-                            <a href="#editionWorkOp25"><span class="icon ion-ios-link"></span></a>
+                            EDITION_WORK_OP25</b>
+                            <a href="#EDITION_WORK_OP25"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionWorks.op25</code>
+                            <i>Default value : </i><code>EditionWorks.OP25</code>
                         </td>
                     </tr>
                         <tr>
@@ -410,7 +410,7 @@ when initializing the component.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly constant: editionWorkOp25.</p>
+                        <div class="io-description"><p>Readonly constant: EDITION_WORK_OP25.</p>
 <p>It keeps the current composition.</p>
 </div>
                     </td>
@@ -519,7 +519,7 @@ import { EditionWorks } from &#x27;@awg-views/edition-view/models&#x27;;
     selector: &#x27;awg-home-view&#x27;,
     templateUrl: &#x27;./home-view.component.html&#x27;,
     styleUrls: [&#x27;./home-view.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class HomeViewComponent implements OnInit {
     /**
@@ -539,18 +539,18 @@ export class HomeViewComponent implements OnInit {
     homeViewId &#x3D; &#x27;awg-home-view&#x27;;
 
     /**
-     * Readonly constant: editionWorkOp12.
+     * Readonly constant: EDITION_WORK_OP12.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp12 &#x3D; EditionWorks.op12;
+    readonly EDITION_WORK_OP12 &#x3D; EditionWorks.OP12;
 
     /**
-     * Readonly constant: editionWorkOp25.
+     * Readonly constant: EDITION_WORK_OP25.
      *
      * It keeps the current composition.
      */
-    readonly editionWorkOp25 &#x3D; EditionWorks.op25;
+    readonly EDITION_WORK_OP25 &#x3D; EditionWorks.OP25;
 
     /**
      * Constructor of the HomeViewComponent.
@@ -579,10 +579,10 @@ export class HomeViewComponent implements OnInit {
      * @returns {void} Activates the edition-info side outlet.
      */
     routeToSidenav(): void {
-        // opens the side-info outlet while preserving the router fragment for scrolling
+        // Opens the side-info outlet while preserving the router fragment for scrolling
         this.router.navigate([{ outlets: { side: &#x27;editionInfo&#x27; } }], {
             preserveFragment: true,
-            queryParamsHandling: &#x27;preserve&#x27;
+            queryParamsHandling: &#x27;preserve&#x27;,
         });
     }
 }
@@ -598,26 +598,27 @@ export class HomeViewComponent implements OnInit {
 &lt;!-- header --&gt;
 &lt;div class&#x3D;&quot;para&quot;&gt;
     &lt;h6 class&#x3D;&quot;awg-breadcrumb&quot;&gt;
-        {{ editionWorkOp12.edition.short }} / {{ editionWorkOp12.series.full }} / {{ editionWorkOp12.section.full }}
+        {{ EDITION_WORK_OP12.edition.short }} / {{ EDITION_WORK_OP12.series.full }} /
+        {{ EDITION_WORK_OP12.section.full }}
     &lt;/h6&gt;
 
     &lt;h3 class&#x3D;&quot;awg-edition-info-header&quot;&gt;
-        &lt;i class&#x3D;&quot;awg-edition-info-header-title&quot;&gt;{{ editionWorkOp12.titleStatement.title }}&lt;/i
-        &gt;&amp;nbsp;&lt;span class&#x3D;&quot;awg-edition-info-header-catalogue&quot;&gt;{{ editionWorkOp12.work.short }}&lt;/span&gt; (&lt;a
-            [routerLink]&#x3D;&quot;[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]&quot;
-            &gt;{{ editionWorkOp12.type.full }}&lt;/a
+        &lt;i class&#x3D;&quot;awg-edition-info-header-title&quot;&gt;{{ EDITION_WORK_OP12.titleStatement.title }}&lt;/i
+        &gt;&amp;nbsp;&lt;span class&#x3D;&quot;awg-edition-info-header-catalogue&quot;&gt;{{ EDITION_WORK_OP12.work.short }}&lt;/span&gt; (&lt;a
+            [routerLink]&#x3D;&quot;[EDITION_WORK_OP12.baseRoute, EDITION_WORK_OP12.introRoute.route]&quot;
+            &gt;{{ EDITION_WORK_OP12.type.full }}&lt;/a
         &gt;)
     &lt;/h3&gt;
 
     &lt;h3 class&#x3D;&quot;awg-edition-info-header&quot;&gt;
-        &lt;i class&#x3D;&quot;awg-edition-info-header-title&quot;&gt;{{ editionWorkOp25.titleStatement.title }}&lt;/i
-        &gt;&amp;nbsp;&lt;span class&#x3D;&quot;awg-edition-info-header-catalogue&quot;&gt;{{ editionWorkOp25.work.short }}&lt;/span&gt; (&lt;a
-            [routerLink]&#x3D;&quot;[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]&quot;
-            &gt;{{ editionWorkOp25.type.full }}&lt;/a
+        &lt;i class&#x3D;&quot;awg-edition-info-header-title&quot;&gt;{{ EDITION_WORK_OP25.titleStatement.title }}&lt;/i
+        &gt;&amp;nbsp;&lt;span class&#x3D;&quot;awg-edition-info-header-catalogue&quot;&gt;{{ EDITION_WORK_OP25.work.short }}&lt;/span&gt; (&lt;a
+            [routerLink]&#x3D;&quot;[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.detailRoute.route]&quot;
+            &gt;{{ EDITION_WORK_OP25.type.full }}&lt;/a
         &gt;
         &amp;
-        &lt;a [routerLink]&#x3D;&quot;[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]&quot;&gt;{{
-            editionWorkOp25.graphRoute.short
+        &lt;a [routerLink]&#x3D;&quot;[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.graphRoute.route]&quot;&gt;{{
+            EDITION_WORK_OP25.graphRoute.short
         }}&lt;/a
         &gt;)
     &lt;/h3&gt;
@@ -646,8 +647,8 @@ export class HomeViewComponent implements OnInit {
     &lt;/p&gt;
     &lt;p&gt;
         Über den Menüpunkt &lt;em&gt;Beispieledition&lt;/em&gt; sind ausgewählte Skizzeneditionen zu
-        &lt;a [routerLink]&#x3D;&quot;[editionWorkOp12.baseRoute, editionWorkOp12.detailRoute.route]&quot;&gt;op. 12&lt;/a&gt; sowie
-        &lt;a [routerLink]&#x3D;&quot;[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]&quot;&gt;op. 25&lt;/a&gt; zugänglich.
+        &lt;a [routerLink]&#x3D;&quot;[EDITION_WORK_OP12.baseRoute, EDITION_WORK_OP12.detailRoute.route]&quot;&gt;op. 12&lt;/a&gt; sowie
+        &lt;a [routerLink]&#x3D;&quot;[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.detailRoute.route]&quot;&gt;op. 25&lt;/a&gt; zugänglich.
         Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte, kritische Berichte sowie
         Graphvisualisierungen.
     &lt;/p&gt;
@@ -704,7 +705,7 @@ export class HomeViewComponent implements OnInit {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!-- content: home --><!-- heading --><awg-heading [title]="homeViewTitle" [id]="homeViewId"></awg-heading><!-- header --><div class="para">    <h6 class="awg-breadcrumb">        {{ editionWorkOp12.edition.short }} / {{ editionWorkOp12.series.full }} / {{ editionWorkOp12.section.full }}    </h6>    <h3 class="awg-edition-info-header">        <i class="awg-edition-info-header-title">{{ editionWorkOp12.titleStatement.title }}</i        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp12.work.short }}</span> (<a            [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.introRoute.route]"            >{{ editionWorkOp12.type.full }}</a        >)    </h3>    <h3 class="awg-edition-info-header">        <i class="awg-edition-info-header-title">{{ editionWorkOp25.titleStatement.title }}</i        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ editionWorkOp25.work.short }}</span> (<a            [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]"            >{{ editionWorkOp25.type.full }}</a        >        &        <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.graphRoute.route]">{{            editionWorkOp25.graphRoute.short        }}</a        >)    </h3></div><!-- description --><div class="para">    <p>Willkommen bei der AWG-APP, dem Prototyp einer Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>    <p>        Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über diese        Webapplikation präsentiert und über das Software-Framework        <a href="https://www.knora.org">Knora</a>/<a href="https://www.salsah.org">SALSAH</a>        des        <a href="https://dhlab.philhist.unibas.ch">Digital Humanities Lab</a>        der Universität Basel aufbereitet. Zudem werden die Datenbestände durch das        <a href="https://dasch.swiss">Data and Service Center for Humanities (DaSCH)</a>        zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit der Daten gemäss        FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren Metadaten und den langfristigen        Betrieb der technischen Infrastruktur (vgl.        <a href="https://dasch.swiss/mission">https://dasch.swiss/mission/</a>).    </p>    <p>        Der Protoyp simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von        SALSAH (zukünftig Knora). Die für reale Abfragen im Bereich Online-Edition notwendige        <a [routerLink]="[\'/structure\']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.    </p>    <p>        Über den Menüpunkt <em>Beispieledition</em> sind ausgewählte Skizzeneditionen zu        <a [routerLink]="[editionWorkOp12.baseRoute, editionWorkOp12.detailRoute.route]">op. 12</a> sowie        <a [routerLink]="[editionWorkOp25.baseRoute, editionWorkOp25.detailRoute.route]">op. 25</a> zugänglich.        Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte, kritische Berichte sowie        Graphvisualisierungen.    </p>    <p>        Zusätzlich wird eine einfache <a [routerLink]="[\'/data/search\', \'fulltext\']">Volltextsuche</a> in der Datenbank        angeboten, über die die dort hinterlegten Kontextmaterialien (Werklisten [nach Opuszahl bzw.        Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden können.    </p>    <p>        Bei diesem Prototyp handelt es sich um eine Weiterentwicklung einer        <a href="https://www.anton-webern.ch/assets/editions/BeispieleditionAWG_3_Skizzen_op12_Online_klein.pdf"            >prospektiven Simulation [PDF]</a        >        vom 31. März 2015 sowie vom 29. Januar 2016. Der Programmcode ist als Open Access-Projekt frei zugänglich auf        <a href="https://github.com/webern-unibas-ch/awg-app">GitHub</a>        abgelegt und vollumfänglich        <a href="https://edition.anton-webern.ch/compodoc/index.html">dokumentiert</a>        (vgl. <a [routerLink]="[\'/contact\']" fragment="awg-documentation">Dokumentation</a>).    </p>    <p>Der Prototyp und die Suche werden in ihrer Funktionalität sukzessiv erweitert.</p></div></div>'
+        var COMPONENT_TEMPLATE = '<div><!-- content: home --><!-- heading --><awg-heading [title]="homeViewTitle" [id]="homeViewId"></awg-heading><!-- header --><div class="para">    <h6 class="awg-breadcrumb">        {{ EDITION_WORK_OP12.edition.short }} / {{ EDITION_WORK_OP12.series.full }} /        {{ EDITION_WORK_OP12.section.full }}    </h6>    <h3 class="awg-edition-info-header">        <i class="awg-edition-info-header-title">{{ EDITION_WORK_OP12.titleStatement.title }}</i        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_WORK_OP12.work.short }}</span> (<a            [routerLink]="[EDITION_WORK_OP12.baseRoute, EDITION_WORK_OP12.introRoute.route]"            >{{ EDITION_WORK_OP12.type.full }}</a        >)    </h3>    <h3 class="awg-edition-info-header">        <i class="awg-edition-info-header-title">{{ EDITION_WORK_OP25.titleStatement.title }}</i        >&nbsp;<span class="awg-edition-info-header-catalogue">{{ EDITION_WORK_OP25.work.short }}</span> (<a            [routerLink]="[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.detailRoute.route]"            >{{ EDITION_WORK_OP25.type.full }}</a        >        &        <a [routerLink]="[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.graphRoute.route]">{{            EDITION_WORK_OP25.graphRoute.short        }}</a        >)    </h3></div><!-- description --><div class="para">    <p>Willkommen bei der AWG-APP, dem Prototyp einer Online-Edition der Anton Webern Gesamtausgabe, Basel (AWG).</p>    <p>        Die online zugänglichen Bestandteile und Datenbestände der AWG-Online-Edition werden als Open Data über diese        Webapplikation präsentiert und über das Software-Framework        <a href="https://www.knora.org">Knora</a>/<a href="https://www.salsah.org">SALSAH</a>        des        <a href="https://dhlab.philhist.unibas.ch">Digital Humanities Lab</a>        der Universität Basel aufbereitet. Zudem werden die Datenbestände durch das        <a href="https://dasch.swiss">Data and Service Center for Humanities (DaSCH)</a>        zugänglich gehalten und langfristig aufbewahrt. Das DaSCH garantiert eine Zugänglichkeit der Daten gemäss        FAIR-Prinzipien, die Zuweisung von digitalen Identifikatoren, maschinenlesbaren Metadaten und den langfristigen        Betrieb der technischen Infrastruktur (vgl.        <a href="https://dasch.swiss/mission">https://dasch.swiss/mission/</a>).    </p>    <p>        Der Protoyp simuliert bereits in weiten Teilen eine Datenabfrage über die Programmierschnittstelle (API) von        SALSAH (zukünftig Knora). Die für reale Abfragen im Bereich Online-Edition notwendige        <a [routerLink]="[\'/structure\']">Datenstruktur</a> wird zur Zeit von der AWG implementiert.    </p>    <p>        Über den Menüpunkt <em>Beispieledition</em> sind ausgewählte Skizzeneditionen zu        <a [routerLink]="[EDITION_WORK_OP12.baseRoute, EDITION_WORK_OP12.detailRoute.route]">op. 12</a> sowie        <a [routerLink]="[EDITION_WORK_OP25.baseRoute, EDITION_WORK_OP25.detailRoute.route]">op. 25</a> zugänglich.        Bestandteile der Online-Edition umfassen Einleitungen, die edierten Notentexte, kritische Berichte sowie        Graphvisualisierungen.    </p>    <p>        Zusätzlich wird eine einfache <a [routerLink]="[\'/data/search\', \'fulltext\']">Volltextsuche</a> in der Datenbank        angeboten, über die die dort hinterlegten Kontextmaterialien (Werklisten [nach Opuszahl bzw.        Moldenhauer-Nummer], Personeninformationen, Briefe &amp; Supplements, Chronologie) abgefragt werden können.    </p>    <p>        Bei diesem Prototyp handelt es sich um eine Weiterentwicklung einer        <a href="https://www.anton-webern.ch/assets/editions/BeispieleditionAWG_3_Skizzen_op12_Online_klein.pdf"            >prospektiven Simulation [PDF]</a        >        vom 31. März 2015 sowie vom 29. Januar 2016. Der Programmcode ist als Open Access-Projekt frei zugänglich auf        <a href="https://github.com/webern-unibas-ch/awg-app">GitHub</a>        abgelegt und vollumfänglich        <a href="https://edition.anton-webern.ch/compodoc/index.html">dokumentiert</a>        (vgl. <a [routerLink]="[\'/contact\']" fragment="awg-documentation">Dokumentation</a>).    </p>    <p>Der Prototyp und die Suche werden in ihrer Funktionalität sukzessiv erweitert.</p></div></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'ForceGraphNoResultComponent', 'selector': 'awg-force-graph-no-result'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'HomeViewComponent'};

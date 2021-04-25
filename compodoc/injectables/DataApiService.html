@@ -124,53 +124,53 @@ and the resource detail data.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getGeoData">_getGeoData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getHlistData">_getHlistData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getNodeIdFromAttributes">_getNodeIdFromAttributes</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getResourceContextData">_getResourceContextData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getResourceFullResponseData">_getResourceFullResponseData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_getSelectionsData">_getSelectionsData</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_prepareResourceData">_prepareResourceData</a>
+                            </li>
+                            <li>
                                 <a href="#getFulltextSearchData">getFulltextSearchData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getGeoData">getGeoData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getHlistData">getHlistData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getNodeIdFromAttributes">getNodeIdFromAttributes</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getResourceContextData">getResourceContextData</a>
                             </li>
                             <li>
                                 <a href="#getResourceData">getResourceData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#getResourceDataResponseFromApi">getResourceDataResponseFromApi</a>
+                                <a href="#_handleRequestError">_handleRequestError</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#getResourceFullResponseData">getResourceFullResponseData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#getSelectionsData">getSelectionsData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#prepareResourceData">prepareResourceData</a>
+                                <a href="#_httpGet">_httpGet</a>
                             </li>
                             <li>
                                 <a href="#getApiResponse">getApiResponse</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#handleRequestError">handleRequestError</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#httpGet">httpGet</a>
                             </li>
                         </ul>
                     </td>
@@ -268,6 +268,675 @@ instance for the conversion of the response data.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_getGeoData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getGeoData
+                        </b>
+                        <a href="#_getGeoData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getGeoData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="230"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:230</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getGeoData.</p>
+<ul>
+<li>It calls the <a href="_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a> method to
+provide an Observable with the GeoDataJson data.</li>
+</ul>
+<p>NOT USED.</p>
+<p>IMPLEMENTATION FOR FUTURE USE.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/GeoDataJson.html" target="_self" >Observable&lt;GeoDataJson&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the response data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getHlistData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getHlistData
+                        </b>
+                        <a href="#_getHlistData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getHlistData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="248"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:248</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getHlistData.</p>
+<ul>
+<li>It calls the <a href="_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a> method to
+provide an Observable with the HlistJson data.</li>
+</ul>
+<p>NOT USED.</p>
+<p>IMPLEMENTATION FOR FUTURE USE.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/HlistJson.html" target="_self" >Observable&lt;HlistJson&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the response data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getNodeIdFromAttributes"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getNodeIdFromAttributes
+                        </b>
+                        <a href="#_getNodeIdFromAttributes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getNodeIdFromAttributes(attributes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="326"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:326</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getNodeIdFromAttributes.</p>
+<p>It gets a node id from the prop.attributes
+of a selections or hlists value.</p>
+<p>NOT USED.</p>
+<p>IMPLEMENTATION FOR FUTURE USE.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>attributes</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given prop.attributes.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>id The node id.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getResourceContextData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getResourceContextData
+                        </b>
+                        <a href="#_getResourceContextData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getResourceContextData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="198"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:198</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getResourceContextData.</p>
+<p>It calls the <a href="_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a> method to
+provide an Observable with the ResourceContextResponseJson data.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResourceContextResponseJson.html" target="_self" >Observable&lt;ResourceContextResponseJson&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the response data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getResourceDataResponseFromApi"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getResourceDataResponseFromApi
+                        </b>
+                        <a href="#_getResourceDataResponseFromApi"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getResourceDataResponseFromApi(responseJsonType: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="282"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:282</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getResourceDataResponseFromApi.</p>
+<p>It prepares the calls to the given (SALSAH) API
+for a resource id depending on the responseJsonType
+and the given resource id.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>responseJsonType</td>
+                                    <td>
+                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given json type of the API response.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>id</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given id of a resource.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the HTTP response.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getResourceFullResponseData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getResourceFullResponseData
+                        </b>
+                        <a href="#_getResourceFullResponseData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getResourceFullResponseData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="212"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:212</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getResourceFullResponseData.</p>
+<p>It calls the <a href="_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a> method to
+provide an Observable with the ResourceFullResponseJson data.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResourceFullResponseJson.html" target="_self" >Observable&lt;ResourceFullResponseJson&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the response data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_getSelectionsData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _getSelectionsData
+                        </b>
+                        <a href="#_getSelectionsData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_getSelectionsData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="266"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:266</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _getSelectionsData.</p>
+<ul>
+<li>It calls the <a href="_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a> method to
+provide an Observable with the SelectionJson data.</li>
+</ul>
+<p>NOT USED.</p>
+<p>IMPLEMENTATION FOR FUTURE USE.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/SelectionJson.html" target="_self" >Observable&lt;SelectionJson&gt;</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The observable of the response data.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_prepareResourceData"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _prepareResourceData
+                        </b>
+                        <a href="#_prepareResourceData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_prepareResourceData(resourceDataResponse: <a href="../interfaces/IResourceDataResponse.html">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="173"
+                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:173</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _prepareResourceData.</p>
+<p>It converts the data response of a requested resource
+to a ResourceData object.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>resourceDataResponse</td>
+                                    <td>
+                                                <code><a href="../interfaces/IResourceDataResponse.html" target="_self" >IResourceDataResponse</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>resourceId</td>
+                                    <td>
+                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="../classes/ResourceData.html" target="_self" >ResourceData</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>The resource data object.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="getFulltextSearchData"></a>
                     <span class="name">
                         <b>
@@ -334,329 +1003,6 @@ from the given (SALSAH) API.</p>
                     </div>
                     <div class="io-description">
                         <p>The observable with the SearchResponseJson data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getGeoData"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            getGeoData
-                        </b>
-                        <a href="#getGeoData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getGeoData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="230"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:230</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getGeoData.</p>
-<ul>
-<li>It calls the <a href="getResourceDataResponseFromApi">getResourceDataResponseFromApi</a> method to
-provide an Observable with the GeoDataJson data.</li>
-</ul>
-<p>NOT USED.</p>
-<p>IMPLEMENTATION FOR FUTURE USE.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>resourceId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/GeoDataJson.html" target="_self" >Observable&lt;GeoDataJson&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the response data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getHlistData"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            getHlistData
-                        </b>
-                        <a href="#getHlistData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getHlistData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="248"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:248</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getHlistData.</p>
-<ul>
-<li>It calls the <a href="getResourceDataResponseFromApi">getResourceDataResponseFromApi</a> method to
-provide an Observable with the HlistJson data.</li>
-</ul>
-<p>NOT USED.</p>
-<p>IMPLEMENTATION FOR FUTURE USE.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>resourceId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/HlistJson.html" target="_self" >Observable&lt;HlistJson&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the response data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getNodeIdFromAttributes"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            getNodeIdFromAttributes
-                        </b>
-                        <a href="#getNodeIdFromAttributes"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getNodeIdFromAttributes(attributes: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="326"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:326</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getNodeIdFromAttributes.</p>
-<p>It gets a node id from the prop.attributes
-of a selections or hlists value.</p>
-<p>NOT USED.</p>
-<p>IMPLEMENTATION FOR FUTURE USE.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>attributes</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given prop.attributes.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>id The node id.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getResourceContextData"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            getResourceContextData
-                        </b>
-                        <a href="#getResourceContextData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getResourceContextData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="198"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:198</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getResourceContextData.</p>
-<p>It calls the <a href="getResourceDataResponseFromApi">getResourceDataResponseFromApi</a> method to
-provide an Observable with the ResourceContextResponseJson data.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>resourceId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/ResourceContextResponseJson.html" target="_self" >Observable&lt;ResourceContextResponseJson&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the response data.</p>
 
                     </div>
                 </td>
@@ -742,38 +1088,42 @@ as an ResourceData observable.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getResourceDataResponseFromApi"></a>
+                    <a name="_handleRequestError"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            getResourceDataResponseFromApi
+                            _handleRequestError
                         </b>
-                        <a href="#getResourceDataResponseFromApi"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_handleRequestError"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getResourceDataResponseFromApi(responseJsonType: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_handleRequestError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="282"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:282</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:125</a></code>
+</div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getResourceDataResponseFromApi.</p>
-<p>It prepares the calls to the given (SALSAH) API
-for a resource id depending on the responseJsonType
-and the given resource id.</p>
+                    <div class="io-description"><p>Private method: _handleRequestError.</p>
+<p>It handles request errors in case of server error.</p>
 </div>
 
                     <div class="io-description">
@@ -789,9 +1139,9 @@ and the given resource id.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>responseJsonType</td>
+                                    <td>error</td>
                                     <td>
-                                                <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
                                     </td>
 
                                     <td>
@@ -800,23 +1150,7 @@ and the given resource id.</p>
 
 
                                     <td>
-                                        <p>The given json type of the API response.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>id</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given id of a resource.</p>
+                                        <p>The given error.</p>
 
                                     </td>
                                 </tr>
@@ -826,11 +1160,11 @@ and the given resource id.</p>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>    <code>Observable&lt;any&gt;</code>
+                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceError&gt;</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The observable of the HTTP response.</p>
+                        <p>The observable of the api service error.</p>
 
                     </div>
                 </td>
@@ -841,37 +1175,42 @@ and the given resource id.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="getResourceFullResponseData"></a>
+                    <a name="_httpGet"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            getResourceFullResponseData
+                            _httpGet
                         </b>
-                        <a href="#getResourceFullResponseData"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_httpGet"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getResourceFullResponseData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_httpGet(queryPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryHttpParams: <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="212"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:212</a></div>
+                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+</div>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:85</a></code>
+</div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getResourceFullResponseData.</p>
-<p>It calls the <a href="getResourceDataResponseFromApi">getResourceDataResponseFromApi</a> method to
-provide an Observable with the ResourceFullResponseJson data.</p>
+                    <div class="io-description"><p>Private method: _httpGet.</p>
+<p>Performs an HTTP GET request to the given (Salsah) API.</p>
 </div>
 
                     <div class="io-description">
@@ -882,11 +1221,12 @@ provide an Observable with the ResourceFullResponseJson data.</p>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
+                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>resourceId</td>
+                                    <td>queryPath</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -896,80 +1236,15 @@ provide an Observable with the ResourceFullResponseJson data.</p>
                                     </td>
 
 
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/ResourceFullResponseJson.html" target="_self" >Observable&lt;ResourceFullResponseJson&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the response data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="getSelectionsData"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            getSelectionsData
-                        </b>
-                        <a href="#getSelectionsData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>getSelectionsData(resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="266"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:266</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: getSelectionsData.</p>
-<ul>
-<li>It calls the <a href="getResourceDataResponseFromApi">getResourceDataResponseFromApi</a> method to
-provide an Observable with the SelectionJson data.</li>
-</ul>
-<p>NOT USED.</p>
-<p>IMPLEMENTATION FOR FUTURE USE.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>resourceId</td>
                                     <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+                                        <p>The given path of the query.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>queryHttpParams</td>
+                                    <td>
+                                                <code><a href="https://angular.io/api/common/http/HttpParams" target="_blank" >HttpParams</a></code>
                                     </td>
 
                                     <td>
@@ -977,6 +1252,10 @@ provide an Observable with the SelectionJson data.</li>
                                     </td>
 
 
+                                    <td>
+                                        <p>The given HTTP params for the query.</p>
+
+                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -984,100 +1263,11 @@ provide an Observable with the SelectionJson data.</li>
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/SelectionJson.html" target="_self" >Observable&lt;SelectionJson&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceResult | ApiServiceError&gt;</a></code>
 
                     </div>
                     <div class="io-description">
-                        <p>The observable of the response data.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="prepareResourceData"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            prepareResourceData
-                        </b>
-                        <a href="#prepareResourceData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>prepareResourceData(resourceDataResponse: <a href="../interfaces/IResourceDataResponse.html">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="173"
-                            class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:173</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: prepareResourceData.</p>
-<p>It converts the data response of a requested resource
-to a ResourceData object.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>resourceDataResponse</td>
-                                    <td>
-                                                <code><a href="../interfaces/IResourceDataResponse.html" target="_self" >IResourceDataResponse</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                                <tr>
-                                    <td>resourceId</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../classes/ResourceData.html" target="_self" >ResourceData</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The resource data object.</p>
+                        <p>The observable of the api service result or error.</p>
 
                     </div>
                 </td>
@@ -1201,196 +1391,6 @@ to a ResourceData object.</p>
             </tr>
         </tbody>
     </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="handleRequestError"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            handleRequestError
-                        </b>
-                        <a href="#handleRequestError"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>handleRequestError(error: <a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank">HttpErrorResponse</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:134</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: handleRequestError.</p>
-<p>It handles request errors in case of server error.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>error</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/common/http/HttpErrorResponse" target="_blank" >HttpErrorResponse</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given error.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceError&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the api service error.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="httpGet"></a>
-                    <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            httpGet
-                        </b>
-                        <a href="#httpGet"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>httpGet(queryPath: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, queryHttpParams: <a href="https://angular.io/api/common/http/HttpParams" target="_blank">HttpParams</a>)</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
-</div>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                        <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:90</a></code>
-</div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: httpGet.</p>
-<p>Performs an HTTP GET request to the given (Salsah) API.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Parameters :</b>
-                        <table class="params">
-                            <thead>
-                                <tr>
-                                    <td>Name</td>
-                                    <td>Type</td>
-                                    <td>Optional</td>
-                                    <td>Description</td>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <tr>
-                                    <td>queryPath</td>
-                                    <td>
-                                                <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given path of the query.</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
-                                    <td>queryHttpParams</td>
-                                    <td>
-                                                <code><a href="https://angular.io/api/common/http/HttpParams" target="_blank" >HttpParams</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The given HTTP params for the query.</p>
-
-                                    </td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../injectables/ApiService.html" target="_self" >Observable&lt;ApiServiceResult | ApiServiceError&gt;</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>The observable of the api service result or error.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
 </section>
             <section>
     
@@ -1500,7 +1500,7 @@ to a ResourceData object.</p>
         search: &#x27;search/&#x27;,
         geonames: &#x27;geonames/&#x27;,
         hlists: &#x27;hlists/&#x27;,
-        selections: &#x27;selections/&#x27;
+        selections: &#x27;selections/&#x27;,
     }</code>
                         </td>
                     </tr>
@@ -1672,14 +1672,14 @@ import {
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     SearchResponseJson,
-    SelectionJson
+    SelectionJson,
 } from &#x27;@awg-shared/api-objects&#x27;;
 import {
     IResourceDataResponse,
     ResourceData,
     ResourceDetail,
     SearchParams,
-    SearchParamsViewTypes
+    SearchParamsViewTypes,
 } from &#x27;@awg-views/data-view/models&#x27;;
 
 /**
@@ -1692,7 +1692,7 @@ import {
  * Provided in: &#x60;root&#x60;.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class DataApiService extends ApiService {
     /**
@@ -1720,7 +1720,7 @@ export class DataApiService extends ApiService {
         search: &#x27;search/&#x27;,
         geonames: &#x27;geonames/&#x27;,
         hlists: &#x27;hlists/&#x27;,
-        selections: &#x27;selections/&#x27;
+        selections: &#x27;selections/&#x27;,
     };
 
     /**
@@ -1754,15 +1754,15 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        // default values
+        // Default values
         const sp: SearchParams &#x3D; {
             query: searchParams.query,
             nRows: searchParams.nRows || &#x27;-1&#x27;,
             startAt: searchParams.startAt || &#x27;0&#x27;,
-            view: searchParams.view || SearchParamsViewTypes.table
+            view: searchParams.view || SearchParamsViewTypes.table,
         };
 
-        // set path and params of query
+        // Set path and params of query
         const queryPath: string &#x3D; this.routes.search + sp.query;
         const queryHttpParams &#x3D; new HttpParams()
             .set(&#x27;searchtype&#x27;, &#x27;fulltext&#x27;)
@@ -1770,22 +1770,22 @@ export class DataApiService extends ApiService {
             .set(&#x27;show_nrows&#x27;, sp.nRows)
             .set(&#x27;start_at&#x27;, sp.startAt);
 
-        // cold request to API
+        // Cold request to API
         const searchData$: Observable&lt;SearchResponseJson&gt; &#x3D; this.getApiResponse(
             SearchResponseJson,
             queryPath,
             queryHttpParams
         );
 
-        // return converted search response
+        // Return converted search response
         return searchData$.pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty(new SearchResponseJson()),
 
-            // map the response to a converted search response object for HTML display
-            map((searchResponse: SearchResponseJson) &#x3D;&gt; {
-                return this.conversionService.convertFullTextSearchResults(searchResponse);
-            })
+            // Map the response to a converted search response object for HTML display
+            map((searchResponse: SearchResponseJson) &#x3D;&gt;
+                this.conversionService.convertFullTextSearchResults(searchResponse)
+            )
         );
     }
 
@@ -1804,24 +1804,24 @@ export class DataApiService extends ApiService {
             return;
         }
 
-        // cold request to API
-        const fullResponseData$: Observable&lt;ResourceFullResponseJson&gt; &#x3D; this.getResourceFullResponseData(resourceId);
-        const contextData$: Observable&lt;ResourceContextResponseJson&gt; &#x3D; this.getResourceContextData(resourceId);
+        // Cold request to API
+        const fullResponseData$: Observable&lt;ResourceFullResponseJson&gt; &#x3D; this._getResourceFullResponseData(resourceId);
+        const contextData$: Observable&lt;ResourceContextResponseJson&gt; &#x3D; this._getResourceContextData(resourceId);
 
-        // return converted search response
+        // Return converted search response
         return observableForkJoin([fullResponseData$, contextData$]).pipe(
-            // default empty value
+            // Default empty value
             defaultIfEmpty([new ResourceFullResponseJson(), new ResourceContextResponseJson()]),
 
-            // map the forkJoined response to a ResourceData object
-            map((resourceDataResponse: IResourceDataResponse) &#x3D;&gt; {
-                return this.prepareResourceData(resourceDataResponse, resourceId);
-            })
+            // Map the forkJoined response to a ResourceData object
+            map((resourceDataResponse: IResourceDataResponse) &#x3D;&gt;
+                this._prepareResourceData(resourceDataResponse, resourceId)
+            )
         );
     }
 
     /**
-     * Private method: prepareResourceData.
+     * Private method: _prepareResourceData.
      *
      * It converts the data response of a requested resource
      * to a ResourceData object.
@@ -1831,53 +1831,53 @@ export class DataApiService extends ApiService {
      *
      * @returns {ResourceData} The resource data object.
      */
-    private prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
+    private _prepareResourceData(resourceDataResponse: IResourceDataResponse, resourceId: string): ResourceData {
         if (Object.keys(resourceDataResponse[0]).length &#x3D;&#x3D;&#x3D; 0 &amp;&amp; resourceDataResponse[0].constructor &#x3D;&#x3D;&#x3D; Object) {
             return new ResourceData(new ResourceFullResponseJson(), undefined);
         }
 
-        // convert data for displaying resource detail
+        // Convert data for displaying resource detail
         const resourceDetail: ResourceDetail &#x3D; this.conversionService.convertResourceData(
             resourceDataResponse,
             resourceId
         );
 
-        // return new resource data
+        // Return new resource data
         return new ResourceData(resourceDataResponse[0], resourceDetail);
     }
 
     /**
-     * Private method: getResourceContextData.
+     * Private method: _getResourceContextData.
      *
-     * It calls the {@link getResourceDataResponseFromApi} method to
+     * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the ResourceContextResponseJson data.
      *
      * @params {string} resourceId The id of the requested resource.
      *
      * @returns {Observable&lt;ResourceContextResponseJson&gt;} The observable of the response data.
      */
-    private getResourceContextData(resourceId: string): Observable&lt;ResourceContextResponseJson&gt; {
-        return this.getResourceDataResponseFromApi(ResourceContextResponseJson, resourceId);
+    private _getResourceContextData(resourceId: string): Observable&lt;ResourceContextResponseJson&gt; {
+        return this._getResourceDataResponseFromApi(ResourceContextResponseJson, resourceId);
     }
 
     /**
-     * Private method: getResourceFullResponseData.
+     * Private method: _getResourceFullResponseData.
      *
-     * It calls the {@link getResourceDataResponseFromApi} method to
+     * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the ResourceFullResponseJson data.
      *
      * @params {string} resourceId The id of the requested resource.
      *
      * @returns {Observable&lt;ResourceFullResponseJson&gt;} The observable of the response data.
      */
-    private getResourceFullResponseData(resourceId: string): Observable&lt;ResourceFullResponseJson&gt; {
-        return this.getResourceDataResponseFromApi(ResourceFullResponseJson, resourceId);
+    private _getResourceFullResponseData(resourceId: string): Observable&lt;ResourceFullResponseJson&gt; {
+        return this._getResourceDataResponseFromApi(ResourceFullResponseJson, resourceId);
     }
 
     /**
-     * Private method: getGeoData.
+     * Private method: _getGeoData.
      *
-     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the GeoDataJson data.
      *
      * NOT USED.
@@ -1888,14 +1888,14 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable&lt;GeoDataJson&gt;} The observable of the response data.
      */
-    private getGeoData(resourceId: string): Observable&lt;GeoDataJson&gt; {
-        return this.getResourceDataResponseFromApi(GeoDataJson, resourceId);
+    private _getGeoData(resourceId: string): Observable&lt;GeoDataJson&gt; {
+        return this._getResourceDataResponseFromApi(GeoDataJson, resourceId);
     }
 
     /**
-     * Private method: getHlistData.
+     * Private method: _getHlistData.
      *
-     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the HlistJson data.
      *
      * NOT USED.
@@ -1906,14 +1906,14 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable&lt;HlistJson&gt;} The observable of the response data.
      */
-    private getHlistData(resourceId: string): Observable&lt;HlistJson&gt; {
-        return this.getResourceDataResponseFromApi(HlistJson, resourceId);
+    private _getHlistData(resourceId: string): Observable&lt;HlistJson&gt; {
+        return this._getResourceDataResponseFromApi(HlistJson, resourceId);
     }
 
     /**
-     * Private method: getSelectionsData.
+     * Private method: _getSelectionsData.
      *
-     * * It calls the {@link getResourceDataResponseFromApi} method to
+     * * It calls the {@link _getResourceDataResponseFromApi} method to
      * provide an Observable with the SelectionJson data.
      *
      * NOT USED.
@@ -1924,12 +1924,12 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable&lt;SelectionJson&gt;} The observable of the response data.
      */
-    private getSelectionsData(resourceId: string): Observable&lt;SelectionJson&gt; {
-        return this.getResourceDataResponseFromApi(SelectionJson, resourceId);
+    private _getSelectionsData(resourceId: string): Observable&lt;SelectionJson&gt; {
+        return this._getResourceDataResponseFromApi(SelectionJson, resourceId);
     }
 
     /**
-     * Private method: getResourceDataResponseFromApi.
+     * Private method: _getResourceDataResponseFromApi.
      *
      * It prepares the calls to the given (SALSAH) API
      * for a resource id depending on the responseJsonType
@@ -1940,12 +1940,12 @@ export class DataApiService extends ApiService {
      *
      * @returns {Observable&lt;any&gt;} The observable of the HTTP response.
      */
-    private getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable&lt;any&gt; {
-        // init query path and params
+    private _getResourceDataResponseFromApi(responseJsonType: any, id: string): Observable&lt;any&gt; {
+        // Init query path and params
         let queryPath: string;
         let queryHttpParams: HttpParams &#x3D; new HttpParams();
 
-        // set path and params of query depending on responseJsonType
+        // Set path and params of query depending on responseJsonType
         switch (responseJsonType) {
             case GeoDataJson:
                 queryPath &#x3D; this.routes.geonames + id;
@@ -1966,12 +1966,12 @@ export class DataApiService extends ApiService {
                 break;
         }
 
-        // trigger call to API
+        // Trigger call to API
         return this.getApiResponse(responseJsonType, queryPath, queryHttpParams);
     }
 
     /**
-     * Private method: getNodeIdFromAttributes.
+     * Private method: _getNodeIdFromAttributes.
      *
      * It gets a node id from the prop.attributes
      * of a selections or hlists value.
@@ -1984,9 +1984,9 @@ export class DataApiService extends ApiService {
      *
      * @returns {string} id The node id.
      */
-    private getNodeIdFromAttributes(attributes: string): string {
-        // identify node id from prop.attributes
-        // e.g. &quot;hlist&#x3D;17&quot; or &quot;selection&#x3D;77&quot;
+    private _getNodeIdFromAttributes(attributes: string): string {
+        // Identify node id from prop.attributes
+        // E.g. &quot;hlist&#x3D;17&quot; or &quot;selection&#x3D;77&quot;
         return attributes.split(&#x27;&#x3D;&#x27;)[1].toString();
     }
 }

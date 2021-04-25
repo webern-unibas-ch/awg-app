@@ -297,9 +297,7 @@ let localStore: { [key: string]: string } &#x3D; {};
  * It mocks the session storage object to catch storage events.
  */
 export const mockSessionStorage: IMockStorage &#x3D; {
-    getItem: (key: string): string &#x3D;&gt; {
-        return key in sessionStore ? sessionStore[key] : null;
-    },
+    getItem: (key: string): string &#x3D;&gt; (key in sessionStore ? sessionStore[key] : null),
     setItem: (key: string, value: string) &#x3D;&gt; {
         sessionStore[key] &#x3D; &#x60;${value}&#x60;;
     },
@@ -308,7 +306,7 @@ export const mockSessionStorage: IMockStorage &#x3D; {
     },
     clear: () &#x3D;&gt; {
         sessionStore &#x3D; {};
-    }
+    },
 };
 
 /**
@@ -317,9 +315,7 @@ export const mockSessionStorage: IMockStorage &#x3D; {
  * It mocks the local storage object to catch storage events.
  */
 export const mockLocalStorage: IMockStorage &#x3D; {
-    getItem: (key: string): string &#x3D;&gt; {
-        return key in localStore ? localStore[key] : null;
-    },
+    getItem: (key: string): string &#x3D;&gt; (key in localStore ? localStore[key] : null),
     setItem: (key: string, value: string) &#x3D;&gt; {
         localStore[key] &#x3D; &#x60;${value}&#x60;;
     },
@@ -328,7 +324,7 @@ export const mockLocalStorage: IMockStorage &#x3D; {
     },
     clear: () &#x3D;&gt; {
         localStore &#x3D; {};
-    }
+    },
 };
 </code></pre>
     </div>

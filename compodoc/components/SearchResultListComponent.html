@@ -147,7 +147,12 @@ and the results in table or grid view.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#destroy$">destroy$</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_destroy$">_destroy$</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_selectedResourceId">_selectedResourceId</a>
                             </li>
                             <li>
                                 <a href="#errorMessage">errorMessage</a>
@@ -175,10 +180,6 @@ and the results in table or grid view.</p>
                             </li>
                             <li>
                                 <a href="#searchResultText">searchResultText</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#selectedResourceId">selectedResourceId</a>
                             </li>
                         </ul>
                     </td>
@@ -727,7 +728,7 @@ from the <a href="../injectables/DataStreamerService.html">DataStreamerService</
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: isActiveResource.</p>
 <p>It compares a given resource id
-with the current selectedResourceId.</p>
+with the current _selectedResourceId.</p>
 </div>
 
                     <div class="io-description">
@@ -1543,11 +1544,12 @@ and updates the info message and search info.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="destroy$"></a>
+                        <a name="_destroy$"></a>
                         <span class="name">
                             <b>
-                            destroy$</b>
-                            <a href="#destroy$"><span class="icon ion-ios-link"></span></a>
+                                <span class="modifier">Private</span>
+                            _destroy$</b>
+                            <a href="#_destroy$"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -1564,14 +1566,49 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:85</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:148</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>variable: destroy$.</p>
+                        <div class="io-description"><p>Private variable: _destroy$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
+</div>
+                    </td>
+                </tr>
+
+            </tbody>
+        </table>
+        <table class="table table-sm table-bordered">
+            <tbody>
+                <tr>
+                    <td class="col-md-4">
+                        <a name="_selectedResourceId"></a>
+                        <span class="name">
+                            <b>
+                                <span class="modifier">Private</span>
+                            _selectedResourceId</b>
+                            <a href="#_selectedResourceId"><span class="icon ion-ios-link"></span></a>
+                        </span>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                        </td>
+                    </tr>
+                        <tr>
+                            <td class="col-md-4">
+                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:141</a></div>
+                            </td>
+                        </tr>
+
+                <tr>
+                    <td class="col-md-4">
+                        <div class="io-description"><p>Private variable: _selectedResourceId.</p>
+<p>It keeps the id of the selected resource.</p>
 </div>
                     </td>
                 </tr>
@@ -1603,7 +1640,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:92</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:78</a></div>
                             </td>
                         </tr>
 
@@ -1636,7 +1673,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="141" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:141</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:127</a></div>
                             </td>
                         </tr>
 
@@ -1669,7 +1706,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="148" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:148</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:134</a></div>
                             </td>
                         </tr>
 
@@ -1703,7 +1740,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:106</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:92</a></div>
                             </td>
                         </tr>
 
@@ -1737,7 +1774,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:113</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:99</a></div>
                             </td>
                         </tr>
 
@@ -1776,7 +1813,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:120</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="106" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:106</a></div>
                             </td>
                         </tr>
 
@@ -1810,7 +1847,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="127" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:127</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:113</a></div>
                             </td>
                         </tr>
 
@@ -1844,7 +1881,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="99" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:99</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="85" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:85</a></div>
                             </td>
                         </tr>
 
@@ -1878,7 +1915,7 @@ and updates the info message and search info.</p>
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="134" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:134</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="120" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:120</a></div>
                             </td>
                         </tr>
 
@@ -1886,41 +1923,6 @@ and updates the info message and search info.</p>
                     <td class="col-md-4">
                         <div class="io-description"><p>Public variable: searchResultText.</p>
 <p>It keeps the info message about the search results.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="selectedResourceId"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            selectedResourceId</b>
-                            <a href="#selectedResourceId"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="78" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-result-list/search-result-list.component.ts:78</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: selectedResourceId.</p>
-<p>It keeps the id of the selected resource.</p>
 </div>
                     </td>
                 </tr>
@@ -1959,7 +1961,7 @@ import { ConversionService, DataStreamerService, SideInfoService } from &#x27;@a
     selector: &#x27;awg-search-result-list&#x27;,
     templateUrl: &#x27;./search-result-list.component.html&#x27;,
     styleUrls: [&#x27;./search-result-list.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.Default
+    changeDetection: ChangeDetectionStrategy.Default,
 })
 export class SearchResultListComponent implements OnInit, OnDestroy {
     /**
@@ -2004,20 +2006,6 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     @Output()
     viewChangeRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
-
-    /**
-     * Private variable: selectedResourceId.
-     *
-     * It keeps the id of the selected resource.
-     */
-    private selectedResourceId: string;
-
-    /**
-     * variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
 
     /**
      * Public variable: errorMessage.
@@ -2083,6 +2071,20 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
     faTable &#x3D; faTable;
 
     /**
+     * Private variable: _selectedResourceId.
+     *
+     * It keeps the id of the selected resource.
+     */
+    private _selectedResourceId: string;
+
+    /**
+     * Private variable: _destroy$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroy$: Subject&lt;boolean&gt; &#x3D; new Subject&lt;boolean&gt;();
+
+    /**
      * Constructor of the SearchResultListComponent.
      *
      * It declares private instances of the Angular FormBuilder,
@@ -2134,7 +2136,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      */
     createFormGroup(view: SearchParamsViewTypes): void {
         this.searchResultControlForm &#x3D; this.formBuilder.group({
-            searchResultViewControl: SearchParamsViewTypes[view]
+            searchResultViewControl: SearchParamsViewTypes[view],
         });
 
         this.listenToUserInputChange();
@@ -2159,14 +2161,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * Public method: isActiveResource.
      *
      * It compares a given resource id
-     * with the current selectedResourceId.
+     * with the current _selectedResourceId.
      *
      * @param {string} id The given resource id.
      *
      * @returns {boolean} The boolean value of the comparison result.
      */
     isActiveResource(id: string): boolean {
-        return this.selectedResourceId &#x3D;&#x3D;&#x3D; id;
+        return this._selectedResourceId &#x3D;&#x3D;&#x3D; id;
     }
 
     /**
@@ -2201,8 +2203,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Navigates to the resource.
      */
     navigateToResource(id: string): void {
-        this.selectedResourceId &#x3D; id;
-        this.router.navigate([&#x27;/data/resource&#x27;, this.selectedResourceId]);
+        this._selectedResourceId &#x3D; id;
+        this.router.navigate([&#x27;/data/resource&#x27;, this._selectedResourceId]);
     }
 
     /**
@@ -2275,22 +2277,22 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the search response with query data.
      */
     getSearchResponseWithQueryData(): void {
-        // cold request to streamer service
+        // Cold request to streamer service
         const searchResponseWithQuery$: Observable&lt;SearchResponseWithQuery&gt; &#x3D; this.dataStreamerService
             .getSearchResponseWithQuery()
-            .pipe(takeUntil(this.destroy$));
+            .pipe(takeUntil(this._destroy$));
 
-        // subscribe to response to handle changes
+        // Subscribe to response to handle changes
         searchResponseWithQuery$.subscribe(
             (searchResponseWithQuery: SearchResponseWithQuery) &#x3D;&gt; {
-                // update current search params (url, text, sideinfo) via streamer service
+                // Update current search params (url, text, sideinfo) via streamer service
                 this.updateSearchParams(searchResponseWithQuery);
 
                 this.setPagination();
             },
             error &#x3D;&gt; {
                 this.errorMessage &#x3D; error as any;
-                console.log(&#x27;SearchResultList# searchResultData subscription error: &#x27;, this.errorMessage);
+                console.error(&#x27;SearchResultList# searchResultData subscription error: &#x27;, this.errorMessage);
             }
         );
     }
@@ -2325,16 +2327,16 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
             return;
         }
 
-        // store search response and query
+        // Store search response and query
         this.searchResponseWithQuery &#x3D; { ...searchResponseWithQuery };
 
-        // update info message about the search results
+        // Update info message about the search results
         this.searchResultText &#x3D; this.conversionService.prepareFullTextSearchResultText(
             searchResponseWithQuery,
             this.searchUrl
         );
 
-        // update data for searchInfo via SideInfoService
+        // Update data for searchInfo via SideInfoService
         const searchInfo: SearchInfo &#x3D; new SearchInfo(this.searchResponseWithQuery.query, this.searchResultText);
         this.sideInfoService.updateSearchInfoData(searchInfo);
     }
@@ -2346,14 +2348,14 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * when destroying the component.
      */
     ngOnDestroy() {
-        // clear search info
+        // Clear search info
         this.sideInfoService.clearSearchInfoData();
 
-        // emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        // Emit truthy value to end all subscriptions
+        this._destroy$.next(true);
 
         // Now let&#x27;s also unsubscribe from the subject itself:
-        this.destroy$.unsubscribe();
+        this._destroy$.unsubscribe();
     }
 }
 </code></pre>

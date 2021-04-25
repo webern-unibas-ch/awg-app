@@ -336,7 +336,7 @@ to store information about a work of an edition.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.composition</code>
+                            <i>Default value : </i><code>EditionConstants.COMPOSITION</code>
                         </td>
                     </tr>
                         <tr>
@@ -374,7 +374,7 @@ to store information about a work of an edition.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionDetail</code>
+                            <i>Default value : </i><code>EditionConstants.EDITION_DETAIL</code>
                         </td>
                     </tr>
                         <tr>
@@ -412,7 +412,7 @@ to store information about a work of an edition.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.edition</code>
+                            <i>Default value : </i><code>EditionConstants.EDITION</code>
                         </td>
                     </tr>
                         <tr>
@@ -450,7 +450,7 @@ to store information about a work of an edition.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionGraph</code>
+                            <i>Default value : </i><code>EditionConstants.EDITION_GRAPH</code>
                         </td>
                     </tr>
                         <tr>
@@ -488,7 +488,7 @@ to store information about a work of an edition.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionIntro</code>
+                            <i>Default value : </i><code>EditionConstants.EDITION_INTRO</code>
                         </td>
                     </tr>
                         <tr>
@@ -526,7 +526,7 @@ to store information about a work of an edition.</p>
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionConstants.editionReport</code>
+                            <i>Default value : </i><code>EditionConstants.EDITION_REPORT</code>
                         </td>
                     </tr>
                         <tr>
@@ -838,32 +838,32 @@ export class EditionWork {
     /**
      * The edition route for edition.
      */
-    edition: EditionRoute &#x3D; EditionConstants.edition;
+    edition: EditionRoute &#x3D; EditionConstants.EDITION;
 
     /**
      * The edition route for composition.
      */
-    composition: EditionRoute &#x3D; EditionConstants.composition;
+    composition: EditionRoute &#x3D; EditionConstants.COMPOSITION;
 
     /**
      * The route to the graph section of an edition.
      */
-    graphRoute: EditionRoute &#x3D; EditionConstants.editionGraph;
+    graphRoute: EditionRoute &#x3D; EditionConstants.EDITION_GRAPH;
 
     /**
      * The route to the intro section of an edition.
      */
-    introRoute: EditionRoute &#x3D; EditionConstants.editionIntro;
+    introRoute: EditionRoute &#x3D; EditionConstants.EDITION_INTRO;
 
     /**
      * The route to the detail section of an edition.
      */
-    detailRoute: EditionRoute &#x3D; EditionConstants.editionDetail;
+    detailRoute: EditionRoute &#x3D; EditionConstants.EDITION_DETAIL;
 
     /**
      * The route to the report section of an edition.
      */
-    reportRoute: EditionRoute &#x3D; EditionConstants.editionReport;
+    reportRoute: EditionRoute &#x3D; EditionConstants.EDITION_REPORT;
 
     /**
      * The base route of a work.
@@ -897,11 +897,11 @@ export class EditionWork {
             return;
         }
 
-        // helper constants
+        // Helper constants
         const delimiter &#x3D; &#x27;/&#x27;;
         const spacer &#x3D; &#x27; &#x27;;
 
-        // set dynamic routes
+        // Set dynamic routes
         this.titleStatement &#x3D; titleStatement ? titleStatement : new EditionTitleStatement();
         this.responsibilityStatement &#x3D; responsibilityStatement
             ? responsibilityStatement
@@ -911,16 +911,16 @@ export class EditionWork {
         this.work.short &#x3D; this.titleStatement.catalogueType.short + spacer + this.titleStatement.catalogueNumber;
         this.work.full &#x3D; this.titleStatement.title + spacer + this.work.short;
 
-        this.series &#x3D; seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.series1;
-        this.section &#x3D; sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.section5;
-        this.type &#x3D; typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.sketchEdition;
+        this.series &#x3D; seriesRoute ? seriesRoute : new EditionRoute(); // EditionConstants.SERIES_1;
+        this.section &#x3D; sectionRoute ? sectionRoute : new EditionRoute(); // EditionConstants.SECTION_5;
+        this.type &#x3D; typeRoute ? typeRoute : new EditionRoute(); // EditionConstants.SKETCH_EDITION;
 
-        // set base route
+        // Set base route
         let rootPath &#x3D; this.edition.route; // &#x27;/edition&#x27;
-        // rootPath +&#x3D; this.series.route;     // &#x27;/series&#x27;
-        // rootPath +&#x3D; this.section.route;    // &#x27;/section&#x27;
+        // RootPath +&#x3D; this.series.route;     // &#x27;/series&#x27;
+        // RootPath +&#x3D; this.section.route;    // &#x27;/section&#x27;
         rootPath +&#x3D; this.composition.route; // &#x27;/composition&#x27;
-        // rootPath +&#x3D; this.type.route;       // &#x27;/sketches&#x27; or // &#x27;/texts&#x27;
+        // RootPath +&#x3D; this.type.route;       // &#x27;/sketches&#x27; or // &#x27;/texts&#x27;
 
         this.baseRoute &#x3D; rootPath + this.work.route + delimiter;
     }

@@ -84,12 +84,13 @@ import { RouterModule, Routes } from &#x27;@angular/router&#x27;;
 
 import { EditionReportComponent } from &#x27;./edition-report.component&#x27;;
 
-/* routes of the EditionReportModule */
+/* Routes of the EditionReportModule */
 const editionReportRoutes: Routes &#x3D; [
     {
         path: &#x27;&#x27;,
-        component: EditionReportComponent
-    }
+        component: EditionReportComponent,
+        data: { title: &#x27;AWG Online Edition – Report&#x27; },
+    },
 ];
 
 /**
@@ -105,7 +106,7 @@ export const routedEditionReportComponents &#x3D; [EditionReportComponent];
  */
 @NgModule({
     imports: [RouterModule.forChild(editionReportRoutes)],
-    exports: [RouterModule]
+    exports: [RouterModule],
 })
 export class EditionReportRoutingModule {}
 </code></pre>

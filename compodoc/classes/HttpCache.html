@@ -338,16 +338,16 @@ abstract class HttpCache {
  * and handles cached http responses.
  */
 @Injectable({
-    providedIn: &#x27;root&#x27;
+    providedIn: &#x27;root&#x27;,
 })
 export class HttpCacheService implements HttpCache {
     /**
-     * Private variable: cachedResponses.
+     * Private variable: _cachedResponses.
      *
-     * It keeps the cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
+     * It keeps the _cachedResponses as &#x60;Map&#x60;s of a &#x60;string&#x60;
      * (i.e. an &#x60;HttpRequest.urlWithParams&#x60;) and an &#x60;HttpResponse&#x60;.
      */
-    private cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
+    private _cachedResponses: Map&lt;string, HttpResponse&lt;any&gt;&gt; &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
 
     /**
      * Getter for a cached response.
@@ -359,8 +359,8 @@ export class HttpCacheService implements HttpCache {
      * @returns {HttpResponse&lt;any&gt; | null} A cached response or null.
      */
     get(req: HttpRequest&lt;any&gt;): HttpResponse&lt;any&gt; | null {
-        return this.cachedResponses &amp;&amp; this.cachedResponses.has(req.urlWithParams)
-            ? this.cachedResponses.get(req.urlWithParams)
+        return this._cachedResponses &amp;&amp; this._cachedResponses.has(req.urlWithParams)
+            ? this._cachedResponses.get(req.urlWithParams)
             : null;
     }
 
@@ -375,7 +375,7 @@ export class HttpCacheService implements HttpCache {
      * @returns {void} Caches the response.
      */
     put(req: HttpRequest&lt;any&gt;, resp: HttpResponse&lt;any&gt;): void {
-        this.cachedResponses.set(req.urlWithParams, resp.clone());
+        this._cachedResponses.set(req.urlWithParams, resp.clone());
     }
 }
 </code></pre>

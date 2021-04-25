@@ -1,27 +1,34 @@
 <!DOCTYPE html>
-<html lang="de">
+<html lang="de" prefix="og: https://ogp.me/ns#">
     <head>
-        <meta charset="utf-8" />
-        <title>Prototyp AWG Online-Edition</title>
+        <meta charset="utf-8"/>
 
-        <meta name="Autor" content="Stefan Münnich" />
-        <meta
-            name="description"
-            content="Prototypische Web-Applikation für die Online-Edition der Anton Webern Gesamtausgabe (Musikwissenschaftliches Seminar der Universität Basel)"
-        />
+        <meta property="og:image" content="https://www.anton-webern.ch/assets/images/AWG_Prototyp_Graph_Example.png"/>
+        <meta property="og:title" content="Anton Webern Gesamtausgabe Online Edition"/>
+        <meta property="og:description" content="A prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Department of the University of Basel)"/>
+        <meta property="og:type" content="website"/>
+        <meta property="og:url" content="https://edition.anton-webern.ch"/>
+        <meta property="og:site_name" content="AWG Online Edition"/>
 
-        <base href="https://edition.anton-webern.ch/">
+        <meta name="author" content="Stefan Münnich"/>
+        <meta name="description" content="A prototype web application for the online edition of the Anton Webern Gesamtausgabe (Musicological Department of the University of Basel)"/>
+        <meta name="keywords" content="Angular, Edition, Anton Webern Gesamtausgabe, Digital Humanities, Digital Musicology, Digital Music Edition"/>
 
-        <meta name="viewport" content="width=device-width, initial-scale=1" />
-        <link rel="icon" type="image/x-icon" href="favicon.ico" />
+        <title>AWG Online Edition</title>
+
+        <meta name="viewport" content="width=device-width, initial-scale=1"/>
+        <base href="https://edition.anton-webern.ch/"/>
+        <link rel="icon" type="image/x-icon" href="favicon.ico"/>
 
         <!-- Global site tag (gtag.js) - Google Analytics -->
         <script>
             window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
+            function gtag() {
+                dataLayer.push(arguments);
+            }
             gtag('js', new Date());
         </script>
-    <link rel="stylesheet" href="styles.ff743211ac08384daa18.css"></head>
+    <link rel="stylesheet" href="styles.5b3cce89f65e97fa7783.css"></head>
     <body>
         <awg-app>
             <!-- twelve tone spinner replaced after startup -->
@@ -48,5 +55,5 @@
                 </div>
             </div>
         </awg-app>
-    <script src="runtime-es2015.bea4ca3c47b20f0dfda0.js" type="module"></script><script src="runtime-es5.bea4ca3c47b20f0dfda0.js" nomodule defer></script><script src="polyfills-es5.ff19d6869e6cebd95f9a.js" nomodule defer></script><script src="polyfills-es2015.4bfafb2a3e0720a0607f.js" type="module"></script><script src="scripts.7e6a00e0ed7e5f5fa3cb.js" defer></script><script src="main-es2015.2c7f4b826aaf57d86e20.js" type="module"></script><script src="main-es5.2c7f4b826aaf57d86e20.js" nomodule defer></script></body>
+    <script src="runtime.98aa115b7b2c46202ca5.js" defer></script><script src="polyfills.0bd59f792f51985ba38e.js" defer></script><script src="scripts.4af578afad82031635a9.js" defer></script><script src="main.7584f07d3a518e212028.js" defer></script></body>
 </html>

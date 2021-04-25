@@ -299,16 +299,20 @@
     gtag: (
         event: string,
         eventName: string,
-        eventOptions: { page_path: string; anonymize_ip: boolean; send_page_view: boolean }
+        eventOptions: {
+            /* eslint-disable @typescript-eslint/naming-convention */
+            page_path: string;
+            anonymize_ip: boolean;
+            send_page_view: boolean;
+            /* eslint-enable @typescript-eslint/naming-convention */
+        }
     ): void &#x3D;&gt; {
         analyticsStore.push([event, eventName, eventOptions]);
     },
-    getGtag: (index: number): analyticsType &#x3D;&gt; {
-        return analyticsStore[index] || null;
-    },
+    getGtag: (index: number): analyticsType &#x3D;&gt; analyticsStore[index] || null,
     clear: () &#x3D;&gt; {
         analyticsStore &#x3D; [];
-    }
+    },
 }</code>
                         </td>
                     </tr>
@@ -379,7 +383,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;0.7.9&#x27;</code>
+                            <i>Default value : </i><code>&#x27;0.7.12&#x27;</code>
                         </td>
                     </tr>
 
@@ -412,7 +416,7 @@
                     </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;21. November 2020&#x27;</code>
+                            <i>Default value : </i><code>&#x27;25. April 2021&#x27;</code>
                         </td>
                     </tr>
 
@@ -450,7 +454,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
     left: { button: 0 },
-    right: { button: 2 }
+    right: { button: 2 },
 }</code>
                         </td>
                     </tr>
@@ -534,7 +538,7 @@
     },
     clear(): void {
         cachedResponses &#x3D; new Map&lt;string, HttpResponse&lt;any&gt;&gt;();
-    }
+    },
 }</code>
                         </td>
                     </tr>
@@ -617,7 +621,7 @@
 
     clear(): void {
         consoleMessages &#x3D; [];
-    }
+    },
 }</code>
                         </td>
                     </tr>
@@ -661,7 +665,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>compileHtml.currentId</p>
+                        <div class="io-description"><p>Variable: compileHtml.currentId</p>
 </div>
                     </td>
                 </tr>
@@ -689,7 +693,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>compileHtml.currentIdTime</p>
+                        <div class="io-description"><p>Variable: compileHtml.currentIdTime</p>
 </div>
                     </td>
                 </tr>
@@ -728,7 +732,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>compileHtml.nextId()</p>
+                        <div class="io-description"><p>Function: compileHtml.nextId()</p>
 </div>
                     </td>
                 </tr>
@@ -749,15 +753,14 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>(): string &#x3D;&gt; {
-    return (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
-}</code>
+                            <i>Default value : </i><code>(): string &#x3D;&gt;
+    (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16)</code>
                         </td>
                     </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>compileHtml.random()</p>
+                        <div class="io-description"><p>Function: compileHtml.random()</p>
 </div>
                     </td>
                 </tr>
@@ -784,7 +787,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>compileHtml.reverse(str)</p>
+                        <div class="io-description"><p>Function: compileHtml.reverse(str)</p>
 </div>
                     </td>
                 </tr>
@@ -825,19 +828,18 @@
      * @returns {CustomMatcher} The custom matcher instance.
      */
     toHaveCssClass(util: MatchersUtil, customEqualityTester: CustomEqualityTester[]): CustomMatcher {
-        return { compare: buildError(false), negativeCompare: buildError(true) };
-
         function buildError(isNot: boolean) {
-            return (actual: HTMLElement, className: string): CustomMatcherResult &#x3D;&gt; {
-                return {
-                    pass: actual.classList.contains(className) &#x3D;&#x3D;&#x3D; !isNot,
-                    message: &#x60;Expected ${actual.outerHTML} ${
-                        isNot ? &#x27;not &#x27; : &#x27;&#x27;
-                    }to contain the CSS class &quot;${className}&quot;&#x60;
-                };
-            };
+            return (actual: HTMLElement, className: string): CustomMatcherResult &#x3D;&gt; ({
+                pass: actual.classList.contains(className) &#x3D;&#x3D;&#x3D; !isNot,
+                message: &#x60;Expected ${actual.outerHTML} ${isNot ? &#x27;not &#x27; : &#x27;&#x27;}to contain the CSS class &quot;${className}&quot;&#x60;,
+            });
         }
-    }
+
+        return {
+            compare: buildError(false),
+            negativeCompare: buildError(true),
+        };
+    },
 }</code>
                         </td>
                     </tr>
@@ -939,7 +941,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
     production: true,
-    GA_SEND_PAGE_VIEW: true
+    GA_SEND_PAGE_VIEW: true,
 }</code>
                         </td>
                     </tr>
@@ -980,7 +982,7 @@
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
     production: false,
-    GA_SEND_PAGE_VIEW: false
+    GA_SEND_PAGE_VIEW: false,
 }</code>
                         </td>
                     </tr>
@@ -1022,7 +1024,7 @@
                             <i>Default value : </i><code>{
     LINK_DISTANCE: 50,
     COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -3
+    CHARGE_STRENGTH: -3,
 }</code>
                         </td>
                     </tr>
@@ -1064,7 +1066,7 @@
                             <i>Default value : </i><code>{
     LINK_DISTANCE: 1 / 50,
     COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -1
+    CHARGE_STRENGTH: -1,
 }</code>
                         </td>
                     </tr>
@@ -1104,7 +1106,7 @@
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>gtag function for Analytics.</p>
+                        <div class="io-description"><p>The global gtag variable for Analytics.</p>
 </div>
                     </td>
                 </tr>
@@ -1138,20 +1140,20 @@
     {
         provide: HTTP_INTERCEPTORS,
         useClass: CachingInterceptor,
-        multi: true
+        multi: true,
     },
     {
         provide: HTTP_INTERCEPTORS,
         useClass: LoadingInterceptor,
-        multi: true
-    }
+        multi: true,
+    },
 ]</code>
                         </td>
                     </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>httpInterceptorProviders for the data (search) view.</p>
+                        <div class="io-description"><p>HttpInterceptorProviders for the data (search) view.</p>
 <p>They allow to intercept and cache the search requests
 using the <a href="../interceptors/CachingInterceptor.html">CachingInterceptor</a> and to
 update the loading status using the <a href="../interceptors/LoadingInterceptor.html">LoadingInterceptor</a>.</p>
@@ -1219,9 +1221,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-    getItem: (key: string): string &#x3D;&gt; {
-        return key in localStore ? localStore[key] : null;
-    },
+    getItem: (key: string): string &#x3D;&gt; (key in localStore ? localStore[key] : null),
     setItem: (key: string, value: string) &#x3D;&gt; {
         localStore[key] &#x3D; &#x60;${value}&#x60;;
     },
@@ -1230,7 +1230,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     },
     clear: () &#x3D;&gt; {
         localStore &#x3D; {};
-    }
+    },
 }</code>
                         </td>
                     </tr>
@@ -1266,9 +1266,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-    getItem: (key: string): string &#x3D;&gt; {
-        return key in sessionStore ? sessionStore[key] : null;
-    },
+    getItem: (key: string): string &#x3D;&gt; (key in sessionStore ? sessionStore[key] : null),
     setItem: (key: string, value: string) &#x3D;&gt; {
         sessionStore[key] &#x3D; &#x60;${value}&#x60;;
     },
@@ -1277,7 +1275,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     },
     clear: () &#x3D;&gt; {
         sessionStore &#x3D; {};
-    }
+    },
 }</code>
                         </td>
                     </tr>
@@ -1354,44 +1352,44 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         id: &#x27;angularlogo&#x27;,
         src: &#x27;assets/img/logos/angular.svg&#x27;,
         alt: &#x27;Logo Angular&#x27;,
-        href: &#x27;https://angular.io&#x27;
+        href: &#x27;https://angular.io&#x27;,
     },
     bootstrap: {
         id: &#x27;bootstraplogo&#x27;,
         src: &#x27;assets/img/logos/ng-bootstrap.svg&#x27;,
         alt: &#x27;Logo ng-Bootstrap&#x27;,
-        href: &#x27;https://ng-bootstrap.github.io/&#x27;
+        href: &#x27;https://ng-bootstrap.github.io/&#x27;,
     },
     github: {
         id: &#x27;githublogo&#x27;,
         src: &#x27;assets/img/logos/github.svg&#x27;,
         alt: &#x27;Logo GitHub&#x27;,
-        href: &#x27;https://github.com/webern-unibas-ch/awg-app&#x27;
+        href: &#x27;https://github.com/webern-unibas-ch/awg-app&#x27;,
     },
     sagw: {
         id: &#x27;sagwlogo&#x27;,
         src: &#x27;assets/img/logos/sagw.jpg&#x27;,
         alt: &#x27;Logo SAGW&#x27;,
-        href: &#x27;https://sagw.ch/sagw/&#x27;
+        href: &#x27;https://sagw.ch/sagw/&#x27;,
     },
     snf: {
         id: &#x27;snflogo&#x27;,
         src: &#x27;assets/img/logos/snf.png&#x27;,
         alt: &#x27;Logo SNF&#x27;,
-        href: &#x27;http://www.snf.ch&#x27;
+        href: &#x27;http://www.snf.ch&#x27;,
     },
     sparql: {
         id: &#x27;sparqllogo&#x27;,
         src: &#x27;assets/img/logos/sparql.svg&#x27;,
         alt: &#x27;Logo SPARQL&#x27;,
-        href: &#x27;https://www.w3.org/TR/sparql11-query/&#x27;
+        href: &#x27;https://www.w3.org/TR/sparql11-query/&#x27;,
     },
     unibas: {
         id: &#x27;unibaslogo&#x27;,
         src: &#x27;assets/img/logos/uni.svg&#x27;,
         alt: &#x27;Logo Uni Basel&#x27;,
-        href: &#x27;https://www.unibas.ch&#x27;
-    }
+        href: &#x27;https://www.unibas.ch&#x27;,
+    },
 }</code>
                         </td>
                     </tr>
@@ -1436,17 +1434,17 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         street: &#x27;Petersgraben 27/29&#x27;,
         postalCode: &#x27;CH-4051&#x27;,
         city: &#x27;Basel&#x27;,
-        country: &#x27;Schweiz&#x27;
+        country: &#x27;Schweiz&#x27;,
     },
     phone: {
         label: &#x27;Telefon:&#x27;,
-        number: &#x27;+41 (0)61 207 28 21&#x27;
+        number: &#x27;+41 (0)61 207 28 21&#x27;,
     },
     email: {
         label: &#x27;E-Mail:&#x27;,
         mailto: &#x27;mailto:info-awg@unibas.ch&#x27;,
-        safeString: &#x27;info-awg [at] unibas [dot] ch&#x27;
-    }
+        safeString: &#x27;info-awg [at] unibas [dot] ch&#x27;,
+    },
 }</code>
                         </td>
                     </tr>
@@ -1484,7 +1482,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                             <i>Default value : </i><code>{
     page: METAPAGE,
     structure: METASTRUCTURE,
-    contact: METACONTACT
+    contact: METACONTACT,
 }</code>
                         </td>
                     </tr>
@@ -1529,7 +1527,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     version: AppConfig.AWG_APP_VERSION,
     versionReleaseDate: AppConfig.AWG_APP_VERSION_RELEASE_DATE,
     awgProjectUrl: AppConfig.AWG_PROJECT_URL,
-    awgProjectName: AppConfig.AWG_PROJECT_NAME
+    awgProjectName: AppConfig.AWG_PROJECT_NAME,
 }</code>
                         </td>
                     </tr>
@@ -1568,10 +1566,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     authors: [
         {
             name: &#x27;Stefan Münnich&#x27;,
-            homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;
-        }
+            homepage: AppConfig.AWG_PROJECT_URL + &#x27;index.php?id&#x3D;3&#x27;,
+        },
     ],
-    lastModified: &#x27;29. Januar 2016&#x27;
+    lastModified: &#x27;29. Januar 2016&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -1621,7 +1619,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             nx: 0,
             ny: 0,
             duration: &#x27;0.000&#x27;,
-            fps: &#x27;0.000&#x27;
+            fps: &#x27;0.000&#x27;,
         },
         {
             path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
@@ -1631,8 +1629,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             nx: 0,
             ny: 0,
             duration: &#x27;0.000&#x27;,
-            fps: &#x27;0.000&#x27;
-        }
+            fps: &#x27;0.000&#x27;,
+        },
     ],
     locations: [
         [
@@ -1644,7 +1642,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: &#x27;0.000&#x27;,
-                fps: &#x27;0.000&#x27;
+                fps: &#x27;0.000&#x27;,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
@@ -1654,7 +1652,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
@@ -1664,7 +1662,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
@@ -1674,7 +1672,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
@@ -1684,7 +1682,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
@@ -1694,7 +1692,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
@@ -1704,8 +1702,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
-            }
+                fps: 0,
+            },
         ],
         [
             {
@@ -1716,7 +1714,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: &#x27;0.000&#x27;,
-                fps: &#x27;0.000&#x27;
+                fps: &#x27;0.000&#x27;,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
@@ -1726,7 +1724,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
@@ -1736,7 +1734,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
@@ -1746,7 +1744,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
@@ -1756,7 +1754,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
@@ -1766,7 +1764,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
+                fps: 0,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
@@ -1776,9 +1774,9 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: 0,
-                fps: 0
-            }
-        ]
+                fps: 0,
+            },
+        ],
     ],
     firstprop: [&#x27;Programm_Prag_19350109_Bild_1_2&#x27;, &#x27;Programm_Prag_19350109_Bild_2_2&#x27;],
     region: [&#x27;&#x27;, &#x27;&#x27;],
@@ -1801,9 +1799,9 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         lastmod: &#x27;2017-12-05 15:16:17&#x27;,
         lastmod_utc: &#x27;2017-12-05 14:16:17&#x27;,
         value_of: 0,
-        firstproperty: &#x27;[Programm:] Sdru\u017een\u00ed pro soudobou houdbu v Praze&#x27;
+        firstproperty: &#x27;[Programm:] Sdru\u017een\u00ed pro soudobou houdbu v Praze&#x27;,
     },
-    canonical_res_id: &#x27;2173561&#x27;
+    canonical_res_id: &#x27;2173561&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -1845,7 +1843,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                             <i>Default value : </i><code>{
     status: 0,
     userdata: {
-        lang: &#x27;en&#x27;
+        lang: &#x27;en&#x27;,
     },
     resource_context: {
         res_id: [&#x27;2173574&#x27;, &#x27;2173577&#x27;],
@@ -1859,7 +1857,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: &#x27;0.000&#x27;,
-                fps: &#x27;0.000&#x27;
+                fps: &#x27;0.000&#x27;,
             },
             {
                 path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
@@ -1869,8 +1867,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 nx: 0,
                 ny: 0,
                 duration: &#x27;0.000&#x27;,
-                fps: &#x27;0.000&#x27;
-            }
+                fps: &#x27;0.000&#x27;,
+            },
         ],
         locations: [
             [
@@ -1882,7 +1880,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: &#x27;0.000&#x27;,
-                    fps: &#x27;0.000&#x27;
+                    fps: &#x27;0.000&#x27;,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
@@ -1892,7 +1890,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
@@ -1902,7 +1900,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
@@ -1912,7 +1910,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
@@ -1922,7 +1920,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
@@ -1932,7 +1930,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
@@ -1942,8 +1940,8 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
-                }
+                    fps: 0,
+                },
             ],
             [
                 {
@@ -1954,7 +1952,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: &#x27;0.000&#x27;,
-                    fps: &#x27;0.000&#x27;
+                    fps: &#x27;0.000&#x27;,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
@@ -1964,7 +1962,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
@@ -1974,7 +1972,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
@@ -1984,7 +1982,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
@@ -1994,7 +1992,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
@@ -2004,7 +2002,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
+                    fps: 0,
                 },
                 {
                     path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
@@ -2014,9 +2012,9 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     nx: 0,
                     ny: 0,
                     duration: 0,
-                    fps: 0
-                }
-            ]
+                    fps: 0,
+                },
+            ],
         ],
         firstprop: [&#x27;Programm_Prag_19350109_Bild_1_2&#x27;, &#x27;Programm_Prag_19350109_Bild_2_2&#x27;],
         region: [&#x27;&#x27;, &#x27;&#x27;],
@@ -2039,10 +2037,10 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             lastmod: &#x27;2017-12-05 15:16:17&#x27;,
             lastmod_utc: &#x27;2017-12-05 14:16:17&#x27;,
             value_of: 0,
-            firstproperty: &#x27;[Programm:] Sdru\u017een\u00ed pro soudobou houdbu v Praze&#x27;
+            firstproperty: &#x27;[Programm:] Sdru\u017een\u00ed pro soudobou houdbu v Praze&#x27;,
         },
-        canonical_res_id: &#x27;2173561&#x27;
-    }
+        canonical_res_id: &#x27;2173561&#x27;,
+    },
 }</code>
                         </td>
                     </tr>
@@ -2088,7 +2086,7 @@ response from the Salsah API.</p>
         icon: &#x27;https://www.salsah.org:443/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;125&#x27;,
         type: &#x27;Supplement&#x27;,
         lastmod: &#x27;2017-12-05 15:16:17&#x27;,
-        title: &#x27;[Programm:] Sdružení pro soudobou houdbu v Praze&lt;br/&gt;[Mi] 9. Jan 1935&#x27;
+        title: &#x27;[Programm:] Sdružení pro soudobou houdbu v Praze&lt;br/&gt;[Mi] 9. Jan 1935&#x27;,
     },
     content: {
         props: [
@@ -2096,80 +2094,80 @@ response from the Salsah API.</p>
                 pid: &#x27;1&#x27;,
                 guielement: &#x27;text&#x27;,
                 label: &#x27;Title&#x27;,
-                values: [&#x27;[Programm:] Sdružení pro soudobou houdbu v Praze&#x27;]
+                values: [&#x27;[Programm:] Sdružení pro soudobou houdbu v Praze&#x27;],
             },
             {
                 pid: &#x27;597&#x27;,
                 guielement: &#x27;pulldown&#x27;,
                 label: &#x27;Art&#x27;,
-                values: [&#x27;Programm&#x27;]
+                values: [&#x27;Programm&#x27;],
             },
             {
                 pid: &#x27;25&#x27;,
                 guielement: &#x27;text&#x27;,
                 label: &#x27;Creator&#x27;,
-                values: [&#x27;&#x27;]
+                values: [&#x27;&#x27;],
             },
             {
                 pid: &#x27;43&#x27;,
                 guielement: &#x27;text&#x27;,
                 label: &#x27;Ort&#x27;,
-                values: [&#x27;Prag&#x27;]
+                values: [&#x27;Prag&#x27;],
             },
             {
                 pid: &#x27;46&#x27;,
                 guielement: &#x27;date&#x27;,
                 label: &#x27;Date&#x27;,
-                values: [&#x27;[Mi] 9. Jan 1935&#x27;]
+                values: [&#x27;[Mi] 9. Jan 1935&#x27;],
             },
             {
                 pid: &#x27;200&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Standort des physischen Originals&#x27;,
-                values: [null]
+                values: [null],
             },
             {
                 pid: &#x27;192&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Beschreibung&#x27;,
-                values: [null]
+                values: [null],
             },
             {
                 pid: &#x27;221&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Inhalt&#x27;,
-                values: [&#x27;&lt;p&gt;[Programm:] Sdružení pro soudobou houdbu v Praze&lt;/p&gt;&#x27;]
+                values: [&#x27;&lt;p&gt;[Programm:] Sdružení pro soudobou houdbu v Praze&lt;/p&gt;&#x27;],
             },
             {
                 pid: &#x27;604&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Transkription&#x27;,
-                values: [null]
+                values: [null],
             },
             {
                 pid: &#x27;92&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Literaturnachweis&#x27;,
-                values: [null]
+                values: [null],
             },
             {
                 pid: &#x27;603&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;andere Quellen&#x27;,
-                values: [null]
+                values: [null],
             },
             {
                 pid: &#x27;193&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Quelle&#x27;,
-                values: [null]
+                values: [null],
             },
             {
                 pid: &#x27;199&#x27;,
                 guielement: &#x27;richtext&#x27;,
                 label: &#x27;Kommentar&#x27;,
-                values: [null]
-            }
+                values: [null],
+            },
         ],
         images: [
             {
@@ -2178,7 +2176,7 @@ response from the Salsah API.</p>
                 big: &#x27;https://www.salsah.org:443/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
                 description: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 url: &#x27;https://www.salsah.org:443/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
-                label: &#x27;Programm_Prag_19350109_Bild_1_2&#x27;
+                label: &#x27;Programm_Prag_19350109_Bild_1_2&#x27;,
             },
             {
                 small: &#x27;https://www.salsah.org:443/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
@@ -2186,8 +2184,8 @@ response from the Salsah API.</p>
                 big: &#x27;https://www.salsah.org:443/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
                 description: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 url: &#x27;https://www.salsah.org:443/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
-                label: &#x27;Programm_Prag_19350109_Bild_2_2&#x27;
-            }
+                label: &#x27;Programm_Prag_19350109_Bild_2_2&#x27;,
+            },
         ],
         incoming: [
             {
@@ -2201,13 +2199,13 @@ response from the Salsah API.</p>
                             id: &#x27;28&#x27;,
                             label: &#x27;Chronologie&#x27;,
                             icon:
-                                &#x27;https://www.salsah.org:443/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;28&#x27;
-                        }
-                    }
-                ]
-            }
-        ]
-    }
+                                &#x27;https://www.salsah.org:443/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;28&#x27;,
+                        },
+                    },
+                ],
+            },
+        ],
+    },
 }</code>
                         </td>
                     </tr>
@@ -2265,7 +2263,7 @@ response from the conversion service.</p>
         resclass_has_location: false,
         lastmod: &#x27;2017-04-04 15:25:54&#x27;,
         lastmod_utc: &#x27;2017-04-04 13:25:54&#x27;,
-        value_of: 0
+        value_of: 0,
     },
     resdata: {
         res_id: &#x27;11398&#x27;,
@@ -2273,7 +2271,7 @@ response from the conversion service.</p>
         restype_label: &#x27;Musikstück (Moldenhauer-Nummer)&#x27;,
         iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;36&#x27;,
         resclass_name: &#x27;object&#x27;,
-        rights: &#x27;2&#x27;
+        rights: &#x27;2&#x27;,
     },
     props: {
         &#x27;webern:mnr&#x27;: {
@@ -2291,7 +2289,7 @@ response from the conversion service.</p>
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
+            value_firstprops: [&#x27;&#x27;],
         },
         &#x27;dc:title&#x27;: {
             pid: &#x27;1&#x27;,
@@ -2308,7 +2306,7 @@ response from the conversion service.</p>
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
+            value_firstprops: [&#x27;&#x27;],
         },
         &#x27;webern:date_composition&#x27;: {
             pid: &#x27;97&#x27;,
@@ -2325,15 +2323,15 @@ response from the conversion service.</p>
                     dateval2: &#x27;2416480&#x27;,
                     calendar: &#x27;GREGORIAN&#x27;,
                     dateprecision1: &#x27;YEAR&#x27;,
-                    dateprecision2: &#x27;YEAR&#x27;
-                }
+                    dateprecision2: &#x27;YEAR&#x27;,
+                },
             ],
             value_ids: [&#x27;67654&#x27;],
             comments: [&#x27;1903] &#x27;],
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
+            value_firstprops: [&#x27;&#x27;],
         },
         &#x27;webern:performance&#x27;: {
             pid: &#x27;94&#x27;,
@@ -2343,7 +2341,7 @@ response from the conversion service.</p>
             is_annotation: &#x27;0&#x27;,
             label: &#x27;Aufführungen&#x27;,
             attributes: &#x27;restypeid&#x3D;28;numprops&#x3D;1&#x27;,
-            occurrence: &#x27;0-n&#x27;
+            occurrence: &#x27;0-n&#x27;,
         },
         &#x27;webern:date_firstpublication&#x27;: {
             pid: &#x27;96&#x27;,
@@ -2353,7 +2351,7 @@ response from the conversion service.</p>
             is_annotation: &#x27;0&#x27;,
             label: &#x27;Datum der Erstpublikation&#x27;,
             attributes: null,
-            occurrence: &#x27;0-1&#x27;
+            occurrence: &#x27;0-1&#x27;,
         },
         &#x27;webern:firstpublisher&#x27;: {
             pid: &#x27;95&#x27;,
@@ -2363,7 +2361,7 @@ response from the conversion service.</p>
             is_annotation: &#x27;0&#x27;,
             label: &#x27;Erstverlag&#x27;,
             attributes: null,
-            occurrence: &#x27;0-1&#x27;
+            occurrence: &#x27;0-1&#x27;,
         },
         &#x27;webern:instrumentation_rt&#x27;: {
             pid: &#x27;196&#x27;,
@@ -2379,15 +2377,15 @@ response from the conversion service.</p>
                     utf8str: &#x27;Ges, Kl&#x27;,
                     textattr: &#x27;{}&#x27;,
                     resource_reference: [],
-                    resid: &#x27;26396&#x27;
-                }
+                    resid: &#x27;26396&#x27;,
+                },
             ],
             value_ids: [&#x27;135434&#x27;],
             comments: [&#x27;&#x27;],
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
+            value_firstprops: [&#x27;&#x27;],
         },
         &#x27;dc:source_rt&#x27;: {
             pid: &#x27;193&#x27;,
@@ -2404,15 +2402,15 @@ response from the conversion service.</p>
                         &#x27;[&quot;Du träumst so süss im Sommerwind&quot;: Skizze, 2 S., Bleistift mit zahlreichen Korrekturen] Stiftung Martin Bodmer-Bibliotheca Bodmeriana / Genf (Signatur Ms 11706)\r&#x27;,
                     textattr: &#x27;{&quot;p&quot;:[{&quot;start&quot;:0,&quot;end&quot;:163}]}&#x27;,
                     resource_reference: [],
-                    resid: &#x27;2426569&#x27;
-                }
+                    resid: &#x27;2426569&#x27;,
+                },
             ],
             value_ids: [&#x27;135430&#x27;],
             comments: [&#x27;&#x27;],
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
+            value_firstprops: [&#x27;&#x27;],
         },
         &#x27;webern:textsource_rt&#x27;: {
             pid: &#x27;198&#x27;,
@@ -2429,15 +2427,15 @@ response from the conversion service.</p>
                         &#x27;Franz Evers, Erntelieder, Leipzig 1901. (Vgl. auch Conrad Ansorge, Erntelieder op. 18, Berlin 1908: Nr. 3.)\r&#x27;,
                     textattr: &#x27;{&quot;italic&quot;:[{&quot;start&quot;:13,&quot;end&quot;:24},{&quot;start&quot;:67,&quot;end&quot;:78}],&quot;p&quot;:[{&quot;start&quot;:0,&quot;end&quot;:108}]}&#x27;,
                     resource_reference: [],
-                    resid: &#x27;2426570&#x27;
-                }
+                    resid: &#x27;2426570&#x27;,
+                },
             ],
             value_ids: [&#x27;135438&#x27;],
             comments: [&#x27;&#x27;],
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
+            value_firstprops: [&#x27;&#x27;],
         },
         &#x27;salsah:comment_rt&#x27;: {
             pid: &#x27;199&#x27;,
@@ -2453,16 +2451,16 @@ response from the conversion service.</p>
                     utf8str: &#x27;Moldenhauer 1980, S. 655, liest &quot;Du träumst so heiß im Sommerwind&quot;.\r&#x27;,
                     textattr: &#x27;{&quot;p&quot;:[{&quot;start&quot;:0,&quot;end&quot;:68}]}&#x27;,
                     resource_reference: [],
-                    resid: &#x27;2426571&#x27;
-                }
+                    resid: &#x27;2426571&#x27;,
+                },
             ],
             value_ids: [&#x27;135442&#x27;],
             comments: [&#x27;&#x27;],
             value_rights: [&#x27;1&#x27;],
             value_iconsrcs: [&#x27;&#x27;],
             value_restype: [&#x27;&#x27;],
-            value_firstprops: [&#x27;&#x27;]
-        }
+            value_firstprops: [&#x27;&#x27;],
+        },
     },
     incoming: [],
     access: &#x27;OK&#x27;,
@@ -2470,8 +2468,8 @@ response from the conversion service.</p>
     userdata: {
         lang: &#x27;en&#x27;,
         language_id: &#x27;4&#x27;,
-        PHPSESSION: &#x27;TRUE&#x27;
-    }
+        PHPSESSION: &#x27;TRUE&#x27;,
+    },
 }</code>
                         </td>
                     </tr>
@@ -2514,15 +2512,15 @@ from the Salsah API.</p>
                             <i>Default value : </i><code>{
     status: 0,
     userdata: {
-        lang: &#x27;en&#x27;
+        lang: &#x27;en&#x27;,
     },
     nhits: &#x27;5&#x27;,
     paging: [
         {
             current: true,
             show_nrows: 10,
-            start_at: 0
-        }
+            start_at: 0,
+        },
     ],
     subjects: [
         {
@@ -2534,7 +2532,7 @@ from the Salsah API.</p>
                 &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Test&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2545,7 +2543,7 @@ from the Salsah API.</p>
                 &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Oliveira Sampaio 2000&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2556,7 +2554,7 @@ from the Salsah API.</p>
                 &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Nelson 1974&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2567,7 +2565,7 @@ from the Salsah API.</p>
                 &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;BrownJ 2014&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2578,13 +2576,13 @@ from the Salsah API.</p>
                 &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Auer 2017&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
-        }
+            valuetype_id: [&#x27;1&#x27;],
+        },
     ],
     thumb_max: {
         nx: 32,
-        ny: 32
-    }
+        ny: 32,
+    },
 }</code>
                         </td>
                     </tr>
@@ -2634,15 +2632,15 @@ response from the Salsah API.</p>
         password: undefined,
         status: undefined,
         token: undefined,
-        user_id: undefined
+        user_id: undefined,
     },
     nhits: &#x27;5&#x27;,
     paging: [
         {
             current: true,
             show_nrows: 10,
-            start_at: 0
-        }
+            start_at: 0,
+        },
     ],
     subjects: [
         {
@@ -2657,7 +2655,7 @@ response from the Salsah API.</p>
             rights: undefined,
             value: [&#x27;Auer 2017&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2671,7 +2669,7 @@ response from the Salsah API.</p>
             rights: undefined,
             value: [&#x27;Nelson 1974&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2685,7 +2683,7 @@ response from the Salsah API.</p>
             rights: undefined,
             value: [&#x27;Test&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2699,7 +2697,7 @@ response from the Salsah API.</p>
             rights: undefined,
             value: [&#x27;BrownJ 2014&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
+            valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
@@ -2713,13 +2711,13 @@ response from the Salsah API.</p>
             rights: undefined,
             value: [&#x27;Oliveira Sampaio 2000&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
-            valuetype_id: [&#x27;1&#x27;]
-        }
+            valuetype_id: [&#x27;1&#x27;],
+        },
     ],
     thumb_max: {
         nx: 32,
-        ny: 32
-    }
+        ny: 32,
+    },
 }</code>
                         </td>
                     </tr>
@@ -2763,12 +2761,10 @@ from the Salsah API.</p>
     postMessage: (value: { gnd: string }, messageTarget: string) &#x3D;&gt; {
         windowStore.push([value, messageTarget]);
     },
-    get: (index: number): postMessageType &#x3D;&gt; {
-        return windowStore[index];
-    },
+    get: (index: number): postMessageType &#x3D;&gt; windowStore[index],
     clear: () &#x3D;&gt; {
         windowStore &#x3D; [];
-    }
+    },
 }</code>
                         </td>
                     </tr>
@@ -2841,19 +2837,19 @@ from the Salsah API.</p>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
-    op12_sourceNotA:
+    OP12_SOURCE_NOT_A:
         &#x27;&lt;p&gt;Die Beschreibung der weiteren Quellenbestandteile von &lt;strong&gt;A&lt;/strong&gt; sowie der Quellen &lt;strong&gt;B&lt;/strong&gt; bis &lt;strong&gt;G1&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
-    op12_sheetComingSoon:
+    OP12_SHEET_COMING_SOON:
         &#x27;Die edierten Notentexte von &lt;strong&gt;Aa:SkI/1&lt;/strong&gt;, &lt;strong&gt;Ab:SkII/1&lt;/strong&gt;, &lt;strong&gt;Ac:SkIII/1&lt;/strong&gt; und &lt;strong&gt;Ac:SkIII/7&lt;/strong&gt; sowie &lt;strong&gt;Ae:SkIV/1&lt;/strong&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.&#x27;,
-    op12_editionComingSoon:
+    OP12_EDITION_COMING_SOON:
         &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;none&quot;&gt;&lt;li&gt;Werkedition der Druckfassung der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 &lt;br/&gt; Textedition von Nr. I „&lt;i&gt;Der Tag ist vergangen&lt;/i&gt;“ (Fassung 1) &lt;br/&gt; Textedition von Nr. I „&lt;i&gt;Der Tag ist vergangen&lt;/i&gt;“ (Fassung 2) &lt;br/&gt; Textedition von Nr. IV &lt;i&gt;Gleich und Gleich&lt;/i&gt; (Fassung 1) &lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
-    op25_sheetComingSoon:
+    OP25_SHEET_COMING_SOON:
         &#x27;Die edierten Notentexte weiterer Skizzen der &lt;i&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/i&gt; op. 25 erscheinen in Kürze (02/2020).&#x27;,
-    op25_sourceNotA:
+    OP25_SOURCE_NOT_A:
         &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;B&lt;/strong&gt; sowie &lt;strong&gt;D–E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;i&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/i&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
     M198:
         &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;,
-    hintEditionDetail:
+    HINT_EDITION_DETAIL:
         &#x27;&lt;p&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
         &#x27;        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter &lt;i&gt;Edierter Notentext&lt;/i&gt; aufrufen.&lt;br /&gt;\n&#x27; +
@@ -2861,14 +2857,14 @@ from the Salsah API.</p>
         &#x27;        Die größeren Boxen im Notentext markieren die jeweiligen Anschlüsse unmittelbar benachbarter Skizzen und sind ebenfalls verknüpft.&lt;br /&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;text-danger&quot;&gt;Diese Funktionalität ist noch nicht für alle Skizzenbestandteile vorhanden, wird aber sukzessive ergänzt.&lt;/span&gt;\n&#x27; +
         &#x27;    &lt;/p&gt;&#x27;,
-    hintEditionGraph:
+    HINT_EDITION_GRAPH:
         &#x27;&lt;p&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
         &#x27;        &lt;i&gt;RDF Triples&lt;/i&gt;: Das Resource Description Framework (&lt;i&gt;RDF&lt;/i&gt;) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form &lt;i&gt;&amp;lt;SUBJEKT&amp;gt; &amp;lt;PRÄDIKAT&amp;gt; &amp;lt;OBJEKT&amp;gt;&lt;/i&gt;, die auch als &lt;i&gt;Triple&lt;/i&gt; bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt &lt;i&gt;RDF Triples&lt;/i&gt; sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot;&gt;https://www.w3.org/RDF/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
         &#x27;        &lt;i&gt;SPARQL Abfrage&lt;/i&gt;: Die SPARQL Protocol And RDF Query Language (&lt;i&gt;SPARQL&lt;/i&gt;) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des &lt;i&gt;graph pattern matching&lt;/i&gt; der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt &lt;i&gt;SPARQL Abfrage&lt;/i&gt; lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot;&gt;https://www.w3.org/TR/sparql11-query/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
         &#x27;\n&#x27; +
         &#x27;        &lt;i&gt;Resultat&lt;/i&gt;: Der durch die &lt;i&gt;SPARQL Abfrage&lt;/i&gt; über die &lt;i&gt;RDF Triples&lt;/i&gt; zurückgelieferte Datensatz wird unter dem Punkt &lt;i&gt;Resultat&lt;/i&gt; als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek &lt;a href&#x3D;&quot;https://d3js.org/&quot;&gt;d3.js&lt;/a&gt; visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch &quot;Ziehen&quot; mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.&lt;br /&gt;\n&#x27; +
-        &#x27;    &lt;/p&gt;&#x27;
+        &#x27;    &lt;/p&gt;&#x27;,
 }</code>
                         </td>
                     </tr>
@@ -2878,13 +2874,14 @@ from the Salsah API.</p>
                         <div class="io-description"><p>Object constant with a set of modal texts.</p>
 <p>It provides the text snippets to be used in a modal.</p>
 <p>Available snippet keys:
-          <code>op12_sourceNotA</code>,
-          <code>op12_sheetComingSoon</code>,
-          <code>op12_editionComingSoon</code>,
-          <code>op25_sheetComingSoon</code>,
-          <code>op25_sourceNotA</code>,
+          <code>OP12_SOURCE_NOT_A</code>,
+          <code>OP12_SHEET_COMING_SOON</code>,
+          <code>OP12_EDITION_COMING_SOON</code>,
+          <code>OP25_SHEET_COMING_SOON</code>,
+          <code>OP25_SOURCE_NOT_A</code>,
           <code>M198</code>,
-          <code>hintEditionDetail</code>.</p>
+          <code>HINT_EDITION_DETAIL</code>,
+          <code>HINT_EDITION_GRAPH</code>.</p>
 </div>
                     </td>
                 </tr>
@@ -3024,7 +3021,7 @@ from the Salsah API.</p>
     DataViewComponent,
     SearchOverviewComponent,
     SearchPanelComponent,
-    ResourceDetailComponent
+    ResourceDetailComponent,
     // TimelineComponent
 ]</code>
                         </td>
@@ -3218,7 +3215,7 @@ and <a href="../components/TimelineComponent.html">TimelineComponent</a>.</p>
     EditionOverviewComponent,
     EditionSectionComponent,
     EditionSeriesComponent,
-    EditionTypeComponent
+    EditionTypeComponent,
 ]</code>
                         </td>
                     </tr>
@@ -3337,7 +3334,7 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
     EditionInfoComponent,
     ResourceInfoComponent,
     SearchInfoComponent,
-    StructureInfoComponent
+    StructureInfoComponent,
 ]</code>
                         </td>
                     </tr>
@@ -3416,7 +3413,7 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
                 <tr>
                     <td class="col-md-4">
                         <div class="io-description"><p>Declared variable: Snap.</p>
-<p>It provides access to the embedded SnapSvg library (see <a href="snapsvg.io">snapsvg.io</a>).</p>
+<p>It provides access to the embedded SnapSvg library (see snapsvg.io).</p>
 </div>
                     </td>
                 </tr>

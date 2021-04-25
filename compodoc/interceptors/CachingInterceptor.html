@@ -186,8 +186,8 @@ to handle the caching of http responses.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="48"
-                            class="link-to-prism">src/app/core/interceptors/caching/caching.interceptor.ts:48</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="46"
+                            class="link-to-prism">src/app/core/interceptors/caching/caching.interceptor.ts:46</a></div>
                 </td>
             </tr>
 
@@ -273,7 +273,7 @@ import {
     HttpHandler,
     HttpInterceptor,
     HttpRequest,
-    HttpResponse
+    HttpResponse,
 } from &#x27;@angular/common/http&#x27;;
 
 import { of as observableOf, Observable, throwError as observableThrowError } from &#x27;rxjs&#x27;;
@@ -300,8 +300,6 @@ export class CachingInterceptor implements HttpInterceptor {
      */
     constructor(private cache: HttpCacheService) {}
 
-    // private cache &#x3D; {};
-
     /**
      * Public method: intercept.
      *
@@ -314,48 +312,33 @@ export class CachingInterceptor implements HttpInterceptor {
      * @returns {Observable&lt;HttpEvent&lt;any&gt;&gt;} An HttpEvent observable.
      */
     intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {
-        // TODO: rm
-        // console.log(&#x27;------------&gt; CachingInterceptor&#x27;);
-        // console.log(&#x27;CI# RequestUrl: &#x27;, req.urlWithParams);
-
         const started &#x3D; Date.now();
 
         if (req.method !&#x3D;&#x3D; &#x27;GET&#x27;) {
             return next.handle(req);
         }
 
-        // check the cache for existing responses
+        // Check the cache for existing responses
         const cachedResponse &#x3D; this.cache.get(req);
         if (cachedResponse) {
-            // TODO: rm
-            // console.log(&#x27;CI# cachedResponse: &#x27;, cachedResponse);
-            // console.log(&#x27;&lt;------------ END CachingInterceptor&#x27;);
-
-            // serve existing cached response
+            // Serve existing cached response
             return observableOf(cachedResponse.clone());
         }
 
-        // cache the new response
+        // Cache the new response
         return next.handle(req).pipe(
             tap(event &#x3D;&gt; {
                 // Remember, there may be other events besides just the response.
                 if (event instanceof HttpResponse) {
                     const elapsed &#x3D; Date.now() - started;
 
-                    // TODO: rm
-                    // console.log(&#x27;CI# caching new response ---&gt; req, event:&#x27;, req, event);
-                    // console.log(&#x60;Request took ${elapsed} ms.&#x60;);
-
                     // Update the cache.
                     this.cache.put(req, event.clone());
-
-                    // TODO: rm
-                    // console.log(&#x27;&lt;------------ END CachingInterceptor &#x27;);
                 }
             }),
             catchError(response &#x3D;&gt; {
                 if (response instanceof HttpErrorResponse) {
-                    console.log(&#x27;CachingInterceptor: Processing http error&#x27;, response);
+                    console.error(&#x27;CachingInterceptor: Processing http error&#x27;, response);
                 }
 
                 return observableThrowError(response);

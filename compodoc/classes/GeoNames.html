@@ -491,18 +491,18 @@ export class GeoNames {
             const geoItem: GeoDataItemJson &#x3D; geoDataArray[j];
             this.longLabel +&#x3D; &#x27;, &#x27; + geoItem.label;
             if (j &#x3D;&#x3D;&#x3D; geoDataArray.length - 1) {
-                // get geonames-id gnid from last array item
+                // Get geonames-id gnid from last array item
                 this.gnid &#x3D; geoItem.name.replace(&#x27;gnid:&#x27;, &#x27;&#x27;);
-                // short label
+                // Short label
                 this.shortLabel &#x3D; geoItem.label;
-                // latitude + longitude
+                // Latitude + longitude
                 this.latitude &#x3D; geoItem.lat;
                 this.longitude &#x3D; geoItem.lng;
-                // wiki
+                // Wiki
                 this.wiki &#x3D; geoItem.wikipedia;
             }
         }
-        // prepare icon &amp; link for geonames
+        // Prepare icon &amp; link for geonames
         const geoIcon &#x3D;
             &#x27;&lt;img src&#x3D;&quot;assets/img/logos/geonames.png&quot; height&#x3D;&quot;25&quot; width&#x3D;&quot;25&quot; alt&#x3D;&quot;&#x27; + this.shortLabel + &#x27;&quot; /&gt;&#x27;;
         const geoLink &#x3D;

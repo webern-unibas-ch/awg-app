@@ -146,7 +146,7 @@ of the edition view of the app.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#firmSigns">firmSigns</a>
+                                <a href="#FIRM_SIGNS">FIRM_SIGNS</a>
                             </li>
                             <li>
                                 <a href="#ref">ref</a>
@@ -553,12 +553,12 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="firmSigns"></a>
+                        <a name="FIRM_SIGNS"></a>
                         <span class="name">
                             <b>
                                 <span class="modifier">Readonly</span>
-                            firmSigns</b>
-                            <a href="#firmSigns"><span class="icon ion-ios-link"></span></a>
+                            FIRM_SIGNS</b>
+                            <a href="#FIRM_SIGNS"><span class="icon ion-ios-link"></span></a>
                         </span>
                     </td>
                 </tr>
@@ -572,11 +572,11 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
                         <td class="col-md-4">
                             <i>Default value : </i><code>{
         op12: {
-            A: [EditionConstants.firmJENo9Lin28]
+            A: [EditionConstants.FIRM_JE_NO_9_LIN_28],
         },
         op25: {
-            A: [EditionConstants.firmJENo15Lin16]
-        }
+            A: [EditionConstants.FIRM_JE_NO_15_LIN_16],
+        },
     }</code>
                         </td>
                     </tr>
@@ -588,7 +588,7 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Readonly constant: firmSigns.</p>
+                        <div class="io-description"><p>Readonly constant: FIRM_SIGNS.</p>
 <p>It keeps the routes to the firm signs.</p>
 </div>
                     </td>
@@ -650,7 +650,7 @@ import { EditionConstants, EditionWorks, SourceDescriptionList } from &#x27;@awg
     selector: &#x27;awg-source-description&#x27;,
     templateUrl: &#x27;./source-description.component.html&#x27;,
     styleUrls: [&#x27;./source-description.component.css&#x27;],
-    changeDetection: ChangeDetectionStrategy.OnPush
+    changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class SourceDescriptionComponent implements OnInit {
     /**
@@ -679,17 +679,17 @@ export class SourceDescriptionComponent implements OnInit {
     selectSvgSheetRequest: EventEmitter&lt;string&gt; &#x3D; new EventEmitter();
 
     /**
-     * Readonly constant: firmSigns.
+     * Readonly constant: FIRM_SIGNS.
      *
      * It keeps the routes to the firm signs.
      */
-    readonly firmSigns &#x3D; {
+    readonly FIRM_SIGNS &#x3D; {
         op12: {
-            A: [EditionConstants.firmJENo9Lin28]
+            A: [EditionConstants.FIRM_JE_NO_9_LIN_28],
         },
         op25: {
-            A: [EditionConstants.firmJENo15Lin16]
-        }
+            A: [EditionConstants.FIRM_JE_NO_15_LIN_16],
+        },
     };
 
     /**

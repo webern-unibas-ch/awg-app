@@ -160,11 +160,11 @@ for the secondary compilation of HTML code.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#createComponentModule">createComponentModule</a>
+                                <a href="#_createComponentModule">_createComponentModule</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#createNewComponent">createNewComponent</a>
+                                <a href="#_createNewComponent">_createNewComponent</a>
                             </li>
                             <li>
                                 <a href="#ngOnChanges">ngOnChanges</a>
@@ -428,35 +428,35 @@ instance for the dynamic compilation of a given component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createComponentModule"></a>
+                    <a name="_createComponentModule"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            createComponentModule
+                            _createComponentModule
                         </b>
-                        <a href="#createComponentModule"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_createComponentModule"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createComponentModule(componentType: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>_createComponentModule(componentType: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/app/shared/compile-html/compile-html.component.ts:216</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="215"
+                            class="link-to-prism">src/app/shared/compile-html/compile-html.component.ts:215</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: createComponentModule.</p>
+                    <div class="io-description"><p>Private method: _createComponentModule.</p>
 <p>It creates the module for the dynamic component.</p>
 </div>
 
@@ -504,35 +504,35 @@ instance for the dynamic compilation of a given component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="createNewComponent"></a>
+                    <a name="_createNewComponent"></a>
                     <span class="name">
                         <b>
                             <span class="modifier">Private</span>
-                            createNewComponent
+                            _createNewComponent
                         </b>
-                        <a href="#createNewComponent"><span class="icon ion-ios-link"></span></a>
+                        <a href="#_createNewComponent"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>createNewComponent(html: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, ref: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>_createNewComponent(html: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, ref: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="244"
-                            class="link-to-prism">src/app/shared/compile-html/compile-html.component.ts:244</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="243"
+                            class="link-to-prism">src/app/shared/compile-html/compile-html.component.ts:243</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: createNewComponent.</p>
+                    <div class="io-description"><p>Private method: _createNewComponent.</p>
 <p>It creates the the dynamic component.</p>
 </div>
 
@@ -806,14 +806,14 @@ and triggers their creation methods.</p>
     ModuleWithProviders,
     NgModule,
     Compiler,
-    NgModuleFactory
+    NgModuleFactory,
 } from &#x27;@angular/core&#x27;;
 import { CommonModule } from &#x27;@angular/common&#x27;;
 
 import { cloneDeep } from &#x27;lodash&#x27;;
 
 /**
- * compileHtml.reverse(str)
+ * Function: compileHtml.reverse(str)
  *
  * @param {string} str
  * @returns {string}
@@ -821,26 +821,25 @@ import { cloneDeep } from &#x27;lodash&#x27;;
 const reverse &#x3D; (str: string): string &#x3D;&gt; str.split(&#x27;&#x27;).reverse().join(&#x27;&#x27;);
 
 /**
- * compileHtml.random()
+ * Function: compileHtml.random()
  *
  * @returns {string}
  */
-const random &#x3D; (): string &#x3D;&gt; {
-    return (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
-};
+const random &#x3D; (): string &#x3D;&gt;
+    (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
 
 /**
- * compileHtml.currentIdTime
+ * Variable: compileHtml.currentIdTime
  */
 let currentIdTime: number;
 
 /**
- * compileHtml.currentId
+ * Variable: compileHtml.currentId
  */
 let currentId &#x3D; 0;
 
 /**
- * compileHtml.nextId()
+ * Function: compileHtml.nextId()
  *
  * @returns {string} A randomly generated id for the dynamic component&#x27;s selector.
  */
@@ -879,7 +878,7 @@ const nextId &#x3D; (): string &#x3D;&gt; {
         &lt;ng-container *ngIf&#x3D;&quot;html !&#x3D;&#x3D; undefined &amp;&amp; html !&#x3D;&#x3D; null &amp;&amp; html.trim() !&#x3D;&#x3D; &#x27;&#x27;&quot;&gt;
             &lt;ng-container *ngComponentOutlet&#x3D;&quot;dynamicComponent; ngModuleFactory: dynamicModule&quot;&gt;&lt;/ng-container&gt;
         &lt;/ng-container&gt;
-    &#x60;
+    &#x60;,
 })
 @Injectable()
 export class CompileHtmlComponent implements OnChanges {
@@ -970,14 +969,13 @@ export class CompileHtmlComponent implements OnChanges {
     update(): void {
         try {
             if (this.html &#x3D;&#x3D;&#x3D; undefined || this.html &#x3D;&#x3D;&#x3D; null || this.html.trim() &#x3D;&#x3D;&#x3D; &#x27;&#x27;) {
-                //            this.container.clear();
                 this.dynamicComponent &#x3D; undefined;
                 this.dynamicModule &#x3D; undefined;
                 return;
             }
 
-            this.dynamicComponent &#x3D; this.createNewComponent(this.html, this.ref);
-            this.dynamicModule &#x3D; this.compiler.compileModuleSync(this.createComponentModule(this.dynamicComponent));
+            this.dynamicComponent &#x3D; this._createNewComponent(this.html, this.ref);
+            this.dynamicModule &#x3D; this.compiler.compileModuleSync(this._createComponentModule(this.dynamicComponent));
         } catch (e) {
             if (this.errorHandler &#x3D;&#x3D;&#x3D; undefined) {
                 throw e;
@@ -988,7 +986,7 @@ export class CompileHtmlComponent implements OnChanges {
     }
 
     /**
-     * Private method: createComponentModule.
+     * Private method: _createComponentModule.
      *
      * It creates the module for the dynamic component.
      *
@@ -996,7 +994,7 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * @returns The RuntimeComponentModule.
      */
-    private createComponentModule(componentType: any) {
+    private _createComponentModule(componentType: any) {
         let module: NgModule &#x3D; { imports: [], declarations: [] };
 
         if (this.module !&#x3D;&#x3D; undefined) {
@@ -1015,7 +1013,7 @@ export class CompileHtmlComponent implements OnChanges {
     }
 
     /**
-     * Private method: createNewComponent.
+     * Private method: _createNewComponent.
      *
      * It creates the the dynamic component.
      *
@@ -1024,10 +1022,10 @@ export class CompileHtmlComponent implements OnChanges {
      *
      * @returns The DynamicComponent.
      */
-    private createNewComponent(html: string, ref: any) {
+    private _createNewComponent(html: string, ref: any) {
         @Component({
             selector: nextId(),
-            template: html
+            template: html,
         })
         class DynamicComponent {
             ref: any &#x3D; ref;
