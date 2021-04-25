@@ -2,6 +2,22 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.11](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.10...v0.7.11) (2021-04-25)
+
+### Documentation
+
+-   **README:** add Zenodo DOI to README ([7b1ae18](https://github.com/webern-unibas-ch/awg-app/commit/7b1ae18dca647573572ff4f89cc687865d40f483))
+
+### Continuous Integration
+
+-   **gh-actions:** add release workflow ([bdfcbea](https://github.com/webern-unibas-ch/awg-app/commit/bdfcbea02a06f1b585cef923810a3c187ab477c9))
+-   **gh-actions:** use full build:gh script in test workflow ([304a993](https://github.com/webern-unibas-ch/awg-app/commit/304a99378089adfc3825a3b8f59c09b02aa7bc96))
+
+### Build System
+
+-   **app:** adjust script for GitHub pages build ([57ea67f](https://github.com/webern-unibas-ch/awg-app/commit/57ea67f01169ab802f89f2a2946090374fce5148))
+-   **deps:** remove unused devDependencies ([d1fabde](https://github.com/webern-unibas-ch/awg-app/commit/d1fabde58d782f731486115971b534396652bbca))
+
 ### [0.7.10](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.9...v0.7.10) (2021-04-24)
 
 ### Features

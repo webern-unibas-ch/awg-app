@@ -52,4 +52,4 @@ jobs:
 
             - name: Test build for Github Pages
               run: |
-                  yarn run build:prod
+                  yarn run build:gh
