@@ -10,7 +10,7 @@ on:
             - '**.md' # ignore changes in markdown files
 
 jobs:
-    tests:
+    test:
         name: Run tests (Node v${{ matrix.node-version }}, ${{ matrix.os }})
         runs-on: ${{ matrix.os }}
         strategy:
