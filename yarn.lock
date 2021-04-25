@@ -9504,11 +9504,6 @@ next-tick@~1.0.0:
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
   integrity sha1-yobR/ogoFpsBICCOPchCS524NCw=
 
-ng-lint-staged@^0.1.6:
-  version "0.1.6"
-  resolved "https://registry.yarnpkg.com/ng-lint-staged/-/ng-lint-staged-0.1.6.tgz#6a7e2c32108e62bfb4d4183ae29dbe7b367a8e4f"
-  integrity sha512-uzgFhVDVTRko5KVUSHOlMD1NdLp26BanuzKI7+fAKWhrEJ892tyBh2DMlrZUHqGzmizdmZAZX2UooP/HlLRd7Q==
-
 ngx-json-viewer@^3.0.2:
   version "3.0.2"
   resolved "https://registry.yarnpkg.com/ngx-json-viewer/-/ngx-json-viewer-3.0.2.tgz#91e72fe41f80756181aa0d36b4bfaeac5df5b1b1"
