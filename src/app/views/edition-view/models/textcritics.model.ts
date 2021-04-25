@@ -41,6 +41,11 @@ export class Textcritics {
     id: string;
 
     /**
+     * The label of the textcritics.
+     */
+    label: string;
+
+    /**
      * The description of the textcritics.
      */
     description: string[];

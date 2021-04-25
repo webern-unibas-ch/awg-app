@@ -2,6 +2,19 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.13](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.12...v0.7.13) (2021-04-25)
+
+### Bug Fixes
+
+-   **edition:** fix typo in graph data ([e08fa3d](https://github.com/webern-unibas-ch/awg-app/commit/e08fa3de533ac8ceeb03e2ac2f41dc2f35d22adc))
+-   **edition:** fix typos in source description data ([1590a8b](https://github.com/webern-unibas-ch/awg-app/commit/1590a8b0f121ddd4a91280a9e6d2da328e4e75df))
+-   **edition:** make textcritics id working as ngb selector ([aaff894](https://github.com/webern-unibas-ch/awg-app/commit/aaff894e5c43b2bf060b9ec30a6dedf7acd7f743))
+-   **edition:** use upper case composition id with EditionService ([65ec61b](https://github.com/webern-unibas-ch/awg-app/commit/65ec61b701d501ad4a100456615ef5fd349f6e32))
+
+### Tests
+
+-   **edition:** fix tests after changes ([69f7fb6](https://github.com/webern-unibas-ch/awg-app/commit/69f7fb672a0cb6d6b0b35ff3322be4db567c89e3))
+
 ### [0.7.12](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.11...v0.7.12) (2021-04-25)
 
 ### Build System
