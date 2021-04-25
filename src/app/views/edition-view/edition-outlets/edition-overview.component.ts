@@ -1,10 +1,10 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { Subject, Subscription } from 'rxjs';
+import { Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { RouterLinkButton } from '@awg-shared/router-link-button-group/router-link-button.model';
 import { EditionConstants, EditionWork } from '@awg-views/edition-view/models';
 import { EditionService } from '@awg-views/edition-view/services';
-import { takeUntil } from 'rxjs/operators';
 
 /**
  * The EditionOverview component.
@@ -33,13 +33,6 @@ export class EditionOverviewComponent implements OnInit, OnDestroy {
      * It keeps the current composition.
      */
     editionWork: EditionWork;
-
-    /**
-     * Private variable: _subscription.
-     *
-     * It keeps the subscriptions of the component.
-     */
-    private _subscription: Subscription;
 
     /**
      * Private variable: _destroy$.

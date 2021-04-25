@@ -47,10 +47,10 @@ export class SourceDescriptionComponent implements OnInit {
      * It keeps the routes to the firm signs.
      */
     readonly FIRM_SIGNS = {
-        op12: {
+        OP12: {
             A: [EditionConstants.FIRM_JE_NO_9_LIN_28],
         },
-        op25: {
+        OP25: {
             A: [EditionConstants.FIRM_JE_NO_15_LIN_16],
         },
     };

@@ -1,7 +1,8 @@
 {
     "textcritics": [
         {
-            "id": "A:SkI/1",
+            "id": "A-SkI-1",
+            "label": "A:SkI/1",
             "description": [
                 "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <strong>Sk2</strong>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu op. 24/I auf Bl. 22v–26r, 31v–33r, und 36v–38r im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39r System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<strong>Sk4</strong> T. 3B–6].) <br /> Die Datierung <i>4. VII. 34</i> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <strong>Sk2</strong> notiert worden. <br /> Der über System 1 stehende Titel <i>„Wie bin ich froh!“</i> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <strong>Sk4</strong>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
             ],
@@ -15,7 +16,8 @@
             ]
         },
         {
-            "id": "A:SkI/2",
+            "id": "A-SkI-2",
+            "label": "A:SkI/2",
             "description": [
                 "<strong>Sk2</strong> entwirft eine Zwölftonreihe in zwei Anläufen. Reihe A umfasst lediglich fünf Töne, Reihe B ergänzt nach einer Permutation des 3.–4. Reihentons die Reihe zur vollständigen Zwölftönigkeit. Die ersten fünf Töne beider Reihen ergänzen den ungeordneten Tonvorrat von <strong>Sk1</strong> um den Anfangston cis. Die Niederschrift von Reihe B erfolgt dann im dynamischen Abgleich mit <strong>Sk2.1</strong>, <strong>Sk2.1.1</strong>, <strong>Sk2.1.2</strong>, <strong>Sk2.1.2.1</strong> und <strong>Sk2.1.3</strong>."
             ],
@@ -41,7 +43,8 @@
             ]
         },
         {
-            "id": "A:SkI/2.1",
+            "id": "A-SkI-2-1",
+            "label": "A:SkI/2.1",
             "description": [
                 "<strong>Sk2.1</strong> entwirft auf der Grundlage der rhythmischen Kontur von <strong>Sk1</strong> eine Melodielinie mit Text, die in ihrer ausführlichsten und vermutlich letzten Schicht (T. 1 bis T. 2 1. TH: System 1; T. 2 2. TH bis T. 4: System 2) Reihe B aus <strong>Sk2</strong> artikuliert. Die Niederschrift erfolgt im dynamischen Abgleich mit <strong>Sk2.1.1</strong>, <strong>Sk2.1.2</strong>, <strong>Sk2.1.2.1</strong> und <strong>Sk2.1.3</strong>."
             ],
@@ -97,7 +100,8 @@
             ]
         },
         {
-            "id": "A:SkI/2.1.1",
+            "id": "A-SkI-2-1-1",
+            "label": "A:SkI/2.1.1",
             "description": [
                 "<strong>Sk2.1.1</strong> formuliert eine Variante des Anfangs von <strong>Sk2.1</strong> auf der Grundlage des 1.–5. Reihentons von Reihe B in <strong>Sk2</strong>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
@@ -105,7 +109,8 @@
             "comments": []
         },
         {
-            "id": "A:SkI/2.1.2",
+            "id": "A-SkI-2-1-2",
+            "label": "A:SkI/2.1.2",
             "description": [
                 "<strong>Sk2.1.2</strong> ist vermutlich eine inhaltliche Fortsetzung von <strong>Sk2.1.1</strong> (als T. 3): Hierfür spricht der Anfangston b<sup>1</sup> an entsprechender Stelle von Varianten in <strong>Sk2.1</strong> (System 1 und 2) sowie die dort ebenfalls anzutreffende Ligatur über den Taktstrich (System 1 und 3). Allerdings artikuliert <strong>Sk2.1.2</strong> einen anderen Reihenverlauf als Reihe B in <strong>Sk2</strong>."
             ],
@@ -119,7 +124,8 @@
             ]
         },
         {
-            "id": "A:SkI/2.1.2.1",
+            "id": "A-SkI-2-1-2-1",
+            "label": "A:SkI/2.1.2.1",
             "description": [
                 "<strong>Sk2.1.2.1</strong> formuliert eine rhythmisch-metrische Variante des Anfangs von <strong>Sk2.1.2</strong>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
@@ -127,7 +133,8 @@
             "comments": []
         },
         {
-            "id": "A:SkI/2.1.3",
+            "id": "A-SkI-2-1-3",
+            "label": "A:SkI/2.1.3",
             "description": [
                 "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <i>c</i>, <i>f</i>, <i>gis</i> und <i>a</i> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <strong>Sk2</strong> (Reihe B), <strong>Sk2.1</strong> und <strong>Sk2.1.2</strong>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
@@ -135,7 +142,8 @@
             "comments": []
         },
         {
-            "id": "A:SkI/3",
+            "id": "A-SkI-3",
+            "label": "A:SkI/3",
             "description": [
                 "<strong>Sk3</strong> stellt gegenüber <strong>Sk2</strong> und deren begleitenden Skizzeneinheiten einen inhaltlichen Neuansatz dar, insofern die in <strong>Sk2</strong> notierte vollständige Zwölftonreihe (Reihe B) nicht mehr verwendet wird. Stattdessen formuliert <strong>Sk3</strong> auf der Grundlage des permutierten Tonvorrats von <strong>Sk1</strong> einen neuen zwölftönigen Verlauf. Im dynamischen Abgleich mit <strong>Sk3.1</strong>, <strong>Sk3.1.1</strong>, <strong>Sk3.1.2</strong> wird dieser Verlauf weiter verändert und als rhythmisch abstrahierte Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> notiert."
             ],
@@ -161,7 +169,8 @@
             ]
         },
         {
-            "id": "A:SkI/3.1",
+            "id": "A-SkI-3-1",
+            "label": "A:SkI/3.1",
             "description": [
                 "<strong>Sk3.1</strong> führt den Anfang von <strong>Sk3</strong> ab dem Auftakt zu T. 3 in Varianten weiter bis T. {{ '{' }}6{{ '}' }}."
             ],
@@ -211,7 +220,8 @@
             ]
         },
         {
-            "id": "A:SkI/3.1.1",
+            "id": "A-SkI-3-1-1",
+            "label": "A:SkI/3.1.1",
             "description": ["<strong>Sk3.1.1</strong> formuliert Varianten von T. 4–5 in <strong>Sk3.1</strong>."],
             "comments": [
                 {
@@ -223,7 +233,8 @@
             ]
         },
         {
-            "id": "A:SkI/3.1.2",
+            "id": "A-SkI-3-1-2",
+            "label": "A:SkI/3.1.2",
             "description": [
                 "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<i>1</i>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
             ],
@@ -261,7 +272,8 @@
             ]
         },
         {
-            "id": "A:SkI/3.1.3",
+            "id": "A-SkI-3-1-3",
+            "label": "A:SkI/3.1.3",
             "description": [
                 "<strong>Sk3.1.3</strong> notiert die vier in op. 25/I verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <strong>Sk4</strong> und <strong>Sk4.1</strong> verwendeten Reihenziffern <i>1</i> bis <i>4</i>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <strong>Sk3.1.2</strong> vollzogen. "
             ],
@@ -335,7 +347,8 @@
             ]
         },
         {
-            "id": "A:SkI/3.1.3.1",
+            "id": "A-SkI-3-1-3-1",
+            "label": "A:SkI/3.1.3.1",
             "description": [
                 "<strong>Sk3.1.3.1</strong> notiert das Ergebnis der in <strong>Sk3.1.3</strong> erkennbaren Änderung des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> am Beispiel von G<sub>g</sub> noch einmal in einem einheitlichen Oktavregister.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
@@ -343,7 +356,8 @@
             "comments": []
         },
         {
-            "id": "A:Sk4",
+            "id": "A-Sk4",
+            "label": "A:Sk4",
             "description": [
                 "<strong>Sk4</strong> ist eine vollständige Verlaufskizze des Liedes „Wie bin ich froh!“. Die Verlaufskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <strong>Textfassung 1</strong> und <strong>Textfassung 2</strong> in <strong>B</strong> und <strong>E</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<strong>Sk4</strong> T. 3B–6): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu op. 24/I auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/I fungieren [<strong>Sk1</strong> bis <strong>Sk3.1.2</strong>].) <br /> <strong>Sk 4</strong> ist laut der nach T. 15 folgenden Datierung am 16. Juli 1934 beendet worden.",
                 "Die Ziffern <i>1</i> (G<sub>g</sub>), <i>2</i> (K<sub>gis</sub>), <i>3</i> (U<sub>g</sub>) und <i>4</i> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
@@ -700,7 +714,8 @@
             ]
         },
         {
-            "id": "A:SkI/4.1",
+            "id": "A-SkI-4-1",
+            "label": "A:SkI/4.1",
             "description": [
                 "<strong>Sk4.1</strong> formuliert eine rhythmisch-metrische Variante von <strong>Sk4</strong> T. 2–3A. Der dort im Klavier offen gelassene Takt 3A wird in <strong>Sk4.1</strong> ansatzweise gefüllt, aber dann insgesamt gestrichen (T. {{ '{' }}3{{ '}' }}): möglicherweise auch auf Grund des in skripturaler Hinsicht engen Raumes. Der Takt wird in <strong>Sk4</strong> T. 3B weiter ausgearbeitet. <br /> Vor der Niederschrift von <strong>Sk4.1</strong> war die Seite am linken Rand von System 14–16 mit einer Akkoladenklammer beschriftet, die offensichtlich einer Präparierung der Fortsetzung von <strong>Sk4</strong> nach T. {{ '{' }}1A{{ '}' }}–3A dient. Nach der Niederschrift von <strong>Sk4.1</strong> erfolgt die Fortsetzung von <strong>Sk4</strong> jedoch auf Bl. 39<sup>r</sup> (<strong>Sk4</strong> T. 3B–6)."
             ],
@@ -732,7 +747,8 @@
             ]
         },
         {
-            "id": "A:SkI/4.2",
+            "id": "A-SkI-4-2",
+            "label": "A:SkI/4.2",
             "description": [
                 "<strong>Sk4.2</strong> formuliert vermutlich den Ansatz zu einer Variante der Singstimme in <strong>Sk4</strong> T. 13.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
@@ -740,7 +756,8 @@
             "comments": []
         },
         {
-            "id": "A:SkI/4.3",
+            "id": "A-SkI-4-3",
+            "label": "A:SkI/4.3",
             "description": [
                 "<strong>Sk4.3</strong> formuliert eine fragmentarische Variante von <strong>Sk4</strong> T. 13."
             ],

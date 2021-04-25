@@ -163,11 +163,11 @@ describe('EditionGraphComponent (DONE)', () => {
         it('... should have correct static `GRAPH_IMAGES`', () => {
             expect(component.GRAPH_IMAGES).toBeTruthy();
 
-            expect(component.GRAPH_IMAGES.op12).toBeDefined();
-            expect(component.GRAPH_IMAGES.op12).not.toBeTruthy('should be empty string');
+            expect(component.GRAPH_IMAGES.OP12).toBeDefined();
+            expect(component.GRAPH_IMAGES.OP12).not.toBeTruthy('should be empty string');
 
-            expect(component.GRAPH_IMAGES.op25).toBeTruthy();
-            expect(component.GRAPH_IMAGES.op25).toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
+            expect(component.GRAPH_IMAGES.OP25).toBeTruthy();
+            expect(component.GRAPH_IMAGES.OP25).toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
         });
 
         it('... should have `errorObject` = null', () => {
@@ -630,7 +630,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         staticImageData.graph = [];
                         staticImageData.graph.push(new Graph());
                         staticImageData.graph[0].id = 'test-graph-id-static-image';
-                        staticImageData.graph[0].staticImage = component.GRAPH_IMAGES.op25;
+                        staticImageData.graph[0].staticImage = component.GRAPH_IMAGES.OP25;
 
                         // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(staticImageData));
@@ -651,7 +651,7 @@ describe('EditionGraphComponent (DONE)', () => {
                         staticImageData.graph = [];
                         staticImageData.graph.push(new Graph());
                         staticImageData.graph[0].id = 'test-graph-id-static-image';
-                        staticImageData.graph[0].staticImage = component.GRAPH_IMAGES.op25;
+                        staticImageData.graph[0].staticImage = component.GRAPH_IMAGES.OP25;
 
                         // Return data
                         editionDataServiceGetEditionGraphDataSpy.and.returnValue(observableOf(staticImageData));
@@ -678,8 +678,8 @@ describe('EditionGraphComponent (DONE)', () => {
 
                         expect(divEl.textContent).toBeTruthy();
                         expect(divEl.textContent).toContain(
-                            component.GRAPH_IMAGES.op25,
-                            `should contain ${component.GRAPH_IMAGES.op25}`
+                            component.GRAPH_IMAGES.OP25,
+                            `should contain ${component.GRAPH_IMAGES.OP25}`
                         );
                     })
                 );
