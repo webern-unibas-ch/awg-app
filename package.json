@@ -1,6 +1,6 @@
 {
     "name": "awg-app",
-    "version": "0.7.10",
+    "version": "0.7.11",
     "license": "MIT",
     "author": {
         "name": "Stefan Münnich",
@@ -45,8 +45,7 @@
         "build:doc": "yarn doc",
         "build": "ng build",
         "build:prod": "yarn build --prod",
-        "build:gh": "yarn build:prod --base-href $npm_package_homepage && yarn post_build:gh",
-        "post_build:gh": "run-s gzip:dist build:doc",
+        "build:gh": "yarn build:prod --base-href $npm_package_homepage && yarn gzip:dist && yarn build:doc",
         "gzip:dist": "gzipper compress ./dist/awg-app/",
         "pre_wpanalyzer": "yarn build:prod --statsJson",
         "wpanalyzer": "yarn pre_wpanalyzer && webpack-bundle-analyzer dist/awg-app/stats.json",
@@ -189,7 +188,6 @@
         "karma-jasmine": "~4.0.0",
         "karma-jasmine-html-reporter": "^1.5.0",
         "lint-staged": "^10.5.4",
-        "ng-lint-staged": "^0.1.6",
         "npm-run-all": "^4.1.5",
         "prettier": "^2.2.1",
         "pretty-quick": "^3.1.0",
