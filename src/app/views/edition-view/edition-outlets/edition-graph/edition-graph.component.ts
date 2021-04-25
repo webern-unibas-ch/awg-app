@@ -80,8 +80,8 @@ export class EditionGraphComponent implements OnInit {
      * It keeps the paths to static graph images.
      */
     readonly GRAPH_IMAGES = {
-        op12: '',
-        op25: EditionConstants.GRAPH_IMAGE_OP25.route,
+        OP12: '',
+        OP25: EditionConstants.GRAPH_IMAGE_OP25.route,
     };
 
     /**
