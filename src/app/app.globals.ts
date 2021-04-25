@@ -1,10 +1,10 @@
 // THIS IS AN AUTO-GENERATED FILE. DO NOT CHANGE IT MANUALLY!
-// Generated last time on Sun Apr 25 02:07:06     2021
+// Generated last time on Sun Apr 25 15:10:39     2021
 
 /**
  * The latest version of the AWG App
  */
-export const appVersion = '0.7.11';
+export const appVersion = '0.7.12';
 
 /**
  * The release date of the latest version of the AWG App
