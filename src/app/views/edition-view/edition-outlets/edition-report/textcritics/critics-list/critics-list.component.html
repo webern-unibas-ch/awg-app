@@ -2,8 +2,12 @@
     <ngb-panel *ngFor="let textcritic of textcriticsData.textcritics" [id]="textcritic.id">
         <ng-template ngbPanelHeader>
             <div class="d-flex align-items-center justify-content-between">
-                <button ngbPanelToggle class="btn btn-link text-left">{{ textcritic.id }}</button>
-                <button type="button" class="btn btn-sm btn-outline-info ml-2" (click)="selectSvgSheet(textcritic.id)">
+                <button ngbPanelToggle class="btn btn-link text-left">{{ textcritic.label }}</button>
+                <button
+                    type="button"
+                    class="btn btn-sm btn-outline-info ml-2"
+                    (click)="selectSvgSheet(textcritic.label)"
+                >
                     Zur Transkription
                 </button>
             </div>
