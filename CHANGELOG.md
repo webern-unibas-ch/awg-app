@@ -2,6 +2,17 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.12](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.11...v0.7.12) (2021-04-25)
+
+### Build System
+
+-   **deps:** update angular-cli-ghpages ([a76976e](https://github.com/webern-unibas-ch/awg-app/commit/a76976e70b6ebf26949d3082fc0bc716aa88df26))
+
+### Continuous Integration
+
+-   **gh-actions:** fix typo in ci workflow ([7c6eaf9](https://github.com/webern-unibas-ch/awg-app/commit/7c6eaf905fd35ebadb27483a69666e12a4f855ca))
+-   **gh-actions:** refactor ci workflow ([45e5630](https://github.com/webern-unibas-ch/awg-app/commit/45e5630051464ee646f72184635ca4ebb6be90cb))
+
 ### [0.7.11](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.10...v0.7.11) (2021-04-25)
 
 ### Documentation
