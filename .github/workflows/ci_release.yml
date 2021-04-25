@@ -1,0 +1,37 @@
+name: Create Release
+
+on:
+    push:
+        # Sequence of patterns matched against refs/tags
+        tags:
+            - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+    release:
+        name: Create Release
+        runs-on: ${{ matrix.os }}
+        # run only on tags
+        if: startsWith(github.ref, 'refs/tags/')
+
+        strategy:
+            matrix:
+                os: [ ubuntu-latest ]
+                node-version: [ 12.18 ]
+
+        steps:
+            -   name: Get tag version
+                id: get_version
+                run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+
+            -   name: Create Release
+                id: create_release
+                if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
+                uses: softprops/action-gh-release@v1
+                env:
+                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                    TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}
+                with:
+                    name: Release ${{ env.TAG_VERSION }}
+                    body: "Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
+                    draft: false
+                    prerelease: false
