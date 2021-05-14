@@ -2,6 +2,23 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.14](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.13...v0.7.14) (2021-05-14)
+
+### Tests
+
+-   **app:** add codecov reporter ([9ea16d4](https://github.com/webern-unibas-ch/awg-app/commit/9ea16d4b6c7ff19d7e0a99d81630e51a4fb62020))
+-   **app:** add codecov reporter ([955738f](https://github.com/webern-unibas-ch/awg-app/commit/955738fbc3977215e56e2483f25e26ebe4f3f9ba))
+
+### Continuous Integration
+
+-   **gh-actions:** fix syntax for dependabot.yml ([3ebdee3](https://github.com/webern-unibas-ch/awg-app/commit/3ebdee30f14dbb0d049b756e1152d8657b302dfb))
+
+### Build System
+
+-   **deps:** remove unused npm-run-all ([f6edf0b](https://github.com/webern-unibas-ch/awg-app/commit/f6edf0bb1771bc542a46e7bb1a30ba11518c782c))
+-   **deps:** update dependencies ([d873eed](https://github.com/webern-unibas-ch/awg-app/commit/d873eed87209dec5b5c8ded09d29083cb2b3fa58))
+-   **deps:** update dependencies ([0d038a6](https://github.com/webern-unibas-ch/awg-app/commit/0d038a63e32483531967ed9ad623efcf68e1cabe))
+
 ### [0.7.13](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.12...v0.7.13) (2021-04-25)
 
 ### Bug Fixes
