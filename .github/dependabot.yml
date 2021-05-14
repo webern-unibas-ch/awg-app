@@ -5,11 +5,15 @@ updates:
       directory: '/'
       schedule:
           interval: 'daily'
-      target_branch: 'develop'
+      target-branch: 'develop'
+      labels:
+          - 'gh actions dependencies'
 
     # Maintain dependencies for yarn
     - package-ecosystem: 'npm'
       directory: '/'
       schedule:
           interval: 'daily'
-      target_branch: 'develop'
+      target-branch: 'develop'
+      labels:
+          - 'npm dependencies'
