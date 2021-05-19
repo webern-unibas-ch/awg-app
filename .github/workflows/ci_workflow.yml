@@ -16,7 +16,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [12, 14.16, 15, 16]
+                node-version: [12, 14, 15.14, 16]
 
         steps:
             - name: Checkout repo
@@ -44,7 +44,7 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 14.16 # upload coverage report for current node version only
+              if: matrix.node-version == 15.14 # upload coverage report for current node version only
               uses: codecov/codecov-action@v1
               with:
                   flags: unittests
@@ -65,7 +65,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [14.16 ]
+                node-version: [ 15.14 ]
 
         steps:
             - name: Checkout repo
@@ -109,7 +109,7 @@ jobs:
         strategy:
             matrix:
                 os: [ ubuntu-latest ]
-                node-version: [ 14.16 ]
+                node-version: [ 15.14 ]
 
         steps:
             -   name: Get tag version
