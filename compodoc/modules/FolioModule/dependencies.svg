@@ -24,23 +24,23 @@
 <title>cluster_FolioModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="88,-70 88,-268 408,-268 408,-70 88,-70"/>
 </g>
+<g id="clust2" class="cluster">
+<title>cluster_FolioModule_declarations</title>
+<polygon fill="none" stroke="black" points="218,-78 218,-130 400,-130 400,-78 218,-78"/>
+</g>
 <g id="clust5" class="cluster">
 <title>cluster_FolioModule_exports</title>
 <polygon fill="none" stroke="black" points="155,-208 155,-260 341,-260 341,-208 155,-208"/>
 </g>
 <g id="clust4" class="cluster">
 <title>cluster_FolioModule_imports</title>
-<polygon fill="none" stroke="black" points="286,-78 286,-130 400,-130 400,-78 286,-78"/>
-</g>
-<g id="clust2" class="cluster">
-<title>cluster_FolioModule_declarations</title>
-<polygon fill="none" stroke="black" points="96,-78 96,-130 278,-130 278,-78 96,-78"/>
+<polygon fill="none" stroke="black" points="96,-78 96,-130 210,-130 210,-78 96,-78"/>
 </g>
 <!-- FolioOverviewComponent -->
 <g id="node1" class="node">
 <title>FolioOverviewComponent</title>
-<polygon fill="#ffffb3" stroke="black" points="270.09,-122 103.91,-122 103.91,-86 270.09,-86 270.09,-122"/>
-<text text-anchor="middle" x="187" y="-99.8" font-family="Times,serif" font-size="14.00">FolioOverviewComponent</text>
+<polygon fill="#ffffb3" stroke="black" points="392.09,-122 225.91,-122 225.91,-86 392.09,-86 392.09,-122"/>
+<text text-anchor="middle" x="309" y="-99.8" font-family="Times,serif" font-size="14.00">FolioOverviewComponent</text>
 </g>
 <!-- FolioModule -->
 <g id="node2" class="node">
@@ -51,8 +51,8 @@
 <!-- FolioOverviewComponent&#45;&gt;FolioModule -->
 <g id="edge1" class="edge">
 <title>FolioOverviewComponent&#45;&gt;FolioModule</title>
-<path fill="none" stroke="black" d="M236.74,-122.11C236.74,-122.11 236.74,-140.99 236.74,-140.99"/>
-<polygon fill="black" stroke="black" points="233.24,-140.99 236.74,-150.99 240.24,-140.99 233.24,-140.99"/>
+<path fill="none" stroke="black" d="M259.26,-122.11C259.26,-122.11 259.26,-140.99 259.26,-140.99"/>
+<polygon fill="black" stroke="black" points="255.76,-140.99 259.26,-150.99 262.76,-140.99 255.76,-140.99"/>
 </g>
 <!-- FolioOverviewComponent  -->
 <g id="node4" class="node">
@@ -69,14 +69,14 @@
 <!-- SharedModule -->
 <g id="node3" class="node">
 <title>SharedModule</title>
-<polygon fill="#8dd3c7" stroke="black" points="392.42,-122 389.42,-126 368.42,-126 365.42,-122 293.58,-122 293.58,-86 392.42,-86 392.42,-122"/>
-<text text-anchor="middle" x="343" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
+<polygon fill="#8dd3c7" stroke="black" points="202.42,-122 199.42,-126 178.42,-126 175.42,-122 103.58,-122 103.58,-86 202.42,-86 202.42,-122"/>
+<text text-anchor="middle" x="153" y="-99.8" font-family="Times,serif" font-size="14.00">SharedModule</text>
 </g>
 <!-- SharedModule&#45;&gt;FolioModule -->
 <g id="edge2" class="edge">
 <title>SharedModule&#45;&gt;FolioModule</title>
-<path fill="none" stroke="black" d="M293.79,-104C286.46,-104 281.3,-104 281.3,-104 281.3,-104 281.3,-140.89 281.3,-140.89"/>
-<polygon fill="black" stroke="black" points="277.8,-140.89 281.3,-150.89 284.8,-140.89 277.8,-140.89"/>
+<path fill="none" stroke="black" d="M202.21,-104C209.54,-104 214.7,-104 214.7,-104 214.7,-104 214.7,-140.89 214.7,-140.89"/>
+<polygon fill="black" stroke="black" points="211.2,-140.89 214.7,-150.89 218.2,-140.89 211.2,-140.89"/>
 </g>
 </g>
 </svg>
