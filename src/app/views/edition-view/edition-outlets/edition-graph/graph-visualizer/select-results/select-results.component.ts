@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { Triple } from '../models';
+import { SelectResponse } from '../models';
 
 /**
  * The SelectResults component.
@@ -39,4 +39,18 @@ export class SelectResultsComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {}
+
+    /**
+     * Public method: isNotEmpty.
+     *
+     * It checks if a given queryResult with a SelectResponse
+     * is not empty.
+     *
+     * @param {string} queryResult The given queryResult.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isNotEmpty(queryResult: SelectResponse): boolean {
+        return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
+    }
 }

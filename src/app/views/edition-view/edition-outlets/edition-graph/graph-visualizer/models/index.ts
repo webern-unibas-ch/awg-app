@@ -19,6 +19,7 @@ import { Namespace } from './namespace.model';
 import { PrefixForm, Prefix } from './prefix.model';
 import { QueryResult } from './query-result.model';
 import { QueryTypeIndex } from './query-type-index.model';
+import { SelectResponse, SelectResponseBindings } from './select-response.model';
 import { TripleComponent, Triple } from './triple.model';
 
 export {
@@ -38,6 +39,8 @@ export {
     Prefix,
     QueryResult,
     QueryTypeIndex,
+    SelectResponse,
+    SelectResponseBindings,
     Triple,
     TripleComponent,
 };

@@ -177,7 +177,12 @@ export class GraphVisualizerService {
      *
      * @returns {Promise<Triple[]>} A promise of the query result triples.
      */
-    doQuery(queryType: string, query: string, ttlString: string, mimeType?: string): Promise<Triple[]> {
+    doQuery(
+        queryType: string,
+        query: string,
+        ttlString: string,
+        mimeType?: string
+    ): Promise<string | SelectResponse | Triple[]> {
         if (!mimeType) {
             mimeType = 'text/turtle';
         }

@@ -9,7 +9,7 @@ import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { Triple } from '../models';
+import { SelectResponse, Triple } from '../models';
 
 import { SelectResultsComponent } from './select-results.component';
 
@@ -25,8 +25,8 @@ describe('SelectResultsComponent', () => {
 
     const jsonPipe = new JsonPipe();
 
-    let expectedTriples: Triple[];
-    let expectedQueryResult: Observable<Triple[]>;
+    let expectedSelectResponse: SelectResponse;
+    let expectedQueryResult: Observable<SelectResponse>;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -56,14 +56,15 @@ describe('SelectResultsComponent', () => {
         compEl = compDe.nativeElement;
 
         // Test data
-        expectedTriples = [
+        const varKeys = ['Test', 'success'];
+        const b = [
             {
-                subject: { nominalValue: 'example:Test' },
-                predicate: { nominalValue: 'example:has' },
-                object: { nominalValue: 'example:Success' },
+                Test: { type: 'test type', value: 'test value' },
+                success: { type: 'success type', value: 'sucess value' },
             },
         ];
-        expectedQueryResult = observableOf(expectedTriples);
+        expectedSelectResponse = { head: { vars: varKeys }, body: { bindings: b } };
+        expectedQueryResult = observableOf(expectedSelectResponse);
     });
 
     it('should create', () => {
