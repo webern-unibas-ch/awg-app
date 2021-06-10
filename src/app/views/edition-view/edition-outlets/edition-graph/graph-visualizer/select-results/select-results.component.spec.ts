@@ -72,7 +72,7 @@ describe('SelectResultsComponent', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have queryResult', () => {
-            expect(component.queryResult).toBeUndefined('should be undefined');
+            expect(component.queryResult$).toBeUndefined('should be undefined');
         });
 
         describe('VIEW', () => {
@@ -89,15 +89,15 @@ describe('SelectResultsComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.queryResult = expectedQueryResult;
+            component.queryResult$ = expectedQueryResult;
 
             // Trigger initial data binding
             fixture.detectChanges();
         });
 
         it('should have `queryResult` input', () => {
-            expect(component.queryResult).toBeDefined('should be defined');
-            expect(component.queryResult).toEqual(expectedQueryResult, `should equal ${expectedQueryResult}`);
+            expect(component.queryResult$).toBeDefined('should be defined');
+            expect(component.queryResult$).toEqual(expectedQueryResult, `should equal ${expectedQueryResult}`);
         });
 
         describe('VIEW', () => {
@@ -183,12 +183,12 @@ describe('SelectResultsComponent', () => {
                 const divEl = divDes[0].nativeElement;
 
                 expect(divEl.textContent).toBeTruthy();
-                expect(divEl.textContent).toContain(jsonPipe.transform(expectedTriples));
+                expect(divEl.textContent).toContain(jsonPipe.transform(expectedSelectResponse));
             });
 
             it('... should display additional message in second panel body paragraph if no results', () => {
                 // Mock empty result
-                component.queryResult = EMPTY;
+                component.queryResult$ = EMPTY;
                 detectChangesOnPush(fixture);
 
                 // Panel body paragraphs

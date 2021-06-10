@@ -69,11 +69,11 @@ export class GraphVisualizerComponent implements OnInit {
     queryList: GraphSparqlQuery[];
 
     /**
-     * Public variable: queryResult.
+     * Public variable: queryResult$.
      *
      * It keeps the result of the query as an observable of triples.
      */
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<Triple[]>;
 
     /**
      * Public variable: queryTime.
@@ -175,9 +175,9 @@ export class GraphVisualizerComponent implements OnInit {
         if (this.queryType === 'construct') {
             // Query local store
             const result = this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
-            this.queryResult = from(result);
+            this.queryResult$ = from(result);
         } else {
-            this.queryResult = EMPTY;
+            this.queryResult$ = EMPTY;
             return;
         }
     }

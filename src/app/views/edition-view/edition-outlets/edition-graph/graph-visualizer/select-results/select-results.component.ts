@@ -17,12 +17,12 @@ import { Triple } from '../models';
 })
 export class SelectResultsComponent implements OnInit {
     /**
-     * Input variable: queryResult.
+     * Input variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples.
+     * It keeps the SelectResponse as an observable.
      */
     @Input()
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<SelectResponse>;
 
     /**
      * Output variable: clickedTableRequest.

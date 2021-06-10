@@ -46,7 +46,7 @@ class SparqlEditorStubComponent {
 @Component({ selector: 'awg-construct-results', template: '' })
 class ConstructResultsStubComponent {
     @Input()
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<Triple[]>;
     @Input()
     defaultForceGraphHeight: number;
     @Output()
@@ -56,7 +56,7 @@ class ConstructResultsStubComponent {
 @Component({ selector: 'awg-select-results', template: '' })
 class SelectResultsStubComponent {
     @Input()
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<Triple[]>;
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -176,7 +176,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         it('... should not have queryResult', () => {
-            expect(component.queryResult).toBeUndefined('should be undefined');
+            expect(component.queryResult$).toBeUndefined('should be undefined');
         });
 
         it('... should not have queryTime', () => {
@@ -258,8 +258,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         it('... should have queryResult', () => {
-            expect(component.queryResult).toBeDefined();
-            component.queryResult.subscribe(result => {
+            expect(component.queryResult$).toBeDefined();
+            component.queryResult$.subscribe(result => {
                 expect(result).toBeTruthy();
                 expect(result).toEqual(expectedResult, `should equal ${expectedResult}`);
             });
@@ -548,7 +548,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     component.performQuery();
                     fixture.detectChanges();
 
-                    component.queryResult.subscribe(result => {
+                    component.queryResult$.subscribe(result => {
                         expect(result).toBeTruthy();
                         expect(result).toEqual(expectedResult);
                     });
@@ -564,7 +564,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     component.performQuery();
                     fixture.detectChanges();
 
-                    component.queryResult.subscribe(
+                    component.queryResult$.subscribe(
                         result => fail('should have been failed'),
                         error => {
                             fail('should not error');
@@ -580,7 +580,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     component.performQuery();
                     fixture.detectChanges();
 
-                    component.queryResult.subscribe(
+                    component.queryResult$.subscribe(
                         result => fail('should not have called next'),
                         error => {
                             fail('should not error');
@@ -636,7 +636,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
                 ).toBeResolvedTo(expectedResult);
 
-                component.queryResult.subscribe(
+                component.queryResult$.subscribe(
                     result => {
                         expect(result).toBeTruthy();
                         expect(result).toEqual(expectedResult);
@@ -666,7 +666,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     graphVisualizerService.doQuery(expectedCallback[0], expectedCallback[1], expectedCallback[2])
                 ).toBeRejectedWith(expectedError);
 
-                component.queryResult.subscribe(
+                component.queryResult$.subscribe(
                     result => {
                         expect(result).toBeTruthy();
                         expect(result).toEqual([]);
@@ -1061,8 +1061,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         ConstructResultsStubComponent
                     ) as ConstructResultsStubComponent;
 
-                    expect(resultsCmp.queryResult).toBeDefined();
-                    resultsCmp.queryResult.subscribe(result => {
+                    expect(resultsCmp.queryResult$).toBeDefined();
+                    resultsCmp.queryResult$.subscribe(result => {
                         expect(result).toBeTruthy();
                         expect(result).toEqual(expectedResult, `should equal ${expectedResult}`);
                     });
@@ -1108,8 +1108,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         SelectResultsStubComponent
                     ) as SelectResultsStubComponent;
 
-                    expect(resultsCmp.queryResult).toBeDefined();
-                    resultsCmp.queryResult.subscribe(result => {
+                    expect(resultsCmp.queryResult$).toBeDefined();
+                    resultsCmp.queryResult$.subscribe(result => {
                         expect(result).toBeTruthy();
                         expect(result).toEqual(expectedResult, `should equal ${expectedResult}`);
                     });
