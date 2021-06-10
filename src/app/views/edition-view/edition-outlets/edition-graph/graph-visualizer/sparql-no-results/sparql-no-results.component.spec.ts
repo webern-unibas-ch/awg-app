@@ -7,11 +7,11 @@ import { Logo, Logos } from '@awg-core/core-models';
 import { LOGOSDATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
-import { ForceGraphNoResultComponent } from './force-graph-no-result.component';
+import { SparqlNoResultsComponent } from './sparql-no-results.component';
 
 describe('ForceGraphNoResultComponent', () => {
-    let component: ForceGraphNoResultComponent;
-    let fixture: ComponentFixture<ForceGraphNoResultComponent>;
+    let component: SparqlNoResultsComponent;
+    let fixture: ComponentFixture<SparqlNoResultsComponent>;
     let compDe: DebugElement;
     let compEl: any;
 
@@ -28,14 +28,14 @@ describe('ForceGraphNoResultComponent', () => {
             };
 
             TestBed.configureTestingModule({
-                declarations: [ForceGraphNoResultComponent],
+                declarations: [SparqlNoResultsComponent],
                 providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ForceGraphNoResultComponent);
+        fixture = TestBed.createComponent(SparqlNoResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;

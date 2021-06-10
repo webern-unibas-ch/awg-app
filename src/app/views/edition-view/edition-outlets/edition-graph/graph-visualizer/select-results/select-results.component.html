@@ -21,10 +21,10 @@
                        </awg-sparql-table>
                   </div>
                        -->
+                <ng-template #noResult>
+                    <awg-sparql-no-results></awg-sparql-no-results>
+                </ng-template>
             </ng-container>
-            <ng-template #noResult>
-                <p class="text-center">No result to show</p>
-            </ng-template>
             <ng-template #loading>
                 <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
             </ng-template>
