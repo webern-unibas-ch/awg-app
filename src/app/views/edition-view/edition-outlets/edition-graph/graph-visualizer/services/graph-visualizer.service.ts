@@ -20,12 +20,8 @@ declare let rdfstore: any;
  * The GraphVisualizer service.
  *
  * It handles the query requests of the graph visualizer.
- *
- * Provided in: `root`.
  */
-@Injectable({
-    providedIn: 'root',
-})
+@Injectable()
 export class GraphVisualizerService {
     /**
      * Private variable: _store.

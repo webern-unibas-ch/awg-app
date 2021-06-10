@@ -13,6 +13,8 @@ import { GraphVisualizerComponent } from './graph-visualizer.component';
 
 import { PrefixPipe } from './prefix-pipe/prefix.pipe';
 
+import { GraphVisualizerService } from './services/graph-visualizer.service';
+
 /**
  * The GraphVisualizer module.
  *
@@ -33,6 +35,6 @@ import { PrefixPipe } from './prefix-pipe/prefix.pipe';
         UnsupportedTypeResultsComponent,
     ],
     exports: [GraphVisualizerComponent],
-    providers: [PrefixPipe],
+    providers: [GraphVisualizerService, PrefixPipe],
 })
 export class GraphVisualizerModule {}
