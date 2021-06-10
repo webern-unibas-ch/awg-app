@@ -7,6 +7,7 @@ import { ForceGraphComponent } from './force-graph/force-graph.component';
 import { SelectResultsComponent } from './select-results/select-results.component';
 import { SparqlEditorComponent } from './sparql-editor/sparql-editor.component';
 import { SparqlNoResultsComponent } from './sparql-no-results/sparql-no-results.component';
+import { SparqlTableComponent } from './sparql-table/sparql-table.component';
 import { TriplesEditorComponent } from './triples-editor/triples-editor.component';
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
@@ -31,6 +32,7 @@ import { GraphVisualizerService } from './services/graph-visualizer.service';
         SelectResultsComponent,
         SparqlEditorComponent,
         SparqlNoResultsComponent,
+        SparqlTableComponent,
         TriplesEditorComponent,
         UnsupportedTypeResultsComponent,
     ],

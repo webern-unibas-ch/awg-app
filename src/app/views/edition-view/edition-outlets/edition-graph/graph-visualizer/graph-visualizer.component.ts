@@ -172,7 +172,7 @@ export class GraphVisualizerComponent implements OnInit {
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
         // Perform only construct queries for now
-        if (this.queryType === 'construct') {
+        if (this.queryType === 'construct' || this.queryType === 'select') {
             // Query local store
             const result = this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
             this.queryResult$ = from(result);

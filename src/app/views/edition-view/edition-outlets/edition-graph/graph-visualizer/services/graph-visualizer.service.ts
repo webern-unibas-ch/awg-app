@@ -5,9 +5,19 @@
 
 import { Injectable } from '@angular/core';
 
-import { Namespace, QueryResult, QueryTypeIndex, Triple, TripleComponent } from '../models';
-
 import * as N3 from 'n3';
+
+import {
+    Namespace,
+    QueryResult,
+    QueryTypeIndex,
+    PrefixForm,
+    SelectResponse,
+    SelectResponseBindings,
+    Triple,
+    TripleComponent,
+} from '../models';
+import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
 
 /**
  * Declared variable: rdfstore.
@@ -179,24 +189,28 @@ export class GraphVisualizerService {
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
             .then((storeSize: number) => this._executeQuery(this._store, query))
-            .then((res: QueryResult) => {
-                const data: QueryResult = res;
+            .then((res: any) => {
+                const response = res;
 
                 // Reformat data if select query
                 if (queryType === 'select') {
-                    console.info('got SELECT request');
-                    // Return this.sparqlJSON(data).data;
+                    return this._prepareSelectResponse(response).data;
                 }
 
-                /**
-                 * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
-                 */
+                // Reformat data if select query
+                if (queryType === 'construct') {
+                    /**
+                     * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
+                     */
 
-                // Get namespaces
-                return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
-                    // Process result
-                    this.abbreviateTriples(data.triples, namespaces, mimeType)
-                );
+                    // PrepareConstructResponse
+
+                    // Get namespaces
+                    return this._getNamespaces(ttlString).then((namespaces: Namespace) =>
+                        // Process result
+                        this.abbreviateTriples(response.triples, namespaces, mimeType)
+                    );
+                }
             });
     }
 
@@ -436,10 +450,17 @@ export class GraphVisualizerService {
         });
     }
 
-    /*
-    TODO: needed only for SELECT request
-
-    private renameKeys(obj, newKeys) {
+    /**
+     * Private method: _mapKeys.
+     *
+     * It maps the keys of a given key-value paired object to given newKeys.
+     *
+     * @param {[key:string]: string} obj The given obj.
+     * @param {[key:string]: string} newKeys The given new keys.
+     *
+     * @returns {[key:string]: string} An object with the new keys.
+     */
+    private _mapKeys(obj: { [key: string]: string }, newKeys: { [key: string]: string }): { [key: string]: string } {
         const keyValues = Object.keys(obj).map(key => {
             const newKey = newKeys[key] || key;
             return { [newKey]: obj[key] };
@@ -447,27 +468,26 @@ export class GraphVisualizerService {
         return Object.assign({}, ...keyValues);
     }
 
-
-    private sparqlJSON(data) {
+    private _prepareSelectResponse(data: SelectResponseBindings[]): { status: number; data: SelectResponse | string } {
         if (!data) {
             return;
         }
         // Get variable keys
         const varKeys = Object.keys(data[0]);
 
-        // check that it doesn't return null results
+        // Check that it doesn't return null results
         if (data[0][varKeys[0]] == null) {
             return { status: 400, data: 'Query returned no results' };
         }
 
         // Flatten object array
-        const b = _.flatMap(data);
+        const b = data;
 
         // Rename keys according to below mapping table
         const map = {
             token: 'type',
             type: 'datatype',
-            lang: 'xml:lang'
+            lang: 'xml:lang',
         };
 
         // Loop over data to rename the keys
@@ -475,15 +495,17 @@ export class GraphVisualizerService {
             if (b.hasOwnProperty(i)) {
                 for (const key in varKeys) {
                     if (varKeys.hasOwnProperty(key)) {
-                        b[i][varKeys[key]] = this.renameKeys(b[i][varKeys[key]], map);
+                        // Map keys
+                        b[i][varKeys[key]] = this._mapKeys(b[i][varKeys[key]], map);
+
                     }
                 }
             }
         }
 
         // Re-format data
-        const reformatted = { head: { vars: varKeys }, results: { bindings: b } };
+        const reformatted: SelectResponse = { head: { vars: varKeys }, body: { bindings: b } };
 
         return { status: 200, data: reformatted };
-    }*/
+    }
 }

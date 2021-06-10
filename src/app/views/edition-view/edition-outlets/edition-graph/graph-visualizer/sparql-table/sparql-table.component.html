@@ -1,0 +1,27 @@
+<p>sparql-table works!</p>
+
+<div>
+    {{ queryResult | json }}
+</div>
+
+<table class="table table-striped">
+    <thead>
+        <tr>
+            <th *ngFor="let varLabel of queryResult.head.vars" scope="col" sortable="name" (sort)="onSort($event)">
+                {{ varLabel }}
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr *ngFor="let binding of queryResult.body.bindings">
+            <td *ngFor="let varLabel of queryResult.head.vars" scope="row">
+                <a
+                    *ngIf="binding[varLabel].type && binding[varLabel].type == 'uri'"
+                    href="{{ binding[varLabel].value }}"
+                    >{{ binding[varLabel].label }}</a
+                >
+                <span *ngIf="binding[varLabel].type != 'uri'">{{ binding[varLabel].label }}</span>
+            </td>
+        </tr>
+    </tbody>
+</table>
