@@ -42,8 +42,12 @@ export class GraphVisualizerService {
 
     /**
      * Constructor of the GraphVisualizerService.
+     *
+     * It declares a private instance of the {@link PrefixPipe}.
+     *
+     * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
      */
-    constructor() {}
+    constructor(private prefixPipe: PrefixPipe) {}
 
     /**
      * Public method: parseTriples.
@@ -503,6 +507,14 @@ export class GraphVisualizerService {
                         // Map keys
                         b[i][varKeys[key]] = this._mapKeys(b[i][varKeys[key]], map);
 
+                        // Add label with short prefix
+                        b[i][varKeys[key]]['label'] = '';
+                        if (b[i][varKeys[key]]['value']) {
+                            b[i][varKeys[key]]['label'] = this.prefixPipe.transform(
+                                b[i][varKeys[key]].value,
+                                PrefixForm.short
+                            );
+                        }
                     }
                 }
             }

@@ -26,12 +26,12 @@ export class PrefixPipe implements PipeTransform {
     /**
      * Transform method of the PrefixPipe.
      *
-     * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      * @param {*} value The given value to be piped.
+     * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      */
-    transform(prefixForm: PrefixForm, value: any): any {
+    transform(value: any, prefixForm: PrefixForm): any {
         let val = value;
-        const transformedValue = this._switchPrefixForm(prefixForm, val);
+        const transformedValue = this._switchPrefixForm(val, prefixForm);
 
         if (transformedValue) {
             val = transformedValue;
@@ -49,7 +49,7 @@ export class PrefixPipe implements PipeTransform {
      * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      * @param {*} oldValue The given value to be piped.
      */
-    private _switchPrefixForm(prefixForm: PrefixForm, oldValue: any): any {
+    private _switchPrefixForm(oldValue: any, prefixForm: PrefixForm): any {
         let newValue;
 
         switch (prefixForm) {
