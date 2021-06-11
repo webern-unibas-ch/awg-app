@@ -194,7 +194,7 @@ export class GraphVisualizerComponent implements OnInit {
     }
 
     /**
-     * Public method: onTableClick.
+     * Public method: onTableNodeClick.
      *
      * It performs a query for a given IRI from the result table.
      *
@@ -202,12 +202,16 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * @returns {void} Performs the query with the given URI.
      */
-    onTableClick(IRI: string): void {
+    onTableNodeClick(IRI: string): void {
         if (!IRI) {
             return;
         }
+        console.log(IRI);
+
+        /* TODO
         this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
         this.performQuery();
+        */
     }
 
     /**

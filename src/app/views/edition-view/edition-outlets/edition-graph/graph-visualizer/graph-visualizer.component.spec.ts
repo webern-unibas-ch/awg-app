@@ -821,8 +821,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        describe('#onTableClick', () => {
-            let onTableClickSpy: Spy;
+        describe('#onTableNodeClick', () => {
+            let onTableNodeClickSpy: Spy;
 
             beforeEach(() => {
                 // Set select mode
@@ -830,7 +830,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 component.query = expectedGraphRDFData.queryList[0];
                 fixture.detectChanges();
 
-                onTableClickSpy = spyOn(component, 'onTableClick').and.callThrough();
+                onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
             });
 
             it('... should trigger on event from SelectResultsComponent', () => {
@@ -840,7 +840,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedIRI = 'example:Test';
                 resultsCmp.clickedTableRequest.emit(expectedIRI);
 
-                expectSpyCall(onTableClickSpy, 1, expectedIRI);
+                expectSpyCall(onTableNodeClickSpy, 1, expectedIRI);
             });
 
             it('... should not do anything if no IRI is provided', () => {
@@ -854,7 +854,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 // Emit undefined value
                 resultsCmp.clickedTableRequest.emit('');
 
-                expectSpyCall(onTableClickSpy, 1, '');
+                expectSpyCall(onTableNodeClickSpy, 1, '');
                 expect(component.query.queryString).toEqual(component.graphRDFInputData.queryList[0].queryString);
                 expectSpyCall(performQuerySpy, 1, undefined);
             });
@@ -869,7 +869,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedIRI = 'example:Test';
                 resultsCmp.clickedTableRequest.emit(expectedIRI);
 
-                expectSpyCall(onTableClickSpy, 1, expectedIRI);
+                expectSpyCall(onTableNodeClickSpy, 1, expectedIRI);
                 expect(component.query.queryString).toEqual(
                     `SELECT * WHERE {\n\tBIND(<${expectedIRI}> AS ?el)\n\t?el ?key ?value\n}`
                 );
@@ -884,7 +884,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 const expectedIRI = 'example:Test';
                 resultsCmp.clickedTableRequest.emit(expectedIRI);
 
-                expectSpyCall(onTableClickSpy, 1, expectedIRI);
+                expectSpyCall(onTableNodeClickSpy, 1, expectedIRI);
                 expectSpyCall(performQuerySpy, 2);
             });
         });
@@ -1115,8 +1115,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     });
                 });
 
-                it('... should re-trigger `onTableClick()` with clickedTableRequest event', () => {
-                    const onTableClickSpy = spyOn(component, 'onTableClick').and.callThrough();
+                it('... should re-trigger `onTableNodeClick()` with clickedTableRequest event', () => {
+                    const onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
 
                     const resultsDes = getAndExpectDebugElementByDirective(compDe, SelectResultsStubComponent, 1, 1);
                     const resultsCmp = resultsDes[0].injector.get(
@@ -1127,7 +1127,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     const expectedIRI = 'example:Test';
                     resultsCmp.clickedTableRequest.emit(expectedIRI);
 
-                    expectSpyCall(onTableClickSpy, 1, expectedIRI);
+                    expectSpyCall(onTableNodeClickSpy, 1, expectedIRI);
                 });
             });
 

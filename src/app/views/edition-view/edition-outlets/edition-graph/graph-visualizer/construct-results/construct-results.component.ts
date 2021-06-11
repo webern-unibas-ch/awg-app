@@ -51,10 +51,10 @@ export class ConstructResultsComponent implements OnInit {
     /**
      * Public method: onGraphNodeClick.
      *
-     * It emits a triclickedNodeRequestgger to
-     * the {@link resetQueryRequest}.
+     * It emits a trigger to
+     * the {@link clickedNodeRequest}.
      *
-     * @param {D3SimulationNodey} node The given graph node.
+     * @param {D3SimulationNode} node The given graph node.
      *
      * @returns {void} Triggers the request.
      */

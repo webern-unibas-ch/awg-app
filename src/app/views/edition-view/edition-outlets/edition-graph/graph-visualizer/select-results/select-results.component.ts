@@ -53,4 +53,20 @@ export class SelectResultsComponent implements OnInit {
     isNotEmpty(queryResult: SelectResponse): boolean {
         return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
     }
+
+    /**
+     * Public method: onTableNodeClick.
+     *
+     * It emits a uri the user clicked on in the result table.
+     *
+     * @param {string} uri The given uri.
+     *
+     * @returns {void} Emits the uri.
+     */
+    onTableNodeClick(uri: string): void {
+        if (!uri) {
+            return;
+        }
+        this.clickedTableRequest.emit(uri);
+    }
 }
