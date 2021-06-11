@@ -20,6 +20,7 @@ import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
 //
@@ -55,6 +56,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ToastComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
         OrderByPipe,
@@ -77,6 +79,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ToastComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
         OrderByPipe,

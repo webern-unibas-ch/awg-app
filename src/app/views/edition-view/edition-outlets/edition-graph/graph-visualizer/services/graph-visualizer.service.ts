@@ -481,15 +481,15 @@ export class GraphVisualizerService {
         if (!data) {
             return;
         }
+
+        // Check that it didn't return null results
+        if (data[0] == null) {
+            return { status: 400, data: 'Query returned no results' };
+        }
         // Get variable keys
         const varKeys = Object.keys(data[0]);
 
-        // Check that it doesn't return null results
-        if (data[0][varKeys[0]] == null) {
-            return { status: 400, data: 'Query returned no results' };
-        }
-
-        // Flatten object array
+        // Get object array
         const b = data;
 
         // Rename keys according to below mapping table

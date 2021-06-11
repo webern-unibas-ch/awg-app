@@ -1,3 +1,5 @@
+<p>SELECT request ({{ queryResult.body.bindings.length }} triples)</p>
+
 <table class="table table-striped">
     <thead>
         <tr>
@@ -11,10 +13,10 @@
             <td *ngFor="let varLabel of queryResult.head.vars" scope="row">
                 <a
                     *ngIf="binding[varLabel].type && binding[varLabel].type == 'uri'"
-                    href="{{ binding[varLabel].value }}"
+                    (click)="onTableNodeClick(binding[varLabel].value)"
                     >{{ binding[varLabel].label }}</a
                 >
-                <span *ngIf="binding[varLabel].type != 'uri'">{{ binding[varLabel].label }}</span>
+                <span *ngIf="binding[varLabel].type != 'uri'">"{{ binding[varLabel].label }}"</span>
             </td>
         </tr>
     </tbody>

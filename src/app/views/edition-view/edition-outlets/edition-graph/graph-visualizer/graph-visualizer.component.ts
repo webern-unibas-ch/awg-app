@@ -10,6 +10,7 @@ import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { D3SimulationNode, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
+import { ToastService } from '@awg-core/services';
 
 /**
  * The GraphVisualizer component.
@@ -102,8 +103,9 @@ export class GraphVisualizerComponent implements OnInit {
      * It declares a private GraphVisualizerService instance.
      *
      * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
+     * @param {ToastService} toastService Instance of the ToastService.
      */
-    constructor(private graphVisualizerService: GraphVisualizerService) {}
+    constructor(private graphVisualizerService: GraphVisualizerService, private toastService: ToastService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -219,25 +221,21 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It shows a given error message for a given duration.
      *
+     * @param {string} name The given error name.
      * @param {string} message The given error message.
      * @param {number} [durationValue] The given optional duration in ms.
      *
      * @returns {void} Shows the error message.
      */
-    showErrorMessage(message: string, durationValue?: number): void {
+    showErrorMessage(name: string, message: string, durationValue?: number): void {
         if (!message) {
             return;
         }
         if (!durationValue) {
-            durationValue = 10000;
+            durationValue = 7000;
         }
         console.error(message, durationValue);
-        // TODO: use snackbar instead of console
-        /*
-        This.snackBar.open(message, 'close', {
-            duration: durationValue
-        });
-        */
+        this.toastService.show(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
     }
 
     /**
@@ -268,9 +266,9 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
-                    this.showErrorMessage('The query did not return any results', 10000);
+                    await this.showErrorMessage(err.name, 'The query did not return any results', 10000);
                 }
-                this.showErrorMessage(err.name + ': ' + err.message, 10000);
+                await this.showErrorMessage(err.name, err.message, 10000);
             }
 
             // Capture query time
