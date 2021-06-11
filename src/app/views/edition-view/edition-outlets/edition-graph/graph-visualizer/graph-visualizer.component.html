@@ -92,6 +92,7 @@
                 <awg-select-results
                     *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
                     [queryResult$]="queryResult$"
+                    [queryTime]="queryTime"
                     (clickedTableRequest)="onTableNodeClick($event)"
                 ></awg-select-results>
             </ng-template>

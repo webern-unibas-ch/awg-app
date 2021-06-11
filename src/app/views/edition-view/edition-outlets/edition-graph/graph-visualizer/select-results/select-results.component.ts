@@ -25,6 +25,14 @@ export class SelectResultsComponent implements OnInit {
     queryResult$: Observable<SelectResponse>;
 
     /**
+     * Input variable: queryTime.
+     *
+     * It keeps the duration time of the query.
+     */
+    @Input()
+    queryTime: number;
+
+    /**
      * Output variable: clickedTableRequest.
      *
      * It keeps an event emitter for a click on a table IRI.
