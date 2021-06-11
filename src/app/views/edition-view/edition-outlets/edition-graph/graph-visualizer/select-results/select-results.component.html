@@ -1,12 +1,10 @@
 <ngb-accordion activeIds="awg-graph-visualizer-select-result">
     <ngb-panel id="awg-graph-visualizer-select-result" title="Resultat">
         <ng-template ngbPanelContent>
-            <p class="text-center">Got a SELECT request</p>
             <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
                 <ng-container *ngIf="isNotEmpty(queryResult); else noResult">
                     <!-- SPARQL table visualization -->
                     <awg-sparql-table
-                        maxHeight="500px"
                         [queryResult]="queryResult"
                         [queryTime]="queryTime"
                         (clickedTableRequest)="onTableNodeClick($event)"
