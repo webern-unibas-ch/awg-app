@@ -15,6 +15,7 @@ export class PrefixPipe implements PipeTransform {
      * It keeps an array of default prefixes.
      */
     prefixes: Prefix[] = [
+        new Prefix('awg', 'https://edition.anton-webern.ch/webern-onto#'),
         new Prefix('dc', 'http://purl.org/dc/elements/1.1/'),
         new Prefix('owl', 'http://www.w3.org/2002/07/owl#'),
         new Prefix('prov', 'http://www.w3.org/ns/prov#'),

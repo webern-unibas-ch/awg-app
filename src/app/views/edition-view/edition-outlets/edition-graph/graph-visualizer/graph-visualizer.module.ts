@@ -12,9 +12,9 @@ import { TriplesEditorComponent } from './triples-editor/triples-editor.componen
 import { UnsupportedTypeResultsComponent } from './unsupported-type-results/unsupported-type-results.component';
 import { GraphVisualizerComponent } from './graph-visualizer.component';
 
-import { PrefixPipe } from './prefix-pipe/prefix.pipe';
-
 import { GraphVisualizerService } from './services/graph-visualizer.service';
+
+import { PrefixPipe } from './prefix-pipe/prefix.pipe';
 
 /**
  * The GraphVisualizer module.
