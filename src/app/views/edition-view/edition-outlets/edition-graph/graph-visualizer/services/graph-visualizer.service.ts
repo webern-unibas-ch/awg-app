@@ -511,9 +511,18 @@ export class GraphVisualizerService {
                         b[i][varKeys[key]]['label'] = '';
                         if (b[i][varKeys[key]]['value']) {
                             b[i][varKeys[key]]['label'] = this.prefixPipe.transform(
-                                b[i][varKeys[key]].value,
+                                b[i][varKeys[key]]['value'],
                                 PrefixForm.short
                             );
+
+                            // Transform integer values to numbers
+                            const xmlsInteger = 'http://www.w3.org/2001/XMLSchema#integer';
+                            if (
+                                b[i][varKeys[key]]['type'] === 'literal' &&
+                                b[i][varKeys[key]]['datatype'] === xmlsInteger
+                            ) {
+                                b[i][varKeys[key]]['label'] = +b[i][varKeys[key]]['value'];
+                            }
                         }
                     }
                 }
