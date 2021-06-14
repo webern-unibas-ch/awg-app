@@ -1,23 +1,88 @@
-<p>SELECT request ({{ queryResult.body.bindings.length }} triples)</p>
+<p>SELECT request ({{ queryResult.body.bindings.length }} results)</p>
+
+<form>
+    <div class="form-group form-inline">
+        Full text search: <input class="form-control ml-2" type="text" [formControl]="filter" />
+    </div>
+</form>
+
+<div class="d-flex justify-content-between p-2">
+    <!-- top pagination -->
+    <ngb-pagination
+        class="d-flex justify-content-center"
+        [(page)]="paginatorOptions.page"
+        [pageSize]="paginatorOptions.pageSize"
+        [collectionSize]="+queryResult?.body?.bindings.length"
+        [maxSize]="4"
+        [boundaryLinks]="true"
+        (pageChange)="onPageChange()"
+    >
+    </ngb-pagination>
+
+    <select
+        class="custom-select"
+        style="width: auto"
+        [(ngModel)]="paginatorOptions.pageSize"
+        (ngModelChange)="onPageChange()"
+    >
+        <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
+            {{ option }} items per page
+        </option>
+    </select>
+</div>
 
 <table class="table table-striped">
     <thead>
         <tr>
-            <th *ngFor="let varLabel of queryResult.head.vars" scope="col" sortable="name" (sort)="onSort($event)">
-                {{ varLabel }}
+            <th *ngFor="let headerLabel of tableData.header" (click)="onSort(headerLabel)">
+                {{ headerLabel }}&nbsp;<fa-icon
+                    *ngIf="headerLabel === tableOptions.selectedKey"
+                    [icon]="tableOptions.sortIcon"
+                ></fa-icon>
             </th>
         </tr>
     </thead>
     <tbody>
-        <tr *ngFor="let binding of queryResult.body.bindings">
-            <td *ngFor="let varLabel of queryResult.head.vars" scope="row">
+        <tr
+            *ngFor="
+                let binding of tableData.content | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.case;
+                index as i
+            "
+        >
+            <td *ngFor="let headerLabel of tableData.header; index as j">
                 <a
-                    *ngIf="binding[varLabel].type && binding[varLabel].type == 'uri'"
-                    (click)="onTableNodeClick(binding[varLabel].value)"
-                    >{{ binding[varLabel].label }}</a
+                    *ngIf="binding[headerLabel].type && binding[headerLabel].type == 'uri'"
+                    (click)="onTableNodeClick(binding[headerLabel].value)"
                 >
-                <span *ngIf="binding[varLabel].type != 'uri'">"{{ binding[varLabel].label }}"</span>
+                    {{ binding[headerLabel].label }}
+                </a>
+                <span *ngIf="binding[headerLabel].type != 'uri'">{{ binding[headerLabel].label }}</span>
             </td>
         </tr>
     </tbody>
 </table>
+
+<div class="d-flex justify-content-between p-2">
+    <!-- bottom pagination -->
+    <ngb-pagination
+        class="d-flex justify-content-center"
+        [(page)]="paginatorOptions.page"
+        [pageSize]="paginatorOptions.pageSize"
+        [collectionSize]="+queryResult?.body?.bindings.length"
+        [maxSize]="4"
+        [boundaryLinks]="true"
+        (pageChange)="onPageChange()"
+    >
+    </ngb-pagination>
+
+    <select
+        class="custom-select"
+        style="width: auto"
+        [(ngModel)]="paginatorOptions.pageSize"
+        (ngModelChange)="onPageChange()"
+    >
+        <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
+            {{ option }} items per page
+        </option>
+    </select>
+</div>
