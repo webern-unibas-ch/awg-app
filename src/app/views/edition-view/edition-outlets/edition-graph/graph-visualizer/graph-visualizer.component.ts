@@ -198,20 +198,21 @@ export class GraphVisualizerComponent implements OnInit {
     /**
      * Public method: onTableNodeClick.
      *
-     * It performs a query for a given IRI from the result table.
+     * It performs a query for a given URI from the result table.
      *
-     * @param {string} IRI The given IRI.
+     * @param {string} URI The given URI.
      *
      * @returns {void} Performs the query with the given URI.
      */
-    onTableNodeClick(IRI: string): void {
-        if (!IRI) {
+    onTableNodeClick(URI: string): void {
+        if (!URI) {
             return;
         }
-        console.log(IRI);
+        console.log('GraphVisualizerComponent# tableClick on URI', URI);
 
         /* TODO
-        this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
+        this.query.queryString = `CONSTRUCT {\n\t<${URI}> ?p ?o .\n\t?s ?p1 <${URI}> .\n}\nWHERE {\n\t<${URI}> ?p ?o .\n\t?s ?p1 <${URI}> .\n}`;
+
         this.performQuery();
         */
     }

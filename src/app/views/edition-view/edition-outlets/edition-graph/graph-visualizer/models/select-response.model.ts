@@ -1,6 +1,3 @@
-import { Triple } from './triple.model';
-import { Logo } from '@awg-core/core-models';
-
 /**
  * The SelectResponse interface.
  *
