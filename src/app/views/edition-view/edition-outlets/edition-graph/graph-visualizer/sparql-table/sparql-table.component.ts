@@ -1,9 +1,12 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { FormControl } from '@angular/forms';
 
-import { debounceTime, distinctUntilChanged, filter, map, startWith } from 'rxjs/operators';
+import { combineLatest, Observable, of } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, startWith, tap } from 'rxjs/operators';
+
 import { faSortDown, faSortUp, IconDefinition } from '@fortawesome/free-solid-svg-icons';
 
-import { SelectResponse, SelectResponseBindings } from '../models';
+import { SelectResponse } from '../models';
 
 /**
  * The PaginatorOptions class.
@@ -16,6 +19,23 @@ export class PaginatorOptions {
     pageSize: number;
     pageSizeOptions: number[];
     collectionSize: number;
+
+    /**
+     * Constructor of the PaginatorOptions class.
+     *
+     * It initializes the class with given values.
+     *
+     * @param {number} page The current page number.
+     * @param {number} pageSize The number of rows per page.
+     * @param {number[]} pageSizeOptions The options for the page size.
+     * @param {number} collectionSize The size of the collection.
+     */
+    constructor(page: number, pageSize: number, pageSizeOptions: number[], collectionSize: number) {
+        this.page = page;
+        this.pageSize = pageSize;
+        this.pageSizeOptions = pageSizeOptions;
+        this.collectionSize = collectionSize;
+    }
 }
 
 /**
@@ -98,21 +118,18 @@ export class SparqlTableComponent implements OnInit {
      *
      * It keeps the options of the Paginator.
      */
-    paginatorOptions: PaginatorOptions = {
-        page: 1,
-        pageSize: 10,
-        pageSizeOptions: [5, 10, 25, 50, 100, 200],
-        collectionSize: 0,
-    };
+    paginatorOptions: PaginatorOptions;
 
     /**
      * Public variable: tableData.
      *
-     * It keeps the header and content data array of the table.
+     * It keeps the header and content rows data arrays of the table.
      */
     tableData = {
         header: [],
-        content: [],
+        totalRows$: of([]),
+        filteredRows$: of([]),
+        visibleRows$: of([]),
     };
 
     /**
@@ -128,12 +145,19 @@ export class SparqlTableComponent implements OnInit {
         case: TableOptionsSortCase.CASE_INSENSITIVE,
     };
 
+    /**
+     * Public variable: searchFilter.
+     *
+     * It keeps the form control of the search filter.
+     */
+    searchFilter: FormControl;
 
     /**
-     * Constructor of the SparqlTableComponent.
+     * Public variable: searchFilter$.
+     *
+     * It keeps an observable of the search filter values.
      */
-    constructor() {
-    }
+    searchFilter$: Observable<string>;
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -142,28 +166,78 @@ export class SparqlTableComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.initPagination();
+        this.initTable();
     }
 
     /**
-     * Public method: initPagination.
+     * Public method: initTable.
      *
-     * It inits the page and pageSize
-     * values needed for the Paginator.
+     * It inits all the data needed for the table.
      *
-     * @returns {void} Inits the Paginator values.
+     * @returns {void} Inits the table data.
      */
-    initPagination(): void {
-        this.paginatorOptions.page = 1;
-        this.paginatorOptions.pageSize = 10;
-        this.paginatorOptions.collectionSize = this.queryResult.body.bindings.length;
+    initTable(): void {
         this.tableData = {
             header: this.queryResult.head.vars,
-            content: this.queryResult.body.bindings,
+            totalRows$: of(this.queryResult.body.bindings),
+            filteredRows$: of(this.queryResult.body.bindings),
+            visibleRows$: of([]),
         };
+        this.paginatorOptions = new PaginatorOptions(
+            1,
+            10,
+            [5, 10, 25, 50, 100, 200],
+            this.queryResult.body.bindings.length
+        );
+
+        this.initFilter();
+
         this.onSort(this.tableData.header[0]);
 
         this.onPageChange();
+    }
+
+    initFilter(): void {
+        this.searchFilter = new FormControl('');
+        this.searchFilter$ = this.searchFilter.valueChanges.pipe(
+            // Start with empty string
+            startWith(''),
+            // Do not check changes before half a second
+            debounceTime(500),
+            // Do not check unchanged values
+            distinctUntilChanged()
+        );
+
+        this.tableData.filteredRows$ = this.onFilter();
+        this.tableData.visibleRows$ = this.tableData.filteredRows$;
+    }
+
+    /**
+     * Public method: onFilter.
+     *
+     * It returns a combined observable with the filtered table data.
+     *
+     * @returns {Observable<any[]>} Returns a combined observable.
+     */
+    onFilter(): Observable<any[]> {
+        return combineLatest(this.tableData.totalRows$, this.searchFilter$).pipe(
+            map(([results, filterTerm]) => {
+                const term = filterTerm.toLowerCase();
+                return results.filter(result => {
+                    for (const key in result) {
+                        if (Object.prototype.hasOwnProperty.call(result, key)) {
+                            if (result[key] === null || result[key] === undefined) {
+                                continue;
+                            }
+                            if (result[key]['label'] && result[key]['label'].toString().toLowerCase().includes(term)) {
+                                return true;
+                            }
+                        }
+                    }
+                    return false;
+                });
+            })
+        );
     }
 
     /**
@@ -178,12 +252,16 @@ export class SparqlTableComponent implements OnInit {
         if (!this.queryResult) {
             return;
         }
-        this.tableData.content = this.queryResult.body.bindings
-            .map((binding, i) => ({ id: i + 1, ...binding }))
-            .slice(
-                (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize,
-                (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize + this.paginatorOptions.pageSize
-            );
+        this.tableData.visibleRows$ = this.tableData.filteredRows$.pipe(
+            tap(x => console.log(x)),
+            map(rows =>
+                rows.slice(
+                    (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize,
+                    (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize + this.paginatorOptions.pageSize
+                )
+            ),
+            tap(x => console.log(x))
+        );
     }
 
     /**
