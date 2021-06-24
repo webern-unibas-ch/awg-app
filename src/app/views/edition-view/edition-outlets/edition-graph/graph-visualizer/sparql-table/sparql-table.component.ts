@@ -129,7 +129,7 @@ export class SparqlTableComponent implements OnInit {
         header: [],
         totalRows$: of([]),
         filteredRows$: of([]),
-        visibleRows$: of([]),
+        paginatedRows$: of([]),
     };
 
     /**
@@ -181,7 +181,7 @@ export class SparqlTableComponent implements OnInit {
             header: this.queryResult.head.vars,
             totalRows$: of(this.queryResult.body.bindings),
             filteredRows$: of(this.queryResult.body.bindings),
-            visibleRows$: of([]),
+            paginatedRows$: of(this.queryResult.body.bindings),
         };
         this.paginatorOptions = new PaginatorOptions(
             1,
@@ -207,9 +207,6 @@ export class SparqlTableComponent implements OnInit {
             // Do not check unchanged values
             distinctUntilChanged()
         );
-
-        this.tableData.filteredRows$ = this.onFilter();
-        this.tableData.visibleRows$ = this.tableData.filteredRows$;
     }
 
     /**
@@ -221,21 +218,17 @@ export class SparqlTableComponent implements OnInit {
      */
     onFilter(): Observable<any[]> {
         return combineLatest(this.tableData.totalRows$, this.searchFilter$).pipe(
-            map(([results, filterTerm]) => {
-                const term = filterTerm.toLowerCase();
-                return results.filter(result => {
-                    for (const key in result) {
-                        if (Object.prototype.hasOwnProperty.call(result, key)) {
-                            if (result[key] === null || result[key] === undefined) {
-                                continue;
-                            }
-                            if (result[key]['label'] && result[key]['label'].toString().toLowerCase().includes(term)) {
-                                return true;
-                            }
+            debounceTime(0),
+            map(([rows, filterTerm]) => {
+                const term = filterTerm.toString().toLowerCase();
+                return rows.filter(row =>
+                    Object.values(row).some(rowEntry => {
+                        if (rowEntry === null || rowEntry === undefined) {
+                            return false;
                         }
-                    }
-                    return false;
-                });
+                        return rowEntry['label'] && rowEntry['label'].toString().toLowerCase().includes(term);
+                    })
+                );
             })
         );
     }
@@ -252,15 +245,15 @@ export class SparqlTableComponent implements OnInit {
         if (!this.queryResult) {
             return;
         }
-        this.tableData.visibleRows$ = this.tableData.filteredRows$.pipe(
-            tap(x => console.log(x)),
+        this.tableData.filteredRows$ = this.onFilter();
+
+        this.tableData.paginatedRows$ = this.tableData.filteredRows$.pipe(
             map(rows =>
                 rows.slice(
                     (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize,
                     (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize + this.paginatorOptions.pageSize
                 )
             ),
-            tap(x => console.log(x))
         );
     }
 

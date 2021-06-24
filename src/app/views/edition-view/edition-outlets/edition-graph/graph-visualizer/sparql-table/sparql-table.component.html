@@ -42,7 +42,7 @@
     </select>
 </div>
 
-<table class="table table-striped" *ngIf="tableData.visibleRows$ | async as visibleRows; else loading">
+<table class="table table-striped" *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">
     <thead>
         <tr>
             <th scope="col" *ngFor="let headerLabel of tableData.header" (click)="onSort(headerLabel)">
@@ -56,11 +56,12 @@
     <tbody>
         <tr
             *ngFor="
-                let row of visibleRows | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.case;
-                index as i
+                let row of paginatedRows | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.case;
+                index as i;
+                trackBy: i
             "
         >
-            <td scope="col" *ngFor="let headerLabel of tableData.header; index as j">
+            <td scope="col" *ngFor="let headerLabel of tableData.header; index as j; trackBy: j">
                 <a
                     *ngIf="row[headerLabel].type && row[headerLabel].type == 'uri'"
                     (click)="onTableNodeClick(row[headerLabel].value)"
