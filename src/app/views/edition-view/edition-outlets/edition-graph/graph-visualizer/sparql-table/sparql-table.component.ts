@@ -194,7 +194,7 @@ export class SparqlTableComponent implements OnInit {
 
         this.onSort(this.tableData.header[0]);
 
-        this.onPageChange();
+        this.onPageSizeChange();
     }
 
     initFilter(): void {
@@ -241,14 +241,14 @@ export class SparqlTableComponent implements OnInit {
     }
 
     /**
-     * Public method: onPageChange.
+     * Public method: onPageSizeChange.
      *
      * It emits the new start position of the Paginator
      * from a given page number to the {@link pageChangeRequest}.
      *
      * @returns {void} Emits the new start position.
      */
-    onPageChange(): void {
+    onPageSizeChange(): void {
         if (!this.queryResult) {
             return;
         }

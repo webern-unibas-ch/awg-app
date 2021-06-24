@@ -26,7 +26,7 @@
         [collectionSize]="(tableData.filteredRows$ | async)?.length"
         [maxSize]="4"
         [boundaryLinks]="true"
-        (pageChange)="onPageChange()"
+        (pageChange)="onPageSizeChange()"
     >
     </ngb-pagination>
 
@@ -34,7 +34,7 @@
         class="custom-select"
         style="width: auto"
         [(ngModel)]="paginatorOptions.pageSize"
-        (ngModelChange)="onPageChange()"
+        (ngModelChange)="onPageSizeChange()"
     >
         <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
             {{ option }} Ergebnisse pro Seite
@@ -85,7 +85,7 @@
         [collectionSize]="(tableData.filteredRows$ | async)?.length"
         [maxSize]="4"
         [boundaryLinks]="true"
-        (pageChange)="onPageChange()"
+        (pageChange)="onPageSizeChange()"
     >
     </ngb-pagination>
 
@@ -93,7 +93,7 @@
         class="custom-select"
         style="width: auto"
         [(ngModel)]="paginatorOptions.pageSize"
-        (ngModelChange)="onPageChange()"
+        (ngModelChange)="onPageSizeChange()"
     >
         <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
             {{ option }} Ergebnisse pro Seite
