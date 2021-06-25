@@ -1,66 +1,19 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
 
-import { combineLatest, Observable, of } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith, tap } from 'rxjs/operators';
+import { combineLatest, Observable } from 'rxjs';
+import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
 
-import { faSortDown, faSortUp, IconDefinition } from '@fortawesome/free-solid-svg-icons';
+import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
-import { SelectResponse } from '../models';
-
-/**
- * The PaginatorOptions class.
- *
- * It is used in the context of the app framework
- * to store the options for a table paginator.
- */
-export class PaginatorOptions {
-    page: number;
-    pageSize: number;
-    pageSizeOptions: number[];
-    collectionSize: number;
-
-    /**
-     * Constructor of the PaginatorOptions class.
-     *
-     * It initializes the class with given values.
-     *
-     * @param {number} page The current page number.
-     * @param {number} pageSize The number of rows per page.
-     * @param {number[]} pageSizeOptions The options for the page size.
-     * @param {number} collectionSize The size of the collection.
-     */
-    constructor(page: number, pageSize: number, pageSizeOptions: number[], collectionSize: number) {
-        this.page = page;
-        this.pageSize = pageSize;
-        this.pageSizeOptions = pageSizeOptions;
-        this.collectionSize = collectionSize;
-    }
-}
-
-/**
- * The TableOptionsSortCase enumeration.
- *
- * It stores the possible sort case options for a table.
- */
-export enum TableOptionsSortCase {
-    CASE_SENSITIVE = 'case-sensitive',
-    CASE_INSENSITIVE = 'case-insensitive',
-}
-
-/**
- * The TableOptions class.
- *
- * It is used in the context of the app framework
- * to store the options for a table.
- */
-export class TableOptions {
-    selectedKey: string;
-    sortKey: string;
-    sortIcon: IconDefinition;
-    reverse: boolean;
-    case: TableOptionsSortCase;
-}
+import {
+    PaginatorOptions,
+    SelectResponse,
+    SelectResponseBindings,
+    TableData,
+    TableOptions,
+    TableOptionsSortCase,
+} from '../models';
 
 /**
  * The SparqlTable component.
@@ -123,14 +76,9 @@ export class SparqlTableComponent implements OnInit {
     /**
      * Public variable: tableData.
      *
-     * It keeps the header and content rows data arrays of the table.
+     * It keeps the data arrays of the table.
      */
-    tableData = {
-        header: [],
-        totalRows$: of([]),
-        filteredRows$: of([]),
-        paginatedRows$: of([]),
-    };
+    tableData: TableData;
 
     /**
      * Public variable: tableOptions.
