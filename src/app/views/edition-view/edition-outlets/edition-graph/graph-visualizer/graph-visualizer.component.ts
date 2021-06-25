@@ -192,6 +192,9 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Logs the click event.
      */
     onGraphNodeClick(node: D3SimulationNode) {
+        if (!node) {
+            return;
+        }
         console.info('GraphVisualizerComponent# graphClick on node', node);
     }
 
@@ -208,7 +211,7 @@ export class GraphVisualizerComponent implements OnInit {
         if (!URI) {
             return;
         }
-        console.log('GraphVisualizerComponent# tableClick on URI', URI);
+        console.info('GraphVisualizerComponent# tableClick on URI', URI);
 
         /* TODO
         this.query.queryString = `CONSTRUCT {\n\t<${URI}> ?p ?o .\n\t?s ?p1 <${URI}> .\n}\nWHERE {\n\t<${URI}> ?p ?o .\n\t?s ?p1 <${URI}> .\n}`;

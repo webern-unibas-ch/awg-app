@@ -1,32 +1,49 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { JsonPipe } from '@angular/common';
-import { Component, DebugElement, NgModule } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import { EMPTY, Observable, of as observableOf } from 'rxjs';
+import Spy = jasmine.Spy;
+
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
 import { customJasmineMatchers } from '@testing/custom-matchers';
 import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+import {
+    expectSpyCall,
+    getAndExpectDebugElementByCss,
+    getAndExpectDebugElementByDirective,
+} from '@testing/expect-helper';
 
-import { SelectResponse, Triple } from '../models';
-
+import { SelectResponse } from '../models';
 import { SelectResultsComponent } from './select-results.component';
 
 // Mock components
+@Component({ selector: 'awg-sparql-no-results', template: '' })
+class SparqlNoResultsStubComponent {}
+
+@Component({ selector: 'awg-sparql-table', template: '' })
+class SparqlTableStubComponent {
+    @Input() queryResult: SelectResponse;
+    @Input() queryTime: number;
+    @Output() clickedTableRequest: EventEmitter<string> = new EventEmitter();
+}
+
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
 class TwelveToneSpinnerStubComponent {}
 
-describe('SelectResultsComponent', () => {
+describe('SelectResultsComponent (DONE)', () => {
     let component: SelectResultsComponent;
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
     let compEl: any;
 
-    const jsonPipe = new JsonPipe();
+    let expectedQueryResult: SelectResponse;
+    let expectedQueryResult$: Observable<SelectResponse>;
+    let expectedQueryTime: number;
 
-    let expectedSelectResponse: SelectResponse;
-    let expectedQueryResult: Observable<SelectResponse>;
+    let tableClickSpy: Spy;
+    let emitSpy: Spy;
+    let isNotEmptySpy: Spy;
 
     // Global NgbConfigModule
     @NgModule({ imports: [NgbAccordionModule], exports: [NgbAccordionModule] })
@@ -41,7 +58,12 @@ describe('SelectResultsComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [NgbAccordionWithConfigModule],
-                declarations: [SelectResultsComponent, TwelveToneSpinnerStubComponent],
+                declarations: [
+                    SelectResultsComponent,
+                    SparqlNoResultsStubComponent,
+                    SparqlTableStubComponent,
+                    TwelveToneSpinnerStubComponent,
+                ],
             }).compileComponents();
         })
     );
@@ -63,8 +85,16 @@ describe('SelectResultsComponent', () => {
                 success: { type: 'success type', value: 'sucess value' },
             },
         ];
-        expectedSelectResponse = { head: { vars: varKeys }, body: { bindings: b } };
-        expectedQueryResult = observableOf(expectedSelectResponse);
+        expectedQueryResult = { head: { vars: varKeys }, body: { bindings: b } };
+        expectedQueryResult$ = observableOf(expectedQueryResult);
+        expectedQueryTime = 5000;
+
+        // Spies on component functions
+        // `.and.callThrough` will track the spy down the nested describes, see
+        // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
+        tableClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
+        emitSpy = spyOn(component.clickedTableRequest, 'emit').and.callThrough();
+        isNotEmptySpy = spyOn(component, 'isNotEmpty').and.callThrough();
     });
 
     it('should create', () => {
@@ -90,7 +120,8 @@ describe('SelectResultsComponent', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.queryResult$ = expectedQueryResult;
+            component.queryResult$ = expectedQueryResult$;
+            component.queryTime = expectedQueryTime;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -98,7 +129,7 @@ describe('SelectResultsComponent', () => {
 
         it('should have `queryResult` input', () => {
             expect(component.queryResult$).toBeDefined('should be defined');
-            expect(component.queryResult$).toEqual(expectedQueryResult, `should equal ${expectedQueryResult}`);
+            expect(component.queryResult$).toEqual(expectedQueryResult$, `should equal ${expectedQueryResult$}`);
         });
 
         describe('VIEW', () => {
@@ -140,7 +171,11 @@ describe('SelectResultsComponent', () => {
                 expect(btnEl.textContent).toContain('Resultat', 'should contain Resultat');
             });
 
-            it('... should contain panel body with centered paragraph and result div', () => {
+            it('... should contain panel body with TwelveToneSpinnerComponent (stubbed) while loading', () => {
+                // Mock empty observable
+                component.queryResult$ = EMPTY;
+                detectChangesOnPush(fixture);
+
                 // Panel body
                 const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -149,60 +184,170 @@ describe('SelectResultsComponent', () => {
                     1
                 );
 
-                // Panel body content paragraph
-                const pDes = getAndExpectDebugElementByCss(bodyDes[0], 'p', 1, 1);
-                const pEl = pDes[0].nativeElement;
-
-                expect(pEl).toHaveCssClass('text-center');
-
-                // Panel body content div
-                const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
+                getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
             });
 
-            it('... should display message in first panel body paragraph', () => {
-                // Panel body paragraph
-                const pDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-select-result > div.card-body > p',
-                    1,
-                    1
-                );
-                const pEl = pDes[0].nativeElement;
-
-                expect(pEl.textContent).toBeTruthy();
-                expect(pEl.textContent).toContain('Got a SELECT request');
-            });
-
-            it('... should display json-piped queryResults in panel body div', () => {
-                // Panel body div
-                const divDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-select-result > div.card-body > div',
-                    1,
-                    1
-                );
-                const divEl = divDes[0].nativeElement;
-
-                expect(divEl.textContent).toBeTruthy();
-                expect(divEl.textContent).toContain(jsonPipe.transform(expectedSelectResponse));
-            });
-
-            it('... should display additional message in second panel body paragraph if no results', () => {
-                // Mock empty result
-                component.queryResult$ = EMPTY;
+            it('... should contain panel body with SparqlNoResultsStubComponent (stubbed) if no results are available', () => {
+                // Mock empty response
+                component.queryResult$ = observableOf({ head: { vars: [] }, body: { bindings: [] } });
                 detectChangesOnPush(fixture);
 
-                // Panel body paragraphs
-                const pDes = getAndExpectDebugElementByCss(
+                // Panel body
+                const bodyDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'div#awg-graph-visualizer-select-result > div.card-body > p',
-                    2,
-                    2
+                    'div#awg-graph-visualizer-select-result > div.card-body',
+                    1,
+                    1
                 );
-                const pEl1 = pDes[1].nativeElement;
 
-                expect(pEl1.textContent).toBeTruthy();
-                expect(pEl1.textContent).toContain('No result to show');
+                // SparqlNoResultsStubComponent
+                getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
+            });
+
+            it('... should contain panel body with SparqlTableComponent (stubbed) if results are available', () => {
+                // Panel body
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-select-result > div.card-body',
+                    1,
+                    1
+                );
+
+                // SparqlTable
+                getAndExpectDebugElementByDirective(bodyDes[0], SparqlTableStubComponent, 1, 1);
+            });
+
+            it('... should pass down `queryResult` and `queryTime` to sparqlTable component', () => {
+                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
+                const sparqlTableCmp = sparqlTableDes[0].injector.get(
+                    SparqlTableStubComponent
+                ) as SparqlTableStubComponent;
+
+                expect(sparqlTableCmp.queryResult).toBeDefined();
+                expect(sparqlTableCmp.queryResult).toEqual(expectedQueryResult, `should equal ${expectedQueryResult}`);
+
+                expect(sparqlTableCmp.queryTime).toBeDefined();
+                expect(sparqlTableCmp.queryTime).toEqual(expectedQueryTime, `should have data: ${expectedQueryTime}`);
+            });
+        });
+
+        describe('#onTableNodeClick', () => {
+            it('... should trigger on event from SparqlTableComponent', () => {
+                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
+                const sparqlTableCmp = sparqlTableDes[0].injector.get(
+                    SparqlTableStubComponent
+                ) as SparqlTableStubComponent;
+
+                const expectedUri = 'example:Test';
+                sparqlTableCmp.clickedTableRequest.emit(expectedUri);
+
+                expectSpyCall(tableClickSpy, 1, expectedUri);
+            });
+
+            it('... should not emit anything if no URI is provided', () => {
+                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
+                const sparqlTableCmp = sparqlTableDes[0].injector.get(
+                    SparqlTableStubComponent
+                ) as SparqlTableStubComponent;
+
+                // Node is undefined
+                sparqlTableCmp.clickedTableRequest.emit(undefined);
+
+                expectSpyCall(tableClickSpy, 1, undefined);
+                expectSpyCall(emitSpy, 0);
+            });
+
+            it('... should emit provided URI on click', () => {
+                const sparqlTableDes = getAndExpectDebugElementByDirective(compDe, SparqlTableStubComponent, 1, 1);
+                const sparqlTableCmp = sparqlTableDes[0].injector.get(
+                    SparqlTableStubComponent
+                ) as SparqlTableStubComponent;
+
+                const expectedUri = 'example:Test';
+                sparqlTableCmp.clickedTableRequest.emit(expectedUri);
+
+                expectSpyCall(tableClickSpy, 1, expectedUri);
+                expectSpyCall(emitSpy, 1, expectedUri);
+            });
+        });
+
+        describe('#isNotEmpty', () => {
+            it('... should not do anything if no queryResult.head is provided', () => {
+                expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
+
+                // Mock empty response
+                const emptyQueryResult = { head: undefined, body: { bindings: [{ test: 'Test' }] } };
+                component.queryResult$ = observableOf(emptyQueryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isNotEmptySpy, 2, emptyQueryResult);
+                // SparqlNoResultsStubComponent
+                getAndExpectDebugElementByDirective(compDe, SparqlNoResultsStubComponent, 1, 1);
+            });
+
+            it('... should not do anything if no queryResult.body is provided', () => {
+                expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
+
+                // Mock empty response
+                const emptyQueryResult = { head: { vars: ['Test'] }, body: undefined };
+                component.queryResult$ = observableOf(emptyQueryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isNotEmptySpy, 2, emptyQueryResult);
+                // SparqlNoResultsStubComponent
+                getAndExpectDebugElementByDirective(compDe, SparqlNoResultsStubComponent, 1, 1);
+            });
+
+            it('... should return false if queryResult.head.vars length = 0', () => {
+                expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
+
+                // Mock empty response
+                const emptyQueryResult = { head: { vars: [] }, body: { bindings: [{ testKey: 'TestValue' }] } };
+                component.queryResult$ = observableOf(emptyQueryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isNotEmptySpy, 2, emptyQueryResult);
+                expect(component.isNotEmpty(emptyQueryResult)).toBeFalse();
+            });
+
+            it('... should return false if queryResult.body.bindings length = 0', () => {
+                expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
+
+                // Mock empty response
+                const emptyQueryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [] } };
+                component.queryResult$ = observableOf(emptyQueryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isNotEmptySpy, 2, emptyQueryResult);
+                expect(component.isNotEmpty(emptyQueryResult)).toBeFalse();
+            });
+
+            it('... should return false if queryResult.head.vars & queryResult.body.bindings length = 0', () => {
+                expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
+
+                // Mock empty response
+                const emptyQueryResult = { head: { vars: [] }, body: { bindings: [] } };
+                component.queryResult$ = observableOf(emptyQueryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isNotEmptySpy, 2, emptyQueryResult);
+                expect(component.isNotEmpty(emptyQueryResult)).toBeFalse();
+            });
+
+            it('... should return true if queryResult.head.vars & queryResult.body.bindings length > 0', () => {
+                component.queryResult$ = expectedQueryResult$;
+                expectSpyCall(isNotEmptySpy, 1, expectedQueryResult);
+
+                expect(component.isNotEmpty(expectedQueryResult)).toBeTrue();
+                expectSpyCall(isNotEmptySpy, 2, expectedQueryResult);
+
+                // Mock another non-empty response
+                const queryResult = { head: { vars: ['TestHeader'] }, body: { bindings: [{ testKey: 'TestValue' }] } };
+                component.queryResult$ = observableOf(queryResult);
+                detectChangesOnPush(fixture);
+
+                expectSpyCall(isNotEmptySpy, 3, queryResult);
+                expect(component.isNotEmpty(queryResult)).toBeTrue();
             });
         });
     });

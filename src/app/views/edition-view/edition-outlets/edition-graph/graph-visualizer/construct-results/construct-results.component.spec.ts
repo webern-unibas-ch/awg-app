@@ -1,7 +1,7 @@
-import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
+import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
-import { EMPTY, from as observableFrom, Observable, of as observableOf } from 'rxjs';
+import { EMPTY, Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
@@ -25,10 +25,8 @@ class ForceGraphStubComponent {
     @Output() clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter<D3SimulationNode>();
 }
 
-@Component({ selector: 'awg-force-graph-no-result', template: '' })
-class ForceGraphNoResultStubComponent {
-    @Input() height: number;
-}
+@Component({ selector: 'awg-sparql-no-results', template: '' })
+class SparqlNoResultsStubComponent {}
 
 @Component({ selector: 'awg-twelve-tone-spinner', template: '' })
 class TwelveToneSpinnerStubComponent {}
@@ -41,7 +39,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     let expectedHeight: number;
     let expectedTriples: Triple[];
-    let expectedQueryResult: Observable<Triple[]>;
+    let expectedQueryResult$: Observable<Triple[]>;
 
     let nodeClickSpy: Spy;
     let emitSpy: Spy;
@@ -62,7 +60,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 declarations: [
                     ConstructResultsComponent,
                     ForceGraphStubComponent,
-                    ForceGraphNoResultStubComponent,
+                    SparqlNoResultsStubComponent,
                     TwelveToneSpinnerStubComponent,
                 ],
             }).compileComponents();
@@ -84,7 +82,7 @@ describe('ConstructResultsComponent (DONE)', () => {
                 object: { nominalValue: 'example:Success' },
             },
         ];
-        expectedQueryResult = observableOf(expectedTriples);
+        expectedQueryResult$ = observableOf(expectedTriples);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -99,7 +97,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
     describe('BEFORE initial data binding', () => {
         it('... should not have queryResult', () => {
-            expect(component.queryResult).toBeUndefined('should be undefined');
+            expect(component.queryResult$).toBeUndefined('should be undefined');
         });
 
         it('... should not have defaultForceGraphHeight', () => {
@@ -120,7 +118,7 @@ describe('ConstructResultsComponent (DONE)', () => {
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
-            component.queryResult = expectedQueryResult;
+            component.queryResult$ = expectedQueryResult$;
             component.defaultForceGraphHeight = expectedHeight;
 
             // Trigger initial data binding
@@ -128,8 +126,8 @@ describe('ConstructResultsComponent (DONE)', () => {
         });
 
         it('should have `queryResult` input', () => {
-            expect(component.queryResult).toBeDefined('should be defined');
-            expect(component.queryResult).toEqual(expectedQueryResult, `should equal ${expectedQueryResult}`);
+            expect(component.queryResult$).toBeDefined('should be defined');
+            expect(component.queryResult$).toEqual(expectedQueryResult$, `should equal ${expectedQueryResult$}`);
         });
 
         it('should have `defaultForceGraphHeight` input', () => {
@@ -178,7 +176,7 @@ describe('ConstructResultsComponent (DONE)', () => {
 
             it('... should contain panel body with TwelveToneSpinnerComponent (stubbed) while loading', () => {
                 // Mock empty observable
-                component.queryResult = EMPTY;
+                component.queryResult$ = EMPTY;
                 detectChangesOnPush(fixture);
 
                 // Panel body
@@ -190,6 +188,23 @@ describe('ConstructResultsComponent (DONE)', () => {
                 );
 
                 getAndExpectDebugElementByDirective(bodyDes[0], TwelveToneSpinnerStubComponent, 1, 1);
+            });
+
+            it('... should contain panel body with SparqlNoResultsStubComponent (stubbed) if no results are available', () => {
+                // Mock empty response
+                component.queryResult$ = observableOf([]);
+                detectChangesOnPush(fixture);
+
+                // Panel body
+                const bodyDes = getAndExpectDebugElementByCss(
+                    compDe,
+                    'div#awg-graph-visualizer-construct-result > div.card-body',
+                    1,
+                    1
+                );
+
+                // SparqlNoResultsStubComponent
+                getAndExpectDebugElementByDirective(bodyDes[0], SparqlNoResultsStubComponent, 1, 1);
             });
 
             it('... should contain panel body with ForceGraphComponent (stubbed) if results are available', () => {
@@ -214,42 +229,6 @@ describe('ConstructResultsComponent (DONE)', () => {
 
                 expect(forceGraphCmp.height).toBeDefined();
                 expect(forceGraphCmp.height).toEqual(expectedHeight, `should have data: ${expectedHeight}`);
-            });
-
-            it('... should contain panel body with ForceGraphNoResultComponent (stubbed) if no results are available', () => {
-                // Mock empty response
-                component.queryResult = observableOf([]);
-                detectChangesOnPush(fixture);
-
-                // Panel body
-                const bodyDes = getAndExpectDebugElementByCss(
-                    compDe,
-                    'div#awg-graph-visualizer-construct-result > div.card-body',
-                    1,
-                    1
-                );
-
-                // ForceGraphNoResults
-                getAndExpectDebugElementByDirective(bodyDes[0], ForceGraphNoResultStubComponent, 1, 1);
-            });
-
-            it('... should pass down `defaultForceGraphHeight` to forceGraphNoResult component', () => {
-                // Mock empty response
-                component.queryResult = observableOf([]);
-                detectChangesOnPush(fixture);
-
-                const forceGraphNoResultsDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ForceGraphNoResultStubComponent,
-                    1,
-                    1
-                );
-                const forceGraphNoResultCmp = forceGraphNoResultsDes[0].injector.get(
-                    ForceGraphNoResultStubComponent
-                ) as ForceGraphNoResultStubComponent;
-
-                expect(forceGraphNoResultCmp.height).toBeDefined();
-                expect(forceGraphNoResultCmp.height).toEqual(expectedHeight, `should have data: ${expectedHeight}`);
             });
         });
 

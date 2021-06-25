@@ -1,5 +1,7 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
+import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
+
 import { SparqlTableComponent } from './sparql-table.component';
 
 describe('SparqlTableComponent', () => {
@@ -8,6 +10,7 @@ describe('SparqlTableComponent', () => {
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
+            imports: [NgbPaginationModule],
             declarations: [SparqlTableComponent],
         }).compileComponents();
     });
@@ -15,7 +18,6 @@ describe('SparqlTableComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(SparqlTableComponent);
         component = fixture.componentInstance;
-        fixture.detectChanges();
     });
 
     it('should create', () => {

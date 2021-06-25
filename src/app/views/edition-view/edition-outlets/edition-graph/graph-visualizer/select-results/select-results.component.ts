@@ -59,7 +59,7 @@ export class SelectResultsComponent implements OnInit {
      * @returns {boolean} The boolean value of the comparison result.
      */
     isNotEmpty(queryResult: SelectResponse): boolean {
-        if (!queryResult.head && !queryResult.body) {
+        if (!queryResult.head || !queryResult.body) {
             return;
         }
         return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
