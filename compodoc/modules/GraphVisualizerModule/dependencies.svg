@@ -24,13 +24,13 @@
 <title>cluster_GraphVisualizerModule</title>
 <polygon fill="none" stroke="black" stroke-dasharray="1,5" points="8,-70 8,-268 1770,-268 1770,-70 8,-70"/>
 </g>
-<g id="clust13" class="cluster">
-<title>cluster_GraphVisualizerModule_exports</title>
-<polygon fill="none" stroke="black" points="797,-208 797,-260 991,-260 991,-208 797,-208"/>
-</g>
 <g id="clust12" class="cluster">
 <title>cluster_GraphVisualizerModule_imports</title>
 <polygon fill="none" stroke="black" points="1648,-78 1648,-130 1762,-130 1762,-78 1648,-78"/>
+</g>
+<g id="clust13" class="cluster">
+<title>cluster_GraphVisualizerModule_exports</title>
+<polygon fill="none" stroke="black" points="797,-208 797,-260 991,-260 991,-208 797,-208"/>
 </g>
 <g id="clust2" class="cluster">
 <title>cluster_GraphVisualizerModule_declarations</title>
