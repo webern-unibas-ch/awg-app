@@ -30,7 +30,7 @@
             <awg-construct-results
                 #queryConstructResultAcc
                 *ngIf="queryType === 'construct'; else querySelectResultAcc"
-                [queryResult]="queryResult"
+                [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="defaultForceGraphHeight"
                 (clickedNodeRequest)="onGraphNodeClick($event)"
             ></awg-construct-results>
@@ -40,8 +40,8 @@
             <ng-template #querySelectResultAcc>
                 <awg-select-results
                     *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
-                    [queryResult]="queryResult"
-                    (clickedTableRequest)="onTableClick($event)"
+                    [queryResult$]="queryResult$"
+                    (clickedTableRequest)="onTableNodeClick($event)"
                 ></awg-select-results>
             </ng-template>
 
@@ -81,7 +81,7 @@
             <awg-construct-results
                 #queryConstructResultAcc
                 *ngIf="queryType === 'construct'; else querySelectResultAcc"
-                [queryResult]="queryResult"
+                [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="1000"
                 (clickedNodeRequest)="onGraphNodeClick($event)"
             ></awg-construct-results>
@@ -91,8 +91,9 @@
             <ng-template #querySelectResultAcc>
                 <awg-select-results
                     *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
-                    [queryResult]="queryResult"
-                    (clickedTableRequest)="onTableClick($event)"
+                    [queryResult$]="queryResult$"
+                    [queryTime]="queryTime"
+                    (clickedTableRequest)="onTableNodeClick($event)"
                 ></awg-select-results>
             </ng-template>
 
@@ -104,3 +105,5 @@
         </div>
     </ng-container>
 </div>
+
+<awg-toast aria-live="polite" aria-atomic="true"></awg-toast>

@@ -10,6 +10,7 @@ import { CodemirrorModule } from '@ctrl/ngx-codemirror';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 import { NgxJsonViewerModule } from 'ngx-json-viewer';
+import { OrderModule } from 'ngx-order-pipe';
 import { SharedNgbootstrapModule } from '@awg-shared/shared-ngbootstrap.module';
 
 //
@@ -20,6 +21,7 @@ import { JsonViewerComponent } from './json-viewer/json-viewer.component';
 import { ModalComponent } from './modal/modal.component';
 import { OpenStreetMapComponent } from './open-street-map/open-street-map.component';
 import { RouterLinkButtonGroupComponent } from './router-link-button-group/router-link-button-group.component';
+import { ToastComponent } from './toast/toast.component';
 import { TwelveToneSpinnerComponent } from './twelve-tone-spinner/twelve-tone-spinner.component';
 
 //
@@ -28,7 +30,6 @@ import { ExternalLinkDirective } from './external-link/external-link.directive';
 
 //
 // Shared pipes
-import { OrderByPipe } from './order-by/order-by.pipe';
 
 /**
  * The shared module.
@@ -46,6 +47,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
+        OrderModule,
         SharedNgbootstrapModule,
     ],
     declarations: [
@@ -55,9 +57,9 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ToastComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
-        OrderByPipe,
     ],
     exports: [
         CommonModule,
@@ -69,6 +71,7 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         FontAwesomeModule,
         NgxGalleryModule,
         NgxJsonViewerModule,
+        OrderModule,
         SharedNgbootstrapModule,
 
         AddressComponent,
@@ -77,9 +80,9 @@ import { OrderByPipe } from './order-by/order-by.pipe';
         ModalComponent,
         OpenStreetMapComponent,
         RouterLinkButtonGroupComponent,
+        ToastComponent,
         TwelveToneSpinnerComponent,
         ExternalLinkDirective,
-        OrderByPipe,
     ],
 })
 export class SharedModule {}

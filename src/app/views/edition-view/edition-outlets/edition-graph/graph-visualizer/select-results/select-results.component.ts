@@ -1,7 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { Triple } from '../models';
+import { SelectResponse } from '../models';
 
 /**
  * The SelectResults component.
@@ -17,12 +17,20 @@ import { Triple } from '../models';
 })
 export class SelectResultsComponent implements OnInit {
     /**
-     * Input variable: queryResult.
+     * Input variable: queryResult$.
      *
-     * It keeps the result of the query as an observable of triples.
+     * It keeps the SelectResponse as an observable.
      */
     @Input()
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<SelectResponse>;
+
+    /**
+     * Input variable: queryTime.
+     *
+     * It keeps the duration time of the query.
+     */
+    @Input()
+    queryTime: number;
 
     /**
      * Output variable: clickedTableRequest.
@@ -39,4 +47,37 @@ export class SelectResultsComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {}
+
+    /**
+     * Public method: isNotEmpty.
+     *
+     * It checks if a given queryResult with a SelectResponse
+     * is not empty.
+     *
+     * @param {string} queryResult The given queryResult.
+     *
+     * @returns {boolean} The boolean value of the comparison result.
+     */
+    isNotEmpty(queryResult: SelectResponse): boolean {
+        if (!queryResult.head || !queryResult.body) {
+            return;
+        }
+        return queryResult.head.vars.length > 0 && queryResult.body.bindings.length > 0;
+    }
+
+    /**
+     * Public method: onTableNodeClick.
+     *
+     * It emits a uri the user clicked on in the result table.
+     *
+     * @param {string} uri The given uri.
+     *
+     * @returns {void} Emits the uri.
+     */
+    onTableNodeClick(uri: string): void {
+        if (!uri) {
+            return;
+        }
+        this.clickedTableRequest.emit(uri);
+    }
 }

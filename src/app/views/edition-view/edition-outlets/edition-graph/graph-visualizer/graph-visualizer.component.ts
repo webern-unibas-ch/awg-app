@@ -10,6 +10,7 @@ import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { D3SimulationNode, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
+import { ToastService } from '@awg-core/services';
 
 /**
  * The GraphVisualizer component.
@@ -69,11 +70,11 @@ export class GraphVisualizerComponent implements OnInit {
     queryList: GraphSparqlQuery[];
 
     /**
-     * Public variable: queryResult.
+     * Public variable: queryResult$.
      *
      * It keeps the result of the query as an observable of triples.
      */
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<Triple[]>;
 
     /**
      * Public variable: queryTime.
@@ -102,8 +103,9 @@ export class GraphVisualizerComponent implements OnInit {
      * It declares a private GraphVisualizerService instance.
      *
      * @param {GraphVisualizerService} graphVisualizerService Instance of the GraphVisualizerService.
+     * @param {ToastService} toastService Instance of the ToastService.
      */
-    constructor(private graphVisualizerService: GraphVisualizerService) {}
+    constructor(private graphVisualizerService: GraphVisualizerService, private toastService: ToastService) {}
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -172,12 +174,12 @@ export class GraphVisualizerComponent implements OnInit {
         this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
         // Perform only construct queries for now
-        if (this.queryType === 'construct') {
+        if (this.queryType === 'construct' || this.queryType === 'select') {
             // Query local store
             const result = this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
-            this.queryResult = from(result);
+            this.queryResult$ = from(result);
         } else {
-            this.queryResult = EMPTY;
+            this.queryResult$ = EMPTY;
             return;
         }
     }
@@ -190,24 +192,32 @@ export class GraphVisualizerComponent implements OnInit {
      * @returns {void} Logs the click event.
      */
     onGraphNodeClick(node: D3SimulationNode) {
+        if (!node) {
+            return;
+        }
         console.info('GraphVisualizerComponent# graphClick on node', node);
     }
 
     /**
-     * Public method: onTableClick.
+     * Public method: onTableNodeClick.
      *
-     * It performs a query for a given IRI from the result table.
+     * It performs a query for a given URI from the result table.
      *
-     * @param {string} IRI The given IRI.
+     * @param {string} URI The given URI.
      *
      * @returns {void} Performs the query with the given URI.
      */
-    onTableClick(IRI: string): void {
-        if (!IRI) {
+    onTableNodeClick(URI: string): void {
+        if (!URI) {
             return;
         }
-        this.query.queryString = `SELECT * WHERE {\n\tBIND(<${IRI}> AS ?el)\n\t?el ?key ?value\n}`;
+        console.info('GraphVisualizerComponent# tableClick on URI', URI);
+
+        /* TODO
+        this.query.queryString = `CONSTRUCT {\n\t<${URI}> ?p ?o .\n\t?s ?p1 <${URI}> .\n}\nWHERE {\n\t<${URI}> ?p ?o .\n\t?s ?p1 <${URI}> .\n}`;
+
         this.performQuery();
+        */
     }
 
     /**
@@ -215,25 +225,21 @@ export class GraphVisualizerComponent implements OnInit {
      *
      * It shows a given error message for a given duration.
      *
+     * @param {string} name The given error name.
      * @param {string} message The given error message.
      * @param {number} [durationValue] The given optional duration in ms.
      *
      * @returns {void} Shows the error message.
      */
-    showErrorMessage(message: string, durationValue?: number): void {
+    showErrorMessage(name: string, message: string, durationValue?: number): void {
         if (!message) {
             return;
         }
         if (!durationValue) {
-            durationValue = 10000;
+            durationValue = 7000;
         }
         console.error(message, durationValue);
-        // TODO: use snackbar instead of console
-        /*
-        This.snackBar.open(message, 'close', {
-            duration: durationValue
-        });
-        */
+        this.toastService.show(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
     }
 
     /**
@@ -264,9 +270,9 @@ export class GraphVisualizerComponent implements OnInit {
 
             if (err.message && err.name) {
                 if (err.message.indexOf('undefined') !== -1) {
-                    this.showErrorMessage('The query did not return any results', 10000);
+                    await this.showErrorMessage(err.name, 'The query did not return any results', 10000);
                 }
-                this.showErrorMessage(err.name + ': ' + err.message, 10000);
+                await this.showErrorMessage(err.name, err.message, 10000);
             }
 
             // Capture query time

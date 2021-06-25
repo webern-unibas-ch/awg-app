@@ -637,7 +637,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             // Rdf:type
             predicateNode.label === 'a' ||
             predicateNode.label === 'rdf:type' ||
-            predicateNode.label === this.prefixPipe.transform(PrefixForm.long, 'rdf:type')
+            predicateNode.label === this.prefixPipe.transform('rdf:type', PrefixForm.long)
         );
     }
 
@@ -884,9 +884,9 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // Initial Graph from triples
         triples.map((triple: Triple) => {
-            const subjId = this.prefixPipe.transform(PrefixForm.short, triple.subject);
-            const predId = this.prefixPipe.transform(PrefixForm.short, triple.predicate);
-            let objId = this.prefixPipe.transform(PrefixForm.short, triple.object);
+            const subjId = this.prefixPipe.transform(triple.subject, PrefixForm.short);
+            const predId = this.prefixPipe.transform(triple.predicate, PrefixForm.short);
+            let objId = this.prefixPipe.transform(triple.object, PrefixForm.short);
 
             // Check if object is number & round decimal numbers to 2 decimals
             if (!isNaN(objId)) {

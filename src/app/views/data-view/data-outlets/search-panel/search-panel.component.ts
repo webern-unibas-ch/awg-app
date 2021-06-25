@@ -146,10 +146,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                                 return this.dataApiService.getFulltextSearchData(this.searchParams).subscribe(
                                     (searchResponse: SearchResponseJson) => {
                                         // Share search data via streamer service
-                                        const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(
-                                            searchResponse,
-                                            this.searchParams.query
-                                        );
+                                        const searchResponseWithQuery: SearchResponseWithQuery =
+                                            new SearchResponseWithQuery(searchResponse, this.searchParams.query);
                                         this.dataStreamerService.updateSearchResponseWithQuery(searchResponseWithQuery);
                                     },
                                     error => {
@@ -312,7 +310,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * @returns {void} Sets the search params and routes to itself if routing is truthy.
      */
-    updateSearchParamsFromRoute(params: ParamMap, routing: boolean) {
+    updateSearchParamsFromRoute(params: ParamMap, routing: boolean): void {
         if (!params) {
             return;
         }

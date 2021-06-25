@@ -7,6 +7,7 @@ import {
     NgbModalModule,
     NgbNavModule,
     NgbPaginationModule,
+    NgbToastModule,
     NgbTooltipModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
@@ -19,6 +20,7 @@ import {
         NgbModalModule,
         NgbNavModule,
         NgbPaginationModule,
+        NgbToastModule,
         NgbTooltipModule,
     ],
     exports: [
@@ -29,6 +31,7 @@ import {
         NgbModalModule,
         NgbNavModule,
         NgbPaginationModule,
+        NgbToastModule,
         NgbTooltipModule,
     ],
 })

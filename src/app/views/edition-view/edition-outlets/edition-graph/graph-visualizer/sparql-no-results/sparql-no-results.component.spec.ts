@@ -3,22 +3,21 @@ import { DebugElement } from '@angular/core';
 
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { Logo, Logos } from '@awg-core/core-models';
+import { Logos } from '@awg-core/core-models';
 import { LOGOSDATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
-import { ForceGraphNoResultComponent } from './force-graph-no-result.component';
+import { SparqlNoResultsComponent } from './sparql-no-results.component';
 
-describe('ForceGraphNoResultComponent', () => {
-    let component: ForceGraphNoResultComponent;
-    let fixture: ComponentFixture<ForceGraphNoResultComponent>;
+describe('SparqlNoResultsComponent (DONE)', () => {
+    let component: SparqlNoResultsComponent;
+    let fixture: ComponentFixture<SparqlNoResultsComponent>;
     let compDe: DebugElement;
     let compEl: any;
 
     let mockCoreService: Partial<CoreService>;
 
     let expectedLogos: Logos;
-    let expectedHeight: number;
 
     beforeEach(
         waitForAsync(() => {
@@ -28,21 +27,20 @@ describe('ForceGraphNoResultComponent', () => {
             };
 
             TestBed.configureTestingModule({
-                declarations: [ForceGraphNoResultComponent],
+                declarations: [SparqlNoResultsComponent],
                 providers: [{ provide: CoreService, useValue: mockCoreService }],
             }).compileComponents();
         })
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(ForceGraphNoResultComponent);
+        fixture = TestBed.createComponent(SparqlNoResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
         compEl = compDe.nativeElement;
 
         // Test data
         expectedLogos = LOGOSDATA;
-        expectedHeight = 500;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -60,10 +58,6 @@ describe('ForceGraphNoResultComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have height', () => {
-            expect(component.height).toBeUndefined('should be undefined');
-        });
-
         describe('#provideMetaData', () => {
             it('... should not have been called', () => {
                 expect(component.provideMetaData).not.toHaveBeenCalled();
@@ -119,11 +113,11 @@ describe('ForceGraphNoResultComponent', () => {
                 expect(p4aEl.href).not.toBeTruthy('should be empty string');
             });
 
-            it('... should contain one empty image in 3rd paragraph link', () => {
+            it('... should contain one empty image in 4th paragraph link', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p3aDes = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
-                const imgDes = getAndExpectDebugElementByCss(p3aDes[0], 'a > img', 1, 1);
+                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(p4aDes[0], 'a > img', 1, 1);
 
                 const imgEl = imgDes[0].nativeElement;
 
@@ -135,19 +129,11 @@ describe('ForceGraphNoResultComponent', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Simulate the parent setting the input properties
-            component.height = expectedHeight;
-
             // Mock the call to the meta service in #provideMetaData
             component.logos = mockCoreService.getLogos();
 
             // Trigger initial data binding
             fixture.detectChanges();
-        });
-
-        it('... should have height', () => {
-            expect(component.height).toBeDefined();
-            expect(component.height).toBe(expectedHeight);
         });
 
         describe('#provideMetaData', () => {
@@ -162,12 +148,6 @@ describe('ForceGraphNoResultComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should set correct height to div.text-center', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
-
-                expect(divDes[0].styles.height).toBe(expectedHeight + 'px', `should be ${expectedHeight + 'px'}`);
-            });
-
             it('... should contain correct link in 3rd and 4th paragraph', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
@@ -181,22 +161,22 @@ describe('ForceGraphNoResultComponent', () => {
                 expect(p3aEl.href).toBeTruthy('should not be empty');
                 expect(p3aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
 
-                expect(p4aEl.href).toBeDefined();
-                expect(p4aEl.href).toBeTruthy('should not be empty');
-                expect(p4aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
-
-                expect(p4aEl.textContent).toBeDefined();
-                expect(p4aEl.textContent).toContain(
+                expect(p3aEl.textContent).toBeDefined();
+                expect(p3aEl.textContent).toContain(
                     expectedLogos.sparql.href,
                     `should contain: ${expectedLogos.sparql.href}`
                 );
+
+                expect(p4aEl.href).toBeDefined();
+                expect(p4aEl.href).toBeTruthy('should not be empty');
+                expect(p4aEl.href).toContain(expectedLogos.sparql.href, `should contain ${expectedLogos.sparql.href}`);
             });
 
-            it('... should contain correct image in 3rd paragraph link', () => {
+            it('... should contain correct image in 4th paragraph link', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.text-center', 1, 1);
                 const pDes = getAndExpectDebugElementByCss(compDe, 'div.text-center > p', 4, 1);
-                const p3aDes = getAndExpectDebugElementByCss(pDes[2], 'p > a', 1, 1);
-                const imgDes = getAndExpectDebugElementByCss(p3aDes[0], 'a > img', 1, 1);
+                const p4aDes = getAndExpectDebugElementByCss(pDes[3], 'p > a', 1, 1);
+                const imgDes = getAndExpectDebugElementByCss(p4aDes[0], 'a > img', 1, 1);
 
                 const imgEl = imgDes[0].nativeElement;
 

@@ -17,12 +17,12 @@ import { D3SimulationNode, Triple } from '../models';
 })
 export class ConstructResultsComponent implements OnInit {
     /**
-     * Input variable: queryResult.
+     * Input variable: queryResult$.
      *
      * It keeps the result of the query as an observable of triples.
      */
     @Input()
-    queryResult: Observable<Triple[]>;
+    queryResult$: Observable<Triple[]>;
 
     /**
      * Input variable: defaultForceGraphHeight.
@@ -51,10 +51,10 @@ export class ConstructResultsComponent implements OnInit {
     /**
      * Public method: onGraphNodeClick.
      *
-     * It emits a triclickedNodeRequestgger to
-     * the {@link resetQueryRequest}.
+     * It emits a trigger to
+     * the {@link clickedNodeRequest}.
      *
-     * @param {D3SimulationNodey} node The given graph node.
+     * @param {D3SimulationNode} node The given graph node.
      *
      * @returns {void} Triggers the request.
      */

@@ -1,7 +1,7 @@
 <ngb-accordion activeIds="awg-graph-visualizer-construct-result">
     <ngb-panel id="awg-graph-visualizer-construct-result" title="Resultat">
         <ng-template ngbPanelContent>
-            <ng-container *ngIf="queryResult | async as queryResult; else loading">
+            <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
                 <ng-container *ngIf="queryResult.length > 0; else noResult">
                     <!-- Force graph visualization -->
                     <awg-force-graph
@@ -13,7 +13,7 @@
                     </awg-force-graph>
                 </ng-container>
                 <ng-template #noResult>
-                    <awg-force-graph-no-result [height]="defaultForceGraphHeight"></awg-force-graph-no-result>
+                    <awg-sparql-no-results></awg-sparql-no-results>
                 </ng-template>
             </ng-container>
             <ng-template #loading>
