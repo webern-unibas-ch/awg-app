@@ -114,71 +114,7 @@ export class SparqlTableComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit(): void {
-        this.initTable();
-    }
-
-    /**
-     * Public method: initTable.
-     *
-     * It inits all the data needed for the table.
-     *
-     * @returns {void} Inits the table data.
-     */
-    initTable(): void {
-        this.tableData = {
-            header: this.queryResult.head.vars,
-            totalRows$: of(this.queryResult.body.bindings),
-            filteredRows$: of(this.queryResult.body.bindings),
-            paginatedRows$: of(this.queryResult.body.bindings),
-        };
-        this.paginatorOptions = new PaginatorOptions(
-            1,
-            10,
-            [5, 10, 25, 50, 100, 200],
-            this.queryResult.body.bindings.length
-        );
-
-        this.initFilter();
-
-        this.onSort(this.tableData.header[0]);
-
-        this.onPageSizeChange();
-    }
-
-    initFilter(): void {
-        this.searchFilter = new FormControl('');
-        this.searchFilter$ = this.searchFilter.valueChanges.pipe(
-            // Start with empty string
-            startWith(''),
-            // Do not check changes before half a second
-            debounceTime(500),
-            // Do not check unchanged values
-            distinctUntilChanged()
-        );
-    }
-
-    /**
-     * Public method: onFilter.
-     *
-     * It returns a combined observable with the filtered table data.
-     *
-     * @returns {Observable<any[]>} Returns a combined observable.
-     */
-    onFilter(): Observable<any[]> {
-        return combineLatest(this.tableData.totalRows$, this.searchFilter$).pipe(
-            debounceTime(0),
-            map(([rows, filterTerm]) => {
-                const term = filterTerm.toString().toLowerCase();
-                return rows.filter(row =>
-                    Object.values(row).some(rowEntry => {
-                        if (rowEntry === null || rowEntry === undefined) {
-                            return false;
-                        }
-                        return rowEntry['label'] && rowEntry['label'].toString().toLowerCase().includes(term);
-                    })
-                );
-            })
-        );
+        this._initTable();
     }
 
     /**
@@ -193,16 +129,9 @@ export class SparqlTableComponent implements OnInit {
         if (!this.queryResult) {
             return;
         }
-        this.tableData.filteredRows$ = this.onFilter();
+        this.tableData.filteredRows$ = this._filterRows();
 
-        this.tableData.paginatedRows$ = this.tableData.filteredRows$.pipe(
-            map(rows =>
-                rows.slice(
-                    (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize,
-                    (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize + this.paginatorOptions.pageSize
-                )
-            ),
-        );
+        this.tableData.paginatedRows$ = this._paginateRows();
     }
 
     /**
@@ -248,5 +177,92 @@ export class SparqlTableComponent implements OnInit {
             return;
         }
         this.clickedTableRequest.emit(uri);
+    }
+
+    /**
+     * Private method: initTable.
+     *
+     * It inits all the data needed for the table.
+     *
+     * @returns {void} Inits the table data.
+     */
+    private _initTable(): void {
+        this.tableData = new TableData(this.queryResult);
+        this.paginatorOptions = new PaginatorOptions(
+            1,
+            10,
+            [5, 10, 25, 50, 100, 200],
+            this.queryResult.body.bindings.length
+        );
+
+        this._initFilter();
+
+        this.onSort(this.tableData.header[0]);
+
+        this.onPageSizeChange();
+    }
+
+    /**
+     * Private method: _initFilter.
+     *
+     * It inits all the data needed for the table.
+     *
+     * @returns {void} Inits the table data.
+     */
+    private _initFilter(): void {
+        this.searchFilter = new FormControl('');
+        this.searchFilter$ = this.searchFilter.valueChanges.pipe(
+            // Start with empty string
+            startWith(''),
+            // Do not check changes before half a second
+            debounceTime(500),
+            // Do not check unchanged values
+            distinctUntilChanged()
+        );
+    }
+
+    /**
+     * Private method: _filterRows.
+     *
+     * It returns a combined observable with the filtered table rows.
+     *
+     * @returns {Observable<any[]>} Returns a combined observable.
+     */
+    private _filterRows(): Observable<any[]> {
+        return combineLatest(this.tableData.totalRows$, this.searchFilter$).pipe(
+            map(([rows, filterTerm]) => {
+                const term = filterTerm.toString().toLowerCase();
+                return rows.filter(row =>
+                    Object.values(row).some(rowEntry => {
+                        if (rowEntry === null || rowEntry === undefined) {
+                            return false;
+                        }
+                        return rowEntry['label'] && rowEntry['label'].toString().toLowerCase().includes(term);
+                    })
+                );
+            })
+        );
+    }
+    /**
+     * Private method: _paginateRows.
+     *
+     * It returns a sliced observable with the paginated table rows.
+     *
+     * @returns {Observable<SelectResponseBindings[]>} Returns an observable of the paginated rows.
+     */
+    private _paginateRows(): Observable<SelectResponseBindings[]> {
+        const startRow = (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize;
+        const endRow = startRow + this.paginatorOptions.pageSize;
+        const range = endRow - startRow;
+
+        return this.tableData.filteredRows$.pipe(
+            map(rows => {
+                if (rows.length <= range) {
+                    return rows;
+                } else {
+                    return rows.slice(startRow, endRow);
+                }
+            })
+        );
     }
 }
