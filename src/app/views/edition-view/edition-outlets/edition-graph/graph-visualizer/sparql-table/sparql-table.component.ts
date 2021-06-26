@@ -180,7 +180,7 @@ export class SparqlTableComponent implements OnInit {
     }
 
     /**
-     * Private method: initTable.
+     * Private method: _initTable.
      *
      * It inits all the data needed for the table.
      *
