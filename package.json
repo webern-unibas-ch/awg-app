@@ -42,7 +42,7 @@
         "doc": "yarn compodoc --tsconfig tsconfig.doc.json --theme Readthedocs --output dist/awg-app/compodoc --disableRoutesGraph",
         "serve:doc": "yarn doc --serve --watch",
         "build:doc": "yarn doc",
-        "build:prod": "ng build --configuration production",
+        "build:prod": "ng build",
         "watch": "ng build --watch --configuration development",
         "build:gh": "yarn build:prod --base-href $npm_package_homepage && yarn gzip:dist && yarn build:doc",
         "gzip:dist": "gzipper compress ./dist/awg-app/",
