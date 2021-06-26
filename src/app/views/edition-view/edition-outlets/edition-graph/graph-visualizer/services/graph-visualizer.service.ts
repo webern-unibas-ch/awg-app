@@ -477,6 +477,15 @@ export class GraphVisualizerService {
         return Object.assign({}, ...keyValues);
     }
 
+    /**
+     * Private method: _prepareSelectResponse.
+     *
+     * It prepares the data of the select response.
+     *
+     * @param {SelectResponseBindings[]} data The given obj.
+     *
+     * @returns  {status: number; data: SelectResponse | string } An object with a status code, and the data as SelectResponse or string.
+     */
     private _prepareSelectResponse(data: SelectResponseBindings[]): { status: number; data: SelectResponse | string } {
         if (!data) {
             return;
