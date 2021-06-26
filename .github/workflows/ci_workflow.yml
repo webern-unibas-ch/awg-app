@@ -51,8 +51,16 @@ jobs:
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
             - name: Test build for GH Pages
+              if: matrix.node-version != 16
               run: |
                   yarn run build:gh
+
+            # Workaround for build path issue with node 16:
+            # https://github.com/angular/angular-cli/issues/21202
+            - name: Test build for GH Pages
+              if: matrix.node-version == 16
+              run: |
+                  yarn build:prod --delete-output-path false --base-href $npm_package_homepage && yarn gzip:dist && yarn build:doc
 
 
     deploy:
