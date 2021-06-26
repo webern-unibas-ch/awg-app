@@ -1,7 +1,7 @@
 # AWG App
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
-![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=red&label=angular&logo=angular)
+[![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=red&label=angular&logo=angular)](https://github.com/angular/angular)
 ![Deployment](https://github.com/webern-unibas-ch/awg-app/workflows/Deployment/badge.svg)
 ![CI tests](https://github.com/webern-unibas-ch/awg-app/workflows/CI%20Tests/badge.svg)
 [![codecov](https://codecov.io/gh/webern-unibas-ch/awg-app/branch/main/graph/badge.svg)](https://codecov.io/gh/webern-unibas-ch/awg-app)
