@@ -171,7 +171,7 @@
         "angular-cli-ghpages": "^1.0.0-rc.2",
         "conventional-recommended-bump": "^6.1.0",
         "cross-var": "^1.1.0",
-        "eslint": "^7.27.0",
+        "eslint": "^7.29.0",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-angular": "^4.0.1",
         "eslint-plugin-import": "^2.23.4",
