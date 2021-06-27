@@ -108,15 +108,15 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_switchPrefixForm(prefixForm: <a href="../classes/Prefix.html">PrefixForm</a>, oldValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+                    <code>_switchPrefixForm(oldValue: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, prefixForm: <a href="../classes/Prefix.html">PrefixForm</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="52"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:52</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="53"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:53</a></div>
                 </td>
             </tr>
 
@@ -141,22 +141,6 @@ depending on the requested prefix form.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>prefixForm</td>
-                                    <td>
-                                                <code><a href="../classes/Prefix.html" target="_self" >PrefixForm</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The requested form of the prefix (short or long).</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>oldValue</td>
                                     <td>
                                                 <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -169,6 +153,22 @@ depending on the requested prefix form.</p>
 
                                     <td>
                                         <p>The given value to be piped.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>prefixForm</td>
+                                    <td>
+                                                <code><a href="../classes/Prefix.html" target="_self" >PrefixForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The requested form of the prefix (short or long).</p>
 
                                     </td>
                                 </tr>
@@ -203,15 +203,15 @@ depending on the requested prefix form.</p>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>transform(prefixForm: <a href="../classes/Prefix.html">PrefixForm</a>, value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>transform(value: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>, prefixForm: <a href="../classes/Prefix.html">PrefixForm</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="32"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:32</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="33"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/prefix-pipe/prefix.pipe.ts:33</a></div>
                 </td>
             </tr>
 
@@ -234,22 +234,6 @@ depending on the requested prefix form.</p>
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>prefixForm</td>
-                                    <td>
-                                                <code><a href="../classes/Prefix.html" target="_self" >PrefixForm</a></code>
-                                    </td>
-
-                                    <td>
-                                        No
-                                    </td>
-
-
-                                    <td>
-                                        <p>The requested form of the prefix (short or long).</p>
-
-                                    </td>
-                                </tr>
-                                <tr>
                                     <td>value</td>
                                     <td>
                                                 <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
@@ -262,6 +246,22 @@ depending on the requested prefix form.</p>
 
                                     <td>
                                         <p>The given value to be piped.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>prefixForm</td>
+                                    <td>
+                                                <code><a href="../classes/Prefix.html" target="_self" >PrefixForm</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The requested form of the prefix (short or long).</p>
 
                                     </td>
                                 </tr>
@@ -308,6 +308,7 @@ depending on the requested prefix form.</p>
                     <tr>
                         <td class="col-md-4">
                             <i>Default value : </i><code>[
+        new Prefix(&#x27;awg&#x27;, &#x27;https://edition.anton-webern.ch/webern-onto#&#x27;),
         new Prefix(&#x27;dc&#x27;, &#x27;http://purl.org/dc/elements/1.1/&#x27;),
         new Prefix(&#x27;owl&#x27;, &#x27;http://www.w3.org/2002/07/owl#&#x27;),
         new Prefix(&#x27;prov&#x27;, &#x27;http://www.w3.org/ns/prov#&#x27;),
@@ -356,6 +357,7 @@ export class PrefixPipe implements PipeTransform {
      * It keeps an array of default prefixes.
      */
     prefixes: Prefix[] &#x3D; [
+        new Prefix(&#x27;awg&#x27;, &#x27;https://edition.anton-webern.ch/webern-onto#&#x27;),
         new Prefix(&#x27;dc&#x27;, &#x27;http://purl.org/dc/elements/1.1/&#x27;),
         new Prefix(&#x27;owl&#x27;, &#x27;http://www.w3.org/2002/07/owl#&#x27;),
         new Prefix(&#x27;prov&#x27;, &#x27;http://www.w3.org/ns/prov#&#x27;),
@@ -367,12 +369,12 @@ export class PrefixPipe implements PipeTransform {
     /**
      * Transform method of the PrefixPipe.
      *
-     * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      * @param {*} value The given value to be piped.
+     * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      */
-    transform(prefixForm: PrefixForm, value: any): any {
+    transform(value: any, prefixForm: PrefixForm): any {
         let val &#x3D; value;
-        const transformedValue &#x3D; this._switchPrefixForm(prefixForm, val);
+        const transformedValue &#x3D; this._switchPrefixForm(val, prefixForm);
 
         if (transformedValue) {
             val &#x3D; transformedValue;
@@ -390,7 +392,7 @@ export class PrefixPipe implements PipeTransform {
      * @param {PrefixForm} prefixForm The requested form of the prefix (short or long).
      * @param {*} oldValue The given value to be piped.
      */
-    private _switchPrefixForm(prefixForm: PrefixForm, oldValue: any): any {
+    private _switchPrefixForm(oldValue: any, prefixForm: PrefixForm): any {
         let newValue;
 
         switch (prefixForm) {

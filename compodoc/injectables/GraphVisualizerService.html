@@ -66,7 +66,6 @@
             <p class="comment">
                 <p>The GraphVisualizer service.</p>
 <p>It handles the query requests of the graph visualizer.</p>
-<p>Provided in: <code>root</code>.</p>
 
             </p>
 
@@ -129,6 +128,14 @@
                                 <a href="#_loadTriplesInStore">_loadTriplesInStore</a>
                             </li>
                             <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_mapKeys">_mapKeys</a>
+                            </li>
+                            <li>
+                                    <span class="modifier">Private</span>
+                                <a href="#_prepareSelectResponse">_prepareSelectResponse</a>
+                            </li>
+                            <li>
                                 <a href="#abbreviateTriples">abbreviateTriples</a>
                             </li>
                             <li>
@@ -164,19 +171,51 @@
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor()</code>
+<code>constructor(prefixPipe: <a href="../classes/Prefix.html">PrefixPipe</a>)</code>
                     </td>
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:35</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:41</a></div>
                             </td>
                         </tr>
 
                 <tr>
                     <td class="col-md-4">
                             <div class="io-description"><p>Constructor of the GraphVisualizerService.</p>
+<p>It declares a private instance of the <a href="../pipes/PrefixPipe.html">PrefixPipe</a>.</p>
 </div>
+                            <div>
+                                    <b>Parameters :</b>
+                                    <table class="params">
+                                        <thead>
+                                            <tr>
+                                                <td>Name</td>
+                                                    <td>Type</td>
+                                                <td>Optional</td>
+                                                    <td>Description</td>
+                                            </tr>
+                                        </thead>
+                                        <tbody>
+                                                <tr>
+                                                        <td>prefixPipe</td>
+                                                  
+                                                        <td>
+                                                                        <code><a href="../classes/Prefix.html" target="_self" >PrefixPipe</a></code>
+                                                        </td>
+                                                  
+                                                    <td>
+                                                            No
+                                                    </td>
+                                                    
+                                                        <td>
+                                                                <code><p>Instance of the PrefixPipe.</p>
+</code>
+                                                        </td>
+                                                </tr>
+                                        </tbody>
+                                    </table>
+                            </div>
                     </td>
                 </tr>
             </tbody>
@@ -212,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="271"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:271</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="290"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:290</a></div>
                 </td>
             </tr>
 
@@ -309,8 +348,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="293"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:293</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="312"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:312</a></div>
                 </td>
             </tr>
 
@@ -359,8 +398,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="314"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:314</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="333"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:333</a></div>
                 </td>
             </tr>
 
@@ -456,8 +495,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="335"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:335</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="354"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:354</a></div>
                 </td>
             </tr>
 
@@ -537,8 +576,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="368"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:368</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="387"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:387</a></div>
                 </td>
             </tr>
 
@@ -618,8 +657,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="400"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:400</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="419"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:419</a></div>
                 </td>
             </tr>
 
@@ -699,8 +738,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="427"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:427</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="446"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:446</a></div>
                 </td>
             </tr>
 
@@ -792,6 +831,175 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="_mapKeys"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _mapKeys
+                        </b>
+                        <a href="#_mapKeys"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_mapKeys(obj: literal type, newKeys: literal type)</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="472"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:472</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _mapKeys.</p>
+<p>It maps the keys of a given key-value paired object to given newKeys.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>obj</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                                <tr>
+                                    <td>newKeys</td>
+                                    <td>
+                                            <code>literal type</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>: string} An object with the new keys.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_prepareSelectResponse"></a>
+                    <span class="name">
+                        <b>
+                            <span class="modifier">Private</span>
+                            _prepareSelectResponse
+                        </b>
+                        <a href="#_prepareSelectResponse"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+                    <span class="modifier-icon icon ion-ios-reset"></span>
+                    <code>_prepareSelectResponse(data: SelectResponseBindings[])</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="489"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:489</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private method: _prepareSelectResponse.</p>
+<p>It prepares the data of the select response.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                    <td>Description</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>data</td>
+                                    <td>
+                                            <code>SelectResponseBindings[]</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given obj.</p>
+
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>    <code>literal type</code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>: number; data: SelectResponse | string } An object with a status code, and the data as SelectResponse or string.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="abbreviateTriples"></a>
                     <span class="name">
                         <b>
@@ -810,8 +1018,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="101"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:101</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="111"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:111</a></div>
                 </td>
             </tr>
 
@@ -921,8 +1129,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="136"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:136</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="146"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:146</a></div>
                 </td>
             </tr>
 
@@ -1016,8 +1224,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="174"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:174</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="184"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:184</a></div>
                 </td>
             </tr>
 
@@ -1110,7 +1318,7 @@
                     <div>
                     </div>
                     <div class="io-description">
-                        <b>Returns : </b>        <code><a href="../interfaces/Triple.html" target="_self" >Promise&lt;Triple[]&gt;</a></code>
+                        <b>Returns : </b>        <code><a href="../interfaces/SelectResponse.html" target="_self" >Promise&lt;string | SelectResponse | []&gt;</a></code>
 
                     </div>
                     <div class="io-description">
@@ -1143,8 +1351,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="216"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:216</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="235"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:235</a></div>
                 </td>
             </tr>
 
@@ -1222,8 +1430,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="79"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:79</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="89"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:89</a></div>
                 </td>
             </tr>
 
@@ -1317,8 +1525,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="51"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:51</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="61"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:61</a></div>
                 </td>
             </tr>
 
@@ -1401,7 +1609,7 @@
                     </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="35" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:35</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:41</a></div>
                             </td>
                         </tr>
 
@@ -1423,9 +1631,19 @@
     <div class="tab-pane fade  tab-source-code" id="c-source">
         <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { Injectable } from &#x27;@angular/core&#x27;;
 
-import { Namespace, QueryResult, QueryTypeIndex, Triple, TripleComponent } from &#x27;../models&#x27;;
-
 import * as N3 from &#x27;n3&#x27;;
+
+import {
+    Namespace,
+    QueryResult,
+    QueryTypeIndex,
+    PrefixForm,
+    SelectResponse,
+    SelectResponseBindings,
+    Triple,
+    TripleComponent,
+} from &#x27;../models&#x27;;
+import { PrefixPipe } from &#x27;../prefix-pipe/prefix.pipe&#x27;;
 
 /**
  * Declared variable: rdfstore.
@@ -1438,12 +1656,8 @@ declare let rdfstore: any;
  * The GraphVisualizer service.
  *
  * It handles the query requests of the graph visualizer.
- *
- * Provided in: &#x60;root&#x60;.
  */
-@Injectable({
-    providedIn: &#x27;root&#x27;,
-})
+@Injectable()
 export class GraphVisualizerService {
     /**
      * Private variable: _store.
@@ -1454,8 +1668,12 @@ export class GraphVisualizerService {
 
     /**
      * Constructor of the GraphVisualizerService.
+     *
+     * It declares a private instance of the {@link PrefixPipe}.
+     *
+     * @param {PrefixPipe} prefixPipe Instance of the PrefixPipe.
      */
-    constructor() {}
+    constructor(private prefixPipe: PrefixPipe) {}
 
     /**
      * Public method: parseTriples.
@@ -1589,7 +1807,12 @@ export class GraphVisualizerService {
      *
      * @returns {Promise&lt;Triple[]&gt;} A promise of the query result triples.
      */
-    doQuery(queryType: string, query: string, ttlString: string, mimeType?: string): Promise&lt;Triple[]&gt; {
+    doQuery(
+        queryType: string,
+        query: string,
+        ttlString: string,
+        mimeType?: string
+    ): Promise&lt;string | SelectResponse | Triple[]&gt; {
         if (!mimeType) {
             mimeType &#x3D; &#x27;text/turtle&#x27;;
         }
@@ -1601,24 +1824,28 @@ export class GraphVisualizerService {
                 return this._loadTriplesInStore(store, ttlString, mimeType);
             })
             .then((storeSize: number) &#x3D;&gt; this._executeQuery(this._store, query))
-            .then((res: QueryResult) &#x3D;&gt; {
-                const data: QueryResult &#x3D; res;
+            .then((res: any) &#x3D;&gt; {
+                const response &#x3D; res;
 
                 // Reformat data if select query
                 if (queryType &#x3D;&#x3D;&#x3D; &#x27;select&#x27;) {
-                    console.info(&#x27;got SELECT request&#x27;);
-                    // Return this.sparqlJSON(data).data;
+                    return this._prepareSelectResponse(response).data;
                 }
 
-                /**
-                 * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
-                 */
+                // Reformat data if select query
+                if (queryType &#x3D;&#x3D;&#x3D; &#x27;construct&#x27;) {
+                    /**
+                     * NB! THE PREFIXING SHOULD BE HANDLED BY A PIPE!
+                     */
 
-                // Get namespaces
-                return this._getNamespaces(ttlString).then((namespaces: Namespace) &#x3D;&gt;
-                    // Process result
-                    this.abbreviateTriples(data.triples, namespaces, mimeType)
-                );
+                    // PrepareConstructResponse
+
+                    // Get namespaces
+                    return this._getNamespaces(ttlString).then((namespaces: Namespace) &#x3D;&gt;
+                        // Process result
+                        this.abbreviateTriples(response.triples, namespaces, mimeType)
+                    );
+                }
             });
     }
 
@@ -1858,10 +2085,17 @@ export class GraphVisualizerService {
         });
     }
 
-    /*
-    TODO: needed only for SELECT request
-
-    private renameKeys(obj, newKeys) {
+    /**
+     * Private method: _mapKeys.
+     *
+     * It maps the keys of a given key-value paired object to given newKeys.
+     *
+     * @param {[key:string]: string} obj The given obj.
+     * @param {[key:string]: string} newKeys The given new keys.
+     *
+     * @returns {[key:string]: string} An object with the new keys.
+     */
+    private _mapKeys(obj: { [key: string]: string }, newKeys: { [key: string]: string }): { [key: string]: string } {
         const keyValues &#x3D; Object.keys(obj).map(key &#x3D;&gt; {
             const newKey &#x3D; newKeys[key] || key;
             return { [newKey]: obj[key] };
@@ -1869,27 +2103,35 @@ export class GraphVisualizerService {
         return Object.assign({}, ...keyValues);
     }
 
-
-    private sparqlJSON(data) {
+    /**
+     * Private method: _prepareSelectResponse.
+     *
+     * It prepares the data of the select response.
+     *
+     * @param {SelectResponseBindings[]} data The given obj.
+     *
+     * @returns  {status: number; data: SelectResponse | string } An object with a status code, and the data as SelectResponse or string.
+     */
+    private _prepareSelectResponse(data: SelectResponseBindings[]): { status: number; data: SelectResponse | string } {
         if (!data) {
             return;
+        }
+
+        // Check that it didn&#x27;t return null results
+        if (data[0] &#x3D;&#x3D; null) {
+            return { status: 400, data: &#x27;Query returned no results&#x27; };
         }
         // Get variable keys
         const varKeys &#x3D; Object.keys(data[0]);
 
-        // check that it doesn&#x27;t return null results
-        if (data[0][varKeys[0]] &#x3D;&#x3D; null) {
-            return { status: 400, data: &#x27;Query returned no results&#x27; };
-        }
-
-        // Flatten object array
-        const b &#x3D; _.flatMap(data);
+        // Get object array
+        const b &#x3D; data;
 
         // Rename keys according to below mapping table
         const map &#x3D; {
             token: &#x27;type&#x27;,
             type: &#x27;datatype&#x27;,
-            lang: &#x27;xml:lang&#x27;
+            lang: &#x27;xml:lang&#x27;,
         };
 
         // Loop over data to rename the keys
@@ -1897,17 +2139,36 @@ export class GraphVisualizerService {
             if (b.hasOwnProperty(i)) {
                 for (const key in varKeys) {
                     if (varKeys.hasOwnProperty(key)) {
-                        b[i][varKeys[key]] &#x3D; this.renameKeys(b[i][varKeys[key]], map);
+                        // Map keys
+                        b[i][varKeys[key]] &#x3D; this._mapKeys(b[i][varKeys[key]], map);
+
+                        // Add label with short prefix
+                        b[i][varKeys[key]][&#x27;label&#x27;] &#x3D; &#x27;&#x27;;
+                        if (b[i][varKeys[key]][&#x27;value&#x27;]) {
+                            b[i][varKeys[key]][&#x27;label&#x27;] &#x3D; this.prefixPipe.transform(
+                                b[i][varKeys[key]][&#x27;value&#x27;],
+                                PrefixForm.short
+                            );
+
+                            // Transform integer values to numbers
+                            const xmlsInteger &#x3D; &#x27;http://www.w3.org/2001/XMLSchema#integer&#x27;;
+                            if (
+                                b[i][varKeys[key]][&#x27;type&#x27;] &#x3D;&#x3D;&#x3D; &#x27;literal&#x27; &amp;&amp;
+                                b[i][varKeys[key]][&#x27;datatype&#x27;] &#x3D;&#x3D;&#x3D; xmlsInteger
+                            ) {
+                                b[i][varKeys[key]][&#x27;label&#x27;] &#x3D; +b[i][varKeys[key]][&#x27;value&#x27;];
+                            }
+                        }
                     }
                 }
             }
         }
 
         // Re-format data
-        const reformatted &#x3D; { head: { vars: varKeys }, results: { bindings: b } };
+        const reformatted: SelectResponse &#x3D; { head: { vars: varKeys }, body: { bindings: b } };
 
         return { status: 200, data: reformatted };
-    }*/
+    }
 }
 </code></pre>
     </div>
