@@ -1,8 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
-import { FormControl } from '@angular/forms';
 
-import { combineLatest, Observable } from 'rxjs';
-import { debounceTime, distinctUntilChanged, map, startWith } from 'rxjs/operators';
+import { Observable } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 import { faSortDown, faSortUp } from '@fortawesome/free-solid-svg-icons';
 
@@ -74,6 +73,13 @@ export class SparqlTableComponent implements OnInit {
     paginatorOptions: PaginatorOptions;
 
     /**
+     * Public variable: searchFilter.
+     *
+     * It keeps the string value of the search filter.
+     */
+    searchFilter: string;
+
+    /**
      * Public variable: tableData.
      *
      * It keeps the data arrays of the table.
@@ -94,20 +100,6 @@ export class SparqlTableComponent implements OnInit {
     };
 
     /**
-     * Public variable: searchFilter.
-     *
-     * It keeps the form control of the search filter.
-     */
-    searchFilter: FormControl;
-
-    /**
-     * Public variable: searchFilter$.
-     *
-     * It keeps an observable of the search filter values.
-     */
-    searchFilter$: Observable<string>;
-
-    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -125,13 +117,11 @@ export class SparqlTableComponent implements OnInit {
      *
      * @returns {void} Emits the new start position.
      */
-    onPageSizeChange(): void {
+    onPageSizeChange(searchFilter: string): void {
         if (!this.queryResult) {
             return;
         }
-        this.tableData.filteredRows$ = this._filterRows();
-
-        this.tableData.paginatedRows$ = this._paginateRows();
+        this.tableData.paginatedRows$ = this._paginateRows(searchFilter);
     }
 
     /**
@@ -194,45 +184,28 @@ export class SparqlTableComponent implements OnInit {
             [5, 10, 25, 50, 100, 200],
             this.queryResult.body.bindings.length
         );
-
-        this._initFilter();
+        this.searchFilter = '';
 
         this.onSort(this.tableData.header[0]);
 
-        this.onPageSizeChange();
+        this.onPageSizeChange(this.searchFilter);
     }
 
     /**
-     * Private method: _initFilter.
+     * Private method: _paginateRows.
      *
-     * It inits all the data needed for the table.
+     * It filters by searchTerm and paginates the observable of total rows.
      *
-     * @returns {void} Inits the table data.
+     * @param {string} searchTerm The given searchTerm.
+     *
+     * @returns {Observable<SelectResponseBindings[]>} Returns an observable of the paginated rows.
      */
-    private _initFilter(): void {
-        this.searchFilter = new FormControl('');
-        this.searchFilter$ = this.searchFilter.valueChanges.pipe(
-            // Start with empty string
-            startWith(''),
-            // Do not check changes before half a second
-            debounceTime(500),
-            // Do not check unchanged values
-            distinctUntilChanged()
-        );
-    }
-
-    /**
-     * Private method: _filterRows.
-     *
-     * It returns a combined observable with the filtered table rows.
-     *
-     * @returns {Observable<any[]>} Returns a combined observable.
-     */
-    private _filterRows(): Observable<any[]> {
-        return combineLatest(this.tableData.totalRows$, this.searchFilter$).pipe(
-            map(([rows, filterTerm]) => {
-                const term = filterTerm.toString().toLowerCase();
-                return rows.filter(row =>
+    private _paginateRows(searchTerm: string): Observable<SelectResponseBindings[]> {
+        return this.tableData.totalRows$.pipe(
+            // Filter rows by searchTerm
+            map((rows: SelectResponseBindings[]) => {
+                const term = searchTerm.toString().toLowerCase();
+                this.tableData.filteredRows = rows.filter(row =>
                     Object.values(row).some(rowEntry => {
                         if (rowEntry === null || rowEntry === undefined) {
                             return false;
@@ -240,23 +213,14 @@ export class SparqlTableComponent implements OnInit {
                         return rowEntry['label'] && rowEntry['label'].toString().toLowerCase().includes(term);
                     })
                 );
-            })
-        );
-    }
-    /**
-     * Private method: _paginateRows.
-     *
-     * It returns a sliced observable with the paginated table rows.
-     *
-     * @returns {Observable<SelectResponseBindings[]>} Returns an observable of the paginated rows.
-     */
-    private _paginateRows(): Observable<SelectResponseBindings[]> {
-        const startRow = (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize;
-        const endRow = startRow + this.paginatorOptions.pageSize;
-        const range = endRow - startRow;
+                return this.tableData.filteredRows;
+            }),
+            // Paginate rows
+            map((rows: SelectResponseBindings[]) => {
+                const startRow = (this.paginatorOptions.page - 1) * this.paginatorOptions.pageSize;
+                const endRow = startRow + this.paginatorOptions.pageSize;
+                const range = endRow - startRow;
 
-        return this.tableData.filteredRows$.pipe(
-            map(rows => {
                 if (rows.length <= range) {
                     return rows;
                 } else {

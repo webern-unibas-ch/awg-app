@@ -21,9 +21,9 @@ export class TableData {
     totalRows$: Observable<SelectResponseBindings[]>;
 
     /**
-     * The filtered rows of the table data as Observable.
+     * The filtered rows of the table data.
      */
-    filteredRows$: Observable<SelectResponseBindings[]>;
+    filteredRows: SelectResponseBindings[];
 
     /**
      * The paginated rows of the table data as Observable.
@@ -40,7 +40,7 @@ export class TableData {
     constructor(data: SelectResponse) {
         this.header = data.head.vars;
         this.totalRows$ = of(data.body.bindings);
-        this.filteredRows$ = of(data.body.bindings);
+        this.filteredRows = data.body.bindings;
         this.paginatedRows$ = of(data.body.bindings);
     }
 }
