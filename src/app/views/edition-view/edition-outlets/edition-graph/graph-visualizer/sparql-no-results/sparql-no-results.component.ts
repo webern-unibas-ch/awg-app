@@ -11,19 +11,12 @@ import { CoreService } from '@awg-core/services';
  * did not return any result.
  */
 @Component({
-    selector: 'awg-force-graph-no-result',
-    templateUrl: './force-graph-no-result.component.html',
-    styleUrls: ['./force-graph-no-result.component.css'],
+    selector: 'awg-sparql-no-results',
+    templateUrl: './sparql-no-results.component.html',
+    styleUrls: ['./sparql-no-results.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ForceGraphNoResultComponent implements OnInit {
-    /**
-     * Input variable: height.
-     *
-     * It keeps the default height of the component.
-     */
-    @Input() height: number;
-
+export class SparqlNoResultsComponent implements OnInit {
     /**
      * Public variable: logos.
      *

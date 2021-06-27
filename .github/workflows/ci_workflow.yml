@@ -16,14 +16,14 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [10, 12.18, 14]
+                node-version: [12, 14.16, 15, 16]
 
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v2.1.5
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -44,15 +44,23 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 12.18 # upload coverage report for current node version only
+              if: matrix.node-version == 14.16 # upload coverage report for current node version only
               uses: codecov/codecov-action@v1
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
 
-            - name: Test build for GH Pages
+            - name: Test build for GH Pages (Node < v16)
+              if: matrix.node-version != 16
               run: |
                   yarn run build:gh
+
+            # Workaround for build path issue with node 16:
+            # https://github.com/angular/angular-cli/issues/21202
+            - name: Test build for GH Pages (Node == v16)
+              if: matrix.node-version == 16
+              run: |
+                  yarn build:prod --delete-output-path false --base-href $npm_package_homepage && yarn gzip:dist && yarn build:doc
 
 
     deploy:
@@ -65,14 +73,14 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [12.18]
+                node-version: [ 14.16 ]
 
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@v1
+              uses: actions/setup-node@v2.1.5
               with:
                   node-version: ${{ matrix.node-version }}
 
@@ -109,7 +117,7 @@ jobs:
         strategy:
             matrix:
                 os: [ ubuntu-latest ]
-                node-version: [ 12.18 ]
+                node-version: [ 14.16 ]
 
         steps:
             -   name: Get tag version

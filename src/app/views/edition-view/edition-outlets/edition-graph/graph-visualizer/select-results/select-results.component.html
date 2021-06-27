@@ -1,30 +1,20 @@
 <ngb-accordion activeIds="awg-graph-visualizer-select-result">
     <ngb-panel id="awg-graph-visualizer-select-result" title="Resultat">
         <ng-template ngbPanelContent>
-            <p class="text-center">Got a SELECT request</p>
-            <ng-container *ngIf="queryResult | async as queryResult; else noResult">
-                <!-- change back to: else loading -->
-                <div>
-                    {{ queryResult | json }}
-                </div>
-
-                <!-- SPARQL table visualization -->
-
-                <!--
-                    <div *ngIf="queryResult.length > 0; else noResult">
-                       <awg-sparql-table
-                           maxHeight="500px"
-                           [queryResult]="queryResult | async as queryResult"
-                           [queryTime]="queryTime"
-                           (clickedNodeRequest)="onTableClick($event)"
-                       >
-                       </awg-sparql-table>
-                  </div>
-                       -->
+            <ng-container *ngIf="queryResult$ | async as queryResult; else loading">
+                <ng-container *ngIf="isNotEmpty(queryResult); else noResult">
+                    <!-- SPARQL table visualization -->
+                    <awg-sparql-table
+                        [queryResult]="queryResult"
+                        [queryTime]="queryTime"
+                        (clickedTableRequest)="onTableNodeClick($event)"
+                    >
+                    </awg-sparql-table>
+                </ng-container>
+                <ng-template #noResult>
+                    <awg-sparql-no-results></awg-sparql-no-results>
+                </ng-template>
             </ng-container>
-            <ng-template #noResult>
-                <p class="text-center">No result to show</p>
-            </ng-template>
             <ng-template #loading>
                 <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
             </ng-template>

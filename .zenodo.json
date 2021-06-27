@@ -1,0 +1,27 @@
+{
+    "creators": [
+        {
+            "name": "Stefan M\u00fcnnich",
+            "affiliation": "@webern-unibas-ch | @dhlab-basel",
+            "orcid": "0000-0002-0744-5374"
+        }
+    ],
+    "contributors": [
+        {
+            "name": "Thomas Ahrend",
+            "type": "ProjectMember",
+            "affiliation": "@webern-unibas-ch"
+        }
+    ],
+    "license": "MIT",
+    "upload_type": "software",
+    "access_right": "open",
+    "keywords": [
+        "angular",
+        "edition",
+        "digital-humanities",
+        "digital-music-edition",
+        "digital-musicology",
+        "Anton Webern"
+    ]
+}

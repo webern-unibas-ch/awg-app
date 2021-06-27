@@ -8,7 +8,6 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { OrderByPipe } from '@awg-shared/order-by/order-by.pipe';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
@@ -50,7 +49,7 @@ describe('SearchResultListComponent', () => {
 
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
-                declarations: [SearchResultListComponent, CompileHtmlComponent, OrderByPipe],
+                declarations: [SearchResultListComponent, CompileHtmlComponent],
                 providers: [
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
                     { provide: ConversionService, useValue: mockConversionService },

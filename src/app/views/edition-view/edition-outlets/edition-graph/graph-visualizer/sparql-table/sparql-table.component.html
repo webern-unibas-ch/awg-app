@@ -1,0 +1,106 @@
+<form *ngIf="tableData.filteredRows">
+    <div class="form-group form-inline">
+        <label class="col-sm-4 col-form-label"
+            >SELECT Anfrage <br />
+            ({{ tableData.filteredRows?.length }} von {{ (tableData.totalRows$ | async).length }} Ergebnissen)</label
+        >
+        <div class="col-sm-6">
+            <input
+                id="search"
+                class="form-control ml-2"
+                type="text"
+                name="searchFilter"
+                [(ngModel)]="searchFilter"
+                (ngModelChange)="onPageSizeChange(searchFilter)"
+                placeholder="Ergebnisse filtern..."
+            />
+        </div>
+    </div>
+</form>
+
+<div class="d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
+    <!-- top pagination -->
+    <ngb-pagination
+        class="d-flex justify-content-center cols-xs-2"
+        [(page)]="paginatorOptions.page"
+        [pageSize]="paginatorOptions.pageSize"
+        [collectionSize]="tableData.filteredRows?.length"
+        [maxSize]="4"
+        [boundaryLinks]="true"
+        (pageChange)="onPageSizeChange(searchFilter)"
+    >
+    </ngb-pagination>
+
+    <select
+        class="custom-select"
+        style="width: auto"
+        [(ngModel)]="paginatorOptions.pageSize"
+        (ngModelChange)="onPageSizeChange(searchFilter)"
+    >
+        <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
+            {{ option }} Ergebnisse pro Seite
+        </option>
+    </select>
+</div>
+
+<table class="table table-striped" *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">
+    <thead>
+        <tr>
+            <th scope="col" *ngFor="let headerLabel of tableData?.header" (click)="onSort(headerLabel)">
+                {{ headerLabel }}&nbsp;<fa-icon
+                    *ngIf="headerLabel === tableOptions.selectedKey"
+                    [icon]="tableOptions.sortIcon"
+                ></fa-icon>
+            </th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr
+            *ngFor="
+                let row of paginatedRows | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.case;
+                index as i;
+                trackBy: i
+            "
+        >
+            <td scope="col" *ngFor="let headerLabel of tableData.header; index as j; trackBy: j">
+                <a
+                    *ngIf="row[headerLabel].type && row[headerLabel].type == 'uri'"
+                    (click)="onTableNodeClick(row[headerLabel].value)"
+                >
+                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
+                </a>
+                <span *ngIf="row[headerLabel].type != 'uri'"
+                    ><ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
+                ></span>
+            </td>
+        </tr>
+    </tbody>
+</table>
+<ng-template #loading>
+    <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
+</ng-template>
+
+<div class="d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
+    <!-- bottom pagination -->
+    <ngb-pagination
+        class="d-flex justify-content-center"
+        [(page)]="paginatorOptions.page"
+        [pageSize]="paginatorOptions.pageSize"
+        [collectionSize]="tableData.filteredRows?.length"
+        [maxSize]="4"
+        [boundaryLinks]="true"
+        (pageChange)="onPageSizeChange(searchFilter)"
+    >
+    </ngb-pagination>
+
+    <select
+        class="custom-select"
+        style="width: auto"
+        [(ngModel)]="paginatorOptions.pageSize"
+        (ngModelChange)="onPageSizeChange(searchFilter)"
+    >
+        <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
+            {{ option }} Ergebnisse pro Seite
+        </option>
+    </select>
+</div>
