@@ -9,6 +9,7 @@ import {
     NgbPaginationModule,
     NgbToastModule,
     NgbTooltipModule,
+    NgbTypeaheadModule,
 } from '@ng-bootstrap/ng-bootstrap';
 
 @NgModule({
@@ -22,6 +23,7 @@ import {
         NgbPaginationModule,
         NgbToastModule,
         NgbTooltipModule,
+        NgbTypeaheadModule,
     ],
     exports: [
         NgbAccordionModule,
@@ -33,6 +35,7 @@ import {
         NgbPaginationModule,
         NgbToastModule,
         NgbTooltipModule,
+        NgbTypeaheadModule,
     ],
 })
 export class SharedNgbootstrapModule {}

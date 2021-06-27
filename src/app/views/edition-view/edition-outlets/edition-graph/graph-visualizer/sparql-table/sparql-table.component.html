@@ -67,9 +67,11 @@
                     *ngIf="row[headerLabel].type && row[headerLabel].type == 'uri'"
                     (click)="onTableNodeClick(row[headerLabel].value)"
                 >
-                    {{ row[headerLabel].label }}
+                    <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
                 </a>
-                <span *ngIf="row[headerLabel].type != 'uri'">"{{ row[headerLabel].label }}"</span>
+                <span *ngIf="row[headerLabel].type != 'uri'"
+                    ><ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
+                ></span>
             </td>
         </tr>
     </tbody>
