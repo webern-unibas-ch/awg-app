@@ -26,14 +26,7 @@ jobs:
               uses: actions/setup-node@v2.2.0
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Cache node modules
-              uses: actions/cache@v2
-              with:
-                  path: ~/.yarn
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
+                  cache: 'yarn'
 
             - name: yarn install dependencies
               run: |
@@ -83,14 +76,7 @@ jobs:
               uses: actions/setup-node@v2.2.0
               with:
                   node-version: ${{ matrix.node-version }}
-
-            - name: Cache node modules
-              uses: actions/cache@v2
-              with:
-                  path: ~/.yarn
-                  key: ${{ runner.os }}-node-${{ hashFiles('**/yarn.lock') }}
-                  restore-keys: |
-                      ${{ runner.os }}-node-
+                  cache: 'yarn'
 
             - name: yarn install dependencies
               run: |
