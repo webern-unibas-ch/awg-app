@@ -9,6 +9,7 @@ module.exports = {
             [
                 'app',
                 'deps',
+                'deps-dev',
                 'core',
                 'shared',
                 'side-info',
