@@ -179,7 +179,7 @@
         "eslint-plugin-prettier": "^3.4.0",
         "gzipper": "^5.0.0",
         "husky": "^7.0.0",
-        "jasmine-core": "~3.7.1",
+        "jasmine-core": "~3.8.0",
         "karma": "~6.3.4",
         "karma-chrome-launcher": "~3.1.0",
         "karma-coverage": "^2.0.3",
