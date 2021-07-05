@@ -7,28 +7,69 @@
             "rdfData": {
                 "queryList": [
                     {
+                        "queryType": "construct",
                         "queryLabel": "Finde alle RDF-Triples",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?nodeA ?edge ?nodeB . \n }"
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?subject ?predicate ?object . \n }"
                     },
                     {
+                        "queryType": "construct",
                         "queryLabel": "Finde alle Skizzen von op. 25",
                         "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?sketch a awg:Sketch . \n }"
                     },
                     {
+                        "queryType": "construct",
                         "queryLabel": "Finde alle Paratexte von op. 25",
                         "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?paratext a awg:Paratext . \n }"
                     },
                     {
+                        "queryType": "construct",
                         "queryLabel": "Finde alle mit Skizze Sk4 verknüpften Objekte",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t awg:M317_Sk4 ?p ?o . \n }"
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t awg:M317_Sk4 ?predicate ?object . \n }"
                     },
                     {
+                        "queryType": "construct",
                         "queryLabel": "Finde alle konkommittierenden Objekte",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?nodeA a ?type ; awg:concomitates ?nodeB .\n }"
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?subject a ?predicate ; awg:concomitates ?object .\n }"
                     },
                     {
+                        "queryType": "construct",
                         "queryLabel": "Finde alle Objekte, die einer konkommittierenden Skizze vorausgehen",
-                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?sketch a ?type ; awg:precedes ?sketch2 .\n ?sketch2 awg:concomitates ?sketch3 . \n }"
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n CONSTRUCT \n WHERE { \n\t ?ressource a ?ressource_class ; awg:precedes ?preceding_sketch .\n ?preceding_sketch awg:concomitates ?concomitating_sketch . \n }"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle RDF-Triples",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?subject ?predicate ?object . \n }"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle Ressource-Klassen und zähle deren Vorkommen",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n  SELECT ?ressource_class (COUNT (?ressource_class) AS ?count) \n WHERE { \n\t ?ressource a ?ressource_class . \n } \n GROUP BY ?ressource_class \n ORDER BY ?count \n LIMIT 100"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle Skizzen von op. 25",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?sketch a awg:Sketch . \n }"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle Paratexte von op. 25",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?paratext a awg:Paratext . \n }"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle mit Skizze Sk4 verknüpften Objekte",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t awg:M317_Sk4 ?predicate ?object . \n }"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle konkommittierenden Objekte",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?subject a ?predicate ; awg:concomitates ?object .\n }"
+                    },
+                    {
+                        "queryType": "select",
+                        "queryLabel": "Finde alle Objekte, die einer konkommittierenden Skizze vorausgehen",
+                        "queryString": "PREFIX dc: <http://purl.org/dc/elements/1.1/> \nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX rdfs: <http://www.w3.org/2000/01/rdf-schema#> \nPREFIX owl: <http://www.w3.org/2002/07/owl#> \nPREFIX awg: <https://edition.anton-webern.ch/webern-onto#> \n\n SELECT * \n WHERE { \n\t ?ressource a ?ressource_class ; awg:precedes ?preceding_sketch .\n ?preceding_sketch awg:concomitates ?concomitating_sketch . \n }"
                     }
                 ],
                 "triples": "@prefix dc: <http://purl.org/dc/elements/1.1/> .\n@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>.\n@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#>.\n@prefix owl: <http://www.w3.org/2002/07/owl#>.\n@prefix awg: <https://edition.anton-webern.ch/webern-onto#> .\n\n\n# ONTO\nawg:follows a rdf:Property .\n\nawg:precedes a owl:TransitiveProperty .\nawg:precedes_scripture rdfs:subPropertyOf awg:precedes .\nawg:precedes_content rdfs:subPropertyOf awg:precedes .\n\nawg:concomitates owl:inverseOf awg:is_concomitated_by .\nawg:concomitates_unsure rdfs:subPropertyOf awg:concomitates .\n\nawg:WorkComplex a owl:Thing .\nawg:Sketch a owl:Thing .\nawg:Paratext a owl:Thing .\n\n# DATA\n# Work complexes\nawg:Op24_1 a awg:WorkComplex ;\n\t\t\trdfs:label \"Op. 24/1\" .\n\nawg:Op25_1 a awg:WorkComplex ;\n\t\t\trdfs:label \"Op. 25/1\" .\n\n# Sk1\nawg:M317_Sk1 a awg:Sketch ;\n    awg:precedes_scripture awg:M317_Sk2 ;\n\trdfs:label \"Sk1\" .\n\n#Sk2\nawg:M317_Sk2 a awg:Sketch ;\n      awg:precedes_content awg:M317_Sk3 ;\n\t\t\trdfs:label \"Sk2\" .\n\nawg:M317_Sk2_1 a awg:Sketch ;\n        awg:concomitates awg:M317_Sk2 ;\n\t\t\t\trdfs:label \"Sk2.1\" .\n\nawg:M317_Sk2_1_1 a awg:Sketch ;\n          awg:concomitates awg:M317_Sk2_1 ;\n          awg:precedes awg:M317_Sk2_1_2 ;\n\t\t\t\t\trdfs:label \"Sk2.1.1\" .\n\nawg:M317_Sk2_1_2 a awg:Sketch ;\n          awg:concomitates awg:M317_Sk2_1 ;\n\t\t\t\t\trdfs:label \"Sk2.1.2\" .\n\nawg:M317_Sk2_1_3 a awg:Sketch ;\n          awg:concomitates awg:M317_Sk2_1 ;\n\t\t\t\t\trdfs:label \"Sk2.1.3\" .\n\nawg:M317_Sk2_1_2_1 a awg:Sketch ;\n            awg:concomitates awg:M317_Sk2_1_2 ;\n\t\t\t\t\t\trdfs:label \"Sk2.1.2.1\" .\n\n# Sk3\nawg:M317_Sk3 a awg:Sketch ;\n      awg:precedes awg:M317_Sk4 ;\n\t\t\trdfs:label \"Sk3\" .\n\nawg:M317_Sk3_1 a awg:Sketch ;\n      awg:concomitates awg:M317_Sk3 ;\n\t\t\trdfs:label \"Sk3.1\" .\n\nawg:M317_Sk3_1_1 a awg:Sketch ;\n      awg:concomitates awg:M317_Sk3_1 ;\n\t\t\trdfs:label \"Sk3.1.1\" .\n\nawg:M317_Sk3_1_2 a awg:Sketch ;\n      awg:concomitates awg:M317_Sk3_1 ;\n\t\t\trdfs:label \"Sk3.1.2\" .\n\nawg:M317_Sk3_1_3 a awg:Sketch ;\n      awg:concomitates awg:M317_Sk3_1 ;\n\t  rdfs:label \"Sk3.1.3 (Reihentabelle)\" .\n\nawg:M317_Sk3_1_3_1 a awg:Sketch ;\n      awg:concomitates awg:M317_Sk3_1_3 ;\n\t\t\trdfs:label \"Sk3.1.3.1\" .\n\n# Sk4\nawg:M317_Sk4 a awg:Sketch ;\n      rdfs:label \"Sk4 (Verlaufskizze)\" ;\n\t  dc:hasPart awg:M317_Sk4_T1A_3A , awg:M317_Sk4_T3B_6 , awg:M317_Sk4_T7_12 , awg:M317_Sk4_T13_15 ;\n\t  awg:precedes awg:PT_SB3_38v_6_page75 ;\n\t  awg:precedes awg:PT_SB3_39r_3_page76 ;\n\t  awg:precedes awg:PT_SB3_39r_2_date_19340716 .\n\nawg:M317_Sk4_T1A_3A a awg:Sketch ;\n\t  rdfs:label \"Sk4 T. 1A–3A\" ;\n\t  awg:concomitates awg:M317_Sk4_1 ;\n\t  awg:concomitates awg:PT_SB3_38v_4_Akk14_16 ;\n\t  awg:precedes awg:M317_Sk4_T3B_6 .\n\nawg:M317_Sk4_T3B_6 a awg:Sketch ;\n\t  rdfs:label \"Sk4 T. 3B–6\" ;\n\t  awg:precedes awg:M317_Sk4_T7_12 .\n\nawg:M317_Sk4_T7_12 a awg:Sketch ;\n\t  rdfs:label \"Sk4 T. 7–12\" ;\n\t  awg:precedes awg:M317_Sk4_T13_15 .\n\nawg:M317_Sk4_T13_15 a awg:Sketch ;\n\t  rdfs:label \"Sk4 T. 13–15\" ;\n\t  awg:concomitates awg:M317_Sk4_2 ;\n\t  awg:concomitates awg:M317_Sk4_3 .\n\nawg:M317_Sk4_1 a awg:Sketch ;\n\t  awg:concomitates awg:M317_Sk4 ;\n\t  rdfs:label \"Sk4.1\" .\n\nawg:M317_Sk4_2 a awg:Sketch ;\n\t  awg:concomitates awg:M317_Sk4 ;\n\t  rdfs:label \"Sk4.2\" .\n\nawg:M317_Sk4_3 a awg:Sketch ;\n\t  awg:concomitates awg:M317_Sk4 ;\n\t  rdfs:label \"Sk4.3\" .\n\n# Paratexts\nawg:PT_SB3_39r_1_Akk a awg:Paratext ;\n  \t\trdfs:label \"Akkolade\" ;\n  \t\tawg:precedes awg:M317_Sk1 ;\n\t\tdc:isPartOf awg:Op24_1 .\n\nawg:PT_SB3_38v_1_Akk1_4 a awg:Paratext ;\n  \t\trdfs:label \"Akkoladenstrich: System 1–4\" ;\n  \t\tawg:precedes awg:M317_Sk1 ;\n\t\tdc:isPartOf awg:Op24_1 .\n\nawg:PT_SB3_38v_4_Akk14_16 a awg:Paratext ;\n\t\trdfs:label \"Akkoladenstrich: System 14–16\" ;\n\t\tawg:precedes awg:M317_Sk4_1 ;\n\t\tdc:isPartOf awg:Op25_1 .\n\nawg:PT_SB3_38v_2_date_19340704 a awg:Paratext ;\n  \t\trdfs:label \"Datierung: 4.VII 34\" ;\n  \t\tawg:concomitates awg:M317_Sk1, awg:M317_Sk2 ;\n\t\tdc:isPartOf awg:Op25_1 .\n\nawg:PT_SB3_38v_3_timesignature2 a awg:Paratext ;\n  \t\trdfs:label \"Schlüssel- und Taktvorzeichnung\" ;\n  \t\tawg:precedes_scripture awg:M317_Sk3 ;\n\t\tdc:isPartOf awg:Op25_1 .\n\nawg:PT_SB3_39r_2_date_19340716 a awg:Paratext ;\n  \t\trdfs:label \"Schlussdatierung: Maria Enzersdorf 16.VII.34\" ;\n\t\tawg:precedes awg:PT_SB3_38v_5_Titel ;\n\t\tdc:isPartOf awg:Op25_1 .\n\nawg:PT_SB3_38v_5_Titel a awg:Paratext ;\n  \t\trdfs:label \"„Wie bin ich froh!“\" ;\n\t\tdc:isPartOf awg:Op25_1 .\n\nawg:PT_SB3_38v_6_page75 a awg:Paratext ;\n  \t\trdfs:label \"Seitenzahl: 75\" ;\n\t\tdc:isPartOf awg:Op25_1 .\n\nawg:PT_SB3_39r_3_page76 a awg:Paratext ;\n  \t\trdfs:label \"Seitenzahl: 76\" ;\n\t\tdc:isPartOf awg:Op25_1 .\n"

@@ -23,14 +23,30 @@
                     >
                         <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
                         <div class="dropdown-menu" ngbDropdownMenu>
+                            <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
                             <ng-container *ngFor="let q of queryList">
-                                <button
-                                    class="dropdown-item"
-                                    [class.disabled]="q === query"
-                                    (click)="onQueryListChange(q)"
-                                >
+                                <ng-container *ngIf="q.queryType === 'construct'">
+                                    <button
+                                        class="dropdown-item"
+                                        [class.disabled]="q === query"
+                                        (click)="onQueryListChange(q)"
+                                    >
                                     <span>{{ q.queryLabel }}</span>
-                                </button>
+                                    </button>
+                                </ng-container>
+                            </ng-container>
+                            <div class="dropdown-divider"></div>
+                            <h6 class="dropdown-header">Tabellen-Ansicht (SELECT)</h6>
+                            <ng-container *ngFor="let q of queryList">
+                                <ng-container *ngIf="q.queryType === 'select'">
+                                    <button
+                                        class="dropdown-item"
+                                        [class.disabled]="q === query"
+                                        (click)="onQueryListChange(q)"
+                                    >
+                                    <span>{{ q.queryLabel }}</span>
+                                    </button>
+                                </ng-container>
                             </ng-container>
                         </div>
                     </div>

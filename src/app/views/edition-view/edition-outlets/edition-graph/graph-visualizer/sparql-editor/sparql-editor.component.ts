@@ -102,7 +102,7 @@ export class SparqlEditorComponent implements OnInit {
      * @returns {boolean} The boolean value of the check result.
      */
     isExampleQueriesEnabled(): boolean {
-        return !!(this.query && this.query.queryLabel && this.query.queryString && this.queryList);
+        return !!(this.query && this.query.queryType && this.query.queryLabel && this.query.queryString && this.queryList);
     }
 
     /**
@@ -136,7 +136,7 @@ export class SparqlEditorComponent implements OnInit {
             return;
         }
         // Find the given query in the queryList or take its first item
-        query = this.queryList.find(q => query === q) || this.queryList[0];
+        query = this.queryList.find((q: GraphSparqlQuery) => (query.queryLabel === q.queryLabel && query.queryType === q.queryType)) || this.queryList[0];
         this.resetQuery(query);
     }
 
