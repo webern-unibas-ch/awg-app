@@ -23,7 +23,7 @@
     "bugs": "",
     "private": true,
     "scripts": {
-        "postinstall": "husky install",
+        "husky:prepare": "husky install",
         "ng": "ng",
         "start": "ng serve",
         "test": "ng test",
