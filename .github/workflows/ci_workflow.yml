@@ -1,7 +1,7 @@
 name: CI Workflow
 
 on:
-    push:
+    [push, pull_request]:
         branches:
             - '**'    # trigger on all branches
         tags:
