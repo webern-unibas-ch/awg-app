@@ -1,13 +1,14 @@
 name: CI Workflow
 
 on:
-    [push, pull_request]:
+    push:
         branches:
             - '**'    # trigger on all branches
         tags:
             - 'v*'    # trigger on all tags
         paths-ignore:
             - '**.md' # ignore changes in markdown files
+    pull_request:
 
 jobs:
     test:
