@@ -68,7 +68,7 @@ class TriplesEditorStubComponent {
 @Component({ selector: 'awg-unsupported-type-results', template: '' })
 class UnsupportedTypeResultsStubComponent {
     @Input()
-    queryType: string;
+    queryType: string; // Query.queryType ?
 }
 
 describe('GraphVisualizerComponent (DONE)', () => {
@@ -140,10 +140,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedGraphRDFData = new GraphRDFData();
         expectedGraphRDFData.queryList = [];
         expectedGraphRDFData.queryList.push({
+            queryType: 'construct',
             queryLabel: 'Test Query 1',
             queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test ?has ?success . }',
         });
         expectedGraphRDFData.queryList.push({
+            queryType: 'construct',
             queryLabel: 'Test Query 2',
             queryString:
                 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test2 ?has ?success2 . }',
@@ -196,10 +198,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
         it('... should not have queryTime', () => {
             expect(component.queryTime).toBeUndefined('should be undefined');
-        });
-
-        it('... should not have queryType', () => {
-            expect(component.queryType).toBeUndefined('should be undefined');
         });
 
         it('... should not have triples', () => {
@@ -295,11 +293,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
             // Value is not predictable
         });
 
-        it('... should have queryType', () => {
-            expect(component.queryType).toBeDefined();
-            expect(component.queryType).toBe('construct', 'should be construct');
-        });
-
         describe('#resetTriples', () => {
             it('... should set initial triples', () => {
                 expectSpyCall(resetTriplesSpy, 1, undefined);
@@ -384,15 +377,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 );
             });
 
-            it('... should find and reset a known query from queryList by label', () => {
+            // TODO: check for queryType and queryLabel
+
+            it('... should find and reset a known query from queryList', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Request for known query
-                const changedQuery = {
-                    queryLabel: 'Test Query 2',
-                    queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?otherStringValue3 . }',
-                };
+                const changedQuery = expectedGraphRDFData.queryList[1];
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
 
@@ -410,6 +401,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Request for unknown query
                 const changedQuery = {
+                    queryType: 'construct',
                     queryLabel: 'Test Query 3',
                     queryString:
                         'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }',
@@ -422,7 +414,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expect(component.query).toEqual(changedQuery, `should equal ${changedQuery}`);
             });
 
-            it('... should set initial query [queryList[0] if no query is provided', () => {
+            it('... should set initial query (queryList[0]) if no query is provided', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Set changed query
@@ -455,6 +447,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Reset query
                 const changedQuery = {
+                    queryType: 'construct',
                     queryLabel: 'Test Query 3',
                     queryString:
                         'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }',
@@ -496,6 +489,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 const queryStringWithoutPrefixes = 'CONSTRUCT * WHERE { ?test ?has ?success . }';
                 const queryWithoutPrefixes: GraphSparqlQuery = {
+                    queryType: 'construct',
                     queryLabel: 'Test Query 1',
                     queryString: queryStringWithoutPrefixes,
                 };
@@ -529,8 +523,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryTypeSpy, 1, expectedGraphRDFData.queryList[0].queryString);
 
-                expect(component.queryType).toBeDefined();
-                expect(component.queryType).toEqual('construct', 'should equal construct');
+                expect(component.query.queryType).toBeDefined();
+                expect(component.query.queryType).toEqual('construct', 'should equal construct');
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
@@ -572,7 +566,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 waitForAsync(() => {
                     expectSpyCall(performQuerySpy, 1, undefined);
 
-                    component.queryType = 'construct';
+                    // Set construct query type
+                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
 
                     // Perform query
                     component.performQuery();
@@ -590,6 +585,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 waitForAsync(() => {
                     expectSpyCall(performQuerySpy, 1, undefined);
 
+                    // Set select query type
                     const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
 
                     // Perform query
@@ -618,7 +614,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             fail('should not error');
                         },
                         () => {
-                            expect(component.queryType).toBe('update', 'should be update');
+                            expect(component.query.queryType).toBe('update', 'should be update');
                         }
                     );
 
@@ -634,7 +630,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             fail('should not error');
                         },
                         () => {
-                            expect(component.queryType).toBe('other', 'should be other');
+                            expect(component.query.queryType).toBe('other', 'should be other');
                         }
                     );
                 })
@@ -646,7 +642,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Set construct mode
-                component.queryType = 'construct';
+                component.query.queryType = 'construct';
                 fixture.detectChanges();
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
@@ -815,7 +811,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Set construct mode
-                component.queryType = 'construct';
+                component.query.queryType = 'construct';
                 fixture.detectChanges();
 
                 showErrorMessageSpy = spyOn(component, 'showErrorMessage').and.callThrough();
@@ -849,7 +845,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Set construct mode
-                component.queryType = 'construct';
+                component.query.queryType = 'construct';
                 fixture.detectChanges();
 
                 onGraphNodeClickSpy = spyOn(component, 'onGraphNodeClick').and.callThrough();
@@ -904,8 +900,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
             beforeEach(() => {
                 // Set select mode
-                component.queryType = 'select';
                 component.query = expectedGraphRDFData.queryList[0];
+                component.query.queryType = 'select';
                 fixture.detectChanges();
 
                 onTableNodeClickSpy = spyOn(component, 'onTableNodeClick').and.callThrough();
@@ -969,7 +965,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should contain one ConstructResults component (stubbed) in third sub div (queryType === construct)', () => {
-                component.queryType = 'construct';
+                component.query.queryType = 'construct';
                 fixture.detectChanges();
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
@@ -978,7 +974,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', () => {
-                component.queryType = 'select';
+                component.query.queryType = 'select';
                 fixture.detectChanges();
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
@@ -987,7 +983,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', () => {
-                component.queryType = 'other';
+                component.query.queryType = 'other';
                 fixture.detectChanges();
 
                 const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
@@ -1112,7 +1108,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('ConstructResultsComponent', () => {
                 beforeEach(() => {
                     // Set select mode
-                    component.queryType = 'construct';
+                    component.query.queryType = 'construct';
                     fixture.detectChanges();
                 });
 
@@ -1159,7 +1155,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('SelectResultsComponent', () => {
                 beforeEach(() => {
                     // Set select mode
-                    component.queryType = 'select';
+                    component.query.queryType = 'select';
                     fixture.detectChanges();
                 });
 
@@ -1196,7 +1192,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             describe('UnsupportedTypeResultsComponent', () => {
                 beforeEach(() => {
                     // Set select mode
-                    component.queryType = 'other';
+                    component.query.queryType = 'other';
                     fixture.detectChanges();
                 });
 

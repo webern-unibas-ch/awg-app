@@ -77,10 +77,12 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         // Test data
         expectedQuery1 = new GraphSparqlQuery();
+        expectedQuery1.queryType = 'select';
         expectedQuery1.queryLabel = 'Test Query 1';
         expectedQuery1.queryString = 'SELECT * WHERE { ?test ?has ?success }';
 
         expectedQuery2 = new GraphSparqlQuery();
+        expectedQuery2.queryType = 'select';
         expectedQuery2.queryLabel = 'Test Query 2';
         expectedQuery2.queryString = 'SELECT * WHERE { ?success a ?test }';
 

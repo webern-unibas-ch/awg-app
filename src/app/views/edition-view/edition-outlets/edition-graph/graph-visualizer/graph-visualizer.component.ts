@@ -84,13 +84,6 @@ export class GraphVisualizerComponent implements OnInit {
     queryTime: number;
 
     /**
-     * Public variable: queryType.
-     *
-     * It keeps the type of the query.
-     */
-    queryType: string;
-
-    /**
      * Public variable: triples.
      *
      * It keeps the input triple string of the graph visualization.
@@ -149,7 +142,9 @@ export class GraphVisualizerComponent implements OnInit {
             return;
         }
         this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
-        this.query = query ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType ===q.queryType) || query : this.queryList[0];
+        this.query = query
+            ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query
+            : this.queryList[0];
         this.performQuery();
     }
 
