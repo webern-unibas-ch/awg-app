@@ -141,6 +141,7 @@ export class GraphVisualizerComponent implements OnInit {
         if (!this.graphRDFInputData.queryList) {
             return;
         }
+
         this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
         this.query = query
             ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query

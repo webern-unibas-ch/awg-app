@@ -142,13 +142,12 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedGraphRDFData.queryList.push({
             queryType: 'construct',
             queryLabel: 'Test Query 1',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test ?has ?success . }',
+            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
         });
         expectedGraphRDFData.queryList.push({
             queryType: 'construct',
             queryLabel: 'Test Query 2',
-            queryString:
-                'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test2 ?has ?success2 . }',
+            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
         });
         expectedGraphRDFData.triples =
             '@prefix example: <http://example.com/onto#> .\n\n example:Test example:has example:Success .';
@@ -377,22 +376,80 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 );
             });
 
-            // TODO: check for queryType and queryLabel
-
-            it('... should find and reset a known query from queryList', () => {
+            it('... should find and reset a query from queryList if queryLabel and queryType is known', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
-                // Request for known query
-                const changedQuery = expectedGraphRDFData.queryList[1];
+                // Request for query with known queryLabel and queryType
+                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
 
                 // Matches queryList queries by label
                 expectSpyCall(resetQuerySpy, 2, undefined);
                 expect(component.query).toBeDefined();
-                expect(component.query).toEqual(
-                    expectedGraphRDFData.queryList[1],
-                    `should equal ${expectedGraphRDFData.queryList[1]}`
+                expect(component.query).toEqual(changedQuery, `should equal ${changedQuery}`);
+                expect(component.query.queryLabel).toBeDefined();
+                expect(component.query.queryLabel).toEqual(
+                    changedQuery.queryLabel,
+                    `should equal ${changedQuery.queryLabel}`
+                );
+                expect(component.query.queryType).toBeDefined();
+                expect(component.query.queryType).toEqual(
+                    changedQuery.queryType,
+                    `should equal ${changedQuery.queryType}`
+                );
+            });
+
+            it('... should not find and reset a query from queryList if only queryLabel is known but not queryType', () => {
+                expectSpyCall(resetQuerySpy, 1, undefined);
+
+                // Request for query with known queryLabel but unknown queryType
+                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                changedQuery.queryType = 'select';
+
+                component.resetQuery(changedQuery);
+                fixture.detectChanges();
+
+                // Matches queryList queries only by label
+                expectSpyCall(resetQuerySpy, 2, undefined);
+                expect(component.query).toBeDefined();
+                expect(component.query).toEqual(changedQuery, `should equal ${changedQuery}`);
+                expect(component.query.queryLabel).toBeDefined();
+                expect(component.query.queryLabel).toBe(
+                    changedQuery.queryLabel,
+                    `should equal ${changedQuery.queryLabel}`
+                );
+                expect(component.query.queryType).toBeDefined();
+                expect(component.query.queryType).toBe(
+                    changedQuery.queryType,
+                    `should equal ${changedQuery.queryType}`
+                );
+            });
+
+            it('... should not find and reset a query from queryList if only queryType is known but not queryLabel', () => {
+                expectSpyCall(resetQuerySpy, 1, undefined);
+
+                // Request for query with known queryType but unknown label
+                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
+                changedQuery.queryLabel = 'select all bananas';
+
+                component.resetQuery(changedQuery);
+                fixture.detectChanges();
+
+                // Matches queryList queries only by type
+                expectSpyCall(resetQuerySpy, 2, undefined);
+                expect(component.query).toBeDefined();
+                expect(component.query).toEqual(changedQuery, `should equal ${changedQuery}`);
+                expect(component.query.queryLabel).toBeDefined();
+                expect(component.query.queryLabel).toBe(
+                    changedQuery.queryLabel,
+                    `should equal ${changedQuery.queryLabel}`
+                );
+                expect(component.query.queryType).toBeDefined();
+                expect(component.query.queryType).toBe(
+                    changedQuery.queryType,
+                    `should equal ${changedQuery.queryType}`
                 );
             });
 
@@ -401,10 +458,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Request for unknown query
                 const changedQuery = {
-                    queryType: 'construct',
+                    queryType: 'SELECT',
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }',
+                        'PREFIX example: <http://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -412,13 +469,23 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 expectSpyCall(resetQuerySpy, 2, undefined);
                 expect(component.query).toBeDefined();
                 expect(component.query).toEqual(changedQuery, `should equal ${changedQuery}`);
+                expect(component.query.queryLabel).toBeDefined();
+                expect(component.query.queryLabel).toEqual(
+                    changedQuery.queryLabel,
+                    `should equal ${changedQuery.queryLabel}`
+                );
+                expect(component.query.queryType).toBeDefined();
+                expect(component.query.queryType).toEqual(
+                    changedQuery.queryType,
+                    `should equal ${changedQuery.queryType}`
+                );
             });
 
             it('... should set initial query (queryList[0]) if no query is provided', () => {
                 expectSpyCall(resetQuerySpy, 1, undefined);
 
                 // Set changed query
-                const changedQuery = expectedGraphRDFData.queryList[1];
+                const changedQuery = { ...expectedGraphRDFData.queryList[1] };
                 component.query = changedQuery;
                 fixture.detectChanges();
 
@@ -450,7 +517,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryType: 'construct',
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }',
+                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -487,14 +554,14 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it('... should append namespaces to query if no prefixes given', () => {
                 expectSpyCall(performQuerySpy, 1, undefined);
 
-                const queryStringWithoutPrefixes = 'CONSTRUCT * WHERE { ?test ?has ?success . }';
+                const queryStringWithoutPrefixes = 'CONSTRUCT WHERE { ?test ?has ?success . }';
                 const queryWithoutPrefixes: GraphSparqlQuery = {
                     queryType: 'construct',
                     queryLabel: 'Test Query 1',
                     queryString: queryStringWithoutPrefixes,
                 };
                 const namespaceSpy = spyOn(graphVisualizerService, 'appendNamespacesToQuery').and.returnValue(
-                    'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test ?has ?success . }'
+                    'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
                 );
 
                 // Perform query without prefixes
@@ -1071,7 +1138,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Set changed query string
                     const changedQueryString =
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT * WHERE { ?test3 ?has ?success3 . }';
+                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
                     editorCmp.updateQueryStringRequest.emit(changedQueryString);
 
                     expect(component.query.queryString).toBeDefined();
