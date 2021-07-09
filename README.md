@@ -1,4 +1,7 @@
 # AWG App
+<!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
+[![All Contributors](https://img.shields.io/badge/all_contributors-1-orange.svg?style=flat-square)](#contributors-)
+<!-- ALL-CONTRIBUTORS-BADGE:END -->
 
 ![GitHub package.json version](https://img.shields.io/github/package-json/v/webern-unibas-ch/awg-app.svg)
 [![GitHub package.json dependency version (prod)](https://img.shields.io/github/package-json/dependency-version/webern-unibas-ch/awg-app/@angular/core?color=red&label=angular&logo=angular)](https://github.com/angular/angular)
@@ -21,3 +24,23 @@ Please read our [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md) and [CONTRIBUTING.md](C
 The software code of this project is released under [MIT](https://opensource.org/licenses/MIT) license, see [LICENSE.md](https://github.com/webern-unibas-ch/awg-app/blob/main/LICENSE.md).
 
 The contents of the webpage are released under [Creative Commons Attribution-ShareAlike 4.0 International License (CC BY-SA 4.0)](https://creativecommons.org/licenses/by-sa/4.0/), see [Disclaimer](http://edition.anton-webern.ch/contact#awg-disclaimer).
+
+## Contributors ✨
+
+Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/docs/en/emoji-key)):
+
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/vanBithoven"><img src="https://avatars.githubusercontent.com/u/86300228?v=4?s=100" width="100px;" alt=""/><br /><sub><b>vanBithoven</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Documentation">📖</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Tests">⚠️</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Code">💻</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+This project follows the [all-contributors](https://github.com/all-contributors/all-contributors) specification. Contributions of any kind welcome!
