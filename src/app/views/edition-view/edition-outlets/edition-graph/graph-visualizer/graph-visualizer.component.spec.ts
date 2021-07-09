@@ -43,6 +43,8 @@ class SparqlEditorStubComponent {
     queryList: GraphSparqlQuery[];
     @Input()
     query: GraphSparqlQuery;
+    @Input()
+    isFullscreen: boolean;
     @Output()
     performQueryRequest: EventEmitter<void> = new EventEmitter();
     @Output()
