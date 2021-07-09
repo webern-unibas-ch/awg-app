@@ -33,6 +33,8 @@ class ConstructResultsStubComponent {
 class SelectResultsStubComponent {
     @Input()
     queryResult$: Observable<Triple[]>;
+    @Input()
+    queryTime: number;
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
 }
@@ -59,6 +61,8 @@ class ToastStubComponent {}
 @Component({ selector: 'awg-triples-editor', template: '' })
 class TriplesEditorStubComponent {
     @Input() triples: string;
+    @Input()
+    isFullscreen: boolean;
     @Output()
     performQueryRequest: EventEmitter<void> = new EventEmitter();
     @Output()
@@ -86,6 +90,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
     let expectedGraphRDFData: GraphRDFData;
     let expectedResult: Triple[];
+    let expectedIsFullscreen: boolean;
 
     let consoleSpy;
     let queryLocalStoreSpy: Spy;
@@ -162,6 +167,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             },
         ];
 
+        expectedIsFullscreen = false;
+
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
@@ -183,6 +190,10 @@ describe('GraphVisualizerComponent (DONE)', () => {
     describe('BEFORE initial data binding', () => {
         it('... should not have graphRDFInputData', () => {
             expect(component.graphRDFInputData).toBeUndefined('should be undefined');
+        });
+
+        it('... should not have isFullscreen', () => {
+            expect(component.isFullscreen).toBeUndefined('should be undefined');
         });
 
         it('... should not have query', () => {
@@ -229,6 +240,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         beforeEach(() => {
             // Simulate the parent setting the input properties
             component.graphRDFInputData = expectedGraphRDFData;
+            component.isFullscreen = expectedIsFullscreen;
 
             // Trigger initial data binding
             fixture.detectChanges();
@@ -245,6 +257,11 @@ describe('GraphVisualizerComponent (DONE)', () => {
         it('... should have graphRDFInputData', () => {
             expect(component.graphRDFInputData).toBeDefined();
             expect(component.graphRDFInputData).toEqual(expectedGraphRDFData, `should equal ${expectedGraphRDFData}`);
+        });
+
+        it('should have `isFullScreen` input', () => {
+            expect(component.isFullscreen).toBeDefined('should be defined');
+            expect(component.isFullscreen).toBe(expectedIsFullscreen, `should equal ${expectedIsFullscreen}`);
         });
 
         it('... should have triples', () => {
@@ -1016,48 +1033,103 @@ describe('GraphVisualizerComponent (DONE)', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain a div.row with 3 divs', () => {
-                const rowDes = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
-                getAndExpectDebugElementByCss(rowDes[0], 'div', 3, 3);
+            describe('not in fullscreen mode', () => {
+                it('... should contain a div.row with 3 divs', () => {
+                    const rowDes = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
+                    getAndExpectDebugElementByCss(rowDes[0], 'div', 3, 3);
+                });
+
+                it('... should contain one TriplesEditor component (stubbed) in first sub div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
+                });
+
+                it('... should contain one SparqlEditor component (stubbed) in second sub div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
+                });
+
+                it('... should contain one ConstructResults component (stubbed) in third sub div (queryType === construct)', () => {
+                    component.query.queryType = 'construct';
+                    fixture.detectChanges();
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[2], ConstructResultsStubComponent, 1, 1);
+                });
+
+                it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', () => {
+                    component.query.queryType = 'select';
+                    fixture.detectChanges();
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[2], SelectResultsStubComponent, 1, 1);
+                });
+
+                it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', () => {
+                    component.query.queryType = 'other';
+                    fixture.detectChanges();
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+
+                    getAndExpectDebugElementByDirective(divDes[2], UnsupportedTypeResultsStubComponent, 1, 1);
+                });
             });
 
-            it('... should contain one TriplesEditor component (stubbed) in first sub div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+            describe('in fullscreen mode', () => {
+                beforeEach(() => {
+                    // Set fullscreen mode
+                    component.isFullscreen = true;
 
-                getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
-            });
+                    fixture.detectChanges();
+                });
 
-            it('... should contain one SparqlEditor component (stubbed) in second sub div', () => {
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+                it('... should contain a div.row with 2 divs', () => {
+                    const rowDes = getAndExpectDebugElementByCss(compDe, 'div.row', 1, 1);
+                    getAndExpectDebugElementByCss(rowDes[0], 'div', 2, 2);
+                });
 
-                getAndExpectDebugElementByDirective(divDes[1], SparqlEditorStubComponent, 1, 1);
-            });
+                it('... should contain one TriplesEditor component (stubbed) in first sub div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 2, 2);
 
-            it('... should contain one ConstructResults component (stubbed) in third sub div (queryType === construct)', () => {
-                component.query.queryType = 'construct';
-                fixture.detectChanges();
+                    getAndExpectDebugElementByDirective(divDes[0], TriplesEditorStubComponent, 1, 1);
+                });
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+                it('... should contain one SparqlEditor component (stubbed) in first sub div', () => {
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 2, 2);
 
-                getAndExpectDebugElementByDirective(divDes[2], ConstructResultsStubComponent, 1, 1);
-            });
+                    getAndExpectDebugElementByDirective(divDes[0], SparqlEditorStubComponent, 1, 1);
+                });
 
-            it('... should contain one SelectResults component (stubbed) in third sub div (queryType === select)', () => {
-                component.query.queryType = 'select';
-                fixture.detectChanges();
+                it('... should contain one ConstructResults component (stubbed) in second sub div (queryType === construct)', () => {
+                    component.query.queryType = 'construct';
+                    fixture.detectChanges();
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 2, 2);
 
-                getAndExpectDebugElementByDirective(divDes[2], SelectResultsStubComponent, 1, 1);
-            });
+                    getAndExpectDebugElementByDirective(divDes[1], ConstructResultsStubComponent, 1, 1);
+                });
 
-            it('... should contain one UnsupportedTypeResults component (stubbed) in third sub div (queryType === other)', () => {
-                component.query.queryType = 'other';
-                fixture.detectChanges();
+                it('... should contain one SelectResults component (stubbed) in second sub div (queryType === select)', () => {
+                    component.query.queryType = 'select';
+                    fixture.detectChanges();
 
-                const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 3, 3);
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 2, 2);
 
-                getAndExpectDebugElementByDirective(divDes[2], UnsupportedTypeResultsStubComponent, 1, 1);
+                    getAndExpectDebugElementByDirective(divDes[1], SelectResultsStubComponent, 1, 1);
+                });
+
+                it('... should contain one UnsupportedTypeResults component (stubbed) in second sub div (queryType === other)', () => {
+                    component.query.queryType = 'other';
+                    fixture.detectChanges();
+
+                    const divDes = getAndExpectDebugElementByCss(compDe, 'div.row > div', 2, 2);
+
+                    getAndExpectDebugElementByDirective(divDes[1], UnsupportedTypeResultsStubComponent, 1, 1);
+                });
             });
 
             describe('TriplesEditorComponent', () => {

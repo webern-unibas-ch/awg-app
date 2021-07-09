@@ -506,7 +506,312 @@ describe('SparqlEditorComponent (DONE)', () => {
                 });
             });
 
-            describe('not in fullscreen mode', () => {});
+            describe('in fullscreen mode', () => {
+                let bodyDes: DebugElement[];
+
+                beforeEach(() => {
+                    // Open panel by click on header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header.card-header > div > button.btn-link.panel-btn',
+                        1,
+                        1
+                    );
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Click header button
+                    click(btnEl as HTMLElement);
+                    detectChangesOnPush(fixture);
+
+                    // Panel body
+                    bodyDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query > div.card-body',
+                        1,
+                        1
+                    );
+
+                    // Set fullscreen mode
+                    component.isFullscreen = true;
+                });
+
+                it('... should contain one ngb-accordion with panel (div.card) header and open body', () => {
+                    // Ngb-accordion debug element
+                    const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+
+                    // Panel (div.card)
+                    const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1); // Panel (div.card)
+                    // Header
+                    getAndExpectDebugElementByCss(
+                        panelDes[0],
+                        'div#awg-graph-visualizer-query-header.card-header',
+                        1,
+                        1
+                    ); // Panel (div.card)
+                    // Body open
+                    getAndExpectDebugElementByCss(panelDes[0], 'div#awg-graph-visualizer-query > div.card-body', 1, 1);
+                });
+
+                it('... should display panel header button', () => {
+                    // Panel header button
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > button.btn-link.panel-btn',
+                        1,
+                        1
+                    );
+
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Check button content
+                    expect(btnEl.textContent).toBeDefined();
+                    expect(btnEl.textContent).toContain('SPARQL Abfrage', 'should be SPARQL Abfrage');
+                });
+
+                it('... should not toggle panel body on click', async () => {
+                    // Header debug elements
+                    const panelHeaderDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header.card-header',
+                        1,
+                        1
+                    );
+
+                    // Button debug elements
+                    const btnDes = getAndExpectDebugElementByCss(panelHeaderDes[0], 'button.btn-link.panel-btn', 1, 1);
+                    // Button native elements to click on
+                    const btnEl = btnDes[0].nativeElement;
+
+                    // Panel body is open
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query > div.card-body',
+                        1,
+                        1,
+                        'open'
+                    );
+
+                    // Click header button
+                    click(btnEl as HTMLElement);
+                    await detectChangesOnPush(fixture);
+
+                    // Panel is open again
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query > div.card-body',
+                        1,
+                        1,
+                        'open'
+                    );
+                });
+
+                it('... should contain an example query btn-group in panel header if isExampleQueriesEnabled = true', async () => {
+                    isExampleQueriesEnabledSpy.and.returnValue(true);
+
+                    await detectChangesOnPush(fixture);
+
+                    // Panel header div.btn-group
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > div.btn-group',
+                        1,
+                        1
+                    );
+                });
+
+                it('... should not contain an example query btn-group in panel header if isExampleQueriesEnabled = false', async () => {
+                    isExampleQueriesEnabledSpy.and.returnValue(false);
+
+                    await detectChangesOnPush(fixture);
+
+                    // Panel header div.btn-group
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > div.btn-group',
+                        0,
+                        0
+                    );
+                });
+
+                it('... should display an disabled label button in example query btn-group', () => {
+                    const btnDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > div.btn-group > button.btn',
+                        1,
+                        1
+                    );
+                    const btnEl = btnDes[0].nativeElement;
+
+                    expect(btnEl.disabled).toBeTruthy();
+                    expect(btnEl.getAttribute('aria-disabled')).toBe('true');
+
+                    expect(btnEl.textContent).toBeTruthy();
+                    expect(btnEl.textContent).toContain('Beispielabfragen');
+                });
+
+                it('... should contain another btn-group dropdown in example query btn-group', () => {
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > div.btn-group > div.btn-group',
+                        1,
+                        1
+                    );
+                });
+
+                it('... should contain toggle button in btn-group dropdown', () => {
+                    getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > div.btn-group > div.btn-group > button.btn.dropdown-toggle-split',
+                        1,
+                        1
+                    );
+                });
+
+                it('... should contain dropdown menu div with dropdown items', () => {
+                    const menuDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div#awg-graph-visualizer-query-header > div > div.btn-group > div.btn-group > div.dropdown-menu',
+                        1,
+                        1
+                    );
+
+                    getAndExpectDebugElementByCss(
+                        menuDes[0],
+                        'div.dropdown-menu > button.dropdown-item',
+                        expectedQueryList.length,
+                        expectedQueryList.length
+                    );
+                });
+
+                it('... should display label on dropdown items', () => {
+                    const itemDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.dropdown-menu > button.dropdown-item',
+                        expectedQueryList.length,
+                        expectedQueryList.length
+                    );
+
+                    expect(itemDes.length).toBe(expectedQueryList.length, `should be ${expectedQueryList.length}`);
+
+                    const itemEl0 = itemDes[0].nativeElement;
+                    const itemEl1 = itemDes[1].nativeElement;
+
+                    expect(itemEl0.textContent).toBeTruthy();
+                    expect(itemEl0.textContent).toContain(
+                        expectedQueryList[0].queryLabel,
+                        `should contain ${expectedQueryList[0].queryLabel}`
+                    );
+
+                    expect(itemEl1.textContent).toBeTruthy();
+                    expect(itemEl1.textContent).toContain(
+                        expectedQueryList[1].queryLabel,
+                        `should contain ${expectedQueryList[1].queryLabel}`
+                    );
+                });
+
+                it('... should disable current query in dropdown items', async () => {
+                    const itemDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.dropdown-menu > button.dropdown-item',
+                        expectedQueryList.length,
+                        expectedQueryList.length
+                    );
+
+                    expect(itemDes.length).toBe(expectedQueryList.length, `should be ${expectedQueryList.length}`);
+
+                    const itemEl0 = itemDes[0].nativeElement;
+                    const itemEl1 = itemDes[1].nativeElement;
+
+                    expect(itemEl0).toHaveCssClass('disabled');
+                    expect(itemEl1).not.toHaveCssClass('disabled');
+
+                    component.query = expectedQuery2;
+                    await detectChangesOnPush(fixture);
+
+                    expect(itemEl0).not.toHaveCssClass('disabled');
+                    expect(itemEl1).toHaveCssClass('disabled');
+                });
+
+                it('... should trigger `onQueryListChange()` by click on dropdown item', async () => {
+                    const itemDes = getAndExpectDebugElementByCss(
+                        compDe,
+                        'div.dropdown-menu > button.dropdown-item',
+                        expectedQueryList.length,
+                        expectedQueryList.length
+                    );
+
+                    expect(itemDes.length).toBe(expectedQueryList.length, `should be ${expectedQueryList.length}`);
+
+                    const itemEl0 = itemDes[0].nativeElement;
+                    const itemEl1 = itemDes[1].nativeElement;
+
+                    expect(itemEl1).not.toHaveCssClass('disabled');
+
+                    // Click on second item (first disabled)
+                    click(itemEl1 as HTMLElement);
+                    await detectChangesOnPush(fixture);
+
+                    // Spy call with second query
+                    expectSpyCall(onQueryListChangeSpy, 1, expectedQuery2);
+
+                    component.query = expectedQuery2;
+                    await detectChangesOnPush(fixture);
+
+                    expect(itemEl0).not.toHaveCssClass('disabled');
+
+                    // Click on first item (second disabled)
+                    click(itemEl0 as HTMLElement);
+                    await detectChangesOnPush(fixture);
+
+                    // Spy call with first query
+                    expectSpyCall(onQueryListChangeSpy, 2, expectedQuery1);
+                });
+
+                it('... should contain CodeMirrorComponent (stubbed) in panel body', () => {
+                    // CodeMirrorComponent
+                    getAndExpectDebugElementByDirective(bodyDes[0], CodeMirrorStubComponent, 1, 1);
+                });
+
+                it('... should contain div with two buttons (Query, Reset) in panel body', () => {
+                    const divDes = getAndExpectDebugElementByCss(bodyDes[0], 'div', 1, 1);
+
+                    const btnDes = getAndExpectDebugElementByCss(divDes[0], 'button.btn', 2, 2);
+                    const btnEl0 = btnDes[0].nativeElement;
+                    const btnEl1 = btnDes[1].nativeElement;
+
+                    expect(btnEl0.textContent).toBeTruthy();
+                    expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+
+                    expect(btnEl1.textContent).toBeTruthy();
+                    expect(btnEl1.textContent).toContain('Reset', 'should contain Reset');
+                });
+
+                it('... should trigger `performQuery()` by click on Query button', async () => {
+                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div > button.btn', 2, 2);
+                    const btnEl0 = btnDes[0].nativeElement;
+                    expect(btnEl0.textContent).toContain('Query', 'should contain Query');
+
+                    // Click query button
+                    click(btnEl0 as HTMLElement);
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(performQuerySpy, 1);
+                    expectSpyCall(resetQuerySpy, 0);
+                });
+
+                it('... should trigger `resetQuery()` by click on Reset button', async () => {
+                    const btnDes = getAndExpectDebugElementByCss(bodyDes[0], 'div.card-body > div > button.btn', 2, 2);
+                    const btnEl1 = btnDes[1].nativeElement;
+                    expect(btnEl1.textContent).toContain('Reset', 'should contain Query');
+
+                    // Click reset button
+                    click(btnEl1 as HTMLElement);
+                    await detectChangesOnPush(fixture);
+
+                    expectSpyCall(performQuerySpy, 0);
+                    expectSpyCall(resetQuerySpy, 1);
+                });
+            });
         });
 
         describe('#isExampleQueriesEnabled', () => {
@@ -841,11 +1146,6 @@ describe('SparqlEditorComponent (DONE)', () => {
         });
 
         describe('#preventPanelCollapseOnFullscreen', () => {
-            beforeEach(async () => {
-                // Fullscreen = true
-                await detectChangesOnPush(fixture);
-            });
-
             it('... should trigger on event from ngb-accordion', () => {
                 const accordionDes = getAndExpectDebugElementByDirective(compDe, NgbAccordion, 1, 1);
                 const accordionCmp = accordionDes[0].injector.get(NgbAccordion) as NgbAccordion;

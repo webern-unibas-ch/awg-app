@@ -70,6 +70,8 @@ describe('EditionGraphComponent (DONE)', () => {
     let expectedEditionGraphDataOp12: GraphList;
     let expectedEditionGraphDataOp25: GraphList;
 
+    let expectedIsFullscreen: boolean;
+
     beforeEach(
         waitForAsync(() => {
             // Mocked editionDataService
@@ -108,6 +110,8 @@ describe('EditionGraphComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // TestData (default)
+        expectedIsFullscreen = false;
+
         expectedEditionWork = EditionWorks.OP12;
 
         expectedEditionGraphDataOp12 = new GraphList();
