@@ -8,6 +8,7 @@ on:
             - 'v*'    # trigger on all tags
         paths-ignore:
             - '**.md' # ignore changes in markdown files
+    pull_request:
 
 jobs:
     test:

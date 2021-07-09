@@ -29,7 +29,7 @@
             <!-- awg-graph-construct-result -->
             <awg-construct-results
                 #queryConstructResultAcc
-                *ngIf="queryType === 'construct'; else querySelectResultAcc"
+                *ngIf="query.queryType === 'construct'; else querySelectResultAcc"
                 [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="defaultForceGraphHeight"
                 (clickedNodeRequest)="onGraphNodeClick($event)"
@@ -39,7 +39,7 @@
             <!-- awg-graph-select-result -->
             <ng-template #querySelectResultAcc>
                 <awg-select-results
-                    *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+                    *ngIf="query.queryType === 'select'; else queryUnsupportedTypeAcc"
                     [queryResult$]="queryResult$"
                     (clickedTableRequest)="onTableNodeClick($event)"
                 ></awg-select-results>
@@ -48,7 +48,7 @@
             <!-- OTHERS -->
             <!-- awg-graph-unsupported-query-type-result -->
             <ng-template #queryUnsupportedTypeAcc>
-                <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>
+                <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>
             </ng-template>
         </div>
     </ng-container>
@@ -80,7 +80,7 @@
             <!-- awg-graph-construct-result -->
             <awg-construct-results
                 #queryConstructResultAcc
-                *ngIf="queryType === 'construct'; else querySelectResultAcc"
+                *ngIf="query.queryType === 'construct'; else querySelectResultAcc"
                 [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="1000"
                 (clickedNodeRequest)="onGraphNodeClick($event)"
@@ -90,7 +90,7 @@
             <!-- awg-graph-select-result -->
             <ng-template #querySelectResultAcc>
                 <awg-select-results
-                    *ngIf="queryType === 'select'; else queryUnsupportedTypeAcc"
+                    *ngIf="query.queryType === 'select'; else queryUnsupportedTypeAcc"
                     [queryResult$]="queryResult$"
                     [queryTime]="queryTime"
                     (clickedTableRequest)="onTableNodeClick($event)"
@@ -100,7 +100,7 @@
             <!-- OTHERS -->
             <!-- awg-graph-unsupported-query-type-result -->
             <ng-template #queryUnsupportedTypeAcc>
-                <awg-unsupported-type-results [queryType]="queryType"></awg-unsupported-type-results>
+                <awg-unsupported-type-results [queryType]="query.queryType"></awg-unsupported-type-results>
             </ng-template>
         </div>
     </ng-container>
