@@ -1,0 +1,57 @@
+{
+  "projectName": "awg-app",
+  "projectOwner": "webern-unibas-ch",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "commitConvention": "angular",
+  "contributors": [
+    {
+      "login": "musicEnfanthen",
+      "name": "Stefan Münnich",
+      "avatar_url": "https://avatars.githubusercontent.com/u/21059419?v=4",
+      "profile": "http://dhlab.unibas.ch/#/team/muennich",
+      "contributions": [
+        "code",
+        "doc",
+        "test",
+        "projectManagement",
+        "maintenance",
+        "ideas",
+        "infra",
+        "design",
+        "content",
+        "bug"
+      ]
+    },
+    {
+      "login": "vanBithoven",
+      "name": "vanBithoven",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86300228?v=4",
+      "profile": "https://github.com/vanBithoven",
+      "contributions": [
+        "code",
+        "test",
+        "doc"
+      ]
+    },
+    {
+      "login": "masthom",
+      "name": "Thomas",
+      "avatar_url": "https://avatars.githubusercontent.com/u/53256309?v=4",
+      "profile": "https://github.com/masthom",
+      "contributions": [
+        "doc",
+        "projectManagement",
+        "ideas",
+        "content",
+        "data"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7
+}

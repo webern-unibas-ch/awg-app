@@ -6,6 +6,20 @@
         "name": "Stefan Münnich",
         "email": "<stefan.muennich@unibas.ch>"
     },
+    "contributors": [
+        {
+            "name": "Stefan Münnich",
+            "email": "<stefan.muennich@unibas.ch>"
+        },
+        {
+            "name": "vanBithoven",
+            "email": "<86300228+vanBithoven@users.noreply.github.com>"
+        },
+        {
+            "name": "masthom",
+            "email": "<53256309+masthom@users.noreply.github.com>"
+        }
+    ],
     "description": "Prototype Web Application for the Online Edition of the Anton Webern Gesamtausgabe (Musicological Seminar of the University of Basel)",
     "keywords": [
         "angular",
