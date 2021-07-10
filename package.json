@@ -156,7 +156,7 @@
         "d3-zoom": "^3.0.0",
         "font-awesome": "^4.7.0",
         "json2typescript": "^1.4.1",
-        "n3": "^1.10.0",
+        "n3": "^1.11.0",
         "ngx-json-viewer": "^3.0.2",
         "ngx-order-pipe": "^2.1.1",
         "rdfstore": "^0.9.17",
