@@ -1,0 +1,24 @@
+{
+  "files": [
+    "README.md"
+  ],
+  "imageSize": 100,
+  "commit": false,
+  "contributors": [
+    {
+      "login": "vanBithoven",
+      "name": "vanBithoven",
+      "avatar_url": "https://avatars.githubusercontent.com/u/86300228?v=4",
+      "profile": "https://github.com/vanBithoven",
+      "contributions": [
+        "design"
+      ]
+    }
+  ],
+  "contributorsPerLine": 7,
+  "projectName": "awg-app",
+  "projectOwner": "webern-unibas-ch",
+  "repoType": "github",
+  "repoHost": "https://github.com",
+  "skipCi": true
+}
