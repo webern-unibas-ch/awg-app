@@ -39,7 +39,7 @@ jobs:
 
             - name: Upload code coverage
               if: matrix.node-version == 14.16 # upload coverage report for current node version only
-              uses: codecov/codecov-action@v2.0.1
+              uses: codecov/codecov-action@v2.0.2
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
