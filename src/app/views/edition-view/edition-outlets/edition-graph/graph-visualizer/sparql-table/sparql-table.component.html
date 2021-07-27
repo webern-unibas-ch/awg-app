@@ -64,12 +64,12 @@
         >
             <td scope="col" *ngFor="let headerLabel of tableData.header; index as j; trackBy: j">
                 <a
-                    *ngIf="row[headerLabel].type && row[headerLabel].type == 'uri'"
+                    *ngIf="row[headerLabel].type && row[headerLabel].type === 'uri'"
                     (click)="onTableNodeClick(row[headerLabel].value)"
                 >
                     <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
                 </a>
-                <span *ngIf="row[headerLabel].type != 'uri'"
+                <span *ngIf="row[headerLabel].type !== 'uri'"
                     ><ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
                 ></span>
             </td>

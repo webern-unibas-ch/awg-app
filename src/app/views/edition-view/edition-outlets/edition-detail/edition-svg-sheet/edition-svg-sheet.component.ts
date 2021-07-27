@@ -231,6 +231,9 @@ export class EditionSvgSheetComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }
