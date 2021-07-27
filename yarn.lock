@@ -4117,10 +4117,10 @@ code-point-at@^1.0.0:
   resolved "https://registry.yarnpkg.com/code-point-at/-/code-point-at-1.1.0.tgz#0d070b4d043a5bea33a2f1a40e2edb3d9a4ccf77"
   integrity sha1-DQcLTQQ6W+ozovGkDi7bPZpMz3c=
 
-codemirror@^5.62.0:
-  version "5.62.0"
-  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.62.0.tgz#e9ecd012e6f9eaf2e05ff4a449ff750f51619e22"
-  integrity sha512-Xnl3304iCc8nyVZuRkzDVVwc794uc9QNX0UcPGeNic1fbzkSrO4l4GVXho9tRNKBgPYZXgocUqXyfIv3BILhCQ==
+codemirror@^5.62.2:
+  version "5.62.2"
+  resolved "https://registry.yarnpkg.com/codemirror/-/codemirror-5.62.2.tgz#bce6d19c9829e6e788f83886d48ecf5c1e106e65"
+  integrity sha512-tVFMUa4J3Q8JUd1KL9yQzQB0/BJt7ZYZujZmTPgo/54Lpuq3ez4C8x/ATUY/wv7b7X3AUq8o3Xd+2C5ZrCGWHw==
 
 collection-visit@^1.0.0:
   version "1.0.0"
@@ -8675,10 +8675,10 @@ n3@^0.5.0:
   resolved "https://registry.yarnpkg.com/n3/-/n3-0.5.0.tgz#be06e81c63144bf71ffe40bcea835ee523b574f4"
   integrity sha1-vgboHGMUS/cf/kC86oNe5SO1dPQ=
 
-n3@^1.11.0:
-  version "1.11.0"
-  resolved "https://registry.yarnpkg.com/n3/-/n3-1.11.0.tgz#fe1eeca3b70e87d3c553ff4f0957628f21b0f39d"
-  integrity sha512-hdGhm7BbiesuQTm2S4Gsq2Z0J/iCRMsvtmrlLNxzXlnf1aSRsbKQk5XkFNKtX9aS54oKzyGSZUVm7F/IOhmFhg==
+n3@^1.11.1:
+  version "1.11.1"
+  resolved "https://registry.yarnpkg.com/n3/-/n3-1.11.1.tgz#50015008afcb71e587ff9413f32e4a9bef09bc8b"
+  integrity sha512-yeTeYoatabMs6IMv71dYSIfgf+s+4DpLrnvRv8CKGRLnAt1lfWcnb+mwP67PZKq7Wvh7MCIGXaflayPkn0WzHw==
   dependencies:
     queue-microtask "^1.1.2"
     readable-stream "^3.6.0"
