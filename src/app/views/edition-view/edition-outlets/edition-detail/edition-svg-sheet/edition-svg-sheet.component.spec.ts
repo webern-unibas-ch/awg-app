@@ -10,13 +10,14 @@ import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
 
-fdescribe('EditionSvgSheetComponent', () => {
+describe('EditionSvgSheetComponent (DONE)', () => {
     let component: EditionSvgSheetComponent;
     let fixture: ComponentFixture<EditionSvgSheetComponent>;
     let compDe: DebugElement;
     let compEl: any;
 
     let expectedSvgSheet: EditionSvgSheet;
+    let expectedNextSvgSheet: EditionSvgSheet;
     let expectedOverlay: EditionSvgOverlay;
 
     let selectOverlaySpy: Spy;
@@ -49,6 +50,13 @@ fdescribe('EditionSvgSheetComponent', () => {
         const type = EditionSvgOverlayTypes.measure;
         const id = '10';
         expectedOverlay = new EditionSvgOverlay(type, id);
+
+        expectedNextSvgSheet = {
+            id: 'Aa:SkI/3',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
+            alt: 'Aa:SkI/3',
+        };
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -117,28 +125,62 @@ fdescribe('EditionSvgSheetComponent', () => {
             // It('... should emit selected  svg sheet on click',
         });
 
+        describe('#isSelectedOverlay', () => {
+            it('... should do nothing if no id is provided', () => {
+                const type = EditionSvgOverlayTypes.measure;
+                const id = undefined;
+                const comparison = component.isSelectedOverlay(type, id);
+
+                expect(comparison).toBeUndefined();
+            });
+
+            it('... should do nothing if no type is provided', () => {
+                const type = undefined;
+                const id = '10';
+                const comparison = component.isSelectedOverlay(type, id);
+
+                expect(comparison).toBeUndefined();
+            });
+
+            it('... should return false if given overlay does not equal selected overlay', () => {
+                const type = EditionSvgOverlayTypes.measure;
+                const id = '5';
+                const otherOverlay = new EditionSvgOverlay(type, id);
+
+                const comparison = component.isSelectedOverlay(otherOverlay.type, otherOverlay.id);
+
+                expect(comparison).toBeFalse();
+            });
+
+            it('... should return true if given overlay does equal selected overlay', () => {
+                const comparison = component.isSelectedOverlay(expectedOverlay.type, expectedOverlay.id);
+
+                expect(comparison).toBeTrue();
+            });
+        });
+
+        describe('#isSelectedSvgSheet', () => {
+            it('... should return false if given id does not equal id of selected svg sheet', () => {
+                const comparison = component.isSelectedSvgSheet(expectedNextSvgSheet.id);
+
+                expect(comparison).toBeFalse();
+            });
+
+            it('... should return true if given id does equal id of selected svg sheet', () => {
+                const comparison = component.isSelectedSvgSheet(expectedSvgSheet.id);
+
+                expect(comparison).toBeTrue();
+            });
+        });
+
         describe('#selectOverlay', () => {
             it('... should trigger on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a.active', 1, 1);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                // No id
-                expectSpyCall(selectOverlaySpy, 1, '');
-
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[1], fixture);
-
-                // String
-                expectSpyCall(selectOverlaySpy, 2, '28');
-
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[2], fixture);
-
-                // String
-                expectSpyCall(selectOverlaySpy, 3, '330');
+                expectSpyCall(selectOverlaySpy, 1, [expectedOverlay.type, expectedOverlay.id]);
             }));
 
             it('... should not emit anything if no id is provided', () => {
@@ -187,26 +229,13 @@ fdescribe('EditionSvgSheetComponent', () => {
 
         describe('#selectSvgSheet', () => {
             it('... should trigger on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
+                const linkboxDes = getAndExpectDebugElementByCss(compDe, '.edition-svg-linkboxes', 1, 1);
+                const anchorDes = getAndExpectDebugElementByCss(linkboxDes[0], 'a', 1, 1);
 
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(anchorDes[0], fixture);
 
-                // No id
-                expectSpyCall(selectSvgSheetSpy, 1, '');
-
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[1], fixture);
-
-                // String
-                expectSpyCall(selectSvgSheetSpy, 2, '28');
-
-                // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[2], fixture);
-
-                // String
-                expectSpyCall(selectSvgSheetSpy, 3, '330');
+                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             }));
 
             it('... should not emit anything if no id is provided', () => {
@@ -216,9 +245,9 @@ fdescribe('EditionSvgSheetComponent', () => {
             });
 
             it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet('10');
+                component.selectSvgSheet(expectedNextSvgSheet.id);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 0, expectedOverlay);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedNextSvgSheet.id);
             });
         });
     });

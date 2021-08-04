@@ -1,10 +1,14 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
-import { DebugElement } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
 
+import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
+
 import { SparqlTableComponent } from './sparql-table.component';
-import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
+
+@Component({ selector: 'awg-twelve-tone-spinner', template: '' })
+class TwelveToneSpinnerStubComponent {}
 
 describe('SparqlTableComponent', () => {
     let component: SparqlTableComponent;
@@ -15,7 +19,7 @@ describe('SparqlTableComponent', () => {
     beforeEach(async () => {
         await TestBed.configureTestingModule({
             imports: [NgbPaginationModule],
-            declarations: [SparqlTableComponent],
+            declarations: [SparqlTableComponent, TwelveToneSpinnerStubComponent],
         }).compileComponents();
     });
 
@@ -44,12 +48,20 @@ describe('SparqlTableComponent', () => {
         });
 
         describe('VIEW', () => {
-            it('... should contain one ngb-accordion without panel (div.card) yet', () => {
-                // Ngb-accordion debug element
-                const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
+            it('... should contain no form yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'form', 0, 0);
+            });
 
-                // Panel
-                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 0, 0, 'yet');
+            it('... should contain no pagination divs yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'div.awg-pagination', 0, 0);
+            });
+
+            it('... should contain no table yet', () => {
+                getAndExpectDebugElementByCss(compDe, 'table.table', 0, 0);
+            });
+
+            it('... should not display TwelveToneSpinnerComponent (stubbed)', () => {
+                getAndExpectDebugElementByDirective(compDe, TwelveToneSpinnerStubComponent, 0, 0);
             });
         });
     });
