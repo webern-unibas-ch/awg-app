@@ -143,7 +143,7 @@
         "@angular/router": "~12.2.0",
         "@ctrl/ngx-codemirror": "^5.0.0",
         "@fortawesome/angular-fontawesome": "^0.9.0",
-        "@fortawesome/fontawesome-svg-core": "^1.2.35",
+        "@fortawesome/fontawesome-svg-core": "^1.2.36",
         "@fortawesome/free-solid-svg-icons": "^5.15.3",
         "@kolkov/ngx-gallery": "^1.2.3",
         "@ng-bootstrap/ng-bootstrap": "^10.0.0",
