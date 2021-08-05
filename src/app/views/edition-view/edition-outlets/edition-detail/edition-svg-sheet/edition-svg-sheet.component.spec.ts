@@ -5,10 +5,11 @@ import Spy = jasmine.Spy;
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
-import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
-import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+
+import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
+import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
 
 describe('EditionSvgSheetComponent (DONE)', () => {
     let component: EditionSvgSheetComponent;
@@ -131,7 +132,7 @@ describe('EditionSvgSheetComponent (DONE)', () => {
                 const id = undefined;
                 const comparison = component.isSelectedOverlay(type, id);
 
-                expect(comparison).toBeUndefined();
+                expect(comparison).toBeUndefined('should be undefined');
             });
 
             it('... should do nothing if no type is provided', () => {
@@ -139,7 +140,7 @@ describe('EditionSvgSheetComponent (DONE)', () => {
                 const id = '10';
                 const comparison = component.isSelectedOverlay(type, id);
 
-                expect(comparison).toBeUndefined();
+                expect(comparison).toBeUndefined('should be undefined');
             });
 
             it('... should return false if given overlay does not equal selected overlay', () => {
