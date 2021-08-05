@@ -66,6 +66,9 @@ export class SourceListComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 }
