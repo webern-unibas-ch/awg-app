@@ -54,7 +54,7 @@ jobs:
             - name: Test build for GH Pages (Node == v16)
               if: matrix.node-version == 16
               run: |
-                  yarn build:prod --delete-output-path false --base-href $npm_package_homepage && yarn gzip:dist && yarn build:doc
+                  yarn build:prod --delete-output-path false --base-href $npm_package_homepage && yarn gzip:dist && yarn doc:build
 
 
     deploy:
