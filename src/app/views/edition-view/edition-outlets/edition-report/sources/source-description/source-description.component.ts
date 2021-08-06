@@ -1,6 +1,6 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 
-import { EditionConstants, EditionWorks, SourceDescriptionList } from '@awg-views/edition-view/models';
+import { EditionConstants, SourceDescriptionList } from '@awg-views/edition-view/models';
 
 /**
  * The SourceDescription component.
@@ -88,6 +88,9 @@ export class SourceDescriptionComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -101,6 +104,9 @@ export class SourceDescriptionComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }

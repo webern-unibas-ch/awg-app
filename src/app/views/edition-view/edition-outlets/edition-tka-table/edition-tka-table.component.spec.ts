@@ -10,7 +10,7 @@ import { TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 
-describe('EditionTkaTableComponent', () => {
+describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;
     let fixture: ComponentFixture<EditionTkaTableComponent>;
     let compDe: DebugElement;

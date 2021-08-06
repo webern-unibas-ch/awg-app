@@ -1,5 +1,9 @@
-<div *ngIf="sourceDescriptionListData">
-    <div *ngFor="let sourceDescription of sourceDescriptionListData.sources" class="para" [id]="sourceDescription.id">
+<div class="awg-source-description-list" *ngIf="sourceDescriptionListData">
+    <div
+        class="awg-source-description para"
+        *ngFor="let sourceDescription of sourceDescriptionListData.sources"
+        [id]="sourceDescription.id"
+    >
         <p *ngIf="sourceDescription.siglum" class="bold">{{ sourceDescription.siglum }}</p>
         <p *ngIf="sourceDescription.location">{{ sourceDescription.location }}</p>
         <div *ngIf="sourceDescription.description">

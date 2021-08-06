@@ -29,7 +29,7 @@ class NgbToastStubComponent {
     hide: EventEmitter<Toast> = new EventEmitter();
 }
 
-describe('ToastComponent', () => {
+describe('ToastComponent (DONE)', () => {
     let component: ToastComponent;
     let fixture: ComponentFixture<ToastComponent>;
     let compDe: DebugElement;
