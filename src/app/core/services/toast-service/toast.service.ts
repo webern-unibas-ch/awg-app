@@ -1,5 +1,15 @@
 import { Injectable, TemplateRef } from '@angular/core';
 
+export class Toast {
+    textOrTpl: string | TemplateRef<any>;
+    options: any;
+
+    constructor(textOrTpl: string | TemplateRef<any>, options?: any) {
+        this.textOrTpl = textOrTpl;
+        this.options = options ? { ...options } : {};
+    }
+}
+
 /**
  * The Toast service.
  *
@@ -16,21 +26,21 @@ export class ToastService {
      *
      * It keeps the toast messages.
      */
-    toasts: any[] = [];
+    toasts: Toast[] = [];
 
     /**
-     * Public method: show.
+     * Public method: add.
      *
-     * It shows the toast with the message
-     * represented by the given header and body.
+     * It adds the toast with the message
+     * represented by the given header and body to the toast array.
      *
-     * @param {string | TemplateRef<*>} textOrTpl The given toast template.
-     * @param {string} options The given toast options.
+     * @param {Toast} toast The given toast template.
+     * @param {*} options The given toast options.
      *
-     * @returns {void} Shows the toast message.
+     * @returns {void} Adds the toast message to the toast array.
      */
-    show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-        this.toasts.push({ textOrTpl, ...options });
+    add(toast: Toast): void {
+        this.toasts.push(toast);
     }
 
     /**
@@ -42,7 +52,7 @@ export class ToastService {
      *
      * @returns {void} Deletes the toast message.
      */
-    remove(toast: any): void {
+    remove(toast: Toast): void {
         this.toasts = this.toasts.filter(t => t !== toast);
     }
 }

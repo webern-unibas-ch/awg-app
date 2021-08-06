@@ -10,7 +10,7 @@ import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { D3SimulationNode, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
-import { ToastService } from '@awg-core/services';
+import { Toast, ToastService } from '@awg-core/services/toast-service';
 
 /**
  * The GraphVisualizer component.
@@ -233,8 +233,11 @@ export class GraphVisualizerComponent implements OnInit {
         if (!durationValue) {
             durationValue = 7000;
         }
+
+        const toast = new Toast(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
+        this.toastService.add(toast);
+
         console.error(message, durationValue);
-        this.toastService.show(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
     }
 
     /**

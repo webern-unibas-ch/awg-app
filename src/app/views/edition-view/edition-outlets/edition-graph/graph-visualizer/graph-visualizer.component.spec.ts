@@ -11,12 +11,13 @@ import {
 } from '@testing/expect-helper';
 import { mockConsole } from '@testing/mock-helper';
 
+import { Toast, ToastService } from '@awg-core/services/toast-service';
+
 import { GraphRDFData, GraphSparqlQuery } from '@awg-views/edition-view/models';
 import { D3SimulationNode, D3SimulationNodeType, Triple } from './models';
 import { GraphVisualizerService } from './services/graph-visualizer.service';
 
 import { GraphVisualizerComponent } from './graph-visualizer.component';
-import { ToastService } from '@awg-core/services';
 
 // Mock components
 @Component({ selector: 'awg-construct-results', template: '' })
@@ -85,8 +86,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
     let mockGraphVisualizerService: Partial<GraphVisualizerService>;
     let graphVisualizerService: Partial<GraphVisualizerService>;
-    let mockToastService: Partial<ToastService>;
-    let toastService: Partial<ToastService>;
+    let toastService: ToastService;
 
     let expectedGraphRDFData: GraphRDFData;
     let expectedResult: Triple[];
@@ -110,10 +110,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
                         reject({ name: 'Error1', message: 'failed' });
                     }),
             };
-            mockToastService = {
-                show: (textOrTpl: string | TemplateRef<any>, options: any = {}): any[] => [],
-                remove: (toast: any): void => {},
-            };
 
             TestBed.configureTestingModule({
                 declarations: [
@@ -125,10 +121,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     TriplesEditorStubComponent,
                     UnsupportedTypeResultsStubComponent,
                 ],
-                providers: [
-                    { provide: GraphVisualizerService, useValue: mockGraphVisualizerService },
-                    { provide: ToastService, useValue: mockToastService },
-                ],
+                providers: [{ provide: GraphVisualizerService, useValue: mockGraphVisualizerService }, ToastService],
             }).compileComponents();
         })
     );
@@ -259,7 +252,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             expect(component.graphRDFInputData).toEqual(expectedGraphRDFData, `should equal ${expectedGraphRDFData}`);
         });
 
-        it('should have `isFullScreen` input', () => {
+        it('... should have `isFullScreen` input', () => {
             expect(component.isFullscreen).toBeDefined('should be defined');
             expect(component.isFullscreen).toBe(expectedIsFullscreen, `should equal ${expectedIsFullscreen}`);
         });
@@ -923,6 +916,52 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 expectSpyCall(showErrorMessageSpy, 1, ['Error1', 'error message', 500]);
                 expectSpyCall(consoleSpy, 1, ['error message', 500]);
+            });
+
+            it('... should trigger toast service and add a toast message', () => {
+                const name = 'Error1';
+                const message = 'error message';
+                const delay = 500;
+
+                const toastSpy = spyOn(toastService, 'add').and.callThrough();
+                const expectedToast = new Toast(message, {
+                    header: name,
+                    classname: 'bg-danger text-light',
+                    delay: delay,
+                });
+
+                // Trigger error message
+                component.showErrorMessage(name, message, delay);
+                fixture.detectChanges();
+
+                expectSpyCall(toastSpy, 1, expectedToast);
+
+                expect(toastService.toasts).toBeDefined('should be defined');
+                expect(toastService.toasts.length).toBe(1, `should be 1`);
+                expect(toastService.toasts[0]).toEqual(expectedToast, `should equal ${expectedToast}`);
+            });
+
+            it('... should set durationvValue = 7000 for the toast message if delay not given ', () => {
+                const name = 'Error1';
+                const message = 'error message';
+                const delay = 7000;
+
+                const toastSpy = spyOn(toastService, 'add').and.callThrough();
+                const expectedToast = new Toast(message, {
+                    header: name,
+                    classname: 'bg-danger text-light',
+                    delay: delay,
+                });
+
+                // Trigger error message without delay value
+                component.showErrorMessage(name, message);
+                fixture.detectChanges();
+
+                expectSpyCall(toastSpy, 1, expectedToast);
+
+                expect(toastService.toasts).toBeDefined('should be defined');
+                expect(toastService.toasts.length).toBe(1, `should be 1`);
+                expect(toastService.toasts[0]).toEqual(expectedToast, `should equal ${expectedToast}`);
             });
         });
 
