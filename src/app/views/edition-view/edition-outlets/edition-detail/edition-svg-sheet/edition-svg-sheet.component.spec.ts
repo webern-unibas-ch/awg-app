@@ -118,13 +118,7 @@ describe('EditionSvgSheetComponent (DONE)', () => {
         // TODO: test correct implementation of EditionSVGOverlayEnum
         // Cf. https://stackoverflow.com/a/62376649
 
-        describe('VIEW', () => {
-            // It('... should select overlay on click',
-            // It('... should emit selected overlay on click',
-            //
-            // It('... should select svg sheet on click',
-            // It('... should emit selected  svg sheet on click',
-        });
+        describe('VIEW', () => {});
 
         describe('#isSelectedOverlay', () => {
             it('... should do nothing if no id is provided', () => {

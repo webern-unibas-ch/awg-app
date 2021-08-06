@@ -72,6 +72,9 @@ export class EditionTkaTableComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -85,6 +88,9 @@ export class EditionTkaTableComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }
