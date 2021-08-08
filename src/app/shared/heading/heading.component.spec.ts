@@ -44,7 +44,7 @@ describe('HeadingComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `title` and `id`', () => {
+        it('should not have `title` and `id`', () => {
             expect(component.title).toBeUndefined();
             expect(component.id).toBeUndefined();
         });

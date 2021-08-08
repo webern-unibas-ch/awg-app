@@ -53,7 +53,7 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `resourceJsonConvertedData`', () => {
+        it('should not have `resourceJsonConvertedData`', () => {
             expect(component.resourceJsonConvertedData).toBeUndefined();
         });
 
@@ -86,6 +86,11 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('should have `resourceJsonConvertedData`', () => {
+            expect(component.resourceJsonConvertedData).toBeDefined('should be defined');
+            expect(component.resourceJsonConvertedData).toEqual(expectedData, `should equal ${expectedData}`);
         });
 
         describe('VIEW', () => {

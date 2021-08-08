@@ -53,7 +53,7 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryType', () => {
+        it('should not have queryType', () => {
             expect(component.queryType).toBeUndefined('should be undefined');
         });
 

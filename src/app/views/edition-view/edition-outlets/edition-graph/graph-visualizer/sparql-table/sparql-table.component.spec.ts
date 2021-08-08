@@ -35,15 +35,15 @@ describe('SparqlTableComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
+        it('should not have queryResult', () => {
             expect(component.queryResult).toBeUndefined('should be undefined');
         });
 
-        it('... should not have queryTime', () => {
+        it('should not have queryTime', () => {
             expect(component.queryTime).toBeUndefined('should be undefined');
         });
 
-        it('... should not have paginatorOptions', () => {
+        it('should not have paginatorOptions', () => {
             expect(component.paginatorOptions).toBeUndefined('should be undefined');
         });
 

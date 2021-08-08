@@ -73,7 +73,7 @@ describe('EditionSvgSheetComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have svgSheetsData', () => {
+        it('should not have svgSheetsData', () => {
             expect(component.svgSheetsData).toBeUndefined('should be undefined');
         });
 

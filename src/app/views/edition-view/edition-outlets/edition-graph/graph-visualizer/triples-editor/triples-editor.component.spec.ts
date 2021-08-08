@@ -97,10 +97,10 @@ describe('TriplesEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have triples', () => {
+        it('should not have triples', () => {
             expect(component.triples).toBeUndefined('should be undefined');
         });
-        it('... should not have isFullscreen', () => {
+        it('should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined('should be undefined');
         });
 

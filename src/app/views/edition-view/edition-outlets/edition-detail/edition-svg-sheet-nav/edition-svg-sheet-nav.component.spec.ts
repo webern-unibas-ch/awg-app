@@ -9,7 +9,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 import { EditionSvgSheetNavComponent } from './edition-svg-sheet-nav.component';
 
-describe('EditionSvgSheetNavComponent', () => {
+describe('EditionSvgSheetNavComponent (DONE)', () => {
     let component: EditionSvgSheetNavComponent;
     let fixture: ComponentFixture<EditionSvgSheetNavComponent>;
     let compDe: DebugElement;
@@ -63,7 +63,7 @@ describe('EditionSvgSheetNavComponent', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have svgSheetsData', () => {
+        it('should not have svgSheetsData', () => {
             expect(component.svgSheetsData).toBeUndefined('should be undefined');
         });
 

@@ -181,44 +181,44 @@ describe('GraphVisualizerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have graphRDFInputData', () => {
+        it('should not have graphRDFInputData', () => {
             expect(component.graphRDFInputData).toBeUndefined('should be undefined');
         });
 
-        it('... should not have isFullscreen', () => {
+        it('should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined('should be undefined');
         });
 
-        it('... should not have query', () => {
+        it('should not have query', () => {
             expect(component.query).toBeUndefined('should be undefined');
         });
 
-        it('... should not have queryList', () => {
+        it('should not have queryList', () => {
             expect(component.queryList).toBeUndefined('should be undefined');
         });
 
-        it('... should not have queryResult', () => {
+        it('should not have queryResult', () => {
             expect(component.queryResult$).toBeUndefined('should be undefined');
         });
 
-        it('... should not have queryTime', () => {
+        it('should not have queryTime', () => {
             expect(component.queryTime).toBeUndefined('should be undefined');
         });
 
-        it('... should not have triples', () => {
+        it('should not have triples', () => {
             expect(component.triples).toBeUndefined('should be undefined');
         });
 
-        it('... should have defaultForceGraphHeight ', () => {
+        it('should have defaultForceGraphHeight ', () => {
             expect(component.defaultForceGraphHeight).toBeTruthy();
             expect(component.defaultForceGraphHeight).toBe(500, 'should be 500');
         });
 
-        it('... should not have triggered `resetTriples()`', () => {
+        it('should not have triggered `resetTriples()`', () => {
             expectSpyCall(resetTriplesSpy, 0);
         });
 
-        it('... should not have triggered `resetQuery()`', () => {
+        it('should not have triggered `resetQuery()`', () => {
             expectSpyCall(resetQuerySpy, 0);
         });
 
@@ -239,25 +239,25 @@ describe('GraphVisualizerComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have triggered `resetTriples()`', () => {
+        it('should have triggered `resetTriples()`', () => {
             expectSpyCall(resetTriplesSpy, 1, undefined);
         });
 
-        it('... should have triggered `resetQuery()`', () => {
+        it('should have triggered `resetQuery()`', () => {
             expectSpyCall(resetQuerySpy, 1, undefined);
         });
 
-        it('... should have graphRDFInputData', () => {
+        it('should have graphRDFInputData', () => {
             expect(component.graphRDFInputData).toBeDefined();
             expect(component.graphRDFInputData).toEqual(expectedGraphRDFData, `should equal ${expectedGraphRDFData}`);
         });
 
-        it('... should have `isFullScreen` input', () => {
+        it('should have `isFullScreen` input', () => {
             expect(component.isFullscreen).toBeDefined('should be defined');
             expect(component.isFullscreen).toBe(expectedIsFullscreen, `should equal ${expectedIsFullscreen}`);
         });
 
-        it('... should have triples', () => {
+        it('should have triples', () => {
             expect(component.triples).toBeDefined();
             expect(component.triples).toEqual(
                 expectedGraphRDFData.triples,
@@ -265,7 +265,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             );
         });
 
-        it('... should have queryList', () => {
+        it('should have queryList', () => {
             expect(component.queryList).toBeDefined();
             expect(component.queryList).toEqual(
                 expectedGraphRDFData.queryList,
@@ -273,7 +273,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             );
         });
 
-        it('... should have query', () => {
+        it('should have query', () => {
             expect(component.query).toBeDefined();
             expect(component.query).toEqual(
                 expectedGraphRDFData.queryList[0],
@@ -281,7 +281,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             );
         });
 
-        it('... should have queryResult', () => {
+        it('should have queryResult', () => {
             expect(component.queryResult$).toBeDefined();
             component.queryResult$.subscribe(result => {
                 expect(result).toBeTruthy();
@@ -289,7 +289,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
         });
 
-        it('... should have queryTime', async () => {
+        it('should have queryTime', async () => {
             const expectedCallback = [
                 'construct',
                 expectedGraphRDFData.queryList[0].queryString,

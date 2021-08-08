@@ -160,7 +160,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have folioConvoluteData', () => {
+        it('should not have folioConvoluteData', () => {
             expect(component.folioConvoluteData).toBeUndefined('should be undefined');
         });
 
@@ -232,7 +232,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const accordionDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion', 1, 1);
 
                 // Panel
-                const panelDes = getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1);
+                getAndExpectDebugElementByCss(accordionDes[0], 'div.card', 1, 1);
             });
 
             it('... should contain header title for the panel (div.card-header)', () => {
@@ -251,7 +251,7 @@ describe('EditionConvoluteComponent (DONE)', () => {
                 const expectedTitle = 'Konvolutübersicht';
 
                 expect(headerCmp.textContent).toBeDefined('should be defined');
-                expect(headerCmp.textContent).toContain(expectedTitle, `should contain ${expectedTitle}`);
+                expect(headerCmp.textContent.trim()).toBe(expectedTitle, `should be ${expectedTitle}`);
             });
 
             it('... should contain two divs and one FolioComponent (stubbed) in the panel body (div.card-body)', () => {
@@ -352,9 +352,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     `should be ${expectedFolioLegends[0].color}`
                 );
                 expect(spanCmp0.textContent).toBeDefined();
-                expect(spanCmp0.textContent).toContain(
+                expect(spanCmp0.textContent.trim()).toBe(
                     expectedFolioLegends[0].label,
-                    `should contain ${expectedFolioLegends[0].label}`
+                    `should be ${expectedFolioLegends[0].label}`
                 );
 
                 expect(spanCmp1.className).toBeDefined();
@@ -363,9 +363,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     `should be ${expectedFolioLegends[1].color}`
                 );
                 expect(spanCmp1.textContent).toBeDefined();
-                expect(spanCmp1.textContent).toContain(
+                expect(spanCmp1.textContent.trim()).toBe(
                     expectedFolioLegends[1].label,
-                    `should contain ${expectedFolioLegends[1].label}`
+                    `should be ${expectedFolioLegends[1].label}`
                 );
 
                 expect(spanCmp2.className).toBeDefined();
@@ -374,9 +374,9 @@ describe('EditionConvoluteComponent (DONE)', () => {
                     `should be ${expectedFolioLegends[2].color}`
                 );
                 expect(spanCmp2.textContent).toBeDefined();
-                expect(spanCmp2.textContent).toContain(
+                expect(spanCmp2.textContent.trim()).toBe(
                     expectedFolioLegends[2].label,
-                    `should contain ${expectedFolioLegends[2].label}`
+                    `should be ${expectedFolioLegends[2].label}`
                 );
             });
         });

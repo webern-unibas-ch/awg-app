@@ -120,15 +120,15 @@ describe('SparqlEditorComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryList', () => {
+        it('should not have queryList', () => {
             expect(component.queryList).toBeUndefined('should be undefined');
         });
 
-        it('... should not have query', () => {
+        it('should not have query', () => {
             expect(component.query).toBeUndefined('should be undefined');
         });
 
-        it('... should not have isFullscreen', () => {
+        it('should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined('should be undefined');
         });
 
