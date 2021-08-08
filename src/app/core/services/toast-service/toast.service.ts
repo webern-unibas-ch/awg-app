@@ -1,9 +1,30 @@
 import { Injectable, TemplateRef } from '@angular/core';
 
+/**
+ * The Toast class.
+ *
+ * It is used in the context of the app
+ * to store and provide the data for a toast
+ * to be displayed with ngb-toast.
+ */
 export class Toast {
+    /**
+     * The text or template of the toast.
+     */
     textOrTpl: string | TemplateRef<any>;
+    /**
+     * The options for the toast.
+     */
     options: any;
 
+    /**
+     * Constructor of the Toast class.
+     *
+     * It initializes the class with given values.
+     *
+     * @param {string | TemplateRef<*>} textOrTpl The given text or template input.
+     * @param {[*]} options The optional options input.
+     */
     constructor(textOrTpl: string | TemplateRef<any>, options?: any) {
         this.textOrTpl = textOrTpl;
         this.options = options ? { ...options } : {};
