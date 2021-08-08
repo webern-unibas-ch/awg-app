@@ -106,6 +106,9 @@ export class EditionAccoladeComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     openModal(id: string): void {
+        if (!id) {
+            return;
+        }
         this.openModalRequest.emit(id);
     }
 
@@ -119,6 +122,9 @@ export class EditionAccoladeComponent implements OnInit {
      * @returns {void} Emits the overlay.
      */
     selectOverlay(overlay: EditionSvgOverlay): void {
+        if (!overlay.type || !overlay.id) {
+            return;
+        }
         this.selectOverlayRequest.emit(overlay);
     }
 
@@ -132,6 +138,9 @@ export class EditionAccoladeComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }
