@@ -6,7 +6,7 @@ import { clickAndAwaitChanges } from '@testing/click-helper';
 import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { TextcriticalComment } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, TextcriticalComment } from '@awg-views/edition-view/models';
 
 import { EditionTkaTableComponent } from './edition-tka-table.component';
 
@@ -17,7 +17,8 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let compEl: any;
 
     let expectedTextcriticalComments: TextcriticalComment[];
-    let expectedSvgSheetId: string;
+    let expectedSvgSheet: EditionSvgSheet;
+    let expectedNextSvgSheet: EditionSvgSheet;
     let expectedModalSnippet: string;
 
     let openModalSpy: Spy;
@@ -40,7 +41,18 @@ describe('EditionTkaTableComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // Test data
-        expectedSvgSheetId = 'Aa:SkI/5';
+        expectedSvgSheet = {
+            id: 'Aa:SkI/2',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
+            alt: 'Aa:SkI/2',
+        };
+        expectedNextSvgSheet = {
+            id: 'Aa:SkI/5',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_5n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_5_small.jpg',
+            alt: 'Aa:SkI/%',
+        };
         expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
 
         expectedTextcriticalComments = [
@@ -295,7 +307,7 @@ describe('EditionTkaTableComponent (DONE)', () => {
                 // CLick on second anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheetId);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedNextSvgSheet.id);
             }));
 
             it('... should not emit anything if no id is provided', () => {
@@ -305,9 +317,13 @@ describe('EditionTkaTableComponent (DONE)', () => {
             });
 
             it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheetId);
+                component.selectSvgSheet(expectedSvgSheet.id);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheetId);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+
+                component.selectSvgSheet(expectedNextSvgSheet.id);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
             });
         });
     });

@@ -7,7 +7,7 @@ import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-he
 import { RouterLinkStubDirective } from '@testing/router-stubs';
 
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
-import { SourceDescriptionList } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, SourceDescriptionList } from '@awg-views/edition-view/models';
 
 import { SourceDescriptionComponent } from './source-description.component';
 
@@ -18,7 +18,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let compEl: any;
 
     let expectedSourceDescriptionListData: SourceDescriptionList;
-    let expectedSvgSheetId: string;
+    let expectedSvgSheet: EditionSvgSheet;
+    let expectedNextSvgSheet: EditionSvgSheet;
     let expectedModalSnippet: string;
 
     let openModalSpy: Spy;
@@ -41,7 +42,18 @@ describe('SourceDescriptionComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // Test data
-        expectedSvgSheetId = 'Aa:SkI/2';
+        expectedSvgSheet = {
+            id: 'Aa:SkI/2',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_2n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_2_small.jpg',
+            alt: 'Aa:SkI/2',
+        };
+        expectedNextSvgSheet = {
+            id: 'Aa:SkI/3',
+            svg: 'assets/img/edition/series1/section5/op12/SkI_3n_small_cut_opt.svg',
+            image: 'assets/img/edition/series1/section5/op12/SkI_3_small.jpg',
+            alt: 'Aa:SkI/3',
+        };
         expectedModalSnippet = 'OP12_SHEET_COMING_SOON';
         expectedSourceDescriptionListData = {
             sources: [
@@ -230,7 +242,7 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 // CLick on second anchor (with selectSvgSheet call)
                 clickAndAwaitChanges(anchorDes[1], fixture);
 
-                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheetId);
+                expectSpyCall(selectSvgSheetSpy, 1, expectedSvgSheet.id);
             }));
 
             it('... should not emit anything if no id is provided', () => {
@@ -240,9 +252,13 @@ describe('SourceDescriptionComponent (DONE)', () => {
             });
 
             it('... should emit id of selected svg sheet', () => {
-                component.selectSvgSheet(expectedSvgSheetId);
+                component.selectSvgSheet(expectedSvgSheet.id);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheetId);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+
+                component.selectSvgSheet(expectedNextSvgSheet.id);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
             });
         });
     });

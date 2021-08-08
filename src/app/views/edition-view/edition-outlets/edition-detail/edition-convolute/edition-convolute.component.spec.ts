@@ -454,9 +454,13 @@ describe('EditionConvoluteComponent (DONE)', () => {
             });
 
             it('... should emit id of selected svg sheet', () => {
+                component.selectSvgSheet(expectedSvgSheet.id);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+
                 component.selectSvgSheet(expectedNextSvgSheet.id);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
             });
         });
     });

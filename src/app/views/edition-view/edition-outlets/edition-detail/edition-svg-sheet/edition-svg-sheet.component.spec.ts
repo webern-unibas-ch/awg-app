@@ -5,8 +5,8 @@ import Spy = jasmine.Spy;
 
 import { NgxGalleryModule } from '@kolkov/ngx-gallery';
 
-import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 import { clickAndAwaitChanges } from '@testing/click-helper';
+import { expectSpyCall, getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
 import { EditionSvgSheet, EditionSvgOverlay, EditionSvgOverlayTypes } from '@awg-views/edition-view/models';
 import { EditionSvgSheetComponent } from './edition-svg-sheet.component';
@@ -84,6 +84,13 @@ describe('EditionSvgSheetComponent (DONE)', () => {
         it('should not have selectedOverlay', () => {
             expect(component.selectedOverlay).toBeUndefined('should be undefined');
         });
+
+        describe('VIEW', () => {
+            it('... should contain one div with no content (yet)', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div', 1, 1);
+                getAndExpectDebugElementByCss(divDes[0], 'div > *', 0, 0);
+            });
+        });
     });
 
     describe('AFTER initial data binding', () => {
@@ -118,7 +125,19 @@ describe('EditionSvgSheetComponent (DONE)', () => {
         // TODO: test correct implementation of EditionSVGOverlayEnum
         // Cf. https://stackoverflow.com/a/62376649
 
-        describe('VIEW', () => {});
+        describe('VIEW', () => {
+            it('... should contain one div with one svg div', () => {
+                getAndExpectDebugElementByCss(compDe, 'div > div.svg', 1, 1);
+            });
+
+            it('... should contain one svg with selected sheet id in svg div ', () => {
+                const divDes = getAndExpectDebugElementByCss(compDe, 'div > div.svg', 1, 1);
+
+                const svgDes = getAndExpectDebugElementByCss(divDes[0], 'svg', 1, 1);
+
+                expect(svgDes[0].attributes.id).toBe(expectedSvgSheet.id, `should be ${expectedSvgSheet.id}`);
+            });
+        });
 
         describe('#isSelectedOverlay', () => {
             it('... should do nothing if no id is provided', () => {
@@ -240,9 +259,13 @@ describe('EditionSvgSheetComponent (DONE)', () => {
             });
 
             it('... should emit id of selected svg sheet', () => {
+                component.selectSvgSheet(expectedSvgSheet.id);
+
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedSvgSheet.id);
+
                 component.selectSvgSheet(expectedNextSvgSheet.id);
 
-                expectSpyCall(selectSvgSheetRequestEmitSpy, 1, expectedNextSvgSheet.id);
+                expectSpyCall(selectSvgSheetRequestEmitSpy, 2, expectedNextSvgSheet.id);
             });
         });
     });
