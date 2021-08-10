@@ -180,7 +180,7 @@
         "@types/d3": "^7.0.0",
         "@types/jasmine": "~3.6.11",
         "@types/node": "^15.14.1",
-        "@typescript-eslint/eslint-plugin": "^4.29.0",
+        "@typescript-eslint/eslint-plugin": "^4.29.1",
         "@typescript-eslint/parser": "^4.29.0",
         "angular-cli-ghpages": "^1.0.0-rc.2",
         "conventional-recommended-bump": "^6.1.0",
