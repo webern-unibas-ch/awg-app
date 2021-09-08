@@ -133,28 +133,28 @@ describe('ResourceInfoComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have goToIndex', () => {
+        it('should not have goToIndex', () => {
             expect(component.goToIndex).toBeUndefined('should be undefined');
         });
 
-        it('... should not have resourceId', () => {
+        it('should not have resourceId', () => {
             expect(component.resourceId).toBeUndefined('should be undefined');
         });
 
-        it('... should not have resourceInfoFormGroup', () => {
+        it('should not have resourceInfoFormGroup', () => {
             expect(component.resourceInfoFormGroup).toBeUndefined('should be undefined');
         });
 
-        it('... should not have resultSize', () => {
+        it('should not have resultSize', () => {
             expect(component.resultSize).toBeUndefined('should be undefined');
         });
 
-        it('... should have empty resourceInfoData', () => {
+        it('should have empty resourceInfoData', () => {
             expect(component.resourceInfoData).toBeDefined('should be defined');
             expect(component.resourceInfoData).toEqual(new ResourceInfo(), 'should equal new ResourceInfo');
         });
 
-        it('... should have fa-icons', () => {
+        it('should have fa-icons', () => {
             expect(component.faArrowLeft).toBe(faArrowLeft, 'should be faArrowLeft');
             expect(component.faChevronLeft).toBe(faChevronLeft, 'should be faChevronLeft');
             expect(component.faChevronRight).toBe(faChevronRight, 'should be faChevronRight');

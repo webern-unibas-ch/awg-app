@@ -10,7 +10,7 @@ import { GraphSparqlQuery, GraphRDFData } from '@awg-views/edition-view/models';
 import { D3SimulationNode, Triple } from './models';
 
 import { GraphVisualizerService } from './services/graph-visualizer.service';
-import { ToastService } from '@awg-core/services';
+import { Toast, ToastService } from '@awg-core/services/toast-service';
 
 /**
  * The GraphVisualizer component.
@@ -84,13 +84,6 @@ export class GraphVisualizerComponent implements OnInit {
     queryTime: number;
 
     /**
-     * Public variable: queryType.
-     *
-     * It keeps the type of the query.
-     */
-    queryType: string;
-
-    /**
      * Public variable: triples.
      *
      * It keeps the input triple string of the graph visualization.
@@ -148,9 +141,11 @@ export class GraphVisualizerComponent implements OnInit {
         if (!this.graphRDFInputData.queryList) {
             return;
         }
-        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
-        this.query = query ? this.queryList.find(q => query.queryLabel === q.queryLabel) || query : this.queryList[0];
 
+        this.queryList = JSON.parse(JSON.stringify(this.graphRDFInputData.queryList));
+        this.query = query
+            ? this.queryList.find(q => query.queryLabel === q.queryLabel && query.queryType === q.queryType) || query
+            : this.queryList[0];
         this.performQuery();
     }
 
@@ -171,12 +166,12 @@ export class GraphVisualizerComponent implements OnInit {
         }
 
         // Get the query type
-        this.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
+        this.query.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
 
         // Perform only construct queries for now
-        if (this.queryType === 'construct' || this.queryType === 'select') {
+        if (this.query.queryType === 'construct' || this.query.queryType === 'select') {
             // Query local store
-            const result = this._queryLocalStore(this.queryType, this.query.queryString, this.triples);
+            const result = this._queryLocalStore(this.query.queryType, this.query.queryString, this.triples);
             this.queryResult$ = from(result);
         } else {
             this.queryResult$ = EMPTY;
@@ -238,8 +233,11 @@ export class GraphVisualizerComponent implements OnInit {
         if (!durationValue) {
             durationValue = 7000;
         }
+
+        const toast = new Toast(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
+        this.toastService.add(toast);
+
         console.error(message, durationValue);
-        this.toastService.show(message, { header: name, classname: 'bg-danger text-light', delay: durationValue });
     }
 
     /**

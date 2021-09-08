@@ -153,7 +153,7 @@ describe('EditionViewComponent (DONE)', () => {
                 getAndExpectDebugElementByDirective(compDe, HeadingStubComponent, 1, 1);
             });
 
-            it('... should have no div.awg-edition-work yet', () => {
+            it('... should contain no div.awg-edition-work yet', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-edition-work', 0, 0);
             });
 

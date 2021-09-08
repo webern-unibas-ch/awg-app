@@ -2,13 +2,13 @@
     <ngb-panel id="awg-convolute-view" title="Konvolutübersicht">
         <ng-template ngbPanelContent>
             <!-- convolute dropDown -->
-            <div class="d-inline-block" ngbDropdown>
+            <div class="awg-convolute-dropdown d-inline-block" ngbDropdown>
                 <a class="btn" id="dropDownConvolutes" ngbDropdownToggle>
                     <span>{{ selectedConvolute.convoluteId }}</span>
                 </a>
                 <div ngbDropdownMenu aria-labelledby="dropDownConvolutes">
                     <a
-                        class="dropdown-item"
+                        class="dropdown-item awg-convolute-dropdown-item"
                         *ngFor="let convolute of folioConvoluteData.convolutes"
                         (click)="selectConvolute(convolute.convoluteId)"
                         >{{ convolute.convoluteId }}</a
@@ -27,7 +27,7 @@
             </awg-edition-folio>
 
             <!-- folio legend -->
-            <div class="col-12">
+            <div class="awg-folio-legend col-12">
                 Legende:&nbsp;
                 <ng-container *ngFor="let legend of folioLegends">
                     <span class="{{ legend.color }}">

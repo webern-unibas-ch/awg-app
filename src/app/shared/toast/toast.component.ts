@@ -1,6 +1,6 @@
 import { Component, OnInit, TemplateRef } from '@angular/core';
 
-import { ToastService } from '@awg-core/services';
+import { Toast, ToastService } from '@awg-core/services/toast-service';
 
 /**
  * The Toast component.
@@ -39,9 +39,9 @@ export class ToastComponent implements OnInit {
      *
      * @param {*} toast The given queryResult.
      *
-     * @returns {boolean} The boolean value of the comparison result.
+     * @returns {boolean} The boolean value of the check result.
      */
-    isTemplate(toast: any): boolean {
+    isTemplate(toast: Toast): boolean {
         return toast.textOrTpl instanceof TemplateRef;
     }
 }

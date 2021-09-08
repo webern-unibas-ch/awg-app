@@ -4,8 +4,6 @@ import { D3SimulationNode } from './d3-simulation-node.model';
 import { D3SimulationLink } from './d3-simulation-link.model';
 
 import * as d3_force from 'd3-force';
-import { D3Selection } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-selection.model';
-import { D3SimulationNodeTriple } from '@awg-views/edition-view/edition-outlets/edition-graph/graph-visualizer/models/d3-simulation-node-triple.model';
 
 /**
  * Object constant with a set of forces.

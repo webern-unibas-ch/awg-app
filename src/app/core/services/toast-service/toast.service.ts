@@ -1,6 +1,37 @@
 import { Injectable, TemplateRef } from '@angular/core';
 
 /**
+ * The Toast class.
+ *
+ * It is used in the context of the app
+ * to store and provide the data for a toast
+ * to be displayed with ngb-toast.
+ */
+export class Toast {
+    /**
+     * The text or template of the toast.
+     */
+    textOrTpl: string | TemplateRef<any>;
+    /**
+     * The options for the toast.
+     */
+    options: any;
+
+    /**
+     * Constructor of the Toast class.
+     *
+     * It initializes the class with given values.
+     *
+     * @param {string | TemplateRef<*>} textOrTpl The given text or template input.
+     * @param {[*]} options The optional options input.
+     */
+    constructor(textOrTpl: string | TemplateRef<any>, options?: any) {
+        this.textOrTpl = textOrTpl;
+        this.options = options ? { ...options } : {};
+    }
+}
+
+/**
  * The Toast service.
  *
  * It handles the displaying of toast messages.
@@ -16,21 +47,21 @@ export class ToastService {
      *
      * It keeps the toast messages.
      */
-    toasts: any[] = [];
+    toasts: Toast[] = [];
 
     /**
-     * Public method: show.
+     * Public method: add.
      *
-     * It shows the toast with the message
-     * represented by the given header and body.
+     * It adds the toast with the message
+     * represented by the given header and body to the toast array.
      *
-     * @param {string | TemplateRef<*>} textOrTpl The given toast template.
-     * @param {string} options The given toast options.
+     * @param {Toast} toast The given toast template.
+     * @param {*} options The given toast options.
      *
-     * @returns {void} Shows the toast message.
+     * @returns {void} Adds the toast message to the toast array.
      */
-    show(textOrTpl: string | TemplateRef<any>, options: any = {}) {
-        this.toasts.push({ textOrTpl, ...options });
+    add(toast: Toast): void {
+        this.toasts.push(toast);
     }
 
     /**
@@ -42,7 +73,7 @@ export class ToastService {
      *
      * @returns {void} Deletes the toast message.
      */
-    remove(toast: any): void {
+    remove(toast: Toast): void {
         this.toasts = this.toasts.filter(t => t !== toast);
     }
 }

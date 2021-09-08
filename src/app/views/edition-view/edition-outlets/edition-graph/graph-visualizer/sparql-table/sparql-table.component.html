@@ -18,7 +18,7 @@
     </div>
 </form>
 
-<div class="d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
+<div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
     <!-- top pagination -->
     <ngb-pagination
         class="d-flex justify-content-center cols-xs-2"
@@ -62,14 +62,14 @@
                 trackBy: i
             "
         >
-            <td scope="col" *ngFor="let headerLabel of tableData.header; index as j; trackBy: j">
+            <td *ngFor="let headerLabel of tableData.header; index as j; trackBy: j">
                 <a
-                    *ngIf="row[headerLabel].type && row[headerLabel].type == 'uri'"
+                    *ngIf="row[headerLabel].type && row[headerLabel].type === 'uri'"
                     (click)="onTableNodeClick(row[headerLabel].value)"
                 >
                     <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
                 </a>
-                <span *ngIf="row[headerLabel].type != 'uri'"
+                <span *ngIf="row[headerLabel].type !== 'uri'"
                     ><ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight
                 ></span>
             </td>
@@ -80,7 +80,7 @@
     <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
 </ng-template>
 
-<div class="d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
+<div class="awg-pagination d-flex justify-content-between p-2" *ngIf="tableData.filteredRows">
     <!-- bottom pagination -->
     <ngb-pagination
         class="d-flex justify-content-center"

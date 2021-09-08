@@ -61,6 +61,11 @@ export class GraphRDFData {
  */
 export class GraphSparqlQuery {
     /**
+     * The type of a query.
+     */
+    queryType: string;
+
+    /**
      * The label of a query.
      */
     queryLabel: string;

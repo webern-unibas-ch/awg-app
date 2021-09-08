@@ -124,7 +124,7 @@ describe('JsonViewerComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `jsonViewerData` and `jsonViewerHeader`', () => {
+        it('should not have `jsonViewerData` and `jsonViewerHeader`', () => {
             expect(component.jsonViewerData).toBeUndefined();
             expect(component.jsonViewerHeader).toBeUndefined();
         });

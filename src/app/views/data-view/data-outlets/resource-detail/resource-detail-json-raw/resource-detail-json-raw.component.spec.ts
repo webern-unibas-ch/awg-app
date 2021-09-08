@@ -50,7 +50,7 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have `resourceJsonRawData`', () => {
+        it('should not have `resourceJsonRawData`', () => {
             expect(component.resourceJsonRawData).toBeUndefined();
         });
 
@@ -83,6 +83,11 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
 
             // Trigger initial data binding
             fixture.detectChanges();
+        });
+
+        it('should have `resourceJsonRawData`', () => {
+            expect(component.resourceJsonRawData).toBeDefined('should be defined');
+            expect(component.resourceJsonRawData).toEqual(expectedData, `should equal ${expectedData}`);
         });
 
         describe('VIEW', () => {

@@ -70,6 +70,8 @@ describe('EditionGraphComponent (DONE)', () => {
     let expectedEditionGraphDataOp12: GraphList;
     let expectedEditionGraphDataOp25: GraphList;
 
+    let expectedIsFullscreen: boolean;
+
     beforeEach(
         waitForAsync(() => {
             // Mocked editionDataService
@@ -108,6 +110,8 @@ describe('EditionGraphComponent (DONE)', () => {
         editionService = TestBed.inject(EditionService);
 
         // TestData (default)
+        expectedIsFullscreen = false;
+
         expectedEditionWork = EditionWorks.OP12;
 
         expectedEditionGraphDataOp12 = new GraphList();
@@ -160,7 +164,7 @@ describe('EditionGraphComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should have correct static `GRAPH_IMAGES`', () => {
+        it('should have correct static `GRAPH_IMAGES`', () => {
             expect(component.GRAPH_IMAGES).toBeTruthy();
 
             expect(component.GRAPH_IMAGES.OP12).toBeDefined();
@@ -170,19 +174,19 @@ describe('EditionGraphComponent (DONE)', () => {
             expect(component.GRAPH_IMAGES.OP25).toBe(EditionConstants.GRAPH_IMAGE_OP25.route);
         });
 
-        it('... should have `errorObject` = null', () => {
+        it('should have `errorObject` = null', () => {
             expect(component.errorObject).toBeNull('should be null');
         });
 
-        it('... should not have `editionWork`', () => {
+        it('should not have `editionWork`', () => {
             expect(component.editionWork).toBeUndefined('should be undefined');
         });
 
-        it('... should not have `editionGraphData$`', () => {
+        it('should not have `editionGraphData$`', () => {
             expect(component.editionGraphData$).toBeUndefined('should be undefined');
         });
 
-        it('... should not have called `getEditionGraphData()`', () => {
+        it('should not have called `getEditionGraphData()`', () => {
             expectSpyCall(compGetEditonGraphDataSpy, 0);
         });
 
@@ -215,7 +219,7 @@ describe('EditionGraphComponent (DONE)', () => {
             fixture.detectChanges();
         });
 
-        it('... should have called `getEditionGraphData()`', () => {
+        it('should have called `getEditionGraphData()`', () => {
             expectSpyCall(compGetEditonGraphDataSpy, 1);
         });
 

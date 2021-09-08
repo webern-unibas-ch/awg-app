@@ -96,11 +96,11 @@ describe('ConstructResultsComponent (DONE)', () => {
     });
 
     describe('BEFORE initial data binding', () => {
-        it('... should not have queryResult', () => {
+        it('should not have queryResult', () => {
             expect(component.queryResult$).toBeUndefined('should be undefined');
         });
 
-        it('... should not have defaultForceGraphHeight', () => {
+        it('should not have defaultForceGraphHeight', () => {
             expect(component.defaultForceGraphHeight).toBeUndefined('should be undefined');
         });
 
