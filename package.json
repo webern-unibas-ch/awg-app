@@ -148,7 +148,7 @@
         "@kolkov/ngx-gallery": "^1.2.3",
         "@ng-bootstrap/ng-bootstrap": "^10.0.0",
         "bootstrap": "^4.6.0",
-        "codemirror": "^5.62.2",
+        "codemirror": "^5.62.3",
         "core-js": "^3.16.0",
         "d3-drag": "^3.0.0",
         "d3-force": "^3.0.0",
@@ -162,7 +162,7 @@
         "rdfstore": "^0.9.17",
         "rxjs": "~6.6.7",
         "snapsvg": "^0.5.1",
-        "tslib": "^2.3.0",
+        "tslib": "^2.3.1",
         "zone.js": "~0.11.4"
     },
     "devDependencies": {
