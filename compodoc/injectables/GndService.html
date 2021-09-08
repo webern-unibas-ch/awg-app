@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -39,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>GndService</li>
+  <li >GndService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -59,6 +60,7 @@
         <p class="comment">
             <code>src/app/core/services/gnd-service/gnd.service.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -93,18 +95,18 @@ to the session storage via the StorageService</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#CURRENT_LOCATION">CURRENT_LOCATION</a>
+                                <a href="#CURRENT_LOCATION" >CURRENT_LOCATION</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#DNB_REG">DNB_REG</a>
+                                <a href="#DNB_REG" >DNB_REG</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#GND_KEY">GND_KEY</a>
+                                <a href="#GND_KEY" >GND_KEY</a>
                             </li>
                             <li>
-                                <a href="#linkRegArr">linkRegArr</a>
+                                <a href="#linkRegArr" >linkRegArr</a>
                             </li>
                         </ul>
                     </td>
@@ -120,43 +122,43 @@ to the session storage via the StorageService</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_exposeGndMessageToParent">_exposeGndMessageToParent</a>
+                                <a href="#_exposeGndMessageToParent" >_exposeGndMessageToParent</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_removeGndFromSessionStorage">_removeGndFromSessionStorage</a>
+                                <a href="#_removeGndFromSessionStorage" >_removeGndFromSessionStorage</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_setGndToSessionStorage">_setGndToSessionStorage</a>
+                                <a href="#_setGndToSessionStorage" >_setGndToSessionStorage</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_valueHasGnd">_valueHasGnd</a>
+                                <a href="#_valueHasGnd" >_valueHasGnd</a>
                             </li>
                             <li>
-                                <a href="#exposeGnd">exposeGnd</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_storageHasKey">_storageHasKey</a>
+                                <a href="#exposeGnd" >exposeGnd</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_storageIsAvailable">_storageIsAvailable</a>
+                                <a href="#_storageHasKey" >_storageHasKey</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_storageIsSupported">_storageIsSupported</a>
+                                <a href="#_storageIsAvailable" >_storageIsAvailable</a>
                             </li>
                             <li>
-                                <a href="#getStorageKey">getStorageKey</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_storageIsSupported" >_storageIsSupported</a>
                             </li>
                             <li>
-                                <a href="#removeStorageKey">removeStorageKey</a>
+                                <a href="#getStorageKey" >getStorageKey</a>
                             </li>
                             <li>
-                                <a href="#setStorageKey">setStorageKey</a>
+                                <a href="#removeStorageKey" >removeStorageKey</a>
+                            </li>
+                            <li>
+                                <a href="#setStorageKey" >setStorageKey</a>
                             </li>
                         </ul>
                     </td>
@@ -182,10 +184,8 @@ to the session storage via the StorageService</p>
                 <td class="col-md-4">
                     <a name="_exposeGndMessageToParent"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _exposeGndMessageToParent
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_exposeGndMessageToParent</b></span>
                         <a href="#_exposeGndMessageToParent"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -267,10 +267,8 @@ via the Web API postmessage method
                 <td class="col-md-4">
                     <a name="_removeGndFromSessionStorage"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _removeGndFromSessionStorage
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_removeGndFromSessionStorage</b></span>
                         <a href="#_removeGndFromSessionStorage"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -318,10 +316,8 @@ from the sessionStorage.</p>
                 <td class="col-md-4">
                     <a name="_setGndToSessionStorage"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _setGndToSessionStorage
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_setGndToSessionStorage</b></span>
                         <a href="#_setGndToSessionStorage"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -400,10 +396,8 @@ in the sessionStorage.</p>
                 <td class="col-md-4">
                     <a name="_valueHasGnd"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _valueHasGnd
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_valueHasGnd</b></span>
                         <a href="#_valueHasGnd"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -482,16 +476,14 @@ in the sessionStorage.</p>
                 <td class="col-md-4">
                     <a name="exposeGnd"></a>
                     <span class="name">
-                        <b>
-                            exposeGnd
-                        </b>
+                        <span ><b>exposeGnd</b></span>
                         <a href="#exposeGnd"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>exposeGnd(gndEvent: <a href="../classes/GndEvent.html">GndEvent</a>)</code>
+<code>exposeGnd(gndEvent: <a href="../classes/GndEvent.html" target="_self">GndEvent</a>)</code>
                 </td>
             </tr>
 
@@ -562,10 +554,8 @@ to/from the sessionStorage.</p>
                 <td class="col-md-4">
                     <a name="_storageHasKey"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _storageHasKey
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_storageHasKey</b></span>
                         <a href="#_storageHasKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -665,10 +655,8 @@ to/from the sessionStorage.</p>
                 <td class="col-md-4">
                     <a name="_storageIsAvailable"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _storageIsAvailable
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_storageIsAvailable</b></span>
                         <a href="#_storageIsAvailable"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -753,10 +741,8 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                 <td class="col-md-4">
                     <a name="_storageIsSupported"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _storageIsSupported
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_storageIsSupported</b></span>
                         <a href="#_storageIsSupported"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -840,16 +826,14 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                 <td class="col-md-4">
                     <a name="getStorageKey"></a>
                     <span class="name">
-                        <b>
-                            getStorageKey
-                        </b>
+                        <span ><b>getStorageKey</b></span>
                         <a href="#getStorageKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getStorageKey(type: <a href="../undefineds/StorageType.html">StorageType</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>getStorageKey(type: <a href="../undefineds/StorageType.html" target="_self">StorageType</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -941,16 +925,14 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                 <td class="col-md-4">
                     <a name="removeStorageKey"></a>
                     <span class="name">
-                        <b>
-                            removeStorageKey
-                        </b>
+                        <span ><b>removeStorageKey</b></span>
                         <a href="#removeStorageKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>removeStorageKey(type: <a href="../undefineds/StorageType.html">StorageType</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>removeStorageKey(type: <a href="../undefineds/StorageType.html" target="_self">StorageType</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -1042,16 +1024,14 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
                 <td class="col-md-4">
                     <a name="setStorageKey"></a>
                     <span class="name">
-                        <b>
-                            setStorageKey
-                        </b>
+                        <span ><b>setStorageKey</b></span>
                         <a href="#setStorageKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>setStorageKey(type: <a href="../undefineds/StorageType.html">StorageType</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, item: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>setStorageKey(type: <a href="../undefineds/StorageType.html" target="_self">StorageType</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, item: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -1156,160 +1136,156 @@ cf. <a href="https://mathiasbynens.be/notes/localstorage-pattern">https://mathia
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="CURRENT_LOCATION"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>CURRENT_LOCATION</b></span>
+                        <a href="#CURRENT_LOCATION"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="CURRENT_LOCATION"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Readonly</span>
-                            CURRENT_LOCATION</b>
-                            <a href="#CURRENT_LOCATION"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
+        getOrigin: (location: Location) &#x3D;&gt; location.origin,
+    }</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:79</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
-        getOrigin: (location: Location) &#x3D;&gt; location.origin,
-    }</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="79" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:79</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Readonly variable: CURRENT_LOCATION.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly variable: CURRENT_LOCATION.</p>
 <p>Helper function to spy on and set origin in tests.
 It returns the origin of the current location.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="DNB_REG"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>DNB_REG</b></span>
+                        <a href="#DNB_REG"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="DNB_REG"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Readonly</span>
-                            DNB_REG</b>
-                            <a href="#DNB_REG"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>/href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>/href&#x3D;&quot;(https?:\/\/d-nb.info\/gnd\/([\w\-]{8,11}))&quot;/i</code>
+                                <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:71</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="71" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:71</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Readonly variable: DNB_REG.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly variable: DNB_REG.</p>
 <p>It holds the regular expression for a d-nb link in a href.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GND_KEY"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>GND_KEY</b></span>
+                        <a href="#GND_KEY"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="GND_KEY"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Readonly</span>
-                            GND_KEY</b>
-                            <a href="#GND_KEY"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;gnd&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:64</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;gnd&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="64" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:64</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Readonly variable: GND_KEY.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly variable: GND_KEY.</p>
 <p>It holds the public key that is set to the storage.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="linkRegArr"></a>
+                    <span class="name">
+                        <span ><b>linkRegArr</b></span>
+                        <a href="#linkRegArr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="linkRegArr"></a>
-                        <span class="name">
-                            <b>
-                            linkRegArr</b>
-                            <a href="#linkRegArr"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>RegExpExecArray</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>RegExpExecArray</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:88</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="88" class="link-to-prism">src/app/core/services/gnd-service/gnd.service.ts:88</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: linkRegArr.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: linkRegArr.</p>
 <p>It holds the result array of a regex check execution .</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -1556,9 +1532,9 @@ export class GndService extends StorageService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

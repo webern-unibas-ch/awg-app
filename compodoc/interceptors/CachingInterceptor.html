@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -40,7 +41,7 @@
 
 <ol class="breadcrumb">
   <li>Interceptors</li>
-  <li>CachingInterceptor</li>
+  <li >CachingInterceptor</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -60,6 +61,7 @@
         <p class="comment">
             <code>src/app/core/interceptors/caching/caching.interceptor.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -87,7 +89,7 @@ to delegate them to the <a href="../injectables/HttpCacheService.html">HttpCache
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#intercept">intercept</a>
+                                <a href="#intercept" >intercept</a>
                             </li>
                         </ul>
                     </td>
@@ -107,7 +109,7 @@ to delegate them to the <a href="../injectables/HttpCacheService.html">HttpCache
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(cache: <a href="../injectables/HttpCacheService.html">HttpCacheService</a>)</code>
+<code>constructor(cache: <a href="../injectables/HttpCacheService.html" target="_self">HttpCacheService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -170,9 +172,7 @@ to handle the caching of http responses.</p>
                 <td class="col-md-4">
                     <a name="intercept"></a>
                     <span class="name">
-                        <b>
-                            intercept
-                        </b>
+                        <span ><b>intercept</b></span>
                         <a href="#intercept"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -383,9 +383,9 @@ export class CachingInterceptor implements HttpInterceptor {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

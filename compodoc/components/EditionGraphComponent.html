@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -36,7 +37,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>EditionGraphComponent</li>
+  <li
+  >
+  EditionGraphComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
 <p class="comment">
     <code>src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts</code>
 </p>
+
 
     <p class="comment">
         <h3>Description</h3>
@@ -144,29 +148,32 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#child">child</a>
+                                <a href="#child" >child</a>
                             </li>
                             <li>
-                                <a href="#editionGraphData$">editionGraphData$</a>
+                                <a href="#editionGraphData$" >editionGraphData$</a>
                             </li>
                             <li>
-                                <a href="#editionWork">editionWork</a>
+                                <a href="#editionWork" >editionWork</a>
                             </li>
                             <li>
-                                <a href="#errorObject">errorObject</a>
+                                <a href="#errorObject" >errorObject</a>
                             </li>
                             <li>
-                                <a href="#faCompress">faCompress</a>
+                                <a href="#faCompress" >faCompress</a>
                             </li>
                             <li>
-                                <a href="#faExpand">faExpand</a>
+                                <a href="#faExpand" >faExpand</a>
                             </li>
                             <li>
                                     <span class="modifier">Readonly</span>
-                                <a href="#GRAPH_IMAGES">GRAPH_IMAGES</a>
+                                <a href="#GRAPH_IMAGES" >GRAPH_IMAGES</a>
                             </li>
                             <li>
-                                <a href="#ref">ref</a>
+                                <a href="#isFullscreen" >isFullscreen</a>
+                            </li>
+                            <li>
+                                <a href="#ref" >ref</a>
                             </li>
                         </ul>
                     </td>
@@ -181,16 +188,19 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#closeFullscreen">closeFullscreen</a>
+                                <a href="#closeFullscreen" >closeFullscreen</a>
                             </li>
                             <li>
-                                <a href="#getEditionGraphData">getEditionGraphData</a>
+                                <a href="#getEditionGraphData" >getEditionGraphData</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#openFullscreen">openFullscreen</a>
+                                <a href="#onKeydownHandler" >onKeydownHandler</a>
+                            </li>
+                            <li>
+                                <a href="#openFullscreen" >openFullscreen</a>
                             </li>
                         </ul>
                     </td>
@@ -207,7 +217,7 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#class.is-fullscreen">class.is-fullscreen</a>
+                                <a href="#class.is-fullscreen" >class.is-fullscreen</a>
                             </li>
                         </ul>
                     </td>
@@ -222,7 +232,7 @@ of the edition view of the app.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#document:fullscreenchange">document:fullscreenchange</a>
+                                <a href="#document:fullscreenchange" >document:fullscreenchange</a>
                             </li>
                         </ul>
                     </td>
@@ -238,7 +248,7 @@ of the edition view of the app.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(editionDataService: <a href="../injectables/EditionDataService.html">EditionDataService</a>, editionService: <a href="../injectables/EditionService.html">EditionService</a>, document: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
+<code>constructor(editionDataService: <a href="../injectables/EditionDataService.html" target="_self">EditionDataService</a>, editionService: <a href="../injectables/EditionService.html" target="_self">EditionService</a>, document: <a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank">any</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -325,39 +335,44 @@ the EditionDataService and EditionService.</p>
 
 
     <section>
-    <h3>HostBindings</h3>        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3>HostBindings</h3>    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="class.is-fullscreen"></a>
+                    <span class="name">
+                        <span ><b>class.is-fullscreen</b></span>
+                        <a href="#class.is-fullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="class.is-fullscreen"></a>
-                        <span class="name">
-                            <b>
-                            class.is-fullscreen</b>
-                            <a href="#class.is-fullscreen"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/boolean" target="_blank" >boolean</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:47</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:47</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>HostBinding: isFullscreen.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HostBinding: isFullscreen.</p>
 <p>It binds to the is-fullscreen CSS class.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     <section>
@@ -367,9 +382,7 @@ the EditionDataService and EditionService.</p>
                 <td class="col-md-4">
                     <a name="document:fullscreenchange"></a>
                     <span class="name">
-                        <b>
-                            document:fullscreenchange
-                        </b>
+                        <span ><b>document:fullscreenchange</b></span>
                         <a href="#document:fullscreenchange"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -416,9 +429,7 @@ the EditionDataService and EditionService.</p>
                 <td class="col-md-4">
                     <a name="closeFullscreen"></a>
                     <span class="name">
-                        <b>
-                            closeFullscreen
-                        </b>
+                        <span ><b>closeFullscreen</b></span>
                         <a href="#closeFullscreen"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -464,9 +475,7 @@ the EditionDataService and EditionService.</p>
                 <td class="col-md-4">
                     <a name="getEditionGraphData"></a>
                     <span class="name">
-                        <b>
-                            getEditionGraphData
-                        </b>
+                        <span ><b>getEditionGraphData</b></span>
                         <a href="#getEditionGraphData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -514,9 +523,7 @@ from the EditionDataService.</p>
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -555,11 +562,87 @@ when initializing the component.</p>
         <tbody>
             <tr>
                 <td class="col-md-4">
+                    <a name="onKeydownHandler"></a>
+                    <span class="name">
+                        <span ><b>onKeydownHandler</b></span>
+                        <a href="#onKeydownHandler"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>onKeydownHandler(event: KeyboardEvent)</code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <b>Decorators : </b>
+                    <br />
+                    <code>@HostListener(&#x27;document:fullscreenchange&#x27;, [&#x27;$event&#x27;])<br /></code>
+                </td>
+            </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="122"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:122</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HostListener: document:fullscreenchange.</p>
+<p>It listens for fullscreen exit with ESC key.</p>
+</div>
+
+                    <div class="io-description">
+                        <b>Parameters :</b>
+                        <table class="params">
+                            <thead>
+                                <tr>
+                                    <td>Name</td>
+                                    <td>Type</td>
+                                    <td>Optional</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr>
+                                    <td>event</td>
+                                    <td>
+                                            <code>KeyboardEvent</code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
                     <a name="openFullscreen"></a>
                     <span class="name">
-                        <b>
-                            openFullscreen
-                        </b>
+                        <span ><b>openFullscreen</b></span>
                         <a href="#openFullscreen"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -602,301 +685,334 @@ when initializing the component.</p>
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="child"></a>
+                    <span class="name">
+                        <span ><b>child</b></span>
+                        <a href="#child"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="child"></a>
-                        <span class="name">
-                            <b>
-                            child</b>
-                            <a href="#child"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/Graph.html" target="_self" >GraphVisualizerComponent</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @ViewChild(GraphVisualizerComponent)<br />
+                        </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Graph.html" target="_self" >GraphVisualizerComponent</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:40</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @ViewChild(GraphVisualizerComponent)<br />
-                            </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:40</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>ViewChild variable: child.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>ViewChild variable: child.</p>
 <p>It keeps the reference to the GraphVisualizerComponent child.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionGraphData$"></a>
+                    <span class="name">
+                        <span ><b>editionGraphData$</b></span>
+                        <a href="#editionGraphData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editionGraphData$"></a>
-                        <span class="name">
-                            <b>
-                            editionGraphData$</b>
-                            <a href="#editionGraphData$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Observable&lt;GraphList | never&gt;</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>Observable&lt;GraphList | never&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:75</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="75" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:75</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: editionGraphData$.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: editionGraphData$.</p>
 <p>It keeps the observable of the edition graph data.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="editionWork"></a>
+                    <span class="name">
+                        <span ><b>editionWork</b></span>
+                        <a href="#editionWork"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="editionWork"></a>
-                        <span class="name">
-                            <b>
-                            editionWork</b>
-                            <a href="#editionWork"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/EditionWork.html" target="_self" >EditionWork</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:68</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="68" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:68</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: editionWork.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: editionWork.</p>
 <p>It keeps the information about the current composition.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorObject"></a>
+                    <span class="name">
+                        <span ><b>errorObject</b></span>
+                        <a href="#errorObject"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="errorObject"></a>
-                        <span class="name">
-                            <b>
-                            errorObject</b>
-                            <a href="#errorObject"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>null</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>null</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>null</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:92</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>null</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="92" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:92</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: errorObject.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: errorObject.</p>
 <p>It keeps an errorObject for the service calls.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faCompress"></a>
+                    <span class="name">
+                        <span ><b>faCompress</b></span>
+                        <a href="#faCompress"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="faCompress"></a>
-                        <span class="name">
-                            <b>
-                            faCompress</b>
-                            <a href="#faCompress"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>faCompress</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>faCompress</code>
+                                <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:61</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="61" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:61</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: faCompress.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: faCompress.</p>
 <p>It instantiates fontawesome&#39;s faCompress icon.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="faExpand"></a>
+                    <span class="name">
+                        <span ><b>faExpand</b></span>
+                        <a href="#faExpand"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="faExpand"></a>
-                        <span class="name">
-                            <b>
-                            faExpand</b>
-                            <a href="#faExpand"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>faExpand</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>faExpand</code>
+                                <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:54</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="54" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:54</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: faExpand.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: faExpand.</p>
 <p>It instantiates fontawesome&#39;s faExpand icon.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="GRAPH_IMAGES"></a>
+                    <span class="name">
+                            <span class="modifier">Readonly</span>
+                        <span ><b>GRAPH_IMAGES</b></span>
+                        <a href="#GRAPH_IMAGES"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="GRAPH_IMAGES"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Readonly</span>
-                            GRAPH_IMAGES</b>
-                            <a href="#GRAPH_IMAGES"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
         OP12: &#x27;&#x27;,
         OP25: EditionConstants.GRAPH_IMAGE_OP25.route,
     }</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:82</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Readonly constant: GRAPH_IMAGES.</p>
-<p>It keeps the paths to static graph images.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="ref"></a>
-                        <span class="name">
-                            <b>
-                            ref</b>
-                            <a href="#ref"><span class="icon ion-ios-link"></span></a>
-                        </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Graph.html" target="_self" >EditionGraphComponent</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="82" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:82</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:97</a></div>
-                            </td>
-                        </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Readonly constant: GRAPH_IMAGES.</p>
+<p>It keeps the paths to static graph images.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="isFullscreen"></a>
+                    <span class="name">
+                        <span ><b>isFullscreen</b></span>
+                        <a href="#isFullscreen"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Self-referring variable needed for CompileHtml library.</p>
-</div>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @HostBinding(&#x27;class.is-fullscreen&#x27;)<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:47</a></div>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>HostBinding: isFullscreen.</p>
+<p>It binds to the is-fullscreen CSS class.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="ref"></a>
+                    <span class="name">
+                        <span ><b>ref</b></span>
+                        <a href="#ref"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/Graph.html" target="_self" >EditionGraphComponent</a></code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/edition-graph.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Self-referring variable needed for CompileHtml library.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -1305,9 +1421,9 @@ export class EditionGraphComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

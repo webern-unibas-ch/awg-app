@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -36,7 +37,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>SearchInfoComponent</li>
+  <li
+  >
+  SearchInfoComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
 <p class="comment">
     <code>src/app/side-info/search-info/search-info.component.ts</code>
 </p>
+
 
     <p class="comment">
         <h3>Description</h3>
@@ -144,10 +148,10 @@ showing information about search results.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#searchInfoData$">searchInfoData$</a>
+                                <a href="#searchInfoData$" >searchInfoData$</a>
                             </li>
                             <li>
-                                <a href="#searchInfoHeader$">searchInfoHeader$</a>
+                                <a href="#searchInfoHeader$" >searchInfoHeader$</a>
                             </li>
                         </ul>
                     </td>
@@ -162,10 +166,10 @@ showing information about search results.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getSearchInfoData">getSearchInfoData</a>
+                                <a href="#getSearchInfoData" >getSearchInfoData</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                         </ul>
                     </td>
@@ -185,7 +189,7 @@ showing information about search results.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(sideInfoService: <a href="../injectables/SideInfoService.html">SideInfoService</a>)</code>
+<code>constructor(sideInfoService: <a href="../injectables/SideInfoService.html" target="_self">SideInfoService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -253,9 +257,7 @@ a private ChangeDetectorRef instance.</p>
                 <td class="col-md-4">
                     <a name="getSearchInfoData"></a>
                     <span class="name">
-                        <b>
-                            getSearchInfoData
-                        </b>
+                        <span ><b>getSearchInfoData</b></span>
                         <a href="#getSearchInfoData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -280,6 +282,7 @@ a private ChangeDetectorRef instance.</p>
                     <div class="io-description"><p>Public method: getSearchInfoData.</p>
 <p>It calls the SideInfoService to provide
 the data for the search-info header and data.</p>
+<p>and searchInfoData observables.</p>
 </div>
 
                     <div>
@@ -303,9 +306,7 @@ and searchInfoData observables.</p>
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -343,78 +344,76 @@ when initializing the component.</p>
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchInfoData$"></a>
+                    <span class="name">
+                        <span ><b>searchInfoData$</b></span>
+                        <a href="#searchInfoData$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchInfoData$"></a>
-                        <span class="name">
-                            <b>
-                            searchInfoData$</b>
-                            <a href="#searchInfoData$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/SearchInfo.html" target="_self" >Observable&lt;SearchInfo&gt;</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/SearchInfo.html" target="_self" >Observable&lt;SearchInfo&gt;</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:27</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="27" class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:27</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: searchInfoData$.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: searchInfoData$.</p>
 <p>Observable that keeps the information about the search
 to be displayed, i.e. the query and number of hits.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchInfoHeader$"></a>
+                    <span class="name">
+                        <span ><b>searchInfoHeader$</b></span>
+                        <a href="#searchInfoHeader$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchInfoHeader$"></a>
-                        <span class="name">
-                            <b>
-                            searchInfoHeader$</b>
-                            <a href="#searchInfoHeader$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Observable&lt;string&gt;</code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>Observable&lt;string&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:34</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="34" class="link-to-prism">src/app/side-info/search-info/search-info.component.ts:34</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: searchInfoHeader$.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: searchInfoHeader$.</p>
 <p>Observable that keeps the header for the search-info.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -592,9 +591,9 @@ export class SearchInfoComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

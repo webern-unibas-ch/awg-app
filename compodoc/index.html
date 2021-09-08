@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="./styles/Readthedocs.css">
     </head>
     <body>
@@ -42,6 +43,25 @@
 <a href="code-of-conduct.md"><img src="https://img.shields.io/badge/Contributor%20Covenant-v1.4%20adopted-ff69b4.svg" alt="Contributor Covenant" class="img-responsive"></a>
 <a href="https://doi.org/10.5281/zenodo.4717678"><img src="https://zenodo.org/badge/DOI/10.5281/zenodo.4717678.svg" alt="DOI" class="img-responsive"></a></p>
 <p>A prototype web application for the online edition of the <a href="https://www.anton-webern.ch">Anton Webern Gesamtausgabe</a>, located at the Musicological Seminar of the University of Basel. It is written in <a href="https://angular.io/">Angular</a> and runs on <a href="https://edition.anton-webern.ch">edition.anton-webern.ch</a>.</p>
+<h2 id="contributors-✨">Contributors ✨</h2>
+<p>Thanks goes to these wonderful people (<a href="https://allcontributors.org/docs/en/emoji-key">emoji key</a>):</p>
+<!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section -->
+<!-- prettier-ignore-start -->
+<!-- markdownlint-disable -->
+<table>
+  <tr>
+    <td align="center"><a href="http://dhlab.unibas.ch/#/team/muennich"><img src="https://avatars.githubusercontent.com/u/21059419?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Stefan Münnich</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Documentation">📖</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=musicEnfanthen" title="Tests">⚠️</a> <a href="#projectManagement-musicEnfanthen" title="Project Management">📆</a> <a href="#maintenance-musicEnfanthen" title="Maintenance">🚧</a> <a href="#ideas-musicEnfanthen" title="Ideas, Planning, & Feedback">🤔</a> <a href="#infra-musicEnfanthen" title="Infrastructure (Hosting, Build-Tools, etc)">🚇</a> <a href="#design-musicEnfanthen" title="Design">🎨</a> <a href="#content-musicEnfanthen" title="Content">🖋</a> <a href="https://github.com/webern-unibas-ch/awg-app/issues?q=author%3AmusicEnfanthen" title="Bug reports">🐛</a></td>
+    <td align="center"><a href="https://github.com/vanBithoven"><img src="https://avatars.githubusercontent.com/u/86300228?v=4?s=100" width="100px;" alt=""/><br /><sub><b>vanBithoven</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Code">💻</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Tests">⚠️</a> <a href="https://github.com/webern-unibas-ch/awg-app/commits?author=vanBithoven" title="Documentation">📖</a></td>
+    <td align="center"><a href="https://github.com/masthom"><img src="https://avatars.githubusercontent.com/u/53256309?v=4?s=100" width="100px;" alt=""/><br /><sub><b>Thomas</b></sub></a><br /><a href="https://github.com/webern-unibas-ch/awg-app/commits?author=masthom" title="Documentation">📖</a> <a href="#projectManagement-masthom" title="Project Management">📆</a> <a href="#ideas-masthom" title="Ideas, Planning, & Feedback">🤔</a> <a href="#content-masthom" title="Content">🖋</a> <a href="#data-masthom" title="Data">🔣</a></td>
+  </tr>
+</table>
+
+<!-- markdownlint-restore -->
+<!-- prettier-ignore-end -->
+
+<!-- ALL-CONTRIBUTORS-LIST:END -->
+
+<p>This project follows the <a href="https://github.com/all-contributors/all-contributors">all-contributors</a> specification. Contributions of any kind welcome!</p>
 <h2 id="contributing">Contributing</h2>
 <p>Please read our <a href="CODE_OF_CONDUCT.md">CODE_OF_CONDUCT.md</a> and <a href="CONTRIBUTING.md">CONTRIBUTING.md</a> to see how you may contribute to this project.</p>
 <h2 id="license">License</h2>
@@ -89,9 +109,9 @@
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="./js/menu-wc.js" defer></script>
+       
+       <script type="module" src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

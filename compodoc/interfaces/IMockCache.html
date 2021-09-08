@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -44,7 +45,9 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>IMockCache</li>
+  <li
+  >
+  IMockCache</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
         <p class="comment">
             <code>src/testing/mock-helper/mock-cache.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -88,13 +92,22 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#clear">clear</a>
+                                        <a href="#clear" 
+>
+                                            clear
+                                        </a>
                                 </li>
                                 <li>
-                                        <a href="#get">get</a>
+                                        <a href="#get" 
+>
+                                            get
+                                        </a>
                                 </li>
                                 <li>
-                                        <a href="#put">put</a>
+                                        <a href="#put" 
+>
+                                            put
+                                        </a>
                                 </li>
                             </ul>
                         </td>
@@ -112,7 +125,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="clear"></a>
-                                        <span class="name"><b>clear</b><a href="#clear"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>clear</b>
+                                            <a href="#clear">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -147,7 +164,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="get"></a>
-                                        <span class="name"><b>get</b><a href="#get"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>get</b>
+                                            <a href="#get">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -182,7 +203,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="put"></a>
-                                        <span class="name"><b>put</b><a href="#put"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>put</b>
+                                            <a href="#put">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -299,9 +324,9 @@ export const mockCache: IMockCache &#x3D; {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

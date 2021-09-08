@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -39,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>D3Service</li>
+  <li >D3Service</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -59,6 +60,7 @@
         <p class="comment">
             <code>src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/force-graph/d3/d3.service.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -87,13 +89,13 @@ while maintaining the d3 simulations physics.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#applyDragBehaviour">applyDragBehaviour</a>
+                                <a href="#applyDragBehaviour" >applyDragBehaviour</a>
                             </li>
                             <li>
-                                <a href="#applyZoomBehaviour">applyZoomBehaviour</a>
+                                <a href="#applyZoomBehaviour" >applyZoomBehaviour</a>
                             </li>
                             <li>
-                                <a href="#getForceSimulation">getForceSimulation</a>
+                                <a href="#getForceSimulation" >getForceSimulation</a>
                             </li>
                         </ul>
                     </td>
@@ -143,16 +145,14 @@ while maintaining the d3 simulations physics.</p>
                 <td class="col-md-4">
                     <a name="applyDragBehaviour"></a>
                     <span class="name">
-                        <b>
-                            applyDragBehaviour
-                        </b>
+                        <span ><b>applyDragBehaviour</b></span>
                         <a href="#applyDragBehaviour"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>applyDragBehaviour(dragContext: <a href="../interfaces/D3Selection.html">D3Selection</a>, simulation: <a href="../interfaces/D3Simulation.html">D3Simulation</a>)</code>
+<code>applyDragBehaviour(dragContext: <a href="../interfaces/D3Selection.html" target="_self">D3Selection</a>, simulation: <a href="../interfaces/D3Simulation.html" target="_self">D3Simulation</a>)</code>
                 </td>
             </tr>
 
@@ -169,6 +169,9 @@ while maintaining the d3 simulations physics.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: applyDragBehaviour.</p>
 <p>It binds a draggable behaviour to an svg element.</p>
+<p> @param {D3Selection} dragContext The given context element that shall be dragged.
+ @param {D3Simulation} simulation The given force simulation.</p>
+<p> @returns {void} Sets the drag behaviour.</p>
 </div>
 
                     <div class="io-description">
@@ -238,9 +241,7 @@ while maintaining the d3 simulations physics.</p>
                 <td class="col-md-4">
                     <a name="applyZoomBehaviour"></a>
                     <span class="name">
-                        <b>
-                            applyZoomBehaviour
-                        </b>
+                        <span ><b>applyZoomBehaviour</b></span>
                         <a href="#applyZoomBehaviour"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -264,6 +265,9 @@ while maintaining the d3 simulations physics.</p>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public method: applyZoomBehaviour.</p>
 <p>It binds a pan and zoom behaviour to an svg element.</p>
+<p> @param {any} svgElement The given svg element that contains the zoomContainer.
+ @param {any} zoomContainerElement The given zoom container.
+ @returns {void} Sets the zoom behaviour.</p>
 </div>
 
                     <div class="io-description">
@@ -333,16 +337,14 @@ while maintaining the d3 simulations physics.</p>
                 <td class="col-md-4">
                     <a name="getForceSimulation"></a>
                     <span class="name">
-                        <b>
-                            getForceSimulation
-                        </b>
+                        <span ><b>getForceSimulation</b></span>
                         <a href="#getForceSimulation"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getForceSimulation(nodes: <a href="../interfaces/D3Simulation.html">D3SimulationNode[]</a>, links: <a href="../interfaces/D3Simulation.html">D3SimulationLink[]</a>, options: <a href="../interfaces/D3ForceSimulationOptions.html">D3ForceSimulationOptions</a>)</code>
+<code>getForceSimulation(nodes: <a href="../interfaces/D3Simulation.html" target="_self">D3SimulationNode[]</a>, links: <a href="../interfaces/D3Simulation.html" target="_self">D3SimulationLink[]</a>, options: <a href="../interfaces/D3ForceSimulationOptions.html" target="_self">D3ForceSimulationOptions</a>)</code>
                 </td>
             </tr>
 
@@ -599,9 +601,9 @@ export class D3Service {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

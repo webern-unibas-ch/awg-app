@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="./images/favicon.ico">
-	      <link rel="stylesheet" href="./styles/style.css">
+	   <link rel="stylesheet" href="./styles/style.css">
+        <link rel="stylesheet" href="./styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="./styles/Readthedocs.css">
     </head>
     <body>
@@ -38,32 +39,32 @@ email, or any other method with the owners of this repository before making a ch
 <h2 id="table-of-contents">Table of Contents</h2>
 <ul>
 <li><a href="#contribution-process">Contribution process</a><ul>
-<li><a href="#branching--git-flow">Branching / Git flow</a></li>
-<li><a href="#commit-message-schema">Commit Message Schema</a></li>
-<li><a href="#release-versioning-convention">Release Versioning Convention</a></li>
+<li>  <a href="#branching--git-flow">Branching / Git flow</a></li>
+<li>  <a href="#commit-message-schema">Commit Message Schema</a></li>
+<li>  <a href="#release-versioning-convention">Release Versioning Convention</a></li>
 </ul>
 </li>
 <li><a href="#quick-start-guide">Angular quick start guide</a><ul>
-<li><a href="#prerequisites">Prerequisites</a></li>
-<li><a href="#development-server">Development server</a></li>
-<li><a href="#code-scaffolding">Code scaffolding</a></li>
-<li><a href="#build">Build</a></li>
-<li><a href="#running-unit-tests">Running unit tests</a></li>
-<li><a href="#running-end-to-end-tests">Running end-to-end tests</a></li>
-<li><a href="#further-help">Further help</a></li>
+<li>  <a href="#prerequisites">Prerequisites</a></li>
+<li>  <a href="#development-server">Development server</a></li>
+<li>  <a href="#code-scaffolding">Code scaffolding</a></li>
+<li>  <a href="#build">Build</a></li>
+<li>  <a href="#running-unit-tests">Running unit tests</a></li>
+<li>  <a href="#running-end-to-end-tests">Running end-to-end tests</a></li>
+<li>  <a href="#further-help">Further help</a></li>
 </ul>
 </li>
-<li><a href="#code-of-conduct">Code of Conduct</a></li>
+<li>  <a href="#code-of-conduct">Code of Conduct</a></li>
 </ul>
 <h2 id="contribution-process">Contribution process</h2>
 <h3 id="branching--git-flow">Branching / Git flow</h3>
 <p>This project uses the <a href="https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow">Gitflow Workflow</a> which defines a strict branching model designed around the project releases. Therefore the following branch structure is used</p>
 <ul>
-<li><code>main</code> (stores the official release history; all commits are tagged with a version number)</li>
-<li><code>develop</code> (serves as an integration branch for features; gets released into <code>release/xxx</code>)</li>
-<li><code>feature/XXX</code> (main branch for developing new features; gets branched from and merged into <code>develop</code>, never interacts with <code>main</code>)</li>
-<li><code>release/xxx</code> (used to prepare a release with latest features from <code>develop</code>; gets merged into <code>main</code>)</li>
-<li><code>hotfix/xxx</code> (used to quickly patch production releases; forked from and merged directly into <code>main</code>)</li>
+<li>  <code>main</code> (stores the official release history; all commits are tagged with a version number)</li>
+<li>  <code>develop</code> (serves as an integration branch for features; gets released into <code>release/xxx</code>)</li>
+<li>  <code>feature/XXX</code> (main branch for developing new features; gets branched from and merged into <code>develop</code>, never interacts with <code>main</code>)</li>
+<li>  <code>release/xxx</code> (used to prepare a release with latest features from <code>develop</code>; gets merged into <code>main</code>)</li>
+<li>  <code>hotfix/xxx</code> (used to quickly patch production releases; forked from and merged directly into <code>main</code>)</li>
 </ul>
 <p>To initialize the GitFlow workflow execute <code>git flow init</code> inside your local copy of the repository.</p>
 <p>To provide a new feature or changes to the code, create a new feature branch from develop and make a pull request when ready. Keep care of the <a href="#commit-message-schema">Commit Message Schema</a> described below.</p>
@@ -79,25 +80,25 @@ email, or any other method with the owners of this repository before making a ch
 &lt;footer&gt;</code></pre></div><p>The <strong>header</strong> is mandatory, and <strong>type</strong> and <strong>scope</strong> of the header must be one of the following:</p>
 <p>Types:</p>
 <ul>
-<li><code>build</code> (changes that affect the build system or external dependencies; no production code changes),</li>
-<li><code>ci</code> (changes to Continuous Integration, no production code changes)</li>
-<li><code>docs</code> (changes to the documentation, no production code changes),</li>
-<li><code>feat</code> (new feature for the user),</li>
-<li><code>fix</code> (bug fix for the user),</li>
-<li><code>perf</code> (code change that improves performance),</li>
-<li><code>refactor</code> (refactoring production code, eg. renaming a variable),</li>
-<li><code>revert</code> (reverting a former commit),</li>
-<li><code>style</code> (formatting, etc; no production code changes),</li>
-<li><code>test</code> (adding missing tests, refactoring tests; no production code changes)</li>
+<li>  <code>build</code> (changes that affect the build system or external dependencies; no production code changes),</li>
+<li>  <code>ci</code> (changes to Continuous Integration, no production code changes)</li>
+<li>  <code>docs</code> (changes to the documentation, no production code changes),</li>
+<li>  <code>feat</code> (new feature for the user),</li>
+<li>  <code>fix</code> (bug fix for the user),</li>
+<li>  <code>perf</code> (code change that improves performance),</li>
+<li>  <code>refactor</code> (refactoring production code, eg. renaming a variable),</li>
+<li>  <code>revert</code> (reverting a former commit),</li>
+<li>  <code>style</code> (formatting, etc; no production code changes),</li>
+<li>  <code>test</code> (adding missing tests, refactoring tests; no production code changes)</li>
 </ul>
 <p>Scopes (specific to this project, not part of the Angular convention):</p>
 <ul>
-<li><code>app</code></li>
-<li><code>home</code></li>
-<li><code>edition</code></li>
-<li><code>search</code></li>
-<li><code>structure</code></li>
-<li><code>contact</code></li>
+<li>  <code>app</code></li>
+<li>  <code>home</code></li>
+<li>  <code>edition</code></li>
+<li>  <code>search</code></li>
+<li>  <code>structure</code></li>
+<li>  <code>contact</code></li>
 </ul>
 <p>Example:</p>
 <div><pre class="line-numbers"><code class="language-none">feat(edition): add route for resource creation
@@ -163,9 +164,9 @@ email, or any other method with the owners of this repository before making a ch
 
        <script src="./js/libs/custom-elements.min.js"></script>
        <script src="./js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="./js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="./js/menu-wc.js" defer></script>
+       
+       <script type="module" src="./js/menu-wc.js" defer></script>
+       <script nomodule src="./js/menu-wc_es5.js" defer></script>
 
        <script src="./js/libs/bootstrap-native.js"></script>
 

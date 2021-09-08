@@ -67,7 +67,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </a>
                         <ul class="links collapse " ${ isNormalMode ? 'id="modules-links"' : 'id="xs-modules-links"' }>
                             <li class="link">
-                                <a href="modules/AppModule.html" data-type="entity-link">AppModule</a>
+                                <a href="modules/AppModule.html" data-type="entity-link" >AppModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-AppModule-1cfa9a3151d2a67f2ce5864984a1cd69"' : 'data-target="#xs-components-links-module-AppModule-1cfa9a3151d2a67f2ce5864984a1cd69"' }>
@@ -78,17 +78,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-AppModule-1cfa9a3151d2a67f2ce5864984a1cd69"' :
                                             'id="xs-components-links-module-AppModule-1cfa9a3151d2a67f2ce5864984a1cd69"' }>
                                             <li class="link">
-                                                <a href="components/AppComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">AppComponent</a>
+                                                <a href="components/AppComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AppComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/AppRoutingModule.html" data-type="entity-link">AppRoutingModule</a>
+                                <a href="modules/AppRoutingModule.html" data-type="entity-link" >AppRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/BibliographyModule.html" data-type="entity-link">BibliographyModule</a>
+                                <a href="modules/BibliographyModule.html" data-type="entity-link" >BibliographyModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-BibliographyModule-9f7484e8f35e3d638e6f3510a08d9bb5"' : 'data-target="#xs-components-links-module-BibliographyModule-9f7484e8f35e3d638e6f3510a08d9bb5"' }>
@@ -99,20 +98,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-BibliographyModule-9f7484e8f35e3d638e6f3510a08d9bb5"' :
                                             'id="xs-components-links-module-BibliographyModule-9f7484e8f35e3d638e6f3510a08d9bb5"' }>
                                             <li class="link">
-                                                <a href="components/BibliographyComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">BibliographyComponent</a>
+                                                <a href="components/BibliographyComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BibliographyComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/BibliographyDetailComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">BibliographyDetailComponent</a>
+                                                <a href="components/BibliographyDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BibliographyDetailComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/BibliographyListComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">BibliographyListComponent</a>
+                                                <a href="components/BibliographyListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BibliographyListComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/BibliographySearchComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">BibliographySearchComponent</a>
+                                                <a href="components/BibliographySearchComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BibliographySearchComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -126,17 +121,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-BibliographyModule-9f7484e8f35e3d638e6f3510a08d9bb5"' :
                                             'id="xs-pipes-links-module-BibliographyModule-9f7484e8f35e3d638e6f3510a08d9bb5"' }>
                                             <li class="link">
-                                                <a href="pipes/BibliographyFormatPipe.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">BibliographyFormatPipe</a>
+                                                <a href="pipes/BibliographyFormatPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >BibliographyFormatPipe</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/BibliographyRoutingModule.html" data-type="entity-link">BibliographyRoutingModule</a>
+                                <a href="modules/BibliographyRoutingModule.html" data-type="entity-link" >BibliographyRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/CompileHtmlModule.html" data-type="entity-link">CompileHtmlModule</a>
+                                <a href="modules/CompileHtmlModule.html" data-type="entity-link" >CompileHtmlModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-CompileHtmlModule-3270245884c3e9da9805f70503ce8916"' : 'data-target="#xs-components-links-module-CompileHtmlModule-3270245884c3e9da9805f70503ce8916"' }>
@@ -147,14 +141,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CompileHtmlModule-3270245884c3e9da9805f70503ce8916"' :
                                             'id="xs-components-links-module-CompileHtmlModule-3270245884c3e9da9805f70503ce8916"' }>
                                             <li class="link">
-                                                <a href="components/CompileHtmlComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">CompileHtmlComponent</a>
+                                                <a href="components/CompileHtmlComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CompileHtmlComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/ContactViewModule.html" data-type="entity-link">ContactViewModule</a>
+                                <a href="modules/ContactViewModule.html" data-type="entity-link" >ContactViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-ContactViewModule-5dd545c08f6d7dd8a755b2da19cdaa4a"' : 'data-target="#xs-components-links-module-ContactViewModule-5dd545c08f6d7dd8a755b2da19cdaa4a"' }>
@@ -165,17 +158,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ContactViewModule-5dd545c08f6d7dd8a755b2da19cdaa4a"' :
                                             'id="xs-components-links-module-ContactViewModule-5dd545c08f6d7dd8a755b2da19cdaa4a"' }>
                                             <li class="link">
-                                                <a href="components/ContactViewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ContactViewComponent</a>
+                                                <a href="components/ContactViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContactViewComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/ContactViewRoutingModule.html" data-type="entity-link">ContactViewRoutingModule</a>
+                                <a href="modules/ContactViewRoutingModule.html" data-type="entity-link" >ContactViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/CoreModule.html" data-type="entity-link">CoreModule</a>
+                                <a href="modules/CoreModule.html" data-type="entity-link" >CoreModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-CoreModule-4c0599c730c92040d209b2b5b40eb1a8"' : 'data-target="#xs-components-links-module-CoreModule-4c0599c730c92040d209b2b5b40eb1a8"' }>
@@ -186,18 +178,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-CoreModule-4c0599c730c92040d209b2b5b40eb1a8"' :
                                             'id="xs-components-links-module-CoreModule-4c0599c730c92040d209b2b5b40eb1a8"' }>
                                             <li class="link">
-                                                <a href="components/NavbarComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">NavbarComponent</a>
+                                                <a href="components/NavbarComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >NavbarComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ViewContainerComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ViewContainerComponent</a>
+                                                <a href="components/ViewContainerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ViewContainerComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/DataViewModule.html" data-type="entity-link">DataViewModule</a>
+                                <a href="modules/DataViewModule.html" data-type="entity-link" >DataViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-DataViewModule-6aab04762b9215fc510a3cedac6c71f6"' : 'data-target="#xs-components-links-module-DataViewModule-6aab04762b9215fc510a3cedac6c71f6"' }>
@@ -208,37 +198,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-DataViewModule-6aab04762b9215fc510a3cedac6c71f6"' :
                                             'id="xs-components-links-module-DataViewModule-6aab04762b9215fc510a3cedac6c71f6"' }>
                                             <li class="link">
-                                                <a href="components/DataViewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">DataViewComponent</a>
+                                                <a href="components/DataViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >DataViewComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailComponent</a>
+                                                <a href="components/ResourceDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SearchFormComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SearchFormComponent</a>
+                                                <a href="components/SearchFormComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SearchFormComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SearchOverviewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SearchOverviewComponent</a>
+                                                <a href="components/SearchOverviewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SearchOverviewComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SearchPanelComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SearchPanelComponent</a>
+                                                <a href="components/SearchPanelComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SearchPanelComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SearchResultListComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SearchResultListComponent</a>
+                                                <a href="components/SearchResultListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SearchResultListComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/DataViewRoutingModule.html" data-type="entity-link">DataViewRoutingModule</a>
+                                <a href="modules/DataViewRoutingModule.html" data-type="entity-link" >DataViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionDetailModule.html" data-type="entity-link">EditionDetailModule</a>
+                                <a href="modules/EditionDetailModule.html" data-type="entity-link" >EditionDetailModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-EditionDetailModule-6eff0a3fcc531a20daad8b8b4ef1d5db"' : 'data-target="#xs-components-links-module-EditionDetailModule-6eff0a3fcc531a20daad8b8b4ef1d5db"' }>
@@ -249,33 +233,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionDetailModule-6eff0a3fcc531a20daad8b8b4ef1d5db"' :
                                             'id="xs-components-links-module-EditionDetailModule-6eff0a3fcc531a20daad8b8b4ef1d5db"' }>
                                             <li class="link">
-                                                <a href="components/EditionAccoladeComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionAccoladeComponent</a>
+                                                <a href="components/EditionAccoladeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionAccoladeComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionConvoluteComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionConvoluteComponent</a>
+                                                <a href="components/EditionConvoluteComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionConvoluteComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionDetailComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionDetailComponent</a>
+                                                <a href="components/EditionDetailComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionDetailComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSvgSheetComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionSvgSheetComponent</a>
+                                                <a href="components/EditionSvgSheetComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSvgSheetNavComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionSvgSheetNavComponent</a>
+                                                <a href="components/EditionSvgSheetNavComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSvgSheetNavComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionDetailRoutingModule.html" data-type="entity-link">EditionDetailRoutingModule</a>
+                                <a href="modules/EditionDetailRoutingModule.html" data-type="entity-link" >EditionDetailRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionGraphModule.html" data-type="entity-link">EditionGraphModule</a>
+                                <a href="modules/EditionGraphModule.html" data-type="entity-link" >EditionGraphModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-EditionGraphModule-ad8209d435de991678bf6ba30d04e62d"' : 'data-target="#xs-components-links-module-EditionGraphModule-ad8209d435de991678bf6ba30d04e62d"' }>
@@ -286,17 +265,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionGraphModule-ad8209d435de991678bf6ba30d04e62d"' :
                                             'id="xs-components-links-module-EditionGraphModule-ad8209d435de991678bf6ba30d04e62d"' }>
                                             <li class="link">
-                                                <a href="components/EditionGraphComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionGraphComponent</a>
+                                                <a href="components/EditionGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionGraphComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionGraphRoutingModule.html" data-type="entity-link">EditionGraphRoutingModule</a>
+                                <a href="modules/EditionGraphRoutingModule.html" data-type="entity-link" >EditionGraphRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionIntroModule.html" data-type="entity-link">EditionIntroModule</a>
+                                <a href="modules/EditionIntroModule.html" data-type="entity-link" >EditionIntroModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-EditionIntroModule-800a70b7edb778cb4fdf86be6c8e58b2"' : 'data-target="#xs-components-links-module-EditionIntroModule-800a70b7edb778cb4fdf86be6c8e58b2"' }>
@@ -307,17 +285,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionIntroModule-800a70b7edb778cb4fdf86be6c8e58b2"' :
                                             'id="xs-components-links-module-EditionIntroModule-800a70b7edb778cb4fdf86be6c8e58b2"' }>
                                             <li class="link">
-                                                <a href="components/EditionIntroComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionIntroComponent</a>
+                                                <a href="components/EditionIntroComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionIntroComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionIntroRoutingModule.html" data-type="entity-link">EditionIntroRoutingModule</a>
+                                <a href="modules/EditionIntroRoutingModule.html" data-type="entity-link" >EditionIntroRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionReportModule.html" data-type="entity-link">EditionReportModule</a>
+                                <a href="modules/EditionReportModule.html" data-type="entity-link" >EditionReportModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-EditionReportModule-4fbc810e19b0df323c79ea43f72b3f5c"' : 'data-target="#xs-components-links-module-EditionReportModule-4fbc810e19b0df323c79ea43f72b3f5c"' }>
@@ -328,17 +305,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionReportModule-4fbc810e19b0df323c79ea43f72b3f5c"' :
                                             'id="xs-components-links-module-EditionReportModule-4fbc810e19b0df323c79ea43f72b3f5c"' }>
                                             <li class="link">
-                                                <a href="components/EditionReportComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionReportComponent</a>
+                                                <a href="components/EditionReportComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionReportComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionReportRoutingModule.html" data-type="entity-link">EditionReportRoutingModule</a>
+                                <a href="modules/EditionReportRoutingModule.html" data-type="entity-link" >EditionReportRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionTkaTableModule.html" data-type="entity-link">EditionTkaTableModule</a>
+                                <a href="modules/EditionTkaTableModule.html" data-type="entity-link" >EditionTkaTableModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-EditionTkaTableModule-cf3ebb599827b940bd5b3626c32b029d"' : 'data-target="#xs-components-links-module-EditionTkaTableModule-cf3ebb599827b940bd5b3626c32b029d"' }>
@@ -349,14 +325,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionTkaTableModule-cf3ebb599827b940bd5b3626c32b029d"' :
                                             'id="xs-components-links-module-EditionTkaTableModule-cf3ebb599827b940bd5b3626c32b029d"' }>
                                             <li class="link">
-                                                <a href="components/EditionTkaTableComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionTkaTableComponent</a>
+                                                <a href="components/EditionTkaTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionTkaTableComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionViewModule.html" data-type="entity-link">EditionViewModule</a>
+                                <a href="modules/EditionViewModule.html" data-type="entity-link" >EditionViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-EditionViewModule-8ca38c017b44f3dca3479c40df22682a"' : 'data-target="#xs-components-links-module-EditionViewModule-8ca38c017b44f3dca3479c40df22682a"' }>
@@ -367,33 +342,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-EditionViewModule-8ca38c017b44f3dca3479c40df22682a"' :
                                             'id="xs-components-links-module-EditionViewModule-8ca38c017b44f3dca3479c40df22682a"' }>
                                             <li class="link">
-                                                <a href="components/EditionOverviewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionOverviewComponent</a>
+                                                <a href="components/EditionOverviewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionOverviewComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSectionComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionSectionComponent</a>
+                                                <a href="components/EditionSectionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSectionComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionSeriesComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionSeriesComponent</a>
+                                                <a href="components/EditionSeriesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionSeriesComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionTypeComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionTypeComponent</a>
+                                                <a href="components/EditionTypeComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionTypeComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionViewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionViewComponent</a>
+                                                <a href="components/EditionViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionViewComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/EditionViewRoutingModule.html" data-type="entity-link">EditionViewRoutingModule</a>
+                                <a href="modules/EditionViewRoutingModule.html" data-type="entity-link" >EditionViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/FakeRouterModule.html" data-type="entity-link">FakeRouterModule</a>
+                                <a href="modules/FakeRouterModule.html" data-type="entity-link" >FakeRouterModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' : 'data-target="#xs-components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
@@ -404,8 +374,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' :
                                             'id="xs-components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
                                             <li class="link">
-                                                <a href="components/RouterOutletStubComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">RouterOutletStubComponent</a>
+                                                <a href="components/RouterOutletStubComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterOutletStubComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -419,14 +388,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' :
                                         'id="xs-directives-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
                                         <li class="link">
-                                            <a href="directives/RouterLinkStubDirective.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules">RouterLinkStubDirective</a>
+                                            <a href="directives/RouterLinkStubDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterLinkStubDirective</a>
                                         </li>
                                     </ul>
                                 </li>
                             </li>
                             <li class="link">
-                                <a href="modules/FolioModule.html" data-type="entity-link">FolioModule</a>
+                                <a href="modules/FolioModule.html" data-type="entity-link" >FolioModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-FolioModule-3555aa5292194b9f0bd1c8c221e821e4"' : 'data-target="#xs-components-links-module-FolioModule-3555aa5292194b9f0bd1c8c221e821e4"' }>
@@ -437,14 +405,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FolioModule-3555aa5292194b9f0bd1c8c221e821e4"' :
                                             'id="xs-components-links-module-FolioModule-3555aa5292194b9f0bd1c8c221e821e4"' }>
                                             <li class="link">
-                                                <a href="components/FolioOverviewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FolioOverviewComponent</a>
+                                                <a href="components/FolioOverviewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FolioOverviewComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/FooterModule.html" data-type="entity-link">FooterModule</a>
+                                <a href="modules/FooterModule.html" data-type="entity-link" >FooterModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-FooterModule-18069410a7da2268bba208bd4d28b698"' : 'data-target="#xs-components-links-module-FooterModule-18069410a7da2268bba208bd4d28b698"' }>
@@ -455,30 +422,25 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FooterModule-18069410a7da2268bba208bd4d28b698"' :
                                             'id="xs-components-links-module-FooterModule-18069410a7da2268bba208bd4d28b698"' }>
                                             <li class="link">
-                                                <a href="components/FooterComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FooterComponent</a>
+                                                <a href="components/FooterComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/FooterCopyrightComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FooterCopyrightComponent</a>
+                                                <a href="components/FooterCopyrightComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterCopyrightComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/FooterDeclarationComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FooterDeclarationComponent</a>
+                                                <a href="components/FooterDeclarationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterDeclarationComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/FooterLogoComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FooterLogoComponent</a>
+                                                <a href="components/FooterLogoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterLogoComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/FooterPoweredbyComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">FooterPoweredbyComponent</a>
+                                                <a href="components/FooterPoweredbyComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >FooterPoweredbyComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/GraphVisualizerModule.html" data-type="entity-link">GraphVisualizerModule</a>
+                                <a href="modules/GraphVisualizerModule.html" data-type="entity-link" >GraphVisualizerModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' : 'data-target="#xs-components-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' }>
@@ -489,40 +451,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' :
                                             'id="xs-components-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' }>
                                             <li class="link">
-                                                <a href="components/ConstructResultsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ConstructResultsComponent</a>
+                                                <a href="components/ConstructResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ConstructResultsComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ForceGraphComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ForceGraphComponent</a>
+                                                <a href="components/ForceGraphComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ForceGraphComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/GraphVisualizerComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">GraphVisualizerComponent</a>
+                                                <a href="components/GraphVisualizerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GraphVisualizerComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SelectResultsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SelectResultsComponent</a>
+                                                <a href="components/SelectResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SelectResultsComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SparqlEditorComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SparqlEditorComponent</a>
+                                                <a href="components/SparqlEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlEditorComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SparqlNoResultsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SparqlNoResultsComponent</a>
+                                                <a href="components/SparqlNoResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlNoResultsComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SparqlTableComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SparqlTableComponent</a>
+                                                <a href="components/SparqlTableComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SparqlTableComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/TriplesEditorComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">TriplesEditorComponent</a>
+                                                <a href="components/TriplesEditorComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TriplesEditorComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/UnsupportedTypeResultsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">UnsupportedTypeResultsComponent</a>
+                                                <a href="components/UnsupportedTypeResultsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >UnsupportedTypeResultsComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -536,8 +489,7 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <ul class="links collapse" ${ isNormalMode ? 'id="injectables-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' :
                                         'id="xs-injectables-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' }>
                                         <li class="link">
-                                            <a href="injectables/GraphVisualizerService.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules" }>GraphVisualizerService</a>
+                                            <a href="injectables/GraphVisualizerService.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >GraphVisualizerService</a>
                                         </li>
                                     </ul>
                                 </li>
@@ -551,14 +503,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="pipes-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' :
                                             'id="xs-pipes-links-module-GraphVisualizerModule-bfa41bb4263de26b3ae125ca0250c0c1"' }>
                                             <li class="link">
-                                                <a href="pipes/PrefixPipe.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">PrefixPipe</a>
+                                                <a href="pipes/PrefixPipe.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PrefixPipe</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/HomeViewModule.html" data-type="entity-link">HomeViewModule</a>
+                                <a href="modules/HomeViewModule.html" data-type="entity-link" >HomeViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-HomeViewModule-7fa91c3b42cb3a49d5cb8420e90d1041"' : 'data-target="#xs-components-links-module-HomeViewModule-7fa91c3b42cb3a49d5cb8420e90d1041"' }>
@@ -569,17 +520,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-HomeViewModule-7fa91c3b42cb3a49d5cb8420e90d1041"' :
                                             'id="xs-components-links-module-HomeViewModule-7fa91c3b42cb3a49d5cb8420e90d1041"' }>
                                             <li class="link">
-                                                <a href="components/HomeViewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">HomeViewComponent</a>
+                                                <a href="components/HomeViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HomeViewComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/HomeViewRoutingModule.html" data-type="entity-link">HomeViewRoutingModule</a>
+                                <a href="modules/HomeViewRoutingModule.html" data-type="entity-link" >HomeViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/PageNotFoundViewModule.html" data-type="entity-link">PageNotFoundViewModule</a>
+                                <a href="modules/PageNotFoundViewModule.html" data-type="entity-link" >PageNotFoundViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-PageNotFoundViewModule-07dc376f4341ff114e4a9ac511175ffa"' : 'data-target="#xs-components-links-module-PageNotFoundViewModule-07dc376f4341ff114e4a9ac511175ffa"' }>
@@ -590,17 +540,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-PageNotFoundViewModule-07dc376f4341ff114e4a9ac511175ffa"' :
                                             'id="xs-components-links-module-PageNotFoundViewModule-07dc376f4341ff114e4a9ac511175ffa"' }>
                                             <li class="link">
-                                                <a href="components/PageNotFoundViewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">PageNotFoundViewComponent</a>
+                                                <a href="components/PageNotFoundViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >PageNotFoundViewComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/PageNotFoundViewRoutingModule.html" data-type="entity-link">PageNotFoundViewRoutingModule</a>
+                                <a href="modules/PageNotFoundViewRoutingModule.html" data-type="entity-link" >PageNotFoundViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/ResourceDetailModule.html" data-type="entity-link">ResourceDetailModule</a>
+                                <a href="modules/ResourceDetailModule.html" data-type="entity-link" >ResourceDetailModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-ResourceDetailModule-1fda24d6714b4eb3ff87dba5d83eb6bf"' : 'data-target="#xs-components-links-module-ResourceDetailModule-1fda24d6714b4eb3ff87dba5d83eb6bf"' }>
@@ -611,42 +560,34 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-ResourceDetailModule-1fda24d6714b4eb3ff87dba5d83eb6bf"' :
                                             'id="xs-components-links-module-ResourceDetailModule-1fda24d6714b4eb3ff87dba5d83eb6bf"' }>
                                             <li class="link">
-                                                <a href="components/ResourceDetailHeaderComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailHeaderComponent</a>
+                                                <a href="components/ResourceDetailHeaderComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailHeaderComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailHtmlComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailHtmlComponent</a>
+                                                <a href="components/ResourceDetailHtmlComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailHtmlComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailHtmlContentComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailHtmlContentComponent</a>
+                                                <a href="components/ResourceDetailHtmlContentComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailHtmlContentComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailHtmlContentImageobjectsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailHtmlContentImageobjectsComponent</a>
+                                                <a href="components/ResourceDetailHtmlContentImageobjectsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailHtmlContentImageobjectsComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailHtmlContentLinkedobjectsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailHtmlContentLinkedobjectsComponent</a>
+                                                <a href="components/ResourceDetailHtmlContentLinkedobjectsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailHtmlContentLinkedobjectsComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailHtmlContentPropsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailHtmlContentPropsComponent</a>
+                                                <a href="components/ResourceDetailHtmlContentPropsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailHtmlContentPropsComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailJsonConvertedComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailJsonConvertedComponent</a>
+                                                <a href="components/ResourceDetailJsonConvertedComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailJsonConvertedComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceDetailJsonRawComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceDetailJsonRawComponent</a>
+                                                <a href="components/ResourceDetailJsonRawComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceDetailJsonRawComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/SharedModule.html" data-type="entity-link">SharedModule</a>
+                                <a href="modules/SharedModule.html" data-type="entity-link" >SharedModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-SharedModule-f7dd1177dff859dd810efdb1f601b939"' : 'data-target="#xs-components-links-module-SharedModule-f7dd1177dff859dd810efdb1f601b939"' }>
@@ -657,36 +598,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SharedModule-f7dd1177dff859dd810efdb1f601b939"' :
                                             'id="xs-components-links-module-SharedModule-f7dd1177dff859dd810efdb1f601b939"' }>
                                             <li class="link">
-                                                <a href="components/AddressComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">AddressComponent</a>
+                                                <a href="components/AddressComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >AddressComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/HeadingComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">HeadingComponent</a>
+                                                <a href="components/HeadingComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >HeadingComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/JsonViewerComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">JsonViewerComponent</a>
+                                                <a href="components/JsonViewerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >JsonViewerComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ModalComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ModalComponent</a>
+                                                <a href="components/ModalComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ModalComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/OpenStreetMapComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">OpenStreetMapComponent</a>
+                                                <a href="components/OpenStreetMapComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >OpenStreetMapComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/RouterLinkButtonGroupComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">RouterLinkButtonGroupComponent</a>
+                                                <a href="components/RouterLinkButtonGroupComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterLinkButtonGroupComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ToastComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ToastComponent</a>
+                                                <a href="components/ToastComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ToastComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/TwelveToneSpinnerComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">TwelveToneSpinnerComponent</a>
+                                                <a href="components/TwelveToneSpinnerComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TwelveToneSpinnerComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -700,17 +633,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-SharedModule-f7dd1177dff859dd810efdb1f601b939"' :
                                         'id="xs-directives-links-module-SharedModule-f7dd1177dff859dd810efdb1f601b939"' }>
                                         <li class="link">
-                                            <a href="directives/ExternalLinkDirective.html"
-                                                data-type="entity-link" data-context="sub-entity" data-context-id="modules">ExternalLinkDirective</a>
+                                            <a href="directives/ExternalLinkDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ExternalLinkDirective</a>
                                         </li>
                                     </ul>
                                 </li>
                             </li>
                             <li class="link">
-                                <a href="modules/SharedNgbootstrapModule.html" data-type="entity-link">SharedNgbootstrapModule</a>
+                                <a href="modules/SharedNgbootstrapModule.html" data-type="entity-link" >SharedNgbootstrapModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/SideInfoModule.html" data-type="entity-link">SideInfoModule</a>
+                                <a href="modules/SideInfoModule.html" data-type="entity-link" >SideInfoModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-SideInfoModule-14dd94c3e0619a9672a9dd542137af5c"' : 'data-target="#xs-components-links-module-SideInfoModule-14dd94c3e0619a9672a9dd542137af5c"' }>
@@ -721,33 +653,28 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SideInfoModule-14dd94c3e0619a9672a9dd542137af5c"' :
                                             'id="xs-components-links-module-SideInfoModule-14dd94c3e0619a9672a9dd542137af5c"' }>
                                             <li class="link">
-                                                <a href="components/ContactInfoComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ContactInfoComponent</a>
+                                                <a href="components/ContactInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ContactInfoComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/EditionInfoComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">EditionInfoComponent</a>
+                                                <a href="components/EditionInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >EditionInfoComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/ResourceInfoComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">ResourceInfoComponent</a>
+                                                <a href="components/ResourceInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >ResourceInfoComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SearchInfoComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SearchInfoComponent</a>
+                                                <a href="components/SearchInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SearchInfoComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/StructureInfoComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">StructureInfoComponent</a>
+                                                <a href="components/StructureInfoComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StructureInfoComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/SideInfoRoutingModule.html" data-type="entity-link">SideInfoRoutingModule</a>
+                                <a href="modules/SideInfoRoutingModule.html" data-type="entity-link" >SideInfoRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/SourcesModule.html" data-type="entity-link">SourcesModule</a>
+                                <a href="modules/SourcesModule.html" data-type="entity-link" >SourcesModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-SourcesModule-05b4c49024876cf3d4f1c0590e8c8f9b"' : 'data-target="#xs-components-links-module-SourcesModule-05b4c49024876cf3d4f1c0590e8c8f9b"' }>
@@ -758,26 +685,22 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-SourcesModule-05b4c49024876cf3d4f1c0590e8c8f9b"' :
                                             'id="xs-components-links-module-SourcesModule-05b4c49024876cf3d4f1c0590e8c8f9b"' }>
                                             <li class="link">
-                                                <a href="components/SourceDescriptionComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SourceDescriptionComponent</a>
+                                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceDescriptionComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SourceEvaluationComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SourceEvaluationComponent</a>
+                                                <a href="components/SourceEvaluationComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceEvaluationComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SourceListComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SourceListComponent</a>
+                                                <a href="components/SourceListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourceListComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/SourcesComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">SourcesComponent</a>
+                                                <a href="components/SourcesComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >SourcesComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/StructureViewModule.html" data-type="entity-link">StructureViewModule</a>
+                                <a href="modules/StructureViewModule.html" data-type="entity-link" >StructureViewModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-StructureViewModule-5ca57086dbd3a212946c19482a1ffcc9"' : 'data-target="#xs-components-links-module-StructureViewModule-5ca57086dbd3a212946c19482a1ffcc9"' }>
@@ -788,17 +711,16 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-StructureViewModule-5ca57086dbd3a212946c19482a1ffcc9"' :
                                             'id="xs-components-links-module-StructureViewModule-5ca57086dbd3a212946c19482a1ffcc9"' }>
                                             <li class="link">
-                                                <a href="components/StructureViewComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">StructureViewComponent</a>
+                                                <a href="components/StructureViewComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >StructureViewComponent</a>
                                             </li>
                                         </ul>
                                     </li>
                             </li>
                             <li class="link">
-                                <a href="modules/StructureViewRoutingModule.html" data-type="entity-link">StructureViewRoutingModule</a>
+                                <a href="modules/StructureViewRoutingModule.html" data-type="entity-link" >StructureViewRoutingModule</a>
                             </li>
                             <li class="link">
-                                <a href="modules/TextcriticsModule.html" data-type="entity-link">TextcriticsModule</a>
+                                <a href="modules/TextcriticsModule.html" data-type="entity-link" >TextcriticsModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
                                             'data-target="#components-links-module-TextcriticsModule-609deb908e151eeea8b34a22895a366b"' : 'data-target="#xs-components-links-module-TextcriticsModule-609deb908e151eeea8b34a22895a366b"' }>
@@ -809,12 +731,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                         <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-TextcriticsModule-609deb908e151eeea8b34a22895a366b"' :
                                             'id="xs-components-links-module-TextcriticsModule-609deb908e151eeea8b34a22895a366b"' }>
                                             <li class="link">
-                                                <a href="components/CriticsListComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">CriticsListComponent</a>
+                                                <a href="components/CriticsListComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >CriticsListComponent</a>
                                             </li>
                                             <li class="link">
-                                                <a href="components/TextcriticsComponent.html"
-                                                    data-type="entity-link" data-context="sub-entity" data-context-id="modules">TextcriticsComponent</a>
+                                                <a href="components/TextcriticsComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >TextcriticsComponent</a>
                                             </li>
                                         </ul>
                                     </li>
@@ -830,31 +750,31 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="components-links"' : 'id="xs-components-links"' }>
                             <li class="link">
-                                <a href="components/CriticsListComponent.html" data-type="entity-link">CriticsListComponent</a>
+                                <a href="components/CriticsListComponent.html" data-type="entity-link" >CriticsListComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionAccoladeComponent.html" data-type="entity-link">EditionAccoladeComponent</a>
+                                <a href="components/EditionAccoladeComponent.html" data-type="entity-link" >EditionAccoladeComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionConvoluteComponent.html" data-type="entity-link">EditionConvoluteComponent</a>
+                                <a href="components/EditionConvoluteComponent.html" data-type="entity-link" >EditionConvoluteComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionSvgSheetComponent.html" data-type="entity-link">EditionSvgSheetComponent</a>
+                                <a href="components/EditionSvgSheetComponent.html" data-type="entity-link" >EditionSvgSheetComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/EditionSvgSheetNavComponent.html" data-type="entity-link">EditionSvgSheetNavComponent</a>
+                                <a href="components/EditionSvgSheetNavComponent.html" data-type="entity-link" >EditionSvgSheetNavComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link">SourceDescriptionComponent</a>
+                                <a href="components/SourceDescriptionComponent.html" data-type="entity-link" >SourceDescriptionComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceEvaluationComponent.html" data-type="entity-link">SourceEvaluationComponent</a>
+                                <a href="components/SourceEvaluationComponent.html" data-type="entity-link" >SourceEvaluationComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/SourceListComponent.html" data-type="entity-link">SourceListComponent</a>
+                                <a href="components/SourceListComponent.html" data-type="entity-link" >SourceListComponent</a>
                             </li>
                             <li class="link">
-                                <a href="components/TimelineComponent.html" data-type="entity-link">TimelineComponent</a>
+                                <a href="components/TimelineComponent.html" data-type="entity-link" >TimelineComponent</a>
                             </li>
                         </ul>
                     </li>
@@ -867,397 +787,400 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="classes-links"' : 'id="xs-classes-links"' }>
                             <li class="link">
-                                <a href="classes/ApiRequest.html" data-type="entity-link">ApiRequest</a>
+                                <a href="classes/ApiRequest.html" data-type="entity-link" >ApiRequest</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ApiServiceError.html" data-type="entity-link">ApiServiceError</a>
+                                <a href="classes/ApiServiceError.html" data-type="entity-link" >ApiServiceError</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ApiServiceResult.html" data-type="entity-link">ApiServiceResult</a>
+                                <a href="classes/ApiServiceResult.html" data-type="entity-link" >ApiServiceResult</a>
                             </li>
                             <li class="link">
-                                <a href="classes/AppConfig.html" data-type="entity-link">AppConfig</a>
+                                <a href="classes/AppConfig.html" data-type="entity-link" >AppConfig</a>
                             </li>
                             <li class="link">
-                                <a href="classes/BasicResponseJson.html" data-type="entity-link">BasicResponseJson</a>
+                                <a href="classes/BasicResponseJson.html" data-type="entity-link" >BasicResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/BibEntry.html" data-type="entity-link">BibEntry</a>
+                                <a href="classes/BibEntry.html" data-type="entity-link" >BibEntry</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ContextJson.html" data-type="entity-link">ContextJson</a>
+                                <a href="classes/ContextJson.html" data-type="entity-link" >ContextJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/CurrentResource.html" data-type="entity-link">CurrentResource</a>
+                                <a href="classes/CurrentResource.html" data-type="entity-link" >CurrentResource</a>
                             </li>
                             <li class="link">
-                                <a href="classes/D3ForceSimulation.html" data-type="entity-link">D3ForceSimulation</a>
+                                <a href="classes/D3ForceSimulation.html" data-type="entity-link" >D3ForceSimulation</a>
                             </li>
                             <li class="link">
-                                <a href="classes/D3SimulationData.html" data-type="entity-link">D3SimulationData</a>
+                                <a href="classes/D3SimulationData.html" data-type="entity-link" >D3SimulationData</a>
                             </li>
                             <li class="link">
-                                <a href="classes/D3SimulationLink.html" data-type="entity-link">D3SimulationLink</a>
+                                <a href="classes/D3SimulationLink.html" data-type="entity-link" >D3SimulationLink</a>
                             </li>
                             <li class="link">
-                                <a href="classes/D3SimulationNode.html" data-type="entity-link">D3SimulationNode</a>
+                                <a href="classes/D3SimulationNode.html" data-type="entity-link" >D3SimulationNode</a>
                             </li>
                             <li class="link">
-                                <a href="classes/D3SimulationNodeTriple.html" data-type="entity-link">D3SimulationNodeTriple</a>
+                                <a href="classes/D3SimulationNodeTriple.html" data-type="entity-link" >D3SimulationNodeTriple</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionConstants.html" data-type="entity-link">EditionConstants</a>
+                                <a href="classes/EditionConstants.html" data-type="entity-link" >EditionConstants</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionResponsibilityStatement.html" data-type="entity-link">EditionResponsibilityStatement</a>
+                                <a href="classes/EditionResponsibilityStatement.html" data-type="entity-link" >EditionResponsibilityStatement</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionRoute.html" data-type="entity-link">EditionRoute</a>
+                                <a href="classes/EditionRoute.html" data-type="entity-link" >EditionRoute</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionSvgOverlay.html" data-type="entity-link">EditionSvgOverlay</a>
+                                <a href="classes/EditionSvgOverlay.html" data-type="entity-link" >EditionSvgOverlay</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionSvgSheet.html" data-type="entity-link">EditionSvgSheet</a>
+                                <a href="classes/EditionSvgSheet.html" data-type="entity-link" >EditionSvgSheet</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionSvgSheetList.html" data-type="entity-link">EditionSvgSheetList</a>
+                                <a href="classes/EditionSvgSheetList.html" data-type="entity-link" >EditionSvgSheetList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionTitleStatement.html" data-type="entity-link">EditionTitleStatement</a>
+                                <a href="classes/EditionTitleStatement.html" data-type="entity-link" >EditionTitleStatement</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionWork.html" data-type="entity-link">EditionWork</a>
+                                <a href="classes/EditionWork.html" data-type="entity-link" >EditionWork</a>
                             </li>
                             <li class="link">
-                                <a href="classes/EditionWorks.html" data-type="entity-link">EditionWorks</a>
+                                <a href="classes/EditionWorks.html" data-type="entity-link" >EditionWorks</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ExtResIdJson.html" data-type="entity-link">ExtResIdJson</a>
+                                <a href="classes/ExtResIdJson.html" data-type="entity-link" >ExtResIdJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Folio.html" data-type="entity-link">Folio</a>
+                                <a href="classes/Folio.html" data-type="entity-link" >Folio</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculation.html" data-type="entity-link">FolioCalculation</a>
+                                <a href="classes/FolioCalculation.html" data-type="entity-link" >FolioCalculation</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationContentItem.html" data-type="entity-link">FolioCalculationContentItem</a>
+                                <a href="classes/FolioCalculationContentItem.html" data-type="entity-link" >FolioCalculationContentItem</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationContentItemCache.html" data-type="entity-link">FolioCalculationContentItemCache</a>
+                                <a href="classes/FolioCalculationContentItemCache.html" data-type="entity-link" >FolioCalculationContentItemCache</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationContentItemCornerPoints.html" data-type="entity-link">FolioCalculationContentItemCornerPoints</a>
+                                <a href="classes/FolioCalculationContentItemCornerPoints.html" data-type="entity-link" >FolioCalculationContentItemCornerPoints</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationLine.html" data-type="entity-link">FolioCalculationLine</a>
+                                <a href="classes/FolioCalculationLine.html" data-type="entity-link" >FolioCalculationLine</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationPoint.html" data-type="entity-link">FolioCalculationPoint</a>
+                                <a href="classes/FolioCalculationPoint.html" data-type="entity-link" >FolioCalculationPoint</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationSheet.html" data-type="entity-link">FolioCalculationSheet</a>
+                                <a href="classes/FolioCalculationSheet.html" data-type="entity-link" >FolioCalculationSheet</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioCalculationSystems.html" data-type="entity-link">FolioCalculationSystems</a>
+                                <a href="classes/FolioCalculationSystems.html" data-type="entity-link" >FolioCalculationSystems</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioContent.html" data-type="entity-link">FolioContent</a>
+                                <a href="classes/FolioContent.html" data-type="entity-link" >FolioContent</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioConvolute.html" data-type="entity-link">FolioConvolute</a>
+                                <a href="classes/FolioConvolute.html" data-type="entity-link" >FolioConvolute</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioConvoluteList.html" data-type="entity-link">FolioConvoluteList</a>
+                                <a href="classes/FolioConvoluteList.html" data-type="entity-link" >FolioConvoluteList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioFormat.html" data-type="entity-link">FolioFormat</a>
+                                <a href="classes/FolioFormat.html" data-type="entity-link" >FolioFormat</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSection.html" data-type="entity-link">FolioSection</a>
+                                <a href="classes/FolioSection.html" data-type="entity-link" >FolioSection</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSettings.html" data-type="entity-link">FolioSettings</a>
+                                <a href="classes/FolioSettings.html" data-type="entity-link" >FolioSettings</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSvgContentItem.html" data-type="entity-link">FolioSvgContentItem</a>
+                                <a href="classes/FolioSvgContentItem.html" data-type="entity-link" >FolioSvgContentItem</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSvgData.html" data-type="entity-link">FolioSvgData</a>
+                                <a href="classes/FolioSvgData.html" data-type="entity-link" >FolioSvgData</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSvgSheet.html" data-type="entity-link">FolioSvgSheet</a>
+                                <a href="classes/FolioSvgSheet.html" data-type="entity-link" >FolioSvgSheet</a>
                             </li>
                             <li class="link">
-                                <a href="classes/FolioSvgSystems.html" data-type="entity-link">FolioSvgSystems</a>
+                                <a href="classes/FolioSvgSystems.html" data-type="entity-link" >FolioSvgSystems</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GeoDataItemJson.html" data-type="entity-link">GeoDataItemJson</a>
+                                <a href="classes/GeoDataItemJson.html" data-type="entity-link" >GeoDataItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GeoDataJson.html" data-type="entity-link">GeoDataJson</a>
+                                <a href="classes/GeoDataJson.html" data-type="entity-link" >GeoDataJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GeoNames.html" data-type="entity-link">GeoNames</a>
+                                <a href="classes/GeoNames.html" data-type="entity-link" >GeoNames</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GndEvent.html" data-type="entity-link">GndEvent</a>
+                                <a href="classes/GndEvent.html" data-type="entity-link" >GndEvent</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Graph.html" data-type="entity-link">Graph</a>
+                                <a href="classes/Graph.html" data-type="entity-link" >Graph</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphList.html" data-type="entity-link">GraphList</a>
+                                <a href="classes/GraphList.html" data-type="entity-link" >GraphList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphRDFData.html" data-type="entity-link">GraphRDFData</a>
+                                <a href="classes/GraphRDFData.html" data-type="entity-link" >GraphRDFData</a>
                             </li>
                             <li class="link">
-                                <a href="classes/GraphSparqlQuery.html" data-type="entity-link">GraphSparqlQuery</a>
+                                <a href="classes/GraphSparqlQuery.html" data-type="entity-link" >GraphSparqlQuery</a>
                             </li>
                             <li class="link">
-                                <a href="classes/HlistItemJson.html" data-type="entity-link">HlistItemJson</a>
+                                <a href="classes/HlistItemJson.html" data-type="entity-link" >HlistItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/HlistJson.html" data-type="entity-link">HlistJson</a>
+                                <a href="classes/HlistJson.html" data-type="entity-link" >HlistJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/HttpCache.html" data-type="entity-link">HttpCache</a>
+                                <a href="classes/HttpCache.html" data-type="entity-link" >HttpCache</a>
                             </li>
                             <li class="link">
-                                <a href="classes/IncomingItemJson.html" data-type="entity-link">IncomingItemJson</a>
+                                <a href="classes/IncomingItemJson.html" data-type="entity-link" >IncomingItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Intro.html" data-type="entity-link">Intro</a>
+                                <a href="classes/Intro.html" data-type="entity-link" >Intro</a>
                             </li>
                             <li class="link">
-                                <a href="classes/IntroList.html" data-type="entity-link">IntroList</a>
+                                <a href="classes/IntroList.html" data-type="entity-link" >IntroList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/LocationItemJson.html" data-type="entity-link">LocationItemJson</a>
+                                <a href="classes/LocationItemJson.html" data-type="entity-link" >LocationItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Logo.html" data-type="entity-link">Logo</a>
+                                <a href="classes/Logo.html" data-type="entity-link" >Logo</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Logos.html" data-type="entity-link">Logos</a>
+                                <a href="classes/Logos.html" data-type="entity-link" >Logos</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Meta.html" data-type="entity-link">Meta</a>
+                                <a href="classes/Meta.html" data-type="entity-link" >Meta</a>
                             </li>
                             <li class="link">
-                                <a href="classes/MetaContact.html" data-type="entity-link">MetaContact</a>
+                                <a href="classes/MetaContact.html" data-type="entity-link" >MetaContact</a>
                             </li>
                             <li class="link">
-                                <a href="classes/MetaPage.html" data-type="entity-link">MetaPage</a>
+                                <a href="classes/MetaPage.html" data-type="entity-link" >MetaPage</a>
                             </li>
                             <li class="link">
-                                <a href="classes/MetaPerson.html" data-type="entity-link">MetaPerson</a>
+                                <a href="classes/MetaPerson.html" data-type="entity-link" >MetaPerson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/MetaStructure.html" data-type="entity-link">MetaStructure</a>
+                                <a href="classes/MetaStructure.html" data-type="entity-link" >MetaStructure</a>
                             </li>
                             <li class="link">
-                                <a href="classes/NextResource.html" data-type="entity-link">NextResource</a>
+                                <a href="classes/NextResource.html" data-type="entity-link" >NextResource</a>
                             </li>
                             <li class="link">
-                                <a href="classes/NodeItemJson.html" data-type="entity-link">NodeItemJson</a>
+                                <a href="classes/NodeItemJson.html" data-type="entity-link" >NodeItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PaginatorOptions.html" data-type="entity-link">PaginatorOptions</a>
+                                <a href="classes/PaginatorOptions.html" data-type="entity-link" >PaginatorOptions</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PagingItemJson.html" data-type="entity-link">PagingItemJson</a>
+                                <a href="classes/PagingItemJson.html" data-type="entity-link" >PagingItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PermissionItemJson.html" data-type="entity-link">PermissionItemJson</a>
+                                <a href="classes/PermissionItemJson.html" data-type="entity-link" >PermissionItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Prefix.html" data-type="entity-link">Prefix</a>
+                                <a href="classes/Prefix.html" data-type="entity-link" >Prefix</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PreviousResource.html" data-type="entity-link">PreviousResource</a>
+                                <a href="classes/PreviousResource.html" data-type="entity-link" >PreviousResource</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ProjectItemJson.html" data-type="entity-link">ProjectItemJson</a>
+                                <a href="classes/ProjectItemJson.html" data-type="entity-link" >ProjectItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ProjectJson.html" data-type="entity-link">ProjectJson</a>
+                                <a href="classes/ProjectJson.html" data-type="entity-link" >ProjectJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ProjectListJson.html" data-type="entity-link">ProjectListJson</a>
+                                <a href="classes/ProjectListJson.html" data-type="entity-link" >ProjectListJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropertyDefinitionJson.html" data-type="entity-link">PropertyDefinitionJson</a>
+                                <a href="classes/PropertyDefinitionJson.html" data-type="entity-link" >PropertyDefinitionJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropertyJson.html" data-type="entity-link">PropertyJson</a>
+                                <a href="classes/PropertyJson.html" data-type="entity-link" >PropertyJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropertyJsonValue.html" data-type="entity-link">PropertyJsonValue</a>
+                                <a href="classes/PropertyJsonValue.html" data-type="entity-link" >PropertyJsonValue</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropertyTypesInResourceClassResponseJson.html" data-type="entity-link">PropertyTypesInResourceClassResponseJson</a>
+                                <a href="classes/PropertyTypesInResourceClassResponseJson.html" data-type="entity-link" >PropertyTypesInResourceClassResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropItemForResTypeJson.html" data-type="entity-link">PropItemForResTypeJson</a>
+                                <a href="classes/PropItemForResTypeJson.html" data-type="entity-link" >PropItemForResTypeJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropJson.html" data-type="entity-link">PropJson</a>
+                                <a href="classes/PropJson.html" data-type="entity-link" >PropJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/PropvalJson.html" data-type="entity-link">PropvalJson</a>
+                                <a href="classes/PropvalJson.html" data-type="entity-link" >PropvalJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/RegionJson.html" data-type="entity-link">RegionJson</a>
+                                <a href="classes/RegionJson.html" data-type="entity-link" >RegionJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResdataJson.html" data-type="entity-link">ResdataJson</a>
+                                <a href="classes/ResdataJson.html" data-type="entity-link" >ResdataJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResinfoJson.html" data-type="entity-link">ResinfoJson</a>
+                                <a href="classes/ResinfoJson.html" data-type="entity-link" >ResinfoJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceContextResponseJson.html" data-type="entity-link">ResourceContextResponseJson</a>
+                                <a href="classes/ResourceContextResponseJson.html" data-type="entity-link" >ResourceContextResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceData.html" data-type="entity-link">ResourceData</a>
+                                <a href="classes/ResourceData.html" data-type="entity-link" >ResourceData</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetail.html" data-type="entity-link">ResourceDetail</a>
+                                <a href="classes/ResourceDetail.html" data-type="entity-link" >ResourceDetail</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetailContent.html" data-type="entity-link">ResourceDetailContent</a>
+                                <a href="classes/ResourceDetailContent.html" data-type="entity-link" >ResourceDetailContent</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetailGroupedIncomingLinks.html" data-type="entity-link">ResourceDetailGroupedIncomingLinks</a>
+                                <a href="classes/ResourceDetailGroupedIncomingLinks.html" data-type="entity-link" >ResourceDetailGroupedIncomingLinks</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetailHeader.html" data-type="entity-link">ResourceDetailHeader</a>
+                                <a href="classes/ResourceDetailHeader.html" data-type="entity-link" >ResourceDetailHeader</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetailImage.html" data-type="entity-link">ResourceDetailImage</a>
+                                <a href="classes/ResourceDetailImage.html" data-type="entity-link" >ResourceDetailImage</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetailIncomingLink.html" data-type="entity-link">ResourceDetailIncomingLink</a>
+                                <a href="classes/ResourceDetailIncomingLink.html" data-type="entity-link" >ResourceDetailIncomingLink</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceDetailProperty.html" data-type="entity-link">ResourceDetailProperty</a>
+                                <a href="classes/ResourceDetailProperty.html" data-type="entity-link" >ResourceDetailProperty</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceFullResponseJson.html" data-type="entity-link">ResourceFullResponseJson</a>
+                                <a href="classes/ResourceFullResponseJson.html" data-type="entity-link" >ResourceFullResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceInfo.html" data-type="entity-link">ResourceInfo</a>
+                                <a href="classes/ResourceInfo.html" data-type="entity-link" >ResourceInfo</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceInfoResource.html" data-type="entity-link">ResourceInfoResource</a>
+                                <a href="classes/ResourceInfoResource.html" data-type="entity-link" >ResourceInfoResource</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceInfoResponseJson.html" data-type="entity-link">ResourceInfoResponseJson</a>
+                                <a href="classes/ResourceInfoResponseJson.html" data-type="entity-link" >ResourceInfoResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceLabelSearchItemJson.html" data-type="entity-link">ResourceLabelSearchItemJson</a>
+                                <a href="classes/ResourceLabelSearchItemJson.html" data-type="entity-link" >ResourceLabelSearchItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceLabelSearchResponseJson.html" data-type="entity-link">ResourceLabelSearchResponseJson</a>
+                                <a href="classes/ResourceLabelSearchResponseJson.html" data-type="entity-link" >ResourceLabelSearchResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourcePropertiesResponseJson.html" data-type="entity-link">ResourcePropertiesResponseJson</a>
+                                <a href="classes/ResourcePropertiesResponseJson.html" data-type="entity-link" >ResourcePropertiesResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceRightsResponseJson.html" data-type="entity-link">ResourceRightsResponseJson</a>
+                                <a href="classes/ResourceRightsResponseJson.html" data-type="entity-link" >ResourceRightsResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceTypeResponseJson.html" data-type="entity-link">ResourceTypeResponseJson</a>
+                                <a href="classes/ResourceTypeResponseJson.html" data-type="entity-link" >ResourceTypeResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResourceTypesInVocabularyResponseJson.html" data-type="entity-link">ResourceTypesInVocabularyResponseJson</a>
+                                <a href="classes/ResourceTypesInVocabularyResponseJson.html" data-type="entity-link" >ResourceTypesInVocabularyResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ResTypeItemJson.html" data-type="entity-link">ResTypeItemJson</a>
+                                <a href="classes/ResTypeItemJson.html" data-type="entity-link" >ResTypeItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/RestypeJson.html" data-type="entity-link">RestypeJson</a>
+                                <a href="classes/RestypeJson.html" data-type="entity-link" >RestypeJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/RouterLinkButton.html" data-type="entity-link">RouterLinkButton</a>
+                                <a href="classes/RouterLinkButton.html" data-type="entity-link" >RouterLinkButton</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SearchInfo.html" data-type="entity-link">SearchInfo</a>
+                                <a href="classes/SearchInfo.html" data-type="entity-link" >SearchInfo</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SearchParams.html" data-type="entity-link">SearchParams</a>
+                                <a href="classes/SearchParams.html" data-type="entity-link" >SearchParams</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SearchResponseJson.html" data-type="entity-link">SearchResponseJson</a>
+                                <a href="classes/SearchResponseJson.html" data-type="entity-link" >SearchResponseJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SearchResponseWithQuery.html" data-type="entity-link">SearchResponseWithQuery</a>
+                                <a href="classes/SearchResponseWithQuery.html" data-type="entity-link" >SearchResponseWithQuery</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SelectionItemJson.html" data-type="entity-link">SelectionItemJson</a>
+                                <a href="classes/SelectionItemJson.html" data-type="entity-link" >SelectionItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SelectionJson.html" data-type="entity-link">SelectionJson</a>
+                                <a href="classes/SelectionJson.html" data-type="entity-link" >SelectionJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SessionJson.html" data-type="entity-link">SessionJson</a>
+                                <a href="classes/SessionJson.html" data-type="entity-link" >SessionJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Source.html" data-type="entity-link">Source</a>
+                                <a href="classes/Source.html" data-type="entity-link" >Source</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceDescription.html" data-type="entity-link">SourceDescription</a>
+                                <a href="classes/SourceDescription.html" data-type="entity-link" >SourceDescription</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceDescriptionList.html" data-type="entity-link">SourceDescriptionList</a>
+                                <a href="classes/SourceDescriptionList.html" data-type="entity-link" >SourceDescriptionList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceEvaluation.html" data-type="entity-link">SourceEvaluation</a>
+                                <a href="classes/SourceEvaluation.html" data-type="entity-link" >SourceEvaluation</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceEvaluationList.html" data-type="entity-link">SourceEvaluationList</a>
+                                <a href="classes/SourceEvaluationList.html" data-type="entity-link" >SourceEvaluationList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SourceList.html" data-type="entity-link">SourceList</a>
+                                <a href="classes/SourceList.html" data-type="entity-link" >SourceList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/SubjectItemJson.html" data-type="entity-link">SubjectItemJson</a>
+                                <a href="classes/SubjectItemJson.html" data-type="entity-link" >SubjectItemJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TableData.html" data-type="entity-link">TableData</a>
+                                <a href="classes/TableData.html" data-type="entity-link" >TableData</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TableOptions.html" data-type="entity-link">TableOptions</a>
+                                <a href="classes/TableOptions.html" data-type="entity-link" >TableOptions</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TextcriticalComment.html" data-type="entity-link">TextcriticalComment</a>
+                                <a href="classes/TextcriticalComment.html" data-type="entity-link" >TextcriticalComment</a>
                             </li>
                             <li class="link">
-                                <a href="classes/Textcritics.html" data-type="entity-link">Textcritics</a>
+                                <a href="classes/Textcritics.html" data-type="entity-link" >Textcritics</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TextcriticsList.html" data-type="entity-link">TextcriticsList</a>
+                                <a href="classes/TextcriticsList.html" data-type="entity-link" >TextcriticsList</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ThumbMaxJson.html" data-type="entity-link">ThumbMaxJson</a>
+                                <a href="classes/ThumbMaxJson.html" data-type="entity-link" >ThumbMaxJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/TimelineDate.html" data-type="entity-link">TimelineDate</a>
+                                <a href="classes/TimelineDate.html" data-type="entity-link" >TimelineDate</a>
                             </li>
                             <li class="link">
-                                <a href="classes/UserDataJson.html" data-type="entity-link">UserDataJson</a>
+                                <a href="classes/Toast.html" data-type="entity-link" >Toast</a>
                             </li>
                             <li class="link">
-                                <a href="classes/ViewBox.html" data-type="entity-link">ViewBox</a>
+                                <a href="classes/UserDataJson.html" data-type="entity-link" >UserDataJson</a>
                             </li>
                             <li class="link">
-                                <a href="classes/VocabularyItemJson.html" data-type="entity-link">VocabularyItemJson</a>
+                                <a href="classes/ViewBox.html" data-type="entity-link" >ViewBox</a>
                             </li>
                             <li class="link">
-                                <a href="classes/VocabularyResponseJson.html" data-type="entity-link">VocabularyResponseJson</a>
+                                <a href="classes/VocabularyItemJson.html" data-type="entity-link" >VocabularyItemJson</a>
+                            </li>
+                            <li class="link">
+                                <a href="classes/VocabularyResponseJson.html" data-type="entity-link" >VocabularyResponseJson</a>
                             </li>
                         </ul>
                     </li>
@@ -1270,55 +1193,55 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             </div>
                             <ul class="links collapse " ${ isNormalMode ? 'id="injectables-links"' : 'id="xs-injectables-links"' }>
                                 <li class="link">
-                                    <a href="injectables/AnalyticsService.html" data-type="entity-link">AnalyticsService</a>
+                                    <a href="injectables/AnalyticsService.html" data-type="entity-link" >AnalyticsService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ApiService.html" data-type="entity-link">ApiService</a>
+                                    <a href="injectables/ApiService.html" data-type="entity-link" >ApiService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/BibliographyService.html" data-type="entity-link">BibliographyService</a>
+                                    <a href="injectables/BibliographyService.html" data-type="entity-link" >BibliographyService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ConversionService.html" data-type="entity-link">ConversionService</a>
+                                    <a href="injectables/ConversionService.html" data-type="entity-link" >ConversionService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/CoreService.html" data-type="entity-link">CoreService</a>
+                                    <a href="injectables/CoreService.html" data-type="entity-link" >CoreService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/D3Service.html" data-type="entity-link">D3Service</a>
+                                    <a href="injectables/D3Service.html" data-type="entity-link" >D3Service</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/DataApiService.html" data-type="entity-link">DataApiService</a>
+                                    <a href="injectables/DataApiService.html" data-type="entity-link" >DataApiService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/DataStreamerService.html" data-type="entity-link">DataStreamerService</a>
+                                    <a href="injectables/DataStreamerService.html" data-type="entity-link" >DataStreamerService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/EditionDataService.html" data-type="entity-link">EditionDataService</a>
+                                    <a href="injectables/EditionDataService.html" data-type="entity-link" >EditionDataService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/EditionService.html" data-type="entity-link">EditionService</a>
+                                    <a href="injectables/EditionService.html" data-type="entity-link" >EditionService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/FolioService.html" data-type="entity-link">FolioService</a>
+                                    <a href="injectables/FolioService.html" data-type="entity-link" >FolioService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/GndService.html" data-type="entity-link">GndService</a>
+                                    <a href="injectables/GndService.html" data-type="entity-link" >GndService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/HttpCacheService.html" data-type="entity-link">HttpCacheService</a>
+                                    <a href="injectables/HttpCacheService.html" data-type="entity-link" >HttpCacheService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/LoadingService.html" data-type="entity-link">LoadingService</a>
+                                    <a href="injectables/LoadingService.html" data-type="entity-link" >LoadingService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/SideInfoService.html" data-type="entity-link">SideInfoService</a>
+                                    <a href="injectables/SideInfoService.html" data-type="entity-link" >SideInfoService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/StorageService.html" data-type="entity-link">StorageService</a>
+                                    <a href="injectables/StorageService.html" data-type="entity-link" >StorageService</a>
                                 </li>
                                 <li class="link">
-                                    <a href="injectables/ToastService.html" data-type="entity-link">ToastService</a>
+                                    <a href="injectables/ToastService.html" data-type="entity-link" >ToastService</a>
                                 </li>
                             </ul>
                         </li>
@@ -1331,10 +1254,10 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? 'id="interceptors-links"' : 'id="xs-interceptors-links"' }>
                             <li class="link">
-                                <a href="interceptors/CachingInterceptor.html" data-type="entity-link">CachingInterceptor</a>
+                                <a href="interceptors/CachingInterceptor.html" data-type="entity-link" >CachingInterceptor</a>
                             </li>
                             <li class="link">
-                                <a href="interceptors/LoadingInterceptor.html" data-type="entity-link">LoadingInterceptor</a>
+                                <a href="interceptors/LoadingInterceptor.html" data-type="entity-link" >LoadingInterceptor</a>
                             </li>
                         </ul>
                     </li>
@@ -1347,82 +1270,82 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
                             <li class="link">
-                                <a href="interfaces/D3DragBehaviour.html" data-type="entity-link">D3DragBehaviour</a>
+                                <a href="interfaces/D3DragBehaviour.html" data-type="entity-link" >D3DragBehaviour</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3ForceSimulationOptions.html" data-type="entity-link">D3ForceSimulationOptions</a>
+                                <a href="interfaces/D3ForceSimulationOptions.html" data-type="entity-link" >D3ForceSimulationOptions</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3Selection.html" data-type="entity-link">D3Selection</a>
+                                <a href="interfaces/D3Selection.html" data-type="entity-link" >D3Selection</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3Simulation.html" data-type="entity-link">D3Simulation</a>
+                                <a href="interfaces/D3Simulation.html" data-type="entity-link" >D3Simulation</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/D3ZoomBehaviour.html" data-type="entity-link">D3ZoomBehaviour</a>
+                                <a href="interfaces/D3ZoomBehaviour.html" data-type="entity-link" >D3ZoomBehaviour</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Date.html" data-type="entity-link">Date</a>
+                                <a href="interfaces/Date.html" data-type="entity-link" >Date</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IFolioLegend.html" data-type="entity-link">IFolioLegend</a>
+                                <a href="interfaces/IFolioLegend.html" data-type="entity-link" >IFolioLegend</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockAnalytics.html" data-type="entity-link">IMockAnalytics</a>
+                                <a href="interfaces/IMockAnalytics.html" data-type="entity-link" >IMockAnalytics</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockCache.html" data-type="entity-link">IMockCache</a>
+                                <a href="interfaces/IMockCache.html" data-type="entity-link" >IMockCache</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockConsole.html" data-type="entity-link">IMockConsole</a>
+                                <a href="interfaces/IMockConsole.html" data-type="entity-link" >IMockConsole</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockStorage.html" data-type="entity-link">IMockStorage</a>
+                                <a href="interfaces/IMockStorage.html" data-type="entity-link" >IMockStorage</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IMockWindow.html" data-type="entity-link">IMockWindow</a>
+                                <a href="interfaces/IMockWindow.html" data-type="entity-link" >IMockWindow</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IndexedPropJson.html" data-type="entity-link">IndexedPropJson</a>
+                                <a href="interfaces/IndexedPropJson.html" data-type="entity-link" >IndexedPropJson</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Interval.html" data-type="entity-link">Interval</a>
+                                <a href="interfaces/Interval.html" data-type="entity-link" >Interval</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IResourceDataResponse.html" data-type="entity-link">IResourceDataResponse</a>
+                                <a href="interfaces/IResourceDataResponse.html" data-type="entity-link" >IResourceDataResponse</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/IResourceInfoResources.html" data-type="entity-link">IResourceInfoResources</a>
+                                <a href="interfaces/IResourceInfoResources.html" data-type="entity-link" >IResourceInfoResources</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Namespace.html" data-type="entity-link">Namespace</a>
+                                <a href="interfaces/Namespace.html" data-type="entity-link" >Namespace</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryResult.html" data-type="entity-link">QueryResult</a>
+                                <a href="interfaces/QueryResult.html" data-type="entity-link" >QueryResult</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/QueryTypeIndex.html" data-type="entity-link">QueryTypeIndex</a>
+                                <a href="interfaces/QueryTypeIndex.html" data-type="entity-link" >QueryTypeIndex</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Richtext.html" data-type="entity-link">Richtext</a>
+                                <a href="interfaces/Richtext.html" data-type="entity-link" >Richtext</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/SelectResponse.html" data-type="entity-link">SelectResponse</a>
+                                <a href="interfaces/SelectResponse.html" data-type="entity-link" >SelectResponse</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/SelectResponseBindings.html" data-type="entity-link">SelectResponseBindings</a>
+                                <a href="interfaces/SelectResponseBindings.html" data-type="entity-link" >SelectResponseBindings</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/SelectResponseBody.html" data-type="entity-link">SelectResponseBody</a>
+                                <a href="interfaces/SelectResponseBody.html" data-type="entity-link" >SelectResponseBody</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/SelectResponseHead.html" data-type="entity-link">SelectResponseHead</a>
+                                <a href="interfaces/SelectResponseHead.html" data-type="entity-link" >SelectResponseHead</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/Triple.html" data-type="entity-link">Triple</a>
+                                <a href="interfaces/Triple.html" data-type="entity-link" >Triple</a>
                             </li>
                             <li class="link">
-                                <a href="interfaces/TripleComponent.html" data-type="entity-link">TripleComponent</a>
+                                <a href="interfaces/TripleComponent.html" data-type="entity-link" >TripleComponent</a>
                             </li>
                         </ul>
                     </li>

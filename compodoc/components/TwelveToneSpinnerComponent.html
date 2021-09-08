@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -36,7 +37,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>TwelveToneSpinnerComponent</li>
+  <li
+  >
+  TwelveToneSpinnerComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
 <p class="comment">
     <code>src/app/shared/twelve-tone-spinner/twelve-tone-spinner.component.ts</code>
 </p>
+
 
     <p class="comment">
         <h3>Description</h3>
@@ -139,7 +143,7 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#spinnerMessage">spinnerMessage</a>
+                                <a href="#spinnerMessage" >spinnerMessage</a>
                             </li>
                         </ul>
                     </td>
@@ -162,49 +166,48 @@ that is provided via the <a href="../modules/SharedModule.html">SharedModule</a>
 
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="spinnerMessage"></a>
+                    <span class="name">
+                        <span ><b>spinnerMessage</b></span>
+                        <a href="#spinnerMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="spinnerMessage"></a>
-                        <span class="name">
-                            <b>
-                            spinnerMessage</b>
-                            <a href="#spinnerMessage"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;loading&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/twelve-tone-spinner/twelve-tone-spinner.component.ts:23</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;loading&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="23" class="link-to-prism">src/app/shared/twelve-tone-spinner/twelve-tone-spinner.component.ts:23</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: spinnerMessage.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: spinnerMessage.</p>
 <p>It contains the message to be displayed
 while the spinner is active.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -502,9 +505,9 @@ export class TwelveToneSpinnerComponent {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

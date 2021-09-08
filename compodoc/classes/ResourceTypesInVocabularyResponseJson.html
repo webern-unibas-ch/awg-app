@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -43,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>ResourceTypesInVocabularyResponseJson</li>
+  <li >ResourceTypesInVocabularyResponseJson</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -63,6 +64,7 @@
         <p class="comment">
             <code>src/app/shared/api-objects/resource-response-formats/src/resource-types-in-vocabulary-response-json.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -97,15 +99,15 @@ resource type request for a vocabulary.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#resourcetypes">resourcetypes</a>
+                                <a href="#resourcetypes" >resourcetypes</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#status">status</a>
+                                <a href="#status" >status</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#userdata">userdata</a>
+                                <a href="#userdata" >userdata</a>
                             </li>
                         </ul>
                     </td>
@@ -123,240 +125,237 @@ resource type request for a vocabulary.</p>
 
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resourcetypes"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>resourcetypes</b></span>
+                        <a href="#resourcetypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="resourcetypes"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            resourcetypes</b>
-                            <a href="#resourcetypes"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/ResTypeItemJson.html" target="_self" >ResTypeItemJson[]</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @JsonProperty(&#x27;resourcetypes&#x27;, [&#x27;ResTypeItemJson&#x27;])<br />
+                        </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/ResTypeItemJson.html" target="_self" >ResTypeItemJson[]</a></code>
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/resource-types-in-vocabulary-response-json.ts:33</a></div>
+                        </td>
+                    </tr>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>undefined</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @JsonProperty(&#x27;resourcetypes&#x27;, undefined)<br />
-                            </code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/shared/api-objects/resource-response-formats/src/resource-types-in-vocabulary-response-json.ts:33</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Lists the resource classes that are defined
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Lists the resource classes that are defined
 for the given vocabulary.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-                    <tr>
-                        <td class="col-md-4">
-                          <div class="io-description">
-                                  <b>Parameters :</b>
-                                  <table class="params">
-                                      <thead>
-                                          <tr>
-                                                <td>Name</td>
-                                                    <td>Description</td>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                                <tr>
-                                                        <td>resourcetypes</td>
-                                                        <td>
-                                                                <code><p>: Array<resTypeItem></p>
-</code>
-                                                        </td>
-                                                </tr>
-                                      </tbody>
-                                  </table>
-                          </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
                 <tr>
                     <td class="col-md-4">
-                        <a name="status"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            status</b>
-                            <a href="#status"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>resourcetypes</td>
+                                                    <td>
+                                                            <code><p>: Array<resTypeItem></p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="status"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>status</b></span>
+                        <a href="#status"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/number" target="_blank" >number</a></code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>undefined</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @JsonProperty(&#x27;status&#x27;, Number)<br />
-                            </code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from         <code><a href="../classes/BasicResponseJson.html" target="_self" >BasicResponseJson</a></code>
-</div>
-                                </td>
-                            </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @JsonProperty(&#x27;status&#x27;, Number)<br />
+                        </code>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BasicResponseJson.html#source" target="_self" >BasicResponseJson:29</a></code>
+                                <div class="io-line">Inherited from         <code><a href="../classes/BasicResponseJson.html" target="_self" >BasicResponseJson</a></code>
 </div>
                             </td>
                         </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/BasicResponseJson.html#source" target="_self" >BasicResponseJson:29</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Knora status code</p>
+</div>
+                </td>
+            </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Knora status code</p>
-</div>
-                    </td>
-                </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                          <div class="io-description">
-                                  <b>Parameters :</b>
-                                  <table class="params">
-                                      <thead>
-                                          <tr>
-                                                <td>Name</td>
-                                                    <td>Description</td>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                                <tr>
-                                                        <td>status</td>
-                                                        <td>
-                                                                <code><p>: KnoraStatusCode</p>
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>status</td>
+                                                    <td>
+                                                            <code><p>: KnoraStatusCode</p>
 </code>
-                                                        </td>
-                                                </tr>
-                                      </tbody>
-                                  </table>
-                          </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="userdata"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            userdata</b>
-                            <a href="#userdata"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/UserDataJson.html" target="_self" >UserDataJson</a></code>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="userdata"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>userdata</b></span>
+                        <a href="#userdata"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/UserDataJson.html" target="_self" >UserDataJson</a></code>
 
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>undefined</code>
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <b>Decorators : </b>
-                            <br />
-                            <code>
-                                @JsonProperty(&#x27;userdata&#x27;, UserDataJson)<br />
-                            </code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from         <code><a href="../classes/BasicResponseJson.html" target="_self" >BasicResponseJson</a></code>
-</div>
-                                </td>
-                            </tr>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @JsonProperty(&#x27;userdata&#x27;, UserDataJson)<br />
+                        </code>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../classes/BasicResponseJson.html#source" target="_self" >BasicResponseJson:36</a></code>
+                                <div class="io-line">Inherited from         <code><a href="../classes/BasicResponseJson.html" target="_self" >BasicResponseJson</a></code>
 </div>
                             </td>
                         </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../classes/BasicResponseJson.html#source" target="_self" >BasicResponseJson:36</a></code>
+</div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>The current user&#39;s data</p>
+</div>
+                </td>
+            </tr>
 
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>The current user&#39;s data</p>
-</div>
+                        <div class="io-description">
+                                <b>Parameters :</b>
+                                <table class="params">
+                                    <thead>
+                                        <tr>
+                                            <td>Name</td>
+                                                <td>Description</td>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                            <tr>
+                                                    <td>userdata</td>
+                                                    <td>
+                                                            <code><p>: userdata</p>
+</code>
+                                                    </td>
+                                            </tr>
+                                    </tbody>
+                                </table>
+                        </div>
                     </td>
                 </tr>
-
-                    <tr>
-                        <td class="col-md-4">
-                          <div class="io-description">
-                                  <b>Parameters :</b>
-                                  <table class="params">
-                                      <thead>
-                                          <tr>
-                                                <td>Name</td>
-                                                    <td>Description</td>
-                                          </tr>
-                                      </thead>
-                                      <tbody>
-                                                <tr>
-                                                        <td>userdata</td>
-                                                        <td>
-                                                                <code><p>: userdata</p>
-</code>
-                                                        </td>
-                                                </tr>
-                                      </tbody>
-                                  </table>
-                          </div>
-                        </td>
-                    </tr>
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
 
@@ -423,9 +422,9 @@ export class ResourceTypesInVocabularyResponseJson extends BasicResponseJson {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

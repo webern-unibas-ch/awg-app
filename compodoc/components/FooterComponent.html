@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -36,7 +37,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>FooterComponent</li>
+  <li
+  >
+  FooterComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
 <p class="comment">
     <code>src/app/core/footer/footer.component.ts</code>
 </p>
+
 
     <p class="comment">
         <h3>Description</h3>
@@ -143,10 +147,10 @@ and <a href="../components/FooterLogoComponent.html">FooterLogoComponent</a>.</p
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#logos">logos</a>
+                                <a href="#logos" >logos</a>
                             </li>
                             <li>
-                                <a href="#pageMetaData">pageMetaData</a>
+                                <a href="#pageMetaData" >pageMetaData</a>
                             </li>
                         </ul>
                     </td>
@@ -161,10 +165,10 @@ and <a href="../components/FooterLogoComponent.html">FooterLogoComponent</a>.</p
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#provideMetaData">provideMetaData</a>
+                                <a href="#provideMetaData" >provideMetaData</a>
                             </li>
                         </ul>
                     </td>
@@ -184,7 +188,7 @@ and <a href="../components/FooterLogoComponent.html">FooterLogoComponent</a>.</p
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(coreService: <a href="../injectables/CoreService.html">CoreService</a>)</code>
+<code>constructor(coreService: <a href="../injectables/CoreService.html" target="_self">CoreService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -251,9 +255,7 @@ to get the meta data and logos.</p>
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -294,9 +296,7 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <a name="provideMetaData"></a>
                     <span class="name">
-                        <b>
-                            provideMetaData
-                        </b>
+                        <span ><b>provideMetaData</b></span>
                         <a href="#provideMetaData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -340,77 +340,75 @@ the meta data and logos for the footer.</p>
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="logos"></a>
+                    <span class="name">
+                        <span ><b>logos</b></span>
+                        <a href="#logos"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="logos"></a>
-                        <span class="name">
-                            <b>
-                            logos</b>
-                            <a href="#logos"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/Logos.html" target="_self" >Logos</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/Logos.html" target="_self" >Logos</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer.component.ts:33</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/core/footer/footer.component.ts:33</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: logos.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: logos.</p>
 <p>It keeps the logos for the footer.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="pageMetaData"></a>
+                    <span class="name">
+                        <span ><b>pageMetaData</b></span>
+                        <a href="#pageMetaData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="pageMetaData"></a>
-                        <span class="name">
-                            <b>
-                            pageMetaData</b>
-                            <a href="#pageMetaData"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/MetaPage.html" target="_self" >MetaPage</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/MetaPage.html" target="_self" >MetaPage</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/footer/footer.component.ts:26</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="26" class="link-to-prism">src/app/core/footer/footer.component.ts:26</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: pageMetaData.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: pageMetaData.</p>
 <p>It keeps the page meta data for the footer.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -593,9 +591,9 @@ export class FooterComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

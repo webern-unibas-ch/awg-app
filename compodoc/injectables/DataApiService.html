@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -39,7 +40,7 @@
 
 <ol class="breadcrumb">
   <li>Injectables</li>
-  <li>DataApiService</li>
+  <li >DataApiService</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -59,6 +60,7 @@
         <p class="comment">
             <code>src/app/views/data-view/services/data-api.service.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -93,23 +95,23 @@ and the resource detail data.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#projectId">projectId</a>
+                                <a href="#projectId" >projectId</a>
                             </li>
                             <li>
-                                <a href="#resourceSuffix">resourceSuffix</a>
+                                <a href="#resourceSuffix" >resourceSuffix</a>
                             </li>
                             <li>
-                                <a href="#routes">routes</a>
+                                <a href="#routes" >routes</a>
                             </li>
                             <li>
                                     <span class="modifier">Public</span>
-                                <a href="#http">http</a>
+                                <a href="#http" >http</a>
                             </li>
                             <li>
-                                <a href="#httpGetUrl">httpGetUrl</a>
+                                <a href="#httpGetUrl" >httpGetUrl</a>
                             </li>
                             <li>
-                                <a href="#serviceName">serviceName</a>
+                                <a href="#serviceName" >serviceName</a>
                             </li>
                         </ul>
                     </td>
@@ -125,52 +127,52 @@ and the resource detail data.</p>
                         <ul class="index-list">
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getGeoData">_getGeoData</a>
+                                <a href="#_getGeoData" >_getGeoData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getHlistData">_getHlistData</a>
+                                <a href="#_getHlistData" >_getHlistData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getNodeIdFromAttributes">_getNodeIdFromAttributes</a>
+                                <a href="#_getNodeIdFromAttributes" >_getNodeIdFromAttributes</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getResourceContextData">_getResourceContextData</a>
+                                <a href="#_getResourceContextData" >_getResourceContextData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getResourceDataResponseFromApi">_getResourceDataResponseFromApi</a>
+                                <a href="#_getResourceDataResponseFromApi" >_getResourceDataResponseFromApi</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getResourceFullResponseData">_getResourceFullResponseData</a>
+                                <a href="#_getResourceFullResponseData" >_getResourceFullResponseData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_getSelectionsData">_getSelectionsData</a>
+                                <a href="#_getSelectionsData" >_getSelectionsData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_prepareResourceData">_prepareResourceData</a>
+                                <a href="#_prepareResourceData" >_prepareResourceData</a>
                             </li>
                             <li>
-                                <a href="#getFulltextSearchData">getFulltextSearchData</a>
+                                <a href="#getFulltextSearchData" >getFulltextSearchData</a>
                             </li>
                             <li>
-                                <a href="#getResourceData">getResourceData</a>
-                            </li>
-                            <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_handleRequestError">_handleRequestError</a>
+                                <a href="#getResourceData" >getResourceData</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_httpGet">_httpGet</a>
+                                <a href="#_handleRequestError" >_handleRequestError</a>
                             </li>
                             <li>
-                                <a href="#getApiResponse">getApiResponse</a>
+                                    <span class="modifier">Private</span>
+                                <a href="#_httpGet" >_httpGet</a>
+                            </li>
+                            <li>
+                                <a href="#getApiResponse" >getApiResponse</a>
                             </li>
                         </ul>
                     </td>
@@ -190,7 +192,7 @@ and the resource detail data.</p>
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, conversionService: <a href="../injectables/ConversionService.html">ConversionService</a>)</code>
+<code>constructor(http: <a href="https://angular.io/api/common/http/HttpClient" target="_blank">HttpClient</a>, conversionService: <a href="../injectables/ConversionService.html" target="_self">ConversionService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -270,10 +272,8 @@ instance for the conversion of the response data.</p>
                 <td class="col-md-4">
                     <a name="_getGeoData"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getGeoData
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getGeoData</b></span>
                         <a href="#_getGeoData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -351,10 +351,8 @@ provide an Observable with the GeoDataJson data.</li>
                 <td class="col-md-4">
                     <a name="_getHlistData"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getHlistData
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getHlistData</b></span>
                         <a href="#_getHlistData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -432,10 +430,8 @@ provide an Observable with the HlistJson data.</li>
                 <td class="col-md-4">
                     <a name="_getNodeIdFromAttributes"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getNodeIdFromAttributes
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getNodeIdFromAttributes</b></span>
                         <a href="#_getNodeIdFromAttributes"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -516,10 +512,8 @@ of a selections or hlists value.</p>
                 <td class="col-md-4">
                     <a name="_getResourceContextData"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getResourceContextData
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getResourceContextData</b></span>
                         <a href="#_getResourceContextData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -593,10 +587,8 @@ provide an Observable with the ResourceContextResponseJson data.</p>
                 <td class="col-md-4">
                     <a name="_getResourceDataResponseFromApi"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getResourceDataResponseFromApi
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getResourceDataResponseFromApi</b></span>
                         <a href="#_getResourceDataResponseFromApi"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -692,10 +684,8 @@ and the given resource id.</p>
                 <td class="col-md-4">
                     <a name="_getResourceFullResponseData"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getResourceFullResponseData
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getResourceFullResponseData</b></span>
                         <a href="#_getResourceFullResponseData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -769,10 +759,8 @@ provide an Observable with the ResourceFullResponseJson data.</p>
                 <td class="col-md-4">
                     <a name="_getSelectionsData"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getSelectionsData
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getSelectionsData</b></span>
                         <a href="#_getSelectionsData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -850,10 +838,8 @@ provide an Observable with the SelectionJson data.</li>
                 <td class="col-md-4">
                     <a name="_prepareResourceData"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _prepareResourceData
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_prepareResourceData</b></span>
                         <a href="#_prepareResourceData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -861,7 +847,7 @@ provide an Observable with the SelectionJson data.</li>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_prepareResourceData(resourceDataResponse: <a href="../interfaces/IResourceDataResponse.html">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_prepareResourceData(resourceDataResponse: <a href="../interfaces/IResourceDataResponse.html" target="_self">IResourceDataResponse</a>, resourceId: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -939,16 +925,14 @@ to a ResourceData object.</p>
                 <td class="col-md-4">
                     <a name="getFulltextSearchData"></a>
                     <span class="name">
-                        <b>
-                            getFulltextSearchData
-                        </b>
+                        <span ><b>getFulltextSearchData</b></span>
                         <a href="#getFulltextSearchData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>getFulltextSearchData(searchParams: <a href="../classes/SearchParams.html">SearchParams</a>)</code>
+<code>getFulltextSearchData(searchParams: <a href="../classes/SearchParams.html" target="_self">SearchParams</a>)</code>
                 </td>
             </tr>
 
@@ -1015,9 +999,7 @@ from the given (SALSAH) API.</p>
                 <td class="col-md-4">
                     <a name="getResourceData"></a>
                     <span class="name">
-                        <b>
-                            getResourceData
-                        </b>
+                        <span ><b>getResourceData</b></span>
                         <a href="#getResourceData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1090,10 +1072,8 @@ as an ResourceData observable.</p>
                 <td class="col-md-4">
                     <a name="_handleRequestError"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _handleRequestError
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_handleRequestError</b></span>
                         <a href="#_handleRequestError"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1177,10 +1157,8 @@ as an ResourceData observable.</p>
                 <td class="col-md-4">
                     <a name="_httpGet"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _httpGet
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_httpGet</b></span>
                         <a href="#_httpGet"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1280,9 +1258,7 @@ as an ResourceData observable.</p>
                 <td class="col-md-4">
                     <a name="getApiResponse"></a>
                     <span class="name">
-                        <b>
-                            getApiResponse
-                        </b>
+                        <span ><b>getApiResponse</b></span>
                         <a href="#getApiResponse"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1394,265 +1370,259 @@ as an ResourceData observable.</p>
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="projectId"></a>
+                    <span class="name">
+                        <span ><b>projectId</b></span>
+                        <a href="#projectId"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="projectId"></a>
-                        <span class="name">
-                            <b>
-                            projectId</b>
-                            <a href="#projectId"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;6&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:42</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;6&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:42</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: projectId.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: projectId.</p>
 <p>It keeps the SALSAH specific id of the webern project (&#39;6&#39;).</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="resourceSuffix"></a>
+                    <span class="name">
+                        <span ><b>resourceSuffix</b></span>
+                        <a href="#resourceSuffix"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="resourceSuffix"></a>
-                        <span class="name">
-                            <b>
-                            resourceSuffix</b>
-                            <a href="#resourceSuffix"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;_-_local&#x27;</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:49</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;_-_local&#x27;</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="49" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:49</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: resourceSuffix.</p>
-<p>It keeps the SALSAH specific suffix for a resource (&#39;<em>-</em>local&#39;).</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: resourceSuffix.</p>
+<p>It keeps the SALSAH specific suffix for a resource (&#39;_-_local&#39;).</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="routes"></a>
+                    <span class="name">
+                        <span ><b>routes</b></span>
+                        <a href="#routes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="routes"></a>
-                        <span class="name">
-                            <b>
-                            routes</b>
-                            <a href="#routes"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
         resources: &#x27;resources/&#x27;,
         search: &#x27;search/&#x27;,
         geonames: &#x27;geonames/&#x27;,
         hlists: &#x27;hlists/&#x27;,
         selections: &#x27;selections/&#x27;,
     }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:57</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="57" class="link-to-prism">src/app/views/data-view/services/data-api.service.ts:57</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: routes.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: routes.</p>
 <p>It keeps the SALSAH specific routes for
 resources, search, geonames, hlists and selections.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="http"></a>
+                    <span class="name">
+                            <span class="modifier">Public</span>
+                        <span ><b>http</b></span>
+                        <a href="#http"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="http"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Public</span>
-                            http</b>
-                            <a href="#http"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://angular.io/api/common/http/HttpClient" target="_blank" >HttpClient</a></code>
-
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
-</div>
-                                </td>
-                            </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:45</a></code>
+                                <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
 </div>
                             </td>
                         </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description">Instance of the HttpClient.</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="httpGetUrl"></a>
-                        <span class="name">
-                            <b>
-                            httpGetUrl</b>
-                            <a href="#httpGetUrl"><span class="icon ion-ios-link"></span></a>
-                        </span>
-                    </td>
-                </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;&#x27;</code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
+                                <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:45</a></code>
 </div>
-                                </td>
-                            </tr>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description">Instance of the HttpClient.</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="httpGetUrl"></a>
+                    <span class="name">
+                        <span ><b>httpGetUrl</b></span>
+                        <a href="#httpGetUrl"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;&#x27;</code>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:35</a></code>
+                                <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
 </div>
                             </td>
                         </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:35</a></code>
+</div>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: httpGetUrl.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: httpGetUrl.</p>
 <p>It keeps the url of the HTTP GET request.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="serviceName"></a>
+                    <span class="name">
+                        <span ><b>serviceName</b></span>
+                        <a href="#serviceName"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="serviceName"></a>
-                        <span class="name">
-                            <b>
-                            serviceName</b>
-                            <a href="#serviceName"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>&#x27;ApiService&#x27;</code>
-                        </td>
-                    </tr>
-                            <tr>
-                                <td class="col-md-4">
-                                    <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
-</div>
-                                </td>
-                            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>&#x27;ApiService&#x27;</code>
+                    </td>
+                </tr>
                         <tr>
                             <td class="col-md-4">
-                                    <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:28</a></code>
+                                <div class="io-line">Inherited from         <code><a href="../injectables/ApiService.html" target="_self" >ApiService</a></code>
 </div>
                             </td>
                         </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in         <code><a href="../injectables/ApiService.html#source" target="_self" >ApiService:28</a></code>
+</div>
+                        </td>
+                    </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: serviceName.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: serviceName.</p>
 <p>It keeps the name of the service.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -2029,9 +1999,9 @@ export class DataApiService extends ApiService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

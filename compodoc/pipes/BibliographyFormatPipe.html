@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -42,7 +43,7 @@
 
 <ol class="breadcrumb">
   <li>Pipes</li>
-  <li>BibliographyFormatPipe</li>
+  <li >BibliographyFormatPipe</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +65,7 @@
             <code>src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts</code>
         </p>
 
+
             <p class="comment">
                 <h3>Description</h3>
             </p>
@@ -71,7 +73,7 @@
                 <p>The bibliography format pipe.</p>
 <p>It converts a <a href="../classes/BibEntry.html">BibEntry</a> input into a formatted <code>BibEntry</code>.</p>
 <p><strong>Usage :</strong>
-   <code>{{ bibEntry | bibFormat }}</code></p>
+  <code>{{ bibEntry | bibFormat }}</code></p>
 
             </p>
 
@@ -99,10 +101,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibAuthor"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibAuthor
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibAuthor</b></span>
                         <a href="#_formatBibAuthor"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -180,10 +180,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibEditor"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibEditor
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibEditor</b></span>
                         <a href="#_formatBibEditor"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -261,10 +259,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibPages"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibPages
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibPages</b></span>
                         <a href="#_formatBibPages"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -342,10 +338,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibPubDate"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibPubDate
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibPubDate</b></span>
                         <a href="#_formatBibPubDate"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -423,10 +417,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibPublisher"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibPublisher
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibPublisher</b></span>
                         <a href="#_formatBibPublisher"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -451,6 +443,7 @@
                 <td class="col-md-4">
                     <div class="io-description"><p>Private function: _formatBibPublisher.</p>
 <p>It converts the publisher of the BibEntry.</p>
+<p>DONE IN <a href="_formatBibPubPlace">_formatBibPubPlace</a>.</p>
 </div>
 
                     <div class="io-description">
@@ -505,10 +498,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibPubPlace"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibPubPlace
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibPubPlace</b></span>
                         <a href="#_formatBibPubPlace"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -586,10 +577,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibTitleDep"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibTitleDep
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibTitleDep</b></span>
                         <a href="#_formatBibTitleDep"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -667,10 +656,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibTitleIndep"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibTitleIndep
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibTitleIndep</b></span>
                         <a href="#_formatBibTitleIndep"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -748,10 +735,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibTitleSeries"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibTitleSeries
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibTitleSeries</b></span>
                         <a href="#_formatBibTitleSeries"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -829,10 +814,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibTitleShort"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibTitleShort
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibTitleShort</b></span>
                         <a href="#_formatBibTitleShort"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -910,10 +893,8 @@
                 <td class="col-md-4">
                     <a name="_formatBibUnpublished"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _formatBibUnpublished
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_formatBibUnpublished</b></span>
                         <a href="#_formatBibUnpublished"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -991,10 +972,8 @@
                 <td class="col-md-4">
                     <a name="_getFormatFields"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getFormatFields
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getFormatFields</b></span>
                         <a href="#_getFormatFields"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1002,7 +981,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getFormatFields(opt: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, entry: <a href="../classes/BibEntry.html">BibEntry</a>)</code>
+                    <code>_getFormatFields(opt: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, entry: <a href="../classes/BibEntry.html" target="_self">BibEntry</a>)</code>
                 </td>
             </tr>
 
@@ -1087,10 +1066,8 @@
                 <td class="col-md-4">
                     <a name="_getFormattedValueByKey"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getFormattedValueByKey
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getFormattedValueByKey</b></span>
                         <a href="#_getFormattedValueByKey"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1098,7 +1075,7 @@
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getFormattedValueByKey(entry: <a href="../classes/BibEntry.html">BibEntry</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_getFormattedValueByKey(entry: <a href="../classes/BibEntry.html" target="_self">BibEntry</a>, key: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -1184,10 +1161,8 @@ methods for the values of the BibEntry.</p>
                 <td class="col-md-4">
                     <a name="_getFormattedValues"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _getFormattedValues
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_getFormattedValues</b></span>
                         <a href="#_getFormattedValues"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1195,7 +1170,7 @@ methods for the values of the BibEntry.</p>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_getFormattedValues(entry: <a href="../classes/BibEntry.html">BibEntry</a>)</code>
+                    <code>_getFormattedValues(entry: <a href="../classes/BibEntry.html" target="_self">BibEntry</a>)</code>
                 </td>
             </tr>
 
@@ -1265,10 +1240,8 @@ by their keys and requests them to be converted.</p>
                 <td class="col-md-4">
                     <a name="_splitName"></a>
                     <span class="name">
-                        <b>
-                            <span class="modifier">Private</span>
-                            _splitName
-                        </b>
+                        <span class="modifier">Private</span>
+                        <span ><b>_splitName</b></span>
                         <a href="#_splitName"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -1363,16 +1336,14 @@ of items (according to bibliography style).</p>
                 <td class="col-md-4">
                     <a name="transform"></a>
                     <span class="name">
-                        <b>
-                            transform
-                        </b>
+                        <span ><b>transform</b></span>
                         <a href="#transform"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>transform(bibItem: <a href="../classes/BibEntry.html">BibEntry</a>)</code>
+<code>transform(bibItem: <a href="../classes/BibEntry.html" target="_self">BibEntry</a>)</code>
                 </td>
             </tr>
 
@@ -1438,66 +1409,64 @@ of items (according to bibliography style).</p>
 </section>
             <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_entry"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_entry</b></span>
+                        <a href="#_entry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_entry"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            _entry</b>
-                            <a href="#_entry"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:22</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="22" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:22</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: _entry.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private variable: _entry.</p>
 <p>It keeps the input BibEntry.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_formatFieldArr"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_formatFieldArr</b></span>
+                        <a href="#_formatFieldArr"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="_formatFieldArr"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            _formatFieldArr</b>
-                            <a href="#_formatFieldArr"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Array&lt;string&gt;</code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>    <code>Array&lt;string&gt;</code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>[
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>[
         &#x27;Author&#x27;,
         &#x27;Titel_unselbst&#x27;,
         &#x27;Titel_selbst&#x27;,
@@ -1508,59 +1477,58 @@ of items (according to bibliography style).</p>
         &#x27;Reihentitel&#x27;,
         &#x27;Seitenangabe&#x27;,
     ]</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:36</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Private array: _formatFieldArr.</p>
-<p>It keeps the fields to be formatted.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="_formattedEntry"></a>
-                        <span class="name">
-                            <b>
-                                <span class="modifier">Private</span>
-                            _formattedEntry</b>
-                            <a href="#_formattedEntry"><span class="icon ion-ios-link"></span></a>
-                        </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="36" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:36</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:29</a></div>
-                            </td>
-                        </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private array: _formatFieldArr.</p>
+<p>It keeps the fields to be formatted.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="_formattedEntry"></a>
+                    <span class="name">
+                            <span class="modifier">Private</span>
+                        <span ><b>_formattedEntry</b></span>
+                        <a href="#_formattedEntry"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Private variable: _formattedEntry.</p>
-<p>It keeps the formatted BibEntry.</p>
-</div>
+                        <i>Type : </i>        <code><a href="../classes/BibEntry.html" target="_self" >BibEntry</a></code>
+
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="29" class="link-to-prism">src/app/views/data-view/data-outlets/bibliography/bibliography-format.pipe.ts:29</a></div>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Private variable: _formattedEntry.</p>
+<p>It keeps the formatted BibEntry.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
     </div>
@@ -2059,9 +2027,9 @@ export class BibliographyFormatPipe implements PipeTransform {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

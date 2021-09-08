@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -43,7 +44,7 @@
 
 <ol class="breadcrumb">
   <li>Classes</li>
-  <li>AppConfig</li>
+  <li >AppConfig</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -63,6 +64,7 @@
         <p class="comment">
             <code>src/app/app.config.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -94,46 +96,46 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#API_ENDPOINT">API_ENDPOINT</a>
+                                    <a href="#API_ENDPOINT" >API_ENDPOINT</a>
                                 </li>
                                 <li>
-                                    <a href="#ANALYTICS_ENDPOINT">ANALYTICS_ENDPOINT</a>
+                                    <a href="#ANALYTICS_ENDPOINT" >ANALYTICS_ENDPOINT</a>
                                 </li>
                                 <li>
-                                    <a href="#ANALYTICS_ID">ANALYTICS_ID</a>
+                                    <a href="#ANALYTICS_ID" >ANALYTICS_ID</a>
                                 </li>
                                 <li>
-                                    <a href="#INSERI_TEST_URL">INSERI_TEST_URL</a>
+                                    <a href="#INSERI_TEST_URL" >INSERI_TEST_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#LOCALHOST_URL">LOCALHOST_URL</a>
+                                    <a href="#LOCALHOST_URL" >LOCALHOST_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_PROJECT_NAME">AWG_PROJECT_NAME</a>
+                                    <a href="#AWG_PROJECT_NAME" >AWG_PROJECT_NAME</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_PROJECT_URL">AWG_PROJECT_URL</a>
+                                    <a href="#AWG_PROJECT_URL" >AWG_PROJECT_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_APP_URL">AWG_APP_URL</a>
+                                    <a href="#AWG_APP_URL" >AWG_APP_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_APP_COMPODOC_URL">AWG_APP_COMPODOC_URL</a>
+                                    <a href="#AWG_APP_COMPODOC_URL" >AWG_APP_COMPODOC_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_APP_GITHUB_URL">AWG_APP_GITHUB_URL</a>
+                                    <a href="#AWG_APP_GITHUB_URL" >AWG_APP_GITHUB_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_APP_VERSION">AWG_APP_VERSION</a>
+                                    <a href="#AWG_APP_VERSION" >AWG_APP_VERSION</a>
                                 </li>
                                 <li>
-                                    <a href="#AWG_APP_VERSION_RELEASE_DATE">AWG_APP_VERSION_RELEASE_DATE</a>
+                                    <a href="#AWG_APP_VERSION_RELEASE_DATE" >AWG_APP_VERSION_RELEASE_DATE</a>
                                 </li>
                                 <li>
-                                    <a href="#UNSAFE_OSM_EMBED_URL">UNSAFE_OSM_EMBED_URL</a>
+                                    <a href="#UNSAFE_OSM_EMBED_URL" >UNSAFE_OSM_EMBED_URL</a>
                                 </li>
                                 <li>
-                                    <a href="#UNSAFE_OSM_LINK_URL">UNSAFE_OSM_LINK_URL</a>
+                                    <a href="#UNSAFE_OSM_LINK_URL" >UNSAFE_OSM_LINK_URL</a>
                                 </li>
                             </ul>
                         </td>
@@ -841,9 +843,9 @@ export class AppConfig {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -44,7 +45,9 @@
 
 <ol class="breadcrumb">
   <li>Interfaces</li>
-  <li>Richtext</li>
+  <li
+  >
+  Richtext</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
         <p class="comment">
             <code>src/app/shared/api-objects/basic-message-components/src/basic-type-aliases.ts</code>
         </p>
+
 
             <p class="comment">
                 <h3>Description</h3>
@@ -87,13 +91,22 @@
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                        <a href="#resource_reference">resource_reference</a>
+                                        <a href="#resource_reference" 
+>
+                                            resource_reference
+                                        </a>
                                 </li>
                                 <li>
-                                        <a href="#textattr">textattr</a>
+                                        <a href="#textattr" 
+>
+                                            textattr
+                                        </a>
                                 </li>
                                 <li>
-                                        <a href="#utf8str">utf8str</a>
+                                        <a href="#utf8str" 
+>
+                                            utf8str
+                                        </a>
                                 </li>
                             </ul>
                         </td>
@@ -111,7 +124,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="resource_reference"></a>
-                                        <span class="name"><b>resource_reference</b><a href="#resource_reference"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>resource_reference</b>
+                                            <a href="#resource_reference">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -146,7 +163,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="textattr"></a>
-                                        <span class="name"><b>textattr</b><a href="#textattr"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>textattr</b>
+                                            <a href="#textattr">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -181,7 +202,11 @@
                                 <tr>
                                     <td class="col-md-4">
                                         <a name="utf8str"></a>
-                                        <span class="name"><b>utf8str</b><a href="#utf8str"><span class="icon ion-ios-link"></span></a></span>
+                                        <span class="name "><b>utf8str</b>
+                                            <a href="#utf8str">
+                                                <span class="icon ion-ios-link"></span>
+                                            </a>
+                                        </span>
                                     </td>
                                 </tr>
                                 <tr>
@@ -476,9 +501,9 @@ interface Interval {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

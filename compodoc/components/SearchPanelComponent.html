@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -36,7 +37,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>SearchPanelComponent</li>
+  <li
+  >
+  SearchPanelComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
 <p class="comment">
     <code>src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts</code>
 </p>
+
 
     <p class="comment">
         <h3>Description</h3>
@@ -144,19 +148,19 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#currentQueryParams">currentQueryParams</a>
+                                <a href="#currentQueryParams" >currentQueryParams</a>
                             </li>
                             <li>
-                                <a href="#destroy$">destroy$</a>
+                                <a href="#destroy$" >destroy$</a>
                             </li>
                             <li>
-                                <a href="#errorMessage">errorMessage</a>
+                                <a href="#errorMessage" >errorMessage</a>
                             </li>
                             <li>
-                                <a href="#searchParams">searchParams</a>
+                                <a href="#searchParams" >searchParams</a>
                             </li>
                             <li>
-                                <a href="#viewChanged">viewChanged</a>
+                                <a href="#viewChanged" >viewChanged</a>
                             </li>
                         </ul>
                     </td>
@@ -171,31 +175,31 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#getFulltextSearchData">getFulltextSearchData</a>
+                                <a href="#getFulltextSearchData" >getFulltextSearchData</a>
                             </li>
                             <li>
-                                <a href="#ngOnDestroy">ngOnDestroy</a>
+                                <a href="#ngOnDestroy" >ngOnDestroy</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#onPageChange">onPageChange</a>
+                                <a href="#onPageChange" >onPageChange</a>
                             </li>
                             <li>
-                                <a href="#onRowNumberChange">onRowNumberChange</a>
+                                <a href="#onRowNumberChange" >onRowNumberChange</a>
                             </li>
                             <li>
-                                <a href="#onSearch">onSearch</a>
+                                <a href="#onSearch" >onSearch</a>
                             </li>
                             <li>
-                                <a href="#onViewChange">onViewChange</a>
+                                <a href="#onViewChange" >onViewChange</a>
                             </li>
                             <li>
-                                <a href="#routeToSelf">routeToSelf</a>
+                                <a href="#routeToSelf" >routeToSelf</a>
                             </li>
                             <li>
-                                <a href="#updateSearchParamsFromRoute">updateSearchParamsFromRoute</a>
+                                <a href="#updateSearchParamsFromRoute" >updateSearchParamsFromRoute</a>
                             </li>
                         </ul>
                     </td>
@@ -214,10 +218,10 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
                         <td class="col-md-4">
                             <ul class="index-list">
                                 <li>
-                                    <a href="#httpGetUrl">httpGetUrl</a>
+                                    <a href="#httpGetUrl" >httpGetUrl</a>
                                 </li>
                                 <li>
-                                    <a href="#isLoading$">isLoading$</a>
+                                    <a href="#isLoading$" >isLoading$</a>
                                 </li>
                             </ul>
                         </td>
@@ -232,7 +236,7 @@ and the <a href="../components/SearchResultListComponent.html">SearchResultListC
             <tbody>
                 <tr>
                     <td class="col-md-4">
-<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, conversionService: <a href="../injectables/ConversionService.html">ConversionService</a>, dataApiService: <a href="../injectables/DataApiService.html">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html">DataStreamerService</a>, loadingService: <a href="../injectables/LoadingService.html">LoadingService</a>)</code>
+<code>constructor(route: <a href="https://angular.io/api/router/ActivatedRoute" target="_blank">ActivatedRoute</a>, router: <a href="https://angular.io/api/router/Router" target="_blank">Router</a>, conversionService: <a href="../injectables/ConversionService.html" target="_self">ConversionService</a>, dataApiService: <a href="../injectables/DataApiService.html" target="_self">DataApiService</a>, dataStreamerService: <a href="../injectables/DataStreamerService.html" target="_self">DataStreamerService</a>, loadingService: <a href="../injectables/LoadingService.html" target="_self">LoadingService</a>)</code>
                     </td>
                 </tr>
                         <tr>
@@ -380,9 +384,7 @@ the DataStreamerService, and the LoadingService.</p>
                 <td class="col-md-4">
                     <a name="getFulltextSearchData"></a>
                     <span class="name">
-                        <b>
-                            getFulltextSearchData
-                        </b>
+                        <span ><b>getFulltextSearchData</b></span>
                         <a href="#getFulltextSearchData"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -430,9 +432,7 @@ from the <a href="../injectables/DataApiService.html">DataApiService</a>.</p>
                 <td class="col-md-4">
                     <a name="ngOnDestroy"></a>
                     <span class="name">
-                        <b>
-                            ngOnDestroy
-                        </b>
+                        <span ><b>ngOnDestroy</b></span>
                         <a href="#ngOnDestroy"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -473,9 +473,7 @@ when destroying the component.</p>
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -516,9 +514,7 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <a name="onPageChange"></a>
                     <span class="name">
-                        <b>
-                            onPageChange
-                        </b>
+                        <span ><b>onPageChange</b></span>
                         <a href="#onPageChange"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -597,9 +593,7 @@ after a page change request and triggers the
                 <td class="col-md-4">
                     <a name="onRowNumberChange"></a>
                     <span class="name">
-                        <b>
-                            onRowNumberChange
-                        </b>
+                        <span ><b>onRowNumberChange</b></span>
                         <a href="#onRowNumberChange"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -678,9 +672,7 @@ after a row change request and triggers the
                 <td class="col-md-4">
                     <a name="onSearch"></a>
                     <span class="name">
-                        <b>
-                            onSearch
-                        </b>
+                        <span ><b>onSearch</b></span>
                         <a href="#onSearch"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -759,9 +751,7 @@ after a search request and triggers the
                 <td class="col-md-4">
                     <a name="onViewChange"></a>
                     <span class="name">
-                        <b>
-                            onViewChange
-                        </b>
+                        <span ><b>onViewChange</b></span>
                         <a href="#onViewChange"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -840,16 +830,14 @@ after a view change request and triggers the
                 <td class="col-md-4">
                     <a name="routeToSelf"></a>
                     <span class="name">
-                        <b>
-                            routeToSelf
-                        </b>
+                        <span ><b>routeToSelf</b></span>
                         <a href="#routeToSelf"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>routeToSelf(sp: <a href="../classes/SearchParams.html">SearchParams</a>)</code>
+<code>routeToSelf(sp: <a href="../classes/SearchParams.html" target="_self">SearchParams</a>)</code>
                 </td>
             </tr>
 
@@ -920,9 +908,7 @@ new search parameters.</p>
                 <td class="col-md-4">
                     <a name="updateSearchParamsFromRoute"></a>
                     <span class="name">
-                        <b>
-                            updateSearchParamsFromRoute
-                        </b>
+                        <span ><b>updateSearchParamsFromRoute</b></span>
                         <a href="#updateSearchParamsFromRoute"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -948,6 +934,7 @@ new search parameters.</p>
 <p>It updates the searchParams from the query params
 of the current route and routes to the component
 itself again if &#39;routing&#39; is truthy.</p>
+<p>by routing to the component itself again.</p>
 </div>
 
                     <div class="io-description">
@@ -1015,198 +1002,193 @@ by routing to the component itself again.</p>
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="currentQueryParams"></a>
+                    <span class="name">
+                        <span ><b>currentQueryParams</b></span>
+                        <a href="#currentQueryParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="currentQueryParams"></a>
-                        <span class="name">
-                            <b>
-                            currentQueryParams</b>
-                            <a href="#currentQueryParams"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
+
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://angular.io/api/router/ParamMap" target="_blank" >ParamMap</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:40</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="40" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:40</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: currentQueryParams.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: currentQueryParams.</p>
 <p>It keeps the current ParamMap from the query url.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="destroy$"></a>
+                    <span class="name">
+                        <span ><b>destroy$</b></span>
+                        <a href="#destroy$"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="destroy$"></a>
-                        <span class="name">
-                            <b>
-                            destroy$</b>
-                            <a href="#destroy$"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>Subject&lt;boolean&gt;</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:33</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>new Subject&lt;boolean&gt;()</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="33" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:33</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: destroy$.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: destroy$.</p>
 <p>Subject to emit a truthy value in the ngOnDestroy lifecycle hook.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="errorMessage"></a>
+                    <span class="name">
+                        <span ><b>errorMessage</b></span>
+                        <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="errorMessage"></a>
-                        <span class="name">
-                            <b>
-                            errorMessage</b>
-                            <a href="#errorMessage"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>undefined</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >any</a></code>
-
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:73</a></div>
                         </td>
                     </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>undefined</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:73</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: errorMessage.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: errorMessage.</p>
 <p>It keeps an errorMessage for the search response subscription.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="searchParams"></a>
+                    <span class="name">
+                        <span ><b>searchParams</b></span>
+                        <a href="#searchParams"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="searchParams"></a>
-                        <span class="name">
-                            <b>
-                            searchParams</b>
-                            <a href="#searchParams"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="../classes/SearchParams.html" target="_self" >SearchParams</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
         query: &#x27;&#x27;,
         nRows: &#x27;25&#x27;,
         startAt: &#x27;0&#x27;,
         view: SearchParamsViewTypes.table,
     }</code>
-                        </td>
-                    </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:47</a></div>
-                            </td>
-                        </tr>
-
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: searchParams.</p>
-<p>It keeps the default parameters for the search.</p>
-</div>
-                    </td>
-                </tr>
-
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <a name="viewChanged"></a>
-                        <span class="name">
-                            <b>
-                            viewChanged</b>
-                            <a href="#viewChanged"><span class="icon ion-ios-link"></span></a>
-                        </span>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>false</code>
+                                <div class="io-line">Defined in <a href="" data-line="47" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:47</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:80</a></div>
-                            </td>
-                        </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: searchParams.</p>
+<p>It keeps the default parameters for the search.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="viewChanged"></a>
+                    <span class="name">
+                        <span ><b>viewChanged</b></span>
+                        <a href="#viewChanged"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: viewChanged.</p>
-<p>If the view has changed.</p>
-</div>
+                        <i>Default value : </i><code>false</code>
                     </td>
                 </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="80" class="link-to-prism">src/app/views/data-view/data-outlets/search-panel/search-panel.component.ts:80</a></div>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: viewChanged.</p>
+<p>If the view has changed.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
     <section>
@@ -1737,9 +1719,9 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 

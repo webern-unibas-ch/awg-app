@@ -8,7 +8,8 @@
         <meta name="viewport" content="width=device-width, initial-scale=1">
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
-	      <link rel="stylesheet" href="../styles/style.css">
+	   <link rel="stylesheet" href="../styles/style.css">
+        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -36,7 +37,9 @@
 
 <ol class="breadcrumb">
   <li>Components</li>
-  <li>EditionSvgSheetComponent</li>
+  <li
+  >
+  EditionSvgSheetComponent</li>
 </ol>
 
 <ul class="nav nav-tabs" role="tablist">
@@ -64,6 +67,7 @@
 <p class="comment">
     <code>src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts</code>
 </p>
+
 
     <p class="comment">
         <h3>Description</h3>
@@ -145,13 +149,28 @@ and displays a selected svg sheet.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#overlayTypes">overlayTypes</a>
+                                <a href="#overlayTypes" >overlayTypes</a>
                             </li>
                             <li>
-                                <a href="#sheetsArray">sheetsArray</a>
+                                <a href="#selectedOverlay" >selectedOverlay</a>
                             </li>
                             <li>
-                                <a href="#svgSheetLabels">svgSheetLabels</a>
+                                <a href="#selectedSvgSheet" >selectedSvgSheet</a>
+                            </li>
+                            <li>
+                                <a href="#selectOverlayRequest" >selectOverlayRequest</a>
+                            </li>
+                            <li>
+                                <a href="#selectSvgSheetRequest" >selectSvgSheetRequest</a>
+                            </li>
+                            <li>
+                                <a href="#sheetsArray" >sheetsArray</a>
+                            </li>
+                            <li>
+                                <a href="#svgSheetLabels" >svgSheetLabels</a>
+                            </li>
+                            <li>
+                                <a href="#svgSheetsData" >svgSheetsData</a>
                             </li>
                         </ul>
                     </td>
@@ -166,19 +185,19 @@ and displays a selected svg sheet.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#isSelectedOverlay">isSelectedOverlay</a>
+                                <a href="#isSelectedOverlay" >isSelectedOverlay</a>
                             </li>
                             <li>
-                                <a href="#isSelectedSvgSheet">isSelectedSvgSheet</a>
+                                <a href="#isSelectedSvgSheet" >isSelectedSvgSheet</a>
                             </li>
                             <li>
-                                <a href="#ngOnInit">ngOnInit</a>
+                                <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
-                                <a href="#selectOverlay">selectOverlay</a>
+                                <a href="#selectOverlay" >selectOverlay</a>
                             </li>
                             <li>
-                                <a href="#selectSvgSheet">selectSvgSheet</a>
+                                <a href="#selectSvgSheet" >selectSvgSheet</a>
                             </li>
                         </ul>
                     </td>
@@ -193,13 +212,13 @@ and displays a selected svg sheet.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#selectedOverlay">selectedOverlay</a>
+                                <a href="#selectedOverlay" >selectedOverlay</a>
                             </li>
                             <li>
-                                <a href="#selectedSvgSheet">selectedSvgSheet</a>
+                                <a href="#selectedSvgSheet" >selectedSvgSheet</a>
                             </li>
                             <li>
-                                <a href="#svgSheetsData">svgSheetsData</a>
+                                <a href="#svgSheetsData" >svgSheetsData</a>
                             </li>
                         </ul>
                     </td>
@@ -214,10 +233,10 @@ and displays a selected svg sheet.</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                <a href="#selectOverlayRequest">selectOverlayRequest</a>
+                                <a href="#selectOverlayRequest" >selectOverlayRequest</a>
                             </li>
                             <li>
-                                <a href="#selectSvgSheetRequest">selectSvgSheetRequest</a>
+                                <a href="#selectSvgSheetRequest" >selectSvgSheetRequest</a>
                             </li>
                         </ul>
                     </td>
@@ -389,16 +408,14 @@ and displays a selected svg sheet.</p>
                 <td class="col-md-4">
                     <a name="isSelectedOverlay"></a>
                     <span class="name">
-                        <b>
-                            isSelectedOverlay
-                        </b>
+                        <span ><b>isSelectedOverlay</b></span>
                         <a href="#isSelectedOverlay"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>isSelectedOverlay(type: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlayTypes</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>isSelectedOverlay(type: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlayTypes</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -485,9 +502,7 @@ the latest selected svg overlay.</p>
                 <td class="col-md-4">
                     <a name="isSelectedSvgSheet"></a>
                     <span class="name">
-                        <b>
-                            isSelectedSvgSheet
-                        </b>
+                        <span ><b>isSelectedSvgSheet</b></span>
                         <a href="#isSelectedSvgSheet"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -565,9 +580,7 @@ of the latest selected svg sheet.</p>
                 <td class="col-md-4">
                     <a name="ngOnInit"></a>
                     <span class="name">
-                        <b>
-                            ngOnInit
-                        </b>
+                        <span ><b>ngOnInit</b></span>
                         <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -608,16 +621,14 @@ when initializing the component.</p>
                 <td class="col-md-4">
                     <a name="selectOverlay"></a>
                     <span class="name">
-                        <b>
-                            selectOverlay
-                        </b>
+                        <span ><b>selectOverlay</b></span>
                         <a href="#selectOverlay"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>selectOverlay(type: <a href="../classes/EditionSvgOverlay.html">EditionSvgOverlayTypes</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>selectOverlay(type: <a href="../classes/EditionSvgOverlay.html" target="_self">EditionSvgOverlayTypes</a>, id: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
@@ -704,9 +715,7 @@ to the <a href="selectOverlayRequest">selectOverlayRequest</a>.</p>
                 <td class="col-md-4">
                     <a name="selectSvgSheet"></a>
                     <span class="name">
-                        <b>
-                            selectSvgSheet
-                        </b>
+                        <span ><b>selectSvgSheet</b></span>
                         <a href="#selectSvgSheet"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
@@ -781,98 +790,273 @@ to the <a href="selectSvgSheetRequest">selectSvgSheetRequest</a>.</p>
 </section>
     <section>
     
-        <h3 id="inputs">
-            Properties
-        </h3>
-        <table class="table table-sm table-bordered">
-            <tbody>
+    <h3 id="inputs">
+        Properties
+    </h3>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="overlayTypes"></a>
+                    <span class="name">
+                        <span ><b>overlayTypes</b></span>
+                        <a href="#overlayTypes"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="overlayTypes"></a>
-                        <span class="name">
-                            <b>
-                            overlayTypes</b>
-                            <a href="#overlayTypes"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Default value : </i><code>EditionSvgOverlayTypes</code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Default value : </i><code>EditionSvgOverlayTypes</code>
+                                <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:158</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="158" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:158</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: overlayTypes.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: overlayTypes.</p>
 <p>It keeps the EditionSvgOverlayTypes to be accessed from template.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedOverlay"></a>
+                    <span class="name">
+                        <span ><b>selectedOverlay</b></span>
+                        <a href="#selectedOverlay"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="sheetsArray"></a>
-                        <span class="name">
-                            <b>
-                            sheetsArray</b>
-                            <a href="#sheetsArray"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EditionSvgOverlay</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Input()<br />
+                        </code>
                     </td>
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                            <i>Type : </i>    <code>string[]</code>
-
+                                <div class="io-line">Defined in <a href="" data-line="89" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:89</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:151</a></div>
-                            </td>
-                        </tr>
 
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Input variable: selectedOverlay.</p>
+<p>It keeps the selected svg overlay.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectedSvgSheet"></a>
+                    <span class="name">
+                        <span ><b>selectedSvgSheet</b></span>
+                        <a href="#selectedSvgSheet"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: sheetsArray.</p>
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheet.html" target="_self" >EditionSvgSheet</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Input()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="81" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:81</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Input variable: selectedSvgSheet.</p>
+<p>It keeps the selected svg sheet.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectOverlayRequest"></a>
+                    <span class="name">
+                        <span ><b>selectOverlayRequest</b></span>
+                        <a href="#selectOverlayRequest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgOverlay.html" target="_self" >EventEmitter&lt;EditionSvgOverlay&gt;</a></code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new EventEmitter()</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Output()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="105" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:105</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Output variable: selectOverlayRequest.</p>
+<p>It keeps an event emitter for the selected textcritics.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="selectSvgSheetRequest"></a>
+                    <span class="name">
+                        <span ><b>selectSvgSheetRequest</b></span>
+                        <a href="#selectSvgSheetRequest"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>EventEmitter&lt;string&gt;</code>
+
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>new EventEmitter()</code>
+                    </td>
+                </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Output()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="97" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:97</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Output variable: selectSvgSheetRequest.</p>
+<p>It keeps an event emitter for the selected id of an svg sheet.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="sheetsArray"></a>
+                    <span class="name">
+                        <span ><b>sheetsArray</b></span>
+                        <a href="#sheetsArray"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>    <code>string[]</code>
+
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="151" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:151</a></div>
+                        </td>
+                    </tr>
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: sheetsArray.</p>
 <p>It keeps the array of of the svg sheets&#39; labels.
 TODO: Refactor temporary solution. Will be removed and created dynamically from data.</p>
 </div>
-                    </td>
-                </tr>
+                </td>
+            </tr>
 
-            </tbody>
-        </table>
-        <table class="table table-sm table-bordered">
-            <tbody>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svgSheetLabels"></a>
+                    <span class="name">
+                        <span ><b>svgSheetLabels</b></span>
+                        <a href="#svgSheetLabels"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
                 <tr>
                     <td class="col-md-4">
-                        <a name="svgSheetLabels"></a>
-                        <span class="name">
-                            <b>
-                            svgSheetLabels</b>
-                            <a href="#svgSheetLabels"><span class="icon ion-ios-link"></span></a>
-                        </span>
+                        <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
+
                     </td>
                 </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Type : </i>        <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/object" target="_blank" >object</a></code>
-
-                        </td>
-                    </tr>
-                    <tr>
-                        <td class="col-md-4">
-                            <i>Default value : </i><code>{
+                <tr>
+                    <td class="col-md-4">
+                        <i>Default value : </i><code>{
         op12: {
             SHEET_1: SvgSheetLabelsOp12.SHEET_1,
             SHEET_2: SvgSheetLabelsOp12.SHEET_2,
@@ -903,25 +1087,67 @@ TODO: Refactor temporary solution. Will be removed and created dynamically from 
             SHEET_4_3: SvgSheetLabelsOp25.SHEET_4_3,
         },
     }</code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:113</a></div>
                         </td>
                     </tr>
-                        <tr>
-                            <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="113" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:113</a></div>
-                            </td>
-                        </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <div class="io-description"><p>Public variable: svgSheetLabels.</p>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public variable: svgSheetLabels.</p>
 <p>It keeps the labels of the svg sheets.
 TODO: Refactor temporary solution. Will be removed and created dynamically from data.</p>
 </div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="svgSheetsData"></a>
+                    <span class="name">
+                        <span ><b>svgSheetsData</b></span>
+                        <a href="#svgSheetsData"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <i>Type : </i>        <code><a href="../classes/EditionSvgSheetList.html" target="_self" >EditionSvgSheetList</a></code>
+
                     </td>
                 </tr>
+                <tr>
+                    <td class="col-md-4">
+                        <b>Decorators : </b>
+                        <br />
+                        <code>
+                            @Input()<br />
+                        </code>
+                    </td>
+                </tr>
+                    <tr>
+                        <td class="col-md-4">
+                                <div class="io-line">Defined in <a href="" data-line="73" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-detail/edition-svg-sheet/edition-svg-sheet.component.ts:73</a></div>
+                        </td>
+                    </tr>
 
-            </tbody>
-        </table>
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Input variable: svgSheetsData.</p>
+<p>It keeps the svg sheets data.</p>
+</div>
+                </td>
+            </tr>
+
+        </tbody>
+    </table>
 </section>
 
 </div>
@@ -1161,6 +1387,9 @@ export class EditionSvgSheetComponent implements OnInit {
      * @returns {void} Emits the id.
      */
     selectSvgSheet(id: string): void {
+        if (!id) {
+            return;
+        }
         this.selectSvgSheetRequest.emit(id);
     }
 }
@@ -1704,9 +1933,9 @@ ngx-gallery ::ng-deep .ngx-gallery-thumbnail:hover {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       <!-- Required to polyfill modern browsers as code is ES5 for IE... -->
-       <script src="../js/libs/custom-elements-es5-adapter.js" charset="utf-8" defer></script>
-       <script src="../js/menu-wc.js" defer></script>
+       
+       <script type="module" src="../js/menu-wc.js" defer></script>
+       <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>
 
