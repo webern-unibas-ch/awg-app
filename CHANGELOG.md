@@ -4,7 +4,7 @@ All notable changes to this project will be documented in this file. See [standa
 
 ### [0.7.16](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.15...v0.7.16) (2021-09-08)
 
-### Bug Fixes
+### Features
 
 -   **edition:** add sample queries for select ([ba1b6b5](https://github.com/webern-unibas-ch/awg-app/commit/ba1b6b560e462e684e860abf3434f6c1a93b8312))
 
