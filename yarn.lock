@@ -7041,10 +7041,10 @@ gzip-size@^6.0.0:
   dependencies:
     duplexer "^0.1.2"
 
-gzipper@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-5.0.0.tgz#9b39bbc94e78f007e013a1ac7c8347d17a97c3a0"
-  integrity sha512-gP+p0uvifiIN2m5YB/X10lg+yvy1xI3bBAKQ/rcR2weIClQ8cKQdqA7GzvGwRNhA0gO3hU3ALG9XuoO5zf63iA==
+gzipper@^5.0.1:
+  version "5.0.1"
+  resolved "https://registry.yarnpkg.com/gzipper/-/gzipper-5.0.1.tgz#ddfb894912430ca807cb3dc00379fde361b1823b"
+  integrity sha512-dGrx0KGY3pycpw1ecbQN35zA0SfJERJjwO2rN8F3zgtbNXdlgB1DlbUl4BnmyRrIjioN2g1o91lIDpMzXb95JQ==
   dependencies:
     commander "^7.2.0"
     deep-equal "^2.0.5"
