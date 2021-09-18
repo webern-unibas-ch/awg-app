@@ -6,7 +6,7 @@ import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 export class AppConfig {
     /**
      * Getter for the URL of the Salsah API endpoint
-     * ({@link https://www.salsah.org}).
+     * (https://www.salsah.org).
      *
      * @returns {string}
      */
@@ -18,7 +18,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the Analytics endpoint
-     * ({@link https://www.google-analytics.com/}).
+     * (https://www.google-analytics.com/).
      *
      * @returns {string}
      */
@@ -28,7 +28,7 @@ export class AppConfig {
 
     /**
      * Getter for the Analytics id
-     * ({@link 'UA-XXXXXXX-Y'}).
+     * ('UA-XXXXXXX-Y').
      *
      * @returns {string}
      */
@@ -38,7 +38,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the Inseri Test Instance
-     * ({@link http://test-nieos.nie-ine.ch}).
+     * (http://test-nieos.nie-ine.ch).
      *
      * @returns {string}
      */
@@ -48,7 +48,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the localhost
-     * ({@link 'http://localhost:4200'}).
+     * (http://localhost:4200).
      *
      * @returns {string}
      */
@@ -67,7 +67,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the AWG project website
-     * ({@link https://anton-webern.ch}).
+     * (https://anton-webern.ch).
      *
      * @returns {string}
      */
@@ -77,7 +77,7 @@ export class AppConfig {
 
     /**
      * Getter for the url of the AWG edition website (awg-app).
-     * {@link https://edition.anton-webern.ch/}
+     * (https://edition.anton-webern.ch/)
      *
      * @returns {string}
      */
@@ -88,7 +88,7 @@ export class AppConfig {
     /**
      * Getter for the URL of the compodoc documentation
      * of the AWG edition website (awg-app).
-     * ({@link compodoc/index.html}).
+     * (compodoc/index.html).
      *
      * @returns {string}
      */
@@ -99,7 +99,7 @@ export class AppConfig {
     /**
      * Getter for the URL of the GitHub repository
      * of the AWG edition website (awg-app).
-     * ({@link https://github.com/webern-unibas-ch/awg-app}).
+     * (https://github.com/webern-unibas-ch/awg-app).
      *
      * @returns {string}
      */

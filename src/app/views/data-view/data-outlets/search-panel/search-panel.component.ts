@@ -52,14 +52,18 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     };
 
     /**
-     * Getter for the httpGetUrl of the {@link DataApiService}.
+     * Gets the httpGetUrl from the DataApiService.
+     *
+     * @returns {string}
      */
     get httpGetUrl(): string {
         return this.dataApiService.httpGetUrl;
     }
 
     /**
-     * Getter for the loading status observable of the {@link LoadingService}.
+     * Gets the loading status observable from the LoadingService.
+     *
+     * @returns {Observable<boolean>}
      */
     get isLoading$(): Observable<boolean> {
         return this.loadingService.getLoadingStatus();

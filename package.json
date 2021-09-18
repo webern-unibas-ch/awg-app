@@ -56,7 +56,7 @@
         "format:write": "prettier --write \"src/**/*.{ts,js,css,html}\"",
         "format:fix-staged": "pretty-quick --staged",
         "-- DOCS --": "",
-        "doc": "yarn compodoc --tsconfig tsconfig.doc.json --theme Readthedocs --output dist/awg-app/compodoc --disableRoutesGraph",
+        "doc": "yarn compodoc --tsconfig tsconfig.doc.json --theme Readthedocs --output dist/awg-app/compodoc",
         "doc:build": "yarn doc",
         "doc:serve": "yarn doc --serve --watch",
         "-- BUILD --": "",
