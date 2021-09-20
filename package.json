@@ -154,7 +154,7 @@
         "@kolkov/ngx-gallery": "^1.2.3",
         "@ng-bootstrap/ng-bootstrap": "^10.0.0",
         "bootstrap": "^4.6.0",
-        "codemirror": "^5.62.3",
+        "codemirror": "^5.63.0",
         "core-js": "^3.17.3",
         "d3-drag": "^3.0.0",
         "d3-force": "^3.0.0",
