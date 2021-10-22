@@ -155,7 +155,7 @@
         "@ng-bootstrap/ng-bootstrap": "^10.0.0",
         "bootstrap": "^4.6.0",
         "codemirror": "^5.63.3",
-        "core-js": "^3.18.2",
+        "core-js": "^3.18.3",
         "d3-drag": "^3.0.0",
         "d3-force": "^3.0.0",
         "d3-selection": "^3.0.0",
@@ -183,7 +183,7 @@
         "@commitlint/cli": "^13.2.1",
         "@commitlint/config-angular": "^13.2.0",
         "@compodoc/compodoc": "^1.1.15",
-        "@types/d3": "^7.0.0",
+        "@types/d3": "^7.1.0",
         "@types/jasmine": "~3.8.2",
         "@types/node": "^15.14.9",
         "@typescript-eslint/eslint-plugin": "^5.1.0",
@@ -200,7 +200,7 @@
         "gzipper": "^5.0.1",
         "husky": "^7.0.4",
         "jasmine-core": "~3.8.0",
-        "karma": "~6.3.4",
+        "karma": "~6.3.5",
         "karma-chrome-launcher": "~3.1.0",
         "karma-coverage": "^2.0.3",
         "karma-jasmine": "~4.0.1",
@@ -211,7 +211,7 @@
         "source-map-explorer": "^2.5.2",
         "standard-version": "^9.3.2",
         "typescript": "~4.3.5",
-        "webpack-bundle-analyzer": "^4.4.2"
+        "webpack-bundle-analyzer": "^4.5.0"
     },
     "engines": {
         "node": ">= 12.14.1",
