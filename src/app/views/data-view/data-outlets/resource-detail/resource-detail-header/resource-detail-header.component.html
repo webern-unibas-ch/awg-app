@@ -22,18 +22,18 @@
             <table class="table table-sm resource-header-table">
                 <tbody>
                     <tr>
-                        <th>ID:</th>
+                        <th scope="row">ID:</th>
                         <td id="header?.objID">{{ header?.objID }}</td>
                     </tr>
                     <tr>
-                        <th>Kategorie</th>
+                        <th scope="row">Kategorie</th>
                         <td>
                             <span class="resource-type">{{ header?.type }}</span
                             >&nbsp;<span class="resource-icon"><img [src]="header?.icon" alt="icon" /></span>
                         </td>
                     </tr>
                     <tr>
-                        <th>Zuletzt bearbeitet:</th>
+                        <th scope="row">Zuletzt bearbeitet:</th>
                         <td>
                             <span class="resource-lastmod">{{ header?.lastmod }}</span> (UTC)
                         </td>
