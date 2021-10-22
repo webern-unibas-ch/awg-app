@@ -43,8 +43,12 @@ const reverse = (str: string): string => str.split('').reverse().join('');
  *
  * @returns {string}
  */
-const random = (): string =>
-    (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16);
+const random = (): string => {
+    const crypto = window.crypto || (<any>window).msCrypto;
+    const array = new Uint32Array(1);
+
+    return Math.floor(crypto.getRandomValues(array)[0]).toString(16);
+};
 
 /**
  * Variable: compileHtml.currentIdTime
@@ -68,7 +72,7 @@ const nextId = (): string => {
         currentIdTime = now;
     }
     const comingId = ++currentId;
-    const randomHex = reverse(random()).padStart(15, '0');
+    const randomHex = reverse(random()).padStart(8, '0');
     const timeHex = reverse(currentIdTime.toString(16).padStart(12, '0'));
     const comingIdHex = reverse(comingId.toString(16).padStart(3, '0'));
     const newId = `compile-html-${timeHex}${comingIdHex}${randomHex}`;
