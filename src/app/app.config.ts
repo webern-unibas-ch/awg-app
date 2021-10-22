@@ -37,13 +37,13 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the URL of the Inseri Test Instance
-     * (http://test-nieos.nie-ine.ch).
+     * Getter for the URL of the INSERI Instance
+     * (https://apps.inseri.swiss).
      *
      * @returns {string}
      */
-    public static get INSERI_TEST_URL(): string {
-        return 'http://test-nieos.nie-ine.ch';
+    public static get INSERI_URL(): string {
+        return 'https://apps.inseri.swiss';
     }
 
     /**

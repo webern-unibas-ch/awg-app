@@ -12,7 +12,7 @@ export const mockContextJson = {
     resclass_name: 'image',
     preview: [
         {
-            path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=thumbnail',
+            path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=thumbnail',
             protocol: 'file',
             origname: 'Programm_Prag19350109_op7-1.jpg',
             format_name: 'JPEG',
@@ -22,7 +22,7 @@ export const mockContextJson = {
             fps: '0.000',
         },
         {
-            path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=thumbnail',
+            path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=thumbnail',
             protocol: 'file',
             origname: 'Programm_Prag19350109_op7-2.jpg',
             format_name: 'JPEG',
@@ -35,7 +35,7 @@ export const mockContextJson = {
     locations: [
         [
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=thumbnail',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=thumbnail',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG',
@@ -45,7 +45,7 @@ export const mockContextJson = {
                 fps: '0.000',
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=5',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=5',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG2000',
@@ -55,7 +55,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=4',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=4',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG2000',
@@ -65,7 +65,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=3',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=3',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG2000',
@@ -75,7 +75,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=2',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=2',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG2000',
@@ -85,7 +85,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=1',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=1',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG2000',
@@ -95,7 +95,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=0',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173574&qtype=full&reduce=0',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-1.jpg',
                 format_name: 'JPEG2000',
@@ -107,7 +107,7 @@ export const mockContextJson = {
         ],
         [
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=thumbnail',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=thumbnail',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG',
@@ -117,7 +117,7 @@ export const mockContextJson = {
                 fps: '0.000',
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=5',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=5',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG2000',
@@ -127,7 +127,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=4',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=4',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG2000',
@@ -137,7 +137,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=3',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=3',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG2000',
@@ -147,7 +147,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=2',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=2',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG2000',
@@ -157,7 +157,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=1',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=1',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG2000',
@@ -167,7 +167,7 @@ export const mockContextJson = {
                 fps: 0,
             },
             {
-                path: 'http://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=0',
+                path: 'https://www.salsah.org/core/sendlocdata.php?res=2173577&qtype=full&reduce=0',
                 protocol: 'file',
                 origname: 'Programm_Prag19350109_op7-2.jpg',
                 format_name: 'JPEG2000',
@@ -190,7 +190,7 @@ export const mockContextJson = {
         restype_label: 'Supplement',
         restype_description: 'Supplement',
         restype_iconsrc:
-            'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=125',
+            'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=125',
         preview: null,
         locations: null,
         locdata: null,

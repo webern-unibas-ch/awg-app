@@ -280,7 +280,7 @@ describe('GndService (DONE)', () => {
 
             it('... should expose gnd to parent window if target meets parent location (inseri)', () => {
                 // Set current target to Inseri
-                const target = AppConfig.INSERI_TEST_URL;
+                const target = AppConfig.INSERI_URL;
                 const origin = target;
 
                 // Spy on current location and return origin
@@ -320,7 +320,7 @@ describe('GndService (DONE)', () => {
 
             it('... should not expose gnd to window if target does not meet parent location', () => {
                 // Set current target to Inseri
-                const target = AppConfig.INSERI_TEST_URL;
+                const target = AppConfig.INSERI_URL;
                 const origin = 'http://www.example.com';
 
                 // Spy on current location and return origin
@@ -464,7 +464,7 @@ describe('GndService (DONE)', () => {
 
             it('... should expose null value to parent window if target meets parent location (inseri)', () => {
                 // Set current target to inseri
-                const target = AppConfig.INSERI_TEST_URL;
+                const target = AppConfig.INSERI_URL;
                 const origin = target;
 
                 // Spy on current location and return origin

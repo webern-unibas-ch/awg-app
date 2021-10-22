@@ -5,6 +5,8 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss, getAndExpectDebugElementByDirective } from '@testing/expect-helper';
 
 import { Logo, Logos } from '@awg-core/core-models';
+import { LOGOSDATA } from '@awg-core/mock-data';
+
 import { FooterPoweredbyComponent } from './footer-poweredby.component';
 
 @Component({ selector: 'awg-footer-logo', template: '' })
@@ -36,38 +38,7 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         compEl = compDe.nativeElement;
 
         // Test data
-        expectedLogos = {
-            angular: {
-                id: 'angularlogo',
-                src: 'assets/img/logos/angular.svg',
-                alt: 'Logo Angular',
-                href: 'https://angular.io',
-            },
-            bootstrap: {
-                id: 'bootstraplogo',
-                src: 'assets/img/logos/ng-bootstrap.svg',
-                alt: 'Logo ng-Bootstrap',
-                href: 'https://ng-bootstrap.github.io/',
-            },
-            github: {
-                id: 'githublogo',
-                src: 'assets/img/logos/github.svg',
-                alt: 'Logo GitHub',
-                href: 'https://github.com/webern-unibas-ch/awg-app',
-            },
-            snf: {
-                id: 'snflogo',
-                src: 'assets/img/logos/snf.png',
-                alt: 'Logo SNF',
-                href: 'http://www.snf.ch',
-            },
-            unibas: {
-                id: 'unibaslogo',
-                src: 'assets/img/logos/uni.svg',
-                alt: 'Logo Uni Basel',
-                href: 'https://www.unibas.ch',
-            },
-        };
+        expectedLogos = LOGOSDATA;
     });
 
     afterAll(() => {

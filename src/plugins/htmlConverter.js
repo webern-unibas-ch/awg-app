@@ -183,7 +183,7 @@
                             if (href === undefined && proparr[i][j].resid !== undefined) {
                                 // backwards compatibility
                                 // before, no href was set
-                                href = 'http://www.salsah.org/api/resources/' + proparr[i][j].resid;
+                                href = 'https://www.salsah.org/api/resources/' + proparr[i][j].resid;
                             }
                             html += '<' + matching_inv[proparr[i][j].propname] + ' href="' + href;
                             if (proparr[i][j].resid !== undefined) {

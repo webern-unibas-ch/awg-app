@@ -31,14 +31,14 @@ export class RegionJson {
      * ...
      * @param [index: KnoraIRI]: prop
      */
-    @JsonProperty('http://www.knora.org/ontology/knora-base#hasComment', PropJson)
+    @JsonProperty('https://www.knora.org/ontology/knora-base#hasComment', PropJson)
     public hasComment: PropJson = undefined;
 
     /**
      * ...
      * @param [index: KnoraIRI]: prop
      */
-    @JsonProperty('http://www.knora.org/ontology/knora-base#hasColor', PropJson)
+    @JsonProperty('https://www.knora.org/ontology/knora-base#hasColor', PropJson)
     public hasColor: PropJson = undefined;
 
     /**
@@ -59,13 +59,13 @@ export class RegionJson {
      * ...
      * @param [index: KnoraIRI]: prop
      */
-    @JsonProperty('http://www.knora.org/ontology/knora-base#isRegionOf', PropJson)
+    @JsonProperty('https://www.knora.org/ontology/knora-base#isRegionOf', PropJson)
     public isRegionOf: PropJson = undefined;
 
     /**
      * ...
      * @param [index: KnoraIRI]: prop
      */
-    @JsonProperty('http://www.knora.org/ontology/knora-base#hasGeometry', PropJson)
+    @JsonProperty('https://www.knora.org/ontology/knora-base#hasGeometry', PropJson)
     public hasGeometry: PropJson = undefined;
 }
