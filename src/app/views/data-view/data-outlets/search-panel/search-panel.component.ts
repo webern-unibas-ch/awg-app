@@ -52,24 +52,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     };
 
     /**
-     * Gets the httpGetUrl from the DataApiService.
-     *
-     * @returns {string}
-     */
-    get httpGetUrl(): string {
-        return this.dataApiService.httpGetUrl;
-    }
-
-    /**
-     * Gets the loading status observable from the LoadingService.
-     *
-     * @returns {Observable<boolean>}
-     */
-    get isLoading$(): Observable<boolean> {
-        return this.loadingService.getLoadingStatus();
-    }
-
-    /**
      * Public variable: errorMessage.
      *
      * It keeps an errorMessage for the search response subscription.
@@ -105,6 +87,24 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         private dataStreamerService: DataStreamerService,
         private loadingService: LoadingService
     ) {}
+
+    /**
+     * Gets the httpGetUrl from the DataApiService.
+     *
+     * @returns {string}
+     */
+    get httpGetUrl(): string {
+        return this.dataApiService.httpGetUrl;
+    }
+
+    /**
+     * Gets the loading status observable from the LoadingService.
+     *
+     * @returns {Observable<boolean>}
+     */
+    get isLoading$(): Observable<boolean> {
+        return this.loadingService.getLoadingStatus();
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.

@@ -69,24 +69,6 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     };
 
     /**
-     * Gets the httpGetUrl from the DataApiService.
-     *
-     * @returns {string}
-     */
-    get httpGetUrl(): string {
-        return this.dataApiService.httpGetUrl;
-    }
-
-    /**
-     * Gets the loading status observable from the LoadingService.
-     *
-     * @returns {Observable<boolean>}
-     */
-    get isLoading$(): Observable<boolean> {
-        return this.loadingService.getLoadingStatus();
-    }
-
-    /**
      * Private variable: _destroy$.
      *
      * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
@@ -115,6 +97,24 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
         private gndService: GndService,
         private loadingService: LoadingService
     ) {}
+
+    /**
+     * Gets the httpGetUrl from the DataApiService.
+     *
+     * @returns {string}
+     */
+    get httpGetUrl(): string {
+        return this.dataApiService.httpGetUrl;
+    }
+
+    /**
+     * Gets the loading status observable from the LoadingService.
+     *
+     * @returns {Observable<boolean>}
+     */
+    get isLoading$(): Observable<boolean> {
+        return this.loadingService.getLoadingStatus();
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.
