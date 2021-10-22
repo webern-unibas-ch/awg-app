@@ -40,7 +40,10 @@
     </select>
 </div>
 
-<table class="table table-striped" *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">
+<table
+    aria-label="Table for SPARQL query results"
+    class="table table-striped"
+    *ngIf="tableData?.paginatedRows$ | async as paginatedRows; else loading">
     <thead>
         <tr>
             <th scope="col" *ngFor="let headerLabel of tableData?.header" (click)="onSort(headerLabel)">

@@ -1,20 +1,18 @@
-<div>
-    <table class="table table-hover table-condensed awg-edition-tka-table">
-        <thead>
-            <tr>
-                <th scope="col" class="awg-edition-tka-table-header measure">Takt</th>
-                <th scope="col" class="awg-edition-tka-table-header system">System</th>
-                <th scope="col" class="awg-edition-tka-table-header location">Ort im Takt</th>
-                <th scope="col" class="awg-edition-tka-table-header comment">Kommentar</th>
-            </tr>
-        </thead>
-        <tbody *ngIf="textcriticalComments">
-            <tr *ngFor="let textcriticalComment of textcriticalComments">
-                <td><span [compile-html]="textcriticalComment.measure" [compile-html-ref]="ref"></span></td>
-                <td [innerHTML]="textcriticalComment.system"></td>
-                <td [innerHTML]="textcriticalComment.position"></td>
-                <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
-            </tr>
-        </tbody>
-    </table>
-</div>
+<table aria-label="Table for text-critical comments" class="table table-hover table-condensed awg-edition-tka-table">
+    <thead>
+        <tr>
+            <th scope="col" class="awg-edition-tka-table-header measure">Takt</th>
+            <th scope="col" class="awg-edition-tka-table-header system">System</th>
+            <th scope="col" class="awg-edition-tka-table-header location">Ort im Takt</th>
+            <th scope="col" class="awg-edition-tka-table-header comment">Kommentar</th>
+        </tr>
+    </thead>
+    <tbody *ngIf="textcriticalComments">
+        <tr *ngFor="let textcriticalComment of textcriticalComments">
+            <td><span [compile-html]="textcriticalComment.measure" [compile-html-ref]="ref"></span></td>
+            <td [innerHTML]="textcriticalComment.system"></td>
+            <td [innerHTML]="textcriticalComment.position"></td>
+            <td><span [compile-html]="textcriticalComment.comment" [compile-html-ref]="ref"></span></td>
+        </tr>
+    </tbody>
+</table>
