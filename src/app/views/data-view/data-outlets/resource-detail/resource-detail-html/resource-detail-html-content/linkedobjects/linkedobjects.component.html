@@ -37,20 +37,17 @@
                 </span>
             </ng-template>
             <ng-template ngbPanelContent>
-                <table class="table table-sm table-hover borderless awg-linked-obj-table mb-0">
-                    <tbody>
-                        <tr *ngFor="let link of restypeGroup.links">
-                            <td>
-                                <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
-                                    <img [src]="link?.restype?.icon" alt="icon" />
-                                    &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span
-                                    >]&nbsp;
-                                    <span class="awg-linked-obj-link-value">{{ link?.value }}</span>
-                                </a>
-                            </td>
-                        </tr>
-                    </tbody>
-                </table>
+                <ul class="awg-linked-obj-list nobullets mb-0">
+                    <li *ngFor="let link of restypeGroup.links; last as isLast">
+                        <a class="awg-linked-obj-link" (click)="navigateToResource(link?.id)">
+                            <img [src]="link?.restype?.icon" alt="icon" />
+                            &nbsp;[<span class="awg-linked-obj-link-id">{{ link?.id }}</span
+                            >]&nbsp;
+                            <span class="awg-linked-obj-link-value">{{ link?.value }}</span>
+                        </a>
+                        <hr *ngIf="!isLast" />
+                    </li>
+                </ul>
             </ng-template>
         </ngb-panel>
     </ngb-accordion>
