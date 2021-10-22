@@ -114,48 +114,48 @@ export class ResourceDetailHtmlContentPropsComponent implements OnChanges, OnDes
             (prop: ResourceDetailProperty) => prop.pid === '856' && prop.values && prop.values.length > 0
         );
 
+        // Remove previous gnd entries
+        this._removeGnd();
+
         if (propsWithGND.length > 0) {
             // Loop through prop.values[i]
-            propsWithGND.map((prop: ResourceDetailProperty) => {
-                prop.values.map((value: string) => {
+            propsWithGND.forEach((prop: ResourceDetailProperty) => {
+                prop.values.forEach((value: string) => {
                     // Expose gnd for every value
-                    const gndEvent = new GndEvent(GndEventType.SET, value);
-                    this._exposeGnd(gndEvent);
+                    this._exposeGnd(value);
                 });
             });
-        } else {
-            // Remove gnd
-            this._removeGnd();
         }
     }
 
     /**
      * Private method: _exposeGnd.
      *
-     * It emits a given gnd event (type, value)
-     * to the {@link gndRequest}.
+     * It emits a gnd set event (type, value)
+     * for a given value to the {@link gndRequest}.
      *
-     * @param {GndEvent} gndEvent The given GND event.
+     * @param {string} value The given value.
      *
-     * @returns {void} Emits the GND event.
+     * @returns {void} Emits the GND set event.
      */
-    private _exposeGnd(gndEvent: GndEvent): void {
-        if (!gndEvent) {
+    private _exposeGnd(value: string): void {
+        if (!value) {
             return;
         }
+        const gndEvent = new GndEvent(GndEventType.SET, value);
         this.gndRequest.emit(gndEvent);
     }
 
     /**
      * Private method: _removeGnd.
      *
-     * It emits a given gnd event (type, value)
+     * It emits a gnd remove event (type, value)
      * to the {@link gndRequest}.
      *
      * @returns {void} Emits the GND remove event.
      */
     private _removeGnd(): void {
         const gndEvent = new GndEvent(GndEventType.REMOVE, null);
-        this._exposeGnd(gndEvent);
+        this.gndRequest.emit(gndEvent);
     }
 }
