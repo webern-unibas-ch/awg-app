@@ -6,15 +6,14 @@
 name: 'CodeQL'
 
 on:
-    pull_request:
-        branches: [ develop ]
     push:
-        branches:
-            - '**'
+        # Dependabot triggered push events have read-only access, but uploading code
+        # scanning requires write access.
+        branches-ignore: [ dependabot/** ]
         tags-ignore:
             - '*'
-        paths-ignore:
-            - '**.md' # ignore changes to markdown files
+    pull_request:
+        branches: [ develop ]
 
 jobs:
     analyze:
