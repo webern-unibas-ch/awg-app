@@ -61,13 +61,6 @@ export class SearchFormComponent implements OnChanges {
     };
 
     /**
-     * Getter for the search value control value.
-     */
-    get searchValueControl() {
-        return this.searchForm.get('searchValueControl');
-    }
-
-    /**
      * Constructor of the SearchFormComponent.
      *
      * It declares a private FormBuilder instance
@@ -78,6 +71,13 @@ export class SearchFormComponent implements OnChanges {
     constructor(private formBuilder: FormBuilder) {
         this.createFormGroup();
         this.listenToUserInputChange();
+    }
+
+    /**
+     * Getter for the search value control value.
+     */
+    get searchValueControl() {
+        return this.searchForm.get('searchValueControl');
     }
 
     /**

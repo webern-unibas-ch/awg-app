@@ -116,20 +116,6 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     ref: FolioOverviewComponent;
 
     /**
-     * Getter for folio format settings.
-     */
-    get folioSettings() {
-        return this._folioSettings;
-    }
-
-    /**
-     * Setter for folio format settings.
-     */
-    set folioSettings(settings: FolioSettings) {
-        this._folioSettings = settings;
-    }
-
-    /**
      * Private variable: _folioSettings.
      *
      * It keeps the format settings for the folio.
@@ -154,6 +140,20 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      */
     constructor(private folioService: FolioService) {
         this.ref = this;
+    }
+
+    /**
+     * Getter for folio format settings.
+     */
+    get folioSettings() {
+        return this._folioSettings;
+    }
+
+    /**
+     * Setter for folio format settings.
+     */
+    set folioSettings(settings: FolioSettings) {
+        this._folioSettings = settings;
     }
 
     /**
