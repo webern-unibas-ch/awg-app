@@ -55,7 +55,7 @@ export class PrefixPipe implements PipeTransform {
 
         switch (prefixForm) {
             case PrefixForm.short: {
-                this.prefixes.map((p: Prefix) => {
+                this.prefixes.forEach((p: Prefix) => {
                     if (oldValue.indexOf(p.prefixIri) !== -1) {
                         newValue = oldValue.replace(p.prefixIri, p.prefixName + ':');
                     }
@@ -63,7 +63,7 @@ export class PrefixPipe implements PipeTransform {
                 break;
             }
             case PrefixForm.long: {
-                this.prefixes.map((p: Prefix) => {
+                this.prefixes.forEach((p: Prefix) => {
                     if (oldValue.indexOf(p.prefixName) !== -1) {
                         newValue = oldValue.replace(p.prefixName + ':', p.prefixIri);
                     }
