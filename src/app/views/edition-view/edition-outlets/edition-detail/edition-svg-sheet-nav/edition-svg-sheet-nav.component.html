@@ -3,8 +3,7 @@
         class="btn btn-default w-100"
         *ngFor="let svgSheet of svgSheetsData.sheets"
         [class.active]="isSelectedSvgSheet(svgSheet.id)"
-        (click)="selectSvgSheet(svgSheet.id)"
-    >
+        (click)="selectSvgSheet(svgSheet.id)">
         {{ svgSheet.id }}
     </a>
 </div>

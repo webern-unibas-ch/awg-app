@@ -3,8 +3,7 @@
     <div class="row svgRow">
         <div
             class="col-sm-6 col-lg-{{ 12 / folioSvgDataArray?.length }} svgCol"
-            *ngFor="let folioSvg of folioSvgDataArray"
-        >
+            *ngFor="let folioSvg of folioSvgDataArray">
             <svg id="folio-{{ folioSvg.sheet.folioId }}"></svg>
         </div>
     </div>

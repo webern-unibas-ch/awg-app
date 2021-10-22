@@ -2,16 +2,14 @@
     <div
         class="awg-source-description para"
         *ngFor="let sourceDescription of sourceDescriptionListData.sources"
-        [id]="sourceDescription.id"
-    >
+        [id]="sourceDescription.id">
         <p *ngIf="sourceDescription.siglum" class="bold">{{ sourceDescription.siglum }}</p>
         <p *ngIf="sourceDescription.location">{{ sourceDescription.location }}</p>
         <div *ngIf="sourceDescription.description">
             <p
                 *ngFor="let description of sourceDescription.description"
                 [compile-html]="description"
-                [compile-html-ref]="this"
-            ></p>
+                [compile-html-ref]="this"></p>
         </div>
     </div>
 </div>

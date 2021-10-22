@@ -6,6 +6,5 @@
 <awg-bibliography-list
     *ngIf="isBibListLoaded && (bibList$ | async) as bibList"
     [bibList]="bibList.subjects"
-    (selectItemRequest)="onItemSelect($event)"
->
+    (selectItemRequest)="onItemSelect($event)">
 </awg-bibliography-list>

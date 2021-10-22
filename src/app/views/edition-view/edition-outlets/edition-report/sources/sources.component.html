@@ -8,8 +8,7 @@
                         <awg-source-list
                             *ngIf="sourceListData"
                             [sourceListData]="sourceListData"
-                            (openModalRequest)="openModal($event)"
-                        >
+                            (openModalRequest)="openModal($event)">
                         </awg-source-list>
                     </ng-template>
                 </ngb-panel>
@@ -21,8 +20,7 @@
                             *ngIf="sourceDescriptionListData"
                             [sourceDescriptionListData]="sourceDescriptionListData"
                             (openModalRequest)="openModal($event)"
-                            (selectSvgSheetRequest)="selectSvgSheet($event)"
-                        >
+                            (selectSvgSheetRequest)="selectSvgSheet($event)">
                         </awg-source-description>
                     </ng-template>
                 </ngb-panel>
@@ -35,8 +33,7 @@
                             [sourceEvaluationListData]="sourceEvaluationListData"
                             (navigateToReportFragmentRequest)="navigateToReportFragment($event)"
                             (openModalRequest)="openModal($event)"
-                            (selectSvgSheetRequest)="selectSvgSheet($event)"
-                        >
+                            (selectSvgSheetRequest)="selectSvgSheet($event)">
                         </awg-source-evaluation>
                     </ng-template>
                 </ngb-panel>

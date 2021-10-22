@@ -23,8 +23,7 @@
                     <p
                         *ngFor="let description of graph.description"
                         [compile-html]="description"
-                        [compile-html-ref]="ref"
-                    ></p>
+                        [compile-html-ref]="ref"></p>
                 </ng-container>
             </div>
 
@@ -35,8 +34,7 @@
                     <button
                         type="button"
                         class="btn btn-sm btn-outline-info ml-2"
-                        (click)="modal.open('HINT_EDITION_GRAPH')"
-                    >
+                        (click)="modal.open('HINT_EDITION_GRAPH')">
                         Hinweise zur Nutzung
                     </button>
                     <button
@@ -44,8 +42,7 @@
                         title="Open fullscreen"
                         class="btn btn-sm btn-outline-info ml-2"
                         (click)="openFullscreen()"
-                        *ngIf="!isFullscreen"
-                    >
+                        *ngIf="!isFullscreen">
                         <fa-icon [icon]="faExpand"></fa-icon>
                     </button>
                     <button
@@ -53,8 +50,7 @@
                         title="Close fullscreen"
                         class="btn btn-sm btn-info ml-2"
                         (click)="closeFullscreen()"
-                        *ngIf="isFullscreen"
-                    >
+                        *ngIf="isFullscreen">
                         <fa-icon [icon]="faCompress"></fa-icon>
                     </button>
                 </h4>
@@ -70,8 +66,7 @@
                 </p>
                 <awg-graph-visualizer
                     [graphRDFInputData]="graph.rdfData"
-                    [isFullscreen]="isFullscreen"
-                ></awg-graph-visualizer>
+                    [isFullscreen]="isFullscreen"></awg-graph-visualizer>
             </div>
 
             <!-- static image -->

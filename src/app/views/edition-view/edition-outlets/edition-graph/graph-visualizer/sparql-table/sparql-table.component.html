@@ -12,8 +12,7 @@
                 name="searchFilter"
                 [(ngModel)]="searchFilter"
                 (ngModelChange)="onPageSizeChange(searchFilter)"
-                placeholder="Ergebnisse filtern..."
-            />
+                placeholder="Ergebnisse filtern..." />
         </div>
     </div>
 </form>
@@ -27,16 +26,14 @@
         [collectionSize]="tableData.filteredRows?.length"
         [maxSize]="4"
         [boundaryLinks]="true"
-        (pageChange)="onPageSizeChange(searchFilter)"
-    >
+        (pageChange)="onPageSizeChange(searchFilter)">
     </ngb-pagination>
 
     <select
         class="custom-select"
         style="width: auto"
         [(ngModel)]="paginatorOptions.pageSize"
-        (ngModelChange)="onPageSizeChange(searchFilter)"
-    >
+        (ngModelChange)="onPageSizeChange(searchFilter)">
         <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
             {{ option }} Ergebnisse pro Seite
         </option>
@@ -49,8 +46,7 @@
             <th scope="col" *ngFor="let headerLabel of tableData?.header" (click)="onSort(headerLabel)">
                 {{ headerLabel }}&nbsp;<fa-icon
                     *ngIf="headerLabel === tableOptions.selectedKey"
-                    [icon]="tableOptions.sortIcon"
-                ></fa-icon>
+                    [icon]="tableOptions.sortIcon"></fa-icon>
             </th>
         </tr>
     </thead>
@@ -60,13 +56,11 @@
                 let row of paginatedRows | orderBy: tableOptions.sortKey:tableOptions.reverse:tableOptions.case;
                 index as i;
                 trackBy: i
-            "
-        >
+            ">
             <td *ngFor="let headerLabel of tableData.header; index as j; trackBy: j">
                 <a
                     *ngIf="row[headerLabel].type && row[headerLabel].type === 'uri'"
-                    (click)="onTableNodeClick(row[headerLabel].value)"
-                >
+                    (click)="onTableNodeClick(row[headerLabel].value)">
                     <ngb-highlight [result]="row[headerLabel].label" [term]="searchFilter"></ngb-highlight>
                 </a>
                 <span *ngIf="row[headerLabel].type !== 'uri'"
@@ -89,16 +83,14 @@
         [collectionSize]="tableData.filteredRows?.length"
         [maxSize]="4"
         [boundaryLinks]="true"
-        (pageChange)="onPageSizeChange(searchFilter)"
-    >
+        (pageChange)="onPageSizeChange(searchFilter)">
     </ngb-pagination>
 
     <select
         class="custom-select"
         style="width: auto"
         [(ngModel)]="paginatorOptions.pageSize"
-        (ngModelChange)="onPageSizeChange(searchFilter)"
-    >
+        (ngModelChange)="onPageSizeChange(searchFilter)">
         <option *ngFor="let option of paginatorOptions.pageSizeOptions" [ngValue]="option">
             {{ option }} Ergebnisse pro Seite
         </option>

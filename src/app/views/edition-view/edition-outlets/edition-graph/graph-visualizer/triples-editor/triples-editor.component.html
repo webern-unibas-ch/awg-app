@@ -1,16 +1,14 @@
 <ngb-accordion
     #triplesAcc="ngbAccordion"
     [activeIds]="togglePanel()"
-    (panelChange)="preventPanelCollapseOnFullscreen($event)"
->
+    (panelChange)="preventPanelCollapseOnFullscreen($event)">
     <ngb-panel id="awg-graph-visualizer-triples" title="RDF Triples">
         <ng-template ngbPanelContent>
             <!-- CodeMirror editor instance -->
             <ngx-codemirror
                 [(ngModel)]="triples"
                 (ngModelChange)="onEditorInputChange($event)"
-                [options]="cmTriplesConfig"
-            >
+                [options]="cmTriplesConfig">
             </ngx-codemirror>
 
             <!-- Handle buttons -->

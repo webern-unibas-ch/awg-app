@@ -29,8 +29,7 @@
         <ngb-panel
             id="incoming-linkgroup-{{ i }}"
             class="awg-linked-obj-incoming-linkgroup"
-            *ngFor="let restypeGroup of incomingGroups; let i = index"
-        >
+            *ngFor="let restypeGroup of incomingGroups; let i = index">
             <ng-template ngbPanelTitle>
                 <span class="awg-linked-obj-title-group">
                     <span class="badge badge-info mr-2">{{ restypeGroup?.links?.length }}</span>

@@ -22,8 +22,7 @@
                 class="btn btn-outline-info btn-sm"
                 ngbTooltip="Zur Suche"
                 tooltipClass="d-none d-md-inline d-lg-none"
-                (click)="navigateToSearchPanel()"
-            >
+                (click)="navigateToSearchPanel()">
                 <fa-icon [icon]="faArrowLeft"></fa-icon>
                 <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>
             </button>
@@ -48,8 +47,7 @@
                 <a
                     *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"
                     class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"
-                    (click)="navigateToResource(previous?.id)"
-                >
+                    (click)="navigateToResource(previous?.id)">
                     <div>
                         <strong class="text-muted small">
                             <fa-icon [icon]="faChevronLeft"></fa-icon>
@@ -70,8 +68,7 @@
                 <ng-template #noPrevious>
                     <a
                         *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"
-                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left"
-                    >
+                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left">
                         <div>
                             <strong class="text-muted small">
                                 <fa-icon [icon]="faTimesCircle"></fa-icon>
@@ -91,8 +88,7 @@
                 <!-- current resource -->
                 <li
                     class="list-group-item list-group-item-info awg-list-group-item"
-                    *ngIf="resourceInfoData?.resources?.current; let current"
-                >
+                    *ngIf="resourceInfoData?.resources?.current; let current">
                     <strong class="text-muted small mb-1"
                         ><span class="awg-resource-info-text"
                             >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</span
@@ -113,8 +109,7 @@
                                     [disabled]="
                                         resourceInfoIndex === current?.displayIndex || !resourceInfoFormGroup?.valid
                                     "
-                                    (click)="navigateToResourceByIndex(resourceInfoIndex)"
-                                >
+                                    (click)="navigateToResourceByIndex(resourceInfoIndex)">
                                     Gehe zu
                                 </button>
                             </div>
@@ -127,8 +122,7 @@
                                 aria-label="Index of search result"
                                 aria-describedby="awg-resource-info-input-group-text"
                                 size="4"
-                                step="1"
-                            />
+                                step="1" />
                         </div>
                     </form>
                 </li>
@@ -137,8 +131,7 @@
                 <a
                     *ngIf="resourceInfoData?.resources?.next; else noNext; let next"
                     class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"
-                    (click)="navigateToResource(next?.id)"
-                >
+                    (click)="navigateToResource(next?.id)">
                     <div class="mb-1">
                         <strong class="text-muted small">
                             <span class="awg-resource-info-btn-text mr-2"
@@ -159,8 +152,7 @@
                 <ng-template #noNext>
                     <a
                         *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"
-                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right"
-                    >
+                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right">
                         <div>
                             <strong class="text-muted small">
                                 <fa-icon [icon]="faTimesCircle"></fa-icon>
