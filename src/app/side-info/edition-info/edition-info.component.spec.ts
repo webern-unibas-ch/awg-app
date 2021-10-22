@@ -101,7 +101,7 @@ describe('EditionInfoComponent (DONE)', () => {
             it('... should not render title of edition info headers yet', () => {
                 const titleDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'h6.awg-edition-info-header i.awg-edition-info-header-title',
+                    'h6.awg-edition-info-header em.awg-edition-info-header-title',
                     2,
                     2
                 );
@@ -183,7 +183,7 @@ describe('EditionInfoComponent (DONE)', () => {
             it('... should render title of edition info headers', () => {
                 const titleDes = getAndExpectDebugElementByCss(
                     compDe,
-                    'h6.awg-edition-info-header i.awg-edition-info-header-title',
+                    'h6.awg-edition-info-header em.awg-edition-info-header-title',
                     2,
                     2
                 );
