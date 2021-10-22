@@ -8,6 +8,7 @@ module.exports = {
             'always',
             [
                 'app',
+                'assets',
                 'deps',
                 'deps-dev',
                 'core',

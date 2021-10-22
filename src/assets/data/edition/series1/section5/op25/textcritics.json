@@ -4,7 +4,7 @@
             "id": "A-SkI-1",
             "label": "A:SkI/1",
             "description": [
-                "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <strong>Sk2</strong>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu op. 24/I auf Bl. 22v–26r, 31v–33r, und 36v–38r im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39r System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<strong>Sk4</strong> T. 3B–6].) <br /> Die Datierung <i>4. VII. 34</i> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <strong>Sk2</strong> notiert worden. <br /> Der über System 1 stehende Titel <i>„Wie bin ich froh!“</i> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <strong>Sk4</strong>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
+                "<strong>Sk1</strong> entwirft eine viertönige Figur, die in ihrem Tonvorrat und ihrer rhythmischen Kontur dem Anfang der Singstimme von „Wie bin ich froh!“ M 317 entspricht. Dass es sich um die erste Skizzeneinheit zu dem Lied handelt, erschließt sich aus dem skripturalen Zusammenhang mit der links danebenstehenden Einheit <strong>Sk2</strong>: Diese weist an ihrem rechten Ende ein deutlich zusammengedrängtes Schriftbild auf, was sich durch den bereits von <strong>Sk1</strong> beanspruchten Raum auf der Seite erklärt. <br /> Noch vor der Niederschrift von <strong>Sk1</strong> war die Seite am linken Rand vermutlich mit dem Akkoladenstrich von System 1–4 sowie der Schlüsselung in System 2–3 versehen: Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu op. 24/I auf Bl. 22v–26r, 31v–33r, und 36v–38r im <strong>Skizzenbuch</strong>. (Siehe auch Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von Bl. 39r System 1–4, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/1 fungieren [<strong>Sk4</strong> T. 3B–6].) <br /> Die Datierung <em>4. VII. 34</em> oberhalb vom linken Rand von System 1 ist möglicherweise bereits im Zusammenhang mit <strong>Sk1</strong>, vielleicht aber auch erst mit <strong>Sk2</strong> notiert worden. <br /> Der über System 1 stehende Titel <em>„Wie bin ich froh!“</em> ist allerdings sehr wahrscheinlich erst nach Abschluss der Verlaufskizze <strong>Sk4</strong>, möglicherweise erst bei einer späteren Redaktion des gesamten Skizzenbuches eingetragen worden, worauf der auch für andere entsprechende Titel im Skizzenbuch verwendete Schreibstoff und Schreibduktus hinweist."
             ],
             "comments": [
                 {
@@ -136,7 +136,7 @@
             "id": "A-SkI-2-1-3",
             "label": "A:SkI/2.1.3",
             "description": [
-                "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <i>c</i>, <i>f</i>, <i>gis</i> und <i>a</i> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <strong>Sk2</strong> (Reihe B), <strong>Sk2.1</strong> und <strong>Sk2.1.2</strong>.",
+                "Die in <strong>Sk2.1.3</strong> notierten Tonbuchstaben <em>c</em>, <em>f</em>, <em>gis</em> und <em>a</i> beziehen sich vermutlich auf noch fehlende Reihentöne bei der Niederschrift von <strong>Sk2</strong> (Reihe B), <strong>Sk2.1</strong> und <strong>Sk2.1.2</strong>.",
                 "<small class=\"text-muted\">[Zu dieser Skizze gibt es keine textkritischen  Kommentare.]</small>"
             ],
             "comments": []
@@ -203,7 +203,7 @@
                     "measure": "{{ '{' }}5{{ '}' }}",
                     "system": "4",
                     "position": "6/8",
-                    "comment": "<i>I</i> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <i>1</i> bezeichnet)."
+                    "comment": "<em>I</i> markiert hier als Reihenziffer vermutlich den wiederholten Beginn der in <strong>Sk3</strong> T. 1–2 1. Note und in <strong>Sk3.1</strong> fortgeführten Zwölftonreihe. Diese Reihe ist nicht identisch mit G<sub>g</sub> in den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong> (dort jeweils mit arabischer Ziffer <em>1</i> bezeichnet)."
                 },
                 {
                     "measure": "{{ '{' }}5{{ '}' }} <br /> bis {{ '{' }}6{{ '}' }}",
@@ -215,7 +215,7 @@
                     "measure": "{{ '{' }}6{{ '}' }}",
                     "system": "4",
                     "position": "1–2/8",
-                    "comment": "Text: <i>leuch</i>[-]<i>tet</i> zusammengeschrieben."
+                    "comment": "Text: <em>leuch</i>[-]<em>tet</i> zusammengeschrieben."
                 }
             ]
         },
@@ -236,7 +236,7 @@
             "id": "A-SkI-3-1-2",
             "label": "A:SkI/3.1.2",
             "description": [
-                "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<i>1</i>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
+                "<strong>Sk3.1.2</strong> formuliert eine Variante von <strong>Sk3.1</strong> ab T. 3. Zusammen mit <strong>Sk3</strong> T. 1–2 1. Note und <strong>Sk3.1</strong> Auftakt zu T. 3 ergibt sich eine Tonfolge, die der Reihenform G<sub>g</sub> (<em>1</i>) der Zwölftonreihe in <strong>Sk3.1.3</strong> und <strong>Sk3.1.3.1</strong> entspricht."
             ],
             "comments": [
                 {
@@ -275,7 +275,7 @@
             "id": "A-SkI-3-1-3",
             "label": "A:SkI/3.1.3",
             "description": [
-                "<strong>Sk3.1.3</strong> notiert die vier in op. 25/I verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <strong>Sk4</strong> und <strong>Sk4.1</strong> verwendeten Reihenziffern <i>1</i> bis <i>4</i>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <strong>Sk3.1.2</strong> vollzogen. "
+                "<strong>Sk3.1.3</strong> notiert die vier in op. 25/I verwendeten Reihenformen in einer tabellarischen Anordnung und versieht sie mit den ebenfalls in <strong>Sk4</strong> und <strong>Sk4.1</strong> verwendeten Reihenziffern <em>1</em> bis <em>4</em>. Die Permutation des 10.–11. Reihentons von G<sub>g</sub> und U<sub>g</sub> bzw. des 2.–3. Reihentons von K<sub>gis</sub> und KU<sub>fis</sub> ist bereits in <strong>Sk3.1.2</strong> vollzogen. "
             ],
             "comments": [
                 {
@@ -285,55 +285,55 @@
                     "comment": "Strich mit unklarer Bedeutung."
                 },
                 {
-                    "measure": "G<sub>g</sub> (<i>1</i>)",
+                    "measure": "G<sub>g</sub> (<em>1</em>)",
                     "system": "6",
                     "position": "vor 1. Reihenton",
-                    "comment": "<i>1</i> mit rotem Buntstift."
+                    "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
-                    "measure": "G<sub>g</sub> (<i>1</i>)",
+                    "measure": "G<sub>g</sub> (<em>1</em>)",
                     "system": "6",
                     "position": "7. Reihenton",
                     "comment": "sic: kein &#9838;."
                 },
                 {
-                    "measure": "G<sub>g</sub> (<i>1</i>)",
+                    "measure": "G<sub>g</sub> (<em>1</em>)",
                     "system": "6",
                     "position": "10.–11. Reihenton",
                     "comment": "&#9838;a, &#9838;c<sup>1</sup> durch Einkreisung getilgt und ersetzt durch c<sup>2</sup> (sic: kein &#9838;), &#9838;a<sup>1</sup>."
                 },
                 {
-                    "measure": "K<sub>gis</sub> (<i>2</i>)",
+                    "measure": "K<sub>gis</sub> (<em>2</em>)",
                     "system": "6",
                     "position": "vor 1. Reihenton",
-                    "comment": "<i>2</i> mit grünem Buntstift."
+                    "comment": "<em>2</em> mit grünem Buntstift."
                 },
                 {
-                    "measure": "K<sub>gis</sub> (<i>2</i>)",
+                    "measure": "K<sub>gis</sub> (<em>2</em>)",
                     "system": "6",
                     "position": "2.–3. Reihenton",
                     "comment": "&#9838;c<sup>1</sup>, &#9838;a durch Einkreisung getilgt und ersetzt durch a<sup>1</sup>, c<sup>2</sup> (sic: keine &#9838;)."
                 },
                 {
-                    "measure": "U<sub>g</sub> (<i>3</i>)",
+                    "measure": "U<sub>g</sub> (<em>3</em>)",
                     "system": "7",
                     "position": "vor 1. Reihenton",
-                    "comment": "<i>3</i> mit schwarzem Buntstift."
+                    "comment": "<em>3</em> mit schwarzem Buntstift."
                 },
                 {
-                    "measure": "U<sub>g</sub> (<i>3</i>)",
+                    "measure": "U<sub>g</sub> (<em>3</em>)",
                     "system": "7",
                     "position": "10.–11. Reihenton",
                     "comment": "&#9838;f<sup>2</sup>, &#9838;d<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;d<sup>1</sup>, &#9838;f<sup>1</sup>."
                 },
                 {
-                    "measure": "KU<sub>fis</sub> (<i>4</i>)",
+                    "measure": "KU<sub>fis</sub> (<em>4</em>)",
                     "system": "7",
                     "position": "vor 1. Reihenton",
-                    "comment": "<i>4</i> mit rotem Buntstift."
+                    "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
-                    "measure": "KU<sub>fis</sub> (<i>4</i>)",
+                    "measure": "KU<sub>fis</sub> (<em>4</em>)",
                     "system": "7",
                     "position": "2.–3. Note",
                     "comment": "&#9838;d<sup>2</sup>, &#9838;f<sup>2</sup> durch Einkreisung getilgt und ersetzt durch &#9838;f<sup>1</sup>, d<sup>1</sup> (sic: kein &#9838;)."
@@ -360,7 +360,7 @@
             "label": "A:Sk4",
             "description": [
                 "<strong>Sk4</strong> ist eine vollständige Verlaufskizze des Liedes „Wie bin ich froh!“. Die Verlaufskizze erstreckt sich über vier Akkoladen (T. {{ '{' }}1A{{ '}' }}–3A, T. 3B–6, T. 7–12 und T. 13–15) und umfasst im Unterschied zu den Reinschriften von <strong>Textfassung 1</strong> und <strong>Textfassung 2</strong> in <strong>B</strong> und <strong>E</strong> nicht zwölf, sondern 15 gültige Takte. <br /> Bereits vor der Niederschrift von <strong>Sk4</strong> war Bl. 39<sup>r</sup> mit Akkoladenstrich, Schlüsselung und Taktziffer am linken Rand von System 1–4 versehen (<strong>Sk4</strong> T. 3B–6): Diese präparieren die Seite für die Fortsetzung der (bereits im Sommer 1931 begonnenen) Verlaufskizze zu op. 24/I auf Bl. 22<sup>v</sup>–26<sup>r</sup>, 31<sup>v</sup>–33<sup>r</sup>, und 36<sup>v</sup>–38<sup>r</sup> im <strong>Skizzenbuch</strong>. <br /> (Siehe auch Akkoladenstrich von System 1–4 sowie die Schlüsselung in System 2–3 am linken Rand von Bl. 38<sup>v</sup>, die ebenfalls als Präparierung der Verlaufskizze zu op. 24/I fungieren [<strong>Sk1</strong> bis <strong>Sk3.1.2</strong>].) <br /> <strong>Sk 4</strong> ist laut der nach T. 15 folgenden Datierung am 16. Juli 1934 beendet worden.",
-                "Die Ziffern <i>1</i> (G<sub>g</sub>), <i>2</i> (K<sub>gis</sub>), <i>3</i> (U<sub>g</sub>) und <i>4</i> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
+                "Die Ziffern <em>1</em> (G<sub>g</sub>), <em>2</em> (K<sub>gis</sub>), <em>3</em> (U<sub>g</sub>) und <em>4</em> (KU<sub>fis</sub>) bezeichnen in der Regel den Anfang von Reihenformen gemäß den Reihentabellen <strong>Sk3.1.3</strong> und <strong>M 317 Sk5 / M 321 Sk1 / M 322 Sk1</strong> in <strong>C</strong>. Winkel markieren in der Regel deren Ende (┐, ┘) oder Anfang (┌, └)."
             ],
             "comments": [
                 {
@@ -379,13 +379,13 @@
                     "measure": "vor 1C",
                     "system": "11",
                     "position": "1. Note",
-                    "comment": "<i>4</i> mit rotem Buntstift."
+                    "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "1C",
                     "system": "11",
                     "position": "6/8",
-                    "comment": "sic: Winkel markiert hier nicht das Ende, sondern den 11. Reihenton von KU<sub>fis</sub> (<i>4</i>). 12. Reihenton von KU<sub>fis</sub> (<i>g</i>) ist zugleich 1. Reihenton von G<sub>g</sub> (<i>1</i>): siehe T. 2 System 10–11 jeweils 1. Note."
+                    "comment": "sic: Winkel markiert hier nicht das Ende, sondern den 11. Reihenton von KU<sub>fis</sub> (<em>4</em>). 12. Reihenton von KU<sub>fis</sub> (<em>g</em>) ist zugleich 1. Reihenton von G<sub>g</sub> (<em>1</em>): siehe T. 2 System 10–11 jeweils 1. Note."
                 },
                 {
                     "measure": "nach 1C",
@@ -397,13 +397,13 @@
                     "measure": "2",
                     "system": "10",
                     "position": "1. Note",
-                    "comment": "<i>1</i> mit rotem Buntstift."
+                    "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "3B",
                     "system": "2",
                     "position": "1/8",
-                    "comment": "<i>zart</i> gestrichen."
+                    "comment": "<em>zart</em> gestrichen."
                 },
                 {
                     "measure": "3B",
@@ -415,7 +415,7 @@
                     "measure": "3B",
                     "system": "4",
                     "position": "2/8",
-                    "comment": "<i>3</i> mit rotem Buntstift."
+                    "comment": "<em>3</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "3B",
@@ -427,7 +427,7 @@
                     "measure": "3B",
                     "system": "6",
                     "position": "1. Note",
-                    "comment": "<i>4</i> mit rotem Buntstift."
+                    "comment": "<em>4</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "3B",
@@ -463,13 +463,13 @@
                     "measure": "5",
                     "system": "3",
                     "position": "1. Note",
-                    "comment": "<i>u. 1</i> und Winkel mit rotem Buntstift."
+                    "comment": "<em>u. 1</em> und Winkel mit rotem Buntstift."
                 },
                 {
                     "measure": "5",
                     "system": "5",
                     "position": "1. Note",
-                    "comment": "Beide Winkel und <i>1</i> mit rotem Buntstift."
+                    "comment": "Beide Winkel und <em>1</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "5",
@@ -481,13 +481,13 @@
                     "measure": "5",
                     "system": "7",
                     "position": "1. Note",
-                    "comment": "<i>1</i> mit Bleistift und nachgezogen mit rotem Buntstift."
+                    "comment": "<em>1</em> mit Bleistift und nachgezogen mit rotem Buntstift."
                 },
                 {
                     "measure": "5",
                     "system": "2",
                     "position": "5/8",
-                    "comment": "<i>1</i> über dem System mit rotem Buntstift und radiert. <i>1</i> unter dem System mit rotem Buntstift. (Ziffern beziehen sich auf 6/8.)"
+                    "comment": "<em>1</em> über dem System mit rotem Buntstift und radiert. <em>1</em> unter dem System mit rotem Buntstift. (Ziffern beziehen sich auf 6/8.)"
                 },
                 {
                     "measure": "6",
@@ -529,19 +529,19 @@
                     "measure": "6",
                     "system": "4",
                     "position": "8/8",
-                    "comment": "<i>3</i> mit schwarzem Buntstift nachgezogen."
+                    "comment": "<em>3</em> mit schwarzem Buntstift nachgezogen."
                 },
                 {
                     "measure": "7",
                     "system": "10–11",
                     "position": "Taktanfang",
-                    "comment": "<i>4/4</i> überschreibt <i>3/4</i>."
+                    "comment": "<em>4/4</em> überschreibt <em>3/4</em>."
                 },
                 {
                     "measure": "7",
                     "system": "10",
                     "position": "3/8",
-                    "comment": "<i>3</i> mit Bleistift und mit schwarzem Buntstift nachgezogen. (Ziffer bezieht sich auf 1. Note.)"
+                    "comment": "<em>3</em> mit Bleistift und mit schwarzem Buntstift nachgezogen. (Ziffer bezieht sich auf 1. Note.)"
                 },
                 {
                     "measure": "7",
@@ -553,7 +553,7 @@
                     "measure": "8",
                     "system": "11",
                     "position": "1. Note",
-                    "comment": "<i>2</i> mit grünem Buntstift."
+                    "comment": "<em>2</em> mit grünem Buntstift."
                 },
                 {
                     "measure": "9",
@@ -577,7 +577,7 @@
                     "measure": "9",
                     "system": "13",
                     "position": "1. Note",
-                    "comment": "<i>2</i> mit Bleistift und mit grünem Buntstift nachgezogen."
+                    "comment": "<em>2</em> mit Bleistift und mit grünem Buntstift nachgezogen."
                 },
                 {
                     "measure": "9",
@@ -601,7 +601,7 @@
                     "measure": "10",
                     "system": "9",
                     "position": "2. Note",
-                    "comment": "<i>1</i> mit rotem Buntstift."
+                    "comment": "<em>1</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "10",
@@ -613,19 +613,19 @@
                     "measure": "12",
                     "system": "13–14",
                     "position": "Taktanfang",
-                    "comment": "<i>3/4</i> mit Bleistift und nachgezogen mit rotem Buntstift."
+                    "comment": "<em>3/4</em> mit Bleistift und nachgezogen mit rotem Buntstift."
                 },
                 {
                     "measure": "12",
                     "system": "8",
                     "position": "(1. Note)",
-                    "comment": "<i>molto</i> [xx] radiert."
+                    "comment": "<em>molto</em> [xx] radiert."
                 },
                 {
                     "measure": "12",
                     "system": "9",
                     "position": "1/8",
-                    "comment": "Text: Kleinschreibung <i>wer</i>[-den] überschrieben zu Großschreibung <i>Wer</i>[-den]."
+                    "comment": "Text: Kleinschreibung <em>wer</em>[-den] überschrieben zu Großschreibung <em>Wer</em>[-den]."
                 },
                 {
                     "measure": "12",
@@ -637,13 +637,13 @@
                     "measure": "12",
                     "system": "13",
                     "position": "2. Note",
-                    "comment": "<i>4</i> mit Bleistift und nachgezogen mit rotem Buntstift."
+                    "comment": "<em>4</em> mit Bleistift und nachgezogen mit rotem Buntstift."
                 },
                 {
                     "measure": "13",
                     "system": "16",
                     "position": "1. Note",
-                    "comment": "<i>gilt</i> mit rotem Buntstift."
+                    "comment": "<em>gilt</em> mit rotem Buntstift."
                 },
                 {
                     "measure": "13",
@@ -667,7 +667,7 @@
                     "measure": "13",
                     "system": "14",
                     "position": "letzte Note",
-                    "comment": "<i>u. 4</i> gestrichen mit rotem Buntstift."
+                    "comment": "<em>u. 4</em> gestrichen mit rotem Buntstift."
                 },
                 {
                     "measure": "13",
@@ -697,13 +697,13 @@
                     "measure": "14",
                     "system": "15–16",
                     "position": "Taktanfang",
-                    "comment": "<i>3</i> mit schwarzem Buntstift."
+                    "comment": "<em>3</em> mit schwarzem Buntstift."
                 },
                 {
                     "measure": "14",
                     "system": "16",
                     "position": "1. Note",
-                    "comment": "<i>u.</i> von <i>u. 3</i> sowie Winkel mit rotem Buntstift."
+                    "comment": "<em>u.</em> von <em>u. 3</em> sowie Winkel mit rotem Buntstift."
                 },
                 {
                     "measure": "14",
@@ -724,7 +724,7 @@
                     "measure": "2",
                     "system": "14",
                     "position": "1. Note",
-                    "comment": "Beide Winkel und <i>1</i> (G<sub>g</sub>) mit rotem Buntstift. "
+                    "comment": "Beide Winkel und <em>1</em> (G<sub>g</sub>) mit rotem Buntstift. "
                 },
                 {
                     "measure": "2",
