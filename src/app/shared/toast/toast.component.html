@@ -4,8 +4,7 @@
     [class]="toast?.options?.classname"
     [autohide]="true"
     [delay]="toast?.options?.delay || 5000"
-    (hide)="toastService.remove(toast)"
->
+    (hide)="toastService.remove(toast)">
     <ng-template [ngIf]="isTemplate(toast)" [ngIfElse]="text">
         <ng-template [ngTemplateOutlet]="toast.textOrTpl"></ng-template>
     </ng-template>

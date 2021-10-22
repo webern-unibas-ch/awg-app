@@ -1,8 +1,7 @@
 <ngb-accordion
     #sparqlAcc="ngbAccordion"
     [activeIds]="togglePanel()"
-    (panelChange)="preventPanelCollapseOnFullscreen($event)"
->
+    (panelChange)="preventPanelCollapseOnFullscreen($event)">
     <ngb-panel id="awg-graph-visualizer-query">
         <ng-template ngbPanelHeader>
             <div class="d-flex align-items-center justify-content-between">
@@ -19,8 +18,7 @@
                         container="body"
                         placement="bottom-right"
                         role="group"
-                        aria-label="Button group with nested dropdown for sample queries"
-                    >
+                        aria-label="Button group with nested dropdown for sample queries">
                         <button class="btn btn-sm btn-info dropdown-toggle-split" ngbDropdownToggle></button>
                         <div class="dropdown-menu" ngbDropdownMenu>
                             <h6 class="dropdown-header">Graph-Ansicht (CONSTRUCT)</h6>
@@ -29,8 +27,7 @@
                                     <button
                                         class="dropdown-item"
                                         [class.disabled]="q === query"
-                                        (click)="onQueryListChange(q)"
-                                    >
+                                        (click)="onQueryListChange(q)">
                                         <span>{{ q.queryLabel }}</span>
                                     </button>
                                 </ng-container>
@@ -42,8 +39,7 @@
                                     <button
                                         class="dropdown-item"
                                         [class.disabled]="q === query"
-                                        (click)="onQueryListChange(q)"
-                                    >
+                                        (click)="onQueryListChange(q)">
                                         <span>{{ q.queryLabel }}</span>
                                     </button>
                                 </ng-container>
@@ -58,8 +54,7 @@
             <ngx-codemirror
                 [(ngModel)]="query.queryString"
                 (ngModelChange)="onEditorInputChange($event)"
-                [options]="cmSparqlConfig"
-            >
+                [options]="cmSparqlConfig">
             </ngx-codemirror>
 
             <!-- Handle buttons -->

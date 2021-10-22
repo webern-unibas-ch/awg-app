@@ -17,8 +17,7 @@
                 [max]="sliderConfig.max"
                 [step]="sliderConfig.step"
                 [(ngModel)]="sliderConfig.value"
-                (ngModelChange)="onZoomChange($event)"
-            />
+                (ngModelChange)="onZoomChange($event)" />
             <div class="input-group-append">
                 <button class="btn btn-sm btn-outline-info" type="submit" title="Reset" (click)="onReCenter()">
                     <fa-icon [icon]="faCompressArrowsAlt"></fa-icon>
@@ -37,20 +36,17 @@
                 ngbDropdown
                 container="body"
                 role="group"
-                aria-label="Button group with nested dropdown for node limit"
-            >
+                aria-label="Button group with nested dropdown for node limit">
                 <button
                     class="btn btn-sm btn-info dropdown-toggle-split"
                     ngbDropdownToggle
-                    [disabled]="queryResultTriples.length === 0"
-                ></button>
+                    [disabled]="queryResultTriples.length === 0"></button>
                 <div class="dropdown-menu" ngbDropdownMenu>
                     <ng-container *ngFor="let limitValue of limitValues">
                         <button
                             *ngIf="queryResultTriples.length > limitValue"
                             class="dropdown-item"
-                            (click)="onLimitValueChange(limitValue)"
-                        >
+                            (click)="onLimitValueChange(limitValue)">
                             <span>{{ limitValue }}</span>
                         </button>
                     </ng-container>

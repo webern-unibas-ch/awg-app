@@ -3,8 +3,7 @@
     <!-- length of 3 cols (4 on md), do not display on sm devices, no right margin, auto vertical align -->
     <a
         class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-none d-md-inline mr-0 my-auto"
-        href="{{ pageMetaData?.awgProjectUrl }}"
-    >
+        href="{{ pageMetaData?.awgProjectUrl }}">
         <span class="webernlogo">
             ANTON WEBERN <br />
             <span>GESAMTAUSGABE</span>
@@ -17,8 +16,7 @@
         class="navbar-toggler"
         (click)="toggleNav()"
         [attr.aria-expanded]="!isCollapsed"
-        aria-controls="collapsibleNavbar"
-    >
+        aria-controls="collapsibleNavbar">
         <span class="navbar-toggler-icon"></span>
     </button>
 
@@ -132,8 +130,7 @@
         <!-- brand to display on center on sm devices, auto vertical align -->
         <a
             class="navbar-brand col-3 col-md-4 col-xl-3 d-sm-inline d-md-none mr-0 my-auto"
-            href="{{ pageMetaData?.awgProjectUrl }}"
-        >
+            href="{{ pageMetaData?.awgProjectUrl }}">
             <span class="webernlogo">
                 ANTON WEBERN <br />
                 <span>GESAMTAUSGABE</span>

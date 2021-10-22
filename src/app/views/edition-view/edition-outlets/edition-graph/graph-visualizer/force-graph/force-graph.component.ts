@@ -883,7 +883,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         const graphData: D3SimulationData = new D3SimulationData();
 
         // Initial Graph from triples
-        triples.map((triple: Triple) => {
+        triples.forEach((triple: Triple) => {
             const subjId = this.prefixPipe.transform(triple.subject, PrefixForm.short);
             const predId = this.prefixPipe.transform(triple.predicate, PrefixForm.short);
             let objId = this.prefixPipe.transform(triple.object, PrefixForm.short);

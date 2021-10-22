@@ -404,7 +404,7 @@ describe('EditionViewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const titleDes = getAndExpectDebugElementByCss(hDes[0], 'i.awg-edition-info-header-title', 1, 1);
+                    const titleDes = getAndExpectDebugElementByCss(hDes[0], 'em.awg-edition-info-header-title', 1, 1);
                     const catalogueDes = getAndExpectDebugElementByCss(
                         hDes[0],
                         'span.awg-edition-info-header-catalogue',
