@@ -102,7 +102,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         waitForAsync(() => {
             // Mocked dataStreamerService
             mockGraphVisualizerService = {
-                appendNamespacesToQuery: (queryString: string, triples: string): string => queryString,
+                checkNamespacesInQuery: (queryString: string, triples: string): string => queryString,
                 getQuerytype: (queryString: string): string => 'construct',
                 doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
                     new Promise((resolve, reject) => {
@@ -142,15 +142,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedGraphRDFData.queryList.push({
             queryType: 'construct',
             queryLabel: 'Test Query 1',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
         });
         expectedGraphRDFData.queryList.push({
             queryType: 'construct',
             queryLabel: 'Test Query 2',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
         });
         expectedGraphRDFData.triples =
-            '@prefix example: <http://example.com/onto#> .\n\n example:Test example:has example:Success .';
+            '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
 
         expectedResult = [
             {
@@ -320,7 +320,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Set changed triples
                 const changedTriples =
-                    '@prefix example: <http://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
+                    '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                 component.triples = changedTriples;
                 fixture.detectChanges();
 
@@ -473,7 +473,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryType: 'SELECT',
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
+                        'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -529,7 +529,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryType: 'construct',
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
+                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -572,8 +572,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryLabel: 'Test Query 1',
                     queryString: queryStringWithoutPrefixes,
                 };
-                const namespaceSpy = spyOn(graphVisualizerService, 'appendNamespacesToQuery').and.returnValue(
-                    'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
+                const namespaceSpy = spyOn(graphVisualizerService, 'checkNamespacesInQuery').and.returnValue(
+                    'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
                 );
 
                 // Perform query without prefixes
@@ -1193,7 +1193,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Set changed triples
                     const changedTriples =
-                        '@prefix example: <http://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
+                        '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                     editorCmp.updateTriplesRequest.emit(changedTriples);
 
                     expect(component.triples).toBeDefined();
@@ -1251,7 +1251,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Set changed query string
                     const changedQueryString =
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
+                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
                     editorCmp.updateQueryStringRequest.emit(changedQueryString);
 
                     expect(component.query.queryString).toBeDefined();

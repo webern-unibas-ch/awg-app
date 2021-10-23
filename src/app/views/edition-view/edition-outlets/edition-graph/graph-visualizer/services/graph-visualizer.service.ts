@@ -9,9 +9,9 @@ import * as N3 from 'n3';
 
 import {
     Namespace,
+    PrefixForm,
     QueryResult,
     QueryTypeIndex,
-    PrefixForm,
     SelectResponse,
     SelectResponseBindings,
     Triple,
@@ -25,6 +25,11 @@ import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
  * It provides access to the rdfstore library.
  */
 declare let rdfstore: any;
+
+export enum NamespaceType {
+    TURTLE = 'TURTLE',
+    SPARQL = 'SPARQL',
+}
 
 /**
  * The GraphVisualizer service.
@@ -134,39 +139,64 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Public method: appendNamespacesToQuery.
+     * Public method: checkNamespacesInQuery.
      *
-     * It appends namespaces for prefixes used in a SPARQL query.
+     * It checks the existing namespaces and prefixes in a SPARQL query
+     * and appends missing declarations, if possible, from the Turtle string.
      *
-     * @param {string} query The given query.
-     * @param {string} ttlString The given turtle string with possible prefixes.
+     * @param {string} queryStr The given SPARQL query string.
+     * @param {string} turtleStr The given Turtle string.
      *
      * @returns {string} The query with appended namespaces.
      */
-    appendNamespacesToQuery(query: string, ttlString: string): string {
-        if (!query || !ttlString) {
+    checkNamespacesInQuery(queryStr: string, turtleStr: string): string {
+        if (!queryStr || !turtleStr) {
             return;
         }
-        // Get namespaces from triples
-        const namespaces: Namespace = this._extractNamespacesFromTTL(ttlString);
+        // Get namespaces from Turtle triples
+        const turtleNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
+        // Get namespaces from SPARQL query
+        const sparqlNamespaces: Namespace = this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
+        // Get prefixes used in the query
+        const prefixes: string[] = this._extractPrefixesFromSPARQLWhereClause(queryStr);
 
-        // Get prefixes from query
-        const prefixes: string[] = this._extractPrefixesFromQuery(query);
+        // Get keys of namespace objects
+        const turtleNamespaceKeys = Object.keys(turtleNamespaces);
+        const sparqlNamespaceKeys = Object.keys(sparqlNamespaces);
+        let missingNamespacesStr = '';
 
-        // Append the used namespaces to the query
-        const keys = Object.keys(namespaces);
-        let pfxString = '';
-        keys.forEach(key => {
-            if (prefixes.indexOf(key) !== -1) {
-                pfxString += `PREFIX ${key} ${namespaces[key]}\n`;
+        // Loop over namespaces from Turtle prefix clause
+        turtleNamespaceKeys.forEach(key => {
+            // If namespace is missing in SPARQL header, add them from Turtle
+            if (sparqlNamespaceKeys.indexOf(key) === -1) {
+                missingNamespacesStr += `PREFIX ${key} ${turtleNamespaces[key]}\n`;
             }
         });
 
-        if (pfxString !== '') {
-            query = pfxString + '\n' + query;
+        // Loop over existing prefixes from SPARQL query
+        if (prefixes.length > 0) {
+            prefixes.forEach(prefix => {
+                // If prefix is not in the list...
+                if (sparqlNamespaceKeys.indexOf(prefix) === -1) {
+                    // TODO: Warnings should go into error messages
+                    console.warn(`Prefix '${prefix}' not declared in SPARQL and/or Turtle header`);
+
+                    const cachedNamespace = this.prefixPipe.transform(prefix, PrefixForm.long);
+                    if (cachedNamespace !== prefix) {
+                        console.warn(`Added prefix from cache`);
+                        missingNamespacesStr += `PREFIX ${prefix} <${cachedNamespace}>\n`;
+                    } else {
+                        console.warn(`'${prefix}' is unknown. Please provide a declaration.`);
+                    }
+                }
+            });
         }
 
-        return query;
+        if (missingNamespacesStr !== '') {
+            queryStr = missingNamespacesStr + queryStr;
+        }
+
+        return queryStr;
     }
 
     /**
@@ -343,55 +373,89 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: _extractNamespacesFromTTL.
+     * Private method: _extractNamespacesFromString.
      *
-     * It extracts the namespaces from a given triple string.
+     * It extracts the namespaces (qname: <baseURI>) of a given type (SPARQL, TURTLE)
+     * from a given string.
      *
-     * @param {string} triples The given triple string.
+     * @param {string} str The given string.
+     * @param {NamespaceType} type The given namespace type.
      *
      * @returns {Promise<Namespace>} A promise of the namespaces.
      */
-    private _extractNamespacesFromTTL(triples: string) {
+    private _extractNamespacesFromString(type: NamespaceType, str: string) {
         // Replace all whitespace characters with a single space and split by space
         // Remove empty values
-        const arr = triples
+        const arr = str
+            .toLowerCase()
             .replace(/\s/g, ' ')
             .split(' ')
             .filter(el => el !== '');
 
-        // Get index of all occurences of @prefix
+        let prefixStr;
+
+        switch (type) {
+            case NamespaceType.TURTLE:
+                prefixStr = '@prefix'.toLowerCase();
+                break;
+            case NamespaceType.SPARQL:
+                prefixStr = 'PREFIX'.toLowerCase();
+                break;
+            default:
+                prefixStr = '';
+        }
+
+        // Get index of all occurrences of prefix string
         const prefixIndexArray = arr.reduce((a, e, i) => {
-            if (e === '@prefix') {
+            if (e === prefixStr) {
                 a.push(i);
             }
             return a;
         }, []);
 
+        // Create object of qNames and namespaceNames
         const obj = {};
         prefixIndexArray.forEach(prefixIndex => {
-            obj[arr[prefixIndex + 1]] = arr[prefixIndex + 2];
+            const qName = arr[prefixIndex + 1];
+            let namespaceName = arr[prefixIndex + 2];
+            // Remove final dot if given
+            if (namespaceName[namespaceName.length - 1] === '.') {
+                namespaceName = namespaceName.slice(0, -1);
+            }
+            obj[qName] = namespaceName;
         });
 
         return obj;
     }
 
     /**
-     * Private method: _extractPrefixesFromQuery.
+     * Private method: _extractPrefixesFromSPARQLWhereClause.
      *
-     * It identifies the prefixes that are used in a SPARQL query.
+     * It identifies the prefixes that are used in the WHERE clause of a SPARQL query.
      *
-     * @param {string} query The given query.
+     * @param {string} queryStr The given query string.
      *
-     * @returns {string[]} A string array of the used namespaces.
+     * @returns {string[]} A string array of the used prefixes.
      */
-    private _extractPrefixesFromQuery(query: string): string[] {
-        const nameSpaces: string[] = [];
-
-        const regex = /[a-zA-Z]+:/g;
+    private _extractPrefixesFromSPARQLWhereClause(query: string): string[] {
         let m;
+        let queryStr = query.toLowerCase();
+        let start = 0;
+        const prefixes: string[] = [];
+        const regex = /\b[a-zA-Z]{2,15}:/g;
+        const where = 'WHERE {'.toLowerCase();
 
+        // Find WHERE clause
+        if (queryStr.includes(where)) {
+            start = queryStr.indexOf(where) + where.length;
+        }
+
+        // Remove everything before WHERE clause from query string
+        queryStr = queryStr.slice(start);
+
+        // Find prefixes in query
         // eslint-disable-next-line no-cond-assign
-        while ((m = regex.exec(query)) !== null) {
+        while ((m = regex.exec(queryStr)) !== null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index === regex.lastIndex) {
                 regex.lastIndex++;
@@ -399,12 +463,12 @@ export class GraphVisualizerService {
 
             // The result can be accessed through the `m`-variable.
             m.forEach(match => {
-                if (nameSpaces.indexOf(match) === -1) {
-                    nameSpaces.push(match);
+                if (prefixes.indexOf(match) === -1) {
+                    prefixes.push(match);
                 }
             });
         }
-        return nameSpaces;
+        return prefixes;
     }
 
     /**

@@ -158,12 +158,10 @@ export class GraphVisualizerComponent implements OnInit {
      */
     performQuery(): void {
         // If no namespace is defined in the query, get it from the turtle file
-        if (this.query.queryString.toLowerCase().indexOf('prefix') === -1) {
-            this.query.queryString = this.graphVisualizerService.appendNamespacesToQuery(
-                this.query.queryString,
-                this.triples
-            );
-        }
+        this.query.queryString = this.graphVisualizerService.checkNamespacesInQuery(
+            this.query.queryString,
+            this.triples
+        );
 
         // Get the query type
         this.query.queryType = this.graphVisualizerService.getQuerytype(this.query.queryString);
