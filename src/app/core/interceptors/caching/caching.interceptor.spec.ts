@@ -393,9 +393,7 @@ describe('CachingInterceptor (DONE)', () => {
                     const expectedError = new Error('error');
                     httpHandlerSpy.handle.and.returnValue(observableThrowError(expectedError));
 
-                    // Set log message and spy on console
-                    const expectedLogMessage = 'CachingInterceptor: Processing http error';
-
+                    // Spy on console
                     expectSpyCall(consoleSpy, 0);
                     expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 

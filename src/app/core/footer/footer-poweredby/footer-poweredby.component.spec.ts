@@ -19,7 +19,6 @@ describe('FooterPoweredbyComponent (DONE)', () => {
     let component: FooterPoweredbyComponent;
     let fixture: ComponentFixture<FooterPoweredbyComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedLogos: Logos;
 
@@ -35,7 +34,6 @@ describe('FooterPoweredbyComponent (DONE)', () => {
         fixture = TestBed.createComponent(FooterPoweredbyComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedLogos = LOGOSDATA;

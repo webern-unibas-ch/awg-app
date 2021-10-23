@@ -44,8 +44,6 @@ export class CachingInterceptor implements HttpInterceptor {
      * @returns {Observable<HttpEvent<any>>} An HttpEvent observable.
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        const started = Date.now();
-
         if (req.method !== 'GET') {
             return next.handle(req);
         }
@@ -60,11 +58,9 @@ export class CachingInterceptor implements HttpInterceptor {
         // Cache the new response
         return next.handle(req).pipe(
             tap(event => {
-                // Remember, there may be other events besides just the response.
+                // Remember, there may be other events besides just the response
                 if (event instanceof HttpResponse) {
-                    const elapsed = Date.now() - started;
-
-                    // Update the cache.
+                    // Update the cache
                     this.cache.put(req, event.clone());
                 }
             }),

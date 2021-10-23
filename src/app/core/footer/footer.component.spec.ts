@@ -39,7 +39,6 @@ describe('FooterComponent (DONE)', () => {
     let component: FooterComponent;
     let fixture: ComponentFixture<FooterComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockCoreService: Partial<CoreService>;
 
@@ -71,7 +70,6 @@ describe('FooterComponent (DONE)', () => {
         fixture = TestBed.createComponent(FooterComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedLogos = LOGOSDATA;

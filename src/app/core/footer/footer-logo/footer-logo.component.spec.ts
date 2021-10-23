@@ -16,7 +16,6 @@ describe('FooterLogoComponent (DONE)', () => {
     let component: FooterLogoComponent;
     let fixture: ComponentFixture<FooterLogoComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let getLogoClassSpy: Spy;
 
@@ -39,7 +38,6 @@ describe('FooterLogoComponent (DONE)', () => {
         fixture = TestBed.createComponent(FooterLogoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedLogo = LOGOSDATA.unibas;
@@ -73,7 +71,7 @@ describe('FooterLogoComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('... should contain one image inside an anchor a', () => {
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
+                getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
             });
 
             it('... should not render logo yet', () => {
@@ -220,24 +218,20 @@ describe('FooterLogoComponent (DONE)', () => {
             });
 
             it('... should have correct logo id in img', () => {
-                // Find debug elements
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
+                // Find debug element
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
 
-                // Find native elements
-                const anchorEl = anchorDes[0].nativeElement;
+                // Find native element
                 const imageEl = imageDes[0].nativeElement;
 
                 expect(imageEl.id).toBe(expectedLogo.id, `should be ${expectedLogo.id}`);
             });
 
             it('... should have correct logo src and alt in img', () => {
-                // Find debug elements
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'a', 1, 1);
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
+                // Find debug element
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
 
-                // Find native elements
-                const anchorEl = anchorDes[0].nativeElement;
+                // Find native element
                 const imageEl = imageDes[0].nativeElement;
 
                 expect(imageEl.src).toContain(expectedLogo.src, `should contain ${expectedLogo.src}`);
@@ -249,7 +243,7 @@ describe('FooterLogoComponent (DONE)', () => {
 
                 // Right main footer logo
                 // Find debug elements
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
 
                 // Find native elements
                 const imageEl = imageDes[0].nativeElement;
@@ -265,7 +259,7 @@ describe('FooterLogoComponent (DONE)', () => {
 
                 // Right main footer logo
                 // Find debug elements
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
 
                 // Find native elements
                 const imageEl = imageDes[0].nativeElement;
@@ -293,7 +287,7 @@ describe('FooterLogoComponent (DONE)', () => {
             it('... should have CSS class `my-2` applied only to main footer logos', async () => {
                 // Right main footer logo
                 // Find debug elements
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
 
                 // Find native elements
                 const imageEl = imageDes[0].nativeElement;
@@ -321,7 +315,7 @@ describe('FooterLogoComponent (DONE)', () => {
             it('... should have [ngClass] resolve to correct classes', async () => {
                 // Right main footer logo
                 // Find debug elements
-                const imageDes = getAndExpectDebugElementByCss(compDe, 'img', 1, 1);
+                const imageDes = getAndExpectDebugElementByCss(compDe, 'a > img', 1, 1);
 
                 // Find native elements
                 const imageEl = imageDes[0].nativeElement;

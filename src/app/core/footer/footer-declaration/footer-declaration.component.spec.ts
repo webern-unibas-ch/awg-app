@@ -15,7 +15,7 @@ describe('FooterDeclarationComponent (DONE)', () => {
     let component: FooterDeclarationComponent;
     let fixture: ComponentFixture<FooterDeclarationComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -33,7 +33,6 @@ describe('FooterDeclarationComponent (DONE)', () => {
         fixture = TestBed.createComponent(FooterDeclarationComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
