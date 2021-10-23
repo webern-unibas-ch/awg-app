@@ -131,19 +131,20 @@ export class AppConfig {
      * @returns {string}
      */
     public static get UNSAFE_OSM_EMBED_URL(): string {
-        const osmRoot = 'https://www.openstreetmap.org/export/embed.html';
-        const osmId =
-            '?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
+        const osmApi = 'https://www.openstreetmap.org/export/embed.html';
+        const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
+        const layer = 'layer=mapnik';
+        const marker = '47.55896585846639%2C7.584506571292877';
 
-        return osmRoot + osmId;
+        return osmApi + '?' + bbox + '&' + layer + '&' + marker;
     }
 
     /**
-     * Getter for the unsanitized OSM external link.
+     * Getter for the OSM external link.
      *
      * @returns {string}
      */
-    public static get UNSAFE_OSM_LINK_URL() {
+    public static get OSM_LINK_URL() {
         const osmLinkRoot = 'https://www.openstreetmap.org/';
         const osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
         return osmLinkRoot + osmLinkId;

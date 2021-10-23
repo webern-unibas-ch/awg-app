@@ -43,7 +43,7 @@ describe('ContactInfoComponent (DONE)', () => {
     let compEl;
 
     let provideMetaDataSpy: Spy;
-    let sanitizeSpy: Spy;
+    let provideOSMUrlSpy: Spy;
 
     let domSanitizer: DomSanitizer;
 
@@ -53,7 +53,6 @@ describe('ContactInfoComponent (DONE)', () => {
     let expectedContactMetaData: MetaContact;
 
     let expectedUnsafeOsmEmbedUrl: string;
-    let expectedUnsafeOsmLinkUrl: string;
     let expectedOsmEmbedUrl: SafeResourceUrl;
     let expectedOsmLinkUrl: string;
 
@@ -84,19 +83,18 @@ describe('ContactInfoComponent (DONE)', () => {
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedContactMetaData = METADATA[MetaSectionTypes.contact];
 
-        // Unsafe link values for open streets map
+        // Link values for open streets map
         expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
-        expectedUnsafeOsmLinkUrl = AppConfig.UNSAFE_OSM_LINK_URL;
+        expectedOsmLinkUrl = AppConfig.OSM_LINK_URL;
 
-        // Bypass the unsafe values
+        // Trust the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
-        expectedOsmLinkUrl = domSanitizer.sanitize(SecurityContext.URL, expectedUnsafeOsmLinkUrl);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
         // https://jasmine.github.io/2.0/introduction.html#section-Spies:_%3Ccode%3Eand.callThrough%3C/code%3E
         provideMetaDataSpy = spyOn(component, 'provideMetaData').and.callThrough();
-        sanitizeSpy = spyOn<any>(component, '_sanitizeUrls').and.callThrough();
+        provideOSMUrlSpy = spyOn(component, 'provideOSMUrls').and.callThrough();
     });
 
     afterAll(() => {
@@ -131,9 +129,9 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#_sanitizeUrls', () => {
+        describe('#provideOSMUrls', () => {
             it('... should not have been called', () => {
-                expectSpyCall(sanitizeSpy, 0);
+                expectSpyCall(provideOSMUrlSpy, 0);
             });
         });
 
@@ -183,7 +181,7 @@ describe('ContactInfoComponent (DONE)', () => {
 
     describe('AFTER initial data binding', () => {
         beforeEach(() => {
-            // Mock the call to the DomSanitizer in #_sanitizeUrls
+            // Mock the call to the DomSanitizer in #provideOSMUrls
             // It sets the bypassed links (SafeResourceUrl)
             component.osmEmbedUrl = expectedOsmEmbedUrl;
             component.osmLinkUrl = expectedOsmLinkUrl;
@@ -212,9 +210,9 @@ describe('ContactInfoComponent (DONE)', () => {
             });
         });
 
-        describe('#_sanitizeUrls', () => {
+        describe('#provideOSMUrls', () => {
             it('... should have been called', () => {
-                expectSpyCall(sanitizeSpy, 1);
+                expectSpyCall(provideOSMUrlSpy, 1);
             });
 
             it('... should return osmEmbedUrl', () => {
