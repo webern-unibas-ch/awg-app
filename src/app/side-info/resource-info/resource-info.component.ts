@@ -286,7 +286,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the resourceInfoData.resources.
      */
     private _buildForm(index: number, resultSize: number): void {
-        const regexPattern = /^[1-9]+\d*$/;
+        const regexPattern = /^\d{1,10}$/;
 
         this.resourceInfoFormGroup = this.fb.group({
             resourceInfoIndex: [
