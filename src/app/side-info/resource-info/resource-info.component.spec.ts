@@ -566,10 +566,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                     expect(errors['required']).toBeTruthy();
                 });
 
-                it("... should complain if index is not a number (Validators.pattern('^[1-9]+[0-9]*$'))", () => {
+                it("... should complain if index is not a number (Validators.pattern('^[1-9]\\d{0,9}$'))", () => {
                     let errors = {};
                     const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
-                    const expectedPattern = '/^[1-9]+\\d*$/';
+                    const expectedPattern = '/^[1-9]\\d{0,9}$/';
 
                     // NaN
                     resourceInfoIndex.setValue(NaN);
@@ -622,10 +622,10 @@ describe('ResourceInfoComponent (DONE)', () => {
                     );
                 });
 
-                it("... should only allow integers greater than 0 (Validators.pattern('[1-9]+[0-9]*'))", () => {
+                it("... should only allow integers greater than 0 (Validators.pattern('^[1-9]\\d{0,9}$'))", () => {
                     let errors = {};
                     const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
-                    const expectedPattern = '/^[1-9]+\\d*$/';
+                    const expectedPattern = '/^[1-9]\\d{0,9}$/';
 
                     // -1234567890
                     resourceInfoIndex.setValue(-1234567890);

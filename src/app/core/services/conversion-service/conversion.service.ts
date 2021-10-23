@@ -863,11 +863,13 @@ export class ConversionService extends ApiService {
         if (!str) {
             return;
         }
-        const regNum = /\d{3,}/; // Regexp for object id (3 or more DIGITS)
+
+        // Regexp for Salsah links
+        // Including subgroup for object id: /[1-9]\d{0,9}/ (any up-to 10-digit integer greater 0)
         const regLink = new RegExp(
-            '<a href="((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/\\d{1,10})" class="salsah-link">(.*?)</a>',
+            '<a href="((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/([1-9]\\d{0,9}))" class="salsah-link">(.*?)</a>',
             'i'
-        ); // Regexp for salsah links
+        );
         let regArr: RegExpExecArray;
 
         // Check for salsah links in str
@@ -875,16 +877,17 @@ export class ConversionService extends ApiService {
             // I.e.: as long as regLink is detected in str do...
             regArr = regLink.exec(str);
 
-            // Identify resource id
-            const resId = regNum.exec(regArr[1])[0];
+            // Resource id is in 4th array entry
+            const resId = regArr[3];
+            // Link text is stored in last array entry
+            const resTextContent = regArr[regArr.length - 1];
 
             // Replace href attribute with click-directive
-            // Linktext is stored in last regexp-result regArr[regArr.length-1]
             const replaceValue =
                 '<a (click)="ref.navigateToResource(\'' +
                 resId +
                 '\'); $event.stopPropagation()">' +
-                regArr[regArr.length - 1] +
+                resTextContent +
                 '</a>';
             str = str.replace(regArr[0], replaceValue);
         } // END while
