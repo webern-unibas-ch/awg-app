@@ -9,6 +9,8 @@ on:
         paths-ignore:
             - '**.md' # ignore changes in markdown files
     pull_request:
+        branches: [ develop ]
+        types: [ opened, synchronize, reopened ]
 
 jobs:
     test:
@@ -22,6 +24,8 @@ jobs:
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0  # Get all history and branches
 
             - name: Set up node ${{ matrix.node-version}}
               uses: actions/setup-node@v2.4.1
@@ -43,6 +47,13 @@ jobs:
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+
+        -   name: Perform SonarCloud Analysis
+            if: matrix.node-version == 14.17 # upload coverage report for current node version only
+            uses: SonarSource/sonarcloud-github-action@master
+            env:
+                GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+                SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
             - name: Test build for GH Pages (Node < v16)
               if: matrix.node-version != 16
