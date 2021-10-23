@@ -832,7 +832,7 @@ export class ConversionService extends ApiService {
         const labelStr: string = splitArr[0].replace('(', '');
 
         // Regexp for links
-        const regExLink = /<a (.*?)>(.*?)<\/a>/i;
+        const regExLink = /<a\\s+(?:[^>]*?\\s+)?(href=(["'])(.*?)\\2)>(.*?)<\/a>/i;
 
         // Check for link in 2nd part of splitArr
         if (regExLink.exec(splitArr[1])) {
@@ -866,10 +866,9 @@ export class ConversionService extends ApiService {
 
         // Regexp for Salsah links
         // Including subgroup for object id: /[1-9]\d{0,9}/ (any up-to 10-digit integer greater 0)
-        const regLink = new RegExp(
-            '<a href="((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/([1-9]\\d{0,9}))" class="salsah-link">(.*?)</a>',
-            'i'
-        );
+        const regLink =
+            /<a\s+(?:[^>]*?\s+)?href=(["'])((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?salsah\.org\/api\/resources\/([1-9]\d{0,9}))\1 class=(["'])salsah-link\5>(.*?)<\/a>/i;
+
         let regArr: RegExpExecArray;
 
         // Check for salsah links in str
@@ -878,7 +877,7 @@ export class ConversionService extends ApiService {
             regArr = regLink.exec(str);
 
             // Resource id is in 4th array entry
-            const resId = regArr[3];
+            const resId = regArr[4];
             // Link text is stored in last array entry
             const resTextContent = regArr[regArr.length - 1];
 
