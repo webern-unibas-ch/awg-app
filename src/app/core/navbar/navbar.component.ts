@@ -98,10 +98,19 @@ export class NavbarComponent implements OnInit {
      * when initializing the component.
      */
     ngOnInit() {
-        // TODO: move to method
-        this.selectedEditionWork = this.EDITION_WORKS[0];
-
+        this.getEditionWork();
         this.provideMetaData();
+    }
+
+    /**
+     * Public method: getEditionWork.
+     *
+     * It gets the selected EditionWork.
+     *
+     * @returns {void} Sets the selectedEditionWork variable.
+     */
+    getEditionWork(): void {
+        this.selectedEditionWork = this.EDITION_WORKS[0];
     }
 
     /**
@@ -124,6 +133,7 @@ export class NavbarComponent implements OnInit {
      * @returns {boolean} Sets the isCollapsed flag.
      */
     toggleNav(): boolean {
-        return (this.isCollapsed = !this.isCollapsed);
+        this.isCollapsed = !this.isCollapsed;
+        return this.isCollapsed;
     }
 }

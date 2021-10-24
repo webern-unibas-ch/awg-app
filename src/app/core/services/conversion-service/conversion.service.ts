@@ -151,7 +151,6 @@ export class ConversionService extends ApiService {
         if (searchResults.subjects) {
             const length = searchResults.subjects.length;
             const resString: string = length === 1 ? 'Resultat' : 'Resultate';
-            // ResText = `${length}/${searchData.nhits} `;
             resText = `${searchResults.nhits} `;
             resText += `${resString} für "${searchValue}"`;
 
@@ -436,18 +435,14 @@ export class ConversionService extends ApiService {
         }
 
         // Helper method to clean value labels
-        const replaceLabel = (str: string): string => str.replace(' (Richtext)', '');
+        const cleanLabel = (str: string): string => str.replace(' (Richtext)', '');
 
         // Map default values into ResourceDetailProperties array
-        return Object.entries(props).map(
-            prop =>
-                new ResourceDetailProperty(
-                    prop[1].pid,
-                    prop[1].guielement,
-                    (prop[1].label = replaceLabel(prop[1].label)),
-                    prop[1].toHtml
-                )
-        );
+        return Object.entries(props).map(prop => {
+            prop[1].label = cleanLabel(prop[1].label);
+
+            return new ResourceDetailProperty(prop[1].pid, prop[1].guielement, prop[1].label, prop[1].toHtml);
+        });
     }
 
     /**
@@ -576,7 +571,8 @@ export class ConversionService extends ApiService {
                         'ConversionService# _convertGeoValues: got no nodelist from geonames response: ',
                         geoNamesData
                     );
-                    return (output[index] = '');
+                    output[index] = '';
+                    return output;
                 }
                 // Snapshot of nodelist array
                 const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];

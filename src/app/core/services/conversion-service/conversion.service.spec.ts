@@ -7,6 +7,7 @@ import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { AppModule } from '@awg-app/app.module';
 
 import { ConversionService } from './conversion.service';
+import { mockSearchResponseJson } from '@testing/mock-data';
 
 describe('ConversionService', () => {
     let conversionService: ConversionService;
@@ -25,7 +26,15 @@ describe('ConversionService', () => {
         cleanStylesFromDOM();
     });
 
-    it('should be created', inject([ConversionService], (service: ConversionService) => {
-        expect(service).toBeTruthy();
-    }));
+    it('should be created', () => {
+        expect(conversionService).toBeTruthy();
+    });
+
+    it('should not have filteredOut before convertFullTextSearchResults call', () => {
+        expect(conversionService.filteredOut).toBeUndefined();
+
+        conversionService.convertFullTextSearchResults(mockSearchResponseJson);
+
+        expect(conversionService.filteredOut).toBeDefined();
+    });
 });

@@ -174,7 +174,7 @@
 
     //  JD_TO_GREGORIAN  --  Calculate Gregorian calendar date from Julian day
     function jd_to_gregorian(jd) {
-        var wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad, yindex, dyindex, year, yearday, leapadj;
+        var wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad, yindex, dyindex, year, yearday, leapadj, month, day;
 
         wjd = Math.floor(jd - 0.5) + 0.5;
         depoch = wjd - GREGORIAN_EPOCH;
@@ -240,8 +240,8 @@
      * - <i>name</i>.dateprecision2 ("DAY", "MONTH", "YEAR")
      * - <i>name</i>.calendar ("GREGORIAN", "JULIAN", "JEWISH", "FRENCH")
      */
-
-    return (dateConverter = function (dateobj) {
+    let dateConverter;
+    dateConverter = function (dateobj) {
         var $that = this;
         var d1 = jdc_to_date(dateobj.dateval1, dateobj.calendar);
         var d2 = jdc_to_date(dateobj.dateval2, dateobj.calendar);
@@ -360,5 +360,7 @@
         datestr += ' (' + calendars[dateobj.calendar].short + ')';
 
         return datestr;
-    });
+    };
+
+    return dateConverter;
 })(window.angular);

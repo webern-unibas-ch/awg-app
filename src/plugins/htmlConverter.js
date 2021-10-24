@@ -16,7 +16,8 @@
      * @param txt The text (sequence of characters)
      * @return {String} A string which can be converted to HTML
      */
-    return (htmlConverter = function (assigned_props, txt) {
+    let htmlConverter;
+    htmlConverter = function (assigned_props, txt) {
         var html = '';
         var proparr;
         var stack;
@@ -212,5 +213,7 @@
         html = html.replace(/\r/g, '');
 
         return html;
-    }); //END convert_lin2html (func)
+    }; //END convert_lin2html (func)
+
+    return htmlConverter;
 })(window.angular);
