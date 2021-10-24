@@ -23,14 +23,13 @@ describe('NavbarComponent (DONE)', () => {
     let component: NavbarComponent;
     let fixture: ComponentFixture<NavbarComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
     let mockCoreService: Partial<CoreService>;
 
     let expectedPageMetaData: MetaPage;
-    let expectedIsCollapsed: boolean;
 
     let expectedEditionWorks: EditionWork[] = [EditionWorks.OP12, EditionWorks.OP25];
     let expectedSelectEditionWork: EditionWork = EditionWorks.OP12;
@@ -63,10 +62,8 @@ describe('NavbarComponent (DONE)', () => {
         fixture = TestBed.createComponent(NavbarComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
-        expectedIsCollapsed = true;
         expectedPageMetaData = METADATA[MetaSectionTypes.page];
         expectedEditionWorks = [EditionWorks.OP12, EditionWorks.OP25];
         expectedSelectEditionWork = EditionWorks.OP12;

@@ -46,12 +46,8 @@ export class LoadingInterceptor implements HttpInterceptor {
      * @returns {Observable<HttpEvent<any>>} An HttpEvent observable.
      */
     intercept(req: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
-        // console.log('LOADINGINTERCEPTOR ------------>');
-
         // Store the request
         this._pendingRequests.push(req);
-
-        // console.log('REQ', req);
 
         // Start loading and update status
         this.loadingService.updateLoadingStatus(true);
@@ -62,18 +58,15 @@ export class LoadingInterceptor implements HttpInterceptor {
             const subscription = next.handle(req).subscribe(
                 event => {
                     if (event instanceof HttpResponse) {
-                        // console.warn('------------> event', event.url);
                         this._decreaseRequest(req);
                         observer.next(event);
                     }
                 },
                 err => {
-                    // console.warn('------------> err', err);
                     this._decreaseRequest(req);
                     observer.error(err);
                 },
                 () => {
-                    // console.warn('------------> complete');
                     if (this._pendingRequests.length > 0) {
                         this._decreaseRequest(req);
                     }
@@ -82,7 +75,6 @@ export class LoadingInterceptor implements HttpInterceptor {
             );
             // Return teardown logic in case of cancelled requests
             return () => {
-                // console.warn('------------> teardown');
                 if (this._pendingRequests.length > 0) {
                     this._decreaseRequest(req);
                 }
@@ -106,24 +98,11 @@ export class LoadingInterceptor implements HttpInterceptor {
         // Find index position of request in pending requests array
         const i = this._pendingRequests.indexOf(req);
 
-        /*
-        console.log('------------> ');
-        console.log('i', i);
-        console.log('length BEFORE', this._pendingRequests.length);
-        console.log('_pendingRequests', [...this._pendingRequests]);
-        console.log(req.urlWithParams);
-        */
-
         /* istanbul ignore else */
         if (i >= 0) {
             // Remove the request from the array
             this._pendingRequests.splice(i, 1);
         }
-
-        /*
-        console.log('length AFTER', this._pendingRequests.length);
-        console.log('loading > ', this._pendingRequests.length > 0);
-        */
 
         // Update loading status depending on the pending requests
         this.loadingService.updateLoadingStatus(this._pendingRequests.length > 0);
