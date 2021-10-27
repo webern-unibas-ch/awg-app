@@ -1,5 +1,5 @@
 import { TestBed } from '@angular/core/testing';
-import { Component, TemplateRef, ViewChild, ViewContainerRef } from '@angular/core';
+import { Component, TemplateRef, ViewChild } from '@angular/core';
 
 import { Toast, ToastService } from './toast.service';
 

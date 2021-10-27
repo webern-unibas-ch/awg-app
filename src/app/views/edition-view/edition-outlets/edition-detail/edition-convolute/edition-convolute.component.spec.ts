@@ -6,7 +6,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
-import { Folio, EditionSvgSheet, FolioConvoluteList, FolioConvolute } from '@awg-views/edition-view/models';
+import { EditionSvgSheet, FolioConvoluteList, FolioConvolute } from '@awg-views/edition-view/models';
 import { EditionConvoluteComponent } from './edition-convolute.component';
 import {
     expectSpyCall,

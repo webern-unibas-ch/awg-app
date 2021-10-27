@@ -15,7 +15,6 @@ import {
     TextcriticsList,
     EditionSvgSheetList,
     FolioConvoluteList,
-    EditionWork,
     EditionWorks,
     FolioConvolute,
 } from '@awg-views/edition-view/models';
@@ -75,9 +74,8 @@ describe('EditionDetailComponent', () => {
                 'getEditionWork',
             ]);
             // Make the spies return a synchronous Observable with the test data
-            getTextcriticsListSpy = mockEditionService.getTextcriticalComments.and.returnValue(
-                expectedTextcriticalComments
-            );
+            getTextcriticsListSpy =
+                mockEditionService.getTextcriticalComments.and.returnValue(expectedTextcriticalComments);
             getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12));
             /*
         MockEditionService = {

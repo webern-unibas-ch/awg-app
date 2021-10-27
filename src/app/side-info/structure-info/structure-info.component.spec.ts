@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaContact } from '@awg-core/core-models';
+import { MetaStructure, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 

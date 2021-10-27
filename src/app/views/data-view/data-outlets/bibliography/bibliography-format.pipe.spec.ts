@@ -1,6 +1,5 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 
-import { TestBed, waitForAsync } from '@angular/core/testing';
 import { BibliographyFormatPipe } from './bibliography-format.pipe';
 
 describe('BibliographyFormatPipe', () => {

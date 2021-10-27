@@ -1,8 +1,8 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
 
-import { Observable, Subject, Subscription } from 'rxjs';
-import { filter, map, takeUntil } from 'rxjs/operators';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 import { ConversionService, DataStreamerService, LoadingService } from '@awg-core/services';
 import { DataApiService } from '@awg-views/data-view/services';

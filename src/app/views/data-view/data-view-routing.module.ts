@@ -5,7 +5,7 @@ import { DataViewComponent } from './data-view.component';
 import { ResourceDetailComponent } from './data-outlets/resource-detail/resource-detail.component';
 import { SearchOverviewComponent } from './data-outlets/search-overview.component';
 import { SearchPanelComponent } from './data-outlets/search-panel/search-panel.component';
-import { TimelineComponent } from './data-outlets/timeline/timeline.component';
+// Import { TimelineComponent } from './data-outlets/timeline/timeline.component';
 
 /* Routes of the DataViewModule */
 const dataViewRoutes: Routes = [

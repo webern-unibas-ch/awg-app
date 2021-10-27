@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import Spy = jasmine.Spy;

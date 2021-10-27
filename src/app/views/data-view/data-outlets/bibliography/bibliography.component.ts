@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 
 import { BibliographyService } from '@awg-views/data-view/services';
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
-import { map, tap } from 'rxjs/operators';
+import { tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
 
 /**
