@@ -9,6 +9,7 @@ import * as N3 from 'n3';
 
 import {
     Namespace,
+    NamespaceType,
     PrefixForm,
     QueryResult,
     QueryTypeIndex,
@@ -25,11 +26,6 @@ import { PrefixPipe } from '../prefix-pipe/prefix.pipe';
  * It provides access to the rdfstore library.
  */
 declare let rdfstore: any;
-
-export enum NamespaceType {
-    TURTLE = 'TURTLE',
-    SPARQL = 'SPARQL',
-}
 
 /**
  * The GraphVisualizer service.
