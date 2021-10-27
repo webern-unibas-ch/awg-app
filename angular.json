@@ -41,8 +41,8 @@
                             "node_modules/codemirror/lib/codemirror.js",
                             "node_modules/codemirror/mode/turtle/turtle.js",
                             "node_modules/codemirror/mode/sparql/sparql.js",
-                            "src/plugins/dateConverter.js",
-                            "src/plugins/htmlConverter.js"
+                            "src/assets/js/dateConverter.js",
+                            "src/assets/js/htmlConverter.js"
                         ]
                     },
                     "configurations": {
@@ -137,8 +137,8 @@
                             "node_modules/codemirror/lib/codemirror.js",
                             "node_modules/codemirror/mode/turtle/turtle.js",
                             "node_modules/codemirror/mode/sparql/sparql.js",
-                            "src/plugins/dateConverter.js",
-                            "src/plugins/htmlConverter.js"
+                            "src/assets/js/dateConverter.js",
+                            "src/assets/js/htmlConverter.js"
                         ],
                         "assets": ["src/favicon.ico", "src/assets"]
                     },

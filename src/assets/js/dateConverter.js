@@ -1,5 +1,4 @@
-(function (angular) {
-    /*
+/*
        JavaScript functions for the Fourmilab Calendar Converter
 
                   by John Walker  --  September, MIM
@@ -8,13 +7,28 @@
                 This program is in the public domain.
 */
 
-    /*
+/*
        extended (2009 - 2010) by Lukas Rosenthaler, Patrick Ryf, Tobias Schweizer
 */
-    /*
+/*
 		modified as ANGULAR Plugin (2016) by Stefan Münnich
 */
 
+/**
+ * Dateobject:
+ * - <i>name</i>.dateval1 (JDC)
+ * - <i>name</i>.dateval2 (JDC)
+ * - <i>name</i>.dateprecision1 ("DAY", "MONTH", "YEAR")
+ * - <i>name</i>.dateprecision2 ("DAY", "MONTH", "YEAR")
+ * - <i>name</i>.calendar ("GREGORIAN", "JULIAN", "JEWISH", "FRENCH")
+ *
+ * /**
+ * This function converts a date object into a date string.
+ * @param dateobj The object representing the date
+ *
+ * @return {String} A string which represents the date
+ */
+export function dateConverter(dateobj) {
     //INIT
     var J0000 = 1721424.5; // Julian date of Gregorian epoch: 0000-01-01
     var J1970 = 2440587.5; // Julian date at Unix epoch: 1970-01-01
@@ -232,87 +246,16 @@
         return dateobj;
     } // END jdc_to_date (func)
 
-    /**
-     * Dateobject:
-     * - <i>name</i>.dateval1 (JDC)
-     * - <i>name</i>.dateval2 (JDC)
-     * - <i>name</i>.dateprecision1 ("DAY", "MONTH", "YEAR")
-     * - <i>name</i>.dateprecision2 ("DAY", "MONTH", "YEAR")
-     * - <i>name</i>.calendar ("GREGORIAN", "JULIAN", "JEWISH", "FRENCH")
-     */
-    let dateConverter;
-    dateConverter = function (dateobj) {
-        var $that = this;
-        var d1 = jdc_to_date(dateobj.dateval1, dateobj.calendar);
-        var d2 = jdc_to_date(dateobj.dateval2, dateobj.calendar);
-        var datestr = '';
-        if (dateobj.dateprecision1 == dateobj.dateprecision2) {
-            //
-            // same precisions for start- and end-date
-            //
-            switch (dateobj.dateprecision1) {
-                case 'DAY': {
-                    if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
-                        datestr =
-                            '[' +
-                            weekday[d1.weekday] +
-                            '] ' +
-                            d1.day +
-                            '. ' +
-                            months[dateobj.calendar][d1.month] +
-                            ' ' +
-                            d1.year;
-                    } else {
-                        datestr =
-                            '[' +
-                            weekday[d1.weekday] +
-                            '] ' +
-                            d1.day +
-                            '. ' +
-                            months[dateobj.calendar][d1.month] +
-                            ' ' +
-                            d1.year +
-                            ' – [' +
-                            weekday[d2.weekday] +
-                            '] ' +
-                            d2.day +
-                            '. ' +
-                            months[dateobj.calendar][d2.month] +
-                            ' ' +
-                            d2.year;
-                    }
-                    break;
-                }
-                case 'MONTH': {
-                    if (d1.year == d2.year && d1.month == d2.month) {
-                        datestr = months[dateobj.calendar][d1.month] + ' ' + d1.year;
-                    } else {
-                        datestr =
-                            months[dateobj.calendar][d1.month] +
-                            ' ' +
-                            d1.year +
-                            ' – ' +
-                            months[dateobj.calendar][d2.month] +
-                            ' ' +
-                            d2.year;
-                    }
-                    break;
-                }
-                case 'YEAR': {
-                    if (d1.year == d2.year) {
-                        datestr = d1.year;
-                    } else {
-                        datestr = d1.year + '–' + d2.year;
-                    }
-                    break;
-                }
-            } // END switch(precision1)
-        } else {
-            //
-            // different precisions for start- and end-date
-            //
-            switch (dateobj.dateprecision1) {
-                case 'DAY': {
+    var d1 = jdc_to_date(dateobj.dateval1, dateobj.calendar);
+    var d2 = jdc_to_date(dateobj.dateval2, dateobj.calendar);
+    var datestr = '';
+    if (dateobj.dateprecision1 == dateobj.dateprecision2) {
+        //
+        // same precisions for start- and end-date
+        //
+        switch (dateobj.dateprecision1) {
+            case 'DAY': {
+                if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
                     datestr =
                         '[' +
                         weekday[d1.weekday] +
@@ -322,22 +265,17 @@
                         months[dateobj.calendar][d1.month] +
                         ' ' +
                         d1.year;
-                    break;
-                }
-                case 'MONTH': {
-                    datestr = months[dateobj.calendar][d1.month] + ' ' + d1.year;
-                    break;
-                }
-                case 'YEAR': {
-                    datestr = d1.year;
-                    break;
-                }
-            } // switch(precision1)
-            datestr += ' – ';
-            switch (dateobj.dateprecision2) {
-                case 'DAY': {
-                    datestr +=
+                } else {
+                    datestr =
                         '[' +
+                        weekday[d1.weekday] +
+                        '] ' +
+                        d1.day +
+                        '. ' +
+                        months[dateobj.calendar][d1.month] +
+                        ' ' +
+                        d1.year +
+                        ' – [' +
                         weekday[d2.weekday] +
                         '] ' +
                         d2.day +
@@ -345,22 +283,84 @@
                         months[dateobj.calendar][d2.month] +
                         ' ' +
                         d2.year;
-                    break;
                 }
-                case 'MONTH': {
-                    datestr += months[dateobj.calendar][d2.month] + ' ' + d2.year;
-                    break;
+                break;
+            }
+            case 'MONTH': {
+                if (d1.year == d2.year && d1.month == d2.month) {
+                    datestr = months[dateobj.calendar][d1.month] + ' ' + d1.year;
+                } else {
+                    datestr =
+                        months[dateobj.calendar][d1.month] +
+                        ' ' +
+                        d1.year +
+                        ' – ' +
+                        months[dateobj.calendar][d2.month] +
+                        ' ' +
+                        d2.year;
                 }
-                case 'YEAR': {
-                    datestr += d2.year;
-                    break;
+                break;
+            }
+            case 'YEAR': {
+                if (d1.year == d2.year) {
+                    datestr = d1.year;
+                } else {
+                    datestr = d1.year + '–' + d2.year;
                 }
-            } // END switch(precision2)
-        }
-        datestr += ' (' + calendars[dateobj.calendar].short + ')';
+                break;
+            }
+        } // END switch(precision1)
+    } else {
+        //
+        // different precisions for start- and end-date
+        //
+        switch (dateobj.dateprecision1) {
+            case 'DAY': {
+                datestr =
+                    '[' +
+                    weekday[d1.weekday] +
+                    '] ' +
+                    d1.day +
+                    '. ' +
+                    months[dateobj.calendar][d1.month] +
+                    ' ' +
+                    d1.year;
+                break;
+            }
+            case 'MONTH': {
+                datestr = months[dateobj.calendar][d1.month] + ' ' + d1.year;
+                break;
+            }
+            case 'YEAR': {
+                datestr = d1.year;
+                break;
+            }
+        } // switch(precision1)
+        datestr += ' – ';
+        switch (dateobj.dateprecision2) {
+            case 'DAY': {
+                datestr +=
+                    '[' +
+                    weekday[d2.weekday] +
+                    '] ' +
+                    d2.day +
+                    '. ' +
+                    months[dateobj.calendar][d2.month] +
+                    ' ' +
+                    d2.year;
+                break;
+            }
+            case 'MONTH': {
+                datestr += months[dateobj.calendar][d2.month] + ' ' + d2.year;
+                break;
+            }
+            case 'YEAR': {
+                datestr += d2.year;
+                break;
+            }
+        } // END switch(precision2)
+    }
+    datestr += ' (' + calendars[dateobj.calendar].short + ')';
 
-        return datestr;
-    };
-
-    return dateConverter;
-})(window.angular);
+    return datestr;
+}

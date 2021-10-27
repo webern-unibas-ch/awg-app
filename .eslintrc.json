@@ -8,6 +8,12 @@
     },
     "overrides": [
         {
+            "files": ["*.js"],
+            "parserOptions": {
+                "sourceType": "module"
+            }
+        },
+        {
             "files": ["*.ts"],
             "parser": "@typescript-eslint/parser",
             "parserOptions": {
