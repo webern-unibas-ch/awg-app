@@ -1,5 +1,3 @@
-import { Source } from '@awg-views/edition-view/models/source-list.model';
-
 /**
  * The EditionSvgSheet class.
  *

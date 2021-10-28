@@ -30,15 +30,7 @@
  */
 export function dateConverter(dateobj) {
     //INIT
-    var J0000 = 1721424.5; // Julian date of Gregorian epoch: 0000-01-01
-    var J1970 = 2440587.5; // Julian date at Unix epoch: 1970-01-01
-    var JMJD = 2400000.5; // Epoch of Modified Julian Date system
-    var J1900 = 2415020.5; // Epoch (day 1) of Excel 1900 date system (PC)
-    var J1904 = 2416480.5; // Epoch (day 0) of Excel 1904 date system (Mac)
-
     var GREGORIAN_EPOCH = 1721425.5;
-
-    var NormLeap = new Array('Normal year', 'Leap year');
 
     var calendars = {
         GREGORIAN: { name: 'Gregorian', short: 'G', n_months: 12 },
@@ -54,72 +46,6 @@ export function dateConverter(dateobj) {
         GREGORIAN: ['ZERO', 'Jan', 'Feb', 'März', 'Apr', 'Mai', 'Juni', 'Juli', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
         // GREGORIAN: ['ZERO', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         JULIAN: ['ZERO', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-        JEWISH: [
-            'ZERO',
-            'Tishri',
-            'Heshvan',
-            'Kislev',
-            'Tevet',
-            'Shevat',
-            'AdarI',
-            'AdarII',
-            'Nisan',
-            'Iyyar',
-            'Sivan',
-            'Tammuz',
-            'Av',
-            'Elul',
-        ],
-        FRENCH: [
-            'ZERO',
-            'Vendemiaire',
-            'Brumaire',
-            'Frimaire',
-            'Nivose',
-            'Pluviose',
-            'Ventose',
-            'Germinal',
-            'Floreal',
-            'Prairial',
-            'Messidor',
-            'Thermidor',
-            'Fructidor',
-            'Extra',
-        ],
-    };
-
-    var months_long = {
-        GREGORIAN: [
-            'ZERO',
-            'Januar',
-            'Februar',
-            'März',
-            'April',
-            'Mai',
-            'Juni',
-            'Juli',
-            'August',
-            'September',
-            'Oktober',
-            'November',
-            'Dezember',
-        ],
-        // GREGORIAN: ['ZERO', 'January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-        JULIAN: [
-            'ZERO',
-            'January',
-            'February',
-            'March',
-            'April',
-            'May',
-            'June',
-            'July',
-            'August',
-            'September',
-            'October',
-            'November',
-            'December',
-        ],
         JEWISH: [
             'ZERO',
             'Tishri',
@@ -188,7 +114,7 @@ export function dateConverter(dateobj) {
 
     //  JD_TO_GREGORIAN  --  Calculate Gregorian calendar date from Julian day
     function jd_to_gregorian(jd) {
-        var wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad, yindex, dyindex, year, yearday, leapadj, month, day;
+        var wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad, yindex, year, yearday, leapadj, month, day;
 
         wjd = Math.floor(jd - 0.5) + 0.5;
         depoch = wjd - GREGORIAN_EPOCH;

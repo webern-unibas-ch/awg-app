@@ -1,7 +1,8 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
-import { NavigationExtras, QueryParamsHandling } from '@angular/router';
+import { convertToParamMap, QueryParamsHandling, ParamMap, Params } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 import { AppModule } from '@awg-app/app.module';
 
@@ -61,9 +62,6 @@ export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub
 
 // #docregion activated-route-stub
-import { convertToParamMap, ParamMap, Params } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-
 /**
  * An ActivatedRoute test double (stub) with a `paramMap` observable.
  *
