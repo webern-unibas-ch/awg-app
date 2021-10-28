@@ -22,11 +22,12 @@
                         "assets": ["src/favicon.ico", "src/assets"],
                         "allowedCommonJsDependencies": [
                             "@ctrl/ngx-codemirror",
-                            "lodash",
                             "codemirror/mode/sparql/sparql",
                             "codemirror/mode/turtle/turtle",
                             "json2typescript",
-                            "readable-stream"
+                            "lodash",
+                            "readable-stream",
+                            "rdfstore"
                         ],
                         "styles": [
                             "src/index.style.css",
