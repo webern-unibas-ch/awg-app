@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-views/edition-view/models';
 
@@ -16,7 +16,7 @@ import { SourceDescriptionList, SourceEvaluationList, SourceList } from '@awg-vi
     styleUrls: ['./sources.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourcesComponent implements OnInit {
+export class SourcesComponent {
     /**
      * Input variable: sourceListData.
      *
@@ -65,14 +65,6 @@ export class SourcesComponent implements OnInit {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: navigateToReportFragment.

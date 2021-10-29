@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { ResourceDetail } from '@awg-views/data-view/models';
 
@@ -15,7 +15,7 @@ import { ResourceDetail } from '@awg-views/data-view/models';
     styleUrls: ['./resource-detail-json-converted.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceDetailJsonConvertedComponent implements OnInit {
+export class ResourceDetailJsonConvertedComponent {
     /**
      * Input variable: resourceJsonConvertedData.
      *
@@ -23,12 +23,4 @@ export class ResourceDetailJsonConvertedComponent implements OnInit {
      */
     @Input()
     resourceJsonConvertedData: ResourceDetail;
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 }

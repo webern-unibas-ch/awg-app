@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 /**
  * The UnsupportedTypeResults component.
@@ -12,7 +12,7 @@ import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core
     styleUrls: ['./unsupported-type-results.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UnsupportedTypeResultsComponent implements OnInit {
+export class UnsupportedTypeResultsComponent {
     /**
      * Input variable: queryType.
      *
@@ -20,12 +20,4 @@ export class UnsupportedTypeResultsComponent implements OnInit {
      */
     @Input()
     queryType: string;
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {}
 }

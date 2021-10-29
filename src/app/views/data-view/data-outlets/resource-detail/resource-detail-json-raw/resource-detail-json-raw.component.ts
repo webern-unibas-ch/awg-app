@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { ResourceFullResponseJson } from '@awg-shared/api-objects';
 
@@ -15,7 +15,7 @@ import { ResourceFullResponseJson } from '@awg-shared/api-objects';
     styleUrls: ['./resource-detail-json-raw.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceDetailJsonRawComponent implements OnInit {
+export class ResourceDetailJsonRawComponent {
     /**
      * Input variable: resourceJsonRawData.
      *
@@ -23,12 +23,4 @@ export class ResourceDetailJsonRawComponent implements OnInit {
      */
     @Input()
     resourceJsonRawData: ResourceFullResponseJson;
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 }

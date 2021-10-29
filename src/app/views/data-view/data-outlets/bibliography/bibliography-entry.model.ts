@@ -49,5 +49,7 @@ export class BibEntry {
         Quelle?: string,
         Standort?: string,
         Kommentar?: string
-    ) {}
+    ) {
+        // This is intentionally empty
+    }
 }

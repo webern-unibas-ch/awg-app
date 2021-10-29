@@ -23,11 +23,6 @@ export enum StorageType {
 })
 export class StorageService {
     /**
-     * Constructor of the StorageService.
-     */
-    constructor() {}
-
-    /**
      * Public method: setStorageKey.
      *
      * It sets a given key/item string pair to a given storage type.

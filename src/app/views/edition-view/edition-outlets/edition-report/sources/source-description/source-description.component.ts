@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { EditionConstants, SourceDescriptionList } from '@awg-views/edition-view/models';
 
@@ -15,7 +15,7 @@ import { EditionConstants, SourceDescriptionList } from '@awg-views/edition-view
     styleUrls: ['./source-description.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourceDescriptionComponent implements OnInit {
+export class SourceDescriptionComponent {
     /**
      * Input variable: sourceDescriptionListData.
      *
@@ -69,14 +69,6 @@ export class SourceDescriptionComponent implements OnInit {
     constructor() {
         this.ref = this;
     }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

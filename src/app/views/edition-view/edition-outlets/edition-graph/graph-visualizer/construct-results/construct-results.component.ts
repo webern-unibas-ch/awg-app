@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import { D3SimulationNode, Triple } from '../models';
@@ -15,7 +15,7 @@ import { D3SimulationNode, Triple } from '../models';
     styleUrls: ['./construct-results.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ConstructResultsComponent implements OnInit {
+export class ConstructResultsComponent {
     /**
      * Input variable: queryResult$.
      *
@@ -39,14 +39,6 @@ export class ConstructResultsComponent implements OnInit {
      */
     @Output()
     clickedNodeRequest: EventEmitter<D3SimulationNode> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {}
 
     /**
      * Public method: onGraphNodeClick.

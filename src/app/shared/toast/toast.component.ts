@@ -1,4 +1,4 @@
-import { Component, OnInit, TemplateRef } from '@angular/core';
+import { Component, TemplateRef } from '@angular/core';
 
 import { Toast, ToastService } from '@awg-core/services/toast-service';
 
@@ -13,7 +13,7 @@ import { Toast, ToastService } from '@awg-core/services/toast-service';
     templateUrl: './toast.component.html',
     styleUrls: ['./toast.component.css'],
 })
-export class ToastComponent implements OnInit {
+export class ToastComponent {
     /**
      * Constructor of the ToastComponent.
      *
@@ -23,14 +23,6 @@ export class ToastComponent implements OnInit {
      * @param {ToastService} toastService Instance of the ToastService.
      */
     constructor(public toastService: ToastService) {}
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {}
 
     /**
      * Public method: isTemplate.

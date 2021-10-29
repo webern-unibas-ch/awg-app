@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
 import 'codemirror/mode/turtle/turtle';
@@ -15,7 +15,7 @@ import 'codemirror/mode/turtle/turtle';
     styleUrls: ['./triples-editor.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TriplesEditorComponent implements OnInit {
+export class TriplesEditorComponent {
     /**
      * ViewChild variable: triplesAcc.
      *
@@ -75,14 +75,6 @@ export class TriplesEditorComponent implements OnInit {
         matchBrackets: true,
         mode: 'turtle',
     };
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: onEditorInputChange.
