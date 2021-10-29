@@ -63,7 +63,9 @@ describe('EditionViewComponent (DONE)', () => {
                 getEditionWork: (): Observable<EditionWork> =>
                     // Return op. 12 by default
                     observableOf(EditionWorks[expectedWorkId]),
-                updateEditionWork: (editionWork: EditionWork): void => {},
+                updateEditionWork: (editionWork: EditionWork): void => {
+                    // Intentional empty test override
+                },
             };
 
             TestBed.configureTestingModule({

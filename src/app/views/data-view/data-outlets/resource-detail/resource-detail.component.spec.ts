@@ -79,7 +79,11 @@ describe('ResourceDetailComponent', () => {
                 getResourceData: () => observableOf(expectedResourceData),
             };
             const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-            const mockDataStreamerService = { updateResourceId: () => {} };
+            const mockDataStreamerService = {
+                updateResourceId: () => {
+                    // Intentional empty test override
+                },
+            };
 
             // Router spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);

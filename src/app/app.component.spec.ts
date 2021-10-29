@@ -52,8 +52,12 @@ describe('AppComponent (DONE)', () => {
         waitForAsync(() => {
             // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
             mockAnalyticsService = {
-                initializeAnalytics: (): void => {},
-                trackPageView: (page: string): void => {},
+                initializeAnalytics: (): void => {
+                    // Intentional empty test override
+                },
+                trackPageView: (page: string): void => {
+                    // Intentional empty test override
+                },
             };
 
             TestBed.configureTestingModule({

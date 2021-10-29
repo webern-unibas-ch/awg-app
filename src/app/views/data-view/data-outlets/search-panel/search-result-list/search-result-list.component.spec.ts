@@ -45,7 +45,14 @@ describe('SearchResultListComponent', () => {
             mockConversionService = {
                 prepareFullTextSearchResultText: () => expectedSearchResultText,
             };
-            mockSideInfoService = { updateSearchInfoData: () => {}, clearSearchInfoData: () => {} }; // TODO: provide real test data
+            mockSideInfoService = {
+                updateSearchInfoData: () => {
+                    // Intentional empty test override
+                },
+                clearSearchInfoData: () => {
+                    // Intentional empty test override
+                },
+            }; // TODO: provide real test data
 
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],

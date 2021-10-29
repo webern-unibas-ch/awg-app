@@ -1153,7 +1153,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: true,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
 
                 // Emit change event from accordion
@@ -1179,7 +1181,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: false,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
                 const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
 
@@ -1200,7 +1204,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: true,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
                 const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
 
@@ -1221,7 +1227,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: false,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
                 const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
 
