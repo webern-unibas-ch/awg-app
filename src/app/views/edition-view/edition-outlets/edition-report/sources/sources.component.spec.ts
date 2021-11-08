@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input, NgModule } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, NgModule, Output } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
 import { getAndExpectDebugElementByDirective } from '@testing/expect-helper';
@@ -17,22 +17,30 @@ import { SourcesComponent } from './sources.component';
 class SourceListStubComponent {
     @Input()
     sourceListData: SourceList;
-
-    // TODO: handle outputs
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-source-description', template: '' })
 class SourceDescriptionStubComponent {
     @Input()
     sourceDescriptionListData: SourceDescriptionList;
-    // TODO: handle outputs
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-source-evaluation', template: '' })
 class SourceEvaluationStubComponent {
     @Input()
     sourceEvaluationListData: SourceEvaluationList;
-    // TODO: handle outputs
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
 describe('SourcesComponent', () => {
