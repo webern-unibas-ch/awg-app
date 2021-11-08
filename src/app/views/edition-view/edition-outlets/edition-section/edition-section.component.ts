@@ -15,7 +15,9 @@ export class EditionSectionComponent implements OnInit {
     /**
      * Constructor of the EditionSectionComponent.
      */
-    constructor() {}
+    constructor() {
+        // Intentionally left empty until implemented
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -23,5 +25,7 @@ export class EditionSectionComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {}
+    ngOnInit() {
+        // Intentionally left empty until implemented
+    }
 }
