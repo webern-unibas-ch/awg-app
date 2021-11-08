@@ -7,6 +7,7 @@ import { EditionSvgSheet, FolioConvolute, FolioSettings } from '@awg-views/editi
 describe('FolioComponent', () => {
     let component: FolioOverviewComponent;
     let fixture: ComponentFixture<FolioOverviewComponent>;
+
     let expectedConvolute: FolioConvolute;
     let expectedSvgSheet: EditionSvgSheet;
 

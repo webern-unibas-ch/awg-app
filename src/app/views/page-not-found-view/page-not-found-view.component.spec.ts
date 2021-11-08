@@ -13,7 +13,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     let component: PageNotFoundViewComponent;
     let fixture: ComponentFixture<PageNotFoundViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -34,7 +34,6 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(PageNotFoundViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
     });
 
     afterAll(() => {

@@ -61,7 +61,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
     let component: EditionAccoladeComponent;
     let fixture: ComponentFixture<EditionAccoladeComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
@@ -105,7 +104,6 @@ describe('EditionAccoladeComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionAccoladeComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSvgSheet = {

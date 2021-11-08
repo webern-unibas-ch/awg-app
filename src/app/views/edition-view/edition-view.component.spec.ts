@@ -32,7 +32,6 @@ describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
@@ -86,7 +85,6 @@ describe('EditionViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         mockEditionService = TestBed.inject(EditionService);
 

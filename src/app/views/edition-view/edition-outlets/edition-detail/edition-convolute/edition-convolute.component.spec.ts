@@ -36,7 +36,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
     let component: EditionConvoluteComponent;
     let fixture: ComponentFixture<EditionConvoluteComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let openModalSpy: Spy;
     let openModalRequestEmitSpy: Spy;
@@ -73,7 +72,6 @@ describe('EditionConvoluteComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionConvoluteComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedFolioLegends = [

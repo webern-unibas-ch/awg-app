@@ -14,7 +14,6 @@ describe('StructureInfoComponent (DONE)', () => {
     let component: StructureInfoComponent;
     let fixture: ComponentFixture<StructureInfoComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockCoreService: Partial<CoreService>;
 
@@ -36,9 +35,7 @@ describe('StructureInfoComponent (DONE)', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(StructureInfoComponent);
         component = fixture.componentInstance;
-
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedStructureMetaData = METADATA[MetaSectionTypes.structure];

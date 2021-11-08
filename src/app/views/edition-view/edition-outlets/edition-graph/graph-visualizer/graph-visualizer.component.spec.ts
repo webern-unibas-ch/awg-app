@@ -82,7 +82,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let component: GraphVisualizerComponent;
     let fixture: ComponentFixture<GraphVisualizerComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockGraphVisualizerService: Partial<GraphVisualizerService>;
     let graphVisualizerService: Partial<GraphVisualizerService>;
@@ -130,7 +129,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         graphVisualizerService = TestBed.inject(GraphVisualizerService);

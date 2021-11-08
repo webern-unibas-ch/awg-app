@@ -36,7 +36,6 @@ describe('ResourceInfoComponent (DONE)', () => {
     let component: ResourceInfoComponent;
     let fixture: ComponentFixture<ResourceInfoComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter: Partial<Router>;
     let mockDataStreamerService: Partial<DataStreamerService>;
@@ -91,7 +90,6 @@ describe('ResourceInfoComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);

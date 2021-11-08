@@ -43,7 +43,6 @@ describe('SearchPanelComponent', () => {
     let component: SearchPanelComponent;
     let fixture: ComponentFixture<SearchPanelComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     // Stub services for test purposes
     const mocConversionService = {
@@ -94,7 +93,6 @@ describe('SearchPanelComponent', () => {
         fixture = TestBed.createComponent(SearchPanelComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         fixture.detectChanges();
     });

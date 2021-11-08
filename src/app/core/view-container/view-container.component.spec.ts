@@ -12,7 +12,6 @@ describe('ViewContainerComponent (DONE)', () => {
     let component: ViewContainerComponent;
     let fixture: ComponentFixture<ViewContainerComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     beforeEach(
         waitForAsync(() => {
@@ -29,7 +28,6 @@ describe('ViewContainerComponent (DONE)', () => {
         fixture = TestBed.createComponent(ViewContainerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
     });
 
     afterAll(() => {

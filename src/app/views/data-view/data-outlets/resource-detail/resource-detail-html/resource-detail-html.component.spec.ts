@@ -32,7 +32,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
     let component: ResourceDetailHtmlComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedResourceDetailData: ResourceDetail;
 
@@ -51,7 +50,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         const header: ResourceDetailHeader = { objID: '1234', icon: '', type: '', title: 'Test', lastmod: '' };

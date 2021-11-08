@@ -39,7 +39,6 @@ describe('SourcesComponent', () => {
     let component: SourcesComponent;
     let fixture: ComponentFixture<SourcesComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedSourceListData: SourceList;
     let expectedSourceDescriptionListData: SourceDescriptionList;
@@ -73,7 +72,6 @@ describe('SourcesComponent', () => {
         fixture = TestBed.createComponent(SourcesComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
     });
 
     it('should create', () => {

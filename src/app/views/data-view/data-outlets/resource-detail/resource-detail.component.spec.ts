@@ -59,7 +59,6 @@ describe('ResourceDetailComponent', () => {
     let component: ResourceDetailComponent;
     let fixture: ComponentFixture<ResourceDetailComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter: Spy;
     let mockActivatedRoute: ActivatedRouteStub;
@@ -115,7 +114,6 @@ describe('ResourceDetailComponent', () => {
         fixture = TestBed.createComponent(ResourceDetailComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // MockActivatedRoute.setParamMap({ id: '1234' });
         // MockActivatedRoute.paramMap.subscribe(value => console.log(value));

@@ -11,7 +11,6 @@ describe('HeadingComponent (DONE)', () => {
     let component: HeadingComponent;
     let fixture: ComponentFixture<HeadingComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedTitle: string;
     let expectedId: string;
@@ -28,7 +27,6 @@ describe('HeadingComponent (DONE)', () => {
         fixture = TestBed.createComponent(HeadingComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedTitle = 'Test Title';

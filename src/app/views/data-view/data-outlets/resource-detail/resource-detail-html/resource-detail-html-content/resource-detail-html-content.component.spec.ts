@@ -52,7 +52,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
@@ -80,7 +79,6 @@ describe('ResourceDetailHtmlContentComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Convert json object
         jsonConvert = new JsonConvert();

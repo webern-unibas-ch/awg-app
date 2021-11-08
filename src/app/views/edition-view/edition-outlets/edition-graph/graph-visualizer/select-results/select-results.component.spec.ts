@@ -35,7 +35,6 @@ describe('SelectResultsComponent (DONE)', () => {
     let component: SelectResultsComponent;
     let fixture: ComponentFixture<SelectResultsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedQueryResult: SelectResponse;
     let expectedQueryResult$: Observable<SelectResponse>;
@@ -75,7 +74,6 @@ describe('SelectResultsComponent (DONE)', () => {
         fixture = TestBed.createComponent(SelectResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         const varKeys = ['Test', 'success'];

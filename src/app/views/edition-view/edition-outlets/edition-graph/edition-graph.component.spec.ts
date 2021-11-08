@@ -51,7 +51,6 @@ describe('EditionGraphComponent (DONE)', () => {
     let component: EditionGraphComponent;
     let fixture: ComponentFixture<EditionGraphComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockEditionService: Partial<EditionService>;
     let mockEditionDataService: Partial<EditionDataService>;
@@ -103,7 +102,6 @@ describe('EditionGraphComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionGraphComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         editionDataService = TestBed.inject(EditionDataService);

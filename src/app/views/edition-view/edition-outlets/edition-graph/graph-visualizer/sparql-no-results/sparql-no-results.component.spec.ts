@@ -13,7 +13,6 @@ describe('SparqlNoResultsComponent (DONE)', () => {
     let component: SparqlNoResultsComponent;
     let fixture: ComponentFixture<SparqlNoResultsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockCoreService: Partial<CoreService>;
 
@@ -37,7 +36,6 @@ describe('SparqlNoResultsComponent (DONE)', () => {
         fixture = TestBed.createComponent(SparqlNoResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedLogos = LOGOSDATA;

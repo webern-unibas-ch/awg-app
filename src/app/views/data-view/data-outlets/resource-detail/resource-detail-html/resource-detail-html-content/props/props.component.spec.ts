@@ -18,7 +18,6 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
     let component: ResourceDetailHtmlContentPropsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentPropsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
@@ -38,7 +37,6 @@ describe('ResourceDetailHtmlContentPropsComponent', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentPropsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedMetaBreakLine = 'Versionsdatum';
