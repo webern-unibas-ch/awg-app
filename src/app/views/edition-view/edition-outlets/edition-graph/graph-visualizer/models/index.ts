@@ -7,6 +7,7 @@
  *
  */
 
+import { CmConfig } from './cm-config.model';
 import { D3DragBehaviour } from './d3-drag-behaviour.model';
 import { D3ForceSimulation, D3Simulation, D3ForceSimulationOptions } from './d3-force-simulation.model';
 import { D3Selection } from './d3-selection.model';
@@ -24,6 +25,7 @@ import { PaginatorOptions, TableData, TableOptions, TableOptionsSortCase } from 
 import { TripleComponent, Triple } from './triple.model';
 
 export {
+    CmConfig,
     D3DragBehaviour,
     D3ForceSimulation,
     D3ForceSimulationOptions,

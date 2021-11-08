@@ -1,6 +1,8 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+import { CmConfig } from '../models';
+
 import 'codemirror/mode/turtle/turtle';
 
 /**
@@ -68,7 +70,7 @@ export class TriplesEditorComponent {
      *
      * It keeps the Codemirror configuration for the triples panel.
      */
-    cmTriplesConfig = {
+    cmTriplesConfig: CmConfig = {
         lineNumbers: true,
         firstLineNumber: 1,
         lineWrapping: true,

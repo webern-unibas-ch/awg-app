@@ -12,6 +12,7 @@ import {
     getAndExpectDebugElementByDirective,
 } from '@testing/expect-helper';
 
+import { CmConfig } from '../models';
 import { TriplesEditorComponent } from './triples-editor.component';
 
 // eslint-disable-next-line @angular-eslint/component-selector
@@ -28,12 +29,9 @@ describe('TriplesEditorComponent (DONE)', () => {
     let component: TriplesEditorComponent;
     let fixture: ComponentFixture<TriplesEditorComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedTriples: string;
-    let expectedCmTriplesConfig: {
-        [key: string]: any;
-    };
+    let expectedCmTriplesConfig: CmConfig;
     let expectedIsFullscreen: boolean;
 
     let onEditorInputChangeSpy: Spy;
@@ -66,7 +64,6 @@ describe('TriplesEditorComponent (DONE)', () => {
         fixture = TestBed.createComponent(TriplesEditorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedIsFullscreen = false;
@@ -102,6 +99,14 @@ describe('TriplesEditorComponent (DONE)', () => {
         });
         it('should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined('should be undefined');
+        });
+
+        it('should have cmTriplesConfig', () => {
+            expect(component.cmTriplesConfig).toBeDefined('should be defined');
+            expect(component.cmTriplesConfig).toEqual(
+                expectedCmTriplesConfig,
+                `should equal ${expectedCmTriplesConfig}`
+            );
         });
 
         describe('VIEW', () => {

@@ -1,6 +1,7 @@
 import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+import { CmConfig } from '../models';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
 import 'codemirror/mode/sparql/sparql';
@@ -78,7 +79,7 @@ export class SparqlEditorComponent {
      *
      * It keeps the Codemirror configuration for the sparql panel.
      */
-    cmSparqlConfig = {
+    cmSparqlConfig: CmConfig = {
         lineNumbers: true,
         firstLineNumber: 1,
         lineWrapping: true,
