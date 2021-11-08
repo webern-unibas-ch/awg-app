@@ -18,18 +18,18 @@
  * @return {String} A string which can be converted to HTML
  */
 export function htmlConverter(assigned_props, txt) {
-    var html = '';
-    var proparr;
-    var stack;
-    var pos;
-    var tmp;
-    var tmpstack;
-    var propname;
-    var idx;
-    var i, j;
-    var lbstack;
+    let html = '';
+    let proparr;
+    let stack;
+    let pos;
+    let tmp;
+    let tmpstack;
+    let propname;
+    let idx;
+    let i, j;
+    let lbstack;
 
-    var tagPrecedence = {
+    const tagPrecedence = {
         p: 0,
         h1: 0,
         h2: 0,
@@ -50,7 +50,7 @@ export function htmlConverter(assigned_props, txt) {
         sub: 3,
     };
 
-    var localdata = {};
+    const localdata = {};
     localdata.settings = {
         // any initializations come here
         utf8str: '',
@@ -83,15 +83,15 @@ export function htmlConverter(assigned_props, txt) {
     };
 
     // invert matching so that we can check for the offset names
-    var matching_inv = {};
-    for (var prop in localdata.settings.matching) {
+    const matching_inv = {};
+    for (let prop in localdata.settings.matching) {
         matching_inv[localdata.settings.matching[prop]] = prop;
     }
 
     //
     // sort keys (propnames) according to tag precedence
     //
-    var propnames = Object.keys(assigned_props);
+    const propnames = Object.keys(assigned_props);
 
     propnames.sort(function (a, b) {
         return tagPrecedence[matching_inv[a]] - tagPrecedence[matching_inv[b]];
@@ -101,9 +101,9 @@ export function htmlConverter(assigned_props, txt) {
     // register props (their starting and ending point) for each position in the text
     //
     proparr = [];
-    for (propname in propnames) {
+    for (let propnameIdx in propnames) {
         // process propname by propname in the defined order (tag precedence)
-        propname = propnames[propname]; // propname is numeric (array index), get the prop's name (string)
+        propname = propnames[propnameIdx]; // propnamedx is numeric (array index), get the prop's name (string)
         for (idx in assigned_props[propname]) {
             // process the array of assigned objects for this propname
             pos = assigned_props[propname][idx].start;
@@ -180,7 +180,7 @@ export function htmlConverter(assigned_props, txt) {
                     } else if (proparr[i][j].propname == '_link') {
                         stack.push(proparr[i][j].propname);
                         // create an anchor tag with href
-                        var href = proparr[i][j].href;
+                        let href = proparr[i][j].href;
                         if (href === undefined && proparr[i][j].resid !== undefined) {
                             // backwards compatibility
                             // before, no href was set
