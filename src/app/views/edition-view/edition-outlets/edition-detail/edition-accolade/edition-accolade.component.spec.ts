@@ -254,10 +254,13 @@ describe('EditionAccoladeComponent (DONE)', () => {
                 const buttonCmp1 = buttonDes[1].nativeElement;
 
                 const expectedTitle0 = 'Edierter Notentext';
-                const expectedTitle1 = 'Hiweise zur Nutzung';
+                const expectedTitle1 = 'Hinweise zur Nutzung';
 
                 expect(buttonCmp0.textContent).toBeDefined('should be defined');
                 expect(buttonCmp0.textContent).toBe(expectedTitle0, `should be ${expectedTitle0}`);
+
+                expect(buttonCmp1.textContent).toBeDefined('should be defined');
+                expect(buttonCmp1.textContent.trim()).toBe(expectedTitle1, `should be ${expectedTitle1}`);
             });
 
             describe('EditionSvgSheetNavComponent', () => {
@@ -355,10 +358,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
-
-                    getAndExpectDebugElementByCss(panelDes[0], 'div.panel-footer', 0, 0);
+                    getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
                 });
 
                 it('... should contain no footer div if no textcriticalComments selected', () => {
@@ -367,19 +369,17 @@ describe('EditionAccoladeComponent (DONE)', () => {
 
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
-
-                    getAndExpectDebugElementByCss(panelDes[0], 'div.panel-footer', 0, 0);
+                    getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 0, 0);
                 });
 
                 it('... should contain one footer div if showTka=true and textcriticalComments selected', () => {
                     // Ngb-accordion panel debug element
                     const panelDes = getAndExpectDebugElementByCss(compDe, 'ngb-accordion > div.card', 1, 1);
+                    const panelBodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
 
-                    const bodyDes = getAndExpectDebugElementByCss(panelDes[0], 'div.card-body', 1, 1);
-
-                    getAndExpectDebugElementByCss(bodyDes[0], 'div.panel-footer', 1, 1);
+                    getAndExpectDebugElementByCss(panelBodyDes[0], 'div.panel-footer', 1, 1);
                 });
 
                 it('... should contain one header (h5) in footer div', () => {
@@ -434,12 +434,9 @@ describe('EditionAccoladeComponent (DONE)', () => {
                     2,
                     2
                 );
-
-                // Only second button has modal call
-                const buttonCmp1 = buttonDes[1].nativeElement;
-
                 const expectedSnippet = 'HINT_EDITION_DETAIL';
 
+                // Only second button has modal call
                 // Trigger click with click helper & wait for changes
                 clickAndAwaitChanges(buttonDes[1], fixture);
 

@@ -329,8 +329,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedPrevious = subjects[i - 1];
                 const expectedNext = subjects[i + 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: expectedResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -356,8 +355,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedCurrent = subjects[i];
                 const expectedNext = subjects[i + 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -388,8 +386,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedCurrent = subjects[i];
                 const expectedPrevious = subjects[i - 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -419,8 +416,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const i = expectedGoToIndex - 1;
                 const expectedCurrent = subjects[i];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -457,8 +453,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const i = expectedGoToIndex - 1;
                 const expectedNext = subjects[i + 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: undefined,
@@ -527,16 +522,14 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should have initiated resourceInfoFormGroup with empty index if none is given', () => {
-                (component as any)._buildForm(undefined, expectedResultSize);
+                const expectedEmptyIndex = '';
 
                 // Apply changes
+                (component as any)._buildForm(undefined, expectedResultSize);
                 fixture.detectChanges();
 
                 expect(component.resourceInfoFormGroup).toBeTruthy();
                 expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
-
-                const expectedEmptyIndex = '';
-
                 expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value).toEqual(expectedEmptyIndex);
             });
 
@@ -912,7 +905,6 @@ describe('ResourceInfoComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonEl = buttonDes[0].nativeElement;
 
                 // Set input to another index then current.displayIndex (=3)
                 let chosenIndex = 1;
@@ -1399,7 +1391,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const divDes = getAndExpectDebugElementByCss(formDes[0], 'div.input-group', 1, 1);
 
-                            const buttonDes = getAndExpectDebugElementByCss(
+                            getAndExpectDebugElementByCss(
                                 divDes[0],
                                 'div.input-group-prepend > button#awg-resource-info-input-group-text',
                                 1,
@@ -1420,7 +1412,6 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const inputEl = inputDes[0].nativeElement;
 
                             // FormControlName='resourceInfoIndex'
                             expect(inputDes[0].attributes.formControlName).toBeTruthy();
