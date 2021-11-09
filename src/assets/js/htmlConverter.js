@@ -17,7 +17,7 @@
  *
  * @return {String} A string which can be converted to HTML
  */
-export function htmlConverter(assigned_props, txt) {
+function htmlConverter(assigned_props, txt) {
     let html = '';
     let proparr;
     let stack;

@@ -37,10 +37,18 @@ import {
 import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliography-entry.model';
 
 /**
- * Access to the embedded converter plugins (see `/src/assets/js`)
+ * Declared variable: htmlConverter.
+ *
+ * It provides access to the embedded htmlConverter plugin (see `/src/assets/js/htmlConverter`).
  */
-import { htmlConverter } from 'assets/js/htmlConverter.js';
-import { dateConverter } from 'assets/js/dateConverter.js';
+declare const htmlConverter: any;
+
+/**
+ * Declared variable: dateConverter.
+ *
+ * It provides access to the embedded dateConverter plugin (see `/src/assets/js/dateConverter`).
+ */
+declare const dateConverter: any;
 
 /**
  * The Conversion service.

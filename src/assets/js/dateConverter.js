@@ -28,7 +28,7 @@
  *
  * @return {String} A string which represents the date
  */
-export function dateConverter(dateobj) {
+function dateConverter(dateobj) {
     //INIT
     const GREGORIAN_EPOCH = 1721425.5;
 
@@ -228,7 +228,7 @@ export function dateConverter(dateobj) {
                 break;
             }
             case 'YEAR': {
-                if (d1.year == d2.year) {
+                if (d1.year === d2.year) {
                     datestr = d1.year;
                 } else {
                     datestr = d1.year + '–' + d2.year;
