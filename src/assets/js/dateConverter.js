@@ -30,19 +30,19 @@
  */
 export function dateConverter(dateobj) {
     //INIT
-    var GREGORIAN_EPOCH = 1721425.5;
+    const GREGORIAN_EPOCH = 1721425.5;
 
-    var calendars = {
+    const calendars = {
         GREGORIAN: { name: 'Gregorian', short: 'G', n_months: 12 },
         JULIAN: { name: 'Julian', short: 'Ju', n_months: 12 },
         JEWISH: { name: 'Jewish', short: 'Je', n_months: 13 },
         FRENCH: { name: 'Revol.', short: 'R', n_months: 13 },
     };
 
-    var weekday = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
+    const weekday = ['So', 'Mo', 'Di', 'Mi', 'Do', 'Fr', 'Sa'];
     //var weekday = ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'];
 
-    var months = {
+    const months = {
         GREGORIAN: ['ZERO', 'Jan', 'Feb', 'März', 'Apr', 'Mai', 'Juni', 'Juli', 'Aug', 'Sep', 'Okt', 'Nov', 'Dez'],
         // GREGORIAN: ['ZERO', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
         JULIAN: ['ZERO', 'Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
@@ -114,7 +114,7 @@ export function dateConverter(dateobj) {
 
     //  JD_TO_GREGORIAN  --  Calculate Gregorian calendar date from Julian day
     function jd_to_gregorian(jd) {
-        var wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad, yindex, year, yearday, leapadj, month, day;
+        let wjd, depoch, quadricent, dqc, cent, dcent, quad, dquad, yindex, year, yearday, leapadj, month, day;
 
         wjd = Math.floor(jd - 0.5) + 0.5;
         depoch = wjd - GREGORIAN_EPOCH;
@@ -140,8 +140,8 @@ export function dateConverter(dateobj) {
 
     function jdc_to_date(jdc, cal) {
         jdc = parseInt(jdc);
-        var dateobj = {};
-        var tmparr;
+        const dateobj = {};
+        let tmparr;
         switch (cal) {
             case 'GREGORIAN':
             case 'gregorian': {
@@ -172,16 +172,16 @@ export function dateConverter(dateobj) {
         return dateobj;
     } // END jdc_to_date (func)
 
-    var d1 = jdc_to_date(dateobj.dateval1, dateobj.calendar);
-    var d2 = jdc_to_date(dateobj.dateval2, dateobj.calendar);
-    var datestr = '';
+    const d1 = jdc_to_date(dateobj.dateval1, dateobj.calendar);
+    const d2 = jdc_to_date(dateobj.dateval2, dateobj.calendar);
+    let datestr = '';
     if (dateobj.dateprecision1 == dateobj.dateprecision2) {
         //
         // same precisions for start- and end-date
         //
         switch (dateobj.dateprecision1) {
             case 'DAY': {
-                if (d1.year == d2.year && d1.month == d2.month && d1.day == d2.day) {
+                if (d1.year === d2.year && d1.month === d2.month && d1.day === d2.day) {
                     datestr =
                         '[' +
                         weekday[d1.weekday] +
@@ -213,7 +213,7 @@ export function dateConverter(dateobj) {
                 break;
             }
             case 'MONTH': {
-                if (d1.year == d2.year && d1.month == d2.month) {
+                if (d1.year === d2.year && d1.month === d2.month) {
                     datestr = months[dateobj.calendar][d1.month] + ' ' + d1.year;
                 } else {
                     datestr =
