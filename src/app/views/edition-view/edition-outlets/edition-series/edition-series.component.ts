@@ -15,7 +15,9 @@ export class EditionSeriesComponent implements OnInit {
     /**
      * Constructor of the EditionSeriesComponent.
      */
-    constructor() {}
+    constructor() {
+        // Intentionally left empty until implemented
+    }
 
     /**
      * Angular life cycle hook: ngOnInit.
@@ -23,5 +25,7 @@ export class EditionSeriesComponent implements OnInit {
      * It calls the containing methods
      * when initializing the component.
      */
-    ngOnInit() {}
+    ngOnInit() {
+        // Intentionally left empty until implemented
+    }
 }

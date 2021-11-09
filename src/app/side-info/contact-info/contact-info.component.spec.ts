@@ -40,7 +40,6 @@ describe('ContactInfoComponent (DONE)', () => {
     let component: ContactInfoComponent;
     let fixture: ComponentFixture<ContactInfoComponent>;
     let compDe: DebugElement;
-    let compEl;
 
     let provideMetaDataSpy: Spy;
     let provideOSMUrlSpy: Spy;
@@ -75,7 +74,6 @@ describe('ContactInfoComponent (DONE)', () => {
         fixture = TestBed.createComponent(ContactInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         domSanitizer = TestBed.inject(DomSanitizer);
 

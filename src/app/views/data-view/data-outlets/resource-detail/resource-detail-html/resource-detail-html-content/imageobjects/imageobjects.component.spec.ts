@@ -16,7 +16,6 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
     let component: ResourceDetailHtmlContentImageobjectsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentImageobjectsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     // Json object
     let jsonConvert: JsonConvert;
@@ -38,7 +37,6 @@ describe('ResourceDetailHtmlContentImageobjectsComponent', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentImageobjectsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Convert json object
         jsonConvert = new JsonConvert();

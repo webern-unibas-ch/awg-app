@@ -35,7 +35,6 @@ describe('ConstructResultsComponent (DONE)', () => {
     let component: ConstructResultsComponent;
     let fixture: ComponentFixture<ConstructResultsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedHeight: number;
     let expectedTriples: Triple[];
@@ -71,7 +70,6 @@ describe('ConstructResultsComponent (DONE)', () => {
         fixture = TestBed.createComponent(ConstructResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedHeight = 500;

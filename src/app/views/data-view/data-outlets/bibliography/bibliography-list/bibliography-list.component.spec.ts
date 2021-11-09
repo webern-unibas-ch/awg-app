@@ -16,7 +16,6 @@ describe('BibliographyListComponent', () => {
     let component: BibliographyListComponent;
     let fixture: ComponentFixture<BibliographyListComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     beforeEach(
         waitForAsync(() => {
@@ -30,7 +29,6 @@ describe('BibliographyListComponent', () => {
         fixture = TestBed.createComponent(BibliographyListComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
     });
 
     it('should create', () => {

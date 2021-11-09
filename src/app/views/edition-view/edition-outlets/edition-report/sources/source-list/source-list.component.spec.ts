@@ -16,7 +16,6 @@ describe('SourceListComponent (DONE)', () => {
     let component: SourceListComponent;
     let fixture: ComponentFixture<SourceListComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedSourceListData: SourceList;
 
@@ -36,7 +35,6 @@ describe('SourceListComponent (DONE)', () => {
         fixture = TestBed.createComponent(SourceListComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSourceListData = {

@@ -30,7 +30,7 @@ describe('HomeViewComponent (DONE)', () => {
     let component: HomeViewComponent;
     let fixture: ComponentFixture<HomeViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -58,7 +58,6 @@ describe('HomeViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(HomeViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedEditionWorkOp12 = EditionWorks.OP12;

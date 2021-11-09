@@ -26,7 +26,6 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentLinkedobjectsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentLinkedobjectsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let totalNumberSpy: Spy;
     let navigateToResourceSpy: Spy;
@@ -60,7 +59,6 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentLinkedobjectsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         incomingLink1 = {

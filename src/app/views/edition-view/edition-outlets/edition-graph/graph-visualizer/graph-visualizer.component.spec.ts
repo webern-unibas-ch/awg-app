@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -82,7 +82,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let component: GraphVisualizerComponent;
     let fixture: ComponentFixture<GraphVisualizerComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockGraphVisualizerService: Partial<GraphVisualizerService>;
     let graphVisualizerService: Partial<GraphVisualizerService>;
@@ -130,7 +129,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         graphVisualizerService = TestBed.inject(GraphVisualizerService);
@@ -607,16 +605,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
-                expectSpyCall(queryLocalStoreSpy, 1, [
-                    'construct',
-                    expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples,
-                ]);
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
+                // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, [
                     'construct',
@@ -626,12 +621,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should trigger `_queryLocalStore` for select queries', () => {
-                const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
+                // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, [
                     'select',
@@ -643,10 +639,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it(
                 '... should get queryResult for construct queries',
                 waitForAsync(() => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
                     // Set construct query type
-                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
 
                     // Perform query
                     component.performQuery();
@@ -662,10 +656,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it(
                 '... should get queryResult for select queries',
                 waitForAsync(() => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
                     // Set select query type
-                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
 
                     // Perform query
                     component.performQuery();
@@ -679,9 +671,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
             );
 
             it(
-                '... should set empty observable for other query types',
+                '... should set empty observable for update query types',
                 waitForAsync(() => {
-                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
 
                     // Perform query
                     component.performQuery();
@@ -696,8 +688,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             expect(component.query.queryType).toBe('update', 'should be update');
                         }
                     );
+                })
+            );
 
-                    queryTypeSpy.and.returnValue('other');
+            it(
+                '... should set empty observable for other query types',
+                waitForAsync(() => {
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('other');
 
                     // Perform query
                     component.performQuery();
@@ -778,7 +775,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
                 // Perform query
@@ -830,7 +827,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { name: 'Error', message: 'error message' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
                 // Perform query
@@ -852,7 +849,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { name: 'Error', message: 'error message undefined' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
                 // Perform query

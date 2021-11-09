@@ -14,7 +14,6 @@ describe('SparqlTableComponent', () => {
     let component: SparqlTableComponent;
     let fixture: ComponentFixture<SparqlTableComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     beforeEach(async () => {
         await TestBed.configureTestingModule({
@@ -27,7 +26,6 @@ describe('SparqlTableComponent', () => {
         fixture = TestBed.createComponent(SparqlTableComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
     });
 
     it('should create', () => {

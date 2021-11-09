@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { SourceList } from '@awg-views/edition-view/models';
 
@@ -15,7 +15,7 @@ import { SourceList } from '@awg-views/edition-view/models';
     styleUrls: ['./source-list.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourceListComponent implements OnInit {
+export class SourceListComponent {
     /**
      * Input variable: sourceListData.
      *
@@ -46,14 +46,6 @@ export class SourceListComponent implements OnInit {
     constructor() {
         this.ref = this;
     }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

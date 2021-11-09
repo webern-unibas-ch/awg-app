@@ -47,7 +47,9 @@ describe('AnalyticsService (DONE)', () => {
         doc = TestBed.inject(DOCUMENT);
 
         // Set global gtag function
-        (window as any).gtag = () => {};
+        (window as any).gtag = () => {
+            // Intentional empty test override
+        };
 
         // Spy on service methods
         initializeAnalyticsSpy = spyOn(analyticsService, 'initializeAnalytics').and.callThrough();
@@ -134,7 +136,9 @@ describe('AnalyticsService (DONE)', () => {
             expect(mockConsole.get(0)).toBeUndefined('should be undefined');
 
             // Prevent setting of real gtag script to document head
-            spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
+            spyOn<any>(doc.head, 'prepend').and.callFake(() => {
+                // Intentional empty test override
+            });
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);
 
@@ -148,7 +152,9 @@ describe('AnalyticsService (DONE)', () => {
             expectedScript.src = `${expectedAnalyticsEndpoint}?id=${expectedAnalyticsId}`;
 
             // Prevent setting of real gtag script to document head
-            const prependSpy = spyOn<any>(doc.head, 'prepend').and.callFake(() => {});
+            const prependSpy = spyOn<any>(doc.head, 'prepend').and.callFake(() => {
+                // Intentional empty test override
+            });
             const scriptSpy = spyOn<any>(analyticsService, '_prependAnalyticsScript').and.callThrough();
 
             setupAnalytics(analyticsService, expectedAnalyticsEndpoint, expectedAnalyticsId, true);

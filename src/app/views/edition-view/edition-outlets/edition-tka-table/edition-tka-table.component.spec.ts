@@ -14,7 +14,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
     let component: EditionTkaTableComponent;
     let fixture: ComponentFixture<EditionTkaTableComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedTextcriticalComments: TextcriticalComment[];
     let expectedSvgSheet: EditionSvgSheet;
@@ -38,7 +37,6 @@ describe('EditionTkaTableComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionTkaTableComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSvgSheet = {

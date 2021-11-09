@@ -14,7 +14,7 @@
 
 import { JsonObject, JsonProperty } from 'json2typescript';
 import { UserDataJson } from './userdata-json';
-import { KnoraStatusCode } from './basic-type-aliases';
+import { KnoraStatusCode } from '@awg-shared/api-objects';
 
 /**
  * Basic members of the Knora API V1 response format.
@@ -26,7 +26,7 @@ export class BasicResponseJson {
      * @param status: KnoraStatusCode
      */
     @JsonProperty('status', Number)
-    public status: number = undefined;
+    public status: KnoraStatusCode = undefined;
 
     /**
      * The current user's data

@@ -12,7 +12,6 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let component: OpenStreetMapComponent;
     let fixture: ComponentFixture<OpenStreetMapComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let domSanitizer: DomSanitizer;
 
@@ -35,7 +34,6 @@ describe('OpenStreetMapComponent (DONE)', () => {
         fixture = TestBed.createComponent(OpenStreetMapComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         domSanitizer = TestBed.inject(DomSanitizer);
 

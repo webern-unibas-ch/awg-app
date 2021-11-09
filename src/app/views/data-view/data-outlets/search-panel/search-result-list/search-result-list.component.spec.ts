@@ -2,7 +2,9 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 import { Observable, of as observableOf } from 'rxjs';
 import { RouterTestingModule } from '@angular/router/testing';
-import { ReactiveFormsModule } from '@angular/forms';
+import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+
+import Spy = jasmine.Spy;
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 import { NgbPaginationModule } from '@ng-bootstrap/ng-bootstrap';
@@ -15,14 +17,21 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
 import { SearchResponseJson } from '@awg-shared/api-objects';
 
 import { SearchResultListComponent } from './search-result-list.component';
+import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 describe('SearchResultListComponent', () => {
     let component: SearchResultListComponent;
     let fixture: ComponentFixture<SearchResultListComponent>;
 
     let mockConversionService: Partial<ConversionService>;
+    let mockDataStreamerService: Partial<DataStreamerService>;
     let mockSideInfoService: Partial<SideInfoService>;
-    let getSearchResponseWithQuerySpy: Observable<SearchResponseWithQuery>;
+
+    let conversionService: Partial<ConversionService>;
+    let dataStreamerService: Partial<DataStreamerService>;
+    let sideInfoService: Partial<SideInfoService>;
+    let getSearchResponseWithQuerySpy: Spy;
+    let formBuilder: FormBuilder;
 
     let expectedSearchResponseWithQuery: SearchResponseWithQuery;
     let expectedSearchResultText: string;
@@ -31,21 +40,24 @@ describe('SearchResultListComponent', () => {
 
     beforeEach(
         waitForAsync(() => {
-            expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), ''); // TODO: provide real test data
-            expectedSearchResultText = ''; // TODO: provide real test data
-
-            // Create a fake DataStreamerService object with a `getSearchResponseWithQuery()` spy
-            const mockDataStreamerService = jasmine.createSpyObj('DataStreamerService', ['getSearchResponseWithQuery']);
-            // Make the spies return a synchronous Observable with the test data
-            getSearchResponseWithQuerySpy = mockDataStreamerService.getSearchResponseWithQuery.and.returnValue(
-                observableOf()
-            ); // TODO: provide real test data
-
             // Mock services
-            mockConversionService = {
-                prepareFullTextSearchResultText: () => expectedSearchResultText,
+            mockDataStreamerService = {
+                getSearchResponseWithQuery: (): Observable<SearchResponseWithQuery> => observableOf(),
             };
-            mockSideInfoService = { updateSearchInfoData: () => {}, clearSearchInfoData: () => {} }; // TODO: provide real test data
+            mockConversionService = {
+                prepareFullTextSearchResultText: (
+                    searchResponseWithQuery: SearchResponseWithQuery,
+                    searchUrl: string
+                ): string => expectedSearchResultText,
+            };
+            mockSideInfoService = {
+                updateSearchInfoData: () => {
+                    // Intentional empty test override
+                },
+                clearSearchInfoData: () => {
+                    // Intentional empty test override
+                },
+            };
 
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, NgbPaginationModule, ReactiveFormsModule, RouterTestingModule],
@@ -54,6 +66,7 @@ describe('SearchResultListComponent', () => {
                     { provide: DataStreamerService, useValue: mockDataStreamerService },
                     { provide: ConversionService, useValue: mockConversionService },
                     { provide: SideInfoService, useValue: mockSideInfoService },
+                    FormBuilder,
                 ],
             }).compileComponents();
         })
@@ -63,14 +76,38 @@ describe('SearchResultListComponent', () => {
         fixture = TestBed.createComponent(SearchResultListComponent);
         component = fixture.componentInstance;
 
+        // Inject services from root
+        dataStreamerService = TestBed.inject(DataStreamerService);
+        conversionService = TestBed.inject(ConversionService);
+        sideInfoService = TestBed.inject(SideInfoService);
+        formBuilder = TestBed.inject(FormBuilder);
+
+        // Test data
+        expectedSearchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
+        expectedSearchResultText = '';
+
         expectedSearchParams = new SearchParams();
         expectedSearchParams.view = SearchParamsViewTypes.table;
 
-        component.searchParams = expectedSearchParams;
-        fixture.detectChanges();
+        // Spies on service functions
+        getSearchResponseWithQuerySpy = spyOn(dataStreamerService, 'getSearchResponseWithQuery').and.returnValue(
+            observableOf(expectedSearchResponseWithQuery)
+        );
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('injected conversion service should use provided mockValue', () => {
+        expect(conversionService === mockConversionService).toBe(true);
+    });
+
+    it('injected datastreamer service should use provided mockValue', () => {
+        expect(dataStreamerService === mockDataStreamerService).toBe(true);
+    });
+
+    it('injected sideinfo service should use provided mockValue', () => {
+        expect(sideInfoService === mockSideInfoService).toBe(true);
     });
 });

@@ -39,16 +39,16 @@ import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliog
 /**
  * Declared variable: htmlConverter.
  *
- * It provides access to the embedded htmlConverter plugin (see `/src/plugins/htmlConverter`).
+ * It provides access to the embedded htmlConverter plugin (see `/src/assets/js/htmlConverter`).
  */
-declare let htmlConverter: any;
+declare const htmlConverter: any;
 
 /**
  * Declared variable: dateConverter.
  *
- * It provides access to the embedded dateConverter plugin (see `/src/plugins/dateConverter`).
+ * It provides access to the embedded dateConverter plugin (see `/src/assets/js/dateConverter`).
  */
-declare let dateConverter: any;
+declare const dateConverter: any;
 
 /**
  * The Conversion service.
@@ -538,7 +538,7 @@ export class ConversionService extends ApiService {
      * @returns {string} The converted date string.
      */
     private _convertDateValue(dateObj: any): string {
-        let date = dateConverter(dateObj);
+        let date: string = dateConverter(dateObj);
         date = date.replace(' (G)', '');
         return date;
     }

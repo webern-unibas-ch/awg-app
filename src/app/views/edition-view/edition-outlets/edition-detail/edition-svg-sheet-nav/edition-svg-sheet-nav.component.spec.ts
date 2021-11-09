@@ -13,7 +13,6 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
     let component: EditionSvgSheetNavComponent;
     let fixture: ComponentFixture<EditionSvgSheetNavComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedSvgSheetsData: EditionSvgSheetList;
     let expectedSvgSheet: EditionSvgSheet;
@@ -34,7 +33,6 @@ describe('EditionSvgSheetNavComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionSvgSheetNavComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSvgSheet = {

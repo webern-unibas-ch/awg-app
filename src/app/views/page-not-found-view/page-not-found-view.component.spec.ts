@@ -13,7 +13,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
     let component: PageNotFoundViewComponent;
     let fixture: ComponentFixture<PageNotFoundViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -34,7 +34,6 @@ describe('PageNotFoundViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(PageNotFoundViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
     });
 
     afterAll(() => {
@@ -67,7 +66,7 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found > h5', 1, 1);
             });
 
-            it('... should contain one text-centered div', () => {
+            it('... should contain one body with text-centered div', () => {
                 getAndExpectDebugElementByCss(
                     compDe,
                     'div.awg-page-not-found > div.awg-page-not-found-body.text-center',
@@ -89,16 +88,12 @@ describe('PageNotFoundViewComponent (DONE)', () => {
                 expect(imgEl.src).not.toBeTruthy('should be empty');
             });
 
-            it('... should contain contact and back paragraph in body', () => {
-                const pDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-body > p', 2, 2);
+            it('... should contain 2 paragraphs (contact and back) in body', () => {
+                const bodyDes = getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-body', 1, 1);
 
-                getAndExpectDebugElementByCss(
-                    compDe,
-                    'div.awg-page-not-found-body > p#awg-page-not-found-contact',
-                    1,
-                    1
-                );
-                getAndExpectDebugElementByCss(compDe, 'div.awg-page-not-found-body > p#awg-page-not-found-back', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'div.awg-page-not-found-body > p', 2, 2);
+                getAndExpectDebugElementByCss(bodyDes[0], 'p#awg-page-not-found-contact', 1, 1);
+                getAndExpectDebugElementByCss(bodyDes[0], 'p#awg-page-not-found-back', 1, 1);
             });
 
             it('... should not render pageNotFoundTitle or pageNotFoundSubtitle yet', () => {

@@ -59,7 +59,6 @@ describe('ResourceDetailComponent', () => {
     let component: ResourceDetailComponent;
     let fixture: ComponentFixture<ResourceDetailComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter: Spy;
     let mockActivatedRoute: ActivatedRouteStub;
@@ -79,7 +78,11 @@ describe('ResourceDetailComponent', () => {
                 getResourceData: () => observableOf(expectedResourceData),
             };
             const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-            const mockDataStreamerService = { updateResourceId: () => {} };
+            const mockDataStreamerService = {
+                updateResourceId: () => {
+                    // Intentional empty test override
+                },
+            };
 
             // Router spy object
             mockRouter = jasmine.createSpyObj('Router', ['navigate']);
@@ -111,7 +114,6 @@ describe('ResourceDetailComponent', () => {
         fixture = TestBed.createComponent(ResourceDetailComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // MockActivatedRoute.setParamMap({ id: '1234' });
         // MockActivatedRoute.paramMap.subscribe(value => console.log(value));

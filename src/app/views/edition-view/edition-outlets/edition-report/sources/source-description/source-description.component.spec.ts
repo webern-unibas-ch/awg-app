@@ -16,7 +16,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let component: SourceDescriptionComponent;
     let fixture: ComponentFixture<SourceDescriptionComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockDocument: Document;
 
@@ -42,7 +41,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
         fixture = TestBed.createComponent(SourceDescriptionComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSvgSheet = {

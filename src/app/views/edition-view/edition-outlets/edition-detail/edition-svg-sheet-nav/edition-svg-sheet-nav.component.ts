@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/models';
 
@@ -15,7 +15,7 @@ import { EditionSvgSheet, EditionSvgSheetList } from '@awg-views/edition-view/mo
     styleUrls: ['./edition-svg-sheet-nav.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionSvgSheetNavComponent implements OnInit {
+export class EditionSvgSheetNavComponent {
     /**
      * Input variable: svgSheetsData.
      *
@@ -39,14 +39,6 @@ export class EditionSvgSheetNavComponent implements OnInit {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: isSelectedSvgSheet.

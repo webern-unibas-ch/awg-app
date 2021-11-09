@@ -15,7 +15,6 @@ describe('EditionSvgSheetComponent (DONE)', () => {
     let component: EditionSvgSheetComponent;
     let fixture: ComponentFixture<EditionSvgSheetComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedSvgSheet: EditionSvgSheet;
     let expectedNextSvgSheet: EditionSvgSheet;
@@ -39,7 +38,6 @@ describe('EditionSvgSheetComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionSvgSheetComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSvgSheet = {

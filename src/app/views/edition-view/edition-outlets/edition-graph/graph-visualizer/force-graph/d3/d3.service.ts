@@ -27,11 +27,6 @@ import * as d3_zoom from 'd3-zoom';
 })
 export class D3Service {
     /**
-     * Constructor of the D3Service.
-     */
-    constructor() {}
-
-    /**
      * Public method: applyDragBehaviour.
      *
      * It binds a draggable behaviour to an svg element.

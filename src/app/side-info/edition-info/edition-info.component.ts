@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component } from '@angular/core';
 
 import { EditionWorks } from '@awg-views/edition-view/models';
 
@@ -13,7 +13,7 @@ import { EditionWorks } from '@awg-views/edition-view/models';
     styleUrls: ['./edition-info.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionInfoComponent implements OnInit {
+export class EditionInfoComponent {
     /**
      * Public variable: editionInfoViewTitle.
      *
@@ -35,17 +35,4 @@ export class EditionInfoComponent implements OnInit {
      * It keeps the current composition.
      */
     readonly EDITION_WORK_OP25 = EditionWorks.OP25;
-
-    /**
-     * Constructor of the EditionInfoComponent.
-     */
-    constructor() {}
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 }

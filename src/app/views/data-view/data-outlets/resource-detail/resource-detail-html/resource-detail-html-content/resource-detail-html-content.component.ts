@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ResourceDetailContent } from '@awg-views/data-view/models';
 import { GndEvent } from '@awg-core/services/gnd-service';
@@ -18,7 +18,7 @@ import { GndEvent } from '@awg-core/services/gnd-service';
     styleUrls: ['./resource-detail-html-content.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceDetailHtmlContentComponent implements OnInit {
+export class ResourceDetailHtmlContentComponent {
     /**
      * Input variable: content.
      *
@@ -42,14 +42,6 @@ export class ResourceDetailHtmlContentComponent implements OnInit {
      */
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: exposeGnd.

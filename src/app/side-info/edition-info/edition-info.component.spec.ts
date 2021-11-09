@@ -14,7 +14,7 @@ describe('EditionInfoComponent (DONE)', () => {
     let component: EditionInfoComponent;
     let fixture: ComponentFixture<EditionInfoComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -34,7 +34,6 @@ describe('EditionInfoComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedEditionWorkOp12 = EditionWorks.OP12;

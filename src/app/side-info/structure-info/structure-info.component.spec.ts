@@ -4,7 +4,7 @@ import { DebugElement } from '@angular/core';
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
 import { getAndExpectDebugElementByCss } from '@testing/expect-helper';
 
-import { MetaStructure, MetaSectionTypes, Meta, MetaPage, MetaContact } from '@awg-core/core-models';
+import { MetaStructure, MetaSectionTypes } from '@awg-core/core-models';
 import { METADATA } from '@awg-core/mock-data';
 import { CoreService } from '@awg-core/services';
 
@@ -14,7 +14,6 @@ describe('StructureInfoComponent (DONE)', () => {
     let component: StructureInfoComponent;
     let fixture: ComponentFixture<StructureInfoComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockCoreService: Partial<CoreService>;
 
@@ -36,9 +35,7 @@ describe('StructureInfoComponent (DONE)', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(StructureInfoComponent);
         component = fixture.componentInstance;
-
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedStructureMetaData = METADATA[MetaSectionTypes.structure];

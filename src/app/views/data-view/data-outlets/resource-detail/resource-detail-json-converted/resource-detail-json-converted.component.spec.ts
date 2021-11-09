@@ -21,7 +21,6 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
     let component: ResourceDetailJsonConvertedComponent;
     let fixture: ComponentFixture<ResourceDetailJsonConvertedComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     const expectedHeader = 'Converted JSON response from Salsah-API';
     let expectedData: ResourceDetail;
@@ -38,7 +37,6 @@ describe('ResourceDetailJsonConvertedComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailJsonConvertedComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedData = new ResourceDetail(

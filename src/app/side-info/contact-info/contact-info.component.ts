@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, SecurityContext } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';

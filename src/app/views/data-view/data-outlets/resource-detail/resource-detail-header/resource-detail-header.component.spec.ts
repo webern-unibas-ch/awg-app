@@ -19,7 +19,6 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
     let component: ResourceDetailHeaderComponent;
     let fixture: ComponentFixture<ResourceDetailHeaderComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let navigateToResourceSpy: Spy;
     let emitSpy: Spy;
@@ -39,7 +38,6 @@ describe('ResourceDetailHtmlHeaderComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailHeaderComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         const objID = '1234';

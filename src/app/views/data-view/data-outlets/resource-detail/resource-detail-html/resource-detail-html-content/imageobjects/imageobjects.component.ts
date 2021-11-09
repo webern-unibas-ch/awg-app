@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, Input, OnInit } from '@angular/core';
+import { ChangeDetectionStrategy, Component, Input } from '@angular/core';
 
 import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
 
@@ -15,7 +15,7 @@ import { NgxGalleryImage, NgxGalleryOptions } from '@kolkov/ngx-gallery';
     styleUrls: ['./imageobjects.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
+export class ResourceDetailHtmlContentImageobjectsComponent {
     /**
      * Input variable: images.
      *
@@ -44,12 +44,4 @@ export class ResourceDetailHtmlContentImageobjectsComponent implements OnInit {
             linkTarget: '_blank',
         }),
     ];
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 }

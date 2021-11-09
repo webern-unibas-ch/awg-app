@@ -32,7 +32,6 @@ describe('ContactViewComponent (DONE)', () => {
     let component: ContactViewComponent;
     let fixture: ComponentFixture<ContactViewComponent>;
     let compDe: DebugElement;
-    let compEl;
 
     let dateSpy: Spy;
     const datePipe = new DatePipe('en');
@@ -74,7 +73,6 @@ describe('ContactViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(ContactViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];

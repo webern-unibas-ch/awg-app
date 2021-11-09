@@ -1,9 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { RouterTestingModule } from '@angular/router/testing';
 
-import { of as observableOf } from 'rxjs';
+import { Observable, of as observableOf } from 'rxjs';
 import Spy = jasmine.Spy;
 
 import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
@@ -11,6 +11,7 @@ import { NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
 import { CompileHtmlComponent } from '@awg-shared/compile-html';
 import { ModalComponent } from '@awg-shared/modal/modal.component';
 import {
+    EditionWork,
     EditionWorks,
     SourceDescriptionList,
     SourceEvaluationList,
@@ -20,6 +21,7 @@ import {
 import { EditionDataService, EditionService } from '@awg-views/edition-view/services';
 
 import { EditionReportComponent } from './edition-report.component';
+import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 // Mock components
 @Component({ selector: 'awg-heading', template: '' })
@@ -38,36 +40,48 @@ class SourcesStubComponent {
     sourceDescriptionListData: SourceDescriptionList;
     @Input()
     sourceEvaluationListData: SourceEvaluationList;
-
-    // TODO: handle output
+    @Output()
+    navigateToReportFragmentRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    openModalRequest: EventEmitter<any> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
 @Component({ selector: 'awg-textcritics', template: '' })
 class TextcritisStubComponent {
     @Input()
     textcriticsData: TextcriticsList;
-
-    // TODO: handle output
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
 describe('EditionReportComponent', () => {
     let component: EditionReportComponent;
     let fixture: ComponentFixture<EditionReportComponent>;
 
+    let mockEditionDataService: Partial<EditionDataService>;
+    let mockEditionService: Partial<EditionService>;
+    let editionDataService: Partial<EditionDataService>;
+    let editionService: Partial<EditionService>;
+
     let getEditionReportDataSpy: Spy;
     let getEditionWorkSpy: Spy;
 
     beforeEach(
         waitForAsync(() => {
-            // Create a fake service object with a `getEditionReportData()` spy
-            const mockEditionDataService = jasmine.createSpyObj('EditionDataService', ['getEditionReportData']);
-            // Make the spy return a synchronous Observable with the test data
-            getEditionReportDataSpy = mockEditionDataService.getEditionReportData.and.returnValue(observableOf({})); // TODO: provide real test data
-
-            // Create a fake service object with a `getEditionWork()` spy
-            const mockEditionService = jasmine.createSpyObj('EditionService', ['getEditionWork']);
-            // Make the spy return a synchronous Observable with the test data
-            getEditionWorkSpy = mockEditionService.getEditionWork.and.returnValue(observableOf(EditionWorks.OP12)); // TODO: provide real test data
+            // Mock services
+            mockEditionDataService = {
+                getEditionReportData: (
+                    editionWork: EditionWork
+                ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> =>
+                    observableOf(),
+            };
+            mockEditionService = {
+                getEditionWork: (): Observable<EditionWork> => observableOf(),
+            };
 
             TestBed.configureTestingModule({
                 imports: [NgbModalModule, RouterTestingModule],
@@ -90,6 +104,14 @@ describe('EditionReportComponent', () => {
     beforeEach(() => {
         fixture = TestBed.createComponent(EditionReportComponent);
         component = fixture.componentInstance;
+
+        // Inject services from root
+        editionDataService = TestBed.inject(EditionDataService);
+        editionService = TestBed.inject(EditionService);
+
+        // Spies on service functions
+        getEditionReportDataSpy = spyOn(editionDataService, 'getEditionReportData').and.returnValue(observableOf());
+        getEditionWorkSpy = spyOn(editionService, 'getEditionWork').and.returnValue(observableOf(EditionWorks.OP12));
     });
 
     it('should create', () => {

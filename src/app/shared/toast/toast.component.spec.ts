@@ -33,7 +33,6 @@ describe('ToastComponent (DONE)', () => {
     let component: ToastComponent;
     let fixture: ComponentFixture<ToastComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let toastService: ToastService;
 
@@ -52,7 +51,6 @@ describe('ToastComponent (DONE)', () => {
         fixture = TestBed.createComponent(ToastComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         toastService = TestBed.inject(ToastService);

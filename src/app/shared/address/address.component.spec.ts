@@ -13,7 +13,6 @@ describe('AddressComponent (DONE)', () => {
     let component: AddressComponent;
     let fixture: ComponentFixture<AddressComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedPageMetaData: MetaPage;
     let expectedContactMetaData: MetaContact;
@@ -30,7 +29,6 @@ describe('AddressComponent (DONE)', () => {
         fixture = TestBed.createComponent(AddressComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];

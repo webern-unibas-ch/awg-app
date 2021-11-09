@@ -28,7 +28,6 @@ describe('SearchOverviewComponent (DONE)', () => {
     let component: SearchOverviewComponent;
     let fixture: ComponentFixture<SearchOverviewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedsearchRouterLinkButtons: RouterLinkButton[];
 
@@ -83,7 +82,6 @@ describe('SearchOverviewComponent (DONE)', () => {
         fixture = TestBed.createComponent(SearchOverviewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedsearchRouterLinkButtons = [
