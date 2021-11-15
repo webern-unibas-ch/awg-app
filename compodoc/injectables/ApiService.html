@@ -177,8 +177,8 @@ to handle http requests.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the HttpClient.</p>
-</code>
+                                                                <p>Instance of the HttpClient.</p>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -217,8 +217,8 @@ to handle http requests.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="125"
-                            class="link-to-prism">src/app/core/services/api-service/api.service.ts:125</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="117"
+                            class="link-to-prism">src/app/core/services/api-service/api.service.ts:117</a></div>
                 </td>
             </tr>
 
@@ -231,6 +231,7 @@ to handle http requests.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -296,8 +297,8 @@ to handle http requests.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="85"
-                            class="link-to-prism">src/app/core/services/api-service/api.service.ts:85</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="79"
+                            class="link-to-prism">src/app/core/services/api-service/api.service.ts:79</a></div>
                 </td>
             </tr>
 
@@ -310,6 +311,7 @@ to handle http requests.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -389,8 +391,8 @@ to handle http requests.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="60"
-                            class="link-to-prism">src/app/core/services/api-service/api.service.ts:60</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="58"
+                            class="link-to-prism">src/app/core/services/api-service/api.service.ts:58</a></div>
                 </td>
             </tr>
 
@@ -403,6 +405,7 @@ to handle http requests.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -642,9 +645,7 @@ export class ApiService {
      *
      * @param {HttpClient} http Instance of the HttpClient.
      */
-    constructor(public http: HttpClient) {
-        // console.log(&#x60;called ${this.serviceName} with httpClient&#x60;, http);
-    }
+    constructor(public http: HttpClient) {}
 
     /**
      * Public method: getApiResponse.
@@ -664,11 +665,7 @@ export class ApiService {
 
         return this._httpGet(queryPath, queryHttpParams).pipe(
             map((result: ApiServiceResult): Observable&lt;any&gt; &#x3D;&gt; result.getBody(responseJsonType)),
-            catchError(
-                (error: ApiServiceError): Observable&lt;ApiServiceError&gt; &#x3D;&gt;
-                    // console.error(&#x27;ApiService - getApiResponse - error: &#x27;, error);
-                    observableThrowError(error)
-            )
+            catchError((error: ApiServiceError): Observable&lt;ApiServiceError&gt; &#x3D;&gt; observableThrowError(error))
         );
     }
 
@@ -697,17 +694,15 @@ export class ApiService {
                     this.httpGetUrl &#x3D; response.url;
                 }),
                 // Map the response into ApiServiceResult class
-                map(
-                    (response: HttpResponse&lt;any&gt;): ApiServiceResult &#x3D;&gt; {
-                        const apiServiceResult &#x3D; new ApiServiceResult();
-                        apiServiceResult.status &#x3D; response.status;
-                        apiServiceResult.statusText &#x3D; response.statusText;
-                        apiServiceResult.body &#x3D; response.body;
-                        apiServiceResult.url &#x3D; response.url;
+                map((response: HttpResponse&lt;any&gt;): ApiServiceResult &#x3D;&gt; {
+                    const apiServiceResult &#x3D; new ApiServiceResult();
+                    apiServiceResult.status &#x3D; response.status;
+                    apiServiceResult.statusText &#x3D; response.statusText;
+                    apiServiceResult.body &#x3D; response.body;
+                    apiServiceResult.url &#x3D; response.url;
 
-                        return apiServiceResult;
-                    }
-                ),
+                    return apiServiceResult;
+                }),
                 // Catch any errors
                 catchError((error: HttpErrorResponse): Observable&lt;ApiServiceError&gt; &#x3D;&gt; this._handleRequestError(error))
             );
@@ -723,7 +718,6 @@ export class ApiService {
      * @returns {Observable&lt;ApiServiceError&gt;} The observable of the api service error.
      */
     private _handleRequestError(error: HttpErrorResponse): Observable&lt;ApiServiceError&gt; {
-        // console.error(error);
         const apiServiceError &#x3D; new ApiServiceError();
         apiServiceError.status &#x3D; error.status ? error.status : apiServiceError.status;
         apiServiceError.statusText &#x3D; error.statusText ? error.statusText : apiServiceError.statusText;
@@ -743,14 +737,14 @@ export class ApiService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -771,8 +765,8 @@ export class ApiService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

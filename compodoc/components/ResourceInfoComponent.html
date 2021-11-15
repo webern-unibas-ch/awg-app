@@ -290,8 +290,8 @@ to get the streamed search results.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the FormBuilder.</p>
-</code>
+                                                                <p>Instance of the FormBuilder.</p>
+
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -306,8 +306,8 @@ to get the streamed search results.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the Router.</p>
-</code>
+                                                                <p>Instance of the Router.</p>
+
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -322,8 +322,8 @@ to get the streamed search results.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the DataStreamerService.</p>
-</code>
+                                                                <p>Instance of the DataStreamerService.</p>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -383,6 +383,7 @@ search result subjects array.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -481,6 +482,7 @@ in the search response subjects array.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -576,6 +578,7 @@ in the search response subjects array.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -646,8 +649,8 @@ in the search response subjects array.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="133"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:133</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="140"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:140</a></div>
                 </td>
             </tr>
 
@@ -711,6 +714,7 @@ with the given id.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -789,6 +793,7 @@ at the given index position and triggers the navigation method.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -941,8 +946,8 @@ when destroying the component.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="118"
-                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:118</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="125"
+                            class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:125</a></div>
                 </td>
             </tr>
 
@@ -1329,7 +1334,7 @@ resourceInfoData.searchResults.data.subjects array.</p>
                 </tr>
                             <tr>
                                 <td class="col-md-4">
-                                    <div class="io-line">Defined in <a href="" data-line="167" class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:167</a></div>
+                                    <div class="io-line">Defined in <a href="" data-line="115" class="link-to-prism">src/app/side-info/resource-info/resource-info.component.ts:115</a></div>
                                 </td>
                             </tr>
                     <tr>
@@ -1463,6 +1468,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     constructor(private fb: FormBuilder, private router: Router, private streamerService: DataStreamerService) {}
 
     /**
+     * Getter for the current index position of the form group.
+     */
+    get resourceInfoIndex(): number {
+        return this.resourceInfoFormGroup.get(&#x27;resourceInfoIndex&#x27;).value;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -1512,13 +1524,6 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     console.error(&#x27;RESOURCE-INFO: Got no sideInfoData from Subscription!&#x27;, error as any);
                 }
             );
-    }
-
-    /**
-     * Getter for the current index position of the form group.
-     */
-    get resourceInfoIndex(): number {
-        return this.resourceInfoFormGroup.get(&#x27;resourceInfoIndex&#x27;).value;
     }
 
     /**
@@ -1639,7 +1644,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the resourceInfoData.resources.
      */
     private _buildForm(index: number, resultSize: number): void {
-        const regexPattern &#x3D; /^[1-9]+\d*$/;
+        const regexPattern &#x3D; /^[1-9]\d{0,9}$/; // Match any up-to 10-digit integer greater 0
 
         this.resourceInfoFormGroup &#x3D; this.fb.group({
             resourceInfoIndex: [
@@ -1700,8 +1705,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 class&#x3D;&quot;btn btn-outline-info btn-sm&quot;
                 ngbTooltip&#x3D;&quot;Zur Suche&quot;
                 tooltipClass&#x3D;&quot;d-none d-md-inline d-lg-none&quot;
-                (click)&#x3D;&quot;navigateToSearchPanel()&quot;
-            &gt;
+                (click)&#x3D;&quot;navigateToSearchPanel()&quot;&gt;
                 &lt;fa-icon [icon]&#x3D;&quot;faArrowLeft&quot;&gt;&lt;/fa-icon&gt;
                 &lt;span class&#x3D;&quot;awg-resource-info-btn-text d-md-none d-lg-inline ml-2&quot;&gt;Zur Suche&lt;/span&gt;
             &lt;/button&gt;
@@ -1726,8 +1730,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 &lt;a
                     *ngIf&#x3D;&quot;resourceInfoData?.resources?.previous; else noPrevious; let previous&quot;
                     class&#x3D;&quot;list-group-item list-group-item-action flex-column awg-list-group-item text-left&quot;
-                    (click)&#x3D;&quot;navigateToResource(previous?.id)&quot;
-                &gt;
+                    (click)&#x3D;&quot;navigateToResource(previous?.id)&quot;&gt;
                     &lt;div&gt;
                         &lt;strong class&#x3D;&quot;text-muted small&quot;&gt;
                             &lt;fa-icon [icon]&#x3D;&quot;faChevronLeft&quot;&gt;&lt;/fa-icon&gt;
@@ -1748,8 +1751,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 &lt;ng-template #noPrevious&gt;
                     &lt;a
                         *ngIf&#x3D;&quot;resourceInfoData?.resources?.current?.displayIndex &#x3D;&#x3D;&#x3D; 1&quot;
-                        class&#x3D;&quot;list-group-item list-group-item-danger flex-column awg-list-group-item text-left&quot;
-                    &gt;
+                        class&#x3D;&quot;list-group-item list-group-item-danger flex-column awg-list-group-item text-left&quot;&gt;
                         &lt;div&gt;
                             &lt;strong class&#x3D;&quot;text-muted small&quot;&gt;
                                 &lt;fa-icon [icon]&#x3D;&quot;faTimesCircle&quot;&gt;&lt;/fa-icon&gt;
@@ -1769,8 +1771,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 &lt;!-- current resource --&gt;
                 &lt;li
                     class&#x3D;&quot;list-group-item list-group-item-info awg-list-group-item&quot;
-                    *ngIf&#x3D;&quot;resourceInfoData?.resources?.current; let current&quot;
-                &gt;
+                    *ngIf&#x3D;&quot;resourceInfoData?.resources?.current; let current&quot;&gt;
                     &lt;strong class&#x3D;&quot;text-muted small mb-1&quot;
                         &gt;&lt;span class&#x3D;&quot;awg-resource-info-text&quot;
                             &gt;Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})&lt;/span
@@ -1791,8 +1792,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                                     [disabled]&#x3D;&quot;
                                         resourceInfoIndex &#x3D;&#x3D;&#x3D; current?.displayIndex || !resourceInfoFormGroup?.valid
                                     &quot;
-                                    (click)&#x3D;&quot;navigateToResourceByIndex(resourceInfoIndex)&quot;
-                                &gt;
+                                    (click)&#x3D;&quot;navigateToResourceByIndex(resourceInfoIndex)&quot;&gt;
                                     Gehe zu
                                 &lt;/button&gt;
                             &lt;/div&gt;
@@ -1805,8 +1805,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                                 aria-label&#x3D;&quot;Index of search result&quot;
                                 aria-describedby&#x3D;&quot;awg-resource-info-input-group-text&quot;
                                 size&#x3D;&quot;4&quot;
-                                step&#x3D;&quot;1&quot;
-                            /&gt;
+                                step&#x3D;&quot;1&quot; /&gt;
                         &lt;/div&gt;
                     &lt;/form&gt;
                 &lt;/li&gt;
@@ -1815,8 +1814,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 &lt;a
                     *ngIf&#x3D;&quot;resourceInfoData?.resources?.next; else noNext; let next&quot;
                     class&#x3D;&quot;list-group-item list-group-item-action flex-column awg-list-group-item text-right&quot;
-                    (click)&#x3D;&quot;navigateToResource(next?.id)&quot;
-                &gt;
+                    (click)&#x3D;&quot;navigateToResource(next?.id)&quot;&gt;
                     &lt;div class&#x3D;&quot;mb-1&quot;&gt;
                         &lt;strong class&#x3D;&quot;text-muted small&quot;&gt;
                             &lt;span class&#x3D;&quot;awg-resource-info-btn-text mr-2&quot;
@@ -1837,8 +1835,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                 &lt;ng-template #noNext&gt;
                     &lt;a
                         *ngIf&#x3D;&quot;resourceInfoData?.resources?.current?.displayIndex &#x3D;&#x3D;&#x3D; resultSize&quot;
-                        class&#x3D;&quot;list-group-item list-group-item-danger flex-column awg-list-group-item text-right&quot;
-                    &gt;
+                        class&#x3D;&quot;list-group-item list-group-item-danger flex-column awg-list-group-item text-right&quot;&gt;
                         &lt;div&gt;
                             &lt;strong class&#x3D;&quot;text-muted small&quot;&gt;
                                 &lt;fa-icon [icon]&#x3D;&quot;faTimesCircle&quot;&gt;&lt;/fa-icon&gt;
@@ -1901,7 +1898,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 <script src="../js/libs/htmlparser.js"></script>
 <script src="../js/libs/deep-iterator.js"></script>
 <script>
-        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229* 20.11.2017***************************************************/ --><!-- sideinfo: resource --><div class="card" *ngIf="resourceInfoData">    <div class="card-header d-flex">        <div class="ml-3 mr-1 my-auto">            <button                type="button"                class="btn btn-outline-info btn-sm"                ngbTooltip="Zur Suche"                tooltipClass="d-none d-md-inline d-lg-none"                (click)="navigateToSearchPanel()"            >                <fa-icon [icon]="faArrowLeft"></fa-icon>                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>            </button>        </div>        <div class="text-center mx-auto">            <strong class="text-muted small">Aktueller Suchbegriff</strong>            <br />            <span *ngIf="resourceInfoData?.searchResults?.query; else noQuery">{{                resourceInfoData?.searchResults?.query            }}</span>            <ng-template #noQuery>                <span>---</span>            </ng-template>        </div>    </div>    <!-- end card-header -->    <div class="card-body bg-light">        <!-- search results -->        <div *ngIf="resultSize">            <ul class="list-group awg-resource-info-list-group">                <!-- previous resource -->                <a                    *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"                    (click)="navigateToResource(previous?.id)"                >                    <div>                        <strong class="text-muted small">                            <fa-icon [icon]="faChevronLeft"></fa-icon>                            <span class="awg-resource-info-btn-text ml-2"                                >Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span                            >                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="previous?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ previous?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noPrevious>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left"                    >                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>                <!-- current resource -->                <li                    class="list-group-item list-group-item-info awg-list-group-item"                    *ngIf="resourceInfoData?.resources?.current; let current"                >                    <strong class="text-muted small mb-1"                        ><span class="awg-resource-info-text"                            >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</span                        ></strong                    >                    <form [formGroup]="resourceInfoFormGroup">                        <div class="input-group input-group-sm">                            <div class="input-group-prepend">                                <button                                    type="submit"                                    [ngClass]="{                                        btn: true,                                        \'btn-outline-success\': resourceInfoFormGroup.valid,                                        \'btn-outline-danger\': resourceInfoFormGroup.invalid                                    }"                                    id="awg-resource-info-input-group-text"                                    [disabled]="                                        resourceInfoIndex === current?.displayIndex || !resourceInfoFormGroup?.valid                                    "                                    (click)="navigateToResourceByIndex(resourceInfoIndex)"                                >                                    Gehe zu                                </button>                            </div>                            <!-- INPUT: required, min=1, max=resultSize and pattern are ensured by Formbuilder.Validators -->                            <input                                type="number"                                class="form-control"                                formControlName="resourceInfoIndex"                                id="awg-resource-info-input"                                aria-label="Index of search result"                                aria-describedby="awg-resource-info-input-group-text"                                size="4"                                step="1"                            />                        </div>                    </form>                </li>                <!-- next resource -->                <a                    *ngIf="resourceInfoData?.resources?.next; else noNext; let next"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"                    (click)="navigateToResource(next?.id)"                >                    <div class="mb-1">                        <strong class="text-muted small">                            <span class="awg-resource-info-btn-text mr-2"                                >Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span                            >                            <fa-icon [icon]="faChevronRight"></fa-icon>                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="next?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ next?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noNext>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right"                    >                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>            </ul>        </div>        <!-- end ngIf: resultSize -->    </div>    <!-- end card-body -->    <div class="card-footer text-muted small">        Design and structure of this resource view adapted from        <a href="https://arachne.dainst.org/">iDAI.object arachne</a> (11/2017)    </div>    <!-- end card-footer --></div><!-- end card.ngIf: resourceInfo --></div>'
+        var COMPONENT_TEMPLATE = '<div><!--/**************************************************               CREDITS** This code is inspired, adapted or taken from:** ARACHNE – Objektdatenbank des Deutschen Archäologischen Instituts (DAI)* https://arachne.dainst.org/entity/1121229* 20.11.2017***************************************************/ --><!-- sideinfo: resource --><div class="card" *ngIf="resourceInfoData">    <div class="card-header d-flex">        <div class="ml-3 mr-1 my-auto">            <button                type="button"                class="btn btn-outline-info btn-sm"                ngbTooltip="Zur Suche"                tooltipClass="d-none d-md-inline d-lg-none"                (click)="navigateToSearchPanel()">                <fa-icon [icon]="faArrowLeft"></fa-icon>                <span class="awg-resource-info-btn-text d-md-none d-lg-inline ml-2">Zur Suche</span>            </button>        </div>        <div class="text-center mx-auto">            <strong class="text-muted small">Aktueller Suchbegriff</strong>            <br />            <span *ngIf="resourceInfoData?.searchResults?.query; else noQuery">{{                resourceInfoData?.searchResults?.query            }}</span>            <ng-template #noQuery>                <span>---</span>            </ng-template>        </div>    </div>    <!-- end card-header -->    <div class="card-body bg-light">        <!-- search results -->        <div *ngIf="resultSize">            <ul class="list-group awg-resource-info-list-group">                <!-- previous resource -->                <a                    *ngIf="resourceInfoData?.resources?.previous; else noPrevious; let previous"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-left"                    (click)="navigateToResource(previous?.id)">                    <div>                        <strong class="text-muted small">                            <fa-icon [icon]="faChevronLeft"></fa-icon>                            <span class="awg-resource-info-btn-text ml-2"                                >Vorheriges Ergebnis ({{ previous?.displayIndex }}/{{ resultSize }})</span                            >                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="previous?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ previous?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noPrevious>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === 1"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-left">                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>                <!-- current resource -->                <li                    class="list-group-item list-group-item-info awg-list-group-item"                    *ngIf="resourceInfoData?.resources?.current; let current">                    <strong class="text-muted small mb-1"                        ><span class="awg-resource-info-text"                            >Angezeigtes Ergebnis ({{ current?.displayIndex }}/{{ resultSize }})</span                        ></strong                    >                    <form [formGroup]="resourceInfoFormGroup">                        <div class="input-group input-group-sm">                            <div class="input-group-prepend">                                <button                                    type="submit"                                    [ngClass]="{                                        btn: true,                                        \'btn-outline-success\': resourceInfoFormGroup.valid,                                        \'btn-outline-danger\': resourceInfoFormGroup.invalid                                    }"                                    id="awg-resource-info-input-group-text"                                    [disabled]="                                        resourceInfoIndex === current?.displayIndex || !resourceInfoFormGroup?.valid                                    "                                    (click)="navigateToResourceByIndex(resourceInfoIndex)">                                    Gehe zu                                </button>                            </div>                            <!-- INPUT: required, min=1, max=resultSize and pattern are ensured by Formbuilder.Validators -->                            <input                                type="number"                                class="form-control"                                formControlName="resourceInfoIndex"                                id="awg-resource-info-input"                                aria-label="Index of search result"                                aria-describedby="awg-resource-info-input-group-text"                                size="4"                                step="1" />                        </div>                    </form>                </li>                <!-- next resource -->                <a                    *ngIf="resourceInfoData?.resources?.next; else noNext; let next"                    class="list-group-item list-group-item-action flex-column awg-list-group-item text-right"                    (click)="navigateToResource(next?.id)">                    <div class="mb-1">                        <strong class="text-muted small">                            <span class="awg-resource-info-btn-text mr-2"                                >Nächstes Ergebnis ({{ next?.displayIndex }}/{{ resultSize }})</span                            >                            <fa-icon [icon]="faChevronRight"></fa-icon>                        </strong>                    </div>                    <div>                        <div class="single-line">                            <span [compile-html]="next?.title" [compile-html-ref]="this"></span>                        </div>                        <div class="single-line text-muted small">                            <span>{{ next?.subtitle }}</span>                        </div>                    </div>                </a>                <ng-template #noNext>                    <a                        *ngIf="resourceInfoData?.resources?.current?.displayIndex === resultSize"                        class="list-group-item list-group-item-danger flex-column awg-list-group-item text-right">                        <div>                            <strong class="text-muted small">                                <fa-icon [icon]="faTimesCircle"></fa-icon>                            </strong>                        </div>                        <div>                            <div class="single-line">                                <span>&nbsp;</span>                            </div>                            <div class="single-line text-muted small">                                <span>&nbsp;</span>                            </div>                        </div>                    </a>                </ng-template>            </ul>        </div>        <!-- end ngIf: resultSize -->    </div>    <!-- end card-body -->    <div class="card-footer text-muted small">        Design and structure of this resource view adapted from        <a href="https://arachne.dainst.org/">iDAI.object arachne</a> (11/2017)    </div>    <!-- end card-footer --></div><!-- end card.ngIf: resourceInfo --></div>'
     var COMPONENTS = [{'name': 'AddressComponent', 'selector': 'awg-address'},{'name': 'AppComponent', 'selector': 'awg-app'},{'name': 'BibliographyComponent', 'selector': 'awg-bibliography'},{'name': 'BibliographyDetailComponent', 'selector': 'awg-bibliography-detail'},{'name': 'BibliographyListComponent', 'selector': 'awg-bibliography-list'},{'name': 'BibliographySearchComponent', 'selector': 'awg-bibliography-search'},{'name': 'CompileHtmlComponent', 'selector': '[compile-html]'},{'name': 'ConstructResultsComponent', 'selector': 'awg-construct-results'},{'name': 'ContactInfoComponent', 'selector': 'awg-contact-info'},{'name': 'ContactViewComponent', 'selector': 'awg-contact-view'},{'name': 'CriticsListComponent', 'selector': 'awg-critics-list'},{'name': 'DataViewComponent', 'selector': 'awg-data'},{'name': 'EditionAccoladeComponent', 'selector': 'awg-edition-accolade'},{'name': 'EditionConvoluteComponent', 'selector': 'awg-edition-convolute'},{'name': 'EditionDetailComponent', 'selector': 'awg-edition-detail'},{'name': 'EditionGraphComponent', 'selector': 'awg-edition-graph'},{'name': 'EditionInfoComponent', 'selector': 'awg-edition-info'},{'name': 'EditionIntroComponent', 'selector': 'awg-intro'},{'name': 'EditionOverviewComponent', 'selector': 'awg-edition-overview'},{'name': 'EditionReportComponent', 'selector': 'awg-edition-report'},{'name': 'EditionSectionComponent', 'selector': 'awg-edition-section'},{'name': 'EditionSeriesComponent', 'selector': 'awg-edition-series'},{'name': 'EditionSvgSheetComponent', 'selector': 'awg-edition-svg-sheet'},{'name': 'EditionSvgSheetNavComponent', 'selector': 'awg-edition-svg-sheet-nav'},{'name': 'EditionTkaTableComponent', 'selector': 'awg-edition-tka-table'},{'name': 'EditionTypeComponent', 'selector': 'awg-edition-type'},{'name': 'EditionViewComponent', 'selector': 'awg-edition-view'},{'name': 'FolioOverviewComponent', 'selector': 'awg-edition-folio'},{'name': 'FooterComponent', 'selector': 'awg-footer'},{'name': 'FooterCopyrightComponent', 'selector': 'awg-footer-copyright'},{'name': 'FooterDeclarationComponent', 'selector': 'awg-footer-declaration'},{'name': 'FooterLogoComponent', 'selector': 'awg-footer-logo'},{'name': 'FooterPoweredbyComponent', 'selector': 'awg-footer-poweredby'},{'name': 'ForceGraphComponent', 'selector': 'awg-force-graph'},{'name': 'GraphVisualizerComponent', 'selector': 'awg-graph-visualizer'},{'name': 'HeadingComponent', 'selector': 'awg-heading'},{'name': 'HomeViewComponent', 'selector': 'awg-home-view'},{'name': 'JsonViewerComponent', 'selector': 'awg-json-viewer'},{'name': 'ModalComponent', 'selector': 'awg-modal'},{'name': 'NavbarComponent', 'selector': 'awg-navbar'},{'name': 'OpenStreetMapComponent', 'selector': 'awg-open-street-map'},{'name': 'PageNotFoundViewComponent', 'selector': 'awg-page-not-found-view'},{'name': 'ResourceDetailComponent', 'selector': 'awg-resource-detail'},{'name': 'ResourceDetailHeaderComponent', 'selector': 'awg-resource-detail-header'},{'name': 'ResourceDetailHtmlComponent', 'selector': 'awg-resource-detail-html'},{'name': 'ResourceDetailHtmlContentComponent', 'selector': 'awg-resource-detail-html-content'},{'name': 'ResourceDetailHtmlContentImageobjectsComponent', 'selector': 'awg-resource-detail-html-content-imageobjects'},{'name': 'ResourceDetailHtmlContentLinkedobjectsComponent', 'selector': 'awg-resource-detail-html-content-linkedobjects'},{'name': 'ResourceDetailHtmlContentPropsComponent', 'selector': 'awg-resource-detail-html-content-props'},{'name': 'ResourceDetailJsonConvertedComponent', 'selector': 'awg-resource-detail-json-converted'},{'name': 'ResourceDetailJsonRawComponent', 'selector': 'awg-resource-detail-json-raw'},{'name': 'ResourceInfoComponent', 'selector': 'awg-resource-info'},{'name': 'RouterLinkButtonGroupComponent', 'selector': 'awg-router-link-button-group'},{'name': 'RouterOutletStubComponent', 'selector': 'router-outlet'},{'name': 'SearchFormComponent', 'selector': 'awg-search-form'},{'name': 'SearchInfoComponent', 'selector': 'awg-search-info'},{'name': 'SearchOverviewComponent', 'selector': 'awg-search-overview'},{'name': 'SearchPanelComponent', 'selector': 'awg-search-panel'},{'name': 'SearchResultListComponent', 'selector': 'awg-search-result-list'},{'name': 'SelectResultsComponent', 'selector': 'awg-select-results'},{'name': 'SourceDescriptionComponent', 'selector': 'awg-source-description'},{'name': 'SourceEvaluationComponent', 'selector': 'awg-source-evaluation'},{'name': 'SourceListComponent', 'selector': 'awg-source-list'},{'name': 'SourcesComponent', 'selector': 'awg-sources'},{'name': 'SparqlEditorComponent', 'selector': 'awg-sparql-editor'},{'name': 'SparqlNoResultsComponent', 'selector': 'awg-sparql-no-results'},{'name': 'SparqlTableComponent', 'selector': 'awg-sparql-table'},{'name': 'StructureInfoComponent', 'selector': 'awg-structure-info'},{'name': 'StructureViewComponent', 'selector': 'awg-structure-view'},{'name': 'TextcriticsComponent', 'selector': 'awg-textcritics'},{'name': 'TimelineComponent', 'selector': 'awg-timeline'},{'name': 'ToastComponent', 'selector': 'awg-toast'},{'name': 'TriplesEditorComponent', 'selector': 'awg-triples-editor'},{'name': 'TwelveToneSpinnerComponent', 'selector': 'awg-twelve-tone-spinner'},{'name': 'UnsupportedTypeResultsComponent', 'selector': 'awg-unsupported-type-results'},{'name': 'ViewContainerComponent', 'selector': 'awg-view-container'}];
     var DIRECTIVES = [{'name': 'ExternalLinkDirective', 'selector': 'a[href]'},{'name': 'RouterLinkStubDirective', 'selector': '[routerLink]'}];
     var ACTUAL_COMPONENT = {'name': 'ResourceInfoComponent'};
@@ -1917,14 +1914,14 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -1945,8 +1942,8 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

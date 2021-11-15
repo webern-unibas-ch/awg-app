@@ -110,30 +110,30 @@ const editionViewRoutes: Routes &#x3D; [
                             {
                                 path: EditionConstants.EDITION_INTRO.route,
                                 loadChildren: () &#x3D;&gt;
-                                    import(&#x27;./edition-outlets/edition-intro/edition-intro.module&#x27;).then(
-                                        m &#x3D;&gt; m.EditionIntroModule
-                                    ),
+                                    &quot;import(&#x27;./edition-outlets/edition-intro/edition-intro.module&#x27;).then(\
+                                        m &#x3D;&gt; m.EditionIntroModule\
+                                    )&quot;,
                             },
                             {
                                 path: EditionConstants.EDITION_DETAIL.route,
                                 loadChildren: () &#x3D;&gt;
-                                    import(&#x27;./edition-outlets/edition-detail/edition-detail.module&#x27;).then(
-                                        m &#x3D;&gt; m.EditionDetailModule
-                                    ),
+                                    &quot;import(&#x27;./edition-outlets/edition-detail/edition-detail.module&#x27;).then(\
+                                        m &#x3D;&gt; m.EditionDetailModule\
+                                    )&quot;,
                             },
                             {
                                 path: EditionConstants.EDITION_REPORT.route,
                                 loadChildren: () &#x3D;&gt;
-                                    import(&#x27;./edition-outlets/edition-report/edition-report.module&#x27;).then(
-                                        m &#x3D;&gt; m.EditionReportModule
-                                    ),
+                                    &quot;import(&#x27;./edition-outlets/edition-report/edition-report.module&#x27;).then(\
+                                        m &#x3D;&gt; m.EditionReportModule\
+                                    )&quot;,
                             },
                             {
                                 path: EditionConstants.EDITION_GRAPH.route,
                                 loadChildren: () &#x3D;&gt;
-                                    import(&#x27;./edition-outlets/edition-graph/edition-graph.module&#x27;).then(
-                                        m &#x3D;&gt; m.EditionGraphModule
-                                    ),
+                                    &quot;import(&#x27;./edition-outlets/edition-graph/edition-graph.module&#x27;).then(\
+                                        m &#x3D;&gt; m.EditionGraphModule\
+                                    )&quot;,
                             },
                             {
                                 path: &#x27;&#x27;,
@@ -185,14 +185,14 @@ export class EditionViewRoutingModule {}
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -213,8 +213,8 @@ export class EditionViewRoutingModule {}
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

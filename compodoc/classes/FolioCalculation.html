@@ -230,8 +230,8 @@ to calculate all the values needed for the folio canvas.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>The given folio settings.</p>
-</code>
+                                                                <p>The given folio settings.</p>
+
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -246,8 +246,8 @@ to calculate all the values needed for the folio canvas.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>The given folio data.</p>
-</code>
+                                                                <p>The given folio data.</p>
+
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -262,8 +262,8 @@ to calculate all the values needed for the folio canvas.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>The optional given itemsOffset correction.</p>
-</code>
+                                                                <p>The optional given itemsOffset correction.</p>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -518,6 +518,7 @@ of a folio (FolioCalculationSystems).</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -598,6 +599,7 @@ systems and contentItemsArray of a folio.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -694,6 +696,7 @@ all the calculated values for the sheet of a folio.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -838,6 +841,7 @@ all the calculated values for the systems of a folio.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -934,6 +938,7 @@ all the calculated values for the systems of a folio.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1062,6 +1067,7 @@ all the calculated values for the systems of a folio.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1141,6 +1147,7 @@ all the calculated values for the systems of a folio.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1254,6 +1261,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1349,6 +1357,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1476,6 +1485,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1603,6 +1613,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1698,6 +1709,7 @@ see: <a href="http://www.jacklmoore.com/notes/rounding-in-javascript/">http://ww
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -2642,7 +2654,7 @@ export class FolioCalculation {
      * @returns {void} Sets the offsetCorrection for a calculatedContentItem.
      */
     private _setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
-        cornerPoint &#x3D; cornerPoint.add(correctionX, 0);
+        cornerPoint.add(correctionX, 0);
     }
 
     /**
@@ -2738,14 +2750,14 @@ export class FolioCalculation {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -2766,8 +2778,8 @@ export class FolioCalculation {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

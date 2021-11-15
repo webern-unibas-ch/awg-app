@@ -81,12 +81,6 @@ with a <a href="../components/JsonViewerComponent.html">JsonViewerComponent</a>.
     </p>
 
 
-    <p class="comment">
-        <h3>Implements</h3>
-    </p>
-    <p class="comment">
-                    <code><a href="https://angular.io/api/core/OnInit" target="_blank" >OnInit</a></code>
-    </p>
 
 
 <section>
@@ -140,35 +134,7 @@ with a <a href="../components/JsonViewerComponent.html">JsonViewerComponent</a>.
     <h3 id="index">Index</h3>
     <table class="table table-sm table-bordered index-table">
         <tbody>
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Properties</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#resourceJsonConvertedData" >resourceJsonConvertedData</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
-                <tr>
-                    <td class="col-md-4">
-                        <h6><b>Methods</b></h6>
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <ul class="index-list">
-                            <li>
-                                <a href="#ngOnInit" >ngOnInit</a>
-                            </li>
-                        </ul>
-                    </td>
-                </tr>
 
                 <tr>
                     <td class="col-md-4">
@@ -227,107 +193,13 @@ with a <a href="../components/JsonViewerComponent.html">JsonViewerComponent</a>.
 
 
 
-    <section>
-    
-    <h3 id="methods">
-        Methods
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="ngOnInit"></a>
-                    <span class="name">
-                        <span ><b>ngOnInit</b></span>
-                        <a href="#ngOnInit"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-<code>ngOnInit()</code>
-                </td>
-            </tr>
 
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="33"
-                            class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-json-converted/resource-detail-json-converted.component.ts:33</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Angular life cycle hook: ngOnInit.</p>
-<p>It calls the containing methods
-when initializing the component.</p>
-</div>
-
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
-</section>
-    <section>
-    
-    <h3 id="inputs">
-        Properties
-    </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="resourceJsonConvertedData"></a>
-                    <span class="name">
-                        <span ><b>resourceJsonConvertedData</b></span>
-                        <a href="#resourceJsonConvertedData"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../classes/ResourceDetail.html" target="_self" >ResourceDetail</a></code>
-
-                    </td>
-                </tr>
-                <tr>
-                    <td class="col-md-4">
-                        <b>Decorators : </b>
-                        <br />
-                        <code>
-                            @Input()<br />
-                        </code>
-                    </td>
-                </tr>
-                    <tr>
-                        <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="25" class="link-to-prism">src/app/views/data-view/data-outlets/resource-detail/resource-detail-json-converted/resource-detail-json-converted.component.ts:25</a></div>
-                        </td>
-                    </tr>
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Input variable: resourceJsonConvertedData.</p>
-<p>It keeps the converted json data for the resource detail.</p>
-</div>
-                </td>
-            </tr>
-
-        </tbody>
-    </table>
-</section>
 
 </div>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input, OnInit } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, Input } from &#x27;@angular/core&#x27;;
 
 import { ResourceDetail } from &#x27;@awg-views/data-view/models&#x27;;
 
@@ -344,7 +216,7 @@ import { ResourceDetail } from &#x27;@awg-views/data-view/models&#x27;;
     styleUrls: [&#x27;./resource-detail-json-converted.component.css&#x27;],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceDetailJsonConvertedComponent implements OnInit {
+export class ResourceDetailJsonConvertedComponent {
     /**
      * Input variable: resourceJsonConvertedData.
      *
@@ -352,14 +224,6 @@ export class ResourceDetailJsonConvertedComponent implements OnInit {
      */
     @Input()
     resourceJsonConvertedData: ResourceDetail;
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 }
 </code></pre>
     </div>
@@ -367,8 +231,7 @@ export class ResourceDetailJsonConvertedComponent implements OnInit {
     <div class="tab-pane fade " id="c-templateData">
         <pre class="line-numbers"><code class="language-html">&lt;awg-json-viewer
     jsonViewerHeader&#x3D;&quot;Converted JSON response from Salsah-API&quot;
-    [jsonViewerData]&#x3D;&quot;resourceJsonConvertedData&quot;
-&gt;
+    [jsonViewerData]&#x3D;&quot;resourceJsonConvertedData&quot;&gt;
 &lt;/awg-json-viewer&gt;
 </code></pre>
     </div>
@@ -421,14 +284,14 @@ export class ResourceDetailJsonConvertedComponent implements OnInit {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -449,8 +312,8 @@ export class ResourceDetailJsonConvertedComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

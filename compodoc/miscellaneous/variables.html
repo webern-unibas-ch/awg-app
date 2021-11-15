@@ -45,7 +45,7 @@
 
 
 
-                   
+
 
 <ol class="breadcrumb">
   <li>Miscellaneous</li>
@@ -380,7 +380,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.7.16&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.7.17&#x27;</code>
                     </td>
                 </tr>
 
@@ -412,7 +412,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;08. September 2021&#x27;</code>
+                        <i>Default value : </i><code>&#x27;15. November 2021&#x27;</code>
                     </td>
                 </tr>
 
@@ -709,7 +709,7 @@
         currentIdTime &#x3D; now;
     }
     const comingId &#x3D; ++currentId;
-    const randomHex &#x3D; reverse(random()).padStart(15, &#x27;0&#x27;);
+    const randomHex &#x3D; reverse(random()).padStart(8, &#x27;0&#x27;);
     const timeHex &#x3D; reverse(currentIdTime.toString(16).padStart(12, &#x27;0&#x27;));
     const comingIdHex &#x3D; reverse(comingId.toString(16).padStart(3, &#x27;0&#x27;));
     const newId &#x3D; &#x60;compile-html-${timeHex}${comingIdHex}${randomHex}&#x60;;
@@ -740,8 +740,12 @@
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>(): string &#x3D;&gt;
-    (Math.floor(Math.random() * (99999999999999999 - 10000000000000000)) + 10000000000000000).toString(16)</code>
+                        <i>Default value : </i><code>(): string &#x3D;&gt; {
+    const crypto &#x3D; window.crypto || (&lt;any&gt;window).msCrypto;
+    const array &#x3D; new Uint32Array(1);
+
+    return Math.floor(crypto.getRandomValues(array)[0]).toString(16);
+}</code>
                     </td>
                 </tr>
 
@@ -833,7 +837,7 @@
                 <td class="col-md-4">
                     <div class="io-description"><p>Test helper custom matcher factory: customJasmineMatchers.</p>
 <p>It exposes custom jasmine matchers to be used in unit tests.</p>
-<p>For more details on custom matchers see <a href="https://stackoverflow.com/a/44996479">https://stackoverflow.com/a/44996479</a>.</p>
+<p>For more details on custom matchers see ://stackoverflow.com/a/44996479<a href="https">https</a>.</p>
 </div>
                 </td>
             </tr>
@@ -864,7 +868,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Declared variable: dateConverter.</p>
-<p>It provides access to the embedded dateConverter plugin (see <code>/src/plugins/dateConverter</code>).</p>
+<p>It provides access to the embedded dateConverter plugin (see <code>/src/assets/js/dateConverter</code>).</p>
 </div>
                 </td>
             </tr>
@@ -892,7 +896,7 @@
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Declared variable: htmlConverter.</p>
-<p>It provides access to the embedded htmlConverter plugin (see <code>/src/plugins/htmlConverter</code>).</p>
+<p>It provides access to the embedded htmlConverter plugin (see <code>/src/assets/js/htmlConverter</code>).</p>
 </div>
                 </td>
             </tr>
@@ -1348,7 +1352,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         id: &#x27;snflogo&#x27;,
         src: &#x27;assets/img/logos/snf.png&#x27;,
         alt: &#x27;Logo SNF&#x27;,
-        href: &#x27;http://www.snf.ch&#x27;,
+        href: &#x27;https://www.snf.ch&#x27;,
     },
     sparql: {
         id: &#x27;sparqllogo&#x27;,
@@ -1579,7 +1583,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     resclass_name: &#x27;image&#x27;,
     preview: [
         {
-            path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
+            path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
             protocol: &#x27;file&#x27;,
             origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
             format_name: &#x27;JPEG&#x27;,
@@ -1589,7 +1593,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             fps: &#x27;0.000&#x27;,
         },
         {
-            path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
+            path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
             protocol: &#x27;file&#x27;,
             origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
             format_name: &#x27;JPEG&#x27;,
@@ -1602,7 +1606,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
     locations: [
         [
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG&#x27;,
@@ -1612,7 +1616,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: &#x27;0.000&#x27;,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1622,7 +1626,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1632,7 +1636,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1642,7 +1646,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1652,7 +1656,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1662,7 +1666,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1674,7 +1678,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         ],
         [
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG&#x27;,
@@ -1684,7 +1688,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: &#x27;0.000&#x27;,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1694,7 +1698,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1704,7 +1708,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1714,7 +1718,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1724,7 +1728,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1734,7 +1738,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: 0,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG2000&#x27;,
@@ -1757,7 +1761,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         restype_label: &#x27;Supplement&#x27;,
         restype_description: &#x27;Supplement&#x27;,
         restype_iconsrc:
-            &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;125&#x27;,
+            &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;125&#x27;,
         preview: null,
         locations: null,
         locdata: null,
@@ -1816,7 +1820,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         resclass_name: &#x27;image&#x27;,
         preview: [
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                 format_name: &#x27;JPEG&#x27;,
@@ -1826,7 +1830,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                 fps: &#x27;0.000&#x27;,
             },
             {
-                path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
+                path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
                 protocol: &#x27;file&#x27;,
                 origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                 format_name: &#x27;JPEG&#x27;,
@@ -1839,7 +1843,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         locations: [
             [
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;thumbnail&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG&#x27;,
@@ -1849,7 +1853,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: &#x27;0.000&#x27;,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1859,7 +1863,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1869,7 +1873,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1879,7 +1883,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1889,7 +1893,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1899,7 +1903,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173574&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-1.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1911,7 +1915,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             ],
             [
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;thumbnail&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG&#x27;,
@@ -1921,7 +1925,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: &#x27;0.000&#x27;,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;5&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1931,7 +1935,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;4&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1941,7 +1945,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;3&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1951,7 +1955,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;2&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1961,7 +1965,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;1&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1971,7 +1975,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
                     fps: 0,
                 },
                 {
-                    path: &#x27;http://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
+                    path: &#x27;https://www.salsah.org/core/sendlocdata.php?res&#x3D;2173577&amp;qtype&#x3D;full&amp;reduce&#x3D;0&#x27;,
                     protocol: &#x27;file&#x27;,
                     origname: &#x27;Programm_Prag19350109_op7-2.jpg&#x27;,
                     format_name: &#x27;JPEG2000&#x27;,
@@ -1994,7 +1998,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             restype_label: &#x27;Supplement&#x27;,
             restype_description: &#x27;Supplement&#x27;,
             restype_iconsrc:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;125&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;125&#x27;,
             preview: null,
             locations: null,
             locdata: null,
@@ -2219,7 +2223,7 @@ response from the conversion service.</p>
         restype_label: &#x27;Musikstück (Moldenhauer-Nummer)&#x27;,
         restype_description: &#x27;einzelnes Musikstück (identifiziert durch Moldenhauer-Nummer)&#x27;,
         restype_iconsrc:
-            &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;36&#x27;,
+            &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;36&#x27;,
         preview: null,
         locations: null,
         locdata: null,
@@ -2233,7 +2237,7 @@ response from the conversion service.</p>
         res_id: &#x27;11398&#x27;,
         restype_name: &#x27;webern:musical_piece&#x27;,
         restype_label: &#x27;Musikstück (Moldenhauer-Nummer)&#x27;,
-        iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;36&#x27;,
+        iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;36&#x27;,
         resclass_name: &#x27;object&#x27;,
         rights: &#x27;2&#x27;,
     },
@@ -2488,55 +2492,55 @@ from the Salsah API.</p>
     subjects: [
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;1234&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Test&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
             valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;2225189&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Oliveira Sampaio 2000&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
             valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;2233403&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Nelson 1974&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
             valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;2430568&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;BrownJ 2014&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
             valuetype_id: [&#x27;1&#x27;],
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;2516682&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             value: [&#x27;Auer 2017&#x27;],
             valuelabel: [&#x27;Kurztitel&#x27;],
             valuetype_id: [&#x27;1&#x27;],
@@ -2607,11 +2611,11 @@ response from the Salsah API.</p>
     subjects: [
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;1230&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -2621,11 +2625,11 @@ response from the Salsah API.</p>
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;1231&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -2635,11 +2639,11 @@ response from the Salsah API.</p>
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;1232&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -2649,11 +2653,11 @@ response from the Salsah API.</p>
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;1233&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -2663,11 +2667,11 @@ response from the Salsah API.</p>
         },
         {
             iconlabel: &#x27;Bibliografie&#x27;,
-            iconsrc: &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+            iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             icontitle: &#x27;Bibliografie&#x27;,
             obj_id: &#x27;1234&#x27;,
             preview_path:
-                &#x27;http://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
+                &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;126&#x27;,
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -2797,21 +2801,20 @@ from the Salsah API.</p>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
     OP12_SOURCE_NOT_A:
-        &#x27;&lt;p&gt;Die Beschreibung der weiteren Quellenbestandteile von &lt;strong&gt;A&lt;/strong&gt; sowie der Quellen &lt;strong&gt;B&lt;/strong&gt; bis &lt;strong&gt;G1&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
+        &#x27;&lt;p&gt;Die Beschreibung der weiteren Quellenbestandteile von &lt;strong&gt;A&lt;/strong&gt; sowie der Quellen &lt;strong&gt;B&lt;/strong&gt; bis &lt;strong&gt;G1&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
     OP12_SHEET_COMING_SOON:
-        &#x27;Die edierten Notentexte von &lt;strong&gt;Aa:SkI/1&lt;/strong&gt;, &lt;strong&gt;Ab:SkII/1&lt;/strong&gt;, &lt;strong&gt;Ac:SkIII/1&lt;/strong&gt; und &lt;strong&gt;Ac:SkIII/7&lt;/strong&gt; sowie &lt;strong&gt;Ae:SkIV/1&lt;/strong&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.&#x27;,
+        &#x27;Die edierten Notentexte von &lt;strong&gt;Aa:SkI/1&lt;/strong&gt;, &lt;strong&gt;Ab:SkII/1&lt;/strong&gt;, &lt;strong&gt;Ac:SkIII/1&lt;/strong&gt; und &lt;strong&gt;Ac:SkIII/7&lt;/strong&gt; sowie &lt;strong&gt;Ae:SkIV/1&lt;/strong&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&#x27;,
     OP12_EDITION_COMING_SOON:
-        &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;none&quot;&gt;&lt;li&gt;Werkedition der Druckfassung der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 &lt;br/&gt; Textedition von Nr. I „&lt;i&gt;Der Tag ist vergangen&lt;/i&gt;“ (Fassung 1) &lt;br/&gt; Textedition von Nr. I „&lt;i&gt;Der Tag ist vergangen&lt;/i&gt;“ (Fassung 2) &lt;br/&gt; Textedition von Nr. IV &lt;i&gt;Gleich und Gleich&lt;/i&gt; (Fassung 1) &lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;i&gt;Vier Lieder&lt;/i&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
+        &#x27;&lt;p&gt;Die Einleitungen, edierten Notentexte und Kritischen Berichte zu&lt;/p&gt;&lt;ul class&#x3D;&quot;nobullets&quot;&gt;&lt;li&gt;Werkedition der Druckfassung der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 &lt;br/&gt; Textedition von Nr. I „&lt;em&gt;Der Tag ist vergangen&lt;/em&gt;“ (Fassung 1) &lt;br/&gt; Textedition von Nr. I „&lt;em&gt;Der Tag ist vergangen&lt;/em&gt;“ (Fassung 2) &lt;br/&gt; Textedition von Nr. IV &lt;em&gt;Gleich und Gleich&lt;/em&gt; (Fassung 1) &lt;/li&gt;&lt;/ul&gt;&lt;p&gt; erscheinen im Zusammenhang der vollständigen Edition der &lt;em&gt;Vier Lieder&lt;/em&gt; op. 12 in AWG I/5.&lt;/p&gt;&#x27;,
     OP25_SHEET_COMING_SOON:
-        &#x27;Die edierten Notentexte weiterer Skizzen der &lt;i&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/i&gt; op. 25 erscheinen in Kürze (02/2020).&#x27;,
+        &#x27;Die edierten Notentexte weiterer Skizzen der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 erscheinen in Kürze (02/2020).&#x27;,
     OP25_SOURCE_NOT_A:
-        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;B&lt;/strong&gt; sowie &lt;strong&gt;D–E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;i&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/i&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
-    M198:
-        &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;,
+        &#x27;&lt;p&gt;Die Beschreibung der Quellen &lt;strong&gt;B&lt;/strong&gt; sowie &lt;strong&gt;D–E&lt;/strong&gt; einschließlich der darin gegebenenfalls enthaltenen Korrekturen erfolgt im Zusammenhang der vollständigen Edition der &lt;em&gt;Drei Lieder nach Gedichten von Hildegard Jone&lt;/em&gt; op. 25 in AWG I/5.&lt;/p&gt;&#x27;,
+    M198: &#x27;&lt;p&gt;Das Fragment „&lt;em&gt;Schien mir’s als ich sah die Sonne&lt;/em&gt;“ (M 198) für Chor und Orchester wird in AWG II/3 ediert.&lt;/p&gt;&#x27;,
     HINT_EDITION_DETAIL:
         &#x27;&lt;p&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
-        &#x27;        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter &lt;i&gt;Edierter Notentext&lt;/i&gt; aufrufen.&lt;br /&gt;\n&#x27; +
+        &#x27;        Ausgewählte Skizzentranskriptionen lassen sich durch Klick auf einen markierten Bereich in der Konvolutansicht bzw. über die einzelnen Tabs unter &lt;em&gt;Edierter Notentext&lt;/em&gt; aufrufen.&lt;br /&gt;\n&#x27; +
         &#x27;        Einen Takt oder eine markierte Stelle innerhalb einer Skizzentranskription anklicken, um die entsprechenden textkritischen Anmerkungen anzuzeigen.&lt;br /&gt;\n&#x27; +
         &#x27;        Die größeren Boxen im Notentext markieren die jeweiligen Anschlüsse unmittelbar benachbarter Skizzen und sind ebenfalls verknüpft.&lt;br /&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;text-danger&quot;&gt;Diese Funktionalität ist noch nicht für alle Skizzenbestandteile vorhanden, wird aber sukzessive ergänzt.&lt;/span&gt;\n&#x27; +
@@ -2819,10 +2822,10 @@ from the Salsah API.</p>
     HINT_EDITION_GRAPH:
         &#x27;&lt;p&gt;\n&#x27; +
         &#x27;        &lt;span class&#x3D;&quot;bold&quot;&gt;Hinweise zur Nutzung:&lt;/span&gt; &lt;br /&gt;\n&#x27; +
-        &#x27;        &lt;i&gt;RDF Triples&lt;/i&gt;: Das Resource Description Framework (&lt;i&gt;RDF&lt;/i&gt;) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form &lt;i&gt;&amp;lt;SUBJEKT&amp;gt; &amp;lt;PRÄDIKAT&amp;gt; &amp;lt;OBJEKT&amp;gt;&lt;/i&gt;, die auch als &lt;i&gt;Triple&lt;/i&gt; bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt &lt;i&gt;RDF Triples&lt;/i&gt; sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot;&gt;https://www.w3.org/RDF/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
-        &#x27;        &lt;i&gt;SPARQL Abfrage&lt;/i&gt;: Die SPARQL Protocol And RDF Query Language (&lt;i&gt;SPARQL&lt;/i&gt;) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des &lt;i&gt;graph pattern matching&lt;/i&gt; der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt &lt;i&gt;SPARQL Abfrage&lt;/i&gt; lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot;&gt;https://www.w3.org/TR/sparql11-query/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;em&gt;RDF Triples&lt;/em&gt;: Das Resource Description Framework (&lt;em&gt;RDF&lt;/em&gt;) stellt grundlegende syntaktische und semantische Elemente zur Beschreibung digitaler Repräsentationen von Objekten (Ressourcen) zur Verfügung. Dabei folgt es einer dreigliedrigen Struktur der Form &lt;em&gt;&amp;lt;SUBJEKT&amp;gt; &amp;lt;PRÄDIKAT&amp;gt; &amp;lt;OBJEKT&amp;gt;&lt;/em&gt;, die auch als &lt;em&gt;Triple&lt;/em&gt; bezeichnet wird. Eine Menge solcher Triples kann als (gerichteter) Graph verstanden und visualisiert werden. Unter dem Punkt &lt;em&gt;RDF Triples&lt;/em&gt; sind die für die vorliegende Graph-Visualisierung zugrundeliegenden RDF-Daten einsehbar und interaktiv lokal bearbeitbar. (Achtung: Änderungen werden von der AWG-APP nicht gespeichert und sollten bei Bedarf lokal gesichert werden.) Weiterführende Informationen zu RDF finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/RDF/&quot;&gt;https://www.w3.org/RDF/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;em&gt;SPARQL Abfrage&lt;/em&gt;: Die SPARQL Protocol And RDF Query Language (&lt;em&gt;SPARQL&lt;/em&gt;) stellt u.a. eine Abfragesprache für graph-basierte Datensätze bereit. Sie    ermöglicht komplexe Abfragen und Manipulationen von in RDF dargestellten und strukturierten Daten. Dabei wird nach dem Prinzip des &lt;em&gt;graph pattern matching&lt;/em&gt; der RDF-Graph nach einer angefragten Triple-Folge durchsucht. Unter dem Punkt &lt;em&gt;SPARQL Abfrage&lt;/em&gt; lassen sich die Suchanfragen interaktiv anpassen. Einige Beispielabfragen sind bereits in einem Auswahl-Dropdown-Menü vorformuliert. Weiterführende Informationen zu SPARQL finden sich unter: &lt;a href&#x3D;&quot;https://www.w3.org/TR/sparql11-query/&quot;&gt;https://www.w3.org/TR/sparql11-query/&lt;/a&gt;.&lt;br /&gt;&lt;br /&gt;\n&#x27; +
         &#x27;\n&#x27; +
-        &#x27;        &lt;i&gt;Resultat&lt;/i&gt;: Der durch die &lt;i&gt;SPARQL Abfrage&lt;/i&gt; über die &lt;i&gt;RDF Triples&lt;/i&gt; zurückgelieferte Datensatz wird unter dem Punkt &lt;i&gt;Resultat&lt;/i&gt; als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek &lt;a href&#x3D;&quot;https://d3js.org/&quot;&gt;d3.js&lt;/a&gt; visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch &quot;Ziehen&quot; mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.&lt;br /&gt;\n&#x27; +
+        &#x27;        &lt;em&gt;Resultat&lt;/em&gt;: Der durch die &lt;em&gt;SPARQL Abfrage&lt;/em&gt; über die &lt;em&gt;RDF Triples&lt;/em&gt; zurückgelieferte Datensatz wird unter dem Punkt &lt;em&gt;Resultat&lt;/em&gt; als dynamisches Graph-Netzwerk aus bezeichneten Knoten und Kanten mit Hilfe der JavaScript-Bibliothek &lt;a href&#x3D;&quot;https://d3js.org/&quot;&gt;d3.js&lt;/a&gt; visualisiert. Die Darstellung ist zoom- und verschiebbar, die Position einzelner Knoten lässt sich ebenfalls durch &quot;Ziehen&quot; mit der Maus verändern. Die Anzahl der angezeigten Triples lässt sich je nach Größe des Ergebnis-Datensatzes über ein Auswahl-Dropdown-Menü filtern; in der Voreinstellung findet eine Beschränkung auf 50 Triples statt.&lt;br /&gt;\n&#x27; +
         &#x27;    &lt;/p&gt;&#x27;,
 }</code>
                     </td>
@@ -2833,14 +2836,14 @@ from the Salsah API.</p>
                     <div class="io-description"><p>Object constant with a set of modal texts.</p>
 <p>It provides the text snippets to be used in a modal.</p>
 <p>Available snippet keys:
-          <code>OP12_SOURCE_NOT_A</code>,
-          <code>OP12_SHEET_COMING_SOON</code>,
-          <code>OP12_EDITION_COMING_SOON</code>,
-          <code>OP25_SHEET_COMING_SOON</code>,
-          <code>OP25_SOURCE_NOT_A</code>,
-          <code>M198</code>,
-          <code>HINT_EDITION_DETAIL</code>,
-          <code>HINT_EDITION_GRAPH</code>.</p>
+         <code>OP12_SOURCE_NOT_A</code>,
+         <code>OP12_SHEET_COMING_SOON</code>,
+         <code>OP12_EDITION_COMING_SOON</code>,
+         <code>OP25_SHEET_COMING_SOON</code>,
+         <code>OP25_SOURCE_NOT_A</code>,
+         <code>M198</code>,
+         <code>HINT_EDITION_DETAIL</code>,
+         <code>HINT_EDITION_GRAPH</code>.</p>
 </div>
                 </td>
             </tr>
@@ -3389,7 +3392,7 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Declared variable: Snap.</p>
-<p>It provides access to the embedded SnapSvg library (see <a href="snapsvg.io">snapsvg.io</a>).</p>
+<p>It provides access to the embedded SnapSvg library (see <a href="undefined">undefined</a>).</p>
 </div>
                 </td>
             </tr>
@@ -3432,7 +3435,7 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -3453,8 +3456,8 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

@@ -115,11 +115,11 @@
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_extractNamespacesFromTTL" >_extractNamespacesFromTTL</a>
+                                <a href="#_extractNamespacesFromString" >_extractNamespacesFromString</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
-                                <a href="#_extractPrefixesFromQuery" >_extractPrefixesFromQuery</a>
+                                <a href="#_extractPrefixesFromSPARQLWhereClause" >_extractPrefixesFromSPARQLWhereClause</a>
                             </li>
                             <li>
                                     <span class="modifier">Private</span>
@@ -141,7 +141,7 @@
                                 <a href="#abbreviateTriples" >abbreviateTriples</a>
                             </li>
                             <li>
-                                <a href="#appendNamespacesToQuery" >appendNamespacesToQuery</a>
+                                <a href="#checkNamespacesInQuery" >checkNamespacesInQuery</a>
                             </li>
                             <li>
                                 <a href="#doQuery" >doQuery</a>
@@ -178,7 +178,7 @@
                 </tr>
                         <tr>
                             <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:42</a></div>
                             </td>
                         </tr>
 
@@ -211,8 +211,8 @@
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the PrefixPipe.</p>
-</code>
+                                                                <p>Instance of the PrefixPipe.</p>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -251,8 +251,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="290"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:290</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="316"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:316</a></div>
                 </td>
             </tr>
 
@@ -265,6 +265,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -346,8 +347,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="312"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:312</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="338"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:338</a></div>
                 </td>
             </tr>
 
@@ -394,8 +395,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="333"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:333</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="359"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:359</a></div>
                 </td>
             </tr>
 
@@ -408,6 +409,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -471,38 +473,40 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_extractNamespacesFromTTL"></a>
+                    <a name="_extractNamespacesFromString"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_extractNamespacesFromTTL</b></span>
-                        <a href="#_extractNamespacesFromTTL"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_extractNamespacesFromString</b></span>
+                        <a href="#_extractNamespacesFromString"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_extractNamespacesFromTTL(triples: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_extractNamespacesFromString(type: <a href="../interfaces/Namespace.html" target="_self">NamespaceType</a>, str: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="354"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:354</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="382"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:382</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _extractNamespacesFromTTL.</p>
-<p>It extracts the namespaces from a given triple string.</p>
+                    <div class="io-description"><p>Private method: _extractNamespacesFromString.</p>
+<p>It extracts the namespaces (qname: <baseURI>) of a given type (SPARQL, TURTLE)
+from a given string.</p>
 </div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -514,7 +518,23 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>triples</td>
+                                    <td>type</td>
+                                    <td>
+                                                <code><a href="../interfaces/Namespace.html" target="_self" >NamespaceType</a></code>
+                                    </td>
+
+                                    <td>
+                                        No
+                                    </td>
+
+
+                                    <td>
+                                        <p>The given namespace type.</p>
+
+                                    </td>
+                                </tr>
+                                <tr>
+                                    <td>str</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -525,7 +545,7 @@
 
 
                                     <td>
-                                        <p>The given triple string.</p>
+                                        <p>The given string.</p>
 
                                     </td>
                                 </tr>
@@ -550,45 +570,45 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="_extractPrefixesFromQuery"></a>
+                    <a name="_extractPrefixesFromSPARQLWhereClause"></a>
                     <span class="name">
                         <span class="modifier">Private</span>
-                        <span ><b>_extractPrefixesFromQuery</b></span>
-                        <a href="#_extractPrefixesFromQuery"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>_extractPrefixesFromSPARQLWhereClause</b></span>
+                        <a href="#_extractPrefixesFromSPARQLWhereClause"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
                     <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_extractPrefixesFromQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+                    <code>_extractPrefixesFromSPARQLWhereClause(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="387"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:387</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="436"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:436</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _extractPrefixesFromQuery.</p>
-<p>It identifies the prefixes that are used in a SPARQL query.</p>
+                    <div class="io-description"><p>Private method: _extractPrefixesFromSPARQLWhereClause.</p>
+<p>It identifies the prefixes that are used in the WHERE clause of a SPARQL query.</p>
 </div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
                                     <td>Name</td>
                                     <td>Type</td>
                                     <td>Optional</td>
-                                    <td>Description</td>
                                 </tr>
                             </thead>
                             <tbody>
@@ -603,10 +623,6 @@
                                     </td>
 
 
-                                    <td>
-                                        <p>The given query.</p>
-
-                                    </td>
                                 </tr>
                             </tbody>
                         </table>
@@ -618,7 +634,7 @@
 
                     </div>
                     <div class="io-description">
-                        <p>A string array of the used namespaces.</p>
+                        <p>A string array of the used prefixes.</p>
 
                     </div>
                 </td>
@@ -647,8 +663,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="419"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:419</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="479"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:479</a></div>
                 </td>
             </tr>
 
@@ -661,6 +677,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -726,8 +743,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="446"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:446</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="506"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:506</a></div>
                 </td>
             </tr>
 
@@ -740,6 +757,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -837,8 +855,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="472"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:472</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="532"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:532</a></div>
                 </td>
             </tr>
 
@@ -851,6 +869,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -923,8 +942,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="489"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:489</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="549"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:549</a></div>
                 </td>
             </tr>
 
@@ -937,6 +956,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1000,8 +1020,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="111"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:111</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="112"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:112</a></div>
                 </td>
             </tr>
 
@@ -1014,6 +1034,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1093,36 +1114,38 @@
         <tbody>
             <tr>
                 <td class="col-md-4">
-                    <a name="appendNamespacesToQuery"></a>
+                    <a name="checkNamespacesInQuery"></a>
                     <span class="name">
-                        <span ><b>appendNamespacesToQuery</b></span>
-                        <a href="#appendNamespacesToQuery"><span class="icon ion-ios-link"></span></a>
+                        <span ><b>checkNamespacesInQuery</b></span>
+                        <a href="#checkNamespacesInQuery"><span class="icon ion-ios-link"></span></a>
                     </span>
                 </td>
             </tr>
             <tr>
                 <td class="col-md-4">
-<code>appendNamespacesToQuery(query: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, ttlString: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
+<code>checkNamespacesInQuery(queryStr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>, turtleStr: <a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank">string</a>)</code>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="146"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:146</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="148"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:148</a></div>
                 </td>
             </tr>
 
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-description"><p>Public method: appendNamespacesToQuery.</p>
-<p>It appends namespaces for prefixes used in a SPARQL query.</p>
+                    <div class="io-description"><p>Public method: checkNamespacesInQuery.</p>
+<p>It checks the existing namespaces and prefixes in a SPARQL query
+and appends missing declarations, if possible, from the Turtle string.</p>
 </div>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1134,7 +1157,7 @@
                             </thead>
                             <tbody>
                                 <tr>
-                                    <td>query</td>
+                                    <td>queryStr</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -1145,12 +1168,12 @@
 
 
                                     <td>
-                                        <p>The given query.</p>
+                                        <p>The given SPARQL query string.</p>
 
                                     </td>
                                 </tr>
                                 <tr>
-                                    <td>ttlString</td>
+                                    <td>turtleStr</td>
                                     <td>
                                                 <code><a href="https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/string" target="_blank" >string</a></code>
                                     </td>
@@ -1161,7 +1184,7 @@
 
 
                                     <td>
-                                        <p>The given turtle string with possible prefixes.</p>
+                                        <p>The given Turtle string.</p>
 
                                     </td>
                                 </tr>
@@ -1202,8 +1225,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="184"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:184</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="210"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:210</a></div>
                 </td>
             </tr>
 
@@ -1216,6 +1239,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1327,8 +1351,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="235"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:235</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="261"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:261</a></div>
                 </td>
             </tr>
 
@@ -1341,6 +1365,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1404,8 +1429,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="89"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:89</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="90"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:90</a></div>
                 </td>
             </tr>
 
@@ -1418,6 +1443,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1497,8 +1523,8 @@
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="61"
-                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:61</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="62"
+                            class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:62</a></div>
                 </td>
             </tr>
 
@@ -1511,6 +1537,7 @@
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -1580,7 +1607,7 @@
                 </tr>
                     <tr>
                         <td class="col-md-4">
-                                <div class="io-line">Defined in <a href="" data-line="41" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:41</a></div>
+                                <div class="io-line">Defined in <a href="" data-line="42" class="link-to-prism">src/app/views/edition-view/edition-outlets/edition-graph/graph-visualizer/services/graph-visualizer.service.ts:42</a></div>
                         </td>
                     </tr>
 
@@ -1606,9 +1633,10 @@ import * as N3 from &#x27;n3&#x27;;
 
 import {
     Namespace,
+    NamespaceType,
+    PrefixForm,
     QueryResult,
     QueryTypeIndex,
-    PrefixForm,
     SelectResponse,
     SelectResponseBindings,
     Triple,
@@ -1731,39 +1759,64 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Public method: appendNamespacesToQuery.
+     * Public method: checkNamespacesInQuery.
      *
-     * It appends namespaces for prefixes used in a SPARQL query.
+     * It checks the existing namespaces and prefixes in a SPARQL query
+     * and appends missing declarations, if possible, from the Turtle string.
      *
-     * @param {string} query The given query.
-     * @param {string} ttlString The given turtle string with possible prefixes.
+     * @param {string} queryStr The given SPARQL query string.
+     * @param {string} turtleStr The given Turtle string.
      *
      * @returns {string} The query with appended namespaces.
      */
-    appendNamespacesToQuery(query: string, ttlString: string): string {
-        if (!query || !ttlString) {
+    checkNamespacesInQuery(queryStr: string, turtleStr: string): string {
+        if (!queryStr || !turtleStr) {
             return;
         }
-        // Get namespaces from triples
-        const namespaces: Namespace &#x3D; this._extractNamespacesFromTTL(ttlString);
+        // Get namespaces from Turtle triples
+        const turtleNamespaces: Namespace &#x3D; this._extractNamespacesFromString(NamespaceType.TURTLE, turtleStr);
+        // Get namespaces from SPARQL query
+        const sparqlNamespaces: Namespace &#x3D; this._extractNamespacesFromString(NamespaceType.SPARQL, queryStr);
+        // Get prefixes used in the query
+        const prefixes: string[] &#x3D; this._extractPrefixesFromSPARQLWhereClause(queryStr);
 
-        // Get prefixes from query
-        const prefixes: string[] &#x3D; this._extractPrefixesFromQuery(query);
+        // Get keys of namespace objects
+        const turtleNamespaceKeys &#x3D; Object.keys(turtleNamespaces);
+        const sparqlNamespaceKeys &#x3D; Object.keys(sparqlNamespaces);
+        let missingNamespacesStr &#x3D; &#x27;&#x27;;
 
-        // Append the used namespaces to the query
-        const keys &#x3D; Object.keys(namespaces);
-        let pfxString &#x3D; &#x27;&#x27;;
-        keys.forEach(key &#x3D;&gt; {
-            if (prefixes.indexOf(key) !&#x3D;&#x3D; -1) {
-                pfxString +&#x3D; &#x60;PREFIX ${key} ${namespaces[key]}\n&#x60;;
+        // Loop over namespaces from Turtle prefix clause
+        turtleNamespaceKeys.forEach(key &#x3D;&gt; {
+            // If namespace is missing in SPARQL header, add them from Turtle
+            if (sparqlNamespaceKeys.indexOf(key) &#x3D;&#x3D;&#x3D; -1) {
+                missingNamespacesStr +&#x3D; &#x60;PREFIX ${key} ${turtleNamespaces[key]}\n&#x60;;
             }
         });
 
-        if (pfxString !&#x3D;&#x3D; &#x27;&#x27;) {
-            query &#x3D; pfxString + &#x27;\n&#x27; + query;
+        // Loop over existing prefixes from SPARQL query
+        if (prefixes.length &gt; 0) {
+            prefixes.forEach(prefix &#x3D;&gt; {
+                // If prefix is not in the list...
+                if (sparqlNamespaceKeys.indexOf(prefix) &#x3D;&#x3D;&#x3D; -1) {
+                    // TODO: Warnings should go into error messages
+                    console.warn(&#x60;Prefix &#x27;${prefix}&#x27; not declared in SPARQL and/or Turtle header&#x60;);
+
+                    const cachedNamespace &#x3D; this.prefixPipe.transform(prefix, PrefixForm.long);
+                    if (cachedNamespace !&#x3D;&#x3D; prefix) {
+                        console.warn(&#x60;Added prefix from cache&#x60;);
+                        missingNamespacesStr +&#x3D; &#x60;PREFIX ${prefix} &lt;${cachedNamespace}&gt;\n&#x60;;
+                    } else {
+                        console.warn(&#x60;&#x27;${prefix}&#x27; is unknown. Please provide a declaration.&#x60;);
+                    }
+                }
+            });
         }
 
-        return query;
+        if (missingNamespacesStr !&#x3D;&#x3D; &#x27;&#x27;) {
+            queryStr &#x3D; missingNamespacesStr + queryStr;
+        }
+
+        return queryStr;
     }
 
     /**
@@ -1940,55 +1993,89 @@ export class GraphVisualizerService {
     }
 
     /**
-     * Private method: _extractNamespacesFromTTL.
+     * Private method: _extractNamespacesFromString.
      *
-     * It extracts the namespaces from a given triple string.
+     * It extracts the namespaces (qname: &lt;baseURI&gt;) of a given type (SPARQL, TURTLE)
+     * from a given string.
      *
-     * @param {string} triples The given triple string.
+     * @param {string} str The given string.
+     * @param {NamespaceType} type The given namespace type.
      *
      * @returns {Promise&lt;Namespace&gt;} A promise of the namespaces.
      */
-    private _extractNamespacesFromTTL(triples: string) {
+    private _extractNamespacesFromString(type: NamespaceType, str: string) {
         // Replace all whitespace characters with a single space and split by space
         // Remove empty values
-        const arr &#x3D; triples
+        const arr &#x3D; str
+            .toLowerCase()
             .replace(/\s/g, &#x27; &#x27;)
             .split(&#x27; &#x27;)
             .filter(el &#x3D;&gt; el !&#x3D;&#x3D; &#x27;&#x27;);
 
-        // Get index of all occurences of @prefix
+        let prefixStr;
+
+        switch (type) {
+            case NamespaceType.TURTLE:
+                prefixStr &#x3D; &#x27;@prefix&#x27;.toLowerCase();
+                break;
+            case NamespaceType.SPARQL:
+                prefixStr &#x3D; &#x27;PREFIX&#x27;.toLowerCase();
+                break;
+            default:
+                prefixStr &#x3D; &#x27;&#x27;;
+        }
+
+        // Get index of all occurrences of prefix string
         const prefixIndexArray &#x3D; arr.reduce((a, e, i) &#x3D;&gt; {
-            if (e &#x3D;&#x3D;&#x3D; &#x27;@prefix&#x27;) {
+            if (e &#x3D;&#x3D;&#x3D; prefixStr) {
                 a.push(i);
             }
             return a;
         }, []);
 
+        // Create object of qNames and namespaceNames
         const obj &#x3D; {};
         prefixIndexArray.forEach(prefixIndex &#x3D;&gt; {
-            obj[arr[prefixIndex + 1]] &#x3D; arr[prefixIndex + 2];
+            const qName &#x3D; arr[prefixIndex + 1];
+            let namespaceName &#x3D; arr[prefixIndex + 2];
+            // Remove final dot if given
+            if (namespaceName[namespaceName.length - 1] &#x3D;&#x3D;&#x3D; &#x27;.&#x27;) {
+                namespaceName &#x3D; namespaceName.slice(0, -1);
+            }
+            obj[qName] &#x3D; namespaceName;
         });
 
         return obj;
     }
 
     /**
-     * Private method: _extractPrefixesFromQuery.
+     * Private method: _extractPrefixesFromSPARQLWhereClause.
      *
-     * It identifies the prefixes that are used in a SPARQL query.
+     * It identifies the prefixes that are used in the WHERE clause of a SPARQL query.
      *
-     * @param {string} query The given query.
+     * @param {string} queryStr The given query string.
      *
-     * @returns {string[]} A string array of the used namespaces.
+     * @returns {string[]} A string array of the used prefixes.
      */
-    private _extractPrefixesFromQuery(query: string): string[] {
-        const nameSpaces: string[] &#x3D; [];
-
-        const regex &#x3D; /[a-zA-Z]+:/g;
+    private _extractPrefixesFromSPARQLWhereClause(query: string): string[] {
         let m;
+        let queryStr &#x3D; query.toLowerCase();
+        let start &#x3D; 0;
+        const prefixes: string[] &#x3D; [];
+        const regex &#x3D; /\b[a-zA-Z]{2,15}:/g;
+        const where &#x3D; &#x27;WHERE {&#x27;.toLowerCase();
 
+        // Find WHERE clause
+        if (queryStr.includes(where)) {
+            start &#x3D; queryStr.indexOf(where) + where.length;
+        }
+
+        // Remove everything before WHERE clause from query string
+        queryStr &#x3D; queryStr.slice(start);
+
+        // Find prefixes in query
         // eslint-disable-next-line no-cond-assign
-        while ((m &#x3D; regex.exec(query)) !&#x3D;&#x3D; null) {
+        while ((m &#x3D; regex.exec(queryStr)) !&#x3D;&#x3D; null) {
             // This is necessary to avoid infinite loops with zero-width matches
             if (m.index &#x3D;&#x3D;&#x3D; regex.lastIndex) {
                 regex.lastIndex++;
@@ -1996,12 +2083,12 @@ export class GraphVisualizerService {
 
             // The result can be accessed through the &#x60;m&#x60;-variable.
             m.forEach(match &#x3D;&gt; {
-                if (nameSpaces.indexOf(match) &#x3D;&#x3D;&#x3D; -1) {
-                    nameSpaces.push(match);
+                if (prefixes.indexOf(match) &#x3D;&#x3D;&#x3D; -1) {
+                    prefixes.push(match);
                 }
             });
         }
-        return nameSpaces;
+        return prefixes;
     }
 
     /**
@@ -2152,14 +2239,14 @@ export class GraphVisualizerService {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -2180,8 +2267,8 @@ export class GraphVisualizerService {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

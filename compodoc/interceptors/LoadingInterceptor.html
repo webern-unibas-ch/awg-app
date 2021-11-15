@@ -71,7 +71,8 @@
 <p>It implements the <code>HttpInterceptor</code>
 to intercept outgoing http pendingRequests and
 to delegate a loading status to the <a href="../injectables/LoadingService.html">LoadingService</a>.</p>
-<p><a href="https://medium.com/grensesnittet/loading-status-in-angular-done-right-aeed09cfbea6">https://medium.com/grensesnittet/loading-status-in-angular-done-right-aeed09cfbea6</a>.</p>
+<p>See Jørn Are Hatlelid: Loading-status in Angular done right, April 18, 2018.
+<a href="https://medium.com/grensesnittet/loading-status-in-angular-done-right-aeed09cfbea6">https://medium.com/grensesnittet/loading-status-in-angular-done-right-aeed09cfbea6</a>.</p>
 
             </p>
 
@@ -168,8 +169,8 @@ to handle the loading status.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the LoadingService.</p>
-</code>
+                                                                <p>Instance of the LoadingService.</p>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -208,8 +209,8 @@ to handle the loading status.</p>
 
             <tr>
                 <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="105"
-                            class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:105</a></div>
+                    <div class="io-line">Defined in <a href="" data-line="97"
+                            class="link-to-prism">src/app/core/interceptors/loading/loading.interceptor.ts:97</a></div>
                 </td>
             </tr>
 
@@ -224,6 +225,7 @@ depending on the pending requests.</p>
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -302,6 +304,7 @@ delegates them to the <a href="../injectables/LoadingService.html">LoadingServic
 
                     <div class="io-description">
                         <b>Parameters :</b>
+                        
                         <table class="params">
                             <thead>
                                 <tr>
@@ -460,12 +463,8 @@ export class LoadingInterceptor implements HttpInterceptor {
      * @returns {Observable&lt;HttpEvent&lt;any&gt;&gt;} An HttpEvent observable.
      */
     intercept(req: HttpRequest&lt;any&gt;, next: HttpHandler): Observable&lt;HttpEvent&lt;any&gt;&gt; {
-        // console.log(&#x27;LOADINGINTERCEPTOR ------------&gt;&#x27;);
-
         // Store the request
         this._pendingRequests.push(req);
-
-        // console.log(&#x27;REQ&#x27;, req);
 
         // Start loading and update status
         this.loadingService.updateLoadingStatus(true);
@@ -476,18 +475,15 @@ export class LoadingInterceptor implements HttpInterceptor {
             const subscription &#x3D; next.handle(req).subscribe(
                 event &#x3D;&gt; {
                     if (event instanceof HttpResponse) {
-                        // console.warn(&#x27;------------&gt; event&#x27;, event.url);
                         this._decreaseRequest(req);
                         observer.next(event);
                     }
                 },
                 err &#x3D;&gt; {
-                    // console.warn(&#x27;------------&gt; err&#x27;, err);
                     this._decreaseRequest(req);
                     observer.error(err);
                 },
                 () &#x3D;&gt; {
-                    // console.warn(&#x27;------------&gt; complete&#x27;);
                     if (this._pendingRequests.length &gt; 0) {
                         this._decreaseRequest(req);
                     }
@@ -496,7 +492,6 @@ export class LoadingInterceptor implements HttpInterceptor {
             );
             // Return teardown logic in case of cancelled requests
             return () &#x3D;&gt; {
-                // console.warn(&#x27;------------&gt; teardown&#x27;);
                 if (this._pendingRequests.length &gt; 0) {
                     this._decreaseRequest(req);
                 }
@@ -520,24 +515,11 @@ export class LoadingInterceptor implements HttpInterceptor {
         // Find index position of request in pending requests array
         const i &#x3D; this._pendingRequests.indexOf(req);
 
-        /*
-        console.log(&#x27;------------&gt; &#x27;);
-        console.log(&#x27;i&#x27;, i);
-        console.log(&#x27;length BEFORE&#x27;, this._pendingRequests.length);
-        console.log(&#x27;_pendingRequests&#x27;, [...this._pendingRequests]);
-        console.log(req.urlWithParams);
-        */
-
         /* istanbul ignore else */
         if (i &gt;&#x3D; 0) {
             // Remove the request from the array
             this._pendingRequests.splice(i, 1);
         }
-
-        /*
-        console.log(&#x27;length AFTER&#x27;, this._pendingRequests.length);
-        console.log(&#x27;loading &gt; &#x27;, this._pendingRequests.length &gt; 0);
-        */
 
         // Update loading status depending on the pending requests
         this.loadingService.updateLoadingStatus(this._pendingRequests.length &gt; 0);
@@ -552,14 +534,14 @@ export class LoadingInterceptor implements HttpInterceptor {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -580,8 +562,8 @@ export class LoadingInterceptor implements HttpInterceptor {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

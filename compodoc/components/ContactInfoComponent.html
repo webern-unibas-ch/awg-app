@@ -175,14 +175,13 @@ showing contact information and an Open Street Map (OSM).</p>
                     <td class="col-md-4">
                         <ul class="index-list">
                             <li>
-                                    <span class="modifier">Private</span>
-                                <a href="#_sanitizeUrls" >_sanitizeUrls</a>
-                            </li>
-                            <li>
                                 <a href="#ngOnInit" >ngOnInit</a>
                             </li>
                             <li>
                                 <a href="#provideMetaData" >provideMetaData</a>
+                            </li>
+                            <li>
+                                <a href="#provideOSMUrls" >provideOSMUrls</a>
                             </li>
                         </ul>
                     </td>
@@ -241,8 +240,8 @@ to get the meta data and a private DomSanitizer instance.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the CoreService.</p>
-</code>
+                                                                <p>Instance of the CoreService.</p>
+
                                                         </td>
                                                 </tr>
                                                 <tr>
@@ -257,8 +256,8 @@ to get the meta data and a private DomSanitizer instance.</p>
                                                     </td>
                                                     
                                                         <td>
-                                                                <code><p>Instance of the Angular DomSanitizer.</p>
-</code>
+                                                                <p>Instance of the Angular DomSanitizer.</p>
+
                                                         </td>
                                                 </tr>
                                         </tbody>
@@ -279,55 +278,6 @@ to get the meta data and a private DomSanitizer instance.</p>
     <h3 id="methods">
         Methods
     </h3>
-    <table class="table table-sm table-bordered">
-        <tbody>
-            <tr>
-                <td class="col-md-4">
-                    <a name="_sanitizeUrls"></a>
-                    <span class="name">
-                        <span class="modifier">Private</span>
-                        <span ><b>_sanitizeUrls</b></span>
-                        <a href="#_sanitizeUrls"><span class="icon ion-ios-link"></span></a>
-                    </span>
-                </td>
-            </tr>
-            <tr>
-                <td class="col-md-4">
-                    <span class="modifier-icon icon ion-ios-reset"></span>
-                    <code>_sanitizeUrls()</code>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-line">Defined in <a href="" data-line="99"
-                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:99</a></div>
-                </td>
-            </tr>
-
-
-            <tr>
-                <td class="col-md-4">
-                    <div class="io-description"><p>Private method: _sanitizeUrls.</p>
-<p>It sanitizes the URLs and links for the OpenStreetMap
-using the Angular DomSanitizer.</p>
-</div>
-
-                    <div>
-                    </div>
-                    <div class="io-description">
-                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
-
-                    </div>
-                    <div class="io-description">
-                        <p>Sanitizes the URLs.</p>
-
-                    </div>
-                </td>
-            </tr>
-        </tbody>
-    </table>
     <table class="table table-sm table-bordered">
         <tbody>
             <tr>
@@ -410,6 +360,53 @@ the meta data for the contact-info.</p>
                     </div>
                     <div class="io-description">
                         <p>Sets the pageMetaData variable.</p>
+
+                    </div>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+    <table class="table table-sm table-bordered">
+        <tbody>
+            <tr>
+                <td class="col-md-4">
+                    <a name="provideOSMUrls"></a>
+                    <span class="name">
+                        <span ><b>provideOSMUrls</b></span>
+                        <a href="#provideOSMUrls"><span class="icon ion-ios-link"></span></a>
+                    </span>
+                </td>
+            </tr>
+            <tr>
+                <td class="col-md-4">
+<code>provideOSMUrls()</code>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-line">Defined in <a href="" data-line="99"
+                            class="link-to-prism">src/app/side-info/contact-info/contact-info.component.ts:99</a></div>
+                </td>
+            </tr>
+
+
+            <tr>
+                <td class="col-md-4">
+                    <div class="io-description"><p>Public method: provideOSMUrls.</p>
+<p>It provides the URLs and links for the OpenStreetMap
+using the Angular DomSanitizer.</p>
+</div>
+
+                    <div>
+                    </div>
+                    <div class="io-description">
+                        <b>Returns : </b>        <code><a href="https://www.typescriptlang.org/docs/handbook/basic-types.html" target="_blank" >void</a></code>
+
+                    </div>
+                    <div class="io-description">
+                        <p>Provides the URLs.</p>
 
                     </div>
                 </td>
@@ -552,7 +549,7 @@ the meta data for the contact-info.</p>
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Public variable: osmLinkUrl.</p>
-<p>It keeps the sanitized link to the OSM page.</p>
+<p>It keeps the link to the OSM page.</p>
 </div>
                 </td>
             </tr>
@@ -598,7 +595,7 @@ the meta data for the contact-info.</p>
 
 
     <div class="tab-pane fade  tab-source-code" id="c-source">
-        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit, SecurityContext } from &#x27;@angular/core&#x27;;
+        <pre class="line-numbers compodoc-sourcecode"><code class="language-typescript">import { ChangeDetectionStrategy, Component, OnInit } from &#x27;@angular/core&#x27;;
 import { DomSanitizer, SafeResourceUrl } from &#x27;@angular/platform-browser&#x27;;
 
 import { AppConfig } from &#x27;@awg-app/app.config&#x27;;
@@ -649,7 +646,7 @@ export class ContactInfoComponent implements OnInit {
     /**
      * Public variable: osmLinkUrl.
      *
-     * It keeps the sanitized link to the OSM page.
+     * It keeps the link to the OSM page.
      */
     osmLinkUrl: string;
 
@@ -672,7 +669,7 @@ export class ContactInfoComponent implements OnInit {
      */
     ngOnInit() {
         this.provideMetaData();
-        this._sanitizeUrls();
+        this.provideOSMUrls();
     }
 
     /**
@@ -689,16 +686,16 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Private method: _sanitizeUrls.
+     * Public method: provideOSMUrls.
      *
-     * It sanitizes the URLs and links for the OpenStreetMap
+     * It provides the URLs and links for the OpenStreetMap
      * using the Angular DomSanitizer.
      *
-     * @returns {void} Sanitizes the URLs.
+     * @returns {void} Provides the URLs.
      */
-    private _sanitizeUrls(): void {
+    provideOSMUrls(): void {
         this.osmEmbedUrl &#x3D; this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
-        this.osmLinkUrl &#x3D; this.sanitizer.sanitize(SecurityContext.URL, AppConfig.UNSAFE_OSM_LINK_URL);
+        this.osmLinkUrl &#x3D; AppConfig.OSM_LINK_URL;
     }
 }
 </code></pre>
@@ -764,14 +761,14 @@ export class ContactInfoComponent implements OnInit {
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -792,8 +789,8 @@ export class ContactInfoComponent implements OnInit {
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

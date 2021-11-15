@@ -61,14 +61,6 @@
 
 
 
-        <p class="comment">
-            <h3>Description</h3>
-        </p>
-        <p class="comment">
-            <p>DataView module routing.</p>
-<p>It activates the dataViewRoutes, also the lazy-loaded bibliography module.</p>
-
-        </p>
 
 
         <div class="container-fluid module">
@@ -88,7 +80,7 @@ import { DataViewComponent } from &#x27;./data-view.component&#x27;;
 import { ResourceDetailComponent } from &#x27;./data-outlets/resource-detail/resource-detail.component&#x27;;
 import { SearchOverviewComponent } from &#x27;./data-outlets/search-overview.component&#x27;;
 import { SearchPanelComponent } from &#x27;./data-outlets/search-panel/search-panel.component&#x27;;
-import { TimelineComponent } from &#x27;./data-outlets/timeline/timeline.component&#x27;;
+// Import { TimelineComponent } from &#x27;./data-outlets/timeline/timeline.component&#x27;;
 
 /* Routes of the DataViewModule */
 const dataViewRoutes: Routes &#x3D; [
@@ -163,14 +155,14 @@ export class DataViewRoutingModule {}
 
 
 
-                   
+
 
 
 
 
                    </div><div class="search-results">
     <div class="has-results">
-        <h1 class="search-results-title"><span class='search-results-count'></span> result-matching "<span class='search-query'></span>"</h1>
+        <h1 class="search-results-title"><span class='search-results-count'></span> results matching "<span class='search-query'></span>"</h1>
         <ul class="search-results-list"></ul>
     </div>
     <div class="no-results">
@@ -191,8 +183,8 @@ export class DataViewRoutingModule {}
 
        <script src="../js/libs/custom-elements.min.js"></script>
        <script src="../js/libs/lit-html.js"></script>
-       
-       <script type="module" src="../js/menu-wc.js" defer></script>
+
+       <script src="../js/menu-wc.js" defer></script>
        <script nomodule src="../js/menu-wc_es5.js" defer></script>
 
        <script src="../js/libs/bootstrap-native.js"></script>

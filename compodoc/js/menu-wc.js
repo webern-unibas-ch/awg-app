@@ -1,6 +1,5 @@
 'use strict';
 
-
 customElements.define('compodoc-menu', class extends HTMLElement {
     constructor() {
         super();
@@ -366,13 +365,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                 <a href="modules/FakeRouterModule.html" data-type="entity-link" >FakeRouterModule</a>
                                     <li class="chapter inner">
                                         <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                            'data-target="#components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' : 'data-target="#xs-components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
+                                            'data-target="#components-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' : 'data-target="#xs-components-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' }>
                                             <span class="icon ion-md-cog"></span>
                                             <span>Components</span>
                                             <span class="icon ion-ios-arrow-down"></span>
                                         </div>
-                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' :
-                                            'id="xs-components-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
+                                        <ul class="links collapse" ${ isNormalMode ? 'id="components-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' :
+                                            'id="xs-components-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' }>
                                             <li class="link">
                                                 <a href="components/RouterOutletStubComponent.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterOutletStubComponent</a>
                                             </li>
@@ -380,13 +379,13 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                                     </li>
                                 <li class="chapter inner">
                                     <div class="simple menu-toggler" data-toggle="collapse" ${ isNormalMode ?
-                                        'data-target="#directives-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' : 'data-target="#xs-directives-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
+                                        'data-target="#directives-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' : 'data-target="#xs-directives-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' }>
                                         <span class="icon ion-md-code-working"></span>
                                         <span>Directives</span>
                                         <span class="icon ion-ios-arrow-down"></span>
                                     </div>
-                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' :
-                                        'id="xs-directives-links-module-FakeRouterModule-1ab87845ba0d0ff24c786154e7b4db2e"' }>
+                                    <ul class="links collapse" ${ isNormalMode ? 'id="directives-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' :
+                                        'id="xs-directives-links-module-FakeRouterModule-070455df40dffa3088b4685a975caa74"' }>
                                         <li class="link">
                                             <a href="directives/RouterLinkStubDirective.html" data-type="entity-link" data-context="sub-entity" data-context-id="modules" >RouterLinkStubDirective</a>
                                         </li>
@@ -1269,6 +1268,9 @@ customElements.define('compodoc-menu', class extends HTMLElement {
                             <span class="icon ion-ios-arrow-down"></span>
                         </div>
                         <ul class="links collapse " ${ isNormalMode ? ' id="interfaces-links"' : 'id="xs-interfaces-links"' }>
+                            <li class="link">
+                                <a href="interfaces/CmConfig.html" data-type="entity-link" >CmConfig</a>
+                            </li>
                             <li class="link">
                                 <a href="interfaces/D3DragBehaviour.html" data-type="entity-link" >D3DragBehaviour</a>
                             </li>
