@@ -821,11 +821,11 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // MB if(d.instance || d.instSpace || d.instSpaceType){
         if (node.label.indexOf('_:') !== -1) {
-            defaultRadius = defaultRadius--;
+            defaultRadius = defaultRadius - 1;
         } else if (node.instance || node.label.indexOf('inst:') !== -1) {
             defaultRadius = defaultRadius + 2;
         } else if (node.owlClass || node.label.indexOf('inst:') !== -1) {
-            defaultRadius = defaultRadius++;
+            defaultRadius = defaultRadius + 1;
         }
         return defaultRadius;
     }
