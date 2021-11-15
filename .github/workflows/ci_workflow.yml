@@ -2,8 +2,8 @@ name: CI Workflow
 
 on:
     push:
-        branches:
-            - '**'    # trigger on all branches
+        # trigger on all branches except for dependabot-triggered push events
+        branches-ignore: [ dependabot/** ]
         tags:
             - 'v*'    # trigger on all tags
         paths-ignore:
@@ -50,7 +50,7 @@ jobs:
 
             - name: Perform SonarCloud Analysis
               if: matrix.node-version == 14.17 # upload coverage report for current node version only
-              uses: SonarSource/sonarcloud-github-action@master
+              uses: SonarSource/sonarcloud-github-action@v1.6
               env:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
