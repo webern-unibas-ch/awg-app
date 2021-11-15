@@ -9,8 +9,7 @@
                         class="btn-group btn-group-toggle"
                         ngbRadioGroup
                         name="searchResultView"
-                        formControlName="searchResultViewControl"
-                    >
+                        formControlName="searchResultViewControl">
                         <label ngbButtonLabel class="btn-outline-info" ngbTooltip="Table view">
                             <input ngbButton type="radio" value="table" [disabled]="isNoResults()" />
                             <fa-icon [icon]="faTable"></fa-icon>
@@ -29,19 +28,16 @@
                         class="btn-group"
                         ngbDropdown
                         role="group"
-                        aria-label="Button group with nested dropdown for row number"
-                    >
+                        aria-label="Button group with nested dropdown for row number">
                         <button
                             class="btn btn-info dropdown-toggle-split"
                             ngbDropdownToggle
-                            [disabled]="isNoResults()"
-                        ></button>
+                            [disabled]="isNoResults()"></button>
                         <div class="dropdown-menu" ngbDropdownMenu>
                             <button
                                 class="dropdown-item"
                                 *ngFor="let rowNumber of rowNumbers"
-                                (click)="onRowNumberChange(rowNumber)"
-                            >
+                                (click)="onRowNumberChange(rowNumber)">
                                 {{ rowNumber }}
                             </button>
                         </div>
@@ -63,17 +59,16 @@
             [collectionSize]="+searchResponseWithQuery?.data?.nhits"
             [maxSize]="4"
             [boundaryLinks]="true"
-            (pageChange)="onPageChange($event)"
-        >
+            (pageChange)="onPageChange($event)">
         </ngb-pagination>
 
         <!-- table with searchResults -->
         <div *ngIf="!isGridView()" class="table-responsive">
-            <table class="table table-sm awg-search-result-table">
+            <table aria-label="Table with search results" class="table table-sm awg-search-result-table">
                 <thead>
                     <tr class="d-flex">
-                        <th class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>
-                        <th class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>
+                        <th scope="col" class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">Typ</th>
+                        <th scope="col" class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">Ressource</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -82,8 +77,7 @@
                         class="d-flex"
                         *ngFor="let subject of searchResponseWithQuery?.data?.subjects; trackBy: trackById"
                         (click)="navigateToResource(subject?.obj_id)"
-                        [class.active]="isActiveResource(subject?.obj_id)"
-                    >
+                        [class.active]="isActiveResource(subject?.obj_id)">
                         <td class="col-6 col-sm-4 col-md-5 col-lg-4 col-xl-3">
                             <span class="badge">
                                 <img [attr.src]="subject?.iconsrc" alt="iconsrc" />
@@ -124,8 +118,7 @@
             [collectionSize]="+searchResponseWithQuery?.data?.nhits"
             [maxSize]="4"
             [boundaryLinks]="true"
-            (pageChange)="onPageChange($event)"
-        >
+            (pageChange)="onPageChange($event)">
         </ngb-pagination>
     </ng-container>
 </div>

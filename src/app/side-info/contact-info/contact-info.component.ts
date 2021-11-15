@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, OnInit, SecurityContext } from '@angular/core';
+import { ChangeDetectionStrategy, Component, OnInit } from '@angular/core';
 import { DomSanitizer, SafeResourceUrl } from '@angular/platform-browser';
 
 import { AppConfig } from '@awg-app/app.config';
@@ -49,7 +49,7 @@ export class ContactInfoComponent implements OnInit {
     /**
      * Public variable: osmLinkUrl.
      *
-     * It keeps the sanitized link to the OSM page.
+     * It keeps the link to the OSM page.
      */
     osmLinkUrl: string;
 
@@ -72,7 +72,7 @@ export class ContactInfoComponent implements OnInit {
      */
     ngOnInit() {
         this.provideMetaData();
-        this._sanitizeUrls();
+        this.provideOSMUrls();
     }
 
     /**
@@ -89,15 +89,15 @@ export class ContactInfoComponent implements OnInit {
     }
 
     /**
-     * Private method: _sanitizeUrls.
+     * Public method: provideOSMUrls.
      *
-     * It sanitizes the URLs and links for the OpenStreetMap
+     * It provides the URLs and links for the OpenStreetMap
      * using the Angular DomSanitizer.
      *
-     * @returns {void} Sanitizes the URLs.
+     * @returns {void} Provides the URLs.
      */
-    private _sanitizeUrls(): void {
+    provideOSMUrls(): void {
         this.osmEmbedUrl = this.sanitizer.bypassSecurityTrustResourceUrl(AppConfig.UNSAFE_OSM_EMBED_URL);
-        this.osmLinkUrl = this.sanitizer.sanitize(SecurityContext.URL, AppConfig.UNSAFE_OSM_LINK_URL);
+        this.osmLinkUrl = AppConfig.OSM_LINK_URL;
     }
 }

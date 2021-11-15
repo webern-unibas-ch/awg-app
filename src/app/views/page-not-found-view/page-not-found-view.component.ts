@@ -61,7 +61,7 @@ export class PageNotFoundViewComponent {
     /**
      * Getter for the URL of the contact page
      * of the AWG project website
-     * ({@link https://anton-webern.ch/index.php?id=41}).
+     * (https://anton-webern.ch/index.php?id=41).
      *
      * @returns {string} The url of the contact page
      * of the AWG project website.

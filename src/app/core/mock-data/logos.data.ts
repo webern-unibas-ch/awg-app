@@ -36,7 +36,7 @@ export const LOGOSDATA: Logos = {
         id: 'snflogo',
         src: 'assets/img/logos/snf.png',
         alt: 'Logo SNF',
-        href: 'http://www.snf.ch',
+        href: 'https://www.snf.ch',
     },
     sparql: {
         id: 'sparqllogo',

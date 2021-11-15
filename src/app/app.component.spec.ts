@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { TestBed, ComponentFixture, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, NgZone } from '@angular/core';
+import { Component, DebugElement } from '@angular/core';
 import { Location } from '@angular/common';
 import { Router, Routes } from '@angular/router';
 import { RouterTestingModule } from '@angular/router/testing';
@@ -40,9 +40,7 @@ describe('AppComponent (DONE)', () => {
     let component: AppComponent;
     let fixture: ComponentFixture<AppComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
-    let ngZone: NgZone;
     let router: Router;
     let location: Location;
 
@@ -54,8 +52,12 @@ describe('AppComponent (DONE)', () => {
         waitForAsync(() => {
             // Create a mocked AnalyticsService  with an `initializeAnalytics` and `trackPageView` spy
             mockAnalyticsService = {
-                initializeAnalytics: (): void => {},
-                trackPageView: (page: string): void => {},
+                initializeAnalytics: (): void => {
+                    // Intentional empty test override
+                },
+                trackPageView: (page: string): void => {
+                    // Intentional empty test override
+                },
             };
 
             TestBed.configureTestingModule({
@@ -87,7 +89,6 @@ describe('AppComponent (DONE)', () => {
         fixture = TestBed.createComponent(AppComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         router = TestBed.inject(Router);
         location = TestBed.inject(Location);
@@ -95,7 +96,6 @@ describe('AppComponent (DONE)', () => {
         // Workaround for ngZone issue;
         // Cf. https://github.com/angular/angular/issues/25837
         // Cf. https://github.com/ngneat/spectator/pull/334/files
-        ngZone = TestBed.inject(NgZone);
         fixture.ngZone.run(() => {
             // Initial navigation
             router.initialNavigation();

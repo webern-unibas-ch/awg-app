@@ -11,7 +11,6 @@ describe('SearchFormComponent', () => {
     let component: SearchFormComponent;
     let fixture: ComponentFixture<SearchFormComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     // Create new instance of FormBuilder
     // See 'Karma formGroup expects a FormGroup instance. Please pass one in',
@@ -33,7 +32,6 @@ describe('SearchFormComponent', () => {
         fixture = TestBed.createComponent(SearchFormComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Pass in the form dynamically
         component.searchForm = formBuilder.group({

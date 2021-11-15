@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TextcriticalComment } from '../../models/index';
 
@@ -14,7 +14,7 @@ import { TextcriticalComment } from '../../models/index';
     styleUrls: ['./edition-tka-table.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionTkaTableComponent implements OnInit {
+export class EditionTkaTableComponent {
     /**
      * Input variable: textcriticalComments.
      *
@@ -53,14 +53,6 @@ export class EditionTkaTableComponent implements OnInit {
     constructor() {
         this.ref = this;
     }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

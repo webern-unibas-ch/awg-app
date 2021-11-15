@@ -21,7 +21,6 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
     let component: ResourceDetailJsonRawComponent;
     let fixture: ComponentFixture<ResourceDetailJsonRawComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     const expectedHeader = 'Raw JSON response from Salsah-API';
     let expectedData: ResourceFullResponseJson;
@@ -38,7 +37,6 @@ describe('ResourceDetailJsonRawComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailJsonRawComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedData = new ResourceFullResponseJson();

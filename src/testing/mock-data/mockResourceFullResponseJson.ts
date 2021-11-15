@@ -18,7 +18,7 @@ export const mockResourceFullResponseJson = {
         restype_label: 'Musikstück (Moldenhauer-Nummer)',
         restype_description: 'einzelnes Musikstück (identifiziert durch Moldenhauer-Nummer)',
         restype_iconsrc:
-            'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
+            'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
         preview: null,
         locations: null,
         locdata: null,
@@ -32,7 +32,7 @@ export const mockResourceFullResponseJson = {
         res_id: '11398',
         restype_name: 'webern:musical_piece',
         restype_label: 'Musikstück (Moldenhauer-Nummer)',
-        iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
+        iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
         resclass_name: 'object',
         rights: '2',
     },

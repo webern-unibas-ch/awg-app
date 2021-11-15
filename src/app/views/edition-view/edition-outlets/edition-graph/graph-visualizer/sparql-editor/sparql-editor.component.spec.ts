@@ -15,6 +15,7 @@ import {
 
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
+import { CmConfig } from '../models';
 import { SparqlEditorComponent } from './sparql-editor.component';
 
 // eslint-disable-next-line @angular-eslint/component-selector
@@ -31,14 +32,11 @@ describe('SparqlEditorComponent (DONE)', () => {
     let component: SparqlEditorComponent;
     let fixture: ComponentFixture<SparqlEditorComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedQuery1: GraphSparqlQuery;
     let expectedQuery2: GraphSparqlQuery;
     let expectedQueryList: GraphSparqlQuery[];
-    let expectedCmSparqlConfig: {
-        [key: string]: any;
-    };
+    let expectedCmSparqlConfig: CmConfig;
     let expectedIsFullscreen: boolean;
 
     let isExampleQueriesEnabledSpy: Spy;
@@ -76,7 +74,6 @@ describe('SparqlEditorComponent (DONE)', () => {
         fixture = TestBed.createComponent(SparqlEditorComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedQuery1 = new GraphSparqlQuery();
@@ -130,6 +127,11 @@ describe('SparqlEditorComponent (DONE)', () => {
 
         it('should not have isFullscreen', () => {
             expect(component.isFullscreen).toBeUndefined('should be undefined');
+        });
+
+        it('should have cmTriplesConfig', () => {
+            expect(component.cmSparqlConfig).toBeDefined('should be defined');
+            expect(component.cmSparqlConfig).toEqual(expectedCmSparqlConfig, `should equal ${expectedCmSparqlConfig}`);
         });
 
         describe('VIEW', () => {
@@ -962,7 +964,7 @@ describe('SparqlEditorComponent (DONE)', () => {
                     expectedQueryList.length,
                     expectedQueryList.length
                 );
-                const itemEl0 = itemDes[0].nativeElement;
+                // Get second item (first disabled)
                 const itemEl1 = itemDes[1].nativeElement;
 
                 // Click on second item (first disabled)
@@ -1153,7 +1155,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: true,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
 
                 // Emit change event from accordion
@@ -1179,7 +1183,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: false,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
                 const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
 
@@ -1200,7 +1206,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: true,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
                 const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
 
@@ -1221,7 +1229,9 @@ describe('SparqlEditorComponent (DONE)', () => {
                 const panelChangeEvent: NgbPanelChangeEvent = {
                     panelId: 'panelChangeId',
                     nextState: false,
-                    preventDefault: () => {},
+                    preventDefault: () => {
+                        // Intentional empty test override
+                    },
                 };
                 const preventDefaultSpy: Spy = spyOn(panelChangeEvent, 'preventDefault').and.callThrough();
 

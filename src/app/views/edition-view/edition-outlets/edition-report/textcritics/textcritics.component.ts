@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TextcriticsList } from '@awg-views/edition-view/models';
 
@@ -15,7 +15,7 @@ import { TextcriticsList } from '@awg-views/edition-view/models';
     styleUrls: ['./textcritics.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class TextcriticsComponent implements OnInit {
+export class TextcriticsComponent {
     /**
      * Input variable: textcriticsData.
      *
@@ -40,14 +40,6 @@ export class TextcriticsComponent implements OnInit {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

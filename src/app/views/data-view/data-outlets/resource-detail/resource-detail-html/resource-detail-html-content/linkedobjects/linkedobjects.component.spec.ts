@@ -26,7 +26,6 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
     let component: ResourceDetailHtmlContentLinkedobjectsComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlContentLinkedobjectsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let totalNumberSpy: Spy;
     let navigateToResourceSpy: Spy;
@@ -60,7 +59,6 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlContentLinkedobjectsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         incomingLink1 = {
@@ -378,7 +376,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
             }));
 
             describe('... should render panel content (div.card-body)', () => {
-                let tableDes: DebugElement[];
+                let listDes: DebugElement[];
 
                 beforeEach(async () => {
                     /**
@@ -402,15 +400,15 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
 
                     expectOpenPanelBody(compDe, 0, 'should have first panel opened');
 
-                    // Table debug elements
-                    tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
+                    // List debug elements
+                    listDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-linked-obj-list', 1, 1);
                 });
 
                 it('... should render restype icon', () => {
                     const expectedIcon0 = expectedIncoming[0].links[0].restype.icon;
                     const expectedIcon1 = expectedIncoming[0].links[1].restype.icon;
 
-                    const imgDes = getAndExpectDebugElementByCss(tableDes[0], 'a.awg-linked-obj-link > img', 2, 2);
+                    const imgDes = getAndExpectDebugElementByCss(listDes[0], 'a.awg-linked-obj-link > img', 2, 2);
 
                     const imgEl0 = imgDes[0].nativeElement;
                     const imgEl1 = imgDes[1].nativeElement;
@@ -427,7 +425,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     const expectedId1 = expectedIncoming[0].links[1].id;
 
                     const idDes = getAndExpectDebugElementByCss(
-                        tableDes[0],
+                        listDes[0],
                         'a.awg-linked-obj-link > span.awg-linked-obj-link-id',
                         2,
                         2
@@ -448,7 +446,7 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     const expectedLinkValue1 = expectedIncoming[0].links[1].value;
 
                     const linkValueDes = getAndExpectDebugElementByCss(
-                        tableDes[0],
+                        listDes[0],
                         'a.awg-linked-obj-link > span.awg-linked-obj-link-value',
                         2,
                         2
@@ -473,9 +471,13 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
         });
 
         describe('#navigateToResource', () => {
-            beforeEach(fakeAsync(() => {
-                // Open second panel
+            let listDes: DebugElement[];
+            let listItemDes: DebugElement[];
+            let anchorDes0: DebugElement[];
+            let anchorDes1: DebugElement[];
+            let anchorDes2: DebugElement[];
 
+            beforeEach(fakeAsync(() => {
                 // Button debug elements
                 const buttonDes = getAndExpectDebugElementByCss(
                     compDe,
@@ -484,64 +486,61 @@ describe('ResourceDetailHtmlContentLinkedobjectsComponent (DONE)', () => {
                     2
                 );
 
-                // Open first panel
+                // Open second panel
                 clickAndAwaitChanges(buttonDes[1], fixture);
 
                 expectClosedPanelBody(compDe, 0, 'should have first panel closed');
                 expectOpenPanelBody(compDe, 1, 'should have second panel opened');
+
+                listDes = getAndExpectDebugElementByCss(compDe, 'ul.awg-linked-obj-list', 1, 1);
+                listItemDes = getAndExpectDebugElementByCss(listDes[0], 'li', 3, 3);
+                anchorDes0 = getAndExpectDebugElementByCss(listItemDes[0], 'a', 1, 1);
+                anchorDes1 = getAndExpectDebugElementByCss(listItemDes[1], 'a', 1, 1);
+                anchorDes2 = getAndExpectDebugElementByCss(listItemDes[2], 'a', 1, 1);
             }));
 
             it('... should trigger on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
-
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                clickAndAwaitChanges(anchorDes0[0], fixture);
 
                 // No id
                 expectSpyCall(navigateToResourceSpy, 1, '');
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                clickAndAwaitChanges(anchorDes1[0], fixture);
 
                 // String
                 expectSpyCall(navigateToResourceSpy, 2, '28');
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                clickAndAwaitChanges(anchorDes2[0], fixture);
 
                 // String
                 expectSpyCall(navigateToResourceSpy, 3, '330');
             }));
 
             it('... should not emit anything if no id is provided', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
-
                 // First anchor has no id
 
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[0], fixture);
+                clickAndAwaitChanges(anchorDes0[0], fixture);
 
                 expect(emitSpy).not.toHaveBeenCalled();
                 expect(emitSpy).toHaveBeenCalledTimes(0);
             }));
 
             it('... should emit provided resource id (as string) on click', fakeAsync(() => {
-                const tableDes = getAndExpectDebugElementByCss(compDe, 'table.awg-linked-obj-table', 1, 1);
-                const anchorDes = getAndExpectDebugElementByCss(tableDes[0], 'a', 3, 3);
-
                 // First anchor has no id, see above
 
                 // Second anchor has @id: string
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[1], fixture);
+                clickAndAwaitChanges(anchorDes1[0], fixture);
 
                 expectSpyCall(emitSpy, 1, '28');
 
                 // Third anchor has @id: string
                 // Trigger click with click helper & wait for changes
-                clickAndAwaitChanges(anchorDes[2], fixture);
+                clickAndAwaitChanges(anchorDes2[0], fixture);
 
                 expectSpyCall(emitSpy, 2, '330');
             }));

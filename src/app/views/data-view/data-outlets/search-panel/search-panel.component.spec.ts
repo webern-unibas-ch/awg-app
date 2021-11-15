@@ -43,13 +43,20 @@ describe('SearchPanelComponent', () => {
     let component: SearchPanelComponent;
     let fixture: ComponentFixture<SearchPanelComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     // Stub services for test purposes
-    const mocConversionService = { convertFullTextSearchResults: () => {} };
+    const mocConversionService = {
+        convertFullTextSearchResults: () => {
+            // Intentional empty test override
+        },
+    };
     const mockDataApiService = { httpGetUrl: '/testUrl', getFulltextSearchData: () => observableOf({}) };
     const mockLoadingService = { getLoadingStatus: () => observableOf(false) };
-    const mockDataStreamerService = { updateSearchResponseWithQuery: () => {} };
+    const mockDataStreamerService = {
+        updateSearchResponseWithQuery: () => {
+            // Intentional empty test override
+        },
+    };
 
     // Router spy object
     const mockRouter = {
@@ -86,7 +93,6 @@ describe('SearchPanelComponent', () => {
         fixture = TestBed.createComponent(SearchPanelComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         fixture.detectChanges();
     });

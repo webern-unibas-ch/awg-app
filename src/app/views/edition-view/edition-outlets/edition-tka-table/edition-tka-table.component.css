@@ -1,0 +1,17 @@
+.awg-edition-tka-table .measure {
+    width: 10%;
+    white-space: nowrap;
+}
+
+.awg-edition-tka-table .system {
+    width: 8%;
+}
+
+.awg-edition-tka-table .location {
+    width: 15%;
+    white-space: nowrap;
+}
+
+.awg-edition-tka-table .comment {
+    width: auto;
+}

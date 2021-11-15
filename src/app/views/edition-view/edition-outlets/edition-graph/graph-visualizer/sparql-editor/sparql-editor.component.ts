@@ -1,6 +1,7 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output, ViewChild } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output, ViewChild } from '@angular/core';
 import { NgbAccordion, NgbPanelChangeEvent } from '@ng-bootstrap/ng-bootstrap';
 
+import { CmConfig } from '../models';
 import { GraphSparqlQuery } from '@awg-views/edition-view/models';
 
 import 'codemirror/mode/sparql/sparql';
@@ -17,7 +18,7 @@ import 'codemirror/mode/sparql/sparql';
     styleUrls: ['./sparql-editor.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SparqlEditorComponent implements OnInit {
+export class SparqlEditorComponent {
     /**
      * ViewChild variable: sparqlAcc.
      *
@@ -78,21 +79,13 @@ export class SparqlEditorComponent implements OnInit {
      *
      * It keeps the Codemirror configuration for the sparql panel.
      */
-    cmSparqlConfig = {
+    cmSparqlConfig: CmConfig = {
         lineNumbers: true,
         firstLineNumber: 1,
         lineWrapping: true,
         matchBrackets: true,
         mode: 'sparql',
     };
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {}
 
     /**
      * Public method: isExampleQueriesEnabled.

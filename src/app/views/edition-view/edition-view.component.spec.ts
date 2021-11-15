@@ -32,7 +32,6 @@ describe('EditionViewComponent (DONE)', () => {
     let component: EditionViewComponent;
     let fixture: ComponentFixture<EditionViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter;
     let mockActivatedRoute: ActivatedRouteStub;
@@ -63,7 +62,9 @@ describe('EditionViewComponent (DONE)', () => {
                 getEditionWork: (): Observable<EditionWork> =>
                     // Return op. 12 by default
                     observableOf(EditionWorks[expectedWorkId]),
-                updateEditionWork: (editionWork: EditionWork): void => {},
+                updateEditionWork: (editionWork: EditionWork): void => {
+                    // Intentional empty test override
+                },
             };
 
             TestBed.configureTestingModule({
@@ -84,7 +85,6 @@ describe('EditionViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         mockEditionService = TestBed.inject(EditionService);
 
@@ -404,7 +404,7 @@ describe('EditionViewComponent (DONE)', () => {
                         1,
                         1
                     );
-                    const titleDes = getAndExpectDebugElementByCss(hDes[0], 'i.awg-edition-info-header-title', 1, 1);
+                    const titleDes = getAndExpectDebugElementByCss(hDes[0], 'em.awg-edition-info-header-title', 1, 1);
                     const catalogueDes = getAndExpectDebugElementByCss(
                         hDes[0],
                         'span.awg-edition-info-header-catalogue',

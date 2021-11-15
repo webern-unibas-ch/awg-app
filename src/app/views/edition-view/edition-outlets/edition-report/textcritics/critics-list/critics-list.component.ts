@@ -1,4 +1,4 @@
-import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/models';
 
@@ -14,7 +14,7 @@ import { TextcriticalComment, TextcriticsList } from '@awg-views/edition-view/mo
     templateUrl: './critics-list.component.html',
     styleUrls: ['./critics-list.component.css'],
 })
-export class CriticsListComponent implements OnInit {
+export class CriticsListComponent {
     /**
      * Input variable: textcriticsData.
      *
@@ -53,14 +53,6 @@ export class CriticsListComponent implements OnInit {
     constructor() {
         this.ref = this;
     }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

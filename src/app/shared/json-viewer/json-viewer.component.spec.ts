@@ -77,7 +77,6 @@ describe('JsonViewerComponent (DONE)', () => {
     let component: JsonViewerComponent;
     let fixture: ComponentFixture<JsonViewerComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedHeader: string;
     let expectedData: ResourceFullResponseJson;
@@ -107,7 +106,6 @@ describe('JsonViewerComponent (DONE)', () => {
         fixture = TestBed.createComponent(JsonViewerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedHeader = 'Converted JSON response from Salsah-API';

@@ -6,8 +6,7 @@
                 <button
                     type="button"
                     class="btn btn-sm btn-outline-info ml-2"
-                    (click)="openModal('HINT_EDITION_DETAIL')"
-                >
+                    (click)="openModal('HINT_EDITION_DETAIL')">
                     Hinweise zur Nutzung
                 </button>
             </div>
@@ -18,8 +17,7 @@
                 *ngIf="svgSheetsData && selectedSvgSheet"
                 [svgSheetsData]="svgSheetsData"
                 [selectedSvgSheet]="selectedSvgSheet"
-                (selectSvgSheetRequest)="selectSvgSheet($event)"
-            >
+                (selectSvgSheetRequest)="selectSvgSheet($event)">
             </awg-edition-svg-sheet-nav>
 
             <!-- svg panel -->
@@ -29,8 +27,7 @@
                 [selectedSvgSheet]="selectedSvgSheet"
                 [selectedOverlay]="selectedOverlay"
                 (selectSvgSheetRequest)="selectSvgSheet($event)"
-                (selectOverlayRequest)="selectOverlay($event)"
-            >
+                (selectOverlayRequest)="selectOverlay($event)">
             </awg-edition-svg-sheet>
 
             <!-- table for TkA -->
@@ -39,8 +36,7 @@
                 <awg-edition-tka-table
                     [textcriticalComments]="selectedTextcriticalComments"
                     (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)"
-                >
+                    (selectSvgSheetRequest)="selectSvgSheet($event)">
                 </awg-edition-tka-table>
             </div>
         </ng-template>

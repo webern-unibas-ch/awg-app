@@ -13,8 +13,7 @@
         [selectedSvgSheet]="selectedSvgSheet"
         (openModalRequest)="modal.open($event)"
         (selectConvoluteRequest)="onConvoluteSelect($event)"
-        (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-    >
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
     </awg-edition-convolute>
 
     <!-- accolade view -->
@@ -27,7 +26,6 @@
         [showTkA]="showTkA"
         (openModalRequest)="modal.open($event)"
         (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-        (selectOverlayRequest)="onOverlaySelect($event)"
-    >
+        (selectOverlayRequest)="onOverlaySelect($event)">
     </awg-edition-accolade>
 </div>

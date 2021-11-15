@@ -1,7 +1,8 @@
 /* eslint-disable @angular-eslint/no-input-rename */
 /* eslint-disable @angular-eslint/directive-selector, @angular-eslint/component-selector */
 import { Component, Directive, HostListener, Injectable, Input, NgModule } from '@angular/core';
-import { NavigationExtras, QueryParamsHandling } from '@angular/router';
+import { convertToParamMap, QueryParamsHandling, ParamMap, Params } from '@angular/router';
+import { BehaviorSubject } from 'rxjs';
 
 import { AppModule } from '@awg-app/app.module';
 
@@ -61,9 +62,6 @@ export class RouterOutletStubComponent {}
 // #enddocregion router-outlet-stub
 
 // #docregion activated-route-stub
-import { convertToParamMap, ParamMap, Params } from '@angular/router';
-import { BehaviorSubject } from 'rxjs';
-
 /**
  * An ActivatedRoute test double (stub) with a `paramMap` observable.
  *
@@ -91,23 +89,6 @@ export class ActivatedRouteStub {
     private _testParams: {};
 
     /**
-     * Getter for test route parameters.
-     * @returns The latest test route parameters.
-     */
-    get testParams() {
-        return this._testParams;
-    }
-
-    /**
-     * Setter for test route parameters.
-     * @param params The test route parameters to be set.
-     */
-    set testParams(params: {}) {
-        this._testParams = params;
-        this._paramSubject.next(params);
-    }
-
-    /**
      * Private ReplaySubject to handle route paramMaps.
      */
     private _paramMapSubject = new BehaviorSubject(convertToParamMap(this.testParamMap));
@@ -122,23 +103,6 @@ export class ActivatedRouteStub {
      * Private variable: _testParamMap
      */
     private _testParamMap: ParamMap;
-    /**
-     * Getter for the test route paramMap.
-     *
-     * @returns The latest test route paramMap.
-     */
-    get testParamMap() {
-        return this._testParamMap;
-    }
-    /**
-     * Setter for the test route paramMap
-     *
-     * @param {} params The route parameters to be set.
-     */
-    set testParamMap(params: {}) {
-        this._testParamMap = convertToParamMap(params);
-        this._paramMapSubject.next(this._testParamMap);
-    }
 
     /**
      * Private BehaviourSubject to handle query parameters.
@@ -155,23 +119,6 @@ export class ActivatedRouteStub {
      * Private variable: _testQueryParamMap
      */
     private _testQueryParamMap: ParamMap;
-    /**
-     * Getter for the test route queryParamMap.
-     *
-     * @returns The latest test route queryParamMap.
-     */
-    get testQueryParamMap() {
-        return this._testQueryParamMap;
-    }
-    /**
-     * Setter for the test route queryParamMap
-     *
-     * @param {Params} params The route queryParameters to be set.
-     */
-    set testQueryParamMap(params: {}) {
-        this._testQueryParamMap = convertToParamMap(params);
-        this._queryParamMapSubject.next(this._testQueryParamMap);
-    }
 
     /**
      * Private BehaviourSubject to handle children parameters.
@@ -188,6 +135,46 @@ export class ActivatedRouteStub {
      * Private variable: _testChildren
      */
     private _testChildren: Params;
+
+    /**
+     * Constructor for the ActivatedRouteStub (stub).
+     *
+     * @param {Params} [initialParams] The optional initial route parameters.
+     */
+    constructor(initialParams?: Params) {
+        if (initialParams) {
+            this.testParamMap = initialParams;
+        } else {
+            this.testParamMap = {};
+        }
+    }
+
+    /**
+     * Getter for test route parameters.
+     * @returns The latest test route parameters.
+     */
+    get testParams() {
+        return this._testParams;
+    }
+
+    /**
+     * Getter for the test route paramMap.
+     *
+     * @returns The latest test route paramMap.
+     */
+    get testParamMap() {
+        return this._testParamMap;
+    }
+
+    /**
+     * Getter for the test route queryParamMap.
+     *
+     * @returns The latest test route queryParamMap.
+     */
+    get testQueryParamMap() {
+        return this._testQueryParamMap;
+    }
+
     /**
      * Getter for the test route queryÜaramMap.
      *
@@ -195,15 +182,6 @@ export class ActivatedRouteStub {
      */
     get testChildren() {
         return this._testChildren;
-    }
-    /**
-     * Setter for the test route queryParamMap
-     *
-     * @param {Params} params The route queryParameters to be set.
-     */
-    set testChildren(params: {}) {
-        this._testChildren = params;
-        this._childrenSubject.next(this._testChildren);
     }
 
     /**
@@ -221,16 +199,42 @@ export class ActivatedRouteStub {
     }
 
     /**
-     * Constructor for the ActivatedRouteStub (stub).
-     *
-     * @param {Params} [initialParams] The optional initial route parameters.
+     * Setter for test route parameters.
+     * @param params The test route parameters to be set.
      */
-    constructor(initialParams?: Params) {
-        if (initialParams) {
-            this.testParamMap = initialParams;
-        } else {
-            this.testParamMap = {};
-        }
+    set testParams(params: {}) {
+        this._testParams = params;
+        this._paramSubject.next(params);
+    }
+
+    /**
+     * Setter for the test route paramMap
+     *
+     * @param {} params The route parameters to be set.
+     */
+    set testParamMap(params: {}) {
+        this._testParamMap = convertToParamMap(params);
+        this._paramMapSubject.next(this._testParamMap);
+    }
+
+    /**
+     * Setter for the test route queryParamMap
+     *
+     * @param {Params} params The route queryParameters to be set.
+     */
+    set testQueryParamMap(params: {}) {
+        this._testQueryParamMap = convertToParamMap(params);
+        this._queryParamMapSubject.next(this._testQueryParamMap);
+    }
+
+    /**
+     * Setter for the test route queryParamMap
+     *
+     * @param {Params} params The route queryParameters to be set.
+     */
+    set testChildren(params: {}) {
+        this._testChildren = params;
+        this._childrenSubject.next(this._testChildren);
     }
 }
 // #enddocregion activated-route-stub

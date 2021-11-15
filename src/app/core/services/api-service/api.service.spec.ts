@@ -7,10 +7,8 @@ import { Data } from '@angular/router';
 import { throwError as observableThrowError } from 'rxjs';
 
 import { cleanStylesFromDOM } from '@testing/clean-up-helper';
-import { expectSpyCall } from '@testing/expect-helper';
 
 import { AppConfig } from '@awg-app/app.config';
-import { ApiRequest } from '@awg-core/services/api-service/api-request.model';
 import { ApiServiceError } from '@awg-core/services/api-service/api-service-error.model';
 import { ApiServiceResult } from '@awg-core/services/api-service/api-service-result.model';
 import { UserDataJson } from '@awg-shared/api-objects';
@@ -46,14 +44,13 @@ describe('ApiService', () => {
     let httpClient: HttpClient;
     let httpTestingController: HttpTestingController;
 
-    let apiRequest: ApiRequest;
     let queryHttpParams: HttpParams;
     let expectedApiServiceError: ApiServiceError;
 
-    const queryPath = 'search/Test';
-    const expectedUrl = AppConfig.API_ENDPOINT + queryPath;
-    const expectedSearchType = 'fulltext';
-    const expectedNRows = '10';
+    let queryPath: string;
+    let expectedUrl: string;
+    let expectedSearchType: string;
+    let expectedNRows: string;
 
     beforeEach(() => {
         TestBed.configureTestingModule({
@@ -66,8 +63,11 @@ describe('ApiService', () => {
         httpTestingController = TestBed.inject(HttpTestingController);
 
         // Test data
+        queryPath = 'search/Test';
+        expectedUrl = AppConfig.API_ENDPOINT + queryPath;
+        expectedSearchType = 'fulltext';
+        expectedNRows = '10';
         queryHttpParams = new HttpParams().set('searchtype', expectedSearchType).set('show_nrows', expectedNRows);
-        apiRequest = new ApiRequest(queryPath, queryHttpParams);
     });
 
     afterEach(() => {
@@ -293,7 +293,7 @@ describe('ApiService', () => {
                     );
 
                     // Expect no request to url with given settings
-                    const call = httpTestingController.expectNone(
+                    httpTestingController.expectNone(
                         (req: HttpRequest<any>) => req.method === 'GET' && req.url === expectedUrl
                     );
                 });

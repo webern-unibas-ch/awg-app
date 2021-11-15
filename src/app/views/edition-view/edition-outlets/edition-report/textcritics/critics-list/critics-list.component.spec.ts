@@ -1,4 +1,4 @@
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
 
@@ -14,8 +14,10 @@ import { CriticsListComponent } from './critics-list.component';
 class EditionTkaTableStubComponent {
     @Input()
     textcriticalComments: TextcriticalComment[];
-
-    // TODO: handle outputs
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
 describe('CriticsListComponent', () => {

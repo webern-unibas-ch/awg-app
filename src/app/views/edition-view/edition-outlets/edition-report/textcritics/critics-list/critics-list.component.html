@@ -6,8 +6,7 @@
                 <button
                     type="button"
                     class="btn btn-sm btn-outline-info ml-2"
-                    (click)="selectSvgSheet(textcritic.label)"
-                >
+                    (click)="selectSvgSheet(textcritic.label)">
                     Zur Transkription
                 </button>
             </div>
@@ -18,16 +17,14 @@
                 <p
                     *ngFor="let description of textcritic.description"
                     [compile-html]="description"
-                    [compile-html-ref]="ref"
-                ></p>
+                    [compile-html-ref]="ref"></p>
             </div>
             <div *ngIf="isNotEmptyArray(textcritic.comments)">
                 <p class="caps">Textkritischer Kommentar:</p>
                 <awg-edition-tka-table
                     [textcriticalComments]="textcritic.comments"
                     (openModalRequest)="openModal($event)"
-                    (selectSvgSheetRequest)="selectSvgSheet($event)"
-                >
+                    (selectSvgSheetRequest)="selectSvgSheet($event)">
                 </awg-edition-tka-table>
             </div>
         </ng-template>

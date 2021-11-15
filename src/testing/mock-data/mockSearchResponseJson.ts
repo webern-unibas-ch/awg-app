@@ -31,11 +31,11 @@ export const mockSearchResponseJson = {
     subjects: [
         {
             iconlabel: 'Bibliografie',
-            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
             obj_id: '1230',
             preview_path:
-                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+                'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -45,11 +45,11 @@ export const mockSearchResponseJson = {
         },
         {
             iconlabel: 'Bibliografie',
-            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
             obj_id: '1231',
             preview_path:
-                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+                'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -59,11 +59,11 @@ export const mockSearchResponseJson = {
         },
         {
             iconlabel: 'Bibliografie',
-            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
             obj_id: '1232',
             preview_path:
-                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+                'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -73,11 +73,11 @@ export const mockSearchResponseJson = {
         },
         {
             iconlabel: 'Bibliografie',
-            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
             obj_id: '1233',
             preview_path:
-                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+                'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,
@@ -87,11 +87,11 @@ export const mockSearchResponseJson = {
         },
         {
             iconlabel: 'Bibliografie',
-            iconsrc: 'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+            iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             icontitle: 'Bibliografie',
             obj_id: '1234',
             preview_path:
-                'http://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
+                'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=126',
             preview_nx: undefined,
             preview_ny: undefined,
             rights: undefined,

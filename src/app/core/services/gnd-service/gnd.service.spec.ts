@@ -105,6 +105,7 @@ describe('GndService (DONE)', () => {
 
             window.parent.window.postMessage('testMessage', 'testTarget');
 
+            expectSpyCall(postMessageSpy, 1, 'testMessage');
             expect(mockWindow.get(0)).toEqual(['testMessage', 'testTarget']);
         });
 
@@ -280,11 +281,10 @@ describe('GndService (DONE)', () => {
 
             it('... should expose gnd to parent window if target meets parent location (inseri)', () => {
                 // Set current target to Inseri
-                const target = AppConfig.INSERI_TEST_URL;
-                const origin = target;
+                const target = AppConfig.INSERI_URL;
 
-                // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
+                // Spy on current location and return target
+                spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(target);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -301,10 +301,9 @@ describe('GndService (DONE)', () => {
             it('... should expose gnd to parent window if target meets parent location (localhost)', () => {
                 // Set current target to localhost
                 const target = AppConfig.LOCALHOST_URL;
-                const origin = target;
 
-                // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
+                // Spy on current location and return target
+                spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(target);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -320,11 +319,10 @@ describe('GndService (DONE)', () => {
 
             it('... should not expose gnd to window if target does not meet parent location', () => {
                 // Set current target to Inseri
-                const target = AppConfig.INSERI_TEST_URL;
-                const origin = 'http://www.example.com';
+                const target = 'http://www.example.com';
 
-                // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
+                // Spy on current location and return target
+                spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(target);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -336,7 +334,6 @@ describe('GndService (DONE)', () => {
             });
 
             it('... should set an item to the correct storage if given gndEvent value has gnd link', () => {
-                const expectedOtherStorage = expectedLocalStorage;
                 const otherMockStorage = mockLocalStorage;
 
                 expect(mockStorage.getItem(expectedGndKey)).toBeNull();
@@ -464,11 +461,10 @@ describe('GndService (DONE)', () => {
 
             it('... should expose null value to parent window if target meets parent location (inseri)', () => {
                 // Set current target to inseri
-                const target = AppConfig.INSERI_TEST_URL;
-                const origin = target;
+                const target = AppConfig.INSERI_URL;
 
-                // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
+                // Spy on current location and return target
+                spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(target);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 
@@ -485,10 +481,9 @@ describe('GndService (DONE)', () => {
             it('... should expose null value to parent window if target meets parent location (localhost)', () => {
                 // Set current target to localhost
                 const target = AppConfig.LOCALHOST_URL;
-                const origin = target;
 
-                // Spy on current location and return origin
-                const locationSpy = spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(origin);
+                // Spy on current location and return target
+                spyOn(gndService.CURRENT_LOCATION, 'getOrigin').and.returnValue(target);
                 // Spy on postMessage call
                 const postMessageSpy = spyOn(window.parent.window, 'postMessage').and.callFake(mockWindow.postMessage);
 

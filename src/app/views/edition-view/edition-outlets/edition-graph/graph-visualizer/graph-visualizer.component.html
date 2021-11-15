@@ -8,8 +8,7 @@
                 [triples]="triples"
                 (updateTriplesRequest)="triples = $event"
                 (resetTriplesRequest)="resetTriples()"
-                (performQueryRequest)="performQuery()"
-            ></awg-triples-editor>
+                (performQueryRequest)="performQuery()"></awg-triples-editor>
         </div>
 
         <!-- awg-graph-sparql-editor -->
@@ -19,8 +18,7 @@
                 [query]="query"
                 (updateQueryStringRequest)="query.queryString = $event"
                 (resetQueryRequest)="resetQuery($event)"
-                (performQueryRequest)="performQuery()"
-            ></awg-sparql-editor>
+                (performQueryRequest)="performQuery()"></awg-sparql-editor>
         </div>
 
         <!-- Results -->
@@ -32,8 +30,7 @@
                 *ngIf="query.queryType === 'construct'; else querySelectResultAcc"
                 [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="defaultForceGraphHeight"
-                (clickedNodeRequest)="onGraphNodeClick($event)"
-            ></awg-construct-results>
+                (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
 
             <!-- SELECT -->
             <!-- awg-graph-select-result -->
@@ -41,8 +38,7 @@
                 <awg-select-results
                     *ngIf="query.queryType === 'select'; else queryUnsupportedTypeAcc"
                     [queryResult$]="queryResult$"
-                    (clickedTableRequest)="onTableNodeClick($event)"
-                ></awg-select-results>
+                    (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>
             </ng-template>
 
             <!-- OTHERS -->
@@ -60,8 +56,7 @@
                 [isFullscreen]="isFullscreen"
                 (updateTriplesRequest)="triples = $event"
                 (resetTriplesRequest)="resetTriples()"
-                (performQueryRequest)="performQuery()"
-            ></awg-triples-editor>
+                (performQueryRequest)="performQuery()"></awg-triples-editor>
 
             <!-- awg-graph-sparql-editor -->
             <awg-sparql-editor
@@ -70,8 +65,7 @@
                 [isFullscreen]="isFullscreen"
                 (updateQueryStringRequest)="query.queryString = $event"
                 (resetQueryRequest)="resetQuery($event)"
-                (performQueryRequest)="performQuery()"
-            ></awg-sparql-editor>
+                (performQueryRequest)="performQuery()"></awg-sparql-editor>
         </div>
 
         <!-- Results -->
@@ -83,8 +77,7 @@
                 *ngIf="query.queryType === 'construct'; else querySelectResultAcc"
                 [queryResult$]="queryResult$"
                 [defaultForceGraphHeight]="1000"
-                (clickedNodeRequest)="onGraphNodeClick($event)"
-            ></awg-construct-results>
+                (clickedNodeRequest)="onGraphNodeClick($event)"></awg-construct-results>
 
             <!-- SELECT -->
             <!-- awg-graph-select-result -->
@@ -93,8 +86,7 @@
                     *ngIf="query.queryType === 'select'; else queryUnsupportedTypeAcc"
                     [queryResult$]="queryResult$"
                     [queryTime]="queryTime"
-                    (clickedTableRequest)="onTableNodeClick($event)"
-                ></awg-select-results>
+                    (clickedTableRequest)="onTableNodeClick($event)"></awg-select-results>
             </ng-template>
 
             <!-- OTHERS -->

@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { faSquare } from '@fortawesome/free-solid-svg-icons/faSquare';
 
@@ -35,7 +35,7 @@ interface IFolioLegend {
     styleUrls: ['./edition-convolute.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionConvoluteComponent implements OnInit {
+export class EditionConvoluteComponent {
     /**
      * Input variable: folios.
      *
@@ -111,14 +111,6 @@ export class EditionConvoluteComponent implements OnInit {
             label: '(momentan noch) nicht auswählbar',
         },
     ];
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

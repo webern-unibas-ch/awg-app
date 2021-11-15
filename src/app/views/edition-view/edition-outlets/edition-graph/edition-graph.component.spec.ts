@@ -51,7 +51,6 @@ describe('EditionGraphComponent (DONE)', () => {
     let component: EditionGraphComponent;
     let fixture: ComponentFixture<EditionGraphComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockEditionService: Partial<EditionService>;
     let mockEditionDataService: Partial<EditionDataService>;
@@ -103,9 +102,8 @@ describe('EditionGraphComponent (DONE)', () => {
         fixture = TestBed.createComponent(EditionGraphComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
-        // Inject service from root
+        // Inject services from root
         editionDataService = TestBed.inject(EditionDataService);
         editionService = TestBed.inject(EditionService);
 
@@ -176,6 +174,11 @@ describe('EditionGraphComponent (DONE)', () => {
 
         it('should have `errorObject` = null', () => {
             expect(component.errorObject).toBeNull('should be null');
+        });
+
+        it('should have `isFullscreen`', () => {
+            expect(component.isFullscreen).toBeDefined('should be defined');
+            expect(component.isFullscreen).toBe(expectedIsFullscreen, `should be ${expectedIsFullscreen}`);
         });
 
         it('should not have `editionWork`', () => {

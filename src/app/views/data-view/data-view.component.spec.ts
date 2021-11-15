@@ -28,7 +28,6 @@ describe('DataViewComponent (DONE)', () => {
     let component: DataViewComponent;
     let fixture: ComponentFixture<DataViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter: Partial<Router>;
 
@@ -51,7 +50,6 @@ describe('DataViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(DataViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

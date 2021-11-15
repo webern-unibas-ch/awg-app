@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import {
     EditionSvgSheet,
@@ -22,7 +22,7 @@ import {
     styleUrls: ['./edition-accolade.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class EditionAccoladeComponent implements OnInit {
+export class EditionAccoladeComponent {
     /**
      * Input variable: svgSheetsData.
      *
@@ -87,14 +87,6 @@ export class EditionAccoladeComponent implements OnInit {
      */
     @Output()
     selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: openModal.

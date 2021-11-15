@@ -16,6 +16,7 @@ import {
 import { GndEvent } from '@awg-core/services/gnd-service';
 
 import { ResourceDetailHtmlComponent } from './resource-detail-html.component';
+import { detectChangesOnPush } from '@testing/detect-changes-on-push-helper';
 
 // Mock component
 @Component({ selector: 'awg-resource-detail-html-content', template: '' })
@@ -32,7 +33,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
     let component: ResourceDetailHtmlComponent;
     let fixture: ComponentFixture<ResourceDetailHtmlComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedResourceDetailData: ResourceDetail;
 
@@ -51,7 +51,6 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceDetailHtmlComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         const header: ResourceDetailHeader = { objID: '1234', icon: '', type: '', title: 'Test', lastmod: '' };
@@ -110,42 +109,18 @@ describe('ResourceDetailHtmlComponent (DONE)', () => {
 
         describe('VIEW', () => {
             it('should contain resource detail html content component (stubbed)', () => {
-                const htmlContentDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentStubComponent,
-                    1,
-                    1
-                );
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 1, 1);
             });
 
             it('should contain resource detail html content component (stubbed) only if content provided', () => {
-                const firstContentDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentStubComponent,
-                    1,
-                    1
-                );
-
                 // Provide data without content property
                 expectedResourceDetailData = new ResourceDetail(undefined, undefined);
 
                 // Simulate the host parent setting the new input properties
                 component.resourceDetailData = expectedResourceDetailData;
-                fixture.detectChanges();
+                detectChangesOnPush(fixture);
 
-                // TODO: should be 0
-                //  Check angular defect with testing under ChangeDetectionStrategy.OnPush : https://github.com/angular/angular/issues/12313
-
-                const newContentDes = getAndExpectDebugElementByDirective(
-                    compDe,
-                    ResourceDetailHtmlContentStubComponent,
-                    1,
-                    1
-                );
-                const newContentEl = newContentDes[0].nativeElement;
-
-                expect(newContentEl.innerHTML).toBeDefined();
-                expect(newContentEl.innerHTML).toBe('', 'should be empty string');
+                getAndExpectDebugElementByDirective(compDe, ResourceDetailHtmlContentStubComponent, 0, 0);
             });
 
             it('... should pass down `resourceDetailData` to resource detail html content component', () => {

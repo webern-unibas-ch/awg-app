@@ -13,7 +13,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
     let component: UnsupportedTypeResultsComponent;
     let fixture: ComponentFixture<UnsupportedTypeResultsComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedQueryType: string;
 
@@ -42,7 +41,6 @@ describe('UnsupportedTypeResultsComponent (DONE)', () => {
         fixture = TestBed.createComponent(UnsupportedTypeResultsComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedQueryType = 'ask';

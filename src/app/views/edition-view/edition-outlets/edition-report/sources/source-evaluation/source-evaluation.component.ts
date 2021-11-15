@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { SourceEvaluationList } from '@awg-views/edition-view/models';
 
@@ -15,7 +15,7 @@ import { SourceEvaluationList } from '@awg-views/edition-view/models';
     styleUrls: ['./source-evaluation.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SourceEvaluationComponent implements OnInit {
+export class SourceEvaluationComponent {
     /**
      * Input variable: sourceEvaluationListData.
      *
@@ -63,14 +63,6 @@ export class SourceEvaluationComponent implements OnInit {
     constructor() {
         this.ref = this;
     }
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: navigateToReportFragment.

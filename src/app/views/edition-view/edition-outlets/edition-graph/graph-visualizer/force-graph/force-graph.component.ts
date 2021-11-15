@@ -821,14 +821,13 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
 
         // MB if(d.instance || d.instSpace || d.instSpaceType){
         if (node.label.indexOf('_:') !== -1) {
-            return defaultRadius--;
+            defaultRadius = defaultRadius - 1;
         } else if (node.instance || node.label.indexOf('inst:') !== -1) {
-            return defaultRadius + 2;
+            defaultRadius = defaultRadius + 2;
         } else if (node.owlClass || node.label.indexOf('inst:') !== -1) {
-            return defaultRadius++;
-        } else {
-            return defaultRadius;
+            defaultRadius = defaultRadius + 1;
         }
+        return defaultRadius;
     }
 
     /**
@@ -883,7 +882,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         const graphData: D3SimulationData = new D3SimulationData();
 
         // Initial Graph from triples
-        triples.map((triple: Triple) => {
+        triples.forEach((triple: Triple) => {
             const subjId = this.prefixPipe.transform(triple.subject, PrefixForm.short);
             const predId = this.prefixPipe.transform(triple.predicate, PrefixForm.short);
             let objId = this.prefixPipe.transform(triple.object, PrefixForm.short);

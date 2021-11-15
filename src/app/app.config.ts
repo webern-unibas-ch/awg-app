@@ -6,7 +6,7 @@ import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 export class AppConfig {
     /**
      * Getter for the URL of the Salsah API endpoint
-     * ({@link https://www.salsah.org}).
+     * (https://www.salsah.org).
      *
      * @returns {string}
      */
@@ -18,7 +18,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the Analytics endpoint
-     * ({@link https://www.google-analytics.com/}).
+     * (https://www.google-analytics.com/).
      *
      * @returns {string}
      */
@@ -28,7 +28,7 @@ export class AppConfig {
 
     /**
      * Getter for the Analytics id
-     * ({@link 'UA-XXXXXXX-Y'}).
+     * ('UA-XXXXXXX-Y').
      *
      * @returns {string}
      */
@@ -37,18 +37,18 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the URL of the Inseri Test Instance
-     * ({@link http://test-nieos.nie-ine.ch}).
+     * Getter for the URL of the INSERI Instance
+     * (https://apps.inseri.swiss).
      *
      * @returns {string}
      */
-    public static get INSERI_TEST_URL(): string {
-        return 'http://test-nieos.nie-ine.ch';
+    public static get INSERI_URL(): string {
+        return 'https://apps.inseri.swiss';
     }
 
     /**
      * Getter for the URL of the localhost
-     * ({@link 'http://localhost:4200'}).
+     * (http://localhost:4200).
      *
      * @returns {string}
      */
@@ -67,7 +67,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the AWG project website
-     * ({@link https://anton-webern.ch}).
+     * (https://anton-webern.ch).
      *
      * @returns {string}
      */
@@ -77,7 +77,7 @@ export class AppConfig {
 
     /**
      * Getter for the url of the AWG edition website (awg-app).
-     * {@link https://edition.anton-webern.ch/}
+     * (https://edition.anton-webern.ch/)
      *
      * @returns {string}
      */
@@ -88,7 +88,7 @@ export class AppConfig {
     /**
      * Getter for the URL of the compodoc documentation
      * of the AWG edition website (awg-app).
-     * ({@link compodoc/index.html}).
+     * (compodoc/index.html).
      *
      * @returns {string}
      */
@@ -99,7 +99,7 @@ export class AppConfig {
     /**
      * Getter for the URL of the GitHub repository
      * of the AWG edition website (awg-app).
-     * ({@link https://github.com/webern-unibas-ch/awg-app}).
+     * (https://github.com/webern-unibas-ch/awg-app).
      *
      * @returns {string}
      */
@@ -131,19 +131,20 @@ export class AppConfig {
      * @returns {string}
      */
     public static get UNSAFE_OSM_EMBED_URL(): string {
-        const osmRoot = 'https://www.openstreetmap.org/export/embed.html';
-        const osmId =
-            '?bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212&layer=mapnik&marker=47.55896585846639%2C7.584506571292877';
+        const osmApi = 'https://www.openstreetmap.org/export/embed.html';
+        const bbox = 'bbox=7.582175731658936%2C47.55789611508066%2C7.586840093135835%2C47.56003739001212';
+        const layer = 'layer=mapnik';
+        const marker = '47.55896585846639%2C7.584506571292877';
 
-        return osmRoot + osmId;
+        return osmApi + '?' + bbox + '&' + layer + '&' + marker;
     }
 
     /**
-     * Getter for the unsanitized OSM external link.
+     * Getter for the OSM external link.
      *
      * @returns {string}
      */
-    public static get UNSAFE_OSM_LINK_URL() {
+    public static get OSM_LINK_URL() {
         const osmLinkRoot = 'https://www.openstreetmap.org/';
         const osmLinkId = '?mlat=47.55897&amp;mlon=7.58451#map=19/47.55897/7.58451';
         return osmLinkRoot + osmLinkId;

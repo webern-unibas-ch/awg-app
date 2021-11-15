@@ -27,7 +27,6 @@ describe('StructureViewComponent (DONE)', () => {
     let component: StructureViewComponent;
     let fixture: ComponentFixture<StructureViewComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter: Partial<Router>;
 
@@ -50,7 +49,6 @@ describe('StructureViewComponent (DONE)', () => {
         fixture = TestBed.createComponent(StructureViewComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see

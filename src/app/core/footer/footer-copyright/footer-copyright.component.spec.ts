@@ -13,7 +13,6 @@ describe('FooterCopyrightComponent (DONE)', () => {
     let component: FooterCopyrightComponent;
     let fixture: ComponentFixture<FooterCopyrightComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedPageMetaData: MetaPage;
 
@@ -29,7 +28,6 @@ describe('FooterCopyrightComponent (DONE)', () => {
         fixture = TestBed.createComponent(FooterCopyrightComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedPageMetaData = METADATA[MetaSectionTypes.page];

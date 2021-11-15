@@ -1,4 +1,4 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
+import { ChangeDetectionStrategy, Component, EventEmitter, Input, Output } from '@angular/core';
 
 import { ResourceDetailHeader } from '@awg-views/data-view/models';
 
@@ -14,7 +14,7 @@ import { ResourceDetailHeader } from '@awg-views/data-view/models';
     styleUrls: ['./resource-detail-header.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class ResourceDetailHeaderComponent implements OnInit {
+export class ResourceDetailHeaderComponent {
     /**
      * Input variable: header.
      *
@@ -38,14 +38,6 @@ export class ResourceDetailHeaderComponent implements OnInit {
      */
     @Output()
     resourceRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit() {}
 
     /**
      * Public method: navigateToResource.

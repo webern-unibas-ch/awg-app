@@ -39,16 +39,16 @@ import { BibEntry } from '@awg-views/data-view/data-outlets/bibliography/bibliog
 /**
  * Declared variable: htmlConverter.
  *
- * It provides access to the embedded htmlConverter plugin (see `/src/plugins/htmlConverter`).
+ * It provides access to the embedded htmlConverter plugin (see `/src/assets/js/htmlConverter`).
  */
-declare let htmlConverter: any;
+declare const htmlConverter: any;
 
 /**
  * Declared variable: dateConverter.
  *
- * It provides access to the embedded dateConverter plugin (see `/src/plugins/dateConverter`).
+ * It provides access to the embedded dateConverter plugin (see `/src/assets/js/dateConverter`).
  */
-declare let dateConverter: any;
+declare const dateConverter: any;
 
 /**
  * The Conversion service.
@@ -151,7 +151,6 @@ export class ConversionService extends ApiService {
         if (searchResults.subjects) {
             const length = searchResults.subjects.length;
             const resString: string = length === 1 ? 'Resultat' : 'Resultate';
-            // ResText = `${length}/${searchData.nhits} `;
             resText = `${searchResults.nhits} `;
             resText += `${resString} für "${searchValue}"`;
 
@@ -436,18 +435,14 @@ export class ConversionService extends ApiService {
         }
 
         // Helper method to clean value labels
-        const replaceLabel = (str: string): string => str.replace(' (Richtext)', '');
+        const cleanLabel = (str: string): string => str.replace(' (Richtext)', '');
 
         // Map default values into ResourceDetailProperties array
-        return Object.entries(props).map(
-            prop =>
-                new ResourceDetailProperty(
-                    prop[1].pid,
-                    prop[1].guielement,
-                    (prop[1].label = replaceLabel(prop[1].label)),
-                    prop[1].toHtml
-                )
-        );
+        return Object.entries(props).map(prop => {
+            prop[1].label = cleanLabel(prop[1].label);
+
+            return new ResourceDetailProperty(prop[1].pid, prop[1].guielement, prop[1].label, prop[1].toHtml);
+        });
     }
 
     /**
@@ -543,7 +538,7 @@ export class ConversionService extends ApiService {
      * @returns {string} The converted date string.
      */
     private _convertDateValue(dateObj: any): string {
-        let date = dateConverter(dateObj);
+        let date: string = dateConverter(dateObj);
         date = date.replace(' (G)', '');
         return date;
     }
@@ -576,7 +571,8 @@ export class ConversionService extends ApiService {
                         'ConversionService# _convertGeoValues: got no nodelist from geonames response: ',
                         geoNamesData
                     );
-                    return (output[index] = '');
+                    output[index] = '';
+                    return output;
                 }
                 // Snapshot of nodelist array
                 const geoDataArray: GeoDataItemJson[] = [...geoNamesData.nodelist];
@@ -832,7 +828,7 @@ export class ConversionService extends ApiService {
         const labelStr: string = splitArr[0].replace('(', '');
 
         // Regexp for links
-        const regExLink = /<a (.*?)>(.*?)<\/a>/i;
+        const regExLink = /<a\\s+(?:[^>]*?\\s+)?(href=(["'])(.*?)\\2)>(.*?)<\/a>/i;
 
         // Check for link in 2nd part of splitArr
         if (regExLink.exec(splitArr[1])) {
@@ -863,11 +859,12 @@ export class ConversionService extends ApiService {
         if (!str) {
             return;
         }
-        const regNum = /\d{3,}/; // Regexp for object id (3 or more DIGITS)
-        const regLink = new RegExp(
-            '<a href="((http:\\/\\/www\\.|https:\\/\\/www\\.|http:\\/\\/|https:\\/\\/)?salsah\\.org\\/api\\/resources\\/\\d{3,})" class="salsah-link">(.*?)</a>',
-            'i'
-        ); // Regexp for salsah links
+
+        // Regexp for Salsah links
+        // Including subgroup for object id: /[1-9]\d{0,9}/ (any up-to 10-digit integer greater 0)
+        const regLink =
+            /<a\s+(?:[^>]*?\s+)?href=(["'])((http:\/\/www\.|https:\/\/www\.|http:\/\/|https:\/\/)?salsah\.org\/api\/resources\/([1-9]\d{0,9}))\1 class=(["'])salsah-link\5>(.*?)<\/a>/i;
+
         let regArr: RegExpExecArray;
 
         // Check for salsah links in str
@@ -875,16 +872,17 @@ export class ConversionService extends ApiService {
             // I.e.: as long as regLink is detected in str do...
             regArr = regLink.exec(str);
 
-            // Identify resource id
-            const resId = regNum.exec(regArr[1])[0];
+            // Resource id is in 4th array entry
+            const resId = regArr[4];
+            // Link text is stored in last array entry
+            const resTextContent = regArr[regArr.length - 1];
 
             // Replace href attribute with click-directive
-            // Linktext is stored in last regexp-result regArr[regArr.length-1]
             const replaceValue =
                 '<a (click)="ref.navigateToResource(\'' +
                 resId +
                 '\'); $event.stopPropagation()">' +
-                regArr[regArr.length - 1] +
+                resTextContent +
                 '</a>';
             str = str.replace(regArr[0], replaceValue);
         } // END while

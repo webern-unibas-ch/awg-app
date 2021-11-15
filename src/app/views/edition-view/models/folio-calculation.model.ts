@@ -873,7 +873,7 @@ export class FolioCalculation {
      * @returns {void} Sets the offsetCorrection for a calculatedContentItem.
      */
     private _setContentItemOffsetCorrection(cornerPoint: FolioCalculationPoint, correctionX: number): void {
-        cornerPoint = cornerPoint.add(correctionX, 0);
+        cornerPoint.add(correctionX, 0);
     }
 
     /**

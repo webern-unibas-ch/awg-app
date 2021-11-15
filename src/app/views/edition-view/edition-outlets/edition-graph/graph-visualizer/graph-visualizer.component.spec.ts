@@ -1,5 +1,5 @@
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, EventEmitter, Input, Output, TemplateRef } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable } from 'rxjs';
 import Spy = jasmine.Spy;
@@ -82,7 +82,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
     let component: GraphVisualizerComponent;
     let fixture: ComponentFixture<GraphVisualizerComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockGraphVisualizerService: Partial<GraphVisualizerService>;
     let graphVisualizerService: Partial<GraphVisualizerService>;
@@ -102,7 +101,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
         waitForAsync(() => {
             // Mocked dataStreamerService
             mockGraphVisualizerService = {
-                appendNamespacesToQuery: (queryString: string, triples: string): string => queryString,
+                checkNamespacesInQuery: (queryString: string, triples: string): string => queryString,
                 getQuerytype: (queryString: string): string => 'construct',
                 doQuery: (queryType: string, query: string, triples: string): Promise<Triple[]> =>
                     new Promise((resolve, reject) => {
@@ -130,7 +129,6 @@ describe('GraphVisualizerComponent (DONE)', () => {
         fixture = TestBed.createComponent(GraphVisualizerComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         graphVisualizerService = TestBed.inject(GraphVisualizerService);
@@ -142,15 +140,15 @@ describe('GraphVisualizerComponent (DONE)', () => {
         expectedGraphRDFData.queryList.push({
             queryType: 'construct',
             queryLabel: 'Test Query 1',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }',
         });
         expectedGraphRDFData.queryList.push({
             queryType: 'construct',
             queryLabel: 'Test Query 2',
-            queryString: 'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
+            queryString: 'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test2 ?has ?success2 . }',
         });
         expectedGraphRDFData.triples =
-            '@prefix example: <http://example.com/onto#> .\n\n example:Test example:has example:Success .';
+            '@prefix example: <https://example.com/onto#> .\n\n example:Test example:has example:Success .';
 
         expectedResult = [
             {
@@ -320,7 +318,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                 // Set changed triples
                 const changedTriples =
-                    '@prefix example: <http://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
+                    '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                 component.triples = changedTriples;
                 fixture.detectChanges();
 
@@ -473,7 +471,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryType: 'SELECT',
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
+                        'PREFIX example: <https://example.com/onto#> \n\n SELECT * WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -529,7 +527,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryType: 'construct',
                     queryLabel: 'Test Query 3',
                     queryString:
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
+                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }',
                 };
                 component.resetQuery(changedQuery);
                 fixture.detectChanges();
@@ -572,8 +570,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
                     queryLabel: 'Test Query 1',
                     queryString: queryStringWithoutPrefixes,
                 };
-                const namespaceSpy = spyOn(graphVisualizerService, 'appendNamespacesToQuery').and.returnValue(
-                    'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
+                const namespaceSpy = spyOn(graphVisualizerService, 'checkNamespacesInQuery').and.returnValue(
+                    'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test ?has ?success . }'
                 );
 
                 // Perform query without prefixes
@@ -607,16 +605,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should trigger `_queryLocalStore` for construct queries', () => {
-                expectSpyCall(queryLocalStoreSpy, 1, [
-                    'construct',
-                    expectedGraphRDFData.queryList[0].queryString,
-                    expectedGraphRDFData.triples,
-                ]);
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
+                // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, [
                     'construct',
@@ -626,12 +621,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
             });
 
             it('... should trigger `_queryLocalStore` for select queries', () => {
-                const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
 
                 // Perform query
                 component.performQuery();
                 fixture.detectChanges();
 
+                // First spy call already triggered by ChangeDetection in beforeEach
                 expectSpyCall(performQuerySpy, 2, undefined);
                 expectSpyCall(queryLocalStoreSpy, 2, [
                     'select',
@@ -643,10 +639,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it(
                 '... should get queryResult for construct queries',
                 waitForAsync(() => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
                     // Set construct query type
-                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('construct');
 
                     // Perform query
                     component.performQuery();
@@ -662,10 +656,8 @@ describe('GraphVisualizerComponent (DONE)', () => {
             it(
                 '... should get queryResult for select queries',
                 waitForAsync(() => {
-                    expectSpyCall(performQuerySpy, 1, undefined);
-
                     // Set select query type
-                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('select');
 
                     // Perform query
                     component.performQuery();
@@ -679,9 +671,9 @@ describe('GraphVisualizerComponent (DONE)', () => {
             );
 
             it(
-                '... should set empty observable for other query types',
+                '... should set empty observable for update query types',
                 waitForAsync(() => {
-                    const queryTypeSpy = spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('update');
 
                     // Perform query
                     component.performQuery();
@@ -696,8 +688,13 @@ describe('GraphVisualizerComponent (DONE)', () => {
                             expect(component.query.queryType).toBe('update', 'should be update');
                         }
                     );
+                })
+            );
 
-                    queryTypeSpy.and.returnValue('other');
+            it(
+                '... should set empty observable for other query types',
+                waitForAsync(() => {
+                    spyOn(graphVisualizerService, 'getQuerytype').and.returnValue('other');
 
                     // Perform query
                     component.performQuery();
@@ -778,7 +775,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { status: 404, statusText: 'error' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
                 // Perform query
@@ -830,7 +827,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { name: 'Error', message: 'error message' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
                 // Perform query
@@ -852,7 +849,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
                 ];
                 const expectedError = { name: 'Error', message: 'error message undefined' };
 
-                const errorSpy = spyOn(console, 'error').and.callFake(mockConsole.log);
+                spyOn(console, 'error').and.callFake(mockConsole.log); // Catch console output
                 spyOn(graphVisualizerService, 'doQuery').and.callFake(() => Promise.reject(expectedError));
 
                 // Perform query
@@ -1193,7 +1190,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Set changed triples
                     const changedTriples =
-                        '@prefix example: <http://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
+                        '@prefix example: <https://example.com/onto#> .\n\n example:Test2 example:has example:Success2 .';
                     editorCmp.updateTriplesRequest.emit(changedTriples);
 
                     expect(component.triples).toBeDefined();
@@ -1251,7 +1248,7 @@ describe('GraphVisualizerComponent (DONE)', () => {
 
                     // Set changed query string
                     const changedQueryString =
-                        'PREFIX example: <http://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
+                        'PREFIX example: <https://example.com/onto#> \n\n CONSTRUCT WHERE { ?test3 ?has ?success3 . }';
                     editorCmp.updateQueryStringRequest.emit(changedQueryString);
 
                     expect(component.query.queryString).toBeDefined();

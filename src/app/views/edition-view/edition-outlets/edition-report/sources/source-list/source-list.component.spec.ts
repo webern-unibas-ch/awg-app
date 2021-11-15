@@ -16,7 +16,6 @@ describe('SourceListComponent (DONE)', () => {
     let component: SourceListComponent;
     let fixture: ComponentFixture<SourceListComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let expectedSourceListData: SourceList;
 
@@ -36,7 +35,6 @@ describe('SourceListComponent (DONE)', () => {
         fixture = TestBed.createComponent(SourceListComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSourceListData = {
@@ -113,23 +111,26 @@ describe('SourceListComponent (DONE)', () => {
                 getAndExpectDebugElementByCss(tableBodyDes[0], 'tr', 3, 3);
             });
 
-            it('... should contain two columns (td) per table row (tr)', () => {
+            it('... should contain two columns (one th, one td) per table row (tr)', () => {
                 const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
 
-                getAndExpectDebugElementByCss(rowDes[0], 'td', 2, 2);
-                getAndExpectDebugElementByCss(rowDes[1], 'td', 2, 2);
-                getAndExpectDebugElementByCss(rowDes[2], 'td', 2, 2);
+                getAndExpectDebugElementByCss(rowDes[0], 'th', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[0], 'td', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[1], 'th', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[1], 'td', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[2], 'th', 1, 1);
+                getAndExpectDebugElementByCss(rowDes[2], 'td', 1, 1);
             });
 
-            it('... should contain siglum link in first table column', () => {
+            it('... should contain siglum link in header column (th)', () => {
                 const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
 
-                // Get columns
-                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'td', 2, 2);
-                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'td', 2, 2);
-                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'td', 2, 2);
+                // Get th columns
+                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'th', 1, 1);
+                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'th', 1, 1);
+                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'th', 1, 1);
 
-                // Get anchors in first column
+                // Get anchors in th column
                 const anchorDes0 = getAndExpectDebugElementByCss(columnDes0[0], 'a', 1, 1);
                 const anchorDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'a', 1, 1);
                 const anchorDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'a', 1, 1);
@@ -157,18 +158,18 @@ describe('SourceListComponent (DONE)', () => {
                 );
             });
 
-            it('... should contain source type and source location in second table column', () => {
+            it('... should contain source type and source location in second table column (td)', () => {
                 const rowDes = getAndExpectDebugElementByCss(compDe, 'table > tbody > tr', 3, 3);
 
-                // Get columns
-                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'td', 2, 2);
-                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'td', 2, 2);
-                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'td', 2, 2);
+                // Get td columns
+                const columnDes0 = getAndExpectDebugElementByCss(rowDes[0], 'td', 1, 1);
+                const columnDes1 = getAndExpectDebugElementByCss(rowDes[1], 'td', 1, 1);
+                const columnDes2 = getAndExpectDebugElementByCss(rowDes[2], 'td', 1, 1);
 
-                // Get spans in second column
-                const spanDes0 = getAndExpectDebugElementByCss(columnDes0[1], 'span', 2, 2);
-                const spanDes1 = getAndExpectDebugElementByCss(columnDes1[1], 'span', 2, 2);
-                const spanDes2 = getAndExpectDebugElementByCss(columnDes2[1], 'span', 2, 2);
+                // Get spans in td column
+                const spanDes0 = getAndExpectDebugElementByCss(columnDes0[0], 'span', 2, 2);
+                const spanDes1 = getAndExpectDebugElementByCss(columnDes1[0], 'span', 2, 2);
+                const spanDes2 = getAndExpectDebugElementByCss(columnDes2[0], 'span', 2, 2);
 
                 const spanCmp00 = spanDes0[0].nativeElement;
                 const spanCmp01 = spanDes0[1].nativeElement;
@@ -214,7 +215,8 @@ describe('SourceListComponent (DONE)', () => {
 
         describe('#openModal', () => {
             it('... should trigger on click', fakeAsync(() => {
-                const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > td > a', 3, 3);
+                // Get anhors in th column
+                const anchorDes = getAndExpectDebugElementByCss(compDe, 'table tr > th > a', 3, 3);
 
                 // Everything but first anchor uses modal
                 // Click on second anchor

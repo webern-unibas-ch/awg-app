@@ -110,6 +110,13 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     constructor(private fb: FormBuilder, private router: Router, private streamerService: DataStreamerService) {}
 
     /**
+     * Getter for the current index position of the form group.
+     */
+    get resourceInfoIndex(): number {
+        return this.resourceInfoFormGroup.get('resourceInfoIndex').value;
+    }
+
+    /**
      * Angular life cycle hook: ngOnInit.
      *
      * It calls the containing methods
@@ -159,13 +166,6 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
                     console.error('RESOURCE-INFO: Got no sideInfoData from Subscription!', error as any);
                 }
             );
-    }
-
-    /**
-     * Getter for the current index position of the form group.
-     */
-    get resourceInfoIndex(): number {
-        return this.resourceInfoFormGroup.get('resourceInfoIndex').value;
     }
 
     /**
@@ -286,7 +286,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * @returns {void} Sets the resourceInfoData.resources.
      */
     private _buildForm(index: number, resultSize: number): void {
-        const regexPattern = /^[1-9]+\d*$/;
+        const regexPattern = /^[1-9]\d{0,9}$/; // Match any up-to 10-digit integer greater 0
 
         this.resourceInfoFormGroup = this.fb.group({
             resourceInfoIndex: [

@@ -2,13 +2,15 @@ name: CI Workflow
 
 on:
     push:
-        branches:
-            - '**'    # trigger on all branches
+        # trigger on all branches except for dependabot-triggered push events
+        branches-ignore: [ dependabot/** ]
         tags:
             - 'v*'    # trigger on all tags
         paths-ignore:
             - '**.md' # ignore changes in markdown files
     pull_request:
+        branches: [ develop ]
+        types: [ opened, synchronize, reopened ]
 
 jobs:
     test:
@@ -17,14 +19,16 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [12, 14.16, 16]
+                node-version: [12, 14.17, 16]
 
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
+              with:
+                  fetch-depth: 0  # Get all history and branches
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@v2.4.0
+              uses: actions/setup-node@v2.4.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
@@ -38,11 +42,18 @@ jobs:
                   yarn run test:ci
 
             - name: Upload code coverage
-              if: matrix.node-version == 14.16 # upload coverage report for current node version only
-              uses: codecov/codecov-action@v2.0.3
+              if: matrix.node-version == 14.17 # upload coverage report for current node version only
+              uses: codecov/codecov-action@v2.1.0
               with:
                   flags: unittests
                   env_vars: ${{ matrix.os }}, ${{ matrix.node-version }}
+
+            - name: Perform SonarCloud Analysis
+              if: matrix.node-version == 14.17 # upload coverage report for current node version only
+              uses: SonarSource/sonarcloud-github-action@v1.6
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
+                  SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
             - name: Test build for GH Pages (Node < v16)
               if: matrix.node-version != 16
@@ -67,14 +78,14 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [ 14.16 ]
+                node-version: [ 14.17 ]
 
         steps:
             - name: Checkout repo
               uses: actions/checkout@v2
 
             - name: Set up node ${{ matrix.node-version}}
-              uses: actions/setup-node@v2.4.0
+              uses: actions/setup-node@v2.4.1
               with:
                   node-version: ${{ matrix.node-version }}
                   cache: 'yarn'
@@ -104,23 +115,23 @@ jobs:
         strategy:
             matrix:
                 os: [ ubuntu-latest ]
-                node-version: [ 14.16 ]
+                node-version: [ 14.17 ]
 
         steps:
-            -   name: Get tag version
-                id: get_version
-                run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
+            - name: Get tag version
+              id: get_version
+              run: echo ::set-output name=VERSION::${GITHUB_REF#refs/tags/}
 
-            -   name: Create Release
-                id: create_release
-                if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
-                uses: softprops/action-gh-release@v1
-                env:
-                    GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-                    TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}
-                with:
-                    name: Release ${{ env.TAG_VERSION }}
-                    body: "A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n
+            - name: Create Release
+              id: create_release
+              if: ${{ success() && startsWith(github.ref, 'refs/tags/') }}
+              uses: softprops/action-gh-release@v1
+              env:
+                  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+                  TAG_VERSION: ${{ steps.get_version.outputs.VERSION }}
+              with:
+                  name: Release ${{ env.TAG_VERSION }}
+                  body: "A prototype web application for the online edition of the [Anton Webern Gesamtausgabe](https://www.anton-webern.ch), located at the Musicological Seminar of the University of Basel. It is written in [Angular](https://angular.io/) and runs on [edition.anton-webern.ch](https://edition.anton-webern.ch).\n\n
                     Changes since last release: https://github.com/${{ github.repository }}/blob/${{ env.TAG_VERSION }}/CHANGELOG.md"
-                    draft: false
-                    prerelease: false
+                  draft: false
+                  prerelease: false

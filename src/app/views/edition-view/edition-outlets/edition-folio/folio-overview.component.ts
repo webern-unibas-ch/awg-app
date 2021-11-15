@@ -116,20 +116,6 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
     ref: FolioOverviewComponent;
 
     /**
-     * Getter for folio format settings.
-     */
-    get folioSettings() {
-        return this._folioSettings;
-    }
-
-    /**
-     * Setter for folio format settings.
-     */
-    set folioSettings(settings: FolioSettings) {
-        this._folioSettings = settings;
-    }
-
-    /**
      * Private variable: _folioSettings.
      *
      * It keeps the format settings for the folio.
@@ -154,6 +140,20 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      */
     constructor(private folioService: FolioService) {
         this.ref = this;
+    }
+
+    /**
+     * Getter for folio format settings.
+     */
+    get folioSettings() {
+        return this._folioSettings;
+    }
+
+    /**
+     * Setter for folio format settings.
+     */
+    set folioSettings(settings: FolioSettings) {
+        this._folioSettings = settings;
     }
 
     /**
@@ -212,7 +212,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
      * @returns {void} Sets the vbArray and folioSvgDataArray variable.
      */
     prepareFolioSvgOutput(): void {
-        this.selectedConvolute.folios.map((folio: Folio, folioIndex: number) => {
+        this.selectedConvolute.folios.forEach((folio: Folio, folioIndex: number) => {
             // Update folio settings
             this.folioSettings = {
                 factor: this.folioSettings.factor,
@@ -244,7 +244,7 @@ export class FolioOverviewComponent implements OnChanges, AfterViewChecked {
         this.canvasArray = [];
 
         /* Apply data from folioSvgDataArray to render the svg image with snapsvg */
-        this.folioSvgDataArray.map((folioSvg: FolioSvgData, folioIndex: number) => {
+        this.folioSvgDataArray.forEach((folioSvg: FolioSvgData, folioIndex: number) => {
             // Init canvas
             const snapId: string = '#folio-' + folioSvg.sheet.folioId;
             const snapCanvas: any = Snap(snapId);

@@ -1,8 +1,9 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, DebugElement, Input } from '@angular/core';
+import { Component, DebugElement, EventEmitter, Input, Output } from '@angular/core';
 
 import { Observable, of as observableOf } from 'rxjs';
+import Spy = jasmine.Spy;
 
 import { SearchResponseJson, SubjectItemJson } from '@awg-shared/api-objects';
 import { BibliographyService } from '@awg-views/data-view/services';
@@ -17,34 +18,27 @@ class BibliographySearchStubComponent {}
 class BibliographyListStubComponent {
     @Input()
     bibList: SubjectItemJson[];
-
-    // TODO: handle output
+    @Output()
+    selectItemRequest: EventEmitter<SubjectItemJson> = new EventEmitter();
 }
 
 describe('BibliographyComponent', () => {
     let component: BibliographyComponent;
     let fixture: ComponentFixture<BibliographyComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
-    let getBibliographyListSpy: Observable<SearchResponseJson>;
+    let getBibliographyListSpy: Spy;
+    let mockBibliographyService: Partial<BibliographyService>;
+    let bibliographyService: Partial<BibliographyService>;
+
     let expectedSearchResponseData: SearchResponseJson;
 
     beforeEach(
         waitForAsync(() => {
-            // Create a fake bibliography service object with a `getBibliographyList()` spy
-            const mockBibliographyService = jasmine.createSpyObj('BibliographyService', ['getBibliographyList']);
-            // Make the spies return a synchronous Observable with the test data
-            expectedSearchResponseData = {
-                nhits: undefined,
-                paging: undefined,
-                subjects: [],
-                // eslint-disable-next-line @typescript-eslint/naming-convention
-                thumb_max: undefined,
-                status: undefined,
-                userdata: undefined,
+            // Mock services
+            mockBibliographyService = {
+                getBibliographyList: (): Observable<SearchResponseJson> => observableOf(),
             };
-            getBibliographyListSpy = mockBibliographyService.getBibliographyList.and.returnValue(observableOf()); // TODO: add real test data (SearchResponseJson)
 
             TestBed.configureTestingModule({
                 declarations: [BibliographyComponent, BibliographySearchStubComponent, BibliographyListStubComponent],
@@ -57,12 +51,33 @@ describe('BibliographyComponent', () => {
         fixture = TestBed.createComponent(BibliographyComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
-        fixture.detectChanges();
+        // Inject services from root
+        bibliographyService = TestBed.inject(BibliographyService);
+
+        // Test data
+        // Make the spies return a synchronous Observable with the test data
+        expectedSearchResponseData = {
+            nhits: undefined,
+            paging: undefined,
+            subjects: [],
+            // eslint-disable-next-line @typescript-eslint/naming-convention
+            thumb_max: undefined,
+            status: undefined,
+            userdata: undefined,
+        };
+
+        // Spies on service functions
+        getBibliographyListSpy = spyOn(bibliographyService, 'getBibliographyList').and.returnValue(
+            observableOf(expectedSearchResponseData)
+        );
     });
 
     it('should create', () => {
         expect(component).toBeTruthy();
+    });
+
+    it('injected bibliography service should use provided mockValue', () => {
+        expect(bibliographyService === mockBibliographyService).toBe(true);
     });
 });

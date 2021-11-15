@@ -11,8 +11,7 @@
         [sourceEvaluationListData]="editionReportData[2]"
         (navigateToReportFragmentRequest)="onReportFragmentNavigate($event)"
         (openModalRequest)="modal.open($event)"
-        (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-    >
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
     </awg-sources>
 
     <!-- textcritics -->
@@ -20,7 +19,6 @@
         *ngIf="editionReportData$ | async as editionReportData"
         [textcriticsData]="editionReportData[3]"
         (openModalRequest)="modal.open($event)"
-        (selectSvgSheetRequest)="onSvgSheetSelect($event)"
-    >
+        (selectSvgSheetRequest)="onSvgSheetSelect($event)">
     </awg-textcritics>
 </div>

@@ -1,5 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { DebugElement } from '@angular/core';
+import { DOCUMENT } from '@angular/common';
 import Spy = jasmine.Spy;
 
 import { clickAndAwaitChanges } from '@testing/click-helper';
@@ -15,7 +16,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
     let component: SourceDescriptionComponent;
     let fixture: ComponentFixture<SourceDescriptionComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
+    let mockDocument: Document;
 
     let expectedSourceDescriptionListData: SourceDescriptionList;
     let expectedSvgSheet: EditionSvgSheet;
@@ -39,7 +41,6 @@ describe('SourceDescriptionComponent (DONE)', () => {
         fixture = TestBed.createComponent(SourceDescriptionComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedSvgSheet = {
@@ -74,6 +75,8 @@ describe('SourceDescriptionComponent (DONE)', () => {
                 },
             ],
         };
+
+        mockDocument = TestBed.inject(DOCUMENT);
 
         // Spies on component functions
         // `.and.callThrough` will track the spy down the nested describes, see
@@ -175,22 +178,23 @@ describe('SourceDescriptionComponent (DONE)', () => {
                     `should be ${expectedSourceDescriptionListData.sources[1].siglum}`
                 );
 
-                const strippedDescription1 = expectedSourceDescriptionListData.sources[1].description[0].replace(
-                    /<[^>]+>/g,
-                    ''
-                );
+                // Process HTML expression of description
+                const htmlDescription = mockDocument.createElement('p');
+                htmlDescription.innerHTML = expectedSourceDescriptionListData.sources[1].description[0];
+
                 expect(pCmp1.textContent).toBeDefined('should be defined');
                 expect(pCmp1.textContent.trim()).toBe(
-                    strippedDescription1.trim(),
-                    `should be ${strippedDescription1.trim()}`
+                    htmlDescription.textContent.trim(),
+                    `should be ${htmlDescription.textContent.trim()}`
                 );
 
-                const strippedDescription2 = expectedSourceDescriptionListData.sources[1].description[1].replace(
-                    /<[^>]+>/g,
-                    ''
-                );
+                htmlDescription.innerHTML = expectedSourceDescriptionListData.sources[1].description[1];
+
                 expect(pCmp2.textContent).toBeDefined('should be defined');
-                expect(pCmp2.textContent.trim()).toBe(strippedDescription2, `should be ${strippedDescription2.trim()}`);
+                expect(pCmp2.textContent.trim()).toBe(
+                    htmlDescription.textContent.trim(),
+                    `should be ${htmlDescription.textContent.trim()}`
+                );
             });
         });
 

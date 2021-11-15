@@ -21,7 +21,7 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
     let component: RouterLinkButtonGroupComponent;
     let fixture: ComponentFixture<RouterLinkButtonGroupComponent>;
     let compDe: DebugElement;
-    let compEl: any;
+
     let linkDes: DebugElement[];
     let routerLinks;
 
@@ -43,7 +43,6 @@ describe('RouterLinkButtonGroupComponent (DONE)', () => {
         fixture = TestBed.createComponent(RouterLinkButtonGroupComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Test data
         expectedRouterLinkButtons = [

@@ -12,12 +12,10 @@ describe('OpenStreetMapComponent (DONE)', () => {
     let component: OpenStreetMapComponent;
     let fixture: ComponentFixture<OpenStreetMapComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let domSanitizer: DomSanitizer;
 
     let expectedUnsafeOsmEmbedUrl: string;
-    let expectedUnsafeOsmLinkUrl: string;
     let expectedOsmEmbedUrl: SafeResourceUrl;
     let expectedOsmLinkUrl: string;
     let expectedOsmLinkLabel: string;
@@ -36,7 +34,6 @@ describe('OpenStreetMapComponent (DONE)', () => {
         fixture = TestBed.createComponent(OpenStreetMapComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         domSanitizer = TestBed.inject(DomSanitizer);
 
@@ -50,11 +47,10 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
         // Unsafe link values for open streets map
         expectedUnsafeOsmEmbedUrl = AppConfig.UNSAFE_OSM_EMBED_URL;
-        expectedUnsafeOsmLinkUrl = AppConfig.UNSAFE_OSM_LINK_URL;
+        expectedOsmLinkUrl = AppConfig.OSM_LINK_URL;
 
-        // Bypass the unsafe values
+        // Trust the unsafe values
         expectedOsmEmbedUrl = domSanitizer.bypassSecurityTrustResourceUrl(expectedUnsafeOsmEmbedUrl);
-        expectedOsmLinkUrl = domSanitizer.sanitize(SecurityContext.URL, expectedUnsafeOsmLinkUrl);
     });
 
     afterAll(() => {
@@ -144,10 +140,9 @@ describe('OpenStreetMapComponent (DONE)', () => {
 
                 // Sanitize the bypassed value
                 const sanitizedLinkUrl = expectedOsmLinkUrl;
-                // Check for the href attribute to contain the sanitized SafeResourceUrl
+                // Check for the href attribute to contain the link url
                 expect(linkEl.href).toBeDefined();
-                expect(linkEl.href).toBe(sanitizedLinkUrl, `should be ${sanitizedLinkUrl}`);
-                expect(linkEl.href).toBe(expectedUnsafeOsmLinkUrl, `should be ${expectedUnsafeOsmLinkUrl}`);
+                expect(linkEl.href).toBe(expectedOsmLinkUrl, `should be ${expectedOsmLinkUrl}`);
             });
         });
     });

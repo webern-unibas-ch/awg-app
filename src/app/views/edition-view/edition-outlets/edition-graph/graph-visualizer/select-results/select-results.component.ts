@@ -15,7 +15,7 @@ import { SelectResponse } from '../models';
     styleUrls: ['./select-results.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SelectResultsComponent implements OnInit {
+export class SelectResultsComponent {
     /**
      * Input variable: queryResult$.
      *
@@ -39,14 +39,6 @@ export class SelectResultsComponent implements OnInit {
      */
     @Output()
     clickedTableRequest: EventEmitter<string> = new EventEmitter();
-
-    /**
-     * Angular life cycle hook: ngOnInit.
-     *
-     * It calls the containing methods
-     * when initializing the component.
-     */
-    ngOnInit(): void {}
 
     /**
      * Public method: isNotEmpty.

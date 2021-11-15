@@ -1,6 +1,6 @@
 import { ComponentFixture, fakeAsync, TestBed, waitForAsync } from '@angular/core/testing';
 import { Component, DebugElement } from '@angular/core';
-import { FormBuilder, ReactiveFormsModule } from '@angular/forms';
+import { AbstractControl, FormBuilder, ReactiveFormsModule } from '@angular/forms';
 import { Router } from '@angular/router';
 
 import { FontAwesomeTestingModule } from '@fortawesome/angular-fontawesome/testing';
@@ -23,6 +23,12 @@ import { SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ResourceInfoComponent } from './resource-info.component';
 
+// Helper function
+function getErrors(resourceInfoIndex: AbstractControl): {} {
+    return resourceInfoIndex.errors || {};
+}
+
+// Mock components
 @Component({ selector: 'awg-test', template: '' })
 class SearchPanelStubComponent {}
 
@@ -30,7 +36,6 @@ describe('ResourceInfoComponent (DONE)', () => {
     let component: ResourceInfoComponent;
     let fixture: ComponentFixture<ResourceInfoComponent>;
     let compDe: DebugElement;
-    let compEl: any;
 
     let mockRouter: Partial<Router>;
     let mockDataStreamerService: Partial<DataStreamerService>;
@@ -85,7 +90,6 @@ describe('ResourceInfoComponent (DONE)', () => {
         fixture = TestBed.createComponent(ResourceInfoComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
-        compEl = compDe.nativeElement;
 
         // Inject service from root
         dataStreamerService = TestBed.inject(DataStreamerService);
@@ -325,8 +329,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedPrevious = subjects[i - 1];
                 const expectedNext = subjects[i + 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: expectedResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -352,8 +355,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedCurrent = subjects[i];
                 const expectedNext = subjects[i + 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -384,8 +386,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const expectedCurrent = subjects[i];
                 const expectedPrevious = subjects[i - 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -415,8 +416,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const i = expectedGoToIndex - 1;
                 const expectedCurrent = subjects[i];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: new ResourceInfoResource(expectedCurrent, i),
@@ -453,8 +453,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                 const i = expectedGoToIndex - 1;
                 const expectedNext = subjects[i + 1];
 
-                let expectedResourceInfoData: ResourceInfo = new ResourceInfo();
-                expectedResourceInfoData = {
+                const expectedResourceInfoData: ResourceInfo = {
                     searchResults: otherResponseClone,
                     resources: {
                         current: undefined,
@@ -523,238 +522,270 @@ describe('ResourceInfoComponent (DONE)', () => {
             });
 
             it('... should have initiated resourceInfoFormGroup with empty index if none is given', () => {
-                (component as any)._buildForm(undefined, expectedResultSize);
+                const expectedEmptyIndex = '';
 
                 // Apply changes
+                (component as any)._buildForm(undefined, expectedResultSize);
                 fixture.detectChanges();
 
                 expect(component.resourceInfoFormGroup).toBeTruthy();
                 expect(component.resourceInfoFormGroup.controls['resourceInfoIndex']).toBeTruthy();
-
-                const expectedEmptyIndex = '';
-
                 expect(component.resourceInfoFormGroup.controls['resourceInfoIndex'].value).toEqual(expectedEmptyIndex);
             });
 
             describe('Validators', () => {
-                it('... should complain if control has a non-empty value (Validators.required)', () => {
-                    let errors = {};
-                    const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
+                let errors;
+                let resourceInfoIndex;
 
-                    // Empty string
-                    resourceInfoIndex.setValue('');
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['required']).toBeTruthy();
-
-                    // Empty array
-                    resourceInfoIndex.setValue([]);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['required']).toBeTruthy();
-
-                    // Null
-                    resourceInfoIndex.setValue(null);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['required']).toBeTruthy();
-
-                    // Undefined
-                    resourceInfoIndex.setValue(undefined);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['required']).toBeTruthy();
+                beforeEach(() => {
+                    errors = {};
+                    resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
                 });
 
-                it("... should complain if index is not a number (Validators.pattern('^[1-9]+[0-9]*$'))", () => {
-                    let errors = {};
-                    const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
-                    const expectedPattern = '/^[1-9]+\\d*$/';
+                describe('... should complain if control has a non-empty value (Validators.required), namely...', () => {
+                    it('empty string', () => {
+                        // Empty string
+                        resourceInfoIndex.setValue('');
+                        errors = getErrors(resourceInfoIndex);
 
-                    // NaN
-                    resourceInfoIndex.setValue(NaN);
-                    errors = resourceInfoIndex.errors || {};
+                        expect(errors['required']).toBeTruthy();
+                    });
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: NaN },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: NaN }`
-                    );
+                    it('empty array', () => {
+                        resourceInfoIndex.setValue([]);
+                        errors = getErrors(resourceInfoIndex);
 
-                    // String
-                    resourceInfoIndex.setValue('should error');
-                    errors = resourceInfoIndex.errors || {};
+                        expect(errors['required']).toBeTruthy();
+                    });
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: 'should error' },
-                        `should be { requiredPattern:  ${expectedPattern}, actualValue: \'should error\'}`
-                    );
+                    it('null', () => {
+                        resourceInfoIndex.setValue(null);
+                        errors = getErrors(resourceInfoIndex);
 
-                    // Array
-                    resourceInfoIndex.setValue([1, 2, 3]);
-                    errors = resourceInfoIndex.errors || {};
+                        expect(errors['required']).toBeTruthy();
+                    });
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: [1, 2, 3] },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: [1, 2, 3]}`
-                    );
+                    it('undefined', () => {
+                        resourceInfoIndex.setValue(undefined);
+                        errors = getErrors(resourceInfoIndex);
 
-                    // Empty object
-                    resourceInfoIndex.setValue({});
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: {} },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: {} }`
-                    );
-
-                    // Object
-                    resourceInfoIndex.setValue({ 1: 'should', 2: 'error' });
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: { 1: 'should', 2: 'error' } },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: { 1: 'should', 2: 'error' }}`
-                    );
+                        expect(errors['required']).toBeTruthy();
+                    });
                 });
 
-                it("... should only allow integers greater than 0 (Validators.pattern('[1-9]+[0-9]*'))", () => {
-                    let errors = {};
-                    const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
-                    const expectedPattern = '/^[1-9]+\\d*$/';
+                describe("... should complain if index is not a number (Validators.pattern('^[1-9]\\d{0,9}$')), namely...", () => {
+                    const expectedPattern = '/^[1-9]\\d{0,9}$/';
 
-                    // -1234567890
-                    resourceInfoIndex.setValue(-1234567890);
-                    errors = resourceInfoIndex.errors || {};
+                    it('NaN', () => {
+                        resourceInfoIndex.setValue(NaN);
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: -1234567890 },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: -1234567890 }`
-                    );
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: NaN },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: NaN }`
+                        );
+                    });
 
-                    // -1
-                    resourceInfoIndex.setValue(-1);
-                    errors = resourceInfoIndex.errors || {};
+                    it('string', () => {
+                        resourceInfoIndex.setValue('should error');
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: -1 },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: -1 }`
-                    );
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: 'should error' },
+                            `should be { requiredPattern:  ${expectedPattern}, actualValue: \'should error\'}`
+                        );
+                    });
 
-                    // 0
-                    resourceInfoIndex.setValue(0);
-                    errors = resourceInfoIndex.errors || {};
+                    it('array', () => {
+                        resourceInfoIndex.setValue([1, 2, 3]);
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: 0 },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: 0 }`
-                    );
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: [1, 2, 3] },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: [1, 2, 3]}`
+                        );
+                    });
 
-                    // 1.1
-                    resourceInfoIndex.setValue(1.1);
-                    errors = resourceInfoIndex.errors || {};
+                    it('empty object', () => {
+                        resourceInfoIndex.setValue({});
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: 1.1 },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: 1.1 }`
-                    );
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: {} },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: {} }`
+                        );
+                    });
 
-                    // 1234567890.0123456789
-                    resourceInfoIndex.setValue(1234567890.0123456789);
-                    errors = resourceInfoIndex.errors || {};
+                    it('object', () => {
+                        resourceInfoIndex.setValue({ 1: 'should', 2: 'error' });
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['pattern']).toBeTruthy();
-                    expect(errors['pattern']).toEqual(
-                        { requiredPattern: expectedPattern, actualValue: 1234567890.0123456789 },
-                        `should be { requiredPattern: ${expectedPattern}, actualValue: 1234567890.0123456789 }`
-                    );
-
-                    // 1.0 (Validator pattern allows decimal with .0; Input will not allow it)
-                    resourceInfoIndex.setValue(1.0);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['pattern']).toBeFalsy();
-
-                    // 1
-                    resourceInfoIndex.setValue(1);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['pattern']).toBeFalsy();
-
-                    // 1234567890.0 (Validator pattern allows decimal with .0; Input will not allow it)
-                    resourceInfoIndex.setValue(1234567890.0);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['pattern']).toBeFalsy();
-
-                    // 1234567890
-                    resourceInfoIndex.setValue(1234567890);
-                    errors = resourceInfoIndex.errors || {};
-
-                    expect(errors['pattern']).toBeFalsy();
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: { 1: 'should', 2: 'error' } },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: { 1: 'should', 2: 'error' }}`
+                        );
+                    });
                 });
 
-                it('... should only allow an index minimum greater than or equal to 1 (Validators.min(1))', () => {
-                    let errors = {};
-                    const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
+                describe("... should not allow anything else than 1-to-10-digit positive integers (Validators.pattern('^[1-9]\\d{0,9}$')), namely ...", () => {
+                    const expectedPattern = '/^[1-9]\\d{0,9}$/';
 
-                    // Value less than 0
-                    resourceInfoIndex.setValue(-1);
-                    errors = resourceInfoIndex.errors || {};
+                    it('no 10-digit negative integers (-1234567890)', () => {
+                        resourceInfoIndex.setValue(-1234567890);
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['min']).toBeTruthy();
-                    expect(errors['min']).toEqual({ min: 1, actual: -1 }, 'should be { min: 1, actual: -1 }');
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: -1234567890 },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: -1234567890 }`
+                        );
+                    });
 
-                    // Value 0
-                    resourceInfoIndex.setValue(0);
-                    errors = resourceInfoIndex.errors || {};
+                    it('no 1-digit negative integers (-1)', () => {
+                        resourceInfoIndex.setValue(-1);
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['min']).toBeTruthy();
-                    expect(errors['min']).toEqual({ min: 1, actual: 0 }, 'should be { min: 1, actual: 0}');
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: -1 },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: -1 }`
+                        );
+                    });
 
-                    // Value 1
-                    resourceInfoIndex.setValue(1);
-                    errors = resourceInfoIndex.errors || {};
+                    it('not 0', () => {
+                        resourceInfoIndex.setValue(0);
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['min']).toBeFalsy();
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: 0 },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: 0 }`
+                        );
+                    });
 
-                    // Value greater than 1
-                    resourceInfoIndex.setValue(3);
-                    errors = resourceInfoIndex.errors || {};
+                    it('no 11-digit positive integers (12345678901)', () => {
+                        resourceInfoIndex.setValue(12345678901);
+                        errors = getErrors(resourceInfoIndex);
 
-                    expect(errors['min']).toBeFalsy();
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: 12345678901 },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: 12345678901 }`
+                        );
+                    });
+
+                    it('no floating numbers (1.1)', () => {
+                        resourceInfoIndex.setValue(1.1);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: 1.1 },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: 1.1 }`
+                        );
+                    });
+
+                    it('no big floating numbers (1234567890.0123456789)', () => {
+                        resourceInfoIndex.setValue(1234567890.0123456789);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['pattern']).toBeTruthy();
+                        expect(errors['pattern']).toEqual(
+                            { requiredPattern: expectedPattern, actualValue: 1234567890.0123456789 },
+                            `should be { requiredPattern: ${expectedPattern}, actualValue: 1234567890.0123456789 }`
+                        );
+                    });
                 });
 
-                it('... should only allow an index maximum equal to `resultSize` (Validators.max(resultSize))', () => {
-                    let errors = {};
-                    const resourceInfoIndex = component.resourceInfoFormGroup.controls['resourceInfoIndex'];
+                describe("... should allow positive 1-to-10-digit integers (Validators.pattern('^[1-9]\\d{0,9}$')), namely ...", () => {
+                    it('one digit integer (1)', () => {
+                        resourceInfoIndex.setValue(1);
+                        errors = getErrors(resourceInfoIndex);
 
-                    // Value greater than resultSize
-                    resourceInfoIndex.setValue(expectedResultSize + 1);
-                    errors = resourceInfoIndex.errors || {};
+                        expect(errors['pattern']).toBeFalsy();
+                    });
 
-                    expect(errors['max']).toBeTruthy();
-                    expect(errors['max']).toEqual({ max: 5, actual: 6 }, 'should be { max: 5, actual: 6 }');
+                    it('10 digit integers (1234567890)', () => {
+                        resourceInfoIndex.setValue(1234567890);
+                        errors = getErrors(resourceInfoIndex);
 
-                    // Value equals resultSize
-                    resourceInfoIndex.setValue(expectedResultSize);
-                    errors = resourceInfoIndex.errors || {};
+                        expect(errors['pattern']).toBeFalsy();
+                    });
 
-                    expect(errors['max']).toBeFalsy();
+                    it('1.0 (Validator pattern allows decimal with .0; Input will not allow it)', () => {
+                        resourceInfoIndex.setValue(1.0);
+                        errors = getErrors(resourceInfoIndex);
 
-                    // Value less than resultSize
-                    resourceInfoIndex.setValue(expectedResultSize - 1);
-                    errors = resourceInfoIndex.errors || {};
+                        expect(errors['pattern']).toBeFalsy();
+                    });
 
-                    expect(errors['max']).toBeFalsy();
+                    it('big numbers with .0, e.g. 1234567890.0 (Validator pattern allows decimal with .0; Input will not allow it)', () => {
+                        resourceInfoIndex.setValue(1234567890.0);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['pattern']).toBeFalsy();
+                    });
+                });
+
+                describe('... should only allow an index minimum greater than or equal to 1 (Validators.min(1)), so that ...', () => {
+                    it('min error == TRUE for value less than 0', () => {
+                        resourceInfoIndex.setValue(-1);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['min']).toBeTruthy();
+                        expect(errors['min']).toEqual({ min: 1, actual: -1 }, 'should be { min: 1, actual: -1 }');
+                    });
+
+                    it('min error == TRUE for 0', () => {
+                        resourceInfoIndex.setValue(0);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['min']).toBeTruthy();
+                        expect(errors['min']).toEqual({ min: 1, actual: 0 }, 'should be { min: 1, actual: 0}');
+                    });
+
+                    it('min error == FALSE for 1', () => {
+                        resourceInfoIndex.setValue(1);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['min']).toBeFalsy();
+                    });
+
+                    it('min error == FALSE for value greater than 1', () => {
+                        resourceInfoIndex.setValue(3);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['min']).toBeFalsy();
+                    });
+                });
+
+                describe('... should only allow an index maximum equal to `resultSize` (Validators.max(resultSize)), so that ...', () => {
+                    it('max error == TRUE for value greater than resultSize', () => {
+                        resourceInfoIndex.setValue(expectedResultSize + 1);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['max']).toBeTruthy();
+                        expect(errors['max']).toEqual({ max: 5, actual: 6 }, 'should be { max: 5, actual: 6 }');
+                    });
+
+                    it('max error == FALSE for value equals resultSize', () => {
+                        resourceInfoIndex.setValue(expectedResultSize);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['max']).toBeFalsy();
+                    });
+
+                    it('max error == FALSE for value less than resultSize', () => {
+                        resourceInfoIndex.setValue(expectedResultSize - 1);
+                        errors = getErrors(resourceInfoIndex);
+
+                        expect(errors['max']).toBeFalsy();
+                    });
                 });
             });
         });
@@ -874,7 +905,6 @@ describe('ResourceInfoComponent (DONE)', () => {
                     1,
                     1
                 );
-                const buttonEl = buttonDes[0].nativeElement;
 
                 // Set input to another index then current.displayIndex (=3)
                 let chosenIndex = 1;
@@ -1361,7 +1391,7 @@ describe('ResourceInfoComponent (DONE)', () => {
                             );
                             const divDes = getAndExpectDebugElementByCss(formDes[0], 'div.input-group', 1, 1);
 
-                            const buttonDes = getAndExpectDebugElementByCss(
+                            getAndExpectDebugElementByCss(
                                 divDes[0],
                                 'div.input-group-prepend > button#awg-resource-info-input-group-text',
                                 1,
@@ -1382,7 +1412,6 @@ describe('ResourceInfoComponent (DONE)', () => {
                                 1,
                                 1
                             );
-                            const inputEl = inputDes[0].nativeElement;
 
                             // FormControlName='resourceInfoIndex'
                             expect(inputDes[0].attributes.formControlName).toBeTruthy();

@@ -1,8 +1,10 @@
 # Ignore miscellaneous folders
 .github/
 .idea/
+.husky/
 .vscode/
 .yarn/
-node_modules/
+coverage/
 dist/
+node_modules/
 tmp/

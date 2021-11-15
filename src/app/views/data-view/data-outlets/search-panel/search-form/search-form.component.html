@@ -17,8 +17,7 @@
                     aria-label="Search input"
                     aria-describedby="search-icon"
                     placeholder="{{ searchFormStrings.placeholder }}"
-                    required
-                />
+                    required />
             </div>
             <div *ngIf="searchValueControl.invalid && !searchValueControl.pristine" class="alert alert-danger">
                 <p *ngIf="searchValueControl.hasError('required') || searchValueControl.errors.minlength"></p>

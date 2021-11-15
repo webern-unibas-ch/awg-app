@@ -1,6 +1,6 @@
 /* eslint-disable @typescript-eslint/no-unused-vars */
 import { ComponentFixture, TestBed, waitForAsync } from '@angular/core/testing';
-import { Component, Input, NgModule } from '@angular/core';
+import { Component, EventEmitter, Input, NgModule, Output } from '@angular/core';
 
 import { NgbAccordionModule, NgbConfig } from '@ng-bootstrap/ng-bootstrap';
 
@@ -12,8 +12,10 @@ import { TextcriticsComponent } from './textcritics.component';
 class CriticsListStubComponent {
     @Input()
     textcriticsData: TextcriticsList;
-
-    // TODO: handle outputs
+    @Output()
+    openModalRequest: EventEmitter<string> = new EventEmitter();
+    @Output()
+    selectSvgSheetRequest: EventEmitter<string> = new EventEmitter();
 }
 
 describe('TextcriticsComponent', () => {
