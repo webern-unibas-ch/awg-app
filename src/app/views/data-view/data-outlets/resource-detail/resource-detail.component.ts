@@ -99,7 +99,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     ) {}
 
     /**
-     * Gets the httpGetUrl from the DataApiService.
+     * Gets the httpGetUrl from the {@link DataApiService}.
      *
      * @returns {string}
      */
@@ -108,7 +108,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Gets the loading status observable from the LoadingService.
+     * Gets the loading status observable from the {@link LoadingService}.
      *
      * @returns {Observable<boolean>}
      */
@@ -130,9 +130,8 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**
      * Public method: getResourceData.
      *
-     * It gets the resource id from the route params
-     * and fetches the corresponding resource data
-     * from the {@link DataApiService}.
+     * It gets the resource id from the route params and fetches
+     * the corresponding resource data from the {@link DataApiService}.
      *
      * @returns {void} Sets the resource data.
      */
@@ -237,8 +236,7 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     /**
      * Angular life cycle hook: ngOnDestroy.
      *
-     * It calls the containing methods
-     * when destroying the component.
+     * It calls the containing methods when destroying the component.
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions

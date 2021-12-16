@@ -1,7 +1,7 @@
 /**
- * Type for mocked postmessage events.
+ * Type for stored postmessage mock events.
  */
-type postMessageType = [{ gnd: string }, string];
+type storedPostMessageType = [{ gnd: string }, string | WindowPostMessageOptions | undefined];
 
 /**
  * The internal IMockWindow interface.
@@ -12,12 +12,15 @@ interface IMockWindow {
     /**
      * The postMessage function of the mocked window.
      */
-    postMessage: (value: { gnd: string }, messageTarget: string) => void;
+    postMessage: {
+        (message: any, targetOrigin: string, transfer?: Transferable[]): void;
+        (message: any, options?: WindowPostMessageOptions): void;
+    };
 
     /**
      * The get function of the mocked window.
      */
-    get: (index: number) => postMessageType;
+    get: (index: number) => storedPostMessageType;
 
     /**
      * The clear function of the mocked window.
@@ -30,7 +33,7 @@ interface IMockWindow {
  *
  * It keeps the postMessage events.
  */
-let windowStore: Array<postMessageType> = [];
+let windowStore: Array<storedPostMessageType> = [];
 
 /**
  * Test helper: mockWindow.
@@ -38,10 +41,10 @@ let windowStore: Array<postMessageType> = [];
  * It mocks the window object to catch postMessage events.
  */
 export const mockWindow: IMockWindow = {
-    postMessage: (value: { gnd: string }, messageTarget: string) => {
-        windowStore.push([value, messageTarget]);
+    postMessage: (message: { gnd: string }, targetOrigin: string | WindowPostMessageOptions) => {
+        windowStore.push([message, targetOrigin]);
     },
-    get: (index: number): postMessageType => windowStore[index],
+    get: (index: number): storedPostMessageType => windowStore[index],
     clear: () => {
         windowStore = [];
     },

@@ -74,87 +74,25 @@
         "update-appversion": "cross-var ./version.sh $npm_package_version $npm_package_homepage",
         "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\""
     },
-    "standard-version": {
-        "scripts": {
-            "postbump": "yarn update-appversion"
-        },
-        "types": [
-            {
-                "type": "feat",
-                "section": "Features"
-            },
-            {
-                "type": "fix",
-                "section": "Bug Fixes"
-            },
-            {
-                "type": "perf",
-                "section": "Performance Improvements"
-            },
-            {
-                "type": "revert",
-                "section": "Reverts"
-            },
-            {
-                "type": "test",
-                "section": "Tests"
-            },
-            {
-                "type": "docs",
-                "section": "Documentation"
-            },
-            {
-                "type": "build",
-                "section": "Build System"
-            },
-            {
-                "type": "ci",
-                "section": "Continuous Integration"
-            },
-            {
-                "type": "style",
-                "section": "Styles",
-                "hidden": true
-            },
-            {
-                "type": "chore",
-                "section": "Miscellaneous Chores",
-                "hidden": true
-            },
-            {
-                "type": "refactor",
-                "section": "Code Refactoring",
-                "hidden": true
-            }
-        ],
-        "skip": {
-            "tag": true
-        }
-    },
-    "lint-staged": {
-        "src/**/*.{ts,html}": [
-            "yarn lint-files:fix"
-        ]
-    },
     "dependencies": {
-        "@angular/animations": "~12.2.13",
-        "@angular/common": "~12.2.13",
-        "@angular/compiler": "~12.2.13",
-        "@angular/core": "~12.2.13",
-        "@angular/forms": "~12.2.13",
-        "@angular/localize": "~12.2.13",
-        "@angular/platform-browser": "~12.2.13",
-        "@angular/platform-browser-dynamic": "~12.2.13",
-        "@angular/platform-server": "~12.2.13",
-        "@angular/router": "~12.2.13",
-        "@ctrl/ngx-codemirror": "^5.1.0",
+        "@angular/animations": "~13.1.1",
+        "@angular/common": "~13.1.1",
+        "@angular/compiler": "~13.1.1",
+        "@angular/core": "~13.1.1",
+        "@angular/forms": "~13.1.1",
+        "@angular/localize": "~13.1.1",
+        "@angular/platform-browser": "~13.1.1",
+        "@angular/platform-browser-dynamic": "~13.1.1",
+        "@angular/platform-server": "~13.1.1",
+        "@angular/router": "~13.1.1",
+        "@ctrl/ngx-codemirror": "^5.1.1",
         "@fortawesome/angular-fontawesome": "^0.10.1",
         "@fortawesome/fontawesome-svg-core": "^1.2.36",
         "@fortawesome/free-solid-svg-icons": "^5.15.4",
         "@kolkov/ngx-gallery": "^1.2.3",
-        "@ng-bootstrap/ng-bootstrap": "^10.0.0",
-        "bootstrap": "^4.6.0",
-        "codemirror": "^5.63.3",
+        "@ng-bootstrap/ng-bootstrap": "^11.0.0",
+        "bootstrap": "^4.6.1",
+        "codemirror": "^5.64.0",
         "core-js": "^3.19.1",
         "d3-drag": "^3.0.0",
         "d3-force": "^3.0.0",
@@ -162,9 +100,9 @@
         "d3-zoom": "^3.0.0",
         "font-awesome": "^4.7.0",
         "json2typescript": "^1.4.1",
-        "n3": "^1.11.2",
+        "n3": "^1.12.2",
         "ngx-json-viewer": "^3.0.2",
-        "ngx-order-pipe": "^2.1.1",
+        "ngx-order-pipe": "^2.2.0",
         "rdfstore": "^0.9.17",
         "rxjs": "~6.6.7",
         "snapsvg": "^0.5.1",
@@ -172,45 +110,45 @@
         "zone.js": "~0.11.4"
     },
     "devDependencies": {
-        "@angular-devkit/build-angular": "~12.2.13",
-        "@angular-eslint/builder": "^12.6.1",
-        "@angular-eslint/eslint-plugin": "^12.6.1",
-        "@angular-eslint/eslint-plugin-template": "^12.6.1",
-        "@angular-eslint/schematics": "^12.6.1",
-        "@angular-eslint/template-parser": "^12.6.1",
-        "@angular/cli": "~12.2.13",
-        "@angular/compiler-cli": "~12.2.13",
+        "@angular-devkit/build-angular": "~13.1.2",
+        "@angular-eslint/builder": "^13.0.1",
+        "@angular-eslint/eslint-plugin": "^13.0.1",
+        "@angular-eslint/eslint-plugin-template": "^13.0.1",
+        "@angular-eslint/schematics": "^13.0.1",
+        "@angular-eslint/template-parser": "^13.0.1",
+        "@angular/cli": "~13.1.2",
+        "@angular/compiler-cli": "~13.1.1",
         "@commitlint/cli": "^15.0.0",
-        "@commitlint/config-angular": "^14.1.0",
-        "@compodoc/compodoc": "^1.1.15",
+        "@commitlint/config-angular": "^15.0.0",
+        "@compodoc/compodoc": "^1.1.16",
         "@types/d3": "^7.1.0",
         "@types/jasmine": "~3.10.2",
         "@types/node": "^15.14.9",
-        "@typescript-eslint/eslint-plugin": "^5.3.1",
-        "@typescript-eslint/parser": "^5.3.1",
-        "angular-cli-ghpages": "^1.0.0-rc.2",
+        "@typescript-eslint/eslint-plugin": "^5.7.0",
+        "@typescript-eslint/parser": "^5.7.0",
+        "angular-cli-ghpages": "^1.0.0",
         "conventional-recommended-bump": "^6.1.0",
         "cross-var": "^1.1.0",
-        "eslint": "^7.32.0",
+        "eslint": "^8.4.1",
         "eslint-config-prettier": "^8.3.0",
         "eslint-plugin-angular": "^4.1.0",
         "eslint-plugin-import": "^2.25.3",
-        "eslint-plugin-jsdoc": "^37.0.3",
+        "eslint-plugin-jsdoc": "^37.2.2",
         "eslint-plugin-prettier": "^4.0.0",
         "gzipper": "^6.0.0",
         "husky": "^7.0.4",
         "jasmine-core": "~3.10.1",
-        "karma": "~6.3.8",
+        "karma": "~6.3.9",
         "karma-chrome-launcher": "~3.1.0",
-        "karma-coverage": "^2.0.3",
+        "karma-coverage": "^2.1.0",
         "karma-jasmine": "~4.0.1",
         "karma-jasmine-html-reporter": "^1.7.0",
-        "lint-staged": "^12.0.2",
-        "prettier": "^2.4.1",
+        "lint-staged": "^12.1.2",
+        "prettier": "^2.5.1",
         "pretty-quick": "^3.1.2",
         "source-map-explorer": "^2.5.2",
         "standard-version": "^9.3.2",
-        "typescript": "~4.3.5",
+        "typescript": "~4.5.4",
         "webpack-bundle-analyzer": "^4.5.0"
     },
     "engines": {
