@@ -102,7 +102,7 @@
         "json2typescript": "^1.4.1",
         "n3": "^1.11.2",
         "ngx-json-viewer": "^3.0.2",
-        "ngx-order-pipe": "^2.1.1",
+        "ngx-order-pipe": "^2.2.0",
         "rdfstore": "^0.9.17",
         "rxjs": "~6.6.7",
         "snapsvg": "^0.5.1",

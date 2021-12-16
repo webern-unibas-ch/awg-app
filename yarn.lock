@@ -8817,10 +8817,10 @@ ngx-json-viewer@^3.0.2:
   dependencies:
     tslib "^2.0.0"
 
-ngx-order-pipe@^2.1.1:
-  version "2.1.1"
-  resolved "https://registry.yarnpkg.com/ngx-order-pipe/-/ngx-order-pipe-2.1.1.tgz#981b7ff2fac20bc88a1e9922527e2e61da0ff4f1"
-  integrity sha512-yBaG0uYWsXBlmAuCYvBedKxl3kRUSXNXsMrD0m2E4tBA8I9TJSomucp5SHFlyfMQK8V6pjRGdz17Sjb9YwLhSg==
+ngx-order-pipe@^2.2.0:
+  version "2.2.0"
+  resolved "https://registry.yarnpkg.com/ngx-order-pipe/-/ngx-order-pipe-2.2.0.tgz#14ab50dfe0a679e5216138ff9a0820a83173a4fe"
+  integrity sha512-fym4A3j0XMqETskCm0tHUHQWCgB1p1MrIstFA3jCClJqNU9KjtQh/AE4C7srUkz9U3HIBIAN9D3ty2L9l/jvmA==
   dependencies:
     tslib "^2.0.0"
 
