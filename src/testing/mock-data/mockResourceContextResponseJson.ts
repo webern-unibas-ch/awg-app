@@ -192,7 +192,7 @@ export const mockResourceContextResponseJson = {
             person_id: '32',
             restype_id: '125',
             handle_id: null,
-            restype_name: 'webern:supplement',
+            restype_name: 'webern-onto:supplement',
             restype_label: 'Supplement',
             restype_description: 'Supplement',
             restype_iconsrc:
