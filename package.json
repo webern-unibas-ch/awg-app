@@ -74,11 +74,6 @@
         "update-appversion": "cross-var ./version.sh $npm_package_version $npm_package_homepage",
         "deploy:ci": "ng deploy --no-build --message=\"Release $npm_package_name (v$npm_package_version) on gh-pages\""
     },
-    "lint-staged": {
-        "src/**/*.{ts,html}": [
-            "yarn lint-files:fix"
-        ]
-    },
     "dependencies": {
         "@angular/animations": "~12.2.13",
         "@angular/common": "~12.2.13",
