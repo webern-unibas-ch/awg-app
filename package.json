@@ -126,7 +126,7 @@
         "@types/node": "^15.14.9",
         "@typescript-eslint/eslint-plugin": "^5.7.0",
         "@typescript-eslint/parser": "^5.7.0",
-        "angular-cli-ghpages": "^1.0.0-rc.2",
+        "angular-cli-ghpages": "^1.0.0",
         "conventional-recommended-bump": "^6.1.0",
         "cross-var": "^1.1.0",
         "eslint": "^8.4.1",
