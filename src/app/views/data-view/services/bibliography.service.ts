@@ -101,7 +101,7 @@ export class BibliographyService extends ApiService {
      *
      * @returns {Observable<ResourceFullResponseJson>} The observable with the ResourceFullResponseJson data.
      *
-     * @todo Replace with DataApiService#getResourceDetailData.
+     * @todo Replace with {@link DataApiService#getResourceDetailData}.
      */
     getBibliographyItemDetail(resourceId: string): Observable<ResourceFullResponseJson> {
         // Set path and params of query
