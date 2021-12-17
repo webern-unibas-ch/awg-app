@@ -976,28 +976,72 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      *
      * It updates the positions of the links
      * on a force simulation's tick.
+     * Cf. https://stackoverflow.com/questions/16358905/d3-force-layout-graph-self-linking-node
      *
      * @param {D3Selection} links The given links selection.
      *
      * @returns {void} Updates the position.
      */
     private _updateLinkPositions(links: D3Selection): void {
-        links.attr(
-            'd',
-            (d: D3SimulationNodeTriple) =>
+        links.attr('d', (d: D3SimulationNodeTriple) => {
+            const x1 = d.nodeSubject.x;
+            const y1 = d.nodeSubject.y;
+            let x2 = d.nodeObject.x;
+            let y2 = d.nodeObject.y;
+            const dx = x2 - x1;
+            const dy = y2 - y1;
+            const dr = 0;
+
+            // Defaults for normal edge.
+            let drx = dr;
+            let dry = dr;
+            let xRotation = 0; // Degrees
+            let largeArc = 0; // 1 or 0
+            const sweep = 1; // 1 or 0
+
+            // Self edge.
+            if (x1 === x2 && y1 === y2) {
+                // Fiddle with this angle to get loop oriented.
+                xRotation = -45;
+
+                // Needs to be 1.
+                largeArc = 1;
+
+                // Change sweep to change orientation of loop
+                // Sweep = 0;
+
+                // Make drx and dry different to get an ellipse instead of a circle.
+                drx = 30;
+                dry = 20;
+
+                /* For whatever reason the arc collapses to a point if the beginning
+                 * and ending points of the arc are the same, so kludge it.
+                 */
+                x2 = x2 + 1;
+                y2 = y2 + 1;
+            }
+
+            return (
                 'M' +
-                d.nodeSubject.x +
+                x1 +
                 ',' +
-                d.nodeSubject.y +
-                'S' +
-                d.nodePredicate.x +
+                y1 +
+                'A' +
+                drx +
                 ',' +
-                d.nodePredicate.y +
+                dry +
                 ' ' +
-                d.nodeObject.x +
+                xRotation +
                 ',' +
-                d.nodeObject.y
-        );
+                largeArc +
+                ',' +
+                sweep +
+                ' ' +
+                x2 +
+                ',' +
+                y2
+            );
+        });
     }
 
     /**
@@ -1012,7 +1056,18 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
      */
     private _updateLinkTextPositions(linkTexts: D3Selection): void {
         linkTexts
-            .attr('x', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3)
-            .attr('y', (d: D3SimulationNodeTriple) => 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3);
+            .attr('x', (d: D3SimulationNodeTriple) => {
+                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
+                    return 20 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
+                }
+
+                return 10 + (d.nodeSubject.x + d.nodePredicate.x + d.nodeObject.x) / 3;
+            })
+            .attr('y', (d: D3SimulationNodeTriple) => {
+                if (d.nodeSubject.x === d.nodeObject.x && d.nodeSubject.y === d.nodeObject.y) {
+                    return -40 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
+                }
+                return 4 + (d.nodeSubject.y + d.nodePredicate.y + d.nodeObject.y) / 3;
+            });
     }
 }
