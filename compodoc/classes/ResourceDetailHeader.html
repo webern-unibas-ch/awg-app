@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -547,7 +547,7 @@ export class ResourceDetailHeader {
                 // CHRONOLOGIE
                 case &#x27;28&#x27;:
                     // Richtext value has already been converted in detail using plugin &quot;htmlConverter&quot;
-                    let htmlstr &#x3D; props[&#x27;webern:event_rt&#x27;].toHtml[0];
+                    let htmlstr &#x3D; props[&#x27;webern-onto:event&#x27;].toHtml[0];
 
                     // Strip &amp; replace &lt;p&gt;-tags for displaying title
                     htmlstr &#x3D; ResourceDetailHeader._replaceParagraphTags(htmlstr);
@@ -567,7 +567,7 @@ export class ResourceDetailHeader {
 
                 // MUSIKSTÜCK (Moldenhauer-Nummer)
                 case &#x27;36&#x27;:
-                    this.title &#x3D; &#x27;[M &#x27; + props[&#x27;webern:mnr&#x27;].toHtml[0] + &#x27;] &#x27; + props[&#x27;dc:title&#x27;].toHtml[0];
+                    this.title &#x3D; &#x27;[M &#x27; + props[&#x27;webern-onto:mnr&#x27;].toHtml[0] + &#x27;] &#x27; + props[&#x27;dc:title&#x27;].toHtml[0];
                     break;
 
                 // WERK
@@ -584,7 +584,7 @@ export class ResourceDetailHeader {
 
                 // BIBLIOGRAPHIE
                 case &#x27;126&#x27;:
-                    this.title &#x3D; props[&#x27;webern:bibl_title_short&#x27;].toHtml[0];
+                    this.title &#x3D; props[&#x27;webern-onto:bibl_title_short&#x27;].toHtml[0];
                     break;
 
                 // DEFAULT
@@ -645,6 +645,15 @@ export class ResourceDetailHeader {
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;

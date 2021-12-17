@@ -9,7 +9,7 @@
 
         <link rel="icon" type="image/x-icon" href="../images/favicon.ico">
 	   <link rel="stylesheet" href="../styles/style.css">
-        <link rel="stylesheet" href="../styles/dark.css" media="(prefers-color-scheme: dark)">
+        <link rel="stylesheet" href="../styles/dark.css">
         <link rel="stylesheet" href="../styles/Readthedocs.css">
     </head>
     <body>
@@ -380,7 +380,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;0.7.17&#x27;</code>
+                        <i>Default value : </i><code>&#x27;0.7.18&#x27;</code>
                     </td>
                 </tr>
 
@@ -412,7 +412,7 @@
                 </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Default value : </i><code>&#x27;15. November 2021&#x27;</code>
+                        <i>Default value : </i><code>&#x27;17. Dezember 2021&#x27;</code>
                     </td>
                 </tr>
 
@@ -1006,9 +1006,10 @@
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-    LINK_DISTANCE: 50,
-    COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -3,
+    LINK_DISTANCE: 10, // Default 30
+    COLLISION_STRENGTH: 1, // 0–1; Default: 0.7
+    COLLISION_RADIUS: 30,
+    CHARGE_STRENGTH: -10, //  Default -30
 }</code>
                     </td>
                 </tr>
@@ -1757,7 +1758,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
         person_id: &#x27;32&#x27;,
         restype_id: &#x27;125&#x27;,
         handle_id: null,
-        restype_name: &#x27;webern:supplement&#x27;,
+        restype_name: &#x27;webern-onto:supplement&#x27;,
         restype_label: &#x27;Supplement&#x27;,
         restype_description: &#x27;Supplement&#x27;,
         restype_iconsrc:
@@ -1994,7 +1995,7 @@ update the loading status using the <a href="../interceptors/LoadingInterceptor.
             person_id: &#x27;32&#x27;,
             restype_id: &#x27;125&#x27;,
             handle_id: null,
-            restype_name: &#x27;webern:supplement&#x27;,
+            restype_name: &#x27;webern-onto:supplement&#x27;,
             restype_label: &#x27;Supplement&#x27;,
             restype_description: &#x27;Supplement&#x27;,
             restype_iconsrc:
@@ -2219,7 +2220,7 @@ response from the conversion service.</p>
         person_id: &#x27;30&#x27;,
         restype_id: &#x27;36&#x27;,
         handle_id: null,
-        restype_name: &#x27;webern:musical_piece&#x27;,
+        restype_name: &#x27;webern-onto:musical_piece&#x27;,
         restype_label: &#x27;Musikstück (Moldenhauer-Nummer)&#x27;,
         restype_description: &#x27;einzelnes Musikstück (identifiziert durch Moldenhauer-Nummer)&#x27;,
         restype_iconsrc:
@@ -2235,14 +2236,14 @@ response from the conversion service.</p>
     },
     resdata: {
         res_id: &#x27;11398&#x27;,
-        restype_name: &#x27;webern:musical_piece&#x27;,
+        restype_name: &#x27;webern-onto:musical_piece&#x27;,
         restype_label: &#x27;Musikstück (Moldenhauer-Nummer)&#x27;,
         iconsrc: &#x27;https://www.salsah.org/core/location.php?table&#x3D;resource_type&amp;field&#x3D;icon&amp;keyfield&#x3D;id&amp;keyvalue&#x3D;36&#x27;,
         resclass_name: &#x27;object&#x27;,
         rights: &#x27;2&#x27;,
     },
     props: {
-        &#x27;webern:mnr&#x27;: {
+        &#x27;webern-onto:mnr&#x27;: {
             pid: &#x27;93&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;2&#x27;,
@@ -2276,7 +2277,7 @@ response from the conversion service.</p>
             value_restype: [&#x27;&#x27;],
             value_firstprops: [&#x27;&#x27;],
         },
-        &#x27;webern:date_composition&#x27;: {
+        &#x27;webern-onto:date_of_composition&#x27;: {
             pid: &#x27;97&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;4&#x27;,
@@ -2301,7 +2302,7 @@ response from the conversion service.</p>
             value_restype: [&#x27;&#x27;],
             value_firstprops: [&#x27;&#x27;],
         },
-        &#x27;webern:performance&#x27;: {
+        &#x27;webern-onto:performance&#x27;: {
             pid: &#x27;94&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;6&#x27;,
@@ -2311,7 +2312,7 @@ response from the conversion service.</p>
             attributes: &#x27;restypeid&#x3D;28;numprops&#x3D;1&#x27;,
             occurrence: &#x27;0-n&#x27;,
         },
-        &#x27;webern:date_firstpublication&#x27;: {
+        &#x27;webern-onto:date_of_first_publication&#x27;: {
             pid: &#x27;96&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;4&#x27;,
@@ -2321,7 +2322,7 @@ response from the conversion service.</p>
             attributes: null,
             occurrence: &#x27;0-1&#x27;,
         },
-        &#x27;webern:firstpublisher&#x27;: {
+        &#x27;webern-onto:first_publisher&#x27;: {
             pid: &#x27;95&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;1&#x27;,
@@ -2331,7 +2332,7 @@ response from the conversion service.</p>
             attributes: null,
             occurrence: &#x27;0-1&#x27;,
         },
-        &#x27;webern:instrumentation_rt&#x27;: {
+        &#x27;webern-onto:instrumentation&#x27;: {
             pid: &#x27;196&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;14&#x27;,
@@ -2380,7 +2381,7 @@ response from the conversion service.</p>
             value_restype: [&#x27;&#x27;],
             value_firstprops: [&#x27;&#x27;],
         },
-        &#x27;webern:textsource_rt&#x27;: {
+        &#x27;webern-onto:text_source&#x27;: {
             pid: &#x27;198&#x27;,
             regular_property: 1,
             valuetype_id: &#x27;14&#x27;,
@@ -2723,10 +2724,10 @@ from the Salsah API.</p>
                 <tr>
                     <td class="col-md-4">
                         <i>Default value : </i><code>{
-    postMessage: (value: { gnd: string }, messageTarget: string) &#x3D;&gt; {
-        windowStore.push([value, messageTarget]);
+    postMessage: (message: { gnd: string }, targetOrigin: string | WindowPostMessageOptions) &#x3D;&gt; {
+        windowStore.push([message, targetOrigin]);
     },
-    get: (index: number): postMessageType &#x3D;&gt; windowStore[index],
+    get: (index: number): storedPostMessageType &#x3D;&gt; windowStore[index],
     clear: () &#x3D;&gt; {
         windowStore &#x3D; [];
     },
@@ -2757,7 +2758,7 @@ from the Salsah API.</p>
             </tr>
                 <tr>
                     <td class="col-md-4">
-                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#postMessageType" target="_self" >Array&lt;postMessageType&gt;</a></code>
+                        <i>Type : </i>        <code><a href="../miscellaneous/typealiases.html#storedPostMessageType" target="_self" >Array&lt;storedPostMessageType&gt;</a></code>
 
                     </td>
                 </tr>
@@ -3392,7 +3393,7 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
             <tr>
                 <td class="col-md-4">
                     <div class="io-description"><p>Declared variable: Snap.</p>
-<p>It provides access to the embedded SnapSvg library (see <a href="undefined">undefined</a>).</p>
+<p>It provides access to the embedded SnapSvg library (see <a href="snapsvg.io">snapsvg.io</a>).</p>
 </div>
                 </td>
             </tr>
@@ -3446,6 +3447,15 @@ and <a href="../components/EditionTypeComponent.html">EditionTypeComponent</a>.<
                <!-- END CONTENT -->
            </div>
        </div>
+
+          <label class="dark-mode-switch">
+               <input type="checkbox">
+               <span class="slider">
+                    <svg class="slider-icon" viewBox="0 0 24 24" fill="none" height="20" stroke="#000" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" width="20" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M21 12.79A9 9 0 1111.21 3 7 7 0 0021 12.79z"></path>
+                    </svg>
+               </span>
+          </label>
 
        <script>
             var COMPODOC_CURRENT_PAGE_DEPTH = 1;
