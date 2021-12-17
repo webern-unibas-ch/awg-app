@@ -51,9 +51,10 @@ import * as d3_zoom from 'd3-zoom';
  * Available force values: `LINK_DISTANCE`, `COLLISION_STRENGTH`, `CHARGE_STRENGTH`.
  */
 const FORCES = {
-    LINK_DISTANCE: 50,
-    COLLISION_STRENGTH: 1,
-    CHARGE_STRENGTH: -3,
+    LINK_DISTANCE: 10, // Default 30
+    COLLISION_STRENGTH: 1, // 0–1; Default: 0.7
+    COLLISION_RADIUS: 30,
+    CHARGE_STRENGTH: -10, //  Default -30
 };
 
 /**
@@ -461,7 +462,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
         const collideForce = d3_force
             .forceCollide()
             .strength(FORCES.COLLISION_STRENGTH)
-            .radius(d => d['r'] + 5)
+            .radius(FORCES.COLLISION_RADIUS)
             .iterations(2);
 
         // Create a custom link force with id accessor to use named sources and targets
@@ -511,7 +512,7 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             .attr('id', String)
             .attr('viewBox', '0 -5 10 10')
             .attr('refX', 30)
-            .attr('refY', -0.5)
+            .attr('refY', 0)
             .attr('markerWidth', 6)
             .attr('markerHeight', 6)
             .attr('orient', 'auto')
