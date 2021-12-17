@@ -897,7 +897,6 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
             graphData.nodes.push(predNode);
 
             let subjNode: D3SimulationNode = this._filterNodesById(graphData.nodes, subjId);
-            let objNode: D3SimulationNode = this._filterNodesById(graphData.nodes, objId);
 
             if (subjNode == null) {
                 subjNode = new D3SimulationNode(subjId, D3SimulationNodeType.node);
@@ -905,6 +904,8 @@ export class ForceGraphComponent implements OnInit, OnChanges, OnDestroy {
                 graphData.nodes.push(subjNode);
             }
 
+            // Look up objNode only after subjNode has been created to avoid unwanted duplication of self linking nodes
+            let objNode: D3SimulationNode = this._filterNodesById(graphData.nodes, objId);
             if (objNode == null) {
                 objNode = new D3SimulationNode(objId, D3SimulationNodeType.node);
 
