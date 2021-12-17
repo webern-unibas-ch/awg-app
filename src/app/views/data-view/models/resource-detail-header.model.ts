@@ -77,7 +77,7 @@ export class ResourceDetailHeader {
                 // CHRONOLOGIE
                 case '28':
                     // Richtext value has already been converted in detail using plugin "htmlConverter"
-                    let htmlstr = props['webern:event_rt'].toHtml[0];
+                    let htmlstr = props['webern-onto:event'].toHtml[0];
 
                     // Strip & replace <p>-tags for displaying title
                     htmlstr = ResourceDetailHeader._replaceParagraphTags(htmlstr);
@@ -97,7 +97,7 @@ export class ResourceDetailHeader {
 
                 // MUSIKSTÜCK (Moldenhauer-Nummer)
                 case '36':
-                    this.title = '[M ' + props['webern:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
+                    this.title = '[M ' + props['webern-onto:mnr'].toHtml[0] + '] ' + props['dc:title'].toHtml[0];
                     break;
 
                 // WERK
@@ -114,7 +114,7 @@ export class ResourceDetailHeader {
 
                 // BIBLIOGRAPHIE
                 case '126':
-                    this.title = props['webern:bibl_title_short'].toHtml[0];
+                    this.title = props['webern-onto:bibl_title_short'].toHtml[0];
                     break;
 
                 // DEFAULT

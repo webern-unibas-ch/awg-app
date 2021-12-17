@@ -14,7 +14,7 @@ export const mockResourceFullResponseJson = {
         person_id: '30',
         restype_id: '36',
         handle_id: null,
-        restype_name: 'webern:musical_piece',
+        restype_name: 'webern-onto:musical_piece',
         restype_label: 'Musikstück (Moldenhauer-Nummer)',
         restype_description: 'einzelnes Musikstück (identifiziert durch Moldenhauer-Nummer)',
         restype_iconsrc:
@@ -30,14 +30,14 @@ export const mockResourceFullResponseJson = {
     },
     resdata: {
         res_id: '11398',
-        restype_name: 'webern:musical_piece',
+        restype_name: 'webern-onto:musical_piece',
         restype_label: 'Musikstück (Moldenhauer-Nummer)',
         iconsrc: 'https://www.salsah.org/core/location.php?table=resource_type&field=icon&keyfield=id&keyvalue=36',
         resclass_name: 'object',
         rights: '2',
     },
     props: {
-        'webern:mnr': {
+        'webern-onto:mnr': {
             pid: '93',
             regular_property: 1,
             valuetype_id: '2',
@@ -71,7 +71,7 @@ export const mockResourceFullResponseJson = {
             value_restype: [''],
             value_firstprops: [''],
         },
-        'webern:date_composition': {
+        'webern-onto:date_of_composition': {
             pid: '97',
             regular_property: 1,
             valuetype_id: '4',
@@ -96,7 +96,7 @@ export const mockResourceFullResponseJson = {
             value_restype: [''],
             value_firstprops: [''],
         },
-        'webern:performance': {
+        'webern-onto:performance': {
             pid: '94',
             regular_property: 1,
             valuetype_id: '6',
@@ -106,7 +106,7 @@ export const mockResourceFullResponseJson = {
             attributes: 'restypeid=28;numprops=1',
             occurrence: '0-n',
         },
-        'webern:date_firstpublication': {
+        'webern-onto:date_of_first_publication': {
             pid: '96',
             regular_property: 1,
             valuetype_id: '4',
@@ -116,7 +116,7 @@ export const mockResourceFullResponseJson = {
             attributes: null,
             occurrence: '0-1',
         },
-        'webern:firstpublisher': {
+        'webern-onto:first_publisher': {
             pid: '95',
             regular_property: 1,
             valuetype_id: '1',
@@ -126,7 +126,7 @@ export const mockResourceFullResponseJson = {
             attributes: null,
             occurrence: '0-1',
         },
-        'webern:instrumentation_rt': {
+        'webern-onto:instrumentation': {
             pid: '196',
             regular_property: 1,
             valuetype_id: '14',
@@ -175,7 +175,7 @@ export const mockResourceFullResponseJson = {
             value_restype: [''],
             value_firstprops: [''],
         },
-        'webern:textsource_rt': {
+        'webern-onto:text_source': {
             pid: '198',
             regular_property: 1,
             valuetype_id: '14',

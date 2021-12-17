@@ -6,7 +6,7 @@ import { appHomepage, appVersion, appVersionReleaseDate } from './app.globals';
 export class AppConfig {
     /**
      * Getter for the URL of the Salsah API endpoint
-     * (https://www.salsah.org).
+     * ({@link https://www.salsah.org}).
      *
      * @returns {string}
      */
@@ -18,7 +18,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the Analytics endpoint
-     * (https://www.google-analytics.com/).
+     * ({@link https://www.google-analytics.com/}).
      *
      * @returns {string}
      */
@@ -27,8 +27,7 @@ export class AppConfig {
     }
 
     /**
-     * Getter for the Analytics id
-     * ('UA-XXXXXXX-Y').
+     * Getter for the Analytics id ('UA-XXXXXXX-Y').
      *
      * @returns {string}
      */
@@ -38,7 +37,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the INSERI Instance
-     * (https://apps.inseri.swiss).
+     * ({@link https://apps.inseri.swiss}).
      *
      * @returns {string}
      */
@@ -48,7 +47,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the localhost
-     * (http://localhost:4200).
+     * ({@link http://localhost:4200}).
      *
      * @returns {string}
      */
@@ -67,7 +66,7 @@ export class AppConfig {
 
     /**
      * Getter for the URL of the AWG project website
-     * (https://anton-webern.ch).
+     * ({@link https://anton-webern.ch}).
      *
      * @returns {string}
      */
@@ -77,7 +76,7 @@ export class AppConfig {
 
     /**
      * Getter for the url of the AWG edition website (awg-app).
-     * (https://edition.anton-webern.ch/)
+     * ({@link https://edition.anton-webern.ch/})
      *
      * @returns {string}
      */
@@ -88,7 +87,7 @@ export class AppConfig {
     /**
      * Getter for the URL of the compodoc documentation
      * of the AWG edition website (awg-app).
-     * (compodoc/index.html).
+     * ({@link compodoc/index.html}).
      *
      * @returns {string}
      */
@@ -99,7 +98,7 @@ export class AppConfig {
     /**
      * Getter for the URL of the GitHub repository
      * of the AWG edition website (awg-app).
-     * (https://github.com/webern-unibas-ch/awg-app).
+     * ({@link https://github.com/webern-unibas-ch/awg-app}).
      *
      * @returns {string}
      */

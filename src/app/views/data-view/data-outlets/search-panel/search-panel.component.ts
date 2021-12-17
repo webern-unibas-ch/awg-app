@@ -89,7 +89,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     ) {}
 
     /**
-     * Gets the httpGetUrl from the DataApiService.
+     * Gets the httpGetUrl from the {@link DataApiService}.
      *
      * @returns {string}
      */
@@ -98,7 +98,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Gets the loading status observable from the LoadingService.
+     * Gets the loading status observable from the {@link LoadingService}.
      *
      * @returns {Observable<boolean>}
      */
