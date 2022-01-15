@@ -2,6 +2,14 @@
 
 All notable changes to this project will be documented in this file. See [standard-version](https://github.com/conventional-changelog/standard-version) for commit guidelines.
 
+### [0.7.19](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.18...v0.7.19) (2022-01-15)
+
+### Build System
+
+-   **deps:** bump follow-redirects from 1.14.4 to 1.14.7 ([aa25b3e](https://github.com/webern-unibas-ch/awg-app/commit/aa25b3eefa4ed8b41f2fc89ed9f92d28fc5b0837))
+-   **deps:** bump follow-redirects from 1.14.4 to 1.14.7 ([4e3a7df](https://github.com/webern-unibas-ch/awg-app/commit/4e3a7dfa8257d0c9ac7139e4cca3fe6d422cf51f))
+-   **deps:** bump marked from 4.0.7 to 4.0.10 ([ee804c2](https://github.com/webern-unibas-ch/awg-app/commit/ee804c2a9c40978b4dea88bb1edeab2b3959fc13))
+
 ### [0.7.18](https://github.com/webern-unibas-ch/awg-app/compare/v0.7.17...v0.7.18) (2021-12-17)
 
 ### Features
