@@ -19,7 +19,7 @@ jobs:
         strategy:
             matrix:
                 os: [ubuntu-latest]
-                node-version: [12, 14.17, 16]
+                node-version: [14.17, 16, 17]
 
         steps:
             - name: Checkout repo
@@ -55,17 +55,10 @@ jobs:
                   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}  # Needed to get PR information, if any
                   SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
-            - name: Test build for GH Pages (Node < v16)
-              if: matrix.node-version != 16
+            - name: Test build for GH Pages
               run: |
                   yarn run build:gh
 
-            # Workaround for build path issue with node 16:
-            # https://github.com/angular/angular-cli/issues/21202
-            - name: Test build for GH Pages (Node == v16)
-              if: matrix.node-version == 16
-              run: |
-                  yarn build:prod --delete-output-path false --base-href $npm_package_homepage && yarn gzip:dist && yarn doc:build
 
 
     deploy:
