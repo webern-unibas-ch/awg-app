@@ -64,7 +64,7 @@ export class EditionDataService {
      */
     getEditionDetailData(
         editionWork: EditionWork
-    ): Observable<[FolioConvoluteList, EditionSvgSheetList, TextcriticsList]> {
+    ): Observable<(FolioConvoluteList | EditionSvgSheetList | TextcriticsList)[]> {
         this._setAssetWorkPath(editionWork);
 
         const folioData$: Observable<FolioConvoluteList> = this._getFolioConvoluteData();
@@ -140,7 +140,7 @@ export class EditionDataService {
      */
     getEditionReportData(
         editionWork: EditionWork
-    ): Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]> {
+    ): Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]> {
         this._setAssetWorkPath(editionWork);
         const sourceListData$: Observable<SourceList> = this._getSourceListData();
         const sourceDescriptionListData$: Observable<SourceDescriptionList> = this._getSourceDescriptionListData();

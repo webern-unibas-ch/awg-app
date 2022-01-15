@@ -39,7 +39,7 @@ export class EditionReportComponent implements OnInit {
      *
      * Observable that keeps the report data.
      */
-    editionReportData$: Observable<[SourceList, SourceDescriptionList, SourceEvaluationList, TextcriticsList]>;
+    editionReportData$: Observable<(SourceList | SourceDescriptionList | SourceEvaluationList | TextcriticsList)[]>;
 
     /**
      * Public variable: errorObject.
