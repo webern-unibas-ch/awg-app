@@ -151,8 +151,7 @@ export class ConversionService extends ApiService {
         if (searchResults.subjects) {
             const length = searchResults.subjects.length;
             const resString: string = length === 1 ? 'Resultat' : 'Resultate';
-            resText = `${searchResults.nhits} `;
-            resText += `${resString} für "${searchValue}"`;
+            resText = `${length} ${resString} für "${searchValue}"`;
 
             if (this.filteredOut > 0) {
                 const duplString: string = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
