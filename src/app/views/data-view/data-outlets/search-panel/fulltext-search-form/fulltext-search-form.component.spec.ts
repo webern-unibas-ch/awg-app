@@ -5,11 +5,11 @@ import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
-import { SearchFormComponent } from './search-form.component';
+import { FulltextSearchFormComponent } from './fulltext-search-form.component';
 
-describe('SearchFormComponent', () => {
-    let component: SearchFormComponent;
-    let fixture: ComponentFixture<SearchFormComponent>;
+describe('FulltextSearchFormComponent', () => {
+    let component: FulltextSearchFormComponent;
+    let fixture: ComponentFixture<FulltextSearchFormComponent>;
     let compDe: DebugElement;
 
     // Create new instance of FormBuilder
@@ -22,14 +22,14 @@ describe('SearchFormComponent', () => {
         waitForAsync(() => {
             TestBed.configureTestingModule({
                 imports: [FontAwesomeModule, ReactiveFormsModule],
-                declarations: [SearchFormComponent],
+                declarations: [FulltextSearchFormComponent],
                 providers: [{ provide: FormBuilder, useValue: formBuilder }],
             }).compileComponents();
         })
     );
 
     beforeEach(() => {
-        fixture = TestBed.createComponent(SearchFormComponent);
+        fixture = TestBed.createComponent(FulltextSearchFormComponent);
         component = fixture.componentInstance;
         compDe = fixture.debugElement;
 

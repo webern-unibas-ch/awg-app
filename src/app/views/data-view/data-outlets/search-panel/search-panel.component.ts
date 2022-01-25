@@ -16,7 +16,7 @@ import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@a
  * It contains the search panel section
  * of the data (search) view of the app
  * with a {@link TwelveToneSpinnerComponent},
- * the {@link SearchFormComponent}
+ * the {@link FulltextSearchFormComponent}
  * and the {@link SearchResultListComponent}.
  */
 @Component({

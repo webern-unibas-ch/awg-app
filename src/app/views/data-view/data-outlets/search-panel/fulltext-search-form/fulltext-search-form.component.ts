@@ -14,11 +14,11 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
  */
 @Component({
     selector: 'awg-search-form',
-    templateUrl: './search-form.component.html',
-    styleUrls: ['./search-form.component.css'],
+    templateUrl: './fulltext-search-form.component.html',
+    styleUrls: ['./fulltext-search-form.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class SearchFormComponent implements OnChanges {
+export class FulltextSearchFormComponent implements OnChanges {
     /**
      * Input variable: searchValue.
      *
