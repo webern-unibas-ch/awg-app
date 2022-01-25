@@ -2603,12 +2603,10 @@
   resolved "https://registry.yarnpkg.com/@jridgewell/resolve-uri/-/resolve-uri-1.0.0.tgz#3fdf5798f0b49e90155896f6291df186eac06c83"
   integrity sha512-9oLAnygRMi8Q5QkYEU4XWK04B+nuoXoxjRvRxgjuChkLZFBja0YPSgdZ7dZtwhncLBcQe/I/E+fLuk5qxcYVJA==
 
-"@kolkov/ngx-gallery@^2.0.0":
-  version "2.0.0"
-  resolved "https://registry.yarnpkg.com/@kolkov/ngx-gallery/-/ngx-gallery-2.0.0.tgz#be6840467345733b2bcb6d1ea4e64a845bd201f3"
-  integrity sha512-0zwZIVZXgc61urkI5r7h7BftDQ1wtrFevljgyZGFgIJYu6NpfUiH7tGrMzSQyl0bJf0sWq+A7Z7acCJH9FArZw==
-  dependencies:
-    tslib "^2.3.0"
+"@kolkov/ngx-gallery@1.2.3":
+  version "1.2.3"
+  resolved "https://registry.yarnpkg.com/@kolkov/ngx-gallery/-/ngx-gallery-1.2.3.tgz#bb15d4b64a5c03905677aa4ca741835aabe41f43"
+  integrity sha512-Dpnhwq3DGPSXrNt65gexo+/Smb2L0bne14A0WONN04+racETtcY33fqFvNWfRw5Nvk2Eza+sq95eEA0NbgF/6g==
 
 "@ng-bootstrap/ng-bootstrap@^11.0.0":
   version "11.0.0"
