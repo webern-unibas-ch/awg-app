@@ -1,7 +1,7 @@
 <form [formGroup]="searchForm">
     <div class="form-row mb-4">
         <div class="col-12">
-            <label class="sr-only" for="awg-search-input">{{ searchFormStrings.label }}</label>
+            <label class="sr-only" for="awg-fulltext-search-searchValue">{{ searchFormStrings.label }}</label>
             <div class="input-group">
                 <div class="input-group-prepend">
                     <div class="input-group-text" id="search-icon">
@@ -9,9 +9,9 @@
                     </div>
                 </div>
                 <input
-                    title="Search"
+                    title="Fulltext Search"
                     type="search"
-                    id="awg-search-input"
+                    id="awg-fulltext-search-searchValue"
                     class="form-control"
                     formControlName="searchValueControl"
                     aria-label="Search input"

@@ -25,6 +25,7 @@ import { ContextJson } from './src/context-json';
 import { IncomingItemJson } from './src/incoming-item-json';
 import { PropertyJson } from './src/property-json';
 import { PropertyTypesInResourceClassResponseJson } from './src/property-types-in-resource-class-response-json';
+import { ResTypeItemJson } from './src/res-type-item-json';
 import { ResourceContextResponseJson } from './src/resource-context-response-json';
 import { ResourceFullResponseJson } from './src/resource-full-response-json';
 import { ResourceInfoResponseJson } from './src/resource-info-response-json';
@@ -40,6 +41,7 @@ export {
     IncomingItemJson,
     PropertyJson,
     PropertyTypesInResourceClassResponseJson,
+    ResTypeItemJson,
     ResourceContextResponseJson,
     ResourceFullResponseJson,
     ResourceInfoResponseJson,

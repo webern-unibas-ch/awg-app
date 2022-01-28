@@ -58,6 +58,7 @@ export class SearchOverviewComponent implements OnInit {
     setButtons(): void {
         this.searchRouterLinkButtons = [
             new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
+            new RouterLinkButton('/data/search', 'extended', 'Erweiterte Suche', false),
             new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
             new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
         ];

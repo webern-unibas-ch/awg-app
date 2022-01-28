@@ -10,6 +10,7 @@ import {
     HlistJson,
     ResourceContextResponseJson,
     ResourceFullResponseJson,
+    ResourceTypesInVocabularyResponseJson,
     SearchResponseJson,
     SelectionJson,
 } from '@awg-shared/api-objects';
@@ -41,6 +42,8 @@ export class DataApiService extends ApiService {
      */
     projectId = '6';
 
+    defaultLanguage = 'de';
+
     /**
      * Public variable: resourceSuffix.
      *
@@ -56,6 +59,7 @@ export class DataApiService extends ApiService {
      */
     routes = {
         resources: 'resources/',
+        resourcetypes: 'resourcetypes/',
         search: 'search/',
         geonames: 'geonames/',
         hlists: 'hlists/',
@@ -106,6 +110,7 @@ export class DataApiService extends ApiService {
         const queryHttpParams = new HttpParams()
             .set('searchtype', 'fulltext')
             .set('filter_by_project', this.projectId)
+            .set('lang', this.defaultLanguage)
             .set('show_nrows', sp.nRows)
             .set('start_at', sp.startAt);
 
@@ -125,6 +130,83 @@ export class DataApiService extends ApiService {
             map((searchResponse: SearchResponseJson) =>
                 this.conversionService.convertFullTextSearchResults(searchResponse)
             )
+        );
+    }
+
+    getExtendedSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
+        if (!searchParams) {
+            return;
+        }
+
+        // Default values
+        const sp: SearchParams = {
+            query: searchParams.query,
+            nRows: searchParams.nRows || '-1',
+            startAt: searchParams.startAt || '0',
+            view: searchParams.view || SearchParamsViewTypes.table,
+        };
+
+        const restypeId = 28;
+        const propertyId = 195;
+        const compop = 'EXISTS';
+
+        // Set path and params of query
+        const queryPath: string = this.routes.search;
+        const queryHttpParams = new HttpParams()
+            .set('searchtype', 'extended')
+            .set('filter_by_project', this.projectId)
+            .set('filter_by_restype', restypeId)
+            .set('property_id', propertyId)
+            .set('compop', compop)
+            .set('lang', this.defaultLanguage)
+            .set('show_nrows', sp.nRows)
+            .set('start_at', sp.startAt);
+
+        // Cold request to API
+        const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
+            SearchResponseJson,
+            queryPath,
+            queryHttpParams
+        );
+
+        // Return converted search response
+        return searchData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new SearchResponseJson()),
+
+            // Map the response to a converted search response object for HTML display
+            map((searchResponse: SearchResponseJson) => {
+                console.log(this.httpGetUrl);
+
+                return this.conversionService.convertFullTextSearchResults(searchResponse);
+            })
+        );
+    }
+
+    getExtendedSearchTree(): Observable<ResourceTypesInVocabularyResponseJson> {
+        const vocabularyId = 4;
+
+        // Set path and params of query
+        const queryPath: string = this.routes.resourcetypes;
+        const queryHttpParams = new HttpParams().set('vocabulary', vocabularyId).set('lang', this.defaultLanguage);
+
+        // Cold request to API
+        const resourcetypesData$: Observable<ResourceTypesInVocabularyResponseJson> = this.getApiResponse(
+            ResourceTypesInVocabularyResponseJson,
+            queryPath,
+            queryHttpParams
+        );
+
+        // Return resource types
+        return resourcetypesData$.pipe(
+            // Default empty value
+            defaultIfEmpty(new ResourceTypesInVocabularyResponseJson()),
+
+            // TODO Map the response to a converted search response object for HTML display
+            map((resourcetypes: ResourceTypesInVocabularyResponseJson) => {
+                console.log(this.httpGetUrl);
+                return resourcetypes;
+            })
         );
     }
 
