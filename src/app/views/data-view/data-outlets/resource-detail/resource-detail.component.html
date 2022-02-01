@@ -25,7 +25,7 @@
         <!-- resourceDetailData body -->
         <nav ngbNav #resourceDetailNav="ngbNav" class="nav-tabs">
             <ng-container ngbNavItem>
-                <a ngbNavLink class="awg-resource-detail-long-tab">{{ tabTitles?.html }}</a>
+                <a ngbNavLink class="awg-resource-detail-long-tab">{{ resourceDetailTabTitles?.html }}</a>
                 <ng-template ngbNavContent>
                     <!-- html visualisation -->
                     <awg-resource-detail-html
@@ -36,7 +36,7 @@
                 </ng-template>
             </ng-container>
             <ng-container ngbNavItem>
-                <a ngbNavLink class="ml-auto">{{ tabTitles?.converted }}</a>
+                <a ngbNavLink class="ml-auto">{{ resourceDetailTabTitles?.converted }}</a>
                 <ng-template ngbNavContent>
                     <!-- converted json visualisation -->
                     <awg-resource-detail-json-converted [resourceJsonConvertedData]="resourceData.jsonConverted">
@@ -44,7 +44,7 @@
                 </ng-template>
             </ng-container>
             <ng-container ngbNavItem>
-                <a ngbNavLink>{{ tabTitles?.raw }}</a>
+                <a ngbNavLink>{{ resourceDetailTabTitles?.raw }}</a>
                 <ng-template ngbNavContent>
                     <!-- raw json visualisation -->
                     <awg-resource-detail-json-raw [resourceJsonRawData]="resourceData.jsonRaw">

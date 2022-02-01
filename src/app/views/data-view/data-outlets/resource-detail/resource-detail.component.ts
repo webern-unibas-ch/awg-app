@@ -58,11 +58,11 @@ export class ResourceDetailComponent implements OnInit, OnDestroy {
     resourceId: string;
 
     /**
-     * Public variable: tabTitles.
+     * Public variable: resourceDetailTabTitles.
      *
      * It keeps the titles for the tab panels.
      */
-    tabTitles = {
+    resourceDetailTabTitles = {
         html: 'Detail',
         raw: 'JSON (raw)',
         converted: 'JSON (converted)',
