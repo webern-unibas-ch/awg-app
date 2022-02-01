@@ -46,12 +46,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      *
      * It keeps the default parameters for the search.
      */
-    searchParams: SearchParams = {
-        query: '',
-        nRows: '25',
-        startAt: '0',
-        view: SearchResultsViewTypes.table,
-    };
+    searchParams: SearchParams;
 
     /**
      * Public variable: searchTabTitles.
@@ -64,11 +59,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     };
 
     /**
-     * Public variable: selectedTabId.
+     * Public variable: selectedSearchTabId.
      *
      * It keeps the id of the selected tab panel.
      */
-    selectedTabId: string;
+    selectedSearchTabId: string;
 
     /**
      * Public variable: errorMessage.
@@ -132,6 +127,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * when initializing the component.
      */
     ngOnInit() {
+        this.resetSearchParams();
         this.getFulltextSearchData();
     }
 
@@ -148,19 +144,18 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     getFulltextSearchData(): void {
         this.router.events
             .pipe(
-                takeUntil(this.destroy$),
                 filter(event => event instanceof NavigationEnd),
                 map(() => this.route),
-                map((route: ActivatedRoute) => {
-                    while (route.firstChild) {
-                        route = route.firstChild;
-                    }
-                    this.activateTab(route.snapshot.url[0].path);
-                    return route;
-                }),
                 switchMap((route: ActivatedRoute) => {
                     // Snapshot of current route query params
                     const qp = route.snapshot.queryParamMap;
+
+                    while (route.firstChild) {
+                        route = route.firstChild;
+                    }
+
+                    // Snapshot of tab route
+                    this.selectedSearchTabId = route.snapshot.url[0].path;
 
                     if (qp !== this.currentQueryParams) {
                         this.currentQueryParams = qp;
@@ -180,7 +175,8 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     }
                     // In any other cases return empty observable
                     return EMPTY;
-                })
+                }),
+                takeUntil(this.destroy$)
             )
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
@@ -195,19 +191,6 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     this.errorMessage = error as any;
                 }
             );
-    }
-
-    /**
-     * Public method: activateTab.
-     *
-     * It activates a tab by its id.
-     *
-     * @param {string} id The given tab id.
-     *
-     * @returns {void} Activates the tab.
-     */
-    activateTab(id: string) {
-        this.selectedTabId = id;
     }
 
     /**
@@ -294,17 +277,19 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     }
 
     /**
-     * Public method: onTabChange.
+     * Public method: onSearchTabChange.
      *
-     * It triggers the {@link _routeToSelf} method
-     * after a tab change request to update the URL.
+     * It resets the search params and triggers the
+     * {@link _routeToSelf} method after a tab change request
+     * to update the URL.
      *
      * @param {NgbNavChangeEvent} tabEvent The given tabEvent with an id of the next route.
      *
      * @returns {void} Routes to itself with the given id as route.
      */
-    onTabChange(tabEvent: NgbNavChangeEvent) {
-        // Route to new params
+    onSearchTabChange(tabEvent: NgbNavChangeEvent): void {
+        this.resetSearchParams();
+        // Route to new tab with resetted searchParams
         this._routeToSelf(this.searchParams, tabEvent.nextId);
     }
 
@@ -334,6 +319,22 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             // Route to new params
             this._routeToSelf(this.searchParams);
         }
+    }
+
+    /**
+     * Public method: resetSearchParams.
+     *
+     * It resets the search params to the default value.
+     *
+     * @returns {void} Resets the search params.
+     */
+    resetSearchParams(): void {
+        this.searchParams = {
+            query: '',
+            nRows: '25',
+            startAt: '0',
+            view: SearchResultsViewTypes.table,
+        };
     }
 
     /**
@@ -391,7 +392,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * @param {string} [route] Optional route parameter.
      * @returns {void} Navigates to itself.
      */
-    private _routeToSelf(sp: SearchParams, route?: string) {
+    private _routeToSelf(sp: SearchParams, route?: string): void {
         const commands = route ? [route] : [];
         this.router.navigate(commands, {
             relativeTo: this.route,

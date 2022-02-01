@@ -4,8 +4,8 @@
         ngbNav
         #searchNav="ngbNav"
         class="nav-tabs nav-fill"
-        [activeId]="selectedTabId"
-        (navChange)="onTabChange($event)">
+        [activeId]="selectedSearchTabId"
+        (navChange)="onSearchTabChange($event)">
         <ng-container ngbNavItem="fulltext">
             <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabTitles?.fulltext }}</a>
             <ng-template ngbNavContent>
