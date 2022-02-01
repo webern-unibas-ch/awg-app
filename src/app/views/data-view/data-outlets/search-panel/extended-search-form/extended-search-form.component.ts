@@ -1,11 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
 
-import { faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
+import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { ResourceTypesInVocabularyResponseJson, ResTypeItemJson } from '@awg-shared/api-objects';
+import { ResourceTypesInVocabularyResponseJson, ResTypeItemJson, SearchResponseJson } from '@awg-shared/api-objects';
 
-import { SearchParams, SearchParamsViewTypes } from '@awg-views/data-view/models';
+import {
+    ExtendedSearchParams,
+    ExtendedSearchParamsProperties,
+    SearchResultsViewTypes,
+} from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
 @Component({
@@ -14,12 +18,15 @@ import { DataApiService } from '@awg-views/data-view/services';
     styleUrls: ['./extended-search-form.component.css'],
 })
 export class ExtendedSearchFormComponent implements OnInit {
-    searchParams: SearchParams = {
-        query: '',
-        nRows: '25',
-        startAt: '0',
-        view: SearchParamsViewTypes.table,
-    };
+    /**
+     * Output variable: searchRequest.
+     *
+     * It keeps an event emitter for the extended search params.
+     */
+    @Output()
+    searchRequest: EventEmitter<ExtendedSearchParams> = new EventEmitter();
+
+    extendedSearchParams: ExtendedSearchParams = new ExtendedSearchParams();
 
     compops = [
         { id: 'EXISTS', label: 'EXISTS' },
@@ -41,6 +48,13 @@ export class ExtendedSearchFormComponent implements OnInit {
      * It instantiates fontawesome's faPlus icon.
      */
     faPlus = faPlus;
+
+    /**
+     * Public variable: faSearch.
+     *
+     * It instantiates fontawesome's faSearch icon.
+     */
+    faSearch = faSearch;
 
     /**
      * Public variable: faTrash.
@@ -96,12 +110,27 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     ngOnInit(): void {
-        this.createFormGroup();
+        this.createExtendedSearchForm();
         this.getResourcetypes();
     }
 
     /**
-     * Public method: createFormGroup.
+     * Makes the field required if the predicate function returns true
+     */
+    _requiredIfValidator(predicate) {
+        return formControl => {
+            if (!formControl.parent) {
+                return null;
+            }
+            if (predicate()) {
+                return Validators.required(formControl);
+            }
+            return null;
+        };
+    }
+
+    /**
+     * Public method: createExtendedSearchForm.
      *
      * It creates the search form using the reactive FormBuilder
      * with a formGroup and a resource type control and properties control.
@@ -110,16 +139,45 @@ export class ExtendedSearchFormComponent implements OnInit {
      *
      * @returns {void} Creates the search form.
      */
-    createFormGroup(): void {
+    createExtendedSearchForm(): void {
         this.extendedSearchForm = this.formBuilder.group({
-            resourcetypeControl: [this.defaultFormString, Validators.required],
+            resourcetypeControl: ['', Validators.required],
             propertiesControls: this.formBuilder.array([]),
         });
-        this.addPropertyControl();
+        this.addPropertiesControl();
+    }
+
+    /**
+     * Public method: addPropertiesControl.
+     *
+     * It creates a single property control using a reactive FormGroup
+     * with a property control, compop control, and a searchValue control, and pushes this FormGroup to the propertiesControls FormArray.
+     *
+     * @returns {void} Creates the form group and adds it to the FormArray.
+     */
+    addPropertiesControl(): void {
+        const group = this.formBuilder.group({
+            propertyControl: ['', [Validators.required]],
+            compopControl: ['', [Validators.required]],
+            searchValueControl: [''],
+        });
+
+        this.propertiesControls.push(group);
+    }
+
+    removePropertiesControl(index: number): void {
+        if (index > -1) {
+            this.propertiesControls.removeAt(index);
+        }
+    }
+
+    clearPropertiesControls() {
+        this.propertiesControls.clear();
+        this.addPropertiesControl(); // Add back first line of property inputs after clearing
     }
 
     getResourcetypes(): void {
-        this.dataApiService.getExtendedSearchTree().subscribe(
+        this.dataApiService.getExtendedSearchResourcetypes().subscribe(
             (restypesResponse: ResourceTypesInVocabularyResponseJson) => {
                 this.restypesResponse = restypesResponse;
                 console.log(this.restypesResponse);
@@ -136,55 +194,42 @@ export class ExtendedSearchFormComponent implements OnInit {
         this.resourcetypeControl.valueChanges.subscribe((resourcetypeId: string) => {
             this.selectedResourcetype = this.restypesResponse.resourcetypes.find(r => r.id === resourcetypeId);
 
-            this.clearPropertyControls(); // Remove all previous property input fields
+            this.clearPropertiesControls(); // Remove all previous property input fields
 
             console.log(resourcetypeId);
             console.log(this.selectedResourcetype);
         });
     }
 
-    /**
-     * Public method: addPropertyControl.
-     *
-     * It creates a FormGroup for the properties controls using the reactive FormBuilder
-     * with a property control, compop control, and a searchValue control, an pushes this FormGroup to the propertiesControls FormArray.
-     *
-     * @returns {void} Creates the form group and adds it to the FormArray.
-     */
-    addPropertyControl(): void {
-        const group = this.formBuilder.group({
-            propertyControl: ['', Validators.required],
-            compopControl: ['', Validators.required],
-            searchValueControl: ['', Validators.minLength(3)],
-        });
-
-        this.propertiesControls.push(group);
-    }
-
-    clearPropertyControls() {
-        this.propertiesControls.clear();
-        this.addPropertyControl(); // Add back first line of property inputs after clearing
-    }
-
-    removePropertyControl(index: number): void {
-        if (index > -1) {
-            this.propertiesControls.removeAt(index);
-        }
+    onReset(): void {
+        alert('Gesamte Suchmaske zurücksetzen?');
+        this._resetForm();
     }
 
     onSearch(): void {
-        console.warn('Submitted form', this.extendedSearchForm.value);
+        if (this.extendedSearchForm.valid) {
+            this.extendedSearchParams = {
+                resourcetypeId: this.extendedSearchForm.value.resourcetypeControl,
+                properties: [],
+                nRows: '25',
+                startAt: '0',
+                view: SearchResultsViewTypes.table,
+            };
 
-        /* TODO
-        this.dataApiService.getExtendedSearchData(this.searchParams).subscribe(
-            (searchResponse: SearchResponseJson) => {
-                this.results = searchResponse;
-                console.log(this.results);
-            },
-            error => {
-                console.error(error as any);
-            }
-        );*/
+            this.extendedSearchForm.value.propertiesControls.forEach((property, index) => {
+                this.extendedSearchParams.properties[index] = new ExtendedSearchParamsProperties();
+                const p = this.extendedSearchParams.properties[index];
+                p.propertyId = property.propertyControl;
+                p.compop = property.compopControl;
+                if (property.searchValueControl) {
+                    p.searchValue = property.searchValueControl;
+                }
+            });
+
+            this.searchRequest.emit(this.extendedSearchParams);
+
+            this._resetForm();
+        }
     }
 
     isAddButtonDisabled(index: number): string | null {
@@ -221,7 +266,7 @@ export class ExtendedSearchFormComponent implements OnInit {
         return placeholder;
     }
 
-    private _getFormArrayControlValueAtIndex(controlName: string, index: number): unknown {
+    private _getFormArrayControlValueAtIndex(controlName: string, index: number): any {
         return this.propertiesControls.controls[index].get(controlName).value;
     }
 
@@ -251,5 +296,9 @@ export class ExtendedSearchFormComponent implements OnInit {
         const searchValueMissing = !searchValue || searchValue === this.defaultFormString;
 
         return searchValueMissing;
+    }
+
+    private _resetForm() {
+        return this.extendedSearchForm.reset();
     }
 }

@@ -5,9 +5,13 @@
         <div class="input-group-prepend">
             <label class="input-group-text" for="awg-extended-search-resourcetype-input">Resource-Typ</label>
         </div>
-        <select class="form-control" id="awg-extended-search-resourcetype-input" formControlName="resourcetypeControl">
-            <option disabled hidden>{{ defaultFormString }}</option>
-            <option *ngFor="let resourcetype of restypesResponse?.resourcetypes" [value]="resourcetype.id">
+        <select
+            class="form-control"
+            id="awg-extended-search-resourcetype-input"
+            formControlName="resourcetypeControl"
+            required>
+            <option value="" disabled hidden>{{ defaultFormString }}</option>
+            <option *ngFor="let resourcetype of restypesResponse?.resourcetypes" [ngValue]="resourcetype.id">
                 {{ resourcetype.id }} | {{ resourcetype.label }}
             </option>
         </select>
@@ -56,8 +60,8 @@
                         id="awg-extended-search-searchValue"
                         class="form-control"
                         [formControl]="getSearchValueControlAtIndex(idx)"
-                        placeholder="{{ getSearchValuePlaceholder(idx) }}"
-                        [attr.disabled]="isSearchValueControlDisabled(idx)" />
+                        [attr.disabled]="isSearchValueControlDisabled(idx)"
+                        placeholder="{{ getSearchValuePlaceholder(idx) }}" />
                 </div>
 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar for property inputs">
@@ -66,13 +70,13 @@
                             type="button"
                             class="btn btn-outline-danger"
                             *ngIf="propertiesControls.controls.length > 1"
-                            (click)="removePropertyControl(idx)">
+                            (click)="removePropertiesControl(idx)">
                             <fa-icon [icon]="faTrash"></fa-icon>
                         </button>
                         <button
                             type="button"
                             class="btn btn-outline-info"
-                            (click)="addPropertyControl()"
+                            (click)="addPropertiesControl()"
                             [attr.disabled]="isAddButtonDisabled(idx)">
                             <fa-icon [icon]="faPlus"></fa-icon>
                         </button>
@@ -95,7 +99,9 @@
             sVDisabled?: {{ isSearchValueControlDisabled(idx) }}
         </div>
     </ng-container>
-    <button class="btn btn-outline-info" type="button" (click)="addPropertyControl()">Add</button>
-
-    <button class="btn btn-outline-info" type="submit">Extended Search</button>
+    <button class="btn btn-outline-info" type="submit" [disabled]="!extendedSearchForm.valid">
+        <fa-icon [icon]="faSearch"></fa-icon>
+        Suche
+    </button>
+    <button class="btn btn-outline-danger" (click)="onReset()" [disabled]="!resourcetypeControl.valid">Reset</button>
 </form>
