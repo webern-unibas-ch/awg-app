@@ -64,12 +64,12 @@ export class FulltextSearchFormComponent implements OnChanges {
      * Constructor of the SearchFormComponent.
      *
      * It declares a private FormBuilder instance
-     * and initializes the form group.
+     * and initializes the search form.
      *
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
     constructor(private formBuilder: FormBuilder) {
-        this.createFormGroup();
+        this.createFulltextSearchForm();
         this.listenToUserInputChange();
     }
 
@@ -90,14 +90,14 @@ export class FulltextSearchFormComponent implements OnChanges {
     }
 
     /**
-     * Public method: createFormGroup.
+     * Public method: createFulltextSearchForm.
      *
      * It creates the search form using the reactive FormBuilder
      * with a formGroup and a search value control.
      *
      * @returns {void} Creates the search form.
      */
-    createFormGroup(): void {
+    createFulltextSearchForm(): void {
         this.searchForm = this.formBuilder.group({
             searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
