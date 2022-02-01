@@ -50,6 +50,21 @@ const dataViewRoutes: Routes = [
         path: 'resource/:id',
         component: ResourceDetailComponent,
         data: { title: 'AWG Online Edition – Resource Detail' },
+        children: [
+            { path: '', pathMatch: 'full', redirectTo: 'html' },
+            {
+                path: 'html',
+                data: { title: 'AWG Online Edition – Resource Detail HTML' },
+            },
+            {
+                path: 'converted-json',
+                data: { title: 'AWG Online Edition – Resource Detail JSON Converted' },
+            },
+            {
+                path: 'raw-json',
+                data: { title: 'AWG Online Edition – Resource Detail JSON Raw' },
+            },
+        ],
     },
 ];
 
