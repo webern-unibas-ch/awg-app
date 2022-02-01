@@ -15,10 +15,17 @@ import { ResourceDetailImage } from './resource-detail-image.model';
 import { ResourceDetailIncomingLink } from './resource-detail-incoming-link.model';
 import { ResourceDetailProperty } from './resource-detail-property.model';
 import { ResourceDetailGroupedIncomingLinks } from './resource-detail-grouped-incoming-links.model';
-import { SearchParams, SearchParamsViewTypes } from './search-params.model';
+import {
+    ExtendedSearchParams,
+    ExtendedSearchParamsProperties,
+    SearchParams,
+    SearchResultsViewTypes,
+} from './search-params.model';
 import { SearchResponseWithQuery } from './search-response-with-query.model';
 
 export {
+    ExtendedSearchParams,
+    ExtendedSearchParamsProperties,
     IResourceDataResponse,
     ResourceData,
     ResourceDetail,
@@ -29,6 +36,6 @@ export {
     ResourceDetailProperty,
     ResourceDetailGroupedIncomingLinks,
     SearchParams,
-    SearchParamsViewTypes,
+    SearchResultsViewTypes,
     SearchResponseWithQuery,
 };

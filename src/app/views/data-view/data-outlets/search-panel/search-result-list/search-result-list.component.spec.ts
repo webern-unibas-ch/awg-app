@@ -13,7 +13,7 @@ import { CompileHtmlComponent } from '@awg-shared/compile-html';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
-import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 import { SearchResponseJson } from '@awg-shared/api-objects';
 
 import { SearchResultListComponent } from './search-result-list.component';
@@ -87,7 +87,7 @@ describe('SearchResultListComponent', () => {
         expectedSearchResultText = '';
 
         expectedSearchParams = new SearchParams();
-        expectedSearchParams.view = SearchParamsViewTypes.table;
+        expectedSearchParams.view = SearchResultsViewTypes.table;
 
         // Spies on service functions
         getSearchResponseWithQuerySpy = spyOn(dataStreamerService, 'getSearchResponseWithQuery').and.returnValue(

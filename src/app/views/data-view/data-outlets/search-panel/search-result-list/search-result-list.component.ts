@@ -8,7 +8,7 @@ import { takeUntil } from 'rxjs/operators';
 import { faGripHorizontal, faTable } from '@fortawesome/free-solid-svg-icons';
 
 import { SearchInfo } from '@awg-side-info/side-info-models';
-import { SearchParams, SearchParamsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
 
 import { ConversionService, DataStreamerService, SideInfoService } from '@awg-core/services';
 
@@ -179,8 +179,8 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
 
         if (
             this.searchParams.view &&
-            (this.searchParams.view === SearchParamsViewTypes.table ||
-                this.searchParams.view === SearchParamsViewTypes.grid)
+            (this.searchParams.view === SearchResultsViewTypes.table ||
+                this.searchParams.view === SearchResultsViewTypes.grid)
         ) {
             this.createFormGroup(this.searchParams.view);
         }
@@ -193,13 +193,13 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * using the reactive FormBuilder with a formGroup
      * and a search view control.
      *
-     * @param {SearchParamsViewTypes} view The given view type.
+     * @param {SearchResultsViewTypes} view The given view type.
      *
      * @returns {void} Creates the search view control form.
      */
-    createFormGroup(view: SearchParamsViewTypes): void {
+    createFormGroup(view: SearchResultsViewTypes): void {
         this.searchResultControlForm = this.formBuilder.group({
-            searchResultViewControl: SearchParamsViewTypes[view],
+            searchResultViewControl: SearchResultsViewTypes[view],
         });
 
         this.listenToUserInputChange();
@@ -242,7 +242,7 @@ export class SearchResultListComponent implements OnInit, OnDestroy {
      * @returns {boolean} The boolean value of the check result.
      */
     isGridView(): boolean {
-        return this.searchParams.view === SearchParamsViewTypes.grid;
+        return this.searchParams.view === SearchResultsViewTypes.grid;
     }
 
     /**
