@@ -57,10 +57,9 @@ export class SearchOverviewComponent implements OnInit {
      */
     setButtons(): void {
         this.searchRouterLinkButtons = [
-            new RouterLinkButton('/data/search', 'fulltext', 'Volltext-Suche', false),
-            new RouterLinkButton('/data/search', 'extended', 'Erweiterte Suche', false),
-            new RouterLinkButton('/data/search', 'timeline', 'Timeline', true),
-            new RouterLinkButton('/data/search', 'bibliography', 'Bibliographie', true),
+            new RouterLinkButton('/data', 'search', 'Suche', false),
+            new RouterLinkButton('/data', 'timeline', 'Timeline', true),
+            new RouterLinkButton('/data', 'bibliography', 'Bibliographie', true),
         ];
     }
 
@@ -75,7 +74,7 @@ export class SearchOverviewComponent implements OnInit {
      */
     updateSearchInfoTitleFromPath(): void {
         // Get snapshot from current url path
-        const path = this.route.snapshot.children[0].url[0].path;
+        const path = this.route.snapshot.url[0].path;
 
         // Filter searchButtonArray
         const selectedButton = this.searchRouterLinkButtons.filter(button => button.link === path);

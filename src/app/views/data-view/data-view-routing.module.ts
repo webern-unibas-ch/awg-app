@@ -13,32 +13,37 @@ const dataViewRoutes: Routes = [
         path: '',
         component: DataViewComponent,
         children: [
+            { path: '', pathMatch: 'full', redirectTo: 'search' },
             {
                 path: 'search',
                 component: SearchOverviewComponent,
                 children: [
                     {
-                        path: 'fulltext',
+                        path: '',
                         component: SearchPanelComponent,
-                        data: { title: 'AWG Online Edition – Search' },
+                        children: [
+                            { path: '', pathMatch: 'full', redirectTo: 'fulltext' },
+                            {
+                                path: 'fulltext',
+                                data: { title: 'AWG Online Edition – Fulltext Search' },
+                            },
+                            {
+                                path: 'extended',
+                                data: { title: 'AWG Online Edition – Extended Search' },
+                            },
+                            { path: 'detail/:id', redirectTo: 'resource/:id' }, // Absolute redirect (replacement of route) to resource/:id,
+                        ],
                     },
-                    {
-                        path: 'extended',
-                        component: SearchPanelComponent,
-                        data: { title: 'AWG Online Edition – Search' },
-                    },
-                    { path: 'detail/:id', redirectTo: 'resource/:id' }, // Absolute redirect (replacement of route) to resource/:id,
-                    /* Muted for now
-                    { path: 'timeline', component: TimelineComponent },
-                    {
-                        path: 'bibliography',
-                        loadChildren: () =>
-                            import('./data-outlets/bibliography/bibliography.module').then(m => m.BibliographyModule)
-                    },
-                    */
-                    { path: '', pathMatch: 'full', redirectTo: 'fulltext' },
                 ],
             },
+            /* Muted for now
+            { path: 'timeline', component: TimelineComponent },
+            {
+                path: 'bibliography',
+                loadChildren: () =>
+                    import('./data-outlets/bibliography/bibliography.module').then(m => m.BibliographyModule)
+            },
+            */
         ],
     },
     {
