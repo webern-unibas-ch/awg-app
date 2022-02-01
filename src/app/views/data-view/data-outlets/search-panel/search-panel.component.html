@@ -1,14 +1,36 @@
 <!-- content: search panel -->
-
-<awg-extended-search-form></awg-extended-search-form>
-
-<awg-search-form [searchValue]="searchParams?.query" (searchRequest)="onSearch($event)"> </awg-search-form>
+<div class="awg-search-tabs">
+    <nav
+        ngbNav
+        #searchNav="ngbNav"
+        class="nav-tabs nav-fill"
+        [activeId]="selectedTabId"
+        (navChange)="onTabChange($event)">
+        <ng-container ngbNavItem="fulltext">
+            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabTitles?.fulltext }}</a>
+            <ng-template ngbNavContent>
+                <!-- full text search -->
+                <awg-search-form [searchValue]="searchParams?.query" (searchRequest)="onSearch($event)">
+                </awg-search-form>
+            </ng-template>
+        </ng-container>
+        <ng-container ngbNavItem="extended">
+            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabTitles?.extended }}</a>
+            <ng-template ngbNavContent>
+                <!-- extended search -->
+                <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>
+            </ng-template>
+        </ng-container>
+    </nav>
+    <div [ngbNavOutlet]="searchNav"></div>
+</div>
 
 <!-- loading spinner -->
 <div *ngIf="isLoading$ | async; else notLoading">
     <awg-twelve-tone-spinner></awg-twelve-tone-spinner>
 </div>
 
+<!-- search results -->
 <ng-template #notLoading>
     <div class="errorMessage" *ngIf="errorMessage">
         <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
