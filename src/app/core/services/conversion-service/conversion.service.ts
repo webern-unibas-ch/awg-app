@@ -149,9 +149,10 @@ export class ConversionService extends ApiService {
         const searchValue = searchResponseWithQuery.query;
 
         if (searchResults.subjects) {
-            const length = searchResults.subjects.length;
+            const currentLength = searchResults.subjects.length;
+            const totalLength = searchResults.nhits;
             const resString: string = length === 1 ? 'Resultat' : 'Resultate';
-            resText = `${length} ${resString} für "${searchValue}"`;
+            resText = `${currentLength} / ${totalLength} ${resString} für "${searchValue}"`;
 
             if (this.filteredOut > 0) {
                 const duplString: string = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
@@ -930,10 +931,15 @@ export class ConversionService extends ApiService {
             return;
         }
         this.filteredOut = 0;
-        return subjects.reduce(
-            (x, y) => (x.findIndex(e => e.obj_id === y.obj_id) < 0 ? [...x, y] : ((this.filteredOut += 1), x)),
-            []
-        );
+        const distinctObj = {};
+        let distinctArr = [];
+
+        subjects.map((subject: SubjectItemJson) => (distinctObj[subject.obj_id] = subject));
+        distinctArr = Object.values(distinctObj);
+
+        this.filteredOut = subjects.length - distinctArr.length;
+
+        return distinctArr;
     }
 
     /**
