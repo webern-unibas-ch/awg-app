@@ -15,11 +15,12 @@ import {
     SelectionJson,
 } from '@awg-shared/api-objects';
 import {
+    ExtendedSearchParams,
     IResourceDataResponse,
     ResourceData,
     ResourceDetail,
     SearchParams,
-    SearchParamsViewTypes,
+    SearchResultsViewTypes,
 } from '@awg-views/data-view/models';
 
 /**
@@ -102,7 +103,7 @@ export class DataApiService extends ApiService {
             query: searchParams.query,
             nRows: searchParams.nRows || '-1',
             startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchParamsViewTypes.table,
+            view: searchParams.view || SearchResultsViewTypes.table,
         };
 
         // Set path and params of query
@@ -133,34 +134,41 @@ export class DataApiService extends ApiService {
         );
     }
 
-    getExtendedSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
-        if (!searchParams) {
+    getExtendedSearchData(searchParams: ExtendedSearchParams): Observable<SearchResponseJson> {
+        if (!searchParams || !searchParams.resourcetypeId || !searchParams.properties) {
             return;
         }
 
         // Default values
-        const sp: SearchParams = {
-            query: searchParams.query,
+        const sp: ExtendedSearchParams = {
+            resourcetypeId: searchParams.resourcetypeId,
+            properties: searchParams.properties,
             nRows: searchParams.nRows || '-1',
             startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchParamsViewTypes.table,
+            view: searchParams.view || SearchResultsViewTypes.table,
         };
-
-        const restypeId = 28;
-        const propertyId = 195;
-        const compop = 'EXISTS';
 
         // Set path and params of query
         const queryPath: string = this.routes.search;
-        const queryHttpParams = new HttpParams()
+
+        let queryHttpParams = new HttpParams()
             .set('searchtype', 'extended')
             .set('filter_by_project', this.projectId)
-            .set('filter_by_restype', restypeId)
-            .set('property_id', propertyId)
-            .set('compop', compop)
+            .set('filter_by_restype', sp.resourcetypeId)
             .set('lang', this.defaultLanguage)
             .set('show_nrows', sp.nRows)
             .set('start_at', sp.startAt);
+
+        if (sp.properties.length > 0) {
+            sp.properties.forEach(p => {
+                queryHttpParams = queryHttpParams.append('property_id', p.propertyId);
+                queryHttpParams = queryHttpParams.append('compop', p.compop);
+                if (p.searchValue) {
+                    queryHttpParams = queryHttpParams.append('searchval', p.searchValue);
+                }
+            });
+        }
+        console.log(queryHttpParams);
 
         // Cold request to API
         const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
@@ -183,7 +191,7 @@ export class DataApiService extends ApiService {
         );
     }
 
-    getExtendedSearchTree(): Observable<ResourceTypesInVocabularyResponseJson> {
+    getExtendedSearchResourcetypes(): Observable<ResourceTypesInVocabularyResponseJson> {
         const vocabularyId = 4;
 
         // Set path and params of query
@@ -202,7 +210,6 @@ export class DataApiService extends ApiService {
             // Default empty value
             defaultIfEmpty(new ResourceTypesInVocabularyResponseJson()),
 
-            // TODO Map the response to a converted search response object for HTML display
             map((resourcetypes: ResourceTypesInVocabularyResponseJson) => {
                 console.log(this.httpGetUrl);
                 return resourcetypes;
