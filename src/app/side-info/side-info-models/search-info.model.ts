@@ -1,3 +1,5 @@
+import { SearchQuery } from '@awg-views/data-view/models';
+
 /**
  * The SearchInfo class.
  *
@@ -6,9 +8,9 @@
  */
 export class SearchInfo {
     /**
-     * The query string of a search.
+     * The query of a search (string or ExtendedSearchParams).
      */
-    query: string;
+    query: SearchQuery;
 
     /**
      * The number of hits of a search.
@@ -22,10 +24,10 @@ export class SearchInfo {
      * from a given query and number of hits
      * of a search.
      *
-     * @param {string} query The given query string.
+     * @param {SearchQuery} query The given search query.
      * @param {string} nhits The given number of hits.
      */
-    constructor(query: string, nhits: string) {
+    constructor(query: SearchQuery, nhits: string) {
         this.query = query;
         this.nhits = nhits;
     }

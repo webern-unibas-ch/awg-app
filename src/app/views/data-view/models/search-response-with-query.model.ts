@@ -1,4 +1,5 @@
 import { SearchResponseJson } from '@awg-shared/api-objects';
+import { ExtendedSearchParams, SearchQuery } from '@awg-views/data-view/models';
 
 /**
  * The SearchResponseWithQuery class.
@@ -14,9 +15,9 @@ export class SearchResponseWithQuery {
     data: SearchResponseJson;
 
     /**
-     * The query string.
+     * The query string or extended search object.
      */
-    query: string;
+    query: SearchQuery;
 
     /**
      * Constructor of the SearchResponseWithQuery class.
@@ -25,9 +26,9 @@ export class SearchResponseWithQuery {
      * search response and the corresponding query string.
      *
      * @param {SearchResponseJson} data The given search response.
-     * @param {string} query The given query string.
+     * @param {SearchQuery} query The given search query.
      */
-    constructor(data: SearchResponseJson, query: string) {
+    constructor(data: SearchResponseJson, query: SearchQuery) {
         this.data = data;
         this.query = query;
     }

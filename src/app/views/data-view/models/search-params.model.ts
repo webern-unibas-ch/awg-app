@@ -9,6 +9,11 @@ export enum SearchResultsViewTypes {
 }
 
 /**
+ * Describes a type that can be either string or ExtendedSearchParams object.
+ */
+export type SearchQuery = string | ExtendedSearchParams;
+
+/**
  * The SearchParams class.
  *
  * It is used in the context of the search
@@ -16,9 +21,9 @@ export enum SearchResultsViewTypes {
  */
 export class SearchParams {
     /**
-     * The query string.
+     * The search query (string or ExtendedSearchParams).
      */
-    query: string;
+    query: SearchQuery;
 
     /**
      * The number of rows to return per result list page.
@@ -46,48 +51,20 @@ export class ExtendedSearchParams {
     /**
      * The ID of a resource type.
      */
-    resourcetypeId: number;
+    filterByRestype: string;
 
-    /**
-     * The properties fields.
-     */
-    properties: ExtendedSearchParamsProperties[];
-
-    /**
-     * The number of rows to return per result list page.
-     */
-    nRows: string;
-
-    /**
-     * The position in the result list to start at.
-     */
-    startAt: string;
-
-    /**
-     * The requested view type ('table', 'grid').
-     */
-    view: SearchResultsViewTypes;
-}
-
-/**
- * The ExtendedSearchParamsProperties class.
- *
- * It is used in the context of the extended search
- * to store the data for the searched properties params.
- */
-export class ExtendedSearchParamsProperties {
     /**
      * The ID of a property to be searched.
      */
-    propertyId: number;
+    propertyId: string[];
 
     /**
      * The comparison operator to be applied.
      */
-    compop: string;
+    compop: string[];
 
     /**
      * The search value string.
      */
-    searchValue: string;
+    searchval: string[];
 }
