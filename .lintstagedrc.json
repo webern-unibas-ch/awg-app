@@ -1,3 +1,3 @@
 {
-    "src/**/*.{ts,html}": ["yarn lint-files:fix"]
+    "src/**/*": ["yarn lint-files:fix", "yarn format:write"]
 }
