@@ -8,7 +8,7 @@
         <select
             class="form-control"
             id="awg-extended-search-resourcetype-input"
-            formControlName="resourcetypeControl"
+            formControlName="restypeControl"
             required>
             <option value="" disabled hidden>{{ defaultFormString }}</option>
             <option *ngFor="let resourcetype of restypesResponse?.resourcetypes" [ngValue]="resourcetype.id">
@@ -27,8 +27,8 @@
                     <select
                         id="awg-extended-search-property-{{ idx }}"
                         class="form-control"
-                        formControlName="propertyControl"
-                        [attr.disabled]="isPropertyControlDisabled()"
+                        formControlName="propertyIdControl"
+                        [attr.disabled]="isPropertyIdControlDisabled()"
                         required>
                         <option value="" disabled hidden>{{ defaultFormString }}</option>
                         <ng-container *ngIf="selectedResourcetype">
@@ -59,9 +59,9 @@
                         type="search"
                         id="awg-extended-search-searchValue"
                         class="form-control"
-                        [formControl]="getSearchValueControlAtIndex(idx)"
-                        [attr.disabled]="isSearchValueControlDisabled(idx)"
-                        placeholder="{{ getSearchValuePlaceholder(idx) }}" />
+                        [formControl]="getSearchvalControlAtIndex(idx)"
+                        [attr.disabled]="isSearchvalControlDisabled(idx)"
+                        placeholder="{{ getSearchvalPlaceholder(idx) }}" />
                 </div>
 
                 <div class="btn-toolbar" role="toolbar" aria-label="Toolbar for property inputs">
@@ -84,24 +84,24 @@
                 </div>
             </ng-container>
             <div
-                *ngIf="getSearchValueControlAtIndex(idx).invalid && !getSearchValueControlAtIndex(idx).pristine"
+                *ngIf="getSearchvalControlAtIndex(idx).invalid && !getSearchvalControlAtIndex(idx).pristine"
                 class="alert alert-danger">
-                <p *ngIf="getSearchValueControlAtIndex(idx).errors.minlength"></p>
+                <p *ngIf="getSearchvalControlAtIndex(idx).errors.minlength"></p>
                 {{ searchFormStrings.errorMessage }}
             </div>
 
-            property: {{ _getFormArrayControlValueAtIndex('propertyControl', idx) }}
+            property_id[]: {{ _getFormArrayControlAtIndex('propertyIdControl', idx).value }}
 
-            compop: {{ _getFormArrayControlValueAtIndex('compopControl', idx) }}
+            compop[]: {{ _getFormArrayControlAtIndex('compopControl', idx).value }}
 
-            searchValue: {{ _getFormArrayControlValueAtIndex('searchValueControl', idx) }}
+            searchval[]: {{ _getFormArrayControlAtIndex('searchvalControl', idx).value }}
 
-            sVDisabled?: {{ isSearchValueControlDisabled(idx) }}
+            sVDisabled?: {{ isSearchvalControlDisabled(idx) }}
         </div>
     </ng-container>
     <button class="btn btn-outline-info" type="submit" [disabled]="!extendedSearchForm.valid">
         <fa-icon [icon]="faSearch"></fa-icon>
         Suche
     </button>
-    <button class="btn btn-outline-danger" (click)="onReset()" [disabled]="!resourcetypeControl.valid">Reset</button>
+    <button class="btn btn-outline-danger" (click)="onReset()" [disabled]="!restypeControl.valid">Reset</button>
 </form>

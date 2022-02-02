@@ -91,8 +91,8 @@ export class ExtendedSearchFormComponent implements OnInit {
     /**
      * Getter for the resource type control value.
      */
-    get resourcetypeControl() {
-        return this.extendedSearchForm.get('resourcetypeControl');
+    get restypeControl() {
+        return this.extendedSearchForm.get('restypeControl');
     }
 
     /**
@@ -100,13 +100,6 @@ export class ExtendedSearchFormComponent implements OnInit {
      */
     get propertiesControls(): FormArray {
         return this.extendedSearchForm.get('propertiesControls') as FormArray;
-    }
-
-    /**
-     * (Functional) Getter for the searchValue control value.
-     */
-    getSearchValueControlAtIndex(index: number) {
-        return <FormControl>this.propertiesControls.controls[index].get('searchValueControl');
     }
 
     ngOnInit(): void {
@@ -141,7 +134,7 @@ export class ExtendedSearchFormComponent implements OnInit {
      */
     createExtendedSearchForm(): void {
         this.extendedSearchForm = this.formBuilder.group({
-            resourcetypeControl: ['', Validators.required],
+            restypeControl: ['', Validators.required],
             propertiesControls: this.formBuilder.array([]),
         });
         this.addPropertiesControl();
@@ -157,9 +150,9 @@ export class ExtendedSearchFormComponent implements OnInit {
      */
     addPropertiesControl(): void {
         const group = this.formBuilder.group({
-            propertyControl: ['', [Validators.required]],
+            propertyIdControl: ['', [Validators.required]],
             compopControl: ['', [Validators.required]],
-            searchValueControl: [''],
+            searchvalControl: [''],
         });
 
         this.propertiesControls.push(group);
@@ -191,7 +184,7 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     listenToUserResourcetypeChange(): void {
-        this.resourcetypeControl.valueChanges.subscribe((resourcetypeId: string) => {
+        this.restypeControl.valueChanges.subscribe((resourcetypeId: string) => {
             this.selectedResourcetype = this.restypesResponse.resourcetypes.find(r => r.id === resourcetypeId);
 
             this.clearPropertiesControls(); // Remove all previous property input fields
@@ -209,21 +202,16 @@ export class ExtendedSearchFormComponent implements OnInit {
     onSearch(): void {
         if (this.extendedSearchForm.valid) {
             this.extendedSearchParams = {
-                resourcetypeId: this.extendedSearchForm.value.resourcetypeControl,
-                properties: [],
-                nRows: '25',
-                startAt: '0',
-                view: SearchResultsViewTypes.table,
+                filterByRestype: this.extendedSearchForm.value.restypeControl,
+                propertyId: [],
+                compop: [],
+                searchval: [],
             };
 
             this.extendedSearchForm.value.propertiesControls.forEach((property, index) => {
-                this.extendedSearchParams.properties[index] = new ExtendedSearchParamsProperties();
-                const p = this.extendedSearchParams.properties[index];
-                p.propertyId = property.propertyControl;
-                p.compop = property.compopControl;
-                if (property.searchValueControl) {
-                    p.searchValue = property.searchValueControl;
-                }
+                this.extendedSearchParams.propertyId.push(property.propertyIdControl);
+                this.extendedSearchParams.compop.push(property.compopControl);
+                this.extendedSearchParams.searchval.push(property.searchvalControl);
             });
 
             this.searchRequest.emit(this.extendedSearchParams);
@@ -233,41 +221,45 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     isAddButtonDisabled(index: number): string | null {
-        const compopValue = this._getFormArrayControlValueAtIndex('compopControl', index);
+        const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
 
-        return this._isPropertyAndCompopMissing(index) ||
-            (compopValue !== 'EXISTS' && this._isSearchValueMissing(index)) ||
-            this.getSearchValueControlAtIndex(index).errors?.minlength ||
+        return this._isPropertyIdAndCompopMissing(index) ||
+            (compopValue !== 'EXISTS' && this._isSearchvalMissing(index)) ||
+            this.getSearchvalControlAtIndex(index).errors?.minlength ||
             this._isNotLastProperty(index)
             ? ''
             : null;
     }
 
-    isPropertyControlDisabled(): string | null {
+    isPropertyIdControlDisabled(): string | null {
         return this._isResourecetypeMissing() ? '' : null; // Mechanism needed to populate "attr.disabled", cf. https://stackoverflow.com/a/49087915
     }
 
     isCompopControlDisabled(): string | null {
-        return this.isPropertyControlDisabled();
+        return this.isPropertyIdControlDisabled();
     }
 
-    isSearchValueControlDisabled(index: number): string | null {
-        const compopValue = this._getFormArrayControlValueAtIndex('compopControl', index);
-        return this._isResourecetypeMissing() || this._isPropertyAndCompopMissing(index) || compopValue === 'EXISTS'
+    isSearchvalControlDisabled(index: number): string | null {
+        const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
+        return this._isResourecetypeMissing() || this._isPropertyIdAndCompopMissing(index) || compopValue === 'EXISTS'
             ? ''
             : null;
     }
 
-    getSearchValuePlaceholder(index: number): string {
+    getSearchvalControlAtIndex(index: number) {
+        return this._getFormArrayControlAtIndex('searchvalControl', index);
+    }
+
+    getSearchvalPlaceholder(index: number): string {
         let placeholder = 'Suchbegriff';
-        if (this.isSearchValueControlDisabled(index)) {
+        if (this.isSearchvalControlDisabled(index)) {
             placeholder = '---';
         }
         return placeholder;
     }
 
-    private _getFormArrayControlValueAtIndex(controlName: string, index: number): any {
-        return this.propertiesControls.controls[index].get(controlName).value;
+    private _getFormArrayControlAtIndex(controlName: string, index: number): any {
+        return this.propertiesControls.controls[index].get(controlName);
     }
 
     private _isNotLastProperty(index: number): boolean {
@@ -277,13 +269,13 @@ export class ExtendedSearchFormComponent implements OnInit {
     }
 
     private _isResourecetypeMissing(): boolean {
-        const resourceValue = this.resourcetypeControl.value;
+        const resourceValue = this.restypeControl.value;
         return !resourceValue || resourceValue === this.defaultFormString;
     }
 
-    private _isPropertyAndCompopMissing(index: number): boolean {
-        const propertyValue = this._getFormArrayControlValueAtIndex('propertyControl', index);
-        const compopValue = this._getFormArrayControlValueAtIndex('compopControl', index);
+    private _isPropertyIdAndCompopMissing(index: number): boolean {
+        const propertyValue = this._getFormArrayControlAtIndex('propertyIdControl', index).value;
+        const compopValue = this._getFormArrayControlAtIndex('compopControl', index).value;
 
         const propertyMissing = !propertyValue || propertyValue === this.defaultFormString;
         const compopMissing = !compopValue || compopValue === this.defaultFormString;
@@ -291,11 +283,9 @@ export class ExtendedSearchFormComponent implements OnInit {
         return propertyMissing || compopMissing;
     }
 
-    private _isSearchValueMissing(index: number): boolean {
-        const searchValue = this._getFormArrayControlValueAtIndex('searchValueControl', index);
-        const searchValueMissing = !searchValue || searchValue === this.defaultFormString;
-
-        return searchValueMissing;
+    private _isSearchvalMissing(index: number): boolean {
+        const searchval = this._getFormArrayControlAtIndex('searchvalControl', index);
+        return !searchval || searchval === this.defaultFormString;
     }
 
     private _resetForm() {
