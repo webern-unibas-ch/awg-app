@@ -93,8 +93,8 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     /**
      * Getter for the search value control value.
      */
-    get searchValueControl() {
-        return this.searchForm.get('searchValueControl');
+    get searchvalControl() {
+        return this.searchForm.get('searchvalControl');
     }
 
     /**
@@ -116,7 +116,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      */
     createFulltextSearchForm(): void {
         this.searchForm = this.formBuilder.group({
-            searchValueControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
+            searchvalControl: ['', Validators.compose([Validators.required, Validators.minLength(3)])],
         });
     }
 
@@ -130,7 +130,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * @returns {void} Listens to changing search values.
      */
     listenToUserInputChange(): void {
-        this.searchValueControl.valueChanges
+        this.searchvalControl.valueChanges
             .pipe(
                 // At least 3 characters
                 filter(x => x.length >= 3),
@@ -144,7 +144,7 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     }
 
     /**
-     * Public method: setSearchValueFromInput.
+     * Public method: setSearchvalFromInput.
      *
      * It sets the value of the search value control
      * from the searchValue input.
@@ -153,8 +153,8 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      *
      * @returns {void} Sets the search value control.
      */
-    setSearchValueFromInput(): void {
-        this.searchValueControl.setValue(this.searchValue);
+    setSearchvalFromInput(): void {
+        this.searchvalControl.setValue(this.searchValue);
     }
 
     /**
@@ -166,7 +166,9 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
      * @returns {void} Emits the search query.
      */
     onSearch(query: string): void {
-        this.searchRequest.emit(query);
+        if (this.searchForm.valid) {
+            this.searchRequest.emit(query);
+        }
     }
 
     /**

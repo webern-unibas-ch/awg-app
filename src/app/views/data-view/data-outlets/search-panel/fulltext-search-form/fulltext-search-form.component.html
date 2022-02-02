@@ -13,14 +13,14 @@
                     type="search"
                     id="awg-fulltext-search-searchValue"
                     class="form-control"
-                    formControlName="searchValueControl"
+                    formControlName="searchvalControl"
                     aria-label="Search input"
                     aria-describedby="search-icon"
                     placeholder="{{ searchFormStrings.placeholder }}"
                     required />
             </div>
-            <div *ngIf="searchValueControl.invalid && !searchValueControl.pristine" class="alert alert-danger">
-                <p *ngIf="searchValueControl.hasError('required') || searchValueControl.errors.minlength"></p>
+            <div *ngIf="searchvalControl.invalid && !searchvalControl.pristine" class="alert alert-danger">
+                <p *ngIf="searchvalControl.hasError('required') || searchvalControl.errors.minlength"></p>
                 {{ searchFormStrings.errorMessage }}
             </div>
         </div>
