@@ -146,17 +146,14 @@ export class ConversionService extends ApiService {
         let resText: string;
 
         const searchResults = { ...searchResponseWithQuery.data };
-        const searchValue = searchResponseWithQuery.query;
 
         if (searchResults.subjects) {
             const currentLength = searchResults.subjects.length;
             const totalLength = searchResults.nhits;
-            const resString: string = length === 1 ? 'Resultat' : 'Resultate';
-            resText = `${currentLength} / ${totalLength} ${resString} für "${searchValue}"`;
-
+            const resString: string = length === 1 ? 'Ergbnis' : 'Ergebnisse';
+            resText = `${currentLength} / ${totalLength} ${resString}`;
             if (this.filteredOut > 0) {
-                const duplString: string = this.filteredOut === 1 ? 'Duplikat' : 'Duplikate';
-                resText += ` (${this.filteredOut} ${duplString} entfernt)`;
+                resText += ' (Duplikate enfternt)';
             }
         } else {
             resText = `Die Abfrage ${searchUrl} ist leider fehlgeschlagen. Wiederholen Sie die Abfrage zu einem späteren Zeitpunkt oder überprüfen sie die Suchbegriffe.`;

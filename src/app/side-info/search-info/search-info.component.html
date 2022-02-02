@@ -7,7 +7,7 @@
         <p>&#9671;</p>
         <p>
             <strong>Suchanfrage: </strong
-            ><span *ngIf="searchInfoData$ | async as searchInfoData">{{ searchInfoData?.query }}</span>
+            ><span *ngIf="searchInfoData$ | async as searchInfoData">{{ searchInfoData?.query | json }}</span>
         </p>
         <p>&#9671;</p>
         <p>
