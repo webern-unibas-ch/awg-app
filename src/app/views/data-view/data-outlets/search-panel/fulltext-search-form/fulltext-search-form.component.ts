@@ -80,15 +80,11 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
     /**
      * Constructor of the SearchFormComponent.
      *
-     * It declares a private FormBuilder instance
-     * and initializes the search form.
+     * It declares a private FormBuilder instance.
      *
      * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      */
-    constructor(private formBuilder: FormBuilder) {
-        this.createFulltextSearchForm();
-        this.listenToUserInputChange();
-    }
+    constructor(private formBuilder: FormBuilder) {}
 
     /**
      * Getter for the search value control value.

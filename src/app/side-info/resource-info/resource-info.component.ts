@@ -103,11 +103,15 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
      * DataStreamerService instance
      * to get the streamed search results.
      *
-     * @param {FormBuilder} fb Instance of the FormBuilder.
+     * @param {FormBuilder} formBuilder Instance of the FormBuilder.
      * @param {Router} router Instance of the Router.
      * @param {DataStreamerService} streamerService Instance of the DataStreamerService.
      */
-    constructor(private fb: FormBuilder, private router: Router, private streamerService: DataStreamerService) {}
+    constructor(
+        private formBuilder: FormBuilder,
+        private router: Router,
+        private streamerService: DataStreamerService
+    ) {}
 
     /**
      * Getter for the current index position of the form group.
@@ -288,7 +292,7 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     private _buildForm(index: number, resultSize: number): void {
         const regexPattern = /^[1-9]\d{0,9}$/; // Match any up-to 10-digit integer greater 0
 
-        this.resourceInfoFormGroup = this.fb.group({
+        this.resourceInfoFormGroup = this.formBuilder.group({
             resourceInfoIndex: [
                 index || '',
                 Validators.compose([
