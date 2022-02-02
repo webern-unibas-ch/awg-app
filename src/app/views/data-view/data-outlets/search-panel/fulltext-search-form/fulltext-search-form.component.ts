@@ -1,7 +1,17 @@
-import { ChangeDetectionStrategy, Component, EventEmitter, Input, OnChanges, Output } from '@angular/core';
+import {
+    ChangeDetectionStrategy,
+    Component,
+    EventEmitter,
+    Input,
+    OnChanges,
+    OnDestroy,
+    OnInit,
+    Output,
+} from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
-import { debounceTime, distinctUntilChanged, filter } from 'rxjs/operators';
+import { Subject } from 'rxjs';
+import { debounceTime, distinctUntilChanged, filter, takeUntil } from 'rxjs/operators';
 
 import { faSearch } from '@fortawesome/free-solid-svg-icons';
 
@@ -18,7 +28,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
     styleUrls: ['./fulltext-search-form.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class FulltextSearchFormComponent implements OnChanges {
+export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy {
     /**
      * Input variable: searchValue.
      *
@@ -59,6 +69,13 @@ export class FulltextSearchFormComponent implements OnChanges {
         placeholder: 'Volltextsuche in der Webern-Datenbank …',
         errorMessage: 'Es wird ein Suchbegriff mit mindestens 3 Zeichen benötigt!',
     };
+
+    /**
+     * Private variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the SearchFormComponent.
@@ -120,7 +137,8 @@ export class FulltextSearchFormComponent implements OnChanges {
                 // Do not check changes before half a second
                 debounceTime(500),
                 // Do not check unchanged values
-                distinctUntilChanged()
+                distinctUntilChanged(),
+                takeUntil(this._destroyed$)
             )
             .subscribe((query: string) => this.onSearch(query));
     }
@@ -149,5 +167,19 @@ export class FulltextSearchFormComponent implements OnChanges {
      */
     onSearch(query: string): void {
         this.searchRequest.emit(query);
+    }
+
+    /**
+     * Angular life cycle hook: ngOnDestroy.
+     *
+     * It calls the containing methods
+     * when destroying the component.
+     */
+    ngOnDestroy() {
+        // Emit truthy value to end all subscriptions
+        this._destroyed$.next(true);
+
+        // Complete the destroy subject itself
+        this._destroyed$.complete();
     }
 }

@@ -28,13 +28,6 @@ import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@
 })
 export class SearchPanelComponent implements OnInit, OnDestroy {
     /**
-     * Public variable: destroy$.
-     *
-     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
-     */
-    destroy$: Subject<boolean> = new Subject<boolean>();
-
-    /**
      * Public variable: currentQueryParams.
      *
      * It keeps the current ParamMap from the query url.
@@ -78,6 +71,13 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * If the view has changed.
      */
     viewChanged = false;
+
+    /**
+     * Private variable: _destroyed$.
+     *
+     * Subject to emit a truthy value in the ngOnDestroy lifecycle hook.
+     */
+    private _destroyed$: Subject<boolean> = new Subject<boolean>();
 
     /**
      * Constructor of the SearchPanelComponent.
@@ -176,7 +176,7 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                     // In any other cases return empty observable
                     return EMPTY;
                 }),
-                takeUntil(this.destroy$)
+                takeUntil(this._destroyed$)
             )
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
@@ -376,10 +376,10 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     ngOnDestroy() {
         // Emit truthy value to end all subscriptions
-        this.destroy$.next(true);
+        this._destroyed$.next(true);
 
-        // Unsubscribe from the destroy subject itself
-        this.destroy$.unsubscribe();
+        // Complete the destroy subject itself
+        this._destroyed$.complete();
     }
 
     /**
