@@ -215,8 +215,7 @@ export class EditionConstants {
     static readonly FIRM_JE_NO_9_LIN_28: EditionRoute = {
         route: 'assets/img/edition/series1/section5/op12/firm_je_no9_lin28.png',
         short: '[JE] | No. 9 | 28 linig.',
-        full:
-            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 9 | 28 linig.',
     };
 
     /**
@@ -225,8 +224,7 @@ export class EditionConstants {
     static readonly FIRM_JE_NO_15_LIN_16: EditionRoute = {
         route: 'assets/img/edition/series1/section5/op25/firm_je_no15_lin16.png',
         short: '[JE] | No. 15 | 16 linig.',
-        full:
-            'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.',
+        full: 'J. E. & Co. [diagonal ansteigend auf schildförmiger Papierrolle, rechts von einem Löwen gehalten, links und unten Blattgirlande] | No. 15 | 16 linig.',
     };
 
     /**
