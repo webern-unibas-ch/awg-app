@@ -10,7 +10,13 @@ import { ConversionService, DataStreamerService, LoadingService } from '@awg-cor
 import { SearchResponseJson } from '@awg-shared/api-objects';
 
 import { DataApiService } from '@awg-views/data-view/services';
-import { SearchParams, SearchResultsViewTypes, SearchResponseWithQuery } from '@awg-views/data-view/models';
+import {
+    SearchParams,
+    SearchResultsViewTypes,
+    SearchResponseWithQuery,
+    SearchQuery,
+    ExtendedSearchParams,
+} from '@awg-views/data-view/models';
 
 /**
  * The SearchPanel component.
@@ -35,21 +41,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     currentQueryParams: ParamMap;
 
     /**
-     * Public variable: searchParams.
+     * Public variable: errorMessage.
      *
-     * It keeps the default parameters for the search.
+     * It keeps an errorMessage for the search response subscription.
      */
-    searchParams: SearchParams;
-
-    /**
-     * Public variable: searchTabTitles.
-     *
-     * It keeps the titles for the tab panels.
-     */
-    searchTabTitles = {
-        fulltext: 'Volltext-Suche',
-        extended: 'Erweiterte Suche',
-    };
+    errorMessage: any = undefined;
 
     /**
      * Public variable: selectedSearchTabId.
@@ -59,11 +55,23 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     selectedSearchTabId: string;
 
     /**
-     * Public variable: errorMessage.
+     * Public variable: searchParams.
      *
-     * It keeps an errorMessage for the search response subscription.
+     * It keeps the default parameters for the search.
      */
-    errorMessage: any = undefined;
+    searchParams: SearchParams;
+
+    searchResponseWithQuery: SearchResponseWithQuery;
+
+    /**
+     * Public variable: searchTabString.
+     *
+     * It keeps the default text strings for the tab panels.
+     */
+    searchTabStrings = {
+        fulltext: { id: 'fulltext', title: 'Volltext-Suche' },
+        extended: { id: 'extended', title: 'Erweiterte Suche' },
+    };
 
     /**
      * Public variable: viewChanged.
@@ -255,11 +263,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * after a search request and triggers the
      * {@link _routeToSelf} method.
      *
-     * @param {string} requestedQuery The given search query.
+     * @param {SearchQuery} requestedQuery The given search query (string or ExtendedSearchParams).
      *
      * @returns {void} Sets the search params and routes to itself.
      */
-    onSearch(requestedQuery: string): void {
+    onSearch(requestedQuery: SearchQuery): void {
         if (requestedQuery !== this.searchParams.query) {
             // View has not changed
             this.viewChanged = false;
@@ -288,9 +296,13 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      * @returns {void} Routes to itself with the given id as route.
      */
     onSearchTabChange(tabEvent: NgbNavChangeEvent): void {
-        this.resetSearchParams();
+        const newTabId = tabEvent.nextId;
+        this.resetSearchParams(newTabId);
+        this.resetSearchResponse();
+
+        this.errorMessage = undefined;
         // Route to new tab with resetted searchParams
-        this._routeToSelf(this.searchParams, tabEvent.nextId);
+        this._routeToSelf(this.searchParams, newTabId);
     }
 
     /**
@@ -324,17 +336,35 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
     /**
      * Public method: resetSearchParams.
      *
-     * It resets the search params to the default value.
+     * It resets the search params to the default value
+     * according to the target tab.
+     * @param {string} [tabId] The given tab id.
      *
      * @returns {void} Resets the search params.
      */
-    resetSearchParams(): void {
+    resetSearchParams(tabId?: string): void {
+        let query: SearchQuery;
+        if (!tabId || tabId === this.searchTabStrings.fulltext.id) {
+            query = '';
+        } else if (tabId === this.searchTabStrings.extended.id) {
+            query = new ExtendedSearchParams();
+            query.filterByRestype = '';
+            query.propertyId = [];
+            query.compop = [];
+            query.searchval = [];
+        }
         this.searchParams = {
-            query: '',
+            query: query,
             nRows: '25',
             startAt: '0',
             view: SearchResultsViewTypes.table,
         };
+    }
+
+    resetSearchResponse() {
+        this.searchResponseWithQuery = new SearchResponseWithQuery(new SearchResponseJson(), '');
+
+        this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
     }
 
     /**
@@ -366,6 +396,28 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
         if (routing) {
             this._routeToSelf(this.searchParams);
         }
+    }
+
+    getSearchQueryType(value: SearchQuery): any {
+        if (this._isString(value)) {
+            return value as string;
+        } else if (this._isObject(value)) {
+            return value as ExtendedSearchParams;
+        }
+    }
+
+    _isString(value: any): boolean {
+        return typeof value === 'string';
+    }
+
+    _isObject(value: any): boolean {
+        return typeof value === 'object';
+    }
+
+    isSearchResultListShown(): boolean {
+        this.dataStreamerService.getSearchResponseWithQuery().subscribe(result => console.log(result));
+
+        return true;
     }
 
     /**

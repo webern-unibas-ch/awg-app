@@ -6,8 +6,8 @@
         class="nav-tabs nav-fill"
         [activeId]="selectedSearchTabId"
         (navChange)="onSearchTabChange($event)">
-        <ng-container ngbNavItem="fulltext">
-            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabTitles?.fulltext }}</a>
+        <ng-container [ngbNavItem]="searchTabStrings?.fulltext.id">
+            <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabStrings?.fulltext.title }}</a>
             <ng-template ngbNavContent>
                 <!-- full text search -->
                 <awg-fulltext-search-form
@@ -16,8 +16,8 @@
                 </awg-fulltext-search-form>
             </ng-template>
         </ng-container>
-        <ng-container ngbNavItem="extended">
-            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabTitles?.extended }}</a>
+        <ng-container [ngbNavItem]="searchTabStrings.extended.id">
+            <a ngbNavLink class="awg-extended-search-tab">{{ searchTabStrings?.extended.title }}</a>
             <ng-template ngbNavContent>
                 <!-- extended search -->
                 <awg-extended-search-form (searchRequest)="onSearch($event)"></awg-extended-search-form>
@@ -37,11 +37,11 @@
     <div class="errorMessage" *ngIf="errorMessage">
         <p>Die Anfrage "{{ errorMessage?.route }}" ist fehlgeschlagen.</p>
         <p>Fehlermeldung: "{{ errorMessage?.statusText || errorMessage }}".</p>
-        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder dem verwendeten Suchbegriff.</p>
+        <p>Möglicherweise gab es ein Problem mit der Internetverbindung oder der Suchanfrage.</p>
     </div>
 
     <awg-search-result-list
-        *ngIf="searchParams?.query"
+        *ngIf="searchResponseWithQuery?.query"
         [searchParams]="searchParams"
         [searchUrl]="httpGetUrl"
         (pageChangeRequest)="onPageChange($event)"
