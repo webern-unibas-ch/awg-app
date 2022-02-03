@@ -49,6 +49,7 @@ describe('DataApiService', () => {
     const expectedResourceSuffix = '_-_local';
     const expectedRoutes = {
         resources: 'resources/',
+        resourcetypes: 'resourcetypes/',
         search: 'search/',
         geonames: 'geonames/',
         hlists: 'hlists/',
@@ -163,7 +164,7 @@ describe('DataApiService', () => {
         );
     });
 
-    describe('#getFulltextSearchData', () => {
+    describe('#getSearchData', () => {
         describe('request', () => {
             it(
                 '... should not do anything if undefined is provided',
@@ -173,7 +174,7 @@ describe('DataApiService', () => {
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
 
                     // Call service function
-                    dataApiService.getFulltextSearchData(expectedSearchString);
+                    dataApiService.getSearchData(expectedSearchString);
 
                     // Expect no request to getApiResponse
                     expectSpyCall(getApiResponseSpy, 0);
@@ -195,7 +196,7 @@ describe('DataApiService', () => {
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchString;
 
                     // Call service function
-                    dataApiService.getFulltextSearchData(expectedSearchString);
+                    dataApiService.getSearchData(expectedSearchString);
 
                     // Expect no request to getApiResponse
                     expectSpyCall(getApiResponseSpy, 0);
@@ -218,7 +219,7 @@ describe('DataApiService', () => {
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
-                    dataApiService.getFulltextSearchData(expectedSearchParams);
+                    dataApiService.getSearchData(expectedSearchParams);
 
                     // Expect no request to getApiResponse
                     expectSpyCall(getApiResponseSpy, 0);
@@ -240,7 +241,7 @@ describe('DataApiService', () => {
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
-                    dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
+                    dataApiService.getSearchData(expectedSearchParams).subscribe();
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
@@ -266,7 +267,7 @@ describe('DataApiService', () => {
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
-                    dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
+                    dataApiService.getSearchData(expectedSearchParams).subscribe();
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
@@ -307,7 +308,7 @@ describe('DataApiService', () => {
                     const expectedUrl = apiUrl + expectedRoutes.search + expectedSearchParams.query;
 
                     // Call service function
-                    dataApiService.getFulltextSearchData(expectedSearchParams).subscribe();
+                    dataApiService.getSearchData(expectedSearchParams).subscribe();
 
                     // Expect one request to url with given settings
                     const call = httpTestingController.expectOne(
@@ -352,15 +353,13 @@ describe('DataApiService', () => {
 
                     getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseJson));
 
-                    dataApiService
-                        .getFulltextSearchData(expectedSearchParams)
-                        .subscribe((response: SearchResponseJson) => {
-                            expectSpyCall(getApiResponseSpy, 1, [
-                                SearchResponseJson,
-                                expectedQueryPath,
-                                expectedQueryHttpParams,
-                            ]);
-                        });
+                    dataApiService.getSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
+                        expectSpyCall(getApiResponseSpy, 1, [
+                            SearchResponseJson,
+                            expectedQueryPath,
+                            expectedQueryHttpParams,
+                        ]);
+                    });
                 })
             );
         });
@@ -375,11 +374,9 @@ describe('DataApiService', () => {
 
                         getApiResponseSpy.and.returnValue(observableOf(expectedSearchResponseConverted));
 
-                        dataApiService
-                            .getFulltextSearchData(expectedSearchParams)
-                            .subscribe((response: SearchResponseJson) => {
-                                expect(response).toEqual(expectedSearchResponseConverted);
-                            });
+                        dataApiService.getSearchData(expectedSearchParams).subscribe((response: SearchResponseJson) => {
+                            expect(response).toEqual(expectedSearchResponseConverted);
+                        });
                     })
                 );
             });
@@ -406,7 +403,7 @@ describe('DataApiService', () => {
 
                         getApiResponseSpy.and.returnValue(observableThrowError(expectedApiServiceError));
 
-                        dataApiService.getFulltextSearchData(expectedSearchParams).subscribe(
+                        dataApiService.getSearchData(expectedSearchParams).subscribe(
                             result => fail(expectedErrorMsg),
                             (error: ApiServiceError) => {
                                 expectSpyCall(getApiResponseSpy, 1, [

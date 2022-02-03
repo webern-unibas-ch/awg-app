@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpParams } from '@angular/common/http';
 
-import { forkJoin as observableForkJoin, Observable } from 'rxjs';
+import { forkJoin as observableForkJoin, Observable, of as observableOf } from 'rxjs';
 import { defaultIfEmpty, map } from 'rxjs/operators';
 
 import { ApiService, ConversionService } from '@awg-core/services/';
@@ -15,7 +15,6 @@ import {
     SelectionJson,
 } from '@awg-shared/api-objects';
 import {
-    ExtendedSearchParams,
     IResourceDataResponse,
     ResourceData,
     ResourceDetail,
@@ -43,6 +42,11 @@ export class DataApiService extends ApiService {
      */
     projectId = '6';
 
+    /**
+     * Public variable: defaultLanguage.
+     *
+     * It keeps the SALSAH specific value for the defaut language ('de').
+     */
     defaultLanguage = 'de';
 
     /**
@@ -83,18 +87,21 @@ export class DataApiService extends ApiService {
     }
 
     /**
-     * Public method: getFulltextSearchData.
+     * Public method: getSearchData.
      *
-     * It sets the path and params for a fulltext search query
-     * to retrieve all results for the searchstring
-     * from the given (SALSAH) API.
+     * It sets the path and params for a search query
+     * depending on the search mode (fulltext or extended)
+     * to retrieve all results from the given (SALSAH) API.
      *
-     * @params {SearchParams} searchParams The given search parameter of the query.
+     * @params {SearchParams} searchParams The given search parameters of the query.
      *
      * @returns {Observable<SearchResponseJson>} The observable with the SearchResponseJson data.
      */
-    getFulltextSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
+    getSearchData(searchParams: SearchParams): Observable<SearchResponseJson> {
         if (!searchParams || !searchParams.query) {
+            return observableOf(new SearchResponseJson());
+        }
+        if (typeof searchParams.query === 'object' && !searchParams.query['filterByRestype']) {
             return;
         }
 
@@ -107,68 +114,12 @@ export class DataApiService extends ApiService {
         };
 
         // Set path and params of query
-        const queryPath: string = this.routes.search + sp.query;
-        const queryHttpParams = new HttpParams()
-            .set('searchtype', 'fulltext')
-            .set('filter_by_project', this.projectId)
-            .set('lang', this.defaultLanguage)
-            .set('show_nrows', sp.nRows)
-            .set('start_at', sp.startAt);
-
-        // Cold request to API
-        const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
-            SearchResponseJson,
-            queryPath,
-            queryHttpParams
-        );
-
-        // Return converted search response
-        return searchData$.pipe(
-            // Default empty value
-            defaultIfEmpty(new SearchResponseJson()),
-
-            // Map the response to a converted search response object for HTML display
-            map((searchResponse: SearchResponseJson) =>
-                this.conversionService.convertFullTextSearchResults(searchResponse)
-            )
-        );
-    }
-
-    getExtendedSearchData(searchParams: ExtendedSearchParams): Observable<SearchResponseJson> {
-        if (!searchParams || !searchParams.resourcetypeId || !searchParams.properties) {
-            return;
+        let queryPath: string = this.routes.search;
+        if (typeof searchParams.query === 'string') {
+            queryPath = queryPath + searchParams.query;
         }
 
-        // Default values
-        const sp: ExtendedSearchParams = {
-            resourcetypeId: searchParams.resourcetypeId,
-            properties: searchParams.properties,
-            nRows: searchParams.nRows || '-1',
-            startAt: searchParams.startAt || '0',
-            view: searchParams.view || SearchResultsViewTypes.table,
-        };
-
-        // Set path and params of query
-        const queryPath: string = this.routes.search;
-
-        let queryHttpParams = new HttpParams()
-            .set('searchtype', 'extended')
-            .set('filter_by_project', this.projectId)
-            .set('filter_by_restype', sp.resourcetypeId)
-            .set('lang', this.defaultLanguage)
-            .set('show_nrows', sp.nRows)
-            .set('start_at', sp.startAt);
-
-        if (sp.properties.length > 0) {
-            sp.properties.forEach(p => {
-                queryHttpParams = queryHttpParams.append('property_id', p.propertyId);
-                queryHttpParams = queryHttpParams.append('compop', p.compop);
-                if (p.searchValue) {
-                    queryHttpParams = queryHttpParams.append('searchval', p.searchValue);
-                }
-            });
-        }
-        console.log(queryHttpParams);
+        const queryHttpParams = this._createQueryParams(sp);
 
         // Cold request to API
         const searchData$: Observable<SearchResponseJson> = this.getApiResponse(
@@ -246,6 +197,39 @@ export class DataApiService extends ApiService {
                 this._prepareResourceData(resourceDataResponse, resourceId)
             )
         );
+    }
+
+    private _createQueryParams(sp: SearchParams) {
+        let queryHttpParams = new HttpParams()
+            .set('filter_by_project', this.projectId)
+            .set('lang', this.defaultLanguage)
+            .set('show_nrows', sp.nRows)
+            .set('start_at', sp.startAt);
+
+        if (typeof sp.query === 'string') {
+            queryHttpParams = queryHttpParams.append('searchtype', 'fulltext');
+        } else if (typeof sp.query === 'object') {
+            queryHttpParams = queryHttpParams.append('searchtype', 'extended');
+            queryHttpParams = queryHttpParams.append('filter_by_restype', sp.query['filterByRestype']);
+
+            if (sp.query.propertyId.length > 0) {
+                sp.query.propertyId.forEach(id => {
+                    queryHttpParams = queryHttpParams.append('property_id', id);
+                });
+            }
+            if (sp.query.compop.length > 0) {
+                sp.query.compop.forEach(compop => {
+                    queryHttpParams = queryHttpParams.append('compop', compop);
+                });
+            }
+            if (sp.query.searchval.length > 0) {
+                sp.query.searchval.forEach(searchval => {
+                    queryHttpParams = queryHttpParams.append('searchval', searchval);
+                });
+            }
+        }
+
+        return queryHttpParams;
     }
 
     /**
