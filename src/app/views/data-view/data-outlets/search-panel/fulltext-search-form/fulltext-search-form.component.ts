@@ -24,7 +24,7 @@ import { faSearch } from '@fortawesome/free-solid-svg-icons';
  * with a reactive form group.
  */
 @Component({
-    selector: 'awg-search-form',
+    selector: 'awg-fulltext-search-form',
     templateUrl: './fulltext-search-form.component.html',
     styleUrls: ['./fulltext-search-form.component.css'],
     changeDetection: ChangeDetectionStrategy.OnPush,

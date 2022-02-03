@@ -10,8 +10,10 @@
             <a ngbNavLink id="fulltext" class="awg-fulltext-search-tab">{{ searchTabTitles?.fulltext }}</a>
             <ng-template ngbNavContent>
                 <!-- full text search -->
-                <awg-search-form [searchValue]="searchParams?.query" (searchRequest)="onSearch($event)">
-                </awg-search-form>
+                <awg-fulltext-search-form
+                    [searchValue]="getSearchQueryType(searchParams?.query)"
+                    (searchRequest)="onSearch($event)">
+                </awg-fulltext-search-form>
             </ng-template>
         </ng-container>
         <ng-container ngbNavItem="extended">
