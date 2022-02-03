@@ -30,8 +30,8 @@ export class ExtendedSearchFormComponent implements OnInit {
         { id: '!EQ', label: '!=' },
         { id: 'GT', label: '>' },
         { id: 'GT_EQ', label: '>=' },
-        { id: 'LT', label: '>' },
-        { id: 'LT_EQ', label: '>=' },
+        { id: 'LT', label: '<' },
+        { id: 'LT_EQ', label: '<=' },
     ];
 
     defaultFormString = '---';
