@@ -213,15 +213,27 @@ export class ResourceInfoComponent implements OnInit, OnDestroy {
     /**
      * Public method: navigateToSearchPanel.
      *
-     * It navigates back to the '/data/search/fulltext' route
-     * (search panel) with the current query string if given.
+     * It navigates back to the '/data/search/' route
+     * (search panel) with the current search query if given.
      *
      * @returns {void} Navigates to the search panel.
      */
     navigateToSearchPanel(): void {
-        const queryStr = this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : '';
-        this.router.navigate(['/data/search/fulltext'], {
-            queryParams: { query: queryStr },
+        let commands;
+        const extras = { queryParams: {} };
+        const query: SearchQuery = this.resourceInfoData.searchResults ? this.resourceInfoData.searchResults.query : '';
+
+        if (typeof query === 'string') {
+            commands = ['/data/search'];
+            extras.queryParams = { query: query };
+        }
+        if (typeof query === 'object' && typeof this.resourceInfoData.searchResults.query === 'object') {
+            commands = ['/data/search/', 'extended'];
+            extras.queryParams = { ...this.resourceInfoData.searchResults.query };
+        }
+
+        this.router.navigate(commands, {
+            queryParams: { query },
         });
     }
 
