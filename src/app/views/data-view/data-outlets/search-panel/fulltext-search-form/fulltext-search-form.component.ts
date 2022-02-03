@@ -7,6 +7,7 @@ import {
     OnDestroy,
     OnInit,
     Output,
+    SimpleChanges,
 } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
@@ -93,13 +94,24 @@ export class FulltextSearchFormComponent implements OnInit, OnChanges, OnDestroy
         return this.searchForm.get('searchvalControl');
     }
 
+    ngOnInit() {
+        this.createFulltextSearchForm();
+        this.listenToUserInputChange();
+    }
+
     /**
      * Angular life cycle hook: ngOnChanges.
      *
      * It checks for changes of the given input.
      */
-    ngOnChanges() {
-        this.setSearchValueFromInput();
+    ngOnChanges(changes: SimpleChanges) {
+        if (
+            changes.searchValue &&
+            !changes.searchValue.isFirstChange() &&
+            typeof changes.searchValue.currentValue === 'string'
+        ) {
+            this.setSearchvalFromInput();
+        }
     }
 
     /**
