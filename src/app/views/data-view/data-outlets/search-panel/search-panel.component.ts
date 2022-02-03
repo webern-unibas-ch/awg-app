@@ -1,5 +1,5 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
-import { ActivatedRoute, NavigationEnd, ParamMap, Router } from '@angular/router';
+import { ActivatedRoute, NavigationEnd, ParamMap, Params, Router } from '@angular/router';
 
 import { EMPTY, Observable, Subject } from 'rxjs';
 import { filter, map, switchMap, takeUntil } from 'rxjs/operators';
@@ -136,34 +136,37 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
      */
     ngOnInit() {
         this.resetSearchParams();
-        this.getFulltextSearchData();
+        this.getSearchData();
     }
 
     /**
-     * Public method: getFulltextSearchData.
+     * Public method: getSearchData.
      *
      * It gets the query parameters from the route's query params
-     * and fetches the corresponding fulltext search data
+     * and fetches the corresponding search data
      * from the {@link DataApiService}.
      *
      * @returns {void} Sets the search data.
      *
      */
-    getFulltextSearchData(): void {
+    getSearchData(): void {
         this.router.events
             .pipe(
                 filter(event => event instanceof NavigationEnd),
                 map(() => this.route),
+                map((route: ActivatedRoute) => {
+                    // Snapshot of tab route
+                    let r = route;
+                    while (r.firstChild) {
+                        r = r.firstChild;
+                    }
+                    this.selectedSearchTabId = r.snapshot.url[0].path;
+
+                    return route;
+                }),
                 switchMap((route: ActivatedRoute) => {
                     // Snapshot of current route query params
                     const qp = route.snapshot.queryParamMap;
-
-                    while (route.firstChild) {
-                        route = route.firstChild;
-                    }
-
-                    // Snapshot of tab route
-                    this.selectedSearchTabId = route.snapshot.url[0].path;
 
                     if (qp !== this.currentQueryParams) {
                         this.currentQueryParams = qp;
@@ -175,9 +178,19 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
                             // Update search params from route if available
                             this.updateSearchParamsFromRoute(qp, false);
 
-                            if (this.searchParams.query && !this.viewChanged) {
-                                // Fetch search data
-                                return this.dataApiService.getFulltextSearchData(this.searchParams);
+                            if (!this.viewChanged) {
+                                console.log(typeof this.getSearchQueryType(this.searchParams.query));
+                                if (this.searchParams.query && typeof this.searchParams.query === 'string') {
+                                    // Fetch search data
+                                    return this.dataApiService.getSearchData(this.searchParams);
+                                }
+                                if (
+                                    typeof this.searchParams.query === 'object' &&
+                                    this.searchParams.query.filterByRestype
+                                ) {
+                                    // Fetch search data
+                                    return this.dataApiService.getSearchData(this.searchParams);
+                                }
                             }
                         }
                     }
@@ -189,13 +202,11 @@ export class SearchPanelComponent implements OnInit, OnDestroy {
             .subscribe(
                 (searchResponse: SearchResponseJson) => {
                     // Share search data via streamer service
-                    const searchResponseWithQuery: SearchResponseWithQuery = new SearchResponseWithQuery(
-                        searchResponse,
-                        this.searchParams.query
-                    );
-                    this.dataStreamerService.updateSearchResponseWithQuery(searchResponseWithQuery);
+                    this.searchResponseWithQuery = new SearchResponseWithQuery(searchResponse, this.searchParams.query);
+                    this.dataStreamerService.updateSearchResponseWithQuery(this.searchResponseWithQuery);
                 },
                 error => {
+                    console.error(error);
                     this.errorMessage = error as any;
                 }
             );
