@@ -210,7 +210,7 @@ export class ExtendedSearchFormComponent implements OnInit {
 
             this.searchRequest.emit(this.extendedSearchParams);
 
-            this._resetForm();
+            // .this._resetForm();
         }
     }
 
