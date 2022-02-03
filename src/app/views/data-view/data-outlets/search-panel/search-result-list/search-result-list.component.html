@@ -85,7 +85,7 @@
                             </span>
                         </td>
                         <td class="col-6 col-sm-8 col-md-7 col-lg-8 col-xl-9">
-                            <span [compile-html]="(subject?.value)[0]" [compile-html-ref]="this"></span>
+                            <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
                         </td>
                     </tr>
                 </tbody>
@@ -101,7 +101,7 @@
                 </div>
                 <div class="card-body">
                     <h5 class="card-title">
-                        <span [compile-html]="(subject?.value)[0]" [compile-html-ref]="this"></span>
+                        <span [compile-html]="subject!.value[0]" [compile-html-ref]="this"></span>
                     </h5>
                     <button type="button" class="btn btn-outline-info" (click)="navigateToResource(subject?.obj_id)">
                         Mehr ...

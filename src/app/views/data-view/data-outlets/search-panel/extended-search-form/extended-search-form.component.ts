@@ -1,15 +1,11 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { faPlus, faSearch, faTrash } from '@fortawesome/free-solid-svg-icons';
 
-import { ResourceTypesInVocabularyResponseJson, ResTypeItemJson, SearchResponseJson } from '@awg-shared/api-objects';
+import { ResourceTypesInVocabularyResponseJson, ResTypeItemJson } from '@awg-shared/api-objects';
 
-import {
-    ExtendedSearchParams,
-    ExtendedSearchParamsProperties,
-    SearchResultsViewTypes,
-} from '@awg-views/data-view/models';
+import { ExtendedSearchParams } from '@awg-views/data-view/models';
 import { DataApiService } from '@awg-views/data-view/services';
 
 @Component({
@@ -39,8 +35,6 @@ export class ExtendedSearchFormComponent implements OnInit {
     ];
 
     defaultFormString = '---';
-
-    displaySearchValue = false;
 
     /**
      * Public variable: faPlus.
@@ -78,7 +72,7 @@ export class ExtendedSearchFormComponent implements OnInit {
     /**
      * Public variable: searchFormString.
      *
-     * It keeps the default texts for the search form.
+     * It keeps the default text strings for the search form.
      */
     searchFormStrings = {
         label: 'Search Input',
